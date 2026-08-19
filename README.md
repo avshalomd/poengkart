@@ -14,9 +14,9 @@ nothing findable. Each county also publishes a *different intake round*, and
 thresholds fall between rounds, so the app labels every figure with its round
 and warns when a view mixes them.
 
-![Map of Rogaland with schools colored by admission pressure](docs/map.png)
+![Map of Norway with upper secondary schools coloured by admission pressure](docs/map.png)
 
-![School details: trends and per-program thresholds](docs/school.png)
+![School details: trends and per-programme thresholds](docs/school.png)
 
 ## Run locally
 
