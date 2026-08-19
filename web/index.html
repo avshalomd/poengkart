@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poengkart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f4f6f9;
+    --surface: rgba(255,255,255,.85);
+    --surface-solid: #ffffff;
+    --ink: #0f1720; --ink-2: #46525e; --ink-3: #8b959f;
+    --line: rgba(15,23,32,.09);
+    --accent: #2a78d6; --accent-soft: rgba(42,120,214,.10);
+    --context: #c3cdd6;
+    --seq-250:#86b6ef; --seq-350:#5598e7; --seq-450:#2a78d6; --seq-550:#1c5cab; --seq-700:#0d366b;
+    --shadow: 0 10px 32px rgba(15,23,32,.12), 0 1px 3px rgba(15,23,32,.08);
+    --good: #0ca30c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0e1116;
+      --surface: rgba(23,27,33,.85);
+      --surface-solid: #171b21;
+      --ink: #f2f5f8; --ink-2: #a9b4c0; --ink-3: #6d7681;
+      --line: rgba(255,255,255,.09);
+      --accent: #3987e5; --accent-soft: rgba(57,135,229,.14);
+      --context: #3a4553;
+      --seq-250:#9ec5f4; --seq-350:#6da7ec; --seq-450:#3987e5; --seq-550:#256abf; --seq-700:#184f95;
+      --shadow: 0 10px 32px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.4);
+    }
+  }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page); color: var(--ink);
+    font-size: 14px; -webkit-font-smoothing: antialiased;
+  }
+  button { font: inherit; color: inherit; }
+  #app { display: flex; height: 100%; }
+  #map { flex: 1; min-width: 0; background: var(--page); }
+  .leaflet-container { font: inherit; }
+
+  .glass {
+    background: var(--surface);
+    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+    backdrop-filter: blur(16px) saturate(1.5);
+    border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: var(--shadow);
+  }
+
+  /* ---------- top-left control panel ---------- */
+  #panel { position: absolute; top: 14px; left: 14px; z-index: 1000; width: 316px; padding: 16px 16px 14px; }
+  .brand { display: flex; align-items: center; gap: 9px; }
+  .brand .mark { width: 26px; height: 26px; flex: none; }
+  .brand h1 { font-size: 19px; font-weight: 700; letter-spacing: -.02em; }
+  .brand .lang { margin-left: auto; display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .brand .lang button {
+    border: none; background: none; padding: 3px 9px; font-size: 11.5px; font-weight: 600;
+    color: var(--ink-3); cursor: pointer; letter-spacing: .02em;
+  }
+  .brand .lang button.on { background: var(--accent); color: #fff; }
+  #tagline { font-size: 12px; color: var(--ink-2); line-height: 1.45; margin: 8px 0 12px; }
+  .field label { display: block; font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
+                 text-transform: uppercase; color: var(--ink-3); margin-bottom: 5px; }
+  .field select {
+    width: 100%; padding: 8px 10px; font: inherit; font-size: 13px; color: var(--ink);
+    background: var(--surface-solid); border: 1px solid var(--line); border-radius: 10px;
+    cursor: pointer; outline-offset: 2px;
+  }
+  #cat-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; min-height: 14px; }
+
+  /* ---------- legend ---------- */
+  #legend { position: absolute; bottom: 22px; left: 14px; z-index: 1000; padding: 11px 14px 10px; font-size: 11px; color: var(--ink-2); }
+  #legend .t { font-weight: 600; color: var(--ink); font-size: 11.5px; margin-bottom: 7px; letter-spacing: .01em; }
+  #legend .bins { display: flex; align-items: center; gap: 0; }
+  #legend .bin { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  #legend .sw { width: 34px; height: 8px; }
+  #legend .bin:first-child .sw { border-radius: 4px 0 0 4px; }
+  #legend .bin:last-child .sw { border-radius: 0 4px 4px 0; }
+  #legend .bl { font-size: 9.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  #legend .none { display: flex; align-items: center; gap: 6px; margin-top: 7px; color: var(--ink-3); }
+  #legend .none .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--context); flex: none; }
+  #legend .none .dot.open-dot { background: var(--accent-soft); border: 1.5px dashed var(--accent); }
+  #legend .none + .none { margin-top: 3px; }
+
+  /* ---------- map marker & tooltip ---------- */
+  .leaflet-tooltip.tip {
+    background: var(--surface-solid); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 12px; box-shadow: var(--shadow); padding: 9px 12px;
+  }
+  .leaflet-tooltip-top.tip::before { border-top-color: var(--surface-solid); }
+  .tip .n { font-weight: 650; font-size: 13px; letter-spacing: -.01em; }
+  .tip .v { font-size: 12px; color: var(--ink-2); margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .tip .h { font-size: 10.5px; color: var(--ink-3); margin-top: 4px; }
+
+  /* ---------- sidebar ---------- */
+  #side {
+    width: 0; overflow: hidden; transition: width .22s cubic-bezier(.4,0,.2,1);
+    background: var(--surface-solid); border-left: 1px solid var(--line);
+    display: flex; flex-direction: column; z-index: 1100;
+  }
+  #side.open { width: min(480px, 94vw); }
+  #side > .scroll { overflow-y: auto; flex: 1; min-width: min(480px, 94vw); }
+
+  /* fallback ground is fixed dark blues so the white name reads in both themes */
+  .photo { position: relative; height: 168px; background: linear-gradient(135deg, #2a6cbf, #0d366b); }
+  .photo.nophoto { height: 118px; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo .veil { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(10,14,18,.62)); }
+  .photo .close {
+    position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%;
+    border: none; cursor: pointer; font-size: 15px; line-height: 1;
+    background: rgba(15,23,32,.45); color: #fff; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  .photo .name { position: absolute; left: 18px; right: 18px; bottom: 12px; color: #fff; }
+  .photo .name h2 { font-size: 19px; font-weight: 700; letter-spacing: -.015em; text-wrap: balance; text-shadow: 0 1px 8px rgba(0,0,0,.5); }
+  .photo .name .credit { font-size: 9.5px; opacity: .75; margin-top: 2px; }
+  .photo .name .credit a { color: inherit; }
+
+  .meta { padding: 12px 18px 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--ink-2); }
+  .meta a { color: var(--accent); text-decoration: none; font-weight: 550; }
+  .meta a:hover { text-decoration: underline; }
+
+  .hero { display: flex; gap: 26px; padding: 14px 18px 12px; border-bottom: 1px solid var(--line); }
+  .hero .cell .v { font-size: 26px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .hero .cell .v.up { color: var(--good); } .hero .cell .v.dn { color: var(--ink-2); }
+  .hero .cell .l { font-size: 10.5px; color: var(--ink-3); margin-top: 1px; }
+
+  /* chart card */
+  .chart-card { margin: 14px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-solid); }
+  .chart-head { display: flex; align-items: center; gap: 8px; padding: 10px 12px 0; flex-wrap: wrap; }
+  .tabs { display: flex; background: var(--accent-soft); border-radius: 9px; padding: 2px; }
+  .tabs button { border: none; background: none; padding: 4px 11px; font-size: 12px; font-weight: 600;
+                 color: var(--ink-2); border-radius: 7px; cursor: pointer; }
+  .tabs button.on { background: var(--surface-solid); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+  .chart-head select { flex: 1; min-width: 120px; padding: 4px 8px; font: inherit; font-size: 12px;
+                       border: 1px solid var(--line); border-radius: 8px; background: var(--surface-solid); color: var(--ink); }
+  #chart-sub { font-size: 11px; color: var(--ink-3); padding: 6px 14px 0; }
+  #chart-wrap { position: relative; padding: 4px 6px 8px; }
+  #chart-tip {
+    position: absolute; pointer-events: none; display: none; z-index: 5;
+    background: var(--surface-solid); border: 1px solid var(--line); border-radius: 9px;
+    box-shadow: var(--shadow); padding: 6px 9px; font-size: 11.5px; white-space: nowrap;
+  }
+  #chart-tip .y { font-weight: 700; }
+  #chart-tip .r { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+
+  /* program list */
+  .tools { padding: 2px 18px 10px; }
+  .tools input {
+    width: 100%; padding: 8px 12px; font: inherit; font-size: 13px; border: 1px solid var(--line);
+    border-radius: 10px; background: var(--page); color: var(--ink); outline-offset: 2px;
+  }
+  .cat-head {
+    display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left;
+    border: none; background: none; cursor: pointer;
+    padding: 12px 18px 5px; font-size: 11px; font-weight: 700; letter-spacing: .07em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .cat-head:hover { color: var(--accent); }
+  .cat-head .cnt { font-weight: 500; letter-spacing: 0; text-transform: none; }
+  .prow {
+    display: flex; align-items: center; gap: 10px; width: 100%; text-align: left;
+    padding: 7px 18px; border: none; background: none; cursor: pointer;
+  }
+  .prow:hover, .prow.sel { background: var(--accent-soft); }
+  .prow .nm { flex: 1; font-size: 13px; line-height: 1.3; }
+  .prow .lv { font-size: 9.5px; font-weight: 600; color: var(--ink-3); border: 1px solid var(--line);
+              border-radius: 5px; padding: 1px 5px; flex: none; }
+  .fbadge { font-size: 9.5px; color: var(--ink-3); border: 1px dashed var(--line); border-radius: 5px;
+            padding: 1px 5px; margin-left: 7px; cursor: help; white-space: nowrap; }
+  .prow.muted .nm, .prow.muted .val { color: var(--ink-3); }
+  .prow .val { font-size: 13.5px; font-weight: 650; font-variant-numeric: tabular-nums; flex: none; width: 52px; text-align: right; }
+  .prow .val small { display: block; font-weight: 400; font-size: 9px; color: var(--ink-3); }
+  .prow .val .soft { color: var(--ink-2); font-weight: 500; font-size: 11.5px; }
+  #src-note { padding: 14px 18px 20px; font-size: 10.5px; color: var(--ink-3); line-height: 1.5; }
+
+  .leaflet-control-attribution { background: var(--surface) !important; color: var(--ink-3) !important; font-size: 9.5px !important; }
+  .leaflet-control-attribution a { color: var(--ink-2) !important; }
+  .leaflet-control-zoom a { background: var(--surface-solid) !important; color: var(--ink) !important; border-color: var(--line) !important; }
+  @media (prefers-reduced-motion: reduce) { #side { transition: none; } }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="map"></div>
+  <aside id="side" aria-label="School details">
+    <div class="scroll">
+      <div class="photo" id="s-photo"></div>
+      <div class="meta" id="s-meta"></div>
+      <div class="hero" id="s-hero"></div>
+      <div class="chart-card">
+        <div class="chart-head">
+          <div class="tabs" id="tabs">
+            <button data-mode="all"></button>
+            <button data-mode="cat"></button>
+            <button data-mode="prog"></button>
+          </div>
+          <select id="chart-cat" hidden></select>
+        </div>
+        <div id="chart-sub"></div>
+        <div id="chart-wrap">
+          <div id="chart-tip"></div>
+          <div id="chart-svg"></div>
+        </div>
+      </div>
+      <div class="tools"><input id="s-filter" type="search"></div>
+      <div id="s-list"></div>
+      <div id="src-note"></div>
+    </div>
+  </aside>
+</div>
+
+<div id="panel" class="glass">
+  <div class="brand">
+    <svg class="mark" viewBox="0 0 26 26" aria-hidden="true">
+      <rect x="1" y="1" width="24" height="24" rx="7" fill="var(--accent)"/>
+      <circle cx="13" cy="11" r="3.4" fill="#fff"/>
+      <path d="M13 21c3.6-3.4 6-6.2 6-9.6A6 6 0 0 0 7 11.4C7 14.8 9.4 17.6 13 21z" fill="none" stroke="#fff" stroke-width="1.7"/>
+    </svg>
+    <h1>Poengkart</h1>
+    <div class="lang" role="group" aria-label="Language">
+      <button id="lang-no" onclick="setLang('no')">NO</button>
+      <button id="lang-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+  <p id="tagline"></p>
+  <div class="field">
+    <label id="cat-label" for="map-cat"></label>
+    <select id="map-cat" onchange="onMapCat(this.value)"></select>
+  </div>
+  <div id="cat-note"></div>
+</div>
+
+<div id="legend" class="glass">
+  <div class="t" id="legend-title"></div>
+  <div class="bins" id="legend-bins"></div>
+  <div class="none"><span class="dot open-dot"></span><span id="legend-open"></span></div>
+  <div class="none"><span class="dot"></span><span id="legend-none"></span></div>
+</div>
+
+<script>
+/* ================= i18n ================= */
+const CATS = {
+  st:      { no: 'Studiespesialisering',        en: 'Academic specialization' },
+  idrett:  { no: 'Idrettsfag',                  en: 'Sports' },
+  mdd:     { no: 'Musikk, dans og drama',       en: 'Music, dance & drama' },
+  kda:     { no: 'Kunst, design og arkitektur', en: 'Art, design & architecture' },
+  mk:      { no: 'Medier og kommunikasjon',     en: 'Media & communication' },
+  im:      { no: 'IT og medieproduksjon',       en: 'IT & media production' },
+  elektro: { no: 'Elektro og datateknologi',    en: 'Electrical & computer tech' },
+  helse:   { no: 'Helse- og oppvekstfag',       en: 'Healthcare & childhood' },
+  bygg:    { no: 'Bygg- og anleggsteknikk',     en: 'Building & construction' },
+  tip:     { no: 'Teknologi- og industrifag',   en: 'Technology & industry' },
+  rm:      { no: 'Restaurant- og matfag',       en: 'Restaurant & food' },
+  sr:      { no: 'Salg, service og reiseliv',   en: 'Sales, service & tourism' },
+  nat:     { no: 'Naturbruk',                   en: 'Agriculture & nature' },
+  design:  { no: 'Håndverk og design',          en: 'Crafts & design' },
+  pb:      { no: 'Påbygg',                      en: 'Supplementary year' },
+};
+const T = {
+  tagline: {
+    no: 'Nedre poenggrense (siste inntatte søker, 2. inntak) for videregående skoler i Rogaland, 2018–2025. Hold over en skole – klikk for detaljer.',
+    en: 'Admission point thresholds (last admitted applicant, 2nd round) for upper secondary schools in Rogaland, 2018–2025. Hover a school — click for details.',
+  },
+  catLabel:   { no: 'Vis kategori (utdanningsprogram)', en: 'Show category (study program)' },
+  allCats:    { no: 'Alle kategorier', en: 'All categories' },
+  catNote:    { no: n => `${n} skoler tilbyr dette`, en: n => `${n} schools offer this` },
+  legendAll:  { no: 'Høyeste poenggrense 2025', en: 'Highest threshold 2025' },
+  legendCat:  { no: c => `${CATS[c].no} · poenggrense 2025`, en: c => `${CATS[c].en} · threshold 2025` },
+  legendOpen: { no: 'Uten venteliste – alle inntatt', en: 'No waitlist – all admitted' },
+  legendNone: { no: 'Ikke data', en: 'No data' },
+  fortrinnTitle: {
+    no: 'Fortrinnsrett: søkere med lovfestet rett (bl.a. behov for spesialundervisning) tas inn utenom poengkonkurransen. Derfor finnes ingen poenggrense.',
+    en: 'Priority right (fortrinnsrett): applicants with a statutory right (e.g. special educational needs) are admitted outside the points competition, so no threshold exists.',
+  },
+  pts:        { no: 'poeng', en: 'pts' },
+  allIn:      { no: 'Alle inntatt', en: 'All admitted' },
+  priority:   { no: 'Fortrinn', en: 'Priority' },
+  gone:       { no: 'Utgått', en: 'Discontinued' },
+  tipPrograms:{ no: n => `${n} programområder · 2018–2025`, en: n => `${n} programs · 2018–2025` },
+  tipHint:    { no: 'Klikk for trender og detaljer', en: 'Click for trends and details' },
+  tipHighest: { no: 'Høyest', en: 'Highest' },
+  tipAllOpen: { no: y => `Alle program uten venteliste i ${y}`, en: y => `All programs without waitlist in ${y}` },
+  heroSt:     { no: y => `Studiespes. ${y}`, en: y => `Acad. spec. ${y}` },
+  heroDelta:  { no: y => `endring fra ${y}`, en: y => `change vs ${y}` },
+  heroProgs:  { no: 'programområder', en: 'program areas' },
+  tabAll:     { no: 'Alle', en: 'All' },
+  tabCat:     { no: 'Kategori', en: 'Category' },
+  tabProg:    { no: 'Program', en: 'Program' },
+  chartSubAll:  { no: n => `${n} programserier · snittlinje i blått`, en: n => `${n} program series · average in blue` },
+  chartSubCat:  { no: n => `${n} serier i kategorien · snitt i blått`, en: n => `${n} series in category · average in blue` },
+  chartSubProg: { no: 'Én serie · hule punkter = alle inntatt', en: 'Single series · hollow dots = all admitted' },
+  avg:        { no: 'snitt', en: 'avg' },
+  series:     { no: 'serier', en: 'series' },
+  filterPh:   { no: 'Filtrer programområde …', en: 'Filter programs…' },
+  website:    { no: 'Nettside', en: 'Website' },
+  wiki:       { no: 'Wikipedia', en: 'Wikipedia' },
+  photoCredit:{ no: 'Foto', en: 'Photo' },
+  srcNote: {
+    no: 'Kilder: Rogaland fylkeskommune / vilbli.no (poenggrenser, 2. inntak, søkere med ungdomsrett), NSR/Udir (skoler), Kartverket (geokoding), Wikipedia/Wikimedia Commons (bilder). Uoffisiell prototype – tall kan inneholde parsefeil.',
+    en: 'Sources: Rogaland county / vilbli.no (thresholds, 2nd intake, applicants with youth right), NSR/Udir (schools), Kartverket (geocoding), Wikipedia/Wikimedia Commons (photos). Unofficial prototype — figures may contain parsing errors.',
+  },
+  noMatch:    { no: 'Ingen treff', en: 'No matches' },
+  prioBadge:  { no: 'fortrinnskvote', en: 'priority quota' },
+};
+let lang = 'no';
+const t = (k, ...a) => { const v = T[k][lang]; return typeof v === 'function' ? v(...a) : v; };
+
+/* ================= state & helpers ================= */
+const BINS = [
+  { max: 30, css: '--seq-250' }, { max: 34, css: '--seq-350' }, { max: 38, css: '--seq-450' },
+  { max: 42, css: '--seq-550' }, { max: 99, css: '--seq-700' },
+];
+const BIN_EDGES = ['<30', '30–34', '34–38', '38–42', '42+'];
+const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = v => typeof v === 'number' ? v.toFixed(1).replace('.', ',') : v;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+let DATA = null, map = null, markerLayer = null;
+let mapCat = 'all';
+let current = null;                       // selected school
+let chart = { mode: 'all', cat: null, prog: null };
+
+function numericLatest(values) {
+  const ys = Object.keys(values).sort();
+  for (let i = ys.length - 1; i >= 0; i--)
+    if (typeof values[ys[i]] === 'number') return [ys[i], values[ys[i]]];
+  return null;
+}
+const stProgram = s => s.programs.find(p => p.program.toLowerCase() === 'studiespesialisering');
+const isPrioOnly = p => { const vs = Object.values(p.values); return vs.length > 0 && vs.every(v => v === 'F'); };
+function partitionPrograms(progs) {
+  const regular = progs.filter(p => !isPrioOnly(p));
+  const regNames = new Set(regular.map(p => p.program.toLowerCase()));
+  const prioNames = new Set(progs.filter(isPrioOnly).map(p => p.program.toLowerCase()));
+  const orphans = progs.filter(p => isPrioOnly(p) && !regNames.has(p.program.toLowerCase()));
+  return { regular, orphans, prioNames };
+}
+const visibleCount = s => { const pp = partitionPrograms(s.programs); return pp.regular.length + pp.orphans.length; };
+function schoolPressure(s, cat) {
+  // Pressure is judged in the newest dataset year only: a threshold from an
+  // old year is history, not current competition.
+  const yr = String(DATA.years[DATA.years.length - 1]);
+  const pool = (cat === 'all' ? s.programs : s.programs.filter(p => p.category === cat))
+    .filter(p => yr in p.values);
+  let best = null, bestProg = null, anyOpen = false;
+  for (const p of pool) {
+    const v = p.values[yr];
+    if (typeof v === 'number' && (best === null || v > best)) { best = v; bestProg = p; }
+    if (v === 'open') anyOpen = true;
+  }
+  return best !== null ? { kind: 'points', v: best, prog: bestProg, year: yr }
+       : anyOpen ? { kind: 'open', year: yr } : { kind: 'none' };
+}
+const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(b => v < b.max).css);
+
+/* ================= map ================= */
+const isDark = () => matchMedia('(prefers-color-scheme: dark)').matches;
+let tileLayer = null;
+function setTiles() {
+  if (tileLayer) map.removeLayer(tileLayer);
+  const flavor = isDark() ? 'dark_all' : 'light_all';
+  tileLayer = L.tileLayer(`https://{s}.basemaps.cartocdn.com/${flavor}/{z}/{x}/{y}{r}.png`, {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd', maxZoom: 19,
+  }).addTo(map);
+}
+
+function drawMarkers() {
+  if (markerLayer) map.removeLayer(markerLayer);
+  markerLayer = L.layerGroup().addTo(map);
+  for (const s of DATA.schools) {
+    if (!s.lat) continue;
+    if (mapCat !== 'all' && !s.programs.some(p => p.category === mapCat)) continue;
+    const st8 = schoolPressure(s, mapCat);
+    const v = st8.kind === 'points' ? st8.v : null;
+    const style = st8.kind === 'points'
+      ? { radius: 9.5, weight: 2.5, color: cssVar('--surface-solid'), fillColor: colorFor(v), fillOpacity: 0.96 }
+      : st8.kind === 'open'
+      ? { radius: 8, weight: 2, color: cssVar('--accent'), dashArray: '3 3', fillColor: cssVar('--accent'), fillOpacity: 0.14 }
+      : { radius: 7.5, weight: 2, color: cssVar('--surface-solid'), fillColor: cssVar('--context'), fillOpacity: 0.9 };
+    const m = L.circleMarker([s.lat, s.lon], style).addTo(markerLayer);
+    let line;
+    if (mapCat === 'all') {
+      if (st8.kind === 'points') {
+        line = `${t('tipHighest')} ${st8.year}: <b>${fmt(st8.v)}</b> ${t('pts')} · ${esc(st8.prog.program)}`;
+        const st = stProgram(s);
+        if (st && st !== st8.prog) {
+          const sv = st.values[st8.year];
+          line += `<br>${CATS.st[lang]}: ` +
+            (typeof sv === 'number' ? `<b>${fmt(sv)}</b> ${t('pts')}` : t('allIn').toLowerCase());
+        }
+      } else if (st8.kind === 'open') {
+        line = t('tipAllOpen', st8.year);
+      } else {
+        line = t('tipPrograms', visibleCount(s));
+      }
+    } else {
+      line = st8.kind === 'points' ? `${CATS[mapCat][lang]}: <b>${fmt(st8.v)}</b> ${t('pts')} (${st8.year})`
+           : st8.kind === 'open' ? `${CATS[mapCat][lang]}: ${t('allIn').toLowerCase()} (${st8.year})`
+           : `${CATS[mapCat][lang]}: –`;
+    }
+    m.bindTooltip(
+      `<div class="n">${esc(s.name)}</div><div class="v">${line}</div>` +
+      `<div class="v">${t('tipPrograms', visibleCount(s))}</div><div class="h">${t('tipHint')}</div>`,
+      { className: 'tip', direction: 'top', offset: [0, -10], opacity: 1 });
+    m.on('click', () => openSide(s));
+  }
+}
+
+function onMapCat(v) {
+  mapCat = v;
+  drawMarkers(); renderLegend(); renderCatNote();
+  if (current && v !== 'all') { chart.mode = 'cat'; chart.cat = v; renderChartCard(); }
+}
+
+/* ================= static chrome rendering ================= */
+function renderPanel() {
+  document.getElementById('tagline').textContent = t('tagline');
+  document.getElementById('cat-label').textContent = t('catLabel');
+  document.getElementById('lang-no').classList.toggle('on', lang === 'no');
+  document.getElementById('lang-en').classList.toggle('on', lang === 'en');
+  const present = new Set();
+  DATA.schools.forEach(s => s.programs.forEach(p => present.add(p.category)));
+  const sel = document.getElementById('map-cat');
+  sel.innerHTML = `<option value="all">${t('allCats')}</option>` +
+    Object.keys(CATS).filter(c => present.has(c))
+      .map(c => `<option value="${c}">${CATS[c][lang]}</option>`).join('');
+  sel.value = mapCat;
+}
+function renderCatNote() {
+  const el = document.getElementById('cat-note');
+  el.textContent = mapCat === 'all' ? '' :
+    t('catNote', DATA.schools.filter(s => s.programs.some(p => p.category === mapCat)).length);
+}
+function renderLegend() {
+  document.getElementById('legend-title').textContent =
+    mapCat === 'all' ? t('legendAll') : t('legendCat', mapCat);
+  document.getElementById('legend-bins').innerHTML = BINS.map((b, i) =>
+    `<div class="bin"><span class="sw" style="background:${cssVar(b.css)}"></span><span class="bl">${BIN_EDGES[i]}</span></div>`).join('');
+  document.getElementById('legend-open').textContent = t('legendOpen');
+  document.getElementById('legend-none').textContent = t('legendNone');
+}
+
+/* ================= sidebar ================= */
+function openSide(s) {
+  current = s;
+  chart = { mode: mapCat === 'all' ? 'all' : 'cat', cat: mapCat === 'all' ? null : mapCat, prog: null };
+  renderSide();
+  document.getElementById('side').classList.add('open');
+}
+function closeSide() { document.getElementById('side').classList.remove('open'); }
+
+function renderSide() {
+  if (!current) return;
+  const s = current;
+  // photo header
+  const ph = document.getElementById('s-photo');
+  ph.classList.toggle('nophoto', !s.photo);
+  const credit = s.photo ? `<div class="credit">${t('photoCredit')}: ` +
+    (s.photo_source === 'commons'
+      ? `<a href="${esc(s.photo_page || 'https://commons.wikimedia.org')}" target="_blank" rel="noopener">Wikimedia Commons</a>`
+      : `<a href="${esc(s.wiki_url || '#')}" target="_blank" rel="noopener">Wikipedia</a>`) + '</div>' : '';
+  ph.innerHTML = (s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy">` : '') +
+    `<div class="veil"></div>` +
+    `<button class="close" onclick="closeSide()" aria-label="Close">✕</button>` +
+    `<div class="name"><h2>${esc(s.name)}</h2>${credit}</div>`;
+  // meta links
+  const meta = [];
+  if (s.url) meta.push(`<a href="${esc(s.url.startsWith('http') ? s.url : 'https://' + s.url)}" target="_blank" rel="noopener">${t('website')} ↗</a>`);
+  if (s.wiki_url) meta.push(`<a href="${esc(s.wiki_url)}" target="_blank" rel="noopener">${t('wiki')} ↗</a>`);
+  if (s.address) meta.push(`<span>${esc(s.address)}</span>`);
+  document.getElementById('s-meta').innerHTML = meta.join('');
+  // hero
+  const st = stProgram(s);
+  const cells = [];
+  if (st) {
+    const l = numericLatest(st.values);
+    if (l) {
+      cells.push({ v: fmt(l[1]), l: t('heroSt', l[0]) });
+      const ys = Object.keys(st.values).filter(y => typeof st.values[y] === 'number').sort();
+      if (ys.length > 1) {
+        const d = l[1] - st.values[ys[ys.length - 2]];
+        cells.push({ v: (d >= 0 ? '+' : '') + fmt(d), l: t('heroDelta', ys[ys.length - 2]), cls: d >= 0 ? 'up' : 'dn' });
+      }
+    } else cells.push({ v: t('allIn'), l: CATS.st[lang] });
+  }
+  cells.push({ v: visibleCount(s), l: t('heroProgs') });
+  document.getElementById('s-hero').innerHTML =
+    cells.map(c => `<div class="cell"><div class="v ${c.cls || ''}">${c.v}</div><div class="l">${c.l}</div></div>`).join('');
+  document.getElementById('s-filter').placeholder = t('filterPh');
+  document.getElementById('src-note').textContent = t('srcNote');
+  renderChartCard();
+  renderList();
+}
+
+/* ================= chart (3 resolution levels) ================= */
+function seriesFor(mode, cat, prog) {
+  const progs = mode === 'prog' ? [prog]
+    : mode === 'cat' ? current.programs.filter(p => p.category === cat)
+    : current.programs;
+  return progs.filter(p => Object.values(p.values).some(v => typeof v === 'number'));
+}
+function renderChartCard() {
+  // tabs
+  const tabs = document.querySelectorAll('#tabs button');
+  tabs[0].textContent = t('tabAll'); tabs[1].textContent = t('tabCat'); tabs[2].textContent = t('tabProg');
+  tabs.forEach(b => {
+    b.classList.toggle('on', b.dataset.mode === chart.mode);
+    b.onclick = () => {
+      chart.mode = b.dataset.mode;
+      if (chart.mode === 'cat' && !chart.cat) chart.cat = current.programs[0].category;
+      if (chart.mode === 'prog' && !chart.prog) chart.prog = current.programs.find(p => numericLatest(p.values)) || current.programs[0];
+      renderChartCard(); renderList();
+    };
+  });
+  // category select inside chart
+  const cs = document.getElementById('chart-cat');
+  if (chart.mode === 'cat') {
+    const present = [...new Set(current.programs.map(p => p.category))];
+    cs.hidden = false;
+    cs.innerHTML = present.map(c => `<option value="${c}">${CATS[c][lang]}</option>`).join('');
+    cs.value = chart.cat = chart.cat && present.includes(chart.cat) ? chart.cat : present[0];
+    cs.onchange = () => { chart.cat = cs.value; renderChartCard(); renderList(); };
+  } else cs.hidden = true;
+  drawChart();
+}
+
+function drawChart() {
+  const years = DATA.years.map(String);
+  const W = 444, H = 190, ML = 30, MR = 12, MT = 12, MB = 22, LO = 10, HI = 50;
+  const iw = W - ML - MR, ih = H - MT - MB;
+  const x = i => ML + i * iw / (years.length - 1);
+  const y = v => MT + ih - (Math.min(Math.max(v, LO), HI) - LO) * ih / (HI - LO);
+
+  const series = seriesFor(chart.mode, chart.cat, chart.prog);
+  const sub = document.getElementById('chart-sub');
+  sub.textContent = chart.mode === 'prog'
+    ? `${chart.prog ? chart.prog.program + ' · ' : ''}${t('chartSubProg')}`
+    : chart.mode === 'cat' ? t('chartSubCat', series.length) : t('chartSubAll', series.length);
+
+  // averages per year over numeric values
+  const avg = {}, cnt = {};
+  years.forEach(yr => {
+    const vals = series.map(p => p.values[yr]).filter(v => typeof v === 'number');
+    if (vals.length) { avg[yr] = vals.reduce((a, b) => a + b, 0) / vals.length; cnt[yr] = vals.length; }
+  });
+
+  let svg = '';
+  // grid + y labels
+  for (const gy of [20, 30, 40, 50]) {
+    svg += `<line x1="${ML}" y1="${y(gy)}" x2="${W - MR}" y2="${y(gy)}" stroke="var(--line)" stroke-width="1"/>` +
+           `<text x="${ML - 6}" y="${y(gy) + 3}" font-size="9" fill="var(--ink-3)" text-anchor="end">${gy}</text>`;
+  }
+  years.forEach((yr, i) => {
+    svg += `<text x="${x(i)}" y="${H - 6}" font-size="9" fill="var(--ink-3)" text-anchor="middle">${yr.slice(2)}</text>`;
+  });
+
+  const lineOf = (p, stroke, width, op) => {
+    let segs = [], run = [];
+    years.forEach((yr, i) => {
+      const v = p.values[yr];
+      if (typeof v === 'number') run.push(`${x(i)},${y(v)}`);
+      else if (run.length) { segs.push(run); run = []; }
+    });
+    if (run.length) segs.push(run);
+    return segs.filter(r => r.length > 1).map(r =>
+      `<polyline points="${r.join(' ')}" fill="none" stroke="${stroke}" stroke-width="${width}" stroke-opacity="${op}" stroke-linejoin="round" stroke-linecap="round"/>`).join('');
+  };
+
+  if (chart.mode === 'prog' && chart.prog) {
+    const p = chart.prog;
+    svg += lineOf(p, 'var(--accent)', 2.5, 1);
+    years.forEach((yr, i) => {
+      const v = p.values[yr];
+      if (typeof v === 'number')
+        svg += `<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="var(--accent)" stroke="var(--surface-solid)" stroke-width="1.5"/>`;
+      else if (v === 'open')
+        svg += `<circle cx="${x(i)}" cy="${y(LO)}" r="4" fill="var(--surface-solid)" stroke="var(--ink-3)" stroke-width="1.6"/>`;
+    });
+    const l = numericLatest(p.values);
+    if (l) svg += `<text x="${x(years.indexOf(l[0])) - 8}" y="${y(l[1]) - 9}" font-size="11" font-weight="700" fill="var(--ink)" text-anchor="middle">${fmt(l[1])}</text>`;
+  } else {
+    for (const p of series) svg += lineOf(p, 'var(--context)', 1.4, .55);
+    const avgSeries = { values: Object.fromEntries(Object.entries(avg)) };
+    svg += lineOf(avgSeries, 'var(--accent)', 2.6, 1);
+    years.forEach((yr, i) => {
+      if (avg[yr] != null)
+        svg += `<circle cx="${x(i)}" cy="${y(avg[yr])}" r="3.6" fill="var(--accent)" stroke="var(--surface-solid)" stroke-width="1.4"/>`;
+    });
+  }
+  svg += `<line id="xh" x1="0" x2="0" y1="${MT}" y2="${MT + ih}" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3 3" visibility="hidden"/>`;
+  document.getElementById('chart-svg').innerHTML =
+    `<svg id="the-chart" viewBox="0 0 ${W} ${H}" width="100%" style="display:block">${svg}</svg>`;
+
+  // crosshair + tooltip
+  const svgEl = document.getElementById('the-chart');
+  const tip = document.getElementById('chart-tip');
+  const xh = svgEl.querySelector('#xh');
+  svgEl.addEventListener('mousemove', ev => {
+    const r = svgEl.getBoundingClientRect();
+    const sx = (ev.clientX - r.left) * W / r.width;
+    let bi = 0, bd = 1e9;
+    years.forEach((yr, i) => { const d = Math.abs(x(i) - sx); if (d < bd) { bd = d; bi = i; } });
+    const yr = years[bi];
+    xh.setAttribute('x1', x(bi)); xh.setAttribute('x2', x(bi)); xh.setAttribute('visibility', 'visible');
+    let body;
+    if (chart.mode === 'prog' && chart.prog) {
+      const v = chart.prog.values[yr];
+      body = v === undefined ? '–'
+        : typeof v === 'number' ? `${fmt(v)} ${t('pts')}`
+        : v === 'open' ? t('allIn') : v === 'F' ? t('priority') : t('gone');
+    } else {
+      body = avg[yr] != null ? `${t('avg')} ${fmt(avg[yr])} · ${cnt[yr]} ${t('series')}` : '–';
+    }
+    tip.innerHTML = `<span class="y">${yr}</span> <span class="r">${body}</span>`;
+    tip.style.display = 'block';
+    const wrap = document.getElementById('chart-wrap').getBoundingClientRect();
+    let px = ev.clientX - wrap.left + 14;
+    if (px > wrap.width - 130) px = ev.clientX - wrap.left - 130;
+    tip.style.left = px + 'px';
+    tip.style.top = (ev.clientY - wrap.top - 34) + 'px';
+  });
+  svgEl.addEventListener('mouseleave', () => { tip.style.display = 'none'; xh.setAttribute('visibility', 'hidden'); });
+}
+
+/* ================= program list ================= */
+function renderList() {
+  const q = (document.getElementById('s-filter').value || '').toLowerCase();
+  const { regular, orphans, prioNames } = partitionPrograms(
+    current.programs.filter(p => p.program.toLowerCase().includes(q)));
+  const byCat = {};
+  [...regular, ...orphans].forEach(p => (byCat[p.category] = byCat[p.category] || []).push(p));
+  let html = '';
+  const badged = new Set();  // badge only the first row per program name
+  for (const c of Object.keys(CATS).filter(c => byCat[c])) {
+    const list = byCat[c];
+    list.sort((a, b) => (numericLatest(b.values)?.[1] ?? -1) - (numericLatest(a.values)?.[1] ?? -1));
+    html += `<button class="cat-head" data-cat="${c}"><span>${CATS[c][lang]}</span><span class="cnt">${list.length}</span></button>`;
+    for (const p of list) {
+      // headline value: newest non-priority cell (F is a quota fact, not a value)
+      let latestYear = null, lv;
+      const ys = Object.keys(p.values).sort();
+      for (let i = ys.length - 1; i >= 0; i--) {
+        if (p.values[ys[i]] !== 'F') { latestYear = ys[i]; lv = p.values[ys[i]]; break; }
+      }
+      const orphan = latestYear === null;
+      const hasF = ys.some(y => p.values[y] === 'F');
+      const val = orphan ? `<span class="soft" title="${esc(t('fortrinnTitle'))}">${t('priority')} ⓘ</span>`
+        : typeof lv === 'number' ? `${fmt(lv)}<small>${latestYear}</small>`
+        : lv === 'open' ? `<span class="soft">${t('allIn')}</span>`
+        : `<span class="soft">${t('gone')}</span>`;
+      const key = p.program.toLowerCase();
+      let badge = '';
+      if (!orphan && (prioNames.has(key) || hasF) && !badged.has(key)) {
+        badged.add(key);
+        badge = `<span class="fbadge" title="${esc(t('fortrinnTitle'))}">${t('prioBadge')}</span>`;
+      }
+      const sel = chart.mode === 'prog' && chart.prog === p ? ' sel' : '';
+      html += `<button class="prow${sel}${orphan ? ' muted' : ''}" data-cat="${c}" data-idx="${current.programs.indexOf(p)}">` +
+              `<span class="nm">${esc(p.program)}${badge}</span><span class="lv">${p.level}</span><span class="val">${val}</span></button>`;
+    }
+  }
+  const el = document.getElementById('s-list');
+  el.innerHTML = html || `<div class="cat-head">${t('noMatch')}</div>`;
+  el.querySelectorAll('.cat-head[data-cat]').forEach(b =>
+    b.onclick = () => { chart.mode = 'cat'; chart.cat = b.dataset.cat; renderChartCard(); renderList(); });
+  el.querySelectorAll('.prow').forEach(b =>
+    b.onclick = () => { chart.mode = 'prog'; chart.prog = current.programs[+b.dataset.idx]; renderChartCard(); renderList(); });
+}
+
+/* ================= language ================= */
+function setLang(l) {
+  lang = l;
+  try { localStorage.setItem('pk-lang', l); } catch (e) {}
+  document.documentElement.lang = l === 'no' ? 'no' : 'en';
+  renderPanel(); renderLegend(); renderCatNote(); drawMarkers();
+  if (current) renderSide();
+}
+
+/* ================= boot ================= */
+async function main() {
+  try { lang = localStorage.getItem('pk-lang') || lang; } catch (e) {}
+  DATA = await (await fetch('data/schools.json')).json();
+  map = L.map('map', { zoomControl: false }).setView([59.0, 5.75], 9);
+  L.control.zoom({ position: 'bottomright' }).addTo(map);
+  setTiles();
+  const pts = DATA.schools.filter(s => s.lat).map(s => [s.lat, s.lon]);
+  requestAnimationFrame(() => setTimeout(() => {
+    map.invalidateSize();
+    map.fitBounds(L.latLngBounds(pts).pad(0.06));
+  }, 60));
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { setTiles(); drawMarkers(); renderLegend(); });
+  document.getElementById('s-filter').addEventListener('input', renderList);
+  renderPanel(); renderLegend(); renderCatNote(); drawMarkers();
+}
+main();
+</script>
+</body>
+</html>

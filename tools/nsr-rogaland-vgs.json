@@ -1,0 +1,338 @@
+[
+ {
+  "orgnr": "997940431",
+  "navn": "Vinterlandbruksskulen i Ryfylke Sti",
+  "lat": 59.60665,
+  "lon": 5.81312,
+  "kommune": "Vindafjord"
+ },
+ {
+  "orgnr": "996768856",
+  "navn": "Bibelskolen Link",
+  "lat": 58.96837,
+  "lon": 5.73962,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "994507508",
+  "navn": "Vågen videregående skole",
+  "lat": 58.85072,
+  "lon": 5.74094,
+  "kommune": "Sandnes"
+ },
+ {
+  "orgnr": "990183449",
+  "navn": "Jåttå videregående skole",
+  "lat": 58.91357,
+  "lon": 5.72784,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "988586102",
+  "navn": "Wang Toppidrett Stavanger AS",
+  "lat": 58.9546,
+  "lon": 5.70006,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "987546603",
+  "navn": "Akademiet Sandnes",
+  "lat": 0.0,
+  "lon": 0.0,
+  "kommune": "Sandnes"
+ },
+ {
+  "orgnr": "982378494",
+  "navn": "Hollenderhaugen skolesenter",
+  "lat": 59.40265,
+  "lon": 5.29277,
+  "kommune": "Haugesund"
+ },
+ {
+  "orgnr": "975037436",
+  "navn": "Steinerskolen i Stavanger videregående skole",
+  "lat": 58.93885,
+  "lon": 5.73421,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "974624672",
+  "navn": "Sola videregående skole",
+  "lat": 58.89365,
+  "lon": 5.66574,
+  "kommune": "Sola"
+ },
+ {
+  "orgnr": "974624664",
+  "navn": "Randaberg videregående skole",
+  "lat": 58.99688,
+  "lon": 5.65469,
+  "kommune": "Randaberg"
+ },
+ {
+  "orgnr": "974624648",
+  "navn": "Godalen videregående skole",
+  "lat": 58.95377,
+  "lon": 5.75185,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "974624591",
+  "navn": "Karmsund videregående skole",
+  "lat": 59.40075,
+  "lon": 5.2832,
+  "kommune": "Haugesund"
+ },
+ {
+  "orgnr": "974624532",
+  "navn": "Bergeland videregående skole",
+  "lat": 58.96731,
+  "lon": 5.73724,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "974624516",
+  "navn": "Gand videregående skole",
+  "lat": 0.0,
+  "lon": 0.0,
+  "kommune": "Sandnes"
+ },
+ {
+  "orgnr": "974624508",
+  "navn": "Sauda videregående skole avd Sand",
+  "lat": 59.49336,
+  "lon": 6.25106,
+  "kommune": "Suldal"
+ },
+ {
+  "orgnr": "974624494",
+  "navn": "Åkrehamn vidaregåande skole",
+  "lat": 59.25665,
+  "lon": 5.19802,
+  "kommune": "Karmøy"
+ },
+ {
+  "orgnr": "974624486",
+  "navn": "Haugaland videregående skole",
+  "lat": 59.40954,
+  "lon": 5.29116,
+  "kommune": "Haugesund"
+ },
+ {
+  "orgnr": "974624478",
+  "navn": "Dalane videregående skole",
+  "lat": 58.4648,
+  "lon": 6.01065,
+  "kommune": "Eigersund"
+ },
+ {
+  "orgnr": "974624451",
+  "navn": "Øksnevad videregående skole",
+  "lat": 0.0,
+  "lon": 0.0,
+  "kommune": "Klepp"
+ },
+ {
+  "orgnr": "974624443",
+  "navn": "St. Olav videregående skole",
+  "lat": 58.96711,
+  "lon": 5.72504,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "974624435",
+  "navn": "Vardafjell videregående skole",
+  "lat": 59.41164,
+  "lon": 5.29024,
+  "kommune": "Haugesund"
+ },
+ {
+  "orgnr": "974624427",
+  "navn": "St Svithun videregående skole",
+  "lat": 58.95606,
+  "lon": 5.6961,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "974624419",
+  "navn": "Strand videregående skole",
+  "lat": 59.0634,
+  "lon": 5.92138,
+  "kommune": "Strand"
+ },
+ {
+  "orgnr": "974624400",
+  "navn": "Stavanger katedralskole",
+  "lat": 58.96914,
+  "lon": 5.73314,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "974624397",
+  "navn": "Sandnes videregående skole",
+  "lat": 58.85731,
+  "lon": 5.72539,
+  "kommune": "Sandnes"
+ },
+ {
+  "orgnr": "974624389",
+  "navn": "Kopervik videregående skole",
+  "lat": 59.28048,
+  "lon": 5.28347,
+  "kommune": "Karmøy"
+ },
+ {
+  "orgnr": "974624370",
+  "navn": "Hetland videregående skole",
+  "lat": 58.9343,
+  "lon": 5.7373,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "974624362",
+  "navn": "Skeisvang videregående skole",
+  "lat": 59.42292,
+  "lon": 5.27116,
+  "kommune": "Haugesund"
+ },
+ {
+  "orgnr": "974557134",
+  "navn": "Ølen vidaregåande skule",
+  "lat": 59.60671,
+  "lon": 5.81603,
+  "kommune": "Vindafjord"
+ },
+ {
+  "orgnr": "974313804",
+  "navn": "Tveit vidaregåande skule Sti",
+  "lat": 59.34455,
+  "lon": 5.79518,
+  "kommune": "Tysvær"
+ },
+ {
+  "orgnr": "974180693",
+  "navn": "International School Of Stavanger avd Undervisning",
+  "lat": 58.95005,
+  "lon": 5.65417,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "973798995",
+  "navn": "Acta bibelskole",
+  "lat": 58.95488,
+  "lon": 5.69944,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "973255509",
+  "navn": "Vinterlandbruksskulen på Jæren Sti",
+  "lat": 58.76159,
+  "lon": 5.64889,
+  "kommune": "Klepp"
+ },
+ {
+  "orgnr": "973157221",
+  "navn": "Tryggheim vidaregåande skule",
+  "lat": 58.67356,
+  "lon": 5.63596,
+  "kommune": "Hå"
+ },
+ {
+  "orgnr": "971816287",
+  "navn": "Haugesund Toppidrettsgymnas AS",
+  "lat": 59.42576,
+  "lon": 5.27431,
+  "kommune": "Haugesund"
+ },
+ {
+  "orgnr": "971815817",
+  "navn": "Skoleskipet Gann",
+  "lat": 0.0,
+  "lon": 0.0,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "933682439",
+  "navn": "Nettskolen Rogaland",
+  "lat": 58.4648,
+  "lon": 6.01065,
+  "kommune": "Eigersund"
+ },
+ {
+  "orgnr": "927794187",
+  "navn": "Forus friskole - Vgs",
+  "lat": 58.88395,
+  "lon": 5.73894,
+  "kommune": "Sandnes"
+ },
+ {
+  "orgnr": "919938331",
+  "navn": "Stavanger Offshore Tekniske skole",
+  "lat": 58.98268,
+  "lon": 5.71446,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "916612095",
+  "navn": "Hauge videregående skole",
+  "lat": 59.37473,
+  "lon": 5.26223,
+  "kommune": "Karmøy"
+ },
+ {
+  "orgnr": "913404793",
+  "navn": "Norheim Vgs AS",
+  "lat": 59.38214,
+  "lon": 5.3112,
+  "kommune": "Karmøy"
+ },
+ {
+  "orgnr": "913385632",
+  "navn": "Bryne vidaregåande skule",
+  "lat": 58.73236,
+  "lon": 5.65021,
+  "kommune": "Time"
+ },
+ {
+  "orgnr": "912902803",
+  "navn": "Privatistkontoret i Rogaland",
+  "lat": 58.96485,
+  "lon": 5.73109,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "874624772",
+  "navn": "Møllehagen skolesenter grunnskole og videregående skole",
+  "lat": 58.94843,
+  "lon": 5.73619,
+  "kommune": "Stavanger"
+ },
+ {
+  "orgnr": "874624632",
+  "navn": "Sauda vidaregåande skule",
+  "lat": 59.65353,
+  "lon": 6.35914,
+  "kommune": "Sauda"
+ },
+ {
+  "orgnr": "874117722",
+  "navn": "Lundeneset Vgs",
+  "lat": 59.60809,
+  "lon": 5.77295,
+  "kommune": "Vindafjord"
+ },
+ {
+  "orgnr": "835776522",
+  "navn": "Ryfylke utdanningssenter Iks",
+  "lat": 59.23292,
+  "lon": 6.16496,
+  "kommune": "Hjelmeland"
+ },
+ {
+  "orgnr": "814245012",
+  "navn": "Fagopplæringen i Rogaland",
+  "lat": 58.96485,
+  "lon": 5.73109,
+  "kommune": "Stavanger"
+ }
+]

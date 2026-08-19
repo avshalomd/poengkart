@@ -1,0 +1,7782 @@
+{
+ "region": "Rogaland",
+ "sources": [
+  "poenggrenser-rogaland-2023-2025-official.pdf",
+  "poenggrenser-rogaland-2023-2024.pdf",
+  "poenggrenser-rogaland-2022-2023.pdf",
+  "poenggrenser-rogaland-2021-2022.pdf",
+  "poenggrenser-rogaland-2019-2020.pdf"
+ ],
+ "schools": [
+  {
+   "name": "Bergeland videregående skole",
+   "lat": 58.96731,
+   "lon": 5.73724,
+   "orgnr": "974624532",
+   "nsr_name": "Bergeland videregående skole",
+   "url": "www.bergeland.vgs.no",
+   "address": "Vaisenhusgata 50, 4012 STAVANGER",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Bergeland_videreg%C3%A5ende_skole.jpg?utm_source=no.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "photo_source": "wikipedia",
+   "wiki_url": "https://no.wikipedia.org/wiki/Bergeland_videreg%C3%A5ende_skole",
+   "wiki_extract": "Bergeland videregående skole ligger på Bergeland i sentrum av Stavanger, i Vaisenhusgata 50.",
+   "programs": [
+    {
+     "program": "Helse- og oppvekstfag",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2018": 27.9,
+      "2019": 29.1,
+      "2020": 27.1,
+      "2021": 33.3,
+      "2022": 30.0,
+      "2023": 30.0,
+      "2024": 29.0,
+      "2025": 27.5
+     }
+    },
+    {
+     "program": "Helse- og oppvekstfag, SK 3år",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2022": 44.3,
+      "2023": 38.5,
+      "2024": 39.7,
+      "2025": 43.5
+     }
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "level": "Vg1",
+     "category": "kda",
+     "values": {
+      "2018": 32.0,
+      "2019": 32.1,
+      "2020": "open",
+      "2021": 24.3,
+      "2022": 37.7,
+      "2023": 36.0,
+      "2024": 30.6,
+      "2025": 27.1
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2019": 35.3,
+      "2020": "open",
+      "2021": "open",
+      "2022": 37.1,
+      "2023": "open",
+      "2024": 27.7,
+      "2025": 21.1
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeiderfag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": 32.2,
+      "2020": 33.8,
+      "2021": 28.6,
+      "2022": 36.3,
+      "2023": 26.3,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "barne- og ungdomsarbeiderfag, SK 3 år",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": 25.6,
+      "2019": 30.0,
+      "2020": 32.2,
+      "2021": 28.8,
+      "2022": 31.3,
+      "2023": 31.3,
+      "2024": 22.2,
+      "2025": 12.2
+     }
+    },
+    {
+     "program": "Helsearbeiderfag, SK 3 år",
+     "level": "Vg2",
+     "category": "helse",
+     "values": {
+      "2023": "open",
+      "2024": 41.3,
+      "2025": 26.3
+     }
+    },
+    {
+     "program": "Helseservicefag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": 30.0,
+      "2020": 31.1,
+      "2021": 36.3,
+      "2022": 33.8,
+      "2023": 34.4,
+      "2024": 16.3,
+      "2025": 26.3
+     }
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "level": "Vg1",
+     "category": "kda",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": 24.3,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Apotekteknikk",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": "open",
+      "2020": 27.5,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 27.5
+     }
+    },
+    {
+     "program": "Helsesekretær",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": 26.7,
+      "2020": 27.5,
+      "2021": 33.8,
+      "2022": "open",
+      "2023": "open",
+      "2024": 40.0,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Tannhelsesekretær",
+     "level": "Vg3",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": 25.0,
+      "2020": "open",
+      "2021": "open",
+      "2022": 31.4,
+      "2023": "open",
+      "2024": 27.8,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "level": "Vg1",
+     "category": "kda",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2019": "U",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": "open",
+      "2019": "U"
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": 34.4,
+      "2019": 32.2
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "open"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "U"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "U"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse 33,3",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2018": "U"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Bryne vidaregåande skule",
+   "lat": 58.73236,
+   "lon": 5.65021,
+   "orgnr": "913385632",
+   "nsr_name": "Bryne vidaregåande skule",
+   "url": "www.bryne.vgs.no/",
+   "address": "Hetlandsgata 27, 4344 BRYNE",
+   "wiki_url": "https://no.wikipedia.org/wiki/Bryne_vidareg%C3%A5ande_skule",
+   "wiki_extract": "Bryne vidaregåande skule er en offentlig videregående skole på Bryne i Time kommune. Høsten 2014 ble skolen slått sammen med yrkesfagsskolen Time videregående skole og er siden blitt en kombinert skole med studiespesialiserende, idrettsfag, voksenopplæring og 5 yrkesfaglige program.",
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "level": "Vg1",
+     "category": "bygg",
+     "values": {
+      "2018": 28.8,
+      "2019": 26.8,
+      "2020": 26.0,
+      "2021": 31.9,
+      "2022": 30.7,
+      "2023": 31.3,
+      "2024": 30.0,
+      "2025": 34.4
+     }
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2018": 28.8,
+      "2019": 31.2,
+      "2020": 34.2,
+      "2021": 34.0,
+      "2022": 30.4,
+      "2023": 30.9,
+      "2024": 30.3,
+      "2025": 32.7
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": 35.6,
+      "2020": 39.3,
+      "2021": 40.0,
+      "2022": "open",
+      "2023": 40.6,
+      "2024": "open",
+      "2025": 34.5
+     }
+    },
+    {
+     "program": "Restaurant- og matfag",
+     "level": "Vg1",
+     "category": "rm",
+     "values": {
+      "2018": 29.6,
+      "2019": 25.8,
+      "2020": 31.0,
+      "2021": 31.7,
+      "2022": 29.7,
+      "2023": 25.8,
+      "2024": 28.0,
+      "2025": 20.9
+     }
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2020": 32.5,
+      "2021": 30.0,
+      "2022": 30.2,
+      "2023": 28.5,
+      "2024": 30.0,
+      "2025": 33.1
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": 39.3,
+      "2019": "open",
+      "2020": 35.3,
+      "2021": "open",
+      "2022": "open",
+      "2023": 38.8,
+      "2024": 36.5,
+      "2025": 37.7
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2019": 28.8,
+      "2020": 30.0,
+      "2021": 33.0,
+      "2022": 36.0,
+      "2023": 33.8,
+      "2024": 33.1,
+      "2025": 35.3
+     }
+    },
+    {
+     "program": "Baker og Konditor",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 24.3
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": 20.0,
+      "2019": 20.0,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 34.4
+     }
+    },
+    {
+     "program": "Betong og Mur",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": "open",
+      "2022": 32.9,
+      "2023": 30.0,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": 32.2,
+      "2020": 30.0,
+      "2021": 32.5,
+      "2022": 35.0,
+      "2023": 31.1,
+      "2024": 41.3,
+      "2025": 26.3
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": 22.2,
+      "2022": "open",
+      "2023": "open",
+      "2024": 26.7,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Industriteknologi",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 31.0,
+      "2020": 34.4,
+      "2021": 35.0,
+      "2022": 36.3,
+      "2023": 35.7,
+      "2024": 33.8,
+      "2025": 36.3
+     }
+    },
+    {
+     "program": "Kokk og servitørfag",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": 21.4,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Matproduksjon",
+     "level": "Vg2",
+     "category": "rm",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": 36.0,
+      "2020": "open",
+      "2021": 35.6,
+      "2022": "open",
+      "2023": "open",
+      "2024": 32.2,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Rørlegger",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": 25.7,
+      "2022": 31.4,
+      "2023": 35.0,
+      "2024": 35.0,
+      "2025": 32.9
+     }
+    },
+    {
+     "program": "Salg og Reiseliv",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": 26.3,
+      "2024": "open",
+      "2025": 27.5
+     }
+    },
+    {
+     "program": "Service, sikkerhet og admin",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2021": 32.5,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 27.5
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": 34.0,
+      "2019": "open",
+      "2020": "open",
+      "2021": 23.3,
+      "2022": 20.0,
+      "2023": 28.0,
+      "2024": 37.0,
+      "2025": 35.6
+     }
+    },
+    {
+     "program": "Transport og logistikk",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2018": 21.1,
+      "2019": 21.0,
+      "2020": 28.9,
+      "2021": 30.0,
+      "2022": 32.5,
+      "2023": "open",
+      "2024": 30.0,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Tømrer",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": 33.8,
+      "2022": 28.6,
+      "2023": "open",
+      "2024": 40.0,
+      "2025": 32.5
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2018": 24.0,
+      "2019": "open",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 41.1,
+      "2020": 33.8,
+      "2021": 36.3,
+      "2022": 38.6,
+      "2023": 37.5,
+      "2024": 33.3,
+      "2025": 43.3
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid(PBPBY4YK)",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2020": 34.4,
+      "2021": 36.7,
+      "2022": 37.1,
+      "2023": 40.0,
+      "2024": 42.9,
+      "2025": 45.7
+     }
+    },
+    {
+     "program": "Service og samferdsel",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2018": 27.4,
+      "2019": 27.0,
+      "2020": "U",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Byggteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2019": 37.5,
+      "2020": 31.3,
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Klima, energi og miljøteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2018": 27.5,
+      "2019": 33.3,
+      "2020": 23.8,
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Salg, service og sikkerhet",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2018": 25.6,
+      "2019": 30.0,
+      "2020": "open",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F"
+     }
+    },
+    {
+     "program": "Teknikk og industriell produksjon 25,6",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 28.8
+     }
+    },
+    {
+     "program": "Kokk og servitør",
+     "level": "Vg2",
+     "category": "rm",
+     "values": {
+      "2018": "open",
+      "2019": "open"
+     }
+    },
+    {
+     "program": "Matfag",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2019": 24.0
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse 38,8",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 41.1
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid 33,8",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2018": 33.3
+     }
+    }
+   ]
+  },
+  {
+   "name": "Dalane videregående skole",
+   "lat": 58.4648,
+   "lon": 6.01065,
+   "orgnr": "974624478",
+   "nsr_name": "Dalane videregående skole",
+   "url": "www.dalane.vgs.no",
+   "address": "Sjukehusveien 10, 4373 EGERSUND",
+   "wiki_url": "https://no.wikipedia.org/wiki/Dalane_videreg%C3%A5ende_skole",
+   "wiki_extract": "Dalane videregående skole er en videregående skole i Egersund. Skolen har linjer for Studiespesialiserende fag, Service og samferdsel, Helse- og sosialfag, Teknikk og industriell produksjon, Bygg- og anleggsteknikk, Elektrofag og Design og håndverk. Rektor er Tor-Magne Rotevatn.",
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "level": "Vg1",
+     "category": "bygg",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": 32.9,
+      "2023": 28.1,
+      "2024": 25.3,
+      "2025": 28.1
+     }
+    },
+    {
+     "program": "Elektro og datateknologi",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 28.8,
+      "2020": 20.0,
+      "2021": 31.4,
+      "2022": "open",
+      "2023": 33.6,
+      "2024": 25.6,
+      "2025": 36.9
+     }
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2018": 21.4,
+      "2019": 31.7,
+      "2020": "open",
+      "2021": 26.9,
+      "2022": "open",
+      "2023": 32.9,
+      "2024": 33.3,
+      "2025": 37.0
+     }
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2020": "open",
+      "2021": 29.7,
+      "2022": "open",
+      "2023": "open",
+      "2024": 27.5,
+      "2025": 31.5
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2019": 26.0,
+      "2020": "open",
+      "2021": "open",
+      "2022": 30.0,
+      "2023": 28.1,
+      "2024": 30.6,
+      "2025": 33.0
+     }
+    },
+    {
+     "program": "Anleggsteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2025": 32.9
+     }
+    },
+    {
+     "program": "Automatisering",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2018": "open",
+      "2019": "U",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 28.1,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeiderfag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": "open",
+      "2020": 31.1,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Elenergi og ekom",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 36.7,
+      "2020": 38.9,
+      "2021": 34.3,
+      "2022": "open",
+      "2023": "open",
+      "2024": 37.1,
+      "2025": 30.0
+     }
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": "open",
+      "2020": 34.4,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Industriteknologi",
+     "level": "Vg2",
+     "category": "tip",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 22.2,
+      "2025": 23.8
+     }
+    },
+    {
+     "program": "Kjøretøy",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 21.1,
+      "2020": 21.8,
+      "2021": 20.0,
+      "2022": "open",
+      "2023": 23.8,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 35.0,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Service, sikkerhet og administrasjon",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2021": 28.9,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Salg og reiseliv",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2022": "open",
+      "2023": 28.8,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": 28.2,
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Tømrer",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": 35.7,
+      "2022": 24.3,
+      "2023": 32.9,
+      "2024": 31.4,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 37.8,
+      "2020": 23.8,
+      "2021": 45.0,
+      "2022": "open",
+      "2023": "open",
+      "2024": 30.0,
+      "2025": 40.0
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Vg 4 Påbygg gen studiekom e/yrkeskomp (PBPBY4YK)",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Service, sikkerhet og admin",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2021": 28.9,
+      "2022": "open"
+     }
+    },
+    {
+     "program": "Design og håndverk",
+     "level": "Vg1",
+     "category": "design",
+     "values": {
+      "2018": "open",
+      "2019": 15.0,
+      "2020": "U",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Service og samferdsel",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2018": "open",
+      "2019": 28.1,
+      "2020": "U",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Byggteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2019": 30.0,
+      "2020": "open",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Salg, service og sikkerhet",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Energi operatørfaget",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2021": "open"
+     }
+    },
+    {
+     "program": "Elektrofag",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": "open"
+     }
+    },
+    {
+     "program": "Teknikk og industriell produksjon",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2018": 26.0
+     }
+    },
+    {
+     "program": "Elenergi",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 34.4
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": "open"
+     }
+    },
+    {
+     "program": "Helsearbeider",
+     "level": "Vg2",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": "open"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse 24,4",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2018": 37.8
+     }
+    }
+   ]
+  },
+  {
+   "name": "Gand videregående skole",
+   "lat": 58.84649618642249,
+   "lon": 5.73658899477558,
+   "orgnr": "974624516",
+   "nsr_name": "Gand videregående skole (adr-geokodet)",
+   "url": "www.gand.vgs.no",
+   "address": "Hoveveien 2-4, 4306 SANDNES",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Gand_videreg%C3%A5ende_skole.jpg?utm_source=no.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "photo_source": "wikipedia",
+   "wiki_url": "https://no.wikipedia.org/wiki/Gand_videreg%C3%A5ende_skole",
+   "wiki_extract": "Gand videregående skole er en offentlig videregående skole i Sandnes sentrum, etablert som Sandnes kommunale tegneskole i 1897. Skolen har 1 100 elevplasser. Skolen ble sist ombygget og samlet på en lokasjon i 2017.",
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "level": "Vg1",
+     "category": "bygg",
+     "values": {
+      "2018": 28.1,
+      "2019": 28.9,
+      "2020": 30.0,
+      "2021": 31.9,
+      "2022": "open",
+      "2023": 31.5,
+      "2024": 29.9,
+      "2025": 32.5
+     }
+    },
+    {
+     "program": "Elektro og datateknologi",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 37.6,
+      "2020": 37.7,
+      "2021": 38.7,
+      "2022": 39.3,
+      "2023": 34.7,
+      "2024": 37.7,
+      "2025": 35.3
+     }
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2018": 32.2,
+      "2019": 34.0,
+      "2020": 36.0,
+      "2021": 37.3,
+      "2022": 33.6,
+      "2023": 30.9,
+      "2024": 30.9,
+      "2025": 31.6
+     }
+    },
+    {
+     "program": "IT og medieproduksjon",
+     "level": "Vg2/Vg3",
+     "category": "im",
+     "values": {
+      "2020": 37.8,
+      "2021": 37.6,
+      "2022": 37.6,
+      "2023": 37.7,
+      "2024": 35.0,
+      "2025": 29.4
+     }
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2020": 30.8,
+      "2021": 32.0,
+      "2022": 27.6,
+      "2023": 30.3,
+      "2024": 34.0,
+      "2025": 30.4
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2019": 31.2,
+      "2020": 34.7,
+      "2021": 32.3,
+      "2022": 35.0,
+      "2023": 33.3,
+      "2024": 37.8,
+      "2025": 38.8
+     }
+    },
+    {
+     "program": "Automatisering",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 41.1,
+      "2020": 31.3,
+      "2021": 37.1,
+      "2022": 44.3,
+      "2023": 46.3,
+      "2024": 43.8,
+      "2025": 48.8
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeiderfag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": 28.8,
+      "2020": 20.0,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Betong og Mur",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": "open",
+      "2022": 34.3,
+      "2023": 33.3,
+      "2024": 27.1,
+      "2025": 32.9
+     }
+    },
+    {
+     "program": "Bilskade, lakk og karosseri",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2018": 22.0,
+      "2019": 20.9,
+      "2020": 17.8,
+      "2021": 26.7,
+      "2022": 23.8,
+      "2023": 22.5,
+      "2024": 27.5,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Datateknologi og elektronikk",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 43.3,
+      "2020": "open",
+      "2021": 38.9,
+      "2022": 31.4,
+      "2023": 28.6,
+      "2024": 34.3,
+      "2025": 32.9
+     }
+    },
+    {
+     "program": "Elenergi og ekom",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 44.4,
+      "2020": 44.4,
+      "2021": 47.1,
+      "2022": 44.3,
+      "2023": 40.0,
+      "2024": 40.0,
+      "2025": 40.0
+     }
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "level": "Vg2",
+     "category": "helse",
+     "values": {
+      "2019": 38.9,
+      "2020": 35.6,
+      "2021": 40.0,
+      "2022": 40.0,
+      "2023": 36.3,
+      "2024": 30.0,
+      "2025": 32.5
+     }
+    },
+    {
+     "program": "Industriteknologi",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2024": 41.3,
+      "2025": 41.3
+     }
+    },
+    {
+     "program": "Informasjonsteknologi",
+     "level": "Vg2/Vg3",
+     "category": "im",
+     "values": {
+      "2021": 36.3,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Kjøretøy",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 27.8,
+      "2020": 22.2,
+      "2021": 28.8,
+      "2022": "open",
+      "2023": 28.8,
+      "2024": 27.1,
+      "2025": 32.2
+     }
+    },
+    {
+     "program": "Salg og Reiseliv",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2021": 28.9,
+      "2022": 32.5,
+      "2023": 38.8,
+      "2024": 31.3,
+      "2025": 41.1
+     }
+    },
+    {
+     "program": "Service og sikkerhet og administrasjon",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Tømrer",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": 37.1,
+      "2022": 24.3,
+      "2023": 30.0,
+      "2024": 31.4,
+      "2025": 20.0
+     }
+    },
+    {
+     "program": "Transport og logistikk",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2018": 28.9,
+      "2019": 25.0,
+      "2020": 22.2,
+      "2021": 28.9,
+      "2022": 26.3,
+      "2023": 26.3,
+      "2024": 23.0,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Automatiseringsfaget",
+     "level": "Vg3",
+     "category": "elektro",
+     "values": {
+      "2018": 37.5,
+      "2019": 43.8,
+      "2020": 44.3,
+      "2021": 41.4,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 33.3,
+      "2020": 34.0,
+      "2021": 36.3,
+      "2022": 31.4,
+      "2023": 38.8,
+      "2024": 37.8,
+      "2025": 36.3
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2019": 33.3,
+      "2020": 33.8,
+      "2021": 35.0,
+      "2022": 38.8,
+      "2023": 36.3,
+      "2024": 34.3,
+      "2025": 34.3
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, kveld",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 34.0,
+      "2020": 34.4,
+      "2021": "open",
+      "2022": "open",
+      "2023": "U"
+     }
+    },
+    {
+     "program": "Service og sikkerhet og admin",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2019": 34.4,
+      "2020": 37.8,
+      "2021": "open",
+      "2022": "open"
+     }
+    },
+    {
+     "program": "Service og samferdsel",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2018": 25.3,
+      "2019": 30.4,
+      "2020": "U",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Byggteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2019": 36.3,
+      "2020": 31.3,
+      "2021": "U"
+     }
+    },
+    {
+     "program": "IKT-Servicefag",
+     "level": "Vg2/Vg3",
+     "category": "im",
+     "values": {
+      "2019": 33.3,
+      "2020": 34.4,
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Elektrofag",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 37.6
+     }
+    },
+    {
+     "program": "Teknikk og industriell produksjon 27,9",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 31.2
+     }
+    },
+    {
+     "program": "Data og elektronikk",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2018": 37.8,
+      "2019": 43.3
+     }
+    },
+    {
+     "program": "Elenergi",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 40.0
+     }
+    },
+    {
+     "program": "Salg, service og sikkerhet",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2018": 31.1,
+      "2019": 34.4
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse 38,8",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 33.3
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid 34",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2019": 33.3
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, kveld 21,7",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 34.0
+     }
+    }
+   ]
+  },
+  {
+   "name": "Godalen videregående skole",
+   "lat": 58.95377,
+   "lon": 5.75185,
+   "orgnr": "974624648",
+   "nsr_name": "Godalen videregående skole",
+   "url": "www.godalen.vgs.no",
+   "address": "Østre Ring 55, 4015 STAVANGER",
+   "wiki_url": "https://no.wikipedia.org/wiki/Godalen_videreg%C3%A5ende_skole",
+   "wiki_extract": "Godalen videregående skole er en yrkesfaglig- og lærlingskole på Godalen i Stavanger.",
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "level": "Vg1",
+     "category": "bygg",
+     "values": {
+      "2018": 23.1,
+      "2019": 20.0,
+      "2020": 17.1,
+      "2021": "open",
+      "2022": 19.7,
+      "2023": 29.7,
+      "2024": 25.6,
+      "2025": 22.4
+     }
+    },
+    {
+     "program": "Elektro og datateknologi",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 28.9,
+      "2020": "open",
+      "2021": 30.0,
+      "2022": 27.2,
+      "2023": 29.7,
+      "2024": 31.2,
+      "2025": 31.3
+     }
+    },
+    {
+     "program": "Elektro og data, automatisering og robotikk, SK 3 år.",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2023": 39.7,
+      "2024": 42.4,
+      "2025": 24.0
+     }
+    },
+    {
+     "program": "Frisør, blomst, int.eksp. design",
+     "level": "Vg1",
+     "category": "design",
+     "values": {
+      "2020": 22.0,
+      "2021": 22.9,
+      "2022": 35.4,
+      "2023": "open",
+      "2024": 17.9,
+      "2025": 24.2
+     }
+    },
+    {
+     "program": "Håndverk, design, produktutvikling",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2020": 28.7,
+      "2021": 31.3,
+      "2022": 27.6,
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": 27.3,
+      "2024": 31.3,
+      "2025": 30.4
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2019": 20.0,
+      "2020": "open",
+      "2021": "open",
+      "2022": 22.3,
+      "2023": 29.0,
+      "2024": 35.4,
+      "2025": 33.8
+     }
+    },
+    {
+     "program": "Automatisering",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2018": "open",
+      "2019": 28.9,
+      "2020": "open",
+      "2021": 30.0,
+      "2022": 28.6,
+      "2023": 42.5,
+      "2024": 38.6,
+      "2025": 45.7
+     }
+    },
+    {
+     "program": "Automatisering, SK 3 år",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Betong og Mur",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": "open",
+      "2022": 24.3,
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Blomsterdekoratør",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2018": "open",
+      "2019": 21.3,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 32.9
+     }
+    },
+    {
+     "program": "Elenergi og ekom",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 36.0,
+      "2020": 31.1,
+      "2021": 25.6,
+      "2022": "open",
+      "2023": 31.4,
+      "2024": 34.3,
+      "2025": 34.3
+     }
+    },
+    {
+     "program": "Frisør",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2019": 20.0,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Industriteknologi",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 21.1,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 31.4,
+      "2025": 38.8
+     }
+    },
+    {
+     "program": "Kulde ,varmepumpe-, vent.teknologi",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2021": "open",
+      "2022": 26.7,
+      "2023": 35.7,
+      "2024": 30.0,
+      "2025": 30.0
+     }
+    },
+    {
+     "program": "Overflateteknikk",
+     "level": "Vg2",
+     "category": "bygg",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Salg og Reiseliv",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2021": "open",
+      "2022": 27.5,
+      "2023": "open",
+      "2024": "open",
+      "2025": 34.4
+     }
+    },
+    {
+     "program": "Service, sikkerhet og admin",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 32.5,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Søm og tekstilhåndverk",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Treteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": 30.0,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Tømrer",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 22.9
+     }
+    },
+    {
+     "program": "Brønnteknikk",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2023": 45.6,
+      "2024": 45.0,
+      "2025": 47.8
+     }
+    },
+    {
+     "program": "Kjemiprosess- og laboratoriefag",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2023": 43.3,
+      "2024": 45.0,
+      "2025": 46.3
+     }
+    },
+    {
+     "program": "Automatiseringsfaget",
+     "level": "Vg3",
+     "category": "elektro",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2019": 20.9,
+      "2020": "open",
+      "2021": 38.8,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Elektro og data, automatisering og robotikk, SK 3 år. NY",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2023": 39.7
+     }
+    },
+    {
+     "program": "Kulde og varmepumpeteknikk",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2018": 23.0,
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": 26.7
+     }
+    },
+    {
+     "program": "Automatisering",
+     "level": "Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 32.2,
+      "2020": 38.6,
+      "2021": "open",
+      "2022": "open"
+     }
+    },
+    {
+     "program": "Design og håndverk",
+     "level": "Vg1",
+     "category": "design",
+     "values": {
+      "2018": "open",
+      "2019": 25.6,
+      "2020": "U",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Service og samferdsel",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2018": 23.1,
+      "2019": 20.0,
+      "2020": "U",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Byggteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Design og tekstil",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Reiseliv",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2019": 38.3,
+      "2020": 33.3,
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Salg, service og sikkerhet",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2018": 22.2,
+      "2019": "open",
+      "2020": "open",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Elektro",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 27.1
+     }
+    },
+    {
+     "program": "Teknikk og industriell produksjon 23,1",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 20.0
+     }
+    },
+    {
+     "program": "Elenergi",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 36.0
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid 22,9",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2018": 20.9
+     }
+    }
+   ]
+  },
+  {
+   "name": "Haugaland videregående skole",
+   "lat": 59.40954,
+   "lon": 5.29116,
+   "orgnr": "974624486",
+   "nsr_name": "Haugaland videregående skole",
+   "url": "www.haugaland.vgs.no",
+   "address": "Spannavegen 38, 5531 HAUGESUND",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/2/21/Haugaland_videreg%C3%A5ende_skole%2C_juli_2026.jpg?utm_source=no.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "photo_source": "wikipedia",
+   "wiki_url": "https://no.wikipedia.org/wiki/Haugaland_videreg%C3%A5ende_skole",
+   "wiki_extract": "Haugaland videregående skole er en offentlig videregående skole i Haugesund i Rogaland fylkeskommune. Skolen tilbyr hovedsakelig yrkesfaglige utdanningsprogram, i tillegg til ett studieforberedende tilbud. Den ligger sørøst for Haugesund sentrum, i Lillesund, i samme gate som Vardafjell videregående skole.",
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "level": "Vg1",
+     "category": "bygg",
+     "values": {
+      "2018": 25.6,
+      "2019": "open",
+      "2020": 23.6,
+      "2021": "open",
+      "2022": 28.6,
+      "2023": "open",
+      "2024": 18.9,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Frisør, blomst, int, eksp.design",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": 30.7,
+      "2024": 35.7,
+      "2025": 33.1
+     }
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2018": 26.9,
+      "2019": 22.3,
+      "2020": 15.3,
+      "2021": "open",
+      "2022": 33.5,
+      "2023": 25.3,
+      "2024": 22.5,
+      "2025": 23.8
+     }
+    },
+    {
+     "program": "Helse og oppvekstfag, toppidrett",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2021": "open",
+      "2022": 34.3,
+      "2023": "open",
+      "2024": 37.5,
+      "2025": 34.4
+     }
+    },
+    {
+     "program": "IT og medieproduksjon",
+     "level": "Vg2/Vg3",
+     "category": "im",
+     "values": {
+      "2020": 40.4,
+      "2021": 36.7,
+      "2022": 39.3,
+      "2023": 37.1,
+      "2024": 34.4,
+      "2025": 31.3
+     }
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "level": "Vg1",
+     "category": "kda",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": 37.8,
+      "2021": "open",
+      "2022": 39.0,
+      "2023": 33.6,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2020": 27.8,
+      "2021": 28.6,
+      "2022": 31.1,
+      "2023": 32.9,
+      "2024": 32.7,
+      "2025": 31.3
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2019": 19.4,
+      "2020": "open",
+      "2021": 26.2,
+      "2022": 28.5,
+      "2023": 25.3,
+      "2024": 27.3,
+      "2025": 27.3
+     }
+    },
+    {
+     "program": "Anleggsteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2024": 32.5,
+      "2025": 38.6
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeiderfag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": "open",
+      "2020": 30.0,
+      "2021": "open",
+      "2022": "open",
+      "2023": 32.5,
+      "2024": 30.0,
+      "2025": 24.4
+     }
+    },
+    {
+     "program": "Betong og Mur",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Frisør",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": 17.1,
+      "2024": 24.3,
+      "2025": 32.5
+     }
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": 28.0,
+      "2020": "open",
+      "2021": 28.8,
+      "2022": "open",
+      "2023": 24.4,
+      "2024": 42.2,
+      "2025": 21.3
+     }
+    },
+    {
+     "program": "Industriteknologi",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 17.8,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Informasjonsteknologi",
+     "level": "Vg2/Vg3",
+     "category": "im",
+     "values": {
+      "2021": 28.8,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 30.0
+     }
+    },
+    {
+     "program": "Interiør og eksponeringsdesign",
+     "level": "Vg2",
+     "category": "design",
+     "values": {
+      "2019": "open",
+      "2020": "U",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Kjøretøy",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 25.0,
+      "2020": 26.7,
+      "2021": 27.5,
+      "2022": 20.0,
+      "2023": "open",
+      "2024": 33.8,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Medieproduksjon",
+     "level": "Vg2/Vg3",
+     "category": "im",
+     "values": {
+      "2024": 31.3,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "level": "Vg1",
+     "category": "kda",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Salg og Reiseliv",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2021": "open",
+      "2022": 30.0,
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Service, sikkerhet og admin",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 40.0,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Transport og logistikk",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2018": 24.4,
+      "2019": 22.2,
+      "2020": 22.0,
+      "2021": 23.8,
+      "2022": 26.7,
+      "2023": "open",
+      "2024": 23.8,
+      "2025": 35.0
+     }
+    },
+    {
+     "program": "Tømrer",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "level": "Vg1",
+     "category": "kda",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Interiør",
+     "level": "Vg3",
+     "category": "design",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 21.7,
+      "2020": "open",
+      "2021": 40.0,
+      "2022": 30.0,
+      "2023": 40.0,
+      "2024": "open",
+      "2025": 38.8
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2020": 32.2,
+      "2021": "open",
+      "2022": 37.5,
+      "2023": 38.8,
+      "2024": "open",
+      "2025": 35.0
+     }
+    },
+    {
+     "program": "Bygg og anleggsteknikk, toppidrett",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": 32.4
+     }
+    },
+    {
+     "program": "Salg, service og sikkerhet",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2018": 22.0,
+      "2019": 26.7,
+      "2020": "open",
+      "2021": "U",
+      "2022": "open"
+     }
+    },
+    {
+     "program": "Design og håndverk",
+     "level": "Vg1",
+     "category": "design",
+     "values": {
+      "2018": 28.9,
+      "2019": "open",
+      "2020": "U",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Service og samferdsel",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2018": 28.4,
+      "2019": 28.9,
+      "2020": "U",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Byggteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": 20.0,
+      "2021": "U"
+     }
+    },
+    {
+     "program": "IKT- servicefag",
+     "level": "Vg2/Vg3",
+     "category": "im",
+     "values": {
+      "2019": 35.6,
+      "2020": 33.3,
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Teknikk og industriell produksjon 20",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 19.4
+     }
+    },
+    {
+     "program": "Interiør og utstillingsdesign",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2018": "open"
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeiderfag 25,6",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": "open"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse 37,5",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 21.7
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid 39",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2019": 38.9
+     }
+    }
+   ]
+  },
+  {
+   "name": "Hetland videregående skole",
+   "lat": 58.9343,
+   "lon": 5.7373,
+   "orgnr": "974624370",
+   "nsr_name": "Hetland videregående skole",
+   "url": "www.hetland.vgs.no",
+   "address": "Breidablikkveien 16, 4017 STAVANGER",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/MiniStortingssalen.jpg/960px-MiniStortingssalen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "photo_source": "commons",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:MiniStortingssalen.jpg",
+   "wiki_url": "https://no.wikipedia.org/wiki/Hetland_videreg%C3%A5ende_skole",
+   "wiki_extract": "Hetland videregående skole er en skole med 600 elevplasser i Stavanger som ble grunnlagt i 1958. Skolen flyttet til sine nåværende lokaler på Mariero 15. februar 2010. Den tilbyr studieretninger innen medier og kommunikasjon, studiespesialiserende utdanningsprogram og allmennfaglig påbygg.",
+   "programs": [
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2018": 35.7,
+      "2019": 36.0,
+      "2020": "open",
+      "2021": "open",
+      "2022": 39.3,
+      "2023": "open",
+      "2024": "open",
+      "2025": 36.0
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": 39.4,
+      "2019": 41.3,
+      "2020": 40.4,
+      "2021": 40.4,
+      "2022": 43.5,
+      "2023": 42.7,
+      "2024": 38.7,
+      "2025": 41.2
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg2",
+     "category": "mk",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": 36.7,
+      "2020": 31.3,
+      "2021": 31.3,
+      "2022": 36.7,
+      "2023": "open",
+      "2024": 38.9,
+      "2025": 35.6
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": 26.7,
+      "2019": 35.7,
+      "2020": 37.8,
+      "2021": 37.8,
+      "2022": 38.0,
+      "2023": 38.0,
+      "2024": 33.3,
+      "2025": 34.0
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg3",
+     "category": "mk",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Jåttå videregående skole",
+   "lat": 58.91357,
+   "lon": 5.72784,
+   "orgnr": "990183449",
+   "nsr_name": "Jåttå videregående skole",
+   "url": "jaattaa.vgs.no",
+   "address": "Gauselvågen 4, 4032 STAVANGER",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/9/9d/J%C3%A5tt%C3%A5_videreg%C3%A5ende_skole.JPG?utm_source=no.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "photo_source": "wikipedia",
+   "wiki_url": "https://no.wikipedia.org/wiki/J%C3%A5tt%C3%A5_videreg%C3%A5ende_skole",
+   "wiki_extract": "Jåttå videregående skole er en videregående skole i Stavanger. Denne skolen ble opprettet og åpnet høsten 2007 da det nye bygget i Jåttåvågveien 3 sto klart.",
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "level": "Vg1",
+     "category": "bygg",
+     "values": {
+      "2018": 26.9,
+      "2019": 29.8,
+      "2020": 32.9,
+      "2021": 33.3,
+      "2022": 37.9,
+      "2023": 36.4,
+      "2024": 32.7,
+      "2025": 35.0
+     }
+    },
+    {
+     "program": "Bygg og anleggsteknikk, toppidrett",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2020": 35.0,
+      "2021": 35.0,
+      "2022": 39.6,
+      "2023": 41.3,
+      "2024": 31.3,
+      "2025": 38.1
+     }
+    },
+    {
+     "program": "Eletro og datateknologi",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 37.1,
+      "2020": 37.0,
+      "2021": 38.0,
+      "2022": 40.7,
+      "2023": 37.1,
+      "2024": 38.0,
+      "2025": 38.1
+     }
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2018": 36.5,
+      "2019": 37.2,
+      "2020": 38.7,
+      "2021": 40.0,
+      "2022": 37.4,
+      "2023": 36.9,
+      "2024": 35.3,
+      "2025": 36.9
+     }
+    },
+    {
+     "program": "Helse og oppvekstfag m/toppidrett",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2022": 22.2,
+      "2023": 29.5,
+      "2024": 36.5,
+      "2025": 38.6
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": 40.6,
+      "2020": 41.3,
+      "2021": 42.0,
+      "2022": 42.1,
+      "2023": 43.5,
+      "2024": 41.3,
+      "2025": 42.5
+     }
+    },
+    {
+     "program": "Restaurant- og matfag",
+     "level": "Vg1",
+     "category": "rm",
+     "values": {
+      "2018": 32.4,
+      "2019": 28.1,
+      "2020": 30.0,
+      "2021": 29.3,
+      "2022": "open",
+      "2023": 17.7,
+      "2024": 18.5,
+      "2025": 25.9
+     }
+    },
+    {
+     "program": "Automatisering",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 47.0,
+      "2020": 42.2,
+      "2021": 44.3,
+      "2022": 44.3,
+      "2023": 45.7,
+      "2024": 41.1,
+      "2025": 48.6
+     }
+    },
+    {
+     "program": "Baker og konditor",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2021": 32.9,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 28.6
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeiderfag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2021": 26.7,
+      "2022": 32.5,
+      "2023": 34.4,
+      "2024": 37.5,
+      "2025": 33.8
+     }
+    },
+    {
+     "program": "Elenergi og ekom",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 43.3,
+      "2020": 41.1,
+      "2021": 44.3,
+      "2022": 41.4,
+      "2023": 35.7,
+      "2024": 38.6,
+      "2025": 40.0
+     }
+    },
+    {
+     "program": "Fotterapi og ortopediteknikk",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2021": "U",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": 35.6,
+      "2020": 41.1,
+      "2021": 37.5,
+      "2022": 40.0,
+      "2023": 36.3,
+      "2024": 38.8,
+      "2025": 27.5
+     }
+    },
+    {
+     "program": "Hudpleie",
+     "level": "Vg2",
+     "category": "helse",
+     "values": {
+      "2021": 42.5,
+      "2022": 42.5,
+      "2023": 46.3,
+      "2024": 46.7,
+      "2025": 45.6
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": 32.0,
+      "2020": 21.3,
+      "2021": 32.2,
+      "2022": "open",
+      "2023": "open",
+      "2024": 37.8,
+      "2025": 33.3
+     }
+    },
+    {
+     "program": "Klima, energi og miljøteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2018": 32.2,
+      "2019": 30.0,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 21.3,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Kokk og servitørfag",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 32.9,
+      "2025": 22.9
+     }
+    },
+    {
+     "program": "Rørlegger",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": 27.1,
+      "2022": 25.7,
+      "2023": 36.0,
+      "2024": 28.8,
+      "2025": 15.7
+     }
+    },
+    {
+     "program": "Tømrer",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": 34.3,
+      "2022": 28.6,
+      "2023": 40.0,
+      "2024": 32.9,
+      "2025": 32.9
+     }
+    },
+    {
+     "program": "Tømrer, toppidrett",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": 30.0,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Automatiseringsfaget",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2018": 36.3,
+      "2019": 36.3,
+      "2020": 40.0,
+      "2021": 32.9,
+      "2022": 36.7,
+      "2023": "open",
+      "2024": 31.4,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Fotterapi",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": 20.0,
+      "2020": 27.8,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Hudpleier",
+     "level": "Vg3",
+     "category": "helse",
+     "values": {
+      "2019": 41.1,
+      "2020": 40.0,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "F",
+      "2020": "open",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 42.2,
+      "2020": 47.5,
+      "2021": 47.5,
+      "2022": 38.8,
+      "2023": 28.8,
+      "2024": 27.5,
+      "2025": 25.0
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2019": 40.0,
+      "2020": 42.2,
+      "2021": 44.4,
+      "2022": 33.8,
+      "2023": 34.3,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Påbygg gen studiekompetanse, kveld",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Matproduksjon",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "U"
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": 40.0,
+      "2019": 31.0,
+      "2020": 34.4,
+      "2021": 26.7,
+      "2022": 32.5
+     }
+    },
+    {
+     "program": "Fotterapi",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open"
+     }
+    },
+    {
+     "program": "Hudpleier",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open"
+     }
+    },
+    {
+     "program": "Byggteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2019": 32.5,
+      "2020": 27.5,
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Elektro",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 37.6
+     }
+    },
+    {
+     "program": "Elenergi",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 41.1
+     }
+    },
+    {
+     "program": "Kokk og servitør",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2018": "open",
+      "2019": "open"
+     }
+    },
+    {
+     "program": "Matfag",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2019": 24.0
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse 43,8",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 42.2
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid 36,3",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2018": 40.0
+     }
+    }
+   ]
+  },
+  {
+   "name": "Karmsund videregående skole",
+   "lat": 59.40075,
+   "lon": 5.2832,
+   "orgnr": "974624591",
+   "nsr_name": "Karmsund videregående skole",
+   "url": "www.karmsund.vgs.no",
+   "address": "Salhusvegen 68, 5529 HAUGESUND",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/A_very_wet_pedestrians-_and_bicycle_path.jpg/960px-A_very_wet_pedestrians-_and_bicycle_path.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "photo_source": "commons",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:A_very_wet_pedestrians-_and_bicycle_path.jpg",
+   "wiki_url": "https://no.wikipedia.org/wiki/Karmsund_videreg%C3%A5ende_skole",
+   "wiki_extract": "Karmsund videregående skole er en offentlig yrkesfaglig videregående skole i Haugesund. Skolen ligger langs Salhusvegen, sørvest i byen. Skolebygningen er fra 2005. Det er 713 elever ved skolen per 2025.",
+   "programs": [
+    {
+     "program": "Elektro og datateknologi",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 38.1,
+      "2020": 38.6,
+      "2021": 36.0,
+      "2022": 34.5,
+      "2023": 35.7,
+      "2024": 35.0,
+      "2025": 38.8
+     }
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2018": 33.5,
+      "2019": 21.3,
+      "2020": 27.8,
+      "2021": "open",
+      "2022": 34.3,
+      "2023": 29.7,
+      "2024": 39.7,
+      "2025": 31.2
+     }
+    },
+    {
+     "program": "Restaurant- og matfag",
+     "level": "Vg1",
+     "category": "rm",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": 25.4,
+      "2023": "open",
+      "2024": 28.1,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2019": 30.8,
+      "2020": 32.0,
+      "2021": 31.3,
+      "2022": 35.7,
+      "2023": 33.9,
+      "2024": 37.1,
+      "2025": 34.4
+     }
+    },
+    {
+     "program": "Baker og konditor",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 18.6,
+      "2025": 32.9
+     }
+    },
+    {
+     "program": "Elenergi og ekom",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 40.0,
+      "2020": 42.0,
+      "2021": 44.3,
+      "2022": 40.0,
+      "2023": 38.6,
+      "2024": 37.1,
+      "2025": 34.3
+     }
+    },
+    {
+     "program": "Helseservicefag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": 20.0,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": 33.8,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "level": "Vg2",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": 31.1,
+      "2021": "open",
+      "2022": "open",
+      "2023": 31.3,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Industriteknologi",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2025": 37.5
+     }
+    },
+    {
+     "program": "Kjemiprosess- og laboratoriefag",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 35.6,
+      "2020": 34.4,
+      "2021": 32.5,
+      "2022": 38.6,
+      "2023": 47.8,
+      "2024": 48.9,
+      "2025": 48.8
+     }
+    },
+    {
+     "program": "Kokk og servitørfag",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2019": "open",
+      "2020": 23.3,
+      "2021": "open",
+      "2022": 25.7,
+      "2023": "open",
+      "2024": 25.7,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Maritime fag",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 40.0,
+      "2020": 22.0,
+      "2021": 34.4,
+      "2022": 30.0,
+      "2023": 37.5,
+      "2024": 38.9,
+      "2025": 45.0
+     }
+    },
+    {
+     "program": "Helsesekretær",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": 31.0,
+      "2020": 27.5,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Apotekteknikk",
+     "level": "Vg3",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": 28.8,
+      "2021": "open",
+      "2022": "open",
+      "2023": 27.5,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Maritime elektrikerfaget",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2018": 25.0,
+      "2019": 34.4,
+      "2020": "open",
+      "2021": 38.9,
+      "2022": 46.7,
+      "2023": 40.0,
+      "2024": 44.3,
+      "2025": 37.1
+     }
+    },
+    {
+     "program": "Tannhelsesekretær",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2019": 28.0,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Datateknologi og elektronikk",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 26.7,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "U"
+     }
+    },
+    {
+     "program": "Matproduksjon",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2022": "open",
+      "2023": "U"
+     }
+    },
+    {
+     "program": "Påbygg gen. studiekompetanse",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2022": 38.6
+     }
+    },
+    {
+     "program": "Matfag",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Elektrofag",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 36.9
+     }
+    },
+    {
+     "program": "Teknikk og industriell produksjon 27,1",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 30.8
+     }
+    },
+    {
+     "program": "Data og elektronikk",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2018": "open",
+      "2019": 26.7
+     }
+    },
+    {
+     "program": "Elenergi",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 28.9
+     }
+    },
+    {
+     "program": "Kjemiprosess",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 42.2
+     }
+    },
+    {
+     "program": "Kokk og servitør",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2018": "open",
+      "2019": "open"
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid 34,4",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2018": 28.0
+     }
+    }
+   ]
+  },
+  {
+   "name": "Kopervik videregående skole",
+   "lat": 59.28048,
+   "lon": 5.28347,
+   "orgnr": "974624389",
+   "nsr_name": "Kopervik videregående skole",
+   "url": "kopervik.vgs.no/",
+   "address": "Austre Karmøyveg 21, 4250 KOPERVIK",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/5/50/Kopervik_videreg%C3%A5ende_skole%2C_september_2025.jpg?utm_source=no.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "photo_source": "wikipedia",
+   "wiki_url": "https://no.wikipedia.org/wiki/Kopervik_videreg%C3%A5ende_skole",
+   "wiki_extract": "Kopervik videregående skole er en offentlig videregående skole i Kopervik på Karmøy i Rogaland fylkeskommune. Skolen tilbyr utdanningsprogram innen studiespesialisering, idrettsfag, medier og kommunikasjon, samt påbygging til generell studiekompetanse. Per 2025 har skolen 328 elever og 53 ansatte, med Sveinung Valen som rektor.",
+   "programs": [
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2025": 33.8
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2025": 38.0
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2",
+     "category": "st",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": 27.0,
+      "2019": 28.9,
+      "2020": 30.0,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2025": 26.7
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2018": "U",
+      "2019": "U",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 30.0,
+      "2020": 28.8,
+      "2021": 31.4,
+      "2022": 33.8,
+      "2023": "open",
+      "2025": 22.5
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2019": 31.0,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg2",
+     "category": "mk",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open"
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse 20",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 30.0
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid 22,7",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2018": 31.0
+     }
+    }
+   ]
+  },
+  {
+   "name": "Randaberg videregående skole",
+   "lat": 58.99688,
+   "lon": 5.65469,
+   "orgnr": "974624664",
+   "nsr_name": "Randaberg videregående skole",
+   "url": "www.randaberg.vgs.no/",
+   "address": "Grødemveien 70, 4072 RANDABERG",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Wenche_Smiodden_skole.jpg/960px-Wenche_Smiodden_skole.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "photo_source": "commons",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Wenche_Smiodden_skole.jpg",
+   "wiki_url": "https://no.wikipedia.org/wiki/Randaberg_videreg%C3%A5ende_skole",
+   "wiki_extract": "Randaberg videregående skole er en offentlig videregående skole i Randaberg i Rogaland fylkeskommune. Skolen tilbyr utdanningsprogram innen studiespesialisering og yrkesfaglige utdanningsprogram samt påbygging til generell studiekompetanse.",
+   "programs": [
+    {
+     "program": "Elektro og datateknologi",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 33.0,
+      "2020": 35.2,
+      "2021": 36.0,
+      "2022": 37.6,
+      "2023": 18.6,
+      "2024": 17.8,
+      "2025": 27.0
+     }
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2018": 27.9,
+      "2019": 28.9,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": "open",
+      "2019": 23.3,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2019": 26.9,
+      "2020": 27.9,
+      "2021": "open",
+      "2022": 28.6,
+      "2023": 24.3,
+      "2024": 26.2,
+      "2025": 30.0
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": 22.5,
+      "2019": 31.0,
+      "2020": "open",
+      "2021": 23.8,
+      "2022": "open",
+      "2023": "open",
+      "2024": 25.6,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Elenergi og ekom",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": "open",
+      "2020": 27.8,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 24.3,
+      "2025": 24.3
+     }
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": 35.6,
+      "2020": 31.1,
+      "2021": 35.0,
+      "2022": "open",
+      "2023": 23.3,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Industriteknologi",
+     "level": "Vg2",
+     "category": "tip",
+     "values": {
+      "2019": 33.3,
+      "2020": 33.3,
+      "2021": 28.3,
+      "2022": 26.3,
+      "2023": 25.6,
+      "2024": 23.8,
+      "2025": 20.0
+     }
+    },
+    {
+     "program": "Kjøretøy",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 26.7,
+      "2020": 24.4,
+      "2021": 18.8,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": 30.0,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": 30.0,
+      "2019": 30.0,
+      "2020": 28.9,
+      "2021": "open",
+      "2022": "open",
+      "2023": 30.0,
+      "2024": 23.8,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2018": 31.6,
+      "2019": "open",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 34.4,
+      "2020": 30.0,
+      "2021": 36.3,
+      "2022": 31.3,
+      "2023": 34.4,
+      "2024": 37.1,
+      "2025": 21.4
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2019": 33.8,
+      "2020": 22.5,
+      "2021": 45.6,
+      "2022": 37.8,
+      "2023": 36.3,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2018": "open",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F"
+     }
+    },
+    {
+     "program": "Elektrofag",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 33.1
+     }
+    },
+    {
+     "program": "Teknikk og industriell produksjon 27,1",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 26.9
+     }
+    },
+    {
+     "program": "Elenergi",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 34.0
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2018": "F"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse 36,3",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 34.4
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, dagtid 35",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2019": 33.8
+     }
+    }
+   ]
+  },
+  {
+   "name": "Sandnes videregående skole",
+   "lat": 58.85731,
+   "lon": 5.72539,
+   "orgnr": "974624397",
+   "nsr_name": "Sandnes videregående skole",
+   "url": "www.sandnes.vgs.no",
+   "address": "Jønningsheiveien 45, 4316 SANDNES",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Sandnes_videreg%C3%A5ende_skole.jpg/960px-Sandnes_videreg%C3%A5ende_skole.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "photo_source": "commons",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Sandnes_videreg%C3%A5ende_skole.jpg",
+   "wiki_url": "https://no.wikipedia.org/wiki/Sandnes_videreg%C3%A5ende_skole",
+   "wiki_extract": "Sandnes videregående skole er en offentlig videregående skole i Sandnes. Per 1.1.2025 har skolen 1080 elever og ca. 110 ansatte. Skolen er en studiespesialiserende skole som også tilbyr idrettsfaglig utdanning som følge av at idrettslinjen ved Gand videregående skole i samme by ble flyttet over til Sandnes vgs i 2014.",
+   "programs": [
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": 24.3,
+      "2019": 41.8,
+      "2020": 40.2,
+      "2021": 40.0,
+      "2022": 41.1,
+      "2023": 38.3,
+      "2024": 37.6,
+      "2025": 40.3
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": 45.3,
+      "2020": 47.0,
+      "2021": 46.0,
+      "2022": 42.7,
+      "2023": 42.7,
+      "2024": 44.7,
+      "2025": 45.1
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "open",
+      "2020": 40.0,
+      "2021": 31.1,
+      "2022": "open",
+      "2023": "open",
+      "2024": 35.0,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2",
+     "category": "st",
+     "values": {
+      "2018": 33.6,
+      "2019": "open",
+      "2020": 33.8,
+      "2021": 35.0,
+      "2022": 36.0,
+      "2023": 36.0,
+      "2024": 29.0,
+      "2025": 32.2
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": 41.0,
+      "2020": 19.0,
+      "2021": 35.6,
+      "2022": 25.6,
+      "2023": "open",
+      "2024": 33.3,
+      "2025": 34.4
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Sauda vidaregåande skule",
+   "lat": 59.65353,
+   "lon": 6.35914,
+   "orgnr": "874624632",
+   "nsr_name": "Sauda vidaregåande skule",
+   "url": "www.sauda.vgs.no",
+   "address": "Griegs gate 40, 4200 SAUDA",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fv_713_Espelandsvegen.jpg/960px-Fv_713_Espelandsvegen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "photo_source": "commons",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Fv_713_Espelandsvegen.jpg",
+   "wiki_url": "https://no.wikipedia.org/wiki/Sauda_videreg%C3%A5ende_skole",
+   "wiki_extract": "Sauda videregående skole er en videregående skole i Ryfylke i Rogaland. Den er delt opp i tre avdelinger med tilhold i henholdsvis Sauda og Birkeland i Sauda kommune og Sand i Suldal kommune.",
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "level": "Vg1",
+     "category": "bygg",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 20.6,
+      "2025": 41.8
+     }
+    },
+    {
+     "program": "Elektro og datateknologi",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 30.0,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 30.8,
+      "2025": 32.9
+     }
+    },
+    {
+     "program": "Helse og oppvekst",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2018": 20.0,
+      "2019": 26.7,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 26.7
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2024": 35.1,
+      "2025": 29.6
+     }
+    },
+    {
+     "program": "Ambulansefag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2019": 49.0,
+      "2020": 53.3,
+      "2021": 53.8,
+      "2022": 53.8,
+      "2023": 52.5,
+      "2024": 51.3,
+      "2025": 53.8
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeiderfag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Elenergi og ekom",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 26.3,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Industriteknologi",
+     "level": "Vg2",
+     "category": "tip",
+     "values": {
+      "2019": 24.0,
+      "2020": "open",
+      "2021": 32.5,
+      "2022": "open",
+      "2023": "open",
+      "2024": 34.4,
+      "2025": 30.0
+     }
+    },
+    {
+     "program": "Kjemiprosess og laboratoriefag",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2021": 20.8,
+      "2022": 36.3,
+      "2023": 30.0,
+      "2024": 43.8,
+      "2025": 46.3
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": 30.8,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Transport og logistikk",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 23.3,
+      "2020": "open",
+      "2021": "open",
+      "2022": 25.0,
+      "2023": "open",
+      "2024": "open",
+      "2025": 28.8
+     }
+    },
+    {
+     "program": "Tømrer",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, nett",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2019": 36.4,
+      "2020": 35.6,
+      "2021": "open",
+      "2022": 42.9,
+      "2023": 40.0,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Teknologi og industrifag, YSK 4 år",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": "open",
+      "2020": 29.3,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open"
+     }
+    },
+    {
+     "program": "Kjemiprosess YSK",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2018": 26.7,
+      "2019": 47.5,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open"
+     }
+    },
+    {
+     "program": "Påbygg er yrkeskompetanse, PBPBY4P2",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2022": 31.7
+     }
+    },
+    {
+     "program": "Påbygg er yrkeskompetanse, PBPBY4P",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2021": 2.0,
+      "2022": 31.7
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": 24.4,
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Byggteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Elektrofag",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": "open"
+     }
+    },
+    {
+     "program": "Elenergi",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": "open"
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse, nett 40",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2019": 36.4
+     }
+    }
+   ]
+  },
+  {
+   "name": "Skeisvang videregående skole",
+   "lat": 59.42292,
+   "lon": 5.27116,
+   "orgnr": "974624362",
+   "nsr_name": "Skeisvang videregående skole",
+   "url": "www.skeisvang.vgs.no",
+   "address": "Rogalandgata 197, 5518 HAUGESUND",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/The_Sacred_Order_of_The_Cats.jpg/960px-The_Sacred_Order_of_The_Cats.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "photo_source": "commons",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:The_Sacred_Order_of_The_Cats.jpg",
+   "wiki_url": "https://no.wikipedia.org/wiki/Skeisvang_videreg%C3%A5ende_skole",
+   "wiki_extract": "Skeisvang videregående skole er en videregående skole som ligger i Haugesund.",
+   "programs": [
+    {
+     "program": "Musikk",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": 46.6,
+      "2020": 42.0,
+      "2021": 40.7,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 42.7
+     }
+    },
+    {
+     "program": "Dans",
+     "level": "Vg1",
+     "category": "mdd",
+     "values": {
+      "2019": 40.6,
+      "2020": 33.6,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 40.3,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Drama",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": 36.0,
+      "2019": 34.2,
+      "2020": 37.0,
+      "2021": 44.4,
+      "2022": "open",
+      "2023": 41.3,
+      "2024": 43.8,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Musikk",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Dans",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Drama",
+     "level": "Vg2",
+     "category": "mdd",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "open",
+      "2020": 38.8,
+      "2021": 40.0,
+      "2022": "open",
+      "2023": 32.2,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": 30.0,
+      "2019": 25.5,
+      "2020": 32.9,
+      "2021": 32.0,
+      "2022": "open",
+      "2023": "open",
+      "2024": 30.0,
+      "2025": 35.0
+     }
+    },
+    {
+     "program": "Musikk",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Dans",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Drama",
+     "level": "Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Sola videregående skole",
+   "lat": 58.89365,
+   "lon": 5.66574,
+   "orgnr": "974624672",
+   "nsr_name": "Sola videregående skole",
+   "url": "www.sola.vgs.no",
+   "address": "Åsenvegen 78, 4055 SOLA",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sola_videreg%C3%A5ende_skole.jpg?utm_source=no.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "photo_source": "wikipedia",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Sola_videreg%C3%A5ende_skole_1.JPG",
+   "wiki_url": "https://no.wikipedia.org/wiki/Sola_videreg%C3%A5ende_skole",
+   "wiki_extract": "Sola videregående skole er en videregående skole i Sola kommune, det er en stor kombinert skole med omtrent 800 elever fordelt på 38 klasser. Skolen er den eneste videregående skolen i kommunen.",
+   "programs": [
+    {
+     "program": "Elektro og datateknologi",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2020": 27.5,
+      "2021": 34.7,
+      "2022": 36.2,
+      "2023": 29.1,
+      "2024": 29.3,
+      "2025": 27.7
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": 30.0,
+      "2020": 28.8,
+      "2021": "open",
+      "2022": "open",
+      "2023": 33.5,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": 35.7,
+      "2021": 33.3,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2020": 24.5,
+      "2021": 24.6,
+      "2022": 27.6,
+      "2023": 31.3,
+      "2024": 35.6,
+      "2025": 33.8
+     }
+    },
+    {
+     "program": "Elenergi og ekom",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2025": 40.0
+     }
+    },
+    {
+     "program": "Flyfag, Landslinje",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 40.0,
+      "2020": 42.2,
+      "2021": 47.1,
+      "2022": 47.1,
+      "2023": 47.1,
+      "2024": 48.9,
+      "2025": 50.0
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Industriteknologi",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 20.0,
+      "2020": 24.4,
+      "2021": 20.0,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 32.5
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": 30.0,
+      "2020": 30.0,
+      "2021": 37.8,
+      "2022": 21.3,
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": 30.0,
+      "2019": "open",
+      "2020": 25.0,
+      "2021": 29.0,
+      "2022": 31.3,
+      "2023": 35.6,
+      "2024": 20.0,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Dronefag",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2023": 42.5,
+      "2024": 25.0,
+      "2025": 25.7
+     }
+    },
+    {
+     "program": "Avionikerfaget Landslinje",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2018": 40.0,
+      "2019": "open",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Flyfag, Landslinje",
+     "level": "Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 31.4,
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Datateknologi og elektronikk",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2020": "U",
+      "2021": 30.0,
+      "2022": 22.9,
+      "2023": "U"
+     }
+    },
+    {
+     "program": "Dataelektronikerfaget",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2018": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open"
+     }
+    },
+    {
+     "program": "Flyfag, Landslinje",
+     "level": "Vg2",
+     "category": "elektro",
+     "values": {
+      "2019": 40.0,
+      "2021": 47.1,
+      "2022": 47.1,
+      "2023": 47.1
+     }
+    },
+    {
+     "program": "Avionikerfaget Landslinje",
+     "level": "Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 40.0,
+      "2021": "F",
+      "2022": "F",
+      "2023": "F"
+     }
+    },
+    {
+     "program": "Flyfag, Landslinje",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 31.4,
+      "2021": "F",
+      "2022": "F",
+      "2023": "F"
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2020": 43.0,
+      "2021": 43.7,
+      "2022": 45.7
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2020": 38.8,
+      "2021": 42.2,
+      "2022": 41.1
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2020": 40.0,
+      "2021": 41.1,
+      "2022": 41.1
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2020": "F",
+      "2021": "F",
+      "2022": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2020": "F",
+      "2021": "F",
+      "2022": "F"
+     }
+    },
+    {
+     "program": "Elektro",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 32.4
+     }
+    },
+    {
+     "program": "Teknikk og industriell produksjon 25,6",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 24.6
+     }
+    },
+    {
+     "program": "Data og elektronikk",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2018": 32.2,
+      "2019": 35.6
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse 23,6",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2018": "U"
+     }
+    }
+   ]
+  },
+  {
+   "name": "St.Olav videregående skole",
+   "lat": 58.96711,
+   "lon": 5.72504,
+   "orgnr": "974624443",
+   "nsr_name": "St. Olav videregående skole",
+   "url": "www.st-olav.vgs.no",
+   "address": "Jens Zetlitz' gate 33, 4008 STAVANGER",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/2/25/StolavvgsSarpsborg.jpg?utm_source=no.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "photo_source": "wikipedia",
+   "wiki_url": "https://no.wikipedia.org/wiki/St._Olav_videreg%C3%A5ende_skole_(Sarpsborg)",
+   "wiki_extract": "St. Olav videregående skole er en videregående skole i Sarpsborg. Skolen tilbyr per 2024 utdanningsprogrammene studiespesialisering, salg, service og reiseliv, idrettsfag og toppidrett i tillegg til voksenopplæring. Skolen har rundt 750 elever.",
+   "programs": [
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": 39.4,
+      "2019": "open",
+      "2020": 35.7,
+      "2021": 43.7,
+      "2022": 45.7,
+      "2023": "open",
+      "2024": 39.6,
+      "2025": 46.1
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2",
+     "category": "st",
+     "values": {
+      "2019": "open",
+      "2020": 30.0,
+      "2021": 42.2,
+      "2022": 41.1,
+      "2023": 37.8,
+      "2024": 33.0,
+      "2025": 44.4
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": 35.0,
+      "2019": "open",
+      "2020": 25.0,
+      "2021": 41.1,
+      "2022": 41.1,
+      "2023": 45.6,
+      "2024": 36.7,
+      "2025": 43.0
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Elektro og datateknologi",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 29.1,
+      "2020": 27.5,
+      "2021": 34.7
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": 34.7,
+      "2020": 28.8,
+      "2021": "open"
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2019": 24.6,
+      "2020": 24.5,
+      "2021": 24.6
+     }
+    },
+    {
+     "program": "Datateknologi og elektronikk",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 35.6,
+      "2020": "U",
+      "2021": 30.0
+     }
+    },
+    {
+     "program": "Flyfag, Landslinje",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 38.9,
+      "2020": 42.2,
+      "2021": 47.1
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open"
+     }
+    },
+    {
+     "program": "Industriteknologi",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 33.0,
+      "2020": 24.4,
+      "2021": 20.0
+     }
+    },
+    {
+     "program": "Avionikerfaget Landslinje",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open"
+     }
+    },
+    {
+     "program": "Dataelektronikerfaget",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open"
+     }
+    },
+    {
+     "program": "Flyfag, Landslinje",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open"
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F"
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2019": 39.4,
+      "2020": 43.0,
+      "2021": 43.7
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": 38.0,
+      "2020": 38.8,
+      "2021": 42.2
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": 35.0,
+      "2020": 40.0,
+      "2021": 41.1
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F"
+     }
+    }
+   ]
+  },
+  {
+   "name": "St.Svithun videregående skole",
+   "lat": 58.95606,
+   "lon": 5.6961,
+   "orgnr": "974624427",
+   "nsr_name": "St Svithun videregående skole",
+   "url": "www.svithun.vgs.no/",
+   "address": "Ytre Eiganesveien 30, 4022 STAVANGER",
+   "wiki_url": "https://no.wikipedia.org/wiki/St._Svithun_videreg%C3%A5ende_skole",
+   "wiki_extract": "St. Svithun videregående skole er en videregående skole i Stavanger. Skolen ligger på Tjensvoll og er oppkalt etter Stavangers vernehelgen St. Svithun.",
+   "programs": [
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": 43.3,
+      "2020": 40.0,
+      "2021": 45.0,
+      "2022": 43.2,
+      "2023": 41.3,
+      "2024": 43.8,
+      "2025": 45.3
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": 43.5,
+      "2019": 41.8,
+      "2020": 42.2,
+      "2021": 45.0,
+      "2022": 43.3,
+      "2023": 38.8,
+      "2024": 42.8,
+      "2025": 43.8
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": 35.0,
+      "2020": 30.0,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 31.1,
+      "2025": 30.0
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": 42.5,
+      "2020": 41.3,
+      "2021": 37.8,
+      "2022": 38.9,
+      "2023": "open",
+      "2024": "open",
+      "2025": 43.0
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": 35.0,
+      "2019": 35.0,
+      "2020": 38.8,
+      "2021": 33.3,
+      "2022": 36.0,
+      "2023": 38.8,
+      "2024": 32.2,
+      "2025": 30.0
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Stavanger Katedralskole",
+   "lat": 58.96914,
+   "lon": 5.73314,
+   "orgnr": "974624400",
+   "nsr_name": "Stavanger katedralskole",
+   "url": "www.stavanger-katedralskole.vgs.no",
+   "address": "Haakon VIIs gate 4, 4005 STAVANGER",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/3/34/Kongsg%C3%A5rd-hovedbygning.JPG?utm_source=no.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "photo_source": "wikipedia",
+   "wiki_url": "https://no.wikipedia.org/wiki/Stavanger_katedralskole",
+   "wiki_extract": "Stavanger katedralskole er en videregående skole i sentrum av Stavanger. Skolen tilbyr to utdanningsprogram, ett for studiespesialisering ved Kongsgård i Stavanger sentrum og ett for musikk, dans og drama ved skolens nye bygg i Bjergsted.",
+   "programs": [
+    {
+     "program": "Musikk",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": 45.0,
+      "2020": 49.7,
+      "2021": "open",
+      "2022": 46.7,
+      "2023": 45.0,
+      "2024": 44.3,
+      "2025": 47.8
+     }
+    },
+    {
+     "program": "Dans",
+     "level": "Vg1",
+     "category": "mdd",
+     "values": {
+      "2019": 39.6,
+      "2020": 46.4,
+      "2021": 40.7,
+      "2022": 29.3,
+      "2023": 50.6,
+      "2024": 40.8,
+      "2025": 40.0
+     }
+    },
+    {
+     "program": "Drama",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": 42.1,
+      "2020": 40.3,
+      "2021": 44.9,
+      "2022": 44.3,
+      "2023": 49.1,
+      "2024": "open",
+      "2025": 40.3
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": 42.4,
+      "2019": 42.4,
+      "2020": "open",
+      "2021": 43.3,
+      "2022": 38.3,
+      "2023": 33.5,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Musikk",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Dans",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Drama",
+     "level": "Vg2",
+     "category": "mdd",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": 26.7,
+      "2020": 37.0,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 34.4
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": 36.0,
+      "2019": 43.0,
+      "2020": 43.0,
+      "2021": 33.3,
+      "2022": 42.2,
+      "2023": 36.7,
+      "2024": 36.7,
+      "2025": 30.0
+     }
+    },
+    {
+     "program": "Musikk",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Dans",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Drama",
+     "level": "Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2019": 36.7,
+      "2020": 39.0,
+      "2021": 35.9,
+      "2022": 38.7
+     }
+    },
+    {
+     "program": "Brønnteknikk",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 34.4,
+      "2020": 38.9,
+      "2021": 38.8,
+      "2022": 37.5
+     }
+    },
+    {
+     "program": "Kjemiprosess- og laboratoriefag",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2020": 36.7,
+      "2021": 38.8,
+      "2022": 32.5
+     }
+    },
+    {
+     "program": "Kjemiprosess- og laboratoriefag 37 36,7 38,8Vg",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2021": 2.0
+     }
+    }
+   ]
+  },
+  {
+   "name": "Stavanger Offshore Tekniske skole",
+   "lat": 58.98268,
+   "lon": 5.71446,
+   "orgnr": "919938331",
+   "nsr_name": "Stavanger Offshore Tekniske skole",
+   "url": "www.sots.no",
+   "address": "Tjuvholmveien 40, 4007 STAVANGER",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Bergeland_videreg%C3%A5ende_skole.jpg?utm_source=no.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "photo_source": "wikipedia",
+   "wiki_url": "https://no.wikipedia.org/wiki/Bergeland_videreg%C3%A5ende_skole",
+   "wiki_extract": "Bergeland videregående skole ligger på Bergeland i sentrum av Stavanger, i Vaisenhusgata 50.",
+   "programs": [
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2021": 35.9,
+      "2022": 38.7,
+      "2023": "U"
+     }
+    },
+    {
+     "program": "Brønnteknikk",
+     "level": "Vg2",
+     "category": "tip",
+     "values": {
+      "2019": 30.0,
+      "2021": 38.8,
+      "2022": 37.5,
+      "2023": "U"
+     }
+    },
+    {
+     "program": "Kjemiprosess- og laboratoriefag",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2021": 38.8,
+      "2022": 32.5,
+      "2023": "U"
+     }
+    },
+    {
+     "program": "Teknikk og industriell produksjon 36,3",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2019": 36.7
+     }
+    },
+    {
+     "program": "Laboratoriefag",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2018": "open",
+      "2019": "U"
+     }
+    },
+    {
+     "program": "Kjemiprosess",
+     "level": "Vg2",
+     "category": "tip",
+     "values": {
+      "2019": 28.9
+     }
+    }
+   ]
+  },
+  {
+   "name": "Strand videregående skole",
+   "lat": 59.0634,
+   "lon": 5.92138,
+   "orgnr": "974624419",
+   "nsr_name": "Strand videregående skole",
+   "url": "www.strand.vgs.no",
+   "address": "Ryfylkevegen 1914, 4120 TAU",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Sentrum_VGS_Kongsvinger.JPG/960px-Sentrum_VGS_Kongsvinger.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "photo_source": "commons",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Sentrum_VGS_Kongsvinger.JPG",
+   "wiki_url": "https://no.wikipedia.org/wiki/Strand_videreg%C3%A5ende_skole",
+   "wiki_extract": "Strand videregående skole er en videregående skole på Tau i Strand kommune. Skolen, som først ble etablert i 1969, har ca 700 elever og ca 130 tilsatte. Skolen eies og drives av Rogaland fylkeskommune og har hovedinntaksområde i Strand Tau, Jørpeland, Forsand, Hjelmeland og Finnøy kommune. Strand vgs er en MOT-skole.",
+   "programs": [
+    {
+     "program": "Elektro og datateknologi",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": 36.2,
+      "2023": 36.3,
+      "2024": 31.8,
+      "2025": 34.1
+     }
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2018": 26.1,
+      "2019": "open",
+      "2020": "open",
+      "2021": 35.0,
+      "2022": "open",
+      "2023": "open",
+      "2024": 29.1,
+      "2025": 33.8
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "open",
+      "2020": 40.7,
+      "2021": "open",
+      "2022": 27.8,
+      "2023": "open",
+      "2024": "open",
+      "2025": 41.3
+     }
+    },
+    {
+     "program": "Naturbruk",
+     "level": "Vg1",
+     "category": "nat",
+     "values": {
+      "2019": 26.9,
+      "2020": 25.9,
+      "2021": 27.3,
+      "2022": 29.6,
+      "2023": 39.1,
+      "2024": 35.0,
+      "2025": 34.0
+     }
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2020": 21.8,
+      "2021": 28.3,
+      "2022": "open",
+      "2023": "open",
+      "2024": 28.3,
+      "2025": 35.0
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 40.0
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2019": 22.5,
+      "2020": "open",
+      "2021": 22.4,
+      "2022": 34.3,
+      "2023": 33.6,
+      "2024": 29.4,
+      "2025": 34.4
+     }
+    },
+    {
+     "program": "Akvakultur",
+     "level": "Vg2/Vg3",
+     "category": "nat",
+     "values": {
+      "2019": 28.8,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 40.0,
+      "2025": 41.4
+     }
+    },
+    {
+     "program": "Automatisering",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": 45.7,
+      "2024": 31.3,
+      "2025": 40.0
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": 31.3,
+      "2023": "open",
+      "2024": 40.0,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Elenergi og ekom",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 27.8,
+      "2020": 32.2,
+      "2021": "open",
+      "2022": 38.6,
+      "2023": "open",
+      "2024": 32.9,
+      "2025": 32.9
+     }
+    },
+    {
+     "program": "Fiske og fangst",
+     "level": "Vg2/Vg3",
+     "category": "nat",
+     "values": {
+      "2018": "open",
+      "2019": 28.8,
+      "2020": 31.3,
+      "2021": 35.7,
+      "2022": 31.4,
+      "2023": 30.0,
+      "2024": 42.5,
+      "2025": 44.3
+     }
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "level": "Vg2",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": 37.8,
+      "2020": "open",
+      "2021": 36.3,
+      "2022": "open",
+      "2023": 25.0,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": 32.0,
+      "2024": "open"
+     }
+    },
+    {
+     "program": "Industriteknologi",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2018": "open",
+      "2019": 33.3,
+      "2020": 31.1,
+      "2021": 37.8,
+      "2022": 28.8,
+      "2023": 45.0,
+      "2024": 32.5,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": 29.0,
+      "2020": 30.0,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Salg og Reiseliv",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 37.5
+     }
+    },
+    {
+     "program": "Service, sikkerhet og administrasjon",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": 28.8,
+      "2023": "open",
+      "2024": "open",
+      "2025": 35.0
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Påbygg gen. Studiekompetanse",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2022": 48.6,
+      "2023": 30.0,
+      "2024": 41.4,
+      "2025": 41.4
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Studieforberedende naturbruk",
+     "level": "Vg2/Vg3",
+     "category": "nat",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "U",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Salg, service og sikkerhet",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "U",
+      "2022": "U",
+      "2023": "U"
+     }
+    },
+    {
+     "program": "Service og samferdsel",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2018": 26.1,
+      "2019": 25.0,
+      "2020": "U",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Elektrofag",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 20.0
+     }
+    },
+    {
+     "program": "Teknikk og industriell produksjon",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2018": 22.5
+     }
+    },
+    {
+     "program": "Elenergi",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": "open"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Vardafjell videregående skole",
+   "lat": 59.41164,
+   "lon": 5.29024,
+   "orgnr": "974624435",
+   "nsr_name": "Vardafjell videregående skole",
+   "url": "vardafjell-vgs@skole.rogfk.no",
+   "address": "Spannavegen 25, 5531 HAUGESUND",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Vardafjell_vgs.jpg/3840px-Vardafjell_vgs.jpg?utm_source=no.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "photo_source": "wikipedia",
+   "wiki_url": "https://no.wikipedia.org/wiki/Vardafjell_videreg%C3%A5ende_skole",
+   "wiki_extract": "Vardafjell videregående skole ble opprettet 5. september 1946 under navnet Haugesund Handelsgymnasium på Hasseløy i Haugesund. Skolen har 540 elever. Skolen flyttet til dagens plassering i 1980. Skolen er nå lokalisert på fastlandet, like vest for Vardafjellet. I 2004 startet skolen opp med en internasjonal linje, IB – International Baccalaureate.",
+   "programs": [
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2018": 37.6,
+      "2019": 20.0,
+      "2020": 23.8,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": 37.9,
+      "2023": 41.3,
+      "2024": "open",
+      "2025": 41.9
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg2",
+     "category": "mk",
+     "values": {
+      "2018": 31.3,
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": 24.0,
+      "2020": "open",
+      "2021": 37.8,
+      "2022": "open",
+      "2023": 28.0,
+      "2024": 40.0,
+      "2025": 40.0
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": 30.0,
+      "2019": 28.0,
+      "2020": 23.3,
+      "2021": 32.0,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Påbygg generell studiekompetanse",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 21.7,
+      "2020": 28.8,
+      "2021": 30.0,
+      "2022": 36.3,
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "International baccalaureate, IB Dokumentasjon",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2021": "open",
+      "2022": "open"
+     }
+    },
+    {
+     "program": "International baccalaureate, IB Dokumentasjon Dokumentasjon",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2021": "open"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Vågen videregående skole",
+   "lat": 58.85072,
+   "lon": 5.74094,
+   "orgnr": "994507508",
+   "nsr_name": "Vågen videregående skole",
+   "url": "www.vågen.vgs.no",
+   "address": "Holbergs gate 23, 4306 SANDNES",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/5/58/V%C3%A5gen_VGS.jpg?utm_source=no.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "photo_source": "wikipedia",
+   "wiki_url": "https://no.wikipedia.org/wiki/V%C3%A5gen_videreg%C3%A5ende_skole",
+   "wiki_extract": "Vågen videregående skole er en videregående skole i Sandnes som åpnet til skolestart 2010. Skolen er en sammenslåing av de to tidligere skolene Forus og Lundehaugen. Skolen har rundt ca. 800 elevplasser og 160 ansatte og er samlokalisert med Sandnes kulturskole.",
+   "programs": [
+    {
+     "program": "Frisør, blomst, int,eksp.design",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2020": 30.0,
+      "2021": 27.1,
+      "2022": 35.4,
+      "2023": 34.0,
+      "2024": 38.0,
+      "2025": 30.0
+     }
+    },
+    {
+     "program": "IT og medieproduksjon",
+     "level": "Vg2/Vg3",
+     "category": "im",
+     "values": {
+      "2019": 27.8,
+      "2020": 38.0,
+      "2021": 37.7,
+      "2022": 38.2,
+      "2023": 33.3,
+      "2024": 32.5,
+      "2025": 27.9
+     }
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "level": "Vg1",
+     "category": "kda",
+     "values": {
+      "2018": 32.1,
+      "2019": 32.1,
+      "2020": 38.3,
+      "2021": 39.7,
+      "2022": 45.2,
+      "2023": 44.3,
+      "2024": 42.7,
+      "2025": 39.3
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2018": 38.2,
+      "2019": 38.2,
+      "2020": 40.0,
+      "2021": 38.0,
+      "2022": 46.4,
+      "2023": 32.6,
+      "2024": 40.3,
+      "2025": 38.0
+     }
+    },
+    {
+     "program": "Musikk",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": 40.3,
+      "2020": 44.3,
+      "2021": "open",
+      "2022": 26.5,
+      "2023": 39.3,
+      "2024": 47.0,
+      "2025": 41.7
+     }
+    },
+    {
+     "program": "Dans",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": 39.6,
+      "2020": 40.3,
+      "2021": 32.1,
+      "2022": "open",
+      "2023": 44.6,
+      "2024": 37.5,
+      "2025": 43.1
+     }
+    },
+    {
+     "program": "Drama",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": 39.3,
+      "2024": 36.3,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Informasjonsteknologi",
+     "level": "Vg2/Vg3",
+     "category": "im",
+     "values": {
+      "2023": 43.8,
+      "2024": 37.5,
+      "2025": 46.3
+     }
+    },
+    {
+     "program": "Interiør og eksponeringsdesign",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": 25.7,
+      "2024": "open",
+      "2025": 28.6
+     }
+    },
+    {
+     "program": "Kunst,design og arkitektur",
+     "level": "Vg2/Vg3",
+     "category": "kda",
+     "values": {
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 30.0,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Medieproduksjon",
+     "level": "Vg2",
+     "category": "im",
+     "values": {
+      "2018": 31.0,
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": 28.8,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg1",
+     "category": "mk",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": 38.9,
+      "2024": "open",
+      "2025": 32.2
+     }
+    },
+    {
+     "program": "Musikk",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Dans",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Drama",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "F",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Eksponeringsdesign",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Interiør",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "F",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "level": "Vg1",
+     "category": "kda",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "F",
+      "2021": "F",
+      "2022": "open",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "level": "Vg3",
+     "category": "mk",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Musikk",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Dans",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Drama",
+     "level": "Vg2/Vg3",
+     "category": "mdd",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Interiør og eksponeringsdesign (Interiør og utstillingsdesign)",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open"
+     }
+    },
+    {
+     "program": "Mediedesign",
+     "level": "Vg2/Vg3",
+     "category": "mk",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open"
+     }
+    },
+    {
+     "program": "Utstillingsdesign",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open"
+     }
+    },
+    {
+     "program": "Design og håndverk",
+     "level": "Vg1",
+     "category": "design",
+     "values": {
+      "2018": 26.7,
+      "2019": 34.7,
+      "2020": "U",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "level": "Vg1",
+     "category": "kda",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F"
+     }
+    },
+    {
+     "program": "Interiør og utstillingsdesign",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2018": "open"
+     }
+    },
+    {
+     "program": "Medieproduksjon",
+     "level": "Vg2/Vg3",
+     "category": "im",
+     "values": {
+      "2018": "open",
+      "2019": "open"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Åkrehamn vidaregåande skole",
+   "lat": 59.25665,
+   "lon": 5.19802,
+   "orgnr": "974624494",
+   "nsr_name": "Åkrehamn vidaregåande skole",
+   "url": "www.akrehamn.vgs.no",
+   "address": "Skulevegen 11, 4270 ÅKREHAMN",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/%C3%85kra_kirke_-_panoramio.jpg/960px-%C3%85kra_kirke_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "photo_source": "commons",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:%C3%85kra_kirke_-_panoramio.jpg",
+   "wiki_url": "https://no.wikipedia.org/wiki/%C3%85krehamn_videreg%C3%A5ende_skole",
+   "wiki_extract": "Åkrehamn videregående skole er en videregående skole som befinner seg på Åkrehamn i Karmøy kommune. Rektoren på skolen er Åse Bratthammer. Skolen tilbyr fem ulike yrkesfaglige studieretninger, og tilrettelagt opplæring blir tilbudt for elever med generelle lærevansker.",
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "level": "Vg1",
+     "category": "bygg",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": 18.3,
+      "2023": 31.0,
+      "2024": 29.3,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Elektro og datateknologi",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 37.5,
+      "2020": 31.7,
+      "2021": "open",
+      "2022": 34.3,
+      "2023": 36.9,
+      "2024": 33.8,
+      "2025": 34.4
+     }
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2018": 20.0,
+      "2019": 22.5,
+      "2020": "open",
+      "2021": "open",
+      "2022": 24.3,
+      "2023": 31.3,
+      "2024": "open",
+      "2025": 21.7
+     }
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": 24.6,
+      "2024": 26.3,
+      "2025": 21.3
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2019": 31.0,
+      "2020": 26.3,
+      "2021": 22.5,
+      "2022": 32.1,
+      "2023": 32.9,
+      "2024": 34.1,
+      "2025": 32.9
+     }
+    },
+    {
+     "program": "Automatisering",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 41.1,
+      "2020": "open",
+      "2021": 40.0,
+      "2022": 31.0,
+      "2023": 41.3,
+      "2024": 35.0,
+      "2025": 44.3
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": 35.6,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 42.5,
+      "2025": 40.0
+     }
+    },
+    {
+     "program": "Elenergi og ekom",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": 44.4,
+      "2020": "open",
+      "2021": 44.3,
+      "2022": 32.9,
+      "2023": 35.0,
+      "2024": "open",
+      "2025": 37.1
+     }
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "level": "Vg2",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": 28.9,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 33.3,
+      "2025": 40.0
+     }
+    },
+    {
+     "program": "Industriteknologi",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": 24.4,
+      "2022": 23.8,
+      "2023": "open",
+      "2024": "open",
+      "2025": 22.5
+     }
+    },
+    {
+     "program": "Rørlegger",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": 25.7,
+      "2024": 34.4,
+      "2025": 26.3
+     }
+    },
+    {
+     "program": "Salg og Reiseliv",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2021": "open",
+      "2022": 25.7,
+      "2023": "open",
+      "2024": "open",
+      "2025": 32.5
+     }
+    },
+    {
+     "program": "Service, sikkerhet og administrasjon",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Tømrer",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 30.0,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Automatiseringsfaget",
+     "level": "Vg3",
+     "category": "elektro",
+     "values": {
+      "2018": 40.0,
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 40.0,
+      "2025": 37.1
+     }
+    },
+    {
+     "program": "Service, sikkerhet og admin.",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2023": "open"
+     }
+    },
+    {
+     "program": "Service og samferdsel",
+     "level": "Vg1",
+     "category": "sr",
+     "values": {
+      "2018": 24.4,
+      "2019": 22.5,
+      "2020": "U",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Byggteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2019": 27.5,
+      "2020": "open",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Klima, energi – og miljøteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2018": 20.0,
+      "2019": 20.0,
+      "2020": "open",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Salg, service og sikkerhet",
+     "level": "Vg2/Vg3",
+     "category": "sr",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": 27.8,
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Elektrofag",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 39.1
+     }
+    },
+    {
+     "program": "Teknikk og industriell produksjon 25,3",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 31.0
+     }
+    },
+    {
+     "program": "Elenergi",
+     "level": "Vg2",
+     "category": "elektro",
+     "values": {
+      "2019": "open"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Øksnevad vidaregåande skole",
+   "lat": 58.80082,
+   "lon": 5.67142,
+   "nsr_name": "(manual)",
+   "url": "oksnevad-vgs@skole.rogfk.no",
+   "address": "Jærveien 990, 4351 KLEPPE",
+   "programs": [
+    {
+     "program": "Naturbruk",
+     "level": "Vg1",
+     "category": "nat",
+     "values": {
+      "2019": 28.6,
+      "2020": 26.3,
+      "2021": 28.2,
+      "2022": 31.4,
+      "2023": 30.7,
+      "2024": "open",
+      "2025": 28.8
+     }
+    },
+    {
+     "program": "Naturbruk dyrekunnskap SK 3år",
+     "level": "Vg1",
+     "category": "nat",
+     "values": {
+      "2019": 36.5,
+      "2020": 36.9,
+      "2021": 30.0,
+      "2022": "open",
+      "2023": 38.3,
+      "2024": "open",
+      "2025": 38.4
+     }
+    },
+    {
+     "program": "Naturbruk hest",
+     "level": "Vg2/Vg3",
+     "category": "nat",
+     "values": {
+      "2021": "open",
+      "2022": 16.4,
+      "2023": "open",
+      "2024": 32.9,
+      "2025": 32.3
+     }
+    },
+    {
+     "program": "Anleggsteknikk, landslinje",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2018": 35.6,
+      "2019": 35.0,
+      "2020": 33.3,
+      "2021": 35.7,
+      "2022": 32.9,
+      "2023": 36.3,
+      "2024": 38.8,
+      "2025": 26.3
+     }
+    },
+    {
+     "program": "Anleggsgartner",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2019": 20.0,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 31.4,
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Arbeidsmaskiner",
+     "level": "Vg2",
+     "category": "tip",
+     "values": {
+      "2018": 33.3,
+      "2019": "open",
+      "2020": 32.2,
+      "2021": 31.3,
+      "2022": 27.5,
+      "2023": 31.3,
+      "2024": 30.0,
+      "2025": 20.0
+     }
+    },
+    {
+     "program": "Heste- og dyrefag",
+     "level": "Vg2/Vg3",
+     "category": "nat",
+     "values": {
+      "2019": 40.0,
+      "2020": 20.0,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 31.7,
+      "2025": 30.0
+     }
+    },
+    {
+     "program": "Heste- og dyrefag, dyrekunnskap SK 3 år",
+     "level": "Vg2/Vg3",
+     "category": "nat",
+     "values": {
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Landbruk og gartnernæring",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2018": 23.8,
+      "2019": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Anleggsmaskinmekaniker landslinje",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": 38.6,
+      "2021": 30.0,
+      "2022": 40.0,
+      "2023": "open",
+      "2024": 32.5,
+      "2025": 34.3
+     }
+    },
+    {
+     "program": "Landbruk",
+     "level": "Vg3",
+     "category": "nat",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Naturbruk dyrekunnskap SK 3år",
+     "level": "Vg2/Vg3",
+     "category": "nat",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Studieforberedende naturbruk",
+     "level": "Vg2/Vg3",
+     "category": "nat",
+     "values": {
+      "2019": "open",
+      "2020": 27.5,
+      "2021": 23.8,
+      "2022": "open",
+      "2023": "open",
+      "2024": 45.0,
+      "2025": 31.4
+     }
+    },
+    {
+     "program": "Landbruk/gartnernæring, dyrekunnskap",
+     "level": "Vg2/Vg3",
+     "category": "rm",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 34.4,
+      "2020": 42.2,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open"
+     }
+    },
+    {
+     "program": "Naturbruk med dyrekunnskap",
+     "level": "Vg2/Vg3",
+     "category": "nat",
+     "values": {
+      "2019": 36.5
+     }
+    },
+    {
+     "program": "Anleggsgartner – og idrettsanlegg",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2018": 20.0
+     }
+    },
+    {
+     "program": "Heste- og hovslagerfaget",
+     "level": "Vg2",
+     "category": "nat",
+     "values": {
+      "2018": 37.5,
+      "2019": 40.0
+     }
+    },
+    {
+     "program": "Studieforberedende naturbruk 22,5",
+     "level": "Vg3",
+     "category": "nat",
+     "values": {
+      "2018": "open"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse 31,1",
+     "level": "Vg2/Vg3",
+     "category": "pb",
+     "values": {
+      "2018": 34.4
+     }
+    }
+   ]
+  },
+  {
+   "name": "Ølen vidaregåande skule",
+   "lat": 59.60671,
+   "lon": 5.81603,
+   "orgnr": "974557134",
+   "nsr_name": "Ølen vidaregåande skule",
+   "url": "www.olen.vgs.no/",
+   "address": "Litlehagen 2, 5580 ØLEN",
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "level": "Vg1",
+     "category": "bygg",
+     "values": {
+      "2018": 32.4,
+      "2019": 25.6,
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 30.0
+     }
+    },
+    {
+     "program": "Elektro og datateknologi",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 35.6,
+      "2020": "open",
+      "2021": 39.1,
+      "2022": 37.3,
+      "2023": 26.8,
+      "2024": 40.9,
+      "2025": 39.0
+     }
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "level": "Vg1",
+     "category": "helse",
+     "values": {
+      "2018": 23.3,
+      "2019": "open",
+      "2020": 31.5,
+      "2021": 24.2,
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "U",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Studiespesialisering",
+     "level": "Vg1",
+     "category": "st",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2019": 20.0,
+      "2020": 29.3,
+      "2021": 30.0,
+      "2022": "open",
+      "2023": 36.9,
+      "2024": 34.4,
+      "2025": 37.2
+     }
+    },
+    {
+     "program": "Anleggsteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2024": 41.3,
+      "2025": 30.0
+     }
+    },
+    {
+     "program": "Arbeidsmaskiner",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "level": "Vg2/Vg3",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": 35.0
+     }
+    },
+    {
+     "program": "Elenergi og ekom",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": 31.4,
+      "2022": "open",
+      "2023": 32.9,
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "level": "Vg2",
+     "category": "helse",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": 37.5,
+      "2022": "open",
+      "2023": "open",
+      "2024": 38.8,
+      "2025": 42.5
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Industriteknologi",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": 30.0,
+      "2025": 31.0
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Tømrer",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Idrettsfag",
+     "level": "Vg1",
+     "category": "idrett",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 20.0,
+      "2020": 42.5,
+      "2021": 41.3,
+      "2022": 43.3,
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Realfag",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "level": "Vg2/Vg3",
+     "category": "st",
+     "values": {
+      "2018": "F",
+      "2019": "F",
+      "2020": "F",
+      "2021": "F",
+      "2022": "F",
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
+     }
+    },
+    {
+     "program": "Påbygg etter yrkeskompetanse",
+     "level": "Vg4",
+     "category": "pb",
+     "values": {
+      "2019": "open",
+      "2020": 40.0,
+      "2021": "open",
+      "2022": "open",
+      "2023": "open",
+      "2024": "open",
+      "2025": "open"
+     }
+    },
+    {
+     "program": "Interiør og utstillingsdesign",
+     "level": "Vg2/Vg3",
+     "category": "design",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "U",
+      "2021": "U",
+      "2022": "open",
+      "2023": "U"
+     }
+    },
+    {
+     "program": "Kjøretøy",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": "U",
+      "2020": "open",
+      "2021": "U",
+      "2022": "open",
+      "2023": "U"
+     }
+    },
+    {
+     "program": "Design og håndverk",
+     "level": "Vg1",
+     "category": "design",
+     "values": {
+      "2018": 31.0,
+      "2019": "U",
+      "2020": "U",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Byggteknikk",
+     "level": "Vg2/Vg3",
+     "category": "bygg",
+     "values": {
+      "2018": "open",
+      "2019": "open",
+      "2020": "open",
+      "2021": "U"
+     }
+    },
+    {
+     "program": "Elektrofag",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2019": 22.8
+     }
+    },
+    {
+     "program": "Teknikk og industriell produksjon 30,6",
+     "level": "Vg2/Vg3",
+     "category": "tip",
+     "values": {
+      "2019": 20.0
+     }
+    },
+    {
+     "program": "Elenergi",
+     "level": "Vg2/Vg3",
+     "category": "elektro",
+     "values": {
+      "2019": "open"
+     }
+    },
+    {
+     "program": "Påbygg til generell studiekompetanse 41",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2019": 20.0
+     }
+    }
+   ]
+  }
+ ],
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025
+ ]
+}
