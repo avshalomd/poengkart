@@ -21,7 +21,10 @@ import extractors                                # noqa: E402
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, '..', 'web', 'data', 'schools.json')
 DRIFT = os.path.join(HERE, '..', 'data', 'source-drift.json')
-KEEP = ('lat', 'lon', 'orgnr', 'url', 'wiki_url', 'wiki_extract', 'address',
+# lat/lon are deliberately NOT carried over: a wrong coordinate from an older
+# run would survive forever (an early geocode put Askøy in Vesterålen).
+# tools/geocode.py re-derives them from its cache on every run.
+KEEP = ('orgnr', 'url', 'wiki_url', 'wiki_extract', 'address',
         'photo', 'photo_source', 'photo_page', 'photo_credit', 'photo_license',
         'photo_position', 'photo_note', 'nsr_name')
 

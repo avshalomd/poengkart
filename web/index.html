@@ -310,8 +310,8 @@ const CATS = {
 };
 const T = {
   tagline: {
-    no: 'Nedre poenggrense (siste inntatte søker, 2. inntak) for videregående skoler i Rogaland, 2018–2025. Hold over en skole – klikk for detaljer.',
-    en: 'Admission point thresholds (last admitted applicant, 2nd round) for upper secondary schools in Rogaland, 2018–2025. Hover a school — click for details.',
+    no: 'Nedre poenggrense (poengsummen til sist inntatte søkjar) for vidaregåande skular i sju fylke, 2018–2026. Hald over ein skule – klikk for detaljar.',
+    en: 'Admission point thresholds (the last admitted applicant’s score) for upper secondary schools across seven counties, 2018–2026. Hover a school — click for details.',
   },
   fylkeLabel: { no: 'Fylke', en: 'County' },
   allFylker:  { no: 'Hele landet', en: 'All of Norway' },
@@ -323,7 +323,7 @@ const T = {
   catLabel:   { no: 'Vis kategori (utdanningsprogram)', en: 'Show category (study program)' },
   allCats:    { no: 'Alle kategorier', en: 'All categories' },
   catNote:    { no: n => `${n} skoler tilbyr dette`, en: n => `${n} schools offer this` },
-  legendAll:  { no: 'Typisk poenggrense 2025', en: 'Typical threshold 2025' },
+  legendAll:  { no: 'Typisk poenggrense (siste år)', en: 'Typical threshold (latest year)' },
   legendSize: { no: 'Størrelsen viser hvor stor del av programma som blei fylt opp',
                 en: 'Marker size shows how many of the programmes filled up' },
   tipMedian:  { no: (v, n, tot) => `Typisk <b>${v}</b> poeng · ${n} av ${tot} program fylte opp`,
@@ -332,7 +332,7 @@ const T = {
   scopeAll:   { no: 'Vis alle programområde', en: 'Show all programmes' },
   heroTypical:{ no: 'Typisk', en: 'Typical' },
   heroTypicalAll: { no: 'alle program', en: 'all programmes' },
-  legendCat:  { no: c => `${CATS[c].no} · poenggrense 2025`, en: c => `${CATS[c].en} · threshold 2025` },
+  legendCat:  { no: c => `${CATS[c].no} · siste år`, en: c => `${CATS[c].en} · latest year` },
   legendOpen: { no: 'Uten venteliste – alle inntatt', en: 'No waitlist – all admitted' },
   legendNone: { no: 'Ikke data', en: 'No data' },
   fortrinnTitle: {
@@ -416,9 +416,13 @@ function schoolPressure(s, cat) {
   //   share of programmes that filled up at all          -> how much is in demand
   // (The earlier "highest threshold" let one niche programme speak for a whole
   // school. Note this measures demand vs capacity, not school quality.)
-  const yr = String(DATA.years[DATA.years.length - 1]);
-  const pool = (cat === 'all' ? s.programs : s.programs.filter(p => p.category === cat))
-    .filter(p => yr in p.values && p.values[yr] !== 'F' && p.values[yr] !== 'U');
+  // counties publish different years (Oslo and Vestland already have 2026,
+  // most stop at 2025), so judge each school on the newest year IT has
+  const scope = cat === 'all' ? s.programs : s.programs.filter(p => p.category === cat);
+  const years = [...new Set(scope.flatMap(p => Object.keys(p.values)))].sort();
+  const yr = years[years.length - 1];
+  if (!yr) return { kind: 'none' };
+  const pool = scope.filter(p => yr in p.values && p.values[yr] !== 'F' && p.values[yr] !== 'U');
   const nums = pool.map(p => p.values[yr]).filter(v => typeof v === 'number').sort((a, b) => a - b);
   const openN = pool.filter(p => p.values[yr] === 'open').length;
   const total = nums.length + openN;
@@ -645,7 +649,8 @@ function renderSide() {
     const mid = pool.length >> 1;
     return pool.length % 2 ? pool[mid] : (pool[mid - 1] + pool[mid]) / 2;
   };
-  const yrs = DATA.years.map(String);
+  const scopePrograms = lensCat ? s.programs.filter(p => p.category === lensCat) : s.programs;
+  const yrs = [...new Set(scopePrograms.flatMap(p => Object.keys(p.values)))].sort();
   const latest = yrs[yrs.length - 1], prev = yrs[yrs.length - 2];
   const med = medianAt(latest), medPrev = medianAt(prev);
   const scopeLabel = lensCat ? CATS[lensCat][lang] : t('heroTypicalAll');

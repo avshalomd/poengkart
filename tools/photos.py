@@ -105,10 +105,47 @@ OVERRIDES = {
         'license': '© Rogaland fylkeskommune',
     },
 
-    # --- wrong subject, nothing freely available: show the gradient -------
-    'Hetland videregående skole': {'photo': None, 'note': 'no free photo found (previous image was Strand vgs interior)'},
-    'Karmsund videregående skole': {'photo': None, 'note': 'no free photo found (previous image was a bike path)'},
-    'Skeisvang videregående skole': {'photo': None, 'note': 'no free photo found (previous image was a concert hall)'},
+    # --- found on a second, deeper sweep (incl. the Wayback image index) ---
+    'Hetland videregående skole': {
+        'photo': ('https://www.hetland.vgs.no/handlers/bv.ashx/'
+                  'i8b8c75a0-4c44-48c3-ae6f-d5b5756b0e38/dji_0058-2.jpg'),
+        'page': 'https://www.hetland.vgs.no/',
+        'credit': 'Foto: Hetland vgs / Rogaland fylkeskommune',
+        'license': '© Rogaland fylkeskommune',
+    },
+    'Karmsund videregående skole': {
+        # no longer linked from any live page; still served by the CMS handler
+        'photo': ('https://www.karmsund.vgs.no/handlers/bv.ashx/'
+                  'ia700f80a-fa6d-4320-9c82-bb39571eb572/'
+                  'kamsund-vgs-foto-laringkompaniet-rogaland.jpg'),
+        'page': 'https://www.karmsund.vgs.no/',
+        'credit': 'Foto: Læringkompaniet Rogaland / Rogaland fylkeskommune',
+        'license': '© Rogaland fylkeskommune',
+    },
+    'Skeisvang videregående skole': {
+        'photo': ('https://www.skeisvang.vgs.no/handlers/bv.ashx/'
+                  'i2ff70c0d-f281-48d7-b217-6690bf7c31bf/fasade-003.jpg'),
+        'page': ('https://www.skeisvang.vgs.no/hovedmeny/skolen-var/om-skolen/'
+                 'skolens-historie/'),
+        'credit': 'Foto: Skeisvang vgs / Rogaland fylkeskommune',
+        'license': '© Rogaland fylkeskommune',
+    },
+    'St.Svithun videregående skole': {
+        # the full frame has identifiable pupils along the bottom; the header
+        # crop shows only the top third, so anchor it there and never centre it
+        'photo': ('https://www.svithun.vgs.no/handlers/bv.ashx/'
+                  'i6ef39085-71f6-4866-8efd-017a7945aa66/stsvithun_evt-framside.jpg'),
+        'page': 'https://www.svithun.vgs.no/',
+        'credit': 'Foto: St. Svithun vgs / Rogaland fylkeskommune',
+        'license': '© Rogaland fylkeskommune',
+        'position': 'top',
+    },
+
+    # --- nothing usable exists: the location map stands in ------------------
+    'Godalen videregående skole': {'photo': None,
+        'note': 'only exterior photo found is trade press (bygg.no/SKARP) — not reused'},
+    'Ølen vidaregåande skule': {'photo': None,
+        'note': 'no exterior photograph found anywhere (site, Wayback, Commons, Flickr)'},
 }
 
 # NSR stores an e-mail address in the website field for these schools

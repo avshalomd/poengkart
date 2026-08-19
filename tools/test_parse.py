@@ -61,16 +61,24 @@ nat_cells = [(s['name'], p, y, v) for s in DATA['schools'] for p in s['programs'
 check('>= 3400 cells', len(cells) >= 3400, f'got {len(cells)}')
 n2018 = sum(1 for _, _, y, _ in cells if y == '2018')
 check('2018 coverage restored (>= 340 cells)', n2018 >= 340, f'got {n2018}')
-check('all schools geocoded',
-      all(s.get('lat') for s in DATA['schools']),
-      str([s['name'] for s in DATA['schools'] if not s.get('lat')][:5]))
+# one school (Mo og Øyrane, merged away) has no locatable address in NSR,
+# Kartverket addresses or the place-name register
+UNLOCATABLE = {'Mo og Øyrane vidaregåande skule'}
+ungeocoded = [s['name'] for s in DATA['schools'] if not s.get('lat')]
+check('every locatable school is geocoded',
+      set(ungeocoded) <= UNLOCATABLE, str(ungeocoded[:5]))
+check('at least 99% of schools are on the map',
+      len(ungeocoded) <= max(1, len(DATA['schools']) // 100), f'{len(ungeocoded)} missing')
 
 # --- national invariants (hold for every county) -----------------------
 check('every school has a county', all(s.get('fylke') for s in DATA['schools']),
       str([s['name'] for s in DATA['schools'] if not s.get('fylke')][:5]))
-check('every school declares an intake round',
-      all(s.get('round') for s in DATA['schools']),
-      str(sorted({s['fylke'] for s in DATA['schools'] if not s.get('round')})))
+# Buskerud and Trøndelag genuinely do not state a round; that must be
+# declared in the county metadata rather than silently assumed
+noted = {c['fylke'] for c in DATA['counties'] if c.get('round') or c.get('round_note')}
+check('every county states its intake round or documents that it does not',
+      {s['fylke'] for s in DATA['schools']} <= noted,
+      str(sorted({s['fylke'] for s in DATA['schools']} - noted)))
 check('counties metadata present and counted',
       bool(DATA.get('counties')) and all(c.get('schools') for c in DATA['counties']),
       str(DATA.get('counties')))
@@ -80,9 +88,17 @@ check('coordinates inside Norway',
            if s.get('lat') and not (57 < s['lat'] < 72 and 4 < s['lon'] < 32)][:3]))
 nat_statuses = {v for _, _, _, v in nat_cells if isinstance(v, str)}
 check('only known statuses nationally', nat_statuses <= {'open', 'F', 'U', 'D'}, str(nat_statuses))
+# 0,0 is a real published value in Akershus ("flere med 0,0 i poengsum står
+# igjen på venteliste og ikke har fått plass"), so the national floor is 0
 nat_absurd = [(s, p['program'], y, v) for s, p, y, v in nat_cells
-              if isinstance(v, (int, float)) and not (8 <= v <= 65)]
-check('no absurd thresholds nationally', not nat_absurd, str(nat_absurd[:3]))
+              if isinstance(v, (int, float)) and not (0 <= v <= 65)]
+check('no out-of-range thresholds nationally', not nat_absurd, str(nat_absurd[:3]))
+zero_counties = {s['fylke'] for s in DATA['schools'] for p in s['programs']
+                 for v in p['values'].values() if v == 0}
+# verified against each source: Akershus documents it in a footnote, and
+# Innlandet/Vestland print a literal 0 in the table
+check('0,0 appears only where the source publishes it',
+      zero_counties <= {'Akershus', 'Innlandet', 'Vestland'}, str(sorted(zero_counties)))
 nat_uncat = sorted({f'{s}: {p["program"]}' for s, p, _, _ in nat_cells if p['category'] == 'annet'})
 check('every programme categorised nationally', not nat_uncat, str(nat_uncat[:5]))
 check('no duplicate (county, school)',

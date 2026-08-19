@@ -37,15 +37,25 @@ def squash(s):
 OPEN_TOKENS = ('ingen vente', 'ingen ventelis', 'ledige', 'alle søkere', 'alle sokere',
                'alle som søkte', 'alle', 'ingen venteliste', 'ingen ventesliste')
 PRIORITY_TOKENS = ('fortrinn', 'fortrinnsrett', 'fortinnsrett', 'fortrinsrett')
-DOC_TOKENS = ('dokumentasjon', 'dok.', 'individuell')
+DOC_TOKENS = ('dokumentasjon', 'dok.', 'individuell',
+              'inntak etter en kombinasjon', 'kombinasjon av karakterer',
+              'kombinasjon av ferdighet', 'kombinasjon av intervju')
 GONE_TOKENS = ('utgår', 'utgar', 'utgått', 'lagt ned')
 EMPTY_TOKENS = ('', '-', '–', '—', '.', '..', 'n/a', 'ikke aktuelt')
 
 NUM_RE = re.compile(r'^\d{1,2}(?:[.,]\d{1,2})?$')
 
 
-def classify_cell(txt):
-    """Text -> float | 'open' | 'F' | 'D' | 'U' | None (no data)."""
+def classify_cell(txt, min_value=MIN_PLAUSIBLE, loose=False):
+    """Text -> float | 'open' | 'F' | 'D' | 'U' | None (no data).
+
+    min_value guards PDF extraction noise (course-code digits parsed as
+    thresholds); HTML tables are clean, so they pass min_value=0 and keep
+    genuine low values such as Akershus's 0,0 ("full, and applicants with 0,0
+    were still left on the waiting list").
+    loose additionally accepts a leading number in a compound cell such as
+    Buskerud's "35,0 (+ tilleggspoeng) musikk / 39,2 (+ tilleggspoeng)".
+    """
     t = squash(txt).lower().rstrip('*').strip()
     if t in EMPTY_TOKENS:
         return None
@@ -59,7 +69,12 @@ def classify_cell(txt):
         return 'open'
     if NUM_RE.match(t):
         v = float(t.replace(',', '.'))
-        return v if MIN_PLAUSIBLE <= v <= MAX_PLAUSIBLE else None
+        return v if min_value <= v <= MAX_PLAUSIBLE else None
+    if loose:
+        m = re.match(r'^(\d{1,2}(?:[.,]\d{1,2})?)\b', t)
+        if m:
+            v = float(m.group(1).replace(',', '.'))
+            return v if min_value <= v <= MAX_PLAUSIBLE else None
     return None
 
 
@@ -77,13 +92,36 @@ PROGRAM_ALIASES = {
     'frisør, blom., int. og eksp.design': 'Frisør, blomster, interiør og eksponeringsdesign',
     'håndverk, design og produktutvikling': 'Håndverk, design og produktutvikling',
     'salg, service og reiseliv': 'Salg, service og reiseliv',
+    # county abbreviations and typos seen in the sources
+    'fbie': 'Frisør, blomster, interiør og eksponeringsdesign',
+    'teknikk og industrifag': 'Teknologi- og industrifag',
+    'studespesialisering': 'Studiespesialisering',
+    'studespesialisering, entreprenørskap': 'Studiespesialisering, entreprenørskap',
+    'musikk, dans, drama': 'Musikk, dans og drama',
+    'kunst, design og arkitektur (kda)': 'Kunst, design og arkitektur',
+    'elektro og datatekologi': 'Elektro og datateknologi',
+    'helse-og oppvekstfag': 'Helse- og oppvekstfag',
+    'studiespesialisering,toppidrett': 'Studiespesialisering, toppidrett',
+    'frisør, blomst, int., eksp. design': 'Frisør, blomster, interiør og eksponeringsdesign',
+    'frisør, blomster, interiør og eksponeringsdesign': 'Frisør, blomster, interiør og eksponeringsdesign',
+    'bygg og anlegg': 'Bygg- og anleggsteknikk',
+    'håndverk, design, produktutv': 'Håndverk, design og produktutvikling',
+    'it og medieproduksjon': 'Informasjonsteknologi og medieproduksjon',
+    'inform.tekn og medieprod, inform.tekn sk 3 år': 'Informasjonsteknologi og medieproduksjon, SK 3 år',
+    'teknologi og idustrifag': 'Teknologi- og industrifag',
+    'teknologi og industrifag': 'Teknologi- og industrifag',
+    'elektro og datateknologi, , sk 3 år': 'Elektro og datateknologi, SK 3 år',
+    'studiespesialiseriing, internasjonalisering': 'Studiespesialisering, internasjonalisering',
+    'helse- og oppvekst, studiekompetanse': 'Helse- og oppvekstfag, studiekompetanse',
 }
 
 
 def canon_program(name):
     n = squash(name)
     n = re.sub(r',(?=\S)', ', ', n)          # "Kunst,design" -> "Kunst, design"
-    n = re.sub(r'\s*\.\s*$', '', n).strip(' -–')
+    n = re.sub(r'\s*\.\s*$', '', n).strip(' -–,')
+    n = re.sub(r'\bSK\s*(\d)\s*år', r'SK \1 år', n)      # 'SK 3år' -> 'SK 3 år'
+    n = re.sub(r'\s+vg\s?[1-4]$', '', n, flags=re.I)      # Grep's 'Idrettsfag vg1'
     return PROGRAM_ALIASES.get(n.lower(), n)
 
 
@@ -116,14 +154,16 @@ CATEGORY_RULES = [
     ('pb',      ['påbygg']),
     ('elektro', ['elektro', 'elenergi', 'automatiser', 'automasjon', 'datateknologi',
                  'dataelektronik', 'flyfag', 'avionik', 'drone', 'kulde', 'ventilasjon']),
-    ('im',      ['informasjonsteknologi', 'medieproduksjon', 'ikt']),
+    ('im',      ['informasjonsteknologi', 'medieproduksjon', 'medieprod',
+                 'inform.tekn', 'inform.ekn', 'ikt']),
     ('helse',   ['helse', 'oppvekst', 'barne- og ungdom', 'ambulanse', 'apotek',
-                 'tannhelse', 'hudplei', 'fotterap', 'aktivitør', 'portør']),
+                 'tannhelse', 'hudplei', 'hudterapi', 'fotterap', 'aktivitør', 'portør']),
     ('bygg',    ['bygg', 'anleggsteknikk', 'anleggsgartner', 'tømrer', 'betong', 'mur',
                  'rørlegg', 'klima', 'energi og miljø', 'overflate', 'trevare',
                  'treteknikk', 'anleggsmaskin', 'stillas']),
     ('tip',     ['teknologi- og industrifag', 'teknologi og industrifag',
-                 'teknikk og industriell', 'industriteknologi', 'kjøretøy',
+                 'teknikk og industriell', 'teknikk og industrifag', 'industriteknologi',
+                 'teknolog og idustrifag', 'idustrifag', 'kjøretøy',
                  'arbeidsmaskin', 'bilskade', 'karosseri', 'energi operatør',
                  'energioperatør', 'transport og logistikk', 'kjemiprosess', 'laborator',
                  'brønnteknikk', 'sveis', 'platearbeid', 'cnc', 'maritim', 'motormann',
@@ -137,11 +177,11 @@ CATEGORY_RULES = [
     ('mk',      ['medier og kommunikasjon', 'mediedesign']),
     ('design',  ['design og håndverk', 'frisør', 'blomster', 'interiør', 'utstilling',
                  'eksponering', 'design og tekstil', 'søm', 'gull', 'håndverk',
-                 'produktutvikling', 'duodji']),
+                 'produktutvikling', 'duodji', 'fbie']),
     ('idrett',  ['idrett', 'toppidrett']),
     ('mdd',     ['musikk', 'dans', 'drama']),
     ('kda',     ['kunst']),
-    ('st',      ['studiespesialiser', 'realfag', 'språk, samfunn', 'samfunnsfag',
+    ('st',      ['studiespesialiser', 'studespesialiser', 'studiespes', 'realfag', 'språk, samfunn', 'samfunnsfag',
                  'international baccalaureate', ' ib', 'forskerlinje', 'studiefor']),
 ]
 
@@ -193,7 +233,7 @@ def merge_rows(rows_newest_first):
     return schools, drift, attrs
 
 
-def validate(schools):
+def validate(schools, min_value=MIN_PLAUSIBLE):
     problems = []
     for (county, name), progs in schools.items():
         for rec in progs.values():
@@ -205,6 +245,6 @@ def validate(schools):
             if rec['category'] == 'annet':
                 problems.append(f'{county} {name}: uncategorised programme: "{p}"')
             for y, v in rec['values'].items():
-                if isinstance(v, float) and not (MIN_PLAUSIBLE <= v <= MAX_PLAUSIBLE):
+                if isinstance(v, float) and not (0 <= v <= MAX_PLAUSIBLE):
                     problems.append(f'{county} {name} "{p}" {y}: out-of-range {v}')
     return problems

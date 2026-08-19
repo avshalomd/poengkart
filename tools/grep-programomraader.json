@@ -1,0 +1,2487 @@
+{
+ "BABAN3----": {
+  "nob": "Banemontørfaget",
+  "nno": "Banemontørfaget",
+  "eng": "Railway Track Construction"
+ },
+ "BABAT1----": {
+  "nob": "Bygg- og anleggsteknikk",
+  "nno": "Bygg- og anleggsteknikk",
+  "eng": "Building and Construction"
+ },
+ "BABAT1RS--": {
+  "nob": "Bygg og anleggsfag, 1. år",
+  "nno": "Bygg og anleggsfag, 1. år",
+  "eng": null
+ },
+ "BABAT2RS--": {
+  "nob": "Bygg og anleggsfag, 2. år",
+  "nno": "Bygg og anleggsfag, 2. år",
+  "eng": null
+ },
+ "BABDR3----": {
+  "nob": "Byggdrifterfaget",
+  "nno": "Byggdriftarfaget",
+  "eng": "Building operator"
+ },
+ "BABET3----": {
+  "nob": "Betongfaget",
+  "nno": "Betongfaget",
+  "eng": "Concrete Work"
+ },
+ "BABFB3----": {
+  "nob": "Brannforebygger",
+  "nno": "Brannførebyggar",
+  "eng": "Fire Prevention Specialist"
+ },
+ "BABMO2----": {
+  "nob": "Betong og mur",
+  "nno": "Betong og mur",
+  "eng": "Concrete and Bricks"
+ },
+ "BABRO3----": {
+  "nob": "Brønn- og borefaget",
+  "nno": "Brønn- og borefaget",
+  "eng": "Well and Drilling Operations"
+ },
+ "BABYG2----": {
+  "nob": "Byggteknikk",
+  "nno": "Byggteknikk",
+  "eng": "Construction Techniques"
+ },
+ "BABYM3----": {
+  "nob": "Byggmontasjefaget",
+  "nno": "Byggmontasjefaget",
+  "eng": "Building Assembly"
+ },
+ "BAFEI3----": {
+  "nob": "Feierfaget",
+  "nno": "Feiarfaget",
+  "eng": "Chimney Sweeping"
+ },
+ "BAFJE3----": {
+  "nob": "Fjell- og bergverksfaget",
+  "nno": "Fjell- og bergverksfaget",
+  "eng": "Rock Blasting and Mining"
+ },
+ "BAFMF3----": {
+  "nob": "Fundamenteringsfaget",
+  "nno": "Fundamenteringsfaget",
+  "eng": null
+ },
+ "BAGLA3----": {
+  "nob": "Glassfaget",
+  "nno": "Glasfaget",
+  "eng": "Glasswork"
+ },
+ "BAIMF3----": {
+  "nob": "Industrimalerfaget",
+  "nno": "Industrimålarfaget",
+  "eng": "Industrial Painting"
+ },
+ "BAISL3----": {
+  "nob": "Isolatørfaget",
+  "nno": "Isolatørfaget",
+  "eng": "Insulation"
+ },
+ "BAISO3----": {
+  "nob": "Isolatørfaget",
+  "nno": "Isolatørfaget",
+  "eng": "Insulation"
+ },
+ "BAKEM2----": {
+  "nob": "Klima, energi og miljøteknikk",
+  "nno": "Klima, energi og miljøteknikk",
+  "eng": "Climate, Energy and Environment Technology"
+ },
+ "BALIM3----": {
+  "nob": "Limtreproduksjonsfaget",
+  "nno": "Limtreproduksjonsfaget",
+  "eng": "Laminated Timber Production"
+ },
+ "BAMAL3----": {
+  "nob": "Malerfaget",
+  "nno": "Målarfaget",
+  "eng": "Painting/Decorating"
+ },
+ "BAMFF3----": {
+  "nob": "Murer- og flisleggerfaget",
+  "nno": "Murar- og flisleggjarfaget",
+  "eng": "Bricklayer and Tiler"
+ },
+ "BAMOT3----": {
+  "nob": "Maler- og overflateteknikkfaget",
+  "nno": "Målar- og overflateteknikkfaget",
+  "eng": "Painting and Surface Treatment"
+ },
+ "BAMUR3----": {
+  "nob": "Murerfaget",
+  "nno": "Murarfaget",
+  "eng": "Bricklaying"
+ },
+ "BAOFT2----": {
+  "nob": "Overflateteknikk",
+  "nno": "Overflateteknikk",
+  "eng": "Surface Treatment Work"
+ },
+ "BARHO3----": {
+  "nob": "Renholdsoperatørfaget",
+  "nno": "Reinhaldsoperatørfaget",
+  "eng": "Institutional Cleaning"
+ },
+ "BARLF2----": {
+  "nob": "Rørlegger",
+  "nno": "Røyrleggjar",
+  "eng": "Plumbing"
+ },
+ "BARLF3----": {
+  "nob": "Rørleggerfaget",
+  "nno": "Røyrleggjarfaget",
+  "eng": "Plumbing"
+ },
+ "BAROF3----": {
+  "nob": "Renholdsoperatørfaget",
+  "nno": "Reinhaldsoperatørfaget",
+  "eng": null
+ },
+ "BASBF3----": {
+  "nob": "Stillasbyggerfaget",
+  "nno": "Stillasbyggjarfaget",
+  "eng": "Scaffolding"
+ },
+ "BASNE3----": {
+  "nob": "Snekkerfaget",
+  "nno": "Snikkarfaget",
+  "eng": "Carpentry"
+ },
+ "BASTE3----": {
+  "nob": "Steinfaget",
+  "nno": "Steinfaget",
+  "eng": "Masonry"
+ },
+ "BASTI3----": {
+  "nob": "Stillasbyggerfaget",
+  "nno": "Stillasbyggjarfaget",
+  "eng": "Scaffolding"
+ },
+ "BATAK3----": {
+  "nob": "Tak- og membrantekkerfaget",
+  "nno": "Tak- og membrantekkjarfaget",
+  "eng": "Roofing"
+ },
+ "BATBY3----": {
+  "nob": "Trevare- og bygginnredningsfaget",
+  "nno": "Trevare- og bygginnreiingsfaget",
+  "eng": "Wood products and building furnishings"
+ },
+ "BATLF3----": {
+  "nob": "Trelastfaget",
+  "nno": "Trelastfaget",
+  "eng": "Timber Processing"
+ },
+ "BATLT3----": {
+  "nob": "Trelast- og limtreproduksjonsfaget",
+  "nno": "Trelast- og limtreproduksjonsfaget",
+  "eng": null
+ },
+ "BATMF2----": {
+  "nob": "Tømrer",
+  "nno": "Tømrar",
+  "eng": "Carpentry"
+ },
+ "BATMF3----": {
+  "nob": "Tømrerfaget",
+  "nno": "Tømrarfaget",
+  "eng": "Carpentry"
+ },
+ "BATRT2----": {
+  "nob": "Treteknikk",
+  "nno": "Treteknikk",
+  "eng": "Woodworking"
+ },
+ "BAVBL3----": {
+  "nob": "Ventilasjons- og blikkenslagerfaget",
+  "nno": "Ventilasjons- og blekkslagarfaget",
+  "eng": "Ventilation and Tinsmith Work"
+ },
+ "BAVOA3----": {
+  "nob": "Vei- og anleggsfaget",
+  "nno": "Veg- og anleggsfaget",
+  "eng": "Road and Construction Work"
+ },
+ "BAVOV3----": {
+  "nob": "Veidrift- og veivedlikeholdsfaget",
+  "nno": "Vegdrift- og vegvedlikehaldsfaget",
+  "eng": "Road Operations and Maintenance"
+ },
+ "BAAMF3----": {
+  "nob": "Anleggsmaskinførerfaget",
+  "nno": "Anleggsmaskinførarfaget",
+  "eng": "Heavy Equipment Operation"
+ },
+ "BAANG2----": {
+  "nob": "Anleggsgartner",
+  "nno": "Anleggsgartnar",
+  "eng": "Landscaping operator"
+ },
+ "BAANG3----": {
+  "nob": "Anleggsgartnerfaget",
+  "nno": "Anleggsgartnarfaget",
+  "eng": "Landscaping"
+ },
+ "BAANL2----": {
+  "nob": "Anleggsteknikk",
+  "nno": "Anleggsteknikk",
+  "eng": "Construction"
+ },
+ "BAARL3----": {
+  "nob": "Anleggsrørleggerfaget",
+  "nno": "Anleggsrøyrleggjarfaget",
+  "eng": "Construction Plumber"
+ },
+ "BAASF3----": {
+  "nob": "Asfaltfaget",
+  "nno": "Asfaltfaget",
+  "eng": "Asphalt Surfacing"
+ },
+ "DHAKT2----": {
+  "nob": "Aktivitør",
+  "nno": "Aktivitør",
+  "eng": "Occupational Therapy"
+ },
+ "DHAKT3----": {
+  "nob": "Aktivitørfaget",
+  "nno": "Aktivitørfaget",
+  "eng": "Occupational Therapy"
+ },
+ "DHBBF2----": {
+  "nob": "Båtbyggerfag",
+  "nno": "Båtbyggjarfag",
+  "eng": "Boatbuilding"
+ },
+ "DHBKF3----": {
+  "nob": "Bøkkerfaget",
+  "nno": "Bøkkarfaget",
+  "eng": "Cooperage"
+ },
+ "DHBLD2----": {
+  "nob": "Blomsterdekoratør",
+  "nno": "Blomsterdekoratør",
+  "eng": "Floral Design"
+ },
+ "DHBLD3----": {
+  "nob": "Blomsterdekoratørfaget",
+  "nno": "Blomsterdekoratørfaget",
+  "eng": "Floral Design"
+ },
+ "DHBLY3----": {
+  "nob": "Blyglasshåndverkerfaget",
+  "nno": "Blyglashandverkarfaget",
+  "eng": "Stained Glass Work"
+ },
+ "DHBMF2----": {
+  "nob": "Børsemaker",
+  "nno": "Børsemakar",
+  "eng": "Gunsmithing"
+ },
+ "DHBMF3----": {
+  "nob": "Børsemakerfaget",
+  "nno": "Børsemakarfaget",
+  "eng": "Gunsmithing"
+ },
+ "DHBNT3----": {
+  "nob": "Buntmakerfaget",
+  "nno": "Buntmakarfaget",
+  "eng": "Furriery"
+ },
+ "DHBUN3----": {
+  "nob": "Bunadtilvirkerfaget",
+  "nno": "Bunadtilverkarfaget",
+  "eng": "National Costume (Bunad) Making"
+ },
+ "DHDDU2----": {
+  "nob": "Design og duodji",
+  "nno": "Design og duodji",
+  "eng": "Design and Duodji (traditional Sami handicrafts)"
+ },
+ "DHDGH2----": {
+  "nob": "Design og gullsmedhåndverk",
+  "nno": "Design og gullsmedhandverk",
+  "eng": "Design and Goldsmith Crafts"
+ },
+ "DHDHV1----": {
+  "nob": "Design og håndverk",
+  "nno": "Design og handverk",
+  "eng": "Design, Arts and Crafts"
+ },
+ "DHDTE2----": {
+  "nob": "Design og tekstil",
+  "nno": "Design og tekstil",
+  "eng": "Design and Textiles"
+ },
+ "DHDTR2----": {
+  "nob": "Design og trearbeid",
+  "nno": "Design og trearbeid",
+  "eng": "Design and Woodworking"
+ },
+ "DHDUO3----": {
+  "nob": "Duodjifaget overgangsordning",
+  "nno": "Duodjifaget overgangsordning",
+  "eng": "Duodji (traditional Sami handicrafts)"
+ },
+ "DHFGY3----": {
+  "nob": "Forgyllerfaget",
+  "nno": "Forgyllarfaget",
+  "eng": "Gilding"
+ },
+ "DHFIL3----": {
+  "nob": "Filigranssølvsmedfaget",
+  "nno": "Filigranssølvsmedfaget",
+  "eng": "Filigree Silversmithing"
+ },
+ "DHFRI2----": {
+  "nob": "Frisør",
+  "nno": "Frisør",
+  "eng": "Hairdresser"
+ },
+ "DHFRI3----": {
+  "nob": "Frisørfaget",
+  "nno": "Frisørfaget",
+  "eng": "Hairdressing"
+ },
+ "DHFTG3----": {
+  "nob": "Fotograffaget",
+  "nno": "Fotograffaget",
+  "eng": "Photography"
+ },
+ "DHGIP3----": {
+  "nob": "Gipsmakerfaget",
+  "nno": "Gipsmakarfaget",
+  "eng": "Plastering and Stucco Masonry"
+ },
+ "DHGLH3----": {
+  "nob": "Glasshåndverkerfaget",
+  "nno": "Glashandverkarfaget",
+  "eng": "Glass Handicrafts"
+ },
+ "DHGRA3----": {
+  "nob": "Gravørfaget",
+  "nno": "Gravørfaget",
+  "eng": "Engraving"
+ },
+ "DHGRF3----": {
+  "nob": "Gravørfaget",
+  "nno": "Gravørfaget",
+  "eng": "Engraving"
+ },
+ "DHGTL3----": {
+  "nob": "Gjørtlerfaget",
+  "nno": "Gjørtlarfaget",
+  "eng": "Brazing"
+ },
+ "DHGUL3----": {
+  "nob": "Gullsmedfaget",
+  "nno": "Gullsmedfaget",
+  "eng": "Goldsmithing"
+ },
+ "DHHBB3----": {
+  "nob": "Håndbokbinderfaget",
+  "nno": "Handbokbindarfaget",
+  "eng": "Hand Bookbinding"
+ },
+ "DHHMD3----": {
+  "nob": "Horn-, bein- og metallduodjifaget",
+  "nno": "Horn-, bein- og metallduodjifaget",
+  "eng": "Horn, Bone and Metal Duodji"
+ },
+ "DHHSK3----": {
+  "nob": "Herreskredderfaget",
+  "nno": "Herreskreddarfaget",
+  "eng": "Men’s Tailoring"
+ },
+ "DHHVF3----": {
+  "nob": "Håndveverfaget",
+  "nno": "Handvevarfaget",
+  "eng": "Handweaving"
+ },
+ "DHINT3----": {
+  "nob": "Interiør",
+  "nno": "Interiør",
+  "eng": "Interior Design"
+ },
+ "DHIUD2----": {
+  "nob": "Interiør og utstillingsdesign",
+  "nno": "Interiør og utstillingsdesign",
+  "eng": "Interior and Display Design"
+ },
+ "DHKBB3----": {
+  "nob": "Komposittbåtbyggerfaget",
+  "nno": "Komposittbåtbyggjarfaget",
+  "eng": "Composite Boat Building"
+ },
+ "DHKER3----": {
+  "nob": "Keramikerfaget",
+  "nno": "Keramikarfaget",
+  "eng": "Ceramics Making"
+ },
+ "DHKJD3----": {
+  "nob": "Kjole- og draktsyerfaget",
+  "nno": "Kjole- og draktsyarfaget",
+  "eng": "Dressmaking"
+ },
+ "DHKRV3----": {
+  "nob": "Kurvmakerfaget",
+  "nno": "Korgmakarfaget",
+  "eng": "Basketmaking"
+ },
+ "DHKST3----": {
+  "nob": "Kostymesyerfaget",
+  "nno": "Kostymesyarfaget",
+  "eng": "Costume Making"
+ },
+ "DHMDE3----": {
+  "nob": "Mediedesign",
+  "nno": "Mediedesign",
+  "eng": "Media design"
+ },
+ "DHMED1----": {
+  "nob": "Medieproduksjon vg1",
+  "nno": "Medieproduksjon vg1",
+  "eng": "Media production upper secondary level 1 (vg1)"
+ },
+ "DHMED2----": {
+  "nob": "Medieproduksjon vg2",
+  "nno": "Medieproduksjon vg2",
+  "eng": "Media production upper secondary level 2 (vg 2)"
+ },
+ "DHMGR3----": {
+  "nob": "Mediegrafikerfaget",
+  "nno": "Mediegrafikarfaget",
+  "eng": "Media Graphic"
+ },
+ "DHMOD3----": {
+  "nob": "Modistfaget",
+  "nno": "Modistfaget",
+  "eng": "Millinery"
+ },
+ "DHMPM3----": {
+  "nob": "Maskør- og parykkmakerfaget",
+  "nno": "Maskør- og parykkmakarfaget",
+  "eng": "Wigmaking and Stage Make-up"
+ },
+ "DHMSF3----": {
+  "nob": "Møbelsnekkerfaget",
+  "nno": "Møbelsnikkarfaget",
+  "eng": "Cabinetmaking"
+ },
+ "DHMTF3----": {
+  "nob": "Møbeltapetsererfaget",
+  "nno": "Møbeltapetserarfaget",
+  "eng": "Furniture Upholstering"
+ },
+ "DHNAU3----": {
+  "nob": "Nautisk instrumentmakerfaget",
+  "nno": "Nautisk instrumentmakarfaget",
+  "eng": "Nautical Instrument Making"
+ },
+ "DHOPT3----": {
+  "nob": "Optronikerfaget",
+  "nno": "Optronikarfaget",
+  "eng": "Optical and Geodetic Instrument Making"
+ },
+ "DHORG3----": {
+  "nob": "Orgelbyggerfaget",
+  "nno": "Orgelbyggjarfaget",
+  "eng": "Organ Building"
+ },
+ "DHPFD3----": {
+  "nob": "Profileringsdesignfaget",
+  "nno": "Profileringsdesignfaget",
+  "eng": "Profile Design"
+ },
+ "DHPST2----": {
+  "nob": "Pianostemming og pianoteknikk",
+  "nno": "Pianostemming og pianoteknikk",
+  "eng": "Piano Tuning and Repair"
+ },
+ "DHPST3----": {
+  "nob": "Pianostemming og pianoteknikk",
+  "nno": "Pianostemming og pianoteknikk",
+  "eng": "Piano Tuning and Repair"
+ },
+ "DHREP3----": {
+  "nob": "Repslagerfaget",
+  "nno": "Reipslagarfaget",
+  "eng": "Ropemaking"
+ },
+ "DHSAL3----": {
+  "nob": "Salmakerfaget",
+  "nno": "Salmakarfaget",
+  "eng": "Saddlery"
+ },
+ "DHSEI3----": {
+  "nob": "Seilmakerfaget",
+  "nno": "Seglmakarfaget",
+  "eng": "Sailmaking"
+ },
+ "DHSKO3----": {
+  "nob": "Skomakerfaget",
+  "nno": "Skomakarfaget",
+  "eng": "Shoemaking"
+ },
+ "DHSLV3----": {
+  "nob": "Sølvsmedfaget",
+  "nno": "Sølvsmedfaget",
+  "eng": "Silversmithing"
+ },
+ "DHSME2----": {
+  "nob": "Smed",
+  "nno": "Smed",
+  "eng": "Blacksmithing"
+ },
+ "DHSME3----": {
+  "nob": "Smedfaget",
+  "nno": "Smedfaget",
+  "eng": "Blacksmithing"
+ },
+ "DHSPD3----": {
+  "nob": "Skinn- og pelsduodjifaget",
+  "nno": "Skinn- og pelsduodjifaget",
+  "eng": "Leather and Fur Duodji"
+ },
+ "DHSTR3----": {
+  "nob": "Strikkefaget",
+  "nno": "Strikkefaget",
+  "eng": "Knitting"
+ },
+ "DHSTU3----": {
+  "nob": "Storurmakerfaget",
+  "nno": "Storurmakarfaget",
+  "eng": "Large Clock Repairs"
+ },
+ "DHTDR3----": {
+  "nob": "Tredreierfaget",
+  "nno": "Tredreiarfaget",
+  "eng": "Wood Turning"
+ },
+ "DHTED3----": {
+  "nob": "Tekstilduodjifaget",
+  "nno": "Tekstilduodjifaget",
+  "eng": "Textile Duodji"
+ },
+ "DHTKS3----": {
+  "nob": "Taksidermistfaget",
+  "nno": "Taksidermistfaget",
+  "eng": "Taxidermy"
+ },
+ "DHTRB3----": {
+  "nob": "Trebåtbyggerfaget",
+  "nno": "Trebåtbyggjarfaget",
+  "eng": "Wooden Boat Building"
+ },
+ "DHTRD3----": {
+  "nob": "Treduodjifaget",
+  "nno": "Treduodjifaget",
+  "eng": "Wood Duodji"
+ },
+ "DHTSK3----": {
+  "nob": "Treskjærerfaget",
+  "nno": "Treskjerarfaget",
+  "eng": "Wood carving"
+ },
+ "DHUIM2----": {
+  "nob": "Ur- og instrumentmaker",
+  "nno": "Ur- og instrumentmakar",
+  "eng": "Watch, clock and instrument maker"
+ },
+ "DHURM3----": {
+  "nob": "Urmakerfaget",
+  "nno": "Urmakarfaget",
+  "eng": "Watch and Clock Repairs"
+ },
+ "DHUTS3----": {
+  "nob": "Utstillingsdesign",
+  "nno": "Utstillingsdesign",
+  "eng": "Exhibition Design"
+ },
+ "DHVHD3----": {
+  "nob": "Veve- og håndstrikkeduodjifaget",
+  "nno": "Veve- og handstrikkeduodjifaget",
+  "eng": "Weaving and Knitting Duodji"
+ },
+ "DTBBF2----": {
+  "nob": "Båtbygger",
+  "nno": "Båtbyggjar",
+  "eng": "Boatbuilding"
+ },
+ "DTBKF3----": {
+  "nob": "Bøkkerfaget",
+  "nno": "Bøkkarfaget",
+  "eng": "Cooperage"
+ },
+ "DTBLY3----": {
+  "nob": "Blyglasshåndverkerfaget",
+  "nno": "Blyglashandverkarfaget",
+  "eng": "Stained Glass Work"
+ },
+ "DTBNT3----": {
+  "nob": "Buntmakerfaget",
+  "nno": "Buntmakarfaget",
+  "eng": "Furriery"
+ },
+ "DTBSM3----": {
+  "nob": "Bilsalmakerfaget",
+  "nno": "Bilsalmakarfaget",
+  "eng": "Car Upholsterer"
+ },
+ "DTBUN3----": {
+  "nob": "Bunadtilvirkerfaget",
+  "nno": "Bunadtilverkarfaget",
+  "eng": "National Costume (Bunad) Making"
+ },
+ "DTDDU2----": {
+  "nob": "Duodji",
+  "nno": "Duodji",
+  "eng": "Duodji (traditional Sami handicrafts)"
+ },
+ "DTDGH2----": {
+  "nob": "Gull- og sølvsmedhåndverk",
+  "nno": "Gull- og sølvsmedhandverk",
+  "eng": "Goldsmith and Silversmith"
+ },
+ "DTDTH1----": {
+  "nob": "Håndverk, design og produktutvikling",
+  "nno": "Handverk, design og produktutvikling",
+  "eng": "Handicrafts, Design and Product Development"
+ },
+ "DTDTR2----": {
+  "nob": "Trearbeid",
+  "nno": "Trearbeid",
+  "eng": "Woodworking"
+ },
+ "DTFGY3----": {
+  "nob": "Forgyllerfaget",
+  "nno": "Forgyllarfaget",
+  "eng": "Gilding"
+ },
+ "DTFIL3----": {
+  "nob": "Filigransølvsmedfaget",
+  "nno": "Filigransølvsmedfaget",
+  "eng": "Filigree Silversmithing"
+ },
+ "DTGAF3----": {
+  "nob": "Garverfaget",
+  "nno": "Garvarfaget",
+  "eng": null
+ },
+ "DTGBF3----": {
+  "nob": "Glassblåserfaget",
+  "nno": "Glasblåsarfaget",
+  "eng": "Glass Handicrafts"
+ },
+ "DTGIP3----": {
+  "nob": "Gipsmakerfaget",
+  "nno": "Gipsmakarfaget",
+  "eng": "Plastering and Stucco Masonry"
+ },
+ "DTGRF3----": {
+  "nob": "Gravørfaget",
+  "nno": "Gravørfaget",
+  "eng": "Engraving"
+ },
+ "DTGSF3----": {
+  "nob": "Glassliperfaget",
+  "nno": "Glassliparfaget",
+  "eng": null
+ },
+ "DTGTL3----": {
+  "nob": "Gjørtlerfaget",
+  "nno": "Gjørtlarfaget",
+  "eng": "Brazing"
+ },
+ "DTGUL3----": {
+  "nob": "Gullsmedfaget",
+  "nno": "Gullsmedfaget",
+  "eng": "Goldsmithing"
+ },
+ "DTHBB3----": {
+  "nob": "Håndbokbinderfaget",
+  "nno": "Handbokbindarfaget",
+  "eng": "Hand Bookbinding"
+ },
+ "DTHMD3----": {
+  "nob": "Horn-, bein- og metallduodjifaget",
+  "nno": "Horn-, bein- og metallduodjifaget",
+  "eng": "Horn, Bone and Metal Duodji"
+ },
+ "DTHSK3----": {
+  "nob": "Herreskredderfaget",
+  "nno": "Herreskreddarfaget",
+  "eng": "Men’s Tailoring"
+ },
+ "DTHVF3----": {
+  "nob": "Håndveverfaget",
+  "nno": "Handvevarfaget",
+  "eng": "Handweaving"
+ },
+ "DTKBB3----": {
+  "nob": "Komposittbåtbyggerfaget",
+  "nno": "Komposittbåtbyggjarfaget",
+  "eng": "Composite Boat Building"
+ },
+ "DTKER3----": {
+  "nob": "Keramikerfaget",
+  "nno": "Keramikarfaget",
+  "eng": "Ceramics Making"
+ },
+ "DTKJD3----": {
+  "nob": "Kjole- og draktsyerfaget",
+  "nno": "Kjole- og draktsyarfaget",
+  "eng": "Dressmaking"
+ },
+ "DTKRV3----": {
+  "nob": "Kurvmakerfaget",
+  "nno": "Korgmakarfaget",
+  "eng": "Basketmaking"
+ },
+ "DTKST3----": {
+  "nob": "Kostymesyerfaget",
+  "nno": "Kostymesyarfaget",
+  "eng": "Costume Making"
+ },
+ "DTMBT3----": {
+  "nob": "Møbeltapetsererfaget",
+  "nno": "Møbeltapetserarfaget",
+  "eng": "Furniture Upholstering"
+ },
+ "DTMOD3----": {
+  "nob": "Modistfaget",
+  "nno": "Modistfaget",
+  "eng": "Millinery"
+ },
+ "DTMSF3----": {
+  "nob": "Møbelsnekkerfaget",
+  "nno": "Møbelsnikkarfaget",
+  "eng": "Cabinetmaking"
+ },
+ "DTORG3----": {
+  "nob": "Orgelbyggerfaget",
+  "nno": "Orgelbyggjarfaget",
+  "eng": "Organ Building"
+ },
+ "DTREP3----": {
+  "nob": "Repslagerfaget",
+  "nno": "Reipslagarfaget",
+  "eng": "Ropemaking"
+ },
+ "DTSAL3----": {
+  "nob": "Salmakerfaget",
+  "nno": "Salmakarfaget",
+  "eng": "Saddlery"
+ },
+ "DTSEI3----": {
+  "nob": "Seilmakerfaget",
+  "nno": "Seglmakarfaget",
+  "eng": "Sailmaking"
+ },
+ "DTSKO3----": {
+  "nob": "Skomakerfaget",
+  "nno": "Skomakarfaget",
+  "eng": "Shoemaking"
+ },
+ "DTSLV3----": {
+  "nob": "Sølvsmedfaget",
+  "nno": "Sølvsmedfaget",
+  "eng": "Silversmithing"
+ },
+ "DTSME2----": {
+  "nob": "Smed",
+  "nno": "Smed",
+  "eng": "Blacksmithing"
+ },
+ "DTSME3----": {
+  "nob": "Smedfaget",
+  "nno": "Smedfaget",
+  "eng": "Blacksmithing"
+ },
+ "DTSPD3----": {
+  "nob": "Skinn- og pelsduodjifaget",
+  "nno": "Skinn- og pelsduodjifaget",
+  "eng": "Leather and Fur Duodji"
+ },
+ "DTSTH2----": {
+  "nob": "Søm og tekstilhåndverk",
+  "nno": "Saum og tekstilhandverk",
+  "eng": "Sewing and Textile Handicrafts"
+ },
+ "DTSTR3----": {
+  "nob": "Strikkefaget",
+  "nno": "Strikkefaget",
+  "eng": "Knitting"
+ },
+ "DTTDR3----": {
+  "nob": "Tredreierfaget",
+  "nno": "Tredreiarfaget",
+  "eng": "Wood Turning"
+ },
+ "DTTED3----": {
+  "nob": "Tekstilduodjifaget",
+  "nno": "Tekstilduodjifaget",
+  "eng": "Textile Duodji"
+ },
+ "DTTKS3----": {
+  "nob": "Taksidermistfaget",
+  "nno": "Taksidermistfaget",
+  "eng": "Taxidermy"
+ },
+ "DTTRB3----": {
+  "nob": "Trebåtbyggerfaget",
+  "nno": "Trebåtbyggjarfaget",
+  "eng": "Wooden Boat Building"
+ },
+ "DTTRD3----": {
+  "nob": "Treduodjifaget",
+  "nno": "Treduodjifaget",
+  "eng": "Wood Duodji"
+ },
+ "DTTSK3----": {
+  "nob": "Treskjærerfaget",
+  "nno": "Treskjerarfaget",
+  "eng": "Wood carving"
+ },
+ "DTUIM2----": {
+  "nob": "Urmaker",
+  "nno": "Urmakar",
+  "eng": "Watch and clock repairs"
+ },
+ "DTURM3----": {
+  "nob": "Urmakerfaget",
+  "nno": "Urmakarfaget",
+  "eng": "Watch and Clock Repairs"
+ },
+ "DTVHD3----": {
+  "nob": "Ull- og garnduodjifaget",
+  "nno": "Ull- og garnduodjifaget",
+  "eng": null
+ },
+ "ELAUT2----": {
+  "nob": "Automatisering",
+  "nno": "Automatisering",
+  "eng": "Automation"
+ },
+ "ELAUT3----": {
+  "nob": "Automatiseringsfaget",
+  "nno": "Automatiseringsfaget",
+  "eng": "Automation"
+ },
+ "ELAVI3----": {
+  "nob": "Avionikerfaget",
+  "nno": "Avionikarfaget",
+  "eng": "Avionics"
+ },
+ "ELAVI4----": {
+  "nob": "Avionikerfaget",
+  "nno": "Avionikarfaget",
+  "eng": "Avionics"
+ },
+ "ELDAT3----": {
+  "nob": "Dataelektronikerfaget",
+  "nno": "Dataelektronikarfaget",
+  "eng": "Computer Electronics"
+ },
+ "ELDEL2----": {
+  "nob": "Datateknologi og elektronikk",
+  "nno": "Datateknologi og elektronikk",
+  "eng": "Computers and electronics"
+ },
+ "ELDRF2----": {
+  "nob": "Dronefag",
+  "nno": "Dronefag",
+  "eng": null
+ },
+ "ELDRF3----": {
+  "nob": "Droneoperatørfaget",
+  "nno": "Droneoperatørfaget",
+  "eng": "Drone Operation"
+ },
+ "ELELE1----": {
+  "nob": "Elektro og datateknologi",
+  "nno": "Elektro og datateknologi",
+  "eng": "Electrical engineering and computer technology"
+ },
+ "ELELE2----": {
+  "nob": "Elenergi og ekom",
+  "nno": "Elenergi og ekom",
+  "eng": "Electrical Energy and Electronic Communications"
+ },
+ "ELELE3----": {
+  "nob": "Elektrikerfaget",
+  "nno": "Elektrikarfaget",
+  "eng": "Electrical Installation and Maintenance"
+ },
+ "ELEMO3----": {
+  "nob": "Energimontørfaget",
+  "nno": "Energimontørfaget",
+  "eng": "Power-supply Fitter Operation"
+ },
+ "ELEOP3----": {
+  "nob": "Energioperatørfaget",
+  "nno": "Energioperatørfaget",
+  "eng": "Power-supply Operation"
+ },
+ "ELERF3----": {
+  "nob": "Elektroreparatørfaget",
+  "nno": "Elektroreparatørfaget",
+  "eng": "Electrical Repair"
+ },
+ "ELFLY2----": {
+  "nob": "Flyfag",
+  "nno": "Flyfag",
+  "eng": "Aeronautics"
+ },
+ "ELFLY3----": {
+  "nob": "Flytekniske fag",
+  "nno": "Flytekniske fag",
+  "eng": "Technical Aeronautics"
+ },
+ "ELFMO4----": {
+  "nob": "Flymotormekanikerfaget",
+  "nno": "Flymotormekanikarfaget",
+  "eng": "Aircraft Powerplant Repair and Maintenance"
+ },
+ "ELFST4----": {
+  "nob": "Flystrukturmekanikerfaget",
+  "nno": "Flystrukturmekanikarfaget",
+  "eng": "Airframe Repair and Maintenance"
+ },
+ "ELFSY4----": {
+  "nob": "Flysystemmekanikerfaget",
+  "nno": "Flysystemmekanikarfaget",
+  "eng": "Aircraft Systems Repair and Maintenance"
+ },
+ "ELFUO3----": {
+  "nob": "Fjernstyrte undervannsoperasjoner",
+  "nno": "Fjernstyrte undervassoperasjonar",
+  "eng": "Remote Operated Underwater Vehicle Operations"
+ },
+ "ELHEI3----": {
+  "nob": "Heismontørfaget",
+  "nno": "Heismontørfaget",
+  "eng": "Lift Installation"
+ },
+ "ELKUL3----": {
+  "nob": "Kulde- og varmepumpemontørfaget",
+  "nno": "Kulde- og varmepumpemontørfaget",
+  "eng": "Refrigeration and Heat Pump Installation and Maintenance"
+ },
+ "ELKVP3----": {
+  "nob": "Kulde- og varmepumpeteknikkfaget",
+  "nno": "Kulde- og varmepumpeteknikkfaget",
+  "eng": null
+ },
+ "ELKVT2----": {
+  "nob": "Kulde- og varmepumpeteknikk",
+  "nno": "Kulde- og varmepumpeteknikk",
+  "eng": "Refrigeration and Heat Pumps"
+ },
+ "ELKVV2----": {
+  "nob": "Kulde-, varmepumpe- og ventilasjonsteknikk",
+  "nno": "Kulde-, varmepumpe- og ventilasjonsteknikk",
+  "eng": "Cooling, Heat Pump and Ventilation Technology"
+ },
+ "ELLSM3----": {
+  "nob": "Låsesmedfaget",
+  "nno": "Låsesmedfaget",
+  "eng": "Locksmithing"
+ },
+ "ELMEL3----": {
+  "nob": "Maritim elektrikerfaget vg3 i skole",
+  "nno": "Maritim elektrikarfaget vg3 i skole",
+  "eng": "Maritime Electrical Installation and Maintenance vg3"
+ },
+ "ELMEL4----": {
+  "nob": "Maritim elektrikerfaget vg3 i bedrift",
+  "nno": "Maritim elektrikarfaget vg3 i bedrift",
+  "eng": "Maritime Electrical Installation and Maintenance"
+ },
+ "ELOPT3----": {
+  "nob": "Optronikerfaget",
+  "nno": "Optronikarfaget",
+  "eng": "Optical and Geodetic Instrument Making"
+ },
+ "ELPRO3----": {
+  "nob": "Produksjonselektronikerfaget",
+  "nno": "Produksjonselektronikarfaget",
+  "eng": "Production Electronics"
+ },
+ "ELROM3----": {
+  "nob": "Romteknologi",
+  "nno": "Romteknologi",
+  "eng": "Space Technology"
+ },
+ "ELSIG3----": {
+  "nob": "Signalmontørfaget",
+  "nno": "Signalmontørfaget",
+  "eng": "Signal Installation and Maintenance"
+ },
+ "ELTAV3----": {
+  "nob": "Tavlemontørfaget",
+  "nno": "Tavlemontørfaget",
+  "eng": "Power Distribution Fitter Trade"
+ },
+ "ELTEL3----": {
+  "nob": "Telekommunikasjonsmontørfaget",
+  "nno": "Telekommunikasjonsmontørfaget",
+  "eng": "Telecommunications Installation and Maintenance"
+ },
+ "ELTOG3----": {
+  "nob": "Togelektrikerfaget",
+  "nno": "Togelektrikarfaget",
+  "eng": "Electrical Train Installation and Maintenance"
+ },
+ "ELVEN3----": {
+  "nob": "Ventilasjonsteknikkfaget",
+  "nno": "Ventilasjonsteknikkfaget",
+  "eng": "Ventilation Technology"
+ },
+ "ELVIK3----": {
+  "nob": "Viklerfaget",
+  "nno": "Viklarfaget",
+  "eng": "Coil Winder"
+ },
+ "ELVTR3----": {
+  "nob": "Vikler- og transformatormontørfaget",
+  "nno": "Viklar- og transformatormontørfaget",
+  "eng": "Coil and Transformer Installation and Maintenance"
+ },
+ "FDBLD2----": {
+  "nob": "Blomsterdekoratør",
+  "nno": "Blomsterdekoratør",
+  "eng": "Floral Design"
+ },
+ "FDBLD3----": {
+  "nob": "Blomsterdekoratørfaget",
+  "nno": "Blomsterdekoratørfaget",
+  "eng": "Floral Design"
+ },
+ "FDEKD3----": {
+  "nob": "Eksponeringsdesign",
+  "nno": "Eksponeringsdesign",
+  "eng": "Exposure Design"
+ },
+ "FDFBI1----": {
+  "nob": "Frisør, blomster, interiør og eksponeringsdesign",
+  "nno": "Frisør, blomar, interiør og eksponeringsdesign",
+  "eng": "Hairdresser, Floral, Interior and Exposure Design"
+ },
+ "FDFRI2----": {
+  "nob": "Frisør",
+  "nno": "Frisør",
+  "eng": "Hairdresser"
+ },
+ "FDFRI3----": {
+  "nob": "Frisørfaget",
+  "nno": "Frisørfaget",
+  "eng": "Hairdressing"
+ },
+ "FDIED2----": {
+  "nob": "Interiør og eksponeringsdesign",
+  "nno": "Interiør og eksponeringsdesign",
+  "eng": "Interior and Exposure Design"
+ },
+ "FDINT3----": {
+  "nob": "Interiør",
+  "nno": "Interiør",
+  "eng": "Interior Design"
+ },
+ "FDMPM3----": {
+  "nob": "Maskør- og parykkmakerfaget",
+  "nno": "Maskør- og parykkmakarfaget",
+  "eng": "Wigmaking and Stage Make-up"
+ },
+ "FDPFD3----": {
+  "nob": "Profileringsdesignfaget",
+  "nno": "Profileringsdesignfaget",
+  "eng": "Profile Design"
+ },
+ "HSAKT2----": {
+  "nob": "Aktivitør",
+  "nno": "Aktivitør",
+  "eng": "Occupational Therapy"
+ },
+ "HSAKT3----": {
+  "nob": "Aktivitørfaget",
+  "nno": "Aktivitørfaget",
+  "eng": "Occupational Therapy"
+ },
+ "HSAMB2----": {
+  "nob": "Ambulansefag",
+  "nno": "Ambulansefag",
+  "eng": "Ambulance Service Skills"
+ },
+ "HSAMB3----": {
+  "nob": "Ambulansefaget",
+  "nno": "Ambulansefaget",
+  "eng": "Ambulance Service Skills"
+ },
+ "HSAPO3----": {
+  "nob": "Apotekteknikk",
+  "nno": "Apotekteknikk",
+  "eng": "Pharmacy Skills"
+ },
+ "HSBUA2----": {
+  "nob": "Barne- og ungdomsarbeiderfag",
+  "nno": "Barne- og ungdomsarbeidarfag",
+  "eng": "Child Care and Youth Work"
+ },
+ "HSBUA3----": {
+  "nob": "Barne- og ungdomsarbeiderfaget",
+  "nno": "Barne- og ungdomsarbeidarfaget",
+  "eng": "Child Care and Youth Work"
+ },
+ "HSFOT2----": {
+  "nob": "Fotterapi og ortopediteknikk",
+  "nno": "Fotterapi og ortopediteknikk",
+  "eng": "Chiropody and Orthopaedics"
+ },
+ "HSFOT3----": {
+  "nob": "Fotterapi",
+  "nno": "Fotterapi",
+  "eng": "Chiropody"
+ },
+ "HSHEA2----": {
+  "nob": "Helsearbeiderfag",
+  "nno": "Helsearbeidarfag",
+  "eng": "Health Work"
+ },
+ "HSHEA3----": {
+  "nob": "Helsearbeiderfaget",
+  "nno": "Helsearbeidarfaget",
+  "eng": "Health Work"
+ },
+ "HSHES2----": {
+  "nob": "Helseservicefag",
+  "nno": "Helseservicefag",
+  "eng": "Health Service"
+ },
+ "HSHSE3----": {
+  "nob": "Helsesekretær",
+  "nno": "Helsesekretær",
+  "eng": "Medical Secretarial Skills"
+ },
+ "HSHSF1----": {
+  "nob": "Helse- og oppvekstfag",
+  "nno": "Helse- og oppvekstfag",
+  "eng": "Healthcare, Childhood and Youth Development"
+ },
+ "HSHUD2----": {
+  "nob": "Hudpleie",
+  "nno": "Hudpleie",
+  "eng": "Skin Care"
+ },
+ "HSHUD3----": {
+  "nob": "Hudterapi",
+  "nno": "Hudterapi",
+  "eng": "Skin therapy"
+ },
+ "HSORT3----": {
+  "nob": "Ortopediteknikkfaget",
+  "nno": "Ortopediteknikkfaget",
+  "eng": "Orthopaedic Technician Skills"
+ },
+ "HSPOR3----": {
+  "nob": "Portørfaget",
+  "nno": "Portørfaget",
+  "eng": "Orderly"
+ },
+ "HSTAN3----": {
+  "nob": "Tannhelsesekretær",
+  "nno": "Tannhelsesekretær",
+  "eng": "Dental Health Secretarial Skills"
+ },
+ "IDIDR2----": {
+  "nob": "Idrettsfag vg2",
+  "nno": "Idrettsfag vg2",
+  "eng": "Sports and Physical Education vg2"
+ },
+ "IDIDR3----": {
+  "nob": "Idrettsfag vg3",
+  "nno": "Idrettsfag vg3",
+  "eng": "Sports and Physical Education vg3"
+ },
+ "IDRET1----": {
+  "nob": "Idrettsfag vg1",
+  "nno": "Idrettsfag vg1",
+  "eng": "Sports and Physical Education vg1"
+ },
+ "IMGPT3----": {
+  "nob": "Grafisk produksjonsteknikk",
+  "nno": "Grafisk produksjonsteknikk",
+  "eng": "Graphic Production Techniques"
+ },
+ "IMIHP3----": {
+  "nob": "Innholdsproduksjonsfaget",
+  "nno": "Innhaldsproduksjonsfaget",
+  "eng": "Content Production"
+ },
+ "IMIKM1----": {
+  "nob": "Informasjonsteknologi og medieproduksjon",
+  "nno": "Informasjonsteknologi og medieproduksjon",
+  "eng": "Information Technology and Media Production"
+ },
+ "IMITD3----": {
+  "nob": "IT-driftsfaget",
+  "nno": "IT-driftsfaget",
+  "eng": "IT Operations"
+ },
+ "IMITK2----": {
+  "nob": "Informasjonsteknologi",
+  "nno": "Informasjonsteknologi",
+  "eng": "Information technology"
+ },
+ "IMIUV3----": {
+  "nob": "IT-utviklerfaget",
+  "nno": "IT-utviklarfaget",
+  "eng": "IT Developer"
+ },
+ "IMMDF3----": {
+  "nob": "Mediedesignfaget",
+  "nno": "Mediedesignfaget",
+  "eng": "Media Design"
+ },
+ "IMMED2----": {
+  "nob": "Medieproduksjon",
+  "nno": "Medieproduksjon",
+  "eng": "Media production"
+ },
+ "IMMET3----": {
+  "nob": "Medieteknikkfaget",
+  "nno": "Medieteknikkfaget",
+  "eng": "Media Technology"
+ },
+ "KDKDA1----": {
+  "nob": "Kunst, design og arkitektur vg1",
+  "nno": "Kunst, design og arkitektur vg1",
+  "eng": "Art, design and architecture vg1"
+ },
+ "KDKDA1RS--": {
+  "nob": "Studieforberedende, Steinerskolen, kunstfag, 1. år",
+  "nno": "Studieførebuande, Steinerskolen, kunstfag, 1. år",
+  "eng": null
+ },
+ "KDKDA2----": {
+  "nob": "Kunst, design og arkitektur vg2",
+  "nno": "Kunst, design og arkitektur vg2",
+  "eng": "Art, design and architecture vg2"
+ },
+ "KDKDA2RS--": {
+  "nob": "Studieforberedende, Steinerskolen, kunstfag, 2. år",
+  "nno": "Studieførebuande, Steinerskolen, kunstfag, 2. år",
+  "eng": null
+ },
+ "KDKDA3----": {
+  "nob": "Kunst, design og arkitektur vg3",
+  "nno": "Kunst, design og arkitektur vg3",
+  "eng": "Art, design and architecture vg3"
+ },
+ "KDKDA3RS--": {
+  "nob": "Studieforberedende, Steinerskolen, kunstfag, 3. år",
+  "nno": "Studieførebuande, Steinerskolen, kunstfag, 3. år",
+  "eng": null
+ },
+ "MDDAN2----": {
+  "nob": "Dans vg2",
+  "nno": "Dans vg2",
+  "eng": "Dance Studies vg2"
+ },
+ "MDDAN3----": {
+  "nob": "Dans vg3",
+  "nno": "Dans vg3",
+  "eng": "Dance Studies vg3"
+ },
+ "MDDRA1RS--": {
+  "nob": "Teater, Steinerskolen, 1. år",
+  "nno": "Teater, Steinerskolen, 1. år",
+  "eng": null
+ },
+ "MDDRA2----": {
+  "nob": "Drama vg2",
+  "nno": "Drama vg2",
+  "eng": "Drama Studies vg2"
+ },
+ "MDDRA2RS--": {
+  "nob": "Teater, Steinerskolen, 2. år",
+  "nno": "Teater, Steinerskolen, 2. år",
+  "eng": null
+ },
+ "MDDRA3----": {
+  "nob": "Drama vg3",
+  "nno": "Drama vg3",
+  "eng": "Drama Studies vg3"
+ },
+ "MDDRA3RS--": {
+  "nob": "Teater, Steinerskolen, 3. år",
+  "nno": "Teater, Steinerskolen, 3. år",
+  "eng": null
+ },
+ "MDMDD1----": {
+  "nob": "Musikk, dans og drama vg1",
+  "nno": "Musikk, dans og drama vg1",
+  "eng": "Music, Dance and Drama vg1"
+ },
+ "MDMDR1RS--": {
+  "nob": "Musikkteater, Steinerskolen, 1. år",
+  "nno": "Musikkteater, Steinerskolen, 1. år",
+  "eng": null
+ },
+ "MDMDR2RS--": {
+  "nob": "Musikkteater, Steinerskolen, 2. år",
+  "nno": "Musikkteater, Steinerskolen, 2. år",
+  "eng": null
+ },
+ "MDMDR3RS--": {
+  "nob": "Musikkteater, Steinerskolen, 3. år",
+  "nno": "Musikkteater, Steinerskolen, 3. år",
+  "eng": null
+ },
+ "MDMUS1RS--": {
+  "nob": "Musikk, Steinerskolen, 1. år",
+  "nno": "Musikk, Steinerskolen, 1. år",
+  "eng": null
+ },
+ "MDMUS2----": {
+  "nob": "Musikk vg2",
+  "nno": "Musikk vg2",
+  "eng": "Music Studies vg2"
+ },
+ "MDMUS2RS--": {
+  "nob": "Musikk, Steinerskolen, 2. år",
+  "nno": "Musikk, Steinerskolen, 2. år",
+  "eng": null
+ },
+ "MDMUS3----": {
+  "nob": "Musikk vg3",
+  "nno": "Musikk vg3",
+  "eng": "Music Studies vg3"
+ },
+ "MDMUS3RS--": {
+  "nob": "Musikk, Steinerskolen, 3. år",
+  "nno": "Musikk, Steinerskolen, 3. år",
+  "eng": null
+ },
+ "MEMOK1----": {
+  "nob": "Medier og kommunikasjon vg1",
+  "nno": "Medium og kommunikasjon vg1",
+  "eng": "Media and Communication vg1"
+ },
+ "MEMOK1RS--": {
+  "nob": "Medier og kommunikasjon, Steinerskolen, 1. år",
+  "nno": "Medium og kommunikasjon, Steinerskolen, 1. år",
+  "eng": null
+ },
+ "MEMOK2----": {
+  "nob": "Medier og kommunikasjon vg2",
+  "nno": "Medium og kommunikasjon vg2",
+  "eng": "Media and Communication vg2"
+ },
+ "MEMOK2RS--": {
+  "nob": "Medier og kommunikasjon, Steinerskolen, 2. år",
+  "nno": "Medium og kommunikasjon, Steinerskolen, 2. år",
+  "eng": null
+ },
+ "MEMOK3----": {
+  "nob": "Medier og kommunikasjon vg3",
+  "nno": "Medium og kommunikasjon vg3",
+  "eng": "Media and Communication vg3"
+ },
+ "MKFTG3----": {
+  "nob": "Fotograffaget",
+  "nno": "Fotograffaget",
+  "eng": "Photography"
+ },
+ "MEMOK3RS--": {
+  "nob": "Medier og kommunikasjon, Steinerskolen, 3. år",
+  "nno": "Medium og kommunikasjon, Steinerskolen, 3. år",
+  "eng": null
+ },
+ "MKMDE3----": {
+  "nob": "Mediedesign",
+  "nno": "Mediedesign",
+  "eng": "Media Design"
+ },
+ "MKMED1----": {
+  "nob": "Medier og kommunikasjon vg1",
+  "nno": "Medium og kommunikasjon vg1",
+  "eng": "Media and Communication vg1"
+ },
+ "MKMED1RS--": {
+  "nob": "Medier og kommunikasjon, 1. år",
+  "nno": "Medium og kommunikasjon, 1. år",
+  "eng": null
+ },
+ "MKMED2----": {
+  "nob": "Medier og kommunikasjon vg2",
+  "nno": "Medium og kommunikasjon vg2",
+  "eng": "Media and Communication vg2"
+ },
+ "MKMED2RS--": {
+  "nob": "Medier og kommunikasjon, Steinerskolen, 2. år",
+  "nno": "Medium og kommunikasjon, Steinerskolen, 2. år",
+  "eng": null
+ },
+ "MKMED3----": {
+  "nob": "Studieforberedende vg3 innen medier og kommunikasjon",
+  "nno": "Studieførebuande vg3 innan medium og kommunikasjon",
+  "eng": "Vg3 General Studies in Media and Communication"
+ },
+ "MKMED3RS--": {
+  "nob": "Påbygging til generell studiekompetanse for medier og kommunikasjon, Steinerskolen",
+  "nno": "Påbygging til generell studiekompetanse for medium og kommunikasjon, Steinerskolen",
+  "eng": null
+ },
+ "MKMGR3----": {
+  "nob": "Mediegrafikerfaget",
+  "nno": "Mediegrafikarfaget",
+  "eng": "Media Graphics"
+ },
+ "MKMIT1RS--": {
+  "nob": "Medier og kommunikasjon med IKT,  1. år",
+  "nno": "Medium og kommunikasjon med IKT,  1. år",
+  "eng": null
+ },
+ "MKMIT2RS--": {
+  "nob": "Medier og kommunikasjon med IKT, 2. år",
+  "nno": "Medium og kommunikasjon med IKT, 2. år",
+  "eng": null
+ },
+ "NADYR3----": {
+  "nob": "Dyrefaget",
+  "nno": "Dyrefaget",
+  "eng": "Animals"
+ },
+ "NAFFA2----": {
+  "nob": "Fiske og fangst",
+  "nno": "Fiske og fangst",
+  "eng": "Fishing and General Seamanship"
+ },
+ "NAFFA3----": {
+  "nob": "Fiske og fangst",
+  "nno": "Fiske og fangst",
+  "eng": "Fishing and General Seamanship"
+ },
+ "NAFIR3----": {
+  "nob": "Fiskeri- og akvakulturredskapsfaget",
+  "nno": "Fiskeri- og akvakulturreiskapsfaget",
+  "eng": null
+ },
+ "NAGAN3----": {
+  "nob": "Gartnernæring",
+  "nno": "Gartnernæring",
+  "eng": "Gardening"
+ },
+ "NAGAR3----": {
+  "nob": "Gartnerfaget",
+  "nno": "Gartnarfaget",
+  "eng": "Gardening"
+ },
+ "NAHAV3----": {
+  "nob": "Havbruksteknikkfaget",
+  "nno": "Havbruksteknikkfaget",
+  "eng": null
+ },
+ "NAHDF2----": {
+  "nob": "Heste- og dyrefag",
+  "nno": "Heste- og dyrefag",
+  "eng": "Equestrian and Animal Studies"
+ },
+ "NAHHO2----": {
+  "nob": "Heste- og hovslagerfag",
+  "nno": "Heste- og hovslagarfag",
+  "eng": "Equestrian and Farrier Activities"
+ },
+ "NAHOV3----": {
+  "nob": "Hovslagerfaget",
+  "nno": "Hovslagarfaget",
+  "eng": "Farriery"
+ },
+ "NAHST3----": {
+  "nob": "Hestefaget",
+  "nno": "Hestefaget",
+  "eng": "Equestrian Trades"
+ },
+ "NAHVS3----": {
+  "nob": "Hovslagerfaget",
+  "nno": "Hovslagarfaget",
+  "eng": "Farriery"
+ },
+ "NAIAN3----": {
+  "nob": "Idrettsanleggsfaget",
+  "nno": "Idrettsanleggsfaget",
+  "eng": "Sports Facilities Management"
+ },
+ "NALBF3----": {
+  "nob": "Landbruksfaget",
+  "nno": "Landbruksfaget",
+  "eng": null
+ },
+ "NALBR3----": {
+  "nob": "Landbruk",
+  "nno": "Landbruk",
+  "eng": "Agriculture"
+ },
+ "NALBR3RS--": {
+  "nob": "Naturbruk, 3. år yrkeskompetanse",
+  "nno": "Naturbruk, 3. år yrkeskompetanse",
+  "eng": null
+ },
+ "NALGA2----": {
+  "nob": "Landbruk og gartnernæring",
+  "nno": "Landbruk og gartnarnæring",
+  "eng": "Agriculture and Horticulture"
+ },
+ "NANAB1----": {
+  "nob": "Naturbruk",
+  "nno": "Naturbruk",
+  "eng": "Agriculture, Fishing and Forestry"
+ },
+ "NANAB1RS--": {
+  "nob": "Naturbruk, 1. år",
+  "nno": "Naturbruk, 1. år",
+  "eng": null
+ },
+ "NANAB2RS--": {
+  "nob": "Naturbruk, 2. år",
+  "nno": "Naturbruk, 2. år",
+  "eng": null
+ },
+ "NANAB3----": {
+  "nob": "Studieforberedende vg3 innen naturbruk",
+  "nno": "Studieførebuande vg3 innan naturbruk",
+  "eng": "Vg3 General Studies in Fishing and Forestry"
+ },
+ "NANAB3RSS-": {
+  "nob": "Naturbruk, 3. år studieforberedende",
+  "nno": "Naturbruk, 3. år studieførebuande",
+  "eng": null
+ },
+ "NAREI2----": {
+  "nob": "Reindrift",
+  "nno": "Reindrift",
+  "eng": "Reindeer Husbandry"
+ },
+ "NAREI3----": {
+  "nob": "Reindriftsfaget",
+  "nno": "Reindriftsfaget",
+  "eng": "Reindeer Husbandry"
+ },
+ "NASBR2----": {
+  "nob": "Skogbruk",
+  "nno": "Skogbruk",
+  "eng": "Forestry"
+ },
+ "NASKF3----": {
+  "nob": "Skogfaget",
+  "nno": "Skogfaget",
+  "eng": "Forestry"
+ },
+ "NAAGR3----": {
+  "nob": "Landbruk",
+  "nno": "Landbruk",
+  "eng": "Agriculture"
+ },
+ "NAAKV2----": {
+  "nob": "Akvakultur",
+  "nno": "Akvakultur",
+  "eng": "Aquaculture"
+ },
+ "NAAID2----": {
+  "nob": "Anleggsgartner- og idrettsanleggsfag",
+  "nno": "Anleggsgartnar- og idrettsanleggsfag",
+  "eng": "Landscaping and Sports Facilities operator"
+ },
+ "NAAKV3----": {
+  "nob": "Akvakulturfaget",
+  "nno": "Akvakulturfaget",
+  "eng": "Aquaculture"
+ },
+ "NAANG3----": {
+  "nob": "Anleggsgartnerfaget",
+  "nno": "Anleggsgartnarfaget",
+  "eng": "Landscaping"
+ },
+ "PBPBY3----": {
+  "nob": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram",
+  "nno": "Vg3 påbygging til generell studiekompetanse for yrkesfaglege utdanningsprogram",
+  "eng": "Supplementary programme for general university and college admissions certification"
+ },
+ "PBPBY3RS--": {
+  "nob": "Påbygging til generell studiekompetanse for medier og kommunikasjon",
+  "nno": "Påbygging til generell studiekompetanse for medium og kommunikasjon",
+  "eng": null
+ },
+ "PBPBY4----": {
+  "nob": "Fag for studiekompetanse",
+  "nno": "Fag for studiekompetanse",
+  "eng": "Subjects for general university and college admissions certification"
+ },
+ "R94GK1----": {
+  "nob": "Reform 94 - grunnkurs for vg1",
+  "nno": "Reform 94 - grunnkurs for vg1",
+  "eng": "Reform 94 - foundation course for vg1"
+ },
+ "R94VKI----": {
+  "nob": "Reform 94  - VKI for vg2",
+  "nno": "Reform 94  - VKI for vg2",
+  "eng": "Reform 94 - advanced course I for vg2"
+ },
+ "RMBAK2----": {
+  "nob": "Baker og konditor",
+  "nno": "Bakar og konditor",
+  "eng": "Baker and Confectioner"
+ },
+ "RMBAK3----": {
+  "nob": "Bakerfaget",
+  "nno": "Bakarfaget",
+  "eng": "Baking"
+ },
+ "RMBUT3----": {
+  "nob": "Butikkslakterfaget",
+  "nno": "Butikkslaktarfaget",
+  "eng": "Retail Butchery"
+ },
+ "RMEKF3----": {
+  "nob": "Ernæringskokkfaget",
+  "nno": "Ernæringskokkfaget",
+  "eng": "Nutritional Cook"
+ },
+ "RMFVF3----": {
+  "nob": "Ferskvarehandlerfaget",
+  "nno": "Ferskvarehandlarfaget",
+  "eng": "Fresh Produce Handler"
+ },
+ "RMIKO3----": {
+  "nob": "Institusjonskokkfaget",
+  "nno": "Institusjonskokkfaget",
+  "eng": "Institutional Cookery"
+ },
+ "RMIMP3----": {
+  "nob": "Industriell matproduksjon",
+  "nno": "Industriell matproduksjon",
+  "eng": "Industrial Food Production"
+ },
+ "RMKOK3----": {
+  "nob": "Kokkfaget",
+  "nno": "Kokkfaget",
+  "eng": "Cookery"
+ },
+ "RMKON3----": {
+  "nob": "Konditorfaget",
+  "nno": "Konditorfaget",
+  "eng": "Confectionary"
+ },
+ "RMKOS2----": {
+  "nob": "Kokk- og servitørfag",
+  "nno": "Kokk- og servitørfag",
+  "eng": "Cookery and Waiting"
+ },
+ "RMKSK3----": {
+  "nob": "Kjøttskjærerfaget",
+  "nno": "Kjøttskjerarfaget",
+  "eng": "Meat Cutting"
+ },
+ "RMMFG2----": {
+  "nob": "Matfag",
+  "nno": "Matfag",
+  "eng": "Food and Beverages"
+ },
+ "RMMPR2----": {
+  "nob": "Matproduksjon",
+  "nno": "Matproduksjon",
+  "eng": "Food Production"
+ },
+ "RMPMF3----": {
+  "nob": "Pølsemakerfaget",
+  "nno": "Pølsemakarfaget",
+  "eng": "Sausage Making"
+ },
+ "RMRMF1----": {
+  "nob": "Restaurant- og matfag",
+  "nno": "Restaurant- og matfag",
+  "eng": "Restaurant and Food Processing"
+ },
+ "RMRMF1RS--": {
+  "nob": "Restaurant og matfag, 1. år",
+  "nno": "Restaurant og matfag, 1. år",
+  "eng": null
+ },
+ "RMRMF2RS--": {
+  "nob": "Restaurant og matfag, 2. år",
+  "nno": "Restaurant og matfag, 2. år",
+  "eng": null
+ },
+ "RMSER3----": {
+  "nob": "Servitørfaget",
+  "nno": "Servitørfaget",
+  "eng": "Waiting"
+ },
+ "RMSLF3----": {
+  "nob": "Slakterfaget",
+  "nno": "Slaktarfaget",
+  "eng": "Butchering"
+ },
+ "RMSMH3----": {
+  "nob": "Sjømathandlerfaget",
+  "nno": "Sjømathandlarfaget",
+  "eng": "Seafood Purchasing"
+ },
+ "RMSMP3----": {
+  "nob": "Sjømatproduksjon",
+  "nno": "Sjømatproduksjon",
+  "eng": "Seafood Production"
+ },
+ "SRRLV3----": {
+  "nob": "Reiselivsfaget",
+  "nno": "Reiselivsfaget",
+  "eng": "Travel and Tourism"
+ },
+ "SRSIK3----": {
+  "nob": "Sikkerhetsfaget",
+  "nno": "Tryggleiksfaget",
+  "eng": "Safety and Security Services"
+ },
+ "SRSLG3----": {
+  "nob": "Salgsfaget",
+  "nno": "Salsfaget",
+  "eng": "Sales"
+ },
+ "SRSOA3----": {
+  "nob": "Service- og administrasjonsfaget",
+  "nno": "Service- og administrasjonsfaget",
+  "eng": "Service and Administration"
+ },
+ "SRSRL2----": {
+  "nob": "Salg og reiseliv",
+  "nno": "Sal og reiseliv",
+  "eng": "Sales and Tourism"
+ },
+ "SRSSH2----": {
+  "nob": "Service, sikkerhet og administrasjon",
+  "nno": "Service, tryggleik og administrasjon",
+  "eng": "Service, Safety and Administration"
+ },
+ "SRSSR1----": {
+  "nob": "Salg, service og reiseliv",
+  "nno": "Sal, service og reiseliv",
+  "eng": "Sales, Service, Travel and Tourism"
+ },
+ "SRSSR2----": {
+  "nob": "Salg, service og reiseliv",
+  "nno": "Sal, service og reiseliv",
+  "eng": "Sales, Service, Travel and Tourism"
+ },
+ "SSIDT3----": {
+  "nob": "IKT-driftsteknikerfaget",
+  "nno": null,
+  "eng": null
+ },
+ "SSISF2----": {
+  "nob": "IKT-servicefag",
+  "nno": "IKT-servicefag",
+  "eng": "ICT Service"
+ },
+ "SSISF3----": {
+  "nob": "IKT-servicefaget",
+  "nno": "IKT-servicefaget",
+  "eng": "ICT Service Operations"
+ },
+ "SSITU3----": {
+  "nob": "IKT-tjenesteutviklerfaget",
+  "nno": null,
+  "eng": null
+ },
+ "SSKAD3----": {
+  "nob": "Kontor- og administrasjonsfaget",
+  "nno": "Kontor- og administrasjonsfaget",
+  "eng": "Office and Administrative Skills"
+ },
+ "SSLOG3----": {
+  "nob": "Logistikkfaget",
+  "nno": "Logistikkfaget",
+  "eng": "Logistics"
+ },
+ "SSRES3----": {
+  "nob": "Resepsjonsfaget",
+  "nno": "Resepsjonsfaget",
+  "eng": "Reception Desk Services"
+ },
+ "SSRLV2----": {
+  "nob": "Reiseliv",
+  "nno": "Reiseliv",
+  "eng": "Tourism"
+ },
+ "SSRLV3----": {
+  "nob": "Reiselivsfaget",
+  "nno": "Reiselivsfaget",
+  "eng": "Travel and Tourism"
+ },
+ "SSSIK3----": {
+  "nob": "Sikkerhetsfaget",
+  "nno": "Tryggleiksfaget",
+  "eng": "Safety and Security Services"
+ },
+ "SSSLG3----": {
+  "nob": "Salgsfaget",
+  "nno": "Salsfaget",
+  "eng": "Sales"
+ },
+ "SSSSA1----": {
+  "nob": "Service og samferdsel",
+  "nno": "Service og samferdsel",
+  "eng": "Service and Transport"
+ },
+ "SSSSS2----": {
+  "nob": "Salg, service og sikkerhet",
+  "nno": "Sal, service og tryggleik",
+  "eng": "Sales, Service and Security"
+ },
+ "SSTRL2----": {
+  "nob": "Transport og logistikk",
+  "nno": "Transport og logistikk",
+  "eng": "Transport and Logistics"
+ },
+ "SSYRK3----": {
+  "nob": "Yrkessjåførfaget",
+  "nno": "Yrkessjåførfaget",
+  "eng": "Transport Driving"
+ },
+ "SSYSL3----": {
+  "nob": "Yrkessjåførkurs for voksne",
+  "nno": "Yrkessjåførkurs for vaksne",
+  "eng": "Transport Driver Course for Adults"
+ },
+ "STFOR1----": {
+  "nob": "Studiespesialisering med formgivingsfag vg1",
+  "nno": "Studiespesialisering med formgjevingsfag vg1",
+  "eng": "Art, Craft and Design Studies vg1"
+ },
+ "STFOR1RS--": {
+  "nob": "Studiespesialiserende, kunstfag , 1. år",
+  "nno": "Studiespesialiserande, kunstfag , 1. år",
+  "eng": null
+ },
+ "STFOR2----": {
+  "nob": "Formgivingsfag vg2",
+  "nno": "Formgjevingsfag vg2",
+  "eng": "Art, Craft and Design Studies vg2"
+ },
+ "STFOR2RS--": {
+  "nob": "Studiespesialiserende, Steinerskolen, kunstfag, 2. år",
+  "nno": "Studiespesialiserande, Steinerskolen, kunstfag, 2. år",
+  "eng": null
+ },
+ "STFOR3----": {
+  "nob": "Formgivingsfag vg3",
+  "nno": "Formgjevingsfag vg3",
+  "eng": "Art, Craft and Design Studies vg3"
+ },
+ "STFOR3RS--": {
+  "nob": "Studiespesialiserende, Steinerskolen, kunstfag, 3. år",
+  "nno": "Studiespesialiserande, Steinerskolen, kunstfag, 3. år",
+  "eng": null
+ },
+ "STREA1RS--": {
+  "nob": "Studiespesialiserende, Steinerskolen, realfag 1. år",
+  "nno": "Studiespesialiserande, Steinerskolen, realfag 1. år",
+  "eng": null
+ },
+ "STREA2----": {
+  "nob": "Realfag vg2",
+  "nno": "Realfag vg2",
+  "eng": "Natural Science and Mathematics Studies vg2"
+ },
+ "STREA2MO--": {
+  "nob": "Realfag vg2 Montessori",
+  "nno": "Realfag vg2 Montessori",
+  "eng": "Natural Science and Mathematics Studies vg2 Montessori"
+ },
+ "STREA2RS--": {
+  "nob": "Studiespesialiserende, Steinerskolen, realfag 2. år",
+  "nno": "Studiespesialiserande, Steinerskolen, realfag 2. år",
+  "eng": null
+ },
+ "STREA2TY--": {
+  "nob": "Realfag vg2 tyske skole",
+  "nno": null,
+  "eng": null
+ },
+ "STREA3----": {
+  "nob": "Realfag vg3",
+  "nno": "Realfag vg3",
+  "eng": "Natural Science and Mathematics Studies vg3"
+ },
+ "STREA3MO--": {
+  "nob": "Realfag vg3 Montessori",
+  "nno": "Realfag vg3 Montessori",
+  "eng": "Natural Science and Mathematics Studies vg3 Montessori"
+ },
+ "STREA3RS--": {
+  "nob": "Studiespesialiserende, Steinerskolen, realfag 3. år",
+  "nno": "Studiespesialiserande, Steinerskolen, realfag 3. år",
+  "eng": null
+ },
+ "STREA3TY--": {
+  "nob": "Realfag vg3 tyske skole",
+  "nno": null,
+  "eng": null
+ },
+ "STSAM2----": {
+  "nob": "Samfunnsfag og økonomi vg2",
+  "nno": "Samfunnsfag og økonomi vg2",
+  "eng": "Social Sciences and Economics Studies vg2"
+ },
+ "STSAM3----": {
+  "nob": "Samfunnsfag og økonomi vg3",
+  "nno": "Samfunnsfag og økonomi vg3",
+  "eng": "Social Sciences and Economics Studies vg3"
+ },
+ "STSPR2----": {
+  "nob": "Språkfag vg2",
+  "nno": "Språkfag vg2",
+  "eng": "Languages vg2"
+ },
+ "STSPR3----": {
+  "nob": "Språkfag vg3",
+  "nno": "Språkfag vg3",
+  "eng": "Languages vg3"
+ },
+ "STSSA1RS--": {
+  "nob": "Studiespesialiserende, Steinerskolen, humanistfag 1. år",
+  "nno": "Studiespesialiserande, Steinerskolen, humanistfag 1. år",
+  "eng": null
+ },
+ "STSSA2----": {
+  "nob": "Språk, samfunnsfag og økonomi vg2",
+  "nno": "Språk, samfunnsfag og økonomi vg2",
+  "eng": "Languages, Social Sciences and Economics Studies vg2"
+ },
+ "STSSA2MO--": {
+  "nob": "Språk, samfunnsfag og økonomi vg2 Montessori",
+  "nno": "Språk, samfunnsfag og økonomi vg2 Montessori",
+  "eng": "Languages, Social Sciences and Economics Studies vg2 Montessori"
+ },
+ "STSSA2RS--": {
+  "nob": "Studiespesialiserende, Steinerskolen, humanistfag 2. år",
+  "nno": "Studiespesialiserande, Steinerskolen, humanistfag 2. år",
+  "eng": null
+ },
+ "STSSA3----": {
+  "nob": "Språk, samfunnsfag og økonomi vg3",
+  "nno": "Språk, samfunnsfag og økonomi vg3",
+  "eng": "Languages, Social Sciences and Economics Studies vg3"
+ },
+ "STSSA3MO--": {
+  "nob": "Språk, samfunnsfag og økonomi vg3 Montessori",
+  "nno": "Språk, samfunnsfag og økonomi vg3 Montessori",
+  "eng": "Languages, Social Sciences and Economics Studies vg3 Montessori"
+ },
+ "STSSA3RS--": {
+  "nob": "Studiespesialiserende, Steinerskolen, humanistfag 3. år",
+  "nno": "Studiespesialiserande, Steinerskolen, humanistfag 3. år",
+  "eng": null
+ },
+ "STUSP1----": {
+  "nob": "Studiespesialisering",
+  "nno": "Studiespesialisering",
+  "eng": "Specialization in General Studies vg1"
+ },
+ "STUSP1MO--": {
+  "nob": "Studiespesialisering montessori 1. år",
+  "nno": "Studiespesialiserande montessori 1. år",
+  "eng": null
+ },
+ "STUSP1RS--": {
+  "nob": "Studiespesialiserende, Steinerskolen, allment løp, 1. år",
+  "nno": "Studiespesialiserande, Steinerskolen, allment løp, 1. år",
+  "eng": null
+ },
+ "STUSP1TY--": {
+  "nob": "Studiespesialisering vg1 tyske skole",
+  "nno": null,
+  "eng": null
+ },
+ "STUSP2RS--": {
+  "nob": "Studiespesialiserende, Steinerskolen, allment løp, 2. år",
+  "nno": "Studiespesialiserande, Steinerskolen, allment løp, 2. år",
+  "eng": null
+ },
+ "STUSP3RS--": {
+  "nob": "Studiespesialiserende, Steinerskolen, allment løp, 3. år",
+  "nno": "Studiespesialiserande, Steinerskolen, allment løp, 3. år",
+  "eng": null
+ },
+ "TPALU3----": {
+  "nob": "Aluminiumskonstruksjonsfaget",
+  "nno": "Aluminiumskonstruksjonsfaget",
+  "eng": "Aluminium Constructions"
+ },
+ "TPAMK2----": {
+  "nob": "Arbeidsmaskiner",
+  "nno": "Arbeidsmaskinar",
+  "eng": "Machinery"
+ },
+ "TPAMM3----": {
+  "nob": "Anleggsmaskinmekanikerfaget",
+  "nno": "Anleggsmaskinmekanikarfaget",
+  "eng": "Heavy Equipment Repair and Maintenance"
+ },
+ "TPBDK3----": {
+  "nob": "Bilfaget, demontering av kjøretøy",
+  "nno": "Bilfaget, demontering av køyretøy",
+  "eng": null
+ },
+ "TPBIP3----": {
+  "nob": "Bilpleiefaget",
+  "nno": "Bilpleiefaget",
+  "eng": "Car Care"
+ },
+ "TPBKO3----": {
+  "nob": "Brønnfaget, komplettering",
+  "nno": "Brønnfaget, komplettering",
+  "eng": "Well Drilling and Rigging, Completions"
+ },
+ "TPBKV3----": {
+  "nob": "Brønnfaget, kveilerøroperasjoner",
+  "nno": "Brønnfaget, kveilerøyroperasjonar",
+  "eng": "Well Drilling and Rigging, Coiled Tubing Operations"
+ },
+ "TPBLA3----": {
+  "nob": "Billakkererfaget",
+  "nno": "Billakkerarfaget",
+  "eng": "Vehicle Spraying"
+ },
+ "TPBLK2----": {
+  "nob": "Bilskade, lakk og karosseri",
+  "nno": "Bilskade, lakk og karosseri",
+  "eng": "Car Damage, Paintwork and Bodywork"
+ },
+ "TPBMF2----": {
+  "nob": "Børsemaker",
+  "nno": "Børsemakar",
+  "eng": "Gunsmithing"
+ },
+ "TPBMF3----": {
+  "nob": "Børsemakerfaget",
+  "nno": "Børsemakarfaget",
+  "eng": "Gunsmithing"
+ },
+ "TPBMK3----": {
+  "nob": "Bilfaget, lette kjøretøy",
+  "nno": "Bilfaget, lette kjøretøy",
+  "eng": "Motor Vehicles, Light Vehicle Repair"
+ },
+ "TPBOK3----": {
+  "nob": "Bokbinderfaget",
+  "nno": "Bokbindarfaget",
+  "eng": "Bookbinding"
+ },
+ "TPBOR3----": {
+  "nob": "Boreoperatørfaget",
+  "nno": "Boreoperatørfaget",
+  "eng": "Drilling Operations"
+ },
+ "TPBRE3----": {
+  "nob": "Brønnfaget, elektriske kabeloperasjoner",
+  "nno": "Brønnfaget, elektriske kabeloperasjonar",
+  "eng": "Well Drilling and Rigging, Electrical Cable Operations"
+ },
+ "TPBRH3----": {
+  "nob": "Brønnfaget, havbunnsinstallasjoner",
+  "nno": "Brønnfaget, havbotnintallasjonar",
+  "eng": "Well Drilling and Rigging, Sea-Floor Installations"
+ },
+ "TPBRM3----": {
+  "nob": "Brønnfaget, mekaniske kabeloperasjoner",
+  "nno": "Brønnfaget, mekaniske kabeloperasjonar",
+  "eng": "Well Drilling and Rigging, Mechanical Cable Operations"
+ },
+ "TPBRS3----": {
+  "nob": "Brønnfaget, sementering",
+  "nno": "Brønnfaget, sementering",
+  "eng": "Well Drilling and Rigging, Cementation"
+ },
+ "TPBRT2----": {
+  "nob": "Brønnteknikk",
+  "nno": "Brønnteknikk",
+  "eng": "Well Technology"
+ },
+ "TPBSK3----": {
+  "nob": "Bilskadefaget",
+  "nno": "Bilskadefaget",
+  "eng": "Motor Vehicle Body Repair"
+ },
+ "TPBTK3----": {
+  "nob": "Bilfaget, tunge kjøretøy",
+  "nno": "Bilfaget, tunge kjøretøy",
+  "eng": "Motor Vehicles, Heavy Vehicle Repair"
+ },
+ "TPCHA3----": {
+  "nob": "Chassispåbyggerfaget",
+  "nno": "Chassispåbyggjarfaget",
+  "eng": "Chassis Building"
+ },
+ "TPCNC3----": {
+  "nob": "CNC-maskineringsfaget",
+  "nno": "CNC-maskineringsfaget",
+  "eng": "CNC machine Operation"
+ },
+ "TPDKO3----": {
+  "nob": "Dimensjonskontrollfaget",
+  "nno": "Dimensjonskontrollfaget",
+  "eng": "Dimensions Inspection"
+ },
+ "TPFIR3----": {
+  "nob": "Industritekstilfaget, fiskeredskap",
+  "nno": "Industritekstilfaget, fiskereiskapar",
+  "eng": "Industrial Textiles, Fishing Gear"
+ },
+ "TPFMK3----": {
+  "nob": "Finmekanikerfaget",
+  "nno": "Finmekanikarfaget",
+  "eng": "Instrument and Toolmaking"
+ },
+ "TPGEM3----": {
+  "nob": "Grafisk emballasjefaget",
+  "nno": "Grafisk emballasjefaget",
+  "eng": "Graphic Packaging"
+ },
+ "TPGJE3----": {
+  "nob": "Gjenvinningsfaget",
+  "nno": "Gjenvinningsfaget",
+  "eng": "Waste Recovery"
+ },
+ "TPGPT3----": {
+  "nob": "Grafisk produksjonsteknikk",
+  "nno": "Grafisk produksjonsteknikk",
+  "eng": "Graphic Production Techniques"
+ },
+ "TPGRV3----": {
+  "nob": "Garverifaget",
+  "nno": "Garverifaget",
+  "eng": "Tanning"
+ },
+ "TPGVF3----": {
+  "nob": "Gjenvinningsfaget",
+  "nno": "Gjenvinningsfaget",
+  "eng": "Waste Recovery"
+ },
+ "TPHJU3----": {
+  "nob": "Hjulutrustningsfaget",
+  "nno": "Hjulutrustningsfaget",
+  "eng": "Wheels and Suspension Skills"
+ },
+ "TPIFT3----": {
+  "nob": "Industritekstilfaget, farging, trykking og etterbehandling",
+  "nno": "Industritekstilfaget, farging, trykking og etterhandsaming",
+  "eng": "Industrial Textiles, Dyeing, Printing and Finishing"
+ },
+ "TPIGS3----": {
+  "nob": "Industritekstilfaget, garnframstilling",
+  "nno": "Industritekstilfaget, garnframstilling",
+  "eng": "Industrial textiles, Yarn Production"
+ },
+ "TPIME3----": {
+  "nob": "Industrimekanikerfaget",
+  "nno": "Industrimekanikarfaget",
+  "eng": "Industrial Machine Operation and Maintenance"
+ },
+ "TPIMO3----": {
+  "nob": "Industrimontørfaget",
+  "nno": "Industrimontørfaget",
+  "eng": "Industrial Installation"
+ },
+ "TPIMS2----": {
+  "nob": "Industriell møbelproduksjon",
+  "nno": "Industriell møbelproduksjon",
+  "eng": "Industrial Furniture Production"
+ },
+ "TPIND2----": {
+  "nob": "Industritekstil og design",
+  "nno": "Industritekstil og design",
+  "eng": "Industrial Textile Design"
+ },
+ "TPIOM3----": {
+  "nob": "Industrioppmålingsfaget",
+  "nno": "Industrioppmålingsfaget",
+  "eng": "Industrial Surveying"
+ },
+ "TPIOV3----": {
+  "nob": "Industriell overflatebehandling",
+  "nno": "Industriell overflatebehandling",
+  "eng": "Industrial Surface Treatment"
+ },
+ "TPIRL3----": {
+  "nob": "Industrirørleggerfaget",
+  "nno": "Industrirøyrleggjarfaget",
+  "eng": "Industrial Plumbing"
+ },
+ "TPISK3----": {
+  "nob": "Industriell skotøyproduksjon",
+  "nno": "Industriell skotøyproduksjon",
+  "eng": "Industrial Footwear Production"
+ },
+ "TPISM3----": {
+  "nob": "Industrisømfaget",
+  "nno": "Industrisaumfaget",
+  "eng": "Industrial Sewing"
+ },
+ "TPISN3----": {
+  "nob": "Industrisnekkerfaget",
+  "nno": "Industrisnikkarfaget",
+  "eng": "Industrial Carpentry"
+ },
+ "TPITA3----": {
+  "nob": "Industritapetsererfaget",
+  "nno": "Industritapetserarfaget",
+  "eng": "Industrial Furniture Upholstery"
+ },
+ "TPITF3----": {
+  "nob": "Industritekstilfaget",
+  "nno": "Industritekstilfaget",
+  "eng": null
+ },
+ "TPITR3----": {
+  "nob": "Industritekstilfaget, trikotasje",
+  "nno": "Industritekstilfaget, trikotasje",
+  "eng": "Industrial Textiles, Knitwear"
+ },
+ "TPIVE3----": {
+  "nob": "Industritekstilfaget, veving",
+  "nno": "Industritekstilfaget, veving",
+  "eng": "Industrial Textiles, Weaving"
+ },
+ "TPKAR3----": {
+  "nob": "Chassispåbyggerfaget",
+  "nno": "Chassispåbyggjarfaget",
+  "eng": "Chassis Building"
+ },
+ "TPKJP2----": {
+  "nob": "Kjemiprosess",
+  "nno": "Kjemiprosess",
+  "eng": "Chemical Processing"
+ },
+ "TPKJP3----": {
+  "nob": "Kjemiprosessfaget",
+  "nno": "Kjemiprosessfaget",
+  "eng": "Chemical Processing"
+ },
+ "TPKJT2----": {
+  "nob": "Kjøretøy",
+  "nno": "Kjøretøy",
+  "eng": "Motor Vehicles"
+ },
+ "TPKLO3----": {
+  "nob": "Kran- og løfteoperasjonsfaget",
+  "nno": "Kran- og lyfteoperasjonsfaget",
+  "eng": "Crane and Lifting Operations"
+ },
+ "TPKPL2----": {
+  "nob": "Kjemiprosess- og laboratoriefag",
+  "nno": "Kjemiprosess- og laboratoriefag",
+  "eng": "Chemical Processing and Laboratory Work"
+ },
+ "TPLAB2----": {
+  "nob": "Laboratoriefag",
+  "nno": "Laboratoriefag",
+  "eng": "Laboratory Work"
+ },
+ "TPLAB3----": {
+  "nob": "Laboratoriefaget",
+  "nno": "Laboratoriefaget",
+  "eng": "Laboratory Work"
+ },
+ "TPLMM3----": {
+  "nob": "Landbruksmaskinmekanikerfaget",
+  "nno": "Landbruksmaskinmekanikarfaget",
+  "eng": "Agricultural Machinery Operation and Maintenance"
+ },
+ "TPLOG3----": {
+  "nob": "Logistikkfaget",
+  "nno": "Logistikkfaget",
+  "eng": "Logistics"
+ },
+ "TPLSF3----": {
+  "nob": "Låsesmedfaget",
+  "nno": "Låsesmedfaget",
+  "eng": "Locksmithing"
+ },
+ "TPMAR2----": {
+  "nob": "Maritime fag",
+  "nno": "Maritime fag",
+  "eng": "Maritime Subjects"
+ },
+ "TPMIR3----": {
+  "nob": "Maritim innredning",
+  "nno": "Maritim innreiing",
+  "eng": "Maritime fixtures"
+ },
+ "TPMME3----": {
+  "nob": "Motormekanikerfaget",
+  "nno": "Motormekanikarfaget",
+  "eng": "Engine Installation, Repair and Maintenance"
+ },
+ "TPMOB3----": {
+  "nob": "Modellbyggerfaget",
+  "nno": "Modellbyggjarfaget",
+  "eng": "Model Building"
+ },
+ "TPMOM3----": {
+  "nob": "Motormannfaget",
+  "nno": "Motormannfaget",
+  "eng": "Motorman Skills"
+ },
+ "TPMPT2----": {
+  "nob": "Maritim produksjonsteknikk",
+  "nno": "Maritim produksjonsteknikk",
+  "eng": "Maritime production techniques"
+ },
+ "TPMSY3----": {
+  "nob": "Motorsykkelfaget",
+  "nno": "Motorsykkelfaget",
+  "eng": "Motorcycle Repair"
+ },
+ "TPMTS3----": {
+  "nob": "Matrosfaget",
+  "nno": "Matrosfaget",
+  "eng": "Able Seaman Skills"
+ },
+ "TPNDT3----": {
+  "nob": "NDT-kontrollørfaget",
+  "nno": "NDT-kontrollørfaget",
+  "eng": "NDT inspection"
+ },
+ "TPPIN2----": {
+  "nob": "Industriteknologi",
+  "nno": "Industriteknologi",
+  "eng": "Industrial Technology"
+ },
+ "TPPLA3----": {
+  "nob": "Platearbeiderfaget",
+  "nno": "Platearbeidarfaget",
+  "eng": "Sheet Metal Work"
+ },
+ "TPPLF3----": {
+  "nob": "Plastfaget",
+  "nno": "Plastfaget",
+  "eng": null
+ },
+ "TPPLM3----": {
+  "nob": "Plastmekanikerfaget",
+  "nno": "Plastmekanikarfaget",
+  "eng": "Plastics Materials Repairs and Maintenance"
+ },
+ "TPPOK2----": {
+  "nob": "Plast og kompositt",
+  "nno": "Plast og kompositt",
+  "eng": "Plastics and composites"
+ },
+ "TPPOM3----": {
+  "nob": "Polymerkomposittfaget",
+  "nno": "Polymerkomposittfaget",
+  "eng": "Composite Polymers"
+ },
+ "TPPRT3----": {
+  "nob": "Produksjonsteknikkfaget",
+  "nno": "Produksjonsteknikkfaget",
+  "eng": "Production Techniques"
+ },
+ "TPRSD3----": {
+  "nob": "Reservedelsfaget",
+  "nno": "Reservedelsfaget",
+  "eng": "Motor Vehicle Parts Supply Skills"
+ },
+ "TPSGR3----": {
+  "nob": "Serigrafifaget",
+  "nno": "Serigrafifaget",
+  "eng": "Screen Printing"
+ },
+ "TPSMK3----": {
+  "nob": "Skipsmotormekanikerfaget",
+  "nno": "Skipsmotormekanikarfaget",
+  "eng": null
+ },
+ "TPSTF3----": {
+  "nob": "Støperifaget",
+  "nno": "Støyperifaget",
+  "eng": "Forging"
+ },
+ "TPSVE3----": {
+  "nob": "Sveisefaget",
+  "nno": "Sveisefaget",
+  "eng": "Welding"
+ },
+ "TPSYM3----": {
+  "nob": "Sykkelmekanikerfaget",
+  "nno": "Sykkelmekanikarfaget",
+  "eng": "Bicycle Mechanics"
+ },
+ "TPTEP3----": {
+  "nob": "Termoplastfaget",
+  "nno": "Termoplastfaget",
+  "eng": "Thermoplastics"
+ },
+ "TPTIP1----": {
+  "nob": "Teknologi- og industrifag",
+  "nno": "Teknologi- og industrifag",
+  "eng": "Technical and Industrial Production"
+ },
+ "TPTLM3----": {
+  "nob": "Truck- og liftmekanikerfaget",
+  "nno": "Truck- og liftmekanikarfaget",
+  "eng": "Forklift Mechanics"
+ },
+ "TPTOL2----": {
+  "nob": "Transport og logistikk",
+  "nno": "Transport og logistikk",
+  "eng": "Transport and Logistics"
+ },
+ "TPTRF3----": {
+  "nob": "Tekstilrensfaget",
+  "nno": "Tekstilrensfaget",
+  "eng": "Dry Cleaning Skills"
+ },
+ "TPTRY3----": {
+  "nob": "Trykkerfaget",
+  "nno": "Trykkarfaget",
+  "eng": "Printing"
+ },
+ "TPTSR3----": {
+  "nob": "Tekstilrensfaget",
+  "nno": "Tekstilrensfaget",
+  "eng": "Dry Cleaning Skills"
+ },
+ "TPVAF3----": {
+  "nob": "Vaskerifaget",
+  "nno": "Vaskerifaget",
+  "eng": "Laundry Skills"
+ },
+ "TPVAS3----": {
+  "nob": "Vaskerifaget",
+  "nno": "Vaskerifaget",
+  "eng": "Laundry Skills"
+ },
+ "TPVER3----": {
+  "nob": "Verktøymakerfaget",
+  "nno": "Verktøymakarfaget",
+  "eng": "Toolmaking"
+ },
+ "TPYRK3----": {
+  "nob": "Yrkessjåførfaget",
+  "nno": "Yrkessjåførfaget",
+  "eng": "Transport Driving"
+ },
+ "TPYSL3----": {
+  "nob": "Yrkessjåførkurs for voksne",
+  "nno": "Yrkessjåførkurs for vaksne",
+  "eng": "Fidnovuoddjikursa rávisolbmuide"
+ }
+}
