@@ -70,6 +70,7 @@
   #tagline { font-size: 12px; color: var(--ink-2); line-height: 1.45; margin: 8px 0 12px; }
   .field label { display: block; font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
                  text-transform: uppercase; color: var(--ink-3); margin-bottom: 5px; }
+  .field + .field { margin-top: 10px; }
   .field select {
     width: 100%; padding: 8px 10px; font: inherit; font-size: 13px; color: var(--ink);
     background: var(--surface-solid); border: 1px solid var(--line); border-radius: 10px;
@@ -91,6 +92,12 @@
   #legend .none .dot.open-dot { background: var(--accent-soft); border: 1.5px dashed var(--accent); }
   #legend .none + .none { margin-top: 3px; }
   #legend .sizenote { margin-top: 7px; color: var(--ink-3); max-width: 210px; line-height: 1.35; }
+  #legend .sizenote.warn { color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 6px; }
+  .round {
+    display: inline-block; font-size: 9.5px; font-weight: 650; letter-spacing: .02em;
+    padding: 1px 6px; border-radius: 999px; background: var(--accent-soft);
+    color: var(--accent); vertical-align: 1px; white-space: nowrap; cursor: help;
+  }
 
   /* ---------- map marker & tooltip ---------- */
   .leaflet-interactive:focus { outline: 3px solid var(--accent); outline-offset: 2px; }
@@ -262,6 +269,10 @@
     </div>
   </div>
   <p id="tagline"></p>
+  <div class="field" id="fylke-field" hidden>
+    <label id="fylke-label" for="map-fylke"></label>
+    <select id="map-fylke" onchange="onMapFylke(this.value)"></select>
+  </div>
   <div class="field">
     <label id="cat-label" for="map-cat"></label>
     <select id="map-cat" onchange="onMapCat(this.value)"></select>
@@ -273,6 +284,7 @@
   <div class="t" id="legend-title"></div>
   <div class="bins" id="legend-bins"></div>
   <div class="sizenote" id="legend-size"></div>
+  <div class="sizenote warn" id="legend-mixed" hidden></div>
   <div class="none"><span class="dot open-dot"></span><span id="legend-open"></span></div>
   <div class="none"><span class="dot"></span><span id="legend-none"></span></div>
 </div>
@@ -301,6 +313,13 @@ const T = {
     no: 'Nedre poenggrense (siste inntatte søker, 2. inntak) for videregående skoler i Rogaland, 2018–2025. Hold over en skole – klikk for detaljer.',
     en: 'Admission point thresholds (last admitted applicant, 2nd round) for upper secondary schools in Rogaland, 2018–2025. Hover a school — click for details.',
   },
+  fylkeLabel: { no: 'Fylke', en: 'County' },
+  allFylker:  { no: 'Hele landet', en: 'All of Norway' },
+  roundChip:  { no: r => `${r}. inntak`, en: r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : 'rd'} intake round` },
+  roundTitle: { no: 'Poenggrensa er poengsummen til sist inntatte søkjar i denne inntaksrunden. Grensa fell mellom rundane, fordi plassar blir ledige. Tal frå ulike rundar kan ikkje samanliknast direkte.',
+                en: 'The threshold is the score of the last applicant admitted in this intake round. Thresholds fall between rounds as places free up, so numbers from different rounds are not directly comparable.' },
+  mixedRounds:{ no: 'Kartet viser fylke med ulike inntaksrundar – tala kan ikkje samanliknast direkte.',
+                en: 'The map mixes counties with different intake rounds — those numbers are not directly comparable.' },
   catLabel:   { no: 'Vis kategori (utdanningsprogram)', en: 'Show category (study program)' },
   allCats:    { no: 'Alle kategorier', en: 'All categories' },
   catNote:    { no: n => `${n} skoler tilbyr dette`, en: n => `${n} schools offer this` },
@@ -371,6 +390,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 
 let DATA = null, map = null, markerLayer = null;
 let mapCat = 'all';
+let mapFylke = 'all';
 let current = null;                       // selected school
 let chart = { mode: 'all', cat: null, prog: null };
 
@@ -431,9 +451,8 @@ function setTiles() {
 function drawMarkers() {
   if (markerLayer) map.removeLayer(markerLayer);
   markerLayer = L.layerGroup().addTo(map);
-  for (const s of DATA.schools) {
+  for (const s of visibleSchools()) {
     if (!s.lat) continue;
-    if (mapCat !== 'all' && !s.programs.some(p => p.category === mapCat)) continue;
     const st8 = schoolPressure(s, mapCat);
     const v = st8.kind === 'points' ? st8.v : null;
     const style = st8.kind === 'points'
@@ -459,7 +478,9 @@ function drawMarkers() {
            : `${CATS[mapCat][lang]}: –`;
     }
     const html = `<div class="n">${esc(s.name)}</div><div class="v">${line}</div>` +
-      `<div class="v">${t('tipPrograms', visibleCount(s))}</div><div class="h">${t('tipHint')}</div>`;
+      `<div class="v">${t('tipPrograms', visibleCount(s))}` +
+      (s.round ? ` · <span class="round">${t('roundChip', s.round)}</span>` : '') + '</div>' +
+      `<div class="h">${t('tipHint')}</div>`;
     const tipOpts = dir => ({ className: 'tip', direction: dir, opacity: 1,
                               offset: dir === 'top' ? [0, -10] : [0, 10] });
     m.bindTooltip(html, tipOpts('top'));
@@ -486,6 +507,19 @@ function drawMarkers() {
   }
 }
 
+function onMapFylke(v) {
+  mapFylke = v;
+  drawMarkers(); renderPanel(); renderLegend(); renderCatNote();
+  const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon]);
+  if (pts.length) map.flyToBounds(L.latLngBounds(pts).pad(0.08), { duration: .6 });
+}
+
+function visibleSchools() {
+  return DATA.schools.filter(s =>
+    (mapFylke === 'all' || s.fylke === mapFylke) &&
+    (mapCat === 'all' || s.programs.some(p => p.category === mapCat)));
+}
+
 function onMapCat(v) {
   mapCat = v;
   drawMarkers(); renderLegend(); renderCatNote();
@@ -502,8 +536,17 @@ function renderPanel() {
   document.getElementById('cat-label').textContent = t('catLabel');
   document.getElementById('lang-no').classList.toggle('on', lang === 'no');
   document.getElementById('lang-en').classList.toggle('on', lang === 'en');
+  const counties = (DATA.counties || []).filter(c => c.schools);
+  const ff = document.getElementById('fylke-field');
+  ff.hidden = counties.length < 2;               // pointless with a single county
+  document.getElementById('fylke-label').textContent = t('fylkeLabel');
+  const fsel = document.getElementById('map-fylke');
+  fsel.innerHTML = `<option value="all">${t('allFylker')}</option>` +
+    counties.map(c => `<option value="${esc(c.fylke)}">${esc(c.fylke)} (${c.schools})</option>`).join('');
+  fsel.value = mapFylke;
   const present = new Set();
-  DATA.schools.forEach(s => s.programs.forEach(p => present.add(p.category)));
+  DATA.schools.filter(s => mapFylke === 'all' || s.fylke === mapFylke)
+    .forEach(s => s.programs.forEach(p => present.add(p.category)));
   const sel = document.getElementById('map-cat');
   sel.innerHTML = `<option value="all">${t('allCats')}</option>` +
     Object.keys(CATS).filter(c => present.has(c))
@@ -516,8 +559,14 @@ function renderCatNote() {
     t('catNote', DATA.schools.filter(s => s.programs.some(p => p.category === mapCat)).length);
 }
 function renderLegend() {
-  document.getElementById('legend-title').textContent =
-    mapCat === 'all' ? t('legendAll') : t('legendCat', mapCat);
+  const rounds = [...new Set(visibleSchools().map(s => s.round).filter(Boolean))];
+  document.getElementById('legend-title').innerHTML =
+    (mapCat === 'all' ? t('legendAll') : t('legendCat', mapCat)) +
+    (rounds.length === 1
+      ? ` <span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', rounds[0])}</span>` : '');
+  const mix = document.getElementById('legend-mixed');
+  mix.hidden = rounds.length < 2;
+  mix.textContent = t('mixedRounds');
   document.getElementById('legend-bins').innerHTML = BINS.map((b, i) =>
     `<div class="bin"><span class="sw" style="background:${cssVar(b.css)}"></span><span class="bl">${BIN_EDGES[i]}</span></div>`).join('');
   document.getElementById('legend-size').textContent = t('legendSize');
@@ -582,6 +631,8 @@ function renderSide() {
   if (s.url) meta.push(`<a href="${esc(s.url.startsWith('http') ? s.url : 'https://' + s.url)}" target="_blank" rel="noopener">${t('website')} ↗</a>`);
   if (s.wiki_url) meta.push(`<a href="${esc(s.wiki_url)}" target="_blank" rel="noopener">${t('wiki')} ↗</a>`);
   if (s.address) meta.push(`<span>${esc(s.address)}</span>`);
+  if (s.fylke) meta.push(`<span>${esc(s.fylke)}</span>`);
+  if (s.round) meta.push(`<span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', s.round)}</span>`);
   document.getElementById('s-meta').innerHTML = meta.join('');
   // hero mirrors what the map encodes — the median threshold — so the two
   // never tell different stories; a category lens narrows both together

@@ -1,74 +1,76 @@
 #!/usr/bin/env python3
-"""Attach coordinates to the parsed schools via NSR (Nasjonalt skoleregister).
+"""Attach coordinates to every school in the dataset, nationally.
 
-NSR's list API has no server-side filters, so we page through all units once,
-keep active upper-secondary schools in Rogaland (fylke 11), fetch each one's
-detail record for coordinates, and fuzzy-match against our school names.
-Writes web/data/schools.json in place (adds lat/lon/orgnr per school).
+NSR (Nasjonalt skoleregister) has no server-side filters, so we page the whole
+register once, keep active upper-secondary schools, and cache them with their
+fylkesnummer. Matching is scoped to the school's own county — school names
+repeat across counties (St. Olav exists in both Stavanger and Sarpsborg).
+Schools NSR lists without coordinates (lat 0.0) fall back to Kartverket's open
+address API.
 """
 
 import json
 import os
 import re
 import time
+import urllib.parse
 import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, '..', 'web', 'data', 'schools.json')
-CACHE = os.path.join(HERE, 'nsr-rogaland-vgs.json')
+CACHE = os.path.join(HERE, 'nsr-vgs.json')
+UA = {'User-Agent': 'poengkart/0.1 (prototype)', 'Accept': 'application/json'}
 
-# last-resort coordinates for schools NSR no longer lists (closed/merged) or
-# whose NSR address doesn't geocode (Øksnevad: NSR says "Jærveien", the road
-# is registered as "Jærvegen 990, Kleppe" in matrikkelen)
+# schools NSR cannot place and whose address does not geocode either
 MANUAL = {
-    'stavanger offshore tekniske skole': (58.9271, 5.7052),  # Kalhammaren, Stavanger
-    'øksnevad': (58.80082, 5.67142),  # Jærvegen 990, Kleppe
+    ('11', 'stavanger offshore tekniske skole'): (58.9271, 5.7052),
+    ('11', 'øksnevad'): (58.80082, 5.67142),   # NSR says "Jærveien", matrikkelen "Jærvegen"
 }
 
 
-def get(url):
-    req = urllib.request.Request(url, headers={'User-Agent': 'poengkart-prototype', 'Accept': 'application/json'})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.load(r)
+def get(url, timeout=30):
+    return json.load(urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout))
 
 
-def fetch_nsr_rogaland_vgs():
-    if os.path.exists(CACHE):
+def fetch_nsr(refresh=False):
+    if os.path.exists(CACHE) and not refresh:
         return json.load(open(CACHE))
-    units = []
-    page, pages = 1, None
+    units, page, pages = [], 1, None
     while pages is None or page <= pages:
         d = get(f'https://data-nsr.udir.no/v4/enheter?sidenummer={page}&antallPerSide=1000')
         pages = d['AntallSider']
-        for e in d['EnhetListe']:
-            if e.get('ErVideregaaendeSkole') and e.get('ErAktiv') and e.get('Fylkesnummer') == '11':
-                units.append(e)
-        print(f'page {page}/{pages}: kept {len(units)} so far')
+        units += [e for e in d['EnhetListe']
+                  if e.get('ErVideregaaendeSkole') and e.get('ErAktiv')]
+        print(f'  page {page}/{pages}: {len(units)} VGS so far')
         page += 1
-        time.sleep(0.3)
-    detailed = []
-    for e in units:
-        org = e['Organisasjonsnummer']
+        time.sleep(0.25)
+    out = []
+    for i, e in enumerate(units):
         try:
-            det = get(f'https://data-nsr.udir.no/v3/enhet/{org}')
+            det = get(f'https://data-nsr.udir.no/v3/enhet/{e["Organisasjonsnummer"]}')
         except Exception as ex:
-            print(f'  detail fail {org} {e["Navn"]}: {ex}')
+            print(f'  detail failed {e["Navn"]}: {str(ex)[:50]}')
             continue
-        koor = det.get('Koordinat') or {}
-        detailed.append({
-            'orgnr': org, 'navn': det.get('Navn') or e['Navn'],
-            'lat': koor.get('Breddegrad'), 'lon': koor.get('Lengdegrad'),
-            'kommune': det.get('Kommune', {}).get('Navn') if isinstance(det.get('Kommune'), dict) else e.get('Kommunenummer'),
+        k = det.get('Koordinat') or {}
+        adr = det.get('Beliggenhetsadresse') or {}
+        out.append({
+            'orgnr': e['Organisasjonsnummer'], 'navn': det.get('Navn') or e['Navn'],
+            'fylke': e.get('Fylkesnummer'), 'lat': k.get('Breddegrad'), 'lon': k.get('Lengdegrad'),
+            'url': (det.get('Url') or '').strip(),
+            'adresse': ', '.join(x for x in [adr.get('Adresse'), adr.get('Postnr'),
+                                             adr.get('Poststed')] if x),
         })
-        time.sleep(0.2)
-    json.dump(detailed, open(CACHE, 'w'), ensure_ascii=False, indent=1)
-    return detailed
+        if i % 100 == 0:
+            print(f'  details {i}/{len(units)}')
+        time.sleep(0.12)
+    json.dump(out, open(CACHE, 'w'), ensure_ascii=False, indent=1)
+    return out
 
 
 def simplify(name):
-    n = name.lower()
-    n = re.sub(r'\b(videregående|vidaregåande|videregåande)\b', '', n)
-    n = re.sub(r'\b(skole|skule|avd\.?|avdeling)\b', '', n)
+    n = (name or '').lower()
+    n = re.sub(r'\b(videregående|vidaregåande|videregåande|vgs)\b', ' ', n)
+    n = re.sub(r'\b(skole|skule|skolen|avd\.?|avdeling)\b', ' ', n)
     n = n.replace('st.', 'st ').replace('.', ' ').replace('-', ' ')
     return re.sub(r'\s+', ' ', n).strip()
 
@@ -77,61 +79,67 @@ def has_coords(u):
     return u.get('lat') and u.get('lon') and abs(u['lat']) > 1
 
 
-def kartverket_geocode(adresse):
-    """Fallback: geocode a street address via Kartverket's open address API."""
-    import urllib.parse
-    q = urllib.parse.urlencode({'sok': adresse, 'treffPerSide': 1})
-    d = get(f'https://ws.geonorge.no/adresser/v1/sok?{q}')
-    hits = d.get('adresser', [])
+def kartverket(address):
+    if not address:
+        return None
+    q = urllib.parse.urlencode({'sok': address, 'treffPerSide': 1})
+    try:
+        hits = get(f'https://ws.geonorge.no/adresser/v1/sok?{q}').get('adresser', [])
+    except Exception:
+        return None
     if hits:
         p = hits[0]['representasjonspunkt']
         return p['lat'], p['lon']
     return None
 
 
-def best_match(key, nsr):
-    exact = [u for u in nsr if simplify(u['navn']) == key]
+def best_match(key, pool):
+    exact = [u for u in pool if simplify(u['navn']) == key]
     if exact:
         return exact[0]
-    subs = [u for u in nsr
-            if 'avd' not in u['navn'].lower()
+    subs = [u for u in pool if 'avd' not in u['navn'].lower()
             and (key in simplify(u['navn']) or simplify(u['navn']) in key)]
     return subs[0] if subs else None
 
 
 def main():
-    nsr = fetch_nsr_rogaland_vgs()
-    print(f'NSR: {len(nsr)} active VGS units in Rogaland')
+    nsr = fetch_nsr(refresh='--refresh' in os.sys.argv)
+    print(f'NSR: {len(nsr)} active upper-secondary schools nationally')
     data = json.load(open(DATA))
+    by_fylke = {}
+    for u in nsr:
+        by_fylke.setdefault(u['fylke'], []).append(u)
+
     unmatched = []
     for s in data['schools']:
         key = simplify(s['name'])
-        hit = best_match(key, nsr)
+        pool = by_fylke.get(s.get('fylkesnummer'), nsr)
+        hit = best_match(key, pool)
         if hit and not has_coords(hit):
-            # NSR has the school but no coordinates (lat=0) - geocode its address
-            try:
-                det = get(f'https://data-nsr.udir.no/v3/enhet/{hit["orgnr"]}')
-                adr = det.get('Beliggenhetsadresse') or det.get('Postadresse') or {}
-                text = f"{adr.get('Adresse', '')}, {adr.get('Poststed', '')}"
-                pt = kartverket_geocode(text)
-                if pt:
-                    hit = dict(hit, lat=pt[0], lon=pt[1], navn=hit['navn'] + ' (adr-geokodet)')
-                    print(f'  kartverket fallback for {s["name"]}: {text.strip(", ")} -> {pt}')
-            except Exception as ex:
-                print(f'  fallback failed for {s["name"]}: {ex}')
+            pt = kartverket(hit.get('adresse'))
+            if pt:
+                hit = dict(hit, lat=pt[0], lon=pt[1])
+                print(f'  kartverket fallback: {s["name"]} -> {pt[0]:.4f},{pt[1]:.4f}')
         if hit and has_coords(hit):
-            s['lat'], s['lon'], s['orgnr'], s['nsr_name'] = hit['lat'], hit['lon'], hit['orgnr'], hit['navn']
-        elif key in MANUAL:
-            s['lat'], s['lon'] = MANUAL[key]
-            s['nsr_name'] = '(manual)'
+            s['lat'], s['lon'], s['orgnr'] = hit['lat'], hit['lon'], hit['orgnr']
+            s['nsr_name'] = hit['navn']
+            if hit.get('adresse') and not s.get('address'):
+                s['address'] = hit['adresse']
+            if hit.get('url') and '@' not in hit['url'] and not s.get('url'):
+                s['url'] = hit['url']
         else:
-            unmatched.append(s['name'])
+            man = MANUAL.get((s.get('fylkesnummer'), key)) or MANUAL.get((s.get('fylkesnummer'), s['name'].lower()))
+            if man:
+                s['lat'], s['lon'] = man
+                s['nsr_name'] = '(manual)'
+            else:
+                unmatched.append(f'{s["fylke"]}: {s["name"]}')
+
     json.dump(data, open(DATA, 'w'), ensure_ascii=False, indent=1)
-    n_ok = sum(1 for s in data['schools'] if s.get('lat'))
-    print(f'matched {n_ok}/{len(data["schools"])} schools with coordinates')
-    if unmatched:
-        print('UNMATCHED:', unmatched)
-        print('NSR names available:', sorted(simplify(u["navn"]) for u in nsr))
+    ok = sum(1 for s in data['schools'] if s.get('lat'))
+    print(f'matched {ok}/{len(data["schools"])} schools with coordinates')
+    for u in unmatched:
+        print('  UNMATCHED:', u)
 
 
 if __name__ == '__main__':

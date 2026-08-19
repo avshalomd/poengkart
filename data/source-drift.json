@@ -1,5 +1,6 @@
 [
  {
+  "county": "Rogaland",
   "school": "Vardafjell videregående skole",
   "program": "International baccalaureate, IB",
   "level": "Vg2",
@@ -10,6 +11,7 @@
   "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Vardafjell videregående skole",
   "program": "International baccalaureate, IB",
   "level": "Vg2",
@@ -20,6 +22,7 @@
   "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Vågen videregående skole",
   "program": "Interiør",
   "level": "Vg3",
@@ -30,6 +33,7 @@
   "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Vågen videregående skole",
   "program": "Kunst, design og arkitektur",
   "level": "Vg3",
@@ -40,6 +44,7 @@
   "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Åkrehamn vidaregåande skole",
   "program": "Helse- og oppvekstfag",
   "level": "Vg1",
@@ -50,6 +55,7 @@
   "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Hetland videregående skole",
   "program": "Medier og kommunikasjon",
   "level": "Vg1",
@@ -60,6 +66,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Hetland videregående skole",
   "program": "Medier og kommunikasjon",
   "level": "Vg1",
@@ -70,6 +77,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Hetland videregående skole",
   "program": "Studiespesialisering",
   "level": "Vg1",
@@ -80,6 +88,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Hetland videregående skole",
   "program": "Studiespesialisering",
   "level": "Vg1",
@@ -90,6 +99,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Hetland videregående skole",
   "program": "Realfag",
   "level": "Vg2",
@@ -100,6 +110,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Hetland videregående skole",
   "program": "Realfag",
   "level": "Vg2",
@@ -110,6 +121,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Hetland videregående skole",
   "program": "Språk, samfunn og økonomi",
   "level": "Vg2",
@@ -120,6 +132,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Hetland videregående skole",
   "program": "Språk, samfunn og økonomi",
   "level": "Vg2",
@@ -130,6 +143,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Sola videregående skole",
   "program": "Avionikerfaget Landslinje",
   "level": "Vg3",
@@ -140,6 +154,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Sola videregående skole",
   "program": "Avionikerfaget Landslinje",
   "level": "Vg3",
@@ -150,6 +165,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Sola videregående skole",
   "program": "Flyfag, Landslinje",
   "level": "Vg3",
@@ -160,6 +176,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Sola videregående skole",
   "program": "Flyfag, Landslinje",
   "level": "Vg3",
@@ -170,6 +187,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Vardafjell videregående skole",
   "program": "International baccalaureate, IB",
   "level": "Vg2",
@@ -180,6 +198,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Sola videregående skole",
   "program": "Avionikerfaget Landslinje",
   "level": "Vg3",
@@ -190,6 +209,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Sola videregående skole",
   "program": "Avionikerfaget Landslinje",
   "level": "Vg3",
@@ -200,6 +220,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Sola videregående skole",
   "program": "Flyfag, Landslinje",
   "level": "Vg3",
@@ -210,6 +231,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Sola videregående skole",
   "program": "Flyfag, Landslinje",
   "level": "Vg3",
@@ -220,6 +242,7 @@
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Hetland videregående skole",
   "program": "Medier og kommunikasjon",
   "level": "Vg1",
@@ -230,6 +253,7 @@
   "ignored_from": "poenggrenser-rogaland-2019-2020.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Hetland videregående skole",
   "program": "Studiespesialisering",
   "level": "Vg1",
@@ -240,6 +264,7 @@
   "ignored_from": "poenggrenser-rogaland-2019-2020.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Hetland videregående skole",
   "program": "Realfag",
   "level": "Vg2",
@@ -250,6 +275,7 @@
   "ignored_from": "poenggrenser-rogaland-2019-2020.pdf"
  },
  {
+  "county": "Rogaland",
   "school": "Hetland videregående skole",
   "program": "Språk, samfunn og økonomi",
   "level": "Vg2",
