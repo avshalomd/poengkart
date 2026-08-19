@@ -13,7 +13,10 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = json.load(open(os.path.join(HERE, '..', 'web', 'data', 'schools.json')))
-SCHOOLS = {s['name']: s for s in DATA['schools']}
+# Rogaland-specific assertions are scoped to Rogaland so they keep meaning as
+# other counties are added; national invariants are checked over everything.
+ROGALAND = [s for s in DATA['schools'] if s.get('fylke', 'Rogaland') == 'Rogaland']
+SCHOOLS = {s['name']: s for s in ROGALAND}
 
 fails, checks = [], 0
 
@@ -47,16 +50,43 @@ def value(school_sub, prog_exact, year, level=None):
 
 
 # --- shape -------------------------------------------------------------
-check('25 schools', len(DATA['schools']) == 25, f'got {len(DATA["schools"])}')
-check('years 2018-2025', DATA['years'] == list(range(2018, 2026)), str(DATA['years']))
-cells = [(s['name'], p, y, v) for s in DATA['schools'] for p in s['programs']
+check('Rogaland has 25 schools', len(ROGALAND) == 25, f'got {len(ROGALAND)}')
+check('years cover 2018-2025 contiguously',
+      set(range(2018, 2026)) <= set(DATA['years'])
+      and DATA['years'] == sorted(set(DATA['years'])), str(DATA['years']))
+cells = [(s['name'], p, y, v) for s in ROGALAND for p in s['programs']
          for y, v in p['values'].items()]
+nat_cells = [(s['name'], p, y, v) for s in DATA['schools'] for p in s['programs']
+             for y, v in p['values'].items()]
 check('>= 3400 cells', len(cells) >= 3400, f'got {len(cells)}')
 n2018 = sum(1 for _, _, y, _ in cells if y == '2018')
 check('2018 coverage restored (>= 340 cells)', n2018 >= 340, f'got {n2018}')
 check('all schools geocoded',
       all(s.get('lat') for s in DATA['schools']),
-      str([s['name'] for s in DATA['schools'] if not s.get('lat')]))
+      str([s['name'] for s in DATA['schools'] if not s.get('lat')][:5]))
+
+# --- national invariants (hold for every county) -----------------------
+check('every school has a county', all(s.get('fylke') for s in DATA['schools']),
+      str([s['name'] for s in DATA['schools'] if not s.get('fylke')][:5]))
+check('every school declares an intake round',
+      all(s.get('round') for s in DATA['schools']),
+      str(sorted({s['fylke'] for s in DATA['schools'] if not s.get('round')})))
+check('counties metadata present and counted',
+      bool(DATA.get('counties')) and all(c.get('schools') for c in DATA['counties']),
+      str(DATA.get('counties')))
+check('coordinates inside Norway',
+      all(57 < s['lat'] < 72 and 4 < s['lon'] < 32 for s in DATA['schools'] if s.get('lat')),
+      str([(s['name'], s.get('lat'), s.get('lon')) for s in DATA['schools']
+           if s.get('lat') and not (57 < s['lat'] < 72 and 4 < s['lon'] < 32)][:3]))
+nat_statuses = {v for _, _, _, v in nat_cells if isinstance(v, str)}
+check('only known statuses nationally', nat_statuses <= {'open', 'F', 'U', 'D'}, str(nat_statuses))
+nat_absurd = [(s, p['program'], y, v) for s, p, y, v in nat_cells
+              if isinstance(v, (int, float)) and not (8 <= v <= 65)]
+check('no absurd thresholds nationally', not nat_absurd, str(nat_absurd[:3]))
+nat_uncat = sorted({f'{s}: {p["program"]}' for s, p, _, _ in nat_cells if p['category'] == 'annet'})
+check('every programme categorised nationally', not nat_uncat, str(nat_uncat[:5]))
+check('no duplicate (county, school)',
+      len({(s['fylke'], s['name']) for s in DATA['schools']}) == len(DATA['schools']))
 
 # --- QA D2: two tables on one page were merged under one school --------
 check('St.Olav does not carry Sola flyfag', not progs('St.Olav', 'flyfag'))

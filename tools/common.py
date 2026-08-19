@@ -161,13 +161,15 @@ def merge_rows(rows_newest_first):
     Series identity is (programme, level) + an occurrence index, so a school
     that lists the same programme at two levels keeps two series.
     """
-    schools, drift = {}, []
+    schools, drift, attrs = {}, [], {}
     for source, rows in rows_newest_first:
         occ_seen = {}
         for r in rows:
             # school identity is (county, name): the same school name exists in
             # more than one county (St. Olav in both Stavanger and Sarpsborg)
             sid = (r.get('county', ''), r['school'])
+            if r.get('region'):
+                attrs.setdefault(sid, {})['inntaksregion'] = r['region']
             base = (sid, r['program'].lower(), r['level'])
             occ = occ_seen.get(base, 0)
             occ_seen[base] = occ + 1
@@ -188,7 +190,7 @@ def merge_rows(rows_newest_first):
                 else:
                     rec['values'][y] = v
                     rec['sources'][y] = source
-    return schools, drift
+    return schools, drift, attrs
 
 
 def validate(schools):

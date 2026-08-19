@@ -52,7 +52,7 @@ def main():
         all_rows += srcs
         counties.append({k: v for k, v in mod.META.items() if k != 'uncertain'})
 
-    schools, drift = common.merge_rows(all_rows)
+    schools, drift, attrs = common.merge_rows(all_rows)
     problems = common.validate(schools)
 
     by_meta = {c['fylke']: c for c in counties}
@@ -69,6 +69,9 @@ def main():
         meta = by_meta.get(county, {})
         entry = {'name': name, 'fylke': county, 'fylkesnummer': meta.get('code'),
                  'round': meta.get('round'), 'programs': progs}
+        entry.update(attrs.get((county, name), {}))
+        if meta.get('free_choice') is False:
+            entry['catchment'] = True      # threshold applies to residents only
         out['schools'].append(entry)
     out['years'] = sorted(all_years)
 
