@@ -7,7 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <style>
   :root {
     color-scheme: light;
@@ -93,6 +95,7 @@
   #legend .none + .none { margin-top: 3px; }
   #legend .sizenote { margin-top: 7px; color: var(--ink-3); max-width: 210px; line-height: 1.35; }
   #legend .sizenote.warn { color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 6px; }
+  .round.unknown { background: transparent; color: var(--ink-2); border: 1px dashed var(--line); }
   .round {
     display: inline-block; font-size: 9.5px; font-weight: 650; letter-spacing: .02em;
     padding: 1px 6px; border-radius: 999px; background: var(--accent-soft);
@@ -110,6 +113,17 @@
   .tip .v { font-size: 12px; color: var(--ink-2); margin-top: 2px; font-variant-numeric: tabular-nums; }
   .tip .h { font-size: 10.5px; color: var(--ink-3); margin-top: 4px; }
 
+  /* ---------- marker clusters ---------- */
+  .pk-cluster {
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 999px; font-weight: 700; font-size: 12px; color: #fff;
+    background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft),
+                0 2px 8px rgba(0,0,0,.35);
+    border: 2px solid var(--surface-solid);
+  }
+  .pk-cluster.big { font-size: 13.5px; }
+  .leaflet-cluster-anim .leaflet-marker-icon { transition: transform .2s ease; }
+
   /* ---------- sidebar ---------- */
   #side {
     width: 0; overflow: hidden; transition: width .22s cubic-bezier(.4,0,.2,1);
@@ -119,6 +133,12 @@
   /* keep the control panel clear of the sidebar at tablet widths */
   #side.open { width: min(480px, max(320px, 100vw - 350px)); }
   #side > .scroll { overflow-y: auto; flex: 1; min-width: min(480px, max(320px, 100vw - 350px)); }
+  @media (max-width: 520px) {
+    #panel { width: min(300px, calc(100vw - 28px)); padding: 12px 13px 11px; }
+    #tagline { display: none; }            /* the panel hid 23 markers */
+    #legend { padding: 8px 11px 7px; }
+    #legend .sizenote, #legend .sizenote.warn { display: none; }
+  }
   @media (max-width: 760px) {
     #side.open { width: 100vw; }
     #side > .scroll { min-width: 100vw; }
@@ -349,7 +369,11 @@ const T = {
   closeAria:  { no: 'Lukk skoledetaljer', en: 'Close school details' },
   markerAria: { no: (n, v) => `${n}. ${v}. Trykk for detaljer.`, en: (n, v) => `${n}. ${v}. Press to open details.` },
   gone:       { no: 'Utgått', en: 'Discontinued' },
-  tipPrograms:{ no: n => `${n} programområder · 2018–2025`, en: n => `${n} programs · 2018–2025` },
+  tipPrograms:{ no: (n, span) => `${n} programområde · ${span}`, en: (n, span) => `${n} programmes · ${span}` },
+  roundUnknown: { no: 'inntaksrunde ikkje oppgitt', en: 'intake round not stated' },
+  roundUnknownTitle: { no: 'Fylket oppgir ikkje kva inntaksrunde tala er frå. Grensa fell mellom rundane, så tala kan ikkje samanliknast direkte med fylke som oppgir runden.',
+                       en: 'This county does not state which intake round the figures are from. Thresholds fall between rounds, so they cannot be compared directly with counties that do state it.' },
+  oneYearOnly: { no: y => `Fylket publiserer berre ${y} – ingen trend enno`, en: y => `This county publishes ${y} only — no trend yet` },
   tipHint:    { no: 'Klikk for trender og detaljer', en: 'Click for trends and details' },
   tipHighest: { no: 'Høyest', en: 'Highest' },
   tipAllOpen: { no: y => `Alle program uten venteliste i ${y}`, en: y => `All programs without waitlist in ${y}` },
@@ -385,7 +409,7 @@ const BINS = [
 ];
 const BIN_EDGES = ['<30', '30–34', '34–38', '38–42', '42+'];
 const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-const fmt = v => typeof v === 'number' ? v.toFixed(1).replace('.', ',') : v;
+const fmtNum = v => typeof v === 'number' ? v.toFixed(1).replace('.', ',') : v;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 let DATA = null, map = null, markerLayer = null;
@@ -399,6 +423,12 @@ function numericLatest(values) {
   for (let i = ys.length - 1; i >= 0; i--)
     if (typeof values[ys[i]] === 'number') return [ys[i], values[ys[i]]];
   return null;
+}
+const fmt = v => lang === 'no' ? fmtNum(v) : String(fmtNum(v)).replace(',', '.');
+
+function yearSpan(s) {
+  const ys = [...new Set(s.programs.flatMap(p => Object.keys(p.values)))].sort();
+  return !ys.length ? '' : ys.length === 1 ? ys[0] : `${ys[0]}–${ys[ys.length - 1]}`;
 }
 const stProgram = s => s.programs.find(p => p.program.toLowerCase() === 'studiespesialisering');
 const isPrioOnly = p => { const vs = Object.values(p.values); return vs.length > 0 && vs.every(v => v === 'F'); };
@@ -454,7 +484,24 @@ function setTiles() {
 
 function drawMarkers() {
   if (markerLayer) map.removeLayer(markerLayer);
-  markerLayer = L.layerGroup().addTo(map);
+  // 190 schools overlap badly at national zoom — nearly half had no reachable
+  // pixel before clustering
+  markerLayer = L.markerClusterGroup({
+    maxClusterRadius: 44,
+    disableClusteringAtZoom: 11,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+    chunkedLoading: true,
+    iconCreateFunction: cluster => {
+      const n = cluster.getChildCount();
+      const size = n < 10 ? 32 : n < 30 ? 38 : 44;
+      return L.divIcon({
+        html: `<div class="pk-cluster${n >= 30 ? ' big' : ''}" `
+            + `style="width:${size}px;height:${size}px">${n}</div>`,
+        className: '', iconSize: [size, size],
+      });
+    },
+  }).addTo(map);
   for (const s of visibleSchools()) {
     if (!s.lat) continue;
     const st8 = schoolPressure(s, mapCat);
@@ -474,7 +521,8 @@ function drawMarkers() {
       } else if (st8.kind === 'open') {
         line = t('tipAllOpen', st8.year);
       } else {
-        line = t('tipNoData', DATA.years[DATA.years.length - 1]);
+        const sy = yearSpan(s);
+        line = t('tipNoData', sy ? sy.split('–').pop() : DATA.years[DATA.years.length - 1]);
       }
     } else {
       line = st8.kind === 'points' ? `${CATS[mapCat][lang]}: ` + t('tipMedian', fmt(st8.v), st8.filled, st8.total)
@@ -482,8 +530,9 @@ function drawMarkers() {
            : `${CATS[mapCat][lang]}: –`;
     }
     const html = `<div class="n">${esc(s.name)}</div><div class="v">${line}</div>` +
-      `<div class="v">${t('tipPrograms', visibleCount(s))}` +
-      (s.round ? ` · <span class="round">${t('roundChip', s.round)}</span>` : '') + '</div>' +
+      `<div class="v">${t('tipPrograms', visibleCount(s), yearSpan(s))}` +
+      ` · <span class="round${s.round ? '' : ' unknown'}">` +
+      `${s.round ? t('roundChip', s.round) : t('roundUnknown')}</span></div>` +
       `<div class="h">${t('tipHint')}</div>`;
     const tipOpts = dir => ({ className: 'tip', direction: dir, opacity: 1,
                               offset: dir === 'top' ? [0, -10] : [0, 10] });
@@ -513,6 +562,12 @@ function drawMarkers() {
 
 function onMapFylke(v) {
   mapFylke = v;
+  // a county may not offer the selected category at all; widen rather than
+  // leave a blank control over an empty map
+  if (mapCat !== 'all' && !DATA.schools.some(s =>
+      (v === 'all' || s.fylke === v) && s.programs.some(p => p.category === mapCat))) {
+    mapCat = 'all';
+  }
   drawMarkers(); renderPanel(); renderLegend(); renderCatNote();
   const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon]);
   if (pts.length) map.flyToBounds(L.latLngBounds(pts).pad(0.08), { duration: .6 });
@@ -546,7 +601,10 @@ function renderPanel() {
   document.getElementById('fylke-label').textContent = t('fylkeLabel');
   const fsel = document.getElementById('map-fylke');
   fsel.innerHTML = `<option value="all">${t('allFylker')}</option>` +
-    counties.map(c => `<option value="${esc(c.fylke)}">${esc(c.fylke)} (${c.schools})</option>`).join('');
+    counties.map(c => {
+      const n = DATA.schools.filter(s => s.fylke === c.fylke && s.lat).length;
+      return `<option value="${esc(c.fylke)}">${esc(c.fylke)} (${n})</option>`;
+    }).join('');
   fsel.value = mapFylke;
   const present = new Set();
   DATA.schools.filter(s => mapFylke === 'all' || s.fylke === mapFylke)
@@ -560,16 +618,21 @@ function renderPanel() {
 function renderCatNote() {
   const el = document.getElementById('cat-note');
   el.textContent = mapCat === 'all' ? '' :
-    t('catNote', DATA.schools.filter(s => s.programs.some(p => p.category === mapCat)).length);
+    t('catNote', DATA.schools.filter(s =>
+      (mapFylke === 'all' || s.fylke === mapFylke)
+      && s.programs.some(p => p.category === mapCat)).length);
 }
 function renderLegend() {
   const rounds = [...new Set(visibleSchools().map(s => s.round).filter(Boolean))];
+  const anyUnknown = visibleSchools().some(s => !s.round);
   document.getElementById('legend-title').innerHTML =
     (mapCat === 'all' ? t('legendAll') : t('legendCat', mapCat)) +
-    (rounds.length === 1
-      ? ` <span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', rounds[0])}</span>` : '');
+    (rounds.length === 1 && !anyUnknown
+      ? ` <span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', rounds[0])}</span>`
+      : !rounds.length && anyUnknown
+      ? ` <span class="round unknown" title="${esc(t('roundUnknownTitle'))}">${t('roundUnknown')}</span>` : '');
   const mix = document.getElementById('legend-mixed');
-  mix.hidden = rounds.length < 2;
+  mix.hidden = !(rounds.length > 1 || (rounds.length && anyUnknown));
   mix.textContent = t('mixedRounds');
   document.getElementById('legend-bins').innerHTML = BINS.map((b, i) =>
     `<div class="bin"><span class="sw" style="background:${cssVar(b.css)}"></span><span class="bl">${BIN_EDGES[i]}</span></div>`).join('');
@@ -583,7 +646,9 @@ function openSide(s) {
   current = s;
   chart = { mode: mapCat === 'all' ? 'all' : 'cat', cat: mapCat === 'all' ? null : mapCat, prog: null };
   renderSide();
-  document.getElementById('side').classList.add('open');
+  const side = document.getElementById('side');
+  side.removeAttribute('inert');
+  side.classList.add('open');
   document.body.classList.add('side-open');
   setTimeout(() => document.querySelector('#s-photo .close')?.focus(), 60);
 }
@@ -592,8 +657,11 @@ function clearScope() {
   renderChartCard(); renderList();
 }
 function closeSide() {
-  document.getElementById('side').classList.remove('open');
+  const side = document.getElementById('side');
+  side.classList.remove('open');
   document.body.classList.remove('side-open');
+  side.setAttribute('inert', '');          // keep 17 hidden controls out of Tab
+  document.getElementById('map-fylke')?.focus();
 }
 
 function renderSide() {
@@ -636,7 +704,9 @@ function renderSide() {
   if (s.wiki_url) meta.push(`<a href="${esc(s.wiki_url)}" target="_blank" rel="noopener">${t('wiki')} ↗</a>`);
   if (s.address) meta.push(`<span>${esc(s.address)}</span>`);
   if (s.fylke) meta.push(`<span>${esc(s.fylke)}</span>`);
-  if (s.round) meta.push(`<span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', s.round)}</span>`);
+  meta.push(s.round
+    ? `<span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', s.round)}</span>`
+    : `<span class="round unknown" title="${esc(t('roundUnknownTitle'))}">${t('roundUnknown')}</span>`);
   document.getElementById('s-meta').innerHTML = meta.join('');
   // hero mirrors what the map encodes — the median threshold — so the two
   // never tell different stories; a category lens narrows both together
@@ -661,9 +731,15 @@ function renderSide() {
       cells.push({ v: (d >= 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev), cls: d >= 0 ? 'up' : 'dn' });
     }
   } else {
-    cells.push({ v: t('allIn'), l: `${scopeLabel} ${latest}` });
+    const last = scopePrograms.map(p => p.values[latest]).filter(v => v !== undefined);
+    const label = last.includes('open') ? t('allIn')
+                : last.includes('D') ? t('docAdm')
+                : last.includes('F') ? t('priority')
+                : last.length && last.every(v => v === 'U') ? t('gone')
+                : t('allIn');
+    cells.push({ v: label, l: `${scopeLabel} ${latest || ''}`.trim() });
   }
-  cells.push({ v: visibleCount(s), l: t('heroProgs') });
+  cells.push({ v: lensCat ? scopePrograms.length : visibleCount(s), l: t('heroProgs') });
   document.getElementById('s-hero').innerHTML =
     cells.map(c => `<div class="cell"><div class="v ${c.cls || ''}">${c.v}</div><div class="l">${c.l}</div></div>`).join('');
   document.getElementById('s-filter').placeholder = t('filterPh');
@@ -705,11 +781,24 @@ function renderChartCard() {
 }
 
 function drawChart() {
-  const years = DATA.years.map(String);
+  // a chart must span the school's own years: Akershus and Trøndelag publish
+  // one year, and nine mostly-empty columns read as a broken chart
+  const own = [...new Set(current.programs.flatMap(p => Object.keys(p.values)))].sort();
+  const allYears = DATA.years.map(String);
+  const years = own.length > 1
+    ? allYears.filter(y => y >= own[0] && y <= own[own.length - 1])
+    : own;
   const W = 444, H = 190, ML = 30, MR = 12, MT = 16, MB = 22;
   const iw = W - ML - MR, ih = H - MT - MB;
   const series = seriesFor(chart.mode, chart.cat, chart.prog);
   document.getElementById('chart-tip').style.display = 'none';  // stale on redraw
+  const svgHost = document.getElementById('chart-svg');
+  if (years.length < 2) {
+    document.getElementById('chart-sub').textContent =
+      t('oneYearOnly', years[0] || '');
+    svgHost.innerHTML = '';
+    return;
+  }
 
   // the y-domain follows the data: a fixed 10-50 window flattened every school
   // whose thresholds run above 50 (Sauda ambulansefag sits at 51-54)
@@ -895,6 +984,7 @@ async function main() {
     map.fitBounds(L.latLngBounds(pts).pad(0.06));
   }, 60));
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { setTiles(); drawMarkers(); renderLegend(); });
+  document.getElementById('side').setAttribute('inert', '');
   document.getElementById('s-filter').addEventListener('input', renderList);
   document.addEventListener('keydown', ev => {
     if (ev.key === 'Escape' && document.getElementById('side').classList.contains('open')) {

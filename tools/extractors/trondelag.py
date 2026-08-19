@@ -34,7 +34,20 @@ META = {
     'source': 'https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6',
     'note': 'thresholds apply to applicants resident in the intake region',
 }
-CODE_RE = re.compile(r'^[A-ZÆØÅ]{4,6}\d-{0,6}$')
+# Grep codes are 10 characters; the old pattern rejected the variant forms
+# (MDMDD1--1-, HSHSF1N---, STUSP1--EP), whose values then slid onto the
+# previous column and were published under the wrong programme name.
+CODE_RE = re.compile(r'^[A-ZÆØÅ]{5}\d[A-Z0-9-]{4}$')
+
+# county-level variants that are not in Udir's national Grep registry; names
+# taken from the PDFs' own (wrapped) column labels
+EXTRA_CODES = {
+    'MDMDD1--1-': 'Musikk, dans og drama, musikk',
+    'MDMDD1--4-': 'Musikk, dans og drama, dans',
+    'MDMDD1--6-': 'Musikk, dans og drama, drama',
+    'HSHSF1N---': 'Helse- og oppvekstfag, SK 3 år',
+    'STUSP1--EP': 'Studiespesialisering, entreprenørskap',
+}
 SCHOOLNR_RE = re.compile(r'^(\d{5})(.*)$')
 # the county's own PDFs misspell these
 SCHOOL_FIXES = {
@@ -106,7 +119,7 @@ def extract():
                                 break
                         if not code:
                             continue
-                        name = (grep.get(code, {}) or {}).get('nob')
+                        name = EXTRA_CODES.get(code) or (grep.get(code, {}) or {}).get('nob')
                         if not name:
                             warn.append(f'{fname}: unknown Grep code {code}')
                             continue

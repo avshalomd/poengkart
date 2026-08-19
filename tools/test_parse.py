@@ -168,6 +168,45 @@ check('only known statuses', statuses <= {'open', 'F', 'U', 'D'}, str(statuses))
 check('documentation status present (IB/toppidrett)',
       any(v == 'D' for _, _, _, v in cells))
 
+# --- national QA audit 2026-08-20: defects that must not come back ------
+def county(name):
+    return [s for s in DATA['schools'] if s['fylke'] == name]
+
+
+def ccells(name):
+    return [(s['name'], p, y, v) for s in county(name) for p in s['programs']
+            for y, v in p['values'].items()]
+
+# Vestland: the parser skipped every page that did not repeat the header,
+# losing 68% of the county and four schools outright
+vest = {s['name'] for s in county('Vestland')}
+check('Vestland keeps header-less continuation pages', len(ccells('Vestland')) > 2500,
+      f'{len(ccells("Vestland"))} cells')
+for missing in ('Bergen katedralskole', 'Langhaugen', 'Os gymnas', 'Firda'):
+    check(f'Vestland includes {missing}', any(missing in n for n in vest))
+
+# Trøndelag: a too-narrow Grep code pattern slid values onto the previous
+# column, publishing music/dance/drama under "Kunst, design og arkitektur"
+tr_progs = {p['program'] for s in county('Trøndelag') for p in s['programs']}
+check('Trøndelag has music/dance/drama', any('Musikk' in p for p in tr_progs), str(sorted(tr_progs)[:6]))
+tr_pairs = [(s['name'], p['program']) for s in county('Trøndelag') for p in s['programs']]
+check('Trøndelag has no duplicate school+programme', len(tr_pairs) == len(set(tr_pairs)))
+
+# Oslo: the page title bled into the rotated column headers for 2022
+oslo_progs = {p['program'] for s in county('Oslo') for p in s['programs']}
+check('Oslo programme names are clean',
+      not [p for p in oslo_progs if p[:1].islower() or len(p) < 5],
+      str([p for p in oslo_progs if p[:1].islower() or len(p) < 5][:4]))
+blindern = [p for s in county('Oslo') if 'Blindern' in s['name']
+            for p in s['programs'] if p['program'] == 'Studiespesialisering']
+check('Oslo 2022 lands on the right series',
+      bool(blindern) and blindern[0]['values'].get('2022') == 44.6,
+      str(blindern[0]['values'] if blindern else None))
+
+# Innlandet: "Intervju" was dropped instead of being read as documentation
+check('Innlandet keeps interview-admitted programmes',
+      any(v == 'D' for _, _, _, v in ccells('Innlandet')))
+
 print(f'{checks - len(fails)}/{checks} checks passed')
 for f in fails:
     print('  FAIL:', f)

@@ -65,9 +65,13 @@ def main():
         progs = []
         for rec in schools[(county, name)].values():
             all_years.update(rec['values'])
-            progs.append({'program': rec['program'], 'level': rec['level'],
-                          'category': rec['category'],
-                          'values': {str(y): v for y, v in sorted(rec['values'].items())}})
+            entry_p = {'program': rec['program'], 'level': rec['level'],
+                       'category': rec['category'],
+                       'values': {str(y): v for y, v in sorted(rec['values'].items())}}
+            for alt in ('values_r1', 'values_r3'):
+                if rec.get(alt):
+                    entry_p[alt] = {str(y): v for y, v in sorted(rec[alt].items())}
+            progs.append(entry_p)
         progs.sort(key=lambda p: (p['level'], p['program']))
         meta = by_meta.get(county, {})
         entry = {'name': name, 'fylke': county, 'fylkesnummer': meta.get('code'),

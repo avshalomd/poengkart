@@ -30,6 +30,8 @@ META = {
     'source': ('https://www.vestlandfylke.no/utdanning-og-karriere/elev/'
                'soknad-inntak/test-poenggrenser/'),
     'also_publishes': '3. inntak (kept in values_r3)',
+    'round_note': ('1. inntak for every year except 2023, where the county '
+                   'published only a 3. inntak file'),
 }
 LEVEL_RE = re.compile(r'^Vg\s?([1-4])\b', re.I)
 
@@ -78,10 +80,12 @@ def _parse(path, warn):
     """-> {(school, program, level): value}"""
     found, level = {}, 'Vg1'
     with pdfplumber.open(path) as pdf:
-        pages_parsed = 0
+        pages_parsed, cols = 0, None
         for page in pdf.pages:
             words = page.extract_words()
-            cols = _columns(words)
+            # the header is printed only on the first page of each Vg block;
+            # carry the last-seen geometry forward or 2/3 of every file is lost
+            cols = _columns(words) or cols
             if not cols:
                 continue
             pages_parsed += 1

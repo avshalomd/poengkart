@@ -73,8 +73,17 @@ def _parse_pdf(path, year, warn):
             labels = {}
             for c in cols:
                 band = [ch for ch in page.chars
-                        if 55 < ch['top'] < first - 4
+                        if 40 < ch['top'] < first - 4
                         and c - 9 <= (ch['x0'] + ch['x1']) / 2 <= c + 9]
+                # the page title can wrap down into the header band (2022) with
+                # no vertical gap to cut on — but it is set in a different face,
+                # so keep only the band's majority font (the rotated labels)
+                if band:
+                    fonts = {}
+                    for ch in band:
+                        fonts[ch['fontname']] = fonts.get(ch['fontname'], 0) + 1
+                    main = max(fonts, key=fonts.get)
+                    band = [ch for ch in band if ch['fontname'] == main]
                 # a long rotated label wraps into several vertical lines placed
                 # side by side; group by x first, or the lines interleave
                 sublines = []

@@ -37,7 +37,7 @@ def squash(s):
 OPEN_TOKENS = ('ingen vente', 'ingen ventelis', 'ledige', 'alle søkere', 'alle sokere',
                'alle som søkte', 'alle', 'ingen venteliste', 'ingen ventesliste')
 PRIORITY_TOKENS = ('fortrinn', 'fortrinnsrett', 'fortinnsrett', 'fortrinsrett')
-DOC_TOKENS = ('dokumentasjon', 'dok.', 'individuell',
+DOC_TOKENS = ('dokumentasjon', 'dok.', 'individuell', 'intervju',
               'inntak etter en kombinasjon', 'kombinasjon av karakterer',
               'kombinasjon av ferdighet', 'kombinasjon av intervju')
 GONE_TOKENS = ('utgår', 'utgar', 'utgått', 'lagt ned')
@@ -113,6 +113,7 @@ PROGRAM_ALIASES = {
     'elektro og datateknologi, , sk 3 år': 'Elektro og datateknologi, SK 3 år',
     'studiespesialiseriing, internasjonalisering': 'Studiespesialisering, internasjonalisering',
     'helse- og oppvekst, studiekompetanse': 'Helse- og oppvekstfag, studiekompetanse',
+    'studiespesialisering, ib': 'Studiespesialisering, forberedende IB',
 }
 
 
@@ -121,6 +122,7 @@ def canon_program(name):
     n = re.sub(r',(?=\S)', ', ', n)          # "Kunst,design" -> "Kunst, design"
     n = re.sub(r'\s*\.\s*$', '', n).strip(' -–,')
     n = re.sub(r'\bSK\s*(\d)\s*år', r'SK \1 år', n)      # 'SK 3år' -> 'SK 3 år'
+    n = re.sub(r'\bSK\s*(\d)$', r'SK \1 år', n)          # truncated rotated label
     n = re.sub(r'\s+vg\s?[1-4]$', '', n, flags=re.I)      # Grep's 'Idrettsfag vg1'
     return PROGRAM_ALIASES.get(n.lower(), n)
 
@@ -163,7 +165,8 @@ CATEGORY_RULES = [
                  'treteknikk', 'anleggsmaskin', 'stillas']),
     ('tip',     ['teknologi- og industrifag', 'teknologi og industrifag',
                  'teknikk og industriell', 'teknikk og industrifag', 'industriteknologi',
-                 'teknolog og idustrifag', 'idustrifag', 'kjøretøy',
+                 'teknolog og idustrifag', 'idustrifag', 'teknologi-/industrifag',
+                 'smed', 'kjøretøy',
                  'arbeidsmaskin', 'bilskade', 'karosseri', 'energi operatør',
                  'energioperatør', 'transport og logistikk', 'kjemiprosess', 'laborator',
                  'brønnteknikk', 'sveis', 'platearbeid', 'cnc', 'maritim', 'motormann',
@@ -219,6 +222,10 @@ def merge_rows(rows_newest_first):
                 'category': classify_category(r['program']),
                 'values': {}, 'sources': {},
             })
+            for alt in ('values_r1', 'values_r3'):
+                if r.get(alt):
+                    rec.setdefault(alt, {}).update({y: v for y, v in r[alt].items()
+                                                    if y not in rec.get(alt, {})})
             for y, v in r['values'].items():
                 if y in rec['values']:
                     if rec['values'][y] != v:
