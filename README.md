@@ -1,36 +1,15 @@
 # Poengkart
 
-Interactive map of admission point thresholds (poenggrenser) for upper
-secondary schools (videregående skoler) in Rogaland, Norway — 2018–2025.
+**Live: https://poengkart-no.vercel.app**
 
-Every year the county publishes the threshold of the last admitted applicant
-per school × program as a PDF whose URL rots. This project recovered the
-historical PDFs (Wayback Machine + the current official file), parsed them
-into one dataset, and put a modern UI on top.
+Admission point thresholds (*poenggrenser*) for upper secondary schools
+(videregående skoler) in Rogaland, Norway — on a map, with 8 years of history
+(2018–2025). Hover a school for the headline numbers, click it for every
+program with trends. Norwegian and English.
 
-**App:** `web/` — a single static page (vanilla JS + Leaflet, no build step).
-Map with per-school markers colored by current admission pressure, category
-filtering, NO/EN language toggle, and per-school trend charts at three
-resolution levels (all programs / category / single program).
+![Map of Rogaland with schools colored by admission pressure](docs/map.png)
 
-## Data pipeline (`tools/`)
-
-1. `parse_pdfs.py` — parses the source PDFs (expected in `../poenggrenser/data/`)
-   into `web/data/schools.json`. Handles two PDF generations (pypdf layout mode
-   with x-position column slicing; plain-text fallback for rotated-text files),
-   normalizes program-name spelling drift, classifies every program into the
-   15 national utdanningsprogram categories.
-2. `geocode.py` — coordinates via NSR (Nasjonalt skoleregister) with a
-   Kartverket address-search fallback.
-3. `enrich.py` — school website/address (NSR), photo + summary (Wikipedia
-   no/nn, Wikimedia Commons geosearch/text search). Idempotent gap-filler.
-4. `build_db.py` — builds `data/poengkart.db` (SQLite) and `data/samples.csv`:
-   one row per (school, program, year) with status
-   `points | open | priority | discontinued`.
-
-Value semantics: a number is the threshold (grade average × 10); `open` means
-no waitlist (everyone qualified admitted); `priority` is a fortrinnsrett quota
-row (admission outside the points competition); `discontinued` = program ended.
+![School details: trends and per-program thresholds](docs/school.png)
 
 ## Run locally
 
@@ -38,8 +17,36 @@ row (admission outside the points competition); `discontinued` = program ended.
 python3 -m http.server 8742 -d web
 ```
 
-## Sources
+Then open http://localhost:8742. No build step, no dependencies.
 
-Rogaland fylkeskommune / vilbli.no (thresholds, 2nd intake round, applicants
-with youth right), NSR/Udir, Kartverket, Wikipedia/Wikimedia Commons.
-Unofficial prototype — figures may contain parsing errors.
+## Where the data comes from
+
+**Thresholds** — Rogaland county publishes the points of the last admitted
+applicant per school and program once a year (2nd intake round, applicants
+with youth right), as a PDF on [vilbli.no](https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6)
+(linked from the county's [Søke skoleplass](https://www.rogfk.no/vare-tjenester/skole-og-utdanning/opplaring-i-skole/soke-skoleplass/)
+page). Those PDF links rot yearly; older editions were recovered through the
+[Wayback Machine](https://web.archive.org/). Five PDFs together cover every
+intake year 2018–2025.
+
+**Schools** — names, org numbers and locations from the national school
+register ([NSR / Udir](https://data-nsr.udir.no/)), with address geocoding via
+[Kartverket's open address API](https://ws.geonorge.no/adresser/v1/) where the
+register lacks coordinates. Photos and summaries from
+[Wikipedia](https://no.wikipedia.org) / [Wikimedia Commons](https://commons.wikimedia.org).
+Map tiles by [CARTO](https://carto.com/) / [OpenStreetMap](https://www.openstreetmap.org/).
+
+## How it was processed
+
+The PDFs are table scans of varying vintage; `tools/parse_pdfs.py` extracts
+them (layout-aware text extraction, column slicing by x-position, with a
+fallback parser for older files), normalizes program names across years,
+and classifies every program into the 15 national *utdanningsprogram*
+categories. Each (school, program, year) cell becomes either a threshold,
+*no waitlist* (everyone qualified admitted — deliberately not shown as 0),
+a *fortrinnsrett* quota (statutory priority admission, no threshold exists),
+or *discontinued*. The merged dataset ships as JSON for the app and as
+SQLite + CSV (`data/`) for anyone who wants to query it.
+
+Unofficial project — figures may contain parsing errors. Verify against the
+official sources above before making decisions.
