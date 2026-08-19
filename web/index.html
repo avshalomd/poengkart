@@ -90,6 +90,7 @@
   #legend .none .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--context); flex: none; }
   #legend .none .dot.open-dot { background: var(--accent-soft); border: 1.5px dashed var(--accent); }
   #legend .none + .none { margin-top: 3px; }
+  #legend .sizenote { margin-top: 7px; color: var(--ink-3); max-width: 210px; line-height: 1.35; }
 
   /* ---------- map marker & tooltip ---------- */
   .leaflet-interactive:focus { outline: 3px solid var(--accent); outline-offset: 2px; }
@@ -119,7 +120,8 @@
 
   /* fallback ground is fixed dark blues so the white name reads in both themes */
   .photo { position: relative; height: 168px; background: linear-gradient(135deg, #2a6cbf, #0d366b); }
-  .photo.nophoto { height: 118px; }
+  .photo #s-minimap { position: absolute; inset: 0; z-index: 0; }
+  .photo #s-minimap .leaflet-container { background: var(--page); }
   .photo img { width: 100%; height: 100%; object-fit: cover;
                object-position: var(--photo-pos, center); display: block; }
   .photo .veil { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(10,14,18,.62)); }
@@ -174,6 +176,15 @@
     text-transform: uppercase; color: var(--ink-3);
   }
   .cat-head:hover { color: var(--accent); }
+  .scope-chip {
+    display: flex; align-items: center; gap: 8px; margin: 10px 18px 2px; padding: 6px 10px;
+    background: var(--accent-soft); border-radius: 9px; font-size: 11.5px; color: var(--ink-2);
+  }
+  .scope-chip span { font-weight: 650; color: var(--ink); }
+  .scope-chip button {
+    margin-left: auto; border: none; background: none; cursor: pointer;
+    color: var(--accent); font-size: 11.5px; font-weight: 600; padding: 0;
+  }
   .cat-head .cnt { font-weight: 500; letter-spacing: 0; text-transform: none; }
   .prow {
     display: flex; align-items: center; gap: 10px; width: 100%; text-align: left;
@@ -261,6 +272,7 @@
 <div id="legend" class="glass">
   <div class="t" id="legend-title"></div>
   <div class="bins" id="legend-bins"></div>
+  <div class="sizenote" id="legend-size"></div>
   <div class="none"><span class="dot open-dot"></span><span id="legend-open"></span></div>
   <div class="none"><span class="dot"></span><span id="legend-none"></span></div>
 </div>
@@ -292,7 +304,15 @@ const T = {
   catLabel:   { no: 'Vis kategori (utdanningsprogram)', en: 'Show category (study program)' },
   allCats:    { no: 'Alle kategorier', en: 'All categories' },
   catNote:    { no: n => `${n} skoler tilbyr dette`, en: n => `${n} schools offer this` },
-  legendAll:  { no: 'Høyeste poenggrense 2025', en: 'Highest threshold 2025' },
+  legendAll:  { no: 'Typisk poenggrense 2025', en: 'Typical threshold 2025' },
+  legendSize: { no: 'Størrelsen viser hvor stor del av programma som blei fylt opp',
+                en: 'Marker size shows how many of the programmes filled up' },
+  tipMedian:  { no: (v, n, tot) => `Typisk <b>${v}</b> poeng · ${n} av ${tot} program fylte opp`,
+                en: (v, n, tot) => `Typically <b>${v}</b> pts · ${n} of ${tot} programmes filled up` },
+  tipTop:     { no: 'Høyest:', en: 'Highest:' },
+  scopeAll:   { no: 'Vis alle programområde', en: 'Show all programmes' },
+  heroTypical:{ no: 'Typisk', en: 'Typical' },
+  heroTypicalAll: { no: 'alle program', en: 'all programmes' },
   legendCat:  { no: c => `${CATS[c].no} · poenggrense 2025`, en: c => `${CATS[c].en} · threshold 2025` },
   legendOpen: { no: 'Uten venteliste – alle inntatt', en: 'No waitlist – all admitted' },
   legendNone: { no: 'Ikke data', en: 'No data' },
@@ -371,29 +391,38 @@ function partitionPrograms(progs) {
 }
 const visibleCount = s => { const pp = partitionPrograms(s.programs); return pp.regular.length + pp.orphans.length; };
 function schoolPressure(s, cat) {
-  // Pressure is judged in the newest dataset year only: a threshold from an
-  // old year is history, not current competition.
+  // Demand, judged in the newest dataset year only. Two honest signals:
+  //   median threshold of the programmes that filled up  -> how hard, typically
+  //   share of programmes that filled up at all          -> how much is in demand
+  // (The earlier "highest threshold" let one niche programme speak for a whole
+  // school. Note this measures demand vs capacity, not school quality.)
   const yr = String(DATA.years[DATA.years.length - 1]);
   const pool = (cat === 'all' ? s.programs : s.programs.filter(p => p.category === cat))
-    .filter(p => yr in p.values);
-  let best = null, bestProg = null, anyOpen = false;
+    .filter(p => yr in p.values && p.values[yr] !== 'F' && p.values[yr] !== 'U');
+  const nums = pool.map(p => p.values[yr]).filter(v => typeof v === 'number').sort((a, b) => a - b);
+  const openN = pool.filter(p => p.values[yr] === 'open').length;
+  const total = nums.length + openN;
+  if (!nums.length) return total ? { kind: 'open', year: yr, total } : { kind: 'none' };
+  const mid = nums.length >> 1;
+  const median = nums.length % 2 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
+  let top = -1, topProg = null;
   for (const p of pool) {
     const v = p.values[yr];
-    if (typeof v === 'number' && (best === null || v > best)) { best = v; bestProg = p; }
-    if (v === 'open') anyOpen = true;
+    if (typeof v === 'number' && v > top) { top = v; topProg = p; }
   }
-  return best !== null ? { kind: 'points', v: best, prog: bestProg, year: yr }
-       : anyOpen ? { kind: 'open', year: yr } : { kind: 'none' };
+  return { kind: 'points', v: median, top, topProg, year: yr,
+           filled: nums.length, total, share: nums.length / total };
 }
 const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(b => v < b.max).css);
 
 /* ================= map ================= */
 const isDark = () => matchMedia('(prefers-color-scheme: dark)').matches;
-let tileLayer = null;
+let tileLayer = null, miniMap = null;
+const tileUrl = () =>
+  `https://{s}.basemaps.cartocdn.com/${isDark() ? 'dark_all' : 'light_all'}/{z}/{x}/{y}{r}.png`;
 function setTiles() {
   if (tileLayer) map.removeLayer(tileLayer);
-  const flavor = isDark() ? 'dark_all' : 'light_all';
-  tileLayer = L.tileLayer(`https://{s}.basemaps.cartocdn.com/${flavor}/{z}/{x}/{y}{r}.png`, {
+  tileLayer = L.tileLayer(tileUrl(), {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd', maxZoom: 19,
   }).addTo(map);
@@ -408,7 +437,8 @@ function drawMarkers() {
     const st8 = schoolPressure(s, mapCat);
     const v = st8.kind === 'points' ? st8.v : null;
     const style = st8.kind === 'points'
-      ? { radius: 9.5, weight: 2.5, color: cssVar('--surface-solid'), fillColor: colorFor(v), fillOpacity: 0.96 }
+      ? { radius: 7 + 5 * (st8.share ?? 0.5), weight: 2.5,
+          color: cssVar('--surface-solid'), fillColor: colorFor(v), fillOpacity: 0.96 }
       : st8.kind === 'open'
       ? { radius: 8, weight: 2, color: cssVar('--accent'), dashArray: '3 3', fillColor: cssVar('--accent'), fillOpacity: 0.14 }
       : { radius: 7.5, weight: 2, color: cssVar('--surface-solid'), fillColor: cssVar('--context'), fillOpacity: 0.9 };
@@ -416,20 +446,15 @@ function drawMarkers() {
     let line;
     if (mapCat === 'all') {
       if (st8.kind === 'points') {
-        line = `${t('tipHighest')} ${st8.year}: <b>${fmt(st8.v)}</b> ${t('pts')} · ${esc(st8.prog.program)}`;
-        const st = stProgram(s);
-        if (st && st !== st8.prog) {
-          const sv = st.values[st8.year];
-          line += `<br>${CATS.st[lang]}: ` +
-            (typeof sv === 'number' ? `<b>${fmt(sv)}</b> ${t('pts')}` : t('allIn').toLowerCase());
-        }
+        line = t('tipMedian', fmt(st8.v), st8.filled, st8.total) +
+               `<br>${t('tipTop')} ${fmt(st8.top)} · ${esc(st8.topProg.program)}`;
       } else if (st8.kind === 'open') {
         line = t('tipAllOpen', st8.year);
       } else {
         line = t('tipNoData', DATA.years[DATA.years.length - 1]);
       }
     } else {
-      line = st8.kind === 'points' ? `${CATS[mapCat][lang]}: <b>${fmt(st8.v)}</b> ${t('pts')} (${st8.year})`
+      line = st8.kind === 'points' ? `${CATS[mapCat][lang]}: ` + t('tipMedian', fmt(st8.v), st8.filled, st8.total)
            : st8.kind === 'open' ? `${CATS[mapCat][lang]}: ${t('allIn').toLowerCase()} (${st8.year})`
            : `${CATS[mapCat][lang]}: –`;
     }
@@ -495,6 +520,7 @@ function renderLegend() {
     mapCat === 'all' ? t('legendAll') : t('legendCat', mapCat);
   document.getElementById('legend-bins').innerHTML = BINS.map((b, i) =>
     `<div class="bin"><span class="sw" style="background:${cssVar(b.css)}"></span><span class="bl">${BIN_EDGES[i]}</span></div>`).join('');
+  document.getElementById('legend-size').textContent = t('legendSize');
   document.getElementById('legend-open').textContent = t('legendOpen');
   document.getElementById('legend-none').textContent = t('legendNone');
 }
@@ -508,6 +534,10 @@ function openSide(s) {
   document.body.classList.add('side-open');
   setTimeout(() => document.querySelector('#s-photo .close')?.focus(), 60);
 }
+function clearScope() {
+  chart.mode = 'all'; chart.cat = null; chart.prog = null;
+  renderChartCard(); renderList();
+}
 function closeSide() {
   document.getElementById('side').classList.remove('open');
   document.body.classList.remove('side-open');
@@ -518,7 +548,7 @@ function renderSide() {
   const s = current;
   // photo header
   const ph = document.getElementById('s-photo');
-  ph.classList.toggle('nophoto', !s.photo);
+  ph.classList.toggle('nophoto', false);   // location map fills the same frame
   const creditText = s.photo_credit
     || (s.photo_source === 'commons' ? 'Wikimedia Commons' : 'Wikipedia');
   const creditHref = s.photo_page || s.wiki_url || '';
@@ -528,37 +558,54 @@ function renderSide() {
         : esc(creditText)) + '</div>'
     : '';
   const pos = s.photo_position ? ` style="--photo-pos:${esc(s.photo_position)}"` : '';
-  ph.innerHTML = (s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy"${pos}>` : '') +
+  ph.innerHTML = (s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy"${pos}>`
+                          : `<div id="s-minimap"></div>`) +
     `<div class="veil"></div>` +
     `<button class="close" onclick="closeSide()" aria-label="${esc(t('closeAria'))}">✕</button>` +
     `<div class="name"><h2>${esc(s.name)}</h2>${credit}</div>`;
+  // no freely licensed photo exists for this school: show where it actually is
+  if (miniMap) { miniMap.remove(); miniMap = null; }
+  if (!s.photo && s.lat) {
+    miniMap = L.map('s-minimap', {
+      zoomControl: false, attributionControl: false, dragging: false,
+      scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false,
+      keyboard: false, touchZoom: false, tap: false,
+    }).setView([s.lat, s.lon], 16);
+    L.tileLayer(tileUrl(), { detectRetina: true }).addTo(miniMap);
+    L.circleMarker([s.lat, s.lon], {
+      radius: 9, weight: 3, color: '#fff', fillColor: cssVar('--accent'), fillOpacity: 1,
+    }).addTo(miniMap);
+    setTimeout(() => miniMap && miniMap.invalidateSize(), 30);
+  }
   // meta links
   const meta = [];
   if (s.url) meta.push(`<a href="${esc(s.url.startsWith('http') ? s.url : 'https://' + s.url)}" target="_blank" rel="noopener">${t('website')} ↗</a>`);
   if (s.wiki_url) meta.push(`<a href="${esc(s.wiki_url)}" target="_blank" rel="noopener">${t('wiki')} ↗</a>`);
   if (s.address) meta.push(`<span>${esc(s.address)}</span>`);
   document.getElementById('s-meta').innerHTML = meta.join('');
-  // hero
-  const st = stProgram(s);
+  // hero mirrors what the map encodes — the median threshold — so the two
+  // never tell different stories; a category lens narrows both together
+  const lensCat = mapCat !== 'all' ? mapCat : null;
   const cells = [];
-  if (st) {
-    const l = numericLatest(st.values);
-    if (l) {
-      cells.push({ v: fmt(l[1]), l: t('heroSt', l[0]) });
-      const ys = Object.keys(st.values).filter(y => typeof st.values[y] === 'number').sort();
-      if (ys.length > 1) {
-        const d = l[1] - st.values[ys[ys.length - 2]];
-        cells.push({ v: (d >= 0 ? '+' : '') + fmt(d), l: t('heroDelta', ys[ys.length - 2]), cls: d >= 0 ? 'up' : 'dn' });
-      }
-    } else {
-      // no numeric value: say what the latest cell actually is — claiming
-      // "all admitted" for a discontinued programme is worse than saying nothing
-      const ys = Object.keys(st.values).sort();
-      const last = ys.length ? st.values[ys[ys.length - 1]] : undefined;
-      const label = last === 'U' ? t('gone') : last === 'D' ? t('docAdm')
-                  : last === 'F' ? t('priority') : t('allIn');
-      cells.push({ v: label, l: CATS.st[lang] });
+  const medianAt = year => {
+    const pool = (lensCat ? s.programs.filter(p => p.category === lensCat) : s.programs)
+      .map(p => p.values[year]).filter(v => typeof v === 'number').sort((a, b) => a - b);
+    if (!pool.length) return null;
+    const mid = pool.length >> 1;
+    return pool.length % 2 ? pool[mid] : (pool[mid - 1] + pool[mid]) / 2;
+  };
+  const yrs = DATA.years.map(String);
+  const latest = yrs[yrs.length - 1], prev = yrs[yrs.length - 2];
+  const med = medianAt(latest), medPrev = medianAt(prev);
+  const scopeLabel = lensCat ? CATS[lensCat][lang] : t('heroTypicalAll');
+  if (med !== null) {
+    cells.push({ v: fmt(med), l: `${t('heroTypical')} · ${scopeLabel} ${latest}` });
+    if (medPrev !== null) {
+      const d = med - medPrev;
+      cells.push({ v: (d >= 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev), cls: d >= 0 ? 'up' : 'dn' });
     }
+  } else {
+    cells.push({ v: t('allIn'), l: `${scopeLabel} ${latest}` });
   }
   cells.push({ v: visibleCount(s), l: t('heroProgs') });
   document.getElementById('s-hero').innerHTML =
@@ -716,11 +763,22 @@ function drawChart() {
 /* ================= program list ================= */
 function renderList() {
   const q = (document.getElementById('s-filter').value || '').toLowerCase();
+  // One scope for the whole sidebar: the chart tabs (and the map's category
+  // lens, which seeds them) decide what the list shows too. Two independent
+  // category filters was the confusing part.
+  const scope = chart.mode === 'cat' ? chart.cat
+              : chart.mode === 'prog' && chart.prog ? chart.prog.category : null;
+  const inScope = current.programs.filter(p => !scope || p.category === scope);
   const { regular, orphans, prioNames } = partitionPrograms(
-    current.programs.filter(p => p.program.toLowerCase().includes(q)));
+    inScope.filter(p => p.program.toLowerCase().includes(q)));
   const byCat = {};
   [...regular, ...orphans].forEach(p => (byCat[p.category] = byCat[p.category] || []).push(p));
   let html = '';
+  if (scope) {
+    const hidden = current.programs.length - inScope.length;
+    html += `<div class="scope-chip"><span>${CATS[scope][lang]}</span>` +
+            `<button onclick="clearScope()">${t('scopeAll')}${hidden ? ` (+${hidden})` : ''}</button></div>`;
+  }
   const badged = new Set();  // badge only the first row per program name
   for (const c of Object.keys(CATS).filter(c => byCat[c])) {
     const list = byCat[c];
