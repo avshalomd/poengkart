@@ -6,7 +6,8 @@ Schema:
   samples(school, program, occurrence, category, level, year,
           points REAL NULL, status TEXT)   -- one row per (program, school, year)
     status: 'points' (points set), 'open' (no waitlist, everyone admitted),
-            'priority' (fortrinnsrett quota), 'discontinued' (utgått)
+            'priority' (fortrinnsrett quota), 'documentation' (admission by
+            documentation, e.g. IB/toppidrett), 'discontinued' (utgått)
 
 Outputs: data/poengkart.db, data/samples.csv
 """
@@ -22,7 +23,7 @@ OUT_DIR = os.path.join(HERE, '..', 'data')
 DB = os.path.join(OUT_DIR, 'poengkart.db')
 CSV = os.path.join(OUT_DIR, 'samples.csv')
 
-STATUS = {'open': 'open', 'F': 'priority', 'U': 'discontinued'}
+STATUS = {'open': 'open', 'F': 'priority', 'U': 'discontinued', 'D': 'documentation'}
 
 
 def main():
@@ -44,7 +45,7 @@ def main():
         level TEXT,
         year INTEGER NOT NULL,
         points REAL,
-        status TEXT NOT NULL CHECK (status IN ('points','open','priority','discontinued')),
+        status TEXT NOT NULL CHECK (status IN ('points','open','priority','discontinued','documentation')),
         PRIMARY KEY (school, program, occurrence, year)
       );
       CREATE INDEX idx_samples_year ON samples(year);

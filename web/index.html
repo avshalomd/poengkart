@@ -92,6 +92,7 @@
   #legend .none + .none { margin-top: 3px; }
 
   /* ---------- map marker & tooltip ---------- */
+  .leaflet-interactive:focus { outline: 3px solid var(--accent); outline-offset: 2px; }
   .leaflet-tooltip.tip {
     background: var(--surface-solid); color: var(--ink); border: 1px solid var(--line);
     border-radius: 12px; box-shadow: var(--shadow); padding: 9px 12px;
@@ -107,13 +108,20 @@
     background: var(--surface-solid); border-left: 1px solid var(--line);
     display: flex; flex-direction: column; z-index: 1100;
   }
-  #side.open { width: min(480px, 94vw); }
-  #side > .scroll { overflow-y: auto; flex: 1; min-width: min(480px, 94vw); }
+  /* keep the control panel clear of the sidebar at tablet widths */
+  #side.open { width: min(480px, max(320px, 100vw - 350px)); }
+  #side > .scroll { overflow-y: auto; flex: 1; min-width: min(480px, max(320px, 100vw - 350px)); }
+  @media (max-width: 760px) {
+    #side.open { width: 100vw; }
+    #side > .scroll { min-width: 100vw; }
+    body.side-open #panel, body.side-open #legend { display: none; }
+  }
 
   /* fallback ground is fixed dark blues so the white name reads in both themes */
   .photo { position: relative; height: 168px; background: linear-gradient(135deg, #2a6cbf, #0d366b); }
   .photo.nophoto { height: 118px; }
-  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo img { width: 100%; height: 100%; object-fit: cover;
+               object-position: var(--photo-pos, center); display: block; }
   .photo .veil { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(10,14,18,.62)); }
   .photo .close {
     position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%;
@@ -178,7 +186,7 @@
   .fbadge { font-size: 9.5px; color: var(--ink-3); border: 1px dashed var(--line); border-radius: 5px;
             padding: 1px 5px; margin-left: 7px; cursor: help; white-space: nowrap; }
   .prow.muted .nm, .prow.muted .val { color: var(--ink-3); }
-  .prow .val { font-size: 13.5px; font-weight: 650; font-variant-numeric: tabular-nums; flex: none; width: 52px; text-align: right; }
+  .prow .val { font-size: 13.5px; font-weight: 650; font-variant-numeric: tabular-nums; flex: none; width: 68px; text-align: right; }
   .prow .val small { display: block; font-weight: 400; font-size: 9px; color: var(--ink-3); }
   .prow .val .soft { color: var(--ink-2); font-weight: 500; font-size: 11.5px; }
   #src-note { padding: 14px 18px 20px; font-size: 10.5px; color: var(--ink-3); line-height: 1.5; }
@@ -190,6 +198,16 @@
 </style>
 </head>
 <body>
+<noscript>
+  <div style="padding:26px 22px;max-width:640px;font-size:15px;line-height:1.5">
+    <h1 style="font-size:20px;margin-bottom:8px">Poengkart</h1>
+    <p>Kartet krever JavaScript. Datasettet (poenggrenser for videregående skoler
+       i Rogaland 2018–2025) kan lastes ned direkte som
+       <a href="data/schools.json">schools.json</a>.</p>
+    <p style="margin-top:8px">This map needs JavaScript. The underlying dataset is
+       available as <a href="data/schools.json">schools.json</a>.</p>
+  </div>
+</noscript>
 <div id="app">
   <div id="map"></div>
   <aside id="side" aria-label="School details">
@@ -285,6 +303,12 @@ const T = {
   pts:        { no: 'poeng', en: 'pts' },
   allIn:      { no: 'Alle inntatt', en: 'All admitted' },
   priority:   { no: 'Fortrinn', en: 'Priority' },
+  docAdm:     { no: 'Dokumentasjon', en: 'By documentation' },
+  docTitle:   { no: 'Inntak på grunnlag av dokumentasjon (t.d. IB eller toppidrett) – ingen poenggrense.',
+                en: 'Admission on documented grounds (e.g. IB or elite sport) — no points threshold.' },
+  tipNoData:  { no: y => `Ingen data for ${y}`, en: y => `No data for ${y}` },
+  closeAria:  { no: 'Lukk skoledetaljer', en: 'Close school details' },
+  markerAria: { no: (n, v) => `${n}. ${v}. Trykk for detaljer.`, en: (n, v) => `${n}. ${v}. Press to open details.` },
   gone:       { no: 'Utgått', en: 'Discontinued' },
   tipPrograms:{ no: n => `${n} programområder · 2018–2025`, en: n => `${n} programs · 2018–2025` },
   tipHint:    { no: 'Klikk for trender og detaljer', en: 'Click for trends and details' },
@@ -402,25 +426,49 @@ function drawMarkers() {
       } else if (st8.kind === 'open') {
         line = t('tipAllOpen', st8.year);
       } else {
-        line = t('tipPrograms', visibleCount(s));
+        line = t('tipNoData', DATA.years[DATA.years.length - 1]);
       }
     } else {
       line = st8.kind === 'points' ? `${CATS[mapCat][lang]}: <b>${fmt(st8.v)}</b> ${t('pts')} (${st8.year})`
            : st8.kind === 'open' ? `${CATS[mapCat][lang]}: ${t('allIn').toLowerCase()} (${st8.year})`
            : `${CATS[mapCat][lang]}: –`;
     }
-    m.bindTooltip(
-      `<div class="n">${esc(s.name)}</div><div class="v">${line}</div>` +
-      `<div class="v">${t('tipPrograms', visibleCount(s))}</div><div class="h">${t('tipHint')}</div>`,
-      { className: 'tip', direction: 'top', offset: [0, -10], opacity: 1 });
+    const html = `<div class="n">${esc(s.name)}</div><div class="v">${line}</div>` +
+      `<div class="v">${t('tipPrograms', visibleCount(s))}</div><div class="h">${t('tipHint')}</div>`;
+    const tipOpts = dir => ({ className: 'tip', direction: dir, opacity: 1,
+                              offset: dir === 'top' ? [0, -10] : [0, 10] });
+    m.bindTooltip(html, tipOpts('top'));
+    // flip below the marker near the top edge, where a 'top' tooltip is clipped
+    m.on('mouseover', () => {
+      const want = map.latLngToContainerPoint(m.getLatLng()).y < 140 ? 'bottom' : 'top';
+      if (m.getTooltip().options.direction !== want) {
+        m.unbindTooltip().bindTooltip(html, tipOpts(want)).openTooltip();
+      }
+    });
     m.on('click', () => openSide(s));
+    m.on('dblclick', e => L.DomEvent.stop(e));   // don't zoom the map underneath
+    const el = m.getElement();
+    if (el) {                                     // keyboard access (WCAG 2.1.1)
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('role', 'button');
+      el.setAttribute('aria-label', t('markerAria', s.name, line.replace(/<[^>]*>/g, '')));
+      el.addEventListener('keydown', ev => {
+        if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openSide(s); }
+      });
+      el.addEventListener('focus', () => m.openTooltip());
+      el.addEventListener('blur', () => m.closeTooltip());
+    }
   }
 }
 
 function onMapCat(v) {
   mapCat = v;
   drawMarkers(); renderLegend(); renderCatNote();
-  if (current && v !== 'all') { chart.mode = 'cat'; chart.cat = v; renderChartCard(); }
+  if (current && v !== 'all') {
+    chart.mode = 'cat'; chart.cat = v; chart.prog = null;
+    renderChartCard();
+    renderList();          // clear the now-stale selected-programme highlight
+  }
 }
 
 /* ================= static chrome rendering ================= */
@@ -457,8 +505,13 @@ function openSide(s) {
   chart = { mode: mapCat === 'all' ? 'all' : 'cat', cat: mapCat === 'all' ? null : mapCat, prog: null };
   renderSide();
   document.getElementById('side').classList.add('open');
+  document.body.classList.add('side-open');
+  setTimeout(() => document.querySelector('#s-photo .close')?.focus(), 60);
 }
-function closeSide() { document.getElementById('side').classList.remove('open'); }
+function closeSide() {
+  document.getElementById('side').classList.remove('open');
+  document.body.classList.remove('side-open');
+}
 
 function renderSide() {
   if (!current) return;
@@ -466,13 +519,18 @@ function renderSide() {
   // photo header
   const ph = document.getElementById('s-photo');
   ph.classList.toggle('nophoto', !s.photo);
-  const credit = s.photo ? `<div class="credit">${t('photoCredit')}: ` +
-    (s.photo_source === 'commons'
-      ? `<a href="${esc(s.photo_page || 'https://commons.wikimedia.org')}" target="_blank" rel="noopener">Wikimedia Commons</a>`
-      : `<a href="${esc(s.wiki_url || '#')}" target="_blank" rel="noopener">Wikipedia</a>`) + '</div>' : '';
-  ph.innerHTML = (s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy">` : '') +
+  const creditText = s.photo_credit
+    || (s.photo_source === 'commons' ? 'Wikimedia Commons' : 'Wikipedia');
+  const creditHref = s.photo_page || s.wiki_url || '';
+  const credit = s.photo
+    ? `<div class="credit">` + (creditHref
+        ? `<a href="${esc(creditHref)}" target="_blank" rel="noopener">${esc(creditText)}</a>`
+        : esc(creditText)) + '</div>'
+    : '';
+  const pos = s.photo_position ? ` style="--photo-pos:${esc(s.photo_position)}"` : '';
+  ph.innerHTML = (s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy"${pos}>` : '') +
     `<div class="veil"></div>` +
-    `<button class="close" onclick="closeSide()" aria-label="Close">✕</button>` +
+    `<button class="close" onclick="closeSide()" aria-label="${esc(t('closeAria'))}">✕</button>` +
     `<div class="name"><h2>${esc(s.name)}</h2>${credit}</div>`;
   // meta links
   const meta = [];
@@ -492,7 +550,15 @@ function renderSide() {
         const d = l[1] - st.values[ys[ys.length - 2]];
         cells.push({ v: (d >= 0 ? '+' : '') + fmt(d), l: t('heroDelta', ys[ys.length - 2]), cls: d >= 0 ? 'up' : 'dn' });
       }
-    } else cells.push({ v: t('allIn'), l: CATS.st[lang] });
+    } else {
+      // no numeric value: say what the latest cell actually is — claiming
+      // "all admitted" for a discontinued programme is worse than saying nothing
+      const ys = Object.keys(st.values).sort();
+      const last = ys.length ? st.values[ys[ys.length - 1]] : undefined;
+      const label = last === 'U' ? t('gone') : last === 'D' ? t('docAdm')
+                  : last === 'F' ? t('priority') : t('allIn');
+      cells.push({ v: label, l: CATS.st[lang] });
+    }
   }
   cells.push({ v: visibleCount(s), l: t('heroProgs') });
   document.getElementById('s-hero').innerHTML =
@@ -537,12 +603,25 @@ function renderChartCard() {
 
 function drawChart() {
   const years = DATA.years.map(String);
-  const W = 444, H = 190, ML = 30, MR = 12, MT = 12, MB = 22, LO = 10, HI = 50;
+  const W = 444, H = 190, ML = 30, MR = 12, MT = 16, MB = 22;
   const iw = W - ML - MR, ih = H - MT - MB;
+  const series = seriesFor(chart.mode, chart.cat, chart.prog);
+  document.getElementById('chart-tip').style.display = 'none';  // stale on redraw
+
+  // the y-domain follows the data: a fixed 10-50 window flattened every school
+  // whose thresholds run above 50 (Sauda ambulansefag sits at 51-54)
+  const nums = series.flatMap(p => Object.values(p.values).filter(v => typeof v === 'number'));
+  let LO = 10, HI = 50;
+  if (nums.length) {
+    LO = Math.max(0, Math.floor((Math.min(...nums) - 3) / 5) * 5);
+    HI = Math.ceil((Math.max(...nums) + 3) / 5) * 5;
+    if (HI - LO < 20) { LO = Math.max(0, HI - 20); HI = LO + 20; }
+  }
+  const step = (HI - LO) > 45 ? 20 : 10;
+  const ticks = [];
+  for (let g = Math.ceil(LO / step) * step; g <= HI; g += step) ticks.push(g);
   const x = i => ML + i * iw / (years.length - 1);
   const y = v => MT + ih - (Math.min(Math.max(v, LO), HI) - LO) * ih / (HI - LO);
-
-  const series = seriesFor(chart.mode, chart.cat, chart.prog);
   const sub = document.getElementById('chart-sub');
   sub.textContent = chart.mode === 'prog'
     ? `${chart.prog ? chart.prog.program + ' · ' : ''}${t('chartSubProg')}`
@@ -557,12 +636,12 @@ function drawChart() {
 
   let svg = '';
   // grid + y labels
-  for (const gy of [20, 30, 40, 50]) {
+  for (const gy of ticks) {
     svg += `<line x1="${ML}" y1="${y(gy)}" x2="${W - MR}" y2="${y(gy)}" stroke="var(--line)" stroke-width="1"/>` +
-           `<text x="${ML - 6}" y="${y(gy) + 3}" font-size="9" fill="var(--ink-3)" text-anchor="end">${gy}</text>`;
+           `<text x="${ML - 6}" y="${y(gy) + 3}" font-size="10.5" fill="var(--ink-3)" text-anchor="end">${gy}</text>`;
   }
   years.forEach((yr, i) => {
-    svg += `<text x="${x(i)}" y="${H - 6}" font-size="9" fill="var(--ink-3)" text-anchor="middle">${yr.slice(2)}</text>`;
+    svg += `<text x="${x(i)}" y="${H - 6}" font-size="10.5" fill="var(--ink-3)" text-anchor="middle">${yr.slice(2)}</text>`;
   });
 
   const lineOf = (p, stroke, width, op) => {
@@ -588,7 +667,7 @@ function drawChart() {
         svg += `<circle cx="${x(i)}" cy="${y(LO)}" r="4" fill="var(--surface-solid)" stroke="var(--ink-3)" stroke-width="1.6"/>`;
     });
     const l = numericLatest(p.values);
-    if (l) svg += `<text x="${x(years.indexOf(l[0])) - 8}" y="${y(l[1]) - 9}" font-size="11" font-weight="700" fill="var(--ink)" text-anchor="middle">${fmt(l[1])}</text>`;
+    if (l) svg += `<text x="${x(years.indexOf(l[0])) - 8}" y="${Math.max(y(l[1]) - 9, MT - 3)}" font-size="11" font-weight="700" fill="var(--ink)" text-anchor="middle">${fmt(l[1])}</text>`;
   } else {
     for (const p of series) svg += lineOf(p, 'var(--context)', 1.4, .55);
     const avgSeries = { values: Object.fromEntries(Object.entries(avg)) };
@@ -618,7 +697,8 @@ function drawChart() {
       const v = chart.prog.values[yr];
       body = v === undefined ? '–'
         : typeof v === 'number' ? `${fmt(v)} ${t('pts')}`
-        : v === 'open' ? t('allIn') : v === 'F' ? t('priority') : t('gone');
+        : v === 'open' ? t('allIn') : v === 'F' ? t('priority')
+        : v === 'D' ? t('docAdm') : t('gone');
     } else {
       body = avg[yr] != null ? `${t('avg')} ${fmt(avg[yr])} · ${cnt[yr]} ${t('series')}` : '–';
     }
@@ -658,6 +738,7 @@ function renderList() {
       const val = orphan ? `<span class="soft" title="${esc(t('fortrinnTitle'))}">${t('priority')} ⓘ</span>`
         : typeof lv === 'number' ? `${fmt(lv)}<small>${latestYear}</small>`
         : lv === 'open' ? `<span class="soft">${t('allIn')}</span>`
+        : lv === 'D' ? `<span class="soft" title="${esc(t('docTitle'))}">${t('docAdm')}</span>`
         : `<span class="soft">${t('gone')}</span>`;
       const key = p.program.toLowerCase();
       let badge = '';
@@ -701,6 +782,11 @@ async function main() {
   }, 60));
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { setTiles(); drawMarkers(); renderLegend(); });
   document.getElementById('s-filter').addEventListener('input', renderList);
+  document.addEventListener('keydown', ev => {
+    if (ev.key === 'Escape' && document.getElementById('side').classList.contains('open')) {
+      closeSide();
+    }
+  });
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers();
 }
 main();

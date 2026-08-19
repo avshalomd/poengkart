@@ -1,0 +1,262 @@
+[
+ {
+  "school": "Vardafjell videregående skole",
+  "program": "International baccalaureate, IB",
+  "level": "Vg2",
+  "year": 2021,
+  "kept": "D",
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": "open",
+  "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
+ },
+ {
+  "school": "Vardafjell videregående skole",
+  "program": "International baccalaureate, IB",
+  "level": "Vg2",
+  "year": 2022,
+  "kept": "D",
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": "open",
+  "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
+ },
+ {
+  "school": "Vågen videregående skole",
+  "program": "Interiør",
+  "level": "Vg3",
+  "year": 2022,
+  "kept": "F",
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": "open",
+  "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
+ },
+ {
+  "school": "Vågen videregående skole",
+  "program": "Kunst, design og arkitektur",
+  "level": "Vg3",
+  "year": 2022,
+  "kept": "open",
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": "F",
+  "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
+ },
+ {
+  "school": "Åkrehamn vidaregåande skole",
+  "program": "Helse- og oppvekstfag",
+  "level": "Vg1",
+  "year": 2022,
+  "kept": 24.3,
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": 44.7,
+  "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
+ },
+ {
+  "school": "Hetland videregående skole",
+  "program": "Medier og kommunikasjon",
+  "level": "Vg1",
+  "year": 2019,
+  "kept": 36.0,
+  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
+  "ignored": 38.2,
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Hetland videregående skole",
+  "program": "Medier og kommunikasjon",
+  "level": "Vg1",
+  "year": 2020,
+  "kept": "open",
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": 36.0,
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Hetland videregående skole",
+  "program": "Studiespesialisering",
+  "level": "Vg1",
+  "year": 2019,
+  "kept": 41.3,
+  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
+  "ignored": 40.6,
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Hetland videregående skole",
+  "program": "Studiespesialisering",
+  "level": "Vg1",
+  "year": 2020,
+  "kept": 40.4,
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": 41.3,
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Hetland videregående skole",
+  "program": "Realfag",
+  "level": "Vg2",
+  "year": 2019,
+  "kept": 36.7,
+  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
+  "ignored": 36.4,
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Hetland videregående skole",
+  "program": "Realfag",
+  "level": "Vg2",
+  "year": 2020,
+  "kept": 31.3,
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": 36.7,
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Hetland videregående skole",
+  "program": "Språk, samfunn og økonomi",
+  "level": "Vg2",
+  "year": 2019,
+  "kept": 35.7,
+  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
+  "ignored": 36.0,
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Hetland videregående skole",
+  "program": "Språk, samfunn og økonomi",
+  "level": "Vg2",
+  "year": 2020,
+  "kept": 37.8,
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": 35.7,
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Sola videregående skole",
+  "program": "Avionikerfaget Landslinje",
+  "level": "Vg3",
+  "year": 2020,
+  "kept": "F",
+  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
+  "ignored": "open",
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Sola videregående skole",
+  "program": "Avionikerfaget Landslinje",
+  "level": "Vg3",
+  "year": 2021,
+  "kept": "F",
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": "open",
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Sola videregående skole",
+  "program": "Flyfag, Landslinje",
+  "level": "Vg3",
+  "year": 2020,
+  "kept": "F",
+  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
+  "ignored": "open",
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Sola videregående skole",
+  "program": "Flyfag, Landslinje",
+  "level": "Vg3",
+  "year": 2021,
+  "kept": "F",
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": "open",
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Vardafjell videregående skole",
+  "program": "International baccalaureate, IB",
+  "level": "Vg2",
+  "year": 2021,
+  "kept": "D",
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": "open",
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Sola videregående skole",
+  "program": "Avionikerfaget Landslinje",
+  "level": "Vg3",
+  "year": 2020,
+  "kept": "F",
+  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
+  "ignored": "open",
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Sola videregående skole",
+  "program": "Avionikerfaget Landslinje",
+  "level": "Vg3",
+  "year": 2021,
+  "kept": "F",
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": "open",
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Sola videregående skole",
+  "program": "Flyfag, Landslinje",
+  "level": "Vg3",
+  "year": 2020,
+  "kept": "F",
+  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
+  "ignored": "open",
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Sola videregående skole",
+  "program": "Flyfag, Landslinje",
+  "level": "Vg3",
+  "year": 2021,
+  "kept": "F",
+  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "ignored": "open",
+  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "school": "Hetland videregående skole",
+  "program": "Medier og kommunikasjon",
+  "level": "Vg1",
+  "year": 2019,
+  "kept": 36.0,
+  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
+  "ignored": 38.2,
+  "ignored_from": "poenggrenser-rogaland-2019-2020.pdf"
+ },
+ {
+  "school": "Hetland videregående skole",
+  "program": "Studiespesialisering",
+  "level": "Vg1",
+  "year": 2019,
+  "kept": 41.3,
+  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
+  "ignored": 40.6,
+  "ignored_from": "poenggrenser-rogaland-2019-2020.pdf"
+ },
+ {
+  "school": "Hetland videregående skole",
+  "program": "Realfag",
+  "level": "Vg2",
+  "year": 2019,
+  "kept": 36.7,
+  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
+  "ignored": 36.4,
+  "ignored_from": "poenggrenser-rogaland-2019-2020.pdf"
+ },
+ {
+  "school": "Hetland videregående skole",
+  "program": "Språk, samfunn og økonomi",
+  "level": "Vg2",
+  "year": 2019,
+  "kept": 35.7,
+  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
+  "ignored": 36.0,
+  "ignored_from": "poenggrenser-rogaland-2019-2020.pdf"
+ }
+]
