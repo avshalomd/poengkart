@@ -392,14 +392,35 @@
     }
     #controls .ico { width: 26px; height: 26px; }
 
+    /* The legend runs the width of the screen, but its scale is only 170px of
+       that, so a wrapping row left the right half of the box empty and pushed
+       the two keys onto a line of their own. Two columns instead: the scale on
+       the left, the keys beside it, and the comparability warning — which a
+       phone reader never saw — across the bottom of the freed space. */
     #legend {
-      left: 10px; right: 10px; bottom: 10px; padding: 8px 11px 7px;
-      display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px;
+      /* clears the Leaflet attribution strip, which the taller box overlapped */
+      left: 10px; right: 10px; bottom: 16px; padding: 8px 11px 7px;
+      display: grid; row-gap: 4px; column-gap: 12px; align-items: center;
+      grid-template-columns: minmax(140px, 1fr) minmax(0, max-content);
     }
-    #legend .t { margin-bottom: 0; width: 100%; }
-    #legend .none { margin-top: 0; }
-    #legend .none + .none { margin-top: 0; }
-    #legend .sizenote, #legend .sizenote.warn { display: none; }
+    #legend .t { grid-column: 1 / -1; margin-bottom: 0; }
+    /* every cell is placed by hand: auto-flow reads the warning before the two
+       keys and would drop it between them */
+    #legend .bins { grid-area: 2 / 1 / 4 / 2; }
+    /* the keys take the width their text needs and the scale spreads across
+       whatever is left, so no phone width leaves a gutter between the two */
+    #legend .bin { flex: 1 1 0; min-width: 0; }
+    #legend .sw { width: 100%; }
+    /* half a point smaller keeps a gap between "30–34" and "34–38" once
+       the scale is squeezed on a 360px screen */
+    #legend .bl { font-size: 9px; }
+    #legend .none { grid-column: 2; grid-row: 2; margin-top: 0; }
+    #legend .none + .none { grid-row: 3; margin-top: 0; }
+    #legend .sizenote { display: none; }
+    #legend .sizenote.warn:not([hidden]) {
+      display: block; grid-area: 4 / 1 / 5 / -1; max-width: none;
+      margin-top: 2px; padding-top: 5px;
+    }
     /* a 16px chip is a poor tap target; the tooltip is worth reaching */
     .prow .lv { padding: 4px 7px; }
     /* fingers, not cursors: everything worth pressing gets a real target */
@@ -418,7 +439,8 @@
     #panel { padding: 10px 12px 11px; }
     #legend { padding: 7px 10px 6px; }
     #legend .t { font-size: 10.5px; margin-bottom: 5px; }
-    #legend .sizenote, #legend .sizenote.warn { display: none; }
+    /* matches the phone rule's specificity so it still wins when both apply */
+    #legend .sizenote, #legend .sizenote.warn:not([hidden]) { display: none; }
   }
   @media (max-height: 480px) and (min-width: 561px) {
     #panel {
