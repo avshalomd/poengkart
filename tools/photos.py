@@ -189,8 +189,12 @@ def _serves_image(url):
     """Wikimedia rate-limits probes hard, and a 429 is indistinguishable from
     "this width is not served" — which silently keeps the oversized original.
     Retry before believing a refusal."""
+    wiki = 'upload.wikimedia.org' in url
     for attempt in range(4):
-        time.sleep(1.0 + attempt * 3.0)
+        # the pause is Wikimedia's price of admission; county servers do not
+        # need it, and 150 of them at a second each is a long build
+        if wiki or attempt:
+            time.sleep(1.0 + attempt * 3.0)
         try:
             r = urllib.request.urlopen(urllib.request.Request(
                 url, headers={'User-Agent': 'poengkart/0.1 (prototype)',
@@ -203,7 +207,36 @@ def _serves_image(url):
     return False
 
 
-def commons_thumb(url, width=1280):
+# The header this photo lands in is 168 px tall and at most 480 px wide, so a
+# 2x phone is served by roughly a thousand pixels. Counties were handing over
+# their originals instead — one of them 7.9 MB — and a family on mobile data
+# paid for every one of them. Ask each host for a display-sized rendition; the
+# result is checked before it is kept, so a host that ignores the request just
+# keeps its original URL.
+DISPLAY_W = 960
+
+
+def shrink_url(url):
+    if 'upload.wikimedia.org' in url:
+        return re.sub(r'/\d+px-', f'/{DISPLAY_W}px-', url)
+    if 'v.imgi.no' in url:
+        return re.sub(r'__w=\d+', f'__w={DISPLAY_W}', url)
+    # Rogaland's bv.ashx renditions are signed: a width in the path 404s and a
+    # width in the query is ignored, so there is nothing to ask for.
+    if '/bv.ashx/' in url:
+        return url
+    p = urllib.parse.urlparse(url)
+    if not p.path.lower().endswith(('.jpg', '.jpeg', '.png', '.webp')):
+        return url
+    q = urllib.parse.parse_qs(p.query)
+    q['width'] = [str(DISPLAY_W)]
+    q['quality'] = ['75']
+    if p.path.lower().endswith('.png'):
+        q['format'] = ['jpg']          # a photograph has no business being a PNG
+    return urllib.parse.urlunparse(p._replace(query=urllib.parse.urlencode(q, doseq=True)))
+
+
+def commons_thumb(url, width=DISPLAY_W):
     """Rewrite a Commons image URL to a sized thumbnail.
 
     Commons only serves a short list of thumbnail widths per file (1280 is the
@@ -305,6 +338,12 @@ def main():
             if thumb != s['photo']:
                 s['photo'] = thumb
                 changed.append(f'{name}: commons thumbnail')
+        # ...and every other host is asked for a display-sized rendition too
+        if s.get('photo'):
+            small = shrink_url(s['photo'])
+            if small != s['photo'] and _serves_image(small):
+                s['photo'] = small
+                changed.append(f'{name}: display-sized photo')
 
     json.dump(data, open(DATA, 'w'), ensure_ascii=False, indent=1)
     have = sum(1 for s in data['schools'] if s.get('photo'))

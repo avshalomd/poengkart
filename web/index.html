@@ -621,8 +621,8 @@ const CATS = {
 };
 const T = {
   tagline: {
-    no: (n, f, y0, y1) => `Poenggrenser for videregående skole: poengsummen til den siste som fikk plass. ${n} skoler i ${f} fylker, ${y0}–${y1}. Hold musa over en skole – klikk for detaljer.`,
-    en: (n, f, y0, y1) => `Admission point thresholds for upper secondary school: the score of the last applicant who got a place. ${n} schools across ${f} counties, ${y0}–${y1}. Hover a school — click for details.`,
+    no: (n, f, y0, y1) => `Poenggrenser for videregående skole: poengsummen til den siste som fikk plass. ${n} skoler i ${f} fylker, ${y0}–${y1}. Velg en skole for detaljer.`,
+    en: (n, f, y0, y1) => `Admission point thresholds for upper secondary school: the score of the last applicant who got a place. ${n} schools across ${f} counties, ${y0}–${y1}. Open a school for the details.`,
   },
   introTitle: { no: 'Slik leser du kartet', en: 'How to read this map' },
   introLede: {
@@ -636,7 +636,7 @@ const T = {
       ['Fargene og størrelsene',
        'Farge = typisk poenggrense det siste året skolen har tall for. Størrelse = hvor stor andel av programområdene som ble fylt opp.'],
       ['Finn skolene som er aktuelle',
-       'Velg fylke og utdanningsprogram øverst. Hold musa over en prikk for et sammendrag, og klikk for utviklingen år for år og tallene for hvert programområde.'],
+       'Velg fylke og utdanningsprogram øverst. Trykk på en prikk for utviklingen år for år og tallene for hvert programområde.'],
     ],
     en: [
       ['Your points',
@@ -644,7 +644,7 @@ const T = {
       ['Colours and sizes',
        'Colour = the typical threshold in the newest year that school has figures for. Size = what share of its programmes filled up.'],
       ['Find the schools that matter to you',
-       'Pick a county and a programme at the top. Hover a dot for a summary, and click for the year-by-year trend and the figures per programme.'],
+       'Pick a county and a programme at the top. Open a dot for the year-by-year trend and the figures per programme.'],
     ],
   },
   introCalc: { no: ['4,2 i snitt', '42 poeng'], en: ['4.2 average', '42 points'] },
@@ -780,7 +780,7 @@ const T = {
   langLabel:  { no: 'Språk', en: 'Language' },
   pageTitle:  { no: 'Poengkart – poenggrenser for videregående skole',
                 en: 'Poengkart – admission thresholds for Norwegian upper secondary schools' },
-  tipHint:    { no: 'Klikk for trender og detaljer', en: 'Click for trends and details' },
+  tipHint:    { no: 'Trykk for trender og detaljer', en: 'Open for trends and details' },
   tipHighest: { no: 'Høyest', en: 'Highest' },
   tipAllOpen: { no: y => `Alle program uten venteliste i ${y}`, en: y => `All programs without waitlist in ${y}` },
   heroSt:     { no: y => `Studiespes. ${y}`, en: y => `Acad. spec. ${y}` },

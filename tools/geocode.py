@@ -25,6 +25,11 @@ UA = {'User-Agent': 'poengkart/0.1 (prototype)', 'Accept': 'application/json'}
 MANUAL = {
     ('11', 'stavanger offshore tekniske skole'): (58.9271, 5.7052),
     ('11', 'øksnevad'): (58.80082, 5.67142),   # NSR says "Jærveien", matrikkelen "Jærvegen"
+    # Merged into Førde vidaregåande skule in 2023 and dropped out of NSR with
+    # it, so nothing was left to geocode and the school fell off the map
+    # entirely. Kartverket places its registered address, Movegen 30 (the Mo
+    # campus), here.
+    ('46', 'mo og øyrane vidaregåande skule'): (61.43390, 5.98465),
 }
 
 
