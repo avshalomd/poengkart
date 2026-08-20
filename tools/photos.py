@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
-"""Curated school photo + identity overrides.
+"""School photo + identity overrides.
 
-The automatic enrichment in enrich.py matches by name and by geosearch, which
-produced wrong-school and wrong-subject results (QA 2026-08-19): Commons
-geosearch returns the *nearest* photo, not the school's, and the Wikipedia
-title search hits same-name schools in other counties. This module holds the
-human-verified truth and always wins over enrich.py.
+Two layers, both human-reviewed:
 
-Run after parse/geocode/enrich:  python3 tools/photos.py
+  photos-auto.json  — the national harvest. tools/photo_hunt.py proposes
+      candidates, tools/photo_stage.py measures them, and every one was looked
+      at on a contact sheet before being written here. Regenerate with
+      photo_hunt -> photo_stage -> photo_sheets -> photo_accept.
+  OVERRIDES (below) — hand-written entries that carry a reason: a name
+      collision, a photo of identifiable pupils, a crop that must not centre.
+      These always win over the harvest.
+
+Nothing about a photo is inferred at publish time. The automatic matching in
+enrich.py returned the wrong school on a name collision and the *nearest*
+Commons photo rather than the school's (QA 2026-08-19), so a candidate that
+nobody looked at is not published at all — the location map stands in.
+
+Run as part of the pipeline:  python3 tools/refresh.py
 """
 
 import json
@@ -19,6 +28,7 @@ import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, '..', 'web', 'data', 'schools.json')
+AUTO = os.path.join(HERE, 'photos-auto.json')
 
 # photo: direct image URL · page: source page for the credit link
 # credit: attribution text shown on the image · license: for our own records
@@ -142,16 +152,32 @@ OVERRIDES = {
     },
 
     # --- nothing usable exists: the location map stands in ------------------
-    'Godalen videregående skole': {'photo': None,
-        'note': 'only exterior photo found is trade press (bygg.no/SKARP) — not reused'},
+    # (Godalen was here until the national sweep found an exterior on the
+    # school's own site; it is now in photos-auto.json)
     'Ølen vidaregåande skule': {'photo': None,
         'note': 'no exterior photograph found anywhere (site, Wayback, Commons, Flickr)'},
 }
 
-# NSR stores an e-mail address in the website field for these schools
+# NSR's website field is unreliable: sometimes an e-mail address, often a URL
+# that 404s or no longer resolves (county sites moved from viken.no, and the
+# www host does not always exist). Every value here was fetched and returned
+# 200. Applied unconditionally — a dead link in the sidebar is a visible bug.
 URL_FIXES = {
     'Øksnevad vidaregåande skole': 'https://www.oksnevad.vgs.no/',
     'Vardafjell videregående skole': 'https://www.vardafjell.vgs.no/',
+}
+URL_REPLACE = {
+    'Eidsvoll': 'https://afk.no/eidsvoll-vgs',
+    'Roald Amundsen': 'https://afk.no/roaldamundsen-vgs',
+    'Buskerud': 'https://bfk.no/buskerud-vgs',
+    'Ål': 'https://bfk.no/al-vgs',
+    'Kongshavn videregående skole': 'https://kongshavn.vgs.no/',
+    'Mølla videregående skole': 'https://molla.vgs.no/',
+    'Vika videregående skole': 'https://vika.vgs.no/',
+    'Fitjar vidaregåande skule': 'https://www.fitjar.vgs.no/',
+    'Odda vidaregåande skule': 'https://www.odda.vgs.no/',
+    'Voss vidaregåande skule': 'https://www.voss.vgs.no/',
+    'Stend vidaregåande skule': 'https://www.stend.vgs.no/',
 }
 
 COMMONS_FILE_RE = re.compile(
@@ -159,25 +185,45 @@ COMMONS_FILE_RE = re.compile(
 
 
 def _serves_image(url):
-    time.sleep(1.0)                       # Wikimedia rate-limits rapid probes
-    try:
-        r = urllib.request.urlopen(urllib.request.Request(
-            url, headers={'User-Agent': 'poengkart/0.1 (prototype)'}), timeout=30)
-        return r.status == 200 and r.headers.get('content-type', '').startswith('image')
-    except Exception:
-        return False
+    """Wikimedia rate-limits probes hard, and a 429 is indistinguishable from
+    "this width is not served" — which silently keeps the oversized original.
+    Retry before believing a refusal."""
+    for attempt in range(4):
+        time.sleep(1.0 + attempt * 3.0)
+        try:
+            r = urllib.request.urlopen(urllib.request.Request(
+                url, headers={'User-Agent': 'poengkart/0.1 (prototype)',
+                              'Accept': 'image/avif,image/webp,image/*,*/*;q=0.8'}),
+                timeout=30)
+            return r.status == 200 and r.headers.get('content-type', '').startswith('image')
+        except Exception as e:
+            if getattr(e, 'code', None) != 429:
+                return False
+    return False
 
 
 def commons_thumb(url, width=1280):
-    """Rewrite a full-size Commons original to a sized thumbnail.
+    """Rewrite a Commons image URL to a sized thumbnail.
 
     Commons only serves a short list of thumbnail widths per file (1280 is the
     reliable one; 640/800/1024 are commonly refused) and never a width above
     the source. Probe once and keep the original if the thumb is not served.
+
+    Two shapes arrive here. A full-size original has to be turned into a thumb
+    URL. An *existing* thumb can be far too big: when the Commons API call
+    fails we fall back to the Wikipedia summary API's image, and that is often
+    a 3840 px rendition — several megabytes pushed into a 380 px sidebar
+    header. Narrow those in place.
     """
     url = (url or '').split('?')[0]        # drop utm tracking params
-    if 'upload.wikimedia.org' not in url or '/thumb/' in url:
+    if 'upload.wikimedia.org' not in url:
         return url
+    if '/thumb/' in url:
+        m = re.search(r'/(\d+)px-', url)
+        if not m or int(m.group(1)) <= width:
+            return url
+        smaller = url.replace(f'/{m.group(1)}px-', f'/{width}px-')
+        return smaller if _serves_image(smaller) else url
     tail = url.split('/wikipedia/commons/')[-1].split('/')
     if len(tail) < 3 or tail[2].lower().endswith(('.svg', '.gif')):
         return url
@@ -187,14 +233,36 @@ def commons_thumb(url, width=1280):
     return thumb if _serves_image(thumb) else url
 
 
+def load_auto():
+    if not os.path.exists(AUTO):
+        return {}
+    raw = json.load(open(AUTO))
+    return {name: {k: v for k, v in e.items() if k != 'source'}
+            for name, e in raw.items()}
+
+
 def main():
     data = json.load(open(DATA))
+    auto = load_auto()
     changed = []
     for s in data['schools']:
         name = s['name']
         if name in URL_FIXES and '@' in (s.get('url') or ''):
             s['url'] = URL_FIXES[name]
             changed.append(f'{name}: url (was an e-mail address)')
+        if name in URL_REPLACE and s.get('url') != URL_REPLACE[name]:
+            s['url'] = URL_REPLACE[name]
+            changed.append(f'{name}: url (previous one did not resolve)')
+        if name in auto and name not in OVERRIDES:
+            a = auto[name]
+            for field, key in (('photo', 'photo'), ('photo_page', 'page'),
+                               ('photo_credit', 'credit'), ('photo_license', 'license'),
+                               ('photo_position', 'position'),
+                               ('wiki_url', 'wiki_url'), ('wiki_extract', 'wiki_extract')):
+                if key in a and a[key]:
+                    s[field] = a[key]
+            s['photo_source'] = 'reviewed'
+            changed.append(f'{name}: photo (reviewed harvest)')
         ov = OVERRIDES.get(name)
         if ov:
             for field, key in (('photo', 'photo'), ('photo_page', 'page'),
@@ -210,10 +278,13 @@ def main():
             if ov.get('note'):
                 s['photo_note'] = ov['note']
             changed.append(f'{name}: {"photo removed" if ov.get("photo", 1) is None else "photo/identity set"}')
-        # lighten any remaining full-size Commons originals
-        if s.get('photo') and s.get('photo_source') != 'curated':
-            clean = s['photo'].split('?')[0] if 'upload.wikimedia.org' in s['photo'] else s['photo']
-            thumb = commons_thumb(clean)
+        # lighten any remaining full-size Commons originals. Only Wikimedia:
+        # commons_thumb() drops the query string, and a county CMS serves its
+        # rendition through exactly that query — stripping it silently swapped
+        # a reviewed image for an unreviewed full-size original.
+        if (s.get('photo') and s.get('photo_source') != 'curated'
+                and 'upload.wikimedia.org' in s['photo']):
+            thumb = commons_thumb(s['photo'].split('?')[0])
             if thumb != s['photo']:
                 s['photo'] = thumb
                 changed.append(f'{name}: commons thumbnail')

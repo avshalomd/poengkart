@@ -55,9 +55,17 @@ Many of these links rot yearly; older editions were recovered through the
 **Schools** — names, org numbers and locations from the national school
 register ([NSR / Udir](https://data-nsr.udir.no/)), with address geocoding via
 [Kartverket's open address API](https://ws.geonorge.no/adresser/v1/) where the
-register lacks coordinates. Photos and summaries from
-[Wikipedia](https://no.wikipedia.org) / [Wikimedia Commons](https://commons.wikimedia.org).
-Map tiles by [CARTO](https://carto.com/) / [OpenStreetMap](https://www.openstreetmap.org/).
+register lacks coordinates. Map tiles by [CARTO](https://carto.com/) /
+[OpenStreetMap](https://www.openstreetmap.org/).
+
+**Photos** come either from [Wikimedia Commons](https://commons.wikimedia.org)
+— credited to the photographer under the licence shown on the image — or from
+the school's own website, credited to the school and its county authority. Each
+one was looked at before publication: a photo is used only if it shows that
+school, and photos in which pupils are identifiable are not used at all.
+Schools without a suitable photo get a small location map instead. If you hold
+the rights to a photo here and would rather it were not used, open an issue and
+it will be removed.
 
 ## How it was processed
 
