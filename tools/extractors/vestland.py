@@ -227,6 +227,16 @@ def _hordaland_name(raw):
     return HORDALAND_NAMES.get(n)
 
 
+# The county reorganised a school into a department of another and renamed it
+# in the 2026-27 edition. Left alone that publishes two schools — the old name
+# with 2020-2025 and the new one with 2026 — for one building, and the national
+# register (NSR) still knows it under the old name, which is also what it calls
+# itself. Keep the history together under that name.
+RENAMED = {
+    'Førde vidaregåande skule, avd Høyanger': 'Høyanger vidaregåande skule',
+}
+
+
 def _hordaland(path, year, warn):
     rows = []
     with pdfplumber.open(path) as pdf:
@@ -239,13 +249,20 @@ def _hordaland(path, year, warn):
         if not name:
             warn.append(f'{os.path.basename(path)}: unknown school {m.group("name")!r}')
             continue
+        # both columns belong to one series. Emitting a row per year made the
+        # merge treat the second as a second occurrence of the same programme,
+        # so every one of these schools carried a duplicate Studiespesialisering
+        # and the older year never reached the trend line.
+        values = {}
         for y, g in ((year, 'now'), (year - 1, 'prev')):
             v = common.classify_cell(m.group(g).replace('.', ','))
-            if v is None:
-                continue
-            rows.append({'school': name, 'program': 'Studiespesialisering',
-                         'level': 'Vg1', 'values': {y: v},
-                         'county': META['fylke'], 'round': '1'})
+            if v is not None:
+                values[y] = v
+        if not values:
+            continue
+        rows.append({'school': name, 'program': 'Studiespesialisering',
+                     'level': 'Vg1', 'values': values,
+                     'county': META['fylke'], 'round': '1'})
     if not rows:
         warn.append(f'{os.path.basename(path)}: no rows parsed')
     return rows
@@ -276,6 +293,7 @@ def extract():
         if not cells:
             continue
         for (school, program, level), v in cells.items():
+            school = RENAMED.get(school, school)
             row = {'school': school, 'program': program, 'level': level,
                    'values': {year: v}, 'county': META['fylke'],
                    'round': '1' if '1' in rounds else '3'}

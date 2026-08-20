@@ -3,8 +3,8 @@
 **Live: https://poengkart-no.vercel.app**
 
 Admission point thresholds (*poenggrenser*) for Norwegian upper secondary
-schools (videregående skoler) — on a map, with up to 9 years of history
-(2018–2026). **190 schools across 7 counties**: Akershus, Buskerud, Innlandet,
+schools (videregående skoler) — on a map, with up to 10 years of history
+(2017–2026). **193 schools across 7 counties**: Akershus, Buskerud, Innlandet,
 Oslo, Rogaland, Trøndelag and Vestland. Hover a school for the headline
 numbers, click it for every programme with trends. Norwegian and English.
 

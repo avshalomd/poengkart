@@ -29,6 +29,7 @@ import urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, '..', 'web', 'data', 'schools.json')
 AUTO = os.path.join(HERE, 'photos-auto.json')
+REJECTED = os.path.join(HERE, 'photos-rejected.json')
 
 # photo: direct image URL · page: source page for the credit link
 # credit: attribution text shown on the image · license: for our own records
@@ -233,12 +234,19 @@ def commons_thumb(url, width=1280):
     return thumb if _serves_image(thumb) else url
 
 
+REJECTED_URLS = set(json.load(open(REJECTED))) if os.path.exists(REJECTED) else set()
+
+
 def load_auto():
     if not os.path.exists(AUTO):
         return {}
     raw = json.load(open(AUTO))
+    # A photo can be rejected in review after it was staged. photo_stage.py
+    # checks the list when it proposes candidates, which is too early to help
+    # anything already accepted, so the list is enforced here as well — where
+    # it decides what actually gets published.
     return {name: {k: v for k, v in e.items() if k != 'source'}
-            for name, e in raw.items()}
+            for name, e in raw.items() if e.get('photo') not in REJECTED_URLS}
 
 
 def main():
@@ -278,6 +286,15 @@ def main():
             if ov.get('note'):
                 s['photo_note'] = ov['note']
             changed.append(f'{name}: {"photo removed" if ov.get("photo", 1) is None else "photo/identity set"}')
+        # A photo can also reach the dataset from an earlier run — build_dataset
+        # carries photo fields across rebuilds — so a rejection has to take one
+        # away, not merely decline to add it.
+        if s.get('photo') in REJECTED_URLS and name not in OVERRIDES:
+            for field in ('photo', 'photo_page', 'photo_credit',
+                          'photo_license', 'photo_position'):
+                s.pop(field, None)
+            s.pop('photo_source', None)
+            changed.append(f'{name}: photo withdrawn (on the reject list)')
         # lighten any remaining full-size Commons originals. Only Wikimedia:
         # commons_thumb() drops the query string, and a county CMS serves its
         # rendition through exactly that query — stripping it silently swapped

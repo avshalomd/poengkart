@@ -199,50 +199,6 @@
  },
  {
   "county": "Rogaland",
-  "school": "Sola videregående skole",
-  "program": "Avionikerfaget Landslinje",
-  "level": "Vg3",
-  "year": 2020,
-  "kept": "F",
-  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
-  "ignored": "open",
-  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
- },
- {
-  "county": "Rogaland",
-  "school": "Sola videregående skole",
-  "program": "Avionikerfaget Landslinje",
-  "level": "Vg3",
-  "year": 2021,
-  "kept": "F",
-  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
-  "ignored": "open",
-  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
- },
- {
-  "county": "Rogaland",
-  "school": "Sola videregående skole",
-  "program": "Flyfag, Landslinje",
-  "level": "Vg3",
-  "year": 2020,
-  "kept": "F",
-  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
-  "ignored": "open",
-  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
- },
- {
-  "county": "Rogaland",
-  "school": "Sola videregående skole",
-  "program": "Flyfag, Landslinje",
-  "level": "Vg3",
-  "year": 2021,
-  "kept": "F",
-  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
-  "ignored": "open",
-  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
- },
- {
-  "county": "Rogaland",
   "school": "Hetland videregående skole",
   "program": "Medier og kommunikasjon",
   "level": "Vg1",

@@ -114,6 +114,12 @@ PROGRAM_ALIASES = {
     'studiespesialiseriing, internasjonalisering': 'Studiespesialisering, internasjonalisering',
     'helse- og oppvekst, studiekompetanse': 'Helse- og oppvekstfag, studiekompetanse',
     'studiespesialisering, ib': 'Studiespesialisering, forberedende IB',
+    'studiespesialisering, topppidrett': 'Studiespesialisering, toppidrett',
+    'frisør, blomst, int, eksp. design': 'Frisør, blomster, interiør og eksponeringsdesign',
+    'inform.ekn og medieprod, inform.tekn sk 3 år':
+        'Informasjonsteknologi og medieproduksjon, SK 3 år',
+    'inform.tekn og medieprod. sk 3 år':
+        'Informasjonsteknologi og medieproduksjon, SK 3 år',
 }
 
 
@@ -124,6 +130,17 @@ def canon_program(name):
     n = re.sub(r'\bSK\s*(\d)\s*år', r'SK \1 år', n)      # 'SK 3år' -> 'SK 3 år'
     n = re.sub(r'\bSK\s*(\d)$', r'SK \1 år', n)          # truncated rotated label
     n = re.sub(r'\s+vg\s?[1-4]$', '', n, flags=re.I)      # Grep's 'Idrettsfag vg1'
+    # Resolve a known spelling before normalising, or a rule below would edit
+    # the raw name out of the table's reach ("Bygg og anlegg" is listed there
+    # as the short form of "Bygg- og anleggsteknikk").
+    n = PROGRAM_ALIASES.get(n.lower(), n)
+    # A county spells the same programme several ways across its own editions,
+    # and each spelling used to start a series of its own: the programme looked
+    # as if it had ended one year and a new one begun.
+    n = re.sub(r'\bYSK\s*\(?\s*(\d)\s*år\)?', r'YSK \1 år', n)   # 'YSK 4år', 'YSK (4 år)'
+    n = re.sub(r'^(Bygg|Helse|Restaurant|Teknologi) og ', r'\1- og ', n)
+    n = re.sub(r'\bint\.\s*eksp\.', 'int, eksp.', n)               # 'int.eksp. design'
+    n = re.sub(r'\beksp\.(?=\S)', 'eksp. ', n)                     # 'eksp.design'
     return PROGRAM_ALIASES.get(n.lower(), n)
 
 
@@ -219,8 +236,19 @@ def merge_rows(rows_newest_first):
             if r.get('region'):
                 attrs.setdefault(sid, {})['inntaksregion'] = r['region']
             base = (sid, r['program'].lower(), r['level'])
+            # A source can list one school twice — Rogaland's national flyfag
+            # pages repeat Sola under a second heading — and counting that as a
+            # second occurrence published the same programme twice. Only start
+            # a new series when the repeat actually disagrees about a year;
+            # a repeat that merely restates or extends the first is the first.
             occ = occ_seen.get(base, 0)
-            occ_seen[base] = occ + 1
+            if occ:
+                prev = schools.get(sid, {}).get(f'{r["program"].lower()}|{r["level"]}|0')
+                if prev and not any(y in prev['values'] and prev['values'][y] != v
+                                    for y, v in r['values'].items()):
+                    occ = 0
+            if occ == occ_seen.get(base, 0):
+                occ_seen[base] = occ + 1
             key = f'{r["program"].lower()}|{r["level"]}|{occ}'
             rec = schools.setdefault(sid, {}).setdefault(key, {
                 'program': r['program'], 'level': r['level'],
