@@ -45,7 +45,17 @@ function limited(ip) {
   return hits.length > RATE.max;
 }
 
-const clean = (v, cap) => String(v ?? '').replace(/\s+/g, ' ').trim().slice(0, cap);
+// Cutting UTF-16 at a fixed length can leave half of an emoji behind, and a
+// lone surrogate makes the JSON we hand the mail provider invalid.
+const trunc = (s, cap) => s.slice(0, cap).replace(/[\uD800-\uDBFF]$/, '');
+// A field is one line by definition, and flattening it is also what keeps a
+// CR/LF out of the subject.
+const clean = (v, cap) => trunc(String(v ?? '').replace(/\s+/g, ' ').trim(), cap);
+// The message is not: somebody who writes three paragraphs should not receive
+// them back as one. Collapse runs of spaces, keep the line breaks.
+const multiline = (v, cap) => trunc(String(v ?? '')
+  .replace(/\r\n?/g, '\n').replace(/[^\S\n]+/g, ' ').replace(/\n{3,}/g, '\n\n')
+  .trim(), cap);
 
 async function viaResend(subject, text, replyTo, to) {
   const r = await fetch('https://api.resend.com/emails', {
@@ -60,7 +70,9 @@ async function viaResend(subject, text, replyTo, to) {
   if (!r.ok) throw new Error(`resend ${r.status}: ${(await r.text()).slice(0, 200)}`);
 }
 
-async function viaWeb3Forms(subject, text, replyTo, to) {
+// Web3Forms delivers to the address registered against the access key, so it
+// cannot be pointed at FEEDBACK_TO — that address is only honoured by Resend.
+async function viaWeb3Forms(subject, text, replyTo) {
   const r = await fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -89,17 +101,27 @@ export default async function handler(req, res) {
   const to = (process.env.FEEDBACK_TO || '').trim();
   if (!to) return res.status(503).json({ error: 'not_configured' });
 
-  const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+  // Vercel only parses the body for us when the request says it is JSON; any
+  // other content type arrives as a raw string, and one curl of garbage must
+  // not crash the function.
+  let body;
+  try {
+    body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+  } catch {
+    return res.status(400).json({ error: 'invalid_json' });
+  }
+  if (!body || typeof body !== 'object') return res.status(400).json({ error: 'invalid_json' });
+
+  // Counted before the honeypot, so a bot that trips it still spends its quota.
+  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
+  if (limited(ip)) return res.status(429).json({ error: 'rate_limited' });
 
   // Honeypot: a real person never fills a field they cannot see. Answer 200 so
   // a bot learns nothing from the difference.
   if (clean(body.website, 50)) return res.status(200).json({ ok: true });
 
-  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
-  if (limited(ip)) return res.status(429).json({ error: 'rate_limited' });
-
   const type = TYPES.has(body.type) ? body.type : 'annet';
-  const message = clean(body.message, MAX.message);
+  const message = multiline(body.message, MAX.message);
   if (message.length < 3) return res.status(400).json({ error: 'empty_message' });
 
   const replyTo = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(clean(body.email, MAX.field))
@@ -125,7 +147,7 @@ export default async function handler(req, res) {
 
   try {
     if (process.env.RESEND_API_KEY) await viaResend(subject, text, replyTo, to);
-    else if (process.env.WEB3FORMS_KEY) await viaWeb3Forms(subject, text, replyTo, to);
+    else if (process.env.WEB3FORMS_KEY) await viaWeb3Forms(subject, text, replyTo);
     else return res.status(200).json({ ok: false, mailto: mailto() });
     return res.status(200).json({ ok: true });
   } catch (err) {
