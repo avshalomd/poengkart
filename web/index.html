@@ -877,6 +877,7 @@ function schoolPressure(s, cat) {
 const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(b => v < b.max).css);
 
 /* ================= map ================= */
+let labelMarkers = () => {};
 const isDark = () => matchMedia('(prefers-color-scheme: dark)').matches;
 let tileLayer = null, miniMap = null;
 const tileUrl = () =>
@@ -891,6 +892,7 @@ function setTiles() {
 
 function drawMarkers() {
   if (markerLayer) map.removeLayer(markerLayer);
+  const drawn = [];
   // 190 schools overlap badly at national zoom — nearly half had no reachable
   // pixel before clustering
   markerLayer = L.markerClusterGroup({
@@ -953,18 +955,30 @@ function drawMarkers() {
     });
     m.on('click', () => openSide(s));
     m.on('dblclick', e => L.DomEvent.stop(e));   // don't zoom the map underneath
-    const el = m.getElement();
-    if (el) {                                     // keyboard access (WCAG 2.1.1)
+    drawn.push([m, s, line]);
+  }
+  // A clustered marker has no element yet — and at the opening view almost
+  // every school is clustered, so labelling here and only here left the map
+  // with nothing a keyboard could reach. Label whatever is on screen now, and
+  // again each time clustering hands a marker a new element.
+  labelMarkers = () => {
+    for (const [m, s, line] of drawn) {
+      const el = m.getElement();
+      if (!el || el.dataset.pkKeyed) continue;
+      el.dataset.pkKeyed = '1';                   // keyboard access (WCAG 2.1.1)
       el.setAttribute('tabindex', '0');
       el.setAttribute('role', 'button');
-      el.setAttribute('aria-label', t('markerAria', s.name, line.replace(/<[^>]*>/g, '')));
+      el.setAttribute('aria-label', t('markerAria', s.name,
+        line.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()));
       el.addEventListener('keydown', ev => {
         if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openSide(s); }
       });
       el.addEventListener('focus', () => m.openTooltip());
       el.addEventListener('blur', () => m.closeTooltip());
     }
-  }
+  };
+  markerLayer.on('animationend', labelMarkers);
+  labelMarkers();
 }
 
 function onMapFylke(v) {
@@ -1740,6 +1754,7 @@ async function main() {
   HOME = L.latLngBounds(pts).pad(0.06);
   map = L.map('map', { zoomControl: false, zoomSnap: 0.25 }).fitBounds(HOME, framePad());
   L.control.zoom({ position: 'bottomright' }).addTo(map);
+  map.on('zoomend moveend', () => labelMarkers());
   setTiles();
   let touched = false;
   ['mousedown', 'wheel', 'touchstart'].forEach(ev => map.getContainer()
