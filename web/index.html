@@ -52,7 +52,7 @@
     --good: #0ca30c;
   }
   @media (prefers-color-scheme: dark) {
-    :root:where(:not([data-theme="light"])) {
+    :root {
       color-scheme: dark;
       --page: #0e1116;
       --surface: rgba(23,27,33,.85);
@@ -65,6 +65,7 @@
       --shadow: 0 10px 32px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.4);
     }
   }
+
   * { margin: 0; box-sizing: border-box; }
   html, body { height: 100%; }
   body {
@@ -90,12 +91,6 @@
   .brand { display: flex; align-items: center; gap: 9px; }
   .brand .mark { width: 26px; height: 26px; flex: none; }
   .brand h1 { font-size: 19px; font-weight: 700; letter-spacing: -.02em; }
-  .brand .lang { margin-left: auto; display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-  .brand .lang button {
-    border: none; background: none; padding: 3px 9px; font-size: 11.5px; font-weight: 600;
-    color: var(--ink-3); cursor: pointer; letter-spacing: .02em;
-  }
-  .brand .lang button.on { background: var(--accent); color: #fff; }
   #tagline { font-size: 12px; color: var(--ink-2); line-height: 1.45; margin: 8px 0 12px; }
   .field label { display: block; font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
                  text-transform: uppercase; color: var(--ink-3); margin-bottom: 5px; }
@@ -108,29 +103,29 @@
   #cat-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; min-height: 14px; }
 
   /* ---------- intro / help ---------- */
-  #intro {
+  .modal {
     position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center;
     padding: 18px; background: rgba(8,11,15,.58); backdrop-filter: blur(3px);
     animation: fade .18s ease-out;
   }
-  #intro[hidden] { display: none; }
+  .modal[hidden] { display: none; }
   @keyframes fade { from { opacity: 0 } }
-  #intro .sheet {
+  .modal .sheet {
     position: relative; width: min(560px, 100%); max-height: calc(100dvh - 36px);
     overflow: auto; background: var(--surface-solid); border: 1px solid var(--line);
     border-radius: 18px; box-shadow: var(--shadow); padding: 26px 26px 22px;
     animation: rise .22s cubic-bezier(.2,.8,.3,1);
   }
   @keyframes rise { from { transform: translateY(10px); opacity: 0 } }
-  #intro .x {
+  .modal .x {
     position: absolute; top: 14px; right: 14px; width: 30px; height: 30px;
     border: none; border-radius: 9px; background: var(--accent-soft);
     color: var(--ink-2); font-size: 15px; cursor: pointer; line-height: 1;
   }
-  #intro .x:hover { color: var(--ink); }
-  #intro .head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding-right: 34px; }
-  #intro .head svg { width: 28px; height: 28px; flex: none; }
-  #intro h2 { font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+  .modal .x:hover { color: var(--ink); }
+  .modal .head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding-right: 34px; }
+  .modal .head svg { width: 28px; height: 28px; flex: none; }
+  .modal h2 { font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
   #intro .lede { font-size: 14px; line-height: 1.5; color: var(--ink-2); margin-bottom: 18px; }
   #intro .step { display: flex; gap: 12px; margin-bottom: 15px; }
   #intro .n {
@@ -152,18 +147,68 @@
     font-size: 11.5px; line-height: 1.5; color: var(--ink-3);
     border-top: 1px solid var(--line); padding-top: 12px; margin-top: 16px;
   }
-  #intro .cta {
+  .modal .cta {
     display: block; width: 100%; margin-top: 14px; padding: 11px; border: none;
     border-radius: 11px; background: var(--accent); color: #fff; font: inherit;
     font-size: 14px; font-weight: 650; cursor: pointer;
   }
-  #intro .cta:hover { filter: brightness(1.06); }
-  .brand .help {
-    width: 22px; height: 22px; flex: none; border: 1px solid var(--line); border-radius: 50%;
-    background: none; color: var(--ink-3); font: inherit; font-size: 12px; font-weight: 700;
-    cursor: pointer; line-height: 1; padding: 0;
+  .modal .cta:hover { filter: brightness(1.06); }
+  .modal .cta.ghost {
+    margin-top: 8px; background: none; color: var(--ink-2);
+    border: 1px solid var(--line); font-weight: 600;
   }
-  .brand .help:hover { color: var(--accent); border-color: var(--accent); }
+  .modal .cta.ghost:hover { filter: none; color: var(--ink); border-color: var(--ink-3); }
+
+  /* ---------- utility window (top right) ---------- */
+  #controls {
+    position: absolute; top: 14px; right: 14px; z-index: 1000;
+    display: flex; align-items: center; gap: 6px; padding: 6px;
+  }
+  #controls .lang { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  #controls .lang button {
+    border: none; background: none; padding: 4px 9px; font-size: 11.5px; font-weight: 600;
+    color: var(--ink-3); cursor: pointer; letter-spacing: .02em;
+  }
+  #controls .lang button.on { background: var(--accent); color: #fff; }
+  #controls .ico {
+    width: 28px; height: 28px; display: grid; place-items: center; padding: 0;
+    border: 1px solid var(--line); border-radius: 8px; background: none;
+    color: var(--ink-2); cursor: pointer;
+  }
+  #controls .ico:hover { color: var(--accent); border-color: var(--accent); }
+  #controls .ico svg { width: 15px; height: 15px; }
+  /* the sidebar slides in over this corner, so step out of its way */
+  body.side-open #controls { right: calc(min(480px, max(320px, 100vw - 350px)) + 14px); }
+
+  /* ---------- feedback form ---------- */
+  #contact .sheet { max-width: 520px; }
+  #contact label { display: block; font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
+                   text-transform: uppercase; color: var(--ink-3); margin: 12px 0 5px; }
+  #contact select, #contact input, #contact textarea {
+    width: 100%; padding: 9px 10px; font: inherit; font-size: 13.5px; color: var(--ink);
+    background: var(--page); border: 1px solid var(--line); border-radius: 10px;
+    outline-offset: 2px;
+  }
+  #contact textarea { min-height: 108px; resize: vertical; line-height: 1.45; }
+  #contact .where {
+    display: flex; gap: 9px; align-items: flex-start; margin-top: 16px; padding: 11px 12px;
+    background: var(--accent-soft); border-radius: 10px; font-size: 11.5px;
+    line-height: 1.45; color: var(--ink-2);
+  }
+  #contact .where svg { width: 15px; height: 15px; flex: none; margin-top: 1px; color: var(--accent); }
+  #contact .where a { color: var(--accent); }
+  #contact .cta[disabled] { opacity: .45; cursor: not-allowed; }
+
+  /* ---------- tooltip ---------- */
+  #tip {
+    position: fixed; z-index: 2200; max-width: 260px; padding: 8px 10px;
+    background: var(--surface-solid); color: var(--ink-2); border: 1px solid var(--line);
+    border-radius: 10px; box-shadow: var(--shadow); font-size: 11.5px; line-height: 1.45;
+    pointer-events: none; opacity: 0; transition: opacity .12s;
+  }
+  #tip.on { opacity: 1; }
+  #tip b { color: var(--ink); }
+  .tipped { cursor: help; text-decoration: underline dotted var(--ink-3); text-underline-offset: 2px; }
 
   /* ---------- legend ---------- */
   #legend { position: absolute; bottom: 22px; left: 14px; z-index: 1000; padding: 11px 14px 10px; font-size: 11px; color: var(--ink-2); }
@@ -218,17 +263,6 @@
   /* keep the control panel clear of the sidebar at tablet widths */
   #side.open { width: min(480px, max(320px, 100vw - 350px)); }
   #side > .scroll { overflow-y: auto; flex: 1; min-width: min(480px, max(320px, 100vw - 350px)); }
-  @media (max-width: 520px) {
-    #panel { width: min(300px, calc(100vw - 28px)); padding: 12px 13px 11px; }
-    #tagline { display: none; }            /* the panel hid 23 markers */
-    #legend { padding: 8px 11px 7px; }
-    #legend .sizenote, #legend .sizenote.warn { display: none; }
-  }
-  @media (max-width: 760px) {
-    #side.open { width: 100vw; }
-    #side > .scroll { min-width: 100vw; }
-    body.side-open #panel, body.side-open #legend { display: none; }
-  }
 
   /* fallback ground is fixed dark blues so the white name reads in both themes */
   .photo { position: relative; height: 168px; background: linear-gradient(135deg, #2a6cbf, #0d366b); }
@@ -318,6 +352,79 @@
   .leaflet-control-attribution a { color: var(--ink-2) !important; }
   .leaflet-control-zoom a { background: var(--surface-solid) !important; color: var(--ink) !important; border-color: var(--line) !important; }
   @media (prefers-reduced-motion: reduce) { #side { transition: none; } }
+  /* ---------- phones ----------
+     A 300px floating card on a 375px screen buries the map and collides with
+     the utility window. On a phone the panel becomes a full-width header bar:
+     brand and utilities on one row, the two selects side by side underneath. */
+  @media (max-width: 560px) {
+    #panel {
+      left: 10px; right: 10px; width: auto; padding: 10px 12px 11px;
+      display: grid; grid-template-columns: 116px minmax(0, 1fr);
+      gap: 8px; align-items: end;
+    }
+    #panel .brand { grid-column: 1 / -1; padding-right: 140px; }
+    #panel .brand h1 { font-size: 17px; }
+    #cat-note { grid-column: 1 / -1; margin-top: 0; min-height: 0; }
+    /* one-county datasets hide the county select; let the other one spread */
+    #fylke-field[hidden] + .field { grid-column: 1 / -1; }
+    .field select { text-overflow: ellipsis; }
+    #cat-note:empty { display: none; }
+    #tagline { display: none; }            /* the panel hid 23 markers */
+    .field label { font-size: 9.5px; letter-spacing: .04em; margin-bottom: 3px; }
+    .field + .field { margin-top: 0; }
+    .field select { padding: 7px 8px; font-size: 12.5px; }
+
+    /* sits inside the panel's header row rather than fighting it for the corner */
+    #controls {
+      top: 20px; right: 22px; z-index: 1002; padding: 0; gap: 5px;
+      background: none; border: none; box-shadow: none;
+      -webkit-backdrop-filter: none; backdrop-filter: none;
+    }
+    #controls .ico { width: 26px; height: 26px; }
+
+    #legend {
+      left: 10px; right: 10px; bottom: 10px; padding: 8px 11px 7px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px;
+    }
+    #legend .t { margin-bottom: 0; width: 100%; }
+    #legend .none { margin-top: 0; }
+    #legend .none + .none { margin-top: 0; }
+    #legend .sizenote, #legend .sizenote.warn { display: none; }
+    /* a 16px chip is a poor tap target; the tooltip is worth reaching */
+    .prow .lv { padding: 4px 7px; }
+    /* fingers, not cursors: everything worth pressing gets a real target */
+    .photo .close { width: 40px; height: 40px; font-size: 17px; }
+    .meta a { display: inline-block; padding: 8px 0; }
+    .tabs button { padding: 8px 13px; font-size: 12.5px; }
+    .tools input { padding: 11px 12px; font-size: 13.5px; }
+    .prow { padding-top: 11px; padding-bottom: 11px; }
+  }
+  /* ---------- short viewports (a phone held sideways) ----------
+     375px of height cannot stack a tall panel above a tall legend: the legend
+     rode up over the two selects and hid them completely. Drop the prose and
+     lay the filters out side by side. */
+  @media (max-height: 480px) {
+    #tagline { display: none; }
+    #panel { padding: 10px 12px 11px; }
+    #legend { padding: 7px 10px 6px; }
+    #legend .t { font-size: 10.5px; margin-bottom: 5px; }
+    #legend .sizenote, #legend .sizenote.warn { display: none; }
+  }
+  @media (max-height: 480px) and (min-width: 561px) {
+    #panel {
+      width: 430px; display: grid; grid-template-columns: 150px minmax(0, 1fr);
+      gap: 8px; align-items: end;
+    }
+    #panel .brand, #panel #cat-note { grid-column: 1 / -1; }
+    #cat-note { margin-top: 0; min-height: 0; }
+    .field + .field { margin-top: 0; }
+  }
+
+  @media (max-width: 760px) {
+    #side.open { width: 100vw; }
+    #side > .scroll { min-width: 100vw; }
+    body.side-open #panel, body.side-open #legend, body.side-open #controls { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -360,6 +467,42 @@
   </aside>
 </div>
 
+<div id="controls" class="glass">
+  <div class="lang" role="group" aria-label="Language">
+    <button id="lang-no" onclick="setLang('no')">NO</button>
+    <button id="lang-en" onclick="setLang('en')">EN</button>
+  </div>
+  <button class="ico" id="help-btn" onclick="openIntro()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"/><path d="M9.2 9.3a2.9 2.9 0 1 1 3.6 2.8v1.4"/>
+      <path d="M12.4 17.2h.01"/>
+    </svg>
+  </button>
+  <button class="ico" id="contact-btn" onclick="openContact()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.6 6.4 8.4 6 8.4-6"/>
+    </svg>
+  </button>
+</div>
+
+<div id="tip" role="tooltip" hidden></div>
+
+<div id="contact" class="modal" hidden onclick="if (event.target === this) closeContact()">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="contact-h">
+    <button class="x" id="contact-x" onclick="closeContact()">✕</button>
+    <div class="head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
+           stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.6 6.4 8.4 6 8.4-6"/>
+      </svg>
+      <h2 id="contact-h"></h2>
+    </div>
+    <div id="contact-body"></div>
+  </div>
+</div>
+
 <div id="panel" class="glass">
   <div class="brand">
     <svg class="mark" viewBox="0 0 26 26" aria-hidden="true">
@@ -368,11 +511,7 @@
       <path d="M13 21c3.6-3.4 6-6.2 6-9.6A6 6 0 0 0 7 11.4C7 14.8 9.4 17.6 13 21z" fill="none" stroke="#fff" stroke-width="1.7"/>
     </svg>
     <h1>Poengkart</h1>
-    <div class="lang" role="group" aria-label="Language">
-      <button id="lang-no" onclick="setLang('no')">NO</button>
-      <button id="lang-en" onclick="setLang('en')">EN</button>
-    </div>
-    <button class="help" id="help-btn" onclick="openIntro()">?</button>
+
   </div>
   <p id="tagline"></p>
   <div class="field" id="fylke-field" hidden>
@@ -395,7 +534,7 @@
   <div class="none"><span class="dot"></span><span id="legend-none"></span></div>
 </div>
 
-<div id="intro" hidden onclick="if (event.target === this) closeIntro()">
+<div id="intro" class="modal" hidden onclick="if (event.target === this) closeIntro()">
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="intro-h">
     <button class="x" id="intro-x" onclick="closeIntro()">✕</button>
     <div class="head">
@@ -446,7 +585,7 @@ const T = {
       ['Fargene og størrelsene',
        'Farge = typisk poenggrense det siste året skolen har tall for. Størrelse = hvor mange av programområdene som ble fylt opp.'],
       ['Finn skolene som er aktuelle',
-       'Velg fylke og kategori øverst til venstre. Hold musa over en prikk for et sammendrag, og klikk for utviklingen år for år og tallene for hvert programområde.'],
+       'Velg fylke og utdanningsprogram øverst. Hold musa over en prikk for et sammendrag, og klikk for utviklingen år for år og tallene for hvert programområde.'],
     ],
     en: [
       ['Your points',
@@ -454,7 +593,7 @@ const T = {
       ['Colours and sizes',
        'Colour = the typical threshold in the newest year that school has figures for. Size = how many of its programmes filled up.'],
       ['Find the schools that matter to you',
-       'Pick a county and a category at the top left. Hover a dot for a summary, and click for the year-by-year trend and the figures per programme.'],
+       'Pick a county and a programme at the top. Hover a dot for a summary, and click for the year-by-year trend and the figures per programme.'],
     ],
   },
   introCalc: { no: ['4,2 i snitt', '42 poeng'], en: ['4.2 average', '42 points'] },
@@ -469,6 +608,44 @@ const T = {
   introCta: { no: 'Vis meg kartet', en: 'Show me the map' },
   helpLabel: { no: 'Slik leser du kartet', en: 'How to read this map' },
   close:     { no: 'Lukk', en: 'Close' },
+  levels: {
+    no: {
+      Vg1: ['Vg1 – første året', 'Det første av tre år på videregående. Dette er året du søker på fra 10. klasse.'],
+      Vg2: ['Vg2 – andre året', 'Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre.'],
+      Vg3: ['Vg3 – tredje året', 'Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet.'],
+    },
+    en: {
+      Vg1: ['Vg1 — first year', 'The first of three years of upper secondary. This is the year you apply for from lower secondary school.'],
+      Vg2: ['Vg2 — second year', 'The second year. You move up from Vg1, usually at the same school.'],
+      Vg3: ['Vg3 — third year', 'The third and final year at school. On vocational tracks many take an apprenticeship instead.'],
+    },
+  },
+  contactTitle: { no: 'Send tilbakemelding', en: 'Send feedback' },
+  contactLede: {
+    no: 'Har du funnet en feil i tallene, et bilde av feil skole, eller noe som mangler? Si ifra – det er sånn kartet blir bedre.',
+    en: 'Found a wrong figure, a photo of the wrong school, or something missing? Say so — that is how the map gets better.',
+  },
+  contactKind: { no: 'Hva gjelder det?', en: 'What is it about?' },
+  contactKinds: {
+    no: ['Feil i tallene', 'Feil eller manglende bilde', 'Skolen mangler eller ligger feil sted',
+         'Forslag til en ny funksjon', 'Annet'],
+    en: ['A figure looks wrong', 'Wrong or missing photo', 'A school is missing or in the wrong place',
+         'Suggestion for a new feature', 'Something else'],
+  },
+  contactSchool: { no: 'Skole (valgfritt)', en: 'School (optional)' },
+  contactMsg: { no: 'Melding', en: 'Message' },
+  contactPlaceholder: {
+    no: 'Beskriv hva du så, og hvor på siden…',
+    en: 'Describe what you saw, and where on the page…',
+  },
+  contactWhere: {
+    no: 'Skjemaet åpner en sak på prosjektets GitHub-side, der rettelsen uansett gjøres. Saken er <b>offentlig</b> – ikke skriv personopplysninger. Du trenger en GitHub-konto; har du ikke det, kan du kopiere teksten og sende den videre selv.',
+    en: 'The form opens an issue on the project’s GitHub page, which is where the fix happens anyway. The issue is <b>public</b> — do not include personal information. It needs a GitHub account; without one, copy the text and send it on yourself.',
+  },
+  contactSend: { no: 'Åpne saken på GitHub', en: 'Open the issue on GitHub' },
+  contactCopy: { no: 'Kopier teksten', en: 'Copy the text' },
+  contactCopied: { no: 'Kopiert!', en: 'Copied!' },
+  contactLabel: { no: 'Send tilbakemelding', en: 'Send feedback' },
   fylkeLabel: { no: 'Fylke', en: 'County' },
   allFylker:  { no: 'Hele landet', en: 'All of Norway' },
   roundChip:  { no: r => `${r}. inntak`, en: r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : 'rd'} intake round` },
@@ -476,8 +653,8 @@ const T = {
                 en: 'The threshold is the score of the last applicant admitted in this intake round. Thresholds fall between rounds as places free up, so numbers from different rounds are not directly comparable.' },
   mixedRounds:{ no: 'Kartet viser fylker med ulike inntaksrunder – tallene kan ikke sammenlignes direkte.',
                 en: 'The map mixes counties with different intake rounds — those numbers are not directly comparable.' },
-  catLabel:   { no: 'Vis kategori (utdanningsprogram)', en: 'Show category (study program)' },
-  allCats:    { no: 'Alle kategorier', en: 'All categories' },
+  catLabel:   { no: 'Utdanningsprogram', en: 'Programme' },
+  allCats:    { no: 'Alle utdanningsprogram', en: 'All programmes' },
   catNote:    { no: n => `${n} skoler tilbyr dette`, en: n => `${n} schools offer this` },
   legendAll:  { no: 'Typisk poenggrense (siste år)', en: 'Typical threshold (latest year)' },
   legendSize: { no: 'Størrelsen viser hvor stor andel av programmene som ble fylt opp',
@@ -707,7 +884,7 @@ function onMapFylke(v) {
   }
   drawMarkers(); renderPanel(); renderLegend(); renderCatNote();
   const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon]);
-  if (pts.length) map.flyToBounds(L.latLngBounds(pts).pad(0.08), { duration: .6 });
+  if (pts.length) map.flyToBounds(L.latLngBounds(pts).pad(0.08), { ...framePad(), duration: .6 });
 }
 
 function visibleSchools() {
@@ -728,6 +905,7 @@ function onMapCat(v) {
 
 /* ================= static chrome rendering ================= */
 function renderPanel() {
+  renderControls();
   document.getElementById('tagline').textContent = t('tagline',
     DATA.schools.length, DATA.counties.length,
     DATA.years[0], DATA.years[DATA.years.length - 1]);
@@ -789,14 +967,23 @@ function openSide(s) {
   side.removeAttribute('inert');
   side.classList.add('open');
   document.body.classList.add('side-open');
+  // On a phone the details fill the screen, and the system back gesture is how
+  // people expect to leave a screen. Give it something to pop.
+  if (!(history.state || {}).pkSide) {
+    try { history.pushState({ pkSide: 1 }, ''); } catch (e) {}
+  }
   setTimeout(() => document.querySelector('#s-photo .close')?.focus(), 60);
 }
 function clearScope() {
   chart.mode = 'all'; chart.cat = null; chart.prog = null;
   renderChartCard(); renderList();
 }
-function closeSide() {
+function closeSide(fromHistory) {
   const side = document.getElementById('side');
+  if (!fromHistory && (history.state || {}).pkSide) {
+    history.back();                        // popstate closes it, once
+    return;
+  }
   side.classList.remove('open');
   document.body.classList.remove('side-open');
   side.setAttribute('inert', '');          // keep 17 hidden controls out of Tab
@@ -1099,6 +1286,129 @@ function renderList() {
     b.onclick = () => { chart.mode = 'cat'; chart.cat = b.dataset.cat; renderChartCard(); renderList(); });
   el.querySelectorAll('.prow').forEach(b =>
     b.onclick = () => { chart.mode = 'prog'; chart.prog = current.programs[+b.dataset.idx]; renderChartCard(); renderList(); });
+  bindTips(el);
+}
+
+/* ================= feedback =================
+   No backend and no secrets, so the form composes the report and hands it to
+   the place the fix would happen anyway: a GitHub issue. That needs an account,
+   which a parent may not have, so the same text can be copied instead. If this
+   should ever land in an inbox it needs a form endpoint and an address someone
+   is willing to publish — neither is mine to choose. */
+const REPO = 'https://github.com/avshalomd/poengkart';
+
+function contactReport() {
+  const kind = document.getElementById('c-kind');
+  const school = document.getElementById('c-school').value.trim();
+  const msg = document.getElementById('c-msg').value.trim();
+  const kindLabel = kind.options[kind.selectedIndex].text;
+  const context = [
+    `Fylke: ${mapFylke === 'all' ? t('allFylker') : mapFylke}`,
+    `Kategori: ${mapCat === 'all' ? t('allCats') : (CATS[mapCat] || {})[lang] || mapCat}`,
+    school ? `Skole: ${school}` : null,
+    `Språk: ${lang}`,
+  ].filter(Boolean).join(' · ');
+  return {
+    title: `[${kindLabel}] ${school || 'Poengkart'}`,
+    body: `${msg}\n\n---\n${context}`,
+    ok: !!msg,
+  };
+}
+
+function renderContact() {
+  document.getElementById('contact-h').textContent = t('contactTitle');
+  const kinds = t('contactKinds').map((k, i) =>
+    `<option value="${i}">${esc(k)}</option>`).join('');
+  document.getElementById('contact-body').innerHTML = `
+    <p class="lede">${esc(t('contactLede'))}</p>
+    <label for="c-kind">${esc(t('contactKind'))}</label>
+    <select id="c-kind">${kinds}</select>
+    <label for="c-school">${esc(t('contactSchool'))}</label>
+    <input id="c-school" type="text" autocomplete="off" value="${esc(
+      document.getElementById('side').classList.contains('open') && current ? current.name : '')}">
+    <label for="c-msg">${esc(t('contactMsg'))}</label>
+    <textarea id="c-msg" placeholder="${esc(t('contactPlaceholder'))}"></textarea>
+    <div class="where">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/><path d="M12 11v5.4M12 7.6h.01" stroke-linecap="round"/>
+      </svg>
+      <span>${t('contactWhere')}</span>
+    </div>
+    <button class="cta" id="c-send" disabled>${esc(t('contactSend'))}</button>
+    <button class="cta ghost" id="c-copy" disabled>${esc(t('contactCopy'))}</button>`;
+
+  const msg = document.getElementById('c-msg');
+  const send = document.getElementById('c-send');
+  const copy = document.getElementById('c-copy');
+  const sync = () => { const ok = !!msg.value.trim(); send.disabled = !ok; copy.disabled = !ok; };
+  msg.addEventListener('input', sync);
+  send.onclick = () => {
+    const r = contactReport();
+    if (!r.ok) return;
+    open(`${REPO}/issues/new?title=${encodeURIComponent(r.title)}`
+       + `&body=${encodeURIComponent(r.body)}`, '_blank', 'noopener');
+  };
+  copy.onclick = async () => {
+    const r = contactReport();
+    try { await navigator.clipboard.writeText(`${r.title}\n\n${r.body}`); } catch (e) {}
+    copy.textContent = t('contactCopied');
+    setTimeout(() => { copy.textContent = t('contactCopy'); }, 1800);
+  };
+}
+
+function openContact() {
+  renderContact();
+  document.getElementById('contact').hidden = false;
+  setTimeout(() => document.getElementById('c-msg')?.focus(), 40);
+}
+
+function closeContact() {
+  document.getElementById('contact').hidden = true;
+  document.getElementById('contact-btn')?.focus();
+}
+
+/* ================= tooltips =================
+   "Vg1" is second nature inside the school system and opaque outside it, which
+   covers most of the people this map is for. Hover explains it on a pointer;
+   tap explains it on a touch screen without also selecting the programme row
+   the chip sits inside. */
+function showTip(el, html) {
+  const tip = document.getElementById('tip');
+  tip.hidden = false;
+  tip.innerHTML = html;
+  const r = el.getBoundingClientRect();
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  let x = Math.max(8, Math.min(r.left + r.width / 2 - w / 2, innerWidth - w - 8));
+  let y = r.top - h - 8;
+  if (y < 8) y = r.bottom + 8;                 // flip below rather than clip
+  tip.style.left = x + 'px';
+  tip.style.top = y + 'px';
+  tip.classList.add('on');
+}
+
+function hideTip() {
+  const tip = document.getElementById('tip');
+  tip.classList.remove('on');
+  tip.hidden = true;
+}
+
+function bindTips(root) {
+  root.querySelectorAll('.lv').forEach(el => {
+    const key = el.textContent.trim();
+    const entry = t('levels')[key];
+    if (!entry) return;
+    el.classList.add('tipped');
+    el.setAttribute('aria-label', `${key}: ${entry[1]}`);
+    const html = `<b>${esc(entry[0])}</b><br>${esc(entry[1])}`;
+    el.onmouseenter = () => showTip(el, html);
+    el.onmouseleave = hideTip;
+    el.addEventListener('touchstart', ev => {
+      ev.preventDefault(); ev.stopPropagation();   // do not select the row
+      showTip(el, html);
+      clearTimeout(showTip.timer);
+      showTip.timer = setTimeout(hideTip, 4500);
+    }, { passive: false });
+  });
 }
 
 /* ================= intro / help =================
@@ -1107,6 +1417,14 @@ function renderList() {
    requirement. A 15-year-old landing here cold should not have to infer that,
    so it gets said once, up front, and stays reachable behind the ? button. */
 const INTRO_SEEN = 'pk-intro-v1';
+
+function renderControls() {
+  for (const [id, key] of [['help-btn', 'helpLabel'], ['contact-btn', 'contactLabel']]) {
+    const el = document.getElementById(id);
+    el.title = t(key);
+    el.setAttribute('aria-label', t(key));
+  }
+}
 
 function renderIntro() {
   document.getElementById('intro-h').textContent = t('introTitle');
@@ -1135,9 +1453,6 @@ function renderIntro() {
     `<p class="caveat">${esc(t('introCaveat'))}</p>` +
     `<button class="cta" onclick="closeIntro()">${esc(t('introCta'))}</button>`;
   document.getElementById('intro-x').setAttribute('aria-label', t('close'));
-  const hb = document.getElementById('help-btn');
-  hb.title = t('helpLabel');
-  hb.setAttribute('aria-label', t('helpLabel'));
 }
 
 function openIntro() {
@@ -1160,9 +1475,31 @@ function setLang(l) {
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers();
   if (current) renderSide();
   if (!document.getElementById('intro').hidden) renderIntro();
+  if (!document.getElementById('contact').hidden) renderContact();
 }
 
 /* ================= boot ================= */
+function framePad() {
+  // The panel and legend float over the map, so fit the country into what is
+  // actually visible. Each pad is capped: on a phone held sideways the panel
+  // is over half the width, and paying that in full squeezed Norway into the
+  // right-hand third and dropped the zoom a whole step.
+  const box = id => document.getElementById(id).getBoundingClientRect();
+  const p = box('panel'), l = box('legend');
+  const cap = (v, max) => Math.max(12, Math.min(Math.round(v), Math.round(max)));
+  // On a short screen every pixel of height counts, and the legend sits
+  // bottom-left while the country sits centre-right — let the map run under it
+  // rather than shrink the whole of Norway to avoid a corner.
+  const bottom = innerHeight <= 480 ? 12
+    : cap(innerHeight - l.top + 12, innerHeight * 0.3);
+  if (innerWidth <= 560) {
+    return { paddingTopLeft: [12, cap(p.height + 22, innerHeight * 0.34)],
+             paddingBottomRight: [12, bottom] };
+  }
+  return { paddingTopLeft: [cap(p.right + 12, innerWidth * 0.32), 12],
+           paddingBottomRight: [12, bottom] };
+}
+
 async function main() {
   try { lang = localStorage.getItem('pk-lang') || lang; } catch (e) {}
   DATA = await (await fetch('data/schools.json')).json();
@@ -1173,7 +1510,7 @@ async function main() {
   // purely as a correction for a pane that was still laying out.
   const pts = DATA.schools.filter(s => s.lat).map(s => [s.lat, s.lon]);
   HOME = L.latLngBounds(pts).pad(0.06);
-  map = L.map('map', { zoomControl: false }).fitBounds(HOME);
+  map = L.map('map', { zoomControl: false, zoomSnap: 0.25 }).fitBounds(HOME, framePad());
   L.control.zoom({ position: 'bottomright' }).addTo(map);
   setTiles();
   let touched = false;
@@ -1181,13 +1518,25 @@ async function main() {
     .addEventListener(ev, () => { touched = true; }, { once: true, passive: true }));
   setTimeout(() => {
     map.invalidateSize();
-    if (!touched) map.fitBounds(HOME, { animate: false });
+    if (!touched) map.fitBounds(HOME, { ...framePad(), animate: false });
   }, 150);
-  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { setTiles(); drawMarkers(); renderLegend(); });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    setTiles(); drawMarkers(); renderLegend();
+    if (current) renderSide();
+  });
   document.getElementById('side').setAttribute('inert', '');
   document.getElementById('s-filter').addEventListener('input', renderList);
+  let reframe;
+  addEventListener('resize', () => {
+    clearTimeout(reframe);
+    reframe = setTimeout(() => { map.invalidateSize(); }, 200);
+  });
+  addEventListener('popstate', () => {
+    if (document.getElementById('side').classList.contains('open')) closeSide(true);
+  });
   document.addEventListener('keydown', ev => {
     if (ev.key !== 'Escape') return;
+    if (!document.getElementById('contact').hidden) { closeContact(); return; }
     if (!document.getElementById('intro').hidden) { closeIntro(); return; }
     if (document.getElementById('side').classList.contains('open')) closeSide();
   });
