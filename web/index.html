@@ -3,7 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Poengkart</title>
+<title>Poengkart – poenggrenser for videregående skole</title>
+<meta name="description" content="Se poenggrensene for 194 videregående skoler i sju fylker, 2018–2026. Hva krevdes for å komme inn i fjor, og hvordan har grensene endret seg? Kart, trender og tall per programområde.">
+<link rel="canonical" href="https://poengkart-no.vercel.app/">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#2a78d6">
+
+<!-- link previews in messaging apps and social; og.png is built by
+     tools/make_og.py from the live dataset, so it never goes stale -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Poengkart">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:url" content="https://poengkart-no.vercel.app/">
+<meta property="og:title" content="Poengkart – hva krevdes for å komme inn?">
+<meta property="og:description" content="Poenggrensene for 194 videregående skoler i sju fylker, 2018–2026, på kart. Se hva som krevdes for å få plass, og hvordan grensene har endret seg.">
+<meta property="og:image" content="https://poengkart-no.vercel.app/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kart over Sør-Norge med 194 videregående skoler som prikker, fargelagt etter poenggrense.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Poengkart – hva krevdes for å komme inn?">
+<meta name="twitter:description" content="Poenggrensene for 194 videregående skoler i sju fylker, 2018–2026, på kart.">
+<meta name="twitter:image" content="https://poengkart-no.vercel.app/og.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -79,6 +106,64 @@
     cursor: pointer; outline-offset: 2px;
   }
   #cat-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; min-height: 14px; }
+
+  /* ---------- intro / help ---------- */
+  #intro {
+    position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center;
+    padding: 18px; background: rgba(8,11,15,.58); backdrop-filter: blur(3px);
+    animation: fade .18s ease-out;
+  }
+  #intro[hidden] { display: none; }
+  @keyframes fade { from { opacity: 0 } }
+  #intro .sheet {
+    position: relative; width: min(560px, 100%); max-height: calc(100dvh - 36px);
+    overflow: auto; background: var(--surface-solid); border: 1px solid var(--line);
+    border-radius: 18px; box-shadow: var(--shadow); padding: 26px 26px 22px;
+    animation: rise .22s cubic-bezier(.2,.8,.3,1);
+  }
+  @keyframes rise { from { transform: translateY(10px); opacity: 0 } }
+  #intro .x {
+    position: absolute; top: 14px; right: 14px; width: 30px; height: 30px;
+    border: none; border-radius: 9px; background: var(--accent-soft);
+    color: var(--ink-2); font-size: 15px; cursor: pointer; line-height: 1;
+  }
+  #intro .x:hover { color: var(--ink); }
+  #intro .head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding-right: 34px; }
+  #intro .head svg { width: 28px; height: 28px; flex: none; }
+  #intro h2 { font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+  #intro .lede { font-size: 14px; line-height: 1.5; color: var(--ink-2); margin-bottom: 18px; }
+  #intro .step { display: flex; gap: 12px; margin-bottom: 15px; }
+  #intro .n {
+    flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent);
+    color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center;
+    margin-top: 1px;
+  }
+  #intro .step h3 { font-size: 13.5px; font-weight: 650; margin-bottom: 3px; }
+  #intro .step p { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  #intro .calc {
+    display: flex; align-items: baseline; gap: 8px; margin: 9px 0 2px; padding: 9px 12px;
+    background: var(--accent-soft); border-radius: 10px; font-size: 14px; color: var(--ink);
+  }
+  #intro .calc b { font-size: 17px; font-variant-numeric: tabular-nums; }
+  #intro .keyrow { display: flex; gap: 16px; margin: 10px 0 2px; flex-wrap: wrap; }
+  #intro .key { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--ink-3); }
+  #intro .key .swatch { flex: none; }
+  #intro .caveat {
+    font-size: 11.5px; line-height: 1.5; color: var(--ink-3);
+    border-top: 1px solid var(--line); padding-top: 12px; margin-top: 16px;
+  }
+  #intro .cta {
+    display: block; width: 100%; margin-top: 14px; padding: 11px; border: none;
+    border-radius: 11px; background: var(--accent); color: #fff; font: inherit;
+    font-size: 14px; font-weight: 650; cursor: pointer;
+  }
+  #intro .cta:hover { filter: brightness(1.06); }
+  .brand .help {
+    width: 22px; height: 22px; flex: none; border: 1px solid var(--line); border-radius: 50%;
+    background: none; color: var(--ink-3); font: inherit; font-size: 12px; font-weight: 700;
+    cursor: pointer; line-height: 1; padding: 0;
+  }
+  .brand .help:hover { color: var(--accent); border-color: var(--accent); }
 
   /* ---------- legend ---------- */
   #legend { position: absolute; bottom: 22px; left: 14px; z-index: 1000; padding: 11px 14px 10px; font-size: 11px; color: var(--ink-2); }
@@ -239,8 +324,8 @@
 <noscript>
   <div style="padding:26px 22px;max-width:640px;font-size:15px;line-height:1.5">
     <h1 style="font-size:20px;margin-bottom:8px">Poengkart</h1>
-    <p>Kartet krever JavaScript. Datasettet (poenggrenser for videregående skoler
-       i Rogaland 2018–2025) kan lastes ned direkte som
+    <p>Kartet krever JavaScript. Datasettet (poenggrenser for 194 videregående
+       skoler i sju fylker, 2018–2026) kan lastes ned direkte som
        <a href="data/schools.json">schools.json</a>.</p>
     <p style="margin-top:8px">This map needs JavaScript. The underlying dataset is
        available as <a href="data/schools.json">schools.json</a>.</p>
@@ -287,6 +372,7 @@
       <button id="lang-no" onclick="setLang('no')">NO</button>
       <button id="lang-en" onclick="setLang('en')">EN</button>
     </div>
+    <button class="help" id="help-btn" onclick="openIntro()">?</button>
   </div>
   <p id="tagline"></p>
   <div class="field" id="fylke-field" hidden>
@@ -307,6 +393,21 @@
   <div class="sizenote warn" id="legend-mixed" hidden></div>
   <div class="none"><span class="dot open-dot"></span><span id="legend-open"></span></div>
   <div class="none"><span class="dot"></span><span id="legend-none"></span></div>
+</div>
+
+<div id="intro" hidden onclick="if (event.target === this) closeIntro()">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="intro-h">
+    <button class="x" id="intro-x" onclick="closeIntro()">✕</button>
+    <div class="head">
+      <svg viewBox="0 0 26 26" aria-hidden="true">
+        <rect x="1" y="1" width="24" height="24" rx="7" fill="var(--accent)"/>
+        <circle cx="13" cy="11" r="3.4" fill="#fff"/>
+        <path d="M13 21c3.6-3.4 6-6.2 6-9.6A6 6 0 0 0 7 11.4C7 14.8 9.4 17.6 13 21z" fill="none" stroke="#fff" stroke-width="1.7"/>
+      </svg>
+      <h2 id="intro-h"></h2>
+    </div>
+    <div id="intro-body"></div>
+  </div>
 </div>
 
 <script>
@@ -330,26 +431,61 @@ const CATS = {
 };
 const T = {
   tagline: {
-    no: 'Nedre poenggrense (poengsummen til sist inntatte søkjar) for vidaregåande skular i sju fylke, 2018–2026. Hald over ein skule – klikk for detaljar.',
-    en: 'Admission point thresholds (the last admitted applicant’s score) for upper secondary schools across seven counties, 2018–2026. Hover a school — click for details.',
+    no: (n, f, y0, y1) => `Poenggrenser for videregående skole: poengsummen til den siste som fikk plass. ${n} skoler i ${f} fylker, ${y0}–${y1}. Hold musa over en skole – klikk for detaljer.`,
+    en: (n, f, y0, y1) => `Admission point thresholds for upper secondary school: the score of the last applicant who got a place. ${n} schools across ${f} counties, ${y0}–${y1}. Hover a school — click for details.`,
   },
+  introTitle: { no: 'Slik leser du kartet', en: 'How to read this map' },
+  introLede: {
+    no: 'Hver prikk er en videregående skole. Fargen viser hvor høy poengsum du typisk måtte ha for å få plass sist – jo mørkere, jo høyere.',
+    en: 'Every dot is an upper secondary school. The colour shows the score you typically needed to get a place last time — the darker, the higher.',
+  },
+  introSteps: {
+    no: [
+      ['Poengsummen din',
+       'Poengsum = karaktersnittet ditt × 10. Poenggrensen er poengsummen til den siste søkeren som fikk plass – lå du over den, ville du kommet inn.'],
+      ['Fargene og størrelsene',
+       'Farge = typisk poenggrense det siste året skolen har tall for. Størrelse = hvor mange av programområdene som ble fylt opp.'],
+      ['Finn skolene som er aktuelle',
+       'Velg fylke og kategori øverst til venstre. Hold musa over en prikk for et sammendrag, og klikk for utviklingen år for år og tallene for hvert programområde.'],
+    ],
+    en: [
+      ['Your points',
+       'Points = your grade average × 10. The threshold is the score of the last applicant who got a place — if you were above it, you would have got in.'],
+      ['Colours and sizes',
+       'Colour = the typical threshold in the newest year that school has figures for. Size = how many of its programmes filled up.'],
+      ['Find the schools that matter to you',
+       'Pick a county and a category at the top left. Hover a dot for a summary, and click for the year-by-year trend and the figures per programme.'],
+    ],
+  },
+  introCalc: { no: ['4,2 i snitt', '42 poeng'], en: ['4.2 average', '42 points'] },
+  introKeys: {
+    no: ['lav grense', 'høy grense', 'alle kom inn', 'ingen tall'],
+    en: ['low threshold', 'high threshold', 'everyone got in', 'no figures'],
+  },
+  introCaveat: {
+    no: 'Tallene er historiske og endrer seg hvert år – de er en pekepinn, ikke et løfte. Fylkene publiserer ulike inntaksrunder, så to fylker kan ikke alltid sammenlignes direkte. Uoffisiell tjeneste: sjekk alltid vilbli.no og fylket ditt før du søker.',
+    en: 'These are historical figures and they move every year — a guide, not a promise. Counties publish different intake rounds, so two counties are not always directly comparable. Unofficial: always check vilbli.no and your own county before applying.',
+  },
+  introCta: { no: 'Vis meg kartet', en: 'Show me the map' },
+  helpLabel: { no: 'Slik leser du kartet', en: 'How to read this map' },
+  close:     { no: 'Lukk', en: 'Close' },
   fylkeLabel: { no: 'Fylke', en: 'County' },
   allFylker:  { no: 'Hele landet', en: 'All of Norway' },
   roundChip:  { no: r => `${r}. inntak`, en: r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : 'rd'} intake round` },
-  roundTitle: { no: 'Poenggrensa er poengsummen til sist inntatte søkjar i denne inntaksrunden. Grensa fell mellom rundane, fordi plassar blir ledige. Tal frå ulike rundar kan ikkje samanliknast direkte.',
+  roundTitle: { no: 'Poenggrensen er poengsummen til den siste søkeren som fikk plass i denne inntaksrunden. Grensen faller mellom rundene, fordi plasser blir ledige. Tall fra ulike runder kan ikke sammenlignes direkte.',
                 en: 'The threshold is the score of the last applicant admitted in this intake round. Thresholds fall between rounds as places free up, so numbers from different rounds are not directly comparable.' },
-  mixedRounds:{ no: 'Kartet viser fylke med ulike inntaksrundar – tala kan ikkje samanliknast direkte.',
+  mixedRounds:{ no: 'Kartet viser fylker med ulike inntaksrunder – tallene kan ikke sammenlignes direkte.',
                 en: 'The map mixes counties with different intake rounds — those numbers are not directly comparable.' },
   catLabel:   { no: 'Vis kategori (utdanningsprogram)', en: 'Show category (study program)' },
   allCats:    { no: 'Alle kategorier', en: 'All categories' },
   catNote:    { no: n => `${n} skoler tilbyr dette`, en: n => `${n} schools offer this` },
   legendAll:  { no: 'Typisk poenggrense (siste år)', en: 'Typical threshold (latest year)' },
-  legendSize: { no: 'Størrelsen viser hvor stor del av programma som blei fylt opp',
+  legendSize: { no: 'Størrelsen viser hvor stor andel av programmene som ble fylt opp',
                 en: 'Marker size shows how many of the programmes filled up' },
   tipMedian:  { no: (v, n, tot) => `Typisk <b>${v}</b> poeng · ${n} av ${tot} program fylte opp`,
                 en: (v, n, tot) => `Typically <b>${v}</b> pts · ${n} of ${tot} programmes filled up` },
   tipTop:     { no: 'Høyest:', en: 'Highest:' },
-  scopeAll:   { no: 'Vis alle programområde', en: 'Show all programmes' },
+  scopeAll:   { no: 'Vis alle programområder', en: 'Show all programmes' },
   heroTypical:{ no: 'Typisk', en: 'Typical' },
   heroTypicalAll: { no: 'alle program', en: 'all programmes' },
   legendCat:  { no: c => `${CATS[c].no} · siste år`, en: c => `${CATS[c].en} · latest year` },
@@ -363,15 +499,15 @@ const T = {
   allIn:      { no: 'Alle inntatt', en: 'All admitted' },
   priority:   { no: 'Fortrinn', en: 'Priority' },
   docAdm:     { no: 'Dokumentasjon', en: 'By documentation' },
-  docTitle:   { no: 'Inntak på grunnlag av dokumentasjon (t.d. IB eller toppidrett) – ingen poenggrense.',
+  docTitle:   { no: 'Inntak på grunnlag av dokumentasjon (f.eks. IB eller toppidrett) – ingen poenggrense.',
                 en: 'Admission on documented grounds (e.g. IB or elite sport) — no points threshold.' },
   tipNoData:  { no: y => `Ingen data for ${y}`, en: y => `No data for ${y}` },
   closeAria:  { no: 'Lukk skoledetaljer', en: 'Close school details' },
   markerAria: { no: (n, v) => `${n}. ${v}. Trykk for detaljer.`, en: (n, v) => `${n}. ${v}. Press to open details.` },
   gone:       { no: 'Utgått', en: 'Discontinued' },
   tipPrograms:{ no: (n, span) => `${n} programområde · ${span}`, en: (n, span) => `${n} programmes · ${span}` },
-  roundUnknown: { no: 'inntaksrunde ikkje oppgitt', en: 'intake round not stated' },
-  roundUnknownTitle: { no: 'Fylket oppgir ikkje kva inntaksrunde tala er frå. Grensa fell mellom rundane, så tala kan ikkje samanliknast direkte med fylke som oppgir runden.',
+  roundUnknown: { no: 'inntaksrunde ikke oppgitt', en: 'intake round not stated' },
+  roundUnknownTitle: { no: 'Fylket oppgir ikke hvilken inntaksrunde tallene er fra. Grensen faller mellom rundene, så tallene kan ikke sammenlignes direkte med fylker som oppgir runden.',
                        en: 'This county does not state which intake round the figures are from. Thresholds fall between rounds, so they cannot be compared directly with counties that do state it.' },
   oneYearOnly: { no: y => `Fylket publiserer berre ${y} – ingen trend enno`, en: y => `This county publishes ${y} only — no trend yet` },
   tipHint:    { no: 'Klikk for trender og detaljer', en: 'Click for trends and details' },
@@ -393,8 +529,8 @@ const T = {
   wiki:       { no: 'Wikipedia', en: 'Wikipedia' },
   photoCredit:{ no: 'Foto', en: 'Photo' },
   srcNote: {
-    no: 'Kilder: Rogaland fylkeskommune / vilbli.no (poenggrenser, 2. inntak, søkere med ungdomsrett), NSR/Udir (skoler), Kartverket (geokoding), Wikipedia/Wikimedia Commons (bilder). Uoffisiell prototype – tall kan inneholde parsefeil.',
-    en: 'Sources: Rogaland county / vilbli.no (thresholds, 2nd intake, applicants with youth right), NSR/Udir (schools), Kartverket (geocoding), Wikipedia/Wikimedia Commons (photos). Unofficial prototype — figures may contain parsing errors.',
+    no: 'Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaksrunden varierer mellom fylkene og er merket på hver skole. Uoffisiell prototype – tall kan inneholde parsefeil.',
+    en: 'Sources: the county authorities of Akershus, Buskerud, Innlandet, Rogaland, Trøndelag and Vestland, the City of Oslo and vilbli.no (thresholds), NSR/Udir (schools), Kartverket (geocoding), Wikimedia Commons and school websites (photos). The intake round differs by county and is labelled on every school. Unofficial prototype — figures may contain parsing errors.',
   },
   noMatch:    { no: 'Ingen treff', en: 'No matches' },
   prioBadge:  { no: 'fortrinnskvote', en: 'priority quota' },
@@ -413,6 +549,7 @@ const fmtNum = v => typeof v === 'number' ? v.toFixed(1).replace('.', ',') : v;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 let DATA = null, map = null, markerLayer = null;
+let HOME = null;          // bounds of the whole dataset, the map's home view
 let mapCat = 'all';
 let mapFylke = 'all';
 let current = null;                       // selected school
@@ -591,7 +728,9 @@ function onMapCat(v) {
 
 /* ================= static chrome rendering ================= */
 function renderPanel() {
-  document.getElementById('tagline').textContent = t('tagline');
+  document.getElementById('tagline').textContent = t('tagline',
+    DATA.schools.length, DATA.counties.length,
+    DATA.years[0], DATA.years[DATA.years.length - 1]);
   document.getElementById('cat-label').textContent = t('catLabel');
   document.getElementById('lang-no').classList.toggle('on', lang === 'no');
   document.getElementById('lang-en').classList.toggle('on', lang === 'en');
@@ -962,6 +1101,57 @@ function renderList() {
     b.onclick = () => { chart.mode = 'prog'; chart.prog = current.programs[+b.dataset.idx]; renderChartCard(); renderList(); });
 }
 
+/* ================= intro / help =================
+   Poenggrenser are a genuinely confusing unit: the number is a grade average
+   times ten, and it describes the *last* person admitted rather than a
+   requirement. A 15-year-old landing here cold should not have to infer that,
+   so it gets said once, up front, and stays reachable behind the ? button. */
+const INTRO_SEEN = 'pk-intro-v1';
+
+function renderIntro() {
+  document.getElementById('intro-h').textContent = t('introTitle');
+  const [avg, pts] = t('introCalc');
+  const keys = t('introKeys');
+  const dot = (r, fill, extra = '') =>
+    `<svg class="swatch" width="${r * 2 + 4}" height="${r * 2 + 4}" viewBox="0 0 ${r * 2 + 4} ${r * 2 + 4}">` +
+    `<circle cx="${r + 2}" cy="${r + 2}" r="${r}" fill="${fill}" ${extra}/></svg>`;
+  const steps = t('introSteps').map(([h, b], i) => `
+    <div class="step">
+      <div class="n">${i + 1}</div>
+      <div>
+        <h3>${esc(h)}</h3>
+        <p>${esc(b)}</p>
+        ${i === 0 ? `<div class="calc"><b>${esc(avg)}</b><span>=</span><b>${esc(pts)}</b></div>` : ''}
+        ${i === 1 ? `<div class="keyrow">
+          <span class="key">${dot(6, cssVar('--seq-250'))}${esc(keys[0])}</span>
+          <span class="key">${dot(6, cssVar('--seq-700'))}${esc(keys[1])}</span>
+          <span class="key">${dot(6, 'none', `stroke="${cssVar('--accent')}" stroke-width="1.6" stroke-dasharray="3 2"`)}${esc(keys[2])}</span>
+          <span class="key">${dot(6, cssVar('--context'))}${esc(keys[3])}</span>
+        </div>` : ''}
+      </div>
+    </div>`).join('');
+  document.getElementById('intro-body').innerHTML =
+    `<p class="lede">${esc(t('introLede'))}</p>${steps}` +
+    `<p class="caveat">${esc(t('introCaveat'))}</p>` +
+    `<button class="cta" onclick="closeIntro()">${esc(t('introCta'))}</button>`;
+  document.getElementById('intro-x').setAttribute('aria-label', t('close'));
+  const hb = document.getElementById('help-btn');
+  hb.title = t('helpLabel');
+  hb.setAttribute('aria-label', t('helpLabel'));
+}
+
+function openIntro() {
+  renderIntro();
+  document.getElementById('intro').hidden = false;
+  setTimeout(() => document.querySelector('#intro .cta')?.focus(), 40);
+}
+
+function closeIntro() {
+  document.getElementById('intro').hidden = true;
+  try { localStorage.setItem(INTRO_SEEN, '1'); } catch (e) {}
+  document.getElementById('help-btn')?.focus();
+}
+
 /* ================= language ================= */
 function setLang(l) {
   lang = l;
@@ -969,29 +1159,42 @@ function setLang(l) {
   document.documentElement.lang = l === 'no' ? 'no' : 'en';
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers();
   if (current) renderSide();
+  if (!document.getElementById('intro').hidden) renderIntro();
 }
 
 /* ================= boot ================= */
 async function main() {
   try { lang = localStorage.getItem('pk-lang') || lang; } catch (e) {}
   DATA = await (await fetch('data/schools.json')).json();
-  map = L.map('map', { zoomControl: false }).setView([59.0, 5.75], 9);
+  // Open on the whole dataset. This used to open on a hard-coded Rogaland view
+  // and correct itself inside a requestAnimationFrame — but rAF does not fire
+  // while the tab is not being painted, so a national map could sit there
+  // showing one county. Fit first, synchronously, and treat the deferred pass
+  // purely as a correction for a pane that was still laying out.
+  const pts = DATA.schools.filter(s => s.lat).map(s => [s.lat, s.lon]);
+  HOME = L.latLngBounds(pts).pad(0.06);
+  map = L.map('map', { zoomControl: false }).fitBounds(HOME);
   L.control.zoom({ position: 'bottomright' }).addTo(map);
   setTiles();
-  const pts = DATA.schools.filter(s => s.lat).map(s => [s.lat, s.lon]);
-  requestAnimationFrame(() => setTimeout(() => {
+  let touched = false;
+  ['mousedown', 'wheel', 'touchstart'].forEach(ev => map.getContainer()
+    .addEventListener(ev, () => { touched = true; }, { once: true, passive: true }));
+  setTimeout(() => {
     map.invalidateSize();
-    map.fitBounds(L.latLngBounds(pts).pad(0.06));
-  }, 60));
+    if (!touched) map.fitBounds(HOME, { animate: false });
+  }, 150);
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { setTiles(); drawMarkers(); renderLegend(); });
   document.getElementById('side').setAttribute('inert', '');
   document.getElementById('s-filter').addEventListener('input', renderList);
   document.addEventListener('keydown', ev => {
-    if (ev.key === 'Escape' && document.getElementById('side').classList.contains('open')) {
-      closeSide();
-    }
+    if (ev.key !== 'Escape') return;
+    if (!document.getElementById('intro').hidden) { closeIntro(); return; }
+    if (document.getElementById('side').classList.contains('open')) closeSide();
   });
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers();
+  let seen = true;
+  try { seen = !!localStorage.getItem(INTRO_SEEN); } catch (e) {}
+  if (!seen) setTimeout(openIntro, 420);
 }
 main();
 </script>

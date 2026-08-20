@@ -207,6 +207,33 @@ check('Oslo 2022 lands on the right series',
 check('Innlandet keeps interview-admitted programmes',
       any(v == 'D' for _, _, _, v in ccells('Innlandet')))
 
+# The page's own copy carries headline numbers (meta description, the
+# noscript fallback, the alt text for the share card). Those are read by people
+# and by link previews, not rendered from the data, so they rot silently when a
+# county or a year is added. Assert that *every* copy of each number is right,
+# not merely that a right one exists somewhere.
+html = open(os.path.join(HERE, '..', 'web', 'index.html'), encoding='utf-8').read()
+head = (html[:html.index('</head>')]
+        + html[html.index('<noscript>'):html.index('</noscript>')])
+n_schools, y0, y1 = len(DATA['schools']), DATA['years'][0], DATA['years'][-1]
+NORSK = {5: 'fem', 6: 'seks', 7: 'sju', 8: 'åtte', 9: 'ni', 10: 'ti'}
+n_fylker = NORSK.get(len(DATA['counties']), str(len(DATA['counties'])))
+
+counts = re.findall(r'(\d{2,4})\s+(?:videregående skoler|skoler|schools)', head)
+check('every school count in the page copy matches the dataset',
+      counts and all(int(c) == n_schools for c in counts),
+      f'found {counts}, dataset has {n_schools}')
+spans = re.findall(r'\b(20\d\d)[–-](20\d\d)\b', head)
+check('every year span in the page copy matches the dataset',
+      spans and all((int(a), int(b)) == (y0, y1) for a, b in spans),
+      f'found {spans}, dataset has {y0}-{y1}')
+fylker = re.findall(r'\b([a-zæøå]+|\d+)\s+(?:fylker|counties)\b', head)
+check('every county count in the page copy matches the dataset',
+      fylker and all(f in (n_fylker, str(len(DATA['counties']))) for f in fylker),
+      f'found {fylker}, dataset has {n_fylker}')
+check('the share card has been built',
+      os.path.exists(os.path.join(HERE, '..', 'web', 'og.png')))
+
 print(f'{checks - len(fails)}/{checks} checks passed')
 for f in fails:
     print('  FAIL:', f)

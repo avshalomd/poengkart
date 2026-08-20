@@ -21,6 +21,7 @@ STEPS = [
     ('geocode.py', 'NSR → Kartverket address → Kartverket place names'),
     ('photos.py', 'curated photo and identity overrides'),
     ('build_db.py', 'SQLite + CSV'),
+    ('make_og.py', 'the social share card, which is drawn from the data'),
     ('test_parse.py', 'regression checks'),
 ]
 
