@@ -100,9 +100,32 @@ register in turn. Each (school, program, year) cell becomes either a threshold,
 a *fortrinnsrett* quota (statutory priority admission, no threshold exists),
 or *discontinued*. Where two sources disagree, the newest wins and the
 disagreement is recorded in `data/source-drift.json` rather than hidden.
-`tools/test_parse.py` runs 41 regression checks over the result. The merged
+`tools/test_parse.py` runs 58 regression checks over the result. The merged
 dataset ships as JSON for the app and as SQLite + CSV (`data/`) for anyone who
 wants to query it.
+
+## Deliberately not built
+
+**The intake round is modelled per county, not per year.** Vestland's 2023
+figures come from 3. inntak while the rest of its series is 1. inntak — 53% of
+that year's cells are "no waitlist" against 0–6% in every other year, so the
+2023 thresholds sit visibly lower for a reason that has nothing to do with
+demand. `build_dataset.py` derives the exception from the rows and records it
+against the county (`round_years`), and the school panel explains it in a
+sentence. The fuller version would carry the round on each cell — the
+extractors already know it per source file — and make the round chip follow
+the year being displayed. That turns a static label into one that changes as
+you read, in a panel that is already dense, for an audience of teenagers and
+their parents. Worth revisiting if more counties turn out to mix rounds inside
+one series.
+
+**The alternate-round figures already in the dataset are not shown.** 151
+programmes carry `values_r1` and 586 carry `values_r3`; the app reads only
+`values`. They are the raw material for numbers that would be comparable
+across counties publishing different rounds — the problem the app currently
+apologises for in three separate strings. Left until the round model above is
+settled, because two series per programme without a coherent story about
+rounds would add confusion rather than remove it.
 
 Unofficial project — figures may contain parsing errors. Verify against the
 official sources above before making decisions.
