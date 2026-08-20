@@ -247,6 +247,21 @@ fylker = re.findall(r'\b([a-zæøå]+|\d+)\s+(?:fylker|counties)\b', head)
 check('every county count in the page copy matches the dataset',
       fylker and all(f in (n_fylker, str(len(DATA['counties']))) for f in fylker),
       f'found {fylker}, dataset has {n_fylker}')
+# the README quotes the same numbers, and has twice fallen behind the data
+readme = open(os.path.join(HERE, '..', 'README.md'), encoding='utf-8').read()
+r_schools = re.findall(r'\b(\d+) schools\b', readme)
+check('the school count in the README matches the dataset',
+      r_schools and all(int(n) == len(DATA['schools']) for n in r_schools),
+      f'found {r_schools}, dataset has {len(DATA["schools"])}')
+WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven',
+         'eight', 'nine', 'ten', 'eleven', 'twelve']
+n_c = len(DATA['counties'])
+r_counties = (re.findall(r'\b(\d+) counties\b', readme)
+              + re.findall(r'\b(' + '|'.join(WORDS) + r') counties\b', readme))
+check('the county count in the README matches the dataset',
+      all(n in (str(n_c), WORDS[n_c]) for n in r_counties),
+      f'found {r_counties}, dataset has {n_c}')
+
 check('the share card has been built',
       os.path.exists(os.path.join(HERE, '..', 'web', 'og.png')))
 
