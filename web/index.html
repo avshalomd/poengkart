@@ -190,14 +190,23 @@
     outline-offset: 2px;
   }
   #contact textarea { min-height: 108px; resize: vertical; line-height: 1.45; }
-  #contact .where {
-    display: flex; gap: 9px; align-items: flex-start; margin-top: 16px; padding: 11px 12px;
-    background: var(--accent-soft); border-radius: 10px; font-size: 11.5px;
-    line-height: 1.45; color: var(--ink-2);
+  #contact .hint { font-size: 11.5px; color: var(--ink-3); margin: 0 0 6px; line-height: 1.45; }
+  #contact .privacy {
+    font-size: 11px; line-height: 1.5; color: var(--ink-3);
+    border-top: 1px solid var(--line); padding-top: 11px; margin-top: 18px;
   }
-  #contact .where svg { width: 15px; height: 15px; flex: none; margin-top: 1px; color: var(--accent); }
-  #contact .where a { color: var(--accent); }
-  #contact .cta[disabled] { opacity: .45; cursor: not-allowed; }
+  #contact .err {
+    margin-top: 12px; padding: 9px 11px; border-radius: 9px; font-size: 12.5px;
+    background: rgba(200,40,40,.12); color: #d0464a;
+  }
+  #contact .cta[disabled] { opacity: .55; cursor: progress; }
+  /* honeypot: off-screen rather than display:none, which some bots skip */
+  #contact .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  #contact .done { text-align: center; padding: 14px 4px 4px; }
+  #contact .done svg { width: 46px; height: 46px; margin-bottom: 12px; }
+  #contact .done .big { font-size: 16px; font-weight: 650; color: var(--ink); margin-bottom: 4px; }
+  #contact .done p { font-size: 13px; color: var(--ink-2); }
+  #contact .done .cta { max-width: 220px; margin: 18px auto 0; }
 
   /* ---------- tooltip ---------- */
   #tip {
@@ -622,30 +631,58 @@ const T = {
   },
   contactTitle: { no: 'Send tilbakemelding', en: 'Send feedback' },
   contactLede: {
-    no: 'Har du funnet en feil i tallene, et bilde av feil skole, eller noe som mangler? Si ifra – det er sånn kartet blir bedre.',
-    en: 'Found a wrong figure, a photo of the wrong school, or something missing? Say so — that is how the map gets better.',
+    no: 'Har du funnet en feil, eller savner du noe? Si ifra – det er sånn kartet blir bedre.',
+    en: 'Found a mistake, or missing something? Say so — that is how the map gets better.',
   },
   contactKind: { no: 'Hva gjelder det?', en: 'What is it about?' },
   contactKinds: {
-    no: ['Feil i tallene', 'Feil eller manglende bilde', 'Skolen mangler eller ligger feil sted',
-         'Forslag til en ny funksjon', 'Annet'],
-    en: ['A figure looks wrong', 'Wrong or missing photo', 'A school is missing or in the wrong place',
-         'Suggestion for a new feature', 'Something else'],
+    no: { tall: 'Et tall ser feil ut', bilde: 'Feil eller manglende bilde',
+          skole: 'En skole mangler eller ligger feil sted',
+          funksjon: 'Forslag til noe nytt', annet: 'Noe annet' },
+    en: { tall: 'A figure looks wrong', bilde: 'Wrong or missing photo',
+          skole: 'A school is missing or in the wrong place',
+          funksjon: 'Suggestion for something new', annet: 'Something else' },
   },
-  contactSchool: { no: 'Skole (valgfritt)', en: 'School (optional)' },
-  contactMsg: { no: 'Melding', en: 'Message' },
-  contactPlaceholder: {
-    no: 'Beskriv hva du så, og hvor på siden…',
-    en: 'Describe what you saw, and where on the page…',
+  contactSchool:  { no: 'Hvilken skole?', en: 'Which school?' },
+  contactProgram: { no: 'Programområde (valgfritt)', en: 'Programme (optional)' },
+  contactYear:    { no: 'År (valgfritt)', en: 'Year (optional)' },
+  contactPhoto:   { no: 'Lenke til et bedre bilde (valgfritt)', en: 'Link to a better photo (optional)' },
+  contactFylke:   { no: 'Fylke (valgfritt)', en: 'County (optional)' },
+  contactMsg:     { no: 'Melding', en: 'Message' },
+  contactPlaceholder: { no: 'Skriv her…', en: 'Write here…' },
+  contactEmail:   { no: 'E-posten din (valgfritt)', en: 'Your e-mail (optional)' },
+  contactHints: {
+    no: {
+      tall: 'Skriv gjerne hvilket tall du så og hva du mener det skulle vært.',
+      bilde: 'Er bildet av en annen skole, eller mangler det helt?',
+      skole: 'Hva heter skolen, og hvor ligger den?',
+      funksjon: 'Hva skulle du ønske kartet kunne?',
+      annet: '',
+    },
+    en: {
+      tall: 'Say which figure you saw and what you think it should be.',
+      bilde: 'Is the photo of a different school, or missing entirely?',
+      skole: 'What is the school called, and where is it?',
+      funksjon: 'What do you wish the map could do?',
+      annet: '',
+    },
   },
-  contactWhere: {
-    no: 'Skjemaet åpner en sak på prosjektets GitHub-side, der rettelsen uansett gjøres. Saken er <b>offentlig</b> – ikke skriv personopplysninger. Du trenger en GitHub-konto; har du ikke det, kan du kopiere teksten og sende den videre selv.',
-    en: 'The form opens an issue on the project’s GitHub page, which is where the fix happens anyway. The issue is <b>public</b> — do not include personal information. It needs a GitHub account; without one, copy the text and send it on yourself.',
+  contactPrivacy: {
+    no: 'Meldingen sendes som e-post til den som lager kartet. Ingenting lagres i nettleseren din, og e-postadressen din er frivillig – uten den kan du ikke få svar.',
+    en: 'Your message is e-mailed to the person who maintains the map. Nothing is stored in your browser, and your e-mail address is optional — without it you cannot get a reply.',
   },
-  contactSend: { no: 'Åpne saken på GitHub', en: 'Open the issue on GitHub' },
-  contactCopy: { no: 'Kopier teksten', en: 'Copy the text' },
-  contactCopied: { no: 'Kopiert!', en: 'Copied!' },
-  contactLabel: { no: 'Send tilbakemelding', en: 'Send feedback' },
+  contactSend:    { no: 'Send', en: 'Send' },
+  contactSending: { no: 'Sender…', en: 'Sending…' },
+  contactSent:    { no: 'Takk! Meldingen er sendt.', en: 'Thank you! Your message is on its way.' },
+  contactSentSub: { no: 'Du kan lukke dette vinduet.', en: 'You can close this window.' },
+  contactFail: {
+    no: 'Klarte ikke å sende akkurat nå. Prøv igjen om litt.',
+    en: 'Could not send just now. Try again in a moment.',
+  },
+  contactNeedMsg: { no: 'Skriv en melding først.', en: 'Write a message first.' },
+  contactBadMail: { no: 'E-postadressen ser ikke riktig ut. Rett den, eller la feltet stå tomt.',
+                    en: 'That e-mail address does not look right. Fix it, or leave the field empty.' },
+  contactLabel:   { no: 'Send tilbakemelding', en: 'Send feedback' },
   fylkeLabel: { no: 'Fylke', en: 'County' },
   allFylker:  { no: 'Hele landet', en: 'All of Norway' },
   roundChip:  { no: r => `${r}. inntak`, en: r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : 'rd'} intake round` },
@@ -1290,76 +1327,128 @@ function renderList() {
 }
 
 /* ================= feedback =================
-   No backend and no secrets, so the form composes the report and hands it to
-   the place the fix would happen anyway: a GitHub issue. That needs an account,
-   which a parent may not have, so the same text can be copied instead. If this
-   should ever land in an inbox it needs a form endpoint and an address someone
-   is willing to publish — neither is mine to choose. */
-const REPO = 'https://github.com/avshalomd/poengkart';
+   The form asks only what the chosen kind of report actually needs: a school
+   name is meaningless on a feature suggestion, and a photo link is meaningless
+   on a wrong figure. Everything is posted to /api/feedback, which relays it to
+   e-mail — the destination address is held server side so it never appears in
+   this page. */
+const FIELDS = {
+  tall:     ['school', 'program', 'year'],
+  bilde:    ['school', 'photo'],
+  skole:    ['school', 'fylke'],
+  funksjon: [],
+  annet:    [],
+};
 
-function contactReport() {
-  const kind = document.getElementById('c-kind');
-  const school = document.getElementById('c-school').value.trim();
-  const msg = document.getElementById('c-msg').value.trim();
-  const kindLabel = kind.options[kind.selectedIndex].text;
-  const context = [
-    `Fylke: ${mapFylke === 'all' ? t('allFylker') : mapFylke}`,
-    `Kategori: ${mapCat === 'all' ? t('allCats') : (CATS[mapCat] || {})[lang] || mapCat}`,
-    school ? `Skole: ${school}` : null,
-    `Språk: ${lang}`,
-  ].filter(Boolean).join(' · ');
-  return {
-    title: `[${kindLabel}] ${school || 'Poengkart'}`,
-    body: `${msg}\n\n---\n${context}`,
-    ok: !!msg,
-  };
+function contactField(name) {
+  const key = { school: 'contactSchool', program: 'contactProgram', year: 'contactYear',
+                photo: 'contactPhoto', fylke: 'contactFylke' }[name];
+  const open = document.getElementById('side').classList.contains('open');
+  const value = name === 'school' && open && current ? current.name
+    : name === 'fylke' && mapFylke !== 'all' ? mapFylke : '';
+  const type = name === 'photo' ? 'url' : name === 'year' ? 'number' : 'text';
+  const extra = name === 'year'
+    ? ` min="${DATA.years[0]}" max="${DATA.years[DATA.years.length - 1]}"` : '';
+  return `<label for="c-${name}">${esc(t(key))}</label>
+    <input id="c-${name}" data-f="${name}" type="${type}"${extra}
+           autocomplete="off" value="${esc(value)}">`;
+}
+
+function renderContactFields() {
+  const kind = document.getElementById('c-kind').value;
+  document.getElementById('c-extra').innerHTML =
+    FIELDS[kind].map(contactField).join('');
+  const hint = t('contactHints')[kind];
+  const el = document.getElementById('c-hint');
+  el.textContent = hint || '';
+  el.hidden = !hint;
 }
 
 function renderContact() {
   document.getElementById('contact-h').textContent = t('contactTitle');
-  const kinds = t('contactKinds').map((k, i) =>
-    `<option value="${i}">${esc(k)}</option>`).join('');
+  const kinds = t('contactKinds');
   document.getElementById('contact-body').innerHTML = `
     <p class="lede">${esc(t('contactLede'))}</p>
-    <label for="c-kind">${esc(t('contactKind'))}</label>
-    <select id="c-kind">${kinds}</select>
-    <label for="c-school">${esc(t('contactSchool'))}</label>
-    <input id="c-school" type="text" autocomplete="off" value="${esc(
-      document.getElementById('side').classList.contains('open') && current ? current.name : '')}">
-    <label for="c-msg">${esc(t('contactMsg'))}</label>
-    <textarea id="c-msg" placeholder="${esc(t('contactPlaceholder'))}"></textarea>
-    <div class="where">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <circle cx="12" cy="12" r="9"/><path d="M12 11v5.4M12 7.6h.01" stroke-linecap="round"/>
-      </svg>
-      <span>${t('contactWhere')}</span>
-    </div>
-    <button class="cta" id="c-send" disabled>${esc(t('contactSend'))}</button>
-    <button class="cta ghost" id="c-copy" disabled>${esc(t('contactCopy'))}</button>`;
+    <form id="c-form" novalidate>
+      <label for="c-kind">${esc(t('contactKind'))}</label>
+      <select id="c-kind">${Object.entries(kinds)
+        .map(([k, v]) => `<option value="${k}">${esc(v)}</option>`).join('')}</select>
+      <div id="c-extra"></div>
+      <label for="c-msg">${esc(t('contactMsg'))}</label>
+      <p class="hint" id="c-hint" hidden></p>
+      <textarea id="c-msg" maxlength="4000"
+                placeholder="${esc(t('contactPlaceholder'))}"></textarea>
+      <label for="c-email">${esc(t('contactEmail'))}</label>
+      <input id="c-email" type="email" autocomplete="email" inputmode="email">
+      <!-- honeypot: hidden from people, irresistible to bots -->
+      <input id="c-website" name="website" type="text" tabindex="-1"
+             autocomplete="off" aria-hidden="true" class="hp">
+      <p class="privacy">${esc(t('contactPrivacy'))}</p>
+      <p class="err" id="c-err" hidden></p>
+      <button class="cta" id="c-send" type="submit">${esc(t('contactSend'))}</button>
+    </form>`;
+  document.getElementById('c-kind').onchange = renderContactFields;
+  renderContactFields();
+  document.getElementById('c-form').addEventListener('submit', sendContact);
+}
 
+async function sendContact(ev) {
+  ev.preventDefault();
+  const err = document.getElementById('c-err');
+  const btn = document.getElementById('c-send');
   const msg = document.getElementById('c-msg');
-  const send = document.getElementById('c-send');
-  const copy = document.getElementById('c-copy');
-  const sync = () => { const ok = !!msg.value.trim(); send.disabled = !ok; copy.disabled = !ok; };
-  msg.addEventListener('input', sync);
-  send.onclick = () => {
-    const r = contactReport();
-    if (!r.ok) return;
-    open(`${REPO}/issues/new?title=${encodeURIComponent(r.title)}`
-       + `&body=${encodeURIComponent(r.body)}`, '_blank', 'noopener');
+  err.hidden = true;
+  if (!msg.value.trim()) {
+    err.textContent = t('contactNeedMsg');
+    err.hidden = false;
+    msg.focus();
+    return;
+  }
+  const mail = document.getElementById('c-email');
+  if (mail.value.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value.trim())) {
+    err.textContent = t('contactBadMail');
+    err.hidden = false;
+    mail.focus();
+    return;
+  }
+  const payload = {
+    type: document.getElementById('c-kind').value,
+    message: msg.value,
+    email: document.getElementById('c-email').value,
+    website: document.getElementById('c-website').value,
+    lang, page: location.pathname + location.search,
   };
-  copy.onclick = async () => {
-    const r = contactReport();
-    try { await navigator.clipboard.writeText(`${r.title}\n\n${r.body}`); } catch (e) {}
-    copy.textContent = t('contactCopied');
-    setTimeout(() => { copy.textContent = t('contactCopy'); }, 1800);
-  };
+  document.querySelectorAll('#c-extra input').forEach(i => { payload[i.dataset.f] = i.value; });
+  btn.disabled = true;
+  btn.textContent = t('contactSending');
+  try {
+    const r = await fetch('/api/feedback', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!r.ok) throw new Error(String(r.status));
+    document.getElementById('contact-body').innerHTML =
+      `<div class="done">
+         <svg viewBox="0 0 24 24" fill="none" stroke="var(--good)" stroke-width="2.4"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+           <path d="m4.5 12.5 5 5 10-11"/>
+         </svg>
+         <p class="big">${esc(t('contactSent'))}</p>
+         <p>${esc(t('contactSentSub'))}</p>
+         <button class="cta" onclick="closeContact()">${esc(t('close'))}</button>
+       </div>`;
+  } catch (e) {
+    err.textContent = t('contactFail');
+    err.hidden = false;
+    btn.disabled = false;
+    btn.textContent = t('contactSend');
+  }
 }
 
 function openContact() {
   renderContact();
   document.getElementById('contact').hidden = false;
-  setTimeout(() => document.getElementById('c-msg')?.focus(), 40);
+  setTimeout(() => document.getElementById('c-kind')?.focus(), 40);
 }
 
 function closeContact() {

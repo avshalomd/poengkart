@@ -8,3 +8,6 @@ node_modules/
 
 # font cache for the share card (downloaded at build time)
 tools/.cache/
+
+# local-only secrets for `vercel dev`
+.env*.local
