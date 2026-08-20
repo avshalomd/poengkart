@@ -73,8 +73,17 @@ async function viaWeb3Forms(subject, text, replyTo, to) {
 }
 
 export default async function handler(req, res) {
+  // A GET reports which delivery path is live, so the setup can be checked
+  // without sending mail. Booleans only — never the key, never the address.
+  if (req.method === 'GET') {
+    return res.status(200).json({
+      destination: !!(process.env.FEEDBACK_TO || '').trim(),
+      provider: process.env.RESEND_API_KEY ? 'resend'
+        : process.env.WEB3FORMS_KEY ? 'web3forms' : 'mailto-fallback',
+    });
+  }
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
+    res.setHeader('Allow', 'GET, POST');
     return res.status(405).json({ error: 'method_not_allowed' });
   }
   const to = (process.env.FEEDBACK_TO || '').trim();
