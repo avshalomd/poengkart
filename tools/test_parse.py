@@ -207,6 +207,22 @@ check('Oslo 2022 lands on the right series',
 check('Innlandet keeps interview-admitted programmes',
       any(v == 'D' for _, _, _, v in ccells('Innlandet')))
 
+# Hordaland's two press releases each print last year's figure beside this
+# year's, so they overlap on 2018 — and they were published a year apart, by
+# hand, in different house styles. If the parse of either is wrong they will
+# disagree. This is the only cross-check in the dataset where two independent
+# documents state the same cell.
+hord = [(s['name'], p['values'].get('2018'), p['values'].get('2019'))
+        for s in county('Vestland') for p in s['programs']
+        if p['program'] == 'Studiespesialisering' and '2018' in p['values']]
+check('Hordaland press releases give 2017-2019 for the Bergen area',
+      len(hord) >= 14, f'{len(hord)} schools carry a 2018 figure')
+check('the recovered Hordaland years are plausible thresholds',
+      all(20 <= v <= 55 for _, v, _ in hord if isinstance(v, (int, float))),
+      str(sorted(v for _, v, _ in hord if isinstance(v, (int, float)))[:4]))
+early = {int(y) for s in county('Vestland') for p in s['programs'] for y in p['values']}
+check('Vestland now reaches back to 2017', min(early) == 2017, str(sorted(early)))
+
 # The page's own copy carries headline numbers (meta description, the
 # noscript fallback, the alt text for the share card). Those are read by people
 # and by link previews, not rendered from the data, so they rot silently when a

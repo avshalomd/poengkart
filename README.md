@@ -44,13 +44,29 @@ round:
 | [Akershus](https://afk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/poenggrenser.222835.aspx) | HTML tables | 2025 | 1. and 2. |
 | [Buskerud](https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/) | HTML matrix | 2024–2025 | not stated |
 | [Innlandet](https://innlandetfylke.no/) | PDF matrix | 2023–2025 | 2. |
-| [Oslo](https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/) | HTML + PDF | 2021–2026 | 1. |
+| [Oslo](https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/) | HTML + PDF | 2020–2026 | 1. |
 | [Rogaland](https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6) | PDF | 2018–2025 | 2. |
 | [Trøndelag](https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6) | PDF, per intake region | 2025 | not stated |
-| [Vestland](https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/) | PDF | 2021–2026 | 1. and 3. |
+| [Vestland](https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/) | PDF | 2020–2026 | 1. and 3. |
+| ↳ Hordaland (pre-merger), via the Wayback Machine | PDF press releases | 2017–2019 | 1. |
 
 Many of these links rot yearly; older editions were recovered through the
 [Wayback Machine](https://web.archive.org/).
+
+**Why the depth is so uneven.** Rogaland's PDFs are rolling tables that reprint
+the previous three or four years, so five documents cover eight years. Everyone
+else publishes one year per document and overwrites the page, and the archive
+crawler mostly did not catch the older versions. Where a county is shown with a
+single year, that is all that was ever published in a form anyone can still
+retrieve — not a gap in the collection. Trøndelag says so outright: it does not
+produce overviews of past years' thresholds, and only started publishing at all
+in 2024. Akershus, Buskerud and Innlandet publish intake statistics for earlier
+years, but those contain applicant and capacity counts, no thresholds.
+
+The 2017–2019 Hordaland rows are narrower than everything else here: Vg1
+studiespesialisering, public schools in the Bergen area only. Two press
+releases each printed the previous year's figure beside the current one, and
+they agree on all fifteen schools where they overlap.
 
 **Schools** — names, org numbers and locations from the national school
 register ([NSR / Udir](https://data-nsr.udir.no/)), with address geocoding via

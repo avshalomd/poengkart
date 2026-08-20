@@ -182,11 +182,81 @@ def _matrix(path, warn):
     return found
 
 
+
+# --- Hordaland, the county Vestland replaced in 2020 -------------------------
+# Two press releases survive only in the Wayback Machine. They cover far less
+# than the later series — Vg1 studiespesialisering, public schools in the
+# Bergen area, 1. inntaksomgang — but each one prints last year's figure beside
+# this year's, so the pair carries 2017, 2018 and 2019. The 2018 column appears
+# in both files and agrees to the decimal, which is the cross-check that makes
+# them safe to use.
+HORDALAND = {
+    'hordaland_2019_1inntak_bergen-st.pdf': 2019,
+    'hordaland_2018_1inntak_bergen-st.pdf': 2018,
+}
+# the press releases use short forms; the register names are what we publish
+HORDALAND_NAMES = {
+    'amalie skram vgs': 'Amalie Skram videregående skole',
+    'arna vgs': 'Arna vidaregåande skule',
+    'askøy vgs': 'Askøy videregående skole',
+    'bergen katedralskole': 'Bergen katedralskole',
+    'fyllingsdalen vgs': 'Fyllingsdalen videregående skole',
+    'knarvik vgs': 'Knarvik vidaregåande skule',
+    'langhaugen vgs': 'Langhaugen videregående skole',
+    'nordahl grieg vgs': 'Nordahl Grieg videregående skole',
+    'olsvikåsen vgs': 'Olsvikåsen videregående skole',
+    'os gymnas': 'Os gymnas',
+    'osterøy vgs': 'Osterøy vidaregåande skule',
+    'sandsli vgs': 'Sandsli videregående skole',
+    'sotra vgs': 'Sotra vidaregåande skule',
+    'tertnes vgs': 'Tertnes vidaregåande skule',
+    'årstad vgs': 'Årstad videregående skole',
+}
+# "Amalie Skram vgs 49,40: « (i fjor: 48,80)" and
+# "Amalie Skram videregående skole: 48,3 (i fjor 49,4)" are the same line in
+# two years' house styles. One period-for-comma typo is in the source.
+HORD_RE = re.compile(
+    r'^(?P<name>[^:0-9]+?)[:\s]+(?P<now>\d{2}[.,]\d{1,2})\s*(?:poeng)?\s*[:«\s]*'
+    r'\(i fjor:?\s*(?P<prev>\d{2}[.,]\d{1,2})\)')
+
+
+def _hordaland_name(raw):
+    n = common.squash(raw).rstrip(':').strip()
+    n = re.sub(r'\bvidereg[åa]ende skole$|\bvidareg[åa]ande skule$|\bvgs\.?$', 'vgs', n, flags=re.I)
+    n = re.sub(r'\s+', ' ', n).strip().lower()
+    return HORDALAND_NAMES.get(n)
+
+
+def _hordaland(path, year, warn):
+    rows = []
+    with pdfplumber.open(path) as pdf:
+        text = '\n'.join((p.extract_text() or '') for p in pdf.pages)
+    for line in text.split('\n'):
+        m = HORD_RE.match(common.squash(line))
+        if not m:
+            continue
+        name = _hordaland_name(m.group('name'))
+        if not name:
+            warn.append(f'{os.path.basename(path)}: unknown school {m.group("name")!r}')
+            continue
+        for y, g in ((year, 'now'), (year - 1, 'prev')):
+            v = common.classify_cell(m.group(g).replace('.', ','))
+            if v is None:
+                continue
+            rows.append({'school': name, 'program': 'Studiespesialisering',
+                         'level': 'Vg1', 'values': {y: v},
+                         'county': META['fylke'], 'round': '1'})
+    if not rows:
+        warn.append(f'{os.path.basename(path)}: no rows parsed')
+    return rows
+
+
 def extract():
     warn, out = [], []
     if not os.path.isdir(SRC):
         return out, [f'{META["fylke"]}: no source directory']
-    files = sorted((f for f in os.listdir(SRC) if f.endswith('.pdf')), reverse=True)
+    files = sorted((f for f in os.listdir(SRC)
+                    if f.endswith('.pdf') and f not in HORDALAND), reverse=True)
     by_year = {}
     for fname in files:
         m = re.search(r'(20\d\d)-\d\d_(\d)inntak', fname)
@@ -213,4 +283,9 @@ def extract():
                 row['values_r3'] = {year: alt[(school, program, level)]}
             rows.append(row)
         out.append((primary, rows))
+
+    for fname, year in HORDALAND.items():
+        path = os.path.join(SRC, fname)
+        if os.path.exists(path):
+            out.append((fname, _hordaland(path, year, warn)))
     return out, warn
