@@ -205,12 +205,17 @@ def merge_rows(rows_newest_first):
     that lists the same programme at two levels keeps two series.
     """
     schools, drift, attrs = {}, [], {}
+    NAMES = {}                     # casefolded name -> the spelling we publish
     for source, rows in rows_newest_first:
         occ_seen = {}
         for r in rows:
             # school identity is (county, name): the same school name exists in
-            # more than one county (St. Olav in both Stavanger and Sarpsborg)
-            sid = (r.get('county', ''), r['school'])
+            # more than one county (St. Olav in both Stavanger and Sarpsborg).
+            # Case is not part of the identity — one Vestland edition writes
+            # "Bergen maritime" and another "Bergen Maritime", and letting that
+            # split a school in two put the same building on the map twice.
+            sid = (r.get('county', ''), NAMES.setdefault(
+                (r.get('county', ''), r['school'].casefold()), r['school']))
             if r.get('region'):
                 attrs.setdefault(sid, {})['inntaksregion'] = r['region']
             base = (sid, r['program'].lower(), r['level'])

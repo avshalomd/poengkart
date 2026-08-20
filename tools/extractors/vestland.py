@@ -132,6 +132,56 @@ def _parse(path, warn):
     return found
 
 
+
+def _matrix(path, warn):
+    """The 2020/21 editions are not the later three-column list at all: they
+    are a wide grid, schools down the side and programmes written up the page
+    as rotated column headers. The grid is ruled, so the cells come out cleanly
+    — the work is rebuilding each header from its glyphs, read bottom-to-top.
+
+    As everywhere in this county, the header is drawn only on the first page of
+    a block and the continuation pages carry none, so the geometry has to be
+    carried forward or the tail of the document is silently lost.
+    """
+    found, cols = {}, None
+    settings = {'vertical_strategy': 'lines', 'horizontal_strategy': 'lines'}
+    with pdfplumber.open(path) as pdf:
+        for page in pdf.pages:
+            tables = page.find_tables(settings)
+            if not tables:
+                continue
+            tbl = tables[0]
+            rows = tbl.extract()
+            header_here = rows and len(rows) > 1 and (rows[1][0] or '').strip() == 'Skulenamn'
+            if header_here:
+                band = tbl.rows[0].cells
+                top, bottom = band[0][1], band[0][3]
+                cols = []
+                for i, cell in enumerate(band[1:], 1):
+                    if not cell:
+                        continue
+                    x0, _, x1, _ = cell
+                    ch = [c for c in page.chars if top - 1 <= c['top'] <= bottom + 1
+                          and x0 - 1 <= (c['x0'] + c['x1']) / 2 <= x1 + 1]
+                    ch.sort(key=lambda c: (-c['top'], c['x0']))
+                    label = common.squash(''.join(c['text'] for c in ch))
+                    if label:
+                        cols.append((i, label))
+            if not cols:
+                continue
+            for row in rows[2 if header_here else 0:]:
+                school = common.squash(row[0] or '')
+                if not school or school == 'Skulenamn':
+                    continue
+                for i, program in cols:
+                    if i >= len(row):
+                        continue
+                    v = common.classify_cell(row[i] or '', loose=True)
+                    if v is not None:
+                        found[(school, common.canon_program(program), 'Vg1')] = v
+    return found
+
+
 def extract():
     warn, out = [], []
     if not os.path.isdir(SRC):
@@ -148,8 +198,9 @@ def extract():
     for year in sorted(by_year, reverse=True):
         rounds = by_year[year]
         primary = rounds.get('1') or rounds.get('3')
-        cells = _parse(os.path.join(SRC, primary), warn)
-        alt = (_parse(os.path.join(SRC, rounds['3']), warn)
+        read = _matrix if year <= 2020 else _parse
+        cells = read(os.path.join(SRC, primary), warn)
+        alt = (read(os.path.join(SRC, rounds['3']), warn)
                if ('1' in rounds and '3' in rounds) else {})
         rows = []
         if not cells:

@@ -1328,13 +1328,16 @@ Vinstra vidaregåande skule,Tømrer,0,bygg,Vg2,2025,,open
 Øvrebyen videregående skole,"Språk, samfunn og økonomi",0,st,Vg2,2023,,open
 Øvrebyen videregående skole,"Språk, samfunn og økonomi",0,st,Vg2,2024,,open
 Øvrebyen videregående skole,"Språk, samfunn og økonomi",0,st,Vg2,2025,,open
+Bjerke videregående skole,Idrettsfag,0,idrett,Vg1,2020,41.3,points
 Bjerke videregående skole,Idrettsfag,0,idrett,Vg1,2021,40.0,points
 Bjerke videregående skole,Idrettsfag,0,idrett,Vg1,2022,40.7,points
 Bjerke videregående skole,Idrettsfag,0,idrett,Vg1,2023,40.0,points
 Bjerke videregående skole,Idrettsfag,0,idrett,Vg1,2024,40.0,points
 Bjerke videregående skole,Idrettsfag,0,idrett,Vg1,2025,40.4,points
 Bjerke videregående skole,Idrettsfag,0,idrett,Vg1,2026,38.8,points
+Bjerke videregående skole,"Studiespes, business",0,st,Vg1,2020,38.8,points
 Bjerke videregående skole,"Studiespes, business",0,st,Vg1,2021,39.3,points
+Bjerke videregående skole,Studiespesialisering,0,st,Vg1,2020,42.7,points
 Bjerke videregående skole,Studiespesialisering,0,st,Vg1,2021,42.0,points
 Bjerke videregående skole,Studiespesialisering,0,st,Vg1,2022,38.9,points
 Bjerke videregående skole,Studiespesialisering,0,st,Vg1,2023,37.7,points
@@ -1347,66 +1350,78 @@ Bjørnholt videregående skole,Elektro og datateknologi,0,elektro,Vg1,2023,16.4,
 Bjørnholt videregående skole,Elektro og datateknologi,0,elektro,Vg1,2024,,open
 Bjørnholt videregående skole,Elektro og datateknologi,0,elektro,Vg1,2025,,open
 Bjørnholt videregående skole,Elektro og datateknologi,0,elektro,Vg1,2026,20.9,points
+Bjørnholt videregående skole,Elektrofag,0,elektro,Vg1,2020,21.5,points
 Bjørnholt videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2021,22.9,points
 Bjørnholt videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2022,30.0,points
 Bjørnholt videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2023,,open
 Bjørnholt videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2024,20.7,points
 Bjørnholt videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2025,,open
 Bjørnholt videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2026,,open
+Bjørnholt videregående skole,Medier og kommunikasjon,0,mk,Vg1,2020,,open
+Bjørnholt videregående skole,Studiespesialisering,0,st,Vg1,2020,,open
 Bjørnholt videregående skole,Studiespesialisering,0,st,Vg1,2021,,open
 Bjørnholt videregående skole,Studiespesialisering,0,st,Vg1,2022,,open
 Bjørnholt videregående skole,Studiespesialisering,0,st,Vg1,2023,,open
 Bjørnholt videregående skole,Studiespesialisering,0,st,Vg1,2024,,open
 Bjørnholt videregående skole,Studiespesialisering,0,st,Vg1,2025,18.4,points
 Bjørnholt videregående skole,Studiespesialisering,0,st,Vg1,2026,,open
+Blindern videregående skole,Studiespesialisering,0,st,Vg1,2020,45.3,points
 Blindern videregående skole,Studiespesialisering,0,st,Vg1,2021,45.3,points
 Blindern videregående skole,Studiespesialisering,0,st,Vg1,2022,44.6,points
 Blindern videregående skole,Studiespesialisering,0,st,Vg1,2023,42.2,points
 Blindern videregående skole,Studiespesialisering,0,st,Vg1,2024,33.6,points
 Blindern videregående skole,Studiespesialisering,0,st,Vg1,2025,32.5,points
 Blindern videregående skole,Studiespesialisering,0,st,Vg1,2026,34.4,points
+Blindern videregående skole,"Studiespesialisering med IB, MYP5",0,st,Vg1,2020,,documentation
 Blindern videregående skole,"Studiespesialisering med IB, MYP5",0,st,Vg1,2021,,documentation
 Blindern videregående skole,"Studiespesialisering med IB, MYP5",0,st,Vg1,2022,,documentation
 Blindern videregående skole,"Studiespesialisering med IB, MYP5",0,st,Vg1,2023,,documentation
 Blindern videregående skole,"Studiespesialisering med IB, MYP5",0,st,Vg1,2024,,documentation
 Blindern videregående skole,"Studiespesialisering med IB, MYP5",0,st,Vg1,2025,,documentation
 Blindern videregående skole,"Studiespesialisering med IB, MYP5",0,st,Vg1,2026,,documentation
+Edvard Munch videregående skole,"Frisør, blomst, int, eksp.design",0,design,Vg1,2020,34.5,points
 Edvard Munch videregående skole,"Frisør, blomst, int, eksp.design",0,design,Vg1,2021,35.5,points
 Edvard Munch videregående skole,"Frisør, blomst, int, eksp.design",0,design,Vg1,2022,38.2,points
 Edvard Munch videregående skole,"Frisør, blomst, int, eksp.design",0,design,Vg1,2023,36.3,points
 Edvard Munch videregående skole,"Frisør, blomst, int, eksp.design",0,design,Vg1,2024,31.3,points
 Edvard Munch videregående skole,"Frisør, blomst, int, eksp.design",0,design,Vg1,2025,37.8,points
 Edvard Munch videregående skole,"Frisør, blomst, int, eksp.design",0,design,Vg1,2026,37.3,points
+Edvard Munch videregående skole,"Håndverk, design og produktutvikl. Søm/th SK 3 år",0,design,Vg1,2020,49.3,points
 Edvard Munch videregående skole,"Håndverk, design og produktutvikl. Søm/th SK 3 år",0,design,Vg1,2021,48.7,points
 Edvard Munch videregående skole,"Håndverk, design og produktutvikl. Søm/th SK 3 år",0,design,Vg1,2022,47.9,points
 Edvard Munch videregående skole,"Håndverk, design og produktutvikl. Søm/th SK 3 år",0,design,Vg1,2023,46.9,points
 Edvard Munch videregående skole,"Håndverk, design og produktutvikl. Søm/th SK 3 år",0,design,Vg1,2024,44.7,points
 Edvard Munch videregående skole,"Håndverk, design og produktutvikl. Søm/th SK 3 år",0,design,Vg1,2025,45.6,points
 Edvard Munch videregående skole,"Håndverk, design og produktutvikl. Søm/th SK 3 år",0,design,Vg1,2026,47.3,points
+Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Gull/sølv SK 3 år",0,design,Vg1,2020,42.4,points
 Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Gull/sølv SK 3 år",0,design,Vg1,2021,47.9,points
 Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Gull/sølv SK 3 år",0,design,Vg1,2022,48.6,points
 Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Gull/sølv SK 3 år",0,design,Vg1,2023,44.7,points
 Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Gull/sølv SK 3 år",0,design,Vg1,2024,45.0,points
 Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Gull/sølv SK 3 år",0,design,Vg1,2025,49.1,points
 Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Gull/sølv SK 3 år",0,design,Vg1,2026,46.9,points
+Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Trearb. SK 3 år",0,design,Vg1,2020,39.3,points
 Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Trearb. SK 3 år",0,design,Vg1,2021,29.3,points
 Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Trearb. SK 3 år",0,design,Vg1,2022,44.4,points
 Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Trearb. SK 3 år",0,design,Vg1,2023,45.0,points
 Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Trearb. SK 3 år",0,design,Vg1,2024,44.4,points
 Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Trearb. SK 3 år",0,design,Vg1,2025,46.9,points
 Edvard Munch videregående skole,"Håndverk, design og produkutvikl. Trearb. SK 3 år",0,design,Vg1,2026,46.9,points
+Edvard Munch videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2020,48.8,points
 Edvard Munch videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2021,51.3,points
 Edvard Munch videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2022,48.6,points
 Edvard Munch videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2023,49.8,points
 Edvard Munch videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2024,50.0,points
 Edvard Munch videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2025,48.1,points
 Edvard Munch videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2026,46.0,points
+Edvard Munch videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2020,,documentation
 Edvard Munch videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2021,,documentation
 Edvard Munch videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2022,,documentation
 Edvard Munch videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2023,,documentation
 Edvard Munch videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2024,,documentation
 Edvard Munch videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2025,,documentation
 Edvard Munch videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2026,,documentation
+Edvard Munch videregående skole,Studiespesialisering,0,st,Vg1,2020,50.0,points
 Edvard Munch videregående skole,Studiespesialisering,0,st,Vg1,2021,50.0,points
 Edvard Munch videregående skole,Studiespesialisering,0,st,Vg1,2022,49.3,points
 Edvard Munch videregående skole,Studiespesialisering,0,st,Vg1,2023,48.7,points
@@ -1425,30 +1440,38 @@ Elvebakken videregående skole,Elektro og datateknologi,0,elektro,Vg1,2023,37.8,
 Elvebakken videregående skole,Elektro og datateknologi,0,elektro,Vg1,2024,40.0,points
 Elvebakken videregående skole,Elektro og datateknologi,0,elektro,Vg1,2025,38.8,points
 Elvebakken videregående skole,Elektro og datateknologi,0,elektro,Vg1,2026,41.3,points
+Elvebakken videregående skole,Elektrofag,0,elektro,Vg1,2020,38.1,points
+Elvebakken videregående skole,"Elektrofag, elenergi, SK 3 år",0,elektro,Vg1,2020,41.3,points
+Elvebakken videregående skole,"Frisør, blomst, int, eksp.design",0,design,Vg1,2020,31.8,points
 Elvebakken videregående skole,"IT og medieproduksjon, SK 3 år",0,im,Vg1,2022,50.0,points
 Elvebakken videregående skole,"IT og medieproduksjon, SK 3 år",0,im,Vg1,2023,48.2,points
 Elvebakken videregående skole,"IT og medieproduksjon, SK 3 år",0,im,Vg1,2024,47.6,points
 Elvebakken videregående skole,"IT og medieproduksjon, SK 3 år",0,im,Vg1,2025,47.2,points
 Elvebakken videregående skole,"IT og medieproduksjon, SK 3 år",0,im,Vg1,2026,42.4,points
+Elvebakken videregående skole,Inform.tekn og medieprod. SK 3 år,0,im,Vg1,2020,49.3,points
 Elvebakken videregående skole,Inform.tekn og medieprod. SK 3 år,0,im,Vg1,2021,46.8,points
+Elvebakken videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2020,44.7,points
 Elvebakken videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2021,43.1,points
 Elvebakken videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2022,45.7,points
 Elvebakken videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2023,44.0,points
 Elvebakken videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2024,45.0,points
 Elvebakken videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2025,43.3,points
 Elvebakken videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2026,41.7,points
+Elvebakken videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2020,48.0,points
 Elvebakken videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2021,50.0,points
 Elvebakken videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2022,48.3,points
 Elvebakken videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2023,48.3,points
 Elvebakken videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2024,47.7,points
 Elvebakken videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2025,46.9,points
 Elvebakken videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2026,45.0,points
+Elvebakken videregående skole,Medier og kommunikasjon,0,mk,Vg1,2020,47.8,points
 Elvebakken videregående skole,Medier og kommunikasjon,0,mk,Vg1,2021,47.8,points
 Elvebakken videregående skole,Medier og kommunikasjon,0,mk,Vg1,2022,49.3,points
 Elvebakken videregående skole,Medier og kommunikasjon,0,mk,Vg1,2023,51.6,points
 Elvebakken videregående skole,Medier og kommunikasjon,0,mk,Vg1,2024,49.1,points
 Elvebakken videregående skole,Medier og kommunikasjon,0,mk,Vg1,2025,48.1,points
 Elvebakken videregående skole,Medier og kommunikasjon,0,mk,Vg1,2026,47.5,points
+Elvebakken videregående skole,Studiespesialisering,0,st,Vg1,2020,52.3,points
 Elvebakken videregående skole,Studiespesialisering,0,st,Vg1,2021,52.7,points
 Elvebakken videregående skole,Studiespesialisering,0,st,Vg1,2022,53.6,points
 Elvebakken videregående skole,Studiespesialisering,0,st,Vg1,2023,52.8,points
@@ -1461,78 +1484,92 @@ Etterstad videregående skole,Elektro og datateknologi,0,elektro,Vg1,2023,33.1,p
 Etterstad videregående skole,Elektro og datateknologi,0,elektro,Vg1,2024,34.7,points
 Etterstad videregående skole,Elektro og datateknologi,0,elektro,Vg1,2025,35.3,points
 Etterstad videregående skole,Elektro og datateknologi,0,elektro,Vg1,2026,37.1,points
+Etterstad videregående skole,Elektrofag,0,elektro,Vg1,2020,34.1,points
+Etterstad videregående skole,Restaurant- og matfag,0,rm,Vg1,2020,28.6,points
 Etterstad videregående skole,Restaurant- og matfag,0,rm,Vg1,2021,19.3,points
 Etterstad videregående skole,Restaurant- og matfag,0,rm,Vg1,2022,12.7,points
 Etterstad videregående skole,Restaurant- og matfag,0,rm,Vg1,2023,,open
 Etterstad videregående skole,Restaurant- og matfag,0,rm,Vg1,2024,23.6,points
 Etterstad videregående skole,Restaurant- og matfag,0,rm,Vg1,2025,24.4,points
 Etterstad videregående skole,Restaurant- og matfag,0,rm,Vg1,2026,6.0,points
+Etterstad videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2020,,open
 Etterstad videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2021,,open
 Etterstad videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2022,,open
 Etterstad videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2023,11.3,points
 Etterstad videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2024,,open
 Etterstad videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2025,16.3,points
 Etterstad videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2026,13.2,points
+Etterstad videregående skole,Teknikk og industriell produksjon,0,tip,Vg1,2020,17.9,points
 Etterstad videregående skole,Teknolog og idustrifag,0,tip,Vg1,2021,24.3,points
 Etterstad videregående skole,Teknologi- og industrifag,0,tip,Vg1,2022,15.4,points
 Etterstad videregående skole,Teknologi- og industrifag,0,tip,Vg1,2023,10.0,points
 Etterstad videregående skole,Teknologi- og industrifag,0,tip,Vg1,2024,25.7,points
 Etterstad videregående skole,Teknologi- og industrifag,0,tip,Vg1,2025,25.6,points
 Etterstad videregående skole,Teknologi- og industrifag,0,tip,Vg1,2026,27.5,points
+Foss videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2020,,documentation
 Foss videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2021,,documentation
 Foss videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2022,,documentation
 Foss videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2023,,documentation
 Foss videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2024,,documentation
 Foss videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2025,,documentation
 Foss videregående skole,"Musikk, dans og drama",0,mdd,Vg1,2026,,documentation
+Foss videregående skole,Studiespesialisering,0,st,Vg1,2020,51.3,points
 Foss videregående skole,Studiespesialisering,0,st,Vg1,2021,48.0,points
 Foss videregående skole,Studiespesialisering,0,st,Vg1,2022,48.6,points
 Foss videregående skole,Studiespesialisering,0,st,Vg1,2023,50.2,points
 Foss videregående skole,Studiespesialisering,0,st,Vg1,2024,50.6,points
 Foss videregående skole,Studiespesialisering,0,st,Vg1,2025,49.4,points
 Foss videregående skole,Studiespesialisering,0,st,Vg1,2026,50.0,points
+Fyrstikkalleen skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2020,36.8,points
 Fyrstikkalleen skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2021,39.0,points
 Fyrstikkalleen skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2022,40.8,points
 Fyrstikkalleen skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2023,38.8,points
 Fyrstikkalleen skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2024,39.2,points
 Fyrstikkalleen skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2025,32.2,points
 Fyrstikkalleen skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2026,36.6,points
+Fyrstikkalleen skole,Medier og kommunikasjon,0,mk,Vg1,2020,43.3,points
 Fyrstikkalleen skole,Medier og kommunikasjon,0,mk,Vg1,2021,41.7,points
 Fyrstikkalleen skole,Medier og kommunikasjon,0,mk,Vg1,2022,43.8,points
 Fyrstikkalleen skole,Medier og kommunikasjon,0,mk,Vg1,2023,42.1,points
 Fyrstikkalleen skole,Medier og kommunikasjon,0,mk,Vg1,2024,40.0,points
 Fyrstikkalleen skole,Medier og kommunikasjon,0,mk,Vg1,2025,41.1,points
 Fyrstikkalleen skole,Medier og kommunikasjon,0,mk,Vg1,2026,36.5,points
+Fyrstikkalleen skole,Studiespesialisering,0,st,Vg1,2020,44.3,points
 Fyrstikkalleen skole,Studiespesialisering,0,st,Vg1,2021,45.2,points
 Fyrstikkalleen skole,Studiespesialisering,0,st,Vg1,2022,43.6,points
 Fyrstikkalleen skole,Studiespesialisering,0,st,Vg1,2023,44.1,points
 Fyrstikkalleen skole,Studiespesialisering,0,st,Vg1,2024,42.7,points
 Fyrstikkalleen skole,Studiespesialisering,0,st,Vg1,2025,44.0,points
 Fyrstikkalleen skole,Studiespesialisering,0,st,Vg1,2026,42.4,points
+Hartvig Nissens skole,"Musikk, dans og drama",0,mdd,Vg1,2020,,documentation
 Hartvig Nissens skole,"Musikk, dans og drama",0,mdd,Vg1,2021,,documentation
 Hartvig Nissens skole,"Musikk, dans og drama",0,mdd,Vg1,2022,,documentation
 Hartvig Nissens skole,"Musikk, dans og drama",0,mdd,Vg1,2023,,documentation
 Hartvig Nissens skole,"Musikk, dans og drama",0,mdd,Vg1,2024,,documentation
 Hartvig Nissens skole,"Musikk, dans og drama",0,mdd,Vg1,2025,,documentation
 Hartvig Nissens skole,"Musikk, dans og drama",0,mdd,Vg1,2026,,documentation
+Hartvig Nissens skole,Studiespesialisering,0,st,Vg1,2020,41.8,points
 Hartvig Nissens skole,Studiespesialisering,0,st,Vg1,2021,42.0,points
 Hartvig Nissens skole,Studiespesialisering,0,st,Vg1,2022,42.1,points
 Hartvig Nissens skole,Studiespesialisering,0,st,Vg1,2023,42.4,points
 Hartvig Nissens skole,Studiespesialisering,0,st,Vg1,2024,45.0,points
 Hartvig Nissens skole,Studiespesialisering,0,st,Vg1,2025,47.1,points
 Hartvig Nissens skole,Studiespesialisering,0,st,Vg1,2026,50.3,points
+Hellerud videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,26.0,points
 Hellerud videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,30.7,points
 Hellerud videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,32.3,points
 Hellerud videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,26.3,points
 Hellerud videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2024,28.6,points
 Hellerud videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2025,30.7,points
 Hellerud videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2026,31.0,points
+Hellerud videregående skole,Studiespesialisering,0,st,Vg1,2020,31.6,points
 Hellerud videregående skole,Studiespesialisering,0,st,Vg1,2021,36.1,points
 Hellerud videregående skole,Studiespesialisering,0,st,Vg1,2022,35.4,points
 Hellerud videregående skole,Studiespesialisering,0,st,Vg1,2023,30.7,points
 Hellerud videregående skole,Studiespesialisering,0,st,Vg1,2024,33.3,points
 Hellerud videregående skole,Studiespesialisering,0,st,Vg1,2025,31.3,points
 Hellerud videregående skole,Studiespesialisering,0,st,Vg1,2026,27.1,points
+Hersleb videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2020,30.7,points
 Hersleb videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2021,26.4,points
 Hersleb videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2022,25.7,points
 Hersleb videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2023,16.2,points
@@ -1543,18 +1580,22 @@ Hersleb videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2023,14.6,po
 Hersleb videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2024,,open
 Hersleb videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2025,,open
 Hersleb videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2026,,open
+Hersleb videregående skole,Studiespesialisering,0,st,Vg1,2020,,open
 Hersleb videregående skole,Studiespesialisering,0,st,Vg1,2021,,open
 Hersleb videregående skole,Studiespesialisering,0,st,Vg1,2022,,open
 Hersleb videregående skole,Studiespesialisering,0,st,Vg1,2023,,open
 Hersleb videregående skole,Studiespesialisering,0,st,Vg1,2024,,open
 Hersleb videregående skole,Studiespesialisering,0,st,Vg1,2025,,open
 Hersleb videregående skole,Studiespesialisering,0,st,Vg1,2026,,open
+Holtet videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2020,26.9,points
 Holtet videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2021,25.7,points
 Holtet videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2022,21.4,points
 Holtet videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2023,24.7,points
+Holtet videregående skole,"Helse/oppvekst, ambulanse, SK 3 år",0,helse,Vg1,2020,37.6,points
 Holtet videregående skole,"Helse/oppvekst, ambulanse, SK 3 år",0,helse,Vg1,2021,39.3,points
 Holtet videregående skole,"Helse/oppvekst, ambulanse, SK 3 år",0,helse,Vg1,2022,40.8,points
 Holtet videregående skole,"Helse/oppvekst, ambulanse, SK 3 år",0,helse,Vg1,2023,42.2,points
+Kongshavn videregående skole,Studiespesialisering,0,st,Vg1,2020,39.3,points
 Kongshavn videregående skole,Studiespesialisering,0,st,Vg1,2021,40.0,points
 Kongshavn videregående skole,Studiespesialisering,0,st,Vg1,2022,39.0,points
 Kongshavn videregående skole,Studiespesialisering,0,st,Vg1,2023,37.3,points
@@ -1562,6 +1603,7 @@ Kongshavn videregående skole,Studiespesialisering,0,st,Vg1,2024,38.1,points
 Kongshavn videregående skole,Studiespesialisering,0,st,Vg1,2025,40.0,points
 Kongshavn videregående skole,Studiespesialisering,0,st,Vg1,2026,40.7,points
 Kuben videregående skole,"Bygg og anleggsteknikk, YSK 4 år",0,bygg,Vg1,2024,40.6,points
+Kuben videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,37.8,points
 Kuben videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,38.7,points
 Kuben videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,38.7,points
 Kuben videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,36.7,points
@@ -1572,6 +1614,7 @@ Kuben videregående skole,"Bygg- og anleggsteknikk, YSK 4 år",0,bygg,Vg1,2022,3
 Kuben videregående skole,"Bygg- og anleggsteknikk, YSK 4 år",0,bygg,Vg1,2023,37.9,points
 Kuben videregående skole,"Bygg- og anleggsteknikk, YSK 4 år",0,bygg,Vg1,2025,33.3,points
 Kuben videregående skole,"Bygg- og anleggsteknikk, YSK 4 år",0,bygg,Vg1,2026,42.4,points
+Kuben videregående skole,"Bygg- og anleggsteknikk, YSK 4år",0,bygg,Vg1,2020,38.6,points
 Kuben videregående skole,"Bygg- og anleggsteknikk, YSK 4år",0,bygg,Vg1,2021,40.3,points
 Kuben videregående skole,"Elektro og datatekn., autom, SK 3 år",0,elektro,Vg1,2021,43.6,points
 Kuben videregående skole,"Elektro og datatekn., autom, SK 3 år",0,elektro,Vg1,2022,46.2,points
@@ -1585,7 +1628,10 @@ Kuben videregående skole,Elektro og datateknologi,0,elektro,Vg1,2023,36.3,point
 Kuben videregående skole,Elektro og datateknologi,0,elektro,Vg1,2024,38.1,points
 Kuben videregående skole,Elektro og datateknologi,0,elektro,Vg1,2025,38.0,points
 Kuben videregående skole,Elektro og datateknologi,0,elektro,Vg1,2026,39.3,points
+Kuben videregående skole,Elektrofag,0,elektro,Vg1,2020,37.3,points
+Kuben videregående skole,"Elektrofag, autom, SK 3 år",0,elektro,Vg1,2020,42.1,points
 Kuben videregående skole,"Helse og oppvekstfag, YSK 4år",0,helse,Vg1,2024,42.2,points
+Kuben videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2020,38.7,points
 Kuben videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2021,36.7,points
 Kuben videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2022,37.4,points
 Kuben videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2023,36.2,points
@@ -1593,11 +1639,14 @@ Kuben videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2024,36.4,points
 Kuben videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2025,37.3,points
 Kuben videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2026,36.1,points
 Kuben videregående skole,"Helse- og oppvekstfag, YSK 4 år",0,helse,Vg1,2026,42.1,points
+Kuben videregående skole,"Helse- og oppvekstfag, YSK 4år",0,helse,Vg1,2020,45.4,points
 Kuben videregående skole,"Helse- og oppvekstfag, YSK 4år",0,helse,Vg1,2021,43.6,points
 Kuben videregående skole,"Helse- og oppvekstfag, YSK 4år",0,helse,Vg1,2022,35.5,points
 Kuben videregående skole,"Helse- og oppvekstfag, YSK 4år",0,helse,Vg1,2023,,open
 Kuben videregående skole,"Helse- og oppvekstfag, YSK 4år",0,helse,Vg1,2025,45.0,points
+Kuben videregående skole,"Inform.ekn og medieprod, inform.tekn SK 3 år",0,im,Vg1,2020,48.0,points
 Kuben videregående skole,"Inform.ekn og medieprod, inform.tekn SK 3 år",0,im,Vg1,2021,45.5,points
+Kuben videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2020,36.4,points
 Kuben videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2021,39.6,points
 Kuben videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2022,38.2,points
 Kuben videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2023,36.3,points
@@ -1609,6 +1658,7 @@ Kuben videregående skole,"Informasjonsteknologi og medieproduksjon, SK 3 år",0
 Kuben videregående skole,"Informasjonsteknologi og medieproduksjon, SK 3 år",0,im,Vg1,2024,43.6,points
 Kuben videregående skole,"Informasjonsteknologi og medieproduksjon, SK 3 år",0,im,Vg1,2025,42.1,points
 Kuben videregående skole,"Informasjonsteknologi og medieproduksjon, SK 3 år",0,im,Vg1,2026,40.0,points
+Kuben videregående skole,Studiespesialisering,0,st,Vg1,2020,43.6,points
 Kuben videregående skole,Studiespesialisering,0,st,Vg1,2021,44.7,points
 Kuben videregående skole,Studiespesialisering,0,st,Vg1,2022,41.5,points
 Kuben videregående skole,Studiespesialisering,0,st,Vg1,2023,40.6,points
@@ -1616,18 +1666,22 @@ Kuben videregående skole,Studiespesialisering,0,st,Vg1,2024,39.8,points
 Kuben videregående skole,Studiespesialisering,0,st,Vg1,2025,38.7,points
 Kuben videregående skole,Studiespesialisering,0,st,Vg1,2026,36.8,points
 Kuben videregående skole,"Studiespesialisering, teknologi og miljø",0,st,Vg1,2021,34.3,points
+Kuben videregående skole,"Studiespesialisering, teknologifag",0,st,Vg1,2020,40.0,points
+Kuben videregående skole,Teknikk og industriell produksjon,0,tip,Vg1,2020,35.4,points
 Kuben videregående skole,Teknolog og idustrifag,0,tip,Vg1,2021,35.7,points
 Kuben videregående skole,Teknologi- og industrifag,0,tip,Vg1,2022,36.2,points
 Kuben videregående skole,Teknologi- og industrifag,0,tip,Vg1,2023,34.4,points
 Kuben videregående skole,Teknologi- og industrifag,0,tip,Vg1,2024,35.1,points
 Kuben videregående skole,Teknologi- og industrifag,0,tip,Vg1,2025,38.3,points
 Kuben videregående skole,Teknologi- og industrifag,0,tip,Vg1,2026,37.6,points
+Lambertseter videregående skole,Idrettsfag,0,idrett,Vg1,2020,44.9,points
 Lambertseter videregående skole,Idrettsfag,0,idrett,Vg1,2021,46.1,points
 Lambertseter videregående skole,Idrettsfag,0,idrett,Vg1,2022,44.3,points
 Lambertseter videregående skole,Idrettsfag,0,idrett,Vg1,2023,42.8,points
 Lambertseter videregående skole,Idrettsfag,0,idrett,Vg1,2024,45.4,points
 Lambertseter videregående skole,Idrettsfag,0,idrett,Vg1,2025,45.0,points
 Lambertseter videregående skole,Idrettsfag,0,idrett,Vg1,2026,45.6,points
+Lambertseter videregående skole,Studiespesialisering,0,st,Vg1,2020,44.7,points
 Lambertseter videregående skole,Studiespesialisering,0,st,Vg1,2021,45.0,points
 Lambertseter videregående skole,Studiespesialisering,0,st,Vg1,2022,41.9,points
 Lambertseter videregående skole,Studiespesialisering,0,st,Vg1,2023,43.1,points
@@ -1636,18 +1690,21 @@ Lambertseter videregående skole,Studiespesialisering,0,st,Vg1,2025,42.2,points
 Lambertseter videregående skole,Studiespesialisering,0,st,Vg1,2026,42.9,points
 Mølla videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2026,37.5,points
 Mølla videregående skole,Studiespesialisering,0,st,Vg1,2026,45.2,points
+Nydalen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2020,38.7,points
 Nydalen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2021,38.0,points
 Nydalen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2022,39.2,points
 Nydalen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2023,37.5,points
 Nydalen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2024,37.8,points
 Nydalen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2025,40.0,points
 Nydalen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2026,37.7,points
+Nydalen videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2020,37.7,points
 Nydalen videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2021,33.3,points
 Nydalen videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2022,36.4,points
 Nydalen videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2023,39.2,points
 Nydalen videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2024,39.3,points
 Nydalen videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2025,39.7,points
 Nydalen videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2026,38.9,points
+Nydalen videregående skole,Studiespesialisering,0,st,Vg1,2020,52.0,points
 Nydalen videregående skole,Studiespesialisering,0,st,Vg1,2021,51.7,points
 Nydalen videregående skole,Studiespesialisering,0,st,Vg1,2022,52.6,points
 Nydalen videregående skole,Studiespesialisering,0,st,Vg1,2023,51.6,points
@@ -1657,29 +1714,36 @@ Nydalen videregående skole,Studiespesialisering,0,st,Vg1,2026,51.2,points
 Nydalen videregående skole,"Studiespesialisering, toppidrett",0,idrett,Vg1,2023,,documentation
 Nydalen videregående skole,"Studiespesialisering, toppidrett",0,idrett,Vg1,2025,,documentation
 Nydalen videregående skole,"Studiespesialisering, toppidrett",0,idrett,Vg1,2026,,documentation
+Nydalen videregående skole,"Studiespesialisering, topppidrett",0,idrett,Vg1,2020,,documentation
 Nydalen videregående skole,"Studiespesialisering, topppidrett",0,idrett,Vg1,2021,,documentation
 Nydalen videregående skole,"Studiespesialisering, topppidrett",0,idrett,Vg1,2022,,documentation
+Oslo Handelsgymnasium,"Salg, service og reiseliv",0,sr,Vg1,2020,34.3,points
 Oslo Handelsgymnasium,"Salg, service og reiseliv",0,sr,Vg1,2021,35.4,points
 Oslo Handelsgymnasium,"Salg, service og reiseliv",0,sr,Vg1,2022,35.4,points
 Oslo Handelsgymnasium,"Salg, service og reiseliv",0,sr,Vg1,2023,37.1,points
+Oslo Handelsgymnasium,"Studiespes, business",0,st,Vg1,2020,40.7,points
+Oslo Handelsgymnasium,Studiespesialisering,0,st,Vg1,2020,40.0,points
 Oslo Handelsgymnasium,Studiespesialisering,0,st,Vg1,2021,40.7,points
 Oslo Handelsgymnasium,Studiespesialisering,0,st,Vg1,2022,40.0,points
 Oslo Handelsgymnasium,Studiespesialisering,0,st,Vg1,2023,38.1,points
 Oslo Handelsgymnasium,Studiespesialisering,0,st,Vg1,2024,33.1,points
 Oslo Handelsgymnasium,Studiespesialisering,0,st,Vg1,2025,35.7,points
 Oslo Handelsgymnasium,Studiespesialisering,0,st,Vg1,2026,38.0,points
+Oslo katedralskole,Studiespesialisering,0,st,Vg1,2020,49.0,points
 Oslo katedralskole,Studiespesialisering,0,st,Vg1,2021,48.7,points
 Oslo katedralskole,Studiespesialisering,0,st,Vg1,2022,49.3,points
 Oslo katedralskole,Studiespesialisering,0,st,Vg1,2023,46.5,points
 Oslo katedralskole,Studiespesialisering,0,st,Vg1,2024,46.0,points
 Oslo katedralskole,Studiespesialisering,0,st,Vg1,2025,46.0,points
 Oslo katedralskole,Studiespesialisering,0,st,Vg1,2026,47.7,points
+Persbråten videregående skole,Idrettsfag,0,idrett,Vg1,2020,38.0,points
 Persbråten videregående skole,Idrettsfag,0,idrett,Vg1,2021,38.7,points
 Persbråten videregående skole,Idrettsfag,0,idrett,Vg1,2022,39.2,points
 Persbråten videregående skole,Idrettsfag,0,idrett,Vg1,2023,41.3,points
 Persbråten videregående skole,Idrettsfag,0,idrett,Vg1,2024,40.9,points
 Persbråten videregående skole,Idrettsfag,0,idrett,Vg1,2025,44.7,points
 Persbråten videregående skole,Idrettsfag,0,idrett,Vg1,2026,44.3,points
+Persbråten videregående skole,Studiespesialisering,0,st,Vg1,2020,34.3,points
 Persbråten videregående skole,Studiespesialisering,0,st,Vg1,2021,36.7,points
 Persbråten videregående skole,Studiespesialisering,0,st,Vg1,2022,37.9,points
 Persbråten videregående skole,Studiespesialisering,0,st,Vg1,2023,40.0,points
@@ -1689,14 +1753,17 @@ Persbråten videregående skole,Studiespesialisering,0,st,Vg1,2026,48.1,points
 Persbråten videregående skole,"Studiespesialisering, toppidrett",0,idrett,Vg1,2023,,documentation
 Persbråten videregående skole,"Studiespesialisering, toppidrett",0,idrett,Vg1,2025,,documentation
 Persbråten videregående skole,"Studiespesialisering, toppidrett",0,idrett,Vg1,2026,,documentation
+Persbråten videregående skole,"Studiespesialisering, topppidrett",0,idrett,Vg1,2020,,documentation
 Persbråten videregående skole,"Studiespesialisering, topppidrett",0,idrett,Vg1,2021,,documentation
 Persbråten videregående skole,"Studiespesialisering, topppidrett",0,idrett,Vg1,2022,,documentation
+Stovner videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,,open
 Stovner videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,20.0,points
 Stovner videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,18.6,points
 Stovner videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
 Stovner videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2024,,open
 Stovner videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2025,15.6,points
 Stovner videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2026,,open
+Stovner videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2020,,open
 Stovner videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2021,,open
 Stovner videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2022,,open
 Stovner videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2023,9.4,points
@@ -1708,12 +1775,14 @@ Stovner videregående skole,Naturbruk,0,nat,Vg1,2023,10.0,points
 Stovner videregående skole,Naturbruk,0,nat,Vg1,2024,34.7,points
 Stovner videregående skole,Naturbruk,0,nat,Vg1,2025,27.9,points
 Stovner videregående skole,Naturbruk,0,nat,Vg1,2026,19.3,points
+Stovner videregående skole,Studiespesialisering,0,st,Vg1,2020,13.2,points
 Stovner videregående skole,Studiespesialisering,0,st,Vg1,2021,,open
 Stovner videregående skole,Studiespesialisering,0,st,Vg1,2022,,open
 Stovner videregående skole,Studiespesialisering,0,st,Vg1,2023,,open
 Stovner videregående skole,Studiespesialisering,0,st,Vg1,2024,,open
 Stovner videregående skole,Studiespesialisering,0,st,Vg1,2025,,open
 Stovner videregående skole,Studiespesialisering,0,st,Vg1,2026,,open
+Stovner videregående skole,Teknikk og industriell produksjon,0,tip,Vg1,2020,,open
 Stovner videregående skole,Teknolog og idustrifag,0,tip,Vg1,2021,15.4,points
 Stovner videregående skole,Teknologi- og industrifag,0,tip,Vg1,2022,,open
 Stovner videregående skole,Teknologi- og industrifag,0,tip,Vg1,2023,,open
@@ -1726,35 +1795,42 @@ Ullern videregående skole,Elektro og datateknologi,0,elektro,Vg1,2023,37.2,poin
 Ullern videregående skole,Elektro og datateknologi,0,elektro,Vg1,2024,38.0,points
 Ullern videregående skole,Elektro og datateknologi,0,elektro,Vg1,2025,35.7,points
 Ullern videregående skole,Elektro og datateknologi,0,elektro,Vg1,2026,40.0,points
+Ullern videregående skole,Elektrofag,0,elektro,Vg1,2020,36.4,points
 Ullern videregående skole,"Helse og oppvekstfag, helsearbeid, SK 3 år",0,helse,Vg1,2024,40.6,points
+Ullern videregående skole,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,helse,Vg1,2020,43.2,points
 Ullern videregående skole,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,helse,Vg1,2021,36.7,points
 Ullern videregående skole,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,helse,Vg1,2022,42.1,points
 Ullern videregående skole,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,helse,Vg1,2023,41.2,points
 Ullern videregående skole,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,helse,Vg1,2025,40.3,points
 Ullern videregående skole,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,helse,Vg1,2026,38.2,points
+Ullern videregående skole,Medier og kommunikasjon,0,mk,Vg1,2020,48.7,points
 Ullern videregående skole,Medier og kommunikasjon,0,mk,Vg1,2021,42.0,points
 Ullern videregående skole,Medier og kommunikasjon,0,mk,Vg1,2022,47.9,points
 Ullern videregående skole,Medier og kommunikasjon,0,mk,Vg1,2023,45.7,points
 Ullern videregående skole,Medier og kommunikasjon,0,mk,Vg1,2024,45.9,points
 Ullern videregående skole,Medier og kommunikasjon,0,mk,Vg1,2025,44.1,points
 Ullern videregående skole,Medier og kommunikasjon,0,mk,Vg1,2026,42.8,points
+Ullern videregående skole,Studiespesialisering,0,st,Vg1,2020,50.7,points
 Ullern videregående skole,Studiespesialisering,0,st,Vg1,2021,49.0,points
 Ullern videregående skole,Studiespesialisering,0,st,Vg1,2022,50.5,points
 Ullern videregående skole,Studiespesialisering,0,st,Vg1,2023,46.9,points
 Ullern videregående skole,Studiespesialisering,0,st,Vg1,2024,47.7,points
 Ullern videregående skole,Studiespesialisering,0,st,Vg1,2025,44.4,points
 Ullern videregående skole,Studiespesialisering,0,st,Vg1,2026,45.3,points
+Ullern videregående skole,Studiespesialisering med forskerlinje,0,st,Vg1,2020,46.7,points
 Ullern videregående skole,Studiespesialisering med forskerlinje,0,st,Vg1,2021,40.3,points
 Ullern videregående skole,"Studiespesialisering, forskerlinje",0,st,Vg1,2022,44.6,points
 Ullern videregående skole,"Studiespesialisering, forskerlinje",0,st,Vg1,2024,14.7,points
 Ullern videregående skole,"Studiespesialisering, forskerlinje",0,st,Vg1,2025,14.7,points
 Ulsrud videregående skole,"Helse og oppvekstfag, barne og ungd.arbeiderfag, SK 3 år",0,helse,Vg1,2024,25.0,points
+Ulsrud videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2020,,open
 Ulsrud videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2021,,open
 Ulsrud videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2022,,open
 Ulsrud videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
 Ulsrud videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2024,,open
 Ulsrud videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2025,,open
 Ulsrud videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2026,,open
+Ulsrud videregående skole,"Helse- og oppvekstfag, barne- og ungd.arbeiderfag, SK 3 år",0,helse,Vg1,2020,37.9,points
 Ulsrud videregående skole,"Helse- og oppvekstfag, barne- og ungd.arbeiderfag, SK 3 år",0,helse,Vg1,2021,36.9,points
 Ulsrud videregående skole,"Helse- og oppvekstfag, barne- og ungd.arbeiderfag, SK 3 år",0,helse,Vg1,2022,39.2,points
 Ulsrud videregående skole,"Helse- og oppvekstfag, barne- og ungd.arbeiderfag, SK 3 år",0,helse,Vg1,2023,32.2,points
@@ -1763,18 +1839,21 @@ Ulsrud videregående skole,"Helse- og oppvekstfag, barne- og ungd.arbeiderfag, S
 Ulsrud videregående skole,"Helse/oppvekst, ambulanse, SK 3 år",0,helse,Vg1,2024,41.8,points
 Ulsrud videregående skole,"Helse/oppvekst, ambulanse, SK 3 år",0,helse,Vg1,2025,36.7,points
 Ulsrud videregående skole,"Helse/oppvekst, ambulanse, SK 3 år",0,helse,Vg1,2026,37.3,points
+Ulsrud videregående skole,Idrettsfag,0,idrett,Vg1,2020,,open
 Ulsrud videregående skole,Idrettsfag,0,idrett,Vg1,2021,,open
 Ulsrud videregående skole,Idrettsfag,0,idrett,Vg1,2022,,open
 Ulsrud videregående skole,Idrettsfag,0,idrett,Vg1,2023,16.9,points
 Ulsrud videregående skole,Idrettsfag,0,idrett,Vg1,2024,16.7,points
 Ulsrud videregående skole,Idrettsfag,0,idrett,Vg1,2025,,open
 Ulsrud videregående skole,Idrettsfag,0,idrett,Vg1,2026,,open
+Ulsrud videregående skole,Studiespesialisering,0,st,Vg1,2020,,open
 Ulsrud videregående skole,Studiespesialisering,0,st,Vg1,2021,,open
 Ulsrud videregående skole,Studiespesialisering,0,st,Vg1,2022,,open
 Ulsrud videregående skole,Studiespesialisering,0,st,Vg1,2023,,open
 Ulsrud videregående skole,Studiespesialisering,0,st,Vg1,2024,10.7,points
 Ulsrud videregående skole,Studiespesialisering,0,st,Vg1,2025,,open
 Ulsrud videregående skole,Studiespesialisering,0,st,Vg1,2026,,open
+Valle Hovin videregående skole,Studiespesialisering,0,st,Vg1,2020,46.8,points
 Valle Hovin videregående skole,Studiespesialisering,0,st,Vg1,2021,46.0,points
 Valle Hovin videregående skole,Studiespesialisering,0,st,Vg1,2022,47.1,points
 Valle Hovin videregående skole,Studiespesialisering,0,st,Vg1,2023,48.8,points
@@ -1784,6 +1863,7 @@ Valle Hovin videregående skole,Studiespesialisering,0,st,Vg1,2026,48.0,points
 Valle Hovin videregående skole,"Studiespesialisering, toppidrett",0,idrett,Vg1,2023,,documentation
 Valle Hovin videregående skole,"Studiespesialisering, toppidrett",0,idrett,Vg1,2025,,documentation
 Valle Hovin videregående skole,"Studiespesialisering, toppidrett",0,idrett,Vg1,2026,,documentation
+Valle Hovin videregående skole,"Studiespesialisering, topppidrett",0,idrett,Vg1,2020,,documentation
 Valle Hovin videregående skole,"Studiespesialisering, topppidrett",0,idrett,Vg1,2021,,documentation
 Valle Hovin videregående skole,"Studiespesialisering, topppidrett",0,idrett,Vg1,2022,,documentation
 Vika videregående skole,Studiespesialisering,0,st,Vg1,2021,42.7,points
@@ -5406,24 +5486,28 @@ Ytre Namdal videregående skole,Teknologi- og industrifag,0,tip,Vg1,2025,27.9,po
 Åfjord videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2025,,open
 Åfjord videregående skole,Studiespesialisering,0,st,Vg1,2025,,open
 Åfjord videregående skole,Teknologi- og industrifag,0,tip,Vg1,2025,,open
+Amalie Skram videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2020,44.7,points
 Amalie Skram videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2021,43.3,points
 Amalie Skram videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2022,44.3,points
 Amalie Skram videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2023,45.6,points
 Amalie Skram videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2024,42.2,points
 Amalie Skram videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2025,43.1,points
 Amalie Skram videregående skole,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2026,38.8,points
+Amalie Skram videregående skole,Medier og kommunikasjon,0,mk,Vg1,2020,48.0,points
 Amalie Skram videregående skole,Medier og kommunikasjon,0,mk,Vg1,2021,46.0,points
 Amalie Skram videregående skole,Medier og kommunikasjon,0,mk,Vg1,2022,52.1,points
 Amalie Skram videregående skole,Medier og kommunikasjon,0,mk,Vg1,2023,49.4,points
 Amalie Skram videregående skole,Medier og kommunikasjon,0,mk,Vg1,2024,45.3,points
 Amalie Skram videregående skole,Medier og kommunikasjon,0,mk,Vg1,2025,45.9,points
 Amalie Skram videregående skole,Medier og kommunikasjon,0,mk,Vg1,2026,46.1,points
+Amalie Skram videregående skole,"Sal, service og reiseliv",0,sr,Vg1,2020,36.7,points
 Amalie Skram videregående skole,"Sal, service og reiseliv",0,sr,Vg1,2023,40.0,points
 Amalie Skram videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2021,38.3,points
 Amalie Skram videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2022,42.9,points
 Amalie Skram videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2024,42.5,points
 Amalie Skram videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2025,43.1,points
 Amalie Skram videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2026,42.2,points
+Amalie Skram videregående skole,Studiespesialisering,0,st,Vg1,2020,50.7,points
 Amalie Skram videregående skole,Studiespesialisering,0,st,Vg1,2021,47.3,points
 Amalie Skram videregående skole,Studiespesialisering,0,st,Vg1,2022,51.4,points
 Amalie Skram videregående skole,Studiespesialisering,0,st,Vg1,2023,51.3,points
@@ -5459,12 +5543,14 @@ Amalie Skram videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2024,52
 Amalie Skram videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2025,53.8,points
 Amalie Skram videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,52.5,points
 Amalie Skram videregående skole,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,50.0,points
+Arna vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,34.3,points
 Arna vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,26.3,points
 Arna vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,22.3,points
 Arna vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
 Arna vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2024,26.0,points
 Arna vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2025,0.0,points
 Arna vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2026,,open
+Arna vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,17.3,points
 Arna vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,32.5,points
 Arna vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,21.2,points
 Arna vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
@@ -5475,10 +5561,12 @@ Arna vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2023,
 Arna vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2024,0.0,points
 Arna vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2025,28.0,points
 Arna vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2026,42.4,points
+Arna vidaregåande skule,Medier og kommunikasjon,0,mk,Vg1,2020,36.7,points
 Arna vidaregåande skule,Medier og kommunikasjon,0,mk,Vg1,2021,27.5,points
 Arna vidaregåande skule,Medier og kommunikasjon,0,mk,Vg1,2022,35.0,points
 Arna vidaregåande skule,Medier og kommunikasjon,0,mk,Vg1,2023,,open
 Arna vidaregåande skule,Medier og kommunikasjon,0,mk,Vg1,2024,25.6,points
+Arna vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,46.7,points
 Arna vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,40.7,points
 Arna vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,42.7,points
 Arna vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
@@ -5503,6 +5591,7 @@ Arna vidaregåande skule,Tømrer,0,bygg,Vg2,2024,18.8,points
 Arna vidaregåande skule,Tømrer,0,bygg,Vg2,2025,32.9,points
 Arna vidaregåande skule,Tømrer,0,bygg,Vg2,2026,,open
 Arna vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,35.6,points
+Askøy videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,33.0,points
 Askøy videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,32.0,points
 Askøy videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,31.5,points
 Askøy videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
@@ -5515,18 +5604,22 @@ Askøy videregående skole,Elektro og datateknologi,0,elektro,Vg1,2023,33.8,poin
 Askøy videregående skole,Elektro og datateknologi,0,elektro,Vg1,2024,36.6,points
 Askøy videregående skole,Elektro og datateknologi,0,elektro,Vg1,2025,39.3,points
 Askøy videregående skole,Elektro og datateknologi,0,elektro,Vg1,2026,36.3,points
+Askøy videregående skole,Elektrofag,0,elektro,Vg1,2020,35.7,points
+Askøy videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2020,31.4,points
 Askøy videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2021,38.1,points
 Askøy videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2022,37.2,points
 Askøy videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2023,35.4,points
 Askøy videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2024,35.0,points
 Askøy videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2025,40.0,points
 Askøy videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2026,33.3,points
+Askøy videregående skole,Studiespesialisering,0,st,Vg1,2020,40.0,points
 Askøy videregående skole,Studiespesialisering,0,st,Vg1,2021,43.3,points
 Askøy videregående skole,Studiespesialisering,0,st,Vg1,2022,45.0,points
 Askøy videregående skole,Studiespesialisering,0,st,Vg1,2023,,open
 Askøy videregående skole,Studiespesialisering,0,st,Vg1,2024,43.0,points
 Askøy videregående skole,Studiespesialisering,0,st,Vg1,2025,43.1,points
 Askøy videregående skole,Studiespesialisering,0,st,Vg1,2026,40.0,points
+Askøy videregående skole,Teknikk og industriell produksjon,0,tip,Vg1,2020,32.9,points
 Askøy videregående skole,Teknologi- og industrifag,0,tip,Vg1,2021,31.1,points
 Askøy videregående skole,Teknologi- og industrifag,0,tip,Vg1,2022,34.3,points
 Askøy videregående skole,Teknologi- og industrifag,0,tip,Vg1,2023,34.4,points
@@ -5572,15 +5665,19 @@ Askøy videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2024,24.3,poi
 Askøy videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2025,47.5,points
 Askøy videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,38.6,points
 Askøy videregående skole,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,35.0,points
+Austevoll vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,38.7,points
 Austevoll vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,32.4,points
 Austevoll vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,41.4,points
 Austevoll vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
+Austevoll vidaregåande skule,Naturbruk,0,nat,Vg1,2020,30.0,points
 Austevoll vidaregåande skule,Naturbruk,0,nat,Vg1,2021,35.3,points
 Austevoll vidaregåande skule,Naturbruk,0,nat,Vg1,2022,34.0,points
 Austevoll vidaregåande skule,Naturbruk,0,nat,Vg1,2023,32.8,points
 Austevoll vidaregåande skule,Naturbruk,0,nat,Vg1,2024,35.6,points
 Austevoll vidaregåande skule,Naturbruk,0,nat,Vg1,2025,36.0,points
 Austevoll vidaregåande skule,Naturbruk,0,nat,Vg1,2026,31.7,points
+Austevoll vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,44.7,points
+Austevoll vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,30.0,points
 Austevoll vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,34.4,points
 Austevoll vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,37.1,points
 Austevoll vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,,open
@@ -5605,12 +5702,14 @@ Austevoll vidaregåande skule,Maritime fag,0,tip,Vg2,2023,,open
 Austevoll vidaregåande skule,Maritime fag,0,tip,Vg2,2024,37.5,points
 Austevoll vidaregåande skule,Maritime fag,0,tip,Vg2,2025,36.3,points
 Austevoll vidaregåande skule,Maritime fag,0,tip,Vg2,2026,35.0,points
+Austrheim vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,31.3,points
 Austrheim vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,,open
 Austrheim vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,28.7,points
 Austrheim vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,23.9,points
 Austrheim vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2024,34.2,points
 Austrheim vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2025,37.1,points
 Austrheim vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2026,30.8,points
+Austrheim vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,46.4,points
 Austrheim vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,32.7,points
 Austrheim vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,24.5,points
 Austrheim vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
@@ -5622,12 +5721,14 @@ Austrheim vidaregåande skule,Naturbruk,0,nat,Vg1,2023,30.6,points
 Austrheim vidaregåande skule,Naturbruk,0,nat,Vg1,2024,31.0,points
 Austrheim vidaregåande skule,Naturbruk,0,nat,Vg1,2025,34.7,points
 Austrheim vidaregåande skule,Naturbruk,0,nat,Vg1,2026,32.4,points
+Austrheim vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,34.7,points
 Austrheim vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,38.9,points
 Austrheim vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,38.56,points
 Austrheim vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
 Austrheim vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,,open
 Austrheim vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,,open
 Austrheim vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,29.4,points
+Austrheim vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,32.9,points
 Austrheim vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,31.4,points
 Austrheim vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,35.0,points
 Austrheim vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,33.6,points
@@ -5672,6 +5773,7 @@ Austrheim vidaregåande skule,Tømrer,0,bygg,Vg2,2026,28.6,points
 Austrheim vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2022,21.7,points
 Austrheim vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2023,,open
 Austrheim vidaregåande skule,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,23.3,points
+Bergen katedralskole,Studiespesialisering,0,st,Vg1,2020,47.7,points
 Bergen katedralskole,Studiespesialisering,0,st,Vg1,2021,50.0,points
 Bergen katedralskole,Studiespesialisering,0,st,Vg1,2022,46.4,points
 Bergen katedralskole,Studiespesialisering,0,st,Vg1,2023,45.3,points
@@ -5684,6 +5786,7 @@ Bømlo vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,34.4,poin
 Bømlo vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,30.4,points
 Bømlo vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,22.3,points
 Bømlo vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,27.4,points
+Bømlo vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,30.7,points
 Bømlo vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,27.3,points
 Bømlo vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,35.2,points
 Bømlo vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,26.3,points
@@ -5695,6 +5798,7 @@ Bømlo vidaregåande skule,Naturbruk,0,nat,Vg1,2023,31.4,points
 Bømlo vidaregåande skule,Naturbruk,0,nat,Vg1,2024,38.5,points
 Bømlo vidaregåande skule,Naturbruk,0,nat,Vg1,2025,32.3,points
 Bømlo vidaregåande skule,Naturbruk,0,nat,Vg1,2026,,open
+Bømlo vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,29.3,points
 Bømlo vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,,open
 Bømlo vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,41.4,points
 Bømlo vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,41.5,points
@@ -5755,18 +5859,21 @@ Bømlo vidaregåande skule,Påbygging til generell studiekompetanse,0,pb,Vg3,202
 Dale vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,23.7,points
 Dale vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,33.6,points
 Dale vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
+Dale vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,28.3,points
 Dale vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,37.0,points
 Dale vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,12.5,points
 Dale vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
 Dale vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2024,,open
 Dale vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2025,32.7,points
 Dale vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2026,41.3,points
+Dale vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,42.0,points
 Dale vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,43.3,points
 Dale vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,39.3,points
 Dale vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
 Dale vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,36.6,points
 Dale vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,43.4,points
 Dale vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,40.7,points
+Dale vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,27.5,points
 Dale vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,40.0,points
 Dale vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,32.2,points
 Dale vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,37.1,points
@@ -5800,20 +5907,25 @@ Eid vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,,open
 Eid vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,32.4,points
 Eid vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,,open
 Eid vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,35.0,points
+Eid vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,30.7,points
+Eid vidaregåande skule,"Frisør, blomar, interiør og eksponeringdesign",0,design,Vg1,2020,22.0,points
 Eid vidaregåande skule,"Frisør, blomst, int, eksp. design",0,design,Vg1,2023,,open
 Eid vidaregåande skule,"Frisør, blomst, int, eksp.design",0,design,Vg1,2022,27.5,points
 Eid vidaregåande skule,"Frisør, blomst, int, eksp.design",0,design,Vg1,2024,38.8,points
 Eid vidaregåande skule,"Frisør, blomst, int, eksp.design",0,design,Vg1,2025,36.5,points
 Eid vidaregåande skule,"Frisør, blomst, int, eksp.design",0,design,Vg1,2026,37.1,points
 Eid vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,design,Vg1,2021,37.3,points
+Eid vidaregåande skule,"Handverk, design og produktutvikling",0,design,Vg1,2020,31.4,points
 Eid vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2025,31.9,points
 Eid vidaregåande skule,"Håndverk, design og produktutvikling",0,design,Vg1,2021,43.7,points
+Eid vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,31.7,points
 Eid vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,28.7,points
 Eid vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,31.5,points
 Eid vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,31.9,points
 Eid vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,0.0,points
 Eid vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,23.1,points
 Eid vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,30.0,points
+Eid vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,29.3,points
 Eid vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,29.3,points
 Eid vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,14.3,points
 Eid vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,29.6,points
@@ -5872,14 +5984,18 @@ Eid vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2025,41.3,points
 Eid vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,35.7,points
 Eid vidaregåande skule,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,46.3,points
 Eid vidaregåande skule,Påbygg gen studiekomp e/yrkeskomp,1,pb,Vg4,2022,47.5,points
+Firda vidaregåande skule,Idrettsfag,0,idrett,Vg1,2020,34.0,points
 Firda vidaregåande skule,Idrettsfag,0,idrett,Vg1,2021,40.0,points
 Firda vidaregåande skule,Idrettsfag,0,idrett,Vg1,2022,30.7,points
 Firda vidaregåande skule,Idrettsfag,0,idrett,Vg1,2023,35.9,points
 Firda vidaregåande skule,Idrettsfag,0,idrett,Vg1,2024,23.4,points
 Firda vidaregåande skule,Idrettsfag,0,idrett,Vg1,2025,25.3,points
 Firda vidaregåande skule,Idrettsfag,0,idrett,Vg1,2026,,open
+Firda vidaregåande skule,"Musikk, dans og drama med dans",0,mdd,Vg1,2020,48.0,points
 Firda vidaregåande skule,"Musikk, dans og drama med dans",0,mdd,Vg1,2021,45.3,points
+Firda vidaregåande skule,"Musikk, dans og drama med drama",0,mdd,Vg1,2020,42.0,points
 Firda vidaregåande skule,"Musikk, dans og drama med drama",0,mdd,Vg1,2021,49.0,points
+Firda vidaregåande skule,"Musikk, dans og drama med musikk",0,mdd,Vg1,2020,35.1,points
 Firda vidaregåande skule,"Musikk, dans og drama med musikk",0,mdd,Vg1,2021,34.3,points
 Firda vidaregåande skule,"Musikk, dans og drama, dans",0,mdd,Vg1,2022,33.9,points
 Firda vidaregåande skule,"Musikk, dans og drama, dans",0,mdd,Vg1,2023,,open
@@ -5896,18 +6012,21 @@ Firda vidaregåande skule,"Musikk, dans og drama, musikk",0,mdd,Vg1,2023,,open
 Firda vidaregåande skule,"Musikk, dans og drama, musikk",0,mdd,Vg1,2024,26.4,points
 Firda vidaregåande skule,"Musikk, dans og drama, musikk",0,mdd,Vg1,2025,35.9,points
 Firda vidaregåande skule,"Musikk, dans og drama, musikk",0,mdd,Vg1,2026,39.4,points
+Firda vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,33.7,points
 Firda vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,38.3,points
 Firda vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,28.8,points
 Firda vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
 Firda vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,,open
 Firda vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,,open
 Firda vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,,open
+Fitjar vidaregåande skule,"Frisør, blomar, interiør og eksponeringdesign",0,design,Vg1,2020,22.7,points
 Fitjar vidaregåande skule,"Frisør, blomst, int, eksp. design",0,design,Vg1,2023,,open
 Fitjar vidaregåande skule,"Frisør, blomst, int, eksp.design",0,design,Vg1,2022,29.8,points
 Fitjar vidaregåande skule,"Frisør, blomst, int, eksp.design",0,design,Vg1,2024,16.9,points
 Fitjar vidaregåande skule,"Frisør, blomst, int, eksp.design",0,design,Vg1,2025,,open
 Fitjar vidaregåande skule,"Frisør, blomst, int, eksp.design",0,design,Vg1,2026,19.7,points
 Fitjar vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,design,Vg1,2021,23.7,points
+Fitjar vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,21.3,points
 Fitjar vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,28.4,points
 Fitjar vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,27.0,points
 Fitjar vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
@@ -5918,6 +6037,7 @@ Fitjar vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2023,38
 Fitjar vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2024,32.5,points
 Fitjar vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2025,24.1,points
 Fitjar vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2026,35.6,points
+Fitjar vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2020,25.4,points
 Fitjar vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2021,26.9,points
 Fitjar vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2022,39.3,points
 Fitjar vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2023,34.1,points
@@ -5951,6 +6071,7 @@ Fitjar vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2025,42.5,poi
 Fitjar vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,,open
 Fitjar vidaregåande skule,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,21.3,points
 Fitjar vidaregåande skule,Påbygg gen studiekomp e/yrkeskomp,1,pb,Vg4,2022,35.0,points
+Flora vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,20.0,points
 Flora vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,27.7,points
 Flora vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,8.3,points
 Flora vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
@@ -5963,28 +6084,34 @@ Flora vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,31.9,point
 Flora vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,28.7,points
 Flora vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,29.0,points
 Flora vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,27.5,points
+Flora vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,22.1,points
+Flora vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,38.0,points
 Flora vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,34.0,points
 Flora vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,35.7,points
 Flora vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
 Flora vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2024,39.4,points
 Flora vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2025,,open
 Flora vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2026,31.9,points
+Flora vidaregåande skule,Idrettsfag,0,idrett,Vg1,2020,21.7,points
 Flora vidaregåande skule,Idrettsfag,0,idrett,Vg1,2021,37.7,points
 Flora vidaregåande skule,Idrettsfag,0,idrett,Vg1,2022,22.9,points
 Flora vidaregåande skule,Idrettsfag,0,idrett,Vg1,2023,34.7,points
 Flora vidaregåande skule,Idrettsfag,0,idrett,Vg1,2024,38.8,points
 Flora vidaregåande skule,Idrettsfag,0,idrett,Vg1,2025,38.8,points
 Flora vidaregåande skule,Idrettsfag,0,idrett,Vg1,2026,42.5,points
+Flora vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2020,22.7,points
 Flora vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2023,,open
 Flora vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2021,28.9,points
 Flora vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2022,24.7,points
 Flora vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2024,0.0,points
+Flora vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,26.0,points
 Flora vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,42.7,points
 Flora vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,32.9,points
 Flora vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
 Flora vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,0.0,points
 Flora vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,36.6,points
 Flora vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,37.6,points
+Flora vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,23.8,points
 Flora vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,36.7,points
 Flora vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,29.4,points
 Flora vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,32.2,points
@@ -6041,28 +6168,33 @@ Flora vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2025,38.8,poin
 Flora vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,41.4,points
 Flora vidaregåande skule,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,42.5,points
 Flora vidaregåande skule,Påbygg gen studiekomp e/yrkeskomp,1,pb,Vg4,2022,44.4,points
+Fusa vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,32.3,points
 Fusa vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,32.7,points
 Fusa vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,18.0,points
 Fusa vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
 Fusa vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2024,29.4,points
 Fusa vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2025,35.0,points
 Fusa vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2026,32.0,points
+Fusa vidaregåande skule,"Kunst, design og arkitektur",0,kda,Vg1,2020,36.0,points
 Fusa vidaregåande skule,"Kunst, design og arkitektur",0,kda,Vg1,2021,39.3,points
 Fusa vidaregåande skule,"Kunst, design og arkitektur",0,kda,Vg1,2022,22.7,points
 Fusa vidaregåande skule,"Kunst, design og arkitektur",0,kda,Vg1,2023,,open
 Fusa vidaregåande skule,"Kunst, design og arkitektur",0,kda,Vg1,2024,26.7,points
+Fusa vidaregåande skule,Naturbruk,0,nat,Vg1,2020,32.7,points
 Fusa vidaregåande skule,Naturbruk,0,nat,Vg1,2021,34.0,points
 Fusa vidaregåande skule,Naturbruk,0,nat,Vg1,2022,31.8,points
 Fusa vidaregåande skule,Naturbruk,0,nat,Vg1,2023,,open
 Fusa vidaregåande skule,Naturbruk,0,nat,Vg1,2024,29.4,points
 Fusa vidaregåande skule,Naturbruk,0,nat,Vg1,2025,29.4,points
 Fusa vidaregåande skule,Naturbruk,0,nat,Vg1,2026,,open
+Fusa vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2020,26.4,points
 Fusa vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2021,35.6,points
 Fusa vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2022,31.4,points
 Fusa vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2023,,open
 Fusa vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2024,17.3,points
 Fusa vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2025,29.6,points
 Fusa vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2026,,open
+Fusa vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,37.3,points
 Fusa vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,42.2,points
 Fusa vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,41.4,points
 Fusa vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,,open
@@ -6094,6 +6226,7 @@ Fusa vidaregåande skule,Kokk- og servitørfag,0,rm,Vg2,2022,32.9,points
 Fusa vidaregåande skule,Kokk- og servitørfag,0,rm,Vg2,2023,,open
 Fusa vidaregåande skule,Kokk- og servitørfag,0,rm,Vg2,2026,47.1,points
 Fusa vidaregåande skule,"Kunst, design og arkitektur",1,kda,Vg2,2022,36.7,points
+Fyllingsdalen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2020,30.7,points
 Fyllingsdalen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2021,32.9,points
 Fyllingsdalen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2022,34.6,points
 Fyllingsdalen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2023,19.3,points
@@ -6105,12 +6238,14 @@ Fyllingsdalen videregående skole,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,
 Fyllingsdalen videregående skole,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2024,40.3,points
 Fyllingsdalen videregående skole,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2025,42.5,points
 Fyllingsdalen videregående skole,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2026,40.6,points
+Fyllingsdalen videregående skole,"Musikk, dans og drama med drama",0,mdd,Vg1,2020,42.3,points
 Fyllingsdalen videregående skole,"Musikk, dans og drama med drama",0,mdd,Vg1,2021,37.7,points
 Fyllingsdalen videregående skole,"Musikk, dans og drama, drama",0,mdd,Vg1,2022,36.8,points
 Fyllingsdalen videregående skole,"Musikk, dans og drama, drama",0,mdd,Vg1,2023,42.9,points
 Fyllingsdalen videregående skole,"Musikk, dans og drama, drama",0,mdd,Vg1,2024,43.1,points
 Fyllingsdalen videregående skole,"Musikk, dans og drama, drama",0,mdd,Vg1,2025,40.0,points
 Fyllingsdalen videregående skole,"Musikk, dans og drama, drama",0,mdd,Vg1,2026,42.9,points
+Fyllingsdalen videregående skole,Studiespesialisering,0,st,Vg1,2020,41.3,points
 Fyllingsdalen videregående skole,Studiespesialisering,0,st,Vg1,2021,42.0,points
 Fyllingsdalen videregående skole,Studiespesialisering,0,st,Vg1,2022,36.8,points
 Fyllingsdalen videregående skole,Studiespesialisering,0,st,Vg1,2023,37.5,points
@@ -6255,10 +6390,13 @@ Førde vidaregåande skule,Studieforberedende naturbruk,0,nat,Vg3,2026,,open
 "Førde vidaregåande skule, avd Høyanger",Helsearbeiderfag,0,helse,Vg2,2026,32.5,points
 "Førde vidaregåande skule, avd Høyanger",Industriteknologi,0,tip,Vg2,2026,28.8,points
 "Førde vidaregåande skule, avd Høyanger",Kjemiprosess- og laboratorief,0,tip,Vg2,2026,32.5,points
+Hafstad videregående skule,"Kunst, design og arkitektur",0,kda,Vg1,2020,24.0,points
 Hafstad videregående skule,"Kunst, design og arkitektur",0,kda,Vg1,2021,32.7,points
 Hafstad videregående skule,"Kunst, design og arkitektur",0,kda,Vg1,2022,16.3,points
+Hafstad videregående skule,Medier og kommunikasjon,0,mk,Vg1,2020,25.3,points
 Hafstad videregående skule,Medier og kommunikasjon,0,mk,Vg1,2021,41.3,points
 Hafstad videregående skule,Medier og kommunikasjon,0,mk,Vg1,2022,35.6,points
+Hafstad videregående skule,Studiespesialisering,0,st,Vg1,2020,35.7,points
 Hafstad videregående skule,Studiespesialisering,0,st,Vg1,2021,44.2,points
 Hafstad videregående skule,Studiespesialisering,0,st,Vg1,2022,41.4,points
 Hafstad videregående skule,Påbygg gen studiekomp etter yrkeskompetanse,0,pb,Vg3,2021,45.6,points
@@ -6270,13 +6408,17 @@ Høyanger vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2022,33.6,p
 Høyanger vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,,open
 Høyanger vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,23.8,points
 Høyanger vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,30.6,points
+Høyanger vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,32.1,points
+Høyanger vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,30.5,points
 Høyanger vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,32.0,points
 Høyanger vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
 Høyanger vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2025,,open
+Høyanger vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,31.6,points
 Høyanger vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,40.0,points
 Høyanger vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,34.6,points
 Høyanger vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
 Høyanger vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,37.5,points
+Høyanger vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,17.8,points
 Høyanger vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,32.7,points
 Høyanger vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,12.9,points
 Høyanger vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,35.0,points
@@ -6299,6 +6441,7 @@ Høyanger vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2022,26.7,
 Høyanger vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2023,,open
 Høyanger vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2024,30.0,points
 Høyanger vidaregåande skule,Påbygg gen studiekomp e/yrkeskomp,0,pb,Vg4,2022,35.0,points
+Knarvik vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,32.0,points
 Knarvik vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,33.6,points
 Knarvik vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,35.0,points
 Knarvik vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,31.3,points
@@ -6311,6 +6454,9 @@ Knarvik vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,39.3,poi
 Knarvik vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,42.7,points
 Knarvik vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,38.7,points
 Knarvik vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,37.9,points
+Knarvik vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,39.8,points
+Knarvik vidaregåande skule,"Handverk, design og produktutvikling",0,design,Vg1,2020,31.0,points
+Knarvik vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,32.7,points
 Knarvik vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,35.3,points
 Knarvik vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,34.3,points
 Knarvik vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
@@ -6321,12 +6467,14 @@ Knarvik vidaregåande skule,"Håndverk, design og produktutvikling",0,design,Vg1
 Knarvik vidaregåande skule,"Håndverk, design og produktutvikling",0,design,Vg1,2022,37.9,points
 Knarvik vidaregåande skule,"Håndverk, design og produktutvikling",0,design,Vg1,2023,,open
 Knarvik vidaregåande skule,"Håndverk, design og produktutvikling",0,design,Vg1,2024,35.4,points
+Knarvik vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,28.3,points
 Knarvik vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,37.7,points
 Knarvik vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,22.1,points
 Knarvik vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
 Knarvik vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,38.1,points
 Knarvik vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,33.8,points
 Knarvik vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,35.6,points
+Knarvik vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,36.4,points
 Knarvik vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,35.8,points
 Knarvik vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,40.0,points
 Knarvik vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,39.1,points
@@ -6386,18 +6534,22 @@ Kvam vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,,open
 Kvam vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,35.9,points
 Kvam vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,39.7,points
 Kvam vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,31.7,points
+Kvam vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,33.3,points
+Kvam vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,37.0,points
 Kvam vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,27.7,points
 Kvam vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,34.3,points
 Kvam vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
 Kvam vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2024,39.7,points
 Kvam vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2025,27.9,points
 Kvam vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2026,36.5,points
+Kvam vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,30.4,points
 Kvam vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,30.4,points
 Kvam vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,36.8,points
 Kvam vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,40.6,points
 Kvam vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,45.6,points
 Kvam vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,38.3,points
 Kvam vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,35.6,points
+Kvam vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,38.0,points
 Kvam vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,34.6,points
 Kvam vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,24.8,points
 Kvam vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,32.5,points
@@ -6419,6 +6571,7 @@ Kvam vidaregåande skule,Transport og logistikk,0,tip,Vg2,2023,,open
 Kvam vidaregåande skule,Transport og logistikk,0,tip,Vg2,2024,20.0,points
 Kvam vidaregåande skule,Transport og logistikk,0,tip,Vg2,2025,32.5,points
 Kvam vidaregåande skule,Transport og logistikk,0,tip,Vg2,2026,31.3,points
+Kvinnherad vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,30.7,points
 Kvinnherad vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,26.4,points
 Kvinnherad vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,35.7,points
 Kvinnherad vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
@@ -6431,18 +6584,22 @@ Kvinnherad vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,40.0,
 Kvinnherad vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,45.3,points
 Kvinnherad vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,41.5,points
 Kvinnherad vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,44.1,points
+Kvinnherad vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,24.0,points
+Kvinnherad vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,36.7,points
 Kvinnherad vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,47.3,points
 Kvinnherad vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,29.0,points
 Kvinnherad vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
 Kvinnherad vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2024,33.3,points
 Kvinnherad vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2025,30.0,points
 Kvinnherad vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2026,,open
+Kvinnherad vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,41.3,points
 Kvinnherad vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,35.3,points
 Kvinnherad vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,24.2,points
 Kvinnherad vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
 Kvinnherad vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,,open
 Kvinnherad vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,43.3,points
 Kvinnherad vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,,open
+Kvinnherad vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,28.3,points
 Kvinnherad vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,27.1,points
 Kvinnherad vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,35.7,points
 Kvinnherad vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,,open
@@ -6491,6 +6648,7 @@ Kvinnherad vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2024,30.0
 Kvinnherad vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2025,28.6,points
 Kvinnherad vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,47.5,points
 Kvinnherad vidaregåande skule,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,17.5,points
+Laksevåg og Bergen Maritime videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,32.7,points
 Laksevåg og Bergen Maritime videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,33.3,points
 Laksevåg og Bergen Maritime videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,35.0,points
 Laksevåg og Bergen Maritime videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,30.8,points
@@ -6509,6 +6667,9 @@ Laksevåg og Bergen Maritime videregående skole,"Elektro og datateknologi, SK 3
 Laksevåg og Bergen Maritime videregående skole,"Elektro og datateknologi, SK 3 år",0,elektro,Vg1,2024,47.9,points
 Laksevåg og Bergen Maritime videregående skole,"Elektro og datateknologi, SK 3 år",0,elektro,Vg1,2025,47.6,points
 Laksevåg og Bergen Maritime videregående skole,"Elektro og datateknologi, SK 3 år",0,elektro,Vg1,2026,48.1,points
+Laksevåg og Bergen Maritime videregående skole,Elektrofag,0,elektro,Vg1,2020,44.3,points
+Laksevåg og Bergen Maritime videregående skole,"Elektrofag, SK 3-årig",0,elektro,Vg1,2020,47.3,points
+Laksevåg og Bergen Maritime videregående skole,Teknikk og industriell produksjon,0,tip,Vg1,2020,43.0,points
 Laksevåg og Bergen Maritime videregående skole,Teknologi- og industrifag,0,tip,Vg1,2021,40.3,points
 Laksevåg og Bergen Maritime videregående skole,Teknologi- og industrifag,0,tip,Vg1,2022,44.3,points
 Laksevåg og Bergen Maritime videregående skole,Teknologi- og industrifag,0,tip,Vg1,2023,43.3,points
@@ -6568,7 +6729,9 @@ Laksevåg og Bergen Maritime videregående skole,Maritim elektrikerfaget,0,tip,V
 Laksevåg og Bergen Maritime videregående skole,Maritim elektrikerfaget vg3 sk,0,tip,Vg3,2024,50.0,points
 Laksevåg og Bergen Maritime videregående skole,Maritim elektrikerfaget vg3 sk,0,tip,Vg3,2025,48.8,points
 Laksevåg og Bergen Maritime videregående skole,Maritim elektrikerfaget vg3 sk,0,tip,Vg3,2026,53.3,points
+Langhaugen videregående skole,"Musikk, dans og drama med dans",0,mdd,Vg1,2020,43.7,points
 Langhaugen videregående skole,"Musikk, dans og drama med dans",0,mdd,Vg1,2021,34.8,points
+Langhaugen videregående skole,"Musikk, dans og drama med musikk",0,mdd,Vg1,2020,48.7,points
 Langhaugen videregående skole,"Musikk, dans og drama med musikk",0,mdd,Vg1,2021,50.0,points
 Langhaugen videregående skole,"Musikk, dans og drama, dans",0,mdd,Vg1,2022,42.5,points
 Langhaugen videregående skole,"Musikk, dans og drama, dans",0,mdd,Vg1,2023,40.6,points
@@ -6580,26 +6743,35 @@ Langhaugen videregående skole,"Musikk, dans og drama, musikk",0,mdd,Vg1,2023,54
 Langhaugen videregående skole,"Musikk, dans og drama, musikk",0,mdd,Vg1,2024,51.1,points
 Langhaugen videregående skole,"Musikk, dans og drama, musikk",0,mdd,Vg1,2025,55.6,points
 Langhaugen videregående skole,"Musikk, dans og drama, musikk",0,mdd,Vg1,2026,55.3,points
+Langhaugen videregående skole,Studiespesialisering,0,st,Vg1,2020,47.3,points
 Langhaugen videregående skole,Studiespesialisering,0,st,Vg1,2021,44.0,points
 Langhaugen videregående skole,Studiespesialisering,0,st,Vg1,2022,46.4,points
 Langhaugen videregående skole,Studiespesialisering,0,st,Vg1,2023,44.1,points
 Langhaugen videregående skole,Studiespesialisering,0,st,Vg1,2024,47.2,points
 Langhaugen videregående skole,Studiespesialisering,0,st,Vg1,2025,48.1,points
 Langhaugen videregående skole,Studiespesialisering,0,st,Vg1,2026,49.1,points
+Mo og Øyrane vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,32.3,points
 Mo og Øyrane vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,31.8,points
 Mo og Øyrane vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,26.1,points
 Mo og Øyrane vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2021,43.6,points
 Mo og Øyrane vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2022,42.9,points
+Mo og Øyrane vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,45.3,points
+Mo og Øyrane vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,42.7,points
 Mo og Øyrane vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,38.0,points
 Mo og Øyrane vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,31.4,points
+Mo og Øyrane vidaregåande skule,Naturbruk,0,nat,Vg1,2020,33.1,points
 Mo og Øyrane vidaregåande skule,Naturbruk,0,nat,Vg1,2021,28.0,points
 Mo og Øyrane vidaregåande skule,Naturbruk,0,nat,Vg1,2022,30.2,points
+Mo og Øyrane vidaregåande skule,Naturbruk med hest,0,nat,Vg1,2020,35.0,points
 Mo og Øyrane vidaregåande skule,"Naturbruk, hest",0,nat,Vg1,2021,34.9,points
 Mo og Øyrane vidaregåande skule,"Naturbruk, hest",0,nat,Vg1,2022,23.6,points
+Mo og Øyrane vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2020,25.3,points
 Mo og Øyrane vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2021,24.0,points
 Mo og Øyrane vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2022,23.8,points
+Mo og Øyrane vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2020,39.8,points
 Mo og Øyrane vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2021,31.8,points
 Mo og Øyrane vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2022,22.1,points
+Mo og Øyrane vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,34.0,points
 Mo og Øyrane vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,37.3,points
 Mo og Øyrane vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,33.6,points
 Mo og Øyrane vidaregåande skule,Ambulansefag,0,helse,Vg2,2021,53.8,points
@@ -6638,40 +6810,47 @@ Mo og Øyrane vidaregåande skule,Landbruk,0,nat,Vg3,2021,32.9,points
 Mo og Øyrane vidaregåande skule,Landbruk,0,nat,Vg3,2022,40.0,points
 Mo og Øyrane vidaregåande skule,Studieforberedende naturbruk,0,nat,Vg3,2021,27.5,points
 Mo og Øyrane vidaregåande skule,Studieforberedende naturbruk,0,nat,Vg3,2022,26.7,points
+Måløy vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,27.2,points
 Måløy vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,38.0,points
 Måløy vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,31.4,points
 Måløy vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
 Måløy vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2024,29.4,points
 Måløy vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2025,27.5,points
 Måløy vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2026,31.4,points
+Måløy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,35.0,points
 Måløy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,41.7,points
 Måløy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,33.3,points
 Måløy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,38.8,points
 Måløy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2024,39.7,points
 Måløy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2025,35.6,points
 Måløy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2026,30.6,points
+Måløy vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2020,33.3,points
 Måløy vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2021,31.4,points
 Måløy vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2022,30.7,points
 Måløy vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2023,,open
 Måløy vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2024,27.9,points
+Måløy vidaregåande skule,Naturbruk,0,nat,Vg1,2020,38.4,points
 Måløy vidaregåande skule,Naturbruk,0,nat,Vg1,2021,40.7,points
 Måløy vidaregåande skule,Naturbruk,0,nat,Vg1,2022,32.5,points
 Måløy vidaregåande skule,Naturbruk,0,nat,Vg1,2023,32.9,points
 Måløy vidaregåande skule,Naturbruk,0,nat,Vg1,2024,38.8,points
 Måløy vidaregåande skule,Naturbruk,0,nat,Vg1,2025,33.1,points
 Måløy vidaregåande skule,Naturbruk,0,nat,Vg1,2026,34.3,points
+Måløy vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2020,28.6,points
 Måløy vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2021,,open
 Måløy vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2022,21.7,points
 Måløy vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2023,,open
 Måløy vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2024,40.0,points
 Måløy vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2025,0.0,points
 Måløy vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2026,,open
+Måløy vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,44.0,points
 Måløy vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,33.3,points
 Måløy vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,38.9,points
 Måløy vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,38.1,points
 Måløy vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,41.5,points
 Måløy vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,36.3,points
 Måløy vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,34.7,points
+Måløy vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,23.3,points
 Måløy vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,31.0,points
 Måløy vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,28.8,points
 Måløy vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,35.1,points
@@ -6721,6 +6900,7 @@ Måløy vidaregåande skule,Tømrer,0,bygg,Vg2,2023,,open
 Måløy vidaregåande skule,Tømrer,0,bygg,Vg2,2024,22.9,points
 Måløy vidaregåande skule,Tømrer,0,bygg,Vg2,2025,27.1,points
 Måløy vidaregåande skule,Tømrer,0,bygg,Vg2,2026,,open
+Nordahl Grieg videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2020,39.7,points
 Nordahl Grieg videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2021,37.1,points
 Nordahl Grieg videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2022,35.9,points
 Nordahl Grieg videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2024,39.7,points
@@ -6732,12 +6912,15 @@ Nordahl Grieg videregående skole,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,
 Nordahl Grieg videregående skole,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2024,40.6,points
 Nordahl Grieg videregående skole,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2025,41.7,points
 Nordahl Grieg videregående skole,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2026,40.0,points
+Nordahl Grieg videregående skole,"Helse- og oppvekstfag, SK 3-årig",0,helse,Vg1,2020,43.7,points
+Nordahl Grieg videregående skole,Medier og kommunikasjon,0,mk,Vg1,2020,44.7,points
 Nordahl Grieg videregående skole,Medier og kommunikasjon,0,mk,Vg1,2021,41.3,points
 Nordahl Grieg videregående skole,Medier og kommunikasjon,0,mk,Vg1,2022,42.1,points
 Nordahl Grieg videregående skole,Medier og kommunikasjon,0,mk,Vg1,2023,34.1,points
 Nordahl Grieg videregående skole,Medier og kommunikasjon,0,mk,Vg1,2024,40.6,points
 Nordahl Grieg videregående skole,Medier og kommunikasjon,0,mk,Vg1,2025,40.2,points
 Nordahl Grieg videregående skole,Medier og kommunikasjon,0,mk,Vg1,2026,40.7,points
+Nordahl Grieg videregående skole,Studiespesialisering,0,st,Vg1,2020,45.8,points
 Nordahl Grieg videregående skole,Studiespesialisering,0,st,Vg1,2021,42.0,points
 Nordahl Grieg videregående skole,Studiespesialisering,0,st,Vg1,2022,45.0,points
 Nordahl Grieg videregående skole,Studiespesialisering,0,st,Vg1,2023,41.9,points
@@ -6762,6 +6945,7 @@ Nordahl Grieg videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2024,4
 Nordahl Grieg videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2025,43.8,points
 Nordahl Grieg videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,36.4,points
 Nordahl Grieg videregående skole,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,42.5,points
+Odda vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,30.7,points
 Odda vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,39.3,points
 Odda vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,32.4,points
 Odda vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
@@ -6774,20 +6958,25 @@ Odda vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,,open
 Odda vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,31.8,points
 Odda vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,36.3,points
 Odda vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,30.0,points
+Odda vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,37.7,points
+Odda vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,28.7,points
 Odda vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,46.0,points
 Odda vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,30.0,points
 Odda vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
 Odda vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2024,,open
 Odda vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2025,31.3,points
 Odda vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2026,,open
+Odda vidaregåande skule,Idrettsfag,0,idrett,Vg1,2020,32.7,points
 Odda vidaregåande skule,Idrettsfag,0,idrett,Vg1,2021,43.3,points
 Odda vidaregåande skule,Idrettsfag,0,idrett,Vg1,2022,42.1,points
+Odda vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,35.7,points
 Odda vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,45.3,points
 Odda vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,45.0,points
 Odda vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
 Odda vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,33.3,points
 Odda vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,,open
 Odda vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,,open
+Odda vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,33.3,points
 Odda vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,24.0,points
 Odda vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,27.7,points
 Odda vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,34.2,points
@@ -6823,6 +7012,7 @@ Odda vidaregåande skule,Tømrer,0,bygg,Vg2,2021,31.4,points
 Odda vidaregåande skule,Tømrer,0,bygg,Vg2,2022,20.0,points
 Odda vidaregåande skule,Tømrer,0,bygg,Vg2,2024,38.6,points
 Odda vidaregåande skule,Tømrer,0,bygg,Vg2,2026,,open
+Olsvikåsen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2020,37.6,points
 Olsvikåsen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2021,40.0,points
 Olsvikåsen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2022,41.4,points
 Olsvikåsen videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2023,37.3,points
@@ -6835,12 +7025,15 @@ Olsvikåsen videregående skole,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,20
 Olsvikåsen videregående skole,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2024,41.8,points
 Olsvikåsen videregående skole,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2025,41.8,points
 Olsvikåsen videregående skole,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2026,41.0,points
+Olsvikåsen videregående skole,"Helse- og oppvekstfag, SK 3-årig",0,helse,Vg1,2020,45.0,points
+Olsvikåsen videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2020,37.3,points
 Olsvikåsen videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2021,44.7,points
 Olsvikåsen videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2022,41.3,points
 Olsvikåsen videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2023,25.3,points
 Olsvikåsen videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2024,37.3,points
 Olsvikåsen videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2025,41.3,points
 Olsvikåsen videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2026,36.9,points
+Olsvikåsen videregående skole,Studiespesialisering,0,st,Vg1,2020,47.3,points
 Olsvikåsen videregående skole,Studiespesialisering,0,st,Vg1,2021,48.0,points
 Olsvikåsen videregående skole,Studiespesialisering,0,st,Vg1,2022,46.9,points
 Olsvikåsen videregående skole,Studiespesialisering,0,st,Vg1,2023,40.6,points
@@ -6859,11 +7052,13 @@ Olsvikåsen videregående skole,Helsearbeiderfag,0,helse,Vg2,2023,32.5,points
 Olsvikåsen videregående skole,Helsearbeiderfag,0,helse,Vg2,2024,38.8,points
 Olsvikåsen videregående skole,Helsearbeiderfag,0,helse,Vg2,2025,38.8,points
 Olsvikåsen videregående skole,Helsearbeiderfag,0,helse,Vg2,2026,38.8,points
+Os gymnas,Studiespesialisering,0,st,Vg1,2020,41.1,points
 Os gymnas,Studiespesialisering,0,st,Vg1,2021,41.3,points
 Os gymnas,Studiespesialisering,0,st,Vg1,2022,30.5,points
 Os gymnas,Studiespesialisering,0,st,Vg1,2023,,open
 Os gymnas,Studiespesialisering,0,st,Vg1,2024,42.5,points
 Os gymnas,Studiespesialisering,0,st,Vg1,2025,42.7,points
+Os vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,32.3,points
 Os vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,32.0,points
 Os vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,33.8,points
 Os vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
@@ -6876,6 +7071,8 @@ Os vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,,open
 Os vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,35.7,points
 Os vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,34.2,points
 Os vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,37.7,points
+Os vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,34.3,points
+Os vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,36.8,points
 Os vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,25.3,points
 Os vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,33.6,points
 Os vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,32.3,points
@@ -6885,6 +7082,7 @@ Os vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2026,36.9,points
 Os vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2024,38.4,points
 Os vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2025,36.0,points
 Os vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,helse,Vg1,2026,38.1,points
+Os vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2020,35.8,points
 Os vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2023,37.7,points
 Os vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2021,32.3,points
 Os vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2022,44.6,points
@@ -6892,6 +7090,7 @@ Os vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2024,41.9,points
 Os vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2025,40.4,points
 Os vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2026,35.3,points
 Os vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,44.2,points
+Os vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,32.0,points
 Os vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,32.0,points
 Os vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,32.5,points
 Os vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,31.6,points
@@ -6972,17 +7171,21 @@ Osterøy vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,36.7,po
 Osterøy vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,38.1,points
 Osterøy vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,37.2,points
 Osterøy vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,43.1,points
+Osterøy vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,40.0,points
+Osterøy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,35.8,points
 Osterøy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,17.3,points
 Osterøy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,30.5,points
 Osterøy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
 Osterøy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2024,28.0,points
 Osterøy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2025,35.9,points
 Osterøy vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2026,,open
+Osterøy vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,28.7,points
 Osterøy vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,28.0,points
 Osterøy vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,28.7,points
 Osterøy vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
 Osterøy vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,24.7,points
 Osterøy vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,32.7,points
+Osterøy vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,20.9,points
 Osterøy vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,30.0,points
 Osterøy vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,23.6,points
 Osterøy vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,,open
@@ -7008,12 +7211,15 @@ Osterøy vidaregåande skule,Industriteknologi,0,tip,Vg2,2024,26.3,points
 Osterøy vidaregåande skule,Industriteknologi,0,tip,Vg2,2025,24.3,points
 Osterøy vidaregåande skule,Industriteknologi,0,tip,Vg2,2026,,open
 Rubbestadnes vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2021,34.2,points
+Rubbestadnes vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,32.7,points
+Rubbestadnes vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,28.0,points
 Rubbestadnes vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,25.0,points
 Rubbestadnes vidaregåande skule,Automatisering,0,elektro,Vg2,2021,21.0,points
 Rubbestadnes vidaregåande skule,Elenergi og ekom,0,elektro,Vg2,2021,44.3,points
 Rubbestadnes vidaregåande skule,Industriteknologi,0,tip,Vg2,2021,26.3,points
 Rubbestadnes vidaregåande skule,Maritime fag,0,tip,Vg2,2021,31.3,points
 Rubbestadnes vidaregåande skule,Automatiseringsfaget,0,elektro,Vg3,2021,25.7,points
+Sandsli videregående skole,Restaurant- og matfag,0,rm,Vg1,2020,33.0,points
 Sandsli videregående skole,Restaurant- og matfag,0,rm,Vg1,2021,26.3,points
 Sandsli videregående skole,Restaurant- og matfag,0,rm,Vg1,2022,32.1,points
 Sandsli videregående skole,Restaurant- og matfag,0,rm,Vg1,2023,,open
@@ -7022,6 +7228,7 @@ Sandsli videregående skole,Restaurant- og matfag,0,rm,Vg1,2025,34.4,points
 Sandsli videregående skole,Restaurant- og matfag,0,rm,Vg1,2026,30.7,points
 Sandsli videregående skole,"Sal, service og reiseliv",0,sr,Vg1,2023,,open
 Sandsli videregående skole,"Salg, service og reiseliv",0,sr,Vg1,2024,42.5,points
+Sandsli videregående skole,Studiespesialisering,0,st,Vg1,2020,41.7,points
 Sandsli videregående skole,Studiespesialisering,0,st,Vg1,2021,40.0,points
 Sandsli videregående skole,Studiespesialisering,0,st,Vg1,2022,39.3,points
 Sandsli videregående skole,Studiespesialisering,0,st,Vg1,2023,36.0,points
@@ -7043,6 +7250,7 @@ Sandsli videregående skole,Kokk- og servitørfag,0,rm,Vg2,2026,21.4,points
 Sandsli videregående skole,Påbygg gen studiekomp e/yrkeskomp,0,pb,Vg3,2026,40.0,points
 Sandsli videregående skole,Påbygg. gen. studiekomp. etter yrkeskomp,0,pb,Vg3,2023,,open
 Sandsli videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,41.3,points
+Slåtthaug videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,34.0,points
 Slåtthaug videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,32.2,points
 Slåtthaug videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,35.0,points
 Slåtthaug videregående skole,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,23.8,points
@@ -7055,12 +7263,15 @@ Slåtthaug videregående skole,Elektro og datateknologi,0,elektro,Vg1,2023,39.1,
 Slåtthaug videregående skole,Elektro og datateknologi,0,elektro,Vg1,2024,37.1,points
 Slåtthaug videregående skole,Elektro og datateknologi,0,elektro,Vg1,2025,40.7,points
 Slåtthaug videregående skole,Elektro og datateknologi,0,elektro,Vg1,2026,40.8,points
+Slåtthaug videregående skole,Elektrofag,0,elektro,Vg1,2020,40.0,points
+Slåtthaug videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2020,35.0,points
 Slåtthaug videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2021,31.7,points
 Slåtthaug videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2022,29.5,points
 Slåtthaug videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
 Slåtthaug videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2024,33.1,points
 Slåtthaug videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2025,36.0,points
 Slåtthaug videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2026,29.3,points
+Slåtthaug videregående skole,Teknikk og industriell produksjon,0,tip,Vg1,2020,36.0,points
 Slåtthaug videregående skole,Teknologi- og industrifag,0,tip,Vg1,2021,32.9,points
 Slåtthaug videregående skole,Teknologi- og industrifag,0,tip,Vg1,2022,37.1,points
 Slåtthaug videregående skole,Teknologi- og industrifag,0,tip,Vg1,2023,32.0,points
@@ -7141,6 +7352,7 @@ Slåtthaug videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2025,43.8
 Slåtthaug videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,30.0,points
 Slåtthaug videregående skole,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,40.0,points
 Slåtthaug videregående skole,Påbygg gen studiekomp e/yrkeskomp,1,pb,Vg4,2022,42.5,points
+Sogndal vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,20.3,points
 Sogndal vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,28.8,points
 Sogndal vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,19.5,points
 Sogndal vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
@@ -7153,35 +7365,43 @@ Sogndal vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,39.4,poi
 Sogndal vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,42.5,points
 Sogndal vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,37.7,points
 Sogndal vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,39.4,points
+Sogndal vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,32.9,points
+Sogndal vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,28.5,points
 Sogndal vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,32.4,points
 Sogndal vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,33.7,points
 Sogndal vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,32.1,points
 Sogndal vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2024,36.2,points
 Sogndal vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2025,40.0,points
 Sogndal vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2026,,open
+Sogndal vidaregåande skule,Idrettsfag,0,idrett,Vg1,2020,20.8,points
 Sogndal vidaregåande skule,Idrettsfag,0,idrett,Vg1,2021,39.3,points
 Sogndal vidaregåande skule,Idrettsfag,0,idrett,Vg1,2022,30.7,points
 Sogndal vidaregåande skule,Idrettsfag,0,idrett,Vg1,2023,45.6,points
 Sogndal vidaregåande skule,Idrettsfag,0,idrett,Vg1,2024,46.5,points
 Sogndal vidaregåande skule,Idrettsfag,0,idrett,Vg1,2025,42.4,points
 Sogndal vidaregåande skule,Idrettsfag,0,idrett,Vg1,2026,45.8,points
+Sogndal vidaregåande skule,Medier og kommunikasjon,0,mk,Vg1,2020,30.9,points
+Sogndal vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2020,22.7,points
 Sogndal vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2022,31.7,points
 Sogndal vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2023,,open
 Sogndal vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2024,0.0,points
 Sogndal vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2025,25.3,points
 Sogndal vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2026,,open
+Sogndal vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2020,32.5,points
 Sogndal vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2023,29.8,points
 Sogndal vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2021,30.0,points
 Sogndal vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2022,25.6,points
 Sogndal vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2024,23.3,points
 Sogndal vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2025,32.5,points
 Sogndal vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2026,,open
+Sogndal vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,32.6,points
 Sogndal vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,44.2,points
 Sogndal vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,30.5,points
 Sogndal vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
 Sogndal vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,,open
 Sogndal vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,,open
 Sogndal vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,,open
+Sogndal vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,28.6,points
 Sogndal vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,35.7,points
 Sogndal vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,34.0,points
 Sogndal vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,30.6,points
@@ -7267,6 +7487,7 @@ Sogndal vidaregåande skule,Dataelektronikerfaget,0,elektro,Vg3,2023,,open
 Sogndal vidaregåande skule,Dataelektronikerfaget,0,elektro,Vg3,2024,28.6,points
 Sogndal vidaregåande skule,Dataelektronikerfaget,0,elektro,Vg3,2025,25.7,points
 Sogndal vidaregåande skule,Dataelektronikerfaget,0,elektro,Vg3,2026,,open
+Sotra vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,30.0,points
 Sotra vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,27.7,points
 Sotra vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,28.6,points
 Sotra vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
@@ -7279,41 +7500,49 @@ Sotra vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,36.3,point
 Sotra vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,36.8,points
 Sotra vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,37.8,points
 Sotra vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,38.8,points
+Sotra vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,40.0,points
+Sotra vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,31.3,points
 Sotra vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,30.3,points
 Sotra vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,20.0,points
 Sotra vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
 Sotra vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2024,32.8,points
 Sotra vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2025,37.1,points
 Sotra vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2026,32.1,points
+Sotra vidaregåande skule,Idrettsfag,0,idrett,Vg1,2020,44.0,points
 Sotra vidaregåande skule,Idrettsfag,0,idrett,Vg1,2021,43.3,points
 Sotra vidaregåande skule,Idrettsfag,0,idrett,Vg1,2022,42.9,points
 Sotra vidaregåande skule,Idrettsfag,0,idrett,Vg1,2023,44.4,points
 Sotra vidaregåande skule,Idrettsfag,0,idrett,Vg1,2024,41.3,points
 Sotra vidaregåande skule,Idrettsfag,0,idrett,Vg1,2025,38.1,points
 Sotra vidaregåande skule,Idrettsfag,0,idrett,Vg1,2026,40.4,points
+Sotra vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2020,37.1,points
 Sotra vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2021,36.3,points
 Sotra vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2022,33.6,points
 Sotra vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2023,24.9,points
 Sotra vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2024,35.0,points
 Sotra vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2025,32.7,points
 Sotra vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2026,28.6,points
+Sotra vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2020,30.0,points
 Sotra vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2023,35.0,points
 Sotra vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2021,33.0,points
 Sotra vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2022,37.9,points
 Sotra vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2024,38.1,points
 Sotra vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2025,40.4,points
 Sotra vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2026,37.7,points
+Sotra vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,39.3,points
 Sotra vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,39.1,points
 Sotra vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,31.4,points
 Sotra vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,29.4,points
 Sotra vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,44.1,points
 Sotra vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,42.7,points
 Sotra vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,44.9,points
+Sotra vidaregåande skule,Studiespesialisering med teknologifag,0,st,Vg1,2020,40.2,points
 Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,st,Vg1,2022,41.4,points
 Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,st,Vg1,2023,39.4,points
 Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,st,Vg1,2024,42.9,points
 Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,st,Vg1,2025,42.3,points
 Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,st,Vg1,2026,45.3,points
+Sotra vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,38.3,points
 Sotra vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,35.1,points
 Sotra vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,36.1,points
 Sotra vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,37.1,points
@@ -7394,6 +7623,7 @@ Sotra vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2024,40.0,poin
 Sotra vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2025,45.0,points
 Sotra vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,37.5,points
 Sotra vidaregåande skule,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,42.5,points
+Stend vidaregåande skule,Idrettsfag,0,idrett,Vg1,2020,43.3,points
 Stend vidaregåande skule,Idrettsfag,0,idrett,Vg1,2021,48.0,points
 Stend vidaregåande skule,Idrettsfag,0,idrett,Vg1,2022,43.2,points
 Stend vidaregåande skule,Idrettsfag,0,idrett,Vg1,2023,39.4,points
@@ -7404,6 +7634,10 @@ Stend vidaregåande skule,Naturbruk,0,nat,Vg1,2022,29.1,points
 Stend vidaregåande skule,Naturbruk,0,nat,Vg1,2023,32.3,points
 Stend vidaregåande skule,Naturbruk,0,nat,Vg1,2024,33.1,points
 Stend vidaregåande skule,Naturbruk,0,nat,Vg1,2026,,open
+Stend vidaregåande skule,Naturbruk med anleggsgartnar,0,nat,Vg1,2020,22.2,points
+Stend vidaregåande skule,Naturbruk med dyrefag,0,nat,Vg1,2020,37.7,points
+Stend vidaregåande skule,Naturbruk med friluftsliv,0,nat,Vg1,2020,39.0,points
+Stend vidaregåande skule,Naturbruk med hest,0,nat,Vg1,2020,32.8,points
 Stend vidaregåande skule,Naturbruk med heste- og dyrefag,0,nat,Vg1,2021,32.0,points
 Stend vidaregåande skule,"Naturbruk, anleggsgartner",0,bygg,Vg1,2021,,open
 Stend vidaregåande skule,"Naturbruk, anleggsgartner",0,bygg,Vg1,2022,26.8,points
@@ -7427,6 +7661,7 @@ Stend vidaregåande skule,"Naturbruk, hest",0,nat,Vg1,2023,,open
 Stend vidaregåande skule,"Naturbruk, hest",0,nat,Vg1,2024,41.1,points
 Stend vidaregåande skule,"Naturbruk, hest",0,nat,Vg1,2025,41.8,points
 Stend vidaregåande skule,"Naturbruk, hest",0,nat,Vg1,2026,40.0,points
+Stend vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2020,34.3,points
 Stend vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2023,,open
 Stend vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2021,34.3,points
 Stend vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2022,35.7,points
@@ -7468,6 +7703,7 @@ Stend vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2024,50.0,poin
 Stend vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2025,41.3,points
 Stend vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,41.4,points
 Stend vidaregåande skule,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,41.4,points
+Stord vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,30.7,points
 Stord vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,28.7,points
 Stord vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,24.3,points
 Stord vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
@@ -7480,41 +7716,49 @@ Stord vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,32.9,point
 Stord vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,36.9,points
 Stord vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,,open
 Stord vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,37.1,points
+Stord vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,38.0,points
+Stord vidaregåande skule,Idrettsfag,0,idrett,Vg1,2020,42.0,points
 Stord vidaregåande skule,Idrettsfag,0,idrett,Vg1,2021,28.7,points
 Stord vidaregåande skule,Idrettsfag,0,idrett,Vg1,2022,36.4,points
 Stord vidaregåande skule,Idrettsfag,0,idrett,Vg1,2023,,open
 Stord vidaregåande skule,Idrettsfag,0,idrett,Vg1,2024,40.0,points
 Stord vidaregåande skule,Idrettsfag,0,idrett,Vg1,2025,37.5,points
 Stord vidaregåande skule,Idrettsfag,0,idrett,Vg1,2026,35.6,points
+Stord vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2020,24.9,points
 Stord vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2021,30.0,points
 Stord vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2022,36.0,points
 Stord vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2023,36.7,points
 Stord vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2024,27.5,points
 Stord vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2025,36.2,points
 Stord vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2026,27.2,points
+Stord vidaregåande skule,Medier og kommunikasjon,0,mk,Vg1,2020,19.4,points
 Stord vidaregåande skule,Medier og kommunikasjon,0,mk,Vg1,2022,39.3,points
 Stord vidaregåande skule,Medier og kommunikasjon,0,mk,Vg1,2023,39.4,points
 Stord vidaregåande skule,Medier og kommunikasjon,0,mk,Vg1,2024,36.9,points
 Stord vidaregåande skule,Medier og kommunikasjon,0,mk,Vg1,2025,36.9,points
 Stord vidaregåande skule,Medier og kommunikasjon,0,mk,Vg1,2026,22.7,points
+Stord vidaregåande skule,"Musikk, dans og drama med musikk",0,mdd,Vg1,2020,22.3,points
 Stord vidaregåande skule,"Musikk, dans og drama med musikk",0,mdd,Vg1,2021,48.0,points
 Stord vidaregåande skule,"Musikk, dans og drama, musikk",0,mdd,Vg1,2022,41.8,points
 Stord vidaregåande skule,"Musikk, dans og drama, musikk",0,mdd,Vg1,2023,,open
 Stord vidaregåande skule,"Musikk, dans og drama, musikk",0,mdd,Vg1,2024,39.4,points
 Stord vidaregåande skule,"Musikk, dans og drama, musikk",0,mdd,Vg1,2025,42.7,points
 Stord vidaregåande skule,"Musikk, dans og drama, musikk",0,mdd,Vg1,2026,29.4,points
+Stord vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2020,29.0,points
 Stord vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2023,,open
 Stord vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2021,28.6,points
 Stord vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2022,33.6,points
 Stord vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2024,26.0,points
 Stord vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2025,,open
 Stord vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2026,28.5,points
+Stord vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,33.7,points
 Stord vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,,open
 Stord vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,26.3,points
 Stord vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
 Stord vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,19.3,points
 Stord vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,35.3,points
 Stord vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,35.9,points
+Stord vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,29.0,points
 Stord vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,29.0,points
 Stord vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,25.7,points
 Stord vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,,open
@@ -7576,19 +7820,23 @@ Stord vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2024,33.8,poin
 Stord vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2025,31.7,points
 Stord vidaregåande skule,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,,open
 Stord vidaregåande skule,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,27.8,points
+Stryn vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,20.8,points
 Stryn vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,35.6,points
 Stryn vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,28.2,points
 Stryn vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
 Stryn vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2024,,open
 Stryn vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2025,20.0,points
+Stryn vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,22.9,points
 Stryn vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,38.2,points
 Stryn vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,36.4,points
 Stryn vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
 Stryn vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2024,31.3,points
 Stryn vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2025,32.6,points
 Stryn vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2026,34.7,points
+Stryn vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2020,25.3,points
 Stryn vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2022,23.1,points
 Stryn vidaregåande skule,"Studiespes., skiskyting, landslinje",0,st,Vg1,2023,,open
+Stryn vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,35.0,points
 Stryn vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,19.1,points
 Stryn vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,25.7,points
 Stryn vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
@@ -7597,6 +7845,7 @@ Stryn vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,,open
 Stryn vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,36.9,points
 Stryn vidaregåande skule,"Studiespesialisering, skiskyting, LAL",0,st,Vg1,2024,38.2,points
 Stryn vidaregåande skule,"Studiespesialisering, skiskyting, landslinje",0,st,Vg1,2021,34.7,points
+Stryn vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,26.7,points
 Stryn vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,30.0,points
 Stryn vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,32.9,points
 Stryn vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,,open
@@ -7627,54 +7876,63 @@ Stryn vidaregåande skule,Tømrer,0,bygg,Vg2,2023,,open
 Stryn vidaregåande skule,Tømrer,0,bygg,Vg2,2024,30.0,points
 Stryn vidaregåande skule,Tømrer,0,bygg,Vg2,2025,25.7,points
 Stryn vidaregåande skule,Tømrer,0,bygg,Vg2,2026,31.4,points
+Tertnes vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,42.1,points
 Tertnes vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,42.7,points
 Tertnes vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,41.1,points
 Tertnes vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,37.3,points
 Tertnes vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,41.9,points
 Tertnes vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,41.9,points
 Tertnes vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,41.3,points
+Voss gymnas,"Frisør, blomar, interiør og eksponeringdesign",0,design,Vg1,2020,31.7,points
 Voss gymnas,"Frisør, blomst, int, eksp. design",0,design,Vg1,2023,,open
 Voss gymnas,"Frisør, blomst, int, eksp.design",0,design,Vg1,2022,24.3,points
 Voss gymnas,"Frisør, blomst, int, eksp.design",0,design,Vg1,2024,,open
 Voss gymnas,"Frisør, blomst, int, eksp.design",0,design,Vg1,2025,35.9,points
 Voss gymnas,"Frisør, blomst, int, eksp.design",0,design,Vg1,2026,38.4,points
 Voss gymnas,"Frisør, blomster, interiør og eksponeringsdesign",0,design,Vg1,2021,27.0,points
+Voss gymnas,Helse- og oppvekstfag,0,helse,Vg1,2020,32.0,points
 Voss gymnas,Helse- og oppvekstfag,0,helse,Vg1,2021,29.6,points
 Voss gymnas,Helse- og oppvekstfag,0,helse,Vg1,2022,20.0,points
 Voss gymnas,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
 Voss gymnas,Helse- og oppvekstfag,0,helse,Vg1,2024,,open
 Voss gymnas,Helse- og oppvekstfag,0,helse,Vg1,2025,37.1,points
 Voss gymnas,Helse- og oppvekstfag,0,helse,Vg1,2026,36.2,points
+Voss gymnas,Idrettsfag,0,idrett,Vg1,2020,38.0,points
 Voss gymnas,Idrettsfag,0,idrett,Vg1,2021,28.0,points
 Voss gymnas,Idrettsfag,0,idrett,Vg1,2022,21.4,points
 Voss gymnas,Idrettsfag,0,idrett,Vg1,2023,,open
 Voss gymnas,Idrettsfag,0,idrett,Vg1,2024,0.0,points
 Voss gymnas,Idrettsfag,0,idrett,Vg1,2025,31.9,points
 Voss gymnas,Idrettsfag,0,idrett,Vg1,2026,37.2,points
+Voss gymnas,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2020,32.7,points
 Voss gymnas,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2021,39.1,points
 Voss gymnas,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2022,38.6,points
 Voss gymnas,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2023,27.5,points
 Voss gymnas,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2024,31.3,points
 Voss gymnas,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2025,,open
 Voss gymnas,Informasjonsteknologi og medieproduksjon,0,im,Vg1,2026,28.3,points
+Voss gymnas,"Kunst, design og arkitektur",0,kda,Vg1,2020,26.3,points
 Voss gymnas,"Kunst, design og arkitektur",0,kda,Vg1,2021,37.3,points
 Voss gymnas,"Kunst, design og arkitektur",0,kda,Vg1,2022,32.1,points
 Voss gymnas,"Kunst, design og arkitektur",0,kda,Vg1,2023,,open
 Voss gymnas,"Kunst, design og arkitektur",0,kda,Vg1,2024,39.4,points
 Voss gymnas,"Kunst, design og arkitektur",0,kda,Vg1,2025,33.9,points
 Voss gymnas,"Kunst, design og arkitektur",0,kda,Vg1,2026,43.2,points
+Voss gymnas,"Musikk, dans og drama med musikk",0,mdd,Vg1,2020,32.0,points
 Voss gymnas,"Musikk, dans og drama med musikk",0,mdd,Vg1,2021,29.0,points
 Voss gymnas,"Musikk, dans og drama, musikk",0,mdd,Vg1,2022,42.7,points
 Voss gymnas,"Musikk, dans og drama, musikk",0,mdd,Vg1,2023,,open
 Voss gymnas,"Musikk, dans og drama, musikk",0,mdd,Vg1,2024,35.9,points
 Voss gymnas,"Musikk, dans og drama, musikk",0,mdd,Vg1,2025,37.4,points
 Voss gymnas,"Musikk, dans og drama, musikk",0,mdd,Vg1,2026,31.3,points
+Voss gymnas,"Sal, service og reiseliv",0,sr,Vg1,2020,30.7,points
 Voss gymnas,"Sal, service og reiseliv",0,sr,Vg1,2023,,open
 Voss gymnas,"Salg, service og reiseliv",0,sr,Vg1,2021,26.3,points
 Voss gymnas,"Salg, service og reiseliv",0,sr,Vg1,2022,28.5,points
 Voss gymnas,"Salg, service og reiseliv",0,sr,Vg1,2024,0.0,points
 Voss gymnas,"Salg, service og reiseliv",0,sr,Vg1,2025,,open
 Voss gymnas,"Salg, service og reiseliv",0,sr,Vg1,2026,,open
+Voss gymnas,Studiespesialisering,0,st,Vg1,2020,27.0,points
 Voss gymnas,Studiespesialisering,0,st,Vg1,2021,31.7,points
 Voss gymnas,Studiespesialisering,0,st,Vg1,2022,32.1,points
 Voss gymnas,Studiespesialisering,0,st,Vg1,2023,36.7,points
@@ -7714,6 +7972,7 @@ Voss gymnas,Påbygg. gen. studiekompetanse,0,pb,Vg3,2024,43.8,points
 Voss gymnas,Påbygg. gen. studiekompetanse,0,pb,Vg3,2025,42.5,points
 Voss gymnas,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,46.3,points
 Voss gymnas,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,35.0,points
+Voss vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,33.0,points
 Voss vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,33.0,points
 Voss vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,32.9,points
 Voss vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,,open
@@ -7726,12 +7985,16 @@ Voss vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2023,32.9,points
 Voss vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,32.8,points
 Voss vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,35.7,points
 Voss vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,40.6,points
+Voss vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,26.3,points
+Voss vidaregåande skule,Naturbruk,0,nat,Vg1,2020,30.7,points
 Voss vidaregåande skule,Naturbruk,0,nat,Vg1,2021,30.7,points
 Voss vidaregåande skule,Naturbruk,0,nat,Vg1,2022,33.8,points
 Voss vidaregåande skule,Naturbruk,0,nat,Vg1,2023,,open
 Voss vidaregåande skule,Naturbruk,0,nat,Vg1,2024,29.3,points
 Voss vidaregåande skule,Naturbruk,0,nat,Vg1,2025,30.4,points
 Voss vidaregåande skule,Naturbruk,0,nat,Vg1,2026,27.8,points
+Voss vidaregåande skule,Naturbruk med friluftsliv,0,nat,Vg1,2020,46.7,points
+Voss vidaregåande skule,Naturbruk med hest,0,nat,Vg1,2020,27.1,points
 Voss vidaregåande skule,"Naturbruk, friluftsliv",0,nat,Vg1,2021,36.7,points
 Voss vidaregåande skule,"Naturbruk, friluftsliv",0,nat,Vg1,2022,43.6,points
 Voss vidaregåande skule,"Naturbruk, friluftsliv",0,nat,Vg1,2023,,open
@@ -7744,12 +8007,14 @@ Voss vidaregåande skule,"Naturbruk, hest",0,nat,Vg1,2023,25.0,points
 Voss vidaregåande skule,"Naturbruk, hest",0,nat,Vg1,2024,39.4,points
 Voss vidaregåande skule,"Naturbruk, hest",0,nat,Vg1,2025,33.5,points
 Voss vidaregåande skule,"Naturbruk, hest",0,nat,Vg1,2026,35.3,points
+Voss vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2020,40.7,points
 Voss vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2021,,open
 Voss vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2022,35.4,points
 Voss vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2023,,open
 Voss vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2024,43.8,points
 Voss vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2025,0.0,points
 Voss vidaregåande skule,Restaurant- og matfag,0,rm,Vg1,2026,,open
+Voss vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,35.3,points
 Voss vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,34.4,points
 Voss vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,37.1,points
 Voss vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,38.4,points
@@ -7839,12 +8104,15 @@ Voss vidaregåande skule,Studieforberedende naturbruk,0,nat,Vg3,2026,,open
 Årdal vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,33.5,points
 Årdal vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,31.4,points
 Årdal vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,22.8,points
+Årdal vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,29.0,points
+Årdal vidaregåande skule,Studiespesialisering,0,st,Vg1,2020,39.7,points
 Årdal vidaregåande skule,Studiespesialisering,0,st,Vg1,2021,27.3,points
 Årdal vidaregåande skule,Studiespesialisering,0,st,Vg1,2022,34.6,points
 Årdal vidaregåande skule,Studiespesialisering,0,st,Vg1,2023,,open
 Årdal vidaregåande skule,Studiespesialisering,0,st,Vg1,2024,35.9,points
 Årdal vidaregåande skule,Studiespesialisering,0,st,Vg1,2025,,open
 Årdal vidaregåande skule,Studiespesialisering,0,st,Vg1,2026,,open
+Årdal vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,23.0,points
 Årdal vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,33.0,points
 Årdal vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,27.1,points
 Årdal vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,28.4,points
@@ -7890,12 +8158,16 @@ Voss vidaregåande skule,Studieforberedende naturbruk,0,nat,Vg3,2026,,open
 Årstad videregående skole,Elektro og datateknologi,0,elektro,Vg1,2024,39.4,points
 Årstad videregående skole,Elektro og datateknologi,0,elektro,Vg1,2025,40.3,points
 Årstad videregående skole,Elektro og datateknologi,0,elektro,Vg1,2026,40.4,points
+Årstad videregående skole,Elektrofag,0,elektro,Vg1,2020,38.7,points
+Årstad videregående skole,"Frisør, blomar, interiør og eksponeringdesign",0,design,Vg1,2020,32.0,points
 Årstad videregående skole,"Frisør, blomst, int, eksp. design",0,design,Vg1,2023,,open
 Årstad videregående skole,"Frisør, blomst, int, eksp.design",0,design,Vg1,2022,34.0,points
 Årstad videregående skole,"Frisør, blomst, int, eksp.design",0,design,Vg1,2024,35.0,points
 Årstad videregående skole,"Frisør, blomst, int, eksp.design",0,design,Vg1,2025,37.3,points
 Årstad videregående skole,"Frisør, blomst, int, eksp.design",0,design,Vg1,2026,30.7,points
 Årstad videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,design,Vg1,2021,34.0,points
+Årstad videregående skole,"Handverk, design og produktutvikling",0,design,Vg1,2020,48.0,points
+Årstad videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2020,32.2,points
 Årstad videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2021,33.7,points
 Årstad videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2022,34.6,points
 Årstad videregående skole,Helse- og oppvekstfag,0,helse,Vg1,2023,,open
@@ -7908,14 +8180,17 @@ Voss vidaregåande skule,Studieforberedende naturbruk,0,nat,Vg3,2026,,open
 Årstad videregående skole,"Håndverk, design og produktutvikling",0,design,Vg1,2024,42.6,points
 Årstad videregående skole,"Håndverk, design og produktutvikling",0,design,Vg1,2025,39.2,points
 Årstad videregående skole,"Håndverk, design og produktutvikling",0,design,Vg1,2026,35.0,points
+Årstad videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2020,41.1,points
 Årstad videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2021,46.7,points
 Årstad videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2022,39.3,points
 Årstad videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2023,,open
 Årstad videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2024,39.0,points
 Årstad videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2025,41.5,points
 Årstad videregående skole,"Kunst, design og arkitektur",0,kda,Vg1,2026,38.7,points
+Årstad videregående skole,Studiespesialisering,0,st,Vg1,2020,38.7,points
 Årstad videregående skole,Studiespesialisering,0,st,Vg1,2021,38.7,points
 Årstad videregående skole,Studiespesialisering,0,st,Vg1,2022,42.3,points
+Årstad videregående skole,Teknikk og industriell produksjon,0,tip,Vg1,2020,33.9,points
 Årstad videregående skole,Teknologi- og industrifag,0,tip,Vg1,2021,31.1,points
 Årstad videregående skole,Teknologi- og industrifag,0,tip,Vg1,2022,34.1,points
 Årstad videregående skole,Teknologi- og industrifag,0,tip,Vg1,2023,32.0,points
@@ -8009,6 +8284,7 @@ Voss vidaregåande skule,Studieforberedende naturbruk,0,nat,Vg3,2026,,open
 Årstad videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2025,44.3,points
 Årstad videregående skole,Påbygg. gen. studiekompetanse,0,pb,Vg3,2026,40.0,points
 Årstad videregående skole,Påbygging til generell studiekompetanse,0,pb,Vg3,2021,36.3,points
+Åsane vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2020,42.1,points
 Åsane vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2021,34.8,points
 Åsane vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2022,37.1,points
 Åsane vidaregåande skule,Bygg- og anleggsteknikk,0,bygg,Vg1,2023,31.6,points
@@ -8021,24 +8297,29 @@ Voss vidaregåande skule,Studieforberedende naturbruk,0,nat,Vg3,2026,,open
 Åsane vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2024,41.2,points
 Åsane vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2025,39.4,points
 Åsane vidaregåande skule,Elektro og datateknologi,0,elektro,Vg1,2026,40.0,points
+Åsane vidaregåande skule,Elektrofag,0,elektro,Vg1,2020,48.7,points
+Åsane vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2020,40.0,points
 Åsane vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2021,40.7,points
 Åsane vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2022,38.9,points
 Åsane vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2023,34.0,points
 Åsane vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2024,35.9,points
 Åsane vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2025,37.5,points
 Åsane vidaregåande skule,Helse- og oppvekstfag,0,helse,Vg1,2026,25.6,points
+Åsane vidaregåande skule,Idrettsfag,0,idrett,Vg1,2020,40.7,points
 Åsane vidaregåande skule,Idrettsfag,0,idrett,Vg1,2021,45.3,points
 Åsane vidaregåande skule,Idrettsfag,0,idrett,Vg1,2022,45.4,points
 Åsane vidaregåande skule,Idrettsfag,0,idrett,Vg1,2023,38.5,points
 Åsane vidaregåande skule,Idrettsfag,0,idrett,Vg1,2024,43.8,points
 Åsane vidaregåande skule,Idrettsfag,0,idrett,Vg1,2025,43.5,points
 Åsane vidaregåande skule,Idrettsfag,0,idrett,Vg1,2026,43.1,points
+Åsane vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2020,40.7,points
 Åsane vidaregåande skule,"Sal, service og reiseliv",0,sr,Vg1,2023,31.9,points
 Åsane vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2021,34.7,points
 Åsane vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2022,35.7,points
 Åsane vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2024,38.4,points
 Åsane vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2025,38.7,points
 Åsane vidaregåande skule,"Salg, service og reiseliv",0,sr,Vg1,2026,36.9,points
+Åsane vidaregåande skule,Teknikk og industriell produksjon,0,tip,Vg1,2020,39.1,points
 Åsane vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2021,34.6,points
 Åsane vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2022,37.9,points
 Åsane vidaregåande skule,Teknologi- og industrifag,0,tip,Vg1,2023,39.1,points

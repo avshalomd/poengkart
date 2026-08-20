@@ -55,8 +55,16 @@ def _parse_pdf(path, year, warn):
     rows = []
     with pdfplumber.open(path) as pdf:
         for page in pdf.pages:
-            words = page.extract_words()
-            vigo = [w for w in words if VIGO_RE.match(common.norm(w['text'])) and w['x0'] < 60]
+            # The 2020 edition sets its cells so tightly that the default word
+            # tolerance glues them together — "3005Blindern", "skole52,3" —
+            # and the Vigo code that anchors every row never matches. Tighten
+            # until the codes appear rather than hard-coding a year.
+            for tol in (3, 1.5):
+                words = page.extract_words(x_tolerance=tol)
+                vigo = [w for w in words
+                        if VIGO_RE.match(common.norm(w['text'])) and w['x0'] < 60]
+                if vigo:
+                    break
             if not vigo:
                 continue
             first = min(w['top'] for w in vigo)
@@ -108,19 +116,27 @@ def _parse_pdf(path, year, warn):
             for w in vigo:
                 line = sorted((x for x in words if abs(x['top'] - w['top']) < 3),
                               key=lambda x: x['x0'])
+                # A long name overflows its column and the first value is then
+                # printed straight through it — "Oslo handelsgymnasiu4m0,0" is
+                # the name and 40,0 sharing the same run of x-positions. No
+                # school in Oslo has a digit in its name, so dropping digits
+                # recovers the name exactly.
                 name = common.squash(' '.join(
-                    common.norm(x['text']) for x in line
-                    if 30 < x['x0'] < 120 and not CELL_RE.match(common.norm(x['text']))))
+                    re.sub(r'[\d,]', '', common.norm(x['text'])) for x in line
+                    if 30 < x['x0'] < 124 and not CELL_RE.match(common.norm(x['text']))))
                 name = _school(re.sub(r'\bvg\.\s*skole$', 'videregående skole', name))
                 if not name:
                     continue
-                for x in line:
-                    t = common.norm(x['text'])
-                    if not CELL_RE.match(t) or (x['x0'] + x['x1']) / 2 <= 100:
-                        continue
-                    cx = (x['x0'] + x['x1']) / 2
-                    col = min(cols, key=lambda c: abs(c - cx))
-                    if abs(col - cx) > 12:
+                # ...and the value is read back per column from the glyphs
+                # themselves, so an interleaved name cannot hide it.
+                line_chars = [c for c in page.chars if abs(c['top'] - w['top']) < 3]
+                for col in cols:
+                    glyphs = sorted((c for c in line_chars
+                                     if abs((c['x0'] + c['x1']) / 2 - col) <= 9
+                                     and c['text'] in '0123456789,*'),
+                                    key=lambda c: c['x0'])
+                    t = common.norm(''.join(c['text'] for c in glyphs))
+                    if not t or not CELL_RE.match(t):
                         continue
                     program = labels.get(col)
                     if not program or len(program) < 4:
