@@ -235,6 +235,10 @@ def merge_rows(rows_newest_first):
                 (r.get('county', ''), r['school'].casefold()), r['school']))
             if r.get('region'):
                 attrs.setdefault(sid, {})['inntaksregion'] = r['region']
+            if r.get('merged_from'):
+                a = attrs.setdefault(sid, {})
+                a['merged_from'] = sorted(set(a.get('merged_from', [])) | {r['merged_from']})
+                a['merged_year'] = r['merged_year']
             base = (sid, r['program'].lower(), r['level'])
             # A source can list one school twice — Rogaland's national flyfag
             # pages repeat Sola under a second heading — and counting that as a
@@ -270,7 +274,59 @@ def merge_rows(rows_newest_first):
                 else:
                     rec['values'][y] = v
                     rec['sources'][y] = source
+    _fold_series(schools, drift)
     return schools, drift, attrs
+
+
+def _fold_series(schools, drift):
+    """Join series that are the same programme wearing two labels.
+
+    Two ways one programme ends up as two rows, both of which read to a family
+    as "this stopped and something new began":
+
+    'Vg2/Vg3' is what guess_level() returns when a source does not say which
+    level a programme is. Only Rogaland's newest edition does that, so a
+    programme's older years sit under Vg2 (or Vg3) and its newest under the
+    placeholder. Where the school has exactly one of the two, the placeholder
+    is that one.
+
+    An occurrence index above zero survives only when a source listed the same
+    school twice and the two listings disagree about a year. Keep the reading
+    the merge already chose, fold the rest in, and record the disagreement
+    where every other one is recorded.
+    """
+    for (county, name), recs in schools.items():
+        for key in list(recs):
+            rec = recs.get(key)
+            if rec is None:
+                continue
+            prog, level, occ = key.rsplit('|', 2)
+            target = None
+            if level == 'Vg2/Vg3':
+                sibs = [f'{prog}|{lv}|{occ}' for lv in ('Vg2', 'Vg3')
+                        if f'{prog}|{lv}|{occ}' in recs]
+                if len(sibs) == 1:
+                    target = sibs[0]
+            elif occ != '0' and f'{prog}|{level}|0' in recs:
+                target = f'{prog}|{level}|0'
+            if not target:
+                continue
+            into = recs[target]
+            for y, v in sorted(rec['values'].items()):
+                if y not in into['values']:
+                    into['values'][y] = v
+                    into['sources'][y] = rec['sources'][y]
+                elif into['values'][y] != v:
+                    drift.append({'county': county, 'school': name,
+                                  'program': rec['program'], 'level': rec['level'],
+                                  'year': y, 'kept': into['values'][y],
+                                  'kept_from': into['sources'][y],
+                                  'ignored': v, 'ignored_from': rec['sources'][y]})
+            for alt in ('values_r1', 'values_r3'):
+                if rec.get(alt):
+                    into.setdefault(alt, {}).update(
+                        {y: v for y, v in rec[alt].items() if y not in into.get(alt, {})})
+            del recs[key]
 
 
 def validate(schools, min_value=MIN_PLAUSIBLE):

@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Poengkart – poenggrenser for videregående skole</title>
-<meta name="description" content="Se poenggrensene for 193 videregående skoler i sju fylker, 2017–2026. Hva krevdes for å komme inn i fjor, og hvordan har grensene endret seg? Kart, trender og tall per programområde.">
+<meta name="description" content="Se poenggrensene for 191 videregående skoler i sju fylker, 2017–2026. Hva krevdes for å komme inn i fjor, og hvordan har grensene endret seg? Kart, trender og tall per programområde.">
 <link rel="canonical" href="https://poengkart-no.vercel.app/">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#2a78d6">
+<meta name="theme-color" content="#2a78d6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
 
 <!-- link previews in messaging apps and social; og.png is built by
      tools/make_og.py from the live dataset, so it never goes stale -->
@@ -20,36 +21,44 @@
 <meta property="og:locale:alternate" content="en_GB">
 <meta property="og:url" content="https://poengkart-no.vercel.app/">
 <meta property="og:title" content="Poengkart – hva krevdes for å komme inn?">
-<meta property="og:description" content="Poenggrensene for 193 videregående skoler i sju fylker, 2017–2026, på kart. Se hva som krevdes for å få plass, og hvordan grensene har endret seg.">
+<meta property="og:description" content="Poenggrensene for 191 videregående skoler i sju fylker, 2017–2026, på kart. Se hva som krevdes for å få plass, og hvordan grensene har endret seg.">
 <meta property="og:image" content="https://poengkart-no.vercel.app/og.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Kart over Norge med 193 videregående skoler som prikker, fargelagt etter poenggrense.">
+<meta property="og:image:alt" content="Kart over Norge med 191 videregående skoler som prikker, fargelagt etter poenggrense.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Poengkart – hva krevdes for å komme inn?">
-<meta name="twitter:description" content="Poenggrensene for 193 videregående skoler i sju fylker, 2017–2026, på kart.">
+<meta name="twitter:description" content="Poenggrensene for 191 videregående skoler i sju fylker, 2017–2026, på kart.">
 <meta name="twitter:image" content="https://poengkart-no.vercel.app/og.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<!-- Leaflet 1.9.4 and markercluster 1.5.3, served from here rather than from
+     unpkg: a school or municipal network that blocks the CDN used to get a
+     blank page, and a third party could otherwise change the code that runs
+     on every visit. -->
+<link rel="stylesheet" href="leaflet-1.9.4.css">
+<link rel="stylesheet" href="MarkerCluster-1.5.3.css">
+<script src="leaflet-1.9.4.js"></script>
+<script src="leaflet.markercluster-1.5.3.js"></script>
 <style>
   :root {
     color-scheme: light;
     --page: #f4f6f9;
     --surface: rgba(255,255,255,.85);
     --surface-solid: #ffffff;
-    --ink: #0f1720; --ink-2: #46525e; --ink-3: #8b959f;
+    /* --ink-3 carries every smallest string in the app — 9px legend labels,
+       10.5px field labels, the source note — so it has to clear 4.5:1 */
+    --ink: #0f1720; --ink-2: #46525e; --ink-3: #6b7480;
     --line: rgba(15,23,32,.09);
     --accent: #2a78d6; --accent-soft: rgba(42,120,214,.10);
     --context: #c3cdd6;
     --seq-250:#86b6ef; --seq-350:#5598e7; --seq-450:#2a78d6; --seq-550:#1c5cab; --seq-700:#0d366b;
     --shadow: 0 10px 32px rgba(15,23,32,.12), 0 1px 3px rgba(15,23,32,.08);
-    --good: #0ca30c;
+    --good: #0b7f0b;
+    --danger: #c0392f;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -57,12 +66,14 @@
       --page: #0e1116;
       --surface: rgba(23,27,33,.85);
       --surface-solid: #171b21;
-      --ink: #f2f5f8; --ink-2: #a9b4c0; --ink-3: #6d7681;
+      --ink: #f2f5f8; --ink-2: #a9b4c0; --ink-3: #8b95a1;
       --line: rgba(255,255,255,.09);
       --accent: #3987e5; --accent-soft: rgba(57,135,229,.14);
       --context: #3a4553;
       --seq-250:#9ec5f4; --seq-350:#6da7ec; --seq-450:#3987e5; --seq-550:#256abf; --seq-700:#184f95;
       --shadow: 0 10px 32px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.4);
+      --good: #3fbf4a;              /* the one token that had no dark value */
+      --danger: #e26b6e;
     }
   }
 
@@ -143,6 +154,7 @@
   #intro .keyrow { display: flex; gap: 16px; margin: 10px 0 2px; flex-wrap: wrap; }
   #intro .key { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--ink-3); }
   #intro .key .swatch { flex: none; }
+  #intro .caveat a { color: var(--accent); }
   #intro .caveat {
     font-size: 11.5px; line-height: 1.5; color: var(--ink-3);
     border-top: 1px solid var(--line); padding-top: 12px; margin-top: 16px;
@@ -197,7 +209,7 @@
   }
   #contact .err {
     margin-top: 12px; padding: 9px 11px; border-radius: 9px; font-size: 12.5px;
-    background: rgba(200,40,40,.12); color: #d0464a;
+    background: rgba(200,40,40,.12); color: var(--danger);
   }
   #contact .cta[disabled] { opacity: .55; cursor: progress; }
   /* honeypot: off-screen rather than display:none, which some bots skip */
@@ -307,6 +319,14 @@
   .meta a { color: var(--accent); text-decoration: none; font-weight: 550; }
   .meta a:hover { text-decoration: underline; }
 
+  /* what the county did to this school: a merger, a disputed figure, a year
+     published from a different intake round */
+  .notes { padding: 10px 18px 0; display: grid; gap: 5px; }
+  .notes p {
+    font-size: 11.5px; line-height: 1.45; color: var(--ink-2);
+    border-left: 2px solid var(--line); padding: 1px 0 1px 9px;
+  }
+  .round.stale { background: transparent; color: var(--ink-2); border: 1px dashed var(--ink-3); }
   .hero { display: flex; gap: 26px; padding: 14px 18px 12px; border-bottom: 1px solid var(--line); }
   .hero .cell .v { font-size: 26px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
   .hero .cell .v.up { color: var(--good); } .hero .cell .v.dn { color: var(--ink-2); }
@@ -482,7 +502,7 @@
 <noscript>
   <div style="padding:26px 22px;max-width:640px;font-size:15px;line-height:1.5">
     <h1 style="font-size:20px;margin-bottom:8px">Poengkart</h1>
-    <p>Kartet krever JavaScript. Datasettet (poenggrenser for 193 videregående
+    <p>Kartet krever JavaScript. Datasettet (poenggrenser for 191 videregående
        skoler i sju fylker, 2017–2026) kan lastes ned direkte som
        <a href="data/schools.json">schools.json</a>.</p>
     <p style="margin-top:8px">This map needs JavaScript. The underlying dataset is
@@ -495,6 +515,7 @@
     <div class="scroll">
       <div class="photo" id="s-photo"></div>
       <div class="meta" id="s-meta"></div>
+      <div class="notes" id="s-notes" hidden></div>
       <div class="hero" id="s-hero"></div>
       <div class="chart-card">
         <div class="chart-head">
@@ -764,6 +785,18 @@ const T = {
   docTitle:   { no: 'Inntak på grunnlag av dokumentasjon (f.eks. IB eller toppidrett) – ingen poenggrense.',
                 en: 'Admission on documented grounds (e.g. IB or elite sport) — no points threshold.' },
   tipNoData:  { no: y => `Ingen data for ${y}`, en: y => `No data for ${y}` },
+  tipStale:   { no: y => `Ingen tall etter ${y}`, en: y => `No figures after ${y}` },
+  staleChip:  { no: y => `Ingen tall etter ${y}`, en: y => `No figures after ${y}` },
+  staleTitle: { no: 'Fylket har ikke publisert tall for denne skolen de siste årene. Historikken under er den siste som finnes.',
+                en: 'The county has not published figures for this school in recent years. The history below is the last there is.' },
+  introData:  { no: 'Last ned hele datasettet (JSON).', en: 'Download the whole dataset (JSON).' },
+  listAnd:    { no: ' og ', en: ' and ' },
+  mergedNote: { no: (from, y) => `Skolen ble slått sammen fra ${from} i ${y}. Tall før ${y} er fra disse skolene.`,
+                en: (from, y) => `This school was formed from ${from} in ${y}. Figures before ${y} come from those schools.` },
+  uncertainNote: { no: y => `Tallene for ${y} er usikre: to publikasjoner fra fylket oppgir ulike verdier.`,
+                   en: y => `The figures for ${y} are uncertain: two county publications give different values.` },
+  roundYearNote: { no: (y, r) => `${y}-tallene er fra ${r}. inntak, ikke samme runde som de andre årene – flere kom inn, så grensene ligger lavere.`,
+                   en: (y, r) => `The ${y} figures are from intake round ${r}, not the same round as the other years — more applicants were admitted, so the thresholds sit lower.` },
   closeAria:  { no: 'Lukk skoledetaljer', en: 'Close school details' },
   markerAria: { no: (n, v) => `${n}. ${v}. Trykk for detaljer.`, en: (n, v) => `${n}. ${v}. Press to open details.` },
   gone:       { no: 'Utgått', en: 'Discontinued' },
@@ -776,6 +809,8 @@ const T = {
   bootFailSub:{ no: 'Datasettet svarte ikke. Sjekk nettforbindelsen og prøv igjen.',
                 en: 'The dataset did not answer. Check your connection and try again.' },
   bootRetry:  { no: 'Prøv igjen', en: 'Try again' },
+  bootFailApp:{ no: 'Noe gikk galt da kartet skulle bygges. Prøv å laste siden på nytt.',
+                en: 'Something went wrong while building the map. Try reloading the page.' },
   sideLabel:  { no: 'Skoledetaljer', en: 'School details' },
   langLabel:  { no: 'Språk', en: 'Language' },
   pageTitle:  { no: 'Poengkart – poenggrenser for videregående skole',
@@ -847,6 +882,9 @@ function partitionPrograms(progs) {
   return { regular, orphans, prioNames };
 }
 const visibleCount = s => { const pp = partitionPrograms(s.programs); return pp.regular.length + pp.orphans.length; };
+// the newest year in the dataset, or the one before it: anything older is a
+// school the counties have stopped publishing
+const staleBefore = () => +DATA.years[DATA.years.length - 1] - 1;
 function schoolPressure(s, cat) {
   // Demand, judged in the newest dataset year only. Two honest signals:
   //   median threshold of the programmes that filled up  -> how hard, typically
@@ -859,10 +897,20 @@ function schoolPressure(s, cat) {
   const years = [...new Set(scope.flatMap(p => Object.keys(p.values)))].sort();
   const yr = years[years.length - 1];
   if (!yr) return { kind: 'none' };
+  // A dot the colour of a 2022 figure, under a legend that says "siste år",
+  // is a school that looks current and is not. Show those as no data and let
+  // the panel keep the history.
+  if (+yr < staleBefore()) return { kind: 'stale', year: yr };
   const pool = scope.filter(p => yr in p.values && p.values[yr] !== 'F' && p.values[yr] !== 'U');
-  const nums = pool.map(p => p.values[yr]).filter(v => typeof v === 'number').sort((a, b) => a - b);
-  const openN = pool.filter(p => p.values[yr] === 'open').length;
-  const total = nums.length + openN;
+  const cells = pool.map(p => p.values[yr]);
+  // Several counties publish 0,0, and legend it: the programme filled up, but
+  // the last applicant admitted had no points. It counts as filled, and it is
+  // not a threshold — averaged in as a number it dragged five schools into the
+  // lowest colour band on the strength of a figure that means "no threshold".
+  const zeroN = cells.filter(v => v === 0).length;
+  const nums = cells.filter(v => typeof v === 'number' && v > 0).sort((a, b) => a - b);
+  const openN = cells.filter(v => v === 'open').length;
+  const total = nums.length + openN + zeroN;
   if (!nums.length) return total ? { kind: 'open', year: yr, total } : { kind: 'none' };
   const mid = nums.length >> 1;
   const median = nums.length % 2 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
@@ -872,7 +920,8 @@ function schoolPressure(s, cat) {
     if (typeof v === 'number' && v > top) { top = v; topProg = p; }
   }
   return { kind: 'points', v: median, top, topProg, year: yr,
-           filled: nums.length, total, share: nums.length / total };
+           filled: nums.length + zeroN, total,
+           share: (nums.length + zeroN) / total };
 }
 const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(b => v < b.max).css);
 
@@ -929,6 +978,8 @@ function drawMarkers() {
                `<br>${t('tipTop')} ${fmt(st8.top)} · ${esc(st8.topProg.program)}`;
       } else if (st8.kind === 'open') {
         line = t('tipAllOpen', st8.year);
+      } else if (st8.kind === 'stale') {
+        line = t('tipStale', st8.year);
       } else {
         const sy = yearSpan(s);
         line = t('tipNoData', sy ? sy.split('–').pop() : DATA.years[DATA.years.length - 1]);
@@ -936,6 +987,7 @@ function drawMarkers() {
     } else {
       line = st8.kind === 'points' ? `${CATS[mapCat][lang]}: ` + t('tipMedian', fmt(st8.v), st8.filled, st8.total)
            : st8.kind === 'open' ? `${CATS[mapCat][lang]}: ${t('allIn').toLowerCase()} (${st8.year})`
+           : st8.kind === 'stale' ? `${CATS[mapCat][lang]}: ` + t('tipStale', st8.year)
            : `${CATS[mapCat][lang]}: –`;
     }
     const html = `<div class="n">${esc(s.name)}</div><div class="v">${line}</div>` +
@@ -1106,6 +1158,14 @@ function closeSide(fromHistory) {
   (back && back.offsetParent ? back : document.getElementById('map-cat'))?.focus();
 }
 
+// Rogaland's image handler serves nothing but the original: a width in the
+// path 404s and one in the query is ignored. Those few go through the host's
+// image optimiser instead; every other photo already asks its own server for a
+// display-sized rendition when the dataset is built.
+const photoSrc = u => (/\/bv\.ashx\//.test(u) && location.protocol === 'https:'
+                       && !/^(localhost|127\.)/.test(location.hostname))
+  ? `/_vercel/image?url=${encodeURIComponent(u)}&w=960&q=75` : u;
+
 function renderSide() {
   // current outlives closeSide, so a language or theme change would otherwise
   // rebuild the whole panel — minimap included — inside a zero-width box
@@ -1126,11 +1186,22 @@ function renderSide() {
         : esc(creditText)) + '</div>'
     : '';
   const pos = s.photo_position ? ` style="--photo-pos:${esc(s.photo_position)}"` : '';
-  ph.innerHTML = (s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy"${pos}>`
+  ph.innerHTML = (s.photo ? `<img src="${esc(photoSrc(s.photo))}" data-full="${esc(s.photo)}"`
+                          + ` alt="" loading="lazy"${pos}>`
                           : `<div id="s-minimap"></div>`) +
     `<div class="veil"></div>` +
     `<button class="close" onclick="closeSide()" aria-label="${esc(t('closeAria'))}">✕</button>` +
     `<div class="name"><h2>${esc(s.name)}</h2>${credit}</div>`;
+  // an optimiser that is not there, or a county URL that has expired since the
+  // last build, should not leave a broken image in the header
+  const pimg = ph.querySelector('img');
+  if (pimg) {
+    pimg.onerror = () => {
+      pimg.onerror = null;
+      if (pimg.dataset.full && pimg.src !== pimg.dataset.full) pimg.src = pimg.dataset.full;
+      else { pimg.remove(); ph.querySelector('.credit')?.remove(); }
+    };
+  }
   // no freely licensed photo exists for this school: show where it actually is
   if (miniMap) { miniMap.remove(); miniMap = null; }
   if (!s.photo && s.lat) {
@@ -1154,14 +1225,35 @@ function renderSide() {
   meta.push(s.round
     ? `<span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', s.round)}</span>`
     : `<span class="round unknown" title="${esc(t('roundUnknownTitle'))}">${t('roundUnknown')}</span>`);
+  // the map shows this school as "no data"; say why, where the history is
+  const newest = [...new Set(s.programs.flatMap(p => Object.keys(p.values)))].sort().pop();
+  if (newest && +newest < staleBefore()) {
+    meta.push(`<span class="round stale" title="${esc(t('staleTitle'))}">`
+            + `${t('staleChip', newest)}</span>`);
+  }
   document.getElementById('s-meta').innerHTML = meta.join('');
+  // the county's own history of this school, where it is not one school's own
+  const notes = [];
+  if (s.merged_from && s.merged_year) {
+    notes.push(t('mergedNote', s.merged_from.join(t('listAnd')), s.merged_year));
+  }
+  if (s.uncertain_years && s.uncertain_years.length) {
+    notes.push(t('uncertainNote', s.uncertain_years.join(', ')));
+  }
+  const cy = (DATA.counties || []).find(c => c.fylke === s.fylke) || {};
+  const odd = Object.entries(cy.round_years || {})
+    .filter(([y]) => s.programs.some(p => y in p.values));
+  for (const [y, r] of odd) notes.push(t('roundYearNote', y, r));
+  const noteBox = document.getElementById('s-notes');
+  noteBox.innerHTML = notes.map(n => `<p>${esc(n)}</p>`).join('');
+  noteBox.hidden = !notes.length;
   // hero mirrors what the map encodes — the median threshold — so the two
   // never tell different stories; a category lens narrows both together
   const lensCat = mapCat !== 'all' ? mapCat : null;
   const cells = [];
   const medianAt = year => {
     const pool = (lensCat ? s.programs.filter(p => p.category === lensCat) : s.programs)
-      .map(p => p.values[year]).filter(v => typeof v === 'number').sort((a, b) => a - b);
+      .map(p => p.values[year]).filter(v => typeof v === 'number' && v > 0).sort((a, b) => a - b);
     if (!pool.length) return null;
     const mid = pool.length >> 1;
     return pool.length % 2 ? pool[mid] : (pool[mid - 1] + pool[mid]) / 2;
@@ -1677,7 +1769,8 @@ function renderIntro() {
     </div>`).join('');
   document.getElementById('intro-body').innerHTML =
     `<p class="lede">${esc(t('introLede'))}</p>${steps}` +
-    `<p class="caveat">${esc(t('introCaveat'))}</p>` +
+    `<p class="caveat">${esc(t('introCaveat'))} `
+      + `<a href="data/schools.json">${esc(t('introData'))}</a></p>` +
     `<button class="cta" onclick="closeIntro()">${esc(t('introCta'))}</button>`;
   document.getElementById('intro-x').setAttribute('aria-label', t('close'));
 }
@@ -1728,6 +1821,19 @@ function framePad() {
            paddingBottomRight: [12, bottom] };
 }
 
+// Without the dataset — or with one the map cannot be built from — every
+// render is a no-op and the page settles into empty chrome over a grey
+// rectangle with nothing to explain it. A build that shipped 191 schools and
+// no coordinates did exactly that, in silence.
+function bootFailed(subKey) {
+  document.getElementById('app').innerHTML =
+    `<div class="boot-fail"><p class="big">${esc(t('bootFail'))}</p>
+     <p>${esc(t(subKey))}</p>
+     <button class="cta" onclick="location.reload()">${esc(t('bootRetry'))}</button></div>`;
+  document.getElementById('panel').hidden = true;
+  document.getElementById('legend').hidden = true;
+}
+
 async function main() {
   try { lang = localStorage.getItem('pk-lang') || lang; } catch (e) {}
   try {
@@ -1735,15 +1841,7 @@ async function main() {
     if (!r.ok) throw new Error(String(r.status));
     DATA = await r.json();
   } catch (e) {
-    // Without the dataset every render below is a no-op, and the page settles
-    // into empty chrome over a grey rectangle with nothing to explain it.
-    document.getElementById('app').innerHTML =
-      `<div class="boot-fail"><p class="big">${esc(t('bootFail'))}</p>
-       <p>${esc(t('bootFailSub'))}</p>
-       <button class="cta" onclick="location.reload()">${esc(t('bootRetry'))}</button></div>`;
-    document.getElementById('panel').hidden = true;
-    document.getElementById('legend').hidden = true;
-    return;
+    return bootFailed('bootFailSub');
   }
   // Open on the whole dataset. This used to open on a hard-coded Rogaland view
   // and correct itself inside a requestAnimationFrame — but rAF does not fire
@@ -1788,7 +1886,7 @@ async function main() {
   try { seen = !!localStorage.getItem(INTRO_SEEN); } catch (e) {}
   if (!seen) setTimeout(openIntro, 420);
 }
-main();
+main().catch(e => { console.error(e); bootFailed('bootFailApp'); });
 </script>
 </body>
 </html>

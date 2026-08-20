@@ -34,7 +34,27 @@ const LABELS = {
 // Best effort only: serverless instances come and go, so this stops a naive
 // flood from one browser rather than a determined attacker.
 const seen = new Map();
-const RATE = { window: 60_000, max: 3 };
+const RATE = { window: 600_000, max: 3 };
+// The provider's free tier is 100 messages a day, and running it dry is what
+// turns this endpoint into an address discloser: every send after that fails,
+// and a failed send hands the browser a mailto: built from FEEDBACK_TO. At the
+// old 3-a-minute one address could drain the day's quota in half an hour.
+// Real feedback here is a handful a week, so a cap this far above the traffic
+// costs a genuine sender nothing and takes that path off the table.
+const DAY = { since: 0, sent: 0, max: 80 };
+
+function dayFull() {
+  const now = Date.now();
+  if (now - DAY.since > 86_400_000) { DAY.since = now; DAY.sent = 0; }
+  return DAY.sent >= DAY.max;
+}
+
+// A cross-site POST cannot read the reply, but it is still delivered: a
+// text/plain body is a "simple" request, so no browser asks permission first.
+// Any page in the world could have its visitors send mail here, one per
+// visitor, past a per-IP limit that never sees the same address twice.
+const SELF = /^https:\/\/poengkart(-[a-z0-9-]+)?\.vercel\.app$/;
+const LOCAL = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 
 function limited(ip) {
   const now = Date.now();
@@ -98,6 +118,12 @@ export default async function handler(req, res) {
     res.setHeader('Allow', 'GET, POST');
     return res.status(405).json({ error: 'method_not_allowed' });
   }
+  // absent on a same-origin form post from some browsers, present and wrong
+  // on every cross-site one
+  const origin = req.headers.origin || '';
+  if (origin && !SELF.test(origin) && !LOCAL.test(origin)) {
+    return res.status(403).json({ error: 'bad_origin' });
+  }
   const to = (process.env.FEEDBACK_TO || '').trim();
   if (!to) return res.status(503).json({ error: 'not_configured' });
 
@@ -119,6 +145,8 @@ export default async function handler(req, res) {
   // Honeypot: a real person never fills a field they cannot see. Answer 200 so
   // a bot learns nothing from the difference.
   if (clean(body.website, 50)) return res.status(200).json({ ok: true });
+
+  if (dayFull()) return res.status(429).json({ error: 'daily_cap' });
 
   const type = TYPES.has(body.type) ? body.type : 'annet';
   const message = multiline(body.message, MAX.message);
@@ -149,6 +177,7 @@ export default async function handler(req, res) {
     if (process.env.RESEND_API_KEY) await viaResend(subject, text, replyTo, to);
     else if (process.env.WEB3FORMS_KEY) await viaWeb3Forms(subject, text, replyTo);
     else return res.status(200).json({ ok: false, mailto: mailto() });
+    DAY.sent += 1;
     return res.status(200).json({ ok: true });
   } catch (err) {
     // The message is already written; hand it back rather than lose it.

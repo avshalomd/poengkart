@@ -2,5 +2,58 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": null,
   "outputDirectory": "web",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "images": {
+    "sizes": [
+      960
+    ],
+    "formats": [
+      "image/avif",
+      "image/webp"
+    ],
+    "minimumCacheTTL": 2678400,
+    "remotePatterns": [
+      {
+        "protocol": "https",
+        "hostname": "**.vgs.no"
+      },
+      {
+        "protocol": "https",
+        "hostname": "afk.no"
+      },
+      {
+        "protocol": "https",
+        "hostname": "bfk.no"
+      }
+    ]
+  },
+  "headers": [
+    {
+      "source": "/(favicon.svg|favicon.ico|favicon-32.png|favicon-192.png|apple-touch-icon.png|og.png)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=2592000"
+        }
+      ]
+    },
+    {
+      "source": "/(leaflet-1.9.4.js|leaflet-1.9.4.css|leaflet.markercluster-1.5.3.js|MarkerCluster-1.5.3.css)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
 }

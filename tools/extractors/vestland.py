@@ -236,6 +236,25 @@ RENAMED = {
     'Førde vidaregåande skule, avd Høyanger': 'Høyanger vidaregåande skule',
 }
 
+# Hafstad and Mo og Øyrane became one school in 2023, in one new building, and
+# the county stopped publishing them separately. Published apart they are three
+# pins around Førde with no overlapping years and no history on the one that
+# still exists. They share no programme between them — Hafstad's seven were
+# academic, Mo og Øyrane's thirty vocational — so joining them invents no
+# figure and hides no disagreement. The school carries a note saying where the
+# older years come from.
+MERGED = {
+    'Hafstad videregående skule': ('Førde vidaregåande skule', 2023),
+    'Mo og Øyrane vidaregåande skule': ('Førde vidaregåande skule', 2023),
+}
+
+
+def _identity(school):
+    """-> (name to publish under, (former name, year) if this is a merger)."""
+    if school in MERGED:
+        return MERGED[school][0], (school, MERGED[school][1])
+    return RENAMED.get(school, school), None
+
 
 def _hordaland(path, year, warn):
     rows = []
@@ -293,10 +312,12 @@ def extract():
         if not cells:
             continue
         for (school, program, level), v in cells.items():
-            school = RENAMED.get(school, school)
+            school, merged = _identity(school)
             row = {'school': school, 'program': program, 'level': level,
                    'values': {year: v}, 'county': META['fylke'],
                    'round': '1' if '1' in rounds else '3'}
+            if merged:
+                row['merged_from'], row['merged_year'] = merged
             if (school, program, level) in alt:
                 row['values_r3'] = {year: alt[(school, program, level)]}
             rows.append(row)

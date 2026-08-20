@@ -75,7 +75,10 @@
    "source": "https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/",
    "also_publishes": "3. inntak (kept in values_r3)",
    "round_note": "1. inntak for every year except 2023, where the county published only a 3. inntak file",
-   "schools": 44
+   "round_years": {
+    "2023": "3"
+   },
+   "schools": 42
   }
  ],
  "schools": [
@@ -520,7 +523,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/D%C3%B8nski_videreg%C3%A5ende_skole",
    "wiki_extract": "Dønski videregående skole ligger på Dønski i Bærum.",
    "address": "Rudsveien 73, 1346, GJETTUM",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/D%C3%B6nski_vdg_skole_IMG_0107.JPG/1280px-D%C3%B6nski_vdg_skole_IMG_0107.JPG",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/D%C3%B6nski_vdg_skole_IMG_0107.JPG/960px-D%C3%B6nski_vdg_skole_IMG_0107.JPG",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:D%C3%B6nski_vdg_skole_IMG_0107.JPG",
    "photo_credit": "Foto: Bjoertvedt (CC BY-SA 3.0)",
@@ -645,7 +648,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/Eikeli_videreg%C3%A5ende_skole",
    "wiki_extract": "Eikeli videregående skole er en offentlig videregående skole på Eikeli i Bærum. Skolen ble etablert i 1960 som Eikeli kommunale høyere almenskole.",
    "address": "Bispeveien 10, 1362, HOSLE",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Eikeli_Videreg%C3%A5ende_skole.JPG/1280px-Eikeli_Videreg%C3%A5ende_skole.JPG",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Eikeli_Videreg%C3%A5ende_skole.JPG/960px-Eikeli_Videreg%C3%A5ende_skole.JPG",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Eikeli_Videreg%C3%A5ende_skole.JPG",
    "photo_credit": "Foto: Paalso 2010 (CC BY-SA 3.0)",
@@ -869,7 +872,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/Jessheim_videreg%C3%A5ende_skole",
    "wiki_extract": "Jessheim videregående skole den største videregående skolen i Akershus fylke. Skolen har 1 500 elever og 265 ansatte og ligger i Jessheim sentrum. Bygningsmassen utgjør ca. 25 000 kvadratmeter. Skolen ble etablert i 1972. Ny skolebygning stod ferdig høsten 2017.",
    "address": "Ringvegen 60, 2066, JESSHEIM",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Jessheim_videreg%C3%A5ende_skole.jpg/1280px-Jessheim_videreg%C3%A5ende_skole.jpg",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Jessheim_videreg%C3%A5ende_skole.jpg/960px-Jessheim_videreg%C3%A5ende_skole.jpg",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Jessheim_videreg%C3%A5ende_skole.jpg",
    "photo_credit": "Foto: Charliealpha70 (CC BY-SA 4.0)",
@@ -1161,7 +1164,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/Nadderud_videreg%C3%A5ende_skole",
    "wiki_extract": "Nadderud videregående skole er en videregående skole på Bekkestua i Bærum kommune i Akershus fylke. Skolen har ca. 600 elever og rundt 100 ansatte. Den var fra 1958 lokalisert på Nadderud ved siden av Nadderud stadion, derav navnet, men et nytt bygg nærmere Haslum sto klart i 2004.",
    "address": "Gjønnesjordet 30, 1357, BEKKESTUA",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Nadderud_VGS.png/1280px-Nadderud_VGS.png",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Nadderud_VGS.png/960px-Nadderud_VGS.png",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Nadderud_VGS.png",
    "photo_credit": "Foto: Tarjei Mo (CC BY-SA 4.0)",
@@ -7483,7 +7486,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/Edvard_Munch_videreg%C3%A5ende_skole",
    "wiki_extract": "Edvard Munch videregående skole er en kombinert videregående skole i Oslo som tilbyr både yrkesfag og studiespesialiserende løp. Skolen ligger i Ullevålsveien 5.",
    "address": "Ullevålsveien 5, 0165, OSLO",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Edvard_Munch_vgs_oslo_akersgata_IMG_1599.JPG/1280px-Edvard_Munch_vgs_oslo_akersgata_IMG_1599.JPG",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Edvard_Munch_vgs_oslo_akersgata_IMG_1599.JPG/960px-Edvard_Munch_vgs_oslo_akersgata_IMG_1599.JPG",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Edvard_Munch_vgs_oslo_akersgata_IMG_1599.JPG",
    "photo_credit": "Foto: Bjoertvedt (CC BY-SA 4.0)",
@@ -11557,7 +11560,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/Haugaland_videreg%C3%A5ende_skole",
    "wiki_extract": "Haugaland videregående skole er en offentlig videregående skole i Haugesund i Rogaland fylkeskommune. Skolen tilbyr hovedsakelig yrkesfaglige utdanningsprogram, i tillegg til ett studieforberedende tilbud. Den ligger sørøst for Haugesund sentrum, i Lillesund, i samme gate som Vardafjell videregående skole.",
    "address": "Spannavegen 38, 5531 HAUGESUND",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Haugaland_videreg%C3%A5ende_skole%2C_juli_2026.jpg/1280px-Haugaland_videreg%C3%A5ende_skole%2C_juli_2026.jpg",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Haugaland_videreg%C3%A5ende_skole%2C_juli_2026.jpg/960px-Haugaland_videreg%C3%A5ende_skole%2C_juli_2026.jpg",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Haugaland_videreg%C3%A5ende_skole,_juli_2026.jpg",
    "photo_credit": "Foto: 12u (CC0)",
@@ -13876,16 +13879,6 @@
      }
     },
     {
-     "program": "Idrettsfag",
-     "level": "Vg1",
-     "category": "idrett",
-     "values": {
-      "2023": "open",
-      "2024": "open",
-      "2025": "open"
-     }
-    },
-    {
      "program": "Studiespesialisering",
      "level": "Vg1",
      "category": "st",
@@ -13980,7 +13973,9 @@
       "2020": 24.4,
       "2021": 20.0,
       "2022": "open",
-      "2023": "open"
+      "2023": "open",
+      "2024": "open",
+      "2025": 32.5
      }
     },
     {
@@ -14010,16 +14005,6 @@
      }
     },
     {
-     "program": "Avionikerfaget Landslinje",
-     "level": "Vg2/Vg3",
-     "category": "elektro",
-     "values": {
-      "2023": "F",
-      "2024": "F",
-      "2025": "F"
-     }
-    },
-    {
      "program": "Dronefag",
      "level": "Vg2/Vg3",
      "category": "elektro",
@@ -14045,16 +14030,6 @@
       "2023": 47.1,
       "2024": 48.9,
       "2025": 50.0
-     }
-    },
-    {
-     "program": "Industriteknologi",
-     "level": "Vg2/Vg3",
-     "category": "tip",
-     "values": {
-      "2023": "open",
-      "2024": "open",
-      "2025": 32.5
      }
     },
     {
@@ -14087,17 +14062,9 @@
       "2020": "F",
       "2021": "F",
       "2022": "F",
-      "2023": "F"
-     }
-    },
-    {
-     "program": "Avionikerfaget Landslinje",
-     "level": "Vg3",
-     "category": "elektro",
-     "values": {
-      "2019": "open",
-      "2020": "open",
-      "2021": "open"
+      "2023": "F",
+      "2024": "F",
+      "2025": "F"
      }
     },
     {
@@ -14126,16 +14093,6 @@
       "2023": "F",
       "2024": "F",
       "2025": "F"
-     }
-    },
-    {
-     "program": "Flyfag, Landslinje",
-     "level": "Vg3",
-     "category": "elektro",
-     "values": {
-      "2019": "open",
-      "2020": "open",
-      "2021": "open"
      }
     },
     {
@@ -16141,16 +16098,6 @@
      }
     },
     {
-     "program": "Tømrer",
-     "level": "Vg2/Vg3",
-     "category": "bygg",
-     "values": {
-      "2021": "open",
-      "2022": "open",
-      "2023": "open"
-     }
-    },
-    {
      "program": "Automatiseringsfaget",
      "level": "Vg3",
      "category": "elektro",
@@ -16165,6 +16112,9 @@
       "2025": 37.1
      }
     }
+   ],
+   "uncertain_years": [
+    2022
    ],
    "orgnr": "974624494",
    "url": "www.akrehamn.vgs.no",
@@ -16512,16 +16462,6 @@
       "2023": "U",
       "2024": "open",
       "2025": "open"
-     }
-    },
-    {
-     "program": "Idrettsfag",
-     "level": "Vg1",
-     "category": "idrett",
-     "values": {
-      "2023": "F",
-      "2024": "F",
-      "2025": "F"
      }
     },
     {
@@ -21944,6 +21884,9 @@
      "level": "Vg1",
      "category": "bygg",
      "values": {
+      "2020": 32.3,
+      "2021": 31.8,
+      "2022": 26.1,
       "2023": "open",
       "2024": 29.4,
       "2025": 30.6,
@@ -21960,6 +21903,8 @@
      "level": "Vg1",
      "category": "elektro",
      "values": {
+      "2021": 43.6,
+      "2022": 42.9,
       "2023": 42.7,
       "2024": 42.5,
       "2025": 37.0,
@@ -21972,10 +21917,21 @@
      }
     },
     {
+     "program": "Elektrofag",
+     "level": "Vg1",
+     "category": "elektro",
+     "values": {
+      "2020": 45.3
+     }
+    },
+    {
      "program": "Helse- og oppvekstfag",
      "level": "Vg1",
      "category": "helse",
      "values": {
+      "2020": 42.7,
+      "2021": 38.0,
+      "2022": 31.4,
       "2023": 41.4,
       "2024": 28.0,
       "2025": 39.4,
@@ -22006,6 +21962,9 @@
      "level": "Vg1",
      "category": "kda",
      "values": {
+      "2020": 24.0,
+      "2021": 32.7,
+      "2022": 16.3,
       "2023": "open",
       "2024": 35.7,
       "2025": 41.9,
@@ -22022,6 +21981,9 @@
      "level": "Vg1",
      "category": "mk",
      "values": {
+      "2020": 25.3,
+      "2021": 41.3,
+      "2022": 35.6,
       "2023": "open",
       "2024": "open",
       "2025": 36.3,
@@ -22038,6 +22000,9 @@
      "level": "Vg1",
      "category": "nat",
      "values": {
+      "2020": 33.1,
+      "2021": 28.0,
+      "2022": 30.2,
       "2023": "open",
       "2024": 38.7,
       "2025": "open",
@@ -22050,10 +22015,20 @@
      }
     },
     {
+     "program": "Naturbruk med hest",
+     "level": "Vg1",
+     "category": "nat",
+     "values": {
+      "2020": 35.0
+     }
+    },
+    {
      "program": "Naturbruk, hest",
      "level": "Vg1",
      "category": "nat",
      "values": {
+      "2021": 34.9,
+      "2022": 23.6,
       "2023": "open",
       "2024": 41.7,
       "2025": 20.7,
@@ -22070,6 +22045,9 @@
      "level": "Vg1",
      "category": "rm",
      "values": {
+      "2020": 25.3,
+      "2021": 24.0,
+      "2022": 23.8,
       "2023": 34.0,
       "2024": "open",
       "2025": 36.3,
@@ -22086,6 +22064,7 @@
      "level": "Vg1",
      "category": "sr",
      "values": {
+      "2020": 39.8,
       "2023": 39.6
      }
     },
@@ -22094,6 +22073,8 @@
      "level": "Vg1",
      "category": "sr",
      "values": {
+      "2021": 31.8,
+      "2022": 22.1,
       "2024": 36.3,
       "2025": 38.8,
       "2026": 31.9
@@ -22109,6 +22090,9 @@
      "level": "Vg1",
      "category": "st",
      "values": {
+      "2020": 35.7,
+      "2021": 44.2,
+      "2022": 41.4,
       "2023": 41.5,
       "2024": "open",
       "2025": 41.2,
@@ -22121,10 +22105,20 @@
      }
     },
     {
+     "program": "Teknikk og industriell produksjon",
+     "level": "Vg1",
+     "category": "tip",
+     "values": {
+      "2020": 34.0
+     }
+    },
+    {
      "program": "Teknologi- og industrifag",
      "level": "Vg1",
      "category": "tip",
      "values": {
+      "2021": 37.3,
+      "2022": 33.6,
       "2023": 31.7,
       "2024": 31.9,
       "2025": 27.3,
@@ -22141,6 +22135,8 @@
      "level": "Vg2",
      "category": "helse",
      "values": {
+      "2021": 53.8,
+      "2022": 53.8,
       "2023": 51.3,
       "2024": 53.3,
       "2025": 48.8,
@@ -22157,6 +22153,8 @@
      "level": "Vg2",
      "category": "bygg",
      "values": {
+      "2021": 38.8,
+      "2022": 34.3,
       "2023": 35.7,
       "2024": 38.6,
       "2025": 32.9,
@@ -22173,6 +22171,8 @@
      "level": "Vg2",
      "category": "helse",
      "values": {
+      "2021": 40.0,
+      "2022": 43.8,
       "2023": 45.0,
       "2024": 41.3,
       "2025": 21.3,
@@ -22189,6 +22189,8 @@
      "level": "Vg2",
      "category": "bygg",
      "values": {
+      "2021": 23.3,
+      "2022": 45.7,
       "2024": 38.6,
       "2025": 20.0,
       "2026": 24.3
@@ -22204,6 +22206,8 @@
      "level": "Vg2",
      "category": "elektro",
      "values": {
+      "2021": 40.0,
+      "2022": 31.4,
       "2023": "open",
       "2024": 24.3
      },
@@ -22216,6 +22220,8 @@
      "level": "Vg2",
      "category": "elektro",
      "values": {
+      "2021": 44.3,
+      "2022": 45.7,
       "2023": 42.9,
       "2024": 45.7,
       "2025": 32.9,
@@ -22232,6 +22238,8 @@
      "level": "Vg2",
      "category": "helse",
      "values": {
+      "2021": 43.8,
+      "2022": 30.0,
       "2023": "open",
       "2024": 45.0,
       "2025": 25.0,
@@ -22248,6 +22256,8 @@
      "level": "Vg2",
      "category": "helse",
      "values": {
+      "2021": 36.3,
+      "2022": 23.8,
       "2023": "open",
       "2024": 32.5,
       "2025": 37.5,
@@ -22264,6 +22274,8 @@
      "level": "Vg2",
      "category": "nat",
      "values": {
+      "2021": 28.6,
+      "2022": 31.4,
       "2023": 40.0,
       "2024": 18.6,
       "2025": 47.1,
@@ -22280,6 +22292,8 @@
      "level": "Vg2",
      "category": "tip",
      "values": {
+      "2021": 24.4,
+      "2022": 24.4,
       "2023": "open",
       "2024": 31.3,
       "2025": 33.8,
@@ -22296,6 +22310,8 @@
      "level": "Vg2",
      "category": "tip",
      "values": {
+      "2021": 41.3,
+      "2022": 40.0,
       "2023": 33.8,
       "2024": 27.5,
       "2025": 27.5,
@@ -22312,6 +22328,8 @@
      "level": "Vg2",
      "category": "rm",
      "values": {
+      "2021": 27.1,
+      "2022": 25.7,
       "2023": "open",
       "2024": 22.9,
       "2025": 24.3,
@@ -22328,6 +22346,8 @@
      "level": "Vg2",
      "category": "rm",
      "values": {
+      "2021": 31.4,
+      "2022": 32.9,
       "2023": 34.3,
       "2024": 32.9,
       "2025": 40.0,
@@ -22344,6 +22364,8 @@
      "level": "Vg2",
      "category": "sr",
      "values": {
+      "2021": 36.3,
+      "2022": 31.3,
       "2023": "open",
       "2024": 24.0,
       "2025": 32.2
@@ -22369,6 +22391,8 @@
      "level": "Vg2",
      "category": "tip",
      "values": {
+      "2021": 35.0,
+      "2022": 31.3,
       "2023": "open",
       "2024": 20.0,
       "2025": 35.0,
@@ -22385,6 +22409,8 @@
      "level": "Vg2",
      "category": "bygg",
      "values": {
+      "2021": 31.4,
+      "2022": 24.3,
       "2023": "open",
       "2024": 31.4,
       "2025": 21.4,
@@ -22401,6 +22427,8 @@
      "level": "Vg3",
      "category": "nat",
      "values": {
+      "2021": 32.9,
+      "2022": 40.0,
       "2023": "open",
       "2024": 25.7
      },
@@ -22420,6 +22448,14 @@
      }
     },
     {
+     "program": "Påbygg gen studiekomp etter yrkeskompetanse",
+     "level": "Vg3",
+     "category": "pb",
+     "values": {
+      "2021": 45.6
+     }
+    },
+    {
      "program": "Påbygg. gen. studiekomp. etter yrkeskomp",
      "level": "Vg3",
      "category": "pb",
@@ -22432,6 +22468,7 @@
      "level": "Vg3",
      "category": "pb",
      "values": {
+      "2022": 50.0,
       "2023": 36.3,
       "2024": 40.0,
       "2025": 48.8,
@@ -22444,92 +22481,24 @@
      }
     },
     {
-     "program": "Studieforberedende naturbruk",
-     "level": "Vg3",
-     "category": "nat",
-     "values": {
-      "2026": "open"
-     },
-     "values_r3": {
-      "2026": "open"
-     }
-    }
-   ],
-   "catchment": true,
-   "orgnr": "974571110",
-   "url": "www.forde.vgs.no",
-   "address": "Naustdalsvegen 12, 6800, FØRDE",
-   "nsr_name": "Førde vidaregåande skule",
-   "lat": 61.45628,
-   "lon": 5.85221
-  },
-  {
-   "name": "Hafstad videregående skule",
-   "fylke": "Vestland",
-   "fylkesnummer": "46",
-   "round": "1",
-   "programs": [
-    {
-     "program": "Kunst, design og arkitektur",
-     "level": "Vg1",
-     "category": "kda",
-     "values": {
-      "2020": 24.0,
-      "2021": 32.7,
-      "2022": 16.3
-     },
-     "values_r3": {
-      "2020": "open"
-     }
-    },
-    {
-     "program": "Medier og kommunikasjon",
-     "level": "Vg1",
-     "category": "mk",
-     "values": {
-      "2020": 25.3,
-      "2021": 41.3,
-      "2022": 35.6
-     },
-     "values_r3": {
-      "2020": "open"
-     }
-    },
-    {
-     "program": "Studiespesialisering",
-     "level": "Vg1",
-     "category": "st",
-     "values": {
-      "2020": 35.7,
-      "2021": 44.2,
-      "2022": 41.4
-     },
-     "values_r3": {
-      "2020": 33.7
-     }
-    },
-    {
-     "program": "Påbygg gen studiekomp etter yrkeskompetanse",
-     "level": "Vg3",
-     "category": "pb",
-     "values": {
-      "2021": 45.6
-     }
-    },
-    {
-     "program": "Påbygg. gen. studiekompetanse",
-     "level": "Vg3",
-     "category": "pb",
-     "values": {
-      "2022": 50.0
-     }
-    },
-    {
      "program": "Påbygging til generell studiekompetanse",
      "level": "Vg3",
      "category": "pb",
      "values": {
       "2021": 46.3
+     }
+    },
+    {
+     "program": "Studieforberedende naturbruk",
+     "level": "Vg3",
+     "category": "nat",
+     "values": {
+      "2021": 27.5,
+      "2022": 26.7,
+      "2026": "open"
+     },
+     "values_r3": {
+      "2026": "open"
      }
     },
     {
@@ -22541,13 +22510,18 @@
      }
     }
    ],
+   "merged_from": [
+    "Hafstad videregående skule",
+    "Mo og Øyrane vidaregåande skule"
+   ],
+   "merged_year": 2023,
    "catchment": true,
-   "orgnr": "974571102",
-   "url": "www.hafstad.vgs.no/",
-   "address": "Hafstadvegen 49, 6800, FØRDE",
-   "nsr_name": "Hafstad videregående skule",
-   "lat": 61.44991,
-   "lon": 5.86422
+   "orgnr": "974571110",
+   "url": "www.forde.vgs.no",
+   "address": "Naustdalsvegen 12, 6800, FØRDE",
+   "nsr_name": "Førde vidaregåande skule",
+   "lat": 61.45628,
+   "lon": 5.85221
   },
   {
    "name": "Høyanger vidaregåande skule",
@@ -23910,312 +23884,6 @@
    "nsr_name": "Langhaugen videregående skole",
    "lat": 60.36253,
    "lon": 5.36216
-  },
-  {
-   "name": "Mo og Øyrane vidaregåande skule",
-   "fylke": "Vestland",
-   "fylkesnummer": "46",
-   "round": "1",
-   "programs": [
-    {
-     "program": "Bygg- og anleggsteknikk",
-     "level": "Vg1",
-     "category": "bygg",
-     "values": {
-      "2020": 32.3,
-      "2021": 31.8,
-      "2022": 26.1
-     },
-     "values_r3": {
-      "2020": 23.6
-     }
-    },
-    {
-     "program": "Elektro og datateknologi",
-     "level": "Vg1",
-     "category": "elektro",
-     "values": {
-      "2021": 43.6,
-      "2022": 42.9
-     }
-    },
-    {
-     "program": "Elektrofag",
-     "level": "Vg1",
-     "category": "elektro",
-     "values": {
-      "2020": 45.3
-     },
-     "values_r3": {
-      "2020": 45.3
-     }
-    },
-    {
-     "program": "Helse- og oppvekstfag",
-     "level": "Vg1",
-     "category": "helse",
-     "values": {
-      "2020": 42.7,
-      "2021": 38.0,
-      "2022": 31.4
-     },
-     "values_r3": {
-      "2020": 42.4
-     }
-    },
-    {
-     "program": "Naturbruk",
-     "level": "Vg1",
-     "category": "nat",
-     "values": {
-      "2020": 33.1,
-      "2021": 28.0,
-      "2022": 30.2
-     },
-     "values_r3": {
-      "2020": 26.7
-     }
-    },
-    {
-     "program": "Naturbruk med hest",
-     "level": "Vg1",
-     "category": "nat",
-     "values": {
-      "2020": 35.0
-     },
-     "values_r3": {
-      "2020": 39.3
-     }
-    },
-    {
-     "program": "Naturbruk, hest",
-     "level": "Vg1",
-     "category": "nat",
-     "values": {
-      "2021": 34.9,
-      "2022": 23.6
-     }
-    },
-    {
-     "program": "Restaurant- og matfag",
-     "level": "Vg1",
-     "category": "rm",
-     "values": {
-      "2020": 25.3,
-      "2021": 24.0,
-      "2022": 23.8
-     },
-     "values_r3": {
-      "2020": "open"
-     }
-    },
-    {
-     "program": "Sal, service og reiseliv",
-     "level": "Vg1",
-     "category": "sr",
-     "values": {
-      "2020": 39.8
-     },
-     "values_r3": {
-      "2020": 39.3
-     }
-    },
-    {
-     "program": "Salg, service og reiseliv",
-     "level": "Vg1",
-     "category": "sr",
-     "values": {
-      "2021": 31.8,
-      "2022": 22.1
-     }
-    },
-    {
-     "program": "Teknikk og industriell produksjon",
-     "level": "Vg1",
-     "category": "tip",
-     "values": {
-      "2020": 34.0
-     },
-     "values_r3": {
-      "2020": 34.0
-     }
-    },
-    {
-     "program": "Teknologi- og industrifag",
-     "level": "Vg1",
-     "category": "tip",
-     "values": {
-      "2021": 37.3,
-      "2022": 33.6
-     }
-    },
-    {
-     "program": "Ambulansefag",
-     "level": "Vg2",
-     "category": "helse",
-     "values": {
-      "2021": 53.8,
-      "2022": 53.8
-     }
-    },
-    {
-     "program": "Anleggsteknikk",
-     "level": "Vg2",
-     "category": "bygg",
-     "values": {
-      "2021": 38.8,
-      "2022": 34.3
-     }
-    },
-    {
-     "program": "Barne- og ungdomsarbeider",
-     "level": "Vg2",
-     "category": "helse",
-     "values": {
-      "2021": 40.0,
-      "2022": 43.8
-     }
-    },
-    {
-     "program": "Betong og mur",
-     "level": "Vg2",
-     "category": "bygg",
-     "values": {
-      "2021": 23.3,
-      "2022": 45.7
-     }
-    },
-    {
-     "program": "Datateknologi og elektronikk",
-     "level": "Vg2",
-     "category": "elektro",
-     "values": {
-      "2021": 40.0,
-      "2022": 31.4
-     }
-    },
-    {
-     "program": "Elenergi og ekom",
-     "level": "Vg2",
-     "category": "elektro",
-     "values": {
-      "2021": 44.3,
-      "2022": 45.7
-     }
-    },
-    {
-     "program": "Helsearbeiderfag",
-     "level": "Vg2",
-     "category": "helse",
-     "values": {
-      "2021": 43.8,
-      "2022": 30.0
-     }
-    },
-    {
-     "program": "Helseservicefag",
-     "level": "Vg2",
-     "category": "helse",
-     "values": {
-      "2021": 36.3,
-      "2022": 23.8
-     }
-    },
-    {
-     "program": "Heste- og dyrefag",
-     "level": "Vg2",
-     "category": "nat",
-     "values": {
-      "2021": 28.6,
-      "2022": 31.4
-     }
-    },
-    {
-     "program": "Industriteknologi",
-     "level": "Vg2",
-     "category": "tip",
-     "values": {
-      "2021": 24.4,
-      "2022": 24.4
-     }
-    },
-    {
-     "program": "Kjøretøy",
-     "level": "Vg2",
-     "category": "tip",
-     "values": {
-      "2021": 41.3,
-      "2022": 40.0
-     }
-    },
-    {
-     "program": "Kokk- og servitørfag",
-     "level": "Vg2",
-     "category": "rm",
-     "values": {
-      "2021": 27.1,
-      "2022": 25.7
-     }
-    },
-    {
-     "program": "Landbruk og gartnernæring",
-     "level": "Vg2",
-     "category": "rm",
-     "values": {
-      "2021": 31.4,
-      "2022": 32.9
-     }
-    },
-    {
-     "program": "Salg og reiseliv",
-     "level": "Vg2",
-     "category": "sr",
-     "values": {
-      "2021": 36.3,
-      "2022": 31.3
-     }
-    },
-    {
-     "program": "Transport og logistikk",
-     "level": "Vg2",
-     "category": "tip",
-     "values": {
-      "2021": 35.0,
-      "2022": 31.3
-     }
-    },
-    {
-     "program": "Tømrer",
-     "level": "Vg2",
-     "category": "bygg",
-     "values": {
-      "2021": 31.4,
-      "2022": 24.3
-     }
-    },
-    {
-     "program": "Landbruk",
-     "level": "Vg3",
-     "category": "nat",
-     "values": {
-      "2021": 32.9,
-      "2022": 40.0
-     }
-    },
-    {
-     "program": "Studieforberedende naturbruk",
-     "level": "Vg3",
-     "category": "nat",
-     "values": {
-      "2021": 27.5,
-      "2022": 26.7
-     }
-    }
-   ],
-   "catchment": true,
-   "lat": 61.4339,
-   "lon": 5.98465,
-   "nsr_name": "(manual)"
   },
   {
    "name": "Måløy vidaregåande skule",

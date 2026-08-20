@@ -89,6 +89,41 @@ def main():
                 if s['name'] == sname and s['fylke'] == mod.META['fylke']:
                     s['uncertain_years'] = years
 
+    # ...and any year two publications disagree about by close to a whole grade
+    # point, whether or not anyone listed it by hand. Åkrehamn's 2022 figure
+    # differs by 20.4 points between two Rogaland editions and carried no mark
+    # at all, while a hand-written entry flagged gaps a quarter that size.
+    DRIFT_LIMIT = 8.0
+    for d in drift:
+        if not (isinstance(d['kept'], (int, float))
+                and isinstance(d['ignored'], (int, float))
+                and abs(d['kept'] - d['ignored']) >= DRIFT_LIMIT):
+            continue
+        for s in out['schools']:
+            if s['name'] == d['school'] and s['fylke'] == d['county']:
+                years = s.setdefault('uncertain_years', [])
+                if int(d['year']) not in years:
+                    years.append(int(d['year']))
+                    years.sort()
+
+    # A county can publish one year from a different intake round than the rest
+    # of its series — Vestland's 2023 figures are from 3. inntak, where far more
+    # applicants have been admitted — and a reader comparing 2022 to 2023 to
+    # 2024 has no way to know. Record the exceptions against the county.
+    per_year = {}
+    for _, rows in all_rows:
+        for r in rows:
+            if not r.get('round'):
+                continue
+            for y in r['values']:
+                (per_year.setdefault(r.get('county', ''), {})
+                         .setdefault(str(y), set()).add(r['round']))
+    for c in counties:
+        odd = {y: sorted(rs)[0] for y, rs in sorted(per_year.get(c['fylke'], {}).items())
+               if len(rs) == 1 and sorted(rs)[0] != c.get('round')}
+        if odd:
+            c['round_years'] = odd
+
     if os.path.exists(OUT):                      # keep enrichment across re-runs
         old = {(s.get('fylke'), s['name']): s for s in json.load(open(OUT))['schools']}
         for s in out['schools']:
