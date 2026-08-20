@@ -8,11 +8,18 @@ schools (videregående skoler) — on a map, with up to 9 years of history
 Oslo, Rogaland, Trøndelag and Vestland. Hover a school for the headline
 numbers, click it for every programme with trends. Norwegian and English.
 
-Only 7 of Norway's 15 counties publish these figures at all — Agder, Nordland
-and Østfold state on the record that they choose not to, and five more publish
-nothing findable. Each county also publishes a *different intake round*, and
-thresholds fall between rounds, so the app labels every figure with its round
-and warns when a view mixes them.
+Only 7 of Norway's 15 counties publish these figures at all. Agder, Nordland
+and Østfold say on the record that they choose not to; Vestfold, Troms and
+Finnmark publish only aggregate intake statistics (applicants, offers, and in
+Vestfold's case per-school head-counts) with no thresholds; Telemark is the one
+county still worth chasing — it appears in vilbli's county-information block
+alongside four counties that *are* covered here, but the block would not render
+during verification. Møre og Romsdal publishes behind a Power BI dashboard.
+
+Each county also publishes a *different intake round*, and thresholds fall
+between rounds, so the app labels every figure with its round — including
+"round not stated" for the two counties that never say — and warns when a view
+mixes them.
 
 ![Map of Norway with upper secondary schools coloured by admission pressure](docs/map.png)
 

@@ -29,7 +29,8 @@
    "rights": "ungdomsrett",
    "free_choice": false,
    "levels": "Vg1–Vg4",
-   "source": "https://innlandetfylke.no/tjenester/skole-og-utdanning/opplaring-i-skole/soke-skoleplass/",
+   "source": "https://www.vilbli.no/nb/innlandet/a/poengsum-og-karakterer-6",
+   "source_note": "exact vilbli attachment URL not yet pinned",
    "schools": 22
   },
   {
@@ -19237,12 +19238,12 @@
     }
    ],
    "catchment": true,
-   "lat": 60.3934,
-   "lon": 5.33084,
    "orgnr": "874557102",
-   "nsr_name": "Bergen katedralskole",
+   "url": "www.bergenkatedralskole.vgs.no/",
    "address": "Kong Oscars gate 36, 5017, BERGEN",
-   "url": "www.bergenkatedralskole.vgs.no/"
+   "nsr_name": "Bergen katedralskole",
+   "lat": 60.3934,
+   "lon": 5.33084
   },
   {
    "name": "Bømlo vidaregåande skule",
@@ -20109,12 +20110,12 @@
     }
    ],
    "catchment": true,
-   "lat": 61.77388,
-   "lon": 6.22051,
    "orgnr": "974571161",
-   "nsr_name": "Firda vidaregåande skule",
+   "url": "firda.vgs.no/",
    "address": "Firdavegen 21, 6823, SANDANE",
-   "url": "firda.vgs.no/"
+   "nsr_name": "Firda vidaregåande skule",
+   "lat": 61.77388,
+   "lon": 6.22051
   },
   {
    "name": "Fitjar vidaregåande skule",
@@ -22814,12 +22815,12 @@
     }
    ],
    "catchment": true,
-   "lat": 60.36253,
-   "lon": 5.36216,
    "orgnr": "974557096",
-   "nsr_name": "Langhaugen videregående skole",
+   "url": "www.langhaugen.vgs.no/",
    "address": "Hagerups vei 17, 5093, BERGEN",
-   "url": "www.langhaugen.vgs.no/"
+   "nsr_name": "Langhaugen videregående skole",
+   "lat": 60.36253,
+   "lon": 5.36216
   },
   {
    "name": "Mo og Øyrane vidaregåande skule",
@@ -23860,12 +23861,12 @@
     }
    ],
    "catchment": true,
-   "lat": 60.19509,
-   "lon": 5.45895,
    "orgnr": "974556995",
-   "nsr_name": "Os gymnas",
+   "url": "www.osgymnas.vgs.no/",
    "address": "Gymnasvegen 85, 5200, OS",
-   "url": "www.osgymnas.vgs.no/"
+   "nsr_name": "Os gymnas",
+   "lat": 60.19509,
+   "lon": 5.45895
   },
   {
    "name": "Os vidaregåande skule",

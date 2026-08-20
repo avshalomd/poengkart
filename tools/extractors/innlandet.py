@@ -23,7 +23,13 @@ SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 META = {
     'code': '34', 'fylke': 'Innlandet', 'round': '2', 'rights': 'ungdomsrett',
     'free_choice': False, 'levels': 'Vg1–Vg4',
-    'source': 'https://innlandetfylke.no/tjenester/skole-og-utdanning/opplaring-i-skole/soke-skoleplass/',
+    # innlandetfylke.no does not host or link this PDF — its own search, its
+    # sitemap and the Wayback index all return nothing for "poenggrense".
+    # The file is distributed through vilbli's county-information block (the
+    # same channel as Rogaland and Trøndelag); the exact Artikkelvedlegg URL is
+    # not yet pinned — see .claude/research/national-expansion.md
+    'source': 'https://www.vilbli.no/nb/innlandet/a/poengsum-og-karakterer-6',
+    'source_note': 'exact vilbli attachment URL not yet pinned',
 }
 
 
