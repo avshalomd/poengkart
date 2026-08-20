@@ -168,50 +168,11 @@ def guess_level(program, explicit=None):
     return 'Vg2/Vg3'
 
 
-# --- categories (national utdanningsprogram) ----------------------------
-CATEGORY_RULES = [
-    ('pb',      ['påbygg']),
-    ('elektro', ['elektro', 'elenergi', 'automatiser', 'automasjon', 'datateknologi',
-                 'dataelektronik', 'flyfag', 'avionik', 'drone', 'kulde', 'ventilasjon']),
-    ('im',      ['informasjonsteknologi', 'medieproduksjon', 'medieprod',
-                 'inform.tekn', 'inform.ekn', 'ikt']),
-    ('helse',   ['helse', 'oppvekst', 'barne- og ungdom', 'ambulanse', 'apotek',
-                 'tannhelse', 'hudplei', 'hudterapi', 'fotterap', 'aktivitør', 'portør']),
-    ('bygg',    ['bygg', 'anleggsteknikk', 'anleggsgartner', 'tømrer', 'betong', 'mur',
-                 'rørlegg', 'klima', 'energi og miljø', 'overflate', 'trevare',
-                 'treteknikk', 'anleggsmaskin', 'stillas']),
-    ('tip',     ['teknologi- og industrifag', 'teknologi og industrifag',
-                 'teknikk og industriell', 'teknikk og industrifag', 'industriteknologi',
-                 'teknolog og idustrifag', 'idustrifag', 'teknologi-/industrifag',
-                 'smed', 'kjøretøy',
-                 'arbeidsmaskin', 'bilskade', 'karosseri', 'energi operatør',
-                 'energioperatør', 'transport og logistikk', 'kjemiprosess', 'laborator',
-                 'brønnteknikk', 'sveis', 'platearbeid', 'cnc', 'maritim', 'motormann',
-                 'matros', 'skipsteknisk', 'yrkessjåfør', 'logistikk', 'boring']),
-    ('rm',      ['restaurant', 'matfag', 'kokk', 'servitør', 'baker', 'konditor',
-                 'matproduksjon', 'sjømat', 'ernæring']),
-    ('sr',      ['salg', 'service', 'reiseliv', 'sikkerhet', 'samferdsel', 'resepsjon']),
-    ('nat',     ['naturbruk', 'landbruk', 'gartner', 'heste', 'hovslager', 'agronom',
-                 'skogbruk', 'akvakultur', 'fiske og fangst', 'villmark', 'reindrift',
-                 'anleggsgartner']),
-    ('mk',      ['medier og kommunikasjon', 'mediedesign']),
-    ('design',  ['design og håndverk', 'frisør', 'blomster', 'interiør', 'utstilling',
-                 'eksponering', 'design og tekstil', 'søm', 'gull', 'håndverk',
-                 'produktutvikling', 'duodji', 'fbie']),
-    ('idrett',  ['idrett', 'toppidrett']),
-    ('mdd',     ['musikk', 'dans', 'drama']),
-    ('kda',     ['kunst']),
-    ('st',      ['studiespesialiser', 'studespesialiser', 'studiespes', 'realfag', 'språk, samfunn', 'samfunnsfag',
-                 'international baccalaureate', ' ib', 'forskerlinje', 'studiefor']),
-]
-
-
-def classify_category(program):
-    p = program.lower()
-    for cat, needles in CATEGORY_RULES:
-        if any(n in p for n in needles):
-            return cat
-    return 'annet'
+# --- categories ---------------------------------------------------------
+# Resolved against Udir's Grep register rather than by keyword; see
+# tools/taxonomy.py, which documents the register, the five decisions behind
+# the mapping, and what to do when a new source brings an unknown name.
+from taxonomy import classify_category, english_program   # noqa: E402,F401
 
 
 # --- merge & validate ---------------------------------------------------

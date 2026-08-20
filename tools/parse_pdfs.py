@@ -31,6 +31,9 @@ import re
 import sys
 import unicodedata
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from taxonomy import classify_category   # noqa: E402  (one taxonomy, in one place)
+
 import pdfplumber
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -75,39 +78,6 @@ VG1_PROGRAMS = {
 }
 VG3_HINTS = {'påbygg til generell studiekompetanse'}
 
-# program -> national utdanningsprogram category. First matching rule wins.
-CATEGORY_RULES = [
-    ('pb',      ['påbygg']),
-    ('elektro', ['elektro', 'elenergi', 'automatiser', 'automasjon', 'datateknologi',
-                 'dataelektronik', 'flyfag', 'avionik', 'drone', 'kulde', 'ventilasjon']),
-    ('im',      ['informasjonsteknologi', 'medieproduksjon', 'ikt']),
-    ('helse',   ['helse', 'oppvekst', 'barne- og ungdom', 'ambulanse',
-                 'apotek', 'tannhelse', 'hudplei', 'fotterap', 'aktivitør', 'portør']),
-    ('bygg',    ['bygg', 'anleggsteknikk', 'anleggsgartner', 'tømrer', 'betong', 'mur',
-                 'rørlegg', 'klima', 'energi og miljø', 'overflate', 'trevare', 'treteknikk',
-                 'anleggsmaskin', 'stillas']),
-    ('tip',     ['teknologi- og industrifag', 'teknologi og industrifag',
-                 'teknikk og industriell', 'industriteknologi',
-                 'kjøretøy', 'arbeidsmaskin', 'bilskade', 'karosseri', 'energi operatør',
-                 'energioperatør', 'transport og logistikk', 'kjemiprosess',
-                 'laborator', 'brønnteknikk', 'sveis', 'platearbeid', 'cnc', 'maritim',
-                 'motormann', 'matros', 'skipsteknisk', 'yrkessjåfør', 'logistikk']),
-    ('rm',      ['restaurant', 'matfag', 'kokk', 'servitør', 'baker', 'konditor',
-                 'matproduksjon', 'sjømat', 'ernæring']),
-    ('sr',      ['salg', 'service', 'reiseliv', 'sikkerhet', 'samferdsel', 'resepsjon']),
-    ('nat',     ['naturbruk', 'landbruk', 'gartner', 'heste', 'hovslager', 'agronom',
-                 'skogbruk', 'akvakultur', 'fiske og fangst', 'villmark']),
-    ('mk',      ['medier og kommunikasjon', 'mediedesign']),
-    ('design',  ['design og håndverk', 'frisør', 'blomster', 'interiør', 'utstilling',
-                 'eksponering', 'design og tekstil', 'søm', 'gull', 'håndverk',
-                 'produktutvikling']),
-    ('idrett',  ['idrett', 'toppidrett']),
-    ('mdd',     ['musikk', 'dans', 'drama']),
-    ('kda',     ['kunst']),
-    ('st',      ['studiespesialiser', 'realfag', 'språk, samfunn', 'samfunnsfag',
-                 'international baccalaureate', ' ib', 'forskerlinje']),
-]
-
 # same program, different spelling across files: normalize so series merge
 PROGRAM_ALIASES = {
     'språk, samfunnsfag og økonomi': 'Språk, samfunn og økonomi',
@@ -137,14 +107,6 @@ def norm(s):
 
 def squash(s):
     return re.sub(r'\s+', ' ', s).strip()
-
-
-def classify_category(program):
-    p = program.lower()
-    for cat, needles in CATEGORY_RULES:
-        if any(n in p for n in needles):
-            return cat
-    return 'annet'
 
 
 def classify_cell(txt):

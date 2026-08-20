@@ -91,16 +91,19 @@ by text flow — columns are sliced by x-position, and rotated column headers
 (Oslo, Vestland) are rebuilt glyph by glyph. Programme names are normalised
 across counties and years, resolved against
 [Udir's Grep registry](https://data.udir.no/kl06/v201906/programomraader) where
-the source uses official codes, and classified into the national
-*utdanningsprogram* categories. School names are matched to the national school
+the source uses official codes. School names are matched to the national school
 register ([NSR](https://data-nsr.udir.no/)) within their own county, then
 geocoded via NSR, Kartverket's address API and Kartverket's place-name
-register in turn. Each (school, program, year) cell becomes either a threshold,
+register in turn. Programmes are sorted into the national *utdanningsprogram*
+by resolving each county's label against Grep rather than by keyword — the
+reasoning, the five judgement calls behind the mapping, and what to do when a
+new source brings an unrecognised name are written down in
+[docs/programme-categories.md](docs/programme-categories.md). Each (school, program, year) cell becomes either a threshold,
 *no waitlist* (everyone qualified admitted — deliberately not shown as 0),
 a *fortrinnsrett* quota (statutory priority admission, no threshold exists),
 or *discontinued*. Where two sources disagree, the newest wins and the
 disagreement is recorded in `data/source-drift.json` rather than hidden.
-`tools/test_parse.py` runs 58 regression checks over the result. The merged
+`tools/test_parse.py` runs 67 regression checks over the result. The merged
 dataset ships as JSON for the app and as SQLite + CSV (`data/`) for anyone who
 wants to query it.
 

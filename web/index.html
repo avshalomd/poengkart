@@ -623,22 +623,27 @@
 
 <script>
 /* ================= i18n ================= */
+// Udir's fifteen utdanningsprogram, keyed by the register's own two-letter
+// codes, plus påbygging — which is not an utdanningsprogram but is a thing a
+// pupil picks. Names and English titles are Udir's; see tools/taxonomy.py and
+// docs/programme-categories.md for where each one comes from.
 const CATS = {
-  st:      { no: 'Studiespesialisering',        en: 'Academic specialization' },
-  idrett:  { no: 'Idrettsfag',                  en: 'Sports' },
-  mdd:     { no: 'Musikk, dans og drama',       en: 'Music, dance & drama' },
-  kda:     { no: 'Kunst, design og arkitektur', en: 'Art, design & architecture' },
-  mk:      { no: 'Medier og kommunikasjon',     en: 'Media & communication' },
-  im:      { no: 'IT og medieproduksjon',       en: 'IT & media production' },
-  elektro: { no: 'Elektro og datateknologi',    en: 'Electrical & computer tech' },
-  helse:   { no: 'Helse- og oppvekstfag',       en: 'Healthcare & childhood' },
-  bygg:    { no: 'Bygg- og anleggsteknikk',     en: 'Building & construction' },
-  tip:     { no: 'Teknologi- og industrifag',   en: 'Technology & industry' },
-  rm:      { no: 'Restaurant- og matfag',       en: 'Restaurant & food' },
-  sr:      { no: 'Salg, service og reiseliv',   en: 'Sales, service & tourism' },
-  nat:     { no: 'Naturbruk',                   en: 'Agriculture & nature' },
-  design:  { no: 'Håndverk og design',          en: 'Crafts & design' },
-  pb:      { no: 'Påbygg',                      en: 'Supplementary year' },
+  ST: { no: 'Studiespesialisering',        en: 'General studies' },
+  ID: { no: 'Idrettsfag',                  en: 'Sports' },
+  MD: { no: 'Musikk, dans og drama',       en: 'Music, dance & drama' },
+  KD: { no: 'Kunst, design og arkitektur', en: 'Art, design & architecture' },
+  MK: { no: 'Medier og kommunikasjon',     en: 'Media & communication' },
+  IM: { no: 'IT og medieproduksjon',       en: 'IT & media production' },
+  EL: { no: 'Elektro og datateknologi',    en: 'Electrical & computer tech' },
+  HS: { no: 'Helse- og oppvekstfag',       en: 'Healthcare & childhood' },
+  BA: { no: 'Bygg- og anleggsteknikk',     en: 'Building & construction' },
+  TP: { no: 'Teknologi- og industrifag',   en: 'Technology & industry' },
+  RM: { no: 'Restaurant- og matfag',       en: 'Restaurant & food' },
+  SR: { no: 'Salg, service og reiseliv',   en: 'Sales, service & tourism' },
+  NA: { no: 'Naturbruk',                   en: 'Agriculture & nature' },
+  FD: { no: 'Frisør, blomster og interiør', en: 'Hairdressing, floristry & interior' },
+  DT: { no: 'Håndverk og produktutvikling', en: 'Handicrafts & product design' },
+  PB: { no: 'Påbygg',                      en: 'Supplementary year' },
 };
 const T = {
   tagline: {
@@ -873,6 +878,10 @@ function yearSpan(s) {
   return !ys.length ? '' : ys.length === 1 ? ys[0] : `${ys[0]}–${ys[ys.length - 1]}`;
 }
 const stProgram = s => s.programs.find(p => p.program.toLowerCase() === 'studiespesialisering');
+// The county publishes the Norwegian name; the English one comes from Udir's
+// register at build time. Falling back to the Norwegian is right for anything
+// the register has never translated.
+const progName = p => (lang === 'en' && p.program_en) || p.program;
 const isPrioOnly = p => { const vs = Object.values(p.values); return vs.length > 0 && vs.every(v => v === 'F'); };
 function partitionPrograms(progs) {
   const regular = progs.filter(p => !isPrioOnly(p));
@@ -975,7 +984,7 @@ function drawMarkers() {
     if (mapCat === 'all') {
       if (st8.kind === 'points') {
         line = t('tipMedian', fmt(st8.v), st8.filled, st8.total) +
-               `<br>${t('tipTop')} ${fmt(st8.top)} · ${esc(st8.topProg.program)}`;
+               `<br>${t('tipTop')} ${fmt(st8.top)} · ${esc(progName(st8.topProg))}`;
       } else if (st8.kind === 'open') {
         line = t('tipAllOpen', st8.year);
       } else if (st8.kind === 'stale') {
@@ -1355,7 +1364,7 @@ function drawChart() {
   const y = v => MT + ih - (Math.min(Math.max(v, LO), HI) - LO) * ih / (HI - LO);
   const sub = document.getElementById('chart-sub');
   sub.textContent = chart.mode === 'prog'
-    ? `${chart.prog ? chart.prog.program + ' · ' : ''}${t('chartSubProg')}`
+    ? `${chart.prog ? progName(chart.prog) + ' · ' : ''}${t('chartSubProg')}`
     : chart.mode === 'cat' ? t('chartSubCat', series.length) : t('chartSubAll', series.length);
 
   // averages per year over numeric values
@@ -1454,7 +1463,10 @@ function renderList() {
               : chart.mode === 'prog' && chart.prog ? chart.prog.category : null;
   const inScope = current.programs.filter(p => !scope || p.category === scope);
   const { regular, orphans, prioNames } = partitionPrograms(
-    inScope.filter(p => p.program.toLowerCase().includes(q)));
+    // search both languages: an English reader types "health", a Norwegian
+    // parent types "helse", and either should find the row
+    inScope.filter(p => p.program.toLowerCase().includes(q)
+                     || (p.program_en || '').toLowerCase().includes(q)));
   const byCat = {};
   [...regular, ...orphans].forEach(p => (byCat[p.category] = byCat[p.category] || []).push(p));
   let html = '';
@@ -1490,7 +1502,7 @@ function renderList() {
       }
       const sel = chart.mode === 'prog' && chart.prog === p ? ' sel' : '';
       html += `<button class="prow${sel}${orphan ? ' muted' : ''}" data-cat="${c}" data-idx="${current.programs.indexOf(p)}">` +
-              `<span class="nm">${esc(p.program)}${badge}</span><span class="lv">${esc(p.level)}</span><span class="val">${val}</span></button>`;
+              `<span class="nm">${esc(progName(p))}${badge}</span><span class="lv">${esc(p.level)}</span><span class="val">${val}</span></button>`;
     }
   }
   const el = document.getElementById('s-list');

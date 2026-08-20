@@ -250,6 +250,42 @@ check('every county count in the page copy matches the dataset',
 check('the share card has been built',
       os.path.exists(os.path.join(HERE, '..', 'web', 'og.png')))
 
+# --- taxonomy: the categories are Udir's, not ours ----------------------
+# Each of these encodes a defect the keyword classifier had, or an invariant
+# that keeps the register-backed one honest. See docs/programme-categories.md.
+sys.path.insert(0, HERE)
+import taxonomy   # noqa: E402
+
+ALL_PROGS = [(s['name'], p) for s in DATA['schools'] for p in s['programs']]
+unresolved = sorted({p['program'] for _, p in ALL_PROGS
+                     if taxonomy.resolve(p['program'])[0] is None})
+check('every programme name resolves against the Grep register', not unresolved,
+      f'{len(unresolved)} unresolved, e.g. {unresolved[:4]} — see the note at '
+      f'the top of tools/taxonomy.py')
+stray = sorted({p['category'] for _, p in ALL_PROGS} - set(taxonomy.CATEGORIES))
+check('every category is one Udir publishes', not stray, str(stray))
+missing_en = sorted({p['program'] for _, p in ALL_PROGS if not p.get('program_en')})
+check('every programme has an English name', not missing_en, str(missing_en[:4]))
+
+# the four the keyword list got wrong, each for a different reason
+def cat_of(sub):
+    hits = {p['category'] for _, p in ALL_PROGS if sub.lower() in p['program'].lower()}
+    return hits
+
+check('gartnernæring is agriculture, not food',           # 'ernæring' substring
+      cat_of('gartnernæring') == {'NA'}, str(cat_of('gartnernæring')))
+check('anleggsmaskinmekaniker is industry, not building',
+      cat_of('anleggsmaskinmekaniker') == {'TP'}, str(cat_of('anleggsmaskinmekaniker')))
+check('smed is crafts, not industry',
+      cat_of('smed,') == {'DT'}, str(cat_of('smed,')))
+check('energioperatør is electrical, not industry',
+      cat_of('energi operatør') == {'EL'}, str(cat_of('energi operatør')))
+check('toppidrett inside general studies stays general studies',
+      cat_of('studiespesialisering, toppidrett') == {'ST'},
+      str(cat_of('studiespesialisering, toppidrett')))
+check('the two crafts programmes are separate categories',
+      {'FD', 'DT'} <= {p['category'] for _, p in ALL_PROGS})
+
 print(f'{checks - len(fails)}/{checks} checks passed')
 for f in fails:
     print('  FAIL:', f)
