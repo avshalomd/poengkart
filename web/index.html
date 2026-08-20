@@ -25,7 +25,7 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Kart over Sør-Norge med 194 videregående skoler som prikker, fargelagt etter poenggrense.">
+<meta property="og:image:alt" content="Kart over Norge med 194 videregående skoler som prikker, fargelagt etter poenggrense.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Poengkart – hva krevdes for å komme inn?">
 <meta name="twitter:description" content="Poenggrensene for 194 videregående skoler i sju fylker, 2017–2026, på kart.">
@@ -752,7 +752,9 @@ const T = {
   roundUnknown: { no: 'inntaksrunde ikke oppgitt', en: 'intake round not stated' },
   roundUnknownTitle: { no: 'Fylket oppgir ikke hvilken inntaksrunde tallene er fra. Grensen faller mellom rundene, så tallene kan ikke sammenlignes direkte med fylker som oppgir runden.',
                        en: 'This county does not state which intake round the figures are from. Thresholds fall between rounds, so they cannot be compared directly with counties that do state it.' },
-  oneYearOnly: { no: y => `Fylket publiserer berre ${y} – ingen trend enno`, en: y => `This county publishes ${y} only — no trend yet` },
+  oneYearOnly: { no: y => `Fylket publiserer bare ${y} – ingen trend ennå`, en: y => `This county publishes ${y} only — no trend yet` },
+  pageTitle:  { no: 'Poengkart – poenggrenser for videregående skole',
+                en: 'Poengkart – admission thresholds for Norwegian upper secondary schools' },
   tipHint:    { no: 'Klikk for trender og detaljer', en: 'Click for trends and details' },
   tipHighest: { no: 'Høyest', en: 'Highest' },
   tipAllOpen: { no: y => `Alle program uten venteliste i ${y}`, en: y => `All programs without waitlist in ${y}` },
@@ -1427,7 +1429,9 @@ async function sendContact(ev) {
   const btn = document.getElementById('c-send');
   const msg = document.getElementById('c-msg');
   err.hidden = true;
-  if (!msg.value.trim()) {
+  // three characters is what the relay accepts; anything shorter came back as a
+  // bare "could not send", which reads like a fault in the site
+  if (msg.value.trim().replace(/\s+/g, ' ').length < 3) {
     err.textContent = t('contactNeedMsg');
     err.hidden = false;
     msg.focus();
@@ -1607,6 +1611,7 @@ function setLang(l) {
   lang = l;
   try { localStorage.setItem('pk-lang', l); } catch (e) {}
   document.documentElement.lang = l === 'no' ? 'no' : 'en';
+  document.title = t('pageTitle');
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers();
   if (current) renderSide();
   if (!document.getElementById('intro').hidden) renderIntro();

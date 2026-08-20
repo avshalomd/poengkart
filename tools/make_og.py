@@ -172,8 +172,13 @@ def main():
     d.text((x, 228), 'å komme inn?', font=font(56, 'bold'), fill=ACCENT)
 
     d.text((x, 316), 'Poenggrensene for videregående skole,', font=font(23), fill=INK2)
-    d.text((x, 348), f'på kart. {len(pts) + 1} skoler · 7 fylker · 2018–2026.',
-           font=font(23), fill=INK2)
+    # every number here comes from the dataset: the counties and the year range
+    # were once written into the string, and the card was still claiming
+    # 2018-2026 months after Vestland took the data back to 2017
+    fylker = len({s['fylke'] for s in data['schools'] if s.get('fylke')})
+    years = data['years']
+    d.text((x, 348), f"på kart. {len(data['schools'])} skoler · {fylker} fylker"
+                     f" · {years[0]}–{years[-1]}.", font=font(23), fill=INK2)
 
     # the legend, so the colours on the map mean something at a glance
     ly, lw = 432, 78
