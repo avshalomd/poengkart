@@ -220,6 +220,18 @@
   #tip b { color: var(--ink); }
   .tipped { cursor: help; text-decoration: underline dotted var(--ink-3); text-underline-offset: 2px; }
 
+  /* ---------- the dataset did not load ---------- */
+  .boot-fail {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 10px; padding: 24px;
+    text-align: center; color: var(--ink-2); font-size: 13.5px;
+  }
+  .boot-fail .big { font-size: 17px; font-weight: 650; color: var(--ink); }
+  .boot-fail .cta {
+    margin-top: 6px; padding: 10px 18px; border: 0; border-radius: 10px;
+    background: var(--accent); color: #fff; font: inherit; font-weight: 600; cursor: pointer;
+  }
+
   /* ---------- legend ---------- */
   #legend { position: absolute; bottom: 22px; left: 14px; z-index: 1000; padding: 11px 14px 10px; font-size: 11px; color: var(--ink-2); }
   #legend .t { font-weight: 600; color: var(--ink); font-size: 11.5px; margin-bottom: 7px; letter-spacing: .01em; }
@@ -361,7 +373,14 @@
   .leaflet-control-attribution { background: var(--surface) !important; color: var(--ink-3) !important; font-size: 9.5px !important; }
   .leaflet-control-attribution a { color: var(--ink-2) !important; }
   .leaflet-control-zoom a { background: var(--surface-solid) !important; color: var(--ink) !important; border-color: var(--line) !important; }
-  @media (prefers-reduced-motion: reduce) { #side { transition: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    /* this used to name #side alone, while the sheets still rose and faded,
+       the clusters still slid and the map still flew */
+    #side, #tip { transition: none; }
+    .modal, .sheet { animation: none; }
+    .leaflet-cluster-anim .leaflet-marker-icon, .leaflet-cluster-anim .leaflet-marker-shadow {
+      transition: none; }
+  }
   /* ---------- phones ----------
      A 300px floating card on a 375px screen buries the map and collides with
      the utility window. On a phone the panel becomes a full-width header bar:
@@ -472,7 +491,7 @@
 </noscript>
 <div id="app">
   <div id="map"></div>
-  <aside id="side" aria-label="School details">
+  <aside id="side">
     <div class="scroll">
       <div class="photo" id="s-photo"></div>
       <div class="meta" id="s-meta"></div>
@@ -500,7 +519,7 @@
 </div>
 
 <div id="controls" class="glass">
-  <div class="lang" role="group" aria-label="Language">
+  <div class="lang" role="group" id="lang-group">
     <button id="lang-no" onclick="setLang('no')">NO</button>
     <button id="lang-en" onclick="setLang('en')">EN</button>
   </div>
@@ -615,7 +634,7 @@ const T = {
       ['Poengsummen din',
        'Poengsum = karaktersnittet ditt × 10. Poenggrensen er poengsummen til den siste søkeren som fikk plass – lå du over den, ville du kommet inn.'],
       ['Fargene og størrelsene',
-       'Farge = typisk poenggrense det siste året skolen har tall for. Størrelse = hvor mange av programområdene som ble fylt opp.'],
+       'Farge = typisk poenggrense det siste året skolen har tall for. Størrelse = hvor stor andel av programområdene som ble fylt opp.'],
       ['Finn skolene som er aktuelle',
        'Velg fylke og utdanningsprogram øverst. Hold musa over en prikk for et sammendrag, og klikk for utviklingen år for år og tallene for hvert programområde.'],
     ],
@@ -623,7 +642,7 @@ const T = {
       ['Your points',
        'Points = your grade average × 10. The threshold is the score of the last applicant who got a place — if you were above it, you would have got in.'],
       ['Colours and sizes',
-       'Colour = the typical threshold in the newest year that school has figures for. Size = how many of its programmes filled up.'],
+       'Colour = the typical threshold in the newest year that school has figures for. Size = what share of its programmes filled up.'],
       ['Find the schools that matter to you',
        'Pick a county and a programme at the top. Hover a dot for a summary, and click for the year-by-year trend and the figures per programme.'],
     ],
@@ -714,7 +733,7 @@ const T = {
   contactLabel:   { no: 'Send tilbakemelding', en: 'Send feedback' },
   fylkeLabel: { no: 'Fylke', en: 'County' },
   allFylker:  { no: 'Hele landet', en: 'All of Norway' },
-  roundChip:  { no: r => `${r}. inntak`, en: r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : 'rd'} intake round` },
+  roundChip:  { no: r => `${r}. inntak`, en: r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : r === '3' ? 'rd' : 'th'} intake round` },
   roundTitle: { no: 'Poenggrensen er poengsummen til den siste søkeren som fikk plass i denne inntaksrunden. Grensen faller mellom rundene, fordi plasser blir ledige. Tall fra ulike runder kan ikke sammenlignes direkte.',
                 en: 'The threshold is the score of the last applicant admitted in this intake round. Thresholds fall between rounds as places free up, so numbers from different rounds are not directly comparable.' },
   mixedRounds:{ no: 'Kartet viser fylker med ulike inntaksrunder – tallene kan ikke sammenlignes direkte.',
@@ -724,7 +743,7 @@ const T = {
   catNote:    { no: n => `${n} skoler tilbyr dette`, en: n => `${n} schools offer this` },
   legendAll:  { no: 'Typisk poenggrense (siste år)', en: 'Typical threshold (latest year)' },
   legendSize: { no: 'Størrelsen viser hvor stor andel av programmene som ble fylt opp',
-                en: 'Marker size shows how many of the programmes filled up' },
+                en: 'Marker size shows what share of the programmes filled up' },
   tipMedian:  { no: (v, n, tot) => `Typisk <b>${v}</b> poeng · ${n} av ${tot} program fylte opp`,
                 en: (v, n, tot) => `Typically <b>${v}</b> pts · ${n} of ${tot} programmes filled up` },
   tipTop:     { no: 'Høyest:', en: 'Highest:' },
@@ -753,6 +772,12 @@ const T = {
   roundUnknownTitle: { no: 'Fylket oppgir ikke hvilken inntaksrunde tallene er fra. Grensen faller mellom rundene, så tallene kan ikke sammenlignes direkte med fylker som oppgir runden.',
                        en: 'This county does not state which intake round the figures are from. Thresholds fall between rounds, so they cannot be compared directly with counties that do state it.' },
   oneYearOnly: { no: y => `Fylket publiserer bare ${y} – ingen trend ennå`, en: y => `This county publishes ${y} only — no trend yet` },
+  bootFail:   { no: 'Kartet kunne ikke lastes', en: 'The map could not be loaded' },
+  bootFailSub:{ no: 'Datasettet svarte ikke. Sjekk nettforbindelsen og prøv igjen.',
+                en: 'The dataset did not answer. Check your connection and try again.' },
+  bootRetry:  { no: 'Prøv igjen', en: 'Try again' },
+  sideLabel:  { no: 'Skoledetaljer', en: 'School details' },
+  langLabel:  { no: 'Språk', en: 'Language' },
   pageTitle:  { no: 'Poengkart – poenggrenser for videregående skole',
                 en: 'Poengkart – admission thresholds for Norwegian upper secondary schools' },
   tipHint:    { no: 'Klikk for trender og detaljer', en: 'Click for trends and details' },
@@ -952,7 +977,11 @@ function onMapFylke(v) {
   }
   drawMarkers(); renderPanel(); renderLegend(); renderCatNote();
   const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon]);
-  if (pts.length) map.flyToBounds(L.latLngBounds(pts).pad(0.08), { ...framePad(), duration: .6 });
+  if (pts.length) {
+    const box = L.latLngBounds(pts).pad(0.08);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) map.fitBounds(box, framePad());
+    else map.flyToBounds(box, { ...framePad(), duration: .6 });
+  }
 }
 
 function visibleSchools() {
@@ -964,7 +993,11 @@ function visibleSchools() {
 function onMapCat(v) {
   mapCat = v;
   drawMarkers(); renderLegend(); renderCatNote();
-  if (current && v !== 'all') {
+  // the hero is computed through the same category lens as the chart and the
+  // list, so it has to be redrawn with them or it keeps quoting the old scope
+  if (current && document.getElementById('side').classList.contains('open')) {
+    renderSide();
+  } else if (current && v !== 'all') {
     chart.mode = 'cat'; chart.cat = v; chart.prog = null;
     renderChartCard();
     renderList();          // clear the now-stale selected-programme highlight
@@ -1030,10 +1063,10 @@ function renderLegend() {
 function openSide(s) {
   current = s;
   chart = { mode: mapCat === 'all' ? 'all' : 'cat', cat: mapCat === 'all' ? null : mapCat, prog: null };
-  renderSide();
   const side = document.getElementById('side');
   side.removeAttribute('inert');
   side.classList.add('open');
+  renderSide();
   document.body.classList.add('side-open');
   // On a phone the details fill the screen, and the system back gesture is how
   // people expect to leave a screen. Give it something to pop.
@@ -1055,18 +1088,24 @@ function closeSide(fromHistory) {
   side.classList.remove('open');
   document.body.classList.remove('side-open');
   side.setAttribute('inert', '');          // keep 17 hidden controls out of Tab
-  document.getElementById('map-fylke')?.focus();
+  const back = document.getElementById('map-fylke');
+  (back && back.offsetParent ? back : document.getElementById('map-cat'))?.focus();
 }
 
 function renderSide() {
-  if (!current) return;
+  // current outlives closeSide, so a language or theme change would otherwise
+  // rebuild the whole panel — minimap included — inside a zero-width box
+  if (!current || !document.getElementById('side').classList.contains('open')) return;
   const s = current;
   // photo header
   const ph = document.getElementById('s-photo');
   ph.classList.toggle('nophoto', false);   // location map fills the same frame
   const creditText = s.photo_credit
     || (s.photo_source === 'commons' ? 'Wikimedia Commons' : 'Wikipedia');
-  const creditHref = s.photo_page || s.wiki_url || '';
+  // esc() protects the attribute but not the scheme, and every one of these
+  // comes from a scrape rather than from us
+  const web = u => (/^https?:\/\//i.test(u || '') ? u : '');
+  const creditHref = web(s.photo_page) || web(s.wiki_url) || '';
   const credit = s.photo
     ? `<div class="credit">` + (creditHref
         ? `<a href="${esc(creditHref)}" target="_blank" rel="noopener">${esc(creditText)}</a>`
@@ -1095,7 +1134,7 @@ function renderSide() {
   // meta links
   const meta = [];
   if (s.url) meta.push(`<a href="${esc(s.url.startsWith('http') ? s.url : 'https://' + s.url)}" target="_blank" rel="noopener">${t('website')} ↗</a>`);
-  if (s.wiki_url) meta.push(`<a href="${esc(s.wiki_url)}" target="_blank" rel="noopener">${t('wiki')} ↗</a>`);
+  if (web(s.wiki_url)) meta.push(`<a href="${esc(s.wiki_url)}" target="_blank" rel="noopener">${t('wiki')} ↗</a>`);
   if (s.address) meta.push(`<span>${esc(s.address)}</span>`);
   if (s.fylke) meta.push(`<span>${esc(s.fylke)}</span>`);
   meta.push(s.round
@@ -1345,7 +1384,7 @@ function renderList() {
       }
       const sel = chart.mode === 'prog' && chart.prog === p ? ' sel' : '';
       html += `<button class="prow${sel}${orphan ? ' muted' : ''}" data-cat="${c}" data-idx="${current.programs.indexOf(p)}">` +
-              `<span class="nm">${esc(p.program)}${badge}</span><span class="lv">${p.level}</span><span class="val">${val}</span></button>`;
+              `<span class="nm">${esc(p.program)}${badge}</span><span class="lv">${esc(p.level)}</span><span class="val">${val}</span></button>`;
     }
   }
   const el = document.getElementById('s-list');
@@ -1375,7 +1414,12 @@ function contactField(name) {
   const key = { school: 'contactSchool', program: 'contactProgram', year: 'contactYear',
                 photo: 'contactPhoto', fylke: 'contactFylke' }[name];
   const open = document.getElementById('side').classList.contains('open');
-  const value = name === 'school' && open && current ? current.name
+  // Changing the kind of report rebuilds these fields, and both "wrong figure"
+  // and "wrong photo" ask for a school: a hand-typed name used to be replaced
+  // by the map's selection on the way past.
+  const prev = document.getElementById(`c-${name}`);
+  const value = prev ? prev.value
+    : name === 'school' && open && current ? current.name
     : name === 'fylke' && mapFylke !== 'all' ? mapFylke : '';
   const type = name === 'photo' ? 'url' : name === 'year' ? 'number' : 'text';
   const extra = name === 'year'
@@ -1395,10 +1439,44 @@ function renderContactFields() {
   el.hidden = !hint;
 }
 
+// Both end states live here so that a language switch can redraw them. Going
+// back to a blank form instead would replace a confirmation with an empty
+// sheet, and the sender would reasonably conclude nothing had been sent.
+function renderContactDone() {
+  const body = document.getElementById('contact-body');
+  body.innerHTML = body.dataset.done === 'handoff'
+    ? `<div class="done">
+         <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
+              stroke-linejoin="round" aria-hidden="true">
+           <rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.6 6.4 8.4 6 8.4-6"/>
+         </svg>
+         <p class="big">${esc(t('contactHandoff'))}</p>
+         <p>${esc(t('contactHandoffSub'))}</p>
+         <a class="cta" href="${esc(body.dataset.mailto || '')}">${esc(t('contactOpenMail'))}</a>
+       </div>`
+    : `<div class="done">
+         <svg viewBox="0 0 24 24" fill="none" stroke="var(--good)" stroke-width="2.4"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+           <path d="m4.5 12.5 5 5 10-11"/>
+         </svg>
+         <p class="big">${esc(t('contactSent'))}</p>
+         <p>${esc(t('contactSentSub'))}</p>
+         <button class="cta" onclick="closeContact()">${esc(t('close'))}</button>
+       </div>`;
+}
+
 function renderContact() {
   document.getElementById('contact-h').textContent = t('contactTitle');
+  document.getElementById('contact-x').setAttribute('aria-label', t('close'));
+  const body = document.getElementById('contact-body');
+  if (body.dataset.done) { renderContactDone(); return; }
+  // ...and a switch mid-form should not empty the boxes either
+  const keep = {};
+  body.querySelectorAll('input, select, textarea').forEach(el => {
+    if (el.id) keep[el.id] = el.value;
+  });
   const kinds = t('contactKinds');
-  document.getElementById('contact-body').innerHTML = `
+  body.innerHTML = `
     <p class="lede">${esc(t('contactLede'))}</p>
     <form id="c-form" novalidate>
       <label for="c-kind">${esc(t('contactKind'))}</label>
@@ -1418,8 +1496,13 @@ function renderContact() {
       <p class="err" id="c-err" hidden></p>
       <button class="cta" id="c-send" type="submit">${esc(t('contactSend'))}</button>
     </form>`;
+  if (keep['c-kind']) document.getElementById('c-kind').value = keep['c-kind'];
   document.getElementById('c-kind').onchange = renderContactFields;
   renderContactFields();
+  Object.entries(keep).forEach(([id, v]) => {
+    const el = document.getElementById(id);
+    if (el && v) el.value = v;
+  });
   document.getElementById('c-form').addEventListener('submit', sendContact);
 }
 
@@ -1463,30 +1546,15 @@ async function sendContact(ev) {
     const data = await r.json().catch(() => ({ ok: true }));
     // No provider key configured yet: the server hands back a prefilled
     // mailto: so the message the visitor wrote is not thrown away.
+    const body = document.getElementById('contact-body');
     if (data.mailto) {
       location.href = data.mailto;
-      document.getElementById('contact-body').innerHTML =
-        `<div class="done">
-           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
-                stroke-linejoin="round" aria-hidden="true">
-             <rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.6 6.4 8.4 6 8.4-6"/>
-           </svg>
-           <p class="big">${esc(t('contactHandoff'))}</p>
-           <p>${esc(t('contactHandoffSub'))}</p>
-           <a class="cta" href="${esc(data.mailto)}">${esc(t('contactOpenMail'))}</a>
-         </div>`;
-      return;
+      body.dataset.done = 'handoff';
+      body.dataset.mailto = data.mailto;
+    } else {
+      body.dataset.done = 'sent';
     }
-    document.getElementById('contact-body').innerHTML =
-      `<div class="done">
-         <svg viewBox="0 0 24 24" fill="none" stroke="var(--good)" stroke-width="2.4"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-           <path d="m4.5 12.5 5 5 10-11"/>
-         </svg>
-         <p class="big">${esc(t('contactSent'))}</p>
-         <p>${esc(t('contactSentSub'))}</p>
-         <button class="cta" onclick="closeContact()">${esc(t('close'))}</button>
-       </div>`;
+    renderContactDone();
   } catch (e) {
     err.textContent = t('contactFail');
     err.hidden = false;
@@ -1496,6 +1564,9 @@ async function sendContact(ev) {
 }
 
 function openContact() {
+  const body = document.getElementById('contact-body');
+  delete body.dataset.done;
+  delete body.dataset.mailto;
   renderContact();
   document.getElementById('contact').hidden = false;
   setTimeout(() => document.getElementById('c-kind')?.focus(), 40);
@@ -1563,6 +1634,9 @@ function renderControls() {
     el.title = t(key);
     el.setAttribute('aria-label', t(key));
   }
+  // these two were written into the markup in English and so stayed English
+  document.getElementById('side').setAttribute('aria-label', t('sideLabel'));
+  document.getElementById('lang-group').setAttribute('aria-label', t('langLabel'));
 }
 
 function renderIntro() {
@@ -1642,7 +1716,21 @@ function framePad() {
 
 async function main() {
   try { lang = localStorage.getItem('pk-lang') || lang; } catch (e) {}
-  DATA = await (await fetch('data/schools.json')).json();
+  try {
+    const r = await fetch('data/schools.json');
+    if (!r.ok) throw new Error(String(r.status));
+    DATA = await r.json();
+  } catch (e) {
+    // Without the dataset every render below is a no-op, and the page settles
+    // into empty chrome over a grey rectangle with nothing to explain it.
+    document.getElementById('app').innerHTML =
+      `<div class="boot-fail"><p class="big">${esc(t('bootFail'))}</p>
+       <p>${esc(t('bootFailSub'))}</p>
+       <button class="cta" onclick="location.reload()">${esc(t('bootRetry'))}</button></div>`;
+    document.getElementById('panel').hidden = true;
+    document.getElementById('legend').hidden = true;
+    return;
+  }
   // Open on the whole dataset. This used to open on a hard-coded Rogaland view
   // and correct itself inside a requestAnimationFrame — but rAF does not fire
   // while the tab is not being painted, so a national map could sit there
