@@ -5,11 +5,20 @@
  * in the page or the repository: a mailto: or a client-side form endpoint puts
  * a personal address in public HTML, where it is scraped within days.
  *
- * Two providers, in order of preference:
- *   RESEND_API_KEY set -> send directly through Resend, nobody else involved.
- *   otherwise          -> relay through formsubmit.co, which needs no account
- *                         but does see the submissions.
- * Swapping from the second to the first is adding one environment variable.
+ * Delivery, in order of preference:
+ *   RESEND_API_KEY  -> send through Resend. Nobody else sees the message.
+ *   WEB3FORMS_KEY   -> send through Web3Forms.
+ *   neither         -> hand the browser a prefilled mailto: so the visitor can
+ *                      send it from their own mail app. Not one click, but it
+ *                      never silently swallows what someone took the time to
+ *                      write.
+ *
+ * formsubmit.co was the first choice because it needs no account, and it works
+ * from a laptop — but from a serverless function it comes back 403 behind a
+ * Cloudflare "Just a moment..." challenge, because the request arrives from a
+ * datacentre. Defeating that check is not something to build into a product,
+ * so the relay needs a provider key instead. Adding one turns the mailto
+ * fallback into real one-click sending with no other change.
  */
 
 const MAX = { message: 4000, field: 200 };
@@ -51,16 +60,16 @@ async function viaResend(subject, text, replyTo, to) {
   if (!r.ok) throw new Error(`resend ${r.status}: ${(await r.text()).slice(0, 200)}`);
 }
 
-async function viaFormsubmit(subject, text, replyTo, to) {
-  const r = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
+async function viaWeb3Forms(subject, text, replyTo, to) {
+  const r = await fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({ _subject: subject, _template: 'table',
-                           ...(replyTo ? { _replyto: replyTo } : {}), melding: text }),
+    body: JSON.stringify({
+      access_key: process.env.WEB3FORMS_KEY, subject, message: text,
+      from_name: 'Poengkart', ...(replyTo ? { replyto: replyTo } : {}),
+    }),
   });
-  const body = await r.text();
-  if (!r.ok) throw new Error(`formsubmit ${r.status}: ${body.slice(0, 200)}`);
-  return body;
+  if (!r.ok) throw new Error(`web3forms ${r.status}: ${(await r.text()).slice(0, 200)}`);
 }
 
 export default async function handler(req, res) {
@@ -102,12 +111,17 @@ export default async function handler(req, res) {
   const text = `${message}\n\n---\n`
     + details.map(([k, v]) => `${k}: ${v}`).join('\n');
 
+  const mailto = () => `mailto:${to}?subject=${encodeURIComponent(subject)}`
+    + `&body=${encodeURIComponent(text)}`;
+
   try {
     if (process.env.RESEND_API_KEY) await viaResend(subject, text, replyTo, to);
-    else await viaFormsubmit(subject, text, replyTo, to);
+    else if (process.env.WEB3FORMS_KEY) await viaWeb3Forms(subject, text, replyTo, to);
+    else return res.status(200).json({ ok: false, mailto: mailto() });
     return res.status(200).json({ ok: true });
   } catch (err) {
+    // The message is already written; hand it back rather than lose it.
     console.error('feedback relay failed:', err.message);
-    return res.status(502).json({ error: 'relay_failed' });
+    return res.status(200).json({ ok: false, mailto: mailto() });
   }
 }
