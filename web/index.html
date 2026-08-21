@@ -59,6 +59,7 @@
     --shadow: 0 10px 32px rgba(15,23,32,.12), 0 1px 3px rgba(15,23,32,.08);
     --good: #0b7f0b;
     --danger: #c0392f;
+    --warn: #a1620a; --warn-soft: rgba(180,120,20,.11);
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -74,6 +75,7 @@
       --shadow: 0 10px 32px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.4);
       --good: #3fbf4a;              /* the one token that had no dark value */
       --danger: #e26b6e;
+      --warn: #e0a052; --warn-soft: rgba(224,160,82,.13);
     }
   }
 
@@ -331,6 +333,18 @@
   .hero .cell .v { font-size: 26px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
   .hero .cell .v.up { color: var(--good); } .hero .cell .v.dn { color: var(--ink-2); }
   .hero .cell .l { font-size: 10.5px; color: var(--ink-3); margin-top: 1px; }
+  /* A mean over the few programmes that filled up reads like a busy school
+     even when most of it took everyone who applied. Wherever a mean is
+     printed, this says so. */
+  .mixwarn {
+    display: flex; gap: 7px; align-items: baseline;
+    margin: 10px 18px 0; padding: 7px 10px 7px 9px; border-radius: 9px;
+    background: var(--warn-soft); border-left: 2px solid var(--warn);
+    font-size: 11.5px; line-height: 1.45; color: var(--ink-2);
+  }
+  .mixwarn .sign { color: var(--warn); font-size: 12px; flex: none; }
+  .mixwarn b { color: var(--ink); font-weight: 650; }
+  .tip .warn { color: var(--warn); }
 
   /* chart card */
   .chart-card { margin: 14px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-solid); }
@@ -517,6 +531,7 @@
       <div class="meta" id="s-meta"></div>
       <div class="notes" id="s-notes" hidden></div>
       <div class="hero" id="s-hero"></div>
+      <div class="mixwarn" id="s-mix" hidden></div>
       <div class="chart-card">
         <div class="chart-head">
           <div class="tabs" id="tabs">
@@ -767,14 +782,17 @@ const T = {
   catLabel:   { no: 'Utdanningsprogram', en: 'Programme' },
   allCats:    { no: 'Alle utdanningsprogram', en: 'All programmes' },
   catNote:    { no: n => `${n} skoler tilbyr dette`, en: n => `${n} schools offer this` },
-  legendAll:  { no: 'Typisk poenggrense (siste år)', en: 'Typical threshold (latest year)' },
+  legendAll:  { no: 'Snitt poenggrense (siste år)', en: 'Average threshold (latest year)' },
   legendSize: { no: 'Størrelsen viser hvor stor andel av programmene som ble fylt opp',
                 en: 'Marker size shows what share of the programmes filled up' },
-  tipMedian:  { no: (v, n, tot) => `Typisk <b>${v}</b> poeng · ${n} av ${tot} program fylte opp`,
-                en: (v, n, tot) => `Typically <b>${v}</b> pts · ${n} of ${tot} programmes filled up` },
+  tipMedian:  { no: (v, n, tot) => `Snitt <b>${v}</b> poeng · ${n} av ${tot} program fylte opp`,
+                en: (v, n, tot) => `Average <b>${v}</b> pts · ${n} of ${tot} programmes filled up` },
+  tipMostlyOpen: { no: 'Men de fleste programmene tok inn alle søkere',
+                   en: 'But most programmes admitted everyone who applied' },
+  mostlyOpenShort: { no: 'de fleste tok inn alle', en: 'most admitted everyone' },
   tipTop:     { no: 'Høyest:', en: 'Highest:' },
   scopeAll:   { no: 'Vis alle programområder', en: 'Show all programmes' },
-  heroTypical:{ no: 'Typisk', en: 'Typical' },
+  heroTypical:{ no: 'Snitt', en: 'Average' },
   heroTypicalAll: { no: 'alle program', en: 'all programmes' },
   legendCat:  { no: c => `${CATS[c].no} · siste år`, en: c => `${CATS[c].en} · latest year` },
   legendOpen: { no: 'Uten venteliste – alle inntatt', en: 'No waitlist – all admitted' },
@@ -833,28 +851,27 @@ const T = {
   tipHighest: { no: 'Høyest', en: 'Highest' },
   tipAllOpen: { no: y => `Alle program uten venteliste i ${y}`, en: y => `All programs without waitlist in ${y}` },
   heroSt:     { no: y => `Studiespes. ${y}`, en: y => `Acad. spec. ${y}` },
-  heroDelta:  { no: (y, n) => `endring fra ${y} · samme ${n} program`,
-                en: (y, n) => `change vs ${y} · same ${n} programme${n === 1 ? '' : 's'}` },
+  heroDelta:  { no: y => `endring fra ${y}`, en: y => `change vs ${y}` },
   heroDeltaBasis: {
-    no: n => (n === 1
-      ? 'Regnet ut fra det ene programområdet som har tall begge årene. '
-      : `Regnet ut fra de ${n} programområdene som har tall begge årene. `)
-      + 'Program som falt fra eller kom til er holdt utenfor, så tallet er ikke '
-      + 'differansen mellom de to siste punktene i grafen.',
-    en: n => (n === 1
-      ? 'Worked out from the one programme area with figures in both years. '
-      : `Worked out from the ${n} programme areas with figures in both years. `)
-      + 'Programmes that dropped out or appeared are left out, so this is not '
-      + 'the difference between the last two points on the chart.',
+    no: 'Forskjellen mellom de to siste punktene på snittlinjen i grafen under.',
+    en: 'The difference between the last two points on the average line below.',
+  },
+  // Said wherever a mean is printed, because a mean over the few programmes
+  // that filled up says nothing about the many that did not.
+  mostlyOpenNote: {
+    no: (o, tot, y, n) => `${o} av ${tot} programområder tok inn alle søkere i ${y}. `
+      + `Snittet gjelder bare de ${n} som hadde en poenggrense.`,
+    en: (o, tot, y, n) => `${o} of ${tot} programme areas admitted everyone who applied in ${y}. `
+      + `The average covers only the ${n} that had a threshold.`,
   },
   heroProgs:  { no: 'programområder', en: 'program areas' },
   tabAll:     { no: 'Alle', en: 'All' },
   tabCat:     { no: 'Kategori', en: 'Category' },
   tabProg:    { no: 'Program', en: 'Program' },
-  chartSubAll:  { no: n => `${n} programserier · medianlinje i blått`, en: n => `${n} program series · median in blue` },
-  chartSubCat:  { no: n => `${n} serier i kategorien · median i blått`, en: n => `${n} series in category · median in blue` },
+  chartSubAll:  { no: n => `${n} programserier · snittlinje i blått`, en: n => `${n} program series · average in blue` },
+  chartSubCat:  { no: n => `${n} serier i kategorien · snitt i blått`, en: n => `${n} series in category · average in blue` },
   chartSubProg: { no: 'Én serie · hule punkter = ingen poenggrense', en: 'Single series · hollow dots = no threshold' },
-  midLabel:   { no: 'median', en: 'median' },
+  midLabel:   { no: 'snitt', en: 'avg' },
   series:     { no: 'serier', en: 'series' },
   filterPh:   { no: 'Filtrer programområde …', en: 'Filter programs…' },
   website:    { no: 'Nettside', en: 'Website' },
@@ -878,7 +895,7 @@ const BINS = [
 const BIN_EDGES = ['<30', '30–34', '34–38', '38–42', '42+'];
 const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 // Binary floats make (35,7 + 36,0) / 2 come out as 35.849999999999994, and
-// toFixed(1) prints that as 35,8 — a tenth below the median it is. Every
+// toFixed(1) prints that as 35,8 — a tenth below the figure it is. Every
 // published figure has at most two decimals, so round in hundredths with
 // integer arithmetic: exact, and it cannot drift the way a toPrecision()
 // tolerance does once a value has been through a sum, a divide and a
@@ -887,11 +904,17 @@ const round1 = v => { const h = Math.round(v * 100), sg = h < 0 ? -1 : 1; return
 // a cell that is a threshold someone could have missed. 'open', F, D and U
 // are not, and neither is 0,0 — see the note in schoolPressure().
 const isPoints = v => typeof v === 'number' && v > 0;
-const medianOf = vals => {
-  if (!vals.length) return null;
-  const v = vals.slice().sort((a, b) => a - b), mid = v.length >> 1;
-  return v.length % 2 ? v[mid] : (v[mid - 1] + v[mid]) / 2;
-};
+const meanOf = vals => vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+// What share of a scope had no waitlist at all in one year. F, U and D are
+// not places anyone competed for, so they are outside the question; a 0,0
+// filled up, so it counts as filled rather than as everyone getting in.
+function openMix(programs, year) {
+  const cells = programs.map(p => p.values[year])
+    .filter(v => v !== undefined && v !== 'F' && v !== 'U' && v !== 'D');
+  const open = cells.filter(v => v === 'open').length;
+  return { open, total: cells.length, filled: cells.length - open,
+           mostly: cells.length > 0 && open > cells.length / 2 };
+}
 const fmtNum = v => typeof v === 'number' ? round1(v).toFixed(1).replace('.', ',') : v;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
@@ -937,7 +960,7 @@ const visibleCount = s => visibleIn(s.programs);
 const staleBefore = () => +DATA.years[DATA.years.length - 1] - 1;
 function schoolPressure(s, cat) {
   // Demand, judged in the newest dataset year only. Two honest signals:
-  //   median threshold of the programmes that filled up  -> how hard, typically
+  //   mean threshold of the programmes that filled up    -> how hard, typically
   //   share of programmes that filled up at all          -> how much is in demand
   // (The earlier "highest threshold" let one niche programme speak for a whole
   // school. Note this measures demand vs capacity, not school quality.)
@@ -956,22 +979,21 @@ function schoolPressure(s, cat) {
   // Several counties publish 0,0 and legend it: the programme filled up and
   // applicants with 0,0 points were still left on the waiting list. So it is a
   // real threshold, and the most extreme one there is. It counts as filled,
-  // but it stays out of the median: as a value it dragged five schools into
+  // but it stays out of the mean: as a value it dragged five schools into
   // the lowest colour band on the strength of one programme's queue.
   const zeroN = cells.filter(v => v === 0).length;
   const nums = cells.filter(isPoints).sort((a, b) => a - b);
   const openN = cells.filter(v => v === 'open').length;
   const total = nums.length + openN + zeroN;
   if (!nums.length) return total ? { kind: 'open', year: yr, total } : { kind: 'none' };
-  const mid = nums.length >> 1;
-  const median = nums.length % 2 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
   let top = -1, topProg = null;
   for (const p of pool) {
     const v = p.values[yr];
     if (typeof v === 'number' && v > top) { top = v; topProg = p; }
   }
-  return { kind: 'points', v: median, top, topProg, year: yr,
-           filled: nums.length + zeroN, total,
+  return { kind: 'points', v: meanOf(nums), top, topProg, year: yr,
+           filled: nums.length + zeroN, total, openN,
+           mostlyOpen: openN > total / 2,
            share: (nums.length + zeroN) / total };
 }
 const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(b => v < b.max).css);
@@ -1026,6 +1048,7 @@ function drawMarkers() {
     if (mapCat === 'all') {
       if (st8.kind === 'points') {
         line = t('tipMedian', fmt(st8.v), st8.filled, st8.total) +
+               (st8.mostlyOpen ? `<br><span class="warn">⚠ ${t('tipMostlyOpen')}</span>` : '') +
                `<br>${t('tipTop')} ${fmt(st8.top)} · ${esc(progName(st8.topProg))}`;
       } else if (st8.kind === 'open') {
         line = t('tipAllOpen', st8.year);
@@ -1036,7 +1059,9 @@ function drawMarkers() {
         line = t('tipNoData', sy ? sy.split('–').pop() : DATA.years[DATA.years.length - 1]);
       }
     } else {
-      line = st8.kind === 'points' ? `${CATS[mapCat][lang]}: ` + t('tipMedian', fmt(st8.v), st8.filled, st8.total)
+      line = st8.kind === 'points'
+             ? `${CATS[mapCat][lang]}: ` + t('tipMedian', fmt(st8.v), st8.filled, st8.total)
+               + (st8.mostlyOpen ? `<br><span class="warn">⚠ ${t('tipMostlyOpen')}</span>` : '')
            : st8.kind === 'open' ? `${CATS[mapCat][lang]}: ${t('allIn').toLowerCase()} (${st8.year})`
            : st8.kind === 'stale' ? `${CATS[mapCat][lang]}: ` + t('tipStale', st8.year)
            : `${CATS[mapCat][lang]}: –`;
@@ -1298,31 +1323,29 @@ function renderSide() {
   const noteBox = document.getElementById('s-notes');
   noteBox.innerHTML = notes.map(n => `<p>${esc(n)}</p>`).join('');
   noteBox.hidden = !notes.length;
-  // hero mirrors what the map encodes — the median threshold — so the two
-  // never tell different stories; a category lens narrows both together
+  // One statistic everywhere: the dot on the map, this figure and the blue
+  // line are all the mean of the same cells, and the change is the last step
+  // of that line — so a reader can check the subtraction and it comes out.
+  // What a mean cannot say on its own is how much of the school never had a
+  // waitlist, so that is spelled out underneath instead of hidden in it.
   const lensCat = mapCat !== 'all' ? mapCat : null;
   const cells = [];
   const scopePrograms = lensCat ? s.programs.filter(p => p.category === lensCat) : s.programs;
-  const medianAt = year => medianOf(scopePrograms.map(p => p.values[year]).filter(isPoints));
+  const meanAt = year => meanOf(scopePrograms.map(p => p.values[year]).filter(isPoints));
   const yrs = [...new Set(scopePrograms.flatMap(p => Object.keys(p.values)))].sort();
-  const latest = yrs[yrs.length - 1], prev = yrs[yrs.length - 2];
-  const med = medianAt(latest), medPrev = medianAt(prev);
+  const latest = yrs[yrs.length - 1];
+  // the previous year the line actually plots, not merely the previous year
+  // the school appears in — otherwise the change is a step off the chart
+  const plotted = yrs.filter(y => meanAt(y) !== null);
+  const prev = plotted[plotted.length - 2];
+  const mean = meanAt(latest), meanPrev = prev === undefined ? null : meanAt(prev);
   const scopeLabel = lensCat ? CATS[lensCat][lang] : t('heroTypicalAll');
-  if (med !== null) {
-    cells.push({ v: fmt(med), l: `${t('heroTypical')} · ${scopeLabel} ${latest}` });
-    // "Endring" has to mean the same programmes moved, not that the school's
-    // list did. 92 of 123 schools name a different set in the two years, and
-    // at Stange three of the lowest-scoring left it — the median rose 8,4
-    // points while nothing at all got harder. So: only programmes carrying a
-    // figure in both years, and no cell at all when none do.
-    const pair = scopePrograms.filter(p => isPoints(p.values[latest]) && isPoints(p.values[prev]));
-    if (pair.length) {
-      // round before choosing the sign: unrounded, a -0.0499 printed as a
-      // falling "-0,0" under a median that reads 38,5 in both years.
-      const d = round1(medianOf(pair.map(p => p.values[latest]))
-                     - medianOf(pair.map(p => p.values[prev])));
-      cells.push({ v: (d > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev, pair.length),
-                   cls: d > 0 ? 'up' : d < 0 ? 'dn' : '', ti: t('heroDeltaBasis', pair.length) });
+  if (mean !== null) {
+    cells.push({ v: fmt(mean), l: `${t('heroTypical')} · ${scopeLabel} ${latest}` });
+    if (meanPrev !== null) {
+      const d = round1(mean - meanPrev);
+      cells.push({ v: (d > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
+                   cls: d > 0 ? 'up' : d < 0 ? 'dn' : '', ti: t('heroDeltaBasis') });
     }
   } else {
     const last = scopePrograms.map(p => p.values[latest]).filter(v => v !== undefined);
@@ -1334,6 +1357,14 @@ function renderSide() {
     cells.push({ v: label, l: `${scopeLabel} ${latest || ''}`.trim() });
   }
   cells.push({ v: visibleIn(scopePrograms), l: t('heroProgs') });
+  const mix = openMix(scopePrograms, latest);
+  const mixBox = document.getElementById('s-mix');
+  mixBox.hidden = !(mix.mostly && mean !== null);
+  if (!mixBox.hidden) {
+    mixBox.innerHTML = `<span class="sign" aria-hidden="true">⚠</span><span>` +
+      esc(t('mostlyOpenNote', mix.open, mix.total, latest,
+             scopePrograms.map(p => p.values[latest]).filter(isPoints).length)) + `</span>`;
+  }
   document.getElementById('s-hero').innerHTML =
     cells.map(c => `<div class="cell"${c.ti ? ` title="${esc(c.ti)}"` : ''}>` +
                    `<div class="v ${c.cls || ''}">${c.v}</div><div class="l">${c.l}</div></div>`).join('');
@@ -1413,15 +1444,20 @@ function drawChart() {
   sub.textContent = chart.mode === 'prog'
     ? `${chart.prog ? progName(chart.prog) + ' · ' : ''}${t('chartSubProg')}`
     : chart.mode === 'cat' ? t('chartSubCat', series.length) : t('chartSubAll', series.length);
+  if (chart.mode !== 'prog') {
+    const cy = [...new Set(series.flatMap(p => Object.keys(p.values)))].sort().pop();
+    const cm = openMix(chart.mode === 'cat'
+      ? current.programs.filter(p => p.category === chart.cat) : current.programs, cy);
+    if (cm.mostly) sub.textContent += ` · ⚠ ${t('mostlyOpenShort')}`;
+  }
 
-  // One statistic for the whole app: the map dot, the headline figure and
-  // this line are all the median of the same cells. As a mean it ended 14
-  // points under the number printed directly above it at Jønsberg, and one
-  // 0,0 could drag it below every programme line drawn behind it.
+  // The mean of the same cells the dot and the headline use, so the figure
+  // above the chart sits exactly on this line's last point and the change is
+  // its last step. 0,0 stays out: it is not a height on a points axis.
   const mid = {}, cnt = {};
   years.forEach(yr => {
     const vals = series.map(p => p.values[yr]).filter(isPoints);
-    if (vals.length) { mid[yr] = medianOf(vals); cnt[yr] = vals.length; }
+    if (vals.length) { mid[yr] = meanOf(vals); cnt[yr] = vals.length; }
   });
 
   let svg = '';
