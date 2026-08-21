@@ -825,6 +825,14 @@ const T = {
   tipAllOpen: { no: y => `Alle program uten venteliste i ${y}`, en: y => `All programs without waitlist in ${y}` },
   heroSt:     { no: y => `Studiespes. ${y}`, en: y => `Acad. spec. ${y}` },
   heroDelta:  { no: y => `endring fra ${y}`, en: y => `change vs ${y}` },
+  heroDeltaBasis: {
+    no: n => n === 1
+      ? 'Regnet ut fra det ene programområdet som har tall begge årene.'
+      : `Regnet ut fra de ${n} programområdene som har tall begge årene.`,
+    en: n => n === 1
+      ? 'Worked out from the one programme area with figures in both years.'
+      : `Worked out from the ${n} programme areas with figures in both years.`,
+  },
   heroProgs:  { no: 'programområder', en: 'program areas' },
   tabAll:     { no: 'Alle', en: 'All' },
   tabCat:     { no: 'Kategori', en: 'Category' },
@@ -860,6 +868,14 @@ const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(
 // noise off at the fifteenth digit before rounding, so a figure that is
 // exactly x,x5 in decimal rounds the way a reader checking it by hand would.
 const round1 = v => { const t = Number((Math.abs(v) * 10).toPrecision(15)); return Math.sign(v) * Math.round(t) / 10; };
+// a cell that is a threshold someone could have missed. 'open', F, D and U
+// are not, and neither is 0,0 — see the note in schoolPressure().
+const isPoints = v => typeof v === 'number' && v > 0;
+const medianOf = vals => {
+  if (!vals.length) return null;
+  const v = vals.slice().sort((a, b) => a - b), mid = v.length >> 1;
+  return v.length % 2 ? v[mid] : (v[mid - 1] + v[mid]) / 2;
+};
 const fmtNum = v => typeof v === 'number' ? round1(v).toFixed(1).replace('.', ',') : v;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
@@ -927,7 +943,7 @@ function schoolPressure(s, cat) {
   // but it stays out of the median: as a value it dragged five schools into
   // the lowest colour band on the strength of one programme's queue.
   const zeroN = cells.filter(v => v === 0).length;
-  const nums = cells.filter(v => typeof v === 'number' && v > 0).sort((a, b) => a - b);
+  const nums = cells.filter(isPoints).sort((a, b) => a - b);
   const openN = cells.filter(v => v === 'open').length;
   const total = nums.length + openN + zeroN;
   if (!nums.length) return total ? { kind: 'open', year: yr, total } : { kind: 'none' };
@@ -1270,26 +1286,27 @@ function renderSide() {
   // never tell different stories; a category lens narrows both together
   const lensCat = mapCat !== 'all' ? mapCat : null;
   const cells = [];
-  const medianAt = year => {
-    const pool = (lensCat ? s.programs.filter(p => p.category === lensCat) : s.programs)
-      .map(p => p.values[year]).filter(v => typeof v === 'number' && v > 0).sort((a, b) => a - b);
-    if (!pool.length) return null;
-    const mid = pool.length >> 1;
-    return pool.length % 2 ? pool[mid] : (pool[mid - 1] + pool[mid]) / 2;
-  };
   const scopePrograms = lensCat ? s.programs.filter(p => p.category === lensCat) : s.programs;
+  const medianAt = year => medianOf(scopePrograms.map(p => p.values[year]).filter(isPoints));
   const yrs = [...new Set(scopePrograms.flatMap(p => Object.keys(p.values)))].sort();
   const latest = yrs[yrs.length - 1], prev = yrs[yrs.length - 2];
   const med = medianAt(latest), medPrev = medianAt(prev);
   const scopeLabel = lensCat ? CATS[lensCat][lang] : t('heroTypicalAll');
   if (med !== null) {
     cells.push({ v: fmt(med), l: `${t('heroTypical')} · ${scopeLabel} ${latest}` });
-    if (medPrev !== null) {
-      // round first: unrounded, a -0.0499 printed as a falling "-0,0" under a
-      // median that reads 38,5 in both years. A flat year is neither way.
-      const d = round1(med - medPrev);
+    // "Endring" has to mean the same programmes moved, not that the school's
+    // list did. 92 of 123 schools name a different set in the two years, and
+    // at Stange three of the lowest-scoring left it — the median rose 8,4
+    // points while nothing at all got harder. So: only programmes carrying a
+    // figure in both years, and no cell at all when none do.
+    const pair = scopePrograms.filter(p => isPoints(p.values[latest]) && isPoints(p.values[prev]));
+    if (pair.length) {
+      // round before choosing the sign: unrounded, a -0.0499 printed as a
+      // falling "-0,0" under a median that reads 38,5 in both years.
+      const d = round1(medianOf(pair.map(p => p.values[latest]))
+                     - medianOf(pair.map(p => p.values[prev])));
       cells.push({ v: (d > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
-                   cls: d > 0 ? 'up' : d < 0 ? 'dn' : '' });
+                   cls: d > 0 ? 'up' : d < 0 ? 'dn' : '', ti: t('heroDeltaBasis', pair.length) });
     }
   } else {
     const last = scopePrograms.map(p => p.values[latest]).filter(v => v !== undefined);
@@ -1302,7 +1319,8 @@ function renderSide() {
   }
   cells.push({ v: visibleIn(scopePrograms), l: t('heroProgs') });
   document.getElementById('s-hero').innerHTML =
-    cells.map(c => `<div class="cell"><div class="v ${c.cls || ''}">${c.v}</div><div class="l">${c.l}</div></div>`).join('');
+    cells.map(c => `<div class="cell"${c.ti ? ` title="${esc(c.ti)}"` : ''}>` +
+                   `<div class="v ${c.cls || ''}">${c.v}</div><div class="l">${c.l}</div></div>`).join('');
   document.getElementById('s-filter').placeholder = t('filterPh');
   document.getElementById('src-note').textContent = t('srcNote');
   renderChartCard();
