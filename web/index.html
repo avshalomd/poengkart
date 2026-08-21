@@ -161,6 +161,9 @@
     font-size: 11.5px; line-height: 1.5; color: var(--ink-3);
     border-top: 1px solid var(--line); padding-top: 12px; margin-top: 16px;
   }
+  #intro .colophon { font-size: 11.5px; line-height: 1.5; color: var(--ink-3); margin-top: 9px; }
+  #intro .colophon a { color: var(--accent); }
+  #intro .colophon .who { display: block; margin-top: 2px; }
   .modal .cta {
     display: block; width: 100%; margin-top: 14px; padding: 11px; border: none;
     border-radius: 11px; background: var(--accent); color: #fff; font: inherit;
@@ -667,15 +670,15 @@ const T = {
   },
   introTitle: { no: 'Slik leser du kartet', en: 'How to read this map' },
   introLede: {
-    no: 'Hver prikk er en videregående skole. Fargen viser hvor høy poengsum du typisk måtte ha for å få plass sist – jo mørkere, jo høyere.',
-    en: 'Every dot is an upper secondary school. The colour shows the score you typically needed to get a place last time — the darker, the higher.',
+    no: 'Hver prikk er en videregående skole. Fargen viser hvor høy poengsum du i snitt måtte ha for å få plass sist – jo mørkere, jo høyere.',
+    en: 'Every dot is an upper secondary school. The colour shows the score you needed on average to get a place last time — the darker, the higher.',
   },
   introSteps: {
     no: [
       ['Poengsummen din',
        'Poengsum = karaktersnittet ditt × 10. Poenggrensen er poengsummen til den siste søkeren som fikk plass – lå du over den, ville du kommet inn.'],
       ['Fargene og størrelsene',
-       'Farge = typisk poenggrense det siste året skolen har tall for. Størrelse = hvor stor andel av programområdene som ble fylt opp.'],
+       'Farge = snittet av poenggrensene det siste året skolen har tall for. Størrelse = hvor stor andel av programområdene som ble fylt opp – er den liten, tok de fleste inn alle søkere.'],
       ['Finn skolene som er aktuelle',
        'Velg fylke og utdanningsprogram øverst. Trykk på en prikk for utviklingen år for år og tallene for hvert programområde.'],
     ],
@@ -683,7 +686,7 @@ const T = {
       ['Your points',
        'Points = your grade average × 10. The threshold is the score of the last applicant who got a place — if you were above it, you would have got in.'],
       ['Colours and sizes',
-       'Colour = the typical threshold in the newest year that school has figures for. Size = what share of its programmes filled up.'],
+       'Colour = the average of the thresholds in the newest year that school has figures for. Size = what share of its programmes filled up — a small dot means most admitted everyone who applied.'],
       ['Find the schools that matter to you',
        'Pick a county and a programme at the top. Open a dot for the year-by-year trend and the figures per programme.'],
     ],
@@ -822,6 +825,13 @@ const T = {
   staleTitle: { no: 'Fylket har ikke publisert tall for denne skolen de siste årene. Historikken under er den siste som finnes.',
                 en: 'The county has not published figures for this school in recent years. The history below is the last there is.' },
   introData:  { no: 'Last ned hele datasettet (JSON).', en: 'Download the whole dataset (JSON).' },
+  // Anyone checking a figure should be able to get to the sources, the code
+  // that reads them and the notes on how they are cleaned up — and to know
+  // who stands behind the numbers. The link carries all three.
+  introRepo:  { no: a => `Kode, data og dokumentasjon av hvordan tallene hentes inn og behandles ligger åpent på ${a}.`,
+                en: a => `The code, the data and the write-up of how the figures are collected and processed are open on ${a}.` },
+  introCredit:{ no: 'Laget av Avshalom Dayan · fritt å bruke (MIT-lisens)',
+                en: 'Built by Avshalom Dayan · free to use (MIT licence)' },
   listAnd:    { no: ' og ', en: ' and ' },
   mergedNote: { no: (from, y) => `Skolen ble slått sammen fra ${from} i ${y}. Tall før ${y} er fra disse skolene.`,
                 en: (from, y) => `This school was formed from ${from} in ${y}. Figures before ${y} come from those schools.` },
@@ -894,6 +904,8 @@ const BINS = [
 ];
 const BIN_EDGES = ['<30', '30–34', '34–38', '38–42', '42+'];
 const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const REPO = 'https://github.com/avshalomd/poengkart';
+const REPO_LINK = `<a href="${REPO}" target="_blank" rel="noopener">GitHub ↗</a>`;
 // Binary floats make (35,7 + 36,0) / 2 come out as 35.849999999999994, and
 // toFixed(1) prints that as 35,8 — a tenth below the figure it is. Every
 // published figure has at most two decimals, so round in hundredths with
@@ -1870,6 +1882,8 @@ function renderIntro() {
     `<p class="lede">${esc(t('introLede'))}</p>${steps}` +
     `<p class="caveat">${esc(t('introCaveat'))} `
       + `<a href="data/schools.json">${esc(t('introData'))}</a></p>` +
+    `<p class="colophon">${t('introRepo', REPO_LINK)}` +
+      `<span class="who">${esc(t('introCredit'))}</span></p>` +
     `<button class="cta" onclick="closeIntro()">${esc(t('introCta'))}</button>`;
   document.getElementById('intro-x').setAttribute('aria-label', t('close'));
 }
