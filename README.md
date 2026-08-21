@@ -37,6 +37,7 @@ Each (school, programme, year) cell is one of:
 | | |
 |---|---|
 | a number | the threshold — the last admitted applicant's points |
+| `0` | the programme filled, but the last admitted had no registered points, so everyone with points got in. The counties print this as its own state, distinct from `open` — Innlandet: *"der det er merket med «0» er det ikke ledige plasser, men siste inntatte har ingen poeng"* |
 | `open` | no waitlist; everyone qualified was admitted (**not** zero) |
 | `F` | filled on *fortrinnsrett*, a statutory priority quota with no threshold |
 | `D` | admission by documentation (IB, elite sport), so no threshold exists |

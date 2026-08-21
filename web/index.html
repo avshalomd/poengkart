@@ -785,6 +785,15 @@ const T = {
   },
   pts:        { no: 'poeng', en: 'pts' },
   allIn:      { no: 'Alle inntatt', en: 'All admitted' },
+  // A 0,0 is not a threshold anyone could miss and not "everyone got in"
+  // either: the counties print it as its own state. Innlandet's legend —
+  // "der det er merket med «0» er det ikke ledige plasser, men siste inntatte
+  // har ingen poeng" — is the wording this follows.
+  noPoints:   { no: 'Alle med poeng', en: 'All with points' },
+  noPointsTitle: {
+    no: 'Programområdet ble fylt opp, men den siste som kom inn hadde ingen poeng registrert. Alle søkere med poeng fikk plass.',
+    en: 'The programme filled up, but the last applicant admitted had no registered points. Everyone with points got a place.',
+  },
   priority:   { no: 'Fortrinn', en: 'Priority' },
   docAdm:     { no: 'Dokumentasjon', en: 'By documentation' },
   docTitle:   { no: 'Inntak på grunnlag av dokumentasjon (f.eks. IB eller toppidrett) – ingen poenggrense.',
@@ -824,7 +833,8 @@ const T = {
   tipHighest: { no: 'Høyest', en: 'Highest' },
   tipAllOpen: { no: y => `Alle program uten venteliste i ${y}`, en: y => `All programs without waitlist in ${y}` },
   heroSt:     { no: y => `Studiespes. ${y}`, en: y => `Acad. spec. ${y}` },
-  heroDelta:  { no: y => `endring fra ${y}`, en: y => `change vs ${y}` },
+  heroDelta:  { no: (y, n) => `endring fra ${y} · ${n} program`,
+                en: (y, n) => `change vs ${y} · ${n} programme${n === 1 ? '' : 's'}` },
   heroDeltaBasis: {
     no: n => n === 1
       ? 'Regnet ut fra det ene programområdet som har tall begge årene.'
@@ -837,10 +847,10 @@ const T = {
   tabAll:     { no: 'Alle', en: 'All' },
   tabCat:     { no: 'Kategori', en: 'Category' },
   tabProg:    { no: 'Program', en: 'Program' },
-  chartSubAll:  { no: n => `${n} programserier · snittlinje i blått`, en: n => `${n} program series · average in blue` },
-  chartSubCat:  { no: n => `${n} serier i kategorien · snitt i blått`, en: n => `${n} series in category · average in blue` },
-  chartSubProg: { no: 'Én serie · hule punkter = alle inntatt', en: 'Single series · hollow dots = all admitted' },
-  avg:        { no: 'snitt', en: 'avg' },
+  chartSubAll:  { no: n => `${n} programserier · medianlinje i blått`, en: n => `${n} program series · median in blue` },
+  chartSubCat:  { no: n => `${n} serier i kategorien · median i blått`, en: n => `${n} series in category · median in blue` },
+  chartSubProg: { no: 'Én serie · hule punkter = ingen poenggrense', en: 'Single series · hollow dots = no threshold' },
+  midLabel:   { no: 'median', en: 'median' },
   series:     { no: 'serier', en: 'series' },
   filterPh:   { no: 'Filtrer programområde …', en: 'Filter programs…' },
   website:    { no: 'Nettside', en: 'Website' },
@@ -889,7 +899,7 @@ let chart = { mode: 'all', cat: null, prog: null };
 function numericLatest(values) {
   const ys = Object.keys(values).sort();
   for (let i = ys.length - 1; i >= 0; i--)
-    if (typeof values[ys[i]] === 'number') return [ys[i], values[ys[i]]];
+    if (isPoints(values[ys[i]])) return [ys[i], values[ys[i]]];
   return null;
 }
 const fmt = v => lang === 'no' ? fmtNum(v) : String(fmtNum(v)).replace(',', '.');
@@ -1305,7 +1315,7 @@ function renderSide() {
       // falling "-0,0" under a median that reads 38,5 in both years.
       const d = round1(medianOf(pair.map(p => p.values[latest]))
                      - medianOf(pair.map(p => p.values[prev])));
-      cells.push({ v: (d > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
+      cells.push({ v: (d > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev, pair.length),
                    cls: d > 0 ? 'up' : d < 0 ? 'dn' : '', ti: t('heroDeltaBasis', pair.length) });
     }
   } else {
@@ -1381,7 +1391,7 @@ function drawChart() {
 
   // the y-domain follows the data: a fixed 10-50 window flattened every school
   // whose thresholds run above 50 (Sauda ambulansefag sits at 51-54)
-  const nums = series.flatMap(p => Object.values(p.values).filter(v => typeof v === 'number'));
+  const nums = series.flatMap(p => Object.values(p.values).filter(isPoints));
   let LO = 10, HI = 50;
   if (nums.length) {
     LO = Math.max(0, Math.floor((Math.min(...nums) - 3) / 5) * 5);
@@ -1398,11 +1408,14 @@ function drawChart() {
     ? `${chart.prog ? progName(chart.prog) + ' · ' : ''}${t('chartSubProg')}`
     : chart.mode === 'cat' ? t('chartSubCat', series.length) : t('chartSubAll', series.length);
 
-  // averages per year over numeric values
-  const avg = {}, cnt = {};
+  // One statistic for the whole app: the map dot, the headline figure and
+  // this line are all the median of the same cells. As a mean it ended 14
+  // points under the number printed directly above it at Jønsberg, and one
+  // 0,0 could drag it below every programme line drawn behind it.
+  const mid = {}, cnt = {};
   years.forEach(yr => {
-    const vals = series.map(p => p.values[yr]).filter(v => typeof v === 'number');
-    if (vals.length) { avg[yr] = vals.reduce((a, b) => a + b, 0) / vals.length; cnt[yr] = vals.length; }
+    const vals = series.map(p => p.values[yr]).filter(isPoints);
+    if (vals.length) { mid[yr] = medianOf(vals); cnt[yr] = vals.length; }
   });
 
   let svg = '';
@@ -1419,7 +1432,7 @@ function drawChart() {
     let segs = [], run = [];
     years.forEach((yr, i) => {
       const v = p.values[yr];
-      if (typeof v === 'number') run.push(`${x(i)},${y(v)}`);
+      if (isPoints(v)) run.push(`${x(i)},${y(v)}`);
       else if (run.length) { segs.push(run); run = []; }
     });
     if (run.length) segs.push(run);
@@ -1432,20 +1445,19 @@ function drawChart() {
     svg += lineOf(p, 'var(--accent)', 2.5, 1);
     years.forEach((yr, i) => {
       const v = p.values[yr];
-      if (typeof v === 'number')
+      if (isPoints(v))
         svg += `<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="var(--accent)" stroke="var(--surface-solid)" stroke-width="1.5"/>`;
-      else if (v === 'open')
+      else if (v === 'open' || v === 0)   // neither is a height on this axis
         svg += `<circle cx="${x(i)}" cy="${y(LO)}" r="4" fill="var(--surface-solid)" stroke="var(--ink-3)" stroke-width="1.6"/>`;
     });
     const l = numericLatest(p.values);
     if (l) svg += `<text x="${x(years.indexOf(l[0])) - 8}" y="${Math.max(y(l[1]) - 9, MT - 3)}" font-size="11" font-weight="700" fill="var(--ink)" text-anchor="middle">${fmt(l[1])}</text>`;
   } else {
     for (const p of series) svg += lineOf(p, 'var(--context)', 1.4, .55);
-    const avgSeries = { values: Object.fromEntries(Object.entries(avg)) };
-    svg += lineOf(avgSeries, 'var(--accent)', 2.6, 1);
+    svg += lineOf({ values: mid }, 'var(--accent)', 2.6, 1);
     years.forEach((yr, i) => {
-      if (avg[yr] != null)
-        svg += `<circle cx="${x(i)}" cy="${y(avg[yr])}" r="3.6" fill="var(--accent)" stroke="var(--surface-solid)" stroke-width="1.4"/>`;
+      if (mid[yr] != null)
+        svg += `<circle cx="${x(i)}" cy="${y(mid[yr])}" r="3.6" fill="var(--accent)" stroke="var(--surface-solid)" stroke-width="1.4"/>`;
     });
   }
   svg += `<line id="xh" x1="0" x2="0" y1="${MT}" y2="${MT + ih}" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3 3" visibility="hidden"/>`;
@@ -1467,11 +1479,12 @@ function drawChart() {
     if (chart.mode === 'prog' && chart.prog) {
       const v = chart.prog.values[yr];
       body = v === undefined ? '–'
-        : typeof v === 'number' ? `${fmt(v)} ${t('pts')}`
+        : isPoints(v) ? `${fmt(v)} ${t('pts')}`
+        : v === 0 ? t('noPoints')
         : v === 'open' ? t('allIn') : v === 'F' ? t('priority')
         : v === 'D' ? t('docAdm') : t('gone');
     } else {
-      body = avg[yr] != null ? `${t('avg')} ${fmt(avg[yr])} · ${cnt[yr]} ${t('series')}` : '–';
+      body = mid[yr] != null ? `${t('midLabel')} ${fmt(mid[yr])} · ${cnt[yr]} ${t('series')}` : '–';
     }
     tip.innerHTML = `<span class="y">${yr}</span> <span class="r">${body}</span>`;
     tip.style.display = 'block';
@@ -1521,6 +1534,7 @@ function renderList() {
       const orphan = latestYear === null;
       const hasF = ys.some(y => p.values[y] === 'F');
       const val = orphan ? `<span class="soft" title="${esc(t('fortrinnTitle'))}">${t('priority')} ⓘ</span>`
+        : lv === 0 ? `<span class="soft" title="${esc(t('noPointsTitle'))}">${t('noPoints')} ⓘ</span>`
         : typeof lv === 'number' ? `${fmt(lv)}<small>${latestYear}</small>`
         : lv === 'open' ? `<span class="soft">${t('allIn')}</span>`
         : lv === 'D' ? `<span class="soft" title="${esc(t('docTitle'))}">${t('docAdm')}</span>`

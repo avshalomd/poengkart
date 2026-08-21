@@ -301,6 +301,13 @@ check('toppidrett inside general studies stays general studies',
 check('the two crafts programmes are separate categories',
       {'FD', 'DT'} <= {p['category'] for _, p in ALL_PROGS})
 
+# ...and so does data-notes.md, which had fallen two behind
+notes = open(os.path.join(HERE, '..', 'docs', 'data-notes.md'), encoding='utf-8').read()
+r_checks = re.findall(r'runs (\d+) regression checks', notes)
+check('the check count in data-notes.md matches this suite',
+      r_checks and all(int(n) == checks + 1 for n in r_checks),
+      f'found {r_checks}, suite has {checks + 1}')
+
 print(f'{checks - len(fails)}/{checks} checks passed')
 for f in fails:
     print('  FAIL:', f)
