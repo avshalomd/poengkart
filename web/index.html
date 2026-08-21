@@ -833,15 +833,19 @@ const T = {
   tipHighest: { no: 'Høyest', en: 'Highest' },
   tipAllOpen: { no: y => `Alle program uten venteliste i ${y}`, en: y => `All programs without waitlist in ${y}` },
   heroSt:     { no: y => `Studiespes. ${y}`, en: y => `Acad. spec. ${y}` },
-  heroDelta:  { no: (y, n) => `endring fra ${y} · ${n} program`,
-                en: (y, n) => `change vs ${y} · ${n} programme${n === 1 ? '' : 's'}` },
+  heroDelta:  { no: (y, n) => `endring fra ${y} · samme ${n} program`,
+                en: (y, n) => `change vs ${y} · same ${n} programme${n === 1 ? '' : 's'}` },
   heroDeltaBasis: {
-    no: n => n === 1
-      ? 'Regnet ut fra det ene programområdet som har tall begge årene.'
-      : `Regnet ut fra de ${n} programområdene som har tall begge årene.`,
-    en: n => n === 1
-      ? 'Worked out from the one programme area with figures in both years.'
-      : `Worked out from the ${n} programme areas with figures in both years.`,
+    no: n => (n === 1
+      ? 'Regnet ut fra det ene programområdet som har tall begge årene. '
+      : `Regnet ut fra de ${n} programområdene som har tall begge årene. `)
+      + 'Program som falt fra eller kom til er holdt utenfor, så tallet er ikke '
+      + 'differansen mellom de to siste punktene i grafen.',
+    en: n => (n === 1
+      ? 'Worked out from the one programme area with figures in both years. '
+      : `Worked out from the ${n} programme areas with figures in both years. `)
+      + 'Programmes that dropped out or appeared are left out, so this is not '
+      + 'the difference between the last two points on the chart.',
   },
   heroProgs:  { no: 'programområder', en: 'program areas' },
   tabAll:     { no: 'Alle', en: 'All' },
@@ -874,10 +878,12 @@ const BINS = [
 const BIN_EDGES = ['<30', '30–34', '34–38', '38–42', '42+'];
 const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 // Binary floats make (35,7 + 36,0) / 2 come out as 35.849999999999994, and
-// toFixed(1) prints that as 35,8 — a tenth below the median it is. Clean the
-// noise off at the fifteenth digit before rounding, so a figure that is
-// exactly x,x5 in decimal rounds the way a reader checking it by hand would.
-const round1 = v => { const t = Number((Math.abs(v) * 10).toPrecision(15)); return Math.sign(v) * Math.round(t) / 10; };
+// toFixed(1) prints that as 35,8 — a tenth below the median it is. Every
+// published figure has at most two decimals, so round in hundredths with
+// integer arithmetic: exact, and it cannot drift the way a toPrecision()
+// tolerance does once a value has been through a sum, a divide and a
+// subtraction (41,35 arrives as 41.349999999999994, noise at the 14th digit).
+const round1 = v => { const h = Math.round(v * 100), sg = h < 0 ? -1 : 1; return sg * Math.round(Math.abs(h) / 10) / 10; };
 // a cell that is a threshold someone could have missed. 'open', F, D and U
 // are not, and neither is 0,0 — see the note in schoolPressure().
 const isPoints = v => typeof v === 'number' && v > 0;
