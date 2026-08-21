@@ -855,7 +855,12 @@ const BINS = [
 ];
 const BIN_EDGES = ['<30', '30–34', '34–38', '38–42', '42+'];
 const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-const fmtNum = v => typeof v === 'number' ? v.toFixed(1).replace('.', ',') : v;
+// Binary floats make (35,7 + 36,0) / 2 come out as 35.849999999999994, and
+// toFixed(1) prints that as 35,8 — a tenth below the median it is. Clean the
+// noise off at the fifteenth digit before rounding, so a figure that is
+// exactly x,x5 in decimal rounds the way a reader checking it by hand would.
+const round1 = v => { const t = Number((Math.abs(v) * 10).toPrecision(15)); return Math.sign(v) * Math.round(t) / 10; };
+const fmtNum = v => typeof v === 'number' ? round1(v).toFixed(1).replace('.', ',') : v;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 let DATA = null, map = null, markerLayer = null;
@@ -890,7 +895,11 @@ function partitionPrograms(progs) {
   const orphans = progs.filter(p => isPrioOnly(p) && !regNames.has(p.program.toLowerCase()));
   return { regular, orphans, prioNames };
 }
-const visibleCount = s => { const pp = partitionPrograms(s.programs); return pp.regular.length + pp.orphans.length; };
+// the rows the programme list actually renders: an F-only duplicate of a
+// programme that also has a real row is folded away there, so any count that
+// includes it contradicts the list printed right underneath
+const visibleIn = progs => { const pp = partitionPrograms(progs); return pp.regular.length + pp.orphans.length; };
+const visibleCount = s => visibleIn(s.programs);
 // the newest year in the dataset, or the one before it: anything older is a
 // school the counties have stopped publishing
 const staleBefore = () => +DATA.years[DATA.years.length - 1] - 1;
@@ -912,10 +921,11 @@ function schoolPressure(s, cat) {
   if (+yr < staleBefore()) return { kind: 'stale', year: yr };
   const pool = scope.filter(p => yr in p.values && p.values[yr] !== 'F' && p.values[yr] !== 'U');
   const cells = pool.map(p => p.values[yr]);
-  // Several counties publish 0,0, and legend it: the programme filled up, but
-  // the last applicant admitted had no points. It counts as filled, and it is
-  // not a threshold — averaged in as a number it dragged five schools into the
-  // lowest colour band on the strength of a figure that means "no threshold".
+  // Several counties publish 0,0 and legend it: the programme filled up and
+  // applicants with 0,0 points were still left on the waiting list. So it is a
+  // real threshold, and the most extreme one there is. It counts as filled,
+  // but it stays out of the median: as a value it dragged five schools into
+  // the lowest colour band on the strength of one programme's queue.
   const zeroN = cells.filter(v => v === 0).length;
   const nums = cells.filter(v => typeof v === 'number' && v > 0).sort((a, b) => a - b);
   const openN = cells.filter(v => v === 'open').length;
@@ -1275,8 +1285,11 @@ function renderSide() {
   if (med !== null) {
     cells.push({ v: fmt(med), l: `${t('heroTypical')} · ${scopeLabel} ${latest}` });
     if (medPrev !== null) {
-      const d = med - medPrev;
-      cells.push({ v: (d >= 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev), cls: d >= 0 ? 'up' : 'dn' });
+      // round first: unrounded, a -0.0499 printed as a falling "-0,0" under a
+      // median that reads 38,5 in both years. A flat year is neither way.
+      const d = round1(med - medPrev);
+      cells.push({ v: (d > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
+                   cls: d > 0 ? 'up' : d < 0 ? 'dn' : '' });
     }
   } else {
     const last = scopePrograms.map(p => p.values[latest]).filter(v => v !== undefined);
@@ -1287,7 +1300,7 @@ function renderSide() {
                 : t('allIn');
     cells.push({ v: label, l: `${scopeLabel} ${latest || ''}`.trim() });
   }
-  cells.push({ v: lensCat ? scopePrograms.length : visibleCount(s), l: t('heroProgs') });
+  cells.push({ v: visibleIn(scopePrograms), l: t('heroProgs') });
   document.getElementById('s-hero').innerHTML =
     cells.map(c => `<div class="cell"><div class="v ${c.cls || ''}">${c.v}</div><div class="l">${c.l}</div></div>`).join('');
   document.getElementById('s-filter').placeholder = t('filterPh');

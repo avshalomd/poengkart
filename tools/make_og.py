@@ -98,16 +98,24 @@ def basemap(cx_lat, cx_lon, z, win_w, win_h, tile=512):
 
 
 # ------------------------------------------------------------------ data
-def pressure(s):
+def pressure(s, stale_before):
     """Mirror of the app's schoolPressure(): median threshold among the
-    programmes that filled up, judged in that school's own newest year."""
+    programmes that filled up, judged in that school's own newest year.
+
+    It has to stay a mirror, or the card advertises colours the map does not
+    have. Two rules are easy to leave out and both change dots: a 0,0 is a
+    real threshold but not part of the median, and a school whose newest
+    figures predate stale_before is drawn as no-data rather than coloured.
+    """
     years = sorted({y for p in s['programs'] for y in p['values']})
     if not years:
         return None
     yr = years[-1]
+    if int(yr) < stale_before:
+        return None
     pool = [p['values'][yr] for p in s['programs']
             if yr in p['values'] and p['values'][yr] not in ('F', 'U')]
-    nums = sorted(v for v in pool if isinstance(v, (int, float)))
+    nums = sorted(v for v in pool if isinstance(v, (int, float)) and v > 0)
     if not nums:
         return 'open' if pool else None
     m = len(nums) // 2
@@ -121,7 +129,9 @@ def colour(v):
 # ------------------------------------------------------------------ card
 def main():
     data = json.load(open(DATA))
-    pts = [(s['lat'], s['lon'], pressure(s)) for s in data['schools'] if s.get('lat')]
+    stale_before = data['years'][-1] - 1        # the app's staleBefore()
+    pts = [(s['lat'], s['lon'], pressure(s, stale_before))
+           for s in data['schools'] if s.get('lat')]
     lats = [p[0] for p in pts]
     lons = [p[1] for p in pts]
     cx_lat = (max(lats) + min(lats)) / 2
