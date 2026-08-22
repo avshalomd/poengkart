@@ -1,0 +1,1640 @@
+school,fylke,program,occurrence,level,category,year,round,expected,spread,p_fill,history_years
+Asker,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,40.1,6.2,0.661,1
+Bjertnes,Akershus,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,28.5,6.2,0.672,1
+Bjertnes,Akershus,Elektro og datateknologi,0,Vg1,EL,2026,2,36.6,6.2,0.801,1
+Bjertnes,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,31.5,7.7,0.432,0
+Bjertnes,Akershus,"Salg, service og reiseliv",0,Vg1,SR,2026,2,31.9,6.2,0.71,1
+Bjertnes,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,38.7,6.2,0.638,1
+Bjørkelangen,Akershus,Elektro og datateknologi,0,Vg1,EL,2026,2,31.3,6.2,0.805,1
+Bjørkelangen,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,2,25.8,7.7,0.668,0
+Bjørkelangen,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,26.7,6.2,0.669,1
+Bjørkelangen,Akershus,Idrettsfag,0,Vg1,ID,2026,2,36.8,6.2,0.712,1
+Bjørkelangen,Akershus,"Salg, service og reiseliv",0,Vg1,SR,2026,2,25.2,6.2,0.714,1
+Bjørkelangen,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,33.4,6.2,0.642,1
+Bjørkelangen,Akershus,Teknologi- og industrifag,0,Vg1,TP,2026,2,27.5,7.7,0.522,0
+Bleiker,Akershus,Elektro og datateknologi,0,Vg1,EL,2026,2,35.9,6.2,0.804,1
+Bleiker,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,31.5,6.2,0.667,1
+Bleiker,Akershus,Idrettsfag,0,Vg1,ID,2026,2,42.4,6.2,0.711,1
+Bleiker,Akershus,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,2,36.6,7.7,0.486,0
+Bleiker,Akershus,Medier og kommunikasjon,0,Vg1,MK,2026,2,37.9,6.2,0.642,1
+Bleiker,Akershus,"Salg, service og reiseliv",0,Vg1,SR,2026,2,34.0,6.2,0.713,1
+Bleiker,Akershus,Teknologi- og industrifag,0,Vg1,TP,2026,2,32.5,6.2,0.771,1
+Drømtorp,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,28.3,7.7,0.344,0
+Drømtorp,Akershus,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,2,31.1,6.2,0.624,1
+Drømtorp,Akershus,Medier og kommunikasjon,0,Vg1,MK,2026,2,33.9,7.7,0.322,0
+Drømtorp,Akershus,"Salg, service og reiseliv",0,Vg1,SR,2026,2,28.3,7.7,0.383,0
+Dønski,Akershus,Idrettsfag,0,Vg1,ID,2026,2,41.4,6.2,0.742,1
+Dønski,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,39.5,6.2,0.67,1
+Eidsvoll,Akershus,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,28.0,6.2,0.678,1
+Eidsvoll,Akershus,Elektro og datateknologi,0,Vg1,EL,2026,2,35.7,6.2,0.806,1
+Eidsvoll,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,28.5,6.2,0.67,1
+Eidsvoll,Akershus,Idrettsfag,0,Vg1,ID,2026,2,37.8,6.2,0.714,1
+Eidsvoll,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,37.0,7.7,0.414,0
+Eidsvoll,Akershus,Teknologi- og industrifag,0,Vg1,TP,2026,2,30.0,6.2,0.774,1
+Eikeli,Akershus,"Salg, service og reiseliv",0,Vg1,SR,2026,2,30.5,7.7,0.388,0
+Eikeli,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,37.7,7.7,0.325,0
+Frogn,Akershus,Idrettsfag,0,Vg1,ID,2026,2,37.6,6.2,0.704,1
+Frogn,Akershus,"Salg, service og reiseliv",0,Vg1,SR,2026,2,26.5,6.2,0.706,1
+Frogn,Akershus,"Salg, service og reiseliv, SK",0,Vg1,SR,2026,2,31.8,6.2,0.647,1
+Frogn,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,36.0,7.7,0.406,0
+Hvam,Akershus,Idrettsfag,0,Vg1,ID,2026,2,39.5,7.7,0.413,0
+Hvam,Akershus,Medier og kommunikasjon,0,Vg1,MK,2026,2,36.4,7.7,0.355,0
+Hvam,Akershus,Naturbruk,0,Vg1,NA,2026,2,30.8,7.7,0.613,0
+Hvam,Akershus,"Naturbruk, energi-/miljøfag, SK 3 år",0,Vg1,NA,2026,2,31.9,7.7,0.302,0
+Hvam,Akershus,"Naturbruk, realfag og dyrekunnskap, SK 3 år",0,Vg1,NA,2026,2,32.3,6.2,0.594,1
+Jessheim,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,29.1,6.2,0.725,1
+Jessheim,Akershus,"Kunst, design og arkitektur",0,Vg1,KD,2026,2,35.8,6.2,0.708,1
+Jessheim,Akershus,"Salg, service og reiseliv",0,Vg1,SR,2026,2,30.0,6.2,0.77,1
+Jessheim,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,38.5,6.2,0.698,1
+Jessheim,Akershus,Teknologi- og industrifag,0,Vg1,TP,2026,2,30.7,6.2,0.824,1
+Kjelle,Akershus,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,27.0,7.7,0.407,0
+Kjelle,Akershus,Naturbruk,0,Vg1,NA,2026,2,28.7,6.2,0.64,1
+Lillestrøm,Akershus,Medier og kommunikasjon,0,Vg1,MK,2026,2,39.7,6.2,0.705,1
+Lillestrøm,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,42.6,6.2,0.703,1
+Lillestrøm,Akershus,"Studiespesialisering, forberedende IB",0,Vg1,ST,2026,2,38.1,6.2,0.631,1
+Lørenskog,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,2,31.1,6.2,0.708,1
+Lørenskog,Akershus,Idrettsfag,0,Vg1,ID,2026,2,42.4,6.2,0.753,1
+Lørenskog,Akershus,"Kunst, design og arkitektur",0,Vg1,KD,2026,2,37.6,6.2,0.692,1
+Lørenskog,Akershus,Restaurant- og matfag,0,Vg1,RM,2026,2,31.0,7.7,0.365,0
+Lørenskog,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,41.3,6.2,0.682,1
+Lørenskog,Akershus,"Studiespesialisering, toppidrett",0,Vg1,ST,2026,2,43.2,6.2,0.651,1
+Mailand,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,27.1,6.2,0.716,1
+Mailand,Akershus,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,2,34.0,6.2,0.778,1
+Mailand,Akershus,"Salg, service og reiseliv",0,Vg1,SR,2026,2,30.4,6.2,0.761,1
+Mailand,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,35.2,6.2,0.688,1
+Nadderud,Akershus,Idrettsfag,0,Vg1,ID,2026,2,44.9,6.2,0.742,1
+Nadderud,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,44.0,6.2,0.67,1
+Nannestad,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,28.8,6.2,0.663,1
+Nannestad,Akershus,Idrettsfag,0,Vg1,ID,2026,2,39.7,6.2,0.707,1
+Nannestad,Akershus,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,2,36.0,6.2,0.726,1
+Nannestad,Akershus,Medier og kommunikasjon,0,Vg1,MK,2026,2,36.3,7.7,0.41,0
+Nannestad,Akershus,Restaurant- og matfag,0,Vg1,RM,2026,2,28.3,7.7,0.326,0
+Nannestad,Akershus,"Salg, service og reiseliv",0,Vg1,SR,2026,2,31.0,6.2,0.709,1
+Nannestad,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,38.4,6.2,0.637,1
+Nes,Akershus,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,22.7,7.7,0.4,0
+Nes,Akershus,Elektro og datateknologi,0,Vg1,EL,2026,2,28.8,6.2,0.757,1
+Nes,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,22.5,6.2,0.62,1
+Nes,Akershus,Idrettsfag,0,Vg1,ID,2026,2,33.7,6.2,0.662,1
+Nes,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,32.3,7.7,0.371,0
+Nesbru,Akershus,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,28.6,6.2,0.735,1
+Nesbru,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,39.0,6.2,0.7,1
+Nesbru,Akershus,"Studiespesialisering, forberedende IB",0,Vg1,ST,2026,2,39.1,6.2,0.628,1
+Nesodden,Akershus,Elektro og datateknologi,0,Vg1,EL,2026,2,33.8,6.2,0.735,1
+Nesodden,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,29.6,7.7,0.375,0
+Nesodden,Akershus,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,2,33.8,7.7,0.428,0
+Nesodden,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,36.2,6.2,0.575,1
+Roald Amundsen,Akershus,Idrettsfag,0,Vg1,ID,2026,2,40.2,6.2,0.673,1
+Roald Amundsen,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,38.3,7.7,0.38,0
+Rosenvilde,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,28.1,6.2,0.753,1
+Rosenvilde,Akershus,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,2,34.6,6.2,0.812,1
+Rosenvilde,Akershus,"Kunst, design og arkitektur",0,Vg1,KD,2026,2,29.7,6.2,0.735,1
+Rosenvilde,Akershus,Medier og kommunikasjon,0,Vg1,MK,2026,2,33.6,6.2,0.727,1
+Rosenvilde,Akershus,Restaurant- og matfag,0,Vg1,RM,2026,2,26.6,6.2,0.629,1
+Rosenvilde,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,33.9,6.2,0.726,1
+Rud,Akershus,Elektro og datateknologi,0,Vg1,EL,2026,2,32.4,6.2,0.813,1
+Rud,Akershus,"Elektro og datateknologi, SK 3 år",0,Vg1,EL,2026,2,34.3,6.2,0.756,1
+Rud,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,2,29.5,6.2,0.677,1
+Rud,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,27.4,6.2,0.678,1
+Rud,Akershus,"Håndverk, design og produktutvikling",0,Vg1,DT,2026,2,34.3,7.7,0.37,0
+Rud,Akershus,Teknologi- og industrifag,0,Vg1,TP,2026,2,29.4,6.2,0.781,1
+Rælingen,Akershus,Idrettsfag,0,Vg1,ID,2026,2,29.3,6.2,0.661,1
+Rælingen,Akershus,"Salg, service og reiseliv",0,Vg1,SR,2026,2,22.0,6.2,0.663,1
+Rælingen,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,30.6,7.7,0.37,0
+Rælingen,Akershus,"Studiespesialisering, toppidrett",0,Vg1,ST,2026,2,30.9,7.7,0.344,0
+Røyken,Akershus,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,29.4,6.2,0.594,1
+Røyken,Akershus,Elektro og datateknologi,0,Vg1,EL,2026,2,36.0,7.7,0.478,0
+Røyken,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,2,30.7,6.2,0.586,1
+Røyken,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,31.0,6.2,0.586,1
+Røyken,Akershus,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,2,36.0,7.7,0.416,0
+Røyken,Akershus,"Kunst, design og arkitektur",0,Vg1,KD,2026,2,36.0,7.7,0.348,0
+Røyken,Akershus,"Salg, service og reiseliv",0,Vg1,SR,2026,2,33.2,6.2,0.629,1
+Røyken,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,38.9,7.7,0.34,0
+Sandvika,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,33.0,6.2,0.717,1
+Sandvika,Akershus,Medier og kommunikasjon,0,Vg1,MK,2026,2,39.6,6.2,0.692,1
+Sandvika,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,40.8,6.2,0.69,1
+Skedsmo,Akershus,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,27.7,6.2,0.678,1
+Skedsmo,Akershus,Elektro og datateknologi,0,Vg1,EL,2026,2,33.8,6.2,0.806,1
+Skedsmo,Akershus,"Håndverk, design og produktutvikling",0,Vg1,DT,2026,2,35.0,7.7,0.363,0
+Skedsmo,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,36.2,6.2,0.643,1
+Ski,Akershus,Idrettsfag,0,Vg1,ID,2026,2,42.9,6.2,0.742,1
+Ski,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,41.7,6.2,0.67,1
+Stabekk,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,39.4,6.2,0.661,1
+Strømmen,Akershus,Elektro og datateknologi,0,Vg1,EL,2026,2,31.9,6.2,0.762,1
+Strømmen,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,28.9,7.7,0.398,0
+Strømmen,Akershus,Teknologi- og industrifag,0,Vg1,TP,2026,2,29.5,6.2,0.727,1
+Sørumsand,Akershus,Elektro og datateknologi,0,Vg1,EL,2026,2,34.7,7.7,0.678,0
+Sørumsand,Akershus,Medier og kommunikasjon,0,Vg1,MK,2026,2,36.1,7.7,0.304,0
+Sørumsand,Akershus,Restaurant- og matfag,0,Vg1,RM,2026,2,28.0,7.7,0.216,0
+Sørumsand,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,37.7,7.7,0.303,0
+Sørumsand,Akershus,Teknologi- og industrifag,0,Vg1,TP,2026,2,30.9,7.7,0.415,0
+Valler,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,41.9,6.2,0.661,1
+Vestby,Akershus,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,21.7,6.2,0.662,1
+Vestby,Akershus,Restaurant- og matfag,0,Vg1,RM,2026,2,23.6,7.7,0.318,0
+Vestby,Akershus,"Salg, service og reiseliv",0,Vg1,SR,2026,2,27.5,6.2,0.699,1
+Vestby,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,31.0,6.2,0.628,1
+Vestby,Akershus,"Studiespesialisering, forskerlinje",0,Vg1,ST,2026,2,24.8,7.7,0.368,0
+Ås,Akershus,Elektro og datateknologi,0,Vg1,EL,2026,2,39.0,6.2,0.836,1
+Ås,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,2,34.7,6.2,0.704,1
+Ås,Akershus,Helse- og oppvekstfag,0,Vg1,HS,2026,2,36.2,6.2,0.705,1
+Ås,Akershus,Idrettsfag,0,Vg1,ID,2026,2,44.5,6.2,0.748,1
+Ås,Akershus,"Kunst, design og arkitektur",0,Vg1,KD,2026,2,41.0,6.2,0.687,1
+Ås,Akershus,Studiespesialisering,0,Vg1,ST,2026,2,43.3,6.2,0.677,1
+Ås,Akershus,"Studiespesialisering, forberedende IB",0,Vg1,ST,2026,2,40.7,7.7,0.382,0
+Ås,Akershus,Teknologi- og industrifag,0,Vg1,TP,2026,2,34.8,6.2,0.806,1
+Buskerud,Buskerud,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,24.2,5.6,0.723,2
+Buskerud,Buskerud,Elektro og datateknologi,0,Vg1,EL,2026,,31.3,5.6,0.834,2
+Buskerud,Buskerud,Helse- og oppvekstfag,0,Vg1,HS,2026,,24.2,5.6,0.716,2
+Buskerud,Buskerud,Idrettsfag,0,Vg1,ID,2026,,35.3,5.6,0.754,2
+Buskerud,Buskerud,Naturbruk,0,Vg1,NA,2026,,24.0,6.2,0.561,1
+Buskerud,Buskerud,Restaurant- og matfag,0,Vg1,RM,2026,,22.5,6.2,0.452,1
+Buskerud,Buskerud,"Salg, service og reiseliv",0,Vg1,SR,2026,,29.4,5.6,0.755,2
+Buskerud,Buskerud,Studiespesialisering,0,Vg1,ST,2026,,33.1,7.7,0.378,0
+Buskerud,Buskerud,Teknologi- og industrifag,0,Vg1,TP,2026,,23.8,5.6,0.805,2
+Drammen,Buskerud,"Idrettsfag, toppidrett",0,Vg1,ID,2026,,46.5,6.2,0.789,1
+Drammen,Buskerud,"Kunst, design og arkitektur",0,Vg1,KD,2026,,39.2,5.6,0.805,2
+Drammen,Buskerud,"Salg, service og reiseliv",0,Vg1,SR,2026,,35.4,5.6,0.855,2
+Drammen,Buskerud,Studiespesialisering,0,Vg1,ST,2026,,41.4,5.6,0.797,2
+Drammen,Buskerud,"Studiespesialisering, entreprenørskap",0,Vg1,ST,2026,,44.3,5.6,0.815,2
+Drammen,Buskerud,"Studiespesialisering, forskerlinje",0,Vg1,ST,2026,,32.9,5.6,0.763,2
+Drammen,Buskerud,"Studiespesialisering, internasjonalisering",0,Vg1,ST,2026,,34.6,5.6,0.794,2
+Eiker,Buskerud,Helse- og oppvekstfag,0,Vg1,HS,2026,,31.5,5.6,0.79,2
+Eiker,Buskerud,"Salg, service og reiseliv",0,Vg1,SR,2026,,31.1,5.6,0.828,2
+Eiker,Buskerud,Studiespesialisering,0,Vg1,ST,2026,,36.3,5.6,0.767,2
+Gol,Buskerud,Idrettsfag,0,Vg1,ID,2026,,33.1,5.6,0.771,2
+Gol,Buskerud,Restaurant- og matfag,0,Vg1,RM,2026,,18.7,6.2,0.488,1
+Gol,Buskerud,Studiespesialisering,0,Vg1,ST,2026,,28.9,6.2,0.547,1
+Hønefoss,Buskerud,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,28.4,5.6,0.794,2
+Hønefoss,Buskerud,Elektro og datateknologi,0,Vg1,EL,2026,,35.3,5.6,0.891,2
+Hønefoss,Buskerud,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,,25.9,5.6,0.787,2
+Hønefoss,Buskerud,Helse- og oppvekstfag,0,Vg1,HS,2026,,32.6,5.6,0.787,2
+Hønefoss,Buskerud,"Helse- og oppvekstfag, YSK 4 år",0,Vg1,HS,2026,,36.9,6.2,0.751,1
+Hønefoss,Buskerud,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,,35.0,5.6,0.839,2
+Hønefoss,Buskerud,"Kunst, design og arkitektur",0,Vg1,KD,2026,,30.6,6.2,0.567,1
+Hønefoss,Buskerud,Medier og kommunikasjon,0,Vg1,MK,2026,,35.7,5.6,0.765,2
+Hønefoss,Buskerud,Restaurant- og matfag,0,Vg1,RM,2026,,28.4,5.6,0.681,2
+Hønefoss,Buskerud,Teknologi- og industrifag,0,Vg1,TP,2026,,30.3,5.6,0.869,2
+Kongsberg,Buskerud,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,26.1,6.2,0.59,1
+Kongsberg,Buskerud,Elektro og datateknologi,0,Vg1,EL,2026,,33.5,5.6,0.897,2
+Kongsberg,Buskerud,Helse- og oppvekstfag,0,Vg1,HS,2026,,29.5,5.6,0.795,2
+Kongsberg,Buskerud,"Håndverk, design og produktutvikling",0,Vg1,DT,2026,,32.9,5.6,0.72,2
+Kongsberg,Buskerud,Idrettsfag,0,Vg1,ID,2026,,41.3,5.6,0.831,2
+Kongsberg,Buskerud,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,,35.8,5.6,0.846,2
+Kongsberg,Buskerud,"Musikk, dans og drama",0,Vg1,MD,2026,,19.8,6.2,0.73,1
+Kongsberg,Buskerud,Naturbruk,0,Vg1,NA,2026,,27.7,5.6,0.806,2
+Kongsberg,Buskerud,Restaurant- og matfag,0,Vg1,RM,2026,,28.7,5.6,0.689,2
+Kongsberg,Buskerud,"Salg, service og reiseliv",0,Vg1,SR,2026,,31.3,5.6,0.833,2
+Kongsberg,Buskerud,Studiespesialisering,0,Vg1,ST,2026,,36.3,5.6,0.772,2
+Kongsberg,Buskerud,Teknologi- og industrifag,0,Vg1,TP,2026,,30.9,5.6,0.875,2
+Lier,Buskerud,Elektro og datateknologi,0,Vg1,EL,2026,,35.9,5.6,0.87,2
+Lier,Buskerud,"Elektro og datateknologi, helse- og miljøteknologi, studiekompetanse (3 år)",0,Vg1,EL,2026,,30.4,6.2,0.804,1
+Lier,Buskerud,"Elektro og datateknologi, studiekompetanse",0,Vg1,EL,2026,,35.0,6.2,0.802,1
+Lier,Buskerud,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,,27.7,6.2,0.742,1
+Lier,Buskerud,Helse- og oppvekstfag,0,Vg1,HS,2026,,31.2,5.6,0.758,2
+Lier,Buskerud,"Helse- og oppvekstfag, YSK 4 år",0,Vg1,HS,2026,,35.2,6.2,0.717,1
+Lier,Buskerud,"Helse- og oppvekstfag, barne- og ungdomsarbeider, studiekompetanse (3 år)",0,Vg1,HS,2026,,36.6,6.2,0.747,1
+Lier,Buskerud,"Helse- og oppvekstfag, studiekompetanse",0,Vg1,HS,2026,,35.4,6.2,0.741,1
+Lier,Buskerud,"Salg, service og reiseliv",0,Vg1,SR,2026,,31.7,6.2,0.587,1
+Lier,Buskerud,"Salg, service og reiseliv, YSK 4 år",0,Vg1,SR,2026,,32.1,6.2,0.717,1
+Numedal,Buskerud,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,26.4,5.6,0.706,2
+Numedal,Buskerud,Elektro og datateknologi,0,Vg1,EL,2026,,32.2,5.6,0.818,2
+Numedal,Buskerud,Helse- og oppvekstfag,0,Vg1,HS,2026,,26.9,7.7,0.383,0
+Numedal,Buskerud,"Salg, service og reiseliv",0,Vg1,SR,2026,,27.2,5.6,0.739,2
+Numedal,Buskerud,Studiespesialisering,0,Vg1,ST,2026,,32.8,6.2,0.498,1
+Numedal,Buskerud,Teknologi- og industrifag,0,Vg1,TP,2026,,24.4,5.6,0.789,2
+Ringerike,Buskerud,Idrettsfag,0,Vg1,ID,2026,,39.2,6.2,0.783,1
+Ringerike,Buskerud,"Idrettsfag, toppidrett",0,Vg1,ID,2026,,41.1,6.2,0.713,1
+Ringerike,Buskerud,"Musikk, dans og drama",0,Vg1,MD,2026,,21.5,6.2,0.681,1
+Ringerike,Buskerud,"Salg, service og reiseliv",0,Vg1,SR,2026,,30.6,5.6,0.793,2
+Ringerike,Buskerud,Studiespesialisering,0,Vg1,ST,2026,,35.9,6.2,0.536,1
+St.Hallvard,Buskerud,Idrettsfag,0,Vg1,ID,2026,,41.7,5.6,0.828,2
+St.Hallvard,Buskerud,"Musikk, dans og drama",0,Vg1,MD,2026,,30.2,6.2,0.726,1
+St.Hallvard,Buskerud,Studiespesialisering,0,Vg1,ST,2026,,38.3,5.6,0.768,2
+Ål,Buskerud,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,23.9,6.2,0.548,1
+Ål,Buskerud,Elektro og datateknologi,0,Vg1,EL,2026,,29.4,5.6,0.822,2
+Ål,Buskerud,Helse- og oppvekstfag,0,Vg1,HS,2026,,28.2,5.6,0.704,2
+Ål,Buskerud,"Salg, service og reiseliv",0,Vg1,SR,2026,,27.6,5.6,0.743,2
+Ål,Buskerud,Teknologi- og industrifag,0,Vg1,TP,2026,,24.3,6.2,0.613,1
+Åssiden,Buskerud,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,20.5,5.6,0.77,2
+Åssiden,Buskerud,Elektro og datateknologi,0,Vg1,EL,2026,,30.8,5.6,0.873,2
+Åssiden,Buskerud,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,,23.2,5.6,0.762,2
+Åssiden,Buskerud,Helse- og oppvekstfag,0,Vg1,HS,2026,,27.4,5.6,0.763,2
+Åssiden,Buskerud,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,,30.8,5.6,0.816,2
+Åssiden,Buskerud,Medier og kommunikasjon,0,Vg1,MK,2026,,31.0,5.6,0.741,2
+Åssiden,Buskerud,Restaurant- og matfag,0,Vg1,RM,2026,,23.0,7.7,0.351,0
+Åssiden,Buskerud,Teknologi- og industrifag,0,Vg1,TP,2026,,23.6,5.6,0.849,2
+Elverum videregående skole,Innlandet,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,29.6,6.2,0.569,1
+Elverum videregående skole,Innlandet,Elektro og datateknologi,0,Vg1,EL,2026,2,35.7,5.6,0.792,3
+Elverum videregående skole,Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,31.5,7.7,0.494,0
+Elverum videregående skole,Innlandet,Idrettsfag,0,Vg1,ID,2026,2,40.7,5.6,0.626,2
+Elverum videregående skole,Innlandet,"Salg, service og reiseliv",0,Vg1,SR,2026,2,29.4,5.6,0.627,2
+Elverum videregående skole,Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,38.6,7.7,0.332,0
+Elverum videregående skole,Innlandet,"Studiespesialisering, forberedende IB",0,Vg1,ST,2026,2,36.9,7.7,0.283,0
+Elverum videregående skole,Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,32.8,5.6,0.658,2
+Elverum videregående skole,Innlandet,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,29.6,5.6,0.598,2
+Elverum videregående skole,Innlandet,"Bilskade, lakk og karosseri",0,Vg2,TP,2026,2,28.9,5.6,0.623,2
+Elverum videregående skole,Innlandet,Elenergi og ekom,0,Vg2,EL,2026,2,41.3,5.6,0.771,3
+Elverum videregående skole,Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,31.4,5.6,0.697,2
+Elverum videregående skole,Innlandet,Helseservicefag,0,Vg2,HS,2026,2,29.4,5.6,0.595,2
+Elverum videregående skole,Innlandet,Idrettsfag,1,Vg2,ID,2026,2,32.1,7.7,0.255,0
+Elverum videregående skole,Innlandet,Industriteknologi,0,Vg2,TP,2026,2,32.6,5.6,0.608,2
+Elverum videregående skole,Innlandet,International baccalaureate,0,Vg2,ST,2026,2,39.2,5.6,0.744,3
+Elverum videregående skole,Innlandet,Realfag,0,Vg2,ST,2026,2,31.9,6.2,0.411,1
+Elverum videregående skole,Innlandet,Salg og reiseliv,0,Vg2,SR,2026,2,30.9,7.7,0.337,0
+Elverum videregående skole,Innlandet,"Salg og reiseliv, YSK 4 år",0,Vg2,SR,2026,2,31.2,7.7,0.286,0
+Elverum videregående skole,Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,32.9,7.7,0.315,0
+Elverum videregående skole,Innlandet,Tømrer,0,Vg2,BA,2026,2,30.7,5.6,0.597,2
+Gausdal videregående skole,Innlandet,Idrettsfag,0,Vg1,ID,2026,2,38.8,5.6,0.613,2
+Gausdal videregående skole,Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,37.5,6.2,0.445,1
+Gausdal videregående skole,Innlandet,Idrettsfag,1,Vg2,ID,2026,2,28.2,6.2,0.384,1
+Gausdal videregående skole,Innlandet,Realfag,0,Vg2,ST,2026,2,32.5,7.7,0.251,0
+Gausdal videregående skole,Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,30.7,7.7,0.297,0
+Gjøvik videregående skole,Innlandet,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,29.2,5.6,0.72,3
+Gjøvik videregående skole,Innlandet,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,2,29.7,6.2,0.502,1
+Gjøvik videregående skole,Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,28.3,6.2,0.502,1
+Gjøvik videregående skole,Innlandet,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2026,2,39.4,5.6,0.772,3
+Gjøvik videregående skole,Innlandet,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,2,35.9,5.6,0.646,2
+Gjøvik videregående skole,Innlandet,"Kunst, design og arkitektur",0,Vg1,KD,2026,2,34.9,5.6,0.604,2
+Gjøvik videregående skole,Innlandet,Medier og kommunikasjon,0,Vg1,MK,2026,2,34.7,6.2,0.582,1
+Gjøvik videregående skole,Innlandet,"Musikk, dans og drama, drama",0,Vg1,MD,2026,2,35.6,7.7,0.315,0
+Gjøvik videregående skole,Innlandet,"Musikk, dans og drama, musikk",0,Vg1,MD,2026,2,36.9,7.7,0.496,0
+Gjøvik videregående skole,Innlandet,"Salg, service og reiseliv",0,Vg1,SR,2026,2,32.3,6.2,0.525,1
+Gjøvik videregående skole,Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,34.6,5.6,0.599,2
+Gjøvik videregående skole,Innlandet,"Studiespesialisering, forberedende IB",0,Vg1,ST,2026,2,35.3,7.7,0.295,0
+Gjøvik videregående skole,Innlandet,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,28.6,5.6,0.708,3
+Gjøvik videregående skole,Innlandet,Drama,0,Vg2,MD,2026,2,36.0,7.7,0.187,0
+Gjøvik videregående skole,Innlandet,Frisør,0,Vg2,FD,2026,2,28.1,7.7,0.308,0
+Gjøvik videregående skole,Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,27.9,5.6,0.606,2
+Gjøvik videregående skole,Innlandet,"Helsearbeiderfag, SK 3 år",0,Vg2,HS,2026,2,35.2,5.6,0.572,2
+Gjøvik videregående skole,Innlandet,Hudpleie,0,Vg2,HS,2026,2,31.3,5.6,0.632,2
+Gjøvik videregående skole,Innlandet,Informasjonsteknologi,0,Vg2,IM,2026,2,29.7,5.6,0.707,3
+Gjøvik videregående skole,Innlandet,International baccalaureate,0,Vg2,ST,2026,2,38.4,5.6,0.755,3
+Gjøvik videregående skole,Innlandet,"Kunst, design og arkitektur",1,Vg2,KD,2026,2,30.0,7.7,0.247,0
+Gjøvik videregående skole,Innlandet,Medier og kommunikasjon,1,Vg2,MK,2026,2,32.6,6.2,0.363,1
+Gjøvik videregående skole,Innlandet,Musikk,0,Vg2,MD,2026,2,36.0,7.7,0.178,0
+Gjøvik videregående skole,Innlandet,Realfag,0,Vg2,ST,2026,2,33.1,7.7,0.284,0
+Gjøvik videregående skole,Innlandet,Rørlegger,0,Vg2,BA,2026,2,33.5,6.2,0.523,1
+Gjøvik videregående skole,Innlandet,Salg og reiseliv,0,Vg2,SR,2026,2,31.7,5.6,0.602,2
+Gjøvik videregående skole,Innlandet,"Service, sikkerhet og admin",0,Vg2,SR,2026,2,27.4,6.2,0.473,1
+Gjøvik videregående skole,Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,30.0,6.2,0.436,1
+Gjøvik videregående skole,Innlandet,Tømrer,0,Vg2,BA,2026,2,27.5,6.2,0.496,1
+Hadeland videregående skole,Innlandet,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,28.0,5.6,0.592,2
+Hadeland videregående skole,Innlandet,Elektro og datateknologi,0,Vg1,EL,2026,2,34.3,5.6,0.661,2
+Hadeland videregående skole,Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,27.8,5.6,0.588,2
+Hadeland videregående skole,Innlandet,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2026,2,38.7,5.6,0.635,2
+Hadeland videregående skole,Innlandet,Idrettsfag,0,Vg1,ID,2026,2,43.9,5.6,0.713,3
+Hadeland videregående skole,Innlandet,Restaurant- og matfag,0,Vg1,RM,2026,2,28.3,7.7,0.243,0
+Hadeland videregående skole,Innlandet,"Salg, service og reiseliv",0,Vg1,SR,2026,2,28.8,5.6,0.611,2
+Hadeland videregående skole,Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,38.0,7.7,0.464,0
+Hadeland videregående skole,Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,29.6,5.6,0.642,2
+Hadeland videregående skole,Innlandet,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,31.4,7.7,0.322,0
+Hadeland videregående skole,Innlandet,Datateknologi og elektronikk,0,Vg2,EL,2026,2,31.1,7.7,0.343,0
+Hadeland videregående skole,Innlandet,Elenergi og ekom,0,Vg2,EL,2026,2,34.8,5.6,0.643,2
+Hadeland videregående skole,Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,31.2,7.7,0.321,0
+Hadeland videregående skole,Innlandet,"Helsearbeiderfag, SK 3 år",0,Vg2,HS,2026,2,36.8,6.2,0.437,1
+Hadeland videregående skole,Innlandet,Idrettsfag,1,Vg2,ID,2026,2,31.8,6.2,0.36,1
+Hadeland videregående skole,Innlandet,Industriteknologi,0,Vg2,TP,2026,2,34.4,5.6,0.611,2
+Hadeland videregående skole,Innlandet,Kjøretøy,0,Vg2,TP,2026,2,24.8,6.2,0.428,1
+Hadeland videregående skole,Innlandet,Kokk- og servitørfag,0,Vg2,RM,2026,2,27.6,7.7,0.303,0
+Hadeland videregående skole,Innlandet,Medier og kommunikasjon,0,Vg2,MK,2026,2,34.1,7.7,0.172,0
+Hadeland videregående skole,Innlandet,Musikk,0,Vg2,MD,2026,2,36.9,7.7,0.143,0
+Hadeland videregående skole,Innlandet,Realfag,0,Vg2,ST,2026,2,34.0,7.7,0.248,0
+Hadeland videregående skole,Innlandet,Salg og reiseliv,0,Vg2,SR,2026,2,31.1,5.6,0.578,2
+Hadeland videregående skole,Innlandet,"Service, sikkerhet og admin",0,Vg2,SR,2026,2,28.4,6.2,0.448,1
+Hadeland videregående skole,Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,32.2,7.7,0.295,0
+Hadeland videregående skole,Innlandet,Tømrer,0,Vg2,BA,2026,2,31.8,5.6,0.68,3
+Hamar katedralskole,Innlandet,Elektro og datateknologi,0,Vg1,EL,2026,2,34.8,6.2,0.578,1
+Hamar katedralskole,Innlandet,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,2,28.2,6.2,0.509,1
+Hamar katedralskole,Innlandet,"Håndverk, design og produktutv, søm/th, SK 3 år",0,Vg1,DT,2026,2,34.3,7.7,0.278,0
+Hamar katedralskole,Innlandet,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,2,33.4,5.6,0.763,3
+Hamar katedralskole,Innlandet,"Kunst, design og arkitektur",0,Vg1,KD,2026,2,34.2,5.6,0.611,2
+Hamar katedralskole,Innlandet,Medier og kommunikasjon,0,Vg1,MK,2026,2,34.3,7.7,0.496,0
+Hamar katedralskole,Innlandet,"Salg, service og reiseliv",0,Vg1,SR,2026,2,29.3,5.6,0.752,3
+Hamar katedralskole,Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,32.0,6.2,0.495,1
+Hamar katedralskole,Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,26.2,5.6,0.79,2
+Hamar katedralskole,Innlandet,Datateknologi og elektronikk,0,Vg2,EL,2026,2,28.9,5.6,0.736,2
+Hamar katedralskole,Innlandet,Frisør,0,Vg2,FD,2026,2,26.8,7.7,0.317,0
+Hamar katedralskole,Innlandet,Industriteknologi,0,Vg2,TP,2026,2,26.7,5.6,0.603,2
+Hamar katedralskole,Innlandet,Informasjonsteknologi,0,Vg2,IM,2026,2,28.9,5.6,0.715,3
+Hamar katedralskole,Innlandet,Interiør og eksponeringsdesign,0,Vg2,FD,2026,2,29.0,5.6,0.578,2
+Hamar katedralskole,Innlandet,Kjøretøy,0,Vg2,TP,2026,2,24.4,5.6,0.61,2
+Hamar katedralskole,Innlandet,"Kunst, design og arkitektur",1,Vg2,KD,2026,2,27.7,5.6,0.519,2
+Hamar katedralskole,Innlandet,Medieproduksjon,0,Vg2,IM,2026,2,35.6,5.6,0.573,2
+Hamar katedralskole,Innlandet,Medier og kommunikasjon,1,Vg2,MK,2026,2,32.0,7.7,0.219,0
+Hamar katedralskole,Innlandet,Realfag,0,Vg2,ST,2026,2,31.9,7.7,0.293,0
+Hamar katedralskole,Innlandet,Salg og reiseliv,0,Vg2,SR,2026,2,29.4,5.6,0.711,3
+Hamar katedralskole,Innlandet,"Service, sikkerhet og admin",0,Vg2,SR,2026,2,28.3,6.2,0.458,1
+Hamar katedralskole,Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,29.7,6.2,0.461,1
+Hamar katedralskole,Innlandet,"Søm og tekstilhåndverk, SK 3 år",0,Vg2,DT,2026,2,34.3,7.7,0.278,0
+Jønsberg videregående skole,Innlandet,Naturbruk,0,Vg1,NA,2026,2,28.5,6.2,0.49,1
+Jønsberg videregående skole,Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,28.6,7.7,0.535,0
+Jønsberg videregående skole,Innlandet,Arbeidsmaskiner,0,Vg2,TP,2026,2,30.2,5.6,0.746,3
+Jønsberg videregående skole,Innlandet,Landbruk og gartnernæring,0,Vg2,NA,2026,2,26.5,6.2,0.402,1
+Lena-Valle videregående skole,Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,29.5,5.6,0.734,3
+Lena-Valle videregående skole,Innlandet,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2026,2,36.3,5.6,0.793,2
+Lena-Valle videregående skole,Innlandet,Idrettsfag,0,Vg1,ID,2026,2,36.4,5.6,0.652,2
+Lena-Valle videregående skole,Innlandet,Naturbruk,0,Vg1,NA,2026,2,27.1,6.2,0.524,1
+Lena-Valle videregående skole,Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,36.3,5.6,0.717,3
+Lena-Valle videregående skole,Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,26.7,5.6,0.801,3
+Lena-Valle videregående skole,Innlandet,Anleggsgartner,0,Vg2,BA,2026,2,30.6,5.6,0.736,3
+Lena-Valle videregående skole,Innlandet,Arbeidsmaskiner,0,Vg2,TP,2026,2,31.2,6.2,0.54,1
+Lena-Valle videregående skole,Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,25.4,5.6,0.622,2
+Lena-Valle videregående skole,Innlandet,"Helsearbeiderfag, SK 3 år",0,Vg2,HS,2026,2,31.8,6.2,0.516,1
+Lena-Valle videregående skole,Innlandet,Heste- og dyrefag,0,Vg2,NA,2026,2,29.6,5.6,0.619,2
+Lena-Valle videregående skole,Innlandet,Idrettsfag,1,Vg2,ID,2026,2,26.5,6.2,0.406,1
+Lena-Valle videregående skole,Innlandet,Kjøretøy,0,Vg2,TP,2026,2,23.8,6.2,0.508,1
+Lena-Valle videregående skole,Innlandet,Landbruk og gartnernæring,0,Vg2,NA,2026,2,26.8,5.6,0.589,2
+Lena-Valle videregående skole,Innlandet,Realfag,0,Vg2,ST,2026,2,31.2,7.7,0.305,0
+Lena-Valle videregående skole,Innlandet,Skogbruk,0,Vg2,NA,2026,2,29.0,7.7,0.288,0
+Lena-Valle videregående skole,Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,30.2,5.6,0.702,3
+Lena-Valle videregående skole,Innlandet,Transport og logistikk,0,Vg2,TP,2026,2,23.0,5.6,0.627,2
+"Lillehammer videreg skole, avd Nord",Innlandet,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,26.7,7.7,0.495,0
+"Lillehammer videreg skole, avd Nord",Innlandet,Elektro og datateknologi,0,Vg1,EL,2026,2,34.1,5.6,0.789,3
+"Lillehammer videreg skole, avd Nord",Innlandet,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,2,29.0,6.2,0.49,1
+"Lillehammer videreg skole, avd Nord",Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,27.4,5.6,0.601,2
+"Lillehammer videreg skole, avd Nord",Innlandet,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2026,2,36.7,5.6,0.648,2
+"Lillehammer videreg skole, avd Nord",Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,29.0,6.2,0.655,1
+"Lillehammer videreg skole, avd Nord",Innlandet,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,29.9,6.2,0.463,1
+"Lillehammer videreg skole, avd Nord",Innlandet,"Barne- og ungdomsarbeiderfag, SK 3 år",0,Vg2,HS,2026,2,33.9,6.2,0.479,1
+"Lillehammer videreg skole, avd Nord",Innlandet,Elenergi og ekom,0,Vg2,EL,2026,2,35.0,5.6,0.768,3
+"Lillehammer videreg skole, avd Nord",Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,28.2,6.2,0.463,1
+"Lillehammer videreg skole, avd Nord",Innlandet,Helseservicefag,0,Vg2,HS,2026,2,26.7,6.2,0.482,1
+"Lillehammer videreg skole, avd Nord",Innlandet,Industriteknologi,0,Vg2,TP,2026,2,29.3,7.7,0.373,0
+"Lillehammer videreg skole, avd Nord",Innlandet,Interiør og eksponeringsdesign,0,Vg2,FD,2026,2,29.2,6.2,0.491,1
+"Lillehammer videreg skole, avd Nord",Innlandet,Kjøretøy,0,Vg2,TP,2026,2,25.9,5.6,0.592,2
+"Lillehammer videreg skole, avd Nord",Innlandet,"Klima, energi og miljøteknikk",0,Vg2,BA,2026,2,26.1,7.7,0.304,0
+"Lillehammer videreg skole, avd Nord",Innlandet,Rørlegger,0,Vg2,BA,2026,2,33.0,5.6,0.726,3
+"Lillehammer videreg skole, avd Nord",Innlandet,Tømrer,0,Vg2,BA,2026,2,26.4,5.6,0.594,2
+"Lillehammer videreg skole, avd Sør",Innlandet,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,2,33.2,5.6,0.628,2
+"Lillehammer videreg skole, avd Sør",Innlandet,"Kunst, design og arkitektur",0,Vg1,KD,2026,2,31.8,5.6,0.605,2
+"Lillehammer videreg skole, avd Sør",Innlandet,Restaurant- og matfag,0,Vg1,RM,2026,2,26.7,6.2,0.44,1
+"Lillehammer videreg skole, avd Sør",Innlandet,"Salg, service og reiseliv",0,Vg1,SR,2026,2,28.2,6.2,0.745,1
+"Lillehammer videreg skole, avd Sør",Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,36.1,5.6,0.7,2
+"Lillehammer videreg skole, avd Sør",Innlandet,Informasjonsteknologi,0,Vg2,IM,2026,2,30.2,6.2,0.457,1
+"Lillehammer videreg skole, avd Sør",Innlandet,Kokk- og servitørfag,0,Vg2,RM,2026,2,25.6,6.2,0.449,1
+"Lillehammer videreg skole, avd Sør",Innlandet,"Kunst, design og arkitektur",1,Vg2,KD,2026,2,28.8,7.7,0.249,0
+"Lillehammer videreg skole, avd Sør",Innlandet,Matproduksjon,0,Vg2,RM,2026,2,27.2,7.7,0.207,0
+"Lillehammer videreg skole, avd Sør",Innlandet,Realfag,0,Vg2,ST,2026,2,32.0,7.7,0.285,0
+"Lillehammer videreg skole, avd Sør",Innlandet,Salg og reiseliv,0,Vg2,SR,2026,2,28.0,5.6,0.666,2
+"Lillehammer videreg skole, avd Sør",Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,30.2,7.7,0.328,0
+"Nord-Gudbrandsdal vgs, avd. Otta",Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,24.2,6.2,0.431,1
+"Nord-Gudbrandsdal vgs, avd. Otta",Innlandet,Idrettsfag,0,Vg1,ID,2026,2,33.6,7.7,0.326,0
+"Nord-Gudbrandsdal vgs, avd. Otta",Innlandet,Restaurant- og matfag,0,Vg1,RM,2026,2,22.5,7.7,0.205,0
+"Nord-Gudbrandsdal vgs, avd. Otta",Innlandet,"Salg, service og reiseliv",0,Vg1,SR,2026,2,23.4,6.2,0.436,1
+"Nord-Gudbrandsdal vgs, avd. Otta",Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,30.3,6.2,0.438,1
+"Nord-Gudbrandsdal vgs, avd. Otta",Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,25.2,5.6,0.598,2
+"Nord-Gudbrandsdal vgs, avd. Otta",Innlandet,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,25.5,7.7,0.288,0
+"Nord-Gudbrandsdal vgs, avd. Otta",Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,26.6,5.6,0.519,2
+"Nord-Gudbrandsdal vgs, avd. Otta",Innlandet,Idrettsfag,1,Vg2,ID,2026,2,25.6,7.7,0.195,0
+"Nord-Gudbrandsdal vgs, avd. Otta",Innlandet,Kjøretøy,0,Vg2,TP,2026,2,19.2,6.2,0.401,1
+"Nord-Gudbrandsdal vgs, avd. Otta",Innlandet,Realfag,0,Vg2,ST,2026,2,28.1,7.7,0.211,0
+"Nord-Gudbrandsdal vgs, avd. Otta",Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,26.3,7.7,0.259,0
+"Nord-Gudbrandsdal vgs, avd. Otta",Innlandet,Transport og logistikk,0,Vg2,TP,2026,2,23.2,5.6,0.541,2
+Nord-Østerdal videregående skole,Innlandet,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,24.5,5.6,0.596,2
+Nord-Østerdal videregående skole,Innlandet,Elektro og datateknologi,0,Vg1,EL,2026,2,33.7,5.6,0.801,3
+Nord-Østerdal videregående skole,Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,26.2,6.2,0.479,1
+Nord-Østerdal videregående skole,Innlandet,Idrettsfag,0,Vg1,ID,2026,2,37.8,5.6,0.739,3
+Nord-Østerdal videregående skole,Innlandet,"Musikk, dans og drama, musikk",0,Vg1,MD,2026,2,32.8,5.6,0.586,2
+Nord-Østerdal videregående skole,Innlandet,Restaurant- og matfag,0,Vg1,RM,2026,2,26.4,7.7,0.275,0
+Nord-Østerdal videregående skole,Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,34.4,5.6,0.596,2
+Nord-Østerdal videregående skole,Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,30.7,5.6,0.778,3
+Nord-Østerdal videregående skole,Innlandet,Arbeidsmaskiner,0,Vg2,TP,2026,2,32.7,5.6,0.767,3
+Nord-Østerdal videregående skole,Innlandet,Automatisering,0,Vg2,EL,2026,2,40.2,5.6,0.77,3
+Nord-Østerdal videregående skole,Innlandet,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,29.4,7.7,0.361,0
+Nord-Østerdal videregående skole,Innlandet,Datateknologi og elektronikk,0,Vg2,EL,2026,2,27.3,5.6,0.603,2
+Nord-Østerdal videregående skole,Innlandet,Elenergi og ekom,0,Vg2,EL,2026,2,37.0,5.6,0.78,3
+Nord-Østerdal videregående skole,Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,28.9,6.2,0.454,1
+Nord-Østerdal videregående skole,Innlandet,Idrettsfag,1,Vg2,ID,2026,2,29.5,7.7,0.265,0
+Nord-Østerdal videregående skole,Innlandet,Kjøretøy,0,Vg2,TP,2026,2,27.0,6.2,0.451,1
+Nord-Østerdal videregående skole,Innlandet,Musikk,0,Vg2,MD,2026,2,35.0,7.7,0.175,0
+Nord-Østerdal videregående skole,Innlandet,Realfag,0,Vg2,ST,2026,2,30.1,6.2,0.44,1
+Nord-Østerdal videregående skole,Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,30.2,6.2,0.433,1
+Nord-Østerdal videregående skole,Innlandet,Tømrer,0,Vg2,BA,2026,2,28.3,6.2,0.454,1
+Raufoss videregående skole,Innlandet,Elektro og datateknologi,0,Vg1,EL,2026,2,32.2,5.6,0.681,2
+Raufoss videregående skole,Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,27.1,6.2,0.496,1
+Raufoss videregående skole,Innlandet,Restaurant- og matfag,0,Vg1,RM,2026,2,24.7,7.7,0.39,0
+Raufoss videregående skole,Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,27.8,5.6,0.773,2
+Raufoss videregående skole,Innlandet,Ambulansefag,0,Vg2,HS,2026,2,42.9,5.6,0.803,3
+Raufoss videregående skole,Innlandet,Automatisering,0,Vg2,EL,2026,2,32.8,5.6,0.655,2
+Raufoss videregående skole,Innlandet,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,26.9,6.2,0.49,1
+Raufoss videregående skole,Innlandet,Elenergi og ekom,0,Vg2,EL,2026,2,30.8,5.6,0.775,3
+Raufoss videregående skole,Innlandet,Industriteknologi,0,Vg2,TP,2026,2,27.0,6.2,0.518,1
+Raufoss videregående skole,Innlandet,"Industriteknologi, YSK 4 år",0,Vg2,TP,2026,2,35.3,6.2,0.489,1
+Raufoss videregående skole,Innlandet,Kokk- og servitørfag,0,Vg2,RM,2026,2,23.5,5.6,0.671,3
+Raufoss videregående skole,Innlandet,Matproduksjon,0,Vg2,RM,2026,2,25.6,7.7,0.204,0
+Ringsaker videregående skole,Innlandet,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,26.1,5.6,0.618,2
+Ringsaker videregående skole,Innlandet,Elektro og datateknologi,0,Vg1,EL,2026,2,34.1,5.6,0.806,3
+Ringsaker videregående skole,Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,25.5,6.2,0.504,1
+Ringsaker videregående skole,Innlandet,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2026,2,36.0,5.6,0.774,2
+Ringsaker videregående skole,Innlandet,"Salg, service og reiseliv",0,Vg1,SR,2026,2,28.4,5.6,0.638,2
+Ringsaker videregående skole,Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,33.4,6.2,0.469,1
+Ringsaker videregående skole,Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,28.2,5.6,0.782,3
+Ringsaker videregående skole,Innlandet,Automatisering,0,Vg2,EL,2026,2,36.9,5.6,0.775,3
+Ringsaker videregående skole,Innlandet,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,29.1,7.7,0.354,0
+Ringsaker videregående skole,Innlandet,"Barne- og ungdomsarbeiderfag, SK 3 år",0,Vg2,HS,2026,2,36.6,5.6,0.584,2
+Ringsaker videregående skole,Innlandet,Elenergi og ekom,0,Vg2,EL,2026,2,38.9,5.6,0.784,3
+Ringsaker videregående skole,Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,25.8,6.2,0.458,1
+Ringsaker videregående skole,Innlandet,"Helsearbeiderfag, SK 3 år",0,Vg2,HS,2026,2,37.1,6.2,0.502,1
+Ringsaker videregående skole,Innlandet,Helseservicefag,0,Vg2,HS,2026,2,24.6,6.2,0.495,1
+Ringsaker videregående skole,Innlandet,Industriteknologi,0,Vg2,TP,2026,2,26.3,6.2,0.504,1
+Ringsaker videregående skole,Innlandet,Kjemiprosess- og laboratorief,0,Vg2,TP,2026,2,30.7,5.6,0.742,2
+Ringsaker videregående skole,Innlandet,"Kulde-, varmepumpe-, vent.tekn",0,Vg2,EL,2026,2,34.4,5.6,0.736,3
+Ringsaker videregående skole,Innlandet,Realfag,0,Vg2,ST,2026,2,31.8,7.7,0.285,0
+Ringsaker videregående skole,Innlandet,Rørlegger,0,Vg2,BA,2026,2,33.6,5.6,0.742,3
+Ringsaker videregående skole,Innlandet,Salg og reiseliv,0,Vg2,SR,2026,2,28.9,5.6,0.565,2
+Ringsaker videregående skole,Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,30.0,7.7,0.437,0
+Ringsaker videregående skole,Innlandet,Tømrer,0,Vg2,BA,2026,2,26.7,5.6,0.569,2
+Sentrum videregående skole,Innlandet,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,24.1,6.2,0.473,1
+Sentrum videregående skole,Innlandet,Elektro og datateknologi,0,Vg1,EL,2026,2,27.8,5.6,0.76,3
+Sentrum videregående skole,Innlandet,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,2,22.4,6.2,0.468,1
+Sentrum videregående skole,Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,24.1,6.2,0.469,1
+Sentrum videregående skole,Innlandet,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2026,2,32.6,5.6,0.73,3
+Sentrum videregående skole,Innlandet,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,2,31.0,5.6,0.611,2
+Sentrum videregående skole,Innlandet,"Kunst, design og arkitektur",0,Vg1,KD,2026,2,30.3,7.7,0.306,0
+Sentrum videregående skole,Innlandet,Medier og kommunikasjon,0,Vg1,MK,2026,2,33.1,6.2,0.434,1
+Sentrum videregående skole,Innlandet,Restaurant- og matfag,0,Vg1,RM,2026,2,23.6,7.7,0.229,0
+Sentrum videregående skole,Innlandet,"Salg, service og reiseliv",0,Vg1,SR,2026,2,26.9,5.6,0.602,2
+Sentrum videregående skole,Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,25.1,6.2,0.521,1
+Sentrum videregående skole,Innlandet,Automatisering,0,Vg2,EL,2026,2,32.5,6.2,0.515,1
+Sentrum videregående skole,Innlandet,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,27.1,5.6,0.535,2
+Sentrum videregående skole,Innlandet,"Barne- og ungdomsarbeiderfag, SK 3 år",0,Vg2,HS,2026,2,31.2,6.2,0.456,1
+Sentrum videregående skole,Innlandet,Datateknologi og elektronikk,0,Vg2,EL,2026,2,25.5,6.2,0.479,1
+Sentrum videregående skole,Innlandet,Elenergi og ekom,0,Vg2,EL,2026,2,35.4,5.6,0.74,3
+Sentrum videregående skole,Innlandet,Frisør,0,Vg2,FD,2026,2,24.3,7.7,0.261,0
+Sentrum videregående skole,Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,26.5,7.7,0.309,0
+Sentrum videregående skole,Innlandet,"Helsearbeiderfag, SK 3 år",0,Vg2,HS,2026,2,30.6,5.6,0.56,2
+Sentrum videregående skole,Innlandet,Industriteknologi,0,Vg2,TP,2026,2,27.4,5.6,0.601,2
+Sentrum videregående skole,Innlandet,Informasjonsteknologi,0,Vg2,IM,2026,2,26.6,7.7,0.308,0
+Sentrum videregående skole,Innlandet,Kjøretøy,0,Vg2,TP,2026,2,23.1,5.6,0.532,2
+Sentrum videregående skole,Innlandet,Kokk- og servitørfag,0,Vg2,RM,2026,2,22.9,7.7,0.273,0
+Sentrum videregående skole,Innlandet,"Kunst, design og arkitektur",1,Vg2,KD,2026,2,26.2,7.7,0.196,0
+Sentrum videregående skole,Innlandet,Medier og kommunikasjon,1,Vg2,MK,2026,2,29.4,7.7,0.159,0
+Sentrum videregående skole,Innlandet,Rørlegger,0,Vg2,BA,2026,2,27.6,6.2,0.489,1
+Sentrum videregående skole,Innlandet,Salg og reiseliv,0,Vg2,SR,2026,2,25.5,7.7,0.304,0
+Sentrum videregående skole,Innlandet,Tømrer,0,Vg2,BA,2026,2,26.3,6.2,0.462,1
+Solør videregående skole,Innlandet,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,26.8,7.7,0.354,0
+Solør videregående skole,Innlandet,Elektro og datateknologi,0,Vg1,EL,2026,2,30.3,5.6,0.792,2
+Solør videregående skole,Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,27.6,5.6,0.705,2
+Solør videregående skole,Innlandet,Naturbruk,0,Vg1,NA,2026,2,27.5,6.2,0.5,1
+Solør videregående skole,Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,27.8,6.2,0.658,1
+Solør videregående skole,Innlandet,Ambulansefag,0,Vg2,HS,2026,2,43.4,5.6,0.799,3
+Solør videregående skole,Innlandet,"Anleggsteknikk, LAL",0,Vg2,BA,2026,2,36.9,5.6,0.744,3
+Solør videregående skole,Innlandet,Arbeidsmaskiner,0,Vg2,TP,2026,2,32.3,5.6,0.758,3
+Solør videregående skole,Innlandet,Datateknologi og elektronikk,0,Vg2,EL,2026,2,29.5,5.6,0.717,3
+Solør videregående skole,Innlandet,Elenergi og ekom,0,Vg2,EL,2026,2,38.5,5.6,0.771,3
+Solør videregående skole,Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,29.6,7.7,0.341,0
+Solør videregående skole,Innlandet,Kjøretøy,0,Vg2,TP,2026,2,25.1,7.7,0.338,0
+Solør videregående skole,Innlandet,"Landbruk/gartnernæring, friluftsliv",0,Vg2,NA,2026,2,30.3,7.7,0.274,0
+Solør videregående skole,Innlandet,Skogbruk,0,Vg2,NA,2026,2,30.3,7.7,0.253,0
+Solør videregående skole,Innlandet,Transport og logistikk,0,Vg2,TP,2026,2,27.2,5.6,0.62,2
+Stange videregående skole,Innlandet,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,29.1,7.7,0.489,0
+Stange videregående skole,Innlandet,Idrettsfag,0,Vg1,ID,2026,2,38.2,5.6,0.617,2
+Stange videregående skole,Innlandet,"Musikk, dans og drama, dans",0,Vg1,MD,2026,2,38.4,7.7,0.296,0
+Stange videregående skole,Innlandet,"Musikk, dans og drama, drama",0,Vg1,MD,2026,2,35.8,6.2,0.426,1
+Stange videregående skole,Innlandet,"Musikk, dans og drama, musikk",0,Vg1,MD,2026,2,41.1,5.6,0.588,2
+Stange videregående skole,Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,39.7,5.6,0.581,2
+Stange videregående skole,Innlandet,Betong og mur,0,Vg2,BA,2026,2,30.3,5.6,0.663,3
+Stange videregående skole,Innlandet,Dans,0,Vg2,MD,2026,2,37.6,7.7,0.167,0
+Stange videregående skole,Innlandet,Drama,0,Vg2,MD,2026,2,37.6,7.7,0.161,0
+Stange videregående skole,Innlandet,Idrettsfag,1,Vg2,ID,2026,2,32.1,7.7,0.242,0
+Stange videregående skole,Innlandet,Musikk,0,Vg2,MD,2026,2,37.6,7.7,0.152,0
+Stange videregående skole,Innlandet,Overflateteknikk,0,Vg2,BA,2026,2,30.3,7.7,0.293,0
+Stange videregående skole,Innlandet,Realfag,0,Vg2,ST,2026,2,34.7,7.7,0.258,0
+Stange videregående skole,Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,32.9,7.7,0.303,0
+Stange videregående skole,Innlandet,Tømrer,0,Vg2,BA,2026,2,29.3,5.6,0.55,2
+Storhamar videregående skole,Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,30.5,6.2,0.534,1
+Storhamar videregående skole,Innlandet,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2026,2,36.8,5.6,0.696,2
+Storhamar videregående skole,Innlandet,Idrettsfag,0,Vg1,ID,2026,2,38.7,5.6,0.669,2
+Storhamar videregående skole,Innlandet,Restaurant- og matfag,0,Vg1,RM,2026,2,25.7,6.2,0.471,1
+Storhamar videregående skole,Innlandet,Baker og konditor,0,Vg2,RM,2026,2,25.7,5.6,0.594,2
+Storhamar videregående skole,Innlandet,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,27.2,6.2,0.599,1
+Storhamar videregående skole,Innlandet,"Barne- og ungdomsarbeiderfag, SK 3 år",0,Vg2,HS,2026,2,36.4,5.6,0.739,3
+Storhamar videregående skole,Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,25.7,5.6,0.746,3
+Storhamar videregående skole,Innlandet,"Helsearbeiderfag, SK 3 år",0,Vg2,HS,2026,2,35.8,5.6,0.753,3
+Storhamar videregående skole,Innlandet,Hudpleie,0,Vg2,HS,2026,2,28.0,5.6,0.666,2
+Storhamar videregående skole,Innlandet,Idrettsfag,1,Vg2,ID,2026,2,30.2,6.2,0.424,1
+Storhamar videregående skole,Innlandet,Kokk- og servitørfag,0,Vg2,RM,2026,2,27.0,5.6,0.714,3
+Storsteigen videregående skole,Innlandet,Naturbruk,0,Vg1,NA,2026,2,30.0,5.6,0.702,3
+Storsteigen videregående skole,Innlandet,"Naturbruk, hest",0,Vg1,NA,2026,2,30.8,7.7,0.314,0
+Storsteigen videregående skole,Innlandet,Heste- og dyrefag,0,Vg2,NA,2026,2,29.5,7.7,0.349,0
+Storsteigen videregående skole,Innlandet,Landbruk og gartnernæring,0,Vg2,NA,2026,2,26.7,6.2,0.444,1
+Trysil videregående skole,Innlandet,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,22.9,6.2,0.408,1
+Trysil videregående skole,Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,28.0,6.2,0.423,1
+Trysil videregående skole,Innlandet,Idrettsfag,0,Vg1,ID,2026,2,36.0,7.7,0.316,0
+Trysil videregående skole,Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,34.5,6.2,0.388,1
+Trysil videregående skole,Innlandet,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,29.1,6.2,0.397,1
+Trysil videregående skole,Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,27.8,7.7,0.277,0
+Trysil videregående skole,Innlandet,Idrettsfag,1,Vg2,ID,2026,2,28.0,7.7,0.184,0
+Trysil videregående skole,Innlandet,Realfag,0,Vg2,ST,2026,2,30.5,7.7,0.2,0
+Trysil videregående skole,Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,27.9,6.2,0.393,1
+Trysil videregående skole,Innlandet,Tømrer,0,Vg2,BA,2026,2,25.6,7.7,0.278,0
+Valdres vidaregåande skule,Innlandet,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,24.9,6.2,0.499,1
+Valdres vidaregåande skule,Innlandet,Elektro og datateknologi,0,Vg1,EL,2026,2,34.1,5.6,0.794,3
+Valdres vidaregåande skule,Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,30.7,5.6,0.605,2
+Valdres vidaregåande skule,Innlandet,Idrettsfag,0,Vg1,ID,2026,2,35.7,5.6,0.733,3
+Valdres vidaregåande skule,Innlandet,Restaurant- og matfag,0,Vg1,RM,2026,2,27.0,7.7,0.267,0
+Valdres vidaregåande skule,Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,35.7,5.6,0.553,2
+Valdres vidaregåande skule,Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,29.6,5.6,0.641,2
+Valdres vidaregåande skule,Innlandet,Arbeidsmaskiner,0,Vg2,TP,2026,2,33.0,5.6,0.76,3
+Valdres vidaregåande skule,Innlandet,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,29.7,6.2,0.549,1
+Valdres vidaregåande skule,Innlandet,Elenergi og ekom,0,Vg2,EL,2026,2,35.6,6.2,0.548,1
+Valdres vidaregåande skule,Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,31.7,6.2,0.488,1
+Valdres vidaregåande skule,Innlandet,Idrettsfag,1,Vg2,ID,2026,2,30.1,7.7,0.257,0
+Valdres vidaregåande skule,Innlandet,Kjøretøy,0,Vg2,TP,2026,2,25.4,7.7,0.339,0
+Valdres vidaregåande skule,Innlandet,Realfag,0,Vg2,ST,2026,2,34.4,6.2,0.412,1
+Valdres vidaregåande skule,Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,30.4,6.2,0.561,1
+Valdres vidaregåande skule,Innlandet,Tømrer,0,Vg2,BA,2026,2,28.6,5.6,0.581,2
+Vinstra vidaregåande skule,Innlandet,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,29.4,5.6,0.535,2
+Vinstra vidaregåande skule,Innlandet,Elektro og datateknologi,0,Vg1,EL,2026,2,32.3,5.6,0.621,2
+Vinstra vidaregåande skule,Innlandet,Helse- og oppvekstfag,0,Vg1,HS,2026,2,29.5,7.7,0.304,0
+Vinstra vidaregåande skule,Innlandet,"Musikk, dans og drama, folkemusikk, LAL",0,Vg1,MD,2026,2,35.6,7.7,0.207,0
+Vinstra vidaregåande skule,Innlandet,"Musikk, dans og drama, musikk",0,Vg1,MD,2026,2,36.5,7.7,0.296,0
+Vinstra vidaregåande skule,Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,36.6,7.7,0.286,0
+Vinstra vidaregåande skule,Innlandet,Teknologi- og industrifag,0,Vg1,TP,2026,2,30.1,5.6,0.582,2
+Vinstra vidaregåande skule,Innlandet,Arbeidsmaskiner,0,Vg2,TP,2026,2,34.1,5.6,0.574,2
+Vinstra vidaregåande skule,Innlandet,Betong og mur,0,Vg2,BA,2026,2,26.1,6.2,0.406,1
+Vinstra vidaregåande skule,Innlandet,Datateknologi og elektronikk,0,Vg2,EL,2026,2,29.2,6.2,0.472,1
+Vinstra vidaregåande skule,Innlandet,Elenergi og ekom,0,Vg2,EL,2026,2,33.0,5.6,0.728,3
+Vinstra vidaregåande skule,Innlandet,Helsearbeiderfag,0,Vg2,HS,2026,2,29.5,5.6,0.545,2
+Vinstra vidaregåande skule,Innlandet,Musikk,0,Vg2,MD,2026,2,35.6,7.7,0.118,0
+Vinstra vidaregåande skule,Innlandet,"Musikk, folkemusikk, LAL",0,Vg2,MD,2026,2,35.6,7.7,0.207,0
+Vinstra vidaregåande skule,Innlandet,Realfag,0,Vg2,ST,2026,2,32.7,7.7,0.219,0
+Vinstra vidaregåande skule,Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,30.9,7.7,0.267,0
+Vinstra vidaregåande skule,Innlandet,Tømrer,0,Vg2,BA,2026,2,28.2,6.2,0.43,1
+Øvrebyen videregående skole,Innlandet,Idrettsfag,0,Vg1,ID,2026,2,41.3,5.6,0.763,3
+Øvrebyen videregående skole,Innlandet,Studiespesialisering,0,Vg1,ST,2026,2,37.6,6.2,0.719,1
+Øvrebyen videregående skole,Innlandet,Idrettsfag,1,Vg2,ID,2026,2,34.8,6.2,0.449,1
+Øvrebyen videregående skole,Innlandet,Realfag,0,Vg2,ST,2026,2,33.2,6.2,0.438,1
+Øvrebyen videregående skole,Innlandet,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,32.8,7.7,0.348,0
+Bjerke videregående skole,Oslo,Idrettsfag,0,Vg1,ID,2027,1,40.3,4.6,0.871,7
+Bjerke videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,39.3,4.6,0.825,7
+Bjørnholt videregående skole,Oslo,Elektro og datateknologi,0,Vg1,EL,2027,1,24.0,5.6,0.526,3
+Bjørnholt videregående skole,Oslo,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2027,1,25.4,5.6,0.465,3
+Bjørnholt videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,26.7,6.2,0.355,1
+Blindern videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,38.3,4.6,0.817,7
+Edvard Munch videregående skole,Oslo,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2027,1,36.7,4.6,0.875,7
+Edvard Munch videregående skole,Oslo,"Håndverk, design og produktutvikl. Søm/th SK 3 år",0,Vg1,DT,2027,1,46.4,4.6,0.83,7
+Edvard Munch videregående skole,Oslo,"Håndverk, design og produkutvikl. Gull/sølv SK 3 år",0,Vg1,DT,2027,1,46.2,4.6,0.83,7
+Edvard Munch videregående skole,Oslo,"Håndverk, design og produkutvikl. Trearb. SK 3 år",0,Vg1,DT,2027,1,43.9,4.6,0.83,7
+Edvard Munch videregående skole,Oslo,"Kunst, design og arkitektur",0,Vg1,KD,2027,1,46.6,4.6,0.865,7
+Edvard Munch videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,48.1,4.6,0.859,7
+Elvebakken videregående skole,Oslo,"Elektro og datatekn. elenergi, SK 3 år",0,Vg1,EL,2027,1,46.1,4.6,0.896,6
+Elvebakken videregående skole,Oslo,Elektro og datateknologi,0,Vg1,EL,2027,1,41.4,4.6,0.933,6
+Elvebakken videregående skole,Oslo,"IT og medieproduksjon, SK 3 år",0,Vg1,IM,2027,1,45.8,4.6,0.896,5
+Elvebakken videregående skole,Oslo,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2027,1,43.8,4.6,0.898,7
+Elvebakken videregående skole,Oslo,"Kunst, design og arkitektur",0,Vg1,KD,2027,1,46.0,4.6,0.85,7
+Elvebakken videregående skole,Oslo,Medier og kommunikasjon,0,Vg1,MK,2027,1,47.4,4.6,0.845,7
+Elvebakken videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,50.4,4.6,0.844,7
+Etterstad videregående skole,Oslo,Elektro og datateknologi,0,Vg1,EL,2027,1,32.5,4.6,0.878,6
+Etterstad videregående skole,Oslo,Restaurant- og matfag,0,Vg1,RM,2027,1,19.3,4.6,0.641,6
+Etterstad videregående skole,Oslo,"Salg, service og reiseliv",0,Vg1,SR,2027,1,19.4,5.6,0.566,3
+Etterstad videregående skole,Oslo,Teknologi- og industrifag,0,Vg1,TP,2027,1,23.3,4.6,0.855,5
+Foss videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,47.9,4.6,0.817,7
+Fyrstikkalleen skole,Oslo,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2027,1,37.6,4.6,0.887,7
+Fyrstikkalleen skole,Oslo,Medier og kommunikasjon,0,Vg1,MK,2027,1,40.2,4.6,0.832,7
+Fyrstikkalleen skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,42.7,4.6,0.831,7
+Hartvig Nissens skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,44.3,4.6,0.817,7
+Hellerud videregående skole,Oslo,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,28.7,4.6,0.847,7
+Hellerud videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,33.5,4.6,0.825,7
+Hersleb videregående skole,Oslo,Helse- og oppvekstfag,0,Vg1,HS,2027,1,26.3,4.6,0.735,7
+Hersleb videregående skole,Oslo,"Kunst, design og arkitektur",0,Vg1,KD,2027,1,28.2,6.2,0.388,1
+Hersleb videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,34.1,7.7,0.292,0
+Kongshavn videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,39.4,4.6,0.817,7
+Kuben videregående skole,Oslo,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,35.9,4.6,0.855,7
+Kuben videregående skole,Oslo,"Bygg- og anleggsteknikk, YSK 4 år",0,Vg1,BA,2027,1,37.9,4.6,0.858,7
+Kuben videregående skole,Oslo,"Elektro og datatekn., autom, SK 3 år",0,Vg1,EL,2027,1,41.9,4.6,0.886,6
+Kuben videregående skole,Oslo,Elektro og datateknologi,0,Vg1,EL,2027,1,38.7,4.6,0.925,6
+Kuben videregående skole,Oslo,Helse- og oppvekstfag,0,Vg1,HS,2027,1,36.2,4.6,0.85,7
+Kuben videregående skole,Oslo,"Helse- og oppvekstfag, YSK 4 år",0,Vg1,HS,2027,1,41.6,4.6,0.733,6
+Kuben videregående skole,Oslo,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2027,1,36.5,4.6,0.888,7
+Kuben videregående skole,Oslo,"Informasjonsteknologi og medieproduksjon, SK 3 år",0,Vg1,IM,2027,1,42.4,4.6,0.889,7
+Kuben videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,40.9,4.6,0.832,7
+Kuben videregående skole,Oslo,Teknologi- og industrifag,0,Vg1,TP,2027,1,36.2,4.6,0.909,5
+Lambertseter videregående skole,Oslo,Idrettsfag,0,Vg1,ID,2027,1,44.4,4.6,0.868,7
+Lambertseter videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,42.7,4.6,0.822,7
+Mølla videregående skole,Oslo,Helse- og oppvekstfag,0,Vg1,HS,2027,1,35.7,6.2,0.808,1
+Mølla videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,43.0,6.2,0.783,1
+Nydalen videregående skole,Oslo,Helse- og oppvekstfag,0,Vg1,HS,2027,1,38.4,4.6,0.847,7
+Nydalen videregående skole,Oslo,"Salg, service og reiseliv",0,Vg1,SR,2027,1,38.3,4.6,0.875,7
+Nydalen videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,49.7,4.6,0.829,7
+Oslo Handelsgymnasium,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,38.3,4.6,0.822,7
+Oslo katedralskole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,45.9,4.6,0.817,7
+Persbråten videregående skole,Oslo,Idrettsfag,0,Vg1,ID,2027,1,41.9,4.6,0.868,7
+Persbråten videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,41.3,4.6,0.822,7
+Stovner videregående skole,Oslo,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,19.6,5.6,0.459,3
+Stovner videregående skole,Oslo,Helse- og oppvekstfag,0,Vg1,HS,2027,1,22.4,4.6,0.576,4
+Stovner videregående skole,Oslo,Naturbruk,0,Vg1,NA,2027,1,24.3,4.6,0.716,5
+Stovner videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,28.7,6.2,0.321,1
+Stovner videregående skole,Oslo,Teknologi- og industrifag,0,Vg1,TP,2027,1,24.1,5.6,0.611,3
+Ullern videregående skole,Oslo,Elektro og datateknologi,0,Vg1,EL,2027,1,38.3,4.6,0.932,6
+Ullern videregående skole,Oslo,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,Vg1,HS,2027,1,39.6,4.6,0.86,7
+Ullern videregående skole,Oslo,Medier og kommunikasjon,0,Vg1,MK,2027,1,43.1,4.6,0.843,7
+Ullern videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,45.1,4.6,0.842,7
+Ullern videregående skole,Oslo,"Studiespesialisering, forskerlinje",0,Vg1,ST,2027,1,28.4,5.6,0.801,3
+Ulsrud videregående skole,Oslo,Helse- og oppvekstfag,0,Vg1,HS,2027,1,24.3,7.7,0.293,0
+Ulsrud videregående skole,Oslo,"Helse- og oppvekstfag, barne- og ungd.arbeiderfag, SK 3 år",0,Vg1,HS,2027,1,31.9,4.6,0.738,6
+Ulsrud videregående skole,Oslo,"Helse/oppvekst, ambulanse, SK 3 år",0,Vg1,HS,2027,1,35.3,5.6,0.709,3
+Ulsrud videregående skole,Oslo,Idrettsfag,0,Vg1,ID,2027,1,27.8,5.6,0.432,2
+Ulsrud videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,27.1,6.2,0.355,1
+Valle Hovin videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,46.0,4.6,0.817,7
+Vika videregående skole,Oslo,Studiespesialisering,0,Vg1,ST,2027,1,43.8,4.6,0.813,6
+Bergeland videregående skole,Rogaland,Helse- og oppvekstfag,0,Vg1,HS,2026,2,29.6,4.6,0.757,8
+Bergeland videregående skole,Rogaland,"Helse- og oppvekstfag, SK 3år",0,Vg1,HS,2026,2,39.2,4.6,0.762,4
+Bergeland videregående skole,Rogaland,"Kunst, design og arkitektur",0,Vg1,KD,2026,2,32.3,4.6,0.697,7
+Bergeland videregående skole,Rogaland,Medier og kommunikasjon,0,Vg1,MK,2026,2,31.7,4.6,0.571,4
+Bergeland videregående skole,Rogaland,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,31.1,4.6,0.563,6
+Bergeland videregående skole,Rogaland,Helsearbeiderfag,0,Vg2,HS,2026,2,27.1,4.6,0.751,8
+Bergeland videregående skole,Rogaland,"Helsearbeiderfag, SK 3 år",0,Vg2,HS,2026,2,34.2,5.6,0.609,2
+Bergeland videregående skole,Rogaland,Helseservicefag,0,Vg2,HS,2026,2,28.2,4.6,0.749,8
+Bergeland videregående skole,Rogaland,"Kunst, design og arkitektur",1,Vg2,KD,2026,2,28.6,6.2,0.301,1
+Bergeland videregående skole,Rogaland,Medier og kommunikasjon,1,Vg2,MK,2026,2,32.7,7.7,0.213,0
+Bergeland videregående skole,Rogaland,"barne- og ungdomsarbeiderfag, SK 3 år",0,Vg2,HS,2026,2,35.3,7.7,0.353,0
+Bergeland videregående skole,Rogaland,Apotekteknikk,0,Vg3,HS,2026,2,27.8,5.6,0.441,3
+Bergeland videregående skole,Rogaland,Helsesekretær,0,Vg3,HS,2026,2,32.5,4.6,0.468,4
+Bergeland videregående skole,Rogaland,Tannhelsesekretær,0,Vg3,HS,2026,2,28.2,5.6,0.441,3
+Bryne vidaregåande skule,Rogaland,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,30.6,4.6,0.777,8
+Bryne vidaregåande skule,Rogaland,Helse- og oppvekstfag,0,Vg1,HS,2026,2,32.0,4.6,0.773,8
+Bryne vidaregåande skule,Rogaland,Idrettsfag,0,Vg1,ID,2026,2,39.2,4.6,0.627,6
+Bryne vidaregåande skule,Rogaland,Restaurant- og matfag,0,Vg1,RM,2026,2,28.1,4.6,0.711,8
+Bryne vidaregåande skule,Rogaland,"Salg, service og reiseliv",0,Vg1,SR,2026,2,31.3,4.6,0.796,6
+Bryne vidaregåande skule,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,38.3,4.6,0.601,5
+Bryne vidaregåande skule,Rogaland,Teknologi- og industrifag,0,Vg1,TP,2026,2,33.2,4.6,0.832,7
+Bryne vidaregåande skule,Rogaland,Baker og Konditor,0,Vg2,RM,2026,2,27.8,6.2,0.429,1
+Bryne vidaregåande skule,Rogaland,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,31.8,5.6,0.448,2
+Bryne vidaregåande skule,Rogaland,Betong og Mur,0,Vg2,BA,2026,2,29.5,5.6,0.477,2
+Bryne vidaregåande skule,Rogaland,Helsearbeiderfag,0,Vg2,HS,2026,2,32.8,4.6,0.766,8
+Bryne vidaregåande skule,Rogaland,Idrettsfag,1,Vg2,ID,2026,2,29.9,5.6,0.407,2
+Bryne vidaregåande skule,Rogaland,Industriteknologi,0,Vg2,TP,2026,2,33.6,4.6,0.797,8
+Bryne vidaregåande skule,Rogaland,Kokk og servitørfag,0,Vg2,RM,2026,2,25.7,6.2,0.33,1
+Bryne vidaregåande skule,Rogaland,Matproduksjon,0,Vg2,RM,2026,2,30.1,7.7,0.223,0
+Bryne vidaregåande skule,Rogaland,Realfag,0,Vg2,ST,2026,2,35.0,4.6,0.468,4
+Bryne vidaregåande skule,Rogaland,Rørlegger,0,Vg2,BA,2026,2,32.9,4.6,0.79,5
+Bryne vidaregåande skule,Rogaland,Salg og Reiseliv,0,Vg2,SR,2026,2,29.5,5.6,0.531,2
+Bryne vidaregåande skule,Rogaland,"Service, sikkerhet og admin",0,Vg2,SR,2026,2,29.8,5.6,0.496,2
+Bryne vidaregåande skule,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,31.7,4.6,0.656,6
+Bryne vidaregåande skule,Rogaland,Transport og logistikk,0,Vg2,TP,2026,2,28.6,4.6,0.598,6
+Bryne vidaregåande skule,Rogaland,Tømrer,0,Vg2,BA,2026,2,32.2,4.6,0.663,4
+Bryne vidaregåande skule,Rogaland,Påbygg til generell studiekompetanse,0,Vg3,PB,2026,2,37.8,4.6,0.824,8
+Bryne vidaregåande skule,Rogaland,"Påbygg etter yrkeskompetanse, dagtid(PBPBY4YK)",0,Vg4,PB,2026,2,40.3,4.6,0.799,6
+Dalane videregående skole,Rogaland,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,27.8,4.6,0.556,4
+Dalane videregående skole,Rogaland,Elektro og datateknologi,0,Vg1,EL,2026,2,32.1,4.6,0.692,6
+Dalane videregående skole,Rogaland,Helse- og oppvekstfag,0,Vg1,HS,2026,2,31.4,4.6,0.601,6
+Dalane videregående skole,Rogaland,"Salg, service og reiseliv",0,Vg1,SR,2026,2,29.7,5.6,0.54,3
+Dalane videregående skole,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,36.8,7.7,0.251,0
+Dalane videregående skole,Rogaland,Teknologi- og industrifag,0,Vg1,TP,2026,2,30.3,4.6,0.643,5
+Dalane videregående skole,Rogaland,Anleggsteknikk,0,Vg2,BA,2026,2,32.7,6.2,0.709,1
+Dalane videregående skole,Rogaland,Automatisering,0,Vg2,EL,2026,2,35.3,6.2,0.405,1
+Dalane videregående skole,Rogaland,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,30.5,6.2,0.31,1
+Dalane videregående skole,Rogaland,Elenergi og ekom,0,Vg2,EL,2026,2,35.1,4.6,0.607,5
+Dalane videregående skole,Rogaland,Helsearbeiderfag,0,Vg2,HS,2026,2,30.9,6.2,0.309,1
+Dalane videregående skole,Rogaland,Industriteknologi,0,Vg2,TP,2026,2,26.8,5.6,0.485,3
+Dalane videregående skole,Rogaland,Kjøretøy,0,Vg2,TP,2026,2,24.6,4.6,0.478,5
+Dalane videregående skole,Rogaland,Realfag,0,Vg2,ST,2026,2,33.4,6.2,0.313,1
+Dalane videregående skole,Rogaland,Salg og reiseliv,0,Vg2,SR,2026,2,29.0,6.2,0.382,1
+Dalane videregående skole,Rogaland,"Service, sikkerhet og administrasjon",0,Vg2,SR,2026,2,27.0,6.2,0.304,1
+Dalane videregående skole,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,31.0,6.2,0.277,1
+Dalane videregående skole,Rogaland,Tømrer,0,Vg2,BA,2026,2,29.6,4.6,0.573,4
+Dalane videregående skole,Rogaland,Vg 4 Påbygg gen studiekom e/yrkeskomp (PBPBY4YK),0,Vg2/Vg3,PB,2026,2,36.5,7.7,0.266,0
+Dalane videregående skole,Rogaland,Påbygg til generell studiekompetanse,0,Vg3,PB,2026,2,35.0,4.6,0.605,6
+Gand videregående skole,Rogaland,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,31.3,4.6,0.707,7
+Gand videregående skole,Rogaland,Elektro og datateknologi,0,Vg1,EL,2026,2,37.5,4.6,0.862,7
+Gand videregående skole,Rogaland,Helse- og oppvekstfag,0,Vg1,HS,2026,2,33.4,4.6,0.782,8
+Gand videregående skole,Rogaland,IT og medieproduksjon,0,Vg1,IM,2026,2,35.8,4.6,0.863,6
+Gand videregående skole,Rogaland,"Salg, service og reiseliv",0,Vg1,SR,2026,2,32.1,4.6,0.805,6
+Gand videregående skole,Rogaland,Teknologi- og industrifag,0,Vg1,TP,2026,2,35.1,4.6,0.841,7
+Gand videregående skole,Rogaland,Automatisering,0,Vg2,EL,2026,2,42.6,4.6,0.835,8
+Gand videregående skole,Rogaland,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,32.1,5.6,0.416,2
+Gand videregående skole,Rogaland,Betong og Mur,0,Vg2,BA,2026,2,31.1,4.6,0.676,4
+Gand videregående skole,Rogaland,"Bilskade, lakk og karosseri",0,Vg2,TP,2026,2,26.6,4.6,0.675,7
+Gand videregående skole,Rogaland,Datateknologi og elektronikk,0,Vg2,EL,2026,2,34.0,4.6,0.732,6
+Gand videregående skole,Rogaland,Elenergi og ekom,0,Vg2,EL,2026,2,41.2,4.6,0.843,7
+Gand videregående skole,Rogaland,Helsearbeiderfag,0,Vg2,HS,2026,2,34.8,4.6,0.774,8
+Gand videregående skole,Rogaland,Industriteknologi,0,Vg2,TP,2026,2,36.8,5.6,0.774,2
+Gand videregående skole,Rogaland,Informasjonsteknologi,0,Vg2,IM,2026,2,34.4,6.2,0.417,1
+Gand videregående skole,Rogaland,Kjøretøy,0,Vg2,TP,2026,2,29.2,4.6,0.696,7
+Gand videregående skole,Rogaland,Salg og Reiseliv,0,Vg2,SR,2026,2,34.3,4.6,0.763,5
+Gand videregående skole,Rogaland,Service og sikkerhet og administrasjon,0,Vg2,SR,2026,2,33.2,7.7,0.301,0
+Gand videregående skole,Rogaland,Transport og logistikk,0,Vg2,TP,2026,2,27.6,4.6,0.672,7
+Gand videregående skole,Rogaland,Tømrer,0,Vg2,BA,2026,2,29.4,4.6,0.767,5
+Gand videregående skole,Rogaland,Automatiseringsfaget,0,Vg3,EL,2026,2,40.2,4.6,0.455,4
+Gand videregående skole,Rogaland,Påbygg til generell studiekompetanse,0,Vg3,PB,2026,2,37.2,4.6,0.833,8
+Gand videregående skole,Rogaland,"Påbygg etter yrkeskompetanse, dagtid",0,Vg4,PB,2026,2,36.7,4.6,0.771,8
+Godalen videregående skole,Rogaland,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,25.0,4.6,0.666,7
+Godalen videregående skole,Rogaland,"Elektro og data, automatisering og robotikk, SK 3 år",0,Vg1,EL,2026,2,34.5,5.6,0.738,3
+Godalen videregående skole,Rogaland,Elektro og datateknologi,0,Vg1,EL,2026,2,31.6,4.6,0.73,6
+Godalen videregående skole,Rogaland,"Frisør, blomst, int.eksp. design",0,Vg1,FD,2026,2,25.4,4.6,0.627,5
+Godalen videregående skole,Rogaland,"Håndverk, design, produktutvikling",0,Vg1,DT,2026,2,32.1,5.6,0.437,3
+Godalen videregående skole,Rogaland,"Salg, service og reiseliv",0,Vg1,SR,2026,2,29.6,5.6,0.571,3
+Godalen videregående skole,Rogaland,Teknologi- og industrifag,0,Vg1,TP,2026,2,30.0,4.6,0.657,5
+Godalen videregående skole,Rogaland,Automatisering,0,Vg2,EL,2026,2,37.7,4.6,0.677,6
+Godalen videregående skole,Rogaland,"Automatisering, SK 3 år",0,Vg2,EL,2026,2,34.6,7.7,0.325,0
+Godalen videregående skole,Rogaland,Betong og Mur,0,Vg2,BA,2026,2,26.0,6.2,0.356,1
+Godalen videregående skole,Rogaland,Blomsterdekoratør,0,Vg2,FD,2026,2,28.3,5.6,0.382,2
+Godalen videregående skole,Rogaland,Brønnteknikk,0,Vg2,TP,2026,2,41.7,5.6,0.762,3
+Godalen videregående skole,Rogaland,Elenergi og ekom,0,Vg2,EL,2026,2,33.7,4.6,0.694,6
+Godalen videregående skole,Rogaland,Frisør,0,Vg2,FD,2026,2,27.0,6.2,0.287,1
+Godalen videregående skole,Rogaland,Industriteknologi,0,Vg2,TP,2026,2,30.9,4.6,0.525,4
+Godalen videregående skole,Rogaland,Kjemiprosess- og laboratoriefag,0,Vg2,TP,2026,2,40.9,5.6,0.773,3
+Godalen videregående skole,Rogaland,"Kulde , varmepumpe-, vent.teknologi",0,Vg2,EL,2026,2,31.8,4.6,0.682,4
+Godalen videregående skole,Rogaland,Overflateteknikk,0,Vg2,BA,2026,2,28.2,7.7,0.249,0
+Godalen videregående skole,Rogaland,Salg og Reiseliv,0,Vg2,SR,2026,2,30.0,5.6,0.479,2
+Godalen videregående skole,Rogaland,"Service, sikkerhet og admin",0,Vg2,SR,2026,2,29.0,6.2,0.384,1
+Godalen videregående skole,Rogaland,Søm og tekstilhåndverk,0,Vg2,DT,2026,2,33.6,7.7,0.229,0
+Godalen videregående skole,Rogaland,Treteknikk,0,Vg2,BA,2026,2,29.6,6.2,0.318,1
+Godalen videregående skole,Rogaland,Tømrer,0,Vg2,BA,2026,2,26.4,6.2,0.421,1
+Godalen videregående skole,Rogaland,Automatiseringsfaget,0,Vg3,EL,2026,2,34.2,7.7,0.269,0
+Godalen videregående skole,Rogaland,"Påbygg etter yrkeskompetanse, dagtid",0,Vg4,PB,2026,2,33.4,5.6,0.393,3
+Haugaland videregående skole,Rogaland,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,26.1,4.6,0.49,4
+Haugaland videregående skole,Rogaland,"Frisør, blomst, int, eksp.design",0,Vg1,FD,2026,2,31.8,5.6,0.561,3
+Haugaland videregående skole,Rogaland,"Helse og oppvekstfag, toppidrett",0,Vg1,HS,2026,2,34.9,5.6,0.578,3
+Haugaland videregående skole,Rogaland,Helse- og oppvekstfag,0,Vg1,HS,2026,2,26.9,4.6,0.667,7
+Haugaland videregående skole,Rogaland,IT og medieproduksjon,0,Vg1,IM,2026,2,34.9,4.6,0.796,6
+Haugaland videregående skole,Rogaland,"Kunst, design og arkitektur",0,Vg1,KD,2026,2,35.3,5.6,0.447,3
+Haugaland videregående skole,Rogaland,"Salg, service og reiseliv",0,Vg1,SR,2026,2,30.8,4.6,0.742,6
+Haugaland videregående skole,Rogaland,Teknologi- og industrifag,0,Vg1,TP,2026,2,28.1,4.6,0.718,6
+Haugaland videregående skole,Rogaland,Anleggsteknikk,0,Vg2,BA,2026,2,34.1,5.6,0.768,2
+Haugaland videregående skole,Rogaland,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,29.6,4.6,0.575,5
+Haugaland videregående skole,Rogaland,Betong og Mur,0,Vg2,BA,2026,2,26.8,7.7,0.281,0
+Haugaland videregående skole,Rogaland,Frisør,0,Vg2,FD,2026,2,26.9,5.6,0.494,3
+Haugaland videregående skole,Rogaland,Helsearbeiderfag,0,Vg2,HS,2026,2,29.4,4.6,0.612,6
+Haugaland videregående skole,Rogaland,Industriteknologi,0,Vg2,TP,2026,2,27.2,6.2,0.391,1
+Haugaland videregående skole,Rogaland,Informasjonsteknologi,0,Vg2,IM,2026,2,30.2,5.6,0.476,2
+Haugaland videregående skole,Rogaland,Interiør og eksponeringsdesign,0,Vg2,FD,2026,2,30.3,7.7,0.277,0
+Haugaland videregående skole,Rogaland,Kjøretøy,0,Vg2,TP,2026,2,27.0,4.6,0.551,6
+Haugaland videregående skole,Rogaland,"Kunst, design og arkitektur",1,Vg2,KD,2026,2,30.0,7.7,0.2,0
+Haugaland videregående skole,Rogaland,Medieproduksjon,0,Vg2,IM,2026,2,33.4,6.2,0.468,1
+Haugaland videregående skole,Rogaland,Salg og Reiseliv,0,Vg2,SR,2026,2,29.5,6.2,0.378,1
+Haugaland videregående skole,Rogaland,"Service, sikkerhet og admin",0,Vg2,SR,2026,2,31.2,6.2,0.389,1
+Haugaland videregående skole,Rogaland,Transport og logistikk,0,Vg2,TP,2026,2,26.9,4.6,0.658,7
+Haugaland videregående skole,Rogaland,Tømrer,0,Vg2,BA,2026,2,28.3,7.7,0.305,0
+Haugaland videregående skole,Rogaland,Interiør,0,Vg3,FD,2026,2,28.5,7.7,0.195,0
+Haugaland videregående skole,Rogaland,Påbygg til generell studiekompetanse,0,Vg3,PB,2026,2,35.7,4.6,0.625,6
+Haugaland videregående skole,Rogaland,"Påbygg etter yrkeskompetanse, dagtid",0,Vg4,PB,2026,2,36.4,4.6,0.581,6
+Hetland videregående skole,Rogaland,Medier og kommunikasjon,0,Vg1,MK,2026,2,38.2,4.6,0.521,4
+Hetland videregående skole,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,41.1,4.6,0.766,8
+Hetland videregående skole,Rogaland,Medier og kommunikasjon,1,Vg2,MK,2026,2,36.5,7.7,0.234,0
+Hetland videregående skole,Rogaland,Realfag,0,Vg2,ST,2026,2,36.2,4.6,0.644,7
+Hetland videregående skole,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,35.4,4.6,0.753,8
+Jåttå videregående skole,Rogaland,"Bygg og anleggsteknikk, toppidrett",0,Vg1,BA,2026,2,36.2,4.6,0.787,6
+Jåttå videregående skole,Rogaland,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,33.2,4.6,0.783,8
+Jåttå videregående skole,Rogaland,Eletro og datateknologi,0,Vg1,EL,2026,2,38.5,4.6,0.826,7
+Jåttå videregående skole,Rogaland,Helse og oppvekstfag m/toppidrett,0,Vg1,HS,2026,2,34.1,4.6,0.781,4
+Jåttå videregående skole,Rogaland,Helse- og oppvekstfag,0,Vg1,HS,2026,2,36.2,4.6,0.779,8
+Jåttå videregående skole,Rogaland,Idrettsfag,0,Vg1,ID,2026,2,42.4,4.6,0.803,8
+Jåttå videregående skole,Rogaland,Restaurant- og matfag,0,Vg1,RM,2026,2,27.4,4.6,0.651,7
+Jåttå videregående skole,Rogaland,Automatisering,0,Vg2,EL,2026,2,43.7,4.6,0.832,8
+Jåttå videregående skole,Rogaland,Baker og konditor,0,Vg2,RM,2026,2,30.7,5.6,0.484,2
+Jåttå videregående skole,Rogaland,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,34.3,4.6,0.772,8
+Jåttå videregående skole,Rogaland,Elenergi og ekom,0,Vg2,EL,2026,2,39.9,4.6,0.84,7
+Jåttå videregående skole,Rogaland,Fotterapi og ortopediteknikk,0,Vg2,HS,2026,2,37.0,7.7,0.321,0
+Jåttå videregående skole,Rogaland,Helsearbeiderfag,0,Vg2,HS,2026,2,35.3,4.6,0.77,7
+Jåttå videregående skole,Rogaland,Hudpleie,0,Vg2,HS,2026,2,41.5,4.6,0.794,5
+Jåttå videregående skole,Rogaland,Idrettsfag,1,Vg2,ID,2026,2,33.6,4.6,0.581,6
+Jåttå videregående skole,Rogaland,"Klima, energi og miljøteknikk",0,Vg2,BA,2026,2,29.0,5.6,0.447,3
+Jåttå videregående skole,Rogaland,Kokk og servitørfag,0,Vg2,RM,2026,2,28.0,5.6,0.463,2
+Jåttå videregående skole,Rogaland,Rørlegger,0,Vg2,BA,2026,2,29.8,4.6,0.796,5
+Jåttå videregående skole,Rogaland,Tømrer,0,Vg2,BA,2026,2,33.0,4.6,0.764,5
+Jåttå videregående skole,Rogaland,"Tømrer, toppidrett",0,Vg2,BA,2026,2,32.1,6.2,0.414,1
+Jåttå videregående skole,Rogaland,Automatiseringsfaget,0,Vg3,EL,2026,2,36.9,4.6,0.57,6
+Jåttå videregående skole,Rogaland,Fotterapi,1,Vg3,HS,2026,2,37.0,7.7,0.282,0
+Jåttå videregående skole,Rogaland,Hudpleier,1,Vg3,HS,2026,2,34.2,7.7,0.279,0
+Jåttå videregående skole,Rogaland,Påbygg til generell studiekompetanse,0,Vg3,PB,2026,2,36.3,4.6,0.83,8
+Jåttå videregående skole,Rogaland,"Påbygg etter yrkeskompetanse, dagtid",0,Vg4,PB,2026,2,38.8,4.6,0.573,6
+Jåttå videregående skole,Rogaland,"Påbygg gen studiekompetanse, kveld",0,Vg4,PB,2026,2,40.3,7.7,0.33,0
+Karmsund videregående skole,Rogaland,Elektro og datateknologi,0,Vg1,EL,2026,2,36.9,4.6,0.816,7
+Karmsund videregående skole,Rogaland,Helse- og oppvekstfag,0,Vg1,HS,2026,2,32.5,4.6,0.681,7
+Karmsund videregående skole,Rogaland,Restaurant- og matfag,0,Vg1,RM,2026,2,29.0,5.6,0.399,2
+Karmsund videregående skole,Rogaland,Teknologi- og industrifag,0,Vg1,TP,2026,2,33.9,4.6,0.795,7
+Karmsund videregående skole,Rogaland,Baker og konditor,0,Vg2,RM,2026,2,28.5,5.6,0.491,2
+Karmsund videregående skole,Rogaland,Elenergi og ekom,0,Vg2,EL,2026,2,38.6,4.6,0.797,7
+Karmsund videregående skole,Rogaland,Helsearbeiderfag,0,Vg2,HS,2026,2,32.5,5.6,0.409,2
+Karmsund videregående skole,Rogaland,Helseservicefag,0,Vg2,HS,2026,2,30.4,5.6,0.402,2
+Karmsund videregående skole,Rogaland,Industriteknologi,0,Vg2,TP,2026,2,34.0,6.2,0.686,1
+Karmsund videregående skole,Rogaland,Kjemiprosess- og laboratoriefag,0,Vg2,TP,2026,2,42.1,4.6,0.822,7
+Karmsund videregående skole,Rogaland,Kokk og servitørfag,0,Vg2,RM,2026,2,26.6,5.6,0.44,3
+Karmsund videregående skole,Rogaland,Maritime fag,0,Vg2,TP,2026,2,36.5,4.6,0.798,8
+Karmsund videregående skole,Rogaland,Apotekteknikk,0,Vg3,HS,2026,2,30.4,5.6,0.379,2
+Karmsund videregående skole,Rogaland,Helsesekretær,0,Vg3,HS,2026,2,33.3,5.6,0.337,2
+Karmsund videregående skole,Rogaland,Maritime elektrikerfaget,0,Vg3,EL,2026,2,39.4,4.6,0.724,7
+Karmsund videregående skole,Rogaland,Tannhelsesekretær,0,Vg3,HS,2026,2,30.7,7.7,0.269,0
+Karmsund videregående skole,Rogaland,"Påbygg etter yrkeskompetanse, dagtid",0,Vg4,PB,2026,2,36.7,5.6,0.363,2
+Kopervik videregående skole,Rogaland,Idrettsfag,0,Vg1,ID,2026,2,35.6,5.6,0.414,2
+Kopervik videregående skole,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,35.8,6.2,0.362,1
+Kopervik videregående skole,Rogaland,Idrettsfag,1,Vg2,ID,2026,2,28.5,7.7,0.186,0
+Kopervik videregående skole,Rogaland,Realfag,0,Vg2,ST,2026,2,32.0,5.6,0.342,2
+Kopervik videregående skole,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,29.1,4.6,0.448,4
+Kopervik videregående skole,Rogaland,Påbygg til generell studiekompetanse,0,Vg3,PB,2026,2,30.3,4.6,0.582,6
+Kopervik videregående skole,Rogaland,"Påbygg etter yrkeskompetanse, dagtid",0,Vg4,PB,2026,2,32.3,5.6,0.33,2
+Randaberg videregående skole,Rogaland,Elektro og datateknologi,0,Vg1,EL,2026,2,29.4,4.6,0.799,7
+Randaberg videregående skole,Rogaland,Helse- og oppvekstfag,0,Vg1,HS,2026,2,28.1,5.6,0.36,2
+Randaberg videregående skole,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,33.6,6.2,0.318,1
+Randaberg videregående skole,Rogaland,Teknologi- og industrifag,0,Vg1,TP,2026,2,27.9,4.6,0.711,6
+Randaberg videregående skole,Rogaland,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,27.4,4.6,0.472,4
+Randaberg videregående skole,Rogaland,Elenergi og ekom,0,Vg2,EL,2026,2,29.5,5.6,0.548,3
+Randaberg videregående skole,Rogaland,Helsearbeiderfag,0,Vg2,HS,2026,2,29.0,4.6,0.495,5
+Randaberg videregående skole,Rogaland,Industriteknologi,0,Vg2,TP,2026,2,26.8,4.6,0.749,8
+Randaberg videregående skole,Rogaland,Kjøretøy,0,Vg2,TP,2026,2,24.0,4.6,0.436,4
+Randaberg videregående skole,Rogaland,Realfag,0,Vg2,ST,2026,2,31.0,5.6,0.313,2
+Randaberg videregående skole,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,28.8,4.6,0.511,5
+Randaberg videregående skole,Rogaland,Påbygg til generell studiekompetanse,0,Vg3,PB,2026,2,32.3,4.6,0.772,8
+Randaberg videregående skole,Rogaland,"Påbygg etter yrkeskompetanse, dagtid",0,Vg4,PB,2026,2,34.8,4.6,0.541,6
+Sandnes videregående skole,Rogaland,Idrettsfag,0,Vg1,ID,2026,2,43.9,4.6,0.83,8
+Sandnes videregående skole,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,39.5,4.6,0.788,8
+Sandnes videregående skole,Rogaland,Idrettsfag,1,Vg2,ID,2026,2,32.8,4.6,0.648,6
+Sandnes videregående skole,Rogaland,Realfag,0,Vg2,ST,2026,2,36.1,4.6,0.49,4
+Sandnes videregående skole,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,33.9,4.6,0.727,7
+Sauda vidaregåande skule,Rogaland,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,30.4,5.6,0.432,2
+Sauda vidaregåande skule,Rogaland,Elektro og datateknologi,0,Vg1,EL,2026,2,34.1,5.6,0.517,3
+Sauda vidaregåande skule,Rogaland,Helse og oppvekst,0,Vg1,HS,2026,2,30.1,5.6,0.416,3
+Sauda vidaregåande skule,Rogaland,Idrettsfag,0,Vg1,ID,2026,2,40.2,7.7,0.258,0
+Sauda vidaregåande skule,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,38.7,7.7,0.22,0
+Sauda vidaregåande skule,Rogaland,Teknologi- og industrifag,0,Vg1,TP,2026,2,32.0,5.6,0.647,2
+Sauda vidaregåande skule,Rogaland,Ambulansefag,0,Vg2,HS,2026,2,50.8,4.6,0.746,8
+Sauda vidaregåande skule,Rogaland,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,31.2,6.2,0.304,1
+Sauda vidaregåande skule,Rogaland,Elenergi og ekom,0,Vg2,EL,2026,2,37.1,7.7,0.295,0
+Sauda vidaregåande skule,Rogaland,Helsearbeiderfag,0,Vg2,HS,2026,2,30.6,6.2,0.331,1
+Sauda vidaregåande skule,Rogaland,Idrettsfag,1,Vg2,ID,2026,2,32.2,7.7,0.155,0
+Sauda vidaregåande skule,Rogaland,Industriteknologi,0,Vg2,TP,2026,2,31.6,4.6,0.536,5
+Sauda vidaregåande skule,Rogaland,Kjemiprosess og laboratoriefag,0,Vg2,TP,2026,2,36.6,4.6,0.736,5
+Sauda vidaregåande skule,Rogaland,Realfag,0,Vg2,ST,2026,2,34.7,7.7,0.168,0
+Sauda vidaregåande skule,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,32.9,6.2,0.265,1
+Sauda vidaregåande skule,Rogaland,Transport og logistikk,0,Vg2,TP,2026,2,27.4,5.6,0.462,3
+Sauda vidaregåande skule,Rogaland,Tømrer,0,Vg2,BA,2026,2,29.8,7.7,0.244,0
+Sauda vidaregåande skule,Rogaland,"Påbygg etter yrkeskompetanse, nett",0,Vg4,PB,2026,2,39.7,4.6,0.486,5
+Skeisvang videregående skole,Rogaland,Dans,0,Vg1,MD,2026,2,39.7,4.6,0.465,4
+Skeisvang videregående skole,Rogaland,Drama,0,Vg1,MD,2026,2,39.6,7.7,0.237,0
+Skeisvang videregående skole,Rogaland,Musikk,0,Vg1,MD,2026,2,41.7,4.6,0.519,5
+Skeisvang videregående skole,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,40.6,4.6,0.562,6
+Skeisvang videregående skole,Rogaland,Dans,1,Vg2,MD,2026,2,38.8,7.7,0.167,0
+Skeisvang videregående skole,Rogaland,Drama,1,Vg2,MD,2026,2,38.8,7.7,0.162,0
+Skeisvang videregående skole,Rogaland,Musikk,1,Vg2,MD,2026,2,38.8,7.7,0.154,0
+Skeisvang videregående skole,Rogaland,Realfag,0,Vg2,ST,2026,2,36.0,4.6,0.437,4
+Skeisvang videregående skole,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,33.1,4.6,0.578,6
+Sola videregående skole,Rogaland,Elektro og datateknologi,0,Vg1,EL,2026,2,31.9,4.6,0.816,7
+Sola videregående skole,Rogaland,Idrettsfag,0,Vg1,ID,2026,2,36.3,4.6,0.481,4
+Sola videregående skole,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,36.5,5.6,0.386,2
+Sola videregående skole,Rogaland,Teknologi- og industrifag,0,Vg1,TP,2026,2,30.4,4.6,0.796,7
+Sola videregående skole,Rogaland,Industriteknologi,0,Vg2,TP,2026,2,29.1,4.6,0.546,5
+Sola videregående skole,Rogaland,Dronefag,0,Vg2/Vg3,EL,2026,2,31.7,5.6,0.763,3
+Sola videregående skole,Rogaland,Elenergi og ekom,0,Vg2/Vg3,EL,2026,2,37.2,6.2,0.715,1
+Sola videregående skole,Rogaland,"Flyfag, Landslinje",1,Vg2/Vg3,EL,2026,2,44.4,5.6,0.763,3
+Sola videregående skole,Rogaland,Realfag,1,Vg2/Vg3,ST,2026,2,34.5,7.7,0.287,0
+Sola videregående skole,Rogaland,"Språk, samfunn og økonomi",1,Vg2/Vg3,ST,2026,2,30.4,5.6,0.537,2
+St.Olav videregående skole,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,43.5,4.6,0.699,7
+St.Olav videregående skole,Rogaland,Realfag,0,Vg2,ST,2026,2,40.0,4.6,0.745,8
+St.Olav videregående skole,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,39.8,4.6,0.778,8
+St.Svithun videregående skole,Rogaland,Idrettsfag,0,Vg1,ID,2026,2,43.6,4.6,0.83,8
+St.Svithun videregående skole,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,42.6,4.6,0.789,8
+St.Svithun videregående skole,Rogaland,Idrettsfag,1,Vg2,ID,2026,2,33.4,4.6,0.553,5
+St.Svithun videregående skole,Rogaland,Realfag,0,Vg2,ST,2026,2,39.8,4.6,0.581,6
+St.Svithun videregående skole,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,35.1,4.6,0.734,7
+Stavanger Katedralskole,Rogaland,Dans,0,Vg1,MD,2026,2,41.7,4.6,0.759,8
+Stavanger Katedralskole,Rogaland,Drama,0,Vg1,MD,2026,2,43.1,4.6,0.626,7
+Stavanger Katedralskole,Rogaland,Musikk,0,Vg1,MD,2026,2,45.5,4.6,0.698,7
+Stavanger Katedralskole,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,40.9,4.6,0.532,5
+Stavanger Katedralskole,Rogaland,Dans,1,Vg2,MD,2026,2,40.9,7.7,0.214,0
+Stavanger Katedralskole,Rogaland,Drama,1,Vg2,MD,2026,2,40.9,7.7,0.209,0
+Stavanger Katedralskole,Rogaland,Musikk,1,Vg2,MD,2026,2,40.9,7.7,0.202,0
+Stavanger Katedralskole,Rogaland,Realfag,0,Vg2,ST,2026,2,36.9,4.6,0.474,4
+Stavanger Katedralskole,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,36.8,4.6,0.744,8
+Strand videregående skole,Rogaland,Elektro og datateknologi,0,Vg1,EL,2026,2,35.1,4.6,0.633,4
+Strand videregående skole,Rogaland,Helse- og oppvekstfag,0,Vg1,HS,2026,2,31.9,4.6,0.522,4
+Strand videregående skole,Rogaland,Idrettsfag,0,Vg1,ID,2026,2,39.2,5.6,0.486,3
+Strand videregående skole,Rogaland,Naturbruk,0,Vg1,NA,2026,2,32.3,4.6,0.724,8
+Strand videregående skole,Rogaland,"Salg, service og reiseliv",0,Vg1,SR,2026,2,30.9,4.6,0.59,4
+Strand videregående skole,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,39.1,6.2,0.376,1
+Strand videregående skole,Rogaland,Teknologi- og industrifag,0,Vg1,TP,2026,2,31.4,4.6,0.712,6
+Strand videregående skole,Rogaland,Akvakultur,0,Vg2,NA,2026,2,35.1,4.6,0.502,4
+Strand videregående skole,Rogaland,Automatisering,0,Vg2,EL,2026,2,39.1,5.6,0.617,3
+Strand videregående skole,Rogaland,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,33.8,5.6,0.42,2
+Strand videregående skole,Rogaland,Elenergi og ekom,0,Vg2,EL,2026,2,35.3,4.6,0.628,5
+Strand videregående skole,Rogaland,Fiske og fangst,0,Vg2,NA,2026,2,36.8,4.6,0.717,7
+Strand videregående skole,Rogaland,Helsearbeiderfag,0,Vg2,HS,2026,2,32.1,5.6,0.431,3
+Strand videregående skole,Rogaland,Idrettsfag,1,Vg2,ID,2026,2,32.2,6.2,0.326,1
+Strand videregående skole,Rogaland,Industriteknologi,0,Vg2,TP,2026,2,34.0,4.6,0.602,6
+Strand videregående skole,Rogaland,Realfag,0,Vg2,ST,2026,2,34.0,5.6,0.319,2
+Strand videregående skole,Rogaland,Salg og Reiseliv,0,Vg2,SR,2026,2,32.8,6.2,0.417,1
+Strand videregående skole,Rogaland,"Service, sikkerhet og administrasjon",0,Vg2,SR,2026,2,28.6,7.7,0.287,0
+Strand videregående skole,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,33.0,5.6,0.421,2
+Strand videregående skole,Rogaland,Påbygg gen. Studiekompetanse,0,Vg3,PB,2026,2,39.7,4.6,0.744,4
+Strand videregående skole,Rogaland,Studieforberedende naturbruk,0,Vg3,NA,2026,2,31.0,7.7,0.235,0
+Vardafjell videregående skole,Rogaland,Medier og kommunikasjon,0,Vg1,MK,2026,2,33.5,5.6,0.397,3
+Vardafjell videregående skole,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,38.8,5.6,0.499,3
+Vardafjell videregående skole,Rogaland,Medier og kommunikasjon,1,Vg2,MK,2026,2,33.4,6.2,0.23,1
+Vardafjell videregående skole,Rogaland,Realfag,0,Vg2,ST,2026,2,34.6,4.6,0.586,6
+Vardafjell videregående skole,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,30.8,4.6,0.431,4
+Vardafjell videregående skole,Rogaland,Påbygg generell studiekompetanse,0,Vg3,PB,2026,2,33.4,4.6,0.483,4
+Vågen videregående skole,Rogaland,Dans,0,Vg1,MD,2026,2,40.1,4.6,0.638,6
+Vågen videregående skole,Rogaland,Drama,0,Vg1,MD,2026,2,38.9,5.6,0.417,2
+Vågen videregående skole,Rogaland,"Frisør, blomst, int, eksp.design",0,Vg1,FD,2026,2,33.1,4.6,0.748,6
+Vågen videregående skole,Rogaland,IT og medieproduksjon,0,Vg1,IM,2026,2,34.4,4.6,0.827,7
+Vågen videregående skole,Rogaland,"Kunst, design og arkitektur",0,Vg1,KD,2026,2,39.5,4.6,0.741,8
+Vågen videregående skole,Rogaland,Medier og kommunikasjon,0,Vg1,MK,2026,2,38.9,4.6,0.7,7
+Vågen videregående skole,Rogaland,Musikk,0,Vg1,MD,2026,2,41.1,4.6,0.68,7
+Vågen videregående skole,Rogaland,Dans,1,Vg2,MD,2026,2,38.8,7.7,0.189,0
+Vågen videregående skole,Rogaland,Drama,1,Vg2,MD,2026,2,38.8,7.7,0.184,0
+Vågen videregående skole,Rogaland,Informasjonsteknologi,0,Vg2,IM,2026,2,37.9,5.6,0.703,3
+Vågen videregående skole,Rogaland,Interiør og eksponeringsdesign,0,Vg2,FD,2026,2,30.8,5.6,0.504,2
+Vågen videregående skole,Rogaland,"Kunst, design og arkitektur",1,Vg2,KD,2026,2,32.1,6.2,0.332,1
+Vågen videregående skole,Rogaland,Medieproduksjon,1,Vg2,IM,2026,2,35.1,6.2,0.376,1
+Vågen videregående skole,Rogaland,Medier og kommunikasjon,1,Vg2,MK,2026,2,35.6,5.6,0.397,2
+Vågen videregående skole,Rogaland,Musikk,1,Vg2,MD,2026,2,38.8,7.7,0.177,0
+Vågen videregående skole,Rogaland,Eksponeringsdesign,0,Vg3,FD,2026,2,31.3,7.7,0.267,0
+Vågen videregående skole,Rogaland,Interiør,0,Vg3,FD,2026,2,31.3,7.7,0.223,0
+Åkrehamn vidaregåande skole,Rogaland,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,27.6,5.6,0.489,3
+Åkrehamn vidaregåande skole,Rogaland,Elektro og datateknologi,0,Vg1,EL,2026,2,35.0,4.6,0.725,6
+Åkrehamn vidaregåande skole,Rogaland,Helse- og oppvekstfag,0,Vg1,HS,2026,2,27.6,4.6,0.552,5
+Åkrehamn vidaregåande skole,Rogaland,"Salg, service og reiseliv",0,Vg1,SR,2026,2,27.3,5.6,0.575,3
+Åkrehamn vidaregåande skole,Rogaland,Teknologi- og industrifag,0,Vg1,TP,2026,2,31.3,4.6,0.775,7
+Åkrehamn vidaregåande skole,Rogaland,Automatisering,0,Vg2,EL,2026,2,38.9,4.6,0.715,7
+Åkrehamn vidaregåande skole,Rogaland,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,35.4,5.6,0.492,3
+Åkrehamn vidaregåande skole,Rogaland,Elenergi og ekom,0,Vg2,EL,2026,2,37.2,4.6,0.627,5
+Åkrehamn vidaregåande skole,Rogaland,Helsearbeiderfag,0,Vg2,HS,2026,2,33.2,5.6,0.492,3
+Åkrehamn vidaregåande skole,Rogaland,Industriteknologi,0,Vg2,TP,2026,2,27.6,5.6,0.496,3
+Åkrehamn vidaregåande skole,Rogaland,Rørlegger,0,Vg2,BA,2026,2,30.6,5.6,0.602,3
+Åkrehamn vidaregåande skole,Rogaland,Salg og Reiseliv,0,Vg2,SR,2026,2,30.0,5.6,0.483,2
+Åkrehamn vidaregåande skole,Rogaland,"Service, sikkerhet og administrasjon",0,Vg2,SR,2026,2,27.5,7.7,0.298,0
+Åkrehamn vidaregåande skole,Rogaland,Tømrer,0,Vg2,BA,2026,2,29.2,6.2,0.408,1
+Åkrehamn vidaregåande skole,Rogaland,Automatiseringsfaget,0,Vg3,EL,2026,2,37.0,5.6,0.466,3
+Øksnevad vidaregåande skole,Rogaland,Naturbruk,0,Vg1,NA,2026,2,30.4,4.6,0.641,7
+Øksnevad vidaregåande skole,Rogaland,Naturbruk dyrekunnskap SK 3år,0,Vg1,NA,2026,2,35.6,4.6,0.569,5
+Øksnevad vidaregåande skole,Rogaland,Naturbruk hest,0,Vg1,NA,2026,2,29.9,5.6,0.569,3
+Øksnevad vidaregåande skole,Rogaland,Anleggsgartner,0,Vg2,BA,2026,2,30.3,5.6,0.423,2
+Øksnevad vidaregåande skole,Rogaland,"Anleggsteknikk, landslinje",0,Vg2,BA,2026,2,33.8,4.6,0.767,8
+Øksnevad vidaregåande skole,Rogaland,Arbeidsmaskiner,0,Vg2,TP,2026,2,30.5,4.6,0.725,7
+Øksnevad vidaregåande skole,Rogaland,Heste- og dyrefag,0,Vg2,NA,2026,2,31.2,4.6,0.538,4
+Øksnevad vidaregåande skole,Rogaland,"Heste- og dyrefag, dyrekunnskap SK 3 år",0,Vg2,NA,2026,2,32.2,7.7,0.268,0
+Øksnevad vidaregåande skole,Rogaland,Landbruk og gartnernæring,0,Vg2,NA,2026,2,29.4,6.2,0.297,1
+Øksnevad vidaregåande skole,Rogaland,Anleggsmaskinmekaniker landslinje,0,Vg3,TP,2026,2,34.6,4.6,0.637,5
+Øksnevad vidaregåande skole,Rogaland,Landbruk,0,Vg3,NA,2026,2,31.1,7.7,0.226,0
+Øksnevad vidaregåande skole,Rogaland,Naturbruk dyrekunnskap SK 3år,1,Vg3,NA,2026,2,32.2,7.7,0.254,0
+Øksnevad vidaregåande skole,Rogaland,Studieforberedende naturbruk,0,Vg3,NA,2026,2,31.9,4.6,0.53,5
+Ølen vidaregåande skule,Rogaland,Bygg- og anleggsteknikk,0,Vg1,BA,2026,2,30.2,5.6,0.415,3
+Ølen vidaregåande skule,Rogaland,Elektro og datateknologi,0,Vg1,EL,2026,2,36.9,4.6,0.686,6
+Ølen vidaregåande skule,Rogaland,Helse- og oppvekstfag,0,Vg1,HS,2026,2,31.0,5.6,0.373,3
+Ølen vidaregåande skule,Rogaland,Idrettsfag,0,Vg1,ID,2026,2,41.1,7.7,0.263,0
+Ølen vidaregåande skule,Rogaland,Studiespesialisering,0,Vg1,ST,2026,2,39.6,7.7,0.219,0
+Ølen vidaregåande skule,Rogaland,Teknologi- og industrifag,0,Vg1,TP,2026,2,33.3,4.6,0.653,6
+Ølen vidaregåande skule,Rogaland,Anleggsteknikk,0,Vg2,BA,2026,2,35.3,5.6,0.68,2
+Ølen vidaregåande skule,Rogaland,Arbeidsmaskiner,0,Vg2,TP,2026,2,34.9,7.7,0.278,0
+Ølen vidaregåande skule,Rogaland,Barne- og ungdomsarbeider,0,Vg2,HS,2026,2,33.5,6.2,0.348,1
+Ølen vidaregåande skule,Rogaland,Elenergi og ekom,0,Vg2,EL,2026,2,36.2,5.6,0.421,2
+Ølen vidaregåande skule,Rogaland,Helsearbeiderfag,0,Vg2,HS,2026,2,36.3,5.6,0.466,3
+Ølen vidaregåande skule,Rogaland,Idrettsfag,1,Vg2,ID,2026,2,33.1,7.7,0.158,0
+Ølen vidaregåande skule,Rogaland,Industriteknologi,0,Vg2,TP,2026,2,31.8,5.6,0.443,2
+Ølen vidaregåande skule,Rogaland,Realfag,0,Vg2,ST,2026,2,35.6,7.7,0.167,0
+Ølen vidaregåande skule,Rogaland,"Språk, samfunn og økonomi",0,Vg2,ST,2026,2,33.8,7.7,0.205,0
+Ølen vidaregåande skule,Rogaland,Tømrer,0,Vg2,BA,2026,2,30.7,7.7,0.243,0
+Ølen vidaregåande skule,Rogaland,Påbygg til generell studiekompetanse,0,Vg3,PB,2026,2,38.4,4.6,0.483,5
+Ølen vidaregåande skule,Rogaland,Påbygg etter yrkeskompetanse,0,Vg4,PB,2026,2,39.9,6.2,0.291,1
+Byåsen videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,26.9,7.7,0.361,0
+Byåsen videregående skole,Trøndelag,Medier og kommunikasjon,0,Vg1,MK,2026,,32.2,6.2,0.562,1
+Byåsen videregående skole,Trøndelag,Restaurant- og matfag,0,Vg1,RM,2026,,24.5,7.7,0.252,0
+Byåsen videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,32.6,6.2,0.56,1
+Byåsen videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,28.1,6.2,0.684,1
+Charlottenlund videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,21.7,6.2,0.703,1
+Charlottenlund videregående skole,Trøndelag,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,,26.6,6.2,0.694,1
+Charlottenlund videregående skole,Trøndelag,"Håndverk, design og produktutvikling",0,Vg1,DT,2026,,33.2,6.2,0.61,1
+Charlottenlund videregående skole,Trøndelag,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,,32.6,6.2,0.758,1
+Charlottenlund videregående skole,Trøndelag,"Kunst, design og arkitektur",0,Vg1,KD,2026,,31.5,6.2,0.678,1
+Charlottenlund videregående skole,Trøndelag,Medier og kommunikasjon,0,Vg1,MK,2026,,33.4,6.2,0.669,1
+Charlottenlund videregående skole,Trøndelag,"Salg, service og reiseliv",0,Vg1,SR,2026,,23.2,6.2,0.741,1
+Charlottenlund videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,32.6,6.2,0.668,1
+Charlottenlund videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,28.8,6.2,0.797,1
+Cissi Klein videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,31.0,7.7,0.396,0
+Cissi Klein videregående skole,Trøndelag,"Musikk, dans og drama, dans",0,Vg1,MD,2026,,41.1,6.2,0.565,1
+Cissi Klein videregående skole,Trøndelag,"Musikk, dans og drama, drama",0,Vg1,MD,2026,,38.3,6.2,0.558,1
+Cissi Klein videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,37.5,6.2,0.598,1
+Cissi Klein videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,28.5,6.2,0.726,1
+Fosen videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,24.7,7.7,0.319,0
+Fosen videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,30.9,6.2,0.662,1
+Fosen videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,26.1,6.2,0.534,1
+Fosen videregående skole,Trøndelag,Idrettsfag,0,Vg1,ID,2026,,35.7,7.7,0.35,0
+Fosen videregående skole,Trøndelag,Restaurant- og matfag,0,Vg1,RM,2026,,24.6,7.7,0.202,0
+Fosen videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,34.2,7.7,0.288,0
+Fosen videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,27.7,6.2,0.628,1
+Gauldal videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,28.7,6.2,0.554,1
+Gauldal videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,30.6,7.7,0.325,0
+Gauldal videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,37.7,7.7,0.301,0
+Gauldal videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,31.6,6.2,0.642,1
+Grong videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,26.4,7.7,0.239,0
+Grong videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,28.8,7.7,0.232,0
+Grong videregående skole,Trøndelag,Idrettsfag,0,Vg1,ID,2026,,37.5,7.7,0.271,0
+Grong videregående skole,Trøndelag,Naturbruk,0,Vg1,NA,2026,,28.8,7.7,0.244,0
+Grong videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,35.9,7.7,0.208,0
+Guri Kunna videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,27.1,7.7,0.288,0
+Guri Kunna videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,33.7,7.7,0.401,0
+Guri Kunna videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,29.5,7.7,0.281,0
+Guri Kunna videregående skole,Trøndelag,Naturbruk,0,Vg1,NA,2026,,31.3,6.2,0.516,1
+Guri Kunna videregående skole,Trøndelag,Restaurant- og matfag,0,Vg1,RM,2026,,27.0,7.7,0.173,0
+Guri Kunna videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,36.6,7.7,0.257,0
+Guri Kunna videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,28.5,6.2,0.596,1
+Heimdal videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,37.5,6.2,0.783,1
+Heimdal videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,30.5,6.2,0.646,1
+Heimdal videregående skole,Trøndelag,Idrettsfag,0,Vg1,ID,2026,,41.9,6.2,0.689,1
+Heimdal videregående skole,Trøndelag,"Musikk, dans og drama, musikk",0,Vg1,MD,2026,,38.9,6.2,0.633,1
+Heimdal videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,40.8,6.2,0.619,1
+Inderøy videregående skole,Trøndelag,"Musikk, dans og drama, dans",0,Vg1,MD,2026,,35.6,7.7,0.203,0
+Inderøy videregående skole,Trøndelag,"Musikk, dans og drama, drama",0,Vg1,MD,2026,,34.5,7.7,0.196,0
+Inderøy videregående skole,Trøndelag,"Musikk, dans og drama, musikk",0,Vg1,MD,2026,,35.8,7.7,0.247,0
+Inderøy videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,35.9,7.7,0.234,0
+Johan Bojer videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,28.3,7.7,0.251,0
+Johan Bojer videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,36.2,6.2,0.589,1
+Johan Bojer videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,30.7,7.7,0.244,0
+Johan Bojer videregående skole,Trøndelag,"Salg, service og reiseliv",0,Vg1,SR,2026,,30.8,7.7,0.284,0
+Johan Bojer videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,37.9,7.7,0.219,0
+Johan Bojer videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,31.1,7.7,0.336,0
+Kyrksæterøra videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,26.4,7.7,0.241,0
+Kyrksæterøra videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,28.8,7.7,0.234,0
+Kyrksæterøra videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,35.9,7.7,0.21,0
+Kyrksæterøra videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,29.2,7.7,0.326,0
+Levanger videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,33.5,6.2,0.652,1
+Levanger videregående skole,Trøndelag,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,,26.7,7.7,0.302,0
+Levanger videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,27.9,7.7,0.303,0
+Levanger videregående skole,Trøndelag,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,,29.1,6.2,0.58,1
+Levanger videregående skole,Trøndelag,Medier og kommunikasjon,0,Vg1,MK,2026,,34.6,6.2,0.504,1
+Levanger videregående skole,Trøndelag,Restaurant- og matfag,0,Vg1,RM,2026,,25.4,7.7,0.193,0
+Levanger videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,35.1,7.7,0.279,0
+Levanger videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,28.3,7.7,0.392,0
+Malvik videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,29.0,6.2,0.619,1
+Malvik videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,26.3,7.7,0.273,0
+Malvik videregående skole,Trøndelag,Idrettsfag,0,Vg1,ID,2026,,35.0,7.7,0.312,0
+Malvik videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,33.5,7.7,0.248,0
+Melhus videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,28.4,6.2,0.61,1
+Melhus videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,37.0,6.2,0.739,1
+Melhus videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,29.1,6.2,0.603,1
+Melhus videregående skole,Trøndelag,Idrettsfag,0,Vg1,ID,2026,,39.2,6.2,0.644,1
+Melhus videregående skole,Trøndelag,Restaurant- og matfag,0,Vg1,RM,2026,,28.2,7.7,0.27,0
+Melhus videregående skole,Trøndelag,"Salg, service og reiseliv",0,Vg1,SR,2026,,31.3,6.2,0.646,1
+Melhus videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,37.8,7.7,0.355,0
+Meråker videregående skole,Trøndelag,Idrettsfag,0,Vg1,ID,2026,,37.5,7.7,0.303,0
+Meråker videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,35.9,7.7,0.24,0
+Mære landbruksskole,Trøndelag,Naturbruk,0,Vg1,NA,2026,,28.8,7.7,0.294,0
+Olav Duun videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,24.5,7.7,0.234,0
+Olav Duun videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,31.2,7.7,0.35,0
+Olav Duun videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,26.9,7.7,0.227,0
+Olav Duun videregående skole,Trøndelag,Idrettsfag,0,Vg1,ID,2026,,35.6,7.7,0.266,0
+Olav Duun videregående skole,Trøndelag,"Musikk, dans og drama, dans",0,Vg1,MD,2026,,33.8,7.7,0.173,0
+Olav Duun videregående skole,Trøndelag,"Musikk, dans og drama, musikk",0,Vg1,MD,2026,,34.0,7.7,0.216,0
+Olav Duun videregående skole,Trøndelag,"Salg, service og reiseliv",0,Vg1,SR,2026,,27.0,7.7,0.268,0
+Olav Duun videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,34.1,7.7,0.204,0
+Olav Duun videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,26.2,6.2,0.542,1
+Ole Vig videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,25.4,6.2,0.584,1
+Ole Vig videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,33.2,6.2,0.71,1
+Ole Vig videregående skole,Trøndelag,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,,27.7,6.2,0.576,1
+Ole Vig videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,28.4,6.2,0.577,1
+Ole Vig videregående skole,Trøndelag,Medier og kommunikasjon,0,Vg1,MK,2026,,34.0,7.7,0.332,0
+Ole Vig videregående skole,Trøndelag,"Musikk, dans og drama, dans",0,Vg1,MD,2026,,35.3,7.7,0.298,0
+Ole Vig videregående skole,Trøndelag,"Musikk, dans og drama, musikk",0,Vg1,MD,2026,,35.4,7.7,0.343,0
+Ole Vig videregående skole,Trøndelag,Restaurant- og matfag,0,Vg1,RM,2026,,25.9,7.7,0.244,0
+Ole Vig videregående skole,Trøndelag,"Salg, service og reiseliv",0,Vg1,SR,2026,,26.5,6.2,0.618,1
+Ole Vig videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,35.5,7.7,0.33,0
+Ole Vig videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,29.9,6.2,0.675,1
+Oppdal videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,25.5,7.7,0.257,0
+Oppdal videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,31.5,6.2,0.595,1
+Oppdal videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,27.8,7.7,0.25,0
+Oppdal videregående skole,Trøndelag,Idrettsfag,0,Vg1,ID,2026,,36.5,7.7,0.289,0
+Oppdal videregående skole,Trøndelag,"Salg, service og reiseliv",0,Vg1,SR,2026,,27.9,7.7,0.29,0
+Oppdal videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,35.0,7.7,0.225,0
+Orkland videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,24.5,7.7,0.345,0
+Orkland videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,31.2,7.7,0.454,0
+Orkland videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,26.9,7.7,0.338,0
+Orkland videregående skole,Trøndelag,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2026,,35.1,6.2,0.644,1
+Orkland videregående skole,Trøndelag,Idrettsfag,0,Vg1,ID,2026,,35.2,6.2,0.599,1
+Orkland videregående skole,Trøndelag,"Salg, service og reiseliv",0,Vg1,SR,2026,,26.2,6.2,0.601,1
+Orkland videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,34.0,6.2,0.536,1
+Orkland videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,26.3,6.2,0.657,1
+Røros videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,26.4,7.7,0.23,0
+Røros videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,28.8,7.7,0.223,0
+Røros videregående skole,Trøndelag,"Salg, service og reiseliv",0,Vg1,SR,2026,,28.8,7.7,0.263,0
+Røros videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,35.9,7.7,0.199,0
+Røros videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,29.2,7.7,0.315,0
+Selbu videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,26.4,7.7,0.236,0
+Selbu videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,33.0,7.7,0.352,0
+Selbu videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,28.8,7.7,0.229,0
+Selbu videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,35.9,7.7,0.205,0
+Skjetlein videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,18.3,6.2,0.567,1
+Skjetlein videregående skole,Trøndelag,Naturbruk,0,Vg1,NA,2026,,23.4,7.7,0.349,0
+Skjetlein videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,23.0,6.2,0.656,1
+Steinkjer videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,23.7,6.2,0.52,1
+Steinkjer videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,34.3,6.2,0.638,1
+Steinkjer videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,27.9,7.7,0.291,0
+Steinkjer videregående skole,Trøndelag,Idrettsfag,0,Vg1,ID,2026,,36.6,7.7,0.329,0
+Steinkjer videregående skole,Trøndelag,"Kunst, design og arkitektur",0,Vg1,KD,2026,,32.1,7.7,0.275,0
+Steinkjer videregående skole,Trøndelag,Restaurant- og matfag,0,Vg1,RM,2026,,25.5,7.7,0.181,0
+Steinkjer videregående skole,Trøndelag,"Salg, service og reiseliv",0,Vg1,SR,2026,,28.0,7.7,0.331,0
+Steinkjer videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,35.1,7.7,0.266,0
+Steinkjer videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,27.5,6.2,0.605,1
+Strinda videregående skole,Trøndelag,Elektro og datateknologi,0,Vg1,EL,2026,,38.1,6.2,0.718,1
+Strinda videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,33.0,7.7,0.361,0
+Strinda videregående skole,Trøndelag,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2026,,41.3,6.2,0.67,1
+Strinda videregående skole,Trøndelag,Idrettsfag,0,Vg1,ID,2026,,41.8,6.2,0.624,1
+Strinda videregående skole,Trøndelag,Restaurant- og matfag,0,Vg1,RM,2026,,30.6,7.7,0.251,0
+Strinda videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,40.7,6.2,0.56,1
+Thora Storm videregående skole,Trøndelag,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2026,,34.4,6.2,0.668,1
+Thora Storm videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,35.1,6.2,0.668,1
+Thora Storm videregående skole,Trøndelag,"Kunst, design og arkitektur",0,Vg1,KD,2026,,40.6,6.2,0.651,1
+Thora Storm videregående skole,Trøndelag,"Salg, service og reiseliv",0,Vg1,SR,2026,,36.5,6.2,0.714,1
+Thora Storm videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,45.0,6.2,0.642,1
+Thora Storm videregående skole,Trøndelag,"Studiespesialisering, entreprenørskap",0,Vg1,ST,2026,,47.5,6.2,0.663,1
+Tiller videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,22.2,7.7,0.331,0
+Tiller videregående skole,Trøndelag,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2026,,29.5,6.2,0.602,1
+Tiller videregående skole,Trøndelag,"Salg, service og reiseliv",0,Vg1,SR,2026,,21.4,6.2,0.586,1
+Tiller videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,31.8,7.7,0.3,0
+Trondheim katedralskole,Trøndelag,Medier og kommunikasjon,0,Vg1,MK,2026,,36.9,6.2,0.609,1
+Trondheim katedralskole,Trøndelag,"Musikk, dans og drama, musikk",0,Vg1,MD,2026,,35.2,6.2,0.621,1
+Trondheim katedralskole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,39.0,6.2,0.608,1
+Verdal videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,26.4,7.7,0.209,0
+Verdal videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,28.8,7.7,0.202,0
+Verdal videregående skole,Trøndelag,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2026,,35.8,7.7,0.282,0
+Verdal videregående skole,Trøndelag,Idrettsfag,0,Vg1,ID,2026,,37.5,7.7,0.24,0
+Verdal videregående skole,Trøndelag,"Salg, service og reiseliv",0,Vg1,SR,2026,,28.8,7.7,0.242,0
+Verdal videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,35.9,7.7,0.179,0
+Verdal videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,29.2,7.7,0.294,0
+Ytre Namdal videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,26.0,7.7,0.274,0
+Ytre Namdal videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,28.4,7.7,0.267,0
+Ytre Namdal videregående skole,Trøndelag,Naturbruk,0,Vg1,NA,2026,,28.4,7.7,0.278,0
+Ytre Namdal videregående skole,Trøndelag,Restaurant- og matfag,0,Vg1,RM,2026,,25.9,7.7,0.16,0
+Ytre Namdal videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,35.5,7.7,0.242,0
+Ytre Namdal videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,28.5,6.2,0.58,1
+Åfjord videregående skole,Trøndelag,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,26.4,7.7,0.241,0
+Åfjord videregående skole,Trøndelag,Helse- og oppvekstfag,0,Vg1,HS,2026,,28.8,7.7,0.234,0
+Åfjord videregående skole,Trøndelag,Studiespesialisering,0,Vg1,ST,2026,,35.9,7.7,0.21,0
+Åfjord videregående skole,Trøndelag,Teknologi- og industrifag,0,Vg1,TP,2026,,29.2,7.7,0.326,0
+Amalie Skram videregående skole,Vestland,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2027,1,44.2,4.6,0.859,7
+Amalie Skram videregående skole,Vestland,Medier og kommunikasjon,0,Vg1,MK,2027,1,47.7,4.6,0.798,7
+Amalie Skram videregående skole,Vestland,"Salg, service og reiseliv",0,Vg1,SR,2027,1,42.1,4.6,0.837,5
+Amalie Skram videregående skole,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,50.6,4.6,0.797,10
+Amalie Skram videregående skole,Vestland,Informasjonsteknologi,0,Vg2,IM,2027,1,41.7,4.6,0.805,6
+Amalie Skram videregående skole,Vestland,Medieproduksjon,0,Vg2,IM,2027,1,45.1,4.6,0.805,6
+Amalie Skram videregående skole,Vestland,Salg og reiseliv,0,Vg2,SR,2027,1,42.2,4.6,0.795,5
+Amalie Skram videregående skole,Vestland,"Salg, service og reiseliv",1,Vg2,SR,2027,1,41.7,6.2,0.698,1
+Amalie Skram videregående skole,Vestland,"Service, sikkerhet og admin",0,Vg2,SR,2027,1,36.6,5.6,0.63,3
+Amalie Skram videregående skole,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,50.6,4.6,0.867,5
+Arna vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,26.9,4.6,0.408,4
+Arna vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,27.5,5.6,0.221,3
+Arna vidaregåande skule,Vestland,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2027,1,33.9,5.6,0.705,3
+Arna vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,39.0,4.6,0.543,9
+Arna vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,27.1,4.6,0.396,4
+Arna vidaregåande skule,Vestland,Informasjonsteknologi,0,Vg2,IM,2027,1,25.4,5.6,0.4,2
+Arna vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,26.9,4.6,0.396,4
+Arna vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,35.4,6.2,0.655,1
+Askøy videregående skole,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,30.7,4.6,0.647,6
+Askøy videregående skole,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,37.5,4.6,0.848,6
+Askøy videregående skole,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,35.5,4.6,0.75,7
+Askøy videregående skole,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,41.9,4.6,0.624,9
+Askøy videregående skole,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,35.9,4.6,0.824,6
+Askøy videregående skole,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,35.8,4.6,0.742,6
+Askøy videregående skole,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,38.3,4.6,0.826,6
+Askøy videregående skole,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,33.3,4.6,0.563,5
+Askøy videregående skole,Vestland,Industriteknologi,0,Vg2,TP,2027,1,32.8,4.6,0.781,6
+Askøy videregående skole,Vestland,Kjøretøy,0,Vg2,TP,2027,1,27.5,5.6,0.478,2
+Askøy videregående skole,Vestland,Tømrer,0,Vg2,BA,2027,1,30.9,4.6,0.741,6
+Askøy videregående skole,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,39.4,4.6,0.693,4
+Austevoll vidaregåande skule,Vestland,Naturbruk,0,Vg1,NA,2027,1,34.6,4.6,0.723,7
+Austevoll vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,35.1,4.6,0.506,4
+Austevoll vidaregåande skule,Vestland,Akvakultur,0,Vg2,NA,2027,1,34.0,4.6,0.694,6
+Austevoll vidaregåande skule,Vestland,Fiske og fangst,0,Vg2,NA,2027,1,41.3,4.6,0.768,6
+Austevoll vidaregåande skule,Vestland,Maritime fag,0,Vg2,TP,2027,1,36.5,4.6,0.679,5
+Austrheim vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,30.9,4.6,0.637,6
+Austrheim vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,33.6,4.6,0.601,6
+Austrheim vidaregåande skule,Vestland,Naturbruk,0,Vg1,NA,2027,1,32.6,4.6,0.716,5
+Austrheim vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,36.8,4.6,0.348,4
+Austrheim vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,34.5,4.6,0.781,6
+Austrheim vidaregåande skule,Vestland,Akvakultur,0,Vg2,NA,2027,1,28.2,5.6,0.422,2
+Austrheim vidaregåande skule,Vestland,Anleggsteknikk,0,Vg2,BA,2027,1,36.5,4.6,0.813,5
+Austrheim vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,27.5,5.6,0.43,2
+Austrheim vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,34.4,4.6,0.738,6
+Austrheim vidaregåande skule,Vestland,Kjøretøy,0,Vg2,TP,2027,1,28.5,5.6,0.406,3
+Austrheim vidaregåande skule,Vestland,Maritime fag,0,Vg2,TP,2027,1,35.9,5.6,0.753,3
+Austrheim vidaregåande skule,Vestland,Overflateteknikk,0,Vg2,BA,2027,1,29.0,6.2,0.581,1
+Austrheim vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,27.1,4.6,0.593,5
+Bergen katedralskole,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,47.0,4.6,0.754,10
+Bergen katedralskole,Vestland,"Studiespesialisering, forberedende IB",0,Vg1,ST,2027,1,41.9,6.2,0.638,1
+Bømlo vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,31.6,4.6,0.815,5
+Bømlo vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,32.2,4.6,0.568,6
+Bømlo vidaregåande skule,Vestland,Naturbruk,0,Vg1,NA,2027,1,32.8,4.6,0.549,4
+Bømlo vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,40.0,4.6,0.622,6
+Bømlo vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,28.5,4.6,0.635,4
+Bømlo vidaregåande skule,Vestland,Akvakultur,0,Vg2,NA,2027,1,31.6,5.6,0.43,2
+Bømlo vidaregåande skule,Vestland,Automatisering,0,Vg2,EL,2027,1,39.6,4.6,0.671,4
+Bømlo vidaregåande skule,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,30.4,4.6,0.708,6
+Bømlo vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,34.0,4.6,0.61,4
+Bømlo vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,33.8,4.6,0.601,5
+Bømlo vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,29.4,4.6,0.746,4
+Bømlo vidaregåande skule,Vestland,Maritime fag,0,Vg2,TP,2027,1,35.4,4.6,0.792,5
+Bømlo vidaregåande skule,Vestland,Automatiseringsfaget,0,Vg3,EL,2027,1,35.0,4.6,0.671,5
+Bømlo vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,34.3,4.6,0.66,4
+Dale vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,33.5,4.6,0.456,5
+Dale vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,41.3,4.6,0.552,6
+Dale vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,35.3,4.6,0.594,5
+Dale vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,36.9,4.6,0.489,4
+Dale vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,35.5,4.6,0.597,5
+Dale vidaregåande skule,Vestland,Påbygg gen studiekomp e/yrkeskomp,0,Vg3,PB,2027,1,39.8,7.7,0.38,0
+Dale vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,37.5,4.6,0.618,4
+Eid vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,34.0,4.6,0.559,4
+Eid vidaregåande skule,Vestland,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2027,1,33.6,4.6,0.612,5
+Eid vidaregåande skule,Vestland,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2027,1,36.5,6.2,0.737,1
+Eid vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,33.5,4.6,0.7,6
+Eid vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,28.6,4.6,0.794,6
+Eid vidaregåande skule,Vestland,Automatisering,0,Vg2,EL,2027,1,33.8,4.6,0.785,6
+Eid vidaregåande skule,Vestland,Datateknologi og elektronikk,0,Vg2,EL,2027,1,36.5,4.6,0.648,4
+Eid vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,36.7,4.6,0.685,5
+Eid vidaregåande skule,Vestland,Frisør,0,Vg2,FD,2027,1,31.3,4.6,0.664,6
+Eid vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,28.9,4.6,0.64,4
+Eid vidaregåande skule,Vestland,Interiør og eksponeringsdesign,0,Vg2,FD,2027,1,32.2,4.6,0.582,5
+Eid vidaregåande skule,Vestland,Automatiseringsfaget,0,Vg3,EL,2027,1,34.5,4.6,0.413,4
+Eid vidaregåande skule,Vestland,Påbygg gen studiekomp e/yrkeskomp,0,Vg3,PB,2027,1,37.3,6.2,0.669,1
+Eid vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,38.4,4.6,0.663,4
+Firda vidaregåande skule,Vestland,Idrettsfag,0,Vg1,ID,2027,1,33.7,4.6,0.537,6
+Firda vidaregåande skule,Vestland,"Musikk, dans og drama, dans",0,Vg1,MD,2027,1,33.3,4.6,0.536,4
+Firda vidaregåande skule,Vestland,"Musikk, dans og drama, drama",0,Vg1,MD,2027,1,32.1,5.6,0.378,3
+Firda vidaregåande skule,Vestland,"Musikk, dans og drama, musikk",0,Vg1,MD,2027,1,33.9,4.6,0.568,4
+Firda vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,35.2,5.6,0.221,3
+Fitjar vidaregåande skule,Vestland,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2027,1,25.3,4.6,0.466,4
+Fitjar vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,27.1,4.6,0.604,6
+Fitjar vidaregåande skule,Vestland,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2027,1,34.6,4.6,0.774,4
+Fitjar vidaregåande skule,Vestland,Restaurant- og matfag,0,Vg1,RM,2027,1,32.0,4.6,0.485,6
+Fitjar vidaregåande skule,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,31.5,4.6,0.701,6
+Fitjar vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,32.0,4.6,0.595,5
+Fitjar vidaregåande skule,Vestland,Kokk- og servitørfag,0,Vg2,RM,2027,1,27.2,5.6,0.378,3
+Fitjar vidaregåande skule,Vestland,Påbygg gen studiekomp e/yrkeskomp,0,Vg3,PB,2027,1,33.9,6.2,0.655,1
+Fitjar vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,36.6,5.6,0.485,3
+Flora vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,25.1,4.6,0.412,5
+Flora vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,30.5,4.6,0.764,6
+Flora vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,33.1,4.6,0.431,5
+Flora vidaregåande skule,Vestland,Idrettsfag,0,Vg1,ID,2027,1,37.2,4.6,0.697,7
+Flora vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,36.7,4.6,0.547,5
+Flora vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,31.2,4.6,0.429,4
+Flora vidaregåande skule,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,29.4,4.6,0.49,5
+Flora vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,33.6,4.6,0.468,4
+Flora vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,31.1,4.6,0.4,4
+Flora vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,30.1,4.6,0.697,6
+Flora vidaregåande skule,Vestland,Rørlegger,0,Vg2,BA,2027,1,29.4,5.6,0.407,3
+Flora vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,27.6,4.6,0.4,4
+Flora vidaregåande skule,Vestland,Påbygg gen studiekomp e/yrkeskomp,0,Vg3,PB,2027,1,35.5,7.7,0.372,0
+Flora vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,39.0,4.6,0.719,5
+Fusa vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,32.6,4.6,0.583,6
+Fusa vidaregåande skule,Vestland,Naturbruk,0,Vg1,NA,2027,1,33.2,4.6,0.431,5
+Fusa vidaregåande skule,Vestland,Restaurant- og matfag,0,Vg1,RM,2027,1,30.2,4.6,0.358,5
+Fusa vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,36.6,4.6,0.483,4
+Fusa vidaregåande skule,Vestland,Akvakultur,0,Vg2,NA,2027,1,36.0,4.6,0.668,6
+Fusa vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,37.5,5.6,0.406,3
+Fusa vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,32.1,4.6,0.611,5
+Fusa vidaregåande skule,Vestland,Kokk- og servitørfag,0,Vg2,RM,2027,1,36.4,5.6,0.528,3
+Fyllingsdalen videregående skole,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,34.3,4.6,0.772,7
+Fyllingsdalen videregående skole,Vestland,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2027,1,41.2,4.6,0.725,4
+Fyllingsdalen videregående skole,Vestland,"Musikk, dans og drama, drama",0,Vg1,MD,2027,1,41.0,4.6,0.721,5
+Fyllingsdalen videregående skole,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,42.2,4.6,0.753,10
+Fyllingsdalen videregående skole,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,32.6,4.6,0.653,5
+Fyllingsdalen videregående skole,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,41.4,4.6,0.826,5
+Førde vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,30.7,4.6,0.638,6
+Førde vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,40.4,4.6,0.839,6
+Førde vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,35.6,4.6,0.741,7
+Førde vidaregåande skule,Vestland,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2027,1,41.8,4.6,0.806,4
+Førde vidaregåande skule,Vestland,"Kunst, design og arkitektur",0,Vg1,KD,2027,1,36.9,4.6,0.621,6
+Førde vidaregåande skule,Vestland,Medier og kommunikasjon,0,Vg1,MK,2027,1,38.7,4.6,0.498,5
+Førde vidaregåande skule,Vestland,Naturbruk,0,Vg1,NA,2027,1,34.4,4.6,0.354,4
+Førde vidaregåande skule,Vestland,"Naturbruk, hest",0,Vg1,NA,2027,1,34.8,4.6,0.608,5
+Førde vidaregåande skule,Vestland,Restaurant- og matfag,0,Vg1,RM,2027,1,31.5,4.6,0.534,6
+Førde vidaregåande skule,Vestland,"Salg, service og reiseliv",0,Vg1,SR,2027,1,33.9,4.6,0.741,5
+Førde vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,41.4,4.6,0.595,6
+Førde vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,34.0,4.6,0.815,6
+Førde vidaregåande skule,Vestland,Ambulansefag,0,Vg2,HS,2027,1,51.9,4.6,0.846,6
+Førde vidaregåande skule,Vestland,Anleggsteknikk,0,Vg2,BA,2027,1,36.1,4.6,0.846,6
+Førde vidaregåande skule,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,35.7,4.6,0.732,6
+Førde vidaregåande skule,Vestland,Betong og mur,0,Vg2,BA,2027,1,30.3,4.6,0.645,5
+Førde vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,39.2,4.6,0.817,6
+Førde vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,35.6,4.6,0.624,5
+Førde vidaregåande skule,Vestland,Helseservicefag,0,Vg2,HS,2027,1,32.7,4.6,0.622,5
+Førde vidaregåande skule,Vestland,Heste- og dyrefag,0,Vg2,NA,2027,1,35.9,4.6,0.727,6
+Førde vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,32.3,4.6,0.662,5
+Førde vidaregåande skule,Vestland,Kjøretøy,0,Vg2,TP,2027,1,32.3,4.6,0.728,6
+Førde vidaregåande skule,Vestland,Kokk- og servitørfag,0,Vg2,RM,2027,1,28.4,4.6,0.43,4
+Førde vidaregåande skule,Vestland,Landbruk og gartnernæring,0,Vg2,NA,2027,1,34.5,4.6,0.514,5
+Førde vidaregåande skule,Vestland,Salg og reiseliv,0,Vg2,SR,2027,1,32.5,4.6,0.57,4
+Førde vidaregåande skule,Vestland,"Salg, service og reiseliv",1,Vg2,SR,2027,1,34.0,7.7,0.372,0
+Førde vidaregåande skule,Vestland,Transport og logistikk,0,Vg2,TP,2027,1,29.9,4.6,0.654,5
+Førde vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,29.6,4.6,0.624,5
+Førde vidaregåande skule,Vestland,Påbygg gen studiekomp e/yrkeskomp,0,Vg3,PB,2027,1,38.7,6.2,0.699,1
+Førde vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,43.3,4.6,0.795,5
+Førde vidaregåande skule,Vestland,Studieforberedende naturbruk,0,Vg3,NA,2027,1,32.3,5.6,0.371,2
+Høyanger vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,31.8,4.6,0.492,4
+Høyanger vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,29.0,5.6,0.277,2
+Høyanger vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,36.1,4.6,0.37,4
+Høyanger vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,29.0,4.6,0.746,6
+Høyanger vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,30.7,4.6,0.748,6
+Høyanger vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,30.3,5.6,0.588,3
+Høyanger vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,27.4,4.6,0.648,5
+Høyanger vidaregåande skule,Vestland,Kjemiprosess- og laboratorief,0,Vg2,TP,2027,1,33.3,5.6,0.68,3
+Knarvik vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,33.8,4.6,0.791,7
+Knarvik vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,39.5,4.6,0.879,6
+Knarvik vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,33.7,4.6,0.675,6
+Knarvik vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,38.1,4.6,0.656,9
+Knarvik vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,38.5,4.6,0.857,6
+Knarvik vidaregåande skule,Vestland,Automatisering,0,Vg2,EL,2027,1,44.9,6.2,0.839,1
+Knarvik vidaregåande skule,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,36.8,4.6,0.776,6
+Knarvik vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,39.2,4.6,0.859,6
+Knarvik vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,35.4,4.6,0.775,6
+Knarvik vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,39.6,4.6,0.816,6
+Knarvik vidaregåande skule,Vestland,Kjemiprosess- og laboratorief,0,Vg2,TP,2027,1,45.2,4.6,0.841,5
+Knarvik vidaregåande skule,Vestland,Transport og logistikk,0,Vg2,TP,2027,1,29.3,4.6,0.808,5
+Knarvik vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,34.4,4.6,0.666,5
+Knarvik vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,43.7,4.6,0.838,5
+Kvam vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,35.2,4.6,0.693,4
+Kvam vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,33.4,4.6,0.6,6
+Kvam vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,38.7,4.6,0.687,7
+Kvam vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,31.2,4.6,0.78,6
+Kvam vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,30.8,5.6,0.525,3
+Kvam vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,31.3,5.6,0.457,3
+Kvam vidaregåande skule,Vestland,Transport og logistikk,0,Vg2,TP,2027,1,27.5,4.6,0.621,4
+Kvinnherad vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,30.9,4.6,0.397,5
+Kvinnherad vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,39.6,4.6,0.744,6
+Kvinnherad vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,33.6,4.6,0.393,5
+Kvinnherad vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,38.7,4.6,0.289,4
+Kvinnherad vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,34.0,4.6,0.45,4
+Kvinnherad vidaregåande skule,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,32.0,4.6,0.386,4
+Kvinnherad vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,34.9,4.6,0.615,5
+Kvinnherad vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,33.6,4.6,0.385,4
+Kvinnherad vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,32.3,4.6,0.574,5
+Kvinnherad vidaregåande skule,Vestland,Kjemiprosess- og laboratorief,0,Vg2,TP,2027,1,40.5,4.6,0.596,4
+Kvinnherad vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,28.3,4.6,0.385,4
+Kvinnherad vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,38.3,4.6,0.594,4
+Laksevåg og Bergen Maritime videregående skole,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,36.4,4.6,0.8,7
+Laksevåg og Bergen Maritime videregående skole,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,45.9,4.6,0.886,6
+Laksevåg og Bergen Maritime videregående skole,Vestland,"Elektro og datateknologi, SK 3 år",0,Vg1,EL,2027,1,47.0,4.6,0.849,6
+Laksevåg og Bergen Maritime videregående skole,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,42.9,4.6,0.865,6
+Laksevåg og Bergen Maritime videregående skole,Vestland,Automatisering,0,Vg2,EL,2027,1,49.8,4.6,0.857,6
+Laksevåg og Bergen Maritime videregående skole,Vestland,Brønnteknikk,0,Vg2,TP,2027,1,50.3,4.6,0.883,6
+Laksevåg og Bergen Maritime videregående skole,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,47.1,4.6,0.867,6
+Laksevåg og Bergen Maritime videregående skole,Vestland,Industriteknologi,0,Vg2,TP,2027,1,41.9,5.6,0.809,3
+Laksevåg og Bergen Maritime videregående skole,Vestland,Kjemiprosess- og laboratorief,0,Vg2,TP,2027,1,49.4,4.6,0.849,5
+Laksevåg og Bergen Maritime videregående skole,Vestland,Maritime fag,0,Vg2,TP,2027,1,44.8,4.6,0.867,6
+Laksevåg og Bergen Maritime videregående skole,Vestland,Tømrer,0,Vg2,BA,2027,1,36.8,4.6,0.785,6
+Laksevåg og Bergen Maritime videregående skole,Vestland,Automatiseringsfaget,0,Vg3,EL,2027,1,44.9,4.6,0.638,5
+Laksevåg og Bergen Maritime videregående skole,Vestland,Maritim elektrikerfaget vg3 sk,0,Vg3,EL,2027,1,49.5,5.6,0.823,3
+Langhaugen videregående skole,Vestland,"Musikk, dans og drama, dans",0,Vg1,MD,2027,1,45.6,4.6,0.75,5
+Langhaugen videregående skole,Vestland,"Musikk, dans og drama, musikk",0,Vg1,MD,2027,1,51.4,4.6,0.786,5
+Langhaugen videregående skole,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,47.5,4.6,0.776,10
+Måløy vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,30.7,4.6,0.599,6
+Måløy vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,35.1,4.6,0.699,7
+Måløy vidaregåande skule,Vestland,Naturbruk,0,Vg1,NA,2027,1,34.8,4.6,0.708,7
+Måløy vidaregåande skule,Vestland,Restaurant- og matfag,0,Vg1,RM,2027,1,31.0,5.6,0.313,3
+Måløy vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,39.1,4.6,0.68,7
+Måløy vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,34.4,4.6,0.619,5
+Måløy vidaregåande skule,Vestland,Akvakultur,0,Vg2,NA,2027,1,32.9,4.6,0.418,4
+Måløy vidaregåande skule,Vestland,Fiske og fangst,0,Vg2,NA,2027,1,38.6,4.6,0.753,6
+Måløy vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,29.5,6.2,0.425,1
+Måløy vidaregåande skule,Vestland,Kjøretøy,0,Vg2,TP,2027,1,28.6,4.6,0.582,5
+Måløy vidaregåande skule,Vestland,Kokk- og servitørfag,0,Vg2,RM,2027,1,30.4,5.6,0.396,3
+Måløy vidaregåande skule,Vestland,Maritime fag,0,Vg2,TP,2027,1,35.4,4.6,0.664,5
+Måløy vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,29.2,4.6,0.426,4
+Nordahl Grieg videregående skole,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,36.7,4.6,0.762,6
+Nordahl Grieg videregående skole,Vestland,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2027,1,42.1,4.6,0.741,5
+Nordahl Grieg videregående skole,Vestland,Medier og kommunikasjon,0,Vg1,MK,2027,1,41.3,4.6,0.77,7
+Nordahl Grieg videregående skole,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,44.2,4.6,0.769,10
+Nordahl Grieg videregående skole,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,34.4,4.6,0.78,6
+Nordahl Grieg videregående skole,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,36.3,4.6,0.779,6
+Nordahl Grieg videregående skole,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,43.2,4.6,0.842,5
+Odda vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,31.6,4.6,0.543,6
+Odda vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,34.8,4.6,0.627,5
+Odda vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,32.9,4.6,0.295,4
+Odda vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,39.5,4.6,0.268,4
+Odda vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,32.2,4.6,0.535,5
+Odda vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,33.8,4.6,0.603,4
+Odda vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,28.0,5.6,0.382,3
+Odda vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,29.3,4.6,0.408,4
+Odda vidaregåande skule,Vestland,Kjemiprosess- og laboratorief,0,Vg2,TP,2027,1,38.8,5.6,0.427,3
+Odda vidaregåande skule,Vestland,"Smed, LAL",0,Vg2,DT,2027,1,40.7,5.6,0.539,2
+Odda vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,30.8,5.6,0.35,3
+Olsvikåsen videregående skole,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,37.3,4.6,0.812,7
+Olsvikåsen videregående skole,Vestland,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2027,1,42.8,4.6,0.873,6
+Olsvikåsen videregående skole,Vestland,"Kunst, design og arkitektur",0,Vg1,KD,2027,1,39.4,4.6,0.8,7
+Olsvikåsen videregående skole,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,45.5,4.6,0.793,10
+Olsvikåsen videregående skole,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,37.6,4.6,0.804,6
+Olsvikåsen videregående skole,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,38.6,4.6,0.803,6
+Os gymnas,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,40.3,4.6,0.532,8
+Os vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,33.0,4.6,0.675,6
+Os vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,38.2,4.6,0.767,5
+Os vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,35.2,4.6,0.78,7
+Os vidaregåande skule,Vestland,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2027,1,39.9,5.6,0.832,3
+Os vidaregåande skule,Vestland,"Salg, service og reiseliv",0,Vg1,SR,2027,1,37.5,4.6,0.793,5
+Os vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,42.7,6.2,0.719,1
+Os vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,35.2,4.6,0.852,6
+Os vidaregåande skule,Vestland,Ambulansefag,0,Vg2,HS,2027,1,54.0,4.6,0.881,6
+Os vidaregåande skule,Vestland,"Anleggsteknikk, LAL",0,Vg2,BA,2027,1,39.4,5.6,0.808,2
+Os vidaregåande skule,Vestland,Arbeidsmaskiner,0,Vg2,TP,2027,1,36.9,4.6,0.841,6
+Os vidaregåande skule,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,36.1,4.6,0.771,6
+Os vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,38.8,4.6,0.854,6
+Os vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,35.3,4.6,0.589,5
+Os vidaregåande skule,Vestland,Kjøretøy,0,Vg2,TP,2027,1,30.2,4.6,0.657,5
+Os vidaregåande skule,Vestland,Salg og reiseliv,0,Vg2,SR,2027,1,36.5,4.6,0.754,5
+Os vidaregåande skule,Vestland,"Salg, service og reiseliv",1,Vg2,SR,2027,1,35.5,6.2,0.647,1
+Os vidaregåande skule,Vestland,Transport og logistikk,0,Vg2,TP,2027,1,28.9,4.6,0.691,5
+Os vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,29.3,4.6,0.77,6
+Os vidaregåande skule,Vestland,"Anleggsmaskinmekanikerfaget, LAL",0,Vg3,TP,2027,1,39.3,5.6,0.821,2
+Os vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,40.0,4.6,0.833,5
+Osterøy vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,38.2,4.6,0.758,6
+Osterøy vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,30.8,4.6,0.403,5
+Osterøy vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,33.9,4.6,0.461,8
+Osterøy vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,29.9,4.6,0.626,5
+Osterøy vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,38.4,4.6,0.558,5
+Osterøy vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,31.8,4.6,0.395,4
+Osterøy vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,27.1,4.6,0.427,4
+Sandsli videregående skole,Vestland,Restaurant- og matfag,0,Vg1,RM,2027,1,32.2,4.6,0.572,6
+Sandsli videregående skole,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,42.4,4.6,0.744,10
+Sandsli videregående skole,Vestland,Baker og konditor,0,Vg2,RM,2027,1,31.7,4.6,0.52,5
+Sandsli videregående skole,Vestland,Kokk- og servitørfag,0,Vg2,RM,2027,1,26.5,4.6,0.717,6
+Sandsli videregående skole,Vestland,Påbygg gen studiekomp e/yrkeskomp,0,Vg3,PB,2027,1,39.8,6.2,0.731,1
+Sandsli videregående skole,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,40.9,6.2,0.798,1
+Slåtthaug videregående skole,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,32.2,4.6,0.725,7
+Slåtthaug videregående skole,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,39.1,4.6,0.818,6
+Slåtthaug videregående skole,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,32.7,4.6,0.613,6
+Slåtthaug videregående skole,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,35.2,4.6,0.793,6
+Slåtthaug videregående skole,Vestland,Automatisering,0,Vg2,EL,2027,1,42.1,4.6,0.784,6
+Slåtthaug videregående skole,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,31.3,4.6,0.711,6
+Slåtthaug videregående skole,Vestland,Betong og mur,0,Vg2,BA,2027,1,27.2,4.6,0.428,4
+Slåtthaug videregående skole,Vestland,"Bilskade, lakk og karosseri",0,Vg2,TP,2027,1,25.7,4.6,0.638,5
+Slåtthaug videregående skole,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,37.6,4.6,0.795,6
+Slåtthaug videregående skole,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,31.4,4.6,0.604,5
+Slåtthaug videregående skole,Vestland,Industriteknologi,0,Vg2,TP,2027,1,34.3,4.6,0.475,4
+Slåtthaug videregående skole,Vestland,Kjøretøy,0,Vg2,TP,2027,1,28.2,4.6,0.6,5
+Slåtthaug videregående skole,Vestland,"Kulde-, varmepumpe-, vent.tekn",0,Vg2,EL,2027,1,32.0,5.6,0.467,3
+Slåtthaug videregående skole,Vestland,Tømrer,0,Vg2,BA,2027,1,30.6,4.6,0.536,5
+Slåtthaug videregående skole,Vestland,Automatiseringsfaget,0,Vg3,EL,2027,1,36.1,4.6,0.412,4
+Slåtthaug videregående skole,Vestland,Påbygg gen studiekomp e/yrkeskomp,0,Vg3,PB,2027,1,39.0,6.2,0.668,1
+Slåtthaug videregående skole,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,37.3,4.6,0.773,5
+Sogndal vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,26.7,4.6,0.33,4
+Sogndal vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,38.5,4.6,0.783,6
+Sogndal vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,33.8,4.6,0.514,6
+Sogndal vidaregåande skule,Vestland,Idrettsfag,0,Vg1,ID,2027,1,41.0,4.6,0.715,7
+Sogndal vidaregåande skule,Vestland,Restaurant- og matfag,0,Vg1,RM,2027,1,28.2,5.6,0.354,3
+Sogndal vidaregåande skule,Vestland,"Salg, service og reiseliv",0,Vg1,SR,2027,1,30.1,4.6,0.46,4
+Sogndal vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,37.9,5.6,0.223,3
+Sogndal vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,32.5,4.6,0.758,6
+Sogndal vidaregåande skule,Vestland,Anleggsteknikk,0,Vg2,BA,2027,1,34.3,4.6,0.79,6
+Sogndal vidaregåande skule,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,29.2,4.6,0.506,5
+Sogndal vidaregåande skule,Vestland,Betong og mur,0,Vg2,BA,2027,1,28.6,4.6,0.391,4
+Sogndal vidaregåande skule,Vestland,Datateknologi og elektronikk,0,Vg2,EL,2027,1,30.3,4.6,0.587,4
+Sogndal vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,39.3,4.6,0.76,6
+Sogndal vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,31.0,4.6,0.572,5
+Sogndal vidaregåande skule,Vestland,Kjøretøy,0,Vg2,TP,2027,1,25.3,4.6,0.672,6
+Sogndal vidaregåande skule,Vestland,"Klima, energi og miljøteknikk",0,Vg2,BA,2027,1,31.3,6.2,0.465,1
+Sogndal vidaregåande skule,Vestland,Kokk- og servitørfag,0,Vg2,RM,2027,1,27.3,5.6,0.385,3
+Sogndal vidaregåande skule,Vestland,Rørlegger,0,Vg2,BA,2027,1,34.2,4.6,0.445,4
+Sogndal vidaregåande skule,Vestland,Salg og reiseliv,0,Vg2,SR,2027,1,26.5,4.6,0.496,4
+Sogndal vidaregåande skule,Vestland,"Salg, service og reiseliv",1,Vg2,SR,2027,1,30.8,7.7,0.303,0
+Sogndal vidaregåande skule,Vestland,Transport og logistikk,0,Vg2,TP,2027,1,24.9,4.6,0.601,5
+Sogndal vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,30.3,4.6,0.414,4
+Sogndal vidaregåande skule,Vestland,Dataelektronikerfaget,0,Vg3,EL,2027,1,30.8,4.6,0.374,4
+Sotra vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,31.3,4.6,0.643,6
+Sotra vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,38.6,4.6,0.845,6
+Sotra vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,33.0,4.6,0.638,6
+Sotra vidaregåande skule,Vestland,Idrettsfag,0,Vg1,ID,2027,1,42.6,4.6,0.778,7
+Sotra vidaregåande skule,Vestland,Restaurant- og matfag,0,Vg1,RM,2027,1,32.3,4.6,0.66,7
+Sotra vidaregåande skule,Vestland,"Salg, service og reiseliv",0,Vg1,SR,2027,1,36.7,4.6,0.749,5
+Sotra vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,41.0,4.6,0.727,10
+Sotra vidaregåande skule,Vestland,"Studiespesialisering, teknologifag",0,Vg1,ST,2027,1,42.5,4.6,0.749,5
+Sotra vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,37.3,4.6,0.821,6
+Sotra vidaregåande skule,Vestland,Automatisering,0,Vg2,EL,2027,1,44.1,4.6,0.812,6
+Sotra vidaregåande skule,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,36.2,4.6,0.63,5
+Sotra vidaregåande skule,Vestland,Betong og mur,0,Vg2,BA,2027,1,28.8,4.6,0.44,4
+Sotra vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,40.2,4.6,0.823,6
+Sotra vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,35.8,4.6,0.56,5
+Sotra vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,36.6,4.6,0.778,6
+Sotra vidaregåande skule,Vestland,Kjøretøy,0,Vg2,TP,2027,1,29.7,4.6,0.626,5
+Sotra vidaregåande skule,Vestland,Kokk- og servitørfag,0,Vg2,RM,2027,1,30.5,4.6,0.595,5
+Sotra vidaregåande skule,Vestland,Salg og reiseliv,0,Vg2,SR,2027,1,29.8,4.6,0.578,4
+Sotra vidaregåande skule,Vestland,"Salg, service og reiseliv",1,Vg2,SR,2027,1,34.1,7.7,0.379,0
+Sotra vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,30.7,4.6,0.465,4
+Sotra vidaregåande skule,Vestland,Automatiseringsfaget,0,Vg3,EL,2027,1,38.8,4.6,0.434,4
+Sotra vidaregåande skule,Vestland,Påbygg gen studiekomp e/yrkeskomp,0,Vg3,PB,2027,1,38.4,6.2,0.707,1
+Sotra vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,40.0,4.6,0.8,5
+Stend vidaregåande skule,Vestland,Idrettsfag,0,Vg1,ID,2027,1,44.4,4.6,0.77,7
+Stend vidaregåande skule,Vestland,Naturbruk,0,Vg1,NA,2027,1,33.5,5.6,0.561,3
+Stend vidaregåande skule,Vestland,"Naturbruk, anleggsgartner",0,Vg1,NA,2027,1,31.2,5.6,0.344,3
+Stend vidaregåande skule,Vestland,"Naturbruk, dyrefag",0,Vg1,NA,2027,1,30.9,4.6,0.736,5
+Stend vidaregåande skule,Vestland,"Naturbruk, friluftsliv",0,Vg1,NA,2027,1,37.3,4.6,0.736,6
+Stend vidaregåande skule,Vestland,"Naturbruk, hest",0,Vg1,NA,2027,1,38.6,4.6,0.606,4
+Stend vidaregåande skule,Vestland,"Salg, service og reiseliv",0,Vg1,SR,2027,1,36.0,4.6,0.738,5
+Stend vidaregåande skule,Vestland,Anleggsgartner,0,Vg2,BA,2027,1,31.8,4.6,0.632,5
+Stend vidaregåande skule,Vestland,Heste- og dyrefag,0,Vg2,NA,2027,1,32.7,4.6,0.618,5
+Stend vidaregåande skule,Vestland,Landbruk og gartnernæring,0,Vg2,NA,2027,1,29.2,5.6,0.419,2
+Stend vidaregåande skule,Vestland,"Landbruk/gartnernæring, friluftsliv",0,Vg2,NA,2027,1,35.2,4.6,0.491,4
+Stend vidaregåande skule,Vestland,Salg og reiseliv,0,Vg2,SR,2027,1,33.5,4.6,0.567,4
+Stend vidaregåande skule,Vestland,"Salg, service og reiseliv",1,Vg2,SR,2027,1,33.7,6.2,0.593,1
+Stend vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,42.5,4.6,0.792,5
+Stord vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,28.6,4.6,0.455,5
+Stord vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,35.9,4.6,0.634,5
+Stord vidaregåande skule,Vestland,Idrettsfag,0,Vg1,ID,2027,1,37.9,4.6,0.614,6
+Stord vidaregåande skule,Vestland,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2027,1,32.9,4.6,0.734,7
+Stord vidaregåande skule,Vestland,Medier og kommunikasjon,0,Vg1,MK,2027,1,34.3,4.6,0.673,6
+Stord vidaregåande skule,Vestland,"Musikk, dans og drama, musikk",0,Vg1,MD,2027,1,37.4,4.6,0.577,4
+Stord vidaregåande skule,Vestland,"Salg, service og reiseliv",0,Vg1,SR,2027,1,29.7,4.6,0.494,4
+Stord vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,33.8,4.6,0.5,5
+Stord vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,29.2,4.6,0.654,5
+Stord vidaregåande skule,Vestland,Automatisering,0,Vg2,EL,2027,1,38.7,4.6,0.755,6
+Stord vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,37.2,4.6,0.656,5
+Stord vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,29.9,4.6,0.545,5
+Stord vidaregåande skule,Vestland,Informasjonsteknologi,0,Vg2,IM,2027,1,30.0,4.6,0.418,4
+Stord vidaregåande skule,Vestland,Kjøretøy,0,Vg2,TP,2027,1,24.6,4.6,0.574,5
+Stord vidaregåande skule,Vestland,Salg og reiseliv,0,Vg2,SR,2027,1,27.4,4.6,0.503,4
+Stord vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,28.4,4.6,0.577,5
+Stord vidaregåande skule,Vestland,Automatiseringsfaget,0,Vg3,EL,2027,1,37.8,4.6,0.544,5
+Stord vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,35.5,5.6,0.469,3
+Stryn vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,27.3,4.6,0.365,4
+Stryn vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,32.5,4.6,0.579,6
+Stryn vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,33.6,4.6,0.429,5
+Stryn vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,29.9,4.6,0.505,4
+Stryn vidaregåande skule,Vestland,Betong og mur,0,Vg2,BA,2027,1,31.1,4.6,0.645,6
+Stryn vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,29.7,4.6,0.413,4
+Stryn vidaregåande skule,Vestland,Transport og logistikk,0,Vg2,TP,2027,1,26.8,4.6,0.599,5
+Stryn vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,30.5,4.6,0.571,5
+Tertnes vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,42.0,4.6,0.736,10
+Voss gymnas,Vestland,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2027,1,31.6,4.6,0.471,4
+Voss gymnas,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,31.8,4.6,0.472,5
+Voss gymnas,Vestland,Idrettsfag,0,Vg1,ID,2027,1,35.6,4.6,0.616,5
+Voss gymnas,Vestland,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2027,1,33.6,4.6,0.586,6
+Voss gymnas,Vestland,"Kunst, design og arkitektur",0,Vg1,KD,2027,1,36.2,4.6,0.576,6
+Voss gymnas,Vestland,"Musikk, dans og drama, musikk",0,Vg1,MD,2027,1,36.8,4.6,0.578,4
+Voss gymnas,Vestland,"Salg, service og reiseliv",0,Vg1,SR,2027,1,30.0,5.6,0.338,2
+Voss gymnas,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,36.8,4.6,0.42,5
+Voss gymnas,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,29.7,4.6,0.684,6
+Voss gymnas,Vestland,Frisør,0,Vg2,FD,2027,1,29.0,4.6,0.556,4
+Voss gymnas,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,31.6,4.6,0.578,5
+Voss gymnas,Vestland,Informasjonsteknologi,0,Vg2,IM,2027,1,27.7,4.6,0.511,4
+Voss gymnas,Vestland,Salg og reiseliv,0,Vg2,SR,2027,1,27.7,4.6,0.505,4
+Voss gymnas,Vestland,"Salg, service og reiseliv",1,Vg2,SR,2027,1,30.0,7.7,0.312,0
+Voss gymnas,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,40.1,4.6,0.745,5
+Voss vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,32.0,4.6,0.625,6
+Voss vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,35.6,4.6,0.826,6
+Voss vidaregåande skule,Vestland,Naturbruk,0,Vg1,NA,2027,1,31.9,4.6,0.629,6
+Voss vidaregåande skule,Vestland,"Naturbruk, friluftsliv",0,Vg1,NA,2027,1,38.3,4.6,0.618,5
+Voss vidaregåande skule,Vestland,"Naturbruk, hest",0,Vg1,NA,2027,1,34.1,4.6,0.701,6
+Voss vidaregåande skule,Vestland,Restaurant- og matfag,0,Vg1,RM,2027,1,35.0,5.6,0.331,3
+Voss vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,34.6,4.6,0.801,6
+Voss vidaregåande skule,Vestland,Arbeidsmaskiner,0,Vg2,TP,2027,1,34.8,4.6,0.678,5
+Voss vidaregåande skule,Vestland,Baker og konditor,0,Vg2,RM,2027,1,34.8,4.6,0.555,4
+Voss vidaregåande skule,Vestland,Betong og mur,0,Vg2,BA,2027,1,30.7,4.6,0.424,4
+Voss vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,40.1,4.6,0.804,6
+Voss vidaregåande skule,Vestland,Heste- og dyrefag,0,Vg2,NA,2027,1,33.1,4.6,0.608,5
+Voss vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,34.4,4.6,0.758,6
+Voss vidaregåande skule,Vestland,Kjøretøy,0,Vg2,TP,2027,1,27.1,5.6,0.438,3
+Voss vidaregåande skule,Vestland,Kokk- og servitørfag,0,Vg2,RM,2027,1,29.7,4.6,0.578,5
+Voss vidaregåande skule,Vestland,Landbruk og gartnernæring,0,Vg2,NA,2027,1,32.7,4.6,0.503,5
+Voss vidaregåande skule,Vestland,"Landbruk/gartnernæring, friluftsliv",0,Vg2,NA,2027,1,34.1,5.6,0.392,3
+Voss vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,30.3,4.6,0.612,5
+Voss vidaregåande skule,Vestland,Landbruk,0,Vg3,NA,2027,1,32.9,4.6,0.384,4
+Voss vidaregåande skule,Vestland,Studieforberedende naturbruk,0,Vg3,NA,2027,1,31.2,4.6,0.396,4
+Årdal vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,31.3,4.6,0.609,5
+Årdal vidaregåande skule,Vestland,Studiespesialisering,0,Vg1,ST,2027,1,35.6,4.6,0.258,4
+Årdal vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,29.6,4.6,0.545,5
+Årdal vidaregåande skule,Vestland,Automatisering,0,Vg2,EL,2027,1,34.5,5.6,0.307,3
+Årdal vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,30.7,4.6,0.483,5
+Årdal vidaregåande skule,Vestland,Kjemiprosess- og laboratorief,0,Vg2,TP,2027,1,36.3,5.6,0.412,3
+Årdal vidaregåande skule,Vestland,Automatiseringsfaget,0,Vg3,EL,2027,1,31.6,5.6,0.295,3
+Årdal vidaregåande skule,Vestland,Påbygg gen studiekomp e/yrkeskomp,0,Vg3,PB,2027,1,34.2,7.7,0.313,0
+Årdal vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,34.1,4.6,0.568,4
+Årstad videregående skole,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,39.0,4.6,0.858,6
+Årstad videregående skole,Vestland,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2027,1,33.6,4.6,0.651,5
+Årstad videregående skole,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,34.2,4.6,0.652,6
+Årstad videregående skole,Vestland,"Håndverk, design og produktutvikling",0,Vg1,DT,2027,1,39.5,4.6,0.699,6
+Årstad videregående skole,Vestland,"Kunst, design og arkitektur",0,Vg1,KD,2027,1,39.8,4.6,0.64,6
+Årstad videregående skole,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,35.0,4.6,0.835,6
+Årstad videregående skole,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,33.2,4.6,0.477,4
+Årstad videregående skole,Vestland,Blomsterdekoratør,0,Vg2,FD,2027,1,29.4,4.6,0.422,4
+Årstad videregående skole,Vestland,Datateknologi og elektronikk,0,Vg2,EL,2027,1,30.6,4.6,0.665,5
+Årstad videregående skole,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,38.4,4.6,0.837,6
+Årstad videregående skole,Vestland,Frisør,0,Vg2,FD,2027,1,30.4,4.6,0.598,5
+Årstad videregående skole,Vestland,Hudpleie,0,Vg2,HS,2027,1,36.2,4.6,0.787,6
+Årstad videregående skole,Vestland,Industriteknologi,0,Vg2,TP,2027,1,34.2,4.6,0.792,6
+Årstad videregående skole,Vestland,Interiør og eksponeringsdesign,0,Vg2,FD,2027,1,36.6,4.6,0.727,6
+Årstad videregående skole,Vestland,Kjøretøy,0,Vg2,TP,2027,1,26.8,4.6,0.748,6
+Årstad videregående skole,Vestland,Søm og tekstilhåndverk,0,Vg2,DT,2027,1,36.3,4.6,0.5,5
+Årstad videregående skole,Vestland,Dataelektronikerfaget,0,Vg3,EL,2027,1,34.6,4.6,0.433,4
+Årstad videregående skole,Vestland,Hudterapi,0,Vg3,HS,2027,1,36.7,5.6,0.728,2
+Årstad videregående skole,Vestland,Interiør,0,Vg3,FD,2027,1,31.9,4.6,0.381,4
+Årstad videregående skole,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,41.0,4.6,0.815,5
+Åsane vidaregåande skule,Vestland,Bygg- og anleggsteknikk,0,Vg1,BA,2027,1,35.5,4.6,0.786,7
+Åsane vidaregåande skule,Vestland,Elektro og datateknologi,0,Vg1,EL,2027,1,40.1,4.6,0.875,6
+Åsane vidaregåande skule,Vestland,Helse- og oppvekstfag,0,Vg1,HS,2027,1,35.6,4.6,0.78,7
+Åsane vidaregåande skule,Vestland,Idrettsfag,0,Vg1,ID,2027,1,44.0,4.6,0.811,7
+Åsane vidaregåande skule,Vestland,"Salg, service og reiseliv",0,Vg1,SR,2027,1,36.9,4.6,0.793,5
+Åsane vidaregåande skule,Vestland,Teknologi- og industrifag,0,Vg1,TP,2027,1,38.0,4.6,0.853,6
+Åsane vidaregåande skule,Vestland,Barne- og ungdomsarbeider,0,Vg2,HS,2027,1,40.2,4.6,0.771,6
+Åsane vidaregåande skule,Vestland,Betong og mur,0,Vg2,BA,2027,1,27.9,4.6,0.632,5
+Åsane vidaregåande skule,Vestland,Elenergi og ekom,0,Vg2,EL,2027,1,39.4,4.6,0.744,5
+Åsane vidaregåande skule,Vestland,Helsearbeiderfag,0,Vg2,HS,2027,1,39.6,4.6,0.77,6
+Åsane vidaregåande skule,Vestland,Helseservicefag,0,Vg2,HS,2027,1,32.1,4.6,0.658,5
+Åsane vidaregåande skule,Vestland,Industriteknologi,0,Vg2,TP,2027,1,36.2,4.6,0.811,6
+Åsane vidaregåande skule,Vestland,"Klima, energi og miljøteknikk",0,Vg2,BA,2027,1,28.2,5.6,0.626,3
+Åsane vidaregåande skule,Vestland,Rørlegger,0,Vg2,BA,2027,1,39.0,4.6,0.809,6
+Åsane vidaregåande skule,Vestland,Salg og reiseliv,0,Vg2,SR,2027,1,35.3,4.6,0.754,5
+Åsane vidaregåande skule,Vestland,"Salg, service og reiseliv",1,Vg2,SR,2027,1,33.6,6.2,0.648,1
+Åsane vidaregåande skule,Vestland,"Service, sikkerhet og admin",0,Vg2,SR,2027,1,32.4,4.6,0.722,4
+Åsane vidaregåande skule,Vestland,Transport og logistikk,0,Vg2,TP,2027,1,31.8,4.6,0.691,5
+Åsane vidaregåande skule,Vestland,Tømrer,0,Vg2,BA,2027,1,40.7,4.6,0.771,6
+Åsane vidaregåande skule,Vestland,Apotekteknikk,0,Vg3,HS,2027,1,31.5,4.6,0.441,4
+Åsane vidaregåande skule,Vestland,Helsesekretær,0,Vg3,HS,2027,1,34.6,5.6,0.332,3
+Åsane vidaregåande skule,Vestland,Påbygg gen studiekomp e/yrkeskomp,0,Vg3,PB,2027,1,43.8,6.2,0.754,1
+Åsane vidaregåande skule,Vestland,Påbygg. gen. studiekompetanse,0,Vg3,PB,2027,1,44.7,4.6,0.833,5
+Åsane vidaregåande skule,Vestland,Tannhelsesekretær,0,Vg3,HS,2027,1,29.0,4.6,0.43,4

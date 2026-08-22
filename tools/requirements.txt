@@ -1,0 +1,8 @@
+# .venv/bin/pip install -r tools/requirements.txt   (Python 3.9)
+pdfplumber==0.11.8
+pypdf==6.16.1
+beautifulsoup4==4.15.0
+lxml==6.1.2
+pillow==11.3.0
+numpy==2.0.2
+scipy==1.13.1

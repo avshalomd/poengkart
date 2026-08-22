@@ -114,6 +114,69 @@
     cursor: pointer; outline-offset: 2px;
   }
   #cat-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; min-height: 14px; }
+  #cat-note:empty { display: none; }
+  #pts-field { margin-top: 10px; }
+  .ptsrow { display: flex; gap: 6px; align-items: center; }
+  .ptsrow input {
+    flex: 1; min-width: 0; padding: 8px 10px; font: inherit; font-size: 13px; color: var(--ink);
+    background: var(--surface-solid); border: 1px solid var(--line); border-radius: 10px;
+    font-variant-numeric: tabular-nums; outline-offset: 2px;
+  }
+  .ptsrow input.on { border-color: var(--accent); }
+  .ptsrow button {
+    width: 34px; height: 34px; flex: none; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface-solid); color: var(--ink-2); cursor: pointer; font: inherit; font-size: 13px;
+  }
+  .ptsrow button:hover { background: var(--accent-soft); color: var(--accent); }
+  #pts-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; line-height: 1.4; }
+  #pts-note .k { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 3px 0 1px; vertical-align: -1px; }
+  /* Chance bands are semantic colours, deliberately not the blue threshold
+     ramp: a dot's colour answers a different question once points are set. */
+  .b-likely { --b: var(--good); } .b-realistic { --b: var(--warn); } .b-long { --b: var(--danger); }
+  .chance {
+    margin: 10px 18px 0; padding: 9px 12px 9px 11px; border-radius: 9px;
+    background: var(--accent-soft); border-left: 2px solid var(--accent);
+    font-size: 11.5px; line-height: 1.45; color: var(--ink-2);
+  }
+  .chance .h { font-size: 13px; color: var(--ink); font-weight: 600; margin-bottom: 3px; }
+  .chance .bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; margin: 6px 0; background: var(--line); }
+  .chance .bar span { height: 100%; background: var(--b); }
+  .chance .adj { margin-top: 6px; color: var(--ink-3); }
+  .chance.prompt { background: transparent; border-left-color: var(--line); color: var(--ink-3); }
+  /* my choices: a pick toggle on every programme row, a list in the panel */
+  .prow .pick {
+    flex: none; width: 22px; height: 22px; border-radius: 7px; display: grid; place-items: center;
+    border: 1px solid var(--line); color: var(--ink-3); font-size: 14px; line-height: 1;
+    background: var(--surface-solid); cursor: pointer;
+  }
+  .prow .pick:hover, .prow .pick:focus-visible { border-color: var(--accent); color: var(--accent); outline: none; }
+  .prow .pick.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  #choices { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 9px; }
+  #choices .h { font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+                color: var(--ink-3); display: flex; justify-content: space-between; align-items: baseline; }
+  #choices .h button { border: none; background: none; color: var(--ink-3); font: inherit; font-size: 10.5px;
+                       cursor: pointer; text-decoration: underline dotted; padding: 0; }
+  #choices .row { display: flex; align-items: center; gap: 7px; padding: 5px 0; border-bottom: 1px solid var(--line); }
+  #choices .row:last-of-type { border-bottom: none; }
+  #choices .row .who { flex: 1; min-width: 0; text-align: left; border: none; background: none; font: inherit;
+                       color: var(--ink); cursor: pointer; padding: 0; line-height: 1.3; }
+  #choices .row .who:hover .sc, #choices .row .who:focus-visible .sc { color: var(--accent); }
+  #choices .row .sc { font-size: 12px; font-weight: 600; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #choices .row .pr { font-size: 11px; color: var(--ink-2); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #choices .row .rm { flex: none; width: 22px; height: 22px; border: none; border-radius: 7px; background: none;
+                      color: var(--ink-3); cursor: pointer; font-size: 13px; }
+  #choices .row .rm:hover { background: var(--accent-soft); color: var(--accent); }
+  #choices .sum { font-size: 11.5px; color: var(--ink-2); margin-top: 7px; line-height: 1.45; }
+  #choices .sum b { color: var(--ink); }
+  #choices .sum .nudge { display: block; margin-top: 3px; color: var(--warn); }
+  #choices .bar { display: flex; height: 5px; border-radius: 3px; overflow: hidden; margin: 6px 0 2px; background: var(--line); }
+  #choices .bar span { height: 100%; background: var(--b); }
+  .ch {
+    font-size: 10px; font-weight: 650; letter-spacing: .01em; padding: 2px 6px; border-radius: 999px;
+    flex: none; cursor: help; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--b);
+    background: color-mix(in srgb, var(--b) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--b) 40%, transparent);
+  }
 
   /* ---------- intro / help ---------- */
   .modal {
@@ -262,6 +325,7 @@
   #legend .none .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--context); flex: none; }
   #legend .none .dot.open-dot { background: var(--accent-soft); border: 1.5px dashed var(--accent); }
   #legend .none + .none { margin-top: 3px; }
+  #legend .none[hidden] { display: none; }     /* the flex rule above would win otherwise */
   #legend .sizenote { margin-top: 7px; color: var(--ink-3); max-width: 210px; line-height: 1.35; }
   #legend .sizenote.warn { color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 6px; }
   .round.unknown { background: transparent; color: var(--ink-2); border: 1px dashed var(--line); }
@@ -431,6 +495,9 @@
     #panel .brand { grid-column: 1 / -1; padding-right: 140px; }
     #panel .brand h1 { font-size: 17px; }
     #cat-note { grid-column: 1 / -1; margin-top: 0; min-height: 0; }
+    #pts-field { grid-column: 1 / -1; margin-top: 4px; }
+    #pts-note { margin-top: 4px; }
+    #choices { grid-column: 1 / -1; margin-top: 8px; padding-top: 7px; }
     /* one-county datasets hide the county select; let the other one spread */
     #fylke-field[hidden] + .field { grid-column: 1 / -1; }
     .field select { text-overflow: ellipsis; }
@@ -534,6 +601,7 @@
       <div class="meta" id="s-meta"></div>
       <div class="notes" id="s-notes" hidden></div>
       <div class="hero" id="s-hero"></div>
+      <div class="chance" id="s-chance" hidden></div>
       <div class="mixwarn" id="s-mix" hidden></div>
       <div class="chart-card">
         <div class="chart-head">
@@ -613,6 +681,18 @@
     <select id="map-cat" onchange="onMapCat(this.value)"></select>
   </div>
   <div id="cat-note"></div>
+  <!-- chance of a place: needs data/model.json; stays hidden without it -->
+  <div class="field" id="pts-field" hidden>
+    <label id="pts-label" for="my-points"></label>
+    <div class="ptsrow">
+      <input id="my-points" type="text" inputmode="decimal" autocomplete="off" spellcheck="false"
+             maxlength="5" oninput="onPoints(this.value)">
+      <button id="pts-clear" type="button" onclick="onPoints('')" hidden>✕</button>
+    </div>
+    <div id="pts-note"></div>
+  </div>
+  <!-- the reader's own list of choices, across schools -->
+  <div id="choices" hidden></div>
 </div>
 
 <div id="legend" class="glass">
@@ -681,6 +761,8 @@ const T = {
        'Farge = snittet av poenggrensene det siste året skolen har tall for. Størrelse = hvor stor andel av programområdene som ble fylt opp – er den liten, tok de fleste inn alle søkere.'],
       ['Finn skolene som er aktuelle',
        'Velg fylke og utdanningsprogram øverst. Trykk på en prikk for utviklingen år for år og tallene for hvert programområde.'],
+      ['Sjansen din',
+       'Skriv inn poengene dine, så farges kartet etter sjansen for plass ved neste inntak: grønt = sannsynlig, gult = mulig, rødt = lite sannsynlig. Trykk + på et programområde for å samle valgene dine og se om lista holder. Regnet ut fra historikken – en pekepinn, ikke et løfte.'],
     ],
     en: [
       ['Your points',
@@ -689,6 +771,8 @@ const T = {
        'Colour = the average of the thresholds in the newest year that school has figures for. Size = what share of its programmes filled up — a small dot means most admitted everyone who applied.'],
       ['Find the schools that matter to you',
        'Pick a county and a programme at the top. Open a dot for the year-by-year trend and the figures per programme.'],
+      ['Your chance',
+       'Enter your points and the map recolours by your chance of a place at the next intake: green = likely, amber = possible, red = unlikely. Press + on a programme to collect your choices and see whether the list holds up. Worked out from the history — a pointer, not a promise.'],
     ],
   },
   introCalc: { no: ['4,2 i snitt', '42 poeng'], en: ['4.2 average', '42 points'] },
@@ -893,6 +977,89 @@ const T = {
   },
   noMatch:    { no: 'Ingen treff', en: 'No matches' },
   prioBadge:  { no: 'fortrinnskvote', en: 'priority quota' },
+  // ----- chance of a place: the forecast in data/model.json (tools/model.py) -----
+  ptsLabel:   { no: 'Poengene dine (valgfritt)', en: 'Your points (optional)' },
+  ptsPh:      { no: 'f.eks. 42,5', en: 'e.g. 42.5' },
+  ptsClear:   { no: 'Fjern poengsummen', en: 'Clear your points' },
+  ptsNoteEmpty: {
+    no: 'Karaktersnitt × 10. Kartet viser da sjansen din for plass ved neste inntak.',
+    en: 'Grade average × 10. The map then shows your chance of a place at the next intake.',
+  },
+  ptsNoteSet: {
+    no: 'Sjanse for plass ved neste inntak: {likely} sannsynlig · {realistic} mulig · {long} lite sannsynlig. En pekepinn fra historikken, ikke et løfte.',
+    en: 'Chance of a place at the next intake: {likely} likely · {realistic} possible · {long} unlikely. A pointer from the history, not a promise.',
+  },
+  bandLabel:  { no: b => ({ likely: '≥ 70 %', realistic: '35–70 %', long: '< 35 %' })[b],
+                en: b => ({ likely: '≥ 70%', realistic: '35–70%', long: '< 35%' })[b] },
+  legendChance: { no: x => `Sjanse for plass med ${x} poeng · neste inntak`,
+                  en: x => `Chance of a place with ${x} points · next intake` },
+  legendChanceSize: { no: 'Størrelsen viser hvor stor andel av programområdene som er innen rekkevidde (≥ 35 %)',
+                      en: 'Size shows what share of the programmes are within reach (≥ 35%)' },
+  legendNoForecast: { no: 'Ingen prognose', en: 'No forecast' },
+  tipChance:  { no: (x, L, R, U, n, y) => `Med ${x} poeng i ${y}: <b>${L}</b> sannsynlig · ${R} mulig · ${U} lite sannsynlig (${n} programområder)`,
+                en: (x, L, R, U, n, y) => `With ${x} points in ${y}: <b>${L}</b> likely · ${R} possible · ${U} unlikely (${n} programmes)` },
+  tipBest:    { no: (p, prog) => `Best sjanse: ${p} % · ${prog}`, en: (p, prog) => `Best chance: ${p}% · ${prog}` },
+  tipNoForecast: { no: 'Ingen prognose for denne skolen', en: 'No forecast for this school' },
+  chancePrompt: {
+    no: 'Skriv inn poengene dine øverst til venstre, så viser listen under sjansen din for plass per programområde ved neste inntak.',
+    en: 'Enter your points in the top-left panel and the list below shows your chance of a place per programme at the next intake.',
+  },
+  chanceNoneInScope: { no: 'Ingen prognose for programområdene i dette utvalget.',
+                       en: 'No forecast for the programmes in this selection.' },
+  chanceHeadL: { no: (x, L, n) => `Med ${x} poeng: sannsynlig plass på ${L} av ${n} programområder`,
+                 en: (x, L, n) => `With ${x} points: a place is likely at ${L} of ${n} programmes` },
+  chanceHeadR: { no: (x, R, n) => `Med ${x} poeng: mulig plass på ${R} av ${n} programområder`,
+                 en: (x, R, n) => `With ${x} points: a place is possible at ${R} of ${n} programmes` },
+  chanceHeadU: { no: (x, n) => `Med ${x} poeng: lite sannsynlig plass på alle ${n} programområdene`,
+                 en: (x, n) => `With ${x} points: a place is unlikely at all ${n} programmes` },
+  chanceCounts: { no: (L, R, U) => `${L} sannsynlig (≥ 70 %) · ${R} mulig (35–70 %) · ${U} lite sannsynlig (< 35 %)`,
+                  en: (L, R, U) => `${L} likely (≥ 70%) · ${R} possible (35–70%) · ${U} unlikely (< 35%)` },
+  chanceSub: {
+    no: (y, r, lo, hi) => `Prognose for inntaket ${y}${r ? ` (${r}. inntak)` : ''}, regnet ut fra skolens og programområdets historikk. En pekepinn, ikke et løfte: prognosen bommer typisk med ±${lo} til ±${hi} poeng, mest der historikken er kort.`,
+    en: (y, r, lo, hi) => `Forecast for the ${y} intake${r ? ` (round ${r})` : ''}, from the history of this school and programme. A pointer, not a promise: the forecast is typically off by ±${lo} to ±${hi} points, most where the history is short.`,
+  },
+  chanceCatchment: { no: 'Gjelder søkere bosatt i skolens inntaksområde.',
+                     en: 'Applies to applicants resident in the school\'s intake area.' },
+  chanceCal:  { no: c => `Testet mot 2025–26 traff 80 %-intervallet ${c} % av gangene.`,
+                en: c => `Tested against 2025–26, the 80% interval was right ${c}% of the time.` },
+  chTitle: {
+    no: (p, y, m, sd, pf, h) => `Sjanse for plass i ${y} med poengene dine: ${p} %. Forventet grense ca. ${m} ± ${sd}; sannsynlighet for at det blir venteliste: ${pf} %. Bygger på ${h} år med tall for dette programområdet.`,
+    en: (p, y, m, sd, pf, h) => `Chance of a place in ${y} with your points: ${p}%. Expected threshold about ${m} ± ${sd}; probability of a waitlist at all: ${pf}%. Built on ${h} year(s) of figures for this programme.`,
+  },
+  // ----- my choices -----
+  pickAdd:    { no: 'Legg til i valgene mine', en: 'Add to my choices' },
+  pickRemove: { no: 'Fjern fra valgene mine', en: 'Remove from my choices' },
+  choicesHead: { no: n => `Valgene mine (${n})`, en: n => `My choices (${n})` },
+  choicesClear: { no: 'tøm', en: 'clear' },
+  choicesOpen: { no: 'Åpne skolen', en: 'Open the school' },
+  choicesSum: { no: (L, R, U) => `${L} sannsynlig · ${R} mulig · ${U} lite sannsynlig`,
+                en: (L, R, U) => `${L} likely · ${R} possible · ${U} unlikely` },
+  choicesAny: { no: p => `Sjansen for minst én plass: ca. ${p} %`, en: p => `Chance of at least one place: about ${p}%` },
+  choicesAnyTitle: {
+    no: 'Regnet som om valgene var uavhengige av hverandre. Det er de ikke helt – et år med hard konkurranse rammer flere av dem samtidig – så dette tallet er litt for høyt.',
+    en: 'Computed as if the choices were independent of each other. They are not quite — a hard year hits several of them at once — so this figure is a little too high.',
+  },
+  choicesNudge: { no: 'Ingen av valgene er sannsynlige. Vurder å ta med et sikrere valg.',
+                  en: 'None of the choices is likely. Consider adding a safer one.' },
+  choicesNoPts: { no: 'Skriv inn poengene dine for å se sjansen per valg.',
+                  en: 'Enter your points to see the chance per choice.' },
+  choicesNoPred: { no: 'ingen prognose', en: 'no forecast' },
+  // ----- the final round, where the county publishes an earlier one -----
+  finalRoundChip: { no: (r, p) => `Ved ${r}. inntak (siste): ca. ${p} %`, en: (r, p) => `By round ${r} (final): about ${p}%` },
+  finalRoundNote: {
+    no: (r, L, n) => `Fylket publiserer 1. inntak. Ved ${r}. inntak – det siste – er sjansen høyere: sannsynlig plass på ${L} av ${n}. Målt på fylkets egne tall for begge rundene.`,
+    en: (r, L, n) => `The county publishes round 1. By round ${r} — the final one — the chance is higher: a place is likely at ${L} of ${n}. Measured on the county's own figures for both rounds.`,
+  },
+  finalRoundUnknown: {
+    no: 'Fylket publiserer bare 1. inntak. Flere kommer inn i senere runder, men det finnes ikke tall for hvor mange.',
+    en: 'The county publishes round 1 only. More get in at later rounds, but there are no figures for how many.',
+  },
+  adjLine:    { no: (d, se) => `Justert for programmiks: ${d} poeng mot fylkesnormen (± ${se})`,
+                en: (d, se) => `Adjusted for programme mix: ${d} points against the county norm (± ${se})` },
+  adjTitle: {
+    no: 'Hvor mye høyere eller lavere skolens poenggrenser ligger enn de samme programområdene ellers i fylket, når sammensetningen av programområder er tatt hensyn til. Et mål på etterspørsel, ikke på kvalitet.',
+    en: 'How much higher or lower this school\'s thresholds run than the same programmes elsewhere in the county, once its mix of programmes is accounted for. A measure of demand, not of quality.',
+  },
 };
 let lang = 'no';
 const t = (k, ...a) => { const v = T[k][lang]; return typeof v === 'function' ? v(...a) : v; };
@@ -931,6 +1098,8 @@ const fmtNum = v => typeof v === 'number' ? round1(v).toFixed(1).replace('.', ',
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 let DATA = null, map = null, markerLayer = null;
+let MODEL = null;         // data/model.json — forecasts; optional
+let myPoints = null;      // the reader's own points, or null
 let HOME = null;          // bounds of the whole dataset, the map's home view
 let mapCat = 'all';
 let mapFylke = 'all';
@@ -1010,6 +1179,178 @@ function schoolPressure(s, cat) {
 }
 const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(b => v < b.max).css);
 
+/* ================= chance of a place =================
+   tools/model.py forecasts, per programme, for the county's next publication
+   year: m = the expected threshold, s = how far that forecast was typically
+   off in the walk-forward backtest (wider where the history is short), and
+   pi = the probability a queue forms at all. For a reader with x points
+       P(place) = (1 - pi) + pi * F((x - m) / s)
+   where F is the empirical distribution of the backtest's own forecast errors
+   rather than a bell curve — thresholds collapse more often than they jump,
+   and a Gaussian understated the chance at the low end by half. */
+const BANDS = { likely: 0.70, realistic: 0.35 };
+const ZQ_GRID = Array.from({ length: 41 }, (_, i) => i / 40);
+function errCdf(z) {
+  const q = MODEL && MODEL.meta && MODEL.meta.error_quantiles;
+  if (!q) {                                   // Gaussian fallback (A&S 7.1.26)
+    const a = Math.abs(z) / Math.SQRT2, tt = 1 / (1 + 0.3275911 * a);
+    const erf = 1 - (((((1.061405429 * tt - 1.453152027) * tt) + 1.421413741) * tt - 0.284496736) * tt + 0.254829592) * tt * Math.exp(-a * a);
+    return 0.5 * (1 + Math.sign(z) * erf);
+  }
+  if (z <= q[0]) return 0.005;
+  if (z >= q[q.length - 1]) return 0.995;
+  let i = 1;
+  while (q[i] < z) i++;
+  const f = (z - q[i - 1]) / ((q[i] - q[i - 1]) || 1);
+  return Math.min(0.995, Math.max(0.005, ZQ_GRID[i - 1] + f * (ZQ_GRID[i] - ZQ_GRID[i - 1])));
+}
+const chanceOf = (pr, x) => (1 - pr.pi) + pr.pi * errCdf((x - pr.m) / pr.s);
+const bucketOf = c => c >= BANDS.likely ? 'likely' : c >= BANDS.realistic ? 'realistic' : 'long';
+const bucketColor = b => cssVar(b === 'likely' ? '--good' : b === 'realistic' ? '--warn' : '--danger');
+const pct = c => Math.round(c * 100);
+const chanceMode = () => myPoints !== null && !!MODEL;
+// the forecast for one programme row, or null; keys match tools/model.py
+function predFor(s, p) {
+  const e = MODEL && MODEL.schools[`${s.fylke}|${s.name}`];
+  if (!e || !e.programs) return null;
+  const pr = e.programs[progKeyMap(s).get(p)];
+  return pr ? { ...pr, year: e.year, round: e.round } : null;
+}
+// one school's prospects for x points over the programmes in scope
+function schoolChance(s, cat, x) {
+  const scope = cat === 'all' ? s.programs : s.programs.filter(p => p.category === cat);
+  const out = { n: 0, likely: 0, realistic: 0, long: 0, best: -1, bestProg: null, year: null };
+  for (const p of scope) {
+    const pr = predFor(s, p);
+    if (!pr) continue;
+    const c = chanceOf(pr, x);
+    out.n++; out[bucketOf(c)]++; out.year = pr.year;
+    if (c > out.best) { out.best = c; out.bestProg = p; }
+  }
+  return out.n ? out : null;
+}
+// The county's own later round, where it publishes an earlier one and has
+// measured the gap on its own cells (Vestland: 1. and 3. inntak). A later round
+// is a lower cutoff if the queue survives, and often no queue at all; both
+// come from meta.round_bridge, per category where there are enough pairs.
+function finalRoundBridge(s) {
+  const rb = MODEL && MODEL.meta && MODEL.meta.round_bridge;
+  if (!rb || !s.round) return null;
+  const b = Object.values(rb).find(b => b.fylke === s.fylke && b.from_round === s.round);
+  return b && +b.to_round > +s.round ? b : null;
+}
+function chanceFinal(pr, x, cat, b) {
+  const bc = (b.by_category || {})[cat];
+  const off = bc && bc.n >= 10 ? bc.mean : b.mean;
+  const gone = bc && bc.n_had_queue >= 20 ? bc.share_vanished : b.share_vanished;
+  return (1 - pr.pi) + pr.pi * (gone + (1 - gone) * errCdf((x - pr.m - off) / pr.s));
+}
+// the reader's own list of choices, kept across schools and visits
+let choices = [];
+try { choices = JSON.parse(localStorage.getItem('pk-choices') || '[]'); } catch (e) { choices = []; }
+function progKeyMap(s) {
+  if (!s._pk) {
+    s._pk = new Map();
+    const occ = {};
+    for (const q of s.programs) {
+      const k = q.program.toLowerCase(), o = occ[k] || 0;
+      occ[k] = o + 1;
+      s._pk.set(q, `${k}|${q.level}|${o}`);
+    }
+  }
+  return s._pk;
+}
+const isChosen = (s, p) => choices.some(c => c.f === s.fylke && c.s === s.name && c.k === progKeyMap(s).get(p));
+function toggleChoice(s, p) {
+  const k = progKeyMap(s).get(p);
+  const i = choices.findIndex(c => c.f === s.fylke && c.s === s.name && c.k === k);
+  if (i >= 0) choices.splice(i, 1); else choices.push({ f: s.fylke, s: s.name, k });
+  try { localStorage.setItem('pk-choices', JSON.stringify(choices)); } catch (e) {}
+  renderChoices();
+  if (current) renderList();
+}
+function resolveChoice(c) {
+  const s = DATA.schools.find(x => x.fylke === c.f && x.name === c.s);
+  if (!s) return null;
+  const km = progKeyMap(s);
+  const p = s.programs.find(q => km.get(q) === c.k);
+  return p ? { s, p } : null;
+}
+function renderChoices() {
+  const box = document.getElementById('choices');
+  const items = choices.map(resolveChoice).filter(Boolean);
+  box.hidden = !items.length;
+  if (!items.length) return;
+  let rows = '', L = 0, R = 0, U = 0, n = 0, pNone = 1;
+  items.forEach(({ s, p }, i) => {
+    let chip = '';
+    if (chanceMode()) {
+      const pr = predFor(s, p);
+      if (pr) {
+        const c = chanceOf(pr, myPoints), b = bucketOf(c);
+        n++; if (b === 'likely') L++; else if (b === 'realistic') R++; else U++;
+        pNone *= 1 - c;
+        chip = `<span class="ch b-${b}">${pct(c)} %</span>`;
+      } else chip = `<span class="ch" style="--b:var(--ink-3)">${esc(t('choicesNoPred'))}</span>`;
+    }
+    rows += `<div class="row">` +
+      `<button class="who" data-i="${i}" title="${esc(t('choicesOpen'))}">` +
+        `<span class="sc">${esc(s.name)}</span><span class="pr">${esc(progName(p))} · ${esc(p.level)}</span></button>` +
+      chip + `<button class="rm" data-i="${i}" aria-label="${esc(t('pickRemove'))}">✕</button></div>`;
+  });
+  let sum = '';
+  if (chanceMode() && n) {
+    const bar = [['likely', L], ['realistic', R], ['long', U]]
+      .map(([b, k]) => `<span class="b-${b}" style="width:${100 * k / n}%"></span>`).join('');
+    sum = `<div class="bar">${bar}</div><div class="sum"><b>${esc(t('choicesSum', L, R, U))}</b>` +
+      ` · <span class="tipped" title="${esc(t('choicesAnyTitle'))}">${esc(t('choicesAny', pct(1 - pNone)))}</span>` +
+      (L ? '' : `<span class="nudge">⚠ ${esc(t('choicesNudge'))}</span>`) + `</div>`;
+  } else if (!chanceMode()) {
+    sum = `<div class="sum">${esc(t('choicesNoPts'))}</div>`;
+  }
+  box.innerHTML = `<div class="h"><span>${esc(t('choicesHead', items.length))}</span>` +
+    `<button id="choices-clear">${esc(t('choicesClear'))}</button></div>` + rows + sum;
+  box.querySelectorAll('.who').forEach(b => b.onclick = () => {
+    const { s } = items[+b.dataset.i]; openSide(s);
+    if (s.lat && map) map.setView([s.lat, s.lon], Math.max(map.getZoom(), 11));
+  });
+  box.querySelectorAll('.rm').forEach(b => b.onclick = () => { const { s, p } = items[+b.dataset.i]; toggleChoice(s, p); });
+  document.getElementById('choices-clear').onclick = () => {
+    choices = [];
+    try { localStorage.removeItem('pk-choices'); } catch (e) {}
+    renderChoices();
+    if (current) renderList();
+  };
+}
+function onPoints(v) {
+  const inp = document.getElementById('my-points');
+  const n = parseFloat(String(v).replace(',', '.'));
+  myPoints = Number.isFinite(n) && n >= 0 && n <= 70 ? Math.round(n * 10) / 10 : null;
+  if (v === '') inp.value = '';
+  try {
+    if (myPoints === null) localStorage.removeItem('pk-points');
+    else localStorage.setItem('pk-points', String(myPoints));
+  } catch (e) {}
+  renderPointsField(); renderChoices(); drawMarkers(); renderLegend();
+  if (current) renderSide();
+}
+function renderPointsField() {
+  const f = document.getElementById('pts-field');
+  f.hidden = !MODEL;
+  if (!MODEL) return;
+  document.getElementById('pts-label').textContent = t('ptsLabel');
+  const inp = document.getElementById('my-points');
+  inp.placeholder = t('ptsPh');
+  inp.classList.toggle('on', myPoints !== null);
+  inp.setAttribute('aria-describedby', 'pts-note');
+  const x = document.getElementById('pts-clear');
+  x.hidden = myPoints === null;
+  x.setAttribute('aria-label', t('ptsClear'));
+  document.getElementById('pts-note').innerHTML = myPoints === null ? esc(t('ptsNoteEmpty'))
+    : esc(t('ptsNoteSet')).replace(/\{(likely|realistic|long)\}/g,
+        (_, b) => `<span class="k" style="background:${bucketColor(b)}"></span>`);
+}
+
 /* ================= map ================= */
 let labelMarkers = () => {};
 const isDark = () => matchMedia('(prefers-color-scheme: dark)').matches;
@@ -1049,7 +1390,14 @@ function drawMarkers() {
     if (!s.lat) continue;
     const st8 = schoolPressure(s, mapCat);
     const v = st8.kind === 'points' ? st8.v : null;
-    const style = st8.kind === 'points'
+    // with points set the dot answers "can I get in here", not "how hard is it"
+    const ch = chanceMode() ? schoolChance(s, mapCat, myPoints) : null;
+    const style = chanceMode()
+      ? (ch
+        ? { radius: 7 + 5 * ((ch.likely + ch.realistic) / ch.n), weight: 2.5,
+            color: cssVar('--surface-solid'), fillColor: bucketColor(bucketOf(ch.best)), fillOpacity: 0.96 }
+        : { radius: 7.5, weight: 2, color: cssVar('--surface-solid'), fillColor: cssVar('--context'), fillOpacity: 0.9 })
+      : st8.kind === 'points'
       ? { radius: 7 + 5 * (st8.share ?? 0.5), weight: 2.5,
           color: cssVar('--surface-solid'), fillColor: colorFor(v), fillOpacity: 0.96 }
       : st8.kind === 'open'
@@ -1057,7 +1405,12 @@ function drawMarkers() {
       : { radius: 7.5, weight: 2, color: cssVar('--surface-solid'), fillColor: cssVar('--context'), fillOpacity: 0.9 };
     const m = L.circleMarker([s.lat, s.lon], style).addTo(markerLayer);
     let line;
-    if (mapCat === 'all') {
+    if (chanceMode()) {
+      line = (mapCat === 'all' ? '' : `${CATS[mapCat][lang]}: `) + (ch
+        ? t('tipChance', fmt(myPoints), ch.likely, ch.realistic, ch.long, ch.n, ch.year)
+          + `<br>${t('tipBest', pct(ch.best), esc(progName(ch.bestProg)))}`
+        : t('tipNoForecast'));
+    } else if (mapCat === 'all') {
       if (st8.kind === 'points') {
         line = t('tipMedian', fmt(st8.v), st8.filled, st8.total) +
                (st8.mostlyOpen ? `<br><span class="warn">⚠ ${t('tipMostlyOpen')}</span>` : '') +
@@ -1186,6 +1539,7 @@ function renderPanel() {
     Object.keys(CATS).filter(c => present.has(c))
       .map(c => `<option value="${c}">${CATS[c][lang]}</option>`).join('');
   sel.value = mapCat;
+  renderPointsField();
 }
 function renderCatNote() {
   const el = document.getElementById('cat-note');
@@ -1198,7 +1552,8 @@ function renderLegend() {
   const rounds = [...new Set(visibleSchools().map(s => s.round).filter(Boolean))];
   const anyUnknown = visibleSchools().some(s => !s.round);
   document.getElementById('legend-title').innerHTML =
-    (mapCat === 'all' ? t('legendAll') : t('legendCat', mapCat)) +
+    (chanceMode() ? esc(t('legendChance', fmt(myPoints)))
+      : mapCat === 'all' ? t('legendAll') : t('legendCat', mapCat)) +
     (rounds.length === 1 && !anyUnknown
       ? ` <span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', rounds[0])}</span>`
       : !rounds.length && anyUnknown
@@ -1206,11 +1561,20 @@ function renderLegend() {
   const mix = document.getElementById('legend-mixed');
   mix.hidden = !(rounds.length > 1 || (rounds.length && anyUnknown));
   mix.textContent = t('mixedRounds');
-  document.getElementById('legend-bins').innerHTML = BINS.map((b, i) =>
-    `<div class="bin"><span class="sw" style="background:${cssVar(b.css)}"></span><span class="bl">${BIN_EDGES[i]}</span></div>`).join('');
-  document.getElementById('legend-size').textContent = t('legendSize');
+  if (chanceMode()) {
+    document.getElementById('legend-bins').innerHTML = ['likely', 'realistic', 'long'].map(b =>
+      `<div class="bin"><span class="sw" style="background:${bucketColor(b)}"></span><span class="bl">${t('bandLabel', b)}</span></div>`).join('');
+    document.getElementById('legend-size').textContent = t('legendChanceSize');
+    document.getElementById('legend-none').textContent = t('legendNoForecast');
+  } else {
+    document.getElementById('legend-bins').innerHTML = BINS.map((b, i) =>
+      `<div class="bin"><span class="sw" style="background:${cssVar(b.css)}"></span><span class="bl">${BIN_EDGES[i]}</span></div>`).join('');
+    document.getElementById('legend-size').textContent = t('legendSize');
+    document.getElementById('legend-none').textContent = t('legendNone');
+  }
+  // "no waitlist" is not a dot state once the dots show chances
+  document.getElementById('legend-open').parentElement.hidden = chanceMode();
   document.getElementById('legend-open').textContent = t('legendOpen');
-  document.getElementById('legend-none').textContent = t('legendNone');
 }
 
 /* ================= sidebar ================= */
@@ -1380,10 +1744,60 @@ function renderSide() {
   document.getElementById('s-hero').innerHTML =
     cells.map(c => `<div class="cell"${c.ti ? ` title="${esc(c.ti)}"` : ''}>` +
                    `<div class="v ${c.cls || ''}">${c.v}</div><div class="l">${c.l}</div></div>`).join('');
+  renderChance(s, lensCat);
   document.getElementById('s-filter').placeholder = t('filterPh');
   document.getElementById('src-note').textContent = t('srcNote');
   renderChartCard();
   renderList();
+}
+
+// The forecast block: with points set, how many of the school's programmes
+// are within reach and on what basis; without, the mix-adjusted level and a
+// pointer to the input. Follows the category lens the same way the hero does.
+function renderChance(s, lensCat) {
+  const box = document.getElementById('s-chance');
+  const e = MODEL && MODEL.schools[`${s.fylke}|${s.name}`];
+  if (!e || !e.programs) { box.hidden = true; return; }
+  box.hidden = false;
+  const adj = e.alpha === undefined ? ''
+    : `<div class="adj tipped" title="${esc(t('adjTitle'))}">`
+      + `${esc(t('adjLine', (e.alpha > 0 ? '+' : '') + fmt(e.alpha), fmt(e.alpha_se)))}</div>`;
+  if (!chanceMode()) {
+    box.className = 'chance prompt';
+    box.innerHTML = `<div>${esc(t('chancePrompt'))}</div>${adj}`;
+    return;
+  }
+  box.className = 'chance';
+  const ch = schoolChance(s, lensCat || 'all', myPoints);
+  if (!ch) { box.innerHTML = `<div>${esc(t('chanceNoneInScope'))}</div>${adj}`; return; }
+  const head = ch.likely ? t('chanceHeadL', fmt(myPoints), ch.likely, ch.n)
+             : ch.realistic ? t('chanceHeadR', fmt(myPoints), ch.realistic, ch.n)
+             : t('chanceHeadU', fmt(myPoints), ch.n);
+  const bar = ['likely', 'realistic', 'long']
+    .map(b => `<span class="b-${b}" style="width:${100 * ch[b] / ch.n}%"></span>`).join('');
+  const sf = Object.values((MODEL.meta || {}).sigma_forecast || {});
+  const lo = sf.length ? Math.round(Math.min(...sf)) : 5, hi = sf.length ? Math.round(Math.max(...sf)) : 8;
+  const cov = MODEL.meta && MODEL.meta.backtest_eval_years && MODEL.meta.backtest_eval_years.coverage80;
+  // where the county publishes round 1: what the final round does, if measured
+  let fin = '';
+  const fb = finalRoundBridge(s);
+  if (fb) {
+    const scope = (lensCat ? s.programs.filter(p => p.category === lensCat) : s.programs);
+    let L3 = 0, n3 = 0;
+    for (const p of scope) {
+      const pr = predFor(s, p);
+      if (!pr) continue;
+      n3++; if (bucketOf(chanceFinal(pr, myPoints, p.category, fb)) === 'likely') L3++;
+    }
+    fin = `<div>${esc(t('finalRoundNote', fb.to_round, L3, n3))}</div>`;
+  } else if (s.round === '1') {
+    fin = `<div>${esc(t('finalRoundUnknown'))}</div>`;
+  }
+  box.innerHTML = `<div class="h">${esc(head)}</div><div class="bar">${bar}</div>` +
+    `<div>${esc(t('chanceCounts', ch.likely, ch.realistic, ch.long))}</div>` +
+    `<div>${esc(t('chanceSub', ch.year, e.round, lo, hi))}` +
+    (s.catchment ? ' ' + esc(t('chanceCatchment')) : '') +
+    (cov != null ? ' ' + esc(t('chanceCal', Math.round(cov * 100))) : '') + `</div>` + fin + adj;
 }
 
 /* ================= chart (3 resolution levels) ================= */
@@ -1600,8 +2014,22 @@ function renderList() {
         badge = `<span class="fbadge" title="${esc(t('fortrinnTitle'))}">${t('prioBadge')}</span>`;
       }
       const sel = chart.mode === 'prog' && chart.prog === p ? ' sel' : '';
+      let chip = '';
+      if (chanceMode() && !orphan) {
+        const pr = predFor(current, p);
+        if (pr) {
+          const ch = chanceOf(pr, myPoints);
+          let tip = t('chTitle', pct(ch), pr.year, fmt(pr.m), fmt(pr.s), pct(pr.pi), pr.h);
+          const fb = finalRoundBridge(current);
+          if (fb) tip += ' ' + t('finalRoundChip', fb.to_round, pct(chanceFinal(pr, myPoints, p.category, fb)));
+          chip = `<span class="ch b-${bucketOf(ch)}" data-tip="${esc(tip)}">${pct(ch)} %</span>`;
+        }
+      }
+      const on = isChosen(current, p);
+      const pick = orphan ? '' : `<span class="pick${on ? ' on' : ''}" role="button" tabindex="0" data-idx="${current.programs.indexOf(p)}"` +
+        ` aria-pressed="${on}" aria-label="${esc(t(on ? 'pickRemove' : 'pickAdd'))}" title="${esc(t(on ? 'pickRemove' : 'pickAdd'))}">${on ? '✓' : '+'}</span>`;
       html += `<button class="prow${sel}${orphan ? ' muted' : ''}" data-cat="${c}" data-idx="${current.programs.indexOf(p)}">` +
-              `<span class="nm">${esc(progName(p))}${badge}</span><span class="lv">${esc(p.level)}</span><span class="val">${val}</span></button>`;
+              `<span class="nm">${esc(progName(p))}${badge}</span>${chip}<span class="lv">${esc(p.level)}</span><span class="val">${val}</span>${pick}</button>`;
     }
   }
   const el = document.getElementById('s-list');
@@ -1610,6 +2038,12 @@ function renderList() {
     b.onclick = () => { chart.mode = 'cat'; chart.cat = b.dataset.cat; renderChartCard(); renderList(); });
   el.querySelectorAll('.prow').forEach(b =>
     b.onclick = () => { chart.mode = 'prog'; chart.prog = current.programs[+b.dataset.idx]; renderChartCard(); renderList(); });
+  // the pick toggle sits inside the row button: stop the row from selecting
+  el.querySelectorAll('.pick').forEach(k => {
+    const act = ev => { ev.preventDefault(); ev.stopPropagation(); toggleChoice(current, current.programs[+k.dataset.idx]); };
+    k.onclick = act;
+    k.onkeydown = ev => { if (ev.key === 'Enter' || ev.key === ' ') act(ev); };
+  });
   bindTips(el);
 }
 
@@ -1820,6 +2254,20 @@ function hideTip() {
 }
 
 function bindTips(root) {
+  const attach = (el, html) => {
+    el.onmouseenter = () => showTip(el, html);
+    el.onmouseleave = hideTip;
+    el.addEventListener('touchstart', ev => {
+      ev.preventDefault(); ev.stopPropagation();   // do not select the row
+      showTip(el, html);
+      clearTimeout(showTip.timer);
+      showTip.timer = setTimeout(hideTip, 4500);
+    }, { passive: false });
+  };
+  root.querySelectorAll('.ch[data-tip]').forEach(el => {
+    el.setAttribute('aria-label', el.dataset.tip);
+    attach(el, esc(el.dataset.tip));
+  });
   root.querySelectorAll('.lv').forEach(el => {
     const key = el.textContent.trim();
     const entry = t('levels')[key];
@@ -1906,7 +2354,7 @@ function setLang(l) {
   try { localStorage.setItem('pk-lang', l); } catch (e) {}
   document.documentElement.lang = l === 'no' ? 'no' : 'en';
   document.title = t('pageTitle');
-  renderPanel(); renderLegend(); renderCatNote(); drawMarkers();
+  renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
   if (current) renderSide();
   if (!document.getElementById('intro').hidden) renderIntro();
   if (!document.getElementById('contact').hidden) renderContact();
@@ -1956,6 +2404,19 @@ async function main() {
   } catch (e) {
     return bootFailed('bootFailSub');
   }
+  // the forecast is optional: without it the points field stays hidden and
+  // the app is exactly what it was
+  try {
+    const rm = await fetch('data/model.json');
+    if (rm.ok) MODEL = await rm.json();
+  } catch (e) {}
+  try {
+    const sp = parseFloat(localStorage.getItem('pk-points'));
+    if (MODEL && Number.isFinite(sp)) {
+      myPoints = sp;
+      document.getElementById('my-points').value = String(sp).replace('.', lang === 'no' ? ',' : '.');
+    }
+  } catch (e) {}
   // Open on the whole dataset. This used to open on a hard-coded Rogaland view
   // and correct itself inside a requestAnimationFrame — but rAF does not fire
   // while the tab is not being painted, so a national map could sit there
@@ -1994,7 +2455,7 @@ async function main() {
     if (!document.getElementById('intro').hidden) { closeIntro(); return; }
     if (document.getElementById('side').classList.contains('open')) closeSide();
   });
-  renderPanel(); renderLegend(); renderCatNote(); drawMarkers();
+  renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
   let seen = true;
   try { seen = !!localStorage.getItem(INTRO_SEEN); } catch (e) {}
   if (!seen) setTimeout(openIntro, 420);

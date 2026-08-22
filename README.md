@@ -12,6 +12,14 @@ figures, up to ten years of history, in Norwegian and English.
 
 ![A school's page: photo, typical threshold, ten years of trends, and every programme with its own figure](docs/school.png)
 
+Type in your own points and the map recolours by your chance of a place at
+the next intake — green likely, amber possible, red unlikely — per school and
+per programme; press + on any programme to collect your choices and see
+whether the list holds up. The chance comes from a model fitted on the whole
+history and checked by forecasting each past year from the years before it;
+the panel says how often that check was right. [docs/model.md](docs/model.md)
+has the model, the backtest and what it cannot know.
+
 ## Run locally
 
 ```bash
@@ -30,7 +38,11 @@ Python environment in `.venv`:
 ## The dataset
 
 `web/data/schools.json` is what the app reads, and it is free to use. The same
-data ships as SQLite and CSV in `data/` for anyone who would rather query it.
+data ships as SQLite and CSV in `data/` for anyone who would rather query it —
+`samples` carries every cell with its county and intake round, `forecasts` the
+model's expected threshold, spread and fill probability per programme, and
+`data/model-backtest.csv` every walk-forward forecast the accuracy claims rest
+on.
 
 Each (school, programme, year) cell is one of:
 

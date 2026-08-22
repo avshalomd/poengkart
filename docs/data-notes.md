@@ -84,4 +84,14 @@ programmes carry `values_r1` and 586 carry `values_r3`; the app reads only
 counties publishing different rounds — the problem the app currently apologises
 for in three separate strings. Left until the round model above is settled,
 because two series per programme without a coherent story about rounds would
-add confusion rather than remove it.
+add confusion rather than remove it. What they *are* used for is measuring the
+gap between rounds — see the round bridge in [model.md](model.md) — and
+correcting Vestland's 2023 figures inside the forecast.
+
+## The forecast
+
+`tools/model.py` fits a model to every cell and forecasts the county's next
+publication year per programme, with a spread and a probability that a queue
+forms at all; the app turns that into a chance of a place for the reader's own
+points. The model, the walk-forward backtest and its limits are in
+[model.md](model.md).

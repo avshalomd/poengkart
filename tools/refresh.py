@@ -5,8 +5,9 @@
 
 Order matters: build_dataset rebuilds schools.json from the extractors and
 deliberately does NOT carry coordinates over (a wrong one would survive
-forever), so geocode must follow it, and build_db must come last. Running
-build_dataset on its own leaves every school without a position.
+forever), so geocode must follow it; model.py reads the finished dataset, and
+build_db folds its forecasts into the SQLite export, so it comes after both.
+Running build_dataset on its own leaves every school without a position.
 """
 import os
 import subprocess
@@ -20,9 +21,11 @@ STEPS = [
     ('build_dataset.py', 'parse every county into web/data/schools.json'),
     ('geocode.py', 'NSR → Kartverket address → Kartverket place names'),
     ('photos.py', 'curated photo and identity overrides'),
-    ('build_db.py', 'SQLite + CSV'),
+    ('model.py', 'the forecast: fit, walk-forward backtest, web/data/model.json'),
+    ('build_db.py', 'SQLite + CSV, including the forecasts'),
     ('make_og.py', 'the social share card, which is drawn from the data'),
-    ('test_parse.py', 'regression checks'),
+    ('test_parse.py', 'regression checks on the dataset'),
+    ('test_model.py', 'invariants on the forecast'),
 ]
 
 
