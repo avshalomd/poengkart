@@ -59,6 +59,10 @@
     --shadow: 0 10px 32px rgba(15,23,32,.12), 0 1px 3px rgba(15,23,32,.08);
     --good: #0b7f0b;
     --danger: #c0392f;
+    /* the chance chips print ~10px text on a 14% tint of these, which the
+       band colours themselves do not clear 4.5:1 against — so the text has
+       its own, darker value while the dots and bars keep the band colour */
+    --chip-good: #0a6b0a; --chip-warn: #8a5308; --chip-danger: #a82f26;
     --warn: #a1620a; --warn-soft: rgba(180,120,20,.11);
   }
   @media (prefers-color-scheme: dark) {
@@ -75,6 +79,7 @@
       --shadow: 0 10px 32px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.4);
       --good: #3fbf4a;              /* the one token that had no dark value */
       --danger: #e26b6e;
+      --chip-good: #3fbf4a; --chip-warn: #e0a052; --chip-danger: #ea8e90;
       --warn: #e0a052; --warn-soft: rgba(224,160,82,.13);
     }
   }
@@ -123,6 +128,8 @@
     font-variant-numeric: tabular-nums; outline-offset: 2px;
   }
   .ptsrow input.on { border-color: var(--accent); }
+  .ptsrow input.bad { border-color: var(--danger); }
+  #pts-note.bad { color: var(--danger); }
   .ptsrow button {
     width: 34px; height: 34px; flex: none; border: 1px solid var(--line); border-radius: 10px;
     background: var(--surface-solid); color: var(--ink-2); cursor: pointer; font: inherit; font-size: 13px;
@@ -132,7 +139,9 @@
   #pts-note .k { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 3px 0 1px; vertical-align: -1px; }
   /* Chance bands are semantic colours, deliberately not the blue threshold
      ramp: a dot's colour answers a different question once points are set. */
-  .b-likely { --b: var(--good); } .b-realistic { --b: var(--warn); } .b-long { --b: var(--danger); }
+  .b-likely { --b: var(--good); --bt: var(--chip-good); }
+  .b-realistic { --b: var(--warn); --bt: var(--chip-warn); }
+  .b-long { --b: var(--danger); --bt: var(--chip-danger); }
   .chance {
     margin: 10px 18px 0; padding: 9px 12px 9px 11px; border-radius: 9px;
     background: var(--accent-soft); border-left: 2px solid var(--accent);
@@ -149,13 +158,19 @@
     border: 1px solid var(--line); color: var(--ink-3); font-size: 14px; line-height: 1;
     background: var(--surface-solid); cursor: pointer;
   }
-  .prow .pick:hover, .prow .pick:focus-visible { border-color: var(--accent); color: var(--accent); outline: none; }
+  .prow .pick:hover { border-color: var(--accent); color: var(--accent); }
+  /* a 1px border change is not a focus indicator; match the rest of the app */
+  .prow .pick:focus-visible { border-color: var(--accent); color: var(--accent);
+    outline: 3px solid var(--accent); outline-offset: 2px; }
   .prow .pick.on { background: var(--accent); border-color: var(--accent); color: #fff; }
   #choices { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 9px; }
   #choices .h { font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
                 color: var(--ink-3); display: flex; justify-content: space-between; align-items: baseline; }
   #choices .h button { border: none; background: none; color: var(--ink-3); font: inherit; font-size: 10.5px;
                        cursor: pointer; text-decoration: underline dotted; padding: 0; }
+  /* fifteen choices used to push the summary, the legend and the controls off
+     the bottom of the screen with nothing to scroll */
+  #choices .list { max-height: min(32dvh, 280px); overflow-y: auto; overscroll-behavior: contain; }
   #choices .row { display: flex; align-items: center; gap: 7px; padding: 5px 0; border-bottom: 1px solid var(--line); }
   #choices .row:last-of-type { border-bottom: none; }
   #choices .row .who { flex: 1; min-width: 0; text-align: left; border: none; background: none; font: inherit;
@@ -173,8 +188,11 @@
   #choices .bar span { height: 100%; background: var(--b); }
   .ch {
     font-size: 10px; font-weight: 650; letter-spacing: .01em; padding: 2px 6px; border-radius: 999px;
-    flex: none; cursor: help; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--b);
-    background: color-mix(in srgb, var(--b) 14%, transparent);
+    flex: none; cursor: help; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--bt, var(--b));
+    /* opaque, not a tint: in the choices panel the chip sits on frosted glass
+       with the map showing through, so a translucent background made the text
+       contrast depend on whatever the reader had scrolled to */
+    background: color-mix(in srgb, var(--b) 14%, var(--surface-solid));
     border: 1px solid color-mix(in srgb, var(--b) 40%, transparent);
   }
 
@@ -981,6 +999,10 @@ const T = {
   ptsLabel:   { no: 'Poengene dine (valgfritt)', en: 'Your points (optional)' },
   ptsPh:      { no: 'f.eks. 42,5', en: 'e.g. 42.5' },
   ptsClear:   { no: 'Fjern poengsummen', en: 'Clear your points' },
+  ptsBad: {
+    no: 'Skriv et tall mellom 0 og 70 – for eksempel 42,5.',
+    en: 'Enter a number between 0 and 70 — for example 42.5.',
+  },
   ptsNoteEmpty: {
     no: 'Karaktersnitt × 10. Kartet viser da sjansen din for plass ved neste inntak.',
     en: 'Grade average × 10. The map then shows your chance of a place at the next intake.',
@@ -1024,7 +1046,7 @@ const T = {
                 en: c => `Tested against 2025–26, the 80% interval was right ${c}% of the time.` },
   chTitle: {
     no: (p, y, m, sd, pf, h) => `Sjanse for plass i ${y} med poengene dine: ${p} %. Forventet grense ca. ${m} ± ${sd}; sannsynlighet for at det blir venteliste: ${pf} %. Bygger på ${h} år med tall for dette programområdet.`,
-    en: (p, y, m, sd, pf, h) => `Chance of a place in ${y} with your points: ${p}%. Expected threshold about ${m} ± ${sd}; probability of a waitlist at all: ${pf}%. Built on ${h} year(s) of figures for this programme.`,
+    en: (p, y, m, sd, pf, h) => `Chance of a place in ${y} with your points: ${p}%. Expected threshold about ${m} ± ${sd}; probability of a waitlist at all: ${pf}%. Built on ${h} ${h === 1 ? 'year' : 'years'} of figures for this programme.`,
   },
   // ----- my choices -----
   pickAdd:    { no: 'Legg til i valgene mine', en: 'Add to my choices' },
@@ -1032,6 +1054,9 @@ const T = {
   choicesHead: { no: n => `Valgene mine (${n})`, en: n => `My choices (${n})` },
   choicesClear: { no: 'tøm', en: 'clear' },
   choicesOpen: { no: 'Åpne skolen', en: 'Open the school' },
+  choicesOpenOne: { no: (sch, what) => `Åpne ${sch} – ${what}`, en: (sch, what) => `Open ${sch} — ${what}` },
+  choicesRemoveOne: { no: (sch, what) => `Fjern ${what} ved ${sch} fra valgene mine`,
+                      en: (sch, what) => `Remove ${what} at ${sch} from my choices` },
   choicesSum: { no: (L, R, U) => `${L} sannsynlig · ${R} mulig · ${U} lite sannsynlig`,
                 en: (L, R, U) => `${L} likely · ${R} possible · ${U} unlikely` },
   choicesAny: { no: p => `Sjansen for minst én plass: ca. ${p} %`, en: p => `Chance of at least one place: about ${p}%` },
@@ -1245,9 +1270,19 @@ function chanceFinal(pr, x, cat, b) {
   const gone = bc && bc.n_had_queue >= 20 ? bc.share_vanished : b.share_vanished;
   return (1 - pr.pi) + pr.pi * (gone + (1 - gone) * errCdf((x - pr.m - off) / pr.s));
 }
-// the reader's own list of choices, kept across schools and visits
+// The reader's own list of choices, kept across schools and visits. Anything
+// that is not a list of {fylke, school, programme-key} strings is discarded on
+// the spot: JSON.parse happily returns {} or [null], and either of those used
+// to throw inside renderChoices() during boot and take the whole map down with
+// it — a dead end the reader could not get out of, since the retry button
+// reloads into the same stored value.
+const okChoice = c => c && typeof c === 'object' &&
+  typeof c.f === 'string' && typeof c.s === 'string' && typeof c.k === 'string';
 let choices = [];
-try { choices = JSON.parse(localStorage.getItem('pk-choices') || '[]'); } catch (e) { choices = []; }
+try {
+  const raw = JSON.parse(localStorage.getItem('pk-choices') || '[]');
+  choices = Array.isArray(raw) ? raw.filter(okChoice) : [];
+} catch (e) { choices = []; }
 function progKeyMap(s) {
   if (!s._pk) {
     s._pk = new Map();
@@ -1270,6 +1305,7 @@ function toggleChoice(s, p) {
   if (current) renderList();
 }
 function resolveChoice(c) {
+  if (!okChoice(c) || !DATA) return null;
   const s = DATA.schools.find(x => x.fylke === c.f && x.name === c.s);
   if (!s) return null;
   const km = progKeyMap(s);
@@ -1278,6 +1314,14 @@ function resolveChoice(c) {
 }
 function renderChoices() {
   const box = document.getElementById('choices');
+  if (!DATA) return;
+  // a school or programme the dataset has since dropped or renamed leaves an
+  // entry that can never render again; prune it rather than carry it forever
+  const kept = choices.filter(c => resolveChoice(c));
+  if (kept.length !== choices.length) {
+    choices = kept;
+    try { localStorage.setItem('pk-choices', JSON.stringify(choices)); } catch (e) {}
+  }
   const items = choices.map(resolveChoice).filter(Boolean);
   box.hidden = !items.length;
   if (!items.length) return;
@@ -1293,10 +1337,15 @@ function renderChoices() {
         chip = `<span class="ch b-${b}">${pct(c)} %</span>`;
       } else chip = `<span class="ch" style="--b:var(--ink-3)">${esc(t('choicesNoPred'))}</span>`;
     }
+    // each row names its own school and programme: "Remove from my choices",
+    // repeated identically down a list, tells a screen reader nothing
+    const what = `${progName(p)} · ${p.level}`;
     rows += `<div class="row">` +
-      `<button class="who" data-i="${i}" title="${esc(t('choicesOpen'))}">` +
-        `<span class="sc">${esc(s.name)}</span><span class="pr">${esc(progName(p))} · ${esc(p.level)}</span></button>` +
-      chip + `<button class="rm" data-i="${i}" aria-label="${esc(t('pickRemove'))}">✕</button></div>`;
+      `<button class="who" data-i="${i}" title="${esc(t('choicesOpen'))}"` +
+        ` aria-label="${esc(t('choicesOpenOne', s.name, what))}">` +
+        `<span class="sc">${esc(s.name)}</span><span class="pr">${esc(what)}</span></button>` +
+      chip + `<button class="rm" data-i="${i}"` +
+        ` aria-label="${esc(t('choicesRemoveOne', s.name, what))}">✕</button></div>`;
   });
   let sum = '';
   if (chanceMode() && n) {
@@ -1309,7 +1358,8 @@ function renderChoices() {
     sum = `<div class="sum">${esc(t('choicesNoPts'))}</div>`;
   }
   box.innerHTML = `<div class="h"><span>${esc(t('choicesHead', items.length))}</span>` +
-    `<button id="choices-clear">${esc(t('choicesClear'))}</button></div>` + rows + sum;
+    `<button id="choices-clear">${esc(t('choicesClear'))}</button></div>` +
+    `<div class="list">${rows}</div>` + sum;
   box.querySelectorAll('.who').forEach(b => b.onclick = () => {
     const { s } = items[+b.dataset.i]; openSide(s);
     if (s.lat && map) map.setView([s.lat, s.lon], Math.max(map.getZoom(), 11));
@@ -1322,10 +1372,23 @@ function renderChoices() {
     if (current) renderList();
   };
 }
+// Both a comma and a point are typed by real readers, so both are accepted
+// whatever the interface language. A trailing separator ("42,") is someone
+// mid-keystroke, not a mistake, so it clears the figure without being flagged.
+const PTS_OK = /^\d{1,2}([.,]\d{1,2})?$/;
+const PTS_TYPING = /^\d{0,2}([.,]\d{0,2})?$/;
+let ptsBad = false;
+function parsePoints(v) {
+  const txt = String(v == null ? '' : v).trim();
+  if (!PTS_OK.test(txt)) return { pts: null, bad: !PTS_TYPING.test(txt) };
+  const n = Math.round(parseFloat(txt.replace(',', '.')) * 10) / 10;
+  return n >= 0 && n <= 70 ? { pts: n, bad: false } : { pts: null, bad: true };
+}
 function onPoints(v) {
   const inp = document.getElementById('my-points');
-  const n = parseFloat(String(v).replace(',', '.'));
-  myPoints = Number.isFinite(n) && n >= 0 && n <= 70 ? Math.round(n * 10) / 10 : null;
+  const r = parsePoints(v);
+  myPoints = r.pts;
+  ptsBad = r.bad;
   if (v === '') inp.value = '';
   try {
     if (myPoints === null) localStorage.removeItem('pk-points');
@@ -1341,12 +1404,20 @@ function renderPointsField() {
   document.getElementById('pts-label').textContent = t('ptsLabel');
   const inp = document.getElementById('my-points');
   inp.placeholder = t('ptsPh');
+  const bad = ptsBad && inp.value.trim() !== '';
   inp.classList.toggle('on', myPoints !== null);
+  inp.classList.toggle('bad', bad);
+  inp.setAttribute('aria-invalid', bad ? 'true' : 'false');
   inp.setAttribute('aria-describedby', 'pts-note');
+  // an unusable value must stay removable: hiding the clear button whenever
+  // there is no figure left the reader typing over their own mistake
   const x = document.getElementById('pts-clear');
-  x.hidden = myPoints === null;
+  x.hidden = inp.value === '';
   x.setAttribute('aria-label', t('ptsClear'));
-  document.getElementById('pts-note').innerHTML = myPoints === null ? esc(t('ptsNoteEmpty'))
+  const note = document.getElementById('pts-note');
+  note.classList.toggle('bad', bad);
+  note.innerHTML = bad ? esc(t('ptsBad'))
+    : myPoints === null ? esc(t('ptsNoteEmpty'))
     : esc(t('ptsNoteSet')).replace(/\{(likely|realistic|long)\}/g,
         (_, b) => `<span class="k" style="background:${bucketColor(b)}"></span>`);
 }
@@ -1503,6 +1574,10 @@ function onMapCat(v) {
   // the hero is computed through the same category lens as the chart and the
   // list, so it has to be redrawn with them or it keeps quoting the old scope
   if (current && document.getElementById('side').classList.contains('open')) {
+    // openSide() seeds the panel's scope from the lens; changing the lens with
+    // the panel open has to re-seed it the same way, or the figures narrow to
+    // the category while the list underneath still lists every programme
+    chart = { mode: v === 'all' ? 'all' : 'cat', cat: v === 'all' ? null : v, prog: null };
     renderSide();
   } else if (current && v !== 'all') {
     chart.mode = 'cat'; chart.cat = v; chart.prog = null;
@@ -2397,6 +2472,11 @@ function bootFailed(subKey) {
 
 async function main() {
   try { lang = localStorage.getItem('pk-lang') || lang; } catch (e) {}
+  // setLang() does this on every switch, but a fresh load never called it, so a
+  // reader who had chosen English got an English page inside a document still
+  // declaring itself Norwegian — wrong to a screen reader and to a translator.
+  document.documentElement.lang = lang === 'no' ? 'no' : 'en';
+  document.title = t('pageTitle');
   try {
     const r = await fetch('data/schools.json');
     if (!r.ok) throw new Error(String(r.status));
@@ -2411,10 +2491,14 @@ async function main() {
     if (rm.ok) MODEL = await rm.json();
   } catch (e) {}
   try {
-    const sp = parseFloat(localStorage.getItem('pk-points'));
-    if (MODEL && Number.isFinite(sp)) {
-      myPoints = sp;
-      document.getElementById('my-points').value = String(sp).replace('.', lang === 'no' ? ',' : '.');
+    // through the same validator as the field: a stored 999 used to colour the
+    // whole map on a score nobody can have
+    const sp = parsePoints(localStorage.getItem('pk-points'));
+    if (MODEL && sp.pts !== null) {
+      myPoints = sp.pts;
+      document.getElementById('my-points').value = String(sp.pts).replace('.', lang === 'no' ? ',' : '.');
+    } else if (sp.pts === null) {
+      try { localStorage.removeItem('pk-points'); } catch (e) {}
     }
   } catch (e) {}
   // Open on the whole dataset. This used to open on a hard-coded Rogaland view
