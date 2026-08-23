@@ -88,6 +88,17 @@ add confusion rather than remove it. What they *are* used for is measuring the
 gap between rounds — see the round bridge in [model.md](model.md) — and
 correcting Vestland's 2023 figures inside the forecast.
 
+## One programme, two labels
+
+A county that lists a programme twice — once with figures, once as a
+fortrinnsrett quota — should appear once, and the app folds the quota row into
+the one with figures. That fold keys on the programme name **and its level**.
+Keying on the name alone dropped 59 rows across 18 Rogaland schools, because a
+Vg3 that only ever filled on fortrinnsrett is not a duplicate of the Vg1 of the
+same name: the Vg3 vanished, the school's programme count fell with it, and the
+quota badge landed on a row showing a real threshold, whose tooltip then said
+no threshold existed.
+
 ## The forecast
 
 `tools/model.py` fits a model to every cell and forecasts the county's next

@@ -106,6 +106,15 @@
 
   /* ---------- top-left control panel ---------- */
   #panel { position: absolute; top: 14px; left: 14px; z-index: 1000; width: 316px; padding: 16px 16px 14px; }
+  #panel:focus { outline: none; }
+  .skip {
+    position: absolute; left: 14px; top: 14px; z-index: 3000; padding: 9px 14px;
+    background: var(--surface-solid); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 10px; box-shadow: var(--shadow); font-weight: 600; font-size: 13px;
+    text-decoration: none; transform: translateY(-220%);
+  }
+  .skip:focus { transform: none; outline: 3px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: no-preference) { .skip { transition: transform .12s ease-out; } }
   .brand { display: flex; align-items: center; gap: 9px; }
   .brand .mark { width: 26px; height: 26px; flex: none; }
   .brand h1 { font-size: 19px; font-weight: 700; letter-spacing: -.02em; }
@@ -184,6 +193,9 @@
   #choices .sum { font-size: 11.5px; color: var(--ink-2); margin-top: 7px; line-height: 1.45; }
   #choices .sum b { color: var(--ink); }
   #choices .sum .nudge { display: block; margin-top: 3px; color: var(--warn); }
+  /* the counts and the combined figure cover only the choices that have a
+     forecast; say so rather than let them read as covering the whole list */
+  #choices .sum .part { display: block; margin-top: 3px; color: var(--ink-3); }
   #choices .bar { display: flex; height: 5px; border-radius: 3px; overflow: hidden; margin: 6px 0 2px; background: var(--line); }
   #choices .bar span { height: 100%; background: var(--b); }
   .ch {
@@ -611,6 +623,9 @@
        available as <a href="data/schools.json">schools.json</a>.</p>
   </div>
 </noscript>
+<!-- the map comes first in the document, so a keyboard reader would otherwise
+     tab through thirty markers before reaching a single control -->
+<a class="skip" id="skip" href="#panel"></a>
 <div id="app">
   <div id="map"></div>
   <aside id="side">
@@ -679,7 +694,7 @@
   </div>
 </div>
 
-<div id="panel" class="glass">
+<div id="panel" class="glass" tabindex="-1">
   <div class="brand">
     <svg class="mark" viewBox="0 0 26 26" aria-hidden="true">
       <rect x="1" y="1" width="24" height="24" rx="7" fill="var(--accent)"/>
@@ -874,6 +889,7 @@ const T = {
     en: 'Could not send just now. Try again in a moment.',
   },
   contactNeedMsg: { no: 'Skriv en melding først.', en: 'Write a message first.' },
+  contactNeedSchool: { no: 'Skriv hvilken skole det gjelder.', en: 'Say which school this is about.' },
   contactBadMail: { no: 'E-postadressen ser ikke riktig ut. Rett den, eller la feltet stå tomt.',
                     en: 'That e-mail address does not look right. Fix it, or leave the field empty.' },
   contactLabel:   { no: 'Send tilbakemelding', en: 'Send feedback' },
@@ -942,6 +958,9 @@ const T = {
   roundYearNote: { no: (y, r) => `${y}-tallene er fra ${r}. inntak, ikke samme runde som de andre årene – flere kom inn, så grensene ligger lavere.`,
                    en: (y, r) => `The ${y} figures are from intake round ${r}, not the same round as the other years — more applicants were admitted, so the thresholds sit lower.` },
   closeAria:  { no: 'Lukk skoledetaljer', en: 'Close school details' },
+  skipToControls: { no: 'Hopp til filtrene', en: 'Skip to the filters' },
+  clusterAria: { no: n => `${n} skoler i dette området. Trykk for å zoome inn.`,
+                 en: n => `${n} schools in this area. Press to zoom in.` },
   markerAria: { no: (n, v) => `${n}. ${v}. Trykk for detaljer.`, en: (n, v) => `${n}. ${v}. Press to open details.` },
   gone:       { no: 'Utgått', en: 'Discontinued' },
   tipPrograms:{ no: (n, span) => `${n} programområde · ${span}`, en: (n, span) => `${n} programmes · ${span}` },
@@ -1069,6 +1088,8 @@ const T = {
   choicesNoPts: { no: 'Skriv inn poengene dine for å se sjansen per valg.',
                   en: 'Enter your points to see the chance per choice.' },
   choicesNoPred: { no: 'ingen prognose', en: 'no forecast' },
+  choicesPartial: { no: (n, m) => `Regnet ut fra ${n} av ${m} valg – resten har ingen prognose.`,
+                    en: (n, m) => `Worked out from ${n} of ${m} choices — the rest have no forecast.` },
   // ----- the final round, where the county publishes an earlier one -----
   finalRoundChip: { no: (r, p) => `Ved ${r}. inntak (siste): ca. ${p} %`, en: (r, p) => `By round ${r} (final): about ${p}%` },
   finalRoundNote: {
@@ -1149,11 +1170,18 @@ const stProgram = s => s.programs.find(p => p.program.toLowerCase() === 'studies
 // the register has never translated.
 const progName = p => (lang === 'en' && p.program_en) || p.program;
 const isPrioOnly = p => { const vs = Object.values(p.values); return vs.length > 0 && vs.every(v => v === 'F'); };
+// A source that lists a programme twice, once with figures and once as a
+// fortrinnsrett quota, should show one row. But identity here is the programme
+// AND its level: a Vg3 that only ever filled on fortrinnsrett is not a
+// duplicate of the Vg1 of the same name, and folding it away dropped the row
+// from the list and pasted its badge onto a row that has a real threshold —
+// a figure and "therefore no threshold exists" on the same line.
+const progId = p => `${p.program.toLowerCase()}|${p.level}`;
 function partitionPrograms(progs) {
   const regular = progs.filter(p => !isPrioOnly(p));
-  const regNames = new Set(regular.map(p => p.program.toLowerCase()));
-  const prioNames = new Set(progs.filter(isPrioOnly).map(p => p.program.toLowerCase()));
-  const orphans = progs.filter(p => isPrioOnly(p) && !regNames.has(p.program.toLowerCase()));
+  const regNames = new Set(regular.map(progId));
+  const prioNames = new Set(progs.filter(isPrioOnly).map(progId));
+  const orphans = progs.filter(p => isPrioOnly(p) && !regNames.has(progId(p)));
   return { regular, orphans, prioNames };
 }
 // the rows the programme list actually renders: an F-only duplicate of a
@@ -1353,6 +1381,7 @@ function renderChoices() {
       .map(([b, k]) => `<span class="b-${b}" style="width:${100 * k / n}%"></span>`).join('');
     sum = `<div class="bar">${bar}</div><div class="sum"><b>${esc(t('choicesSum', L, R, U))}</b>` +
       ` · <span class="tipped" title="${esc(t('choicesAnyTitle'))}">${esc(t('choicesAny', pct(1 - pNone)))}</span>` +
+      (n < items.length ? `<span class="part">${esc(t('choicesPartial', n, items.length))}</span>` : '') +
       (L ? '' : `<span class="nudge">⚠ ${esc(t('choicesNudge'))}</span>`) + `</div>`;
   } else if (!chanceMode()) {
     sum = `<div class="sum">${esc(t('choicesNoPts'))}</div>`;
@@ -1541,6 +1570,26 @@ function drawMarkers() {
       el.addEventListener('blur', () => m.closeTooltip());
     }
   };
+  // Leaflet.markercluster makes each cluster focusable with role="button" but
+  // gives it no name and no key handling, so a screen reader met "2, button"
+  // and Enter did nothing. Mirror what a click does.
+  const labelClusters = () => {
+    const fg = markerLayer._featureGroup;
+    for (const l of (fg ? fg.getLayers() : [])) {
+      const el = l._icon;
+      if (!el || typeof l.getChildCount !== 'function' || el.dataset.pkKeyed) continue;
+      el.dataset.pkKeyed = '1';
+      el.setAttribute('aria-label', t('clusterAria', l.getChildCount()));
+      el.addEventListener('keydown', ev => {
+        if (ev.key !== 'Enter' && ev.key !== ' ') return;
+        ev.preventDefault();
+        if (l._bounds && map.getBoundsZoom(l._bounds) > map.getZoom()) l.zoomToBounds({ padding: [30, 30] });
+        else l.spiderfy();
+      });
+    }
+  };
+  const labelPoints = labelMarkers;
+  labelMarkers = () => { labelPoints(); labelClusters(); };
   markerLayer.on('animationend', labelMarkers);
   labelMarkers();
 }
@@ -2082,7 +2131,7 @@ function renderList() {
         : lv === 'open' ? `<span class="soft">${t('allIn')}</span>`
         : lv === 'D' ? `<span class="soft" title="${esc(t('docTitle'))}">${t('docAdm')}</span>`
         : `<span class="soft">${t('gone')}</span>`;
-      const key = p.program.toLowerCase();
+      const key = progId(p);
       let badge = '';
       if (!orphan && (prioNames.has(key) || hasF) && !badged.has(key)) {
         badged.add(key);
@@ -2246,6 +2295,15 @@ async function sendContact(ev) {
     msg.focus();
     return;
   }
+  // "Hvilken skole?" is the one field with no "(valgfritt)", and a report about
+  // a figure or a photo cannot be acted on without it
+  const school = document.getElementById('c-school');
+  if (school && !school.value.trim()) {
+    err.textContent = t('contactNeedSchool');
+    err.hidden = false;
+    school.focus();
+    return;
+  }
   const mail = document.getElementById('c-email');
   if (mail.value.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value.trim())) {
     err.textContent = t('contactBadMail');
@@ -2295,11 +2353,13 @@ function openContact() {
   delete body.dataset.mailto;
   renderContact();
   document.getElementById('contact').hidden = false;
+  setModalTrap();
   setTimeout(() => document.getElementById('c-kind')?.focus(), 40);
 }
 
 function closeContact() {
   document.getElementById('contact').hidden = true;
+  setModalTrap();
   document.getElementById('contact-btn')?.focus();
 }
 
@@ -2375,6 +2435,7 @@ function renderControls() {
     el.setAttribute('aria-label', t(key));
   }
   // these two were written into the markup in English and so stayed English
+  document.getElementById('skip').textContent = t('skipToControls');
   document.getElementById('side').setAttribute('aria-label', t('sideLabel'));
   document.getElementById('lang-group').setAttribute('aria-label', t('langLabel'));
 }
@@ -2411,15 +2472,27 @@ function renderIntro() {
   document.getElementById('intro-x').setAttribute('aria-label', t('close'));
 }
 
+// A sheet that covers the page has to take the page out of the tab order with
+// it: tabbing off the end of the feedback form used to land on the county
+// select behind the backdrop, where nothing was visible to act on.
+function setModalTrap() {
+  const open = !document.getElementById('intro').hidden
+            || !document.getElementById('contact').hidden;
+  ['skip', 'app', 'controls', 'panel', 'legend'].forEach(id =>
+    document.getElementById(id)?.toggleAttribute('inert', open));
+}
+
 function openIntro() {
   renderIntro();
   document.getElementById('intro').hidden = false;
+  setModalTrap();
   setTimeout(() => document.querySelector('#intro .cta')?.focus(), 40);
 }
 
 function closeIntro() {
   document.getElementById('intro').hidden = true;
   try { localStorage.setItem(INTRO_SEEN, '1'); } catch (e) {}
+  setModalTrap();
   document.getElementById('help-btn')?.focus();
 }
 
