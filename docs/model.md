@@ -207,7 +207,11 @@ left for later.
 ## My choices
 
 Families rank several choices, and the real question is whether the list
-holds. A + on any programme row collects it into a list in the control panel;
+holds. The list enforces vigo's own limits — ten ranked wishes, and at most
+three different utdanningsprogram at Vg1 — so it can only hold an application
+that could actually be submitted; without the cap, adding wish after wish
+drives the at-least-one figure toward certainty for an application no county
+would accept. A + on any programme row collects it into a list in the control panel;
 with points set, each choice carries its chance, the list is summarised as
 likely / possible / unlikely counts, and the chance of at least one place is
 shown as 1 − Π(1 − pᵢ) with a tooltip saying the choices are treated as

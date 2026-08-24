@@ -196,6 +196,11 @@
   /* the counts and the combined figure cover only the choices that have a
      forecast; say so rather than let them read as covering the whole list */
   #choices .sum .part { display: block; margin-top: 3px; color: var(--ink-3); }
+  #choices .vnote { font-size: 11.5px; color: var(--warn); margin-top: 7px; line-height: 1.45; }
+  #s-list .oldnote { display: block; width: 100%; border: none; background: none; cursor: pointer;
+                     text-align: left; padding: 9px 14px 11px; font: inherit; font-size: 11.5px;
+                     color: var(--ink-3); text-decoration: underline; text-underline-offset: 2px; }
+  #s-list .oldnote:hover { color: var(--ink-2); }
   #choices .bar { display: flex; height: 5px; border-radius: 3px; overflow: hidden; margin: 6px 0 2px; background: var(--line); }
   #choices .bar span { height: 100%; background: var(--b); }
   .ch {
@@ -1003,6 +1008,18 @@ const T = {
   chartSubCat:  { no: n => `${n} programområder i utdanningsprogrammet · snitt i blått`, en: n => `${n} programme areas in this programme · average in blue` },
   chartSubProg: { no: 'Én serie · hule punkter = ingen poenggrense', en: 'Single series · hollow dots = no threshold' },
   officialName: { no: n => `Offisielt navn (Udir): ${n}`, en: n => `Official register name: ${n}` },
+  oldHidden: {
+    no: n => n === 1 ? '1 programområde uten tall fra de siste to årene er skjult – vis det'
+                     : `${n} programområder uten tall fra de siste to årene er skjult – vis dem`,
+    en: n => n === 1 ? '1 programme area with no figures from the last two years is hidden – show it'
+                     : `${n} programme areas with no figures from the last two years are hidden – show them`,
+  },
+  oldShown: { no: 'Skjul programområder uten ferske tall',
+              en: 'Hide programme areas without recent figures' },
+  vigoMaxWishes: { no: 'Vigo-søknaden har plass til ti ønsker – lista er full.',
+                   en: 'The vigo application takes ten wishes – the list is full.' },
+  vigoMaxProgs: { no: 'Til Vg1 kan du søke på inntil tre ulike utdanningsprogram.',
+                  en: 'For Vg1 you can apply to at most three different education programmes.' },
   midLabel:   { no: 'snitt', en: 'avg' },
   series:     { no: 'serier', en: 'series' },
   filterPh:   { no: 'Filtrer programområde …', en: 'Filter programs…' },
@@ -1147,6 +1164,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 let DATA = null, map = null, markerLayer = null;
 let MODEL = null;         // data/model.json — forecasts; optional
 let myPoints = null;      // the reader's own points, or null
+let showOld = false;      // show programme areas with no figures lately
 let HOME = null;          // bounds of the whole dataset, the map's home view
 let mapCat = 'all';
 let mapFylke = 'all';
@@ -1193,7 +1211,28 @@ function partitionPrograms(progs) {
 // programme that also has a real row is folded away there, so any count that
 // includes it contradicts the list printed right underneath
 const visibleIn = progs => { const pp = partitionPrograms(progs); return pp.regular.length + pp.orphans.length; };
-const visibleCount = s => visibleIn(s.programs);
+const visibleCount = s => visibleIn(shownPrograms(s));
+
+/* A programme area with nothing in the county's last two published years is
+   history, not an option a family can pick: hidden by default, one click away
+   for anyone studying the past. A school that stopped publishing entirely
+   keeps all its rows — hiding everything would hide the school. */
+let _newestByFylke = null;
+function countyNewest(f) {
+  if (!_newestByFylke) {
+    _newestByFylke = {};
+    DATA.schools.forEach(s => s.programs.forEach(p => Object.keys(p.values).forEach(y => {
+      _newestByFylke[s.fylke] = Math.max(_newestByFylke[s.fylke] || 0, +y);
+    })));
+  }
+  return _newestByFylke[f] || 0;
+}
+const isRecent = (p, f) => Object.keys(p.values).some(y => +y >= countyNewest(f) - 1);
+function shownPrograms(s) {
+  if (showOld) return s.programs;
+  const cur = s.programs.filter(p => isRecent(p, s.fylke));
+  return cur.length ? cur : s.programs;
+}
 // the newest year in the dataset, or the one before it: anything older is a
 // school the counties have stopped publishing
 const staleBefore = () => +DATA.years[DATA.years.length - 1] - 1;
@@ -1329,10 +1368,28 @@ function progKeyMap(s) {
   return s._pk;
 }
 const isChosen = (s, p) => choices.some(c => c.f === s.fylke && c.s === s.name && c.k === progKeyMap(s).get(p));
+let choicesNote = null;   // why the last add was refused; rendered once
 function toggleChoice(s, p) {
   const k = progKeyMap(s).get(p);
   const i = choices.findIndex(c => c.f === s.fylke && c.s === s.name && c.k === k);
-  if (i >= 0) choices.splice(i, 1); else choices.push({ f: s.fylke, s: s.name, k });
+  choicesNote = null;
+  if (i >= 0) choices.splice(i, 1);
+  else {
+    // vigo's own limits, so the list can only hold an application that could
+    // actually be submitted: ten ranked wishes, and a Vg1 application names
+    // at most three different utdanningsprogram
+    const items = choices.map(resolveChoice).filter(Boolean);
+    if (items.length >= 10) {
+      choicesNote = t('vigoMaxWishes'); renderChoices(); return;
+    }
+    if (p.level === 'Vg1') {
+      const cats = new Set(items.filter(x => x.p.level === 'Vg1').map(x => x.p.category));
+      if (!cats.has(p.category) && cats.size >= 3) {
+        choicesNote = t('vigoMaxProgs'); renderChoices(); return;
+      }
+    }
+    choices.push({ f: s.fylke, s: s.name, k });
+  }
   try { localStorage.setItem('pk-choices', JSON.stringify(choices)); } catch (e) {}
   renderChoices();
   if (current) renderList();
@@ -1393,7 +1450,8 @@ function renderChoices() {
   }
   box.innerHTML = `<div class="h"><span>${esc(t('choicesHead', items.length))}</span>` +
     `<button id="choices-clear">${esc(t('choicesClear'))}</button></div>` +
-    `<div class="list">${rows}</div>` + sum;
+    `<div class="list">${rows}</div>` +
+    (choicesNote ? `<div class="vnote">⚠ ${esc(choicesNote)}</div>` : '') + sum;
   box.querySelectorAll('.who').forEach(b => b.onclick = () => {
     const { s } = items[+b.dataset.i]; openSide(s);
     if (s.lat && map) map.setView([s.lat, s.lon], Math.max(map.getZoom(), 11));
@@ -1827,7 +1885,8 @@ function renderSide() {
   // waitlist, so that is spelled out underneath instead of hidden in it.
   const lensCat = mapCat !== 'all' ? mapCat : null;
   const cells = [];
-  const scopePrograms = lensCat ? s.programs.filter(p => p.category === lensCat) : s.programs;
+  const base = shownPrograms(s);
+  const scopePrograms = lensCat ? base.filter(p => p.category === lensCat) : base;
   const meanAt = year => meanOf(scopePrograms.map(p => p.values[year]).filter(isPoints));
   const yrs = [...new Set(scopePrograms.flatMap(p => Object.keys(p.values)))].sort();
   const latest = yrs[yrs.length - 1];
@@ -1924,8 +1983,8 @@ function renderChance(s, lensCat) {
 /* ================= chart (3 resolution levels) ================= */
 function seriesFor(mode, cat, prog) {
   const progs = mode === 'prog' ? [prog]
-    : mode === 'cat' ? current.programs.filter(p => p.category === cat)
-    : current.programs;
+    : mode === 'cat' ? shownPrograms(current).filter(p => p.category === cat)
+    : shownPrograms(current);
   return progs.filter(p => Object.values(p.values).some(v => typeof v === 'number'));
 }
 function renderChartCard() {
@@ -1965,7 +2024,7 @@ function renderChartCard() {
 function drawChart() {
   // a chart must span the school's own years: Akershus and Trøndelag publish
   // one year, and nine mostly-empty columns read as a broken chart
-  const own = [...new Set(current.programs.flatMap(p => Object.keys(p.values)))].sort();
+  const own = [...new Set(shownPrograms(current).flatMap(p => Object.keys(p.values)))].sort();
   const allYears = DATA.years.map(String);
   const years = own.length > 1
     ? allYears.filter(y => y >= own[0] && y <= own[own.length - 1])
@@ -2003,7 +2062,7 @@ function drawChart() {
   if (chartMode() !== 'prog') {
     const cy = [...new Set(series.flatMap(p => Object.keys(p.values)))].sort().pop();
     const cm = openMix(chartMode() === 'cat'
-      ? current.programs.filter(p => p.category === mapCat) : current.programs, cy);
+      ? shownPrograms(current).filter(p => p.category === mapCat) : shownPrograms(current), cy);
     if (cm.mostly) sub.textContent += ` · ⚠ ${t('mostlyOpenShort')}`;
   }
 
@@ -2101,13 +2160,15 @@ function renderList() {
   // One scope for the whole app: the utdanningsprogram lens. Selecting a
   // programme-area row narrows the chart but never the list or the map.
   const scope = mapCat !== 'all' ? mapCat : null;
-  const inScope = current.programs.filter(p => !scope || p.category === scope);
+  const base = shownPrograms(current);
+  const inScope = base.filter(p => !scope || p.category === scope);
+  const matches = p => p.program.toLowerCase().includes(q)
+                    || (p.program_en || '').toLowerCase().includes(q)
+                    || (p.official || '').toLowerCase().includes(q);
   const { regular, orphans, prioNames } = partitionPrograms(
     // search both languages: an English reader types "health", a Norwegian
     // parent types "helse", and either should find the row
-    inScope.filter(p => p.program.toLowerCase().includes(q)
-                     || (p.program_en || '').toLowerCase().includes(q)
-                     || (p.official || '').toLowerCase().includes(q)));
+    inScope.filter(matches));
   const byCat = {};
   [...regular, ...orphans].forEach(p => (byCat[p.category] = byCat[p.category] || []).push(p));
   let html = '';
@@ -2161,8 +2222,21 @@ function renderList() {
               `<span class="nm"${p.official ? ` title="${esc(t('officialName', p.official))}"` : ''}>${esc(progName(p))}${badge}</span>${chip}<span class="lv">${esc(p.level)}</span><span class="val">${val}</span>${pick}</button>`;
     }
   }
+  // the disclosure for history: how many rows the recency filter is hiding
+  // from this view (same lens and search), or the way back once shown
+  const hiddenMatch = showOld ? []
+    : current.programs.filter(p => !base.includes(p) && (!scope || p.category === scope) && matches(p));
+  const anyOld = current.programs.some(p => !isRecent(p, current.fylke));
+  let oldBtn = '';
+  if (hiddenMatch.length) oldBtn = `<button class="oldnote">${esc(t('oldHidden', hiddenMatch.length))}</button>`;
+  else if (showOld && anyOld) oldBtn = `<button class="oldnote">${esc(t('oldShown'))}</button>`;
   const el = document.getElementById('s-list');
-  el.innerHTML = html || `<div class="cat-head">${t('noMatch')}</div>`;
+  el.innerHTML = (html || `<div class="cat-head">${t('noMatch')}</div>`) + oldBtn;
+  el.querySelector('.oldnote')?.addEventListener('click', () => {
+    showOld = !showOld;
+    try { localStorage.setItem('pk-showold', showOld ? '1' : '0'); } catch (e) {}
+    renderSide();
+  });
   el.querySelectorAll('.cat-head[data-cat]').forEach(b =>
     b.onclick = () => { chart.prog = null; setLens(b.dataset.cat); });
   el.querySelectorAll('.prow').forEach(b =>
@@ -2550,6 +2624,7 @@ function bootFailed(subKey) {
 
 async function main() {
   try { lang = localStorage.getItem('pk-lang') || lang; } catch (e) {}
+  try { showOld = localStorage.getItem('pk-showold') === '1'; } catch (e) {}
   // setLang() does this on every switch, but a fresh load never called it, so a
   // reader who had chosen English got an English page inside a document still
   // declaring itself Norwegian — wrong to a screen reader and to a translator.
