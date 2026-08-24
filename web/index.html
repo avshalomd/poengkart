@@ -1016,6 +1016,7 @@ const T = {
   },
   oldShown: { no: 'Skjul programområder uten ferske tall',
               en: 'Hide programme areas without recent figures' },
+  notOffered: { no: 'tilbys ikke her', en: 'not offered here' },
   vigoMaxWishes: { no: 'Vigo-søknaden har plass til ti ønsker – lista er full.',
                    en: 'The vigo application takes ten wishes – the list is full.' },
   vigoMaxProgs: { no: 'Til Vg1 kan du søke på inntil tre ulike utdanningsprogram.',
@@ -1126,7 +1127,12 @@ const T = {
   },
 };
 let lang = 'no';
-const t = (k, ...a) => { const v = T[k][lang]; return typeof v === 'function' ? v(...a) : v; };
+const t = (k, ...a) => {
+  // an unknown lang (stale or tampered pk-lang) falls back to Norwegian
+  // instead of stamping "undefined" across the page and throwing in bindTips
+  const e = T[k], v = e[lang] !== undefined ? e[lang] : e.no;
+  return typeof v === 'function' ? v(...a) : v;
+};
 
 /* ================= state & helpers ================= */
 const BINS = [
@@ -1496,6 +1502,9 @@ function renderPointsField() {
   document.getElementById('pts-label').textContent = t('ptsLabel');
   const inp = document.getElementById('my-points');
   inp.placeholder = t('ptsPh');
+  // a language toggle changes the decimal separator the field shows, so a
+  // stored value is reprinted in the new convention (never while typing)
+  if (myPoints !== null && document.activeElement !== inp) inp.value = fmt(myPoints);
   const bad = ptsBad && inp.value.trim() !== '';
   inp.classList.toggle('on', myPoints !== null);
   inp.classList.toggle('bad', bad);
@@ -1903,6 +1912,10 @@ function renderSide() {
       cells.push({ v: (d > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
                    cls: d > 0 ? 'up' : d < 0 ? 'dn' : '', ti: t('heroDeltaBasis') });
     }
+  } else if (!scopePrograms.length) {
+    // the lens names a programme this school does not offer: say that, rather
+    // than let the no-cells fallback claim "everyone admitted"
+    cells.push({ v: '\u2013', l: `${scopeLabel} \u00b7 ${t('notOffered')}` });
   } else {
     const last = scopePrograms.map(p => p.values[latest]).filter(v => v !== undefined);
     const label = last.includes('open') ? t('allIn')
@@ -2231,10 +2244,15 @@ function renderList() {
   if (hiddenMatch.length) oldBtn = `<button class="oldnote">${esc(t('oldHidden', hiddenMatch.length))}</button>`;
   else if (showOld && anyOld) oldBtn = `<button class="oldnote">${esc(t('oldShown'))}</button>`;
   const el = document.getElementById('s-list');
-  el.innerHTML = (html || `<div class="cat-head">${t('noMatch')}</div>`) + oldBtn;
+  // the scope chip alone is not content: an empty row set says "no matches"
+  // whether or not a chip sits above it
+  if (![...regular, ...orphans].length) html += `<div class="cat-head">${t('noMatch')}</div>`;
+  el.innerHTML = html + oldBtn;
   el.querySelector('.oldnote')?.addEventListener('click', () => {
     showOld = !showOld;
     try { localStorage.setItem('pk-showold', showOld ? '1' : '0'); } catch (e) {}
+    // the map tooltips count the same shown set, so the markers re-render too
+    drawMarkers();
     renderSide();
   });
   el.querySelectorAll('.cat-head[data-cat]').forEach(b =>
@@ -2577,6 +2595,7 @@ function closeIntro() {
 
 /* ================= language ================= */
 function setLang(l) {
+  if (l !== 'no' && l !== 'en') return;   // the only two languages that exist
   lang = l;
   try { localStorage.setItem('pk-lang', l); } catch (e) {}
   document.documentElement.lang = l === 'no' ? 'no' : 'en';
@@ -2623,7 +2642,10 @@ function bootFailed(subKey) {
 }
 
 async function main() {
-  try { lang = localStorage.getItem('pk-lang') || lang; } catch (e) {}
+  try {
+    const l = localStorage.getItem('pk-lang');
+    if (l === 'no' || l === 'en') lang = l;   // anything else is not a language
+  } catch (e) {}
   try { showOld = localStorage.getItem('pk-showold') === '1'; } catch (e) {}
   // setLang() does this on every switch, but a fresh load never called it, so a
   // reader who had chosen English got an English page inside a document still
@@ -2672,6 +2694,15 @@ async function main() {
     map.invalidateSize();
     if (!touched) map.fitBounds(HOME, { ...framePad(), animate: false });
   }, 150);
+  // a page loaded in a background tab fits its bounds against a 0x0 container
+  // and sticks at max zoom; the 150ms correction is lost if the tab is still
+  // hidden then. Redo the fit the moment the tab is first shown.
+  document.addEventListener('visibilitychange', function fixHiddenBoot() {
+    if (document.hidden) return;
+    document.removeEventListener('visibilitychange', fixHiddenBoot);
+    map.invalidateSize();
+    if (!touched) map.fitBounds(HOME, { ...framePad(), animate: false });
+  });
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
     setTiles(); drawMarkers(); renderLegend();
     if (current) renderSide();
@@ -2684,7 +2715,18 @@ async function main() {
     reframe = setTimeout(() => { map.invalidateSize(); }, 200);
   });
   addEventListener('popstate', () => {
-    if (document.getElementById('side').classList.contains('open')) closeSide(true);
+    // a back-gesture closes what is actually on screen: an open sheet first —
+    // and re-pushes the side panel's entry the pop just consumed, so the next
+    // back still closes the panel instead of leaving the page
+    const sideOpen = document.getElementById('side').classList.contains('open');
+    if (!document.getElementById('contact').hidden || !document.getElementById('intro').hidden) {
+      if (!document.getElementById('contact').hidden) closeContact(); else closeIntro();
+      if (sideOpen && !(history.state || {}).pkSide) {
+        try { history.pushState({ pkSide: 1 }, ''); } catch (e) {}
+      }
+      return;
+    }
+    if (sideOpen) closeSide(true);
   });
   document.addEventListener('keydown', ev => {
     if (ev.key !== 'Escape') return;
@@ -2695,7 +2737,12 @@ async function main() {
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
   let seen = true;
   try { seen = !!localStorage.getItem(INTRO_SEEN); } catch (e) {}
-  if (!seen) setTimeout(openIntro, 420);
+  if (!seen) setTimeout(() => {
+    // the visitor may already have opened the contact sheet or a school in
+    // these 420ms; the tutorial must not land on top of it
+    if (document.getElementById('contact').hidden &&
+        !document.getElementById('side').classList.contains('open')) openIntro();
+  }, 420);
 }
 main().catch(e => { console.error(e); bootFailed('bootFailApp'); });
 </script>
