@@ -39,10 +39,12 @@
      unpkg: a school or municipal network that blocks the CDN used to get a
      blank page, and a third party could otherwise change the code that runs
      on every visit. -->
+<link rel="preload" href="data/schools.json" as="fetch" crossorigin>
+<link rel="preload" href="data/model.json" as="fetch" crossorigin>
 <link rel="stylesheet" href="leaflet-1.9.4.css">
 <link rel="stylesheet" href="MarkerCluster-1.5.3.css">
-<script src="leaflet-1.9.4.js"></script>
-<script src="leaflet.markercluster-1.5.3.js"></script>
+<script defer src="leaflet-1.9.4.js"></script>
+<script defer src="leaflet.markercluster-1.5.3.js"></script>
 <style>
   :root {
     color-scheme: light;
@@ -2652,18 +2654,22 @@ async function main() {
   // declaring itself Norwegian — wrong to a screen reader and to a translator.
   document.documentElement.lang = lang === 'no' ? 'no' : 'en';
   document.title = t('pageTitle');
+  // both requests leave together (and were already preloaded from <head>);
+  // the forecast is optional: without it the points field stays hidden and
+  // the app is exactly what it was
+  const modelReq = fetch('data/model.json').catch(() => null);
   try {
     const r = await fetch('data/schools.json');
     if (!r.ok) throw new Error(String(r.status));
     DATA = await r.json();
+    performance.mark('pk:data');
   } catch (e) {
     return bootFailed('bootFailSub');
   }
-  // the forecast is optional: without it the points field stays hidden and
-  // the app is exactly what it was
   try {
-    const rm = await fetch('data/model.json');
-    if (rm.ok) MODEL = await rm.json();
+    const rm = await modelReq;
+    if (rm && rm.ok) MODEL = await rm.json();
+    performance.mark('pk:model');
   } catch (e) {}
   try {
     // through the same validator as the field: a stored 999 used to colour the
@@ -2735,6 +2741,7 @@ async function main() {
     if (document.getElementById('side').classList.contains('open')) closeSide();
   });
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
+  performance.mark('pk:boot-done');
   let seen = true;
   try { seen = !!localStorage.getItem(INTRO_SEEN); } catch (e) {}
   if (!seen) setTimeout(() => {
@@ -2744,7 +2751,9 @@ async function main() {
         !document.getElementById('side').classList.contains('open')) openIntro();
   }, 420);
 }
-main().catch(e => { console.error(e); bootFailed('bootFailApp'); });
+const boot = () => main().catch(e => { console.error(e); bootFailed('bootFailApp'); });
+if (document.readyState === 'loading') addEventListener('DOMContentLoaded', boot);
+else boot();
 </script>
 </body>
 </html>
