@@ -124,7 +124,7 @@ SUCCESSOR_BY_PROGRAM = {
 }
 
 # ------------------------------------------------------------------------ aliases
-# Names Grep cannot match, and why. Two kinds only:
+# Names Grep cannot match on its own, and why. Two kinds only:
 #
 #   * pre-2020 Vg1 names. Grep reused the codes and replaced the names, so
 #     "Elektrofag" and "Teknikk og industriell produksjon" are simply gone from
@@ -132,32 +132,35 @@ SUCCESSOR_BY_PROGRAM = {
 #   * county truncations of a programme area — "Elenergi" for "Elenergi og
 #     ekom", "Kulde-, varmepumpe-, vent.tekn" for the full mouthful.
 #
-# Eleven of these, against roughly a hundred keywords before.
+# The value is the Grep code the label means today (DECISION 3: everything is
+# filed under the current structure, so "Data og elektronikk" carries the code
+# of its successor, Elenergi og ekom). A bare two-letter value remains for the
+# labels that are not any programme area — International Baccalaureate is real
+# but lives outside Grep — and resolves to the category with no code. A `#`
+# stands for the year digit, filled from the row's level: "Språk, samfunn og
+# økonomi" exists as both STSSA2 and STSSA3.
 ALIASES = {
-    'teknikk og industriell produksjon': 'TP',
-    'teknikk og industrifag': 'TP',
-    'elektrofag': 'EL',
-    'elektro': 'EL',
-    'elenergi': 'EL',
-    'data og elektronikk': 'EL',
-    'kulde varmepumpe vent tekn': 'EL',
-    'kulde varmepumpe vent teknologi': 'EL',
-    'helse og sosialfag': 'HS',
-    'helse oppvekst ambulanse': 'HS',
-    'service og sikkerhet og admin': 'SR',
-    'elektro og datatekn autom': 'EL',
-    'håndverk design og produktutv søm th': 'DT',
-    'studiespes business': 'ST',
-    'studiespes skiskyting': 'ST',
-    'språk samfunn og økonomi toppidrett': 'ST',
+    'teknikk og industriell produksjon': 'TPTIP1----',
+    'teknikk og industrifag': 'TPTIP1----',
+    'elektrofag': 'ELELE1----',
+    'elektro': 'ELELE1----',
+    'elenergi': 'ELELE2----',
+    'data og elektronikk': 'ELELE2----',
+    'kulde varmepumpe vent tekn': 'ELKVV2----',
+    'kulde varmepumpe vent teknologi': 'ELKVV2----',
+    'helse og sosialfag': 'HSHSF1----',
+    'helse oppvekst ambulanse': 'HSHSF1----',
+    'service og sikkerhet og admin': 'SRSSH2----',
+    'elektro og datatekn autom': 'ELELE1----',
+    'håndverk design og produktutv søm th': 'DTDTH1----',
+    'studiespes business': 'STUSP1----',
+    'studiespes skiskyting': 'STUSP1----',
+    'språk samfunn og økonomi toppidrett': 'STSSA#----',
     'international baccalaureate': 'ST',
     'international baccalaureate ib': 'ST',
-    'naturbruk med anleggsgartnar': 'NA',   # else the old BA anleggsgartner wins
+    'naturbruk med anleggsgartnar': 'NANAB1----',   # else the old BA anleggsgartner wins
 }
 
-# ------------------------------------------------------------------- normalising
-# Counties bolt these onto a programme name. None of them change which
-# programme it is; all of them stop it matching the register.
 NOISE = [
     r'\b(sk|ysk)\s*\d?\s*(år|årig)?\b', r'\b\d\s*(år|årig)\b',
     r'\blandslinje\b', r'\blal\b', r'\bny\b', r'\bpb[a-z0-9]+\b',
@@ -201,18 +204,32 @@ def _pick(codes):
     return sorted(live or codes)[0]
 
 
-def resolve(program):
+def _alias(v, level):
+    """An ALIASES value -> (category, code or None). A bare category has no
+    code; a `#` needs the level's year digit to become one."""
+    if len(v) == 2:
+        return v, None
+    if '#' in v:
+        digit = (level or '')[-1:]
+        if digit not in '1234':
+            return _category(v.replace('#', '2')), None
+        v = v.replace('#', digit)
+    return _category(v), v
+
+
+def resolve(program, level=None):
     """Programme name -> (category code, Grep code or None, how it matched).
 
     The steps are tried in order, most trustworthy first, and `how` records
     which one answered so a reviewer can tell an exact hit from a guess.
+    `level` (Vg1..Vg4) only disambiguates aliases whose code differs by year.
     """
     n = _norm(program)
     if 'påbygg' in n or 'pabygg' in n:
         return 'PB', 'PBPBY3----', 'keyword'
     for cand in (n, _strip_noise(n)):
         if cand in ALIASES:
-            return ALIASES[cand], None, 'alias'
+            return (*_alias(ALIASES[cand], level), 'alias')
         if cand in INDEX:
             return _category(_pick(INDEX[cand])), _pick(INDEX[cand]), 'exact'
     # "Studiespesialisering, toppidrett" is Studiespesialisering with a subject
@@ -221,7 +238,7 @@ def resolve(program):
     for i in range(len(parts), 0, -1):
         cand = _strip_noise(_norm(', '.join(parts[:i])))
         if cand in ALIASES:
-            return ALIASES[cand], None, 'alias'
+            return (*_alias(ALIASES[cand], level), 'alias')
         if cand in INDEX:
             return _category(_pick(INDEX[cand])), _pick(INDEX[cand]), 'prefix'
     base = _strip_noise(n)
@@ -243,6 +260,25 @@ def _category(grep_code):
     if up in CATEGORIES:
         return up
     return SUCCESSOR_BY_CODE.get(grep_code[:6]) or SUCCESSOR_BY_PROGRAM.get(up)
+
+
+def grep_info(program, level=None):
+    """Programme name -> (Grep code or None, its official Bokmål title).
+
+    The code is the register's own key for the programme area the county's
+    label means — the standard identity a row shares with the same programme
+    at any other school. None where the label is outside Grep (IB) or the
+    level cannot disambiguate it."""
+    _, code, _ = resolve(program, level)
+    if not code:
+        return None, None
+    return code, (GREP_TITLES.get(code) or {}).get('nob')
+
+
+def covers(label, title):
+    """True when the county's label already contains the register title, so
+    printing the official name next to it would add nothing."""
+    return _norm(title) in _norm(label)
 
 
 def classify_category(program):

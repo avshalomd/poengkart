@@ -16,6 +16,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common                                    # noqa: E402
+import taxonomy                                  # noqa: E402
 import extractors                                # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -69,6 +70,13 @@ def main():
                        'program_en': common.english_program(rec['program']),
                        'level': rec['level'], 'category': rec['category'],
                        'values': {str(y): v for y, v in sorted(rec['values'].items())}}
+            # the register's own identity for the row: the Grep code, and the
+            # official title where the county's label spells it differently
+            code, official = taxonomy.grep_info(rec['program'], rec['level'])
+            if code:
+                entry_p['grep'] = code
+                if official and not taxonomy.covers(rec['program'], official):
+                    entry_p['official'] = official
             for alt in ('values_r1', 'values_r3'):
                 if rec.get(alt):
                     entry_p[alt] = {str(y): v for y, v in sorted(rec[alt].items())}

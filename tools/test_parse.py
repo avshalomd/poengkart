@@ -301,6 +301,18 @@ check('toppidrett inside general studies stays general studies',
 check('the two crafts programmes are separate categories',
       {'FD', 'DT'} <= {p['category'] for _, p in ALL_PROGS})
 
+# the register identity carried on each row: the Grep code and official title
+uncoded = sorted({p['program'] for _, p in ALL_PROGS
+                  if not p.get('grep') and 'baccalaureate' not in p['program'].lower()})
+check('every row except IB carries its Grep code', not uncoded, str(uncoded[:4]))
+bad_code = [(n, p['program']) for n, p in ALL_PROGS if p.get('grep')
+            and taxonomy.resolve(p['program'], p.get('level'))[1] != p['grep']]
+check('the stored Grep code is what the register resolves today', not bad_code, str(bad_code[:3]))
+noisy_off = [(p['program'], p['official']) for _, p in ALL_PROGS
+             if p.get('official') and taxonomy.covers(p['program'], p['official'])]
+check('the official title is stored only where it adds a different name', not noisy_off,
+      str(noisy_off[:3]))
+
 # ...and so does data-notes.md, which had fallen two behind
 notes = open(os.path.join(HERE, '..', 'docs', 'data-notes.md'), encoding='utf-8').read()
 r_checks = re.findall(r'runs (\d+) regression checks', notes)

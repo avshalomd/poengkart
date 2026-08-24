@@ -59,7 +59,7 @@ is recorded in `data/source-drift.json` rather than hidden. Any year two
 publications disagree about by close to a whole grade point is flagged on the
 school as `uncertain_years`, and the app says so in words.
 
-`tools/test_parse.py` runs 70 regression checks over the result; every one of
+`tools/test_parse.py` runs 73 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built
@@ -98,6 +98,17 @@ Vg3 that only ever filled on fortrinnsrett is not a duplicate of the Vg1 of the
 same name: the Vg3 vanished, the school's programme count fell with it, and the
 quota badge landed on a row showing a real threshold, whose tooltip then said
 no threshold existed.
+
+## Every row carries its register identity
+
+The names in the dataset are the counties' own labels, kept verbatim because
+the label is part of the intake unit's identity (see "One programme, two
+labels" above, and `docs/programme-categories.md` for why a Grep code cannot
+replace it: one code can hold several separate intake queues). But every row
+also carries the register's answer to *what programme area this is*: `grep` is
+the Grep code the label resolves to, and `official` is the register's Bokmål
+title where the county spells it differently. Only the six International
+Baccalaureate rows have no code — IB is real but lives outside Grep.
 
 ## The forecast
 

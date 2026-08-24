@@ -75,9 +75,10 @@ toppidrett question below.
 
 ## How a name is resolved
 
-`taxonomy.resolve(name)` returns `(category, grep_code, how)`. The steps run in
-order, most trustworthy first, and `how` records which one answered so a
-reviewer can tell an exact hit from a guess.
+`taxonomy.resolve(name, level)` returns `(category, grep_code, how)`. The steps
+run in order, most trustworthy first, and `how` records which one answered so a
+reviewer can tell an exact hit from a guess. The level (Vg1–Vg4) is used only
+to disambiguate the aliases whose code differs by year.
 
 1. **Påbygging** is recognised by keyword. Its county spellings ("Påbygg. gen.
    studiekomp. etter yrkeskomp") share almost nothing with the register's own
@@ -92,10 +93,21 @@ reviewer can tell an exact hit from a guess.
    typos ("Teknolog og idustrifag", "Eletro og datateknologi").
 6. **Contained name** — a register title sitting inside a longer county label,
    longest match wins.
-7. **`ALIASES`** — eighteen hand-written entries, each one either a pre-2020
+7. **`ALIASES`** — nineteen hand-written entries, each one either a pre-2020
    name the register renamed in place ("Elektrofag", "Teknikk og industriell
    produksjon") or a county truncation ("Elenergi", "Kulde-, varmepumpe-,
-   vent.tekn").
+   vent.tekn"). Each carries the Grep code the label means today, so an
+   aliased row is as fully identified as an exact hit; the only labels left
+   with a category but no code are the International Baccalaureate rows,
+   which are real but live outside Grep.
+
+The resolved code is not discarded: every row in `web/data/schools.json`
+carries it as `grep` (2 084 of 2 090 rows), and where the register's official
+Bokmål title spells the programme differently from the county's label the
+title is stored as `official` (375 rows). That is the identity a row shares
+with the same programme area at any other school, and the app shows it as a
+tooltip on the row. The `samples` table and `data/samples.csv` carry the same
+code as `grep_code`.
 
 Where a name matches both a live code and a discontinued one — "Transport og
 logistikk" is `SSTRL2` and `TPTOL2`, blacksmithing is `DHSME2` and `DTSME2` —

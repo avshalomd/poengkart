@@ -900,8 +900,8 @@ const T = {
                 en: 'The threshold is the score of the last applicant admitted in this intake round. Thresholds fall between rounds as places free up, so numbers from different rounds are not directly comparable.' },
   mixedRounds:{ no: 'Kartet viser fylker med ulike inntaksrunder – tallene kan ikke sammenlignes direkte.',
                 en: 'The map mixes counties with different intake rounds — those numbers are not directly comparable.' },
-  catLabel:   { no: 'Utdanningsprogram', en: 'Programme' },
-  allCats:    { no: 'Alle utdanningsprogram', en: 'All programmes' },
+  catLabel:   { no: 'Utdanningsprogram', en: 'Education programme' },
+  allCats:    { no: 'Alle utdanningsprogram', en: 'All education programmes' },
   catNote:    { no: n => `${n} skoler tilbyr dette`, en: n => `${n} schools offer this` },
   legendAll:  { no: 'Snitt poenggrense (siste år)', en: 'Average threshold (latest year)' },
   legendSize: { no: 'Størrelsen viser hvor stor andel av programmene som ble fylt opp',
@@ -912,7 +912,7 @@ const T = {
                    en: 'But most programmes admitted everyone who applied' },
   mostlyOpenShort: { no: 'de fleste tok inn alle', en: 'most admitted everyone' },
   tipTop:     { no: 'Høyest:', en: 'Highest:' },
-  scopeAll:   { no: 'Vis alle programområder', en: 'Show all programmes' },
+  scopeAll:   { no: 'Vis alle utdanningsprogram', en: 'Show all education programmes' },
   heroTypical:{ no: 'Snitt', en: 'Average' },
   heroTypicalAll: { no: 'alle program', en: 'all programmes' },
   legendCat:  { no: c => `${CATS[c].no} · siste år`, en: c => `${CATS[c].en} · latest year` },
@@ -997,11 +997,12 @@ const T = {
   },
   heroProgs:  { no: 'programområder', en: 'program areas' },
   tabAll:     { no: 'Alle', en: 'All' },
-  tabCat:     { no: 'Kategori', en: 'Category' },
-  tabProg:    { no: 'Program', en: 'Program' },
-  chartSubAll:  { no: n => `${n} programserier · snittlinje i blått`, en: n => `${n} program series · average in blue` },
-  chartSubCat:  { no: n => `${n} serier i kategorien · snitt i blått`, en: n => `${n} series in category · average in blue` },
+  tabCat:     { no: 'Utdanningsprogram', en: 'Programme' },
+  tabProg:    { no: 'Programområde', en: 'Programme area' },
+  chartSubAll:  { no: n => `${n} programområder · snittlinje i blått`, en: n => `${n} programme areas · average in blue` },
+  chartSubCat:  { no: n => `${n} programområder i utdanningsprogrammet · snitt i blått`, en: n => `${n} programme areas in this programme · average in blue` },
   chartSubProg: { no: 'Én serie · hule punkter = ingen poenggrense', en: 'Single series · hollow dots = no threshold' },
+  officialName: { no: n => `Offisielt navn (Udir): ${n}`, en: n => `Official register name: ${n}` },
   midLabel:   { no: 'snitt', en: 'avg' },
   series:     { no: 'serier', en: 'series' },
   filterPh:   { no: 'Filtrer programområde …', en: 'Filter programs…' },
@@ -1150,7 +1151,11 @@ let HOME = null;          // bounds of the whole dataset, the map's home view
 let mapCat = 'all';
 let mapFylke = 'all';
 let current = null;                       // selected school
-let chart = { mode: 'all', cat: null, prog: null };
+// One utdanningsprogram lens for the whole app: the map dropdown, the chart
+// tabs and the list headers all read and write mapCat. The only panel-local
+// state is which programme-area row is selected; the mode is derived.
+let chart = { prog: null };
+const chartMode = () => chart.prog ? 'prog' : (mapCat !== 'all' ? 'cat' : 'all');
 
 function numericLatest(values) {
   const ys = Object.keys(values).sort();
@@ -1602,7 +1607,7 @@ function onMapFylke(v) {
       (v === 'all' || s.fylke === v) && s.programs.some(p => p.category === mapCat))) {
     mapCat = 'all';
   }
-  drawMarkers(); renderPanel(); renderLegend(); renderCatNote();
+  drawMarkers(); renderPanel(); renderLegend(); renderCatNote(); renderSide();
   const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon]);
   if (pts.length) {
     const box = L.latLngBounds(pts).pad(0.08);
@@ -1617,23 +1622,15 @@ function visibleSchools() {
     (mapCat === 'all' || s.programs.some(p => p.category === mapCat)));
 }
 
-function onMapCat(v) {
+function setLens(v) {
   mapCat = v;
+  document.getElementById('map-cat').value = v;
+  // a selected row survives any lens that still contains it
+  if (chart.prog && v !== 'all' && chart.prog.category !== v) chart.prog = null;
   drawMarkers(); renderLegend(); renderCatNote();
-  // the hero is computed through the same category lens as the chart and the
-  // list, so it has to be redrawn with them or it keeps quoting the old scope
-  if (current && document.getElementById('side').classList.contains('open')) {
-    // openSide() seeds the panel's scope from the lens; changing the lens with
-    // the panel open has to re-seed it the same way, or the figures narrow to
-    // the category while the list underneath still lists every programme
-    chart = { mode: v === 'all' ? 'all' : 'cat', cat: v === 'all' ? null : v, prog: null };
-    renderSide();
-  } else if (current && v !== 'all') {
-    chart.mode = 'cat'; chart.cat = v; chart.prog = null;
-    renderChartCard();
-    renderList();          // clear the now-stale selected-programme highlight
-  }
+  renderSide();
 }
+function onMapCat(v) { setLens(v); }
 
 /* ================= static chrome rendering ================= */
 function renderPanel() {
@@ -1704,7 +1701,7 @@ function renderLegend() {
 /* ================= sidebar ================= */
 function openSide(s) {
   current = s;
-  chart = { mode: mapCat === 'all' ? 'all' : 'cat', cat: mapCat === 'all' ? null : mapCat, prog: null };
+  chart.prog = null;                     // the lens itself is global
   const side = document.getElementById('side');
   side.removeAttribute('inert');
   side.classList.add('open');
@@ -1718,8 +1715,8 @@ function openSide(s) {
   setTimeout(() => document.querySelector('#s-photo .close')?.focus(), 60);
 }
 function clearScope() {
-  chart.mode = 'all'; chart.cat = null; chart.prog = null;
-  renderChartCard(); renderList();
+  chart.prog = null;
+  setLens('all');
 }
 function closeSide(fromHistory) {
   const side = document.getElementById('side');
@@ -1936,22 +1933,31 @@ function renderChartCard() {
   const tabs = document.querySelectorAll('#tabs button');
   tabs[0].textContent = t('tabAll'); tabs[1].textContent = t('tabCat'); tabs[2].textContent = t('tabProg');
   tabs.forEach(b => {
-    b.classList.toggle('on', b.dataset.mode === chart.mode);
+    b.classList.toggle('on', b.dataset.mode === chartMode());
     b.onclick = () => {
-      chart.mode = b.dataset.mode;
-      if (chart.mode === 'cat' && !chart.cat) chart.cat = current.programs[0].category;
-      if (chart.mode === 'prog' && !chart.prog) chart.prog = current.programs.find(p => numericLatest(p.values)) || current.programs[0];
-      renderChartCard(); renderList();
+      if (b.dataset.mode === 'all') {
+        chart.prog = null;
+        setLens('all');
+      } else if (b.dataset.mode === 'cat') {
+        chart.prog = null;
+        const present = [...new Set(current.programs.map(p => p.category))];
+        setLens(mapCat !== 'all' && present.includes(mapCat) ? mapCat : present[0]);
+      } else {
+        const pool = current.programs.filter(p => mapCat === 'all' || p.category === mapCat);
+        chart.prog = pool.find(p => numericLatest(p.values)) || pool[0] || null;
+        renderChartCard(); renderList();
+      }
     };
   });
   // category select inside chart
   const cs = document.getElementById('chart-cat');
-  if (chart.mode === 'cat') {
+  if (chartMode() === 'cat') {
     const present = [...new Set(current.programs.map(p => p.category))];
+    if (!present.includes(mapCat)) present.push(mapCat);   // lens the school lacks
     cs.hidden = false;
     cs.innerHTML = present.map(c => `<option value="${c}">${CATS[c][lang]}</option>`).join('');
-    cs.value = chart.cat = chart.cat && present.includes(chart.cat) ? chart.cat : present[0];
-    cs.onchange = () => { chart.cat = cs.value; renderChartCard(); renderList(); };
+    cs.value = mapCat;
+    cs.onchange = () => setLens(cs.value);
   } else cs.hidden = true;
   drawChart();
 }
@@ -1966,7 +1972,7 @@ function drawChart() {
     : own;
   const W = 444, H = 190, ML = 30, MR = 12, MT = 16, MB = 22;
   const iw = W - ML - MR, ih = H - MT - MB;
-  const series = seriesFor(chart.mode, chart.cat, chart.prog);
+  const series = seriesFor(chartMode(), mapCat, chart.prog);
   document.getElementById('chart-tip').style.display = 'none';  // stale on redraw
   const svgHost = document.getElementById('chart-svg');
   if (years.length < 2) {
@@ -1991,13 +1997,13 @@ function drawChart() {
   const x = i => ML + i * iw / (years.length - 1);
   const y = v => MT + ih - (Math.min(Math.max(v, LO), HI) - LO) * ih / (HI - LO);
   const sub = document.getElementById('chart-sub');
-  sub.textContent = chart.mode === 'prog'
+  sub.textContent = chartMode() === 'prog'
     ? `${chart.prog ? progName(chart.prog) + ' · ' : ''}${t('chartSubProg')}`
-    : chart.mode === 'cat' ? t('chartSubCat', series.length) : t('chartSubAll', series.length);
-  if (chart.mode !== 'prog') {
+    : chartMode() === 'cat' ? t('chartSubCat', series.length) : t('chartSubAll', series.length);
+  if (chartMode() !== 'prog') {
     const cy = [...new Set(series.flatMap(p => Object.keys(p.values)))].sort().pop();
-    const cm = openMix(chart.mode === 'cat'
-      ? current.programs.filter(p => p.category === chart.cat) : current.programs, cy);
+    const cm = openMix(chartMode() === 'cat'
+      ? current.programs.filter(p => p.category === mapCat) : current.programs, cy);
     if (cm.mostly) sub.textContent += ` · ⚠ ${t('mostlyOpenShort')}`;
   }
 
@@ -2032,7 +2038,7 @@ function drawChart() {
       `<polyline points="${r.join(' ')}" fill="none" stroke="${stroke}" stroke-width="${width}" stroke-opacity="${op}" stroke-linejoin="round" stroke-linecap="round"/>`).join('');
   };
 
-  if (chart.mode === 'prog' && chart.prog) {
+  if (chart.prog) {
     const p = chart.prog;
     svg += lineOf(p, 'var(--accent)', 2.5, 1);
     years.forEach((yr, i) => {
@@ -2068,7 +2074,7 @@ function drawChart() {
     const yr = years[bi];
     xh.setAttribute('x1', x(bi)); xh.setAttribute('x2', x(bi)); xh.setAttribute('visibility', 'visible');
     let body;
-    if (chart.mode === 'prog' && chart.prog) {
+    if (chart.prog) {
       const v = chart.prog.values[yr];
       body = v === undefined ? '–'
         : isPoints(v) ? `${fmt(v)} ${t('pts')}`
@@ -2092,17 +2098,16 @@ function drawChart() {
 /* ================= program list ================= */
 function renderList() {
   const q = (document.getElementById('s-filter').value || '').toLowerCase();
-  // One scope for the whole sidebar: the chart tabs (and the map's category
-  // lens, which seeds them) decide what the list shows too. Two independent
-  // category filters was the confusing part.
-  const scope = chart.mode === 'cat' ? chart.cat
-              : chart.mode === 'prog' && chart.prog ? chart.prog.category : null;
+  // One scope for the whole app: the utdanningsprogram lens. Selecting a
+  // programme-area row narrows the chart but never the list or the map.
+  const scope = mapCat !== 'all' ? mapCat : null;
   const inScope = current.programs.filter(p => !scope || p.category === scope);
   const { regular, orphans, prioNames } = partitionPrograms(
     // search both languages: an English reader types "health", a Norwegian
     // parent types "helse", and either should find the row
     inScope.filter(p => p.program.toLowerCase().includes(q)
-                     || (p.program_en || '').toLowerCase().includes(q)));
+                     || (p.program_en || '').toLowerCase().includes(q)
+                     || (p.official || '').toLowerCase().includes(q)));
   const byCat = {};
   [...regular, ...orphans].forEach(p => (byCat[p.category] = byCat[p.category] || []).push(p));
   let html = '';
@@ -2137,7 +2142,7 @@ function renderList() {
         badged.add(key);
         badge = `<span class="fbadge" title="${esc(t('fortrinnTitle'))}">${t('prioBadge')}</span>`;
       }
-      const sel = chart.mode === 'prog' && chart.prog === p ? ' sel' : '';
+      const sel = chart.prog === p ? ' sel' : '';
       let chip = '';
       if (chanceMode() && !orphan) {
         const pr = predFor(current, p);
@@ -2153,15 +2158,15 @@ function renderList() {
       const pick = orphan ? '' : `<span class="pick${on ? ' on' : ''}" role="button" tabindex="0" data-idx="${current.programs.indexOf(p)}"` +
         ` aria-pressed="${on}" aria-label="${esc(t(on ? 'pickRemove' : 'pickAdd'))}" title="${esc(t(on ? 'pickRemove' : 'pickAdd'))}">${on ? '✓' : '+'}</span>`;
       html += `<button class="prow${sel}${orphan ? ' muted' : ''}" data-cat="${c}" data-idx="${current.programs.indexOf(p)}">` +
-              `<span class="nm">${esc(progName(p))}${badge}</span>${chip}<span class="lv">${esc(p.level)}</span><span class="val">${val}</span>${pick}</button>`;
+              `<span class="nm"${p.official ? ` title="${esc(t('officialName', p.official))}"` : ''}>${esc(progName(p))}${badge}</span>${chip}<span class="lv">${esc(p.level)}</span><span class="val">${val}</span>${pick}</button>`;
     }
   }
   const el = document.getElementById('s-list');
   el.innerHTML = html || `<div class="cat-head">${t('noMatch')}</div>`;
   el.querySelectorAll('.cat-head[data-cat]').forEach(b =>
-    b.onclick = () => { chart.mode = 'cat'; chart.cat = b.dataset.cat; renderChartCard(); renderList(); });
+    b.onclick = () => { chart.prog = null; setLens(b.dataset.cat); });
   el.querySelectorAll('.prow').forEach(b =>
-    b.onclick = () => { chart.mode = 'prog'; chart.prog = current.programs[+b.dataset.idx]; renderChartCard(); renderList(); });
+    b.onclick = () => { chart.prog = current.programs[+b.dataset.idx]; renderChartCard(); renderList(); });
   // the pick toggle sits inside the row button: stop the row from selecting
   el.querySelectorAll('.pick').forEach(k => {
     const act = ev => { ev.preventDefault(); ev.stopPropagation(); toggleChoice(current, current.programs[+k.dataset.idx]); };

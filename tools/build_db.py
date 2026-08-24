@@ -4,7 +4,7 @@
 Schema:
   schools(name PK, fylke, fylkesnummer, round, catchment, lat, lon, orgnr, url,
           wiki_url, address, photo, photo_source)
-  samples(school, fylke, program, occurrence, category, level, year, round,
+  samples(school, fylke, program, occurrence, category, grep_code, level, year, round,
           points REAL NULL, status TEXT)   -- one row per (program, school, year)
     status: 'points' (points set), 'open' (no waitlist, everyone admitted),
             'priority' (fortrinnsrett quota), 'documentation' (admission by
@@ -54,6 +54,7 @@ def main():
         program TEXT NOT NULL,
         occurrence INTEGER NOT NULL DEFAULT 0,
         category TEXT NOT NULL,
+        grep_code TEXT,
         level TEXT,
         year INTEGER NOT NULL,
         round TEXT,
@@ -106,20 +107,20 @@ def main():
                     continue
                 rnd = (c.get('round_years') or {}).get(str(year)) or s.get('round')
                 rows.append((s['name'], s.get('fylke'), p['program'], occ, p['category'],
-                             p.get('level'), int(year), rnd, points, status))
+                             p.get('grep'), p.get('level'), int(year), rnd, points, status))
             pr = (ment.get('programs') or {}).get(f"{k}|{p['level']}|{occ}")
             if pr:
                 fc.append((s['name'], s.get('fylke'), p['program'], occ, p.get('level'),
                            p['category'], ment['year'], ment.get('round'),
                            pr['m'], pr['s'], pr['pi'], pr['h']))
-    con.executemany('INSERT INTO samples VALUES (?,?,?,?,?,?,?,?,?,?)', rows)
+    con.executemany('INSERT INTO samples VALUES (?,?,?,?,?,?,?,?,?,?,?)', rows)
     con.executemany('INSERT INTO forecasts VALUES (?,?,?,?,?,?,?,?,?,?,?,?)', fc)
     con.commit()
 
     with open(CSV, 'w', newline='') as f:
         w = csv.writer(f)
-        w.writerow(['school', 'fylke', 'program', 'occurrence', 'category', 'level', 'year',
-                    'round', 'points', 'status'])
+        w.writerow(['school', 'fylke', 'program', 'occurrence', 'category', 'grep_code',
+                    'level', 'year', 'round', 'points', 'status'])
         w.writerows(rows)
     with open(FCSV, 'w', newline='') as f:
         w = csv.writer(f)
