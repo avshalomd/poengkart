@@ -32,14 +32,14 @@ empirical distribution of the backtest's own forecast errors (see *Spread*).
 
 Two fits, one structure. Every effect is a random effect, so a school or
 programme with a single year of data borrows its level from the hundreds of
-similar ones around it instead of being trusted on its own — 564 of the 1 653
+similar ones around it instead of being trusted on its own — 567 of the 1 670
 series have exactly one year.
 
-**Level** (on the 5 259 cells that carry a number):
+**Level** (on the 5 433 cells that carry a number):
 
     y = μ + school + category + programme|level + series + county×year + round offset + ε
 
-**Fill** (on all 7 734 cells that competed on points — number, 0,0 or "no waitlist"):
+**Fill** (on all 7 934 cells that competed on points — number, 0,0 or "no waitlist"):
 
     logit P(filled) = ν + school + category + programme|level + series + county×year + round-3 shift
 
@@ -88,10 +88,10 @@ years of history the series had when it was forecast:
 
 | history | s |
 |---|---|
-| 0 years | 7.7 |
-| 1 year | 6.2 |
+| 0 years | 7.2 |
+| 1 year | 6.4 |
 | 2–3 years | 5.6 |
-| 4+ years | 4.6 |
+| 4+ years | 4.5 |
 
 F, the error distribution, is likewise the empirical distribution of those
 standardised errors (41 quantiles in `meta.error_quantiles`) rather than a
@@ -116,7 +116,7 @@ flatter nothing and mislead the calibration.
 | 2–3 years | 352 | 5.6 | 7.1 | 6.6 | 42% |
 | 4+ years | 707 | 5.0 | 5.9 | 6.1 | 52% |
 
-The 80% interval (m ± 1.28 s) contained the published figure 82% of the time.
+The 80% interval (m ± 1.28 s) contained the published figure 81% of the time.
 
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.97 filled 0.82 of the time in the held-out years. So π is passed
@@ -178,7 +178,7 @@ it is a measure of demand, not of quality, and the app says so.
 ## The model as a detector
 
 The 25 cells the fitted model finds least plausible are listed in
-`meta.outliers` (|z| ≥ 3: 49 of 5 259 cells). Six of the top twenty-five were
+`meta.outliers` (|z| ≥ 3: 54 of 5 433 cells). Six of the top twenty-five were
 Vestland 2022 — clustering of that kind has meant a parser problem before, so
 the three largest were checked against the county's own PDF
 (`vestland_2022-23_1inntak.pdf`): Dale helse- og oppvekstfag Vg1 **12,50**,

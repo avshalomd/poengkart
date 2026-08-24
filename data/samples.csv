@@ -1328,6 +1328,9 @@ Vinstra vidaregåande skule,Innlandet,Tømrer,0,BA,BATMF2----,Vg2,2025,2,,open
 Øvrebyen videregående skole,Innlandet,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2023,2,,open
 Øvrebyen videregående skole,Innlandet,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2024,2,,open
 Øvrebyen videregående skole,Innlandet,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2025,2,,open
+Bjerke videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2017,1,38.3,points
+Bjerke videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2018,1,36.1,points
+Bjerke videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2019,1,40.3,points
 Bjerke videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2020,1,41.3,points
 Bjerke videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2021,1,40.0,points
 Bjerke videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2022,1,40.7,points
@@ -1335,8 +1338,12 @@ Bjerke videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2023,1,40.0,point
 Bjerke videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,1,40.0,points
 Bjerke videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,1,40.4,points
 Bjerke videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,1,38.8,points
+Bjerke videregående skole,Oslo,"Studiespes, business",0,ST,STUSP1----,Vg1,2018,1,25.6,points
+Bjerke videregående skole,Oslo,"Studiespes, business",0,ST,STUSP1----,Vg1,2019,1,37.8,points
 Bjerke videregående skole,Oslo,"Studiespes, business",0,ST,STUSP1----,Vg1,2020,1,38.8,points
 Bjerke videregående skole,Oslo,"Studiespes, business",0,ST,STUSP1----,Vg1,2021,1,39.3,points
+Bjerke videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,38.5,points
+Bjerke videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,41.5,points
 Bjerke videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,42.7,points
 Bjerke videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,42.0,points
 Bjerke videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,38.9,points
@@ -1344,12 +1351,17 @@ Bjerke videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,1,
 Bjerke videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,40.0,points
 Bjerke videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,38.7,points
 Bjerke videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,38.3,points
+Bjerke videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,35.6,points
+Bjerke videregående skole,Oslo,Studiespesialisering med science,0,ST,STUSP1----,Vg1,2019,1,31.8,points
 Bjørnholt videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2021,1,27.3,points
 Bjørnholt videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2022,1,,open
 Bjørnholt videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2023,1,16.4,points
 Bjørnholt videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,1,,open
 Bjørnholt videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,,open
 Bjørnholt videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,1,20.9,points
+Bjørnholt videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2017,1,17.0,points
+Bjørnholt videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2018,1,23.5,points
+Bjørnholt videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2019,1,26.5,points
 Bjørnholt videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2020,1,21.5,points
 Bjørnholt videregående skole,Oslo,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2021,1,22.9,points
 Bjørnholt videregående skole,Oslo,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2022,1,30.0,points
@@ -1357,7 +1369,12 @@ Bjørnholt videregående skole,Oslo,Informasjonsteknologi og medieproduksjon,0,I
 Bjørnholt videregående skole,Oslo,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,1,20.7,points
 Bjørnholt videregående skole,Oslo,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,1,,open
 Bjørnholt videregående skole,Oslo,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,1,,open
+Bjørnholt videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2017,1,,open
+Bjørnholt videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2018,1,,open
+Bjørnholt videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2019,1,15.7,points
 Bjørnholt videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2020,1,,open
+Bjørnholt videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,,open
+Bjørnholt videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,,open
 Bjørnholt videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,,open
 Bjørnholt videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,,open
 Bjørnholt videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,,open
@@ -1365,6 +1382,9 @@ Bjørnholt videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,202
 Bjørnholt videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,,open
 Bjørnholt videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,18.4,points
 Bjørnholt videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,,open
+Bjørnholt videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,,open
+Blindern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,41.5,points
+Blindern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,44.2,points
 Blindern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,45.3,points
 Blindern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,45.3,points
 Blindern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,44.6,points
@@ -1372,6 +1392,10 @@ Blindern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,
 Blindern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,33.6,points
 Blindern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,32.5,points
 Blindern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,34.4,points
+Blindern videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,41.5,points
+Blindern videregående skole,Oslo,"Studiespesialisering med IB, MYP5",0,ST,STUSP1----,Vg1,2017,1,,documentation
+Blindern videregående skole,Oslo,"Studiespesialisering med IB, MYP5",0,ST,STUSP1----,Vg1,2018,1,,documentation
+Blindern videregående skole,Oslo,"Studiespesialisering med IB, MYP5",0,ST,STUSP1----,Vg1,2019,1,,documentation
 Blindern videregående skole,Oslo,"Studiespesialisering med IB, MYP5",0,ST,STUSP1----,Vg1,2020,1,,documentation
 Blindern videregående skole,Oslo,"Studiespesialisering med IB, MYP5",0,ST,STUSP1----,Vg1,2021,1,,documentation
 Blindern videregående skole,Oslo,"Studiespesialisering med IB, MYP5",0,ST,STUSP1----,Vg1,2022,1,,documentation
@@ -1379,6 +1403,12 @@ Blindern videregående skole,Oslo,"Studiespesialisering med IB, MYP5",0,ST,STUSP
 Blindern videregående skole,Oslo,"Studiespesialisering med IB, MYP5",0,ST,STUSP1----,Vg1,2024,1,,documentation
 Blindern videregående skole,Oslo,"Studiespesialisering med IB, MYP5",0,ST,STUSP1----,Vg1,2025,1,,documentation
 Blindern videregående skole,Oslo,"Studiespesialisering med IB, MYP5",0,ST,STUSP1----,Vg1,2026,1,,documentation
+Edvard Munch videregående skole,Oslo,Design og håndverk,0,FD,DHDHV1----,Vg1,2017,1,34.0,points
+Edvard Munch videregående skole,Oslo,Design og håndverk,0,FD,DHDHV1----,Vg1,2018,1,36.0,points
+Edvard Munch videregående skole,Oslo,Design og håndverk,0,FD,DHDHV1----,Vg1,2019,1,34.7,points
+Edvard Munch videregående skole,Oslo,"Design og håndverk, SK 3 år",0,FD,DHDHV1----,Vg1,2017,1,39.4,points
+Edvard Munch videregående skole,Oslo,"Design og håndverk, SK 3 år",0,FD,DHDHV1----,Vg1,2018,1,45.0,points
+Edvard Munch videregående skole,Oslo,"Design og håndverk, SK 3 år",0,FD,DHDHV1----,Vg1,2019,1,44.1,points
 Edvard Munch videregående skole,Oslo,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2020,1,34.5,points
 Edvard Munch videregående skole,Oslo,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2021,1,35.5,points
 Edvard Munch videregående skole,Oslo,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2022,1,38.2,points
@@ -1407,6 +1437,9 @@ Edvard Munch videregående skole,Oslo,"Håndverk, design og produkutvikl. Trearb
 Edvard Munch videregående skole,Oslo,"Håndverk, design og produkutvikl. Trearb. SK 3 år",0,DT,DTDTH1----,Vg1,2024,1,44.4,points
 Edvard Munch videregående skole,Oslo,"Håndverk, design og produkutvikl. Trearb. SK 3 år",0,DT,DTDTH1----,Vg1,2025,1,46.9,points
 Edvard Munch videregående skole,Oslo,"Håndverk, design og produkutvikl. Trearb. SK 3 år",0,DT,DTDTH1----,Vg1,2026,1,46.9,points
+Edvard Munch videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2017,1,43.9,points
+Edvard Munch videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2018,1,45.3,points
+Edvard Munch videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2019,1,44.6,points
 Edvard Munch videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2020,1,48.8,points
 Edvard Munch videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2021,1,51.3,points
 Edvard Munch videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2022,1,48.6,points
@@ -1414,6 +1447,9 @@ Edvard Munch videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1-
 Edvard Munch videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,1,50.0,points
 Edvard Munch videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,1,48.1,points
 Edvard Munch videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2026,1,46.0,points
+Edvard Munch videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2017,1,,documentation
+Edvard Munch videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2018,1,,documentation
+Edvard Munch videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2019,1,,documentation
 Edvard Munch videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2020,1,,documentation
 Edvard Munch videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2021,1,,documentation
 Edvard Munch videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2022,1,,documentation
@@ -1421,6 +1457,8 @@ Edvard Munch videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg
 Edvard Munch videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2024,1,,documentation
 Edvard Munch videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2025,1,,documentation
 Edvard Munch videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2026,1,,documentation
+Edvard Munch videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,45.6,points
+Edvard Munch videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,47.8,points
 Edvard Munch videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,50.0,points
 Edvard Munch videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,50.0,points
 Edvard Munch videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,49.3,points
@@ -1428,6 +1466,10 @@ Edvard Munch videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2
 Edvard Munch videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,48.8,points
 Edvard Munch videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,48.1,points
 Edvard Munch videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,50.0,points
+Edvard Munch videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,43.5,points
+Elvebakken videregående skole,Oslo,Design og håndverk,0,FD,DHDHV1----,Vg1,2017,1,24.5,points
+Elvebakken videregående skole,Oslo,Design og håndverk,0,FD,DHDHV1----,Vg1,2018,1,31.9,points
+Elvebakken videregående skole,Oslo,Design og håndverk,0,FD,DHDHV1----,Vg1,2019,1,35.6,points
 Elvebakken videregående skole,Oslo,"Elektro og datatekn. elenergi, SK 3 år",0,EL,ELELE1----,Vg1,2021,1,45.3,points
 Elvebakken videregående skole,Oslo,"Elektro og datatekn. elenergi, SK 3 år",0,EL,ELELE1----,Vg1,2022,1,47.1,points
 Elvebakken videregående skole,Oslo,"Elektro og datatekn. elenergi, SK 3 år",0,EL,ELELE1----,Vg1,2023,1,44.3,points
@@ -1440,7 +1482,12 @@ Elvebakken videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1
 Elvebakken videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,1,40.0,points
 Elvebakken videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,38.8,points
 Elvebakken videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,1,41.3,points
+Elvebakken videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2017,1,36.1,points
+Elvebakken videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2018,1,39.1,points
+Elvebakken videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2019,1,39.4,points
 Elvebakken videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2020,1,38.1,points
+Elvebakken videregående skole,Oslo,"Elektrofag, elenergi, SK 3 år",0,EL,ELELE1----,Vg1,2018,1,41.9,points
+Elvebakken videregående skole,Oslo,"Elektrofag, elenergi, SK 3 år",0,EL,ELELE1----,Vg1,2019,1,47.1,points
 Elvebakken videregående skole,Oslo,"Elektrofag, elenergi, SK 3 år",0,EL,ELELE1----,Vg1,2020,1,41.3,points
 Elvebakken videregående skole,Oslo,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2020,1,31.8,points
 Elvebakken videregående skole,Oslo,"IT og medieproduksjon, SK 3 år",0,IM,IMMED2----,Vg1,2022,1,50.0,points
@@ -1457,6 +1504,9 @@ Elvebakken videregående skole,Oslo,Informasjonsteknologi og medieproduksjon,0,I
 Elvebakken videregående skole,Oslo,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,1,41.7,points
 Elvebakken videregående skole,Oslo,"Informasjonsteknologi og medieproduksjon, SK 3 år",0,IM,IMIKM1----,Vg1,2020,1,49.3,points
 Elvebakken videregående skole,Oslo,"Informasjonsteknologi og medieproduksjon, SK 3 år",0,IM,IMIKM1----,Vg1,2021,1,46.8,points
+Elvebakken videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2017,1,41.7,points
+Elvebakken videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2018,1,43.5,points
+Elvebakken videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2019,1,43.8,points
 Elvebakken videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2020,1,48.0,points
 Elvebakken videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2021,1,50.0,points
 Elvebakken videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2022,1,48.3,points
@@ -1464,6 +1514,12 @@ Elvebakken videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1---
 Elvebakken videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,1,47.7,points
 Elvebakken videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,1,46.9,points
 Elvebakken videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2026,1,45.0,points
+Elvebakken videregående skole,Oslo,Medieproduksjon,0,IM,IMMED2----,Vg1,2017,1,38.5,points
+Elvebakken videregående skole,Oslo,Medieproduksjon,0,IM,IMMED2----,Vg1,2018,1,39.7,points
+Elvebakken videregående skole,Oslo,Medieproduksjon,0,IM,IMMED2----,Vg1,2019,1,41.3,points
+Elvebakken videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2017,1,43.8,points
+Elvebakken videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2018,1,45.0,points
+Elvebakken videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2019,1,45.0,points
 Elvebakken videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2020,1,47.8,points
 Elvebakken videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2021,1,47.8,points
 Elvebakken videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2022,1,49.3,points
@@ -1471,6 +1527,8 @@ Elvebakken videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,
 Elvebakken videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,1,49.1,points
 Elvebakken videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,1,48.1,points
 Elvebakken videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,1,47.5,points
+Elvebakken videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,51.2,points
+Elvebakken videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,52.2,points
 Elvebakken videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,52.3,points
 Elvebakken videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,52.7,points
 Elvebakken videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,53.6,points
@@ -1478,13 +1536,20 @@ Elvebakken videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,202
 Elvebakken videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,52.9,points
 Elvebakken videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,50.2,points
 Elvebakken videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,53.6,points
+Elvebakken videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,49.7,points
 Etterstad videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2021,1,35.3,points
 Etterstad videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2022,1,34.0,points
 Etterstad videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2023,1,33.1,points
 Etterstad videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,1,34.7,points
 Etterstad videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,35.3,points
 Etterstad videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,1,37.1,points
+Etterstad videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2017,1,28.7,points
+Etterstad videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2018,1,31.6,points
+Etterstad videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2019,1,34.4,points
 Etterstad videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2020,1,34.1,points
+Etterstad videregående skole,Oslo,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2017,1,15.0,points
+Etterstad videregående skole,Oslo,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2018,1,22.0,points
+Etterstad videregående skole,Oslo,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2019,1,21.3,points
 Etterstad videregående skole,Oslo,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2020,1,28.6,points
 Etterstad videregående skole,Oslo,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2021,1,19.3,points
 Etterstad videregående skole,Oslo,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2022,1,12.7,points
@@ -1499,6 +1564,12 @@ Etterstad videregående skole,Oslo,"Salg, service og reiseliv",0,SR,SRSSR1----,V
 Etterstad videregående skole,Oslo,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,1,,open
 Etterstad videregående skole,Oslo,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,16.3,points
 Etterstad videregående skole,Oslo,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,1,13.2,points
+Etterstad videregående skole,Oslo,Service og samferdsel,0,SR,SSSSA1----,Vg1,2017,1,17.3,points
+Etterstad videregående skole,Oslo,Service og samferdsel,0,SR,SSSSA1----,Vg1,2018,1,15.3,points
+Etterstad videregående skole,Oslo,Service og samferdsel,0,SR,SSSSA1----,Vg1,2019,1,12.5,points
+Etterstad videregående skole,Oslo,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2017,1,18.5,points
+Etterstad videregående skole,Oslo,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2018,1,23.8,points
+Etterstad videregående skole,Oslo,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2019,1,5.6,points
 Etterstad videregående skole,Oslo,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,1,17.9,points
 Etterstad videregående skole,Oslo,Teknolog og idustrifag,0,TP,TPTIP1----,Vg1,2021,1,24.3,points
 Etterstad videregående skole,Oslo,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2022,1,15.4,points
@@ -1506,6 +1577,9 @@ Etterstad videregående skole,Oslo,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1
 Etterstad videregående skole,Oslo,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,1,25.7,points
 Etterstad videregående skole,Oslo,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,1,25.6,points
 Etterstad videregående skole,Oslo,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,1,27.5,points
+Foss videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2017,1,,documentation
+Foss videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2018,1,,documentation
+Foss videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2019,1,,documentation
 Foss videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2020,1,,documentation
 Foss videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2021,1,,documentation
 Foss videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2022,1,,documentation
@@ -1513,6 +1587,8 @@ Foss videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2023,1
 Foss videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2024,1,,documentation
 Foss videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2025,1,,documentation
 Foss videregående skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2026,1,,documentation
+Foss videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,46.5,points
+Foss videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,47.6,points
 Foss videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,51.3,points
 Foss videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,48.0,points
 Foss videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,48.6,points
@@ -1520,6 +1596,7 @@ Foss videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,1,50
 Foss videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,50.6,points
 Foss videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,49.4,points
 Foss videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,50.0,points
+Foss videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,44.1,points
 Fyrstikkalleen skole,Oslo,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2020,1,36.8,points
 Fyrstikkalleen skole,Oslo,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2021,1,39.0,points
 Fyrstikkalleen skole,Oslo,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2022,1,40.8,points
@@ -1527,6 +1604,9 @@ Fyrstikkalleen skole,Oslo,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1--
 Fyrstikkalleen skole,Oslo,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,1,39.2,points
 Fyrstikkalleen skole,Oslo,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,1,32.2,points
 Fyrstikkalleen skole,Oslo,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,1,36.6,points
+Fyrstikkalleen skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2017,1,40.6,points
+Fyrstikkalleen skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2018,1,40.6,points
+Fyrstikkalleen skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2019,1,41.5,points
 Fyrstikkalleen skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2020,1,43.3,points
 Fyrstikkalleen skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2021,1,41.7,points
 Fyrstikkalleen skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2022,1,43.8,points
@@ -1534,6 +1614,8 @@ Fyrstikkalleen skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2023,1,42.
 Fyrstikkalleen skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,1,40.0,points
 Fyrstikkalleen skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,1,41.1,points
 Fyrstikkalleen skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,1,36.5,points
+Fyrstikkalleen skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,45.0,points
+Fyrstikkalleen skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,45.0,points
 Fyrstikkalleen skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,44.3,points
 Fyrstikkalleen skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,45.2,points
 Fyrstikkalleen skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,43.6,points
@@ -1541,6 +1623,10 @@ Fyrstikkalleen skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,1,44.1,p
 Fyrstikkalleen skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,42.7,points
 Fyrstikkalleen skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,44.0,points
 Fyrstikkalleen skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,42.4,points
+Fyrstikkalleen skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,43.8,points
+Hartvig Nissens skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2017,1,,documentation
+Hartvig Nissens skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2018,1,,documentation
+Hartvig Nissens skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2019,1,,documentation
 Hartvig Nissens skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2020,1,,documentation
 Hartvig Nissens skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2021,1,,documentation
 Hartvig Nissens skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2022,1,,documentation
@@ -1548,6 +1634,8 @@ Hartvig Nissens skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2023,1,,d
 Hartvig Nissens skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2024,1,,documentation
 Hartvig Nissens skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2025,1,,documentation
 Hartvig Nissens skole,Oslo,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2026,1,,documentation
+Hartvig Nissens skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,37.1,points
+Hartvig Nissens skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,40.6,points
 Hartvig Nissens skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,41.8,points
 Hartvig Nissens skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,42.0,points
 Hartvig Nissens skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,42.1,points
@@ -1555,6 +1643,10 @@ Hartvig Nissens skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,1,42.4,
 Hartvig Nissens skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,45.0,points
 Hartvig Nissens skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,47.1,points
 Hartvig Nissens skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,50.3,points
+Hartvig Nissens skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,38.2,points
+Hellerud videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2017,1,19.3,points
+Hellerud videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2018,1,26.0,points
+Hellerud videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2019,1,29.4,points
 Hellerud videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,1,26.0,points
 Hellerud videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2021,1,30.7,points
 Hellerud videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2022,1,32.3,points
@@ -1562,6 +1654,10 @@ Hellerud videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,20
 Hellerud videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,1,28.6,points
 Hellerud videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,1,30.7,points
 Hellerud videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,1,31.0,points
+Hellerud videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2017,1,,open
+Hellerud videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2018,1,,open
+Hellerud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,18.1,points
+Hellerud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,25.6,points
 Hellerud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,31.6,points
 Hellerud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,36.1,points
 Hellerud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,35.4,points
@@ -1569,6 +1665,10 @@ Hellerud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,
 Hellerud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,33.3,points
 Hellerud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,31.3,points
 Hellerud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,27.1,points
+Hellerud videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,,open
+Hersleb videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2017,1,29.2,points
+Hersleb videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2018,1,29.4,points
+Hersleb videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2019,1,29.1,points
 Hersleb videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,1,30.7,points
 Hersleb videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2021,1,26.4,points
 Hersleb videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2022,1,25.7,points
@@ -1580,6 +1680,8 @@ Hersleb videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,V
 Hersleb videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,1,,open
 Hersleb videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,1,,open
 Hersleb videregående skole,Oslo,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2026,1,,open
+Hersleb videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,,open
+Hersleb videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,,open
 Hersleb videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,,open
 Hersleb videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,,open
 Hersleb videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,,open
@@ -1587,14 +1689,24 @@ Hersleb videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,1
 Hersleb videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,,open
 Hersleb videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,,open
 Hersleb videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,,open
+Hersleb videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,,open
+Hersleb videregående skole,Oslo,"Studiespesialisering, komp.løp",0,ST,STUSP1----,Vg1,2017,1,52.5,points
+Hersleb videregående skole,Oslo,"Studiespesialisering, komp.løp",0,ST,STUSP1----,Vg1,2018,1,49.4,points
+Holtet videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2017,1,,open
+Holtet videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2018,1,22.0,points
+Holtet videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2019,1,22.8,points
 Holtet videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,1,26.9,points
 Holtet videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2021,1,25.7,points
 Holtet videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2022,1,21.4,points
 Holtet videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2023,1,24.7,points
+Holtet videregående skole,Oslo,"Helse/oppvekst, ambulanse, SK 3 år",0,HS,HSHSF1----,Vg1,2018,1,34.1,points
+Holtet videregående skole,Oslo,"Helse/oppvekst, ambulanse, SK 3 år",0,HS,HSHSF1----,Vg1,2019,1,41.2,points
 Holtet videregående skole,Oslo,"Helse/oppvekst, ambulanse, SK 3 år",0,HS,HSHSF1----,Vg1,2020,1,37.6,points
 Holtet videregående skole,Oslo,"Helse/oppvekst, ambulanse, SK 3 år",0,HS,HSHSF1----,Vg1,2021,1,39.3,points
 Holtet videregående skole,Oslo,"Helse/oppvekst, ambulanse, SK 3 år",0,HS,HSHSF1----,Vg1,2022,1,40.8,points
 Holtet videregående skole,Oslo,"Helse/oppvekst, ambulanse, SK 3 år",0,HS,HSHSF1----,Vg1,2023,1,42.2,points
+Kongshavn videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,32.5,points
+Kongshavn videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,36.1,points
 Kongshavn videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,39.3,points
 Kongshavn videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,40.0,points
 Kongshavn videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,39.0,points
@@ -1602,6 +1714,10 @@ Kongshavn videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023
 Kongshavn videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,38.1,points
 Kongshavn videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,40.0,points
 Kongshavn videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,40.7,points
+Kongshavn videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,30.7,points
+Kuben videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2017,1,31.7,points
+Kuben videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2018,1,33.9,points
+Kuben videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2019,1,36.7,points
 Kuben videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,1,37.8,points
 Kuben videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2021,1,38.7,points
 Kuben videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2022,1,38.7,points
@@ -1609,6 +1725,9 @@ Kuben videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2023,
 Kuben videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,1,36.7,points
 Kuben videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,1,39.1,points
 Kuben videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,1,37.1,points
+Kuben videregående skole,Oslo,"Bygg- og anleggsteknikk, YSK 4 år",0,BA,BABAT1----,Vg1,2017,1,40.6,points
+Kuben videregående skole,Oslo,"Bygg- og anleggsteknikk, YSK 4 år",0,BA,BABAT1----,Vg1,2018,1,37.6,points
+Kuben videregående skole,Oslo,"Bygg- og anleggsteknikk, YSK 4 år",0,BA,BABAT1----,Vg1,2019,1,38.3,points
 Kuben videregående skole,Oslo,"Bygg- og anleggsteknikk, YSK 4 år",0,BA,BABAT1----,Vg1,2020,1,38.6,points
 Kuben videregående skole,Oslo,"Bygg- og anleggsteknikk, YSK 4 år",0,BA,BABAT1----,Vg1,2021,1,40.3,points
 Kuben videregående skole,Oslo,"Bygg- og anleggsteknikk, YSK 4 år",0,BA,BABAT1----,Vg1,2022,1,37.7,points
@@ -1616,6 +1735,9 @@ Kuben videregående skole,Oslo,"Bygg- og anleggsteknikk, YSK 4 år",0,BA,BABAT1-
 Kuben videregående skole,Oslo,"Bygg- og anleggsteknikk, YSK 4 år",0,BA,BABAT1----,Vg1,2024,1,40.6,points
 Kuben videregående skole,Oslo,"Bygg- og anleggsteknikk, YSK 4 år",0,BA,BABAT1----,Vg1,2025,1,33.3,points
 Kuben videregående skole,Oslo,"Bygg- og anleggsteknikk, YSK 4 år",0,BA,BABAT1----,Vg1,2026,1,42.4,points
+Kuben videregående skole,Oslo,Design og håndverk,0,FD,DHDHV1----,Vg1,2017,1,29.7,points
+Kuben videregående skole,Oslo,Design og håndverk,0,FD,DHDHV1----,Vg1,2018,1,31.3,points
+Kuben videregående skole,Oslo,Design og håndverk,0,FD,DHDHV1----,Vg1,2019,1,28.7,points
 Kuben videregående skole,Oslo,"Elektro og datatekn., autom, SK 3 år",0,EL,ELELE1----,Vg1,2021,1,43.6,points
 Kuben videregående skole,Oslo,"Elektro og datatekn., autom, SK 3 år",0,EL,ELELE1----,Vg1,2022,1,46.2,points
 Kuben videregående skole,Oslo,"Elektro og datatekn., autom, SK 3 år",0,EL,ELELE1----,Vg1,2023,1,40.8,points
@@ -1628,8 +1750,16 @@ Kuben videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2023
 Kuben videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,1,38.1,points
 Kuben videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,38.0,points
 Kuben videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,1,39.3,points
+Kuben videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2017,1,34.7,points
+Kuben videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2018,1,36.9,points
+Kuben videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2019,1,37.8,points
 Kuben videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2020,1,37.3,points
+Kuben videregående skole,Oslo,"Elektrofag, autom, SK 3 år",0,EL,ELELE1----,Vg1,2018,1,42.5,points
+Kuben videregående skole,Oslo,"Elektrofag, autom, SK 3 år",0,EL,ELELE1----,Vg1,2019,1,45.6,points
 Kuben videregående skole,Oslo,"Elektrofag, autom, SK 3 år",0,EL,ELELE1----,Vg1,2020,1,42.1,points
+Kuben videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2017,1,32.5,points
+Kuben videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2018,1,35.0,points
+Kuben videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2019,1,36.9,points
 Kuben videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,1,38.7,points
 Kuben videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2021,1,36.7,points
 Kuben videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2022,1,37.4,points
@@ -1637,6 +1767,9 @@ Kuben videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2023,1,
 Kuben videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,1,36.4,points
 Kuben videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,37.3,points
 Kuben videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,1,36.1,points
+Kuben videregående skole,Oslo,"Helse- og oppvekstfag, YSK 4 år",0,HS,HSHSF1----,Vg1,2017,1,40.4,points
+Kuben videregående skole,Oslo,"Helse- og oppvekstfag, YSK 4 år",0,HS,HSHSF1----,Vg1,2018,1,40.0,points
+Kuben videregående skole,Oslo,"Helse- og oppvekstfag, YSK 4 år",0,HS,HSHSF1----,Vg1,2019,1,39.4,points
 Kuben videregående skole,Oslo,"Helse- og oppvekstfag, YSK 4 år",0,HS,HSHSF1----,Vg1,2020,1,45.4,points
 Kuben videregående skole,Oslo,"Helse- og oppvekstfag, YSK 4 år",0,HS,HSHSF1----,Vg1,2021,1,43.6,points
 Kuben videregående skole,Oslo,"Helse- og oppvekstfag, YSK 4 år",0,HS,HSHSF1----,Vg1,2022,1,35.5,points
@@ -1658,6 +1791,8 @@ Kuben videregående skole,Oslo,"Informasjonsteknologi og medieproduksjon, SK 3 �
 Kuben videregående skole,Oslo,"Informasjonsteknologi og medieproduksjon, SK 3 år",0,IM,IMIKM1----,Vg1,2024,1,43.6,points
 Kuben videregående skole,Oslo,"Informasjonsteknologi og medieproduksjon, SK 3 år",0,IM,IMIKM1----,Vg1,2025,1,42.1,points
 Kuben videregående skole,Oslo,"Informasjonsteknologi og medieproduksjon, SK 3 år",0,IM,IMIKM1----,Vg1,2026,1,40.0,points
+Kuben videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,40.6,points
+Kuben videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,41.9,points
 Kuben videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,43.6,points
 Kuben videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,44.7,points
 Kuben videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,41.5,points
@@ -1665,8 +1800,15 @@ Kuben videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,1,4
 Kuben videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,39.8,points
 Kuben videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,38.7,points
 Kuben videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,36.8,points
+Kuben videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,40.6,points
 Kuben videregående skole,Oslo,"Studiespesialisering, teknologi og miljø",0,ST,STUSP1----,Vg1,2021,1,34.3,points
+Kuben videregående skole,Oslo,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2017,1,41.2,points
+Kuben videregående skole,Oslo,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2018,1,40.6,points
+Kuben videregående skole,Oslo,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2019,1,37.5,points
 Kuben videregående skole,Oslo,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2020,1,40.0,points
+Kuben videregående skole,Oslo,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2017,1,30.0,points
+Kuben videregående skole,Oslo,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2018,1,33.1,points
+Kuben videregående skole,Oslo,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2019,1,34.4,points
 Kuben videregående skole,Oslo,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,1,35.4,points
 Kuben videregående skole,Oslo,Teknolog og idustrifag,0,TP,TPTIP1----,Vg1,2021,1,35.7,points
 Kuben videregående skole,Oslo,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2022,1,36.2,points
@@ -1674,6 +1816,9 @@ Kuben videregående skole,Oslo,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,202
 Kuben videregående skole,Oslo,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,1,35.1,points
 Kuben videregående skole,Oslo,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,1,38.3,points
 Kuben videregående skole,Oslo,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,1,37.6,points
+Lambertseter videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2017,1,44.1,points
+Lambertseter videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2018,1,42.2,points
+Lambertseter videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2019,1,43.8,points
 Lambertseter videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2020,1,44.9,points
 Lambertseter videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2021,1,46.1,points
 Lambertseter videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2022,1,44.3,points
@@ -1681,6 +1826,8 @@ Lambertseter videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2023,1,42.8
 Lambertseter videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,1,45.4,points
 Lambertseter videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,1,45.0,points
 Lambertseter videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,1,45.6,points
+Lambertseter videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,44.3,points
+Lambertseter videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,46.1,points
 Lambertseter videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,44.7,points
 Lambertseter videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,45.0,points
 Lambertseter videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,41.9,points
@@ -1688,8 +1835,12 @@ Lambertseter videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2
 Lambertseter videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,43.3,points
 Lambertseter videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,42.2,points
 Lambertseter videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,42.9,points
+Lambertseter videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,42.9,points
 Mølla videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,1,37.5,points
 Mølla videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,45.2,points
+Nydalen videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2017,1,34.4,points
+Nydalen videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2018,1,37.0,points
+Nydalen videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2019,1,39.4,points
 Nydalen videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,1,38.7,points
 Nydalen videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2021,1,38.0,points
 Nydalen videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2022,1,39.2,points
@@ -1704,6 +1855,11 @@ Nydalen videregående skole,Oslo,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1
 Nydalen videregående skole,Oslo,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,1,39.3,points
 Nydalen videregående skole,Oslo,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,39.7,points
 Nydalen videregående skole,Oslo,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,1,38.9,points
+Nydalen videregående skole,Oslo,Service og samferdsel,0,SR,SSSSA1----,Vg1,2017,1,32.7,points
+Nydalen videregående skole,Oslo,Service og samferdsel,0,SR,SSSSA1----,Vg1,2018,1,32.5,points
+Nydalen videregående skole,Oslo,Service og samferdsel,0,SR,SSSSA1----,Vg1,2019,1,36.9,points
+Nydalen videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,50.0,points
+Nydalen videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,50.6,points
 Nydalen videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,52.0,points
 Nydalen videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,51.7,points
 Nydalen videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,52.6,points
@@ -1711,6 +1867,10 @@ Nydalen videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,1
 Nydalen videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,53.1,points
 Nydalen videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,53.1,points
 Nydalen videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,51.2,points
+Nydalen videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,50.4,points
+Nydalen videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2017,1,,documentation
+Nydalen videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2018,1,,documentation
+Nydalen videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2019,1,,documentation
 Nydalen videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2020,1,,documentation
 Nydalen videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2021,1,,documentation
 Nydalen videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2022,1,,documentation
@@ -1721,7 +1881,13 @@ Oslo Handelsgymnasium,Oslo,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,
 Oslo Handelsgymnasium,Oslo,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2021,1,35.4,points
 Oslo Handelsgymnasium,Oslo,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2022,1,35.4,points
 Oslo Handelsgymnasium,Oslo,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2023,1,37.1,points
+Oslo Handelsgymnasium,Oslo,Service og samferdsel,0,SR,SSSSA1----,Vg1,2017,1,26.9,points
+Oslo Handelsgymnasium,Oslo,Service og samferdsel,0,SR,SSSSA1----,Vg1,2018,1,29.4,points
+Oslo Handelsgymnasium,Oslo,Service og samferdsel,0,SR,SSSSA1----,Vg1,2019,1,31.8,points
+Oslo Handelsgymnasium,Oslo,"Studiespes, business",0,ST,STUSP1----,Vg1,2019,1,41.0,points
 Oslo Handelsgymnasium,Oslo,"Studiespes, business",0,ST,STUSP1----,Vg1,2020,1,40.7,points
+Oslo Handelsgymnasium,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,37.4,points
+Oslo Handelsgymnasium,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,40.0,points
 Oslo Handelsgymnasium,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,40.0,points
 Oslo Handelsgymnasium,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,40.7,points
 Oslo Handelsgymnasium,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,40.0,points
@@ -1729,6 +1895,9 @@ Oslo Handelsgymnasium,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,1,38.1,
 Oslo Handelsgymnasium,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,33.1,points
 Oslo Handelsgymnasium,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,35.7,points
 Oslo Handelsgymnasium,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,38.0,points
+Oslo Handelsgymnasium,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,40.2,points
+Oslo katedralskole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,47.6,points
+Oslo katedralskole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,47.5,points
 Oslo katedralskole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,49.0,points
 Oslo katedralskole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,48.7,points
 Oslo katedralskole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,49.3,points
@@ -1736,6 +1905,10 @@ Oslo katedralskole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,1,46.5,poi
 Oslo katedralskole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,46.0,points
 Oslo katedralskole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,46.0,points
 Oslo katedralskole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,47.7,points
+Oslo katedralskole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,45.7,points
+Persbråten videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2017,1,34.1,points
+Persbråten videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2018,1,32.5,points
+Persbråten videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2019,1,35.0,points
 Persbråten videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2020,1,38.0,points
 Persbråten videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2021,1,38.7,points
 Persbråten videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2022,1,39.2,points
@@ -1743,6 +1916,8 @@ Persbråten videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2023,1,41.3,
 Persbråten videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,1,40.9,points
 Persbråten videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,1,44.7,points
 Persbråten videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,1,44.3,points
+Persbråten videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,,open
+Persbråten videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,,open
 Persbråten videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,34.3,points
 Persbråten videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,36.7,points
 Persbråten videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,37.9,points
@@ -1750,12 +1925,19 @@ Persbråten videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,20
 Persbråten videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,41.6,points
 Persbråten videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,44.0,points
 Persbråten videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,48.1,points
+Persbråten videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,30.0,points
+Persbråten videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2017,1,,documentation
+Persbråten videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2018,1,,documentation
+Persbråten videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2019,1,,documentation
 Persbråten videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2020,1,,documentation
 Persbråten videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2021,1,,documentation
 Persbråten videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2022,1,,documentation
 Persbråten videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2023,1,,documentation
 Persbråten videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2025,1,,documentation
 Persbråten videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2026,1,,documentation
+Stovner videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2017,1,23.1,points
+Stovner videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2018,1,21.9,points
+Stovner videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2019,1,,open
 Stovner videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,1,,open
 Stovner videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2021,1,20.0,points
 Stovner videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2022,1,18.6,points
@@ -1763,6 +1945,9 @@ Stovner videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,202
 Stovner videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,1,,open
 Stovner videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,1,15.6,points
 Stovner videregående skole,Oslo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,1,,open
+Stovner videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2017,1,19.1,points
+Stovner videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2018,1,,open
+Stovner videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2019,1,,open
 Stovner videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,1,,open
 Stovner videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2021,1,,open
 Stovner videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2022,1,,open
@@ -1775,6 +1960,8 @@ Stovner videregående skole,Oslo,Naturbruk,0,NA,NANAB1----,Vg1,2023,1,10.0,point
 Stovner videregående skole,Oslo,Naturbruk,0,NA,NANAB1----,Vg1,2024,1,34.7,points
 Stovner videregående skole,Oslo,Naturbruk,0,NA,NANAB1----,Vg1,2025,1,27.9,points
 Stovner videregående skole,Oslo,Naturbruk,0,NA,NANAB1----,Vg1,2026,1,19.3,points
+Stovner videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,,open
+Stovner videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,,open
 Stovner videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,13.2,points
 Stovner videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,,open
 Stovner videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,,open
@@ -1782,6 +1969,10 @@ Stovner videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,1
 Stovner videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,,open
 Stovner videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,,open
 Stovner videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,,open
+Stovner videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,,open
+Stovner videregående skole,Oslo,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2017,1,17.0,points
+Stovner videregående skole,Oslo,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2018,1,19.1,points
+Stovner videregående skole,Oslo,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2019,1,,open
 Stovner videregående skole,Oslo,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,1,,open
 Stovner videregående skole,Oslo,Teknolog og idustrifag,0,TP,TPTIP1----,Vg1,2021,1,15.4,points
 Stovner videregående skole,Oslo,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2022,1,,open
@@ -1795,7 +1986,13 @@ Ullern videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,202
 Ullern videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,1,38.0,points
 Ullern videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,35.7,points
 Ullern videregående skole,Oslo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,1,40.0,points
+Ullern videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2017,1,34.6,points
+Ullern videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2018,1,36.7,points
+Ullern videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2019,1,37.8,points
 Ullern videregående skole,Oslo,Elektrofag,0,EL,ELELE1----,Vg1,2020,1,36.4,points
+Ullern videregående skole,Oslo,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,HS,HSHSF1----,Vg1,2017,1,39.4,points
+Ullern videregående skole,Oslo,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,HS,HSHSF1----,Vg1,2018,1,37.8,points
+Ullern videregående skole,Oslo,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,HS,HSHSF1----,Vg1,2019,1,41.0,points
 Ullern videregående skole,Oslo,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,HS,HSHSF1----,Vg1,2020,1,43.2,points
 Ullern videregående skole,Oslo,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,HS,HSHSF1----,Vg1,2021,1,36.7,points
 Ullern videregående skole,Oslo,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,HS,HSHSF1----,Vg1,2022,1,42.1,points
@@ -1803,6 +2000,9 @@ Ullern videregående skole,Oslo,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0
 Ullern videregående skole,Oslo,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,HS,HSHSF1----,Vg1,2024,1,40.6,points
 Ullern videregående skole,Oslo,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,HS,HSHSF1----,Vg1,2025,1,40.3,points
 Ullern videregående skole,Oslo,"Helse- og oppvekstfag, helsearbeid, SK 3 år",0,HS,HSHSF1----,Vg1,2026,1,38.2,points
+Ullern videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2017,1,42.9,points
+Ullern videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2018,1,45.3,points
+Ullern videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2019,1,44.4,points
 Ullern videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2020,1,48.7,points
 Ullern videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2021,1,42.0,points
 Ullern videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2022,1,47.9,points
@@ -1810,6 +2010,8 @@ Ullern videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2023
 Ullern videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,1,45.9,points
 Ullern videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,1,44.1,points
 Ullern videregående skole,Oslo,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,1,42.8,points
+Ullern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,48.2,points
+Ullern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,48.8,points
 Ullern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,50.7,points
 Ullern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,49.0,points
 Ullern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,50.5,points
@@ -1817,11 +2019,16 @@ Ullern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,1,
 Ullern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,47.7,points
 Ullern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,44.4,points
 Ullern videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,45.3,points
+Ullern videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,48.4,points
+Ullern videregående skole,Oslo,Studiespesialisering med forskerlinje,0,ST,STUSP1----,Vg1,2019,1,41.5,points
 Ullern videregående skole,Oslo,Studiespesialisering med forskerlinje,0,ST,STUSP1----,Vg1,2020,1,46.7,points
 Ullern videregående skole,Oslo,Studiespesialisering med forskerlinje,0,ST,STUSP1----,Vg1,2021,1,40.3,points
 Ullern videregående skole,Oslo,"Studiespesialisering, forskerlinje",0,ST,STUSP1----,Vg1,2022,1,44.6,points
 Ullern videregående skole,Oslo,"Studiespesialisering, forskerlinje",0,ST,STUSP1----,Vg1,2024,1,14.7,points
 Ullern videregående skole,Oslo,"Studiespesialisering, forskerlinje",0,ST,STUSP1----,Vg1,2025,1,14.7,points
+Ulsrud videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2017,1,23.3,points
+Ulsrud videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2018,1,19.4,points
+Ulsrud videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2019,1,,open
 Ulsrud videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,1,,open
 Ulsrud videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2021,1,,open
 Ulsrud videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2022,1,,open
@@ -1830,6 +2037,9 @@ Ulsrud videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,1
 Ulsrud videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,,open
 Ulsrud videregående skole,Oslo,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,1,,open
 Ulsrud videregående skole,Oslo,"Helse- og oppvekstfag, barne og ungd.arbeiderfag, SK 3 år",0,HS,HSHSF1----,Vg1,2024,1,25.0,points
+Ulsrud videregående skole,Oslo,"Helse- og oppvekstfag, barne- og ungd.arbeiderfag, SK 3 år",0,HS,HSHSF1----,Vg1,2017,1,33.8,points
+Ulsrud videregående skole,Oslo,"Helse- og oppvekstfag, barne- og ungd.arbeiderfag, SK 3 år",0,HS,HSHSF1----,Vg1,2018,1,31.9,points
+Ulsrud videregående skole,Oslo,"Helse- og oppvekstfag, barne- og ungd.arbeiderfag, SK 3 år",0,HS,HSHSF1----,Vg1,2019,1,34.3,points
 Ulsrud videregående skole,Oslo,"Helse- og oppvekstfag, barne- og ungd.arbeiderfag, SK 3 år",0,HS,HSHSF1----,Vg1,2020,1,37.9,points
 Ulsrud videregående skole,Oslo,"Helse- og oppvekstfag, barne- og ungd.arbeiderfag, SK 3 år",0,HS,HSHSF1----,Vg1,2021,1,36.9,points
 Ulsrud videregående skole,Oslo,"Helse- og oppvekstfag, barne- og ungd.arbeiderfag, SK 3 år",0,HS,HSHSF1----,Vg1,2022,1,39.2,points
@@ -1839,6 +2049,8 @@ Ulsrud videregående skole,Oslo,"Helse- og oppvekstfag, barne- og ungd.arbeiderf
 Ulsrud videregående skole,Oslo,"Helse/oppvekst, ambulanse, SK 3 år",0,HS,HSHSF1----,Vg1,2024,1,41.8,points
 Ulsrud videregående skole,Oslo,"Helse/oppvekst, ambulanse, SK 3 år",0,HS,HSHSF1----,Vg1,2025,1,36.7,points
 Ulsrud videregående skole,Oslo,"Helse/oppvekst, ambulanse, SK 3 år",0,HS,HSHSF1----,Vg1,2026,1,37.3,points
+Ulsrud videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2017,1,,open
+Ulsrud videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2019,1,9.4,points
 Ulsrud videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2020,1,,open
 Ulsrud videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2021,1,,open
 Ulsrud videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2022,1,,open
@@ -1846,6 +2058,8 @@ Ulsrud videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2023,1,16.9,point
 Ulsrud videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,1,16.7,points
 Ulsrud videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,1,,open
 Ulsrud videregående skole,Oslo,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,1,,open
+Ulsrud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,,open
+Ulsrud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,,open
 Ulsrud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,,open
 Ulsrud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,,open
 Ulsrud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,,open
@@ -1853,6 +2067,9 @@ Ulsrud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,1,
 Ulsrud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,10.7,points
 Ulsrud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,,open
 Ulsrud videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,,open
+Ulsrud videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,,open
+Valle Hovin videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2018,1,41.8,points
+Valle Hovin videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2019,1,45.0,points
 Valle Hovin videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,46.8,points
 Valle Hovin videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,46.0,points
 Valle Hovin videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,47.1,points
@@ -1860,6 +2077,10 @@ Valle Hovin videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,20
 Valle Hovin videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,47.0,points
 Valle Hovin videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,47.8,points
 Valle Hovin videregående skole,Oslo,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,48.0,points
+Valle Hovin videregående skole,Oslo,Studiespesialisering (uten formgivingsfag),0,ST,STFOR1----,Vg1,2017,1,36.5,points
+Valle Hovin videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2017,1,,documentation
+Valle Hovin videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2018,1,,documentation
+Valle Hovin videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2019,1,,documentation
 Valle Hovin videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2020,1,,documentation
 Valle Hovin videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2021,1,,documentation
 Valle Hovin videregående skole,Oslo,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2022,1,,documentation
