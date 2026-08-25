@@ -42,7 +42,7 @@ Akershus-tallene det største hullet.
 På forhånd takk!
 
 Med vennlig hilsen
-Avshalom Dayan
+Abshalom Dayan
 
 ---
 
@@ -78,7 +78,7 @@ uten historikk sier lite om usikkerheten en søker står i).
 På forhånd takk!
 
 Med vennlig hilsen
-Avshalom Dayan
+Abshalom Dayan
 
 ---
 
@@ -111,7 +111,7 @@ datagrunnlaget så riktig og komplett som mulig.
 På forhånd takk!
 
 Med vennlig hilsen
-Avshalom Dayan
+Abshalom Dayan
 
 ---
 
@@ -157,7 +157,7 @@ Er dette noe dere kan peke meg videre på — riktig kontaktperson hos dere,
 eller eventuelt i fylkeskommunenes eget samarbeid?
 
 Med vennlig hilsen
-Avshalom Dayan
+Abshalom Dayan
 
 ---
 
@@ -185,7 +185,7 @@ et riktigst mulig datagrunnlag.
 På forhånd takk!
 
 Med vennlig hilsen
-Avshalom Dayan
+Abshalom Dayan
 
 ---
 
