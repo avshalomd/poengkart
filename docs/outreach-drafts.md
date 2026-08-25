@@ -1,5 +1,10 @@
 # E-postutkast: dataforespørsler
 
+> **Status: alle fem sendt 25.08.2026** fra abshalomdayan@gmail.com.
+> Novari-adressen ble verifisert som post@novari.no; rapportvedlegget ble
+> erstattet med lenke til rapporten i det offentlige repoet. Purr vennlig
+> rundt 1. september om innsynskravene (1–3) står ubesvart.
+
 Utkast til utsending, august 2026. Rekkefølge: 1–3 er innsynskrav (kan sendes
 samme dag), 4 er samarbeidsbrevet til Novari, 5 er valgfri utvidelse.
 Alle er selvstendige — samme korte introduksjon i hver, siden mottakerne ikke
@@ -117,7 +122,7 @@ Abshalom Dayan
 
 ## 4 · Novari IKS — historiske poenggrenser fra VIGO, for forskning og gratis søkerverktøy
 
-**Til:** (kontaktpunkt på novari.no — post/firmapost; finn oppdatert adresse før utsending)
+**Til:** post@novari.no
 **Emne:** Forespørsel om historiske poenggrenser fra VIGO — forskning og gratis, ikke-kommersielt søkerverktøy
 **Vedlegg:** teknisk rapport (PDF)
 
