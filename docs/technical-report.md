@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · August 2026 · v1.0
+Technical report · August 2026 · v1.1 (revised after two independent review passes)
 Application: [poengkart-no.vercel.app](https://poengkart-no.vercel.app) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 *En norsk utgave av rapporten finnes i [docs/teknisk-rapport.md](teknisk-rapport.md).*
@@ -26,10 +26,13 @@ county–year level for where the threshold lands if it does. Forecast spread
 is estimated from the model's own walk-forward errors rather than taken from
 the fit, the error distribution is empirical, and fill probabilities are
 recalibrated by Platt scaling. Evaluated walk-forward with 2025–2026 fully
-held out, the model beats a persistence baseline in every history stratum
-(RMSE 4.99 vs 5.87 on series with ≥4 observed years), nominal 80% intervals
-achieve 80.9% empirical coverage, and admission probabilities are calibrated
-(Brier score 0.097 vs 0.150 for the persistence rule). Paired within-year
+held out, the model beats persistence and group-mean baselines on RMSE and MAE in
+every history stratum where they are defined (RMSE 4.99 vs 5.87 on series
+with ≥4 observed years), nominal 80% intervals achieve 80.5% empirical
+coverage, and the admission probability is both calibrated — observed
+frequencies track predictions within five points from 30% upward — and more
+accurate than the persistence rule (Brier score 0.094 vs 0.150 on the pairs
+where both are defined). Paired within-year
 publications additionally identify a systematic intake-round effect of −3.2
 to −3.4 points that makes cross-county comparison of raw thresholds
 misleading. Code and data are available at
@@ -82,9 +85,10 @@ are as follows:
   (Sections 5–6).
 - **A held-out evaluation** on the 2025–2026 intakes showing the model
   dominates persistence and group-mean baselines in every history stratum
-  (RMSE 4.99 vs 5.87 and 6.12 in the deepest stratum), with 80.9% empirical
+  (RMSE 4.99 vs 5.87 and 6.12 in the deepest stratum), with 80.5% empirical
   coverage of nominal 80% intervals and calibrated probabilities (Brier
-  0.097 vs 0.150), plus ablations of the structural choices (Section 7).
+  0.094 vs 0.150 where both are defined), plus ablations of the structural
+  choices (Section 7).
 - **Measurements of the publication practice itself**: a paired within-year
   estimate of the intake-round effect (−3.2 to −3.4 points, 16–32% of
   queues cleared between rounds), evidence that raw school means largely
@@ -225,7 +229,7 @@ opposite reason a genuinely low threshold does.
 
 ### 4.4 Coverage
 
-The panel spans 2017–2026: Oslo 2017 and 2020–2026, Vestland 2017–2026
+The panel spans 2017–2026: Oslo 2017–2026, Vestland 2017–2026
 (2017–2019 as a narrower Bergen-area series), Rogaland 2018–2025, Innlandet
 2023–2025, Buskerud 2024–2025, and Akershus and Trøndelag 2025 only. Of the
 1,670 school×programme series, 567 have exactly one observed year. Among the
@@ -242,11 +246,12 @@ admission ran on catchment rather than points.
 
 ### 5.1 Notation and target
 
-A **series** $i$ is one school×programme×level queue; $s[i]$, $p[i]$,
+A **series** $i$ is one school×programme×level queue; $sc[i]$, $p[i]$,
 $a[i]$, and $c[i]$ denote its school, utdanningsprogram, programme area, and
-county. In year $t$, $F_{it} \in \{0, 1\}$ indicates that the cell filled (a
-queue formed), and $y_{it}$ is the published threshold, observed only when
-$F_{it} = 1$ and the last admitted applicant had points. For an applicant
+county, and $r(i,t)$ the intake round its county published in year $t$. In
+year $t$, $Q_{it} \in \{0, 1\}$ indicates that the cell filled (a queue
+formed), and $y_{it}$ is the published threshold, observed only when
+$Q_{it} = 1$ and the last admitted applicant had points ($y > 0$). For an applicant
 with points $x$, the deployed quantity for the county's next publication
 year is
 
@@ -256,30 +261,41 @@ where $\pi$ is the forecast probability that a queue forms, $m$ the forecast
 threshold conditional on a queue, $s$ the forecast spread (Section 6.1), and
 $\Phi_F$ the CDF of the standardised forecast error (Section 6.2). Equation
 (1) is the hurdle decomposition: either no one is turned away, or admission
-requires the cutoff to land at or below $x$.
+requires the cutoff to land at or below $x$. One state sits outside the
+decomposition: a cell that fills with the last admitted applicant holding no
+points (the 0.0 state of Table 1) counts as $Q = 1$ but contributes no $y$ —
+admission there is certain at any score, and the calibration in Section 7.4
+scores it as such; the empirical recalibration of $\pi$ absorbs the
+approximation.
 
 ### 5.2 Two components, one hierarchy
 
 The **level** component models the observed thresholds:
 
-$$y_{it} \mid F_{it} = 1 \;\sim\; \mathcal{N}\!\left(\mu + \alpha_{s[i]} + \beta_{p[i]} + \gamma_{a[i]} + u_i + w_{c[i],t} + \rho_{r(i,t)},\; \sigma^2\right), \tag{2}$$
+$$y_{it} \mid Q_{it} = 1,\, y_{it} > 0 \;\sim\; \mathcal{N}\!\left(\mu + \alpha_{sc[i]} + \beta_{p[i]} + \gamma_{a[i]} + u_i + w_{c[i],t} + \rho_{r(i,t)},\; \sigma^2\right), \tag{2}$$
 
 and the **fill** component the queue-formation event:
 
-$$\operatorname{logit} P(F_{it} = 1) \;=\; \nu + \alpha'_{s[i]} + \beta'_{p[i]} + \gamma'_{a[i]} + u'_i + w'_{c[i],t} + \rho'_{r(i,t)}. \tag{3}$$
+$$\operatorname{logit} P(Q_{it} = 1) \;=\; \nu + \alpha'_{sc[i]} + \beta'_{p[i]} + \gamma'_{a[i]} + u'_i + w'_{c[i],t} + \rho'_{r(i,t)}. \tag{3}$$
 
-Every effect is a random effect with a mean-zero Gaussian prior and its own
-variance: school ($\alpha$), utdanningsprogram ($\beta$), programme area
-within level ($\gamma$), the series interaction $u_i$ (a school can be
-strong in music and ordinary in electrical), and a round offset $\rho$. The
-county–year effect follows a random walk,
+$\mu$ and $\nu$ are intercepts. Four terms are random effects with
+mean-zero Gaussian priors and estimated variances: school ($\alpha$),
+programme area within level ($\gamma$), the series interaction $u_i$ (a
+school can be strong in music and ordinary in electrical), and the
+county–year effect $w$. The utdanningsprogram effect $\beta$ is an
+(essentially unpenalised) fixed effect — with only 16 levels it needs no
+pooling — and the round terms $\rho$ are fixed too: in the fill model an
+unpenalised round-3 indicator, and in the level model a plug-in constant
+taken from the round bridge rather than an estimated coefficient
+(Section 5.4). The county–year effect follows a random walk,
 
 $$w_{c,t} \;=\; w_{c,t-1} + \eta_{c,t}, \qquad \eta_{c,t} \sim \mathcal{N}(0, \tau_w^2), \tag{4}$$
 
 so a county's market level moves smoothly and its latest state is the
-forecast for next year. The level component is fitted on the 5,433 cells
-with a numeric threshold; the fill component on all 7,934 cells that
-competed on points. The hierarchy exists to borrow strength: a series with
+forecast for next year; an innovation spans two *consecutive published*
+years, so a publication gap is one step, not one step per calendar year.
+The level component is fitted on the 5,433 cells with a numeric threshold;
+the fill component on all 7,934 cells that competed on points. The hierarchy exists to borrow strength: a series with
 one observed year inherits its level from the hundreds of comparable series
 around it — partially pooled toward its school, programme, and county means
 — instead of being trusted alone.
@@ -288,18 +304,22 @@ around it — partially pooled toward its school, programme, and county means
 
 Effects are estimated by penalised maximum likelihood, with variance
 components updated by a few rounds of the standard normal–normal EM
-approximation; the pipeline is deterministic. Observations are
+approximation (each component is floored at 0.3 points, and the random-walk
+levels carry a small ridge for identifiability); the pipeline is
+deterministic. Observations are
 exponentially down-weighted with age; the half-life of 4 years was selected
 by the backtest and mattered little (Section 7.5). Table 2 reports the
 fitted standard deviations.
 
-**Table 2:** Fitted variance components (standard deviations). Level
-components in points; fill components on the logit scale.
+**Table 2:** Fitted variance components (standard deviations) of the four
+random-effect families. Level components in points; fill components on the
+logit scale. The fixed effects ($\mu$, $\nu$, $\beta$, $\rho$) have no
+variance component.
 
 | Component | Level (points) | Fill (logit) |
 |---|---|---|
 | School | 3.4 | 1.3 |
-| Utdanningsprogram | 3.1 | 1.4 |
+| Programme area (within level) | 3.1 | 1.4 |
 | Series (school×programme) | 2.7 | 1.7 |
 | County–year innovation | 1.3 | 0.9 |
 | Residual | 4.5 | — |
@@ -315,8 +335,10 @@ county level and need not be known — which is why counties that do not state
 their round remain usable. The one exception in the data, Vestland 2023
 (published from round 3 inside a round-1 series), is handled with fixed
 per-programme offsets taken from the round bridge (Section 8.1), so the
-random walk does not read an administrative dip as a market event; those
-cells are also excluded from evaluation (Section 7.1).
+random walk does not read an administrative dip as a market event. These
+offsets enter the level model as known constants — $\rho$ in (2) is not
+estimated — and the affected cells are also excluded from evaluation
+(Section 7.1).
 
 ## 6. Uncertainty
 
@@ -326,9 +348,15 @@ A hierarchical model is sure of itself: the residual standard deviation is
 4.5 points, but a next-year forecast also carries the uncertainty of every
 borrowed effect and of the market's next move — and for a one-year series
 the effects are mostly borrowed. The spread $s$ in (1) is therefore not read
-from the fit at all. It is the RMSE of the model's own walk-forward
+from the final fit. It is the RMSE of the model's own walk-forward
 forecasts on the calibration years (Section 7.1), stratified by the history
-the series had at forecast time (Table 3).
+the series had at forecast time, and floored at the residual sd of the
+newest fit that saw no evaluation year (4.4 points, from the fit trained on
+data through 2024), so a spread can never claim to beat the model's own
+in-sample noise (Table 3). An earlier version floored at the final fit's
+residual instead — a small leak of the held-out years into their own
+intervals, worth 0.4 points of coverage; both review passes flagged it, and
+the floor now uses only pre-evaluation data.
 
 **Table 3:** Forecast spread $s$, estimated from walk-forward errors on the
 calibration years 2020–2024.
@@ -338,10 +366,10 @@ calibration years 2020–2024.
 | 0 years | 7.2 |
 | 1 year | 6.4 |
 | 2–3 years | 5.6 |
-| 4+ years | 4.5 |
+| 4+ years | 4.4 |
 
 The gradient is the empirical price of borrowing: a never-observed series is
-forecast 7.2 points loose; four observed years buy the spread down to 4.5.
+forecast 7.2 points loose; four observed years buy the spread down to 4.4.
 
 ### 6.2 An empirical error distribution
 
@@ -349,12 +377,14 @@ $\Phi_F$ in (1) is the empirical CDF of the standardised walk-forward errors
 (41 quantiles), not a Gaussian. It is mildly left-skewed — thresholds
 collapse more often than they jump, because a queue can vanish but cannot
 exceed its applicant pool — though on this data a Gaussian would have scored
-almost identically.
+almost identically. The empirical CDF is clamped to [0.005, 0.995], so no
+single cell's probability is ever exactly $1 - \pi$ or 1.
 
 ### 6.3 Recalibrating the fill probability
 
-The raw fill model is overconfident: cells given $\pi = 0.97$ filled 82% of
-the time out of sample — the series effects fit the training panel too well.
+The raw fill model is overconfident: in the calibration-year walk-forwards,
+cells given $\pi = 0.97$ filled 82% of the time — the series effects fit the
+training panel too well.
 We therefore recalibrate by Platt scaling, fitting
 
 $$\operatorname{logit} \pi' \;=\; -0.124 \;+\; 0.465 \, \operatorname{logit} \pi \tag{5}$$
@@ -362,7 +392,10 @@ $$\operatorname{logit} \pi' \;=\; -0.124 \;+\; 0.465 \, \operatorname{logit} \pi
 on the calibration years only, which are disjoint from the held-out
 evaluation years. The slope well below 1 is a uniform confidence haircut.
 Held-out Brier for the fill event: 0.163 against 0.204 for the base-rate
-forecaster (base rate 0.714); the full reliability table is in Appendix C.
+forecaster (base rate 0.714). The full reliability table is in Appendix C;
+the recalibrated $\pi'$ still wobbles in the sparse mid-range bins (72%
+observed in the 50–60% bin), which the deployed quantity (1) — the only
+probability shown to users — absorbs, as Section 7.4 shows.
 
 ## 7. Evaluation
 
@@ -373,33 +406,47 @@ Evaluation is walk-forward with an expanding window (Tashman, 2000; Bergmeir
 model is fitted on everything published before $t$ and forecasts year $t$.
 Years 2020–2024 are **calibration years**: they set $s$ (Section 6.1),
 $\Phi_F$ (Section 6.2), and the Platt map (5). Years **2025–2026 are held
-out entirely** and are the only years reported in this section. No
-information from year $t$ or later — including calibration fitting and the
-half-life selection — touches the model that predicts year $t$. Vestland's
-2023 round-3 cells are excluded from scoring: no earlier year can teach any
-forecaster that event, and the deployed model handles it with a
-told-in-advance offset, so scoring it would mislead in both directions.
+out entirely** and are the only years reported in this section. For the
+held-out years, no information from 2025 onward touches the forecasts:
+model fits, spread, error distribution, Platt map, and the half-life were
+all fixed on earlier data. (Within the calibration years the selection is
+pooled across 2020–2024, as calibration always is.) One caveat survives:
+the round bridge of Section 8.1 is computed once on all paired
+publications, including 2025–2026, and its offsets enter each training fit
+only for the Vestland 2023 cells — cells that are themselves excluded from
+all scoring (464 competed cells, 218 with a numeric threshold), so the
+contamination is confined to a second-order training detail. The exclusion
+itself is principled: no earlier year can teach any forecaster that
+administrative event, and grading the model on an offset it is told about
+would mislead in both directions.
 
-Two baselines: **persistence** ("last year's figure"), where the series has
-history, and the **programme–county mean** of prior years.
+Two baselines: **persistence** — the series' most recent published figure,
+at whatever lag — where the series has history, and the **programme–county
+mean** of prior years.
 
 ### 7.2 Threshold accuracy
 
 **Table 4:** Held-out threshold accuracy, 2025–2026 (1,497 cells with a
 published number), by history stratum. RMSE and MAE in points (↓ better);
-best per row in bold. Persistence is undefined for 0-year series.
+±3 is the share of forecasts within three points (higher better); best per
+row in bold. Persistence is undefined for 0-year series.
 
-| History | n | Model RMSE | Persistence RMSE | Prog–county mean RMSE | Model MAE | Persistence MAE | Model within ±3 |
-|---|---|---|---|---|---|---|---|
-| 0 years | 269 | **7.35** | — | 8.09 | **5.69** | — | 34% |
-| 1 year | 169 | **5.83** | 7.65 | 6.77 | **4.57** | 5.74 | 41% |
-| 2–3 years | 350 | **5.63** | 7.11 | 6.50 | **4.42** | 5.28 | 42% |
-| 4+ years | 709 | **4.99** | 5.87 | 6.12 | **3.71** | 4.12 | 52% |
+| History | n | Model RMSE | Persistence RMSE | Prog–county mean RMSE | Model MAE | Persistence MAE | Model ±3 | Persistence ±3 |
+|---|---|---|---|---|---|---|---|---|
+| 0 years | 269 | **7.35** | — | 8.09 | **5.69** | — | **34%** | — |
+| 1 year | 169 | **5.83** | 7.65 | 6.77 | **4.57** | 5.74 | 41% | 41% |
+| 2–3 years | 350 | **5.63** | 7.11 | 6.50 | **4.42** | 5.28 | **42%** | 40% |
+| 4+ years | 709 | **4.99** | 5.87 | 6.12 | **3.71** | 4.12 | 52% | **55%** |
 
-The model dominates both baselines in every stratum, on both metrics
-(Figure 1). Overall: RMSE 5.72, MAE 4.33, 45% of forecasts within ±3
-points. For scale, the year-to-year standard deviation of a series is 6.3
-points (3,156 consecutive-year pairs), so persistence is a strong baseline
+The model beats both baselines on RMSE and MAE in every stratum where they
+are defined (Figure 1). The ±3 hit rate tells a subtler story: persistence
+ties it at one year of history and wins it in the deepest stratum (55% vs
+52%) — repeating the last figure lands inside a narrow band slightly more
+often, and misses by more when it misses, which is the trade a
+squared-error forecast makes. Overall: RMSE 5.72, MAE 4.33, 45% of
+forecasts within ±3 points. For scale, the same series moves with a
+standard deviation of 6.2 points between consecutive published years
+(3,298 pairs; 51% of moves within ±3), so persistence is a strong baseline
 and the residual year effect is large — which is why the deliverable is the
 distribution, not the point forecast. Per-year results are in Appendix B.
 
@@ -410,35 +457,42 @@ baselines.
 
 ### 7.3 Interval coverage
 
-The nominal 80% interval $m \pm 1.28\,s$ contained the published figure
-**80.9%** of the time on held-out cells, at a mean width of 13.9 points.
-Coverage is the target and width the price (Gneiting, Balabdaoui & Raftery,
-2007): roughly ±7 points is what an honest 80% claim costs on this data.
+The nominal 80% interval $m \pm 1.2816\,s$ contained the published figure
+**80.5%** of the time on held-out cells (n = 1,497, so the binomial
+standard error is about one point, and larger under county–year
+clustering), at a mean width of 13.8 points. Coverage is the target and
+width the price (Gneiting, Balabdaoui & Raftery, 2007): roughly ±7 points
+is what an honest 80% claim costs on this data. The graded interval is the
+symmetric Gaussian one because that is what the application displays; the
+deployed error distribution $\Phi_F$ is mildly skewed, and coverage is
+conditional on a numeric threshold materialising at all.
 
 ### 7.4 Admission-probability calibration
 
 The deployed quantity is (1). For every held-out cell and every score $x \in
 \{20, 25, \dots, 55\}$ we ask "would an applicant with $x$ points have been
 admitted?" — the outcome is determined by the published threshold and fill
-state — and score the predicted probability over the 12,360 score–cell
-pairs. Brier score **0.097**, against **0.150** for the persistence rule
-("last year's threshold is this year's", a step function in $x$).
+state — and score the predicted probability over all 16,976 score–cell
+pairs: Brier score **0.097**. The persistence rule ("the most recent
+published threshold is this year's", a step function in $x$) is defined
+only where the series has a prior figure, 12,360 of those pairs; on that
+common subset the model scores **0.094** against the rule's **0.150**.
 
 **Table 5:** Reliability of the held-out admission probability (Figure 2
 shows the same data as a diagram).
 
 | Predicted | Observed | n |
 |---|---|---|
-| 0–10% | 3.1% | 578 |
-| 10–20% | 9.1% | 1,138 |
-| 20–30% | 22% | 1,307 |
-| 30–40% | 37% | 1,196 |
-| 40–50% | 41% | 805 |
-| 50–60% | 56% | 878 |
-| 60–70% | 62% | 771 |
-| 70–80% | 77% | 1,017 |
-| 80–90% | 87% | 1,191 |
-| 90–100% | 98.4% | 8,095 |
+| 0–10% | 3.1% | 588 |
+| 10–20% | 9.2% | 1,138 |
+| 20–30% | 22% | 1,305 |
+| 30–40% | 37% | 1,199 |
+| 40–50% | 41% | 797 |
+| 50–60% | 56% | 877 |
+| 60–70% | 62% | 761 |
+| 70–80% | 77% | 1,021 |
+| 80–90% | 87% | 1,182 |
+| 90–100% | 98.4% | 8,108 |
 
 From 30% upward the forecast tracks observed frequency within five points.
 Below 30% it is optimistic — a stated 15% was realised at about 9% — a
@@ -447,7 +501,7 @@ otherwise unlikely) absorb, and which we document wherever the raw percentage is
 shown.
 
 **Figure 2:** Reliability diagram of the held-out admission probability.
-Grey bars show where the predictions' mass sits (75% of score–cell pairs
+Grey bars show where the predictions' mass sits (55% of score–cell pairs
 land above 80%).
 
 ![Reliability diagram](figures/reliability.svg)
@@ -457,9 +511,9 @@ land above 80%).
 Both structural choices that could have gone the other way were adjudicated
 on the calibration years, never the held-out years:
 
-- **Recency half-life.** Walk-forward RMSE 6.199 at half-life 4 years
-  against 6.205 with no decay — kept because it wins, reported because it
-  barely does.
+- **Recency half-life.** Over half-lives {1.5, 2.5, 4, ∞} years the
+  calibration-year walk-forward RMSE was {6.228, 6.206, 6.199, 6.205}: 4
+  years wins — kept because it wins, reported because it barely does.
 - **Level→fill coupling.** Plugging the level model's school effect into the
   fill model raised fill log-loss from 0.403 to 0.406; the fill model's own
   school effect already carries the information. The components stay
@@ -503,8 +557,9 @@ demand, not quality.
 
 ### 8.3 The model as a data audit
 
-The cells the fitted model finds least plausible ($|z| \ge 3$: 54 of 5,433)
-are published in the model metadata and were checked against sources. The
+The cells the fitted model finds least plausible ($|z| > 3$: 54 of 5,433,
+of which the 25 most extreme are published in the model metadata) were
+checked against sources. The
 three largest deviations (Vestland 2022) appear verbatim in the county's own
 PDF — genuine extremes, not parse damage; one case remains open. Residual
 screening of this kind is a continuous quality control of both pipeline and
@@ -556,6 +611,12 @@ throughout, and the full dataset is downloadable from the page.
   true probability is somewhat lower.
 - **Catchment counties.** A threshold binds only residents of the intake
   area; the application states this where it applies.
+- **Self-selected counties.** The seven publishing counties chose to
+  publish; nothing here is evidence about the eight that do not, and any
+  future expansion inherits whatever made them different.
+- **Regime changes.** A programme can move between the points queue and the
+  quota states (F/D/U) between years; the hurdle predicts queue formation,
+  not that kind of administrative transition.
 - **Low-probability optimism.** Below 30%, the raw probability is a few
   points optimistic (Section 7.4).
 - **Reflexivity.** A public forecast can move where people apply, which
@@ -576,7 +637,14 @@ decisions. Miscalibration harms are asymmetric — an overconfident "you will
 get in" can cost a pupil their safety choice — which is why the fill
 probability is deliberately recalibrated downward (Section 6.3), why coarse
 bands absorb the optimistic low tail, and why every forecast is shown next
-to the threshold's actual history. Raw school means are not presented as
+to the threshold's actual history. The mitigation itself has a cost: a
+conservative "unlikely" can deter an application that would have succeeded,
+and for a pupil that chilling effect is as real as the false promise — the
+history shown beside every forecast, and the round-3 chance where it is
+measured, exist to let a family see past the band. The interface is
+Norwegian and English only; families most disadvantaged by the current
+PDF-fragmented practice include those reading neither, and closing that gap
+is distribution work the tool has not yet done. Raw school means are not presented as
 rankings, and the mix-adjusted school effect is labelled a measure of
 demand, not quality. Finally, information tools tend to benefit the already
 informed; publishing the compiled dataset and the tool free of charge is an
@@ -614,7 +682,7 @@ improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.0`. The cleaned
+the version this report describes is tagged `report-v1.1`. The cleaned
 dataset ships in the repository and is downloadable from the application;
 the original county publications are linked from the documentation rather
 than mirrored. `tools/refresh.py` regenerates the dataset, the model, every

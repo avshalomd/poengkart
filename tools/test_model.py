@@ -61,8 +61,8 @@ check('error quantiles are centred near zero', ZQ and abs(ZQ[20]) < 1.0, str(ZQ[
 check('fill recalibration is present and not absurd',
       'fill_calibration' in META and 0.2 <= META['fill_calibration']['b'] <= 1.5, str(META.get('fill_calibration')))
 sig = META['sigma_forecast']
-check('forecast spread never narrower than the residual',
-      all(v >= META['sigma_model'] for v in sig.values()), str(sig))
+check('forecast spread never narrower than the pre-evaluation residual',
+      all(v >= META.get('sigma_floor', META['sigma_model']) - 1e-9 for v in sig.values()), str(sig))
 check('spread shrinks with history',
       list(sig.values()) == sorted(sig.values(), reverse=True), str(sig))
 

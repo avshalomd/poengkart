@@ -11,9 +11,9 @@ A threshold is the score of the last applicant who got a place. It exists only
 when a programme filled, and when it exists it is one point on the points
 scale. A family with 42 points is not asking "what was the threshold" but
 "will I get in" — and the honest answer to that is a probability, because the
-same programme at the same school moves by a standard deviation of 6.3 points
-from one year to the next (3 156 year-to-year pairs; only half of all moves are
-within ±3).
+same programme at the same school moves by a standard deviation of 6.2 points
+from one year to the next (3 298 consecutive-year pairs; only half of all
+moves are within ±3).
 
 So the app forecasts, per programme, for the county's next publication year:
 
@@ -48,7 +48,7 @@ the newest year is the forecast for the next. *Series* is the school×programme
 interaction: a school can be strong in music and ordinary in electro.
 Variance components come from a few steps of the usual normal-normal EM
 approximation; observations are down-weighted with age (half-life chosen by the
-backtest — it barely mattered, 4 years won by 0.03 RMSE over no decay).
+backtest — it barely mattered, 4 years won by 0.006 RMSE over no decay).
 
 Fitted variance components (points): school 3.4, programme 3.1, series 2.7,
 county×year innovations 1.3, residual 4.5. On the logit scale for fill: school
@@ -58,7 +58,7 @@ county×year innovations 1.3, residual 4.5. On the logit scale for fill: school
 school whose thresholds are high is also one whose programmes fill — was
 tried as a plug-in of the level model's school effect into the fill model,
 with the backtest as judge. It did not help: fill log-loss on the calibration
-years 0.4081 coupled against 0.4071 independent, so the fits stay independent
+years 0.406 coupled against 0.403 independent, so the fits stay independent
 (`meta.coupled`). The fill model's own school effect already carries what the
 level's would add; the refit is kept behind a flag for the day a county with
 thresholds but no fill history makes it matter.
@@ -84,14 +84,16 @@ forecast for next year also carries the uncertainty of every effect and of
 the market move, and for a series with one year of history the effects are
 mostly borrowed. So *s* is not taken from the fit at all: it is the RMSE of the
 walk-forward forecasts (below) in the calibration years, bucketed by how many
-years of history the series had when it was forecast:
+years of history the series had when it was forecast — floored at the
+residual sd of the newest fit that saw no held-out year (4.4), so the
+held-out years cannot narrow their own intervals:
 
 | history | s |
 |---|---|
 | 0 years | 7.2 |
 | 1 year | 6.4 |
 | 2–3 years | 5.6 |
-| 4+ years | 4.5 |
+| 4+ years | 4.4 |
 
 F, the error distribution, is likewise the empirical distribution of those
 standardised errors (41 quantiles in `meta.error_quantiles`) rather than a
@@ -116,7 +118,7 @@ flatter nothing and mislead the calibration.
 | 2–3 years | 350 | 5.6 | 7.1 | 6.5 | 42% |
 | 4+ years | 709 | 5.0 | 5.9 | 6.1 | 52% |
 
-The 80% interval (m ± 1.28 s) contained the published figure 81% of the time.
+The 80% interval (m ± 1.2816 s) contained the published figure 80% of the time.
 
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.97 filled 0.82 of the time in the held-out years. So π is passed
@@ -129,20 +131,22 @@ base rate.
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 3.1% | 578 |
-| 10–20% | 9.1% | 1 138 |
-| 20–30% | 22% | 1 307 |
-| 30–40% | 37% | 1 196 |
-| 40–50% | 41% | 805 |
-| 50–60% | 56% | 878 |
-| 60–70% | 62% | 771 |
-| 70–80% | 77% | 1 017 |
-| 80–90% | 87% | 1 191 |
-| 90–100% | 98.4% | 8 095 |
+| 0–10% | 3.1% | 588 |
+| 10–20% | 9.2% | 1 138 |
+| 20–30% | 22% | 1 305 |
+| 30–40% | 37% | 1 199 |
+| 40–50% | 41% | 797 |
+| 50–60% | 56% | 877 |
+| 60–70% | 62% | 761 |
+| 70–80% | 77% | 1 021 |
+| 80–90% | 87% | 1 182 |
+| 90–100% | 98.4% | 8 108 |
 
-Brier 0.097, against 0.150 for the rule "last year's figure is the cutoff".
+Brier 0.094, against 0.150 for the rule "the last published figure is the
+cutoff", on the pairs where that rule is defined (over all pairs the model's
+Brier is 0.097).
 From 30% up the forecast is within five points of what happened; below 30% it
-is a few points optimistic — a 15% chance was really about 8% — which the app's
+is a few points optimistic — a 15% chance was really about 9% — which the app's
 bands absorb (both are "unlikely") but a reader of the raw percentage should
 know. The walk-forward forecasts themselves are in `data/model-backtest.csv`.
 

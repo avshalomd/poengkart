@@ -430,7 +430,7 @@ def error_quantiles(preds, sig_by_bucket):
 # -------------------------------------------------------------------- backtest
 def walk_forward(rows, bridge, halflife, newest_all, couple=False):
     """Fit on years < T, predict year T, for every T in BACKTEST_YEARS."""
-    preds = []
+    preds, fit_sigmas = [], {}
     for T in BACKTEST_YEARS:
         train = [r for r in rows if r['year'] < T]
         # Vestland 2023 was published from 3. inntak inside a 1. inntak series;
@@ -444,6 +444,7 @@ def walk_forward(rows, bridge, halflife, newest_all, couple=False):
         for r in train:
             newest[r['fylke']] = max(newest[r['fylke']], r['year'])
         m = Model(train, bridge, halflife, newest, couple).fit()
+        fit_sigmas[T] = m.sigma
         hist = collections.Counter(r['series'] for r in train if r['state'] == 'num')
         last = {}
         for r in sorted(train, key=lambda r: r['year']):
@@ -460,7 +461,7 @@ def walk_forward(rows, bridge, halflife, newest_all, couple=False):
                               hist=hist.get(r['series'], 0), last=last.get(r['series']),
                               pm=pm.get((r['fylke'], r['prog'])), cat=r['cat'], fylke=r['fylke']))
         print(f'  backtest {T}: train {len(train)} test {len(test)}  sigma {m.sigma:.2f}')
-    return preds
+    return preds, fit_sigmas
 
 
 def summarise(preds, sig_by_bucket, zq=None):
@@ -515,7 +516,7 @@ def summarise(preds, sig_by_bucket, zq=None):
             oo.append(got)
             # baseline: last year's figure is the cutoff
             if p['last'] is not None:
-                pl.append((float(x >= p['last']), got))
+                pl.append((float(x >= p['last']), got, pe[-1] if zq else pg[-1]))
     pg, oo = np.array(pg), np.array(oo)
     out['chance_gaussian'] = dict(brier=round(float(np.mean((pg - oo) ** 2)), 4),
                                   reliability=reliability(pg, oo))
@@ -525,9 +526,11 @@ def summarise(preds, sig_by_bucket, zq=None):
                              reliability=reliability(pe, oo))
     else:
         out['chance'] = out['chance_gaussian']
+    out['chance']['n_pairs'] = int(len(oo))
     if pl:
-        pl = np.array(pl)
+        pl = np.array(pl, dtype=float)
         out['chance']['brier_last_year_rule'] = round(float(np.mean((pl[:, 0] - pl[:, 1]) ** 2)), 4)
+        out['chance']['brier_model_common'] = round(float(np.mean((pl[:, 2] - pl[:, 1]) ** 2)), 4)
         out['chance']['n_last_year_rule'] = int(len(pl))
     return out
 
@@ -569,19 +572,21 @@ def recal(pi, fc):
     return float(expit(fc['a'] + fc['b'] * lp))
 
 
-def calibrate_sigma(preds, model_sigma):
+def calibrate_sigma(preds, floor_sigma):
     """Spread of forecast errors per history bucket, from the calibration years."""
     sig = {}
     for i in range(len(HIST_BUCKETS)):
         e = [p['v'] - p['m'] for p in preds if p['state'] == 'num' and p['T'] in CALIB_YEARS
              and hist_bucket(p['hist']) == i]
         sig[i] = float(np.sqrt(np.mean(np.square(e)))) if len(e) >= 30 else None
-    # fill gaps from neighbours, never below the model's own residual sd
+    # fill gaps from neighbours, never below the floor — which is the residual
+    # sd of the newest fit that saw no evaluation year, so the held-out years
+    # cannot narrow or widen their own intervals
     vals = [v for v in sig.values() if v]
     for i in sig:
         if sig[i] is None:
-            sig[i] = max(vals) if vals else model_sigma
-        sig[i] = max(sig[i], model_sigma)
+            sig[i] = max(vals) if vals else floor_sigma
+        sig[i] = max(sig[i], floor_sigma)
     return sig
 
 
@@ -594,6 +599,17 @@ def main():
     print(f'{len(rows)} cells competed on points ({sum(r["state"] == "num" for r in rows)} numeric, '
           f'{sum(r["state"] == "open" for r in rows)} open, {sum(r["state"] == "zero" for r in rows)} zero); '
           f'{len(pairs)} alternate-round pairs')
+    # the report's scale-setting fact: how much the same series moves between
+    # consecutive published years — pinned here so the docs can quote it
+    by_series = collections.defaultdict(dict)
+    for r in rows:
+        if r['state'] == 'num':
+            by_series[r['series']][r['year']] = r['v']
+    diffs = [ys[y + 1] - ys[y] for ys in by_series.values() for y in ys if y + 1 in ys]
+    year_pairs = dict(n=len(diffs), sd=round(float(np.std(diffs)), 2),
+                      within3=round(float(np.mean(np.abs(diffs) <= 3)), 3))
+    print(f'year-to-year: {year_pairs["n"]} adjacent pairs, sd {year_pairs["sd"]}, '
+          f'{year_pairs["within3"]:.0%} within ±3')
     bridge = round_bridge(pairs)
     for k, b in bridge.items():
         print(f'  bridge {k}: {b["mean"]:+.2f} ± {b["sd"]:.2f} on {b["n_pairs"]} pairs; '
@@ -605,14 +621,14 @@ def main():
         hl_search = {}
         for hl in HALFLIVES:
             print(f'half-life {hl}:')
-            preds = walk_forward(rows, bridge, hl, newest)
+            preds, fit_sigmas = walk_forward(rows, bridge, hl, newest)
             # select on level RMSE over the calibration years only
             e = [p['v'] - p['m'] for p in preds if p['state'] == 'num' and p['T'] in CALIB_YEARS]
             rmse = float(np.sqrt(np.mean(np.square(e))))
             hl_search[str(hl)] = round(rmse, 3)
             print(f'  -> calibration-years RMSE {rmse:.3f}')
             if best is None or rmse < best[1]:
-                best, preds_best = (hl, rmse), preds
+                best, preds_best, sigmas_best = (hl, rmse), preds, fit_sigmas
         halflife = best[0]
         # ---- couple the hurdle to the level's school effect? decided by the
         # fill log-loss on the calibration years, after the same recalibration
@@ -623,30 +639,32 @@ def main():
             q = np.clip([recal(p['pi'], fc) for p in g], 1e-6, 1 - 1e-6)
             return float(-np.mean(y * np.log(q) + (1 - y) * np.log(1 - q)))
         print('coupled hurdle:')
-        preds_c = walk_forward(rows, bridge, halflife, newest, couple=True)
+        preds_c, sigmas_c = walk_forward(rows, bridge, halflife, newest, couple=True)
         ll0, ll1 = fill_logloss(preds_best), fill_logloss(preds_c)
         print(f'  fill log-loss, calibration years: independent {ll0:.4f}  coupled {ll1:.4f}')
         couple = ll1 < ll0
         if couple:
-            preds_best = preds_c
+            preds_best, sigmas_best = preds_c, sigmas_c
         hl_search['coupled_fill_logloss'] = dict(independent=round(ll0, 4), coupled=round(ll1, 4))
     else:
-        halflife, couple, hl_search = 2.5, True, {}
+        halflife, couple, hl_search = 4.0, False, {}
 
     # ---- final fit on everything
     model = Model(rows, bridge, halflife, newest, couple).fit()
     print(f'final fit: sigma {model.sigma:.2f}, half-life {halflife}, '
           f'taus ' + ', '.join(f'{f["name"]}={f["tau"]:.2f}' for f in model.dl.factors if f['kind'] != 'fixed'))
-    sig = calibrate_sigma(preds_best, model.sigma) if preds_best else {i: model.sigma * 1.25 for i in range(len(HIST_BUCKETS))}
+    floor_sigma = sigmas_best[min(EVAL_YEARS)] if preds_best else model.sigma
+    sig = calibrate_sigma(preds_best, floor_sigma) if preds_best else {i: model.sigma * 1.25 for i in range(len(HIST_BUCKETS))}
     print('forecast spread by history bucket:', {HIST_BUCKETS[i]: round(v, 2) for i, v in sig.items()})
 
     meta = dict(built=time.strftime('%Y-%m-%d'), halflife=halflife, coupled=couple,
-                sigma_model=round(model.sigma, 3),
+                sigma_model=round(model.sigma, 3), sigma_floor=round(floor_sigma, 3),
                 sigma_forecast={str(HIST_BUCKETS[i]): round(v, 2) for i, v in sig.items()},
                 hist_buckets=HIST_BUCKETS, n_level=model.n_level, n_fill=model.n_fill,
                 taus={f['name']: round(f['tau'], 3) for f in model.dl.factors if f['kind'] != 'fixed'},
                 taus_fill={f['name']: round(f['tau'], 3) for f in model.dh.factors if f['kind'] != 'fixed'},
-                round_bridge=bridge, target_year={f: y + 1 for f, y in newest.items()},
+                round_bridge=bridge, year_pairs=year_pairs,
+                target_year={f: y + 1 for f, y in newest.items()},
                 chance_bands=dict(likely=0.70, realistic=0.35))
     zq = error_quantiles(preds_best, sig) if preds_best else None
     meta['error_quantiles'] = zq

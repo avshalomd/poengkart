@@ -13,9 +13,9 @@ the dataset sits a forecast: a two-part (hurdle) model — a logistic model for
 whether a programme fills, and a Gaussian hierarchical model for where the
 threshold lands if it does — validated walk-forward with 2025–26 fully held
 out. The forecast beats the naive "last year's figure" rule in every history
-bucket (RMSE 5.0 vs 5.9 on the longest series), its 80 % intervals cover 81 %,
-and the resulting admission probability is well calibrated (Brier 0.097 vs
-0.150 for the naive rule). The work also surfaces findings about the
+bucket (RMSE 5.0 vs 5.9 on the longest series), its 80 % intervals cover 80 %,
+and the resulting admission probability is well calibrated (Brier 0.094 vs
+0.150 for the naive rule, where both are defined). The work also surfaces findings about the
 publication practice itself: thresholds from different intake rounds differ
 systematically (measured: −3.2 points, with 32 % of queues gone by the final
 round in Vestland), raw school averages largely reflect programme mix rather
@@ -102,8 +102,8 @@ sannsynlighet for minst én plass.
 
 En familie spør ikke «hva var grensen», men «kommer jeg inn». Det ærlige
 svaret er en sannsynlighet: samme programområde ved samme skole flytter seg
-med et standardavvik på **6,3 poeng** fra år til år (3 156 årspar; bare
-halvparten av endringene er innenfor ±3). Appen svarer med:
+med et standardavvik på **6,2 poeng** fra år til år (3 298 årspar; bare
+omtrent halvparten av endringene er innenfor ±3). Appen svarer med:
 
 > P(plass | x poeng) = (1 − π) + π · F((x − m) / s)
 
@@ -133,7 +133,7 @@ observasjoner nedvektes med alder (halveringstid 4 år, valgt av backtesten).
 En hierarkisk modell er sikker på seg selv. Derfor hentes spredningen s ikke
 fra modellen, men fra **modellens egne historiske bom**: RMSE i
 walk-forward-prognosene, gruppert etter hvor mye historikk serien hadde
-(0 år: 7,2 · 1 år: 6,4 · 2–3 år: 5,6 · 4+ år: 4,5). F er den empiriske
+(0 år: 7,2 · 1 år: 6,4 · 2–3 år: 5,6 · 4+ år: 4,4). F er den empiriske
 fordelingen av de standardiserte feilene (41 kvantiler) — svakt venstretung,
 fordi grenser kollapser oftere enn de hopper. Fyllsannsynligheten π viste seg
 overkonfident (0,97 predikert → 0,82 observert) og korrigeres med
@@ -157,11 +157,12 @@ og å la den stå ødela kalibreringen målbart.
 | 2–3 år | 350 | **5,6** | 7,1 | 6,5 | 42 % |
 | 4+ år | 709 | **5,0** | 5,9 | 6,1 | 52 % |
 
-80 %-intervallet (m ± 1,28 s) dekket fasiten **81 %** av gangene.
+80 %-intervallet (m ± 1,28 s) dekket fasiten **80 %** av gangene.
 
 **Sannsynligheten:** for hver holdt-utenfor-celle og hver poengsum i
-{20, 25, …, 55}: «fikk en søker med x poeng plass?» Brier-skår **0,097** mot
-**0,150** for regelen «fjorårets grense er årets». Fra 30 % og opp ligger
+{20, 25, …, 55}: «fikk en søker med x poeng plass?» Brier-skår **0,094** mot
+**0,150** for regelen «siste publiserte grense er årets», på parene der
+regelen er definert (over alle par er modellens Brier 0,097). Fra 30 % og opp ligger
 prognosen innenfor fem prosentpoeng av observert frekvens; under 30 % er den
 noen poeng optimistisk (et vist 15 % var reelt ca. 9 %) — appens grove bånd
 (sannsynlig / mulig / lite sannsynlig) absorberer dette, og avviket er

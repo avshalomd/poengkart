@@ -126,7 +126,11 @@ check(doc, 'platt', r'logit π′ = (-[\d.]+) \+ ([\d.]+) logit π', [cal['a'], 
 check(doc, 'fill brier', r'Held-out Brier ([\d.]+) against ([\d.]+) for the base rate',
       [ev['fill']['brier'], ev['fill']['brier_base_rate']], flat, D3)
 check(doc, 'chance brier', r'Brier ([\d.]+), against ([\d.]+) for the rule',
-      [ev['chance']['brier'], ev['chance']['brier_last_year_rule']], flat, D3)
+      [ev['chance']['brier_model_common'], ev['chance']['brier_last_year_rule']], flat, D3)
+check(doc, 'chance brier all pairs', r"over all pairs the model's Brier is ([\d.]+)",
+      [ev['chance']['brier']], flat, D3)
+check(doc, 'year pairs', r'standard deviation of ([\d.]+) points from one year to the next \((\d[\d ]+) consecutive-year pairs',
+      [META['year_pairs']['sd'], META['year_pairs']['n']], flat, [D1, N])
 for r in rel_chance:
     lo, hi = r['bin'].split('-')
     obs, n, tol = reliability_row(r)
@@ -148,7 +152,11 @@ check(doc, 'taus inline', r'skole ([\d.]+) · program ([\d.]+) · skole×program
       TAUS + [META['sigma_model']], flat, D1)
 check(doc, 'coverage', r'dekket fasiten \*\*(\d+) %\*\*', [ev['coverage80'] * 100], flat, PCT)
 check(doc, 'chance brier', r'Brier-skår \*\*([\d.]+)\*\* mot \*\*([\d.]+)\*\*',
-      [ev['chance']['brier'], ev['chance']['brier_last_year_rule']], flat, D3)
+      [ev['chance']['brier_model_common'], ev['chance']['brier_last_year_rule']], flat, D3)
+check(doc, 'chance brier all pairs', r'over alle par er modellens Brier ([\d.]+)',
+      [ev['chance']['brier']], flat, D3)
+check(doc, 'year pairs', r'standardavvik på \*\*([\d.]+) poeng\*\* fra år til år \((\d[\d ]+) årspar',
+      [META['year_pairs']['sd'], META['year_pairs']['n']], flat, [D1, N])
 check(doc, 'outlier denominator', r'\|z\| ≥ 3: \d+ av (\d[\d ]+)\)', [META['n_level']], flat, N)
 for h, label in (('0', '0 år'), ('1', '1 år'), ('2-3', '2–3 år'), ('4+', r'4\+ år')):
     r, exp = level_row(h)
@@ -173,31 +181,41 @@ if not m:
     failures.append(f'{doc}: platt (eq 5): pattern not found — the equation was reworded; update the check')
 elif abs(-num(m.group(1)) - cal['a']) > D3 or abs(num(m.group(2)) - cal['b']) > D3:
     failures.append(f'{doc}: platt (eq 5): doc says [{-num(m.group(1))}, {num(m.group(2))}], model.json says [{cal["a"]}, {cal["b"]}]')
-check(doc, 'coverage+width', r'contained the published figure \*\*([\d.]+)%\*\* of the time on held-out cells, at a mean width of ([\d.]+) points',
-      [ev['coverage80'] * 100, mean_width], flat, D1)
-check(doc, 'chance brier', r'Brier score \*\*([\d.]+)\*\*, against \*\*([\d.]+)\*\* for the persistence rule',
-      [ev['chance']['brier'], ev['chance']['brier_last_year_rule']], flat, D3)
+check(doc, 'coverage+width', r'contained the published figure \*\*([\d.]+)%\*\* of the time on held-out cells \(n = ([\d,]+),[^)]*\), at a mean width of ([\d.]+) points',
+      [ev['coverage80'] * 100, ev['level_all']['n'], mean_width], flat, [D2 * 10, N, D1])
+check(doc, 'sigma floor', r'floored at the residual sd of the newest fit that saw no evaluation year \(([\d.]+) points',
+      [META['sigma_floor']], flat, D1)
+check(doc, 'year pairs', r'standard deviation of ([\d.]+) points between consecutive published years \(([\d,]+) pairs; (\d+)% of moves',
+      [META['year_pairs']['sd'], META['year_pairs']['n'], META['year_pairs']['within3'] * 100], flat, [D1, N, PCT])
+check(doc, 'chance brier all', r'over all ([\d,]+) score–cell pairs: Brier score \*\*([\d.]+)\*\*',
+      [ev['chance']['n_pairs'], ev['chance']['brier']], flat, [N, D3])
+check(doc, 'chance brier common', r"([\d,]+) of those pairs; on that common subset the model scores \*\*([\d.]+)\*\* against the rule's \*\*([\d.]+)\*\*",
+      [ev['chance']['n_last_year_rule'], ev['chance']['brier_model_common'], ev['chance']['brier_last_year_rule']], flat, [N, D3, D3])
 check(doc, 'fill brier', r'Held-out Brier for the fill event: ([\d.]+) against ([\d.]+) for the base-rate forecaster \(base rate ([\d.]+)\)',
       [ev['fill']['brier'], ev['fill']['brier_base_rate'], ev['fill']['base_rate']], flat, D3)
-check(doc, 'outlier denominator', r'\\ge 3\$: \d+ of ([\d,]+)\)', [META['n_level']], flat, N)
-check(doc, 'halflife', r'RMSE ([\d.]+) at half-life 4 years against ([\d.]+) with no decay',
-      [META['halflife_search']['4.0'], META['halflife_search']['None']], flat, D3)
+check(doc, 'outlier denominator', r'> 3\$: \d+ of ([\d,]+),', [META['n_level']], flat, N)
+check(doc, 'halflife', r'RMSE was \{([\d.]+), ([\d.]+), ([\d.]+), ([\d.]+)\}',
+      [META['halflife_search']['1.5'], META['halflife_search']['2.5'],
+       META['halflife_search']['4.0'], META['halflife_search']['None']], flat, D3)
 check(doc, 'coupling', r'raised fill log-loss from ([\d.]+) to ([\d.]+)',
       [META['halflife_search']['coupled_fill_logloss']['independent'],
        META['halflife_search']['coupled_fill_logloss']['coupled']], flat, D3)
 check(doc, 'sigma table', r'\| 0 years \| ([\d.]+) \| \| 1 year \| ([\d.]+) \| \| 2–3 years \| ([\d.]+) \| \| 4\+ years \| ([\d.]+) \|',
       SIGMAS, flat, D1)
-check(doc, 'taus table', r'\| School \| ([\d.]+) \| ([\d.]+) \| \| Utdanningsprogram \| ([\d.]+) \| ([\d.]+) \| \| Series \(school×programme\) \| ([\d.]+) \| ([\d.]+) \| \| County–year innovation \| ([\d.]+) \| ([\d.]+) \| \| Residual \| ([\d.]+) \| — \|',
+check(doc, 'taus table', r'\| School \| ([\d.]+) \| ([\d.]+) \| \| Programme area \(within level\) \| ([\d.]+) \| ([\d.]+) \| \| Series \(school×programme\) \| ([\d.]+) \| ([\d.]+) \| \| County–year innovation \| ([\d.]+) \| ([\d.]+) \| \| Residual \| ([\d.]+) \| — \|',
       [TAUS[0], TAUS_F[0], TAUS[1], TAUS_F[1], TAUS[2], TAUS_F[2], TAUS[3], TAUS_F[3], META['sigma_model']], flat, D1)
 for h, label in (('0', '0 years'), ('1', '1 year'), ('2-3', '2–3 years'), ('4+', r'4\+ years')):
     r = lvl[h]
+    B = r'\*{0,2}'
     if 'rmse_last_year' in r:
-        pat = rf'\| {label} \| (\d+) \| \*\*([\d.]+)\*\* \| ([\d.]+) \| ([\d.]+) \| \*\*([\d.]+)\*\* \| ([\d.]+) \| (\d+)% \|'
-        exp = [r['n'], r['rmse'], r['rmse_last_year'], r['rmse_prog_mean'], mae_model[h], mae_ly[h], r['within3'] * 100]
+        pat = rf'\| {label} \| (\d+) \| \*\*([\d.]+)\*\* \| ([\d.]+) \| ([\d.]+) \| \*\*([\d.]+)\*\* \| ([\d.]+) \| {B}(\d+)%{B} \| {B}(\d+)%{B} \|'
+        exp = [r['n'], r['rmse'], r['rmse_last_year'], r['rmse_prog_mean'], mae_model[h], mae_ly[h],
+               r['within3'] * 100, r['within3_last_year'] * 100]
     else:
-        pat = rf'\| {label} \| (\d+) \| \*\*([\d.]+)\*\* \| — \| ([\d.]+) \| \*\*([\d.]+)\*\* \| — \| (\d+)% \|'
+        pat = rf'\| {label} \| (\d+) \| \*\*([\d.]+)\*\* \| — \| ([\d.]+) \| \*\*([\d.]+)\*\* \| — \| {B}(\d+)%{B} \| — \|'
         exp = [r['n'], r['rmse'], r['rmse_prog_mean'], mae_model[h], r['within3'] * 100]
-    check(doc, f'table 4 {h}', pat, exp, flat, [N] + [D2] * (len(exp) - 2) + [PCT])
+    n_pct = 2 if 'rmse_last_year' in r else 1
+    check(doc, f'table 4 {h}', pat, exp, flat, [N] + [D2] * (len(exp) - 1 - n_pct) + [PCT] * n_pct)
 check(doc, 'overall', r'Overall: RMSE ([\d.]+), MAE ([\d.]+), (\d+)% of forecasts within ±3',
       [ev['level_all']['rmse'], mae_all, ev['level_all']['within3'] * 100], flat, [D2, D2, PCT])
 for r in rel_chance:
