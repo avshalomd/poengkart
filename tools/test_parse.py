@@ -313,6 +313,18 @@ noisy_off = [(p['program'], p['official']) for _, p in ALL_PROGS
 check('the official title is stored only where it adds a different name', not noisy_off,
       str(noisy_off[:3]))
 
+# The reviewed photo harvest must actually be published: build_dataset
+# rewrites schools.json, and a rebuild that skips tools/photos.py silently
+# ships the map with 22 photos instead of 150+ (found live, 2026-08-25).
+import photos as _photos
+_auto = _photos.load_auto()
+_unpublished = sorted(
+    s['name'] for s in DATA['schools']
+    if s['name'] in _auto and _auto[s['name']].get('photo') and not s.get('photo')
+    and _photos.OVERRIDES.get(s['name'], {}).get('photo', 1) is not None)
+check('every reviewed harvest photo is published (run tools/photos.py after build_dataset)',
+      not _unpublished, str(_unpublished[:4]))
+
 # ...and so does data-notes.md, which had fallen two behind
 notes = open(os.path.join(HERE, '..', 'docs', 'data-notes.md'), encoding='utf-8').read()
 r_checks = re.findall(r'runs (\d+) regression checks', notes)

@@ -10,8 +10,10 @@ import sys
 
 from PIL import Image, ImageDraw, ImageFont
 
-STAGE = ('/private/tmp/claude-501/-Users-avshalom-projects/'
-         'b6cc5fd7-b026-44c5-803f-f7c99fea7cf5/scratchpad/photohunt')
+import os
+STAGE = os.environ.get('PHOTO_STAGE',
+                       '/private/tmp/claude-501/-Users-avshalom-projects/'
+                       'b6cc5fd7-b026-44c5-803f-f7c99fea7cf5/scratchpad/photohunt')
 COLS, ROWS = 4, 4
 CW, CH, PAD, LAB = 360, 205, 10, 26
 

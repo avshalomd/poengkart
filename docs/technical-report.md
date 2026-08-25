@@ -186,7 +186,7 @@ place-name register, in that order. Where two publications disagree on a
 cell, the newer wins and the disagreement is retained in
 `data/source-drift.json`; a disagreement near a full grade point flags the
 school-year as uncertain, and the application says so in words. A suite of
-73 regression checks locks known failure modes: shifted year columns,
+74 regression checks locks known failure modes: shifted year columns,
 implausible values, unmatched schools, county-specific quirks.
 
 ### 4.2 Register normalisation
@@ -687,7 +687,7 @@ than mirrored. `tools/refresh.py` regenerates the dataset, the model, every
 walk-forward forecast with its outcome (`data/model-backtest.csv`), and
 every number in this report from the sources; `tools/report_figures.py`
 regenerates the figures. The pipeline is deterministic — there is no seed to
-vary — and runs in minutes on a laptop. Validation comprises 73 parser
+vary — and runs in minutes on a laptop. Validation comprises 74 parser
 regression checks, 12,959 model invariants, and 13 UI invariants executed in
 the application itself.
 

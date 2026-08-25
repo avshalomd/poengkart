@@ -59,7 +59,7 @@ is recorded in `data/source-drift.json` rather than hidden. Any year two
 publications disagree about by close to a whole grade point is flagged on the
 school as `uncertain_years`, and the app says so in words.
 
-`tools/test_parse.py` runs 73 regression checks over the result; every one of
+`tools/test_parse.py` runs 74 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built
