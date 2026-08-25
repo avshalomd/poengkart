@@ -275,7 +275,7 @@ page = f"""<!DOCTYPE html>
 <title>{title}</title>
 <meta name="description" content="Technical report: an open dataset of Norwegian upper-secondary admission thresholds and a calibrated hurdle-model forecast of the next intake.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://poengkart-no.vercel.app/report.html">
+<link rel="canonical" href="https://poengkart-no.vercel.app/report">
 <style>{CSS}</style>
 </head>
 <body>

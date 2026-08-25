@@ -21,7 +21,7 @@ the panel says how often that check was right. [docs/model.md](docs/model.md)
 has the model, the backtest and what it cannot know; the
 [technical report](docs/technical-report.md) is the formal write-up of the
 whole thing — data semantics, model, validation, findings — also published at
-[poengkart-no.vercel.app/report.html](https://poengkart-no.vercel.app/report.html)
+[poengkart-no.vercel.app/report](https://poengkart-no.vercel.app/report)
 (Norwegian edition: [docs/teknisk-rapport.md](docs/teknisk-rapport.md)).
 
 ## Run locally

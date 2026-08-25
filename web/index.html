@@ -2633,7 +2633,7 @@ function renderIntro() {
     `<p class="caveat">${esc(t('introCaveat'))} `
       + `<a href="data/schools.json">${esc(t('introData'))}</a></p>` +
     `<p class="colophon">${t('introRepo', REPO_LINK)} ` +
-      `${t('introReport', `<a href="report.html">${esc(t('introReportLink'))}</a>`)}` +
+      `${t('introReport', `<a href="report">${esc(t('introReportLink'))}</a>`)}` +
       `<span class="who">${esc(t('introCredit'))}</span></p>` +
     `<button class="cta" onclick="closeIntro()">${esc(t('introCta'))}</button>`;
   document.getElementById('intro-x').setAttribute('aria-label', t('close'));
