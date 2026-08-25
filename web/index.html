@@ -975,6 +975,11 @@ const T = {
   // who stands behind the numbers. The link carries all three.
   introRepo:  { no: a => `Kode, data og dokumentasjon av hvordan tallene hentes inn og behandles ligger åpent på ${a}.`,
                 en: a => `The code, the data and the write-up of how the figures are collected and processed are open on ${a}.` },
+  // The technical report is the formal account — data semantics, model,
+  // validation — for anyone who wants more than the tooltips give.
+  introReport:{ no: a => `Metoden, modellen og valideringen er beskrevet i ${a}.`,
+                en: a => `The method, the model and the validation are written up in ${a}.` },
+  introReportLink: { no: 'den tekniske rapporten', en: 'the technical report' },
   introCredit:{ no: 'Laget av Avshalom Dayan · fritt å bruke (MIT-lisens)',
                 en: 'Built by Avshalom Dayan · free to use (MIT licence)' },
   listAnd:    { no: ' og ', en: ' and ' },
@@ -2627,7 +2632,8 @@ function renderIntro() {
     `<p class="lede">${esc(t('introLede'))}</p>${steps}` +
     `<p class="caveat">${esc(t('introCaveat'))} `
       + `<a href="data/schools.json">${esc(t('introData'))}</a></p>` +
-    `<p class="colophon">${t('introRepo', REPO_LINK)}` +
+    `<p class="colophon">${t('introRepo', REPO_LINK)} ` +
+      `${t('introReport', `<a href="report.html">${esc(t('introReportLink'))}</a>`)}` +
       `<span class="who">${esc(t('introCredit'))}</span></p>` +
     `<button class="cta" onclick="closeIntro()">${esc(t('introCta'))}</button>`;
   document.getElementById('intro-x').setAttribute('aria-label', t('close'));

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake</title>
+<meta name="description" content="Technical report: an open dataset of Norwegian upper-secondary admission thresholds and a calibrated hurdle-model forecast of the next intake.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://poengkart-no.vercel.app/report.html">
+<style>
+:root { --ink:#1d2733; --soft:#4a5568; --line:#d9dee5; --accent:#2b6cb8; --bg:#ffffff; --wash:#f5f7fa; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink);
+  font:17px/1.65 Georgia, 'Times New Roman', serif; }
+.page { max-width:47rem; margin:0 auto; padding:2.5rem 1.25rem 5rem; }
+.topbar { font:14px/1.4 Georgia, serif; margin-bottom:2.5rem; }
+.topbar a { color:var(--accent); text-decoration:none; }
+h1 { font-size:1.7rem; line-height:1.25; margin:0 0 1rem; text-wrap:balance; }
+.byline { color:var(--soft); font-size:.95rem; margin:0 0 2rem; }
+.byline a { color:var(--accent); text-decoration:none; }
+h2 { font-size:1.25rem; margin:2.6rem 0 .8rem; }
+h3 { font-size:1.05rem; margin:2rem 0 .6rem; }
+p { margin:.8rem 0; }
+a { color:var(--accent); }
+.abstract { background:var(--wash); border-left:3px solid var(--accent);
+  padding:.25rem 1.2rem; margin:1rem 0 1.5rem; font-size:.95rem; }
+.eq { display:flex; align-items:center; gap:1rem; margin:1.3rem 0;
+  overflow-x:auto; }
+.eq-body { flex:1; text-align:center; font-size:1.02rem; }
+.eq-no { color:var(--soft); }
+var { font-style:italic; font-family:inherit; }
+.frac { display:inline-flex; flex-direction:column; vertical-align:middle;
+  text-align:center; font-size:.88em; line-height:1.25; margin:0 .15em; }
+.frac .num { border-bottom:1px solid var(--ink); padding:0 .3em; }
+.frac .den { padding:0 .3em; }
+.caption { font-size:.88rem; color:var(--soft); margin:1.4rem 0 .4rem; }
+.tbl { overflow-x:auto; margin:0 0 1.2rem; }
+table { border-collapse:collapse; width:100%; font-size:.9rem;
+  font-variant-numeric:tabular-nums; }
+th { text-align:left; border-top:2px solid var(--ink);
+  border-bottom:1px solid var(--ink); padding:.45rem .6rem .45rem 0; font-weight:600; }
+td { border-bottom:1px solid var(--line); padding:.4rem .6rem .4rem 0; }
+tbody tr:last-child td { border-bottom:2px solid var(--ink); }
+figure { margin:1.6rem 0; }
+figure svg { width:100%; height:auto; max-width:620px; display:block; margin:0 auto; }
+figcaption { font-size:.88rem; color:var(--soft); margin-top:.5rem; }
+ul, ol { padding-left:1.4rem; }
+li { margin:.45rem 0; }
+code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
+  background:var(--wash); padding:.1em .3em; border-radius:3px; }
+#references + ul, #references ~ ul { list-style:none; padding-left:1.4rem; }
+#references ~ ul li, #references + ul li { text-indent:-1.4rem; margin:.55rem 0; font-size:.92rem; }
+@media print {
+  body { font-size:11pt; }
+  .page { max-width:none; padding:0; }
+  .topbar { display:none; }
+  h2 { break-after:avoid; }
+  .tbl, figure, .eq { break-inside:avoid; }
+  a { color:inherit; text-decoration:none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<nav class="topbar"><a href="./">&larr; poengkart</a></nav>
+<h1>Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake</h1>
+<p class='byline'><strong>Abshalom Dayan</strong><br>Technical report · August 2026 · v1.0<br>Application: <a href="https://poengkart-no.vercel.app">poengkart-no.vercel.app</a> · Code and data: <a href="https://github.com/avshalomd/poengkart">github.com/avshalomd/poengkart</a><br><em>En norsk utgave av rapporten finnes i <a href="https://github.com/avshalomd/poengkart/blob/main/docs/teknisk-rapport.md">docs/teknisk-rapport.md</a>.</em></p>
+<h2 id='abstract'>Abstract</h2>
+<div class='abstract'><p>Admission to Norwegian upper-secondary school is a centralised, points-based intake in which roughly 70,000 pupils apply each year, yet its most decision-relevant statistic — the admission threshold (<em>poenggrense</em>), the points of the last applicant admitted to each programme at each school — is published by only 7 of 15 intake areas, as PDF tables with inconsistent structure, retention, and semantics. We assemble all retrievable publications into an open, register-normalised panel: 191 schools, 2,122 programme rows, 8,663 observations, 2017–2026, keyed to Norway's national programme register (Grep). On this censored panel we forecast the next intake as the question families actually ask — the probability of admission given the applicant's points — using a hurdle model: a hierarchical logistic model for whether a programme fills, and a hierarchical Gaussian model with a random-walk county–year level for where the threshold lands if it does. Forecast spread is estimated from the model's own walk-forward errors rather than taken from the fit, the error distribution is empirical, and fill probabilities are recalibrated by Platt scaling. Evaluated walk-forward with 2025–2026 fully held out, the model beats a persistence baseline in every history stratum (RMSE 4.99 vs 5.87 on series with ≥4 observed years), nominal 80% intervals achieve 80.9% empirical coverage, and admission probabilities are calibrated (Brier score 0.097 vs 0.150 for the persistence rule). Paired within-year publications additionally identify a systematic intake-round effect of −3.2 to −3.4 points that makes cross-county comparison of raw thresholds misleading. Code and data are available at https://github.com/avshalomd/poengkart.</p></div>
+<h2 id='1-introduction'>1. Introduction</h2>
+<p>In most Norwegian counties, admission to upper-secondary school (<em>videregående opplæring</em>) is a points-based queue. Applicants rank up to ten programme–school combinations in the national application system (vigo.no), and each programme admits by descending lower-secondary grade points until its capacity is reached. The points of the last admitted applicant — the <em>poenggrense</em>, or admission threshold — is a market-clearing cutoff, re-set every year by that year's cohort. For a family choosing where to apply, the distribution of plausible thresholds at each candidate programme is the central planning quantity.</p>
+<p>That quantity is public only in fragments. Seven of Norway's fifteen counties and intake areas publish thresholds at all. Those that do publish PDF tables that differ in structure, in retention (Oslo's archive reaches 2017; Akershus publishes only the latest year), in which of up to three intake rounds the figures describe — often without stating which — and in the notation used for special cases, such as programmes that filled with applicants who had no points. No national, machine-readable, or historical compilation exists. Forecasting from such data is hard for structural reasons: a threshold exists only where demand exceeded capacity, so the panel is censored by construction; a third of the series have a single observed year; and the published figure is round-specific, so identical demand can print different numbers in different counties.</p>
+<p>To the best of our knowledge, no prior work addresses forecasting of admission thresholds in the Norwegian intake, and published work on threshold forecasting in any centralised score-based admission system is thin (Section 3). This report describes <strong>Poengkart</strong> ("points map"), an open dataset, forecasting model, and deployed application. Our contributions are as follows:</p>
+<ul>
+<li><strong>An open, register-normalised dataset</strong> of all retrievable published thresholds — 191 schools, 2,122 programme rows, 8,663 cell-level observations across 7 counties and the years 2017–2026 — in which every row is resolved against the national Grep register and every cell's state (numeric threshold, filled at zero, no waiting list, quota-based admission) is preserved as data (Section 4).</li>
+<li><strong>A calibrated probabilistic forecast</strong> of the next intake, P(admission | applicant's points), from a hurdle model with hierarchical partial pooling and a random-walk county–year component, whose predictive spread is estimated from walk-forward forecast errors rather than model internals (Sections 5–6).</li>
+<li><strong>A held-out evaluation</strong> on the 2025–2026 intakes showing the model dominates persistence and group-mean baselines in every history stratum (RMSE 4.99 vs 5.87 and 6.12 in the deepest stratum), with 80.9% empirical coverage of nominal 80% intervals and calibrated probabilities (Brier 0.097 vs 0.150), plus ablations of the structural choices (Section 7).</li>
+<li><strong>Measurements of the publication practice itself</strong>: a paired within-year estimate of the intake-round effect (−3.2 to −3.4 points, 16–32% of queues cleared between rounds), evidence that raw school means largely reflect programme composition rather than demand, and a residual-based audit that distinguishes genuine extremes from parsing damage (Section 8).</li>
+</ul>
+<p>Section 9 describes the deployed application; Sections 10–12 give limitations, ethical considerations, and recommendations to the publishing counties.</p>
+<h2 id='2-institutional-background'>2. Institutional background</h2>
+<p>Norwegian pupils finish compulsory school with a points total (<em>grunnskolepoeng</em>): ten times the mean of their final grades on the 1–6 scale, a maximum of 60; pupils without grades compete "without points". Applications are submitted through vigo.no by 1 March: up to <strong>ten ranked wishes</strong>, each a programme at a school, with at most <strong>three distinct utdanningsprogram</strong> (programmes of study) among first-year wishes. The programme structure is national, maintained by the Directorate for Education and Training (Udir) in the <strong>Grep</strong> register: 15 utdanningsprogram subdivided into 497 <em>programområder</em> (programme areas) across year levels Vg1–Vg3.</p>
+<p>Counties run the intake in up to three rounds in July–August. In each round every programme admits by descending points among remaining applicants; seats declined in one round are re-offered in the next, so thresholds fall between rounds (Section 8.1 measures how much). The published threshold is the points of the last admitted applicant <em>in the published round</em> — and counties differ in which round they publish, sometimes without saying. Several counties admit within catchment areas, in which case a threshold binds only residents of the area. Statutory priority admission and admission on documented grounds bypass the points queue entirely.</p>
+<p>Two structural facts shape everything downstream. First, a threshold exists only where demand exceeded capacity: undersubscribed programmes have no waiting list and no threshold, so the dataset is <strong>censored by construction</strong>, and the censoring is informative — it is exactly the "no queue" event our fill model predicts. Second, the published figure is <strong>round-specific</strong>: comparing thresholds across counties without knowing the round conflates market differences with administrative timing.</p>
+<h2 id='3-related-work'>3. Related work</h2>
+<p><strong>School choice and matching markets.</strong> Centralised admission mechanisms descend from deferred acceptance (Gale &amp; Shapley, 1962); their analysis and design as school-choice mechanisms is a mature literature (Abdulkadiroğlu &amp; Sönmez, 2003). In large score-priority markets, stable outcomes are characterised by market-clearing cutoffs (Azevedo &amp; Leshno, 2016) — the very object we forecast — and cutoffs figure as sufficient statistics in empirical work on centralised admission (Fack, Grenet &amp; He, 2019). This literature designs and analyses mechanisms; it does not forecast next year's cutoffs for applicants.</p>
+<p><strong>Cutoff prediction.</strong> Direct prior art is thin. The closest published work we know of predicts admission score lines in China's Gaokao system (Chen, Peng, Gao &amp; Cai, 2022). Our setting differs in scale and structure — many small county-level queues with short histories rather than one national exam — which motivates partial pooling and makes calibrated probabilities, not point predictions, the deliverable.</p>
+<p><strong>Hierarchical models and shrinkage.</strong> Borrowing strength across small groups by partial pooling is classical (James &amp; Stein, 1961; Efron &amp; Morris, 1975) and is standard multilevel practice (Gelman &amp; Hill, 2007). We apply it to a censored panel in which 567 of 1,670 series have a single observation, with variance components estimated by an EM-type procedure (Dempster, Laird &amp; Rubin, 1977).</p>
+<p><strong>Censored and two-part models.</strong> Treating "no queue formed" as censoring of a latent threshold descends from Tobin (1958); we instead use a two-part hurdle specification (Cragg, 1971), because the fill event is observed and economically distinct from the threshold's level, and because the application needs the fill probability as its own output.</p>
+<p><strong>Calibration and forecast evaluation.</strong> Post-hoc recalibration by a fitted logistic map is Platt scaling (Platt, 1999; Niculescu-Mizil &amp; Caruana, 2005; Guo, Pleiss, Sun &amp; Weinberger, 2017). Probabilities are scored with the Brier score (Brier, 1950), a strictly proper scoring rule (Gneiting &amp; Raftery, 2007), and reliability diagrams (DeGroot &amp; Fienberg, 1983; Murphy, 1973); interval forecasts are judged by the calibration-and-sharpness criterion (Gneiting, Balabdaoui &amp; Raftery, 2007). Our temporal evaluation follows rolling-origin practice (Tashman, 2000; Bergmeir &amp; Benítez, 2012; Hyndman &amp; Athanasopoulos, 2021).</p>
+<h2 id='4-data'>4. Data</h2>
+<h3 id='4-1-sources-and-extraction'>4.1 Sources and extraction</h3>
+<p>The sources are the counties' own publications — typically one PDF per county per year, occasionally per intake round. Each county has a dedicated extractor feeding a shared normaliser. PDFs are read by coordinate rather than by text flow: columns are sliced by x-position, and rotated column headers (Oslo, Vestland) are reconstructed glyph by glyph. Editions that counties overwrote or removed were recovered from the Internet Archive. School names are matched to the national school register (NSR) within county and geocoded via NSR, the national address API, and the national place-name register, in that order. Where two publications disagree on a cell, the newer wins and the disagreement is retained in <code>data/source-drift.json</code>; a disagreement near a full grade point flags the school-year as uncertain, and the application says so in words. A suite of 73 regression checks locks known failure modes: shifted year columns, implausible values, unmatched schools, county-specific quirks.</p>
+<h3 id='4-2-register-normalisation'>4.2 Register normalisation</h3>
+<p>Programme labels vary in spelling across counties and across years within a county. Every row is resolved against Grep: 2,116 of 2,122 rows carry a register code (the remaining six are International Baccalaureate, outside the register). The classification into utdanningsprogram is therefore the state's own, not ours — an earlier keyword classifier misfiled <em>gartnernæring</em> (horticulture) under restaurant and food processing because the substring "ernæring" (nutrition) matched. County intake groups are finer than Grep codes (one school can run several queues under one code), so each row keeps the county's own label as its identity and carries the register code and official name as metadata.</p>
+<h3 id='4-3-cell-semantics'>4.3 Cell semantics</h3>
+<p>A cell in a county table is not always a number, and the non-numbers are distinct events, not missing data. Table 1 gives the taxonomy and how each state enters the analysis.</p>
+<p class='caption'><strong>Table 1:</strong> Cell states in county publications and their treatment. "Level" and "fill" refer to the two model components of Section 5.</p>
+<div class='tbl'><table>
+<thead><tr><th>Cell</th><th>Meaning</th><th>In averages?</th><th>In the model?</th></tr></thead><tbody>
+<tr><td>e.g. 38.4</td><td>Waiting list; last admitted had 38.4 points</td><td>yes</td><td>level + filled</td></tr>
+<tr><td>0.0</td><td>Filled, but last admitted competed without points</td><td><strong>no</strong></td><td>filled, never level</td></tr>
+<tr><td>"all admitted"</td><td>No waiting list; no threshold exists</td><td>no</td><td>not filled</td></tr>
+<tr><td>F / D / U</td><td>Priority quota / documented grounds / discontinued</td><td>no</td><td>outside both parts</td></tr>
+</tbody></table></div>
+<p>Two consequences are enforced throughout. The dataset is censored by construction, so averages of published numbers are averages over the queued subset, and the fill indicator carries the rest of the signal. And 0.0 is a trap: it prints like a number but is the bottom of the scale, not a height on it — including it in a mean drags a school's level toward zero for the opposite reason a genuinely low threshold does.</p>
+<h3 id='4-4-coverage'>4.4 Coverage</h3>
+<p>The panel spans 2017–2026: Oslo 2017 and 2020–2026, Vestland 2017–2026 (2017–2019 as a narrower Bergen-area series), Rogaland 2018–2025, Innlandet 2023–2025, Buskerud 2024–2025, and Akershus and Trøndelag 2025 only. Of the 1,670 school×programme series, 567 have exactly one observed year. Among the 8,663 cells, 7,934 competed on points (and thus inform the fill model) and 5,433 carry a numeric threshold (and thus inform the level model). The non-publishing intake areas either state that they choose not to publish (Agder, Nordland, Østfold), publish aggregate statistics without thresholds, or publish behind a dashboard (Møre og Romsdal). The unevenness is a property of the publication regime, not of the collection: for several counties and periods, county-wide thresholds were never computed, because admission ran on catchment rather than points.</p>
+<h2 id='5-forecasting-model'>5. Forecasting model</h2>
+<h3 id='5-1-notation-and-target'>5.1 Notation and target</h3>
+<p>A <strong>series</strong> <var>i</var> is one school×programme×level queue; <var>s</var>[<var>i</var>], <var>p</var>[<var>i</var>], <var>a</var>[<var>i</var>], and <var>c</var>[<var>i</var>] denote its school, utdanningsprogram, programme area, and county. In year <var>t</var>, <var>F<sub>it</sub></var> &isin; {0,&#8201;1} indicates that the cell filled (a queue formed), and <var>y<sub>it</sub></var> is the published threshold, observed only when <var>F<sub>it</sub></var> = 1 and the last admitted applicant had points. For an applicant with points <var>x</var>, the deployed quantity for the county's next publication year is</p>
+<div class='eq'><span class='eq-body'><var>P</var>(place&#8201;|&#8201;<var>x</var>) = (1 &minus; <var>&pi;</var>) + <var>&pi;</var>&#8201;<var>&Phi;<sub>F</sub></var>&#8239;(<span class='frac'><span class='num'><var>x</var> &minus; <var>m</var></span><span class='den'><var>s</var></span></span>)</span><span class='eq-no'>(1)</span></div>
+<p>where <var>&pi;</var> is the forecast probability that a queue forms, <var>m</var> the forecast threshold conditional on a queue, <var>s</var> the forecast spread (Section 6.1), and <var>&Phi;<sub>F</sub></var> the CDF of the standardised forecast error (Section 6.2). Equation (1) is the hurdle decomposition: either no one is turned away, or admission requires the cutoff to land at or below <var>x</var>.</p>
+<h3 id='5-2-two-components-one-hierarchy'>5.2 Two components, one hierarchy</h3>
+<p>The <strong>level</strong> component models the observed thresholds:</p>
+<div class='eq'><span class='eq-body'><var>y<sub>it</sub></var>&#8201;|&#8201;<var>F<sub>it</sub></var> = 1 &nbsp;&sim;&nbsp; 𝒩(<var>&mu;</var> + <var>&alpha;<sub>s[i]</sub></var> + <var>&beta;<sub>p[i]</sub></var> + <var>&gamma;<sub>a[i]</sub></var> + <var>u<sub>i</sub></var> + <var>w<sub>c[i],t</sub></var> + <var>&rho;<sub>r(i,t)</sub></var>,&nbsp;<var>&sigma;</var><sup>2</sup>)</span><span class='eq-no'>(2)</span></div>
+<p>and the <strong>fill</strong> component the queue-formation event:</p>
+<div class='eq'><span class='eq-body'>logit&#8201;<var>P</var>(<var>F<sub>it</sub></var> = 1) = <var>&nu;</var> + <var>&alpha;&prime;<sub>s[i]</sub></var> + <var>&beta;&prime;<sub>p[i]</sub></var> + <var>&gamma;&prime;<sub>a[i]</sub></var> + <var>u&prime;<sub>i</sub></var> + <var>w&prime;<sub>c[i],t</sub></var> + <var>&rho;&prime;<sub>r(i,t)</sub></var></span><span class='eq-no'>(3)</span></div>
+<p>Every effect is a random effect with a mean-zero Gaussian prior and its own variance: school (<var>&alpha;</var>), utdanningsprogram (<var>&beta;</var>), programme area within level (<var>&gamma;</var>), the series interaction <var>u<sub>i</sub></var> (a school can be strong in music and ordinary in electrical), and a round offset <var>&rho;</var>. The county–year effect follows a random walk,</p>
+<div class='eq'><span class='eq-body'><var>w<sub>c,t</sub></var> = <var>w<sub>c,t&minus;1</sub></var> + <var>&eta;<sub>c,t</sub></var>, &nbsp;&nbsp; <var>&eta;<sub>c,t</sub></var> &sim; 𝒩(0, <var>&tau;<sub>w</sub></var><sup>2</sup>)</span><span class='eq-no'>(4)</span></div>
+<p>so a county's market level moves smoothly and its latest state is the forecast for next year. The level component is fitted on the 5,433 cells with a numeric threshold; the fill component on all 7,934 cells that competed on points. The hierarchy exists to borrow strength: a series with one observed year inherits its level from the hundreds of comparable series around it — partially pooled toward its school, programme, and county means — instead of being trusted alone.</p>
+<h3 id='5-3-estimation'>5.3 Estimation</h3>
+<p>Effects are estimated by penalised maximum likelihood, with variance components updated by a few rounds of the standard normal–normal EM approximation; the pipeline is deterministic. Observations are exponentially down-weighted with age; the half-life of 4 years was selected by the backtest and mattered little (Section 7.5). Table 2 reports the fitted standard deviations.</p>
+<p class='caption'><strong>Table 2:</strong> Fitted variance components (standard deviations). Level components in points; fill components on the logit scale.</p>
+<div class='tbl'><table>
+<thead><tr><th>Component</th><th>Level (points)</th><th>Fill (logit)</th></tr></thead><tbody>
+<tr><td>School</td><td>3.4</td><td>1.3</td></tr>
+<tr><td>Utdanningsprogram</td><td>3.1</td><td>1.4</td></tr>
+<tr><td>Series (school×programme)</td><td>2.7</td><td>1.7</td></tr>
+<tr><td>County–year innovation</td><td>1.3</td><td>0.9</td></tr>
+<tr><td>Residual</td><td>4.5</td><td>—</td></tr>
+</tbody></table></div>
+<p>Coupling the components — the level model's school effect as an offset in the fill model, so "in demand" is one trait read two ways — was tried and rejected by the backtest (Section 7.5).</p>
+<h3 id='5-4-rounds'>5.4 Rounds</h3>
+<p>Within a county the published round is constant, so it is absorbed by the county level and need not be known — which is why counties that do not state their round remain usable. The one exception in the data, Vestland 2023 (published from round 3 inside a round-1 series), is handled with fixed per-programme offsets taken from the round bridge (Section 8.1), so the random walk does not read an administrative dip as a market event; those cells are also excluded from evaluation (Section 7.1).</p>
+<h2 id='6-uncertainty'>6. Uncertainty</h2>
+<h3 id='6-1-spread-from-walk-forward-errors-not-from-the-fit'>6.1 Spread from walk-forward errors, not from the fit</h3>
+<p>A hierarchical model is sure of itself: the residual standard deviation is 4.5 points, but a next-year forecast also carries the uncertainty of every borrowed effect and of the market's next move — and for a one-year series the effects are mostly borrowed. The spread <var>s</var> in (1) is therefore not read from the fit at all. It is the RMSE of the model's own walk-forward forecasts on the calibration years (Section 7.1), stratified by the history the series had at forecast time (Table 3).</p>
+<p class='caption'><strong>Table 3:</strong> Forecast spread <var>s</var>, estimated from walk-forward errors on the calibration years 2020–2024.</p>
+<div class='tbl'><table>
+<thead><tr><th>History at forecast time</th><th><var>s</var> (points)</th></tr></thead><tbody>
+<tr><td>0 years</td><td>7.2</td></tr>
+<tr><td>1 year</td><td>6.4</td></tr>
+<tr><td>2–3 years</td><td>5.6</td></tr>
+<tr><td>4+ years</td><td>4.5</td></tr>
+</tbody></table></div>
+<p>The gradient is the empirical price of borrowing: a never-observed series is forecast 7.2 points loose; four observed years buy the spread down to 4.5.</p>
+<h3 id='6-2-an-empirical-error-distribution'>6.2 An empirical error distribution</h3>
+<p><var>&Phi;<sub>F</sub></var> in (1) is the empirical CDF of the standardised walk-forward errors (41 quantiles), not a Gaussian. It is mildly left-skewed — thresholds collapse more often than they jump, because a queue can vanish but cannot exceed its applicant pool — though on this data a Gaussian would have scored almost identically.</p>
+<h3 id='6-3-recalibrating-the-fill-probability'>6.3 Recalibrating the fill probability</h3>
+<p>The raw fill model is overconfident: cells given <var>&pi;</var> = 0.97 filled 82% of the time out of sample — the series effects fit the training panel too well. We therefore recalibrate by Platt scaling, fitting</p>
+<div class='eq'><span class='eq-body'>logit&#8201;<var>&pi;</var>&prime; = &minus;0.124 + 0.465&#8201;logit&#8201;<var>&pi;</var></span><span class='eq-no'>(5)</span></div>
+<p>on the calibration years only, which are disjoint from the held-out evaluation years. The slope well below 1 is a uniform confidence haircut. Held-out Brier for the fill event: 0.163 against 0.204 for the base-rate forecaster (base rate 0.714); the full reliability table is in Appendix C.</p>
+<h2 id='7-evaluation'>7. Evaluation</h2>
+<h3 id='7-1-protocol'>7.1 Protocol</h3>
+<p>Evaluation is walk-forward with an expanding window (Tashman, 2000; Bergmeir &amp; Benítez, 2012): for each target year <var>t</var> &isin; {2020, &hellip;, 2026}, the model is fitted on everything published before <var>t</var> and forecasts year <var>t</var>. Years 2020–2024 are <strong>calibration years</strong>: they set <var>s</var> (Section 6.1), <var>&Phi;<sub>F</sub></var> (Section 6.2), and the Platt map (5). Years <strong>2025–2026 are held out entirely</strong> and are the only years reported in this section. No information from year <var>t</var> or later — including calibration fitting and the half-life selection — touches the model that predicts year <var>t</var>. Vestland's 2023 round-3 cells are excluded from scoring: no earlier year can teach any forecaster that event, and the deployed model handles it with a told-in-advance offset, so scoring it would mislead in both directions.</p>
+<p>Two baselines: <strong>persistence</strong> ("last year's figure"), where the series has history, and the <strong>programme–county mean</strong> of prior years.</p>
+<h3 id='7-2-threshold-accuracy'>7.2 Threshold accuracy</h3>
+<p class='caption'><strong>Table 4:</strong> Held-out threshold accuracy, 2025–2026 (1,497 cells with a published number), by history stratum. RMSE and MAE in points (↓ better); best per row in bold. Persistence is undefined for 0-year series.</p>
+<div class='tbl'><table>
+<thead><tr><th>History</th><th>n</th><th>Model RMSE</th><th>Persistence RMSE</th><th>Prog–county mean RMSE</th><th>Model MAE</th><th>Persistence MAE</th><th>Model within ±3</th></tr></thead><tbody>
+<tr><td>0 years</td><td>269</td><td><strong>7.35</strong></td><td>—</td><td>8.09</td><td><strong>5.69</strong></td><td>—</td><td>34%</td></tr>
+<tr><td>1 year</td><td>169</td><td><strong>5.83</strong></td><td>7.65</td><td>6.77</td><td><strong>4.57</strong></td><td>5.74</td><td>41%</td></tr>
+<tr><td>2–3 years</td><td>352</td><td><strong>5.63</strong></td><td>7.11</td><td>6.50</td><td><strong>4.42</strong></td><td>5.28</td><td>42%</td></tr>
+<tr><td>4+ years</td><td>709</td><td><strong>4.99</strong></td><td>5.87</td><td>6.12</td><td><strong>3.71</strong></td><td>4.12</td><td>52%</td></tr>
+</tbody></table></div>
+<p>The model dominates both baselines in every stratum, on both metrics (Figure 1). Overall: RMSE 5.72, MAE 4.33, 45% of forecasts within ±3 points. For scale, the year-to-year standard deviation of a series is 6.3 points (3,156 consecutive-year pairs), so persistence is a strong baseline and the residual year effect is large — which is why the deliverable is the distribution, not the point forecast. Per-year results are in Appendix B.</p>
+<figure><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 620 420' role='img' aria-label='Held-out RMSE by history stratum, model against two baselines'>
+<rect width='620' height='420' fill='white'/>
+<line x1='64' y1='336.0' x2='604' y2='336.0' stroke='#e6e9ee'/>
+<text x='56' y='340.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>0</text>
+<line x1='64' y1='266.7' x2='604' y2='266.7' stroke='#e6e9ee'/>
+<text x='56' y='270.7' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>2</text>
+<line x1='64' y1='197.3' x2='604' y2='197.3' stroke='#e6e9ee'/>
+<text x='56' y='201.3' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>4</text>
+<line x1='64' y1='128.0' x2='604' y2='128.0' stroke='#e6e9ee'/>
+<text x='56' y='132.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>6</text>
+<line x1='64' y1='58.7' x2='604' y2='58.7' stroke='#e6e9ee'/>
+<text x='56' y='62.7' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>8</text>
+<rect x='82.5' y='81.2' width='30' height='254.8' fill='#2b6cb8'/>
+<text x='97.5' y='75.2' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.3</text>
+<rect x='150.5' y='55.5' width='30' height='280.5' fill='#8a8f98'/>
+<text x='165.5' y='49.5' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>8.1</text>
+<text x='131.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>0 years</text>
+<rect x='217.5' y='133.9' width='30' height='202.1' fill='#2b6cb8'/>
+<text x='232.5' y='127.9' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.8</text>
+<rect x='251.5' y='70.8' width='30' height='265.2' fill='#b0672e'/>
+<text x='266.5' y='64.8' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.7</text>
+<rect x='285.5' y='101.3' width='30' height='234.7' fill='#8a8f98'/>
+<text x='300.5' y='95.3' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.8</text>
+<text x='266.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>1 year</text>
+<rect x='352.5' y='140.8' width='30' height='195.2' fill='#2b6cb8'/>
+<text x='367.5' y='134.8' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.6</text>
+<rect x='386.5' y='89.5' width='30' height='246.5' fill='#b0672e'/>
+<text x='401.5' y='83.5' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.1</text>
+<rect x='420.5' y='110.7' width='30' height='225.3' fill='#8a8f98'/>
+<text x='435.5' y='104.7' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.5</text>
+<text x='401.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>2–3 years</text>
+<rect x='487.5' y='163.0' width='30' height='173.0' fill='#2b6cb8'/>
+<text x='502.5' y='157.0' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.0</text>
+<rect x='521.5' y='132.5' width='30' height='203.5' fill='#b0672e'/>
+<text x='536.5' y='126.5' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.9</text>
+<rect x='555.5' y='123.8' width='30' height='212.2' fill='#8a8f98'/>
+<text x='570.5' y='117.8' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.1</text>
+<text x='536.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>4+ years</text>
+<text x='334.0' y='384' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>History of the series at forecast time</text>
+<rect x='70' y='394' width='12' height='12' fill='#2b6cb8'/>
+<text x='87' y='404' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733'>model</text>
+<rect x='153' y='394' width='12' height='12' fill='#b0672e'/>
+<text x='170' y='404' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733'>last year’s figure</text>
+<rect x='340' y='394' width='12' height='12' fill='#8a8f98'/>
+<text x='357' y='404' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733'>programme–county mean</text>
+<text x='18' y='180.0' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle' transform='rotate(-90 18 180.0)'>RMSE (points)</text>
+</svg><figcaption><strong>Figure 1:</strong> Held-out RMSE by history stratum: model against both baselines.</figcaption></figure>
+<h3 id='7-3-interval-coverage'>7.3 Interval coverage</h3>
+<p>The nominal 80% interval <var>m</var> &plusmn; 1.28&#8201;<var>s</var> contained the published figure <strong>80.9%</strong> of the time on held-out cells, at a mean width of 13.9 points. Coverage is the target and width the price (Gneiting, Balabdaoui &amp; Raftery, 2007): roughly ±7 points is what an honest 80% claim costs on this data.</p>
+<h3 id='7-4-admission-probability-calibration'>7.4 Admission-probability calibration</h3>
+<p>The deployed quantity is (1). For every held-out cell and every score <var>x</var> &isin; {20, 25, &hellip;, 55} we ask "would an applicant with <var>x</var> points have been admitted?" — the outcome is determined by the published threshold and fill state — and score the predicted probability over the 12,360 score–cell pairs. Brier score <strong>0.097</strong>, against <strong>0.150</strong> for the persistence rule ("last year's threshold is this year's", a step function in <var>x</var>).</p>
+<p class='caption'><strong>Table 5:</strong> Reliability of the held-out admission probability (Figure 2 shows the same data as a diagram).</p>
+<div class='tbl'><table>
+<thead><tr><th>Predicted</th><th>Observed</th><th>n</th></tr></thead><tbody>
+<tr><td>0–10%</td><td>3.1%</td><td>578</td></tr>
+<tr><td>10–20%</td><td>9.1%</td><td>1,138</td></tr>
+<tr><td>20–30%</td><td>22%</td><td>1,307</td></tr>
+<tr><td>30–40%</td><td>37%</td><td>1,196</td></tr>
+<tr><td>40–50%</td><td>41%</td><td>805</td></tr>
+<tr><td>50–60%</td><td>56%</td><td>878</td></tr>
+<tr><td>60–70%</td><td>62%</td><td>771</td></tr>
+<tr><td>70–80%</td><td>77%</td><td>1,017</td></tr>
+<tr><td>80–90%</td><td>87%</td><td>1,191</td></tr>
+<tr><td>90–100%</td><td>98.4%</td><td>8,095</td></tr>
+</tbody></table></div>
+<p>From 30% upward the forecast tracks observed frequency within five points. Below 30% it is optimistic — a stated 15% was realised at about 9% — a region the application's coarse bands (likely ≥ 70%, possible ≥ 35%, otherwise unlikely) absorb, and which we document wherever the raw percentage is shown.</p>
+<figure><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 560 500' role='img' aria-label='Reliability diagram of the held-out admission probability'>
+<rect width='560' height='500' fill='white'/>
+<line x1='70.0' y1='430.0' x2='70.0' y2='20.0' stroke='#e6e9ee' stroke-width='1'/>
+<line x1='70.0' y1='430.0' x2='540.0' y2='430.0' stroke='#e6e9ee' stroke-width='1'/>
+<text x='70.0' y='452' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='middle'>0.0</text>
+<text x='60' y='434.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>0.0</text>
+<line x1='164.0' y1='430.0' x2='164.0' y2='20.0' stroke='#e6e9ee' stroke-width='1'/>
+<line x1='70.0' y1='348.0' x2='540.0' y2='348.0' stroke='#e6e9ee' stroke-width='1'/>
+<text x='164.0' y='452' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='middle'>0.2</text>
+<text x='60' y='352.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>0.2</text>
+<line x1='258.0' y1='430.0' x2='258.0' y2='20.0' stroke='#e6e9ee' stroke-width='1'/>
+<line x1='70.0' y1='266.0' x2='540.0' y2='266.0' stroke='#e6e9ee' stroke-width='1'/>
+<text x='258.0' y='452' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='middle'>0.4</text>
+<text x='60' y='270.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>0.4</text>
+<line x1='352.0' y1='430.0' x2='352.0' y2='20.0' stroke='#e6e9ee' stroke-width='1'/>
+<line x1='70.0' y1='184.0' x2='540.0' y2='184.0' stroke='#e6e9ee' stroke-width='1'/>
+<text x='352.0' y='452' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='middle'>0.6</text>
+<text x='60' y='188.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>0.6</text>
+<line x1='446.0' y1='430.0' x2='446.0' y2='20.0' stroke='#e6e9ee' stroke-width='1'/>
+<line x1='70.0' y1='102.0' x2='540.0' y2='102.0' stroke='#e6e9ee' stroke-width='1'/>
+<text x='446.0' y='452' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='middle'>0.8</text>
+<text x='60' y='106.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>0.8</text>
+<line x1='540.0' y1='430.0' x2='540.0' y2='20.0' stroke='#e6e9ee' stroke-width='1'/>
+<line x1='70.0' y1='20.0' x2='540.0' y2='20.0' stroke='#e6e9ee' stroke-width='1'/>
+<text x='540.0' y='452' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='middle'>1.0</text>
+<text x='60' y='24.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>1.0</text>
+<rect x='72.0' y='422.3' width='43.0' height='7.7' fill='#8a8f98' opacity='0.18'/>
+<rect x='119.0' y='414.9' width='43.0' height='15.1' fill='#8a8f98' opacity='0.18'/>
+<rect x='166.0' y='412.6' width='43.0' height='17.4' fill='#8a8f98' opacity='0.18'/>
+<rect x='213.0' y='414.1' width='43.0' height='15.9' fill='#8a8f98' opacity='0.18'/>
+<rect x='260.0' y='419.3' width='43.0' height='10.7' fill='#8a8f98' opacity='0.18'/>
+<rect x='307.0' y='418.3' width='43.0' height='11.7' fill='#8a8f98' opacity='0.18'/>
+<rect x='354.0' y='419.8' width='43.0' height='10.2' fill='#8a8f98' opacity='0.18'/>
+<rect x='401.0' y='416.5' width='43.0' height='13.5' fill='#8a8f98' opacity='0.18'/>
+<rect x='448.0' y='414.2' width='43.0' height='15.8' fill='#8a8f98' opacity='0.18'/>
+<rect x='495.0' y='322.5' width='43.0' height='107.5' fill='#8a8f98' opacity='0.18'/>
+<line x1='70.0' y1='430.0' x2='540.0' y2='20.0' stroke='#8a8f98' stroke-width='1.5' stroke-dasharray='5 4'/>
+<circle cx='105.7' cy='417.3' r='5.5' fill='#2b6cb8'/>
+<circle cx='140.0' cy='392.7' r='5.5' fill='#2b6cb8'/>
+<circle cx='188.4' cy='338.6' r='5.5' fill='#2b6cb8'/>
+<circle cx='233.1' cy='277.1' r='5.5' fill='#2b6cb8'/>
+<circle cx='281.5' cy='263.5' r='5.5' fill='#2b6cb8'/>
+<circle cx='329.0' cy='202.0' r='5.5' fill='#2b6cb8'/>
+<circle cx='376.4' cy='176.2' r='5.5' fill='#2b6cb8'/>
+<circle cx='423.0' cy='113.1' r='5.5' fill='#2b6cb8'/>
+<circle cx='470.0' cy='72.5' r='5.5' fill='#2b6cb8'/>
+<circle cx='531.5' cy='26.6' r='5.5' fill='#2b6cb8'/>
+<text x='305.0' y='478' font-family='Georgia, "Times New Roman", serif' font-size='15' fill='#1d2733' text-anchor='middle'>Predicted probability of admission</text>
+<text x='20' y='225.0' font-family='Georgia, "Times New Roman", serif' font-size='15' fill='#1d2733' text-anchor='middle' transform='rotate(-90 20 225.0)'>Observed admission frequency</text>
+</svg><figcaption><strong>Figure 2:</strong> Reliability diagram of the held-out admission probability. Grey bars show where the predictions' mass sits (75% of score–cell pairs land above 80%).</figcaption></figure>
+<h3 id='7-5-ablations'>7.5 Ablations</h3>
+<p>Both structural choices that could have gone the other way were adjudicated on the calibration years, never the held-out years:</p>
+<ul>
+<li><strong>Recency half-life.</strong> Walk-forward RMSE 6.199 at half-life 4 years against 6.205 with no decay — kept because it wins, reported because it barely does.</li>
+<li><strong>Level→fill coupling.</strong> Plugging the level model's school effect into the fill model raised fill log-loss from 0.403 to 0.406; the fill model's own school effect already carries the information. The components stay independent.</li>
+</ul>
+<h2 id='8-findings-about-the-publication-practice'>8. Findings about the publication practice</h2>
+<h3 id='8-1-the-intake-round-effect'>8.1 The intake-round effect</h3>
+<p>Two counties publish the same programmes in the same year from two rounds — a paired, within-year measurement of what a later round does (Table 6).</p>
+<p class='caption'><strong>Table 6:</strong> The round bridge: paired within-year threshold changes between published rounds.</p>
+<div class='tbl'><table>
+<thead><tr><th></th><th>Pairs queued in both</th><th>Later − earlier (points)</th><th>Queues cleared by later round</th></tr></thead><tbody>
+<tr><td>Akershus, round 1 → 2</td><td>101</td><td>−3.4 (sd 3.1)</td><td>16% of 124</td></tr>
+<tr><td>Vestland, round 1 → 3</td><td>910</td><td>−3.2 (sd 3.8)</td><td>32% of 1,348</td></tr>
+</tbody></table></div>
+<p>The drop conditional on the queue surviving is half the story; the cleared queues are the other half. The effect is heterogeneous by programme — in Vestland, <em>studiespesialisering</em> −5.3 and <em>påbygging</em> −5.9 against electrical −1.7 and building −2.6 (full table in Appendix A). Cross-county comparison of raw thresholds that ignores the round is therefore systematically misleading by 3–6 points — and several counties do not state the round in their publication. We deliberately do not project a common "round-1 equivalent" scale across counties: applying Akershus's offsets to Rogaland would be an assumption dressed as a measurement.</p>
+<h3 id='8-2-raw-school-means-largely-measure-programme-mix'>8.2 Raw school means largely measure programme mix</h3>
+<p>The school effect <var>&alpha;<sub>s</sub></var> in (2) is a school's threshold level relative to the same programmes elsewhere in its county — programme mix held constant. Re-ranking the 137 schools with five or more published thresholds by <var>&alpha;<sub>s</sub></var> instead of by raw mean moves the average school 16 places and the most extreme school 65. A substantial part of a raw school mean is what the school <em>offers</em>, not how contested it is. The application prints the mix-adjusted effect with a standard error and states that it measures demand, not quality.</p>
+<h3 id='8-3-the-model-as-a-data-audit'>8.3 The model as a data audit</h3>
+<p>The cells the fitted model finds least plausible (|<var>z</var>| &ge; 3: 54 of 5,433) are published in the model metadata and were checked against sources. The three largest deviations (Vestland 2022) appear verbatim in the county's own PDF — genuine extremes, not parse damage; one case remains open. Residual screening of this kind is a continuous quality control of both pipeline and source, and would catch the header-shift class of parser bug if it recurred.</p>
+<h2 id='9-the-deployed-application'>9. The deployed application</h2>
+<p>The map colours each school by the mean of its current-year thresholds and sizes each marker by the share of its programmes that filled — the censoring is displayed, not hidden inside the mean. One global filter follows the register's hierarchy (all → utdanningsprogram → programområde), with county row labels preserved as queue identities and official register names attached where spellings diverge. With the applicant's points entered, every row shows the probability (1); a choice list enforces vigo's real constraints — ten wishes, at most three distinct Vg1 utdanningsprogram — and reports the probability of at least one place as 1 &minus; &prod;<sub><var>k</var></sub>&#8201;(1 &minus; <var>p<sub>k</sub></var>) under an explicit independence caveat. Where a county publishes round 1 but admits through round 3 (Vestland), the application also shows the chance by the final round,</p>
+<div class='eq'><span class='eq-body'><var>P</var>(place by round 3) = (1 &minus; <var>&pi;</var>) + <var>&pi;</var>&#8201;(<var>v<sub>p</sub></var> + (1 &minus; <var>v<sub>p</sub></var>)&#8201;<var>&Phi;<sub>F</sub></var>&#8239;(<span class='frac'><span class='num'><var>x</var> &minus; <var>m</var> &minus; <var>&delta;<sub>p</sub></var></span><span class='den'><var>s</var></span></span>))</span><span class='eq-no'>(6)</span></div>
+<p>with <var>v<sub>p</sub></var> the share of round-1 queues cleared by round 3 and <var>&delta;<sub>p</sub></var> the surviving-queue drop, both per programme from Section 8.1. The interface is bilingual (Norwegian/English), phrased in the official Udir/vigo vocabulary throughout, and the full dataset is downloadable from the page.</p>
+<h2 id='10-limitations'>10. Limitations</h2>
+<ul>
+<li><strong>Marginal, not individual.</strong> The model forecasts the queue's cutoff, not an individual's outcome. It ignores that applicants compete only at their highest surviving wish, tie-breaking, and seats consumed by priority and documentation quotas.</li>
+<li><strong>Stationarity.</strong> The random walk extrapolates a smoothly moving market. Capacity changes, new schools, catchment redistricting, and reputation shocks are structurally unforecastable from thresholds alone; the model will be wrong at exactly the discontinuities families most want warned about, and the spread <var>s</var> prices this only on average.</li>
+<li><strong>The published number, in the published round.</strong> Where a county publishes round 1, more applicants are ultimately admitted than the figure implies; Section 8.1 measures the gap where it can be measured, and equation (6) passes it on only for the county where it is measured.</li>
+<li><strong>Short test window.</strong> Two held-out years (1,497 cells) from one country. We report per-year results (Appendix B) rather than standard errors over years; 2026 looks better than 2025 partly because its cells are drawn from the counties with the deepest histories.</li>
+<li><strong>Independence in the choice list.</strong> The at-least-one probability treats wishes as independent; a hard year hits several of them at once, so the true probability is somewhat lower.</li>
+<li><strong>Catchment counties.</strong> A threshold binds only residents of the intake area; the application states this where it applies.</li>
+<li><strong>Low-probability optimism.</strong> Below 30%, the raw probability is a few points optimistic (Section 7.4).</li>
+<li><strong>Reflexivity.</strong> A public forecast can move where people apply, which moves the thresholds being forecast — a Goodhart-type feedback. At the current scale we judge this unmeasurable, but it is the reason the application shows bands and history rather than a single authoritative number, and the effect would first appear as a calibration drift in precisely the walk-forward record this report is built on.</li>
+</ul>
+<h2 id='11-ethical-considerations'>11. Ethical considerations</h2>
+<p>The unit of analysis is the queue, never the applicant: the data contain no personal information — only the per-programme cutoffs counties already publish — and the application collects none; points entered by a user stay in the browser. The tool informs applicants; it does not gatekeep, rank, or score any person, and it must not be used by institutions for admission decisions. Miscalibration harms are asymmetric — an overconfident "you will get in" can cost a pupil their safety choice — which is why the fill probability is deliberately recalibrated downward (Section 6.3), why coarse bands absorb the optimistic low tail, and why every forecast is shown next to the threshold's actual history. Raw school means are not presented as rankings, and the mix-adjusted school effect is labelled a measure of demand, not quality. Finally, information tools tend to benefit the already informed; publishing the compiled dataset and the tool free of charge is an attempt to level an asymmetry that today favours families with the resources to collect and interpret seven counties' PDFs by hand.</p>
+<h2 id='12-recommendations-to-publishers'>12. Recommendations to publishers</h2>
+<p>Each of these is cheap, and each would have removed an entire error class from this work:</p>
+<ol>
+<li><strong>Publish machine-readable tables</strong> (CSV/JSON) alongside the PDF.</li>
+<li><strong>State the intake round in the table</strong> — it moves the numbers by 3–6 points and is today often omitted.</li>
+<li><strong>Standardise cell semantics</strong>: distinguish "filled at 0.0", "all admitted", and quota/documentation admissions explicitly.</li>
+<li><strong>Print Grep codes</strong> — programme names are today spelled differently across counties and across years within a county.</li>
+<li><strong>Publish history, not only the latest year</strong> — the uncertainty in any advice to a family cannot be quantified without it.</li>
+</ol>
+<h2 id='13-conclusion'>13. Conclusion</h2>
+<p>A censored panel of published cutoffs, a hurdle model with partial pooling, and uncertainty measured from the model's own out-of-sample record turn seven counties' PDFs into a calibrated answer to the question families actually ask. The same assembly measures the publication practice it depends on: the intake-round effect, the mix-versus-demand decomposition of school averages, and the residual audit are of more lasting interest than any single year's forecast — and each points to a concrete, low-cost improvement the publishing counties could make.</p>
+<h2 id='reproducibility-statement'>Reproducibility statement</h2>
+<p>All code for data extraction, normalisation, model fitting, evaluation, and the figures in this report is available at <a href="https://github.com/avshalomd/poengkart">github.com/avshalomd/poengkart</a>; the version this report describes is tagged <code>report-v1.0</code>. The cleaned dataset ships in the repository and is downloadable from the application; the original county publications are linked from the documentation rather than mirrored. <code>tools/refresh.py</code> regenerates the dataset, the model, every walk-forward forecast with its outcome (<code>data/model-backtest.csv</code>), and every number in this report from the sources; <code>tools/report_figures.py</code> regenerates the figures. The pipeline is deterministic — there is no seed to vary — and runs in minutes on a laptop. Validation comprises 73 parser regression checks, 12,959 model invariants, and 13 UI invariants executed in the application itself.</p>
+<h2 id='references'>References</h2>
+<ul>
+<li>Abdulkadiroğlu, A., &amp; Sönmez, T. (2003). School choice: A mechanism design approach. <em>American Economic Review</em>, 93(3), 729–747.</li>
+<li>Azevedo, E. M., &amp; Leshno, J. D. (2016). A supply and demand framework for two-sided matching markets. <em>Journal of Political Economy</em>, 124(5), 1235–1268.</li>
+<li>Bergmeir, C., &amp; Benítez, J. M. (2012). On the use of cross-validation for time series predictor evaluation. <em>Information Sciences</em>, 191, 192–213.</li>
+<li>Brier, G. W. (1950). Verification of forecasts expressed in terms of probability. <em>Monthly Weather Review</em>, 78(1), 1–3.</li>
+<li>Chen, X., Peng, Y., Gao, Y., &amp; Cai, S. (2022). A competition model for prediction of admission scores of colleges and universities in Chinese college entrance examination. <em>PLOS ONE</em>, 17(10), e0274221.</li>
+<li>Cragg, J. G. (1971). Some statistical models for limited dependent variables with application to the demand for durable goods. <em>Econometrica</em>, 39(5), 829–844.</li>
+<li>DeGroot, M. H., &amp; Fienberg, S. E. (1983). The comparison and evaluation of forecasters. <em>Journal of the Royal Statistical Society, Series D</em>, 32, 12–22.</li>
+<li>Dempster, A. P., Laird, N. M., &amp; Rubin, D. B. (1977). Maximum likelihood from incomplete data via the EM algorithm. <em>Journal of the Royal Statistical Society, Series B</em>, 39(1), 1–38.</li>
+<li>Efron, B., &amp; Morris, C. (1975). Data analysis using Stein's estimator and its generalizations. <em>Journal of the American Statistical Association</em>, 70(350), 311–319.</li>
+<li>Fack, G., Grenet, J., &amp; He, Y. (2019). Beyond truth-telling: Preference estimation with centralized school choice and college admissions. <em>American Economic Review</em>, 109(4), 1486–1529.</li>
+<li>Gale, D., &amp; Shapley, L. S. (1962). College admissions and the stability of marriage. <em>The American Mathematical Monthly</em>, 69(1), 9–15.</li>
+<li>Gelman, A., &amp; Hill, J. (2007). <em>Data Analysis Using Regression and Multilevel/Hierarchical Models</em>. Cambridge University Press.</li>
+<li>Gneiting, T., Balabdaoui, F., &amp; Raftery, A. E. (2007). Probabilistic forecasts, calibration and sharpness. <em>Journal of the Royal Statistical Society, Series B</em>, 69(2), 243–268.</li>
+<li>Gneiting, T., &amp; Raftery, A. E. (2007). Strictly proper scoring rules, prediction, and estimation. <em>Journal of the American Statistical Association</em>, 102(477), 359–378.</li>
+<li>Guo, C., Pleiss, G., Sun, Y., &amp; Weinberger, K. Q. (2017). On calibration of modern neural networks. <em>Proceedings of the 34th International Conference on Machine Learning</em> (PMLR 70).</li>
+<li>Hyndman, R. J., &amp; Athanasopoulos, G. (2021). <em>Forecasting: Principles and Practice</em> (3rd ed.). OTexts.</li>
+<li>James, W., &amp; Stein, C. (1961). Estimation with quadratic loss. <em>Proceedings of the Fourth Berkeley Symposium on Mathematical Statistics and Probability</em>, Vol. 1, 361–379.</li>
+<li>Murphy, A. H. (1973). A new vector partition of the probability score. <em>Journal of Applied Meteorology</em>, 12(4), 595–600.</li>
+<li>Niculescu-Mizil, A., &amp; Caruana, R. (2005). Predicting good probabilities with supervised learning. <em>Proceedings of the 22nd International Conference on Machine Learning</em>.</li>
+<li>Platt, J. C. (1999). Probabilistic outputs for support vector machines and comparisons to regularized likelihood methods. In <em>Advances in Large Margin Classifiers</em>. MIT Press.</li>
+<li>Tashman, L. J. (2000). Out-of-sample tests of forecasting accuracy: An analysis and review. <em>International Journal of Forecasting</em>, 16(4), 437–450.</li>
+<li>Tobin, J. (1958). Estimation of relationships for limited dependent variables. <em>Econometrica</em>, 26(1), 24–36.</li>
+</ul>
+<h2 id='appendix-a-the-round-bridge-by-programme-vestland-round-1-3'>Appendix A: The round bridge by programme (Vestland, round 1 → 3)</h2>
+<p class='caption'><strong>Table A1:</strong> Paired within-year threshold change from round 1 to round 3 in Vestland, by utdanningsprogram; sorted by the size of the drop. "Queues cleared" counts round-1 queues that no longer existed in round 3.</p>
+<div class='tbl'><table>
+<thead><tr><th>Utdanningsprogram</th><th>Pairs</th><th>Later − earlier</th><th>Queues cleared</th></tr></thead><tbody>
+<tr><td>Påbygging til generell studiekompetanse</td><td>56</td><td>−5.9</td><td>20% of 70</td></tr>
+<tr><td>Datateknologi og elektronikk</td><td>7</td><td>−5.8</td><td>30% of 10</td></tr>
+<tr><td>Studiespesialisering</td><td>64</td><td>−5.3</td><td>41% of 109</td></tr>
+<tr><td>Medier og kommunikasjon</td><td>9</td><td>−4.7</td><td>47% of 17</td></tr>
+<tr><td>Salg, service og reiseliv</td><td>41</td><td>−4.5</td><td>33% of 61</td></tr>
+<tr><td>Kunst, design og arkitektur</td><td>14</td><td>−4.2</td><td>18% of 17</td></tr>
+<tr><td>Informasjonsteknologi og medieproduksjon</td><td>11</td><td>−4.1</td><td>62% of 29</td></tr>
+<tr><td>Helse- og oppvekstfag</td><td>167</td><td>−3.4</td><td>28% of 231</td></tr>
+<tr><td>Naturbruk</td><td>55</td><td>−3.2</td><td>39% of 90</td></tr>
+<tr><td>Frisør, blomster, interiør og eksponeringsdesign</td><td>16</td><td>−3.0</td><td>50% of 32</td></tr>
+<tr><td>Idrettsfag</td><td>19</td><td>−2.9</td><td>41% of 32</td></tr>
+<tr><td>Bygg- og anleggsteknikk</td><td>93</td><td>−2.6</td><td>37% of 150</td></tr>
+<tr><td>Restaurant- og matfag</td><td>18</td><td>−2.6</td><td>60% of 47</td></tr>
+<tr><td>Teknologi- og industrifag</td><td>165</td><td>−2.5</td><td>30% of 236</td></tr>
+<tr><td>Musikk, dans og drama</td><td>18</td><td>−2.1</td><td>42% of 31</td></tr>
+<tr><td>Elektro og datateknologi</td><td>157</td><td>−1.7</td><td>16% of 186</td></tr>
+</tbody></table></div>
+<h2 id='appendix-b-held-out-results-by-year'>Appendix B: Held-out results by year</h2>
+<p class='caption'><strong>Table B1:</strong> Threshold accuracy per held-out year. The 2026 cells come from the two counties with the deepest histories (Oslo and Vestland), which partly explains the better figures.</p>
+<div class='tbl'><table>
+<thead><tr><th>Year</th><th>n</th><th>Model RMSE</th><th>Model MAE</th></tr></thead><tbody>
+<tr><td>2025</td><td>1,097</td><td>6.02</td><td>4.56</td></tr>
+<tr><td>2026</td><td>400</td><td>4.82</td><td>3.70</td></tr>
+</tbody></table></div>
+<h2 id='appendix-c-fill-event-calibration'>Appendix C: Fill-event calibration</h2>
+<p class='caption'><strong>Table C1:</strong> Reliability of the recalibrated fill probability <var>&pi;</var>&prime; on the held-out years (2,122 cells that competed on points; base rate 0.714). Held-out Brier 0.163 against 0.204 for the base-rate forecaster.</p>
+<div class='tbl'><table>
+<thead><tr><th>Predicted</th><th>Observed</th><th>n</th></tr></thead><tbody>
+<tr><td>10–20%</td><td>2.9%</td><td>34</td></tr>
+<tr><td>20–30%</td><td>26%</td><td>108</td></tr>
+<tr><td>30–40%</td><td>41%</td><td>114</td></tr>
+<tr><td>40–50%</td><td>45%</td><td>135</td></tr>
+<tr><td>50–60%</td><td>72%</td><td>160</td></tr>
+<tr><td>60–70%</td><td>63%</td><td>154</td></tr>
+<tr><td>70–80%</td><td>72%</td><td>558</td></tr>
+<tr><td>80–90%</td><td>85%</td><td>534</td></tr>
+<tr><td>90–100%</td><td>96%</td><td>325</td></tr>
+</tbody></table></div>
+</div>
+</body>
+</html>

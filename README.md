@@ -18,7 +18,11 @@ per programme; press + on any programme to collect your choices and see
 whether the list holds up. The chance comes from a model fitted on the whole
 history and checked by forecasting each past year from the years before it;
 the panel says how often that check was right. [docs/model.md](docs/model.md)
-has the model, the backtest and what it cannot know.
+has the model, the backtest and what it cannot know; the
+[technical report](docs/technical-report.md) is the formal write-up of the
+whole thing — data semantics, model, validation, findings — also published at
+[poengkart-no.vercel.app/report.html](https://poengkart-no.vercel.app/report.html)
+(Norwegian edition: [docs/teknisk-rapport.md](docs/teknisk-rapport.md)).
 
 ## Run locally
 

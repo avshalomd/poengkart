@@ -1,0 +1,47 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 620 420' role='img' aria-label='Held-out RMSE by history stratum, model against two baselines'>
+<rect width='620' height='420' fill='white'/>
+<line x1='64' y1='336.0' x2='604' y2='336.0' stroke='#e6e9ee'/>
+<text x='56' y='340.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>0</text>
+<line x1='64' y1='266.7' x2='604' y2='266.7' stroke='#e6e9ee'/>
+<text x='56' y='270.7' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>2</text>
+<line x1='64' y1='197.3' x2='604' y2='197.3' stroke='#e6e9ee'/>
+<text x='56' y='201.3' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>4</text>
+<line x1='64' y1='128.0' x2='604' y2='128.0' stroke='#e6e9ee'/>
+<text x='56' y='132.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>6</text>
+<line x1='64' y1='58.7' x2='604' y2='58.7' stroke='#e6e9ee'/>
+<text x='56' y='62.7' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>8</text>
+<rect x='82.5' y='81.2' width='30' height='254.8' fill='#2b6cb8'/>
+<text x='97.5' y='75.2' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.3</text>
+<rect x='150.5' y='55.5' width='30' height='280.5' fill='#8a8f98'/>
+<text x='165.5' y='49.5' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>8.1</text>
+<text x='131.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>0 years</text>
+<rect x='217.5' y='133.9' width='30' height='202.1' fill='#2b6cb8'/>
+<text x='232.5' y='127.9' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.8</text>
+<rect x='251.5' y='70.8' width='30' height='265.2' fill='#b0672e'/>
+<text x='266.5' y='64.8' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.7</text>
+<rect x='285.5' y='101.3' width='30' height='234.7' fill='#8a8f98'/>
+<text x='300.5' y='95.3' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.8</text>
+<text x='266.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>1 year</text>
+<rect x='352.5' y='140.8' width='30' height='195.2' fill='#2b6cb8'/>
+<text x='367.5' y='134.8' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.6</text>
+<rect x='386.5' y='89.5' width='30' height='246.5' fill='#b0672e'/>
+<text x='401.5' y='83.5' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.1</text>
+<rect x='420.5' y='110.7' width='30' height='225.3' fill='#8a8f98'/>
+<text x='435.5' y='104.7' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.5</text>
+<text x='401.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>2–3 years</text>
+<rect x='487.5' y='163.0' width='30' height='173.0' fill='#2b6cb8'/>
+<text x='502.5' y='157.0' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.0</text>
+<rect x='521.5' y='132.5' width='30' height='203.5' fill='#b0672e'/>
+<text x='536.5' y='126.5' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.9</text>
+<rect x='555.5' y='123.8' width='30' height='212.2' fill='#8a8f98'/>
+<text x='570.5' y='117.8' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.1</text>
+<text x='536.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>4+ years</text>
+<text x='334.0' y='384' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>History of the series at forecast time</text>
+<rect x='70' y='394' width='12' height='12' fill='#2b6cb8'/>
+<text x='87' y='404' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733'>model</text>
+<rect x='153' y='394' width='12' height='12' fill='#b0672e'/>
+<text x='170' y='404' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733'>last year’s figure</text>
+<rect x='340' y='394' width='12' height='12' fill='#8a8f98'/>
+<text x='357' y='404' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733'>programme–county mean</text>
+<text x='18' y='180.0' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle' transform='rotate(-90 18 180.0)'>RMSE (points)</text>
+</svg>
