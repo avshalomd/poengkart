@@ -1,7 +1,7 @@
 # Poengkart: åpne poenggrenser og en kalibrert prognose for neste inntak
 
 **Teknisk rapport, august 2026**
-Avshalom Dayan · [poengkart-no.vercel.app](https://poengkart-no.vercel.app) · kildekode og data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
+Abshalom Dayan · [poengkart-no.vercel.app](https://poengkart-no.vercel.app) · kildekode og data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
 
@@ -154,8 +154,8 @@ og å la den stå ødela kalibreringen målbart.
 |---|---|---|---|---|---|
 | 0 år | 269 | **7,4** | — | 8,1 | 34 % |
 | 1 år | 169 | **5,8** | 7,7 | 6,8 | 41 % |
-| 2–3 år | 352 | **5,6** | 7,1 | 6,6 | 42 % |
-| 4+ år | 707 | **5,0** | 5,9 | 6,1 | 52 % |
+| 2–3 år | 350 | **5,6** | 7,1 | 6,5 | 42 % |
+| 4+ år | 709 | **5,0** | 5,9 | 6,1 | 52 % |
 
 80 %-intervallet (m ± 1,28 s) dekket fasiten **81 %** av gangene.
 
@@ -163,7 +163,7 @@ og å la den stå ødela kalibreringen målbart.
 {20, 25, …, 55}: «fikk en søker med x poeng plass?» Brier-skår **0,097** mot
 **0,150** for regelen «fjorårets grense er årets». Fra 30 % og opp ligger
 prognosen innenfor fem prosentpoeng av observert frekvens; under 30 % er den
-noen poeng optimistisk (et vist 15 % var reelt ca. 8 %) — appens grove bånd
+noen poeng optimistisk (et vist 15 % var reelt ca. 9 %) — appens grove bånd
 (sannsynlig / mulig / lite sannsynlig) absorberer dette, og avviket er
 dokumentert.
 
@@ -196,7 +196,7 @@ etterspørsel, ikke kvalitet.
 
 ### 5.3 Modellen som datakontroll
 
-De cellene modellen finner minst plausible (|z| ≥ 3: 49 av 5 259) publiseres
+De cellene modellen finner minst plausible (|z| ≥ 3: 54 av 5 433) publiseres
 i modellens metadata og er sjekket mot kildene: de tre største avvikene i
 Vestland 2022 står ordrett i fylkets egen PDF — reelle ekstremer, ikke
 parsefeil. Ett tilfelle står åpent (Kongsberg, musikk/dans/drama 2025 = 4,0
@@ -243,4 +243,4 @@ fra appen. Metode og alle tall i denne rapporten regenereres av
 
 ---
 
-*Kontakt: Avshalom Dayan · avshalomdayan318@gmail.com*
+*Kontakt: Abshalom Dayan · avshalomdayan318@gmail.com*

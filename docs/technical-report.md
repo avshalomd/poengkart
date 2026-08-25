@@ -393,7 +393,7 @@ best per row in bold. Persistence is undefined for 0-year series.
 |---|---|---|---|---|---|---|---|
 | 0 years | 269 | **7.35** | — | 8.09 | **5.69** | — | 34% |
 | 1 year | 169 | **5.83** | 7.65 | 6.77 | **4.57** | 5.74 | 41% |
-| 2–3 years | 352 | **5.63** | 7.11 | 6.50 | **4.42** | 5.28 | 42% |
+| 2–3 years | 350 | **5.63** | 7.11 | 6.50 | **4.42** | 5.28 | 42% |
 | 4+ years | 709 | **4.99** | 5.87 | 6.12 | **3.71** | 4.12 | 52% |
 
 The model dominates both baselines in every stratum, on both metrics
@@ -738,4 +738,4 @@ Held-out Brier 0.163 against 0.204 for the base-rate forecaster.
 | 60–70% | 63% | 154 |
 | 70–80% | 72% | 558 |
 | 80–90% | 85% | 534 |
-| 90–100% | 96% | 325 |
+| 90–100% | 96.3% | 325 |

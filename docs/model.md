@@ -113,15 +113,15 @@ flatter nothing and mislead the calibration.
 |---|---|---|---|---|---|
 | 0 years | 269 | 7.4 | — | 8.1 | 34% |
 | 1 year | 169 | 5.8 | 7.7 | 6.8 | 41% |
-| 2–3 years | 352 | 5.6 | 7.1 | 6.6 | 42% |
-| 4+ years | 707 | 5.0 | 5.9 | 6.1 | 52% |
+| 2–3 years | 350 | 5.6 | 7.1 | 6.5 | 42% |
+| 4+ years | 709 | 5.0 | 5.9 | 6.1 | 52% |
 
 The 80% interval (m ± 1.28 s) contained the published figure 81% of the time.
 
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.97 filled 0.82 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = −0.13 + 0.45 logit π). Held-out Brier 0.164 against 0.204 for the
+(logit π′ = −0.124 + 0.465 logit π). Held-out Brier 0.163 against 0.204 for the
 base rate.
 
 **Chance, held-out 2025–26**, for every cell and every score in
