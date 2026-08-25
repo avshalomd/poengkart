@@ -1,7 +1,7 @@
 # Poengkart: åpne poenggrenser og en kalibrert prognose for neste inntak
 
 **Teknisk rapport, august 2026**
-Avshalom Dayan · [poengkart-no.vercel.app](https://poengkart-no.vercel.app) · kildekode og data: [github.com/avshalomdayan/poengkart](https://github.com/avshalomdayan/poengkart)
+Avshalom Dayan · [poengkart-no.vercel.app](https://poengkart-no.vercel.app) · kildekode og data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
 
@@ -13,7 +13,7 @@ the dataset sits a forecast: a two-part (hurdle) model — a logistic model for
 whether a programme fills, and a Gaussian hierarchical model for where the
 threshold lands if it does — validated walk-forward with 2025–26 fully held
 out. The forecast beats the naive "last year's figure" rule in every history
-bucket (RMSE 5.0 vs 5.9 on the longest series), its 80 % intervals cover 82 %,
+bucket (RMSE 5.0 vs 5.9 on the longest series), its 80 % intervals cover 81 %,
 and the resulting admission probability is well calibrated (Brier 0.097 vs
 0.150 for the naive rule). The work also surfaces findings about the
 publication practice itself: thresholds from different intake rounds differ
@@ -45,7 +45,7 @@ sammenligne på tvers av fylker, og lette å feiltolke. Poengkart ble bygget for
 3. **Prognostisere neste inntak** — ikke som ett tall, men som en kalibrert
    sannsynlighet for plass, gitt søkerens poengsum.
 
-Datasettet omfatter i dag **191 skoler, 2 090 programrader og 2017–2026** fra
+Datasettet omfatter i dag **191 skoler, 2 122 programrader og 2017–2026** fra
 Akershus, Buskerud, Innlandet, Oslo, Rogaland, Trøndelag og Vestland.
 
 ## 2. Datagrunnlag og semantikk
@@ -58,7 +58,7 @@ låser kjente feilkilder: årstall-kolonner som er forskjøvet, tall som er
 åpenbart uplausible, og skoler som mangler koordinater.
 
 Programnavnene normaliseres mot **Grep**, Udirs læreplanregister. Hver rad får
-dermed registerets egen identitet: 2 084 av 2 090 rader bærer en Grep-kode
+dermed registerets egen identitet: 2 116 av 2 122 rader bærer en Grep-kode
 (de seks siste er International Baccalaureate, som ligger utenfor registeret).
 Kategoriseringen i utdanningsprogram er dermed statens, ikke vår: en tidligere
 nøkkelordbasert klassifisering feilplasserte f.eks. gartnernæring under
@@ -113,8 +113,8 @@ under søkerens poengsum x, med målt spredning s og empirisk feilfordeling F.
 ### 4.2 To tilpasninger, én struktur
 
 Modellen er en **hurdle-modell**: én logistisk regresjon for om det dannes
-venteliste (7 734 celler som konkurrerte på poeng), og én gaussisk modell for
-nivået gitt venteliste (5 259 celler med tall). Begge deler samme
+venteliste (7 934 celler som konkurrerte på poeng), og én gaussisk modell for
+nivået gitt venteliste (5 433 celler med tall). Begge deler samme
 hierarkiske skjelett med tilfeldige effekter:
 
 > y = μ + skole + utdanningsprogram + programområde|trinn + skole×program + fylke×år + inntaksrunde + ε
@@ -122,7 +122,7 @@ hierarkiske skjelett med tilfeldige effekter:
 Fylke×år er en **random walk**: fylkets markedsnivå beveger seg glatt, og
 nyeste steg er prognosen for neste år. Estimerte spredninger (poeng): skole
 3,4 · program 3,1 · skole×program 2,7 · årsinnovasjon 1,3 · residual 4,5.
-Poenget med hierarkiet er lån av styrke: **564 av 1 653 serier har nøyaktig
+Poenget med hierarkiet er lån av styrke: **567 av 1 670 serier har nøyaktig
 ett år med data**, og en slik serie arver nivået sitt fra hundrevis av
 lignende serier i stedet for å bli stolt på alene. Estimering skjer ved
 penalisert sannsynlighetsmaksimering med EM-oppdatering av varianskomponentene;
@@ -133,7 +133,7 @@ observasjoner nedvektes med alder (halveringstid 4 år, valgt av backtesten).
 En hierarkisk modell er sikker på seg selv. Derfor hentes spredningen s ikke
 fra modellen, men fra **modellens egne historiske bom**: RMSE i
 walk-forward-prognosene, gruppert etter hvor mye historikk serien hadde
-(0 år: 7,7 · 1 år: 6,2 · 2–3 år: 5,6 · 4+ år: 4,6). F er den empiriske
+(0 år: 7,2 · 1 år: 6,4 · 2–3 år: 5,6 · 4+ år: 4,5). F er den empiriske
 fordelingen av de standardiserte feilene (41 kvantiler) — svakt venstretung,
 fordi grenser kollapser oftere enn de hopper. Fyllsannsynligheten π viste seg
 overkonfident (0,97 predikert → 0,82 observert) og korrigeres med
@@ -157,7 +157,7 @@ og å la den stå ødela kalibreringen målbart.
 | 2–3 år | 352 | **5,6** | 7,1 | 6,6 | 42 % |
 | 4+ år | 707 | **5,0** | 5,9 | 6,1 | 52 % |
 
-80 %-intervallet (m ± 1,28 s) dekket fasiten **82 %** av gangene.
+80 %-intervallet (m ± 1,28 s) dekket fasiten **81 %** av gangene.
 
 **Sannsynligheten:** for hver holdt-utenfor-celle og hver poengsum i
 {20, 25, …, 55}: «fikk en søker med x poeng plass?» Brier-skår **0,097** mot
