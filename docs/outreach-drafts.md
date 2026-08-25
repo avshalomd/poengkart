@@ -43,7 +43,6 @@ På forhånd takk!
 
 Med vennlig hilsen
 Avshalom Dayan
-avshalomdayan318@gmail.com
 
 ---
 
@@ -80,7 +79,6 @@ På forhånd takk!
 
 Med vennlig hilsen
 Avshalom Dayan
-avshalomdayan318@gmail.com
 
 ---
 
@@ -114,7 +112,6 @@ På forhånd takk!
 
 Med vennlig hilsen
 Avshalom Dayan
-avshalomdayan318@gmail.com
 
 ---
 
@@ -161,7 +158,6 @@ eller eventuelt i fylkeskommunenes eget samarbeid?
 
 Med vennlig hilsen
 Avshalom Dayan
-avshalomdayan318@gmail.com
 
 ---
 
@@ -190,7 +186,6 @@ På forhånd takk!
 
 Med vennlig hilsen
 Avshalom Dayan
-avshalomdayan318@gmail.com
 
 ---
 
