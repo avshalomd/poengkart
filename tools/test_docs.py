@@ -1,7 +1,7 @@
 """The documentation quotes the model; the model changes on every refresh.
 
-These checks pin every meta-derived number quoted in docs/model.md,
-docs/teknisk-rapport.md and docs/technical-report.md to the shipped
+These checks pin every meta-derived number quoted in docs/model.md and
+docs/technical-report.md to the shipped
 web/data/model.json, so a refit can no longer leave the prose describing a
 model that is not the one deployed. Comparisons carry a tolerance of half a
 unit in the last displayed digit, so a value that sits exactly on a rounding
@@ -139,33 +139,6 @@ check(doc, 'outlier denominator', r'\|z\| ≥ 3: \d+ of ([\d ]+) cells', [META['
 check(doc, 'round bridge A', r'\| Akershus, 1\. → 2\. inntak \| (\d+) \| (-[\d.]+) \(sd ([\d.]+)\) \| (\d+)% of ([\d ]+) \|',
       BRIDGE_A, flat, BRIDGE_TOL)
 check(doc, 'round bridge V', r'\| Vestland, 1\. → 3\. inntak \| (\d+) \| (-[\d.]+) \(sd ([\d.]+)\) \| (\d+)% of ([\d ]+) \|',
-      BRIDGE_V, flat, BRIDGE_TOL)
-
-# -------------------------------------------------------- teknisk-rapport.md
-doc = 'docs/teknisk-rapport.md'
-# Norwegian text: a comma between digits is always a decimal, never thousands
-flat = re.sub(r'(\d),(\d)', r'\1.\2', flatten((ROOT / doc).read_text()))
-check(doc, 'n_fill', r'\((\d[\d ]+) celler som konkurrerte', [META['n_fill']], flat, N)
-check(doc, 'n_level', r'\((\d[\d ]+) celler med tall\)', [META['n_level']], flat, N)
-check(doc, 'sigma inline', r'\(0 år: ([\d.]+) · 1 år: ([\d.]+) · 2–3 år: ([\d.]+) · 4\+ år: ([\d.]+)\)', SIGMAS, flat, D1)
-check(doc, 'taus inline', r'skole ([\d.]+) · program ([\d.]+) · skole×program ([\d.]+) · årsinnovasjon ([\d.]+) · residual ([\d.]+)',
-      TAUS + [META['sigma_model']], flat, D1)
-check(doc, 'coverage', r'dekket fasiten \*\*(\d+) %\*\*', [ev['coverage80'] * 100], flat, PCT)
-check(doc, 'chance brier', r'Brier-skår \*\*([\d.]+)\*\* mot \*\*([\d.]+)\*\*',
-      [ev['chance']['brier_model_common'], ev['chance']['brier_last_year_rule']], flat, D3)
-check(doc, 'chance brier all pairs', r'over alle par er modellens Brier ([\d.]+)',
-      [ev['chance']['brier']], flat, D3)
-check(doc, 'year pairs', r'standardavvik på \*\*([\d.]+) poeng\*\* fra år til år \((\d[\d ]+) årspar',
-      [META['year_pairs']['sd'], META['year_pairs']['n']], flat, [D1, N])
-check(doc, 'outlier denominator', r'\|z\| ≥ 3: \d+ av (\d[\d ]+)\)', [META['n_level']], flat, N)
-for h, label in (('0', '0 år'), ('1', '1 år'), ('2-3', '2–3 år'), ('4+', r'4\+ år')):
-    r, exp = level_row(h)
-    pat = rf'\| {label} \| (\d+) \| \*\*([\d.]+)\*\* \|'
-    pat += r' ([\d.]+) \| ([\d.]+) \| (\d+) %' if 'rmse_last_year' in r else r' — \| ([\d.]+) \| (\d+) %'
-    check(doc, f'level eval {h}', pat, exp, flat, [N] + [D1] * (len(exp) - 2) + [PCT])
-check(doc, 'round bridge A', r'\| Akershus, 1\.→2\. inntak \| (\d+) \| (-[\d.]+) \(sd ([\d.]+)\) \| (\d+) % av (\d+) \|',
-      BRIDGE_A, flat, BRIDGE_TOL)
-check(doc, 'round bridge V', r'\| Vestland, 1\.→3\. inntak \| (\d+) \| (-[\d.]+) \(sd ([\d.]+)\) \| (\d+) % av (\d[\d ]+) \|',
       BRIDGE_V, flat, BRIDGE_TOL)
 
 # ------------------------------------------------------ technical-report.md

@@ -11,3 +11,4 @@ tools/.cache/
 
 # local-only secrets for `vercel dev`
 .env*.local
+archive/

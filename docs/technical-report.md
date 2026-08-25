@@ -4,8 +4,6 @@
 Technical report · August 2026 · v1.1 (revised after two independent review passes)
 Application: [poengkart-no.vercel.app](https://poengkart-no.vercel.app) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
-*En norsk utgave av rapporten finnes i [docs/teknisk-rapport.md](teknisk-rapport.md).*
-
 ---
 
 ## Abstract
