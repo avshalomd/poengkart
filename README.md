@@ -10,7 +10,7 @@ figures, up to ten years of history, in Norwegian and English.
 
 ![The map: 191 schools across southern and central Norway, clustered and coloured by admission threshold](docs/map.png)
 
-![A school's page: photo, typical threshold, ten years of trends, and every programme with its own figure](docs/school.png)
+![A school's page: photo, your chance of a place at the next intake, ten years of trends, and every programme with its own figure](docs/school.png)
 
 Type in your own points and the map recolours by your chance of a place at
 the next intake — green likely, amber possible, red unlikely — per school and
@@ -42,7 +42,7 @@ Python environment in `.venv`:
 
 `web/data/schools.json` is what the app reads, and it is free to use. The same
 data ships as SQLite and CSV in `data/` for anyone who would rather query it —
-`samples` carries every cell with its county and intake round, `forecasts` the
+`samples` carries every cell with its county, intake round and Grep code, `forecasts` the
 model's expected threshold, spread and fill probability per programme, and
 `data/model-backtest.csv` every walk-forward forecast the accuracy claims rest
 on.
@@ -65,7 +65,7 @@ Where the figures come from, and which intake round each county publishes:
 | [Akershus](https://afk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/poenggrenser.222835.aspx) | HTML tables | 2025 | 1. and 2. |
 | [Buskerud](https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/) | HTML matrix | 2024–2025 | not stated |
 | [Innlandet](https://innlandetfylke.no/) | PDF matrix | 2023–2025 | 2. |
-| [Oslo](https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/) | HTML + PDF | 2020–2026 | 1. |
+| [Oslo](https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/) | HTML + PDF, oldest years via school-site PDFs | 2017–2026 | 1. |
 | [Rogaland](https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6) | PDF | 2018–2025 | 2. |
 | [Trøndelag](https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6) | PDF, per intake region | 2025 | not stated |
 | [Vestland](https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/) | PDF | 2020–2026 | 1. and 3. |
