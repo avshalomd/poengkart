@@ -22,6 +22,14 @@ years, so five documents cover eight years. Everyone else publishes one year
 per document and overwrites the page, and the archive crawler mostly did not
 catch the older versions.
 
+Innlandet's 2020–2022 tables were never published at all: they arrived as an
+offentleglova release (sak 2026/1-152, August 2026), in two one-off PDF
+layouts, together with the county's own caveat that the 2020 merger and the
+2022 vocational-structure reform limit comparability across that boundary —
+which the Grep normalisation and per-series identity absorb. The same letter
+confirmed that nothing older survives, on either the Hedmark or the Oppland
+side.
+
 Where a county shows a single year, that is all that was ever published in a
 form anyone can still retrieve — not a gap in the collection. Trøndelag says so
 outright: it does not produce overviews of past years' thresholds, and only

@@ -45,10 +45,10 @@ searches with sanity checks.
 |---|---|---|
 | **Akershus 2026/27** | eInnsyn case **2026/29733**: Budstikka filed "Innsyn over poenggrensene til videregående skolene i Asker og Bærum" 21.07.2026 and got it answered — AFK holds and releases on request. Own publication historically lands ~November. | inntak@afk.no · FOI form skjema.afk.no/skjema/AKE0356 (covers Viken records too) |
 | **Akershus 2024/25** | afk.no's earliest indexed threshold page is Dec 2025 (2025-26 only); the office computed 2024 figures. | same |
-| **Hedmark 2014–2018, full tables** | Google indexes the exact filename `hedmark.org/globalassets/hedmark/statistikk/dokumenter/poenggrenser-2014-2018.pdf`; domain dead, zero archived copies. A provable-to-exist ask. | inntak@innlandetfylke.no (legal successor) |
-| **Innlandet 2020–2022** | The known 2023–2025 publication is a rolling three-year matrix — a predecessor edition from the same workflow almost certainly exists. | same |
-| **Rogaland 2017/18** | The vilbli article series is unbroken from 2018/19; nothing archived for 2017. | inntak@rogfk.no |
-| **Rogaland 2026/27** | Published after 2. inntak; not out as of 24.08. Recheck vilbli's Rogaland poenggrense article in September. | — |
+| ~~Hedmark 2014–2018~~ | **Closed 26.08.2026** (sak 2026/1-152): fylket «har ikke mulighet til å hente ut tilsvarende oversikter lenger tilbake i tid» — dokumentet er tapt hos rettsetterfølgeren. | — |
+| ~~Innlandet 2020–2022~~ | **Mottatt og ingestert 26.08.2026** (sak 2026/1-152): 941 celler fra «Nedre inntaksgrense 2020-21 VG1 VG2.pdf» og «Poenggrense 2021 og 2022.pdf», inkl. fire nedlagte/omorganiserte skoler. Fylkets forbehold: strukturomlegging 2020/2022 begrenser sammenlignbarheten — håndtert via Grep-koder og serieidentitet. | — |
+| ~~Rogaland 2017/18~~ | **Closed 26.08.2026**: fylket svarer at tallene ikke ble arkivert og ikke lenger finnes i deres systemer. Cellen er ikke et hull i innsamlingen — dataene eksisterer ikke. | — |
+| **Rogaland 2026/27** | Fylket (26.08.2026): publiseres på vilbli «ila denne uken eller neste». Sjekk vilbli tidlig september. | — |
 | **Trøndelag / Innlandet / Buskerud 2026/27** | Intakes complete; vilbli payloads still serve last year's editions. Buskerud's Aug-06 page edit was cosmetic (figures byte-identical to 2025). | recheck September–November |
 
 ### Probably never published — searched exhaustively, with evidence

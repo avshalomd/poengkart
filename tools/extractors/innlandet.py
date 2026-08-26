@@ -47,12 +47,97 @@ def _cluster(words, tol=2.5):
     return lines
 
 
+# ---- the two documents released under innsynskrav 2026/1 (26.08.2026) ----
+# Different layouts from the published rolling matrix, same series: the county
+# confirmed 2020-2022 exists only in these PDFs and nothing older survives.
+# Their legend: 'Inntak uten poenggrense, eller hvor poenggrensen ikke er
+# relevant, er merket med "-"' — and the not-relevant intakes (4-year YSK,
+# admitted by interview) are excluded from the tables altogether, so "-" is
+# read as open. "**" marks "Ikke igangsatt": the programme did not run that
+# year and the row is dropped rather than published as open.
+
+
+def _cell(v):
+    s = common.squash(v or '')
+    if s in ('-', '–', '—'):
+        return 'open'
+    return common.classify_cell(s, min_value=0)
+
+
+def _parse_innsyn_2020(path):
+    """Per-school bordered tables; VG1 section then VG2; one value column."""
+    rows, school, level = [], None, 'Vg1'
+    with pdfplumber.open(path) as pdf:
+        for page in pdf.pages:
+            txt = page.extract_text() or ''
+            if 'Nedre inntaksgrense VG2' in txt:
+                level = 'Vg2'
+            for tbl in page.extract_tables():
+                for r in tbl:
+                    if not r or len(r) < 2:
+                        continue
+                    if r[0]:
+                        head = common.squash(r[0].replace('\n', ' '))
+                        if head and head != 'Skole':
+                            school = head
+                    prog_raw = common.squash((r[1] or '').replace('\n', ' '))
+                    if (not prog_raw or prog_raw.startswith('Utdanningsprogram')
+                            or '**' in prog_raw):
+                        continue
+                    v = _cell(next((c for c in r[2:] if c and c.strip()), '-'))
+                    program = common.canon_program(prog_raw.rstrip('*'))
+                    if school and program and v is not None:
+                        rows.append({'school': school, 'program': program,
+                                     'level': level, 'values': {2020: v},
+                                     'county': META['fylke'], 'round': META['round']})
+    return rows
+
+
+def _parse_innsyn_2021_22(path):
+    """Skolenavn | Nivå | Programområde | 2021/22 | 2022/23 — pr. 2. inntak."""
+    rows, school, level = [], None, 'Vg1'
+    with pdfplumber.open(path) as pdf:
+        for page in pdf.pages:
+            for tbl in page.extract_tables():
+                for r in tbl:
+                    if not r or len(r) < 5:
+                        continue
+                    first = common.squash((r[0] or '').replace('\n', ' '))
+                    if first.startswith(('Poenggrense', 'Skolenavn')):
+                        continue
+                    if first:
+                        school = first
+                    if r[1] and common.squash(r[1]) in ('1', '2', '3', '4'):
+                        level = 'Vg' + common.squash(r[1])
+                    program = common.canon_program(
+                        common.squash((r[2] or '').replace('\n', ' ')))
+                    values = {}
+                    for year, cell in ((2021, r[3]), (2022, r[4])):
+                        v = _cell(cell)
+                        if v is not None:
+                            values[year] = v
+                    if school and program and values:
+                        rows.append({'school': school, 'program': program,
+                                     'level': level, 'values': values,
+                                     'county': META['fylke'], 'round': META['round']})
+    return rows
+
+
+INNSYN_FILES = {
+    'innlandet-2020-21-mottatt-innsyn.pdf': _parse_innsyn_2020,
+    'innlandet-2021-2022-mottatt-innsyn.pdf': _parse_innsyn_2021_22,
+}
+
+
 def extract():
     warn, out = [], []
     if not os.path.isdir(SRC):
         return out, [f'{META["fylke"]}: no source directory']
     for fname in sorted(os.listdir(SRC), reverse=True):
         if not fname.endswith('.pdf'):
+            continue
+        if fname in INNSYN_FILES:
+            out.append((fname, INNSYN_FILES[fname](os.path.join(SRC, fname))))
             continue
         rows = []
         with pdfplumber.open(os.path.join(SRC, fname)) as pdf:

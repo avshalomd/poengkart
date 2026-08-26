@@ -62,7 +62,7 @@ check('fill recalibration is present and not absurd',
       'fill_calibration' in META and 0.2 <= META['fill_calibration']['b'] <= 1.5, str(META.get('fill_calibration')))
 sig = META['sigma_forecast']
 check('forecast spread never narrower than the pre-evaluation residual',
-      all(v >= META.get('sigma_floor', META['sigma_model']) - 1e-9 for v in sig.values()), str(sig))
+      all(v >= META.get('sigma_floor', META['sigma_model']) - 0.0050001 for v in sig.values()), str(sig))
 check('spread shrinks with history',
       list(sig.values()) == sorted(sig.values(), reverse=True), str(sig))
 

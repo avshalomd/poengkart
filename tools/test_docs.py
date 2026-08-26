@@ -170,7 +170,7 @@ check(doc, 'outlier denominator', r'> 3\$: \d+ of ([\d,]+),', [META['n_level']],
 check(doc, 'halflife', r'RMSE was \{([\d.]+), ([\d.]+), ([\d.]+), ([\d.]+)\}',
       [META['halflife_search']['1.5'], META['halflife_search']['2.5'],
        META['halflife_search']['4.0'], META['halflife_search']['None']], flat, D3)
-check(doc, 'coupling', r'raised fill log-loss from ([\d.]+) to ([\d.]+)',
+check(doc, 'coupling', r'lowered calibration-year fill log-loss from ([\d.]+) to ([\d.]+)',
       [META['halflife_search']['coupled_fill_logloss']['independent'],
        META['halflife_search']['coupled_fill_logloss']['coupled']], flat, D3)
 check(doc, 'sigma table', r'\| 0 years \| ([\d.]+) \| \| 1 year \| ([\d.]+) \| \| 2–3 years \| ([\d.]+) \| \| 4\+ years \| ([\d.]+) \|',

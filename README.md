@@ -5,10 +5,10 @@
 Admission point thresholds (*poenggrenser*) for Norwegian upper secondary
 schools, on a map. A threshold is the score of the last applicant who got a
 place — a grade average × 10 — so it says what it took to get in, not what the
-school requires. 191 schools across the seven counties that publish these
+school requires. 195 schools across the seven counties that publish these
 figures, up to ten years of history, in Norwegian and English.
 
-![The map: 191 schools across southern and central Norway, clustered and coloured by admission threshold](docs/map.png)
+![The map: 195 schools across southern and central Norway, clustered and coloured by admission threshold](docs/map.png)
 
 ![A school's page: photo, your chance of a place at the next intake, ten years of trends, and every programme with its own figure](docs/school.png)
 
@@ -64,7 +64,7 @@ Where the figures come from, and which intake round each county publishes:
 |---|---|---|---|
 | [Akershus](https://afk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/poenggrenser.222835.aspx) | HTML tables | 2025 | 1. and 2. |
 | [Buskerud](https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/) | HTML matrix | 2024–2025 | not stated |
-| [Innlandet](https://innlandetfylke.no/) | PDF matrix | 2023–2025 | 2. |
+| [Innlandet](https://innlandetfylke.no/) | PDF matrix; 2020–2022 released under an FOI request | 2020–2025 | 2. |
 | [Oslo](https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/) | HTML + PDF, oldest years via school-site PDFs | 2017–2026 | 1. |
 | [Rogaland](https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6) | PDF | 2018–2025 | 2. |
 | [Trøndelag](https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6) | PDF, per intake region | 2025 | not stated |

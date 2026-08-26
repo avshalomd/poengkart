@@ -108,6 +108,7 @@ PROGRAM_ALIASES = {
     'håndverk, design, produktutv': 'Håndverk, design og produktutvikling',
     'it og medieproduksjon': 'Informasjonsteknologi og medieproduksjon',
     'inform.tekn og medieprod, inform.tekn sk 3 år': 'Informasjonsteknologi og medieproduksjon, SK 3 år',
+    'inform.tekn og medieprod, inform.tekn, sk 3 år': 'Informasjonsteknologi og medieproduksjon, SK 3 år',
     'teknologi og idustrifag': 'Teknologi- og industrifag',
     'teknologi og industrifag': 'Teknologi- og industrifag',
     'elektro og datateknologi, , sk 3 år': 'Elektro og datateknologi, SK 3 år',
