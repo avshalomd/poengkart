@@ -230,6 +230,35 @@
   .seg button.on { background: var(--accent); color: #fff; }
   #settings .note { font-size: 11.5px; color: var(--ink-3); line-height: 1.5; margin-top: 16px;
                     border-top: 1px solid var(--line); padding-top: 11px; }
+  /* ---------- grade calculator ---------- */
+  .linkish { border: none; background: none; padding: 0; margin-top: 7px; font-size: 11.5px;
+             color: var(--accent); cursor: pointer; text-decoration: underline;
+             text-underline-offset: 2px; display: block; }
+  #calc .sheet { max-width: 480px; }
+  #calc .lede { font-size: 12.5px; color: var(--ink-2); line-height: 1.5; margin: 2px 0 12px; }
+  #calc .subj { display: flex; align-items: center; justify-content: space-between; gap: 8px;
+                padding: 4.5px 0; border-bottom: 1px solid var(--line); }
+  #calc .subj .n { font-size: 12.5px; color: var(--ink); min-width: 0; }
+  #calc .subj.exam .n { font-style: italic; }
+  #calc .grades { display: flex; gap: 3px; flex: none; }
+  #calc .grades button {
+    width: 26px; height: 26px; border: 1px solid var(--line); border-radius: 6px;
+    background: none; color: var(--ink-2); font-size: 12px; font-weight: 600; cursor: pointer;
+    display: grid; place-items: center; padding: 0;
+  }
+  #calc .grades button:hover { border-color: var(--accent); color: var(--accent); }
+  #calc .grades button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  #calc .grades button.rm { border: none; color: var(--ink-3); font-weight: 400; }
+  #calc .sum { display: flex; align-items: baseline; gap: 14px; margin: 14px 0 4px; }
+  #calc .sum .v { font-size: 22px; font-weight: 700; letter-spacing: -.02em;
+                  font-variant-numeric: tabular-nums; }
+  #calc .sum .l { font-size: 11px; color: var(--ink-3); }
+  #calc .note { font-size: 11px; color: var(--ink-3); line-height: 1.5; margin-top: 12px;
+                border-top: 1px solid var(--line); padding-top: 10px; }
+  @media (max-width: 560px) {
+    #calc .subj .n { font-size: 12px; }
+    #calc .grades button { width: 30px; height: 30px; }
+  }
   /* ---------- locate control + toast ---------- */
   .leaflet-bar button.locate {
     width: 30px; height: 30px; display: grid; place-items: center;
@@ -853,6 +882,7 @@ try {
       <button id="pts-clear" type="button" onclick="onPoints('')" hidden>✕</button>
     </div>
     <div id="pts-note"></div>
+    <button type="button" class="linkish" id="calc-open" onclick="openCalc()"></button>
   </div>
   <!-- the reader's own list of choices, across schools -->
   <div id="choices" hidden></div>
@@ -894,6 +924,20 @@ try {
       <h2 id="settings-h"></h2>
     </div>
     <div id="settings-body"></div>
+  </div>
+</div>
+
+<div id="calc" class="modal" hidden onclick="if (event.target === this) closeCalc()">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="calc-h">
+    <button class="x" id="calc-x" onclick="closeCalc()">✕</button>
+    <div class="head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="4" y="2.5" width="16" height="19" rx="2.5"/><path d="M8 7h8M8 11.5h.01M12 11.5h.01M16 11.5h.01M8 15.5h.01M12 15.5h.01M16 15.5h4.01"/>
+      </svg>
+      <h2 id="calc-h"></h2>
+    </div>
+    <div id="calc-body"></div>
   </div>
 </div>
 
@@ -984,6 +1028,19 @@ const T = {
   setNote: { no: 'Valgene lagres bare i denne nettleseren.',
              en: 'Choices are saved only in this browser.' },
   locBtn:    { no: 'Vis hvor jeg er på kartet', en: 'Show where I am on the map' },
+  calcOpen:  { no: 'Regn ut fra karakterene dine', en: 'Work them out from your grades' },
+  calcTitle: { no: 'Fra karakterer til poeng', en: 'From grades to points' },
+  calcLede:  { no: 'Karakterpoengene er gjennomsnittet av alle tallkarakterene på vitnemålet ganget med 10. Standpunkt og eksamen teller likt; fag uten karakter regnes ikke med. Trykk på karakterene dine:',
+               en: 'Your points are the average of every numeric grade on the vitnemål, times ten. Standpunkt and eksamen count equally; subjects without a grade are left out. Tap your grades:' },
+  calcSnitt: { no: 'snitt', en: 'average' },
+  calcPoeng: { no: 'poeng', en: 'points' },
+  calcEmpty: { no: '—', en: '—' },
+  calcUse:   { no: 'Bruk poengene på kartet', en: 'Use the points on the map' },
+  calcReset: { no: 'Tøm', en: 'Clear' },
+  calcNote:  { no: 'Karakterene lagres bare i denne nettleseren. Eksamenskarakterene kommer i tillegg til standpunkt i samme fag — begge teller.',
+               en: 'Grades are saved only in this browser. Exam grades count in addition to the standpunkt grade in the same subject — both are included.' },
+  calcClearAria: { no: (f) => `Fjern karakteren i ${f}`, en: (f) => `Clear the grade in ${f}` },
+  calcGradeAria: { no: (g, f) => `${g} i ${f}`, en: (g, f) => `${g} in ${f}` },
   locDenied: { no: 'Posisjonstilgang er blokkert i nettleseren.',
                en: 'Location access is blocked in your browser.' },
   locFail:   { no: 'Fant ikke posisjonen din.', en: 'Could not find your location.' },
@@ -1899,6 +1956,7 @@ function renderPanel() {
     DATA.years[0], DATA.years[DATA.years.length - 1]);
   document.getElementById('cat-label').textContent = t('catLabel');
   document.getElementById('search-label').textContent = t('searchLabel');
+  document.getElementById('calc-open').textContent = t('calcOpen');
   document.getElementById('school-q').placeholder = t('searchPh');
   const counties = (DATA.counties || []).filter(c => c.schools);
   const ff = document.getElementById('fylke-field');
@@ -2820,7 +2878,8 @@ function renderIntro() {
 function setModalTrap() {
   const open = !document.getElementById('intro').hidden
             || !document.getElementById('contact').hidden
-            || !document.getElementById('settings').hidden;
+            || !document.getElementById('settings').hidden
+            || !document.getElementById('calc').hidden;
   ['skip', 'app', 'controls', 'panel', 'legend'].forEach(id =>
     document.getElementById(id)?.toggleAttribute('inert', open));
 }
@@ -3053,6 +3112,100 @@ function locate() {
      { timeout: 10000, maximumAge: 60000 });
 }
 
+/* ================= grade calculator ================= */
+// vitnemål subjects with a numeric grade at grunnskole level, official names;
+// the two exam slots come on top of standpunkt, as on the vitnemål itself
+const CALC_SUBJECTS = [
+  'Norsk hovedmål', 'Norsk sidemål', 'Norsk muntlig', 'Engelsk skriftlig',
+  'Engelsk muntlig', 'Matematikk', 'Naturfag', 'Samfunnsfag', 'KRLE',
+  'Fremmedspråk / språklig fordypning', 'Kroppsøving', 'Kunst og håndverk',
+  'Musikk', 'Mat og helse', 'Valgfag',
+];
+const CALC_EXAMS = ['Skriftlig eksamen', 'Muntlig eksamen'];
+let calcGrades = {};
+function loadCalc() {
+  try {
+    const g = JSON.parse(localStorage.getItem('pk-grades') || '{}');
+    if (g && typeof g === 'object') {
+      for (const [k, v] of Object.entries(g))
+        if ([...CALC_SUBJECTS, ...CALC_EXAMS].includes(k) && [1,2,3,4,5,6].includes(v))
+          calcGrades[k] = v;
+    }
+  } catch (e) {}
+}
+function saveCalc() {
+  try {
+    Object.keys(calcGrades).length
+      ? localStorage.setItem('pk-grades', JSON.stringify(calcGrades))
+      : localStorage.removeItem('pk-grades');
+  } catch (e) {}
+}
+function calcMean() {
+  const vs = Object.values(calcGrades);
+  return vs.length ? vs.reduce((a, b) => a + b, 0) / vs.length : null;
+}
+function renderCalc() {
+  document.getElementById('calc-h').textContent = t('calcTitle');
+  document.getElementById('calc-x').setAttribute('aria-label', t('close'));
+  const row = (f, exam) => {
+    const cur = calcGrades[f];
+    return `<div class="subj${exam ? ' exam' : ''}"><span class="n">${esc(f)}</span>` +
+      `<span class="grades">` +
+      [1,2,3,4,5,6].map(g =>
+        `<button type="button" data-f="${esc(f)}" data-g="${g}" class="${cur === g ? 'on' : ''}"` +
+        ` aria-pressed="${cur === g}" aria-label="${esc(t('calcGradeAria', g, f))}">${g}</button>`).join('') +
+      `<button type="button" class="rm" data-f="${esc(f)}" data-g=""` +
+      ` aria-label="${esc(t('calcClearAria', f))}" ${cur ? '' : 'hidden'}>✕</button>` +
+      `</span></div>`;
+  };
+  const mean = calcMean();
+  const fmtN = v => v.toFixed(2).replace('.', lang === 'no' ? ',' : '.');
+  const fmtP = v => v.toFixed(1).replace('.', lang === 'no' ? ',' : '.');
+  document.getElementById('calc-body').innerHTML =
+    `<p class="lede">${esc(t('calcLede'))}</p>` +
+    CALC_SUBJECTS.map(f => row(f, false)).join('') +
+    CALC_EXAMS.map(f => row(f, true)).join('') +
+    `<div class="sum">` +
+    `<span><span class="v">${mean === null ? t('calcEmpty') : fmtN(mean)}</span> <span class="l">${esc(t('calcSnitt'))}</span></span>` +
+    `<span><span class="v">${mean === null ? t('calcEmpty') : fmtP(mean * 10)}</span> <span class="l">${esc(t('calcPoeng'))}</span></span>` +
+    `</div>` +
+    `<button class="cta" id="calc-use" ${mean === null ? 'disabled' : ''}>${esc(t('calcUse'))}</button>` +
+    ` <button class="cta ghost" id="calc-reset" ${Object.keys(calcGrades).length ? '' : 'hidden'}>${esc(t('calcReset'))}</button>` +
+    `<p class="note">${esc(t('calcNote'))}</p>`;
+  document.getElementById('calc-body').querySelectorAll('.grades button').forEach(b => {
+    b.onclick = () => {
+      const f = b.dataset.f;
+      if (!b.dataset.g) delete calcGrades[f];
+      else calcGrades[f] = +b.dataset.g;
+      saveCalc(); renderCalc();
+    };
+  });
+  const use = document.getElementById('calc-use');
+  if (use) use.onclick = () => {
+    const m = calcMean();
+    if (m === null) return;
+    const pts = (m * 10).toFixed(1);
+    document.getElementById('my-points').value = pts.replace('.', lang === 'no' ? ',' : '.');
+    onPoints(pts);
+    closeCalc();
+  };
+  const reset = document.getElementById('calc-reset');
+  if (reset) reset.onclick = () => { calcGrades = {}; saveCalc(); renderCalc(); };
+}
+function openCalc() {
+  renderCalc();
+  document.getElementById('calc').hidden = false;
+  setModalTrap();
+  openSheetHistory();
+  setTimeout(() => document.querySelector('#calc .grades button')?.focus(), 40);
+}
+function closeCalc(fromHistory) {
+  if (!fromHistory && (history.state || {}).pkSheet) { history.back(); return; }
+  document.getElementById('calc').hidden = true;
+  setModalTrap();
+  document.getElementById('calc-open')?.focus();
+}
+
 /* ================= language ================= */
 function setLang(l) {
   if (l !== 'no' && l !== 'en') return;   // the only two languages that exist
@@ -3065,6 +3218,7 @@ function setLang(l) {
   if (!document.getElementById('intro').hidden) renderIntro();
   if (!document.getElementById('contact').hidden) renderContact();
   if (!document.getElementById('settings').hidden) renderSettings();
+  if (!document.getElementById('calc').hidden) renderCalc();
 }
 
 /* ================= boot ================= */
@@ -3105,6 +3259,7 @@ function bootFailed(subKey) {
 async function main() {
   loadPrefs();
   applyPrefs(false);
+  loadCalc();
   try {
     const l = localStorage.getItem('pk-lang');
     if (l === 'no' || l === 'en') lang = l;   // anything else is not a language
@@ -3196,9 +3351,10 @@ async function main() {
     // back still closes the panel instead of leaving the page
     const sideOpen = document.getElementById('side').classList.contains('open');
     if (!document.getElementById('contact').hidden || !document.getElementById('intro').hidden
-        || !document.getElementById('settings').hidden) {
+        || !document.getElementById('settings').hidden || !document.getElementById('calc').hidden) {
       if (!document.getElementById('contact').hidden) closeContact(true);
       else if (!document.getElementById('intro').hidden) closeIntro(true);
+      else if (!document.getElementById('calc').hidden) closeCalc(true);
       else closeSettings(true);
       if (sideOpen && !(history.state || {}).pkSide) {
         try { history.pushState({ pkSide: 1 }, ''); } catch (e) {}
@@ -3212,6 +3368,7 @@ async function main() {
     if (!document.getElementById('contact').hidden) { closeContact(); return; }
     if (!document.getElementById('intro').hidden) { closeIntro(); return; }
     if (!document.getElementById('settings').hidden) { closeSettings(); return; }
+    if (!document.getElementById('calc').hidden) { closeCalc(); return; }
     if (document.getElementById('side').classList.contains('open')) closeSide();
   });
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
