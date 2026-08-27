@@ -1716,8 +1716,11 @@ const isDark = () => PREFS.theme === 'dark' ||
   (PREFS.theme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
 const prefersStill = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 let tileLayer = null, miniMap = null;
+// the key is CARTO's free non-commercial basemap tier (domain-bound,
+// requested for poengkart's domains 27.08.2026); it belongs in the client
+const CARTO_KEY = 'cb1_2bsv_1_23dae695a38f70885d3b4f7b';
 const tileUrl = () =>
-  `https://{s}.basemaps.cartocdn.com/${isDark() ? 'dark_all' : 'light_all'}/{z}/{x}/{y}{r}.png`;
+  `https://{s}.basemaps.cartocdn.com/${isDark() ? 'dark_all' : 'light_all'}/{z}/{x}/{y}{r}.png?key=${CARTO_KEY}`;
 function setTiles() {
   if (tileLayer) map.removeLayer(tileLayer);
   tileLayer = L.tileLayer(tileUrl(), {
