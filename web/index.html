@@ -231,9 +231,7 @@
   #settings .note { font-size: 11.5px; color: var(--ink-3); line-height: 1.5; margin-top: 16px;
                     border-top: 1px solid var(--line); padding-top: 11px; }
   /* ---------- grade calculator ---------- */
-  .linkish { border: none; background: none; padding: 0; margin-top: 7px; font-size: 11.5px;
-             color: var(--accent); cursor: pointer; text-decoration: underline;
-             text-underline-offset: 2px; display: block; }
+  #calc-open svg { width: 16px; height: 16px; }
   #calc .sheet { max-width: 480px; }
   #calc .lede { font-size: 12.5px; color: var(--ink-2); line-height: 1.5; margin: 2px 0 12px; }
   #calc .subj { display: flex; align-items: center; justify-content: space-between; gap: 8px;
@@ -880,9 +878,15 @@ try {
       <input id="my-points" type="text" inputmode="decimal" autocomplete="off" spellcheck="false"
              maxlength="5" oninput="onPoints(this.value)">
       <button id="pts-clear" type="button" onclick="onPoints('')" hidden>✕</button>
+      <button id="calc-open" type="button" onclick="openCalc()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="4" y="2.5" width="16" height="19" rx="2.5"/>
+          <path d="M8 7h8M8 11.5h.01M12 11.5h.01M16 11.5h.01M8 15.5h.01M12 15.5h.01M16 15.5h.01"/>
+        </svg>
+      </button>
     </div>
     <div id="pts-note"></div>
-    <button type="button" class="linkish" id="calc-open" onclick="openCalc()"></button>
   </div>
   <!-- the reader's own list of choices, across schools -->
   <div id="choices" hidden></div>
@@ -1956,7 +1960,9 @@ function renderPanel() {
     DATA.years[0], DATA.years[DATA.years.length - 1]);
   document.getElementById('cat-label').textContent = t('catLabel');
   document.getElementById('search-label').textContent = t('searchLabel');
-  document.getElementById('calc-open').textContent = t('calcOpen');
+  const co = document.getElementById('calc-open');
+  co.title = t('calcOpen');
+  co.setAttribute('aria-label', t('calcOpen'));
   document.getElementById('school-q').placeholder = t('searchPh');
   const counties = (DATA.counties || []).filter(c => c.schools);
   const ff = document.getElementById('fylke-field');
