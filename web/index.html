@@ -227,6 +227,9 @@
   #calc .grades button:hover { border-color: var(--accent); color: var(--accent); }
   #calc .grades button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
   #calc .grades button.rm { border: none; color: var(--ink-3); font-weight: 400; }
+  /* invisible, not absent: the slot is reserved so picking a grade never
+     shoves the whole row leftwards when the ✕ appears */
+  #calc .grades button.rm.off { visibility: hidden; }
   #calc .grades button[hidden], .modal .cta[hidden] { display: none; }
   #calc .sum { display: flex; align-items: baseline; gap: 14px; margin: 14px 0 4px; }
   #calc .sum .v { font-size: 22px; font-weight: 700; letter-spacing: -.02em;
@@ -372,6 +375,9 @@
   @keyframes fade { from { opacity: 0 } }
   .modal .sheet {
     overscroll-behavior: contain;
+    /* stable gutter: content growing past the fold (the calculator's Tøm
+       button) must not summon a scrollbar that shoves every row sideways */
+    scrollbar-gutter: stable;
     position: relative; width: min(560px, 100%); max-height: calc(100dvh - 36px);
     overflow: auto; background: var(--surface-solid); border: 1px solid var(--line);
     border-radius: 18px; box-shadow: var(--shadow); padding: 26px 26px 22px;
@@ -3202,8 +3208,8 @@ function renderCalc() {
       [1,2,3,4,5,6].map(g =>
         `<button type="button" data-f="${esc(f)}" data-g="${g}" class="${cur === g ? 'on' : ''}"` +
         ` aria-pressed="${cur === g}" aria-label="${esc(t('calcGradeAria', g, f))}">${g}</button>`).join('') +
-      `<button type="button" class="rm" data-f="${esc(f)}" data-g=""` +
-      ` aria-label="${esc(t('calcClearAria', f))}" ${cur ? '' : 'hidden'}>✕</button>` +
+      `<button type="button" class="rm${cur ? '' : ' off'}" data-f="${esc(f)}" data-g=""` +
+      ` aria-label="${esc(t('calcClearAria', f))}">✕</button>` +
       `</span></div>`;
   };
   const mean = calcMean();
