@@ -759,6 +759,11 @@
     #side > .scroll { min-width: 100vw; }
     body.side-open #panel, body.side-open #legend, body.side-open #controls { display: none; }
   }
+  /* The UA's [hidden] { display: none } loses to any author display rule
+     (.mixwarn's flex, .notes' grid, the calculator buttons before their
+     guards). Restate it with !important so hidden always means hidden, and
+     no future display: flex quietly resurrects an empty band. */
+  [hidden] { display: none !important; }
 </style>
 <script>
 /* saved display preferences, applied before first paint so nothing flashes */
