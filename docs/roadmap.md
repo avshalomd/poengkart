@@ -22,3 +22,7 @@ reduced motion), geolocation.
 - **Mix-adjusted toggle.** Colour the map by the α_s school effect instead
   of the raw mean. The number is computed and documented in the report;
   surfacing it in the UI shows the data-science depth where visitors see it.
+- **Raster→vector basemap migration.** CARTO is retiring its raster
+  basemaps in favour of vector (MapLibre); no date yet and our key covers
+  both. When it becomes real: Leaflet + maplibre-gl-leaflet, or a move to
+  MapLibre GL proper.
