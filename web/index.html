@@ -259,6 +259,9 @@
   #ov-list .opt .fy { font-size: 12px; color: var(--ink-3); flex: none; }
   #ov-list .opt.act, #ov-list .opt:hover { background: var(--accent-soft); }
   #ov-list .none { padding: 10px 12px; font-size: 13px; color: var(--ink-3); }
+  /* on narrow screens the legend covers the bottom-right map controls;
+     --ctrl-lift (set from the legend's measured height) moves them above it */
+  .leaflet-bottom.leaflet-right { margin-bottom: var(--ctrl-lift, 0px); }
   /* ---------- locate control + toast ---------- */
   .leaflet-bar button.locate {
     width: 30px; height: 30px; display: grid; place-items: center;
@@ -1997,6 +2000,11 @@ function renderCatNote() {
       (mapFylke === 'all' || s.fylke === mapFylke)
       && s.programs.some(p => p.category === mapCat)).length);
 }
+function liftMapControls() {
+  const leg = document.getElementById('legend');
+  const lift = innerWidth <= 560 && leg && !leg.hidden ? leg.offsetHeight + 12 : 0;
+  document.documentElement.style.setProperty('--ctrl-lift', lift + 'px');
+}
 function renderLegend() {
   const rounds = [...new Set(visibleSchools().map(s => s.round).filter(Boolean))];
   const anyUnknown = visibleSchools().some(s => !s.round);
@@ -2024,6 +2032,7 @@ function renderLegend() {
   // "no waitlist" is not a dot state once the dots show chances
   document.getElementById('legend-open').parentElement.hidden = chanceMode();
   document.getElementById('legend-open').textContent = t('legendOpen');
+  liftMapControls();
 }
 
 /* ================= sidebar ================= */
@@ -3390,7 +3399,7 @@ async function main() {
   let reframe;
   addEventListener('resize', () => {
     clearTimeout(reframe);
-    reframe = setTimeout(() => { map.invalidateSize(); }, 200);
+    reframe = setTimeout(() => { map.invalidateSize(); liftMapControls(); }, 200);
   });
   document.addEventListener('touchstart', ev => {
     // a floating tooltip should not outlive the reader's attention
