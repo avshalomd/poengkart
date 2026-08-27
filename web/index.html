@@ -1958,6 +1958,25 @@ function renderLegend() {
 }
 
 /* ================= sidebar ================= */
+// The open school is a place someone will want to send to someone else, so it
+// lives in the URL fragment: #s=Fylke/Skolenavn. replaceState edits the
+// address without firing popstate, so the back-gesture machinery below never
+// sees these writes.
+const schoolHash = s => '#s=' + encodeURIComponent(s.fylke) + '/' + encodeURIComponent(s.name);
+function setUrlSchool(s) {
+  try {
+    history.replaceState(history.state, '',
+      s ? schoolHash(s) : location.pathname + location.search);
+  } catch (e) {}
+}
+function schoolFromUrl() {
+  const m = /^#s=([^/]+)\/(.+)$/.exec(location.hash || '');
+  if (!m) return null;
+  try {
+    const fy = decodeURIComponent(m[1]), name = decodeURIComponent(m[2]);
+    return DATA.schools.find(x => x.fylke === fy && x.name === name) || null;
+  } catch (e) { return null; }
+}
 function openSide(s) {
   current = s;
   chart.prog = null;                     // the lens itself is global
@@ -1966,10 +1985,11 @@ function openSide(s) {
   side.classList.add('open');
   renderSide();
   document.body.classList.add('side-open');
+  setUrlSchool(s);
   // On a phone the details fill the screen, and the system back gesture is how
   // people expect to leave a screen. Give it something to pop.
   if (!(history.state || {}).pkSide) {
-    try { history.pushState({ pkSide: 1 }, ''); } catch (e) {}
+    try { history.pushState({ pkSide: 1 }, schoolHash(s)); } catch (e) {}
   }
   setTimeout(() => document.querySelector('#s-photo .close')?.focus(), 60);
 }
@@ -1985,6 +2005,7 @@ function closeSide(fromHistory) {
   }
   side.classList.remove('open');
   document.body.classList.remove('side-open');
+  setUrlSchool(null);
   side.setAttribute('inert', '');          // keep 17 hidden controls out of Tab
   const back = document.getElementById('map-fylke');
   (back && back.offsetParent ? back : document.getElementById('map-cat'))?.focus();
@@ -3194,6 +3215,12 @@ async function main() {
     if (document.getElementById('side').classList.contains('open')) closeSide();
   });
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
+  const linked = schoolFromUrl();
+  if (linked) {
+    touched = true;                    // the deferred HOME refit must not undo this
+    if (linked.lat) map.setView([linked.lat, linked.lon], 11, { animate: false });
+    openSide(linked);
+  }
   performance.mark('pk:boot-done');
   let seen = true;
   try { seen = !!localStorage.getItem(INTRO_SEEN); } catch (e) {}
