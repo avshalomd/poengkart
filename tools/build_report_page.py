@@ -7,6 +7,7 @@ their \tag number, inline maths by a token table — so the page needs no
 JavaScript and no external assets. Run after editing the report or the
 figures.
 """
+import json
 import re
 from pathlib import Path
 
@@ -28,9 +29,19 @@ DISPLAY = {
     '2': "<var>y<sub>it</sub></var>&#8201;|&#8201;<var>Q<sub>it</sub></var> = 1, <var>y<sub>it</sub></var> &gt; 0 &nbsp;&sim;&nbsp; \U0001d4a9(<var>&mu;</var> + <var>&alpha;<sub>sc[i]</sub></var> + <var>&beta;<sub>p[i]</sub></var> + <var>&gamma;<sub>a[i]</sub></var> + <var>u<sub>i</sub></var> + <var>w<sub>c[i],t</sub></var> + <var>&rho;<sub>r(i,t)</sub></var>,&nbsp;<var>&sigma;</var><sup>2</sup>)",
     '3': "logit&#8201;<var>P</var>(<var>Q<sub>it</sub></var> = 1) = <var>&nu;</var> + <var>&alpha;&prime;<sub>sc[i]</sub></var> + <var>&beta;&prime;<sub>p[i]</sub></var> + <var>&gamma;&prime;<sub>a[i]</sub></var> + <var>u&prime;<sub>i</sub></var> + <var>w&prime;<sub>c[i],t</sub></var> + <var>&rho;&prime;<sub>r(i,t)</sub></var>",
     '4': "<var>w<sub>c,t</sub></var> = <var>w<sub>c,t&minus;1</sub></var> + <var>&eta;<sub>c,t</sub></var>, &nbsp;&nbsp; <var>&eta;<sub>c,t</sub></var> &sim; \U0001d4a9(0, <var>&tau;<sub>w</sub></var><sup>2</sup>)",
-    '5': "logit&#8201;<var>&pi;</var>&prime; = &minus;0.124 + 0.465&#8201;logit&#8201;<var>&pi;</var>",
-    '6': "<var>P</var>(place by round 3) = (1 &minus; <var>&pi;</var>) + <var>&pi;</var>&#8201;(<var>v<sub>p</sub></var> + (1 &minus; <var>v<sub>p</sub></var>)&#8201;<var>&Phi;<sub>F</sub></var>&#8239;(" + frac("<var>x</var> &minus; <var>m</var> &minus; <var>&delta;<sub>p</sub></var>", "<var>s</var>") + "))",
+    # eq (5) quotes fitted constants, so it is typeset from the shipped model
+    # rather than hand-maintained — a hardcoded copy drifted once already.
+    '5': None,   # filled in below from model.json
 }
+
+_FC = json.loads((ROOT / 'web/data/model.json').read_text())['meta']['fill_calibration']
+_sgn = lambda v: ('&minus;' if v < 0 else '') + ('%.3f' % abs(v))
+DISPLAY['5'] = ("logit&#8201;<var>&pi;</var>&prime; = %s + %s&#8201;logit&#8201;<var>&pi;</var>"
+                % (_sgn(_FC['a']), _sgn(_FC['b'])))
+
+DISPLAY.update({
+    '6': "<var>P</var>(place by round 3) = (1 &minus; <var>&pi;</var>) + <var>&pi;</var>&#8201;(<var>v<sub>p</sub></var> + (1 &minus; <var>v<sub>p</sub></var>)&#8201;<var>&Phi;<sub>F</sub></var>&#8239;(" + frac("<var>x</var> &minus; <var>m</var> &minus; <var>&delta;<sub>p</sub></var>", "<var>s</var>") + "))",
+})
 
 INLINE = [
     (r'\operatorname{logit}', 'logit&#8201;'),

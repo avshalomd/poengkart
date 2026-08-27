@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
-"""Akershus — 58 HTML tables, one per utdanningsprogram, Vg1.
+"""Akershus — 58 HTML tables (2025/26) plus two FOI Excel grids.
 
-The best-structured source in the country: it publishes 1. AND 2. inntak side
-by side. We take 2. inntak as the canonical series (comparable with Rogaland,
-and the round after which places have stopped moving) and keep 1. inntak in
-`values_r1`.
+The best-structured source in the country: the HTML page publishes 1. AND
+2. inntak side by side. We take 2. inntak as the canonical series (comparable
+with Rogaland, and the round after which places have stopped moving) and keep
+1. inntak in `values_r1`.
 
-Cell semantics, from the page's own footnotes:
-  "Alle som søkte, fikk tilbud om skoleplass."  -> open  (typo variant: "søke")
-  "Inntak etter en kombinasjon av karakterer …" -> D     (skill/interview)
+The county answered our innsynskrav of 25.08.2026 with two Excel workbooks
+(inntak@afk.no, 27.08.2026): school × programme grids of the 2. inntak lower
+thresholds for 2024/25 and 2026/27, same 34 schools and short school names as
+the HTML page. Those files carry only the second round, so no values_r1.
+
+Cell semantics, from the sources' own footnotes (HTML and xlsx legends agree):
+  "Alle som søkte, fikk tilbud om skoleplass."  -> open  (xlsx: '*')
+  "Inntak etter en kombinasjon av karakterer …" -> D     (xlsx: '**')
   "0,0" is a REAL threshold: "flere med 0,0 i poengsum står igjen på venteliste
   og ikke har fått plass" — full, but the queue was made of 0-point applicants.
 """
@@ -38,16 +43,57 @@ def _year(fname):
     return int(m.group(1)) if m else None
 
 
+def _xlsx_cell(v):
+    """One grid cell -> float | 'open' | 'D' | None, per the files' legend."""
+    if v is None:
+        return None
+    if isinstance(v, (int, float)):
+        return float(v) if 0 <= v <= common.MAX_PLAUSIBLE else None
+    t = str(v).strip()
+    if t == '**':                        # karakterer + ferdigheter
+        return 'D'
+    if t == '*':                         # alle som søkte fikk tilbud
+        return 'open'
+    return common.classify_cell(t, min_value=0)
+
+
+def _parse_xlsx(path, year):
+    import openpyxl
+    ws = openpyxl.load_workbook(path, data_only=True).worksheets[0]
+    rows, header = [], None
+    for r in ws.iter_rows(values_only=True):
+        if header is None:
+            if r and str(r[0]).strip() == 'Skolenr':
+                header = [common.canon_program(str(h)) if h else None
+                          for h in r[2:]]
+            continue
+        if not isinstance(r[0], int):    # legend lines under the grid
+            continue
+        school = common.squash(str(r[1]))
+        for prog, cell in zip(header, r[2:]):
+            v = _xlsx_cell(cell)
+            if not prog or v is None:
+                continue
+            rows.append({'school': school, 'program': prog,
+                         'level': common.guess_level(prog, 'Vg1'),
+                         'values': {year: v},
+                         'county': META['fylke'], 'round': META['round']})
+    return rows
+
+
 def extract():
     warn, out = [], []
     if not os.path.isdir(SRC):
         return out, [f'{META["fylke"]}: no source directory']
     for fname in sorted(os.listdir(SRC), reverse=True):      # newest first
-        if not fname.endswith('.html'):
+        if not fname.endswith(('.html', '.xlsx')):
             continue
         year = _year(fname)
         if not year:
             warn.append(f'{fname}: cannot read year from filename')
+            continue
+        if fname.endswith('.xlsx'):
+            out.append((fname, _parse_xlsx(os.path.join(SRC, fname), year)))
             continue
         soup = BeautifulSoup(open(os.path.join(SRC, fname), encoding='utf-8',
                                   errors='replace').read(), 'lxml')

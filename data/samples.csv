@@ -1,155 +1,457 @@
 school,fylke,program,occurrence,category,grep_code,level,year,round,points,status
+Asker,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,45.1,points
 Asker,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,42.5,points
+Asker,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,47.8,points
+Bjertnes,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,2,30.6,points
 Bjertnes,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,26.9,points
+Bjertnes,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,28.8,points
+Bjertnes,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,38.7,points
 Bjertnes,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,38.8,points
+Bjertnes,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,42.0,points
+Bjertnes,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,,open
 Bjertnes,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,,open
+Bjertnes,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,,open
+Bjertnes,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,31.8,points
 Bjertnes,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,32.9,points
+Bjertnes,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,22.2,points
+Bjertnes,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,42.2,points
 Bjertnes,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,38.8,points
+Bjertnes,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,37.3,points
+Bjørkelangen,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,21.7,points
 Bjørkelangen,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,31.3,points
+Bjørkelangen,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,29.8,points
+Bjørkelangen,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,2,24.3,points
 Bjørkelangen,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,2,0.0,points
+Bjørkelangen,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2026,2,15.0,points
+Bjørkelangen,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,27.8,points
 Bjørkelangen,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,25.8,points
+Bjørkelangen,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,24.0,points
+Bjørkelangen,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,46.7,points
 Bjørkelangen,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,39.4,points
+Bjørkelangen,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,42.9,points
+Bjørkelangen,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,41.6,points
 Bjørkelangen,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,20.0,points
+Bjørkelangen,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,32.0,points
+Bjørkelangen,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,,open
 Bjørkelangen,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,31.2,points
+Bjørkelangen,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,,open
+Bjørkelangen,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,18.5,points
 Bjørkelangen,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,,open
+Bjørkelangen,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,28.6,points
+Bleiker,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,31.0,points
 Bleiker,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,34.1,points
+Bleiker,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,37.9,points
+Bleiker,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,33.1,points
 Bleiker,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,29.4,points
+Bleiker,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,37.5,points
+Bleiker,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,41.9,points
 Bleiker,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,45.9,points
+Bleiker,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,45.9,points
+Bleiker,Akershus,"Idrettsfag, toppidrett",0,ID,IDIDR2----,Vg1,2024,2,,documentation
 Bleiker,Akershus,"Idrettsfag, toppidrett",0,ID,IDIDR2----,Vg1,2025,2,,documentation
+Bleiker,Akershus,"Idrettsfag, toppidrett",0,ID,IDIDR2----,Vg1,2026,2,,documentation
+Bleiker,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,2,,open
 Bleiker,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,2,,open
+Bleiker,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,2,,open
+Bleiker,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,36.3,points
 Bleiker,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,37.8,points
+Bleiker,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,2,41.9,points
+Bleiker,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,34.6,points
 Bleiker,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,38.2,points
+Bleiker,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,40.6,points
+Bleiker,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,28.8,points
 Bleiker,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,31.9,points
+Bleiker,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,40.0,points
+Drømtorp,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,,open
 Drømtorp,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,,open
+Drømtorp,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,,open
+Drømtorp,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,2,28.7,points
 Drømtorp,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,2,27.5,points
+Drømtorp,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,2,,open
+Drømtorp,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,34.5,points
 Drømtorp,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,,open
+Drømtorp,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,2,,open
+Drømtorp,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,26.9,points
 Drømtorp,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,,open
+Drømtorp,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,,open
+Dønski,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,43.3,points
 Dønski,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,43.2,points
+Dønski,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,44.3,points
+Dønski,Akershus,"Idrettsfag, alpin, 4-årig",0,ID,IDIDR2----,Vg1,2024,2,,documentation
 Dønski,Akershus,"Idrettsfag, alpin, 4-årig",0,ID,IDIDR2----,Vg1,2025,2,,documentation
+Dønski,Akershus,"Idrettsfag, alpin, 4-årig",0,ID,IDIDR2----,Vg1,2026,2,,documentation
+Dønski,Akershus,"Idrettsfag, toppidrett",0,ID,IDIDR2----,Vg1,2024,2,,documentation
 Dønski,Akershus,"Idrettsfag, toppidrett",0,ID,IDIDR2----,Vg1,2025,2,,documentation
+Dønski,Akershus,"Idrettsfag, toppidrett",0,ID,IDIDR2----,Vg1,2026,2,,documentation
+Dønski,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,36.5,points
 Dønski,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,40.2,points
+Dønski,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,43.8,points
+Dønski,Akershus,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2024,2,41.6,points
 Dønski,Akershus,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2025,2,,documentation
+Dønski,Akershus,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2026,2,,documentation
+Eidsvoll,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,2,30.3,points
 Eidsvoll,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,29.4,points
+Eidsvoll,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,25.6,points
+Eidsvoll,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,38.8,points
 Eidsvoll,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,40.0,points
+Eidsvoll,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,35.3,points
+Eidsvoll,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,27.3,points
 Eidsvoll,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,24.7,points
+Eidsvoll,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,30.0,points
+Eidsvoll,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,35.3,points
 Eidsvoll,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,35.6,points
+Eidsvoll,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,,open
+Eidsvoll,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,,open
 Eidsvoll,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,,open
+Eidsvoll,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,,open
+Eidsvoll,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,32.7,points
 Eidsvoll,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,29.3,points
+Eidsvoll,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,30.7,points
+Eikeli,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,32.5,points
 Eikeli,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,,open
+Eikeli,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,,open
+Eikeli,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,,open
 Eikeli,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,,open
+Eikeli,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,,open
+Frogn,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,30.7,points
 Frogn,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,37.5,points
+Frogn,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,39.4,points
+Frogn,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,33.8,points
 Frogn,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,20.0,points
+Frogn,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,30.0,points
+Frogn,Akershus,"Salg, service og reiseliv, SK",0,SR,SRSSR1----,Vg1,2024,2,40.0,points
 Frogn,Akershus,"Salg, service og reiseliv, SK",0,SR,SRSSR1----,Vg1,2025,2,35.7,points
+Frogn,Akershus,"Salg, service og reiseliv, SK",0,SR,SRSSR1----,Vg1,2026,2,35.2,points
+Frogn,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,24.6,points
 Frogn,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,,open
+Frogn,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,,open
+Hvam,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,25.0,points
 Hvam,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,,open
+Hvam,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,34.4,points
+Hvam,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,,open
 Hvam,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,,open
+Hvam,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,2,14.7,points
+Hvam,Akershus,Naturbruk,0,NA,NANAB1----,Vg1,2024,2,,open
 Hvam,Akershus,Naturbruk,0,NA,NANAB1----,Vg1,2025,2,0.0,points
+Hvam,Akershus,Naturbruk,0,NA,NANAB1----,Vg1,2026,2,33.2,points
 Hvam,Akershus,"Naturbruk, energi-/miljøfag, SK 3 år",0,NA,NANAB1----,Vg1,2025,2,,open
+Hvam,Akershus,"Naturbruk, energi-/miljøfag, SK 3 år",0,NA,NANAB1----,Vg1,2026,2,25.1,points
+Hvam,Akershus,"Naturbruk, realfag og dyrekunnskap, SK 3 år",0,NA,NANAB1----,Vg1,2024,2,39.4,points
 Hvam,Akershus,"Naturbruk, realfag og dyrekunnskap, SK 3 år",0,NA,NANAB1----,Vg1,2025,2,32.8,points
+Hvam,Akershus,"Naturbruk, realfag og dyrekunnskap, SK 3 år",0,NA,NANAB1----,Vg1,2026,2,44.4,points
+Jessheim,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,32.5,points
 Jessheim,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,25.3,points
+Jessheim,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,21.4,points
+Jessheim,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,2,44.0,points
 Jessheim,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,2,38.8,points
+Jessheim,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2026,2,43.1,points
+Jessheim,Akershus,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2024,2,,documentation
 Jessheim,Akershus,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2025,2,,documentation
+Jessheim,Akershus,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2026,2,,documentation
+Jessheim,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,32.8,points
 Jessheim,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,28.8,points
+Jessheim,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,25.0,points
+Jessheim,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,39.4,points
 Jessheim,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,40.9,points
+Jessheim,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,38.4,points
+Jessheim,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,33.8,points
 Jessheim,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,30.3,points
+Jessheim,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,26.0,points
+Kjelle,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,2,25.0,points
 Kjelle,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,,open
+Kjelle,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,22.7,points
+Kjelle,Akershus,Naturbruk,0,NA,NANAB1----,Vg1,2024,2,,open
 Kjelle,Akershus,Naturbruk,0,NA,NANAB1----,Vg1,2025,2,26.8,points
+Kjelle,Akershus,Naturbruk,0,NA,NANAB1----,Vg1,2026,2,27.8,points
+Lillestrøm,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,44.4,points
 Lillestrøm,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,41.3,points
+Lillestrøm,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,2,42.6,points
+Lillestrøm,Akershus,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2024,2,,documentation
 Lillestrøm,Akershus,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2025,2,,documentation
+Lillestrøm,Akershus,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2026,2,,documentation
+Lillestrøm,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,46.0,points
 Lillestrøm,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,47.8,points
+Lillestrøm,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,49.1,points
+Lillestrøm,Akershus,"Studiespesialisering, forberedende IB",0,ST,STUSP1----,Vg1,2024,2,49.0,points
 Lillestrøm,Akershus,"Studiespesialisering, forberedende IB",0,ST,STUSP1----,Vg1,2025,2,36.0,points
+Lillestrøm,Akershus,"Studiespesialisering, forberedende IB",0,ST,STUSP1----,Vg1,2026,2,43.3,points
+Lørenskog,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,2,36.5,points
 Lørenskog,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,2,28.1,points
+Lørenskog,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2026,2,32.9,points
+Lørenskog,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,44.1,points
 Lørenskog,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,43.1,points
+Lørenskog,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,45.6,points
+Lørenskog,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,2,47.5,points
 Lørenskog,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,2,37.3,points
+Lørenskog,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2026,2,35.9,points
+Lørenskog,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,2,30.0,points
 Lørenskog,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,2,,open
+Lørenskog,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,2,25.3,points
+Lørenskog,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,43.5,points
 Lørenskog,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,42.9,points
+Lørenskog,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,43.8,points
+Lørenskog,Akershus,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2024,2,48.8,points
 Lørenskog,Akershus,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2025,2,49.1,points
+Lørenskog,Akershus,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2026,2,48.8,points
+Mailand,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,34.4,points
 Mailand,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,22.0,points
+Mailand,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,33.1,points
+Mailand,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,2,39.4,points
 Mailand,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,2,36.0,points
+Mailand,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,2,34.4,points
+Mailand,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,36.6,points
+Mailand,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,32.7,points
 Mailand,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,33.8,points
+Mailand,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,36.5,points
+Mailand,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,37.6,points
 Mailand,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,32.5,points
+Mailand,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,36.7,points
+Nadderud,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,48.1,points
 Nadderud,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,48.0,points
+Nadderud,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,46.3,points
+Nadderud,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,49.8,points
 Nadderud,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,48.5,points
+Nadderud,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,49.7,points
+Nannestad,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,29.4,points
 Nannestad,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,23.8,points
+Nannestad,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,31.8,points
+Nannestad,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,42.5,points
 Nannestad,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,40.3,points
+Nannestad,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,36.5,points
+Nannestad,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,2,35.6,points
 Nannestad,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,2,38.8,points
+Nannestad,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,2,35.3,points
+Nannestad,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,28.5,points
 Nannestad,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,,open
+Nannestad,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,2,32.5,points
+Nannestad,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,2,23.9,points
 Nannestad,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,2,,open
+Nannestad,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,2,,open
+Nannestad,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,33.8,points
 Nannestad,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,31.8,points
+Nannestad,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,32.5,points
+Nannestad,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,36.6,points
 Nannestad,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,39.6,points
+Nannestad,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,39.4,points
+Nes,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,2,18.6,points
 Nes,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,,open
+Nes,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,18.1,points
+Nes,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,31.1,points
 Nes,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,27.1,points
+Nes,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,27.7,points
+Nes,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,30.6,points
 Nes,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,15.6,points
+Nes,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,21.3,points
+Nes,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,40.0,points
 Nes,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,33.5,points
+Nes,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,22.3,points
+Nes,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,,open
 Nes,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,,open
+Nes,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,,open
+Nesbru,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,2,30.0,points
 Nesbru,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,26.3,points
+Nesbru,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,30.8,points
+Nesbru,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,38.0,points
 Nesbru,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,38.8,points
+Nesbru,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,36.0,points
+Nesbru,Akershus,"Studiespesialisering, forberedende IB",0,ST,STUSP1----,Vg1,2024,2,46.5,points
 Nesbru,Akershus,"Studiespesialisering, forberedende IB",0,ST,STUSP1----,Vg1,2025,2,43.8,points
+Nesbru,Akershus,"Studiespesialisering, forberedende IB",0,ST,STUSP1----,Vg1,2026,2,31.0,points
+Nesodden,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,35.6,points
 Nesodden,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,33.8,points
+Nesodden,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,30.2,points
+Nesodden,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,,open
 Nesodden,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,,open
+Nesodden,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,19.3,points
+Nesodden,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,2,,open
 Nesodden,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,2,,open
+Nesodden,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,2,31.8,points
+Nesodden,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,27.9,points
 Nesodden,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,34.7,points
+Nesodden,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,,open
+Roald Amundsen,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,41.9,points
 Roald Amundsen,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,41.3,points
+Roald Amundsen,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,42.3,points
+Roald Amundsen,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,,open
 Roald Amundsen,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,,open
+Roald Amundsen,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,,open
+Rosenvilde,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,27.6,points
 Rosenvilde,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,28.0,points
+Rosenvilde,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,,open
+Rosenvilde,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,2,40.3,points
 Rosenvilde,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,2,40.3,points
+Rosenvilde,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,2,,open
+Rosenvilde,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,2,,open
 Rosenvilde,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,2,22.5,points
+Rosenvilde,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2026,2,,open
+Rosenvilde,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,,open
 Rosenvilde,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,33.1,points
+Rosenvilde,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,2,,open
+Rosenvilde,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,2,30.9,points
 Rosenvilde,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,2,28.8,points
+Rosenvilde,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,2,27.8,points
+Rosenvilde,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,,open
 Rosenvilde,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,30.0,points
+Rosenvilde,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,31.8,points
+Rud,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,31.3,points
 Rud,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,30.2,points
+Rud,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,37.3,points
+Rud,Akershus,"Elektro og datateknologi, SK 3 år",0,EL,ELELE1----,Vg1,2024,2,44.0,points
 Rud,Akershus,"Elektro og datateknologi, SK 3 år",0,EL,ELELE1----,Vg1,2025,2,33.7,points
+Rud,Akershus,"Elektro og datateknologi, SK 3 år",0,EL,ELELE1----,Vg1,2026,2,38.8,points
+Rud,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,2,23.1,points
 Rud,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,2,34.0,points
+Rud,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2026,2,33.8,points
+Rud,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,26.6,points
 Rud,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,23.3,points
+Rud,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,,open
+Rud,Akershus,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2024,2,32.1,points
+Rud,Akershus,"Håndverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2024,2,39.0,points
 Rud,Akershus,"Håndverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2025,2,,open
+Rud,Akershus,"Håndverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2026,2,,open
+Rud,Akershus,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2024,2,,documentation
 Rud,Akershus,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2025,2,,documentation
+Rud,Akershus,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2026,2,,documentation
+Rud,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,29.4,points
 Rud,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,29.5,points
+Rud,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,32.6,points
+Rælingen,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,32.1,points
 Rælingen,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,21.6,points
+Rælingen,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,33.3,points
+Rælingen,Akershus,"Idrettsfag, toppidrett",0,ID,IDIDR2----,Vg1,2024,2,,documentation
 Rælingen,Akershus,"Idrettsfag, toppidrett",0,ID,IDIDR2----,Vg1,2025,2,,documentation
+Rælingen,Akershus,"Idrettsfag, toppidrett",0,ID,IDIDR2----,Vg1,2026,2,,documentation
+Rælingen,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,25.7,points
 Rælingen,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,18.1,points
+Rælingen,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,,open
+Rælingen,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,30.0,points
 Rælingen,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,,open
+Rælingen,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,,open
+Rælingen,Akershus,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2024,2,40.6,points
 Rælingen,Akershus,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2025,2,,open
+Rælingen,Akershus,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2026,2,,open
+Røyken,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,2,32.5,points
 Røyken,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,29.4,points
+Røyken,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,33.1,points
+Røyken,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,30.6,points
 Røyken,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,,open
+Røyken,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,35.0,points
+Røyken,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,2,31.6,points
 Røyken,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,2,31.0,points
+Røyken,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2026,2,33.1,points
+Røyken,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,32.9,points
 Røyken,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,29.1,points
+Røyken,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,36.0,points
+Røyken,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,2,37.6,points
 Røyken,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,2,,open
+Røyken,Akershus,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,2,31.7,points
+Røyken,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,2,,open
 Røyken,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,2,,open
+Røyken,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,38.8,points
 Røyken,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,36.9,points
+Røyken,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,33.1,points
+Røyken,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,28.4,points
 Røyken,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,,open
+Røyken,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,,open
+Sandvika,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,32.1,points
 Sandvika,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,33.1,points
+Sandvika,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,30.0,points
+Sandvika,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,42.9,points
 Sandvika,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,42.0,points
+Sandvika,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,2,40.6,points
+Sandvika,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,46.2,points
 Sandvika,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,42.5,points
+Sandvika,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,44.7,points
+Skedsmo,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,2,30.6,points
 Skedsmo,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,28.7,points
+Skedsmo,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,28.8,points
+Skedsmo,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,38.4,points
 Skedsmo,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,33.3,points
+Skedsmo,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,37.3,points
+Skedsmo,Akershus,"Håndverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2024,2,19.3,points
 Skedsmo,Akershus,"Håndverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2025,2,,open
+Skedsmo,Akershus,"Håndverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2026,2,15.8,points
+Skedsmo,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,39.3,points
+Skedsmo,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,38.1,points
 Skedsmo,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,34.4,points
+Skedsmo,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,34.0,points
+Ski,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,48.5,points
 Ski,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,45.0,points
+Ski,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,46.3,points
+Ski,Akershus,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2024,2,,documentation
 Ski,Akershus,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2025,2,,documentation
+Ski,Akershus,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2026,2,,documentation
+Ski,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,46.3,points
 Ski,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,44.5,points
+Ski,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,44.8,points
+Stabekk,Akershus,"Naturbruk, energi-/miljøfag, SK 3 år",0,NA,NANAB1----,Vg1,2024,2,40.3,points
+Stabekk,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,43.8,points
 Stabekk,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,41.2,points
+Stabekk,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,38.3,points
+Strømmen,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,35.3,points
 Strømmen,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,28.8,points
+Strømmen,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,31.9,points
+Strømmen,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,26.5,points
 Strømmen,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,,open
+Strømmen,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,16.3,points
+Strømmen,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,32.0,points
 Strømmen,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,30.0,points
+Strømmen,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,32.5,points
+Sørumsand,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,31.5,points
 Sørumsand,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,0.0,points
+Sørumsand,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,30.7,points
+Sørumsand,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,,open
 Sørumsand,Akershus,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,,open
+Sørumsand,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,2,,open
 Sørumsand,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,2,,open
+Sørumsand,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,2,,open
+Sørumsand,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,,open
 Sørumsand,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,,open
+Sørumsand,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,,open
+Sørumsand,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,27.5,points
 Sørumsand,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,,open
+Sørumsand,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,26.7,points
+Valler,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,45.6,points
 Valler,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,46.3,points
+Valler,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,42.5,points
+Vestby,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,2,33.4,points
 Vestby,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,16.4,points
+Vestby,Akershus,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,29.3,points
+Vestby,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,2,25.6,points
 Vestby,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,2,,open
+Vestby,Akershus,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,2,,open
+Vestby,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,32.0,points
 Vestby,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,31.4,points
+Vestby,Akershus,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,36.0,points
+Vestby,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,,open
 Vestby,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,25.0,points
+Vestby,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,,open
+Vestby,Akershus,"Studiespesialisering, forskerlinje",0,ST,STUSP1----,Vg1,2024,2,,open
 Vestby,Akershus,"Studiespesialisering, forskerlinje",0,ST,STUSP1----,Vg1,2025,2,,open
+Vestby,Akershus,"Studiespesialisering, forskerlinje",0,ST,STUSP1----,Vg1,2026,2,,open
+Ås,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,40.0,points
 Ås,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,37.7,points
+Ås,Akershus,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,37.8,points
+Ås,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,2,37.1,points
 Ås,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,2,36.2,points
+Ås,Akershus,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2026,2,35.0,points
+Ås,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,38.1,points
 Ås,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,38.7,points
+Ås,Akershus,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,40.0,points
+Ås,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2024,2,45.4,points
 Ås,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2025,2,45.9,points
+Ås,Akershus,Idrettsfag,0,ID,IDIDR2----,Vg1,2026,2,47.6,points
+Ås,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,2,50.0,points
 Ås,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,2,45.0,points
+Ås,Akershus,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2026,2,47.7,points
+Ås,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,47.2,points
 Ås,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,45.6,points
+Ås,Akershus,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,44.4,points
+Ås,Akershus,"Studiespesialisering, forberedende IB",0,ST,STUSP1----,Vg1,2024,2,25.6,points
 Ås,Akershus,"Studiespesialisering, forberedende IB",0,ST,STUSP1----,Vg1,2025,2,,open
+Ås,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,34.4,points
 Ås,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,32.4,points
+Ås,Akershus,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,34.3,points
 Buskerud,Buskerud,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,,26.0,points
 Buskerud,Buskerud,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,,25.7,points
 Buskerud,Buskerud,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,,34.3,points

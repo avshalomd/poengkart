@@ -37,6 +37,15 @@ started publishing at all in 2024. Akershus, Buskerud and Innlandet publish
 intake statistics for earlier years, but those contain applicant and capacity
 counts, no thresholds.
 
+Akershus's 2024/25 and 2026/27 tables were never published on afk.no; the
+county released them to us as Excel workbooks on 27 August 2026, answering a
+freedom-of-information request. They are school × programme grids of the
+second-round thresholds for the same 34 schools as the county's published
+2025/26 page, with the same cell legend (open programmes and
+skills-assessed intake marked, not numbered), so they extend the published
+series like-for-like — but second round only, so those two years carry no
+first-round figures.
+
 Many of the county links rot yearly; older editions were recovered through the
 [Wayback Machine](https://web.archive.org/).
 

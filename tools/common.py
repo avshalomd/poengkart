@@ -121,6 +121,7 @@ PROGRAM_ALIASES = {
         'Informasjonsteknologi og medieproduksjon, SK 3 år',
     'inform.tekn og medieprod. sk 3 år':
         'Informasjonsteknologi og medieproduksjon, SK 3 år',
+    'naturbruk, energi/miljøfag, sk 3 år': 'Naturbruk, energi-/miljøfag, SK 3 år',
 }
 
 

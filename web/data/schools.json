@@ -94,7 +94,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 42.5
+      "2024": 45.1,
+      "2025": 42.5,
+      "2026": 47.8
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -126,7 +128,9 @@
      "level": "Vg1",
      "category": "BA",
      "values": {
-      "2025": 26.9
+      "2024": 30.6,
+      "2025": 26.9,
+      "2026": 28.8
      },
      "grep": "BABAT1----",
      "values_r1": {
@@ -139,7 +143,9 @@
      "level": "Vg1",
      "category": "EL",
      "values": {
-      "2025": 38.8
+      "2024": 38.7,
+      "2025": 38.8,
+      "2026": 42.0
      },
      "grep": "ELELE1----",
      "values_r1": {
@@ -152,7 +158,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": "open"
+      "2024": "open",
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -165,7 +173,9 @@
      "level": "Vg1",
      "category": "SR",
      "values": {
-      "2025": 32.9
+      "2024": 31.8,
+      "2025": 32.9,
+      "2026": 22.2
      },
      "grep": "SRSSR1----",
      "values_r1": {
@@ -178,7 +188,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 38.8
+      "2024": 42.2,
+      "2025": 38.8,
+      "2026": 37.3
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -211,7 +223,9 @@
      "level": "Vg1",
      "category": "EL",
      "values": {
-      "2025": 31.3
+      "2024": 21.7,
+      "2025": 31.3,
+      "2026": 29.8
      },
      "grep": "ELELE1----",
      "values_r1": {
@@ -224,7 +238,9 @@
      "level": "Vg1",
      "category": "FD",
      "values": {
-      "2025": 0.0
+      "2024": 24.3,
+      "2025": 0.0,
+      "2026": 15.0
      },
      "grep": "FDFBI1----",
      "values_r1": {
@@ -237,7 +253,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": 25.8
+      "2024": 27.8,
+      "2025": 25.8,
+      "2026": 24.0
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -250,7 +268,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": 39.4
+      "2024": 46.7,
+      "2025": 39.4,
+      "2026": 42.9
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -263,7 +283,9 @@
      "level": "Vg1",
      "category": "SR",
      "values": {
-      "2025": 20.0
+      "2024": 41.6,
+      "2025": 20.0,
+      "2026": 32.0
      },
      "grep": "SRSSR1----",
      "values_r1": {
@@ -276,7 +298,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 31.2
+      "2024": "open",
+      "2025": 31.2,
+      "2026": "open"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -289,7 +313,9 @@
      "level": "Vg1",
      "category": "TP",
      "values": {
-      "2025": "open"
+      "2024": 18.5,
+      "2025": "open",
+      "2026": 28.6
      },
      "grep": "TPTIP1----",
      "values_r1": {
@@ -322,7 +348,9 @@
      "level": "Vg1",
      "category": "EL",
      "values": {
-      "2025": 34.1
+      "2024": 31.0,
+      "2025": 34.1,
+      "2026": 37.9
      },
      "grep": "ELELE1----",
      "values_r1": {
@@ -335,7 +363,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": 29.4
+      "2024": 33.1,
+      "2025": 29.4,
+      "2026": 37.5
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -348,7 +378,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": 45.9
+      "2024": 41.9,
+      "2025": 45.9,
+      "2026": 45.9
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -361,7 +393,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": "D"
+      "2024": "D",
+      "2025": "D",
+      "2026": "D"
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -374,7 +408,9 @@
      "level": "Vg1",
      "category": "IM",
      "values": {
-      "2025": "open"
+      "2024": "open",
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "IMIKM1----",
      "values_r1": {
@@ -387,7 +423,9 @@
      "level": "Vg1",
      "category": "MK",
      "values": {
-      "2025": 37.8
+      "2024": 36.3,
+      "2025": 37.8,
+      "2026": 41.9
      },
      "grep": "MKMED1----",
      "values_r1": {
@@ -400,7 +438,9 @@
      "level": "Vg1",
      "category": "SR",
      "values": {
-      "2025": 38.2
+      "2024": 34.6,
+      "2025": 38.2,
+      "2026": 40.6
      },
      "grep": "SRSSR1----",
      "values_r1": {
@@ -413,7 +453,9 @@
      "level": "Vg1",
      "category": "TP",
      "values": {
-      "2025": 31.9
+      "2024": 28.8,
+      "2025": 31.9,
+      "2026": 40.0
      },
      "grep": "TPTIP1----",
      "values_r1": {
@@ -448,7 +490,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": "open"
+      "2024": "open",
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -461,7 +505,9 @@
      "level": "Vg1",
      "category": "IM",
      "values": {
-      "2025": 27.5
+      "2024": 28.7,
+      "2025": 27.5,
+      "2026": "open"
      },
      "grep": "IMIKM1----",
      "values_r1": {
@@ -474,7 +520,9 @@
      "level": "Vg1",
      "category": "MK",
      "values": {
-      "2025": "open"
+      "2024": 34.5,
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "MKMED1----",
      "values_r1": {
@@ -487,7 +535,9 @@
      "level": "Vg1",
      "category": "SR",
      "values": {
-      "2025": "open"
+      "2024": 26.9,
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "SRSSR1----",
      "values_r1": {
@@ -522,7 +572,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": 43.2
+      "2024": 43.3,
+      "2025": 43.2,
+      "2026": 44.3
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -535,7 +587,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": "D"
+      "2024": "D",
+      "2025": "D",
+      "2026": "D"
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -548,7 +602,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": "D"
+      "2024": "D",
+      "2025": "D",
+      "2026": "D"
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -561,7 +617,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 40.2
+      "2024": 36.5,
+      "2025": 40.2,
+      "2026": 43.8
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -574,7 +632,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": "D"
+      "2024": 41.6,
+      "2025": "D",
+      "2026": "D"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -609,7 +669,9 @@
      "level": "Vg1",
      "category": "BA",
      "values": {
-      "2025": 29.4
+      "2024": 30.3,
+      "2025": 29.4,
+      "2026": 25.6
      },
      "grep": "BABAT1----",
      "values_r1": {
@@ -622,7 +684,9 @@
      "level": "Vg1",
      "category": "EL",
      "values": {
-      "2025": 40.0
+      "2024": 38.8,
+      "2025": 40.0,
+      "2026": 35.3
      },
      "grep": "ELELE1----",
      "values_r1": {
@@ -635,7 +699,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": 24.7
+      "2024": 27.3,
+      "2025": 24.7,
+      "2026": 30.0
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -648,7 +714,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": 35.6
+      "2024": 35.3,
+      "2025": 35.6,
+      "2026": "open"
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -661,7 +729,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": "open"
+      "2024": "open",
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -674,7 +744,9 @@
      "level": "Vg1",
      "category": "TP",
      "values": {
-      "2025": 29.3
+      "2024": 32.7,
+      "2025": 29.3,
+      "2026": 30.7
      },
      "grep": "TPTIP1----",
      "values_r1": {
@@ -707,7 +779,9 @@
      "level": "Vg1",
      "category": "SR",
      "values": {
-      "2025": "open"
+      "2024": 32.5,
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "SRSSR1----",
      "values_r1": {
@@ -720,7 +794,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": "open"
+      "2024": "open",
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -755,7 +831,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": 37.5
+      "2024": 30.7,
+      "2025": 37.5,
+      "2026": 39.4
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -768,7 +846,9 @@
      "level": "Vg1",
      "category": "SR",
      "values": {
-      "2025": 20.0
+      "2024": 33.8,
+      "2025": 20.0,
+      "2026": 30.0
      },
      "grep": "SRSSR1----",
      "values_r1": {
@@ -781,7 +861,9 @@
      "level": "Vg1",
      "category": "SR",
      "values": {
-      "2025": 35.7
+      "2024": 40.0,
+      "2025": 35.7,
+      "2026": 35.2
      },
      "grep": "SRSSR1----",
      "values_r1": {
@@ -794,7 +876,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": "open"
+      "2024": 24.6,
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -822,7 +906,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": "open"
+      "2024": 25.0,
+      "2025": "open",
+      "2026": 34.4
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -835,7 +921,9 @@
      "level": "Vg1",
      "category": "MK",
      "values": {
-      "2025": "open"
+      "2024": "open",
+      "2025": "open",
+      "2026": 14.7
      },
      "grep": "MKMED1----",
      "values_r1": {
@@ -848,7 +936,9 @@
      "level": "Vg1",
      "category": "NA",
      "values": {
-      "2025": 0.0
+      "2024": "open",
+      "2025": 0.0,
+      "2026": 33.2
      },
      "grep": "NANAB1----",
      "values_r1": {
@@ -861,7 +951,8 @@
      "level": "Vg1",
      "category": "NA",
      "values": {
-      "2025": "open"
+      "2025": "open",
+      "2026": 25.1
      },
      "grep": "NANAB1----",
      "values_r1": {
@@ -874,7 +965,9 @@
      "level": "Vg1",
      "category": "NA",
      "values": {
-      "2025": 32.8
+      "2024": 39.4,
+      "2025": 32.8,
+      "2026": 44.4
      },
      "grep": "NANAB1----",
      "values_r1": {
@@ -909,7 +1002,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": 25.3
+      "2024": 32.5,
+      "2025": 25.3,
+      "2026": 21.4
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -922,7 +1017,9 @@
      "level": "Vg1",
      "category": "KD",
      "values": {
-      "2025": 38.8
+      "2024": 44.0,
+      "2025": 38.8,
+      "2026": 43.1
      },
      "grep": "KDKDA1----",
      "values_r1": {
@@ -935,7 +1032,9 @@
      "level": "Vg1",
      "category": "MD",
      "values": {
-      "2025": "D"
+      "2024": "D",
+      "2025": "D",
+      "2026": "D"
      },
      "grep": "MDMDD1----",
      "values_r1": {
@@ -948,7 +1047,9 @@
      "level": "Vg1",
      "category": "SR",
      "values": {
-      "2025": 28.8
+      "2024": 32.8,
+      "2025": 28.8,
+      "2026": 25.0
      },
      "grep": "SRSSR1----",
      "values_r1": {
@@ -961,7 +1062,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 40.9
+      "2024": 39.4,
+      "2025": 40.9,
+      "2026": 38.4
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -974,7 +1077,9 @@
      "level": "Vg1",
      "category": "TP",
      "values": {
-      "2025": 30.3
+      "2024": 33.8,
+      "2025": 30.3,
+      "2026": 26.0
      },
      "grep": "TPTIP1----",
      "values_r1": {
@@ -1009,7 +1114,9 @@
      "level": "Vg1",
      "category": "BA",
      "values": {
-      "2025": "open"
+      "2024": 25.0,
+      "2025": "open",
+      "2026": 22.7
      },
      "grep": "BABAT1----",
      "values_r1": {
@@ -1022,7 +1129,9 @@
      "level": "Vg1",
      "category": "NA",
      "values": {
-      "2025": 26.8
+      "2024": "open",
+      "2025": 26.8,
+      "2026": 27.8
      },
      "grep": "NANAB1----",
      "values_r1": {
@@ -1055,7 +1164,9 @@
      "level": "Vg1",
      "category": "MK",
      "values": {
-      "2025": 41.3
+      "2024": 44.4,
+      "2025": 41.3,
+      "2026": 42.6
      },
      "grep": "MKMED1----",
      "values_r1": {
@@ -1068,7 +1179,9 @@
      "level": "Vg1",
      "category": "MD",
      "values": {
-      "2025": "D"
+      "2024": "D",
+      "2025": "D",
+      "2026": "D"
      },
      "grep": "MDMDD1----",
      "values_r1": {
@@ -1081,7 +1194,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 47.8
+      "2024": 46.0,
+      "2025": 47.8,
+      "2026": 49.1
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1094,7 +1209,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 36.0
+      "2024": 49.0,
+      "2025": 36.0,
+      "2026": 43.3
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1127,7 +1244,9 @@
      "level": "Vg1",
      "category": "FD",
      "values": {
-      "2025": 28.1
+      "2024": 36.5,
+      "2025": 28.1,
+      "2026": 32.9
      },
      "grep": "FDFBI1----",
      "values_r1": {
@@ -1140,7 +1259,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": 43.1
+      "2024": 44.1,
+      "2025": 43.1,
+      "2026": 45.6
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -1153,7 +1274,9 @@
      "level": "Vg1",
      "category": "KD",
      "values": {
-      "2025": 37.3
+      "2024": 47.5,
+      "2025": 37.3,
+      "2026": 35.9
      },
      "grep": "KDKDA1----",
      "values_r1": {
@@ -1166,7 +1289,9 @@
      "level": "Vg1",
      "category": "RM",
      "values": {
-      "2025": "open"
+      "2024": 30.0,
+      "2025": "open",
+      "2026": 25.3
      },
      "grep": "RMRMF1----",
      "values_r1": {
@@ -1179,7 +1304,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 42.9
+      "2024": 43.5,
+      "2025": 42.9,
+      "2026": 43.8
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1192,7 +1319,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 49.1
+      "2024": 48.8,
+      "2025": 49.1,
+      "2026": 48.8
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1220,7 +1349,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": 22.0
+      "2024": 34.4,
+      "2025": 22.0,
+      "2026": 33.1
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -1233,7 +1364,9 @@
      "level": "Vg1",
      "category": "IM",
      "values": {
-      "2025": 36.0
+      "2024": 39.4,
+      "2025": 36.0,
+      "2026": 34.4
      },
      "grep": "IMIKM1----",
      "values_r1": {
@@ -1241,12 +1374,24 @@
      }
     },
     {
+     "program": "Medier og kommunikasjon",
+     "program_en": "Media and Communication",
+     "level": "Vg1",
+     "category": "MK",
+     "values": {
+      "2024": 36.6
+     },
+     "grep": "MKMED1----"
+    },
+    {
      "program": "Salg, service og reiseliv",
      "program_en": "Sales, Service, Travel and Tourism",
      "level": "Vg1",
      "category": "SR",
      "values": {
-      "2025": 33.8
+      "2024": 32.7,
+      "2025": 33.8,
+      "2026": 36.5
      },
      "grep": "SRSSR1----",
      "values_r1": {
@@ -1259,7 +1404,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 32.5
+      "2024": 37.6,
+      "2025": 32.5,
+      "2026": 36.7
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1294,7 +1441,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": 48.0
+      "2024": 48.1,
+      "2025": 48.0,
+      "2026": 46.3
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -1307,7 +1456,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 48.5
+      "2024": 49.8,
+      "2025": 48.5,
+      "2026": 49.7
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1321,7 +1472,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/Nadderud_videreg%C3%A5ende_skole",
    "wiki_extract": "Nadderud videregående skole er en videregående skole på Bekkestua i Bærum kommune i Akershus fylke. Skolen har ca. 600 elever og rundt 100 ansatte. Den var fra 1958 lokalisert på Nadderud ved siden av Nadderud stadion, derav navnet, men et nytt bygg nærmere Haslum sto klart i 2004.",
    "address": "Gjønnesjordet 30, 1357, BEKKESTUA",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Nadderud_VGS.png/960px-Nadderud_VGS.png",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Nadderud_VGS.png/1280px-Nadderud_VGS.png",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Nadderud_VGS.png",
    "photo_credit": "Foto: Tarjei Mo (CC BY-SA 4.0)",
@@ -1342,7 +1493,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": 23.8
+      "2024": 29.4,
+      "2025": 23.8,
+      "2026": 31.8
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -1355,7 +1508,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": 40.3
+      "2024": 42.5,
+      "2025": 40.3,
+      "2026": 36.5
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -1368,7 +1523,9 @@
      "level": "Vg1",
      "category": "IM",
      "values": {
-      "2025": 38.8
+      "2024": 35.6,
+      "2025": 38.8,
+      "2026": 35.3
      },
      "grep": "IMIKM1----",
      "values_r1": {
@@ -1381,7 +1538,9 @@
      "level": "Vg1",
      "category": "MK",
      "values": {
-      "2025": "open"
+      "2024": 28.5,
+      "2025": "open",
+      "2026": 32.5
      },
      "grep": "MKMED1----",
      "values_r1": {
@@ -1394,7 +1553,9 @@
      "level": "Vg1",
      "category": "RM",
      "values": {
-      "2025": "open"
+      "2024": 23.9,
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "RMRMF1----",
      "values_r1": {
@@ -1407,7 +1568,9 @@
      "level": "Vg1",
      "category": "SR",
      "values": {
-      "2025": 31.8
+      "2024": 33.8,
+      "2025": 31.8,
+      "2026": 32.5
      },
      "grep": "SRSSR1----",
      "values_r1": {
@@ -1420,7 +1583,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 39.6
+      "2024": 36.6,
+      "2025": 39.6,
+      "2026": 39.4
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1455,7 +1620,9 @@
      "level": "Vg1",
      "category": "BA",
      "values": {
-      "2025": "open"
+      "2024": 18.6,
+      "2025": "open",
+      "2026": 18.1
      },
      "grep": "BABAT1----",
      "values_r1": {
@@ -1468,7 +1635,9 @@
      "level": "Vg1",
      "category": "EL",
      "values": {
-      "2025": 27.1
+      "2024": 31.1,
+      "2025": 27.1,
+      "2026": 27.7
      },
      "grep": "ELELE1----",
      "values_r1": {
@@ -1481,7 +1650,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": 15.6
+      "2024": 30.6,
+      "2025": 15.6,
+      "2026": 21.3
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -1494,7 +1665,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": 33.5
+      "2024": 40.0,
+      "2025": 33.5,
+      "2026": 22.3
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -1507,7 +1680,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": "open"
+      "2024": "open",
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1535,7 +1710,9 @@
      "level": "Vg1",
      "category": "BA",
      "values": {
-      "2025": 26.3
+      "2024": 30.0,
+      "2025": 26.3,
+      "2026": 30.8
      },
      "grep": "BABAT1----",
      "values_r1": {
@@ -1548,7 +1725,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 38.8
+      "2024": 38.0,
+      "2025": 38.8,
+      "2026": 36.0
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1561,7 +1740,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 43.8
+      "2024": 46.5,
+      "2025": 43.8,
+      "2026": 31.0
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1575,7 +1756,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/Nesbru_videreg%C3%A5ende_skole",
    "wiki_extract": "Nesbru videregående skole er en videregående skole på Nesbru i Asker kommune i Akershus.",
    "address": "Torstadåsen 7, 1396, BILLINGSTAD",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Nesbru_videreg%C3%A5ende_skole_Asker_01.jpg/960px-Nesbru_videreg%C3%A5ende_skole_Asker_01.jpg",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Nesbru_videreg%C3%A5ende_skole_Asker_01.jpg/1280px-Nesbru_videreg%C3%A5ende_skole_Asker_01.jpg",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Nesbru_videreg%C3%A5ende_skole_Asker_01.jpg",
    "photo_credit": "Foto: Far min (CC BY-SA 4.0)",
@@ -1596,7 +1777,9 @@
      "level": "Vg1",
      "category": "EL",
      "values": {
-      "2025": 33.8
+      "2024": 35.6,
+      "2025": 33.8,
+      "2026": 30.2
      },
      "grep": "ELELE1----",
      "values_r1": {
@@ -1609,7 +1792,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": "open"
+      "2024": "open",
+      "2025": "open",
+      "2026": 19.3
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -1622,7 +1807,9 @@
      "level": "Vg1",
      "category": "IM",
      "values": {
-      "2025": "open"
+      "2024": "open",
+      "2025": "open",
+      "2026": 31.8
      },
      "grep": "IMIKM1----",
      "values_r1": {
@@ -1635,7 +1822,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 34.7
+      "2024": 27.9,
+      "2025": 34.7,
+      "2026": "open"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1668,7 +1857,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": 41.3
+      "2024": 41.9,
+      "2025": 41.3,
+      "2026": 42.3
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -1681,7 +1872,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": "open"
+      "2024": "open",
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1716,7 +1909,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": 28.0
+      "2024": 27.6,
+      "2025": 28.0,
+      "2026": "open"
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -1729,7 +1924,9 @@
      "level": "Vg1",
      "category": "IM",
      "values": {
-      "2025": 40.3
+      "2024": 40.3,
+      "2025": 40.3,
+      "2026": "open"
      },
      "grep": "IMIKM1----",
      "values_r1": {
@@ -1742,7 +1939,9 @@
      "level": "Vg1",
      "category": "KD",
      "values": {
-      "2025": 22.5
+      "2024": "open",
+      "2025": 22.5,
+      "2026": "open"
      },
      "grep": "KDKDA1----",
      "values_r1": {
@@ -1755,7 +1954,9 @@
      "level": "Vg1",
      "category": "MK",
      "values": {
-      "2025": 33.1
+      "2024": "open",
+      "2025": 33.1,
+      "2026": "open"
      },
      "grep": "MKMED1----",
      "values_r1": {
@@ -1768,7 +1969,9 @@
      "level": "Vg1",
      "category": "RM",
      "values": {
-      "2025": 28.8
+      "2024": 30.9,
+      "2025": 28.8,
+      "2026": 27.8
      },
      "grep": "RMRMF1----",
      "values_r1": {
@@ -1781,7 +1984,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 30.0
+      "2024": "open",
+      "2025": 30.0,
+      "2026": 31.8
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1816,7 +2021,9 @@
      "level": "Vg1",
      "category": "EL",
      "values": {
-      "2025": 30.2
+      "2024": 31.3,
+      "2025": 30.2,
+      "2026": 37.3
      },
      "grep": "ELELE1----",
      "values_r1": {
@@ -1829,7 +2036,9 @@
      "level": "Vg1",
      "category": "EL",
      "values": {
-      "2025": 33.7
+      "2024": 44.0,
+      "2025": 33.7,
+      "2026": 38.8
      },
      "grep": "ELELE1----",
      "values_r1": {
@@ -1842,7 +2051,9 @@
      "level": "Vg1",
      "category": "FD",
      "values": {
-      "2025": 34.0
+      "2024": 23.1,
+      "2025": 34.0,
+      "2026": 33.8
      },
      "grep": "FDFBI1----",
      "values_r1": {
@@ -1855,7 +2066,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": 23.3
+      "2024": 26.6,
+      "2025": 23.3,
+      "2026": "open"
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -1863,12 +2076,24 @@
      }
     },
     {
+     "program": "Helse- og oppvekstfag, SK 3 år",
+     "program_en": "Healthcare, Childhood and Youth Development, 3-year academic track",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 32.1
+     },
+     "grep": "HSHSF1----"
+    },
+    {
      "program": "Håndverk, design og produktutvikling",
      "program_en": "Handicrafts, Design and Product Development",
      "level": "Vg1",
      "category": "DT",
      "values": {
-      "2025": "open"
+      "2024": 39.0,
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "DTDTH1----",
      "values_r1": {
@@ -1881,7 +2106,9 @@
      "level": "Vg1",
      "category": "MD",
      "values": {
-      "2025": "D"
+      "2024": "D",
+      "2025": "D",
+      "2026": "D"
      },
      "grep": "MDMDD1----",
      "values_r1": {
@@ -1894,7 +2121,9 @@
      "level": "Vg1",
      "category": "TP",
      "values": {
-      "2025": 29.5
+      "2024": 29.4,
+      "2025": 29.5,
+      "2026": 32.6
      },
      "grep": "TPTIP1----",
      "values_r1": {
@@ -1927,7 +2156,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": 21.6
+      "2024": 32.1,
+      "2025": 21.6,
+      "2026": 33.3
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -1940,7 +2171,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": "D"
+      "2024": "D",
+      "2025": "D",
+      "2026": "D"
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -1953,7 +2186,9 @@
      "level": "Vg1",
      "category": "SR",
      "values": {
-      "2025": 18.1
+      "2024": 25.7,
+      "2025": 18.1,
+      "2026": "open"
      },
      "grep": "SRSSR1----",
      "values_r1": {
@@ -1966,7 +2201,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": "open"
+      "2024": 30.0,
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -1979,7 +2216,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": "open"
+      "2024": 40.6,
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -2012,7 +2251,9 @@
      "level": "Vg1",
      "category": "BA",
      "values": {
-      "2025": 29.4
+      "2024": 32.5,
+      "2025": 29.4,
+      "2026": 33.1
      },
      "grep": "BABAT1----",
      "values_r1": {
@@ -2025,7 +2266,9 @@
      "level": "Vg1",
      "category": "EL",
      "values": {
-      "2025": "open"
+      "2024": 30.6,
+      "2025": "open",
+      "2026": 35.0
      },
      "grep": "ELELE1----",
      "values_r1": {
@@ -2038,7 +2281,9 @@
      "level": "Vg1",
      "category": "FD",
      "values": {
-      "2025": 31.0
+      "2024": 31.6,
+      "2025": 31.0,
+      "2026": 33.1
      },
      "grep": "FDFBI1----",
      "values_r1": {
@@ -2051,7 +2296,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": 29.1
+      "2024": 32.9,
+      "2025": 29.1,
+      "2026": 36.0
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -2064,7 +2311,9 @@
      "level": "Vg1",
      "category": "IM",
      "values": {
-      "2025": "open"
+      "2024": 37.6,
+      "2025": "open",
+      "2026": 31.7
      },
      "grep": "IMIKM1----",
      "values_r1": {
@@ -2077,6 +2326,7 @@
      "level": "Vg1",
      "category": "KD",
      "values": {
+      "2024": "open",
       "2025": "open"
      },
      "grep": "KDKDA1----",
@@ -2090,7 +2340,9 @@
      "level": "Vg1",
      "category": "SR",
      "values": {
-      "2025": 36.9
+      "2024": 38.8,
+      "2025": 36.9,
+      "2026": 33.1
      },
      "grep": "SRSSR1----",
      "values_r1": {
@@ -2103,7 +2355,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": "open"
+      "2024": 28.4,
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -2136,7 +2390,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": 33.1
+      "2024": 32.1,
+      "2025": 33.1,
+      "2026": 30.0
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -2149,7 +2405,9 @@
      "level": "Vg1",
      "category": "MK",
      "values": {
-      "2025": 42.0
+      "2024": 42.9,
+      "2025": 42.0,
+      "2026": 40.6
      },
      "grep": "MKMED1----",
      "values_r1": {
@@ -2162,7 +2420,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 42.5
+      "2024": 46.2,
+      "2025": 42.5,
+      "2026": 44.7
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -2197,7 +2457,9 @@
      "level": "Vg1",
      "category": "BA",
      "values": {
-      "2025": 28.7
+      "2024": 30.6,
+      "2025": 28.7,
+      "2026": 28.8
      },
      "grep": "BABAT1----",
      "values_r1": {
@@ -2210,7 +2472,9 @@
      "level": "Vg1",
      "category": "EL",
      "values": {
-      "2025": 33.3
+      "2024": 38.4,
+      "2025": 33.3,
+      "2026": 37.3
      },
      "grep": "ELELE1----",
      "values_r1": {
@@ -2223,7 +2487,9 @@
      "level": "Vg1",
      "category": "DT",
      "values": {
-      "2025": "open"
+      "2024": 19.3,
+      "2025": "open",
+      "2026": 15.8
      },
      "grep": "DTDTH1----",
      "values_r1": {
@@ -2231,12 +2497,24 @@
      }
     },
     {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg1",
+     "category": "SR",
+     "values": {
+      "2026": 39.3
+     },
+     "grep": "SRSSR1----"
+    },
+    {
      "program": "Studiespesialisering",
      "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 34.4
+      "2024": 38.1,
+      "2025": 34.4,
+      "2026": 34.0
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -2269,7 +2547,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": 45.0
+      "2024": 48.5,
+      "2025": 45.0,
+      "2026": 46.3
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -2282,7 +2562,9 @@
      "level": "Vg1",
      "category": "MD",
      "values": {
-      "2025": "D"
+      "2024": "D",
+      "2025": "D",
+      "2026": "D"
      },
      "grep": "MDMDD1----",
      "values_r1": {
@@ -2295,7 +2577,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 44.5
+      "2024": 46.3,
+      "2025": 44.5,
+      "2026": 44.8
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -2323,12 +2607,24 @@
    "round": "2",
    "programs": [
     {
+     "program": "Naturbruk, energi-/miljøfag, SK 3 år",
+     "program_en": "Agriculture, Fishing and Forestry, 3-year academic track",
+     "level": "Vg1",
+     "category": "NA",
+     "values": {
+      "2024": 40.3
+     },
+     "grep": "NANAB1----"
+    },
+    {
      "program": "Studiespesialisering",
      "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 41.2
+      "2024": 43.8,
+      "2025": 41.2,
+      "2026": 38.3
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -2363,7 +2659,9 @@
      "level": "Vg1",
      "category": "EL",
      "values": {
-      "2025": 28.8
+      "2024": 35.3,
+      "2025": 28.8,
+      "2026": 31.9
      },
      "grep": "ELELE1----",
      "values_r1": {
@@ -2376,7 +2674,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": "open"
+      "2024": 26.5,
+      "2025": "open",
+      "2026": 16.3
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -2389,7 +2689,9 @@
      "level": "Vg1",
      "category": "TP",
      "values": {
-      "2025": 30.0
+      "2024": 32.0,
+      "2025": 30.0,
+      "2026": 32.5
      },
      "grep": "TPTIP1----",
      "values_r1": {
@@ -2422,7 +2724,9 @@
      "level": "Vg1",
      "category": "EL",
      "values": {
-      "2025": 0.0
+      "2024": 31.5,
+      "2025": 0.0,
+      "2026": 30.7
      },
      "grep": "ELELE1----",
      "values_r1": {
@@ -2435,6 +2739,7 @@
      "level": "Vg1",
      "category": "MK",
      "values": {
+      "2024": "open",
       "2025": "open"
      },
      "grep": "MKMED1----",
@@ -2448,7 +2753,9 @@
      "level": "Vg1",
      "category": "RM",
      "values": {
-      "2025": "open"
+      "2024": "open",
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "RMRMF1----",
      "values_r1": {
@@ -2461,7 +2768,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": "open"
+      "2024": "open",
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -2474,7 +2783,9 @@
      "level": "Vg1",
      "category": "TP",
      "values": {
-      "2025": "open"
+      "2024": 27.5,
+      "2025": "open",
+      "2026": 26.7
      },
      "grep": "TPTIP1----",
      "values_r1": {
@@ -2508,7 +2819,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 46.3
+      "2024": 45.6,
+      "2025": 46.3,
+      "2026": 42.5
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -2543,7 +2856,9 @@
      "level": "Vg1",
      "category": "BA",
      "values": {
-      "2025": 16.4
+      "2024": 33.4,
+      "2025": 16.4,
+      "2026": 29.3
      },
      "grep": "BABAT1----",
      "values_r1": {
@@ -2556,7 +2871,9 @@
      "level": "Vg1",
      "category": "RM",
      "values": {
-      "2025": "open"
+      "2024": 25.6,
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "RMRMF1----",
      "values_r1": {
@@ -2569,7 +2886,9 @@
      "level": "Vg1",
      "category": "SR",
      "values": {
-      "2025": 31.4
+      "2024": 32.0,
+      "2025": 31.4,
+      "2026": 36.0
      },
      "grep": "SRSSR1----",
      "values_r1": {
@@ -2582,7 +2901,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 25.0
+      "2024": "open",
+      "2025": 25.0,
+      "2026": "open"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -2595,7 +2916,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": "open"
+      "2024": "open",
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -2623,7 +2946,9 @@
      "level": "Vg1",
      "category": "EL",
      "values": {
-      "2025": 37.7
+      "2024": 40.0,
+      "2025": 37.7,
+      "2026": 37.8
      },
      "grep": "ELELE1----",
      "values_r1": {
@@ -2636,7 +2961,9 @@
      "level": "Vg1",
      "category": "FD",
      "values": {
-      "2025": 36.2
+      "2024": 37.1,
+      "2025": 36.2,
+      "2026": 35.0
      },
      "grep": "FDFBI1----",
      "values_r1": {
@@ -2649,7 +2976,9 @@
      "level": "Vg1",
      "category": "HS",
      "values": {
-      "2025": 38.7
+      "2024": 38.1,
+      "2025": 38.7,
+      "2026": 40.0
      },
      "grep": "HSHSF1----",
      "values_r1": {
@@ -2662,7 +2991,9 @@
      "level": "Vg1",
      "category": "ID",
      "values": {
-      "2025": 45.9
+      "2024": 45.4,
+      "2025": 45.9,
+      "2026": 47.6
      },
      "grep": "IDIDR2----",
      "values_r1": {
@@ -2675,7 +3006,9 @@
      "level": "Vg1",
      "category": "KD",
      "values": {
-      "2025": 45.0
+      "2024": 50.0,
+      "2025": 45.0,
+      "2026": 47.7
      },
      "grep": "KDKDA1----",
      "values_r1": {
@@ -2688,7 +3021,9 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
-      "2025": 45.6
+      "2024": 47.2,
+      "2025": 45.6,
+      "2026": 44.4
      },
      "grep": "STUSP1----",
      "values_r1": {
@@ -2701,6 +3036,7 @@
      "level": "Vg1",
      "category": "ST",
      "values": {
+      "2024": 25.6,
       "2025": "open"
      },
      "grep": "STUSP1----",
@@ -2714,7 +3050,9 @@
      "level": "Vg1",
      "category": "TP",
      "values": {
-      "2025": 32.4
+      "2024": 34.4,
+      "2025": 32.4,
+      "2026": 34.3
      },
      "grep": "TPTIP1----",
      "values_r1": {
@@ -2726,7 +3064,7 @@
    "orgnr": "974587564",
    "url": "afk.no/aas-vgs",
    "address": "Gamle Hogstvetvei 9, 1435, ÅS",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Aas_vdg_skole_01.jpg/1280px-Aas_vdg_skole_01.jpg",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Aas_vdg_skole_01.jpg/960px-Aas_vdg_skole_01.jpg",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Aas_vdg_skole_01.jpg",
    "photo_credit": "Foto: Bjoertvedt (CC BY-SA 3.0)",
@@ -4029,12 +4367,12 @@
     }
    ],
    "catchment": true,
-   "lat": 60.83884,
-   "lon": 10.08038,
    "orgnr": "974597373",
-   "nsr_name": "Raufoss videregående skole avd Dokka",
+   "url": "www.dokka.vgs.no/",
    "address": "Nedre Smebyveg 3, 2870, DOKKA",
-   "url": "www.dokka.vgs.no/"
+   "nsr_name": "Raufoss videregående skole avd Dokka",
+   "lat": 60.83884,
+   "lon": 10.08038
   },
   {
    "name": "Elverum videregående skole",
@@ -6904,12 +7242,12 @@
     }
    ],
    "catchment": true,
-   "lat": 61.77895,
-   "lon": 9.5422,
    "orgnr": "974597209",
-   "nsr_name": "Nord-Gudbrandsdal vidaregåande skule",
+   "url": "www.n-g.vgs.no",
    "address": "Skansen 9, 2670, OTTA",
-   "url": "www.n-g.vgs.no"
+   "nsr_name": "Nord-Gudbrandsdal vidaregåande skule",
+   "lat": 61.77895,
+   "lon": 9.5422
   },
   {
    "name": "Nord-Gudbrandsdal vgs, avd. Lom",
@@ -6989,12 +7327,12 @@
     }
    ],
    "catchment": true,
-   "lat": 61.77895,
-   "lon": 9.5422,
    "orgnr": "974597209",
-   "nsr_name": "Nord-Gudbrandsdal vidaregåande skule",
+   "url": "www.n-g.vgs.no",
    "address": "Skansen 9, 2670, OTTA",
-   "url": "www.n-g.vgs.no"
+   "nsr_name": "Nord-Gudbrandsdal vidaregåande skule",
+   "lat": 61.77895,
+   "lon": 9.5422
   },
   {
    "name": "Nord-Gudbrandsdal vgs, avd. Otta",
@@ -8795,12 +9133,12 @@
     }
    ],
    "catchment": true,
-   "lat": 60.25842,
-   "lon": 11.66594,
    "orgnr": "974572117",
-   "nsr_name": "Sentrum videregående skole avd Skarnes",
+   "url": "www.skarnes.vgs.no",
    "address": "Skolevegen 22, 2100, SKARNES",
-   "url": "www.skarnes.vgs.no"
+   "nsr_name": "Sentrum videregående skole avd Skarnes",
+   "lat": 60.25842,
+   "lon": 11.66594
   },
   {
    "name": "Solør videregående skole",
@@ -9332,7 +9670,7 @@
    "orgnr": "974572079",
    "url": "www.stange.vgs.no",
    "address": "Ljøstadvegen 11, 2335, STANGE",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Stange_videreg%C3%A5ende_skole.jpg/960px-Stange_videreg%C3%A5ende_skole.jpg",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Stange_videreg%C3%A5ende_skole.jpg/1280px-Stange_videreg%C3%A5ende_skole.jpg",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Stange_videreg%C3%A5ende_skole.jpg",
    "photo_credit": "Foto: Vegard Gran (CC BY-SA 4.0)",
@@ -9643,7 +9981,7 @@
    "orgnr": "974572052",
    "url": "www.storsteigen.vgs.no",
    "address": "Steigjelen 47, 2560, ALVDAL",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Storsteigen_landbruksskole.jpg/960px-Storsteigen_landbruksskole.jpg",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Storsteigen_landbruksskole.jpg/1280px-Storsteigen_landbruksskole.jpg",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Storsteigen_landbruksskole.jpg",
    "photo_credit": "Foto: Jensens (Public domain)",
@@ -11627,7 +11965,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/Hellerud_videreg%C3%A5ende_skole",
    "wiki_extract": "Hellerud videregående skole er en videregående skole i Oslo. Den ligger på Tveita, mellom Tveten gård og Tveita Senter.",
    "address": "Wilhelm Stenersens vei 6, 0671, OSLO",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Hellerud_videreg%C3%A5ende_skole.JPG/960px-Hellerud_videreg%C3%A5ende_skole.JPG",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Hellerud_videreg%C3%A5ende_skole.JPG/1280px-Hellerud_videreg%C3%A5ende_skole.JPG",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Hellerud_videreg%C3%A5ende_skole.JPG",
    "photo_credit": "Foto: Vidariv (CC BY-SA 3.0)",
@@ -12105,7 +12443,7 @@
    "orgnr": "899178092",
    "url": "kuben.vgs.no",
    "address": "Kabelgata 10-12, 0581, OSLO",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png/960px-2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png/1280px-2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png",
    "photo_credit": "Foto: QUB1 (CC BY-SA 4.0)",
@@ -12409,7 +12747,7 @@
    "orgnr": "974590883",
    "url": "ohg.vgs.no",
    "address": "Parkveien 65, 0254, OSLO",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Borgarting_lagmannsrett%2C_Munchs_gate_4%2C_Oslo_%28bygd_1883-1885_for_Oslo_Handelsgymnasium%29.jpg/960px-Borgarting_lagmannsrett%2C_Munchs_gate_4%2C_Oslo_%28bygd_1883-1885_for_Oslo_Handelsgymnasium%29.jpg",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Borgarting_lagmannsrett%2C_Munchs_gate_4%2C_Oslo_%28bygd_1883-1885_for_Oslo_Handelsgymnasium%29.jpg/1280px-Borgarting_lagmannsrett%2C_Munchs_gate_4%2C_Oslo_%28bygd_1883-1885_for_Oslo_Handelsgymnasium%29.jpg",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Borgarting_lagmannsrett,_Munchs_gate_4,_Oslo_(bygd_1883-1885_for_Oslo_Handelsgymnasium).jpg",
    "photo_credit": "Foto: Ssu (CC BY-SA 4.0)",
@@ -16831,7 +17169,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/J%C3%A5tt%C3%A5_videreg%C3%A5ende_skole",
    "wiki_extract": "Jåttå videregående skole er en videregående skole i Stavanger. Denne skolen ble opprettet og åpnet høsten 2007 da det nye bygget i Jåttåvågveien 3 sto klart.",
    "address": "Gauselvågen 4, 4032, STAVANGER",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/J%C3%A5tt%C3%A5_videreg%C3%A5ende_skole.JPG/1280px-J%C3%A5tt%C3%A5_videreg%C3%A5ende_skole.JPG",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/J%C3%A5tt%C3%A5_videreg%C3%A5ende_skole.JPG/960px-J%C3%A5tt%C3%A5_videreg%C3%A5ende_skole.JPG",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:J%C3%A5tt%C3%A5_videreg%C3%A5ende_skole.JPG",
    "photo_credit": "Foto: Jarvin - Jarle Vines (CC BY-SA 3.0)",
@@ -19105,7 +19443,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/Sola_videreg%C3%A5ende_skole",
    "wiki_extract": "Sola videregående skole er en videregående skole i Sola kommune, det er en stor kombinert skole med omtrent 800 elever fordelt på 38 klasser. Skolen er den eneste videregående skolen i kommunen.",
    "address": "Åsenvegen 78, 4055, SOLA",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Sola_videreg%C3%A5ende_skole.jpg/1280px-Sola_videreg%C3%A5ende_skole.jpg",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Sola_videreg%C3%A5ende_skole.jpg/960px-Sola_videreg%C3%A5ende_skole.jpg",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Sola_videreg%C3%A5ende_skole.jpg",
    "photo_credit": "Foto: Kjersti Lie (CC BY-SA 4.0)",
@@ -19762,7 +20100,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/Stavanger_katedralskole",
    "wiki_extract": "Stavanger katedralskole er en videregående skole i sentrum av Stavanger. Skolen tilbyr to utdanningsprogram, ett for studiespesialisering ved Kongsgård i Stavanger sentrum og ett for musikk, dans og drama ved skolens nye bygg i Bjergsted.",
    "address": "Haakon VIIs gate 4, 4005, STAVANGER",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Kongsg%C3%A5rd-hovedbygning.JPG/1280px-Kongsg%C3%A5rd-hovedbygning.JPG",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Kongsg%C3%A5rd-hovedbygning.JPG/960px-Kongsg%C3%A5rd-hovedbygning.JPG",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Kongsg%C3%A5rd-hovedbygning.JPG",
    "photo_credit": "Foto: Arne Kvitrud (CC BY-SA 4.0)",
@@ -20990,7 +21328,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/V%C3%A5gen_videreg%C3%A5ende_skole",
    "wiki_extract": "Vågen videregående skole er en videregående skole i Sandnes som åpnet til skolestart 2010. Skolen er en sammenslåing av de to tidligere skolene Forus og Lundehaugen. Skolen har rundt ca. 800 elevplasser og 160 ansatte og er samlokalisert med Sandnes kulturskole.",
    "address": "Holbergs gate 23, 4306, SANDNES",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/V%C3%A5gen_VGS.jpg/1280px-V%C3%A5gen_VGS.jpg",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/V%C3%A5gen_VGS.jpg/960px-V%C3%A5gen_VGS.jpg",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:V%C3%A5gen_VGS.jpg",
    "photo_credit": "Foto: Hyperfox246 (CC0)",
@@ -29828,7 +30166,7 @@
    "orgnr": "974557282",
    "url": "www.kvinnherad.vgs.no",
    "address": "Opsangervegen 160, 5460, HUSNES",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Kvinnherad_vg_skule.JPG/1280px-Kvinnherad_vg_skule.JPG",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Kvinnherad_vg_skule.JPG/960px-Kvinnherad_vg_skule.JPG",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Kvinnherad_vg_skule.JPG",
    "photo_credit": "Foto: Jostein Røstbø (CC BY 3.0)",
@@ -31318,7 +31656,7 @@
    "orgnr": "974556995",
    "url": "www.osgymnas.vgs.no/",
    "address": "Gymnasvegen 85, 5200, OS",
-   "photo": "https://www.osgymnas.vgs.no/siteassets/bilete-av-skulen/osgymnas-skulebygg-framside-okt2024.jpg?width=960&quality=75",
+   "photo": "https://www.osgymnas.vgs.no/siteassets/bilete-av-skulen/osgymnas-skulebygg-framside-okt2024.jpg?width=1600&quality=80",
    "photo_source": "reviewed",
    "photo_page": "https://www.osgymnas.vgs.no/",
    "photo_credit": "Foto: Os gymnas / Vestland fylkeskommune",

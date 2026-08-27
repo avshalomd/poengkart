@@ -12,7 +12,7 @@ when a programme filled, and when it exists it is one point on the points
 scale. A family with 42 points is not asking "what was the threshold" but
 "will I get in" — and the honest answer to that is a probability, because the
 same programme at the same school moves by a standard deviation of 6.3 points
-from one year to the next (3 512 consecutive-year pairs; only half of all
+from one year to the next (3 697 consecutive-year pairs; only half of all
 moves are within ±3).
 
 So the app forecasts, per programme, for the county's next publication year:
@@ -32,14 +32,14 @@ empirical distribution of the backtest's own forecast errors (see *Spread*).
 
 Two fits, one structure. Every effect is a random effect, so a school or
 programme with a single year of data borrows its level from the hundreds of
-similar ones around it instead of being trusted on its own — 607 of the 1 811
+similar ones around it instead of being trusted on its own — 525 of the 1 846
 series have exactly one year.
 
-**Level** (on the 5 989 cells that carry a number):
+**Level** (on the 6 221 cells that carry a number):
 
     y = μ + school + category + programme|level + series + county×year + round offset + ε
 
-**Fill** (on all 9 065 cells that competed on points — number, 0,0 or "no waitlist"):
+**Fill** (on all 9 350 cells that competed on points — number, 0,0 or "no waitlist"):
 
     logit P(filled) = ν + school + category + programme|level + series + county×year + round-3 shift
 
@@ -50,9 +50,9 @@ Variance components come from a few steps of the usual normal-normal EM
 approximation; observations are down-weighted with age (half-life chosen by the
 backtest — it barely mattered, 4 years won by 0.006 RMSE over no decay).
 
-Fitted variance components (points): school 3.4, programme 3.1, series 2.6,
+Fitted variance components (points): school 3.4, programme 3.2, series 2.7,
 county×year innovations 1.2, residual 4.5. On the logit scale for fill: school
-1.1, programme 1.4, series 1.6.
+1.0, programme 1.3, series 1.6.
 
 **Coupling the two fits** — "in demand" as one trait read two ways, so that a
 school whose thresholds are high is also one whose programmes fill — is a
@@ -84,7 +84,7 @@ the market move, and for a series with one year of history the effects are
 mostly borrowed. So *s* is not taken from the fit at all: it is the RMSE of the
 walk-forward forecasts (below) in the calibration years, bucketed by how many
 years of history the series had when it was forecast — floored at the
-residual sd of the newest fit that saw no held-out year (4.5), so the
+residual sd of the newest fit that saw no held-out year (4.4), so the
 held-out years cannot narrow their own intervals:
 
 | history | s |
@@ -92,7 +92,7 @@ held-out years cannot narrow their own intervals:
 | 0 years | 7.0 |
 | 1 year | 6.5 |
 | 2–3 years | 5.6 |
-| 4+ years | 4.5 |
+| 4+ years | 4.4 |
 
 F, the error distribution, is likewise the empirical distribution of those
 standardised errors (41 quantiles in `meta.error_quantiles`) rather than a
@@ -108,21 +108,21 @@ no earlier year can teach a forecast what that does, and the final fit handles
 it with the fixed offset; grading the model on an event it is told about would
 flatter nothing and mislead the calibration.
 
-**Level, held-out 2025–26** (1 497 cells that got a number):
+**Level, held-out 2025–26** (1 606 cells that got a number):
 
 | history | n | model RMSE | "last year's figure" RMSE | programme-county mean RMSE | within ±3 |
 |---|---|---|---|---|---|
-| 0 years | 237 | 7.3 | — | 8.7 | 37% |
-| 1 year | 119 | 6.2 | 7.9 | 7.0 | 40% |
-| 2–3 years | 373 | 5.8 | 7.4 | 6.5 | 40% |
-| 4+ years | 768 | 4.9 | 5.9 | 6.0 | 53% |
+| 0 years | 148 | 8.3 | — | 9.9 | 31% |
+| 1 year | 229 | 5.6 | 6.9 | 6.6 | 50% |
+| 2–3 years | 461 | 5.5 | 7.0 | 6.3 | 42% |
+| 4+ years | 768 | 4.9 | 5.9 | 6.0 | 52% |
 
-The 80% interval (m ± 1.2816 s) contained the published figure 80% of the time.
+The 80% interval (m ± 1.2816 s) contained the published figure 81% of the time.
 
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
-gave 0.97 filled 0.82 of the time in the held-out years. So π is passed
+gave 0.97 filled 0.83 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = −0.141 + 0.425 logit π). Held-out Brier 0.163 against 0.204 for the
+(logit π′ = −0.130 + 0.429 logit π). Held-out Brier 0.159 against 0.202 for the
 base rate.
 
 **Chance, held-out 2025–26**, for every cell and every score in
@@ -130,20 +130,20 @@ base rate.
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 1.4% | 563 |
-| 10–20% | 8.1% | 1 034 |
-| 20–30% | 20% | 1 190 |
-| 30–40% | 35% | 1 204 |
-| 40–50% | 40% | 959 |
-| 50–60% | 53% | 841 |
-| 60–70% | 65% | 922 |
-| 70–80% | 78% | 985 |
-| 80–90% | 87% | 1 163 |
-| 90–100% | 98.4% | 8 115 |
+| 0–10% | 1.6% | 630 |
+| 10–20% | 8.1% | 1 054 |
+| 20–30% | 18% | 1 352 |
+| 30–40% | 32% | 1 232 |
+| 40–50% | 40% | 996 |
+| 50–60% | 53% | 912 |
+| 60–70% | 66% | 1 012 |
+| 70–80% | 80% | 1 071 |
+| 80–90% | 88% | 1 248 |
+| 90–100% | 98.6% | 8 589 |
 
-Brier 0.092, against 0.156 for the rule "the last published figure is the
+Brier 0.092, against 0.152 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
-Brier is 0.096).
+Brier is 0.093).
 From 30% up the forecast is within five points of what happened; below 30% it
 is a few points optimistic — a 15% chance was really about 8% — which the app's
 bands absorb (both are "unlikely") but a reader of the raw percentage should
@@ -172,18 +172,18 @@ measurement.
 
 The school effect α from the level fit is the school's thresholds relative to
 the same programmes elsewhere in its county, with its programme mix taken out.
-Against the raw mean that the map colours by, ranking the 142 schools with five
-or more figures by α instead moves the average school 18 places, and the most
-extreme by 72: a good part of a raw mean is what the school teaches, not how
+Against the raw mean that the map colours by, ranking the 160 schools with five
+or more figures by α instead moves the average school 20 places, and the most
+extreme by 82: a good part of a raw mean is what the school teaches, not how
 hard it is to get into. The panel prints α with an approximate standard error;
 it is a measure of demand, not of quality, and the app says so.
 
 ## The model as a detector
 
 The 25 cells the fitted model finds least plausible are listed in
-`meta.outliers` (|z| ≥ 3: 59 of 5 989 cells). Six of the top twenty-five were
+`meta.outliers` (|z| ≥ 3: 58 of 6 221 cells). Six of the top twenty-five were
 Vestland 2022 — clustering of that kind has meant a parser problem before, so
-the three largest were checked against the county's own PDF
+three of them, the largest included, were checked against the county's own PDF
 (`vestland_2022-23_1inntak.pdf`): Dale helse- og oppvekstfag Vg1 **12,50**,
 Slåtthaug automatisering Vg2 **18,00**, Fitjar helsearbeiderfag Vg2 **48,80**
 — all printed exactly so. They are real extremes, not damage; the cluster is

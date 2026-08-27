@@ -11,7 +11,7 @@ Coverage by county and year (x = in the dataset):
 
 | county | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Akershus | . | . | . | . | . | . | . | . | x | . |
+| Akershus | . | . | . | . | . | . | . | x | x | x |
 | Buskerud | . | . | . | . | . | . | . | x | x | . |
 | Innlandet | . | . | . | . | . | . | x | x | x | . |
 | Oslo | . | . | . | x | x | x | x | x | x | x |
@@ -43,8 +43,8 @@ searches with sanity checks.
 
 | What | Evidence | Holder |
 |---|---|---|
-| **Akershus 2026/27** | eInnsyn case **2026/29733**: Budstikka filed "Innsyn over poenggrensene til videregående skolene i Asker og Bærum" 21.07.2026 and got it answered — AFK holds and releases on request. Own publication historically lands ~November. | inntak@afk.no · FOI form skjema.afk.no/skjema/AKE0356 (covers Viken records too) |
-| **Akershus 2024/25** | afk.no's earliest indexed threshold page is Dec 2025 (2025-26 only); the office computed 2024 figures. | same |
+| ~~Akershus 2026/27~~ | **Mottatt og ingestert 27.08.2026** (svar fra inntak@afk.no på innsynskrav 25.08): «Nedre_poenggrense_Vg1_2026-2027_Akershus_2.inntak.xlsx» — skole × programområde-matrise, 2. inntak, alle 34 skoler. | — |
+| ~~Akershus 2024/25~~ | **Mottatt og ingestert 27.08.2026** (samme svar): «Karaktergrense 2024-2025.xlsx», samme matriseform. Akershus har dermed 2024–2026, alle som 2. inntak. | — |
 | ~~Hedmark 2014–2018~~ | **Closed 26.08.2026** (sak 2026/1-152): fylket «har ikke mulighet til å hente ut tilsvarende oversikter lenger tilbake i tid» — dokumentet er tapt hos rettsetterfølgeren. | — |
 | ~~Innlandet 2020–2022~~ | **Mottatt og ingestert 26.08.2026** (sak 2026/1-152): 941 celler fra «Nedre inntaksgrense 2020-21 VG1 VG2.pdf» og «Poenggrense 2021 og 2022.pdf», inkl. fire nedlagte/omorganiserte skoler. Fylkets forbehold: strukturomlegging 2020/2022 begrenser sammenlignbarheten — håndtert via Grep-koder og serieidentitet. | — |
 | ~~Rogaland 2017/18~~ | **Closed 26.08.2026**: fylket svarer at tallene ikke ble arkivert og ikke lenger finnes i deres systemer. Cellen er ikke et hull i innsamlingen — dataene eksisterer ikke. | — |
@@ -65,7 +65,7 @@ searches with sanity checks.
 
 | County | Verdict |
 |---|---|
-| **Møre og Romsdal** | **Publishes — as a Power BI dashboard** (all schools, historical). A different extraction problem than the PDF pipeline; a real expansion candidate worth a scoping pass. |
+| **Møre og Romsdal** | **Publishes — as a Power BI dashboard** (all schools, historical). Dan Ernes (rådgiver, 26.08.2026): «Publish to web» gir ingen rådata-nedlasting, men han vil lenke en nedlastbar Excel-fil i dashbordet og «gir en lyd» når den er ute. Dashbordet oppdateres én gang i året, etter 2. inntaket i august. |
 | **Agder** | Explicitly refuses: "Vi har derfor valgt å ikke publisere karaktersnittene for hvert år." |
 | **Nordland** | Explicitly refuses: "Derfor publiserer vi ikke karaktersnitt for hvert år." |
 | Vestfold, Telemark, Troms, Finnmark | No publication found, no explicit statement either way; would need a direct ask. |

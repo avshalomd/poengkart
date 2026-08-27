@@ -62,7 +62,7 @@ Where the figures come from, and which intake round each county publishes:
 
 | County | Format | Years | Round |
 |---|---|---|---|
-| [Akershus](https://afk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/poenggrenser.222835.aspx) | HTML tables | 2025 | 1. and 2. |
+| [Akershus](https://afk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/poenggrenser.222835.aspx) | HTML tables; 2024 and 2026 as Excel, released under an FOI request | 2024–2026 | 1. and 2. (FOI years: 2. only) |
 | [Buskerud](https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/) | HTML matrix | 2024–2025 | not stated |
 | [Innlandet](https://innlandetfylke.no/) | PDF matrix; 2020–2022 released under an FOI request | 2020–2025 | 2. |
 | [Oslo](https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/) | HTML + PDF, oldest years via school-site PDFs | 2017–2026 | 1. |
