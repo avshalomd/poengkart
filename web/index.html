@@ -67,8 +67,11 @@
     --chip-good: #0a6b0a; --chip-warn: #8a5308; --chip-danger: #a82f26;
     --warn: #a1620a; --warn-soft: rgba(180,120,20,.11);
   }
+  /* The dark palette exists twice: under the OS preference (yielding to an
+     explicit light choice) and under the explicit dark choice. Keep the two
+     token blocks identical — they are the same theme reached two ways. */
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
       color-scheme: dark;
       --page: #0e1116;
       --surface: rgba(23,27,33,.85);
@@ -85,6 +88,46 @@
       --warn: #e0a052; --warn-soft: rgba(224,160,82,.13);
     }
   }
+  :root[data-theme="dark"] {
+      color-scheme: dark;
+      --page: #0e1116;
+      --surface: rgba(23,27,33,.85);
+      --surface-solid: #171b21;
+      --ink: #f2f5f8; --ink-2: #a9b4c0; --ink-3: #8b95a1;
+      --line: rgba(255,255,255,.09);
+      --accent: #3987e5; --accent-soft: rgba(57,135,229,.14);
+      --context: #3a4553;
+      --seq-250:#9ec5f4; --seq-350:#6da7ec; --seq-450:#3987e5; --seq-550:#256abf; --seq-700:#184f95;
+      --shadow: 0 10px 32px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.4);
+      --good: #3fbf4a;              /* the one token that had no dark value */
+      --danger: #e26b6e;
+      --chip-good: #3fbf4a; --chip-warn: #e0a052; --chip-danger: #ea8e90;
+      --warn: #e0a052; --warn-soft: rgba(224,160,82,.13);
+  }
+
+  /* colour-blind-friendly: the chance scale's green swaps to a blue nothing
+     else on that scale uses; red–green is the axis most CVD readers lose */
+  :root[data-cvd="1"] { --good: #0072b2; --chip-good: #005a8f; }
+  @media (prefers-color-scheme: dark) {
+    :root[data-cvd="1"]:not([data-theme="light"]) { --good: #58a9e8; --chip-good: #6cb4ef; }
+  }
+  :root[data-theme="dark"][data-cvd="1"] { --good: #58a9e8; --chip-good: #6cb4ef; }
+
+  /* text-size steps scale the floating chrome, never the map itself */
+  :root[data-font="lg"] #panel, :root[data-font="lg"] #side .scroll,
+  :root[data-font="lg"] #legend, :root[data-font="lg"] .modal .sheet,
+  :root[data-font="lg"] #controls { zoom: 1.15; }
+  :root[data-font="xl"] #panel, :root[data-font="xl"] #side .scroll,
+  :root[data-font="xl"] #legend, :root[data-font="xl"] .modal .sheet,
+  :root[data-font="xl"] #controls { zoom: 1.3; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: .01ms !important; animation-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
 
   * { margin: 0; box-sizing: border-box; }
   html, body { height: 100%; }
@@ -150,6 +193,57 @@
     background: var(--surface-solid); color: var(--ink-2); cursor: pointer; font: inherit; font-size: 13px;
   }
   .ptsrow button:hover { background: var(--accent-soft); color: var(--accent); }
+  /* ---------- school search ---------- */
+  #search-field { position: relative; }
+  #school-q {
+    width: 100%; padding: 8px 10px; font: inherit; font-size: 13.5px; color: var(--ink);
+    background: var(--page); border: 1px solid var(--line); border-radius: 10px;
+    outline-offset: 2px;
+  }
+  #school-q:focus { border-color: var(--accent); }
+  #search-list {
+    /* wider than its grid cell on a phone, where the field is half the panel */
+    position: absolute; left: 0; right: 0; min-width: min(280px, 82vw); top: 100%; margin-top: 4px; z-index: 30;
+    background: var(--surface-solid); border: 1px solid var(--line); border-radius: 10px;
+    box-shadow: var(--shadow); max-height: 264px; overflow-y: auto; padding: 4px;
+  }
+  #search-list[hidden] { display: none; }
+  #search-list .opt {
+    display: flex; justify-content: space-between; gap: 10px; align-items: baseline;
+    padding: 8px 9px; border-radius: 7px; cursor: pointer; font-size: 13px;
+  }
+  #search-list .opt .fy { font-size: 11px; color: var(--ink-3); flex: none; }
+  #search-list .opt.act, #search-list .opt:hover { background: var(--accent-soft); }
+  #search-list .none { padding: 8px 9px; font-size: 12.5px; color: var(--ink-3); }
+  /* ---------- settings ---------- */
+  #settings .row { margin-top: 14px; }
+  #settings .row .t { font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
+                      text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; }
+  .seg button {
+    border: none; background: none; padding: 7px 13px; font-size: 12.5px; font-weight: 600;
+    color: var(--ink-2); cursor: pointer;
+  }
+  .seg button + button { border-left: 1px solid var(--line); }
+  .seg button.on { background: var(--accent); color: #fff; }
+  #settings .note { font-size: 11.5px; color: var(--ink-3); line-height: 1.5; margin-top: 16px;
+                    border-top: 1px solid var(--line); padding-top: 11px; }
+  /* ---------- locate control + toast ---------- */
+  .leaflet-bar button.locate {
+    width: 30px; height: 30px; display: grid; place-items: center;
+    border: none; background: var(--surface-solid); color: var(--ink-2); cursor: pointer;
+    border-radius: 4px;
+  }
+  .leaflet-bar button.locate:hover { color: var(--accent); }
+  .leaflet-bar button.locate.on { color: var(--accent); }
+  .leaflet-bar button.locate svg { width: 16px; height: 16px; }
+  #toast {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 3000;
+    background: var(--surface-solid); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 10px; box-shadow: var(--shadow); padding: 10px 14px; font-size: 13px;
+    max-width: min(92vw, 420px); text-align: center;
+  }
+  #toast[hidden] { display: none; }
   #pts-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; line-height: 1.4; }
   #pts-note .k { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 3px 0 1px; vertical-align: -1px; }
   /* Chance bands are semantic colours, deliberately not the blue threshold
@@ -638,6 +732,15 @@
     body.side-open #panel, body.side-open #legend, body.side-open #controls { display: none; }
   }
 </style>
+<script>
+/* saved display preferences, applied before first paint so nothing flashes */
+try {
+  var _d = document.documentElement, _v;
+  if ((_v = localStorage.getItem('pk-theme')) === 'light' || _v === 'dark') _d.dataset.theme = _v;
+  if ((_v = localStorage.getItem('pk-font')) === 'lg' || _v === 'xl') _d.dataset.font = _v;
+  if (localStorage.getItem('pk-cvd') === '1') _d.dataset.cvd = '1';
+} catch (e) {}
+</script>
 </head>
 <body>
 <noscript>
@@ -697,6 +800,13 @@
       <path d="M12.4 17.2h.01"/>
     </svg>
   </button>
+  <button class="ico" id="settings-btn" onclick="openSettings()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="3.2"/>
+      <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1.11 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.01A1.7 1.7 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.01c.26.62.86 1.03 1.53 1.03H21a2 2 0 1 1 0 4h-.09c-.67 0-1.27.4-1.51 1.02z"/>
+    </svg>
+  </button>
   <button class="ico" id="contact-btn" onclick="openContact()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
          stroke-linejoin="round" aria-hidden="true">
@@ -732,6 +842,13 @@
 
   </div>
   <p id="tagline"></p>
+  <div class="field" id="search-field">
+    <label id="search-label" for="school-q"></label>
+    <input id="school-q" type="text" role="combobox" aria-expanded="false"
+           aria-controls="search-list" aria-autocomplete="list"
+           autocomplete="off" spellcheck="false" autocapitalize="off">
+    <div id="search-list" role="listbox" hidden></div>
+  </div>
   <div class="field" id="fylke-field" hidden>
     <label id="fylke-label" for="map-fylke"></label>
     <select id="map-fylke" onchange="onMapFylke(this.value)"></select>
@@ -778,6 +895,22 @@
     <div id="intro-body"></div>
   </div>
 </div>
+
+<div id="settings" class="modal" hidden onclick="if (event.target === this) closeSettings()">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="settings-h">
+    <button class="x" id="settings-x" onclick="closeSettings()">✕</button>
+    <div class="head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/>
+      </svg>
+      <h2 id="settings-h"></h2>
+    </div>
+    <div id="settings-body"></div>
+  </div>
+</div>
+
+<div id="toast" hidden role="status"></div>
 
 <script>
 /* ================= i18n ================= */
@@ -846,6 +979,27 @@ const T = {
   },
   introCta: { no: 'Vis meg kartet', en: 'Show me the map' },
   helpLabel: { no: 'Slik leser du kartet', en: 'How to read this map' },
+  searchLabel: { no: 'Finn skole', en: 'Find a school' },
+  searchPh:    { no: 'Skolenavn …', en: 'School name …' },
+  searchNone:  { no: 'Ingen treff', en: 'No matches' },
+  settingsLabel: { no: 'Innstillinger', en: 'Settings' },
+  setTheme:      { no: 'Fargetema', en: 'Theme' },
+  setThemeAuto:  { no: 'Auto', en: 'Auto' },
+  setThemeLight: { no: 'Lyst', en: 'Light' },
+  setThemeDark:  { no: 'Mørkt', en: 'Dark' },
+  setFont:  { no: 'Tekststørrelse', en: 'Text size' },
+  setFontN: { no: 'Normal', en: 'Normal' },
+  setFontL: { no: 'Stor', en: 'Large' },
+  setFontX: { no: 'Ekstra stor', en: 'Extra large' },
+  setColors:    { no: 'Farger', en: 'Colours' },
+  setColorsStd: { no: 'Standard', en: 'Standard' },
+  setColorsCvd: { no: 'Fargeblindvennlig', en: 'Colour-blind friendly' },
+  setNote: { no: 'Valgene lagres bare i denne nettleseren.',
+             en: 'Choices are saved only in this browser.' },
+  locBtn:    { no: 'Vis hvor jeg er på kartet', en: 'Show where I am on the map' },
+  locDenied: { no: 'Posisjonstilgang er blokkert i nettleseren.',
+               en: 'Location access is blocked in your browser.' },
+  locFail:   { no: 'Fant ikke posisjonen din.', en: 'Could not find your location.' },
   close:     { no: 'Lukk', en: 'Close' },
   levels: {
     no: {
@@ -1571,7 +1725,9 @@ function renderPointsField() {
 
 /* ================= map ================= */
 let labelMarkers = () => {};
-const isDark = () => matchMedia('(prefers-color-scheme: dark)').matches;
+const isDark = () => PREFS.theme === 'dark' ||
+  (PREFS.theme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
+const prefersStill = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 let tileLayer = null, miniMap = null;
 const tileUrl = () =>
   `https://{s}.basemaps.cartocdn.com/${isDark() ? 'dark_all' : 'light_all'}/{z}/{x}/{y}{r}.png`;
@@ -1752,6 +1908,8 @@ function renderPanel() {
     DATA.schools.length, DATA.counties.length,
     DATA.years[0], DATA.years[DATA.years.length - 1]);
   document.getElementById('cat-label').textContent = t('catLabel');
+  document.getElementById('search-label').textContent = t('searchLabel');
+  document.getElementById('school-q').placeholder = t('searchPh');
   document.getElementById('lang-no').classList.toggle('on', lang === 'no');
   document.getElementById('lang-en').classList.toggle('on', lang === 'en');
   const counties = (DATA.counties || []).filter(c => c.schools);
@@ -2595,7 +2753,9 @@ function bindTitleTips(root) {
 const INTRO_SEEN = 'pk-intro-v1';
 
 function renderControls() {
-  for (const [id, key] of [['help-btn', 'helpLabel'], ['contact-btn', 'contactLabel']]) {
+  updateLocateAria();
+  for (const [id, key] of [['help-btn', 'helpLabel'], ['settings-btn', 'settingsLabel'],
+                           ['contact-btn', 'contactLabel']]) {
     const el = document.getElementById(id);
     el.title = t(key);
     el.setAttribute('aria-label', t(key));
@@ -2644,7 +2804,8 @@ function renderIntro() {
 // select behind the backdrop, where nothing was visible to act on.
 function setModalTrap() {
   const open = !document.getElementById('intro').hidden
-            || !document.getElementById('contact').hidden;
+            || !document.getElementById('contact').hidden
+            || !document.getElementById('settings').hidden;
   ['skip', 'app', 'controls', 'panel', 'legend'].forEach(id =>
     document.getElementById(id)?.toggleAttribute('inert', open));
 }
@@ -2672,6 +2833,199 @@ function closeIntro(fromHistory) {
   document.getElementById('help-btn')?.focus();
 }
 
+/* ================= preferences: theme, text size, colours ================= */
+const PREFS = { theme: 'auto', font: 'n', cvd: false };
+function loadPrefs() {
+  try {
+    const th = localStorage.getItem('pk-theme');
+    if (th === 'light' || th === 'dark') PREFS.theme = th;
+    const f = localStorage.getItem('pk-font');
+    if (f === 'lg' || f === 'xl') PREFS.font = f;
+    PREFS.cvd = localStorage.getItem('pk-cvd') === '1';
+  } catch (e) {}
+}
+function applyPrefs(rerender) {
+  const de = document.documentElement;
+  if (PREFS.theme === 'auto') delete de.dataset.theme; else de.dataset.theme = PREFS.theme;
+  if (PREFS.font === 'n') delete de.dataset.font; else de.dataset.font = PREFS.font;
+  if (PREFS.cvd) de.dataset.cvd = '1'; else delete de.dataset.cvd;
+  try {
+    if (PREFS.theme === 'auto') localStorage.removeItem('pk-theme');
+    else localStorage.setItem('pk-theme', PREFS.theme);
+    if (PREFS.font === 'n') localStorage.removeItem('pk-font');
+    else localStorage.setItem('pk-font', PREFS.font);
+    if (PREFS.cvd) localStorage.setItem('pk-cvd', '1');
+    else localStorage.removeItem('pk-cvd');
+  } catch (e) {}
+  if (rerender && map) {
+    setTiles(); drawMarkers(); renderLegend(); renderCatNote();
+    if (current) renderSide();
+  }
+}
+function renderSettings() {
+  document.getElementById('settings-h').textContent = t('settingsLabel');
+  const seg = (key, opts, cur) => `<div class="seg" role="group">` + opts.map(([v, label]) =>
+    `<button type="button" data-k="${key}" data-v="${v}" class="${cur === v ? 'on' : ''}"` +
+    ` aria-pressed="${cur === v}">${esc(label)}</button>`).join('') + `</div>`;
+  document.getElementById('settings-body').innerHTML =
+    `<div class="row"><div class="t">${esc(t('setTheme'))}</div>` +
+    seg('theme', [['auto', t('setThemeAuto')], ['light', t('setThemeLight')], ['dark', t('setThemeDark')]], PREFS.theme) + `</div>` +
+    `<div class="row"><div class="t">${esc(t('setFont'))}</div>` +
+    seg('font', [['n', t('setFontN')], ['lg', t('setFontL')], ['xl', t('setFontX')]], PREFS.font) + `</div>` +
+    `<div class="row"><div class="t">${esc(t('setColors'))}</div>` +
+    seg('cvd', [['0', t('setColorsStd')], ['1', t('setColorsCvd')]], PREFS.cvd ? '1' : '0') + `</div>` +
+    `<div class="note">${esc(t('setNote'))}</div>`;
+  document.getElementById('settings-body').querySelectorAll('.seg button').forEach(b => {
+    b.onclick = () => {
+      if (b.dataset.k === 'cvd') PREFS.cvd = b.dataset.v === '1';
+      else PREFS[b.dataset.k] = b.dataset.v;
+      applyPrefs(true); renderSettings();
+    };
+  });
+}
+function openSettings() {
+  renderSettings();
+  document.getElementById('settings').hidden = false;
+  setModalTrap();
+  openSheetHistory();
+  setTimeout(() => document.querySelector('#settings .seg button.on')?.focus(), 40);
+}
+function closeSettings(fromHistory) {
+  if (!fromHistory && (history.state || {}).pkSheet) { history.back(); return; }
+  document.getElementById('settings').hidden = true;
+  setModalTrap();
+  document.getElementById('settings-btn')?.focus();
+}
+
+/* ================= school search ================= */
+// both sides of the match are folded, so "as" finds Ås and "sorumsand" Sørumsand
+const foldName = s => s.toLowerCase()
+  .replace(/æ/g, 'ae').replace(/ø/g, 'o').replace(/å/g, 'a').replace(/é/g, 'e')
+  .replace(/\s+/g, ' ').trim();
+let searchIx = null, searchAct = -1, searchHits = null;
+function runSearch(q) {
+  if (!searchIx) searchIx = DATA.schools.map(s => ({ s, f: foldName(s.name) }));
+  const f = foldName(q);
+  if (!f) return null;
+  const score = e => e.f.startsWith(f) ? 0
+    : e.f.split(' ').some(w => w.startsWith(f)) ? 1
+    : e.f.includes(f) ? 2 : -1;
+  return searchIx.map(e => [score(e), e.s]).filter(x => x[0] >= 0)
+    .sort((a, b) => a[0] - b[0] || a[1].name.localeCompare(b[1].name, 'no'))
+    .slice(0, 8).map(x => x[1]);
+}
+function renderSearchList() {
+  const box = document.getElementById('search-list');
+  const q = document.getElementById('school-q');
+  if (searchHits === null) {
+    box.hidden = true;
+    q.setAttribute('aria-expanded', 'false');
+    q.removeAttribute('aria-activedescendant');
+    return;
+  }
+  box.innerHTML = searchHits.length
+    ? searchHits.map((s, i) =>
+        `<div class="opt${i === searchAct ? ' act' : ''}" id="search-opt-${i}" role="option"` +
+        ` aria-selected="${i === searchAct}"><span>${esc(s.name)}</span>` +
+        `<span class="fy">${esc(s.fylke)}</span></div>`).join('')
+    : `<div class="none">${esc(t('searchNone'))}</div>`;
+  box.hidden = false;
+  q.setAttribute('aria-expanded', 'true');
+  if (searchAct >= 0) q.setAttribute('aria-activedescendant', 'search-opt-' + searchAct);
+  else q.removeAttribute('aria-activedescendant');
+  box.querySelectorAll('.opt').forEach((el, i) => {
+    // mousedown, not click: it must win the race against the input's blur
+    el.onmousedown = ev => { ev.preventDefault(); pickSearch(i); };
+  });
+}
+function pickSearch(i) {
+  const s = (searchHits || [])[i];
+  if (!s) return;
+  document.getElementById('school-q').value = s.name;
+  searchHits = null; searchAct = -1; renderSearchList();
+  if (s.lat) {
+    const z = Math.max(map.getZoom(), 11);
+    prefersStill() ? map.setView([s.lat, s.lon], z) : map.flyTo([s.lat, s.lon], z);
+  }
+  openSide(s);
+}
+function onSearchInput(v) {
+  searchAct = -1;
+  searchHits = runSearch(v);
+  renderSearchList();
+}
+function onSearchKey(ev) {
+  if (ev.key === 'Escape') { searchHits = null; searchAct = -1; renderSearchList(); return; }
+  if (searchHits === null) {
+    if (ev.key === 'ArrowDown') onSearchInput(ev.target.value);
+    return;
+  }
+  if (ev.key === 'ArrowDown') {
+    ev.preventDefault();
+    searchAct = Math.min(searchAct + 1, searchHits.length - 1); renderSearchList();
+  } else if (ev.key === 'ArrowUp') {
+    ev.preventDefault();
+    searchAct = Math.max(searchAct - 1, -1); renderSearchList();
+  } else if (ev.key === 'Enter') {
+    ev.preventDefault();
+    pickSearch(searchAct >= 0 ? searchAct : 0);
+  }
+}
+
+/* ================= geolocation ================= */
+// the position is used for one map move and a marker; it never leaves the page
+let locLayer = null, locBtnEl = null;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.hidden = false;
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => { el.hidden = true; }, 4000);
+}
+function addLocateControl() {
+  if (!('geolocation' in navigator)) return;
+  const C = L.Control.extend({
+    onAdd() {
+      const div = L.DomUtil.create('div', 'leaflet-bar');
+      const b = L.DomUtil.create('button', 'locate', div);
+      b.type = 'button';
+      b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"' +
+        ' stroke-width="2" stroke-linecap="round" aria-hidden="true">' +
+        '<circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/>' +
+        '<path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>';
+      locBtnEl = b;
+      L.DomEvent.on(b, 'click', ev => { L.DomEvent.stop(ev); locate(); });
+      return div;
+    }
+  });
+  new C({ position: 'bottomright' }).addTo(map);
+  updateLocateAria();
+}
+function updateLocateAria() {
+  if (!locBtnEl) return;
+  locBtnEl.title = t('locBtn');
+  locBtnEl.setAttribute('aria-label', t('locBtn'));
+}
+function locate() {
+  if (locLayer) {                       // second press clears the marker again
+    map.removeLayer(locLayer); locLayer = null;
+    locBtnEl.classList.remove('on');
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(pos => {
+    const ll = [pos.coords.latitude, pos.coords.longitude];
+    locLayer = L.layerGroup([
+      L.circle(ll, { radius: pos.coords.accuracy || 0, color: cssVar('--accent'),
+                     weight: 1, fillOpacity: .08 }),
+      L.circleMarker(ll, { radius: 6, color: '#fff', weight: 2,
+                           fillColor: cssVar('--accent'), fillOpacity: 1 })
+    ]).addTo(map);
+    locBtnEl.classList.add('on');
+    const z = Math.max(map.getZoom(), 10);
+    prefersStill() ? map.setView(ll, z) : map.flyTo(ll, z);
+  }, err => toast(t(err && err.code === 1 ? 'locDenied' : 'locFail')),
+     { timeout: 10000, maximumAge: 60000 });
+}
+
 /* ================= language ================= */
 function setLang(l) {
   if (l !== 'no' && l !== 'en') return;   // the only two languages that exist
@@ -2683,6 +3037,7 @@ function setLang(l) {
   if (current) renderSide();
   if (!document.getElementById('intro').hidden) renderIntro();
   if (!document.getElementById('contact').hidden) renderContact();
+  if (!document.getElementById('settings').hidden) renderSettings();
 }
 
 /* ================= boot ================= */
@@ -2721,6 +3076,8 @@ function bootFailed(subKey) {
 }
 
 async function main() {
+  loadPrefs();
+  applyPrefs(false);
   try {
     const l = localStorage.getItem('pk-lang');
     if (l === 'no' || l === 'en') lang = l;   // anything else is not a language
@@ -2768,6 +3125,7 @@ async function main() {
   HOME = L.latLngBounds(pts).pad(0.06);
   map = L.map('map', { zoomControl: false, zoomSnap: 0.25 }).fitBounds(HOME, framePad());
   L.control.zoom({ position: 'bottomright' }).addTo(map);
+  addLocateControl();
   map.on('zoomend moveend', () => labelMarkers());
   setTiles();
   let touched = false;
@@ -2792,6 +3150,10 @@ async function main() {
   });
   document.getElementById('side').setAttribute('inert', '');
   document.getElementById('s-filter').addEventListener('input', renderList);
+  const sq = document.getElementById('school-q');
+  sq.addEventListener('input', () => onSearchInput(sq.value));
+  sq.addEventListener('keydown', onSearchKey);
+  sq.addEventListener('blur', () => { searchHits = null; searchAct = -1; renderSearchList(); });
   let reframe;
   addEventListener('resize', () => {
     clearTimeout(reframe);
@@ -2806,8 +3168,11 @@ async function main() {
     // and re-pushes the side panel's entry the pop just consumed, so the next
     // back still closes the panel instead of leaving the page
     const sideOpen = document.getElementById('side').classList.contains('open');
-    if (!document.getElementById('contact').hidden || !document.getElementById('intro').hidden) {
-      if (!document.getElementById('contact').hidden) closeContact(true); else closeIntro(true);
+    if (!document.getElementById('contact').hidden || !document.getElementById('intro').hidden
+        || !document.getElementById('settings').hidden) {
+      if (!document.getElementById('contact').hidden) closeContact(true);
+      else if (!document.getElementById('intro').hidden) closeIntro(true);
+      else closeSettings(true);
       if (sideOpen && !(history.state || {}).pkSide) {
         try { history.pushState({ pkSide: 1 }, ''); } catch (e) {}
       }
@@ -2819,6 +3184,7 @@ async function main() {
     if (ev.key !== 'Escape') return;
     if (!document.getElementById('contact').hidden) { closeContact(); return; }
     if (!document.getElementById('intro').hidden) { closeIntro(); return; }
+    if (!document.getElementById('settings').hidden) { closeSettings(); return; }
     if (document.getElementById('side').classList.contains('open')) closeSide();
   });
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
