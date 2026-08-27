@@ -193,28 +193,6 @@
     background: var(--surface-solid); color: var(--ink-2); cursor: pointer; font: inherit; font-size: 13px;
   }
   .ptsrow button:hover { background: var(--accent-soft); color: var(--accent); }
-  /* ---------- school search ---------- */
-  #search-field { position: relative; }
-  #school-q {
-    width: 100%; padding: 8px 10px; font: inherit; font-size: 13.5px; color: var(--ink);
-    background: var(--page); border: 1px solid var(--line); border-radius: 10px;
-    outline-offset: 2px;
-  }
-  #school-q:focus { border-color: var(--accent); }
-  #search-list {
-    /* wider than its grid cell on a phone, where the field is half the panel */
-    position: absolute; left: 0; right: 0; min-width: min(280px, 82vw); top: 100%; margin-top: 4px; z-index: 30;
-    background: var(--surface-solid); border: 1px solid var(--line); border-radius: 10px;
-    box-shadow: var(--shadow); max-height: 264px; overflow-y: auto; padding: 4px;
-  }
-  #search-list[hidden] { display: none; }
-  #search-list .opt {
-    display: flex; justify-content: space-between; gap: 10px; align-items: baseline;
-    padding: 8px 9px; border-radius: 7px; cursor: pointer; font-size: 13px;
-  }
-  #search-list .opt .fy { font-size: 11px; color: var(--ink-3); flex: none; }
-  #search-list .opt.act, #search-list .opt:hover { background: var(--accent-soft); }
-  #search-list .none { padding: 8px 9px; font-size: 12.5px; color: var(--ink-3); }
   /* ---------- settings ---------- */
   #settings .sheet { max-width: 420px; }
   #settings .row { margin-top: 14px; }
@@ -257,6 +235,27 @@
     #calc .subj .n { font-size: 12px; }
     #calc .grades button { width: 30px; height: 30px; }
   }
+  /* ---------- search overlay (design C trial) ---------- */
+  #searchov { align-items: flex-start; }
+  #searchov .ovbox {
+    margin-top: min(18vh, 150px); width: min(560px, 92vw);
+    background: var(--surface-solid); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: var(--shadow); padding: 10px;
+  }
+  #ov-q {
+    width: 100%; padding: 12px 14px; font: inherit; font-size: 16px; color: var(--ink);
+    background: var(--page); border: 1px solid var(--line); border-radius: 10px;
+    outline: none;
+  }
+  #ov-q:focus { border-color: var(--accent); }
+  #ov-list { margin-top: 6px; max-height: 320px; overflow-y: auto; }
+  #ov-list .opt {
+    display: flex; justify-content: space-between; gap: 10px; align-items: baseline;
+    padding: 10px 12px; border-radius: 8px; cursor: pointer; font-size: 14px;
+  }
+  #ov-list .opt .fy { font-size: 12px; color: var(--ink-3); flex: none; }
+  #ov-list .opt.act, #ov-list .opt:hover { background: var(--accent-soft); }
+  #ov-list .none { padding: 10px 12px; font-size: 13px; color: var(--ink-3); }
   /* ---------- locate control + toast ---------- */
   .leaflet-bar button.locate {
     width: 30px; height: 30px; display: grid; place-items: center;
@@ -812,6 +811,12 @@ try {
 </div>
 
 <div id="controls" class="glass">
+  <button class="ico" id="searchov-btn" onclick="openSearchOv()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/>
+    </svg>
+  </button>
   <button class="ico" id="help-btn" onclick="openIntro()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
          stroke-linecap="round" aria-hidden="true">
@@ -855,13 +860,6 @@ try {
 
   </div>
   <p id="tagline"></p>
-  <div class="field" id="search-field">
-    <label id="search-label" for="school-q"></label>
-    <input id="school-q" type="text" role="combobox" aria-expanded="false"
-           aria-controls="search-list" aria-autocomplete="list"
-           autocomplete="off" spellcheck="false" autocapitalize="off">
-    <div id="search-list" role="listbox" hidden></div>
-  </div>
   <div class="field" id="fylke-field" hidden>
     <label id="fylke-label" for="map-fylke"></label>
     <select id="map-fylke" onchange="onMapFylke(this.value)"></select>
@@ -942,6 +940,14 @@ try {
       <h2 id="calc-h"></h2>
     </div>
     <div id="calc-body"></div>
+  </div>
+</div>
+
+<div id="searchov" class="modal" hidden onclick="if (event.target === this) closeSearchOv()">
+  <div class="ovbox" role="dialog" aria-modal="true" aria-label="Søk">
+    <input id="ov-q" type="text" role="combobox" aria-expanded="false" aria-controls="ov-list"
+           aria-autocomplete="list" autocomplete="off" spellcheck="false" autocapitalize="off">
+    <div id="ov-list" role="listbox"></div>
   </div>
 </div>
 
@@ -1959,11 +1965,9 @@ function renderPanel() {
     DATA.schools.length, DATA.counties.length,
     DATA.years[0], DATA.years[DATA.years.length - 1]);
   document.getElementById('cat-label').textContent = t('catLabel');
-  document.getElementById('search-label').textContent = t('searchLabel');
   const co = document.getElementById('calc-open');
   co.title = t('calcOpen');
   co.setAttribute('aria-label', t('calcOpen'));
-  document.getElementById('school-q').placeholder = t('searchPh');
   const counties = (DATA.counties || []).filter(c => c.schools);
   const ff = document.getElementById('fylke-field');
   ff.hidden = counties.length < 2;               // pointless with a single county
@@ -2834,7 +2838,8 @@ const INTRO_SEEN = 'pk-intro-v1';
 
 function renderControls() {
   updateLocateAria();
-  for (const [id, key] of [['help-btn', 'helpLabel'], ['settings-btn', 'settingsLabel']]) {
+  for (const [id, key] of [['help-btn', 'helpLabel'], ['settings-btn', 'settingsLabel'],
+                           ['searchov-btn', 'searchLabel']]) {
     const el = document.getElementById(id);
     el.title = t(key);
     el.setAttribute('aria-label', t(key));
@@ -2885,7 +2890,8 @@ function setModalTrap() {
   const open = !document.getElementById('intro').hidden
             || !document.getElementById('contact').hidden
             || !document.getElementById('settings').hidden
-            || !document.getElementById('calc').hidden;
+            || !document.getElementById('calc').hidden
+            || !document.getElementById('searchov').hidden;
   ['skip', 'app', 'controls', 'panel', 'legend'].forEach(id =>
     document.getElementById(id)?.toggleAttribute('inert', open));
 }
@@ -2994,7 +3000,7 @@ function closeSettings(fromHistory) {
 const foldName = s => s.toLowerCase()
   .replace(/æ/g, 'ae').replace(/ø/g, 'o').replace(/å/g, 'a').replace(/é/g, 'e')
   .replace(/\s+/g, ' ').trim();
-let searchIx = null, searchAct = -1, searchHits = null;
+let searchIx = null;
 function runSearch(q) {
   if (!searchIx) searchIx = DATA.schools.map(s => ({ s, f: foldName(s.name) }));
   const f = foldName(q);
@@ -3006,62 +3012,50 @@ function runSearch(q) {
     .sort((a, b) => a[0] - b[0] || a[1].name.localeCompare(b[1].name, 'no'))
     .slice(0, 8).map(x => x[1]);
 }
-function renderSearchList() {
-  const box = document.getElementById('search-list');
-  const q = document.getElementById('school-q');
-  if (searchHits === null) {
-    box.hidden = true;
-    q.setAttribute('aria-expanded', 'false');
-    q.removeAttribute('aria-activedescendant');
-    return;
-  }
-  box.innerHTML = searchHits.length
-    ? searchHits.map((s, i) =>
-        `<div class="opt${i === searchAct ? ' act' : ''}" id="search-opt-${i}" role="option"` +
-        ` aria-selected="${i === searchAct}"><span>${esc(s.name)}</span>` +
+
+/* ================= search overlay (design C trial) ================= */
+let ovAct = -1, ovHits = [];
+function renderOvList() {
+  const box = document.getElementById('ov-list');
+  const q = document.getElementById('ov-q');
+  box.innerHTML = !q.value.trim() ? ''
+    : ovHits.length
+    ? ovHits.map((s, i) =>
+        `<div class="opt${i === ovAct ? ' act' : ''}" id="ov-opt-${i}" role="option"` +
+        ` aria-selected="${i === ovAct}"><span>${esc(s.name)}</span>` +
         `<span class="fy">${esc(s.fylke)}</span></div>`).join('')
     : `<div class="none">${esc(t('searchNone'))}</div>`;
-  box.hidden = false;
-  q.setAttribute('aria-expanded', 'true');
-  if (searchAct >= 0) q.setAttribute('aria-activedescendant', 'search-opt-' + searchAct);
+  q.setAttribute('aria-expanded', String(!!q.value.trim()));
+  if (ovAct >= 0) q.setAttribute('aria-activedescendant', 'ov-opt-' + ovAct);
   else q.removeAttribute('aria-activedescendant');
   box.querySelectorAll('.opt').forEach((el, i) => {
-    // mousedown, not click: it must win the race against the input's blur
-    el.onmousedown = ev => { ev.preventDefault(); pickSearch(i); };
+    el.onmousedown = ev => { ev.preventDefault(); pickOv(i); };
   });
 }
-function pickSearch(i) {
-  const s = (searchHits || [])[i];
+function pickOv(i) {
+  const s = ovHits[i];
   if (!s) return;
-  document.getElementById('school-q').value = s.name;
-  searchHits = null; searchAct = -1; renderSearchList();
+  closeSearchOv();
   if (s.lat) {
     const z = Math.max(map.getZoom(), 11);
     prefersStill() ? map.setView([s.lat, s.lon], z) : map.flyTo([s.lat, s.lon], z);
   }
   openSide(s);
 }
-function onSearchInput(v) {
-  searchAct = -1;
-  searchHits = runSearch(v);
-  renderSearchList();
+function openSearchOv() {
+  const q = document.getElementById('ov-q');
+  q.value = ''; ovHits = []; ovAct = -1;
+  q.placeholder = t('searchPh');
+  renderOvList();
+  document.getElementById('searchov').hidden = false;
+  setModalTrap();
+  openSheetHistory();
+  setTimeout(() => q.focus(), 40);
 }
-function onSearchKey(ev) {
-  if (ev.key === 'Escape') { searchHits = null; searchAct = -1; renderSearchList(); return; }
-  if (searchHits === null) {
-    if (ev.key === 'ArrowDown') onSearchInput(ev.target.value);
-    return;
-  }
-  if (ev.key === 'ArrowDown') {
-    ev.preventDefault();
-    searchAct = Math.min(searchAct + 1, searchHits.length - 1); renderSearchList();
-  } else if (ev.key === 'ArrowUp') {
-    ev.preventDefault();
-    searchAct = Math.max(searchAct - 1, -1); renderSearchList();
-  } else if (ev.key === 'Enter') {
-    ev.preventDefault();
-    pickSearch(searchAct >= 0 ? searchAct : 0);
-  }
+function closeSearchOv(fromHistory) {
+  if (!fromHistory && (history.state || {}).pkSheet) { history.back(); return; }
+  document.getElementById('searchov').hidden = true;
+  setModalTrap();
 }
 
 /* ================= geolocation ================= */
@@ -3338,10 +3332,22 @@ async function main() {
   });
   document.getElementById('side').setAttribute('inert', '');
   document.getElementById('s-filter').addEventListener('input', renderList);
-  const sq = document.getElementById('school-q');
-  sq.addEventListener('input', () => onSearchInput(sq.value));
-  sq.addEventListener('keydown', onSearchKey);
-  sq.addEventListener('blur', () => { searchHits = null; searchAct = -1; renderSearchList(); });
+  const ovq = document.getElementById('ov-q');
+  ovq.addEventListener('input', () => {
+    ovAct = -1; ovHits = runSearch(ovq.value) || []; renderOvList();
+  });
+  ovq.addEventListener('keydown', ev => {
+    if (ev.key === 'ArrowDown') { ev.preventDefault(); ovAct = Math.min(ovAct + 1, ovHits.length - 1); renderOvList(); }
+    else if (ev.key === 'ArrowUp') { ev.preventDefault(); ovAct = Math.max(ovAct - 1, -1); renderOvList(); }
+    else if (ev.key === 'Enter') { ev.preventDefault(); pickOv(ovAct >= 0 ? ovAct : 0); }
+  });
+  document.addEventListener('keydown', ev => {
+    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '');
+    if (((ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === 'k') || (ev.key === '/' && !typing)) {
+      ev.preventDefault();
+      if (document.getElementById('searchov').hidden) openSearchOv();
+    }
+  });
   let reframe;
   addEventListener('resize', () => {
     clearTimeout(reframe);
@@ -3357,10 +3363,12 @@ async function main() {
     // back still closes the panel instead of leaving the page
     const sideOpen = document.getElementById('side').classList.contains('open');
     if (!document.getElementById('contact').hidden || !document.getElementById('intro').hidden
-        || !document.getElementById('settings').hidden || !document.getElementById('calc').hidden) {
+        || !document.getElementById('settings').hidden || !document.getElementById('calc').hidden
+        || !document.getElementById('searchov').hidden) {
       if (!document.getElementById('contact').hidden) closeContact(true);
       else if (!document.getElementById('intro').hidden) closeIntro(true);
       else if (!document.getElementById('calc').hidden) closeCalc(true);
+      else if (!document.getElementById('searchov').hidden) closeSearchOv(true);
       else closeSettings(true);
       if (sideOpen && !(history.state || {}).pkSide) {
         try { history.pushState({ pkSide: 1 }, ''); } catch (e) {}
@@ -3375,6 +3383,7 @@ async function main() {
     if (!document.getElementById('intro').hidden) { closeIntro(); return; }
     if (!document.getElementById('settings').hidden) { closeSettings(); return; }
     if (!document.getElementById('calc').hidden) { closeCalc(); return; }
+    if (!document.getElementById('searchov').hidden) { closeSearchOv(); return; }
     if (document.getElementById('side').classList.contains('open')) closeSide();
   });
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
