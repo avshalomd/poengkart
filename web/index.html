@@ -116,9 +116,11 @@
   /* text-size steps scale the floating chrome, never the map itself */
   :root[data-font="lg"] #panel, :root[data-font="lg"] #side .scroll,
   :root[data-font="lg"] #legend, :root[data-font="lg"] .modal .sheet,
+  :root[data-font="lg"] #searchov .ovbox, :root[data-font="lg"] #toast,
   :root[data-font="lg"] #controls { zoom: 1.15; }
   :root[data-font="xl"] #panel, :root[data-font="xl"] #side .scroll,
   :root[data-font="xl"] #legend, :root[data-font="xl"] .modal .sheet,
+  :root[data-font="xl"] #searchov .ovbox, :root[data-font="xl"] #toast,
   :root[data-font="xl"] #controls { zoom: 1.3; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -225,6 +227,7 @@
   #calc .grades button:hover { border-color: var(--accent); color: var(--accent); }
   #calc .grades button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
   #calc .grades button.rm { border: none; color: var(--ink-3); font-weight: 400; }
+  #calc .grades button[hidden], .modal .cta[hidden] { display: none; }
   #calc .sum { display: flex; align-items: baseline; gap: 14px; margin: 14px 0 4px; }
   #calc .sum .v { font-size: 22px; font-weight: 700; letter-spacing: -.02em;
                   font-variant-numeric: tabular-nums; }
@@ -944,7 +947,7 @@ try {
 </div>
 
 <div id="searchov" class="modal" hidden onclick="if (event.target === this) closeSearchOv()">
-  <div class="ovbox" role="dialog" aria-modal="true" aria-label="Søk">
+  <div class="ovbox" id="ov-box" role="dialog" aria-modal="true">
     <input id="ov-q" type="text" role="combobox" aria-expanded="false" aria-controls="ov-list"
            aria-autocomplete="list" autocomplete="off" spellcheck="false" autocapitalize="off">
     <div id="ov-list" role="listbox"></div>
@@ -2055,7 +2058,7 @@ function openSide(s) {
   // On a phone the details fill the screen, and the system back gesture is how
   // people expect to leave a screen. Give it something to pop.
   if (!(history.state || {}).pkSide) {
-    try { history.pushState({ pkSide: 1 }, schoolHash(s)); } catch (e) {}
+    try { history.pushState({ pkSide: 1 }, '', schoolHash(s)); } catch (e) {}
   }
   setTimeout(() => document.querySelector('#s-photo .close')?.focus(), 60);
 }
@@ -2884,12 +2887,10 @@ function renderIntro() {
 // A sheet that covers the page has to take the page out of the tab order with
 // it: tabbing off the end of the feedback form used to land on the county
 // select behind the backdrop, where nothing was visible to act on.
+const SHEET_IDS = ['contact', 'intro', 'settings', 'calc', 'searchov'];
+const anySheetOpen = () => SHEET_IDS.some(id => !document.getElementById(id).hidden);
 function setModalTrap() {
-  const open = !document.getElementById('intro').hidden
-            || !document.getElementById('contact').hidden
-            || !document.getElementById('settings').hidden
-            || !document.getElementById('calc').hidden
-            || !document.getElementById('searchov').hidden;
+  const open = anySheetOpen();
   ['skip', 'app', 'controls', 'panel', 'legend'].forEach(id =>
     document.getElementById(id)?.toggleAttribute('inert', open));
 }
@@ -2942,12 +2943,13 @@ function applyPrefs(rerender) {
     else localStorage.removeItem('pk-cvd');
   } catch (e) {}
   if (rerender && map) {
-    setTiles(); drawMarkers(); renderLegend(); renderCatNote();
+    setTiles(); drawMarkers(); renderLegend(); renderCatNote(); renderPointsField();
     if (current) renderSide();
   }
 }
 function renderSettings() {
   document.getElementById('settings-h').textContent = t('settingsLabel');
+  document.getElementById('settings-x').setAttribute('aria-label', t('close'));
   const SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"' +
     ' stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/>' +
     '<path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>';
@@ -2955,27 +2957,32 @@ function renderSettings() {
     ' stroke-linejoin="round" aria-hidden="true"><path d="M20.4 14.3A8.5 8.5 0 0 1 9.7 3.6a8.5 8.5 0 1 0 10.7 10.7z"/></svg>';
   // opts: [value, contents, spoken label] — contents may be an icon, the
   // spoken label is what a screen reader (and the tooltip) gets
-  const seg = (key, opts, cur) => `<div class="seg" role="group">` + opts.map(([v, html, label]) =>
+  const seg = (key, opts, cur, groupLabel) => `<div class="seg" role="group"${groupLabel ? ` aria-label="${esc(groupLabel)}"` : ''}>` + opts.map(([v, html, label]) =>
     `<button type="button" data-k="${key}" data-v="${v}" class="${cur === v ? 'on' : ''}"` +
     ` aria-pressed="${cur === v}"${label ? ` aria-label="${esc(label)}" title="${esc(label)}"` : ''}>${html}</button>`)
     .join('') + `</div>`;
   document.getElementById('settings-body').innerHTML =
     `<div class="row"><div class="t">${esc(t('langLabel'))}</div>` +
-    seg('lang', [['no', 'NO'], ['en', 'EN']], lang) + `</div>` +
+    seg('lang', [['no', 'NO'], ['en', 'EN']], lang, t('langLabel')) + `</div>` +
     `<div class="row"><div class="t">${esc(t('setTheme'))}</div>` +
     seg('theme', [['auto', esc(t('setThemeAuto'))], ['light', SUN, t('setThemeLight')],
-                  ['dark', MOON, t('setThemeDark')]], PREFS.theme) + `</div>` +
+                  ['dark', MOON, t('setThemeDark')]], PREFS.theme, t('setTheme')) + `</div>` +
     `<div class="row"><div class="t">${esc(t('setFont'))}</div>` +
-    seg('font', [['n', esc(t('setFontN'))], ['lg', esc(t('setFontL'))], ['xl', esc(t('setFontX'))]], PREFS.font) + `</div>` +
+    seg('font', [['n', esc(t('setFontN'))], ['lg', esc(t('setFontL'))], ['xl', esc(t('setFontX'))]], PREFS.font, t('setFont')) + `</div>` +
     `<div class="row"><div class="t">${esc(t('setColors'))}</div>` +
-    seg('cvd', [['0', esc(t('setColorsStd'))], ['1', esc(t('setColorsCvd'))]], PREFS.cvd ? '1' : '0') + `</div>` +
+    seg('cvd', [['0', esc(t('setColorsStd'))], ['1', esc(t('setColorsCvd'))]], PREFS.cvd ? '1' : '0', t('setColors')) + `</div>` +
     `<div class="note">${esc(t('setNote'))}</div>`;
   document.getElementById('settings-body').querySelectorAll('.seg button').forEach(b => {
     b.onclick = () => {
-      if (b.dataset.k === 'lang') { setLang(b.dataset.v); return; }   // re-renders this sheet
-      if (b.dataset.k === 'cvd') PREFS.cvd = b.dataset.v === '1';
-      else PREFS[b.dataset.k] = b.dataset.v;
-      applyPrefs(true); renderSettings();
+      const k = b.dataset.k, v = b.dataset.v;
+      if (k === 'lang') setLang(v);            // re-renders this sheet
+      else {
+        if (k === 'cvd') PREFS.cvd = v === '1';
+        else PREFS[k] = v;
+        applyPrefs(true); renderSettings();
+      }
+      // innerHTML replaced the pressed button; put focus back on its successor
+      document.querySelector(`#settings .seg button[data-k="${k}"][data-v="${v}"]`)?.focus();
     };
   });
 }
@@ -2997,15 +3004,20 @@ function closeSettings(fromHistory) {
 // both sides of the match are folded, so "as" finds Ås and "sorumsand" Sørumsand
 const foldName = s => s.toLowerCase()
   .replace(/æ/g, 'ae').replace(/ø/g, 'o').replace(/å/g, 'a').replace(/é/g, 'e')
+  .replace(/[.,-]/g, ' ')
   .replace(/\s+/g, ' ').trim();
 let searchIx = null;
 function runSearch(q) {
+  if (!DATA) return null;                      // a keystroke can beat the fetch
   if (!searchIx) searchIx = DATA.schools.map(s => ({ s, f: foldName(s.name) }));
   const f = foldName(q);
   if (!f) return null;
-  const score = e => e.f.startsWith(f) ? 0
-    : e.f.split(' ').some(w => w.startsWith(f)) ? 1
-    : e.f.includes(f) ? 2 : -1;
+  // the exact tier exists because Norwegian collation puts Å after Z: without
+  // it, typing "Ås" ranked Asker first and Enter opened the wrong school
+  const score = e => e.f === f ? 0
+    : e.f.startsWith(f) ? 1
+    : e.f.split(' ').some(w => w.startsWith(f)) ? 2
+    : e.f.includes(f) ? 3 : -1;
   return searchIx.map(e => [score(e), e.s]).filter(x => x[0] >= 0)
     .sort((a, b) => a[0] - b[0] || a[1].name.localeCompare(b[1].name, 'no'))
     .slice(0, 8).map(x => x[1]);
@@ -3022,18 +3034,29 @@ function renderOvList() {
         `<div class="opt${i === ovAct ? ' act' : ''}" id="ov-opt-${i}" role="option"` +
         ` aria-selected="${i === ovAct}"><span>${esc(s.name)}</span>` +
         `<span class="fy">${esc(s.fylke)}</span></div>`).join('')
-    : `<div class="none">${esc(t('searchNone'))}</div>`;
+    : `<div class="none" role="option" aria-disabled="true">${esc(t('searchNone'))}</div>`;
   q.setAttribute('aria-expanded', String(!!q.value.trim()));
   if (ovAct >= 0) q.setAttribute('aria-activedescendant', 'ov-opt-' + ovAct);
   else q.removeAttribute('aria-activedescendant');
   box.querySelectorAll('.opt').forEach((el, i) => {
+    // mousedown wins the race against blur; the click binding is for assistive
+    // tech, whose activation dispatches click only — pickOv self-guards, so a
+    // mouse firing both is one pick
     el.onmousedown = ev => { ev.preventDefault(); pickOv(i); };
+    el.onclick = ev => { ev.preventDefault(); pickOv(i); };
   });
+  if (ovAct >= 0) document.getElementById('ov-opt-' + ovAct)?.scrollIntoView({ block: 'nearest' });
 }
 function pickOv(i) {
   const s = ovHits[i];
   if (!s) return;
-  closeSearchOv();
+  ovHits = []; ovAct = -1;               // a second event on the same option is a no-op
+  // hide synchronously instead of via closeSearchOv(): its history.back() is
+  // asynchronous, and openSide() below would write the new school's hash onto
+  // an entry the traversal was about to leave — sharing school A's link after
+  // searching for school B
+  document.getElementById('searchov').hidden = true;
+  setModalTrap();
   if (s.lat) {
     const z = Math.max(map.getZoom(), 11);
     prefersStill() ? map.setView([s.lat, s.lon], z) : map.flyTo([s.lat, s.lon], z);
@@ -3044,6 +3067,8 @@ function openSearchOv() {
   const q = document.getElementById('ov-q');
   q.value = ''; ovHits = []; ovAct = -1;
   q.placeholder = t('searchPh');
+  q.setAttribute('aria-label', t('searchLabel'));
+  document.getElementById('ov-box').setAttribute('aria-label', t('searchLabel'));
   renderOvList();
   document.getElementById('searchov').hidden = false;
   setModalTrap();
@@ -3054,14 +3079,17 @@ function closeSearchOv(fromHistory) {
   if (!fromHistory && (history.state || {}).pkSheet) { history.back(); return; }
   document.getElementById('searchov').hidden = true;
   setModalTrap();
+  document.getElementById('searchov-btn')?.focus();
 }
 
 /* ================= geolocation ================= */
 // the position is used for one map move and a marker; it never leaves the page
-let locLayer = null, locBtnEl = null;
+let locLayer = null, locBtnEl = null, locBusy = false;
 function toast(msg) {
   const el = document.getElementById('toast');
-  el.textContent = msg; el.hidden = false;
+  // reveal first: text set inside a hidden live region is not announced
+  el.textContent = ''; el.hidden = false;
+  setTimeout(() => { el.textContent = msg; }, 30);
   clearTimeout(toast._t);
   toast._t = setTimeout(() => { el.hidden = true; }, 4000);
 }
@@ -3088,14 +3116,19 @@ function updateLocateAria() {
   if (!locBtnEl) return;
   locBtnEl.title = t('locBtn');
   locBtnEl.setAttribute('aria-label', t('locBtn'));
+  locBtnEl.setAttribute('aria-pressed', String(!!locLayer));
 }
 function locate() {
+  if (locBusy) return;                  // one fix in flight at a time
   if (locLayer) {                       // second press clears the marker again
     map.removeLayer(locLayer); locLayer = null;
     locBtnEl.classList.remove('on');
+    updateLocateAria();
     return;
   }
+  locBusy = true;
   navigator.geolocation.getCurrentPosition(pos => {
+    locBusy = false;
     const ll = [pos.coords.latitude, pos.coords.longitude];
     locLayer = L.layerGroup([
       L.circle(ll, { radius: pos.coords.accuracy || 0, color: cssVar('--accent'),
@@ -3104,10 +3137,13 @@ function locate() {
                            fillColor: cssVar('--accent'), fillOpacity: 1 })
     ]).addTo(map);
     locBtnEl.classList.add('on');
+    updateLocateAria();
     const z = Math.max(map.getZoom(), 10);
     prefersStill() ? map.setView(ll, z) : map.flyTo(ll, z);
-  }, err => toast(t(err && err.code === 1 ? 'locDenied' : 'locFail')),
-     { timeout: 10000, maximumAge: 60000 });
+  }, err => {
+    locBusy = false;
+    toast(t(err && err.code === 1 ? 'locDenied' : 'locFail'));
+  }, { timeout: 10000, maximumAge: 60000 });
 }
 
 /* ================= grade calculator ================= */
@@ -3172,23 +3208,27 @@ function renderCalc() {
     `<p class="note">${esc(t('calcNote'))}</p>`;
   document.getElementById('calc-body').querySelectorAll('.grades button').forEach(b => {
     b.onclick = () => {
-      const f = b.dataset.f;
-      if (!b.dataset.g) delete calcGrades[f];
-      else calcGrades[f] = +b.dataset.g;
+      const f = b.dataset.f, g = b.dataset.g;
+      if (!g) delete calcGrades[f];
+      else calcGrades[f] = +g;
       saveCalc(); renderCalc();
+      // the rebuild removed the pressed button; focus its successor (or the
+      // row's first grade, when the pressed one was the now-hidden ✕)
+      document.querySelector(`#calc .grades button[data-f="${CSS.escape(f)}"][data-g="${g || '1'}"]`)?.focus();
     };
   });
   const use = document.getElementById('calc-use');
   if (use) use.onclick = () => {
     const m = calcMean();
     if (m === null) return;
-    const pts = (m * 10).toFixed(1);
-    document.getElementById('my-points').value = pts.replace('.', lang === 'no' ? ',' : '.');
-    onPoints(pts);
+    onPoints((m * 10).toFixed(1));       // renderPointsField reprints the field
     closeCalc();
   };
   const reset = document.getElementById('calc-reset');
-  if (reset) reset.onclick = () => { calcGrades = {}; saveCalc(); renderCalc(); };
+  if (reset) reset.onclick = () => {
+    calcGrades = {}; saveCalc(); renderCalc();
+    document.querySelector('#calc .grades button')?.focus();
+  };
 }
 function openCalc() {
   renderCalc();
@@ -3325,7 +3365,8 @@ async function main() {
     if (!touched) map.fitBounds(HOME, { ...framePad(), animate: false });
   });
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    setTiles(); drawMarkers(); renderLegend();
+    if (PREFS.theme !== 'auto') return;    // a pinned theme does not follow the OS
+    setTiles(); drawMarkers(); renderLegend(); renderCatNote(); renderPointsField();
     if (current) renderSide();
   });
   document.getElementById('side').setAttribute('inert', '');
@@ -3343,7 +3384,7 @@ async function main() {
     const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '');
     if (((ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === 'k') || (ev.key === '/' && !typing)) {
       ev.preventDefault();
-      if (document.getElementById('searchov').hidden) openSearchOv();
+      if (!anySheetOpen()) openSearchOv();   // never stack two aria-modal sheets
     }
   });
   let reframe;
@@ -3360,20 +3401,23 @@ async function main() {
     // and re-pushes the side panel's entry the pop just consumed, so the next
     // back still closes the panel instead of leaving the page
     const sideOpen = document.getElementById('side').classList.contains('open');
-    if (!document.getElementById('contact').hidden || !document.getElementById('intro').hidden
-        || !document.getElementById('settings').hidden || !document.getElementById('calc').hidden
-        || !document.getElementById('searchov').hidden) {
+    if (anySheetOpen()) {
+      // same priority order as the Escape handler, so the two agree
       if (!document.getElementById('contact').hidden) closeContact(true);
       else if (!document.getElementById('intro').hidden) closeIntro(true);
+      else if (!document.getElementById('settings').hidden) closeSettings(true);
       else if (!document.getElementById('calc').hidden) closeCalc(true);
-      else if (!document.getElementById('searchov').hidden) closeSearchOv(true);
-      else closeSettings(true);
+      else closeSearchOv(true);
       if (sideOpen && !(history.state || {}).pkSide) {
         try { history.pushState({ pkSide: 1 }, ''); } catch (e) {}
       }
       return;
     }
-    if (sideOpen) closeSide(true);
+    if (sideOpen) { closeSide(true); return; }
+    // forward-navigation onto a school entry reopens it, so the address bar
+    // never claims a school that is not showing
+    const fwd = (history.state || {}).pkSide && schoolFromUrl();
+    if (fwd) openSide(fwd);
   });
   document.addEventListener('keydown', ev => {
     if (ev.key !== 'Escape') return;
@@ -3387,8 +3431,10 @@ async function main() {
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
   const linked = schoolFromUrl();
   if (linked) {
-    touched = true;                    // the deferred HOME refit must not undo this
-    if (linked.lat) map.setView([linked.lat, linked.lon], 11, { animate: false });
+    if (linked.lat) {
+      touched = true;                  // the deferred HOME refit must not undo this
+      map.setView([linked.lat, linked.lon], 11, { animate: false });
+    }
     openSide(linked);
   }
   performance.mark('pk:boot-done');

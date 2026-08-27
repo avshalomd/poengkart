@@ -76,6 +76,15 @@ def _parse_innsyn_2020(path):
                 for r in tbl:
                     if not r or len(r) < 2:
                         continue
+                    if len(r) > 5:
+                        # a one-row table can come back grid-mangled, with the
+                        # real cells padded by empty columns (seen once: the
+                        # Dombås Studiespesialisering row split into 7 cells,
+                        # which silently dropped the school's only 2020 line).
+                        # Compact and reread only when the shape is unambiguous.
+                        nz = [c for c in r if c and c.strip()]
+                        if len(nz) == 3:
+                            r = nz
                     if r[0]:
                         head = common.squash(r[0].replace('\n', ' '))
                         if head and head != 'Skole':

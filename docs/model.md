@@ -39,7 +39,7 @@ series have exactly one year.
 
     y = μ + school + category + programme|level + series + county×year + round offset + ε
 
-**Fill** (on all 9 350 cells that competed on points — number, 0,0 or "no waitlist"):
+**Fill** (on all 9 351 cells that competed on points — number, 0,0 or "no waitlist"):
 
     logit P(filled) = ν + school + category + programme|level + series + county×year + round-3 shift
 
@@ -122,7 +122,7 @@ The 80% interval (m ± 1.2816 s) contained the published figure 81% of the time.
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.97 filled 0.83 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = −0.130 + 0.429 logit π). Held-out Brier 0.159 against 0.202 for the
+(logit π′ = −0.130 + 0.428 logit π). Held-out Brier 0.159 against 0.202 for the
 base rate.
 
 **Chance, held-out 2025–26**, for every cell and every score in
@@ -130,16 +130,16 @@ base rate.
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 1.6% | 630 |
+| 0–10% | 1.6% | 627 |
 | 10–20% | 8.1% | 1 054 |
-| 20–30% | 18% | 1 352 |
-| 30–40% | 32% | 1 232 |
-| 40–50% | 40% | 996 |
+| 20–30% | 18% | 1 350 |
+| 30–40% | 32% | 1 233 |
+| 40–50% | 40% | 1 000 |
 | 50–60% | 53% | 912 |
-| 60–70% | 66% | 1 012 |
-| 70–80% | 80% | 1 071 |
+| 60–70% | 66% | 1 010 |
+| 70–80% | 80% | 1 074 |
 | 80–90% | 88% | 1 248 |
-| 90–100% | 98.6% | 8 589 |
+| 90–100% | 98.6% | 8 588 |
 
 Brier 0.092, against 0.152 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's

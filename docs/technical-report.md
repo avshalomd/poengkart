@@ -15,7 +15,7 @@ points of the last applicant admitted to each programme at each school — is
 published by only 7 of 15 intake areas, as PDF tables with inconsistent
 structure, retention, and semantics. We assemble all retrievable publications
 into an open, register-normalised panel: 195 schools, 2,223 programme rows,
-10,100 observations, 2017–2026, keyed to Norway's national programme register
+10,101 observations, 2017–2026, keyed to Norway's national programme register
 (Grep). On this censored panel we forecast the next intake as the question
 families actually ask — the probability of admission given the applicant's
 points — using a hurdle model: a hierarchical logistic model for whether a
@@ -71,7 +71,7 @@ open dataset, forecasting model, and deployed application. Our contributions
 are as follows:
 
 - **An open, register-normalised dataset** of all retrievable published
-  thresholds — 195 schools, 2,223 programme rows, 10,100 cell-level
+  thresholds — 195 schools, 2,223 programme rows, 10,101 cell-level
   observations across 7 counties and the years 2017–2026 — in which every
   row is resolved against the national Grep register and every cell's state
   (numeric threshold, filled at zero, no waiting list, quota-based
@@ -236,7 +236,7 @@ released to us under a freedom-of-information request in August 2026, as
 machine-readable workbooks and second intake round only — they were never
 published), Buskerud 2024–2025, and Trøndelag 2025 only. Of the 1,846
 school×programme series, 525 have exactly one observed year. Among the
-10,100 cells, 9,350 competed on points (and thus inform the fill model) and
+10,101 cells, 9,351 competed on points (and thus inform the fill model) and
 6,221 carry a numeric threshold (and thus inform the level model). The
 non-publishing intake areas either state that they choose not to publish
 (Agder, Nordland, Østfold), publish aggregate statistics without thresholds,
@@ -298,7 +298,7 @@ so a county's market level moves smoothly and its latest state is the
 forecast for next year; an innovation spans two *consecutive published*
 years, so a publication gap is one step, not one step per calendar year.
 The level component is fitted on the 6,221 cells with a numeric threshold;
-the fill component on all 9,350 cells that competed on points. The hierarchy exists to borrow strength: a series with
+the fill component on all 9,351 cells that competed on points. The hierarchy exists to borrow strength: a series with
 one observed year inherits its level from the hundreds of comparable series
 around it — partially pooled toward its school, programme, and county means
 — instead of being trusted alone.
@@ -392,7 +392,7 @@ cells given $\pi = 0.97$ filled 84% of the time — the series effects fit the
 training panel too well.
 We therefore recalibrate by Platt scaling, fitting
 
-$$\operatorname{logit} \pi' \;=\; -0.130 \;+\; 0.429 \, \operatorname{logit} \pi \tag{5}$$
+$$\operatorname{logit} \pi' \;=\; -0.130 \;+\; 0.428 \, \operatorname{logit} \pi \tag{5}$$
 
 on the calibration years only, which are disjoint from the held-out
 evaluation years. The slope well below 1 is a uniform confidence haircut.
@@ -487,16 +487,16 @@ shows the same data as a diagram).
 
 | Predicted | Observed | n |
 |---|---|---|
-| 0–10% | 1.6% | 630 |
+| 0–10% | 1.6% | 627 |
 | 10–20% | 8.1% | 1,054 |
-| 20–30% | 18% | 1,352 |
-| 30–40% | 32% | 1,232 |
-| 40–50% | 40% | 996 |
+| 20–30% | 18% | 1,350 |
+| 30–40% | 32% | 1,233 |
+| 40–50% | 40% | 1,000 |
 | 50–60% | 53% | 912 |
-| 60–70% | 66% | 1,012 |
-| 70–80% | 80% | 1,071 |
+| 60–70% | 66% | 1,010 |
+| 70–80% | 80% | 1,074 |
 | 80–90% | 88% | 1,248 |
-| 90–100% | 98.6% | 8,589 |
+| 90–100% | 98.6% | 8,588 |
 
 From 30% upward the forecast tracks observed frequency within five points.
 Below 30% it is optimistic — a stated 15% was realised at about 8% — a
@@ -805,12 +805,12 @@ Held-out Brier 0.159 against 0.202 for the base-rate forecaster.
 
 | Predicted | Observed | n |
 |---|---|---|
-| 10–20% | 10% | 20 |
-| 20–30% | 19% | 100 |
+| 10–20% | 10.5% | 19 |
+| 20–30% | 18% | 100 |
 | 30–40% | 32% | 145 |
-| 40–50% | 52% | 200 |
+| 40–50% | 51% | 201 |
 | 50–60% | 66% | 172 |
-| 60–70% | 68% | 299 |
+| 60–70% | 68% | 300 |
 | 70–80% | 79% | 542 |
-| 80–90% | 87% | 484 |
-| 90–100% | 97.7% | 300 |
+| 80–90% | 87% | 485 |
+| 90–100% | 97.7% | 298 |

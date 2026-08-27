@@ -24,14 +24,14 @@
 <line x1='70.0' y1='20.0' x2='540.0' y2='20.0' stroke='#e6e9ee' stroke-width='1'/>
 <text x='540.0' y='452' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='middle'>1.0</text>
 <text x='60' y='24.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>1.0</text>
-<rect x='72.0' y='422.1' width='43.0' height='7.9' fill='#8a8f98' opacity='0.18'/>
+<rect x='72.0' y='422.2' width='43.0' height='7.8' fill='#8a8f98' opacity='0.18'/>
 <rect x='119.0' y='416.9' width='43.0' height='13.1' fill='#8a8f98' opacity='0.18'/>
 <rect x='166.0' y='413.2' width='43.0' height='16.8' fill='#8a8f98' opacity='0.18'/>
 <rect x='213.0' y='414.6' width='43.0' height='15.4' fill='#8a8f98' opacity='0.18'/>
-<rect x='260.0' y='417.6' width='43.0' height='12.4' fill='#8a8f98' opacity='0.18'/>
+<rect x='260.0' y='417.5' width='43.0' height='12.5' fill='#8a8f98' opacity='0.18'/>
 <rect x='307.0' y='418.6' width='43.0' height='11.4' fill='#8a8f98' opacity='0.18'/>
 <rect x='354.0' y='417.4' width='43.0' height='12.6' fill='#8a8f98' opacity='0.18'/>
-<rect x='401.0' y='416.7' width='43.0' height='13.3' fill='#8a8f98' opacity='0.18'/>
+<rect x='401.0' y='416.6' width='43.0' height='13.4' fill='#8a8f98' opacity='0.18'/>
 <rect x='448.0' y='414.4' width='43.0' height='15.6' fill='#8a8f98' opacity='0.18'/>
 <rect x='495.0' y='323.0' width='43.0' height='107.0' fill='#8a8f98' opacity='0.18'/>
 <line x1='70.0' y1='430.0' x2='540.0' y2='20.0' stroke='#8a8f98' stroke-width='1.5' stroke-dasharray='5 4'/>
@@ -39,9 +39,9 @@
 <circle cx='138.6' cy='396.8' r='5.5' fill='#2b6cb8'/>
 <circle cx='188.4' cy='357.0' r='5.5' fill='#2b6cb8'/>
 <circle cx='233.1' cy='299.2' r='5.5' fill='#2b6cb8'/>
-<circle cx='280.1' cy='264.8' r='5.5' fill='#2b6cb8'/>
+<circle cx='280.1' cy='265.6' r='5.5' fill='#2b6cb8'/>
 <circle cx='329.4' cy='214.8' r='5.5' fill='#2b6cb8'/>
-<circle cx='376.0' cy='159.4' r='5.5' fill='#2b6cb8'/>
+<circle cx='376.0' cy='159.8' r='5.5' fill='#2b6cb8'/>
 <circle cx='423.0' cy='103.6' r='5.5' fill='#2b6cb8'/>
 <circle cx='470.4' cy='69.6' r='5.5' fill='#2b6cb8'/>
 <circle cx='531.5' cy='25.7' r='5.5' fill='#2b6cb8'/>
