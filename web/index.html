@@ -1276,10 +1276,6 @@ const T = {
     no: 'Skriv et tall mellom 0 og 70 – for eksempel 42,5.',
     en: 'Enter a number between 0 and 70 — for example 42.5.',
   },
-  ptsNoteEmpty: {
-    no: 'Karaktersnitt × 10. Kartet viser da sjansen din for plass ved neste inntak.',
-    en: 'Grade average × 10. The map then shows your chance of a place at the next intake.',
-  },
   ptsNoteSet: {
     no: 'Sjanse for plass ved neste inntak: {likely} sannsynlig · {realistic} mulig · {long} lite sannsynlig. En pekepinn fra historikken, ikke et løfte.',
     en: 'Chance of a place at the next intake: {likely} likely · {realistic} possible · {long} unlikely. A pointer from the history, not a promise.',
@@ -1771,8 +1767,10 @@ function renderPointsField() {
   x.setAttribute('aria-label', t('ptsClear'));
   const note = document.getElementById('pts-note');
   note.classList.toggle('bad', bad);
+  // no note under an empty field — the calculator icon explains itself
+  note.hidden = !bad && myPoints === null;
   note.innerHTML = bad ? esc(t('ptsBad'))
-    : myPoints === null ? esc(t('ptsNoteEmpty'))
+    : myPoints === null ? ''
     : esc(t('ptsNoteSet')).replace(/\{(likely|realistic|long)\}/g,
         (_, b) => `<span class="k" style="background:${bucketColor(b)}"></span>`);
 }
