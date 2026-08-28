@@ -103,6 +103,11 @@ Ordered by expected value per conversation.
    | Trøndelag | inntak@trondelagfylke.no | 74 17 40 00 |
    | Vestland | via vestlandfylke.no contact form | publishes everything already |
    | Møre og Romsdal | inntak@mrfylke.no | 71 28 01 50 · Power BI holder |
+
+Novari-status (28.08.2026): Natalia K.-Gundersen — tjenesteansvarlig VIGO og
+vilbli.no — svarte på samarbeidsbrevet: legg saken inn i Novari Servicedesk
+(support.jira.novari.no, portal 4) med presisering av formål, målgruppe og
+rolle. Ikke et avslag — en saksgang, hos riktig person.
    | Agder | inntak@agderfk.no | 38 05 00 00 |
    | Vestfold | inntak@vestfoldfylke.no | 33 34 41 72 |
    | Telemark | inntak@telemarkfylke.no | 35 91 73 70 |
