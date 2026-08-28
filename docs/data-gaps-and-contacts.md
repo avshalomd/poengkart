@@ -107,7 +107,8 @@ Ordered by expected value per conversation.
 Novari-status (28.08.2026): Natalia K.-Gundersen — tjenesteansvarlig VIGO og
 vilbli.no — svarte på samarbeidsbrevet: legg saken inn i Novari Servicedesk
 (support.jira.novari.no, portal 4) med presisering av formål, målgruppe og
-rolle. Ikke et avslag — en saksgang, hos riktig person.
+rolle. Ikke et avslag — en saksgang, hos riktig person. Sak registrert
+samme dag: **SERVICE-1779** (support.jira.novari.no, status OPEN).
    | Agder | inntak@agderfk.no | 38 05 00 00 |
    | Vestfold | inntak@vestfoldfylke.no | 33 34 41 72 |
    | Telemark | inntak@telemarkfylke.no | 35 91 73 70 |
