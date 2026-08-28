@@ -1123,9 +1123,14 @@ const T = {
                en: n => `${n} schools · each school's latest published year` },
   listColSchool: { no: 'Skole', en: 'School' },
   listColFylke:  { no: 'Fylke', en: 'County' },
-  listColVal:    { no: 'Snitt poenggrense', en: 'Avg. threshold' },
-  listColDelta:  { no: 'Endring fra året før', en: 'Change from prior year' },
-  listColChance: { no: x => `Sjanse med ${x} poeng`, en: x => `Chance with ${x} points` },
+  listColVal:    { no: 'Snitt', en: 'Avg.' },
+  listColValTip: { no: 'Snitt poenggrense, siste publiserte år',
+                   en: 'Average threshold, latest published year' },
+  listColDelta:  { no: 'Endring', en: 'Change' },
+  listColDeltaTip: { no: 'Endring fra året før', en: 'Change from the prior year' },
+  listColChance: { no: 'Sjanse', en: 'Chance' },
+  listColChanceTip: { no: x => `Sjanse for plass med ${x} poeng ved neste inntak`,
+                      en: x => `Chance of a place with ${x} points at the next intake` },
   listOpen:   { no: 'Uten venteliste', en: 'No waiting list' },
   listNoData: { no: 'Ikke data', en: 'No data' },
   listChanceCell: { no: (l, n) => `${l} av ${n} sannsynlig`, en: (l, n) => `${l} of ${n} likely` },
@@ -3316,9 +3321,9 @@ function renderListView() {
   const arrow = k => listSort.key === k ? (listSort.dir < 0 ? ' ↓' : ' ↑') : '';
   const ariaSort = k => listSort.key === k
     ? ` aria-sort="${listSort.dir < 0 ? 'descending' : 'ascending'}"` : '';
-  const th = (k, label, num) =>
+  const th = (k, label, num, tip) =>
     `<th class="${num ? 'num ' : ''}${listSort.key === k ? 'on' : ''}"${ariaSort(k)} scope="col"` +
-    ` onclick="sortList('${k}')">${esc(label)}${arrow(k)}</th>`;
+    `${tip ? ` title="${esc(tip)}"` : ''} onclick="sortList('${k}')">${esc(label)}${arrow(k)}</th>`;
   const catLabel = mapCat === 'all' ? t('listTitleAll')
     : (document.querySelector(`#map-cat option[value="${mapCat}"]`)?.textContent || mapCat);
   const fyLabel = allF ? (lang === 'no' ? 'hele landet' : 'all of Norway') : mapFylke;
@@ -3341,9 +3346,9 @@ function renderListView() {
     `<table><thead><tr>` +
     th('name', t('listColSchool')) +
     (allF ? th('fylke', t('listColFylke')) : '') +
-    th('value', t('listColVal'), true) +
-    th('delta', t('listColDelta'), true) +
-    (chance ? th('chance', t('listColChance', fmt(myPoints))) : '') +
+    th('value', t('listColVal'), true, t('listColValTip')) +
+    th('delta', t('listColDelta'), true, t('listColDeltaTip')) +
+    (chance ? th('chance', t('listColChance'), false, t('listColChanceTip', fmt(myPoints))) : '') +
     `</tr></thead><tbody>` +
     rows.map((r, i) =>
       `<tr tabindex="0" data-i="${i}" aria-label="${esc(t('listRowAria', r.s.name))}">` +
