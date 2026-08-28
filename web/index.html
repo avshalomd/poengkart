@@ -283,6 +283,11 @@
   }
   /* only the table scrolls sideways on a phone — header and footer stay put */
   #listview .tblwrap { overflow-x: auto; }
+  /* the floating search/help/settings cluster covers the card's top-right
+     corner until the viewport is wide enough for the card to end before it */
+  @media (min-width: 761px) and (max-width: 1560px) {
+    #listview .lhead { padding-right: 136px; }
+  }
   #listview .lhead { display: flex; justify-content: space-between; align-items: baseline;
                      gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
   #listview .lhead .t { font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
