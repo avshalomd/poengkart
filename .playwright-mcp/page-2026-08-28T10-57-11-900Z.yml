@@ -1,0 +1,1222 @@
+- generic [ref=f1e1]:
+  - link "Hopp til filtrene" [ref=f1e2] [cursor=pointer]:
+    - /url: "#panel"
+  - generic [ref=f1e3]:
+    - generic [ref=f1e150]:
+      - generic [ref=f1e151]:
+        - generic [ref=f1e152]: Alle utdanningsprogram · hele landet
+        - generic [ref=f1e153]: 195 skoler · siste publiserte år per skole
+      - table [ref=f1e154]:
+        - rowgroup [ref=f1e155]:
+          - row [ref=f1e156]:
+            - columnheader "Skole" [ref=f1e157] [cursor=pointer]
+            - columnheader "Fylke" [ref=f1e158] [cursor=pointer]
+            - columnheader "Snitt ↓" [ref=f1e159] [cursor=pointer]
+            - columnheader "Endring" [ref=f1e160] [cursor=pointer]
+        - rowgroup [ref=f1e161]:
+          - row "Åpne Langhaugen videregående skole" [ref=f1e162] [cursor=pointer]:
+            - cell "Langhaugen videregående skole" [ref=f1e163]
+            - cell "Vestland" [ref=f1e164]
+            - cell "51,8" [ref=f1e165]:
+              - generic "2026" [ref=f1e166]: 51,8
+            - cell "+1,3" [ref=f1e167]
+          - row "Åpne Hartvig Nissens skole" [ref=f1e168] [cursor=pointer]:
+            - cell "Hartvig Nissens skole" [ref=f1e169]
+            - cell "Oslo" [ref=f1e170]
+            - cell "50,3" [ref=f1e171]:
+              - generic "2026" [ref=f1e172]: 50,3
+            - cell "+3,2" [ref=f1e173]
+          - row "Åpne Foss videregående skole" [ref=f1e174] [cursor=pointer]:
+            - cell "Foss videregående skole" [ref=f1e175]
+            - cell "Oslo" [ref=f1e176]
+            - cell "50,0" [ref=f1e177]:
+              - generic "2026" [ref=f1e178]: 50,0
+            - cell "+0,6" [ref=f1e179]
+          - row "Åpne Nadderud" [ref=f1e180] [cursor=pointer]:
+            - cell "Nadderud" [ref=f1e181]
+            - cell "Akershus" [ref=f1e182]
+            - cell "48,0" [ref=f1e183]:
+              - generic "2026" [ref=f1e184]: 48,0
+            - cell "-0,3" [ref=f1e185]
+          - row "Åpne Valle Hovin videregående skole" [ref=f1e186] [cursor=pointer]:
+            - cell "Valle Hovin videregående skole" [ref=f1e187]
+            - cell "Oslo" [ref=f1e188]
+            - cell "48,0" [ref=f1e189]:
+              - generic "2026" [ref=f1e190]: 48,0
+            - cell "+0,2" [ref=f1e191]
+          - row "Åpne Asker" [ref=f1e192] [cursor=pointer]:
+            - cell "Asker" [ref=f1e193]
+            - cell "Akershus" [ref=f1e194]
+            - cell "47,8" [ref=f1e195]:
+              - generic "2026" [ref=f1e196]: 47,8
+            - cell "+5,3" [ref=f1e197]
+          - row "Åpne Oslo katedralskole" [ref=f1e198] [cursor=pointer]:
+            - cell "Oslo katedralskole" [ref=f1e199]
+            - cell "Oslo" [ref=f1e200]
+            - cell "47,7" [ref=f1e201]:
+              - generic "2026" [ref=f1e202]: 47,7
+            - cell "+1,7" [ref=f1e203]
+          - row "Åpne Laksevåg og Bergen Maritime videregående skole" [ref=f1e204] [cursor=pointer]:
+            - cell "Laksevåg og Bergen Maritime videregående skole" [ref=f1e205]
+            - cell "Vestland" [ref=f1e206]
+            - cell "47,1" [ref=f1e207]:
+              - generic "2026" [ref=f1e208]: 47,1
+            - cell "+1,2" [ref=f1e209]
+          - row "Åpne Persbråten videregående skole" [ref=f1e210] [cursor=pointer]:
+            - cell "Persbråten videregående skole" [ref=f1e211]
+            - cell "Oslo" [ref=f1e212]
+            - cell "46,2" [ref=f1e213]:
+              - generic "2026" [ref=f1e214]: 46,2
+            - cell "+1,9" [ref=f1e215]
+          - row "Åpne Edvard Munch videregående skole" [ref=f1e216] [cursor=pointer]:
+            - cell "Edvard Munch videregående skole" [ref=f1e217]
+            - cell "Oslo" [ref=f1e218]
+            - cell "45,7" [ref=f1e219]:
+              - generic "2026" [ref=f1e220]: 45,7
+            - cell "-0,2" [ref=f1e221]
+          - row "Åpne Elvebakken videregående skole" [ref=f1e222] [cursor=pointer]:
+            - cell "Elvebakken videregående skole" [ref=f1e223]
+            - cell "Oslo" [ref=f1e224]
+            - cell "45,6" [ref=f1e225]:
+              - generic "2026" [ref=f1e226]: 45,6
+            - cell "-0,1" [ref=f1e227]
+          - row "Åpne Ski" [ref=f1e228] [cursor=pointer]:
+            - cell "Ski" [ref=f1e229]
+            - cell "Akershus" [ref=f1e230]
+            - cell "45,6" [ref=f1e231]:
+              - generic "2026" [ref=f1e232]: 45,6
+            - cell "+0,8" [ref=f1e233]
+          - row "Åpne Amalie Skram videregående skole" [ref=f1e234] [cursor=pointer]:
+            - cell "Amalie Skram videregående skole" [ref=f1e235]
+            - cell "Vestland" [ref=f1e236]
+            - cell "45,0" [ref=f1e237]:
+              - generic "2026" [ref=f1e238]: 45,0
+            - cell "-1,3" [ref=f1e239]
+          - row "Åpne Lillestrøm" [ref=f1e240] [cursor=pointer]:
+            - cell "Lillestrøm" [ref=f1e241]
+            - cell "Akershus" [ref=f1e242]
+            - cell "45,0" [ref=f1e243]:
+              - generic "2026" [ref=f1e244]: 45,0
+            - cell "+3,3" [ref=f1e245]
+          - row "Åpne Vika videregående skole" [ref=f1e246] [cursor=pointer]:
+            - cell "Vika videregående skole" [ref=f1e247]
+            - cell "Oslo" [ref=f1e248]
+            - cell "45,0" [ref=f1e249]:
+              - generic "2026" [ref=f1e250]: 45,0
+            - cell "0,0" [ref=f1e251]
+          - row "Åpne St.Olav videregående skole" [ref=f1e252] [cursor=pointer]:
+            - cell "St.Olav videregående skole" [ref=f1e253]
+            - cell "Rogaland" [ref=f1e254]
+            - cell "44,5" [ref=f1e255]:
+              - generic "2025" [ref=f1e256]: 44,5
+            - cell "+8,1" [ref=f1e257]
+          - row "Åpne Lambertseter videregående skole" [ref=f1e258] [cursor=pointer]:
+            - cell "Lambertseter videregående skole" [ref=f1e259]
+            - cell "Oslo" [ref=f1e260]
+            - cell "44,3" [ref=f1e261]:
+              - generic "2026" [ref=f1e262]: 44,3
+            - cell "+0,7" [ref=f1e263]
+          - row "Åpne Bergen katedralskole" [ref=f1e264] [cursor=pointer]:
+            - cell "Bergen katedralskole" [ref=f1e265]
+            - cell "Vestland" [ref=f1e266]
+            - cell "44,1" [ref=f1e267]:
+              - generic "2026" [ref=f1e268]: 44,1
+            - cell "-4,5" [ref=f1e269]
+          - row "Åpne Dønski" [ref=f1e270] [cursor=pointer]:
+            - cell "Dønski" [ref=f1e271]
+            - cell "Akershus" [ref=f1e272]
+            - cell "44,1" [ref=f1e273]:
+              - generic "2026" [ref=f1e274]: 44,1
+            - cell "+2,4" [ref=f1e275]
+          - row "Åpne Øvrebyen videregående skole" [ref=f1e276] [cursor=pointer]:
+            - cell "Øvrebyen videregående skole" [ref=f1e277]
+            - cell "Innlandet" [ref=f1e278]
+            - cell "43,3" [ref=f1e279]:
+              - generic "2025" [ref=f1e280]: 43,3
+            - cell "+6,6" [ref=f1e281]
+          - row "Åpne Os gymnas" [ref=f1e282] [cursor=pointer]:
+            - cell "Os gymnas" [ref=f1e283]
+            - cell "Vestland" [ref=f1e284]
+            - cell "42,7" [ref=f1e285]:
+              - generic "2025" [ref=f1e286]: 42,7
+            - cell "+0,2" [ref=f1e287]
+          - row "Åpne Nydalen videregående skole" [ref=f1e288] [cursor=pointer]:
+            - cell "Nydalen videregående skole" [ref=f1e289]
+            - cell "Oslo" [ref=f1e290]
+            - cell "42,6" [ref=f1e291]:
+              - generic "2026" [ref=f1e292]: 42,6
+            - cell "-1,7" [ref=f1e293]
+          - row "Åpne Valler" [ref=f1e294] [cursor=pointer]:
+            - cell "Valler" [ref=f1e295]
+            - cell "Akershus" [ref=f1e296]
+            - cell "42,5" [ref=f1e297]:
+              - generic "2026" [ref=f1e298]: 42,5
+            - cell "-3,8" [ref=f1e299]
+          - row "Åpne Roald Amundsen" [ref=f1e300] [cursor=pointer]:
+            - cell "Roald Amundsen" [ref=f1e301]
+            - cell "Akershus" [ref=f1e302]
+            - cell "42,3" [ref=f1e303]:
+              - generic "2026" [ref=f1e304]: 42,3
+            - cell "+1,0" [ref=f1e305]
+          - row "Åpne Strinda videregående skole" [ref=f1e306] [cursor=pointer]:
+            - cell "Strinda videregående skole" [ref=f1e307]
+            - cell "Trøndelag" [ref=f1e308]
+            - cell "42,2" [ref=f1e309]:
+              - generic "2025" [ref=f1e310]: 42,2
+            - cell "—" [ref=f1e311]
+          - row "Åpne Thora Storm videregående skole" [ref=f1e312] [cursor=pointer]:
+            - cell "Thora Storm videregående skole" [ref=f1e313]
+            - cell "Trøndelag" [ref=f1e314]
+            - cell "41,8" [ref=f1e315]:
+              - generic "2025" [ref=f1e316]: 41,8
+            - cell "—" [ref=f1e317]
+          - row "Åpne Ullern videregående skole" [ref=f1e318] [cursor=pointer]:
+            - cell "Ullern videregående skole" [ref=f1e319]
+            - cell "Oslo" [ref=f1e320]
+            - cell "41,6" [ref=f1e321]:
+              - generic "2026" [ref=f1e322]: 41,6
+            - cell "+5,7" [ref=f1e323]
+          - row "Åpne Mølla videregående skole" [ref=f1e324] [cursor=pointer]:
+            - cell "Mølla videregående skole" [ref=f1e325]
+            - cell "Oslo" [ref=f1e326]
+            - cell "41,4" [ref=f1e327]:
+              - generic "2026" [ref=f1e328]: 41,4
+            - cell "—" [ref=f1e329]
+          - row "Åpne Gausdal videregående skole" [ref=f1e330] [cursor=pointer]:
+            - cell "Gausdal videregående skole" [ref=f1e331]
+            - cell "Innlandet" [ref=f1e332]
+            - cell "41,3" [ref=f1e333]:
+              - generic "2025" [ref=f1e334]: 41,3
+            - cell "+6,8" [ref=f1e335]
+          - row "Åpne Tertnes vidaregåande skule" [ref=f1e336] [cursor=pointer]:
+            - cell "Tertnes vidaregåande skule" [ref=f1e337]
+            - cell "Vestland" [ref=f1e338]
+            - cell "41,3" [ref=f1e339]:
+              - generic "2026" [ref=f1e340]: 41,3
+            - cell "-0,6" [ref=f1e341]
+          - row "Åpne Ås" [ref=f1e342] [cursor=pointer]:
+            - cell "Ås" [ref=f1e343]
+            - cell "Akershus" [ref=f1e344]
+            - cell "41,0" [ref=f1e345]:
+              - generic "2026" [ref=f1e346]: 41,0
+            - cell "+0,8" [ref=f1e347]
+          - row "Åpne Vardafjell videregående skole" [ref=f1e348] [cursor=pointer]:
+            - cell "Vardafjell videregående skole" [ref=f1e349]
+            - cell "Rogaland" [ref=f1e350]
+            - cell "41,0" [ref=f1e351]:
+              - generic "2025" [ref=f1e352]: 41,0
+            - cell "+1,0" [ref=f1e353]
+          - row "Åpne Stange videregående skole" [ref=f1e354] [cursor=pointer]:
+            - cell "Stange videregående skole" [ref=f1e355]
+            - cell "Innlandet" [ref=f1e356]
+            - cell "40,8" [ref=f1e357]:
+              - generic "2025" [ref=f1e358]: 40,8
+            - cell "+6,0" [ref=f1e359]
+          - row "Åpne Kongshavn videregående skole" [ref=f1e360] [cursor=pointer]:
+            - cell "Kongshavn videregående skole" [ref=f1e361]
+            - cell "Oslo" [ref=f1e362]
+            - cell "40,7" [ref=f1e363]:
+              - generic "2026" [ref=f1e364]: 40,7
+            - cell "+0,7" [ref=f1e365]
+          - row "Åpne Fyllingsdalen videregående skole" [ref=f1e366] [cursor=pointer]:
+            - cell "Fyllingsdalen videregående skole" [ref=f1e367]
+            - cell "Vestland" [ref=f1e368]
+            - cell "40,7" [ref=f1e369]:
+              - generic "2026" [ref=f1e370]: 40,7
+            - cell "-0,1" [ref=f1e371]
+          - row "Åpne Bleiker" [ref=f1e372] [cursor=pointer]:
+            - cell "Bleiker" [ref=f1e373]
+            - cell "Akershus" [ref=f1e374]
+            - cell "40,6" [ref=f1e375]:
+              - generic "2026" [ref=f1e376]: 40,6
+            - cell "+4,4" [ref=f1e377]
+          - row "Åpne Drammen" [ref=f1e378] [cursor=pointer]:
+            - cell "Drammen" [ref=f1e379]
+            - cell "Buskerud" [ref=f1e380]
+            - cell "39,4" [ref=f1e381]:
+              - generic "2025" [ref=f1e382]: 39,4
+            - cell "-1,8" [ref=f1e383]
+          - row "Åpne Johan Bojer videregående skole" [ref=f1e384] [cursor=pointer]:
+            - cell "Johan Bojer videregående skole" [ref=f1e385]
+            - cell "Trøndelag" [ref=f1e386]
+            - cell "39,4" [ref=f1e387]:
+              - generic "2025" [ref=f1e388]: 39,4
+            - cell "—" [ref=f1e389]
+          - row "Åpne Heimdal videregående skole" [ref=f1e390] [cursor=pointer]:
+            - cell "Heimdal videregående skole" [ref=f1e391]
+            - cell "Trøndelag" [ref=f1e392]
+            - cell "39,0" [ref=f1e393]:
+              - generic "2025" [ref=f1e394]: 39,0
+            - cell "—" [ref=f1e395]
+          - row "Åpne Kuben videregående skole" [ref=f1e396] [cursor=pointer]:
+            - cell "Kuben videregående skole" [ref=f1e397]
+            - cell "Oslo" [ref=f1e398]
+            - cell "38,9" [ref=f1e399]:
+              - generic "2026" [ref=f1e400]: 38,9
+            - cell "+0,6" [ref=f1e401]
+          - row "Åpne Skeisvang videregående skole" [ref=f1e402] [cursor=pointer]:
+            - cell "Skeisvang videregående skole" [ref=f1e403]
+            - cell "Rogaland" [ref=f1e404]
+            - cell "38,9" [ref=f1e405]:
+              - generic "2025" [ref=f1e406]: 38,9
+            - cell "+0,8" [ref=f1e407]
+          - row "Åpne St.Hallvard" [ref=f1e408] [cursor=pointer]:
+            - cell "St.Hallvard" [ref=f1e409]
+            - cell "Buskerud" [ref=f1e410]
+            - cell "38,8" [ref=f1e411]:
+              - generic "2025" [ref=f1e412]: 38,8
+            - cell "-2,6" [ref=f1e413]
+          - row "Åpne Kvinnherad vidaregåande skule" [ref=f1e414] [cursor=pointer]:
+            - cell "Kvinnherad vidaregåande skule" [ref=f1e415]
+            - cell "Vestland" [ref=f1e416]
+            - cell "38,8" [ref=f1e417]:
+              - generic "2026" [ref=f1e418]: 38,8
+            - cell "+2,9" [ref=f1e419]
+          - row "Åpne Lørenskog" [ref=f1e420] [cursor=pointer]:
+            - cell "Lørenskog" [ref=f1e421]
+            - cell "Akershus" [ref=f1e422]
+            - cell "38,7" [ref=f1e423]:
+              - generic "2026" [ref=f1e424]: 38,7
+            - cell "-1,4" [ref=f1e425]
+          - row "Åpne Bjerke videregående skole" [ref=f1e426] [cursor=pointer]:
+            - cell "Bjerke videregående skole" [ref=f1e427]
+            - cell "Oslo" [ref=f1e428]
+            - cell "38,6" [ref=f1e429]:
+              - generic "2026" [ref=f1e430]: 38,6
+            - cell "-1,0" [ref=f1e431]
+          - row "Åpne Arna vidaregåande skule" [ref=f1e432] [cursor=pointer]:
+            - cell "Arna vidaregåande skule" [ref=f1e433]
+            - cell "Vestland" [ref=f1e434]
+            - cell "38,5" [ref=f1e435]:
+              - generic "2026" [ref=f1e436]: 38,5
+            - cell "+10,2" [ref=f1e437]
+          - row "Åpne Fyrstikkalleen skole" [ref=f1e438] [cursor=pointer]:
+            - cell "Fyrstikkalleen skole" [ref=f1e439]
+            - cell "Oslo" [ref=f1e440]
+            - cell "38,5" [ref=f1e441]:
+              - generic "2026" [ref=f1e442]: 38,5
+            - cell "-0,6" [ref=f1e443]
+          - row "Åpne Stavanger Katedralskole" [ref=f1e444] [cursor=pointer]:
+            - cell "Stavanger Katedralskole" [ref=f1e445]
+            - cell "Rogaland" [ref=f1e446]
+            - cell "38,5" [ref=f1e447]:
+              - generic "2025" [ref=f1e448]: 38,5
+            - cell "-2,1" [ref=f1e449]
+          - row "Åpne Sandvika" [ref=f1e450] [cursor=pointer]:
+            - cell "Sandvika" [ref=f1e451]
+            - cell "Akershus" [ref=f1e452]
+            - cell "38,4" [ref=f1e453]:
+              - generic "2026" [ref=f1e454]: 38,4
+            - cell "-0,8" [ref=f1e455]
+          - row "Åpne St.Svithun videregående skole" [ref=f1e456] [cursor=pointer]:
+            - cell "St.Svithun videregående skole" [ref=f1e457]
+            - cell "Rogaland" [ref=f1e458]
+            - cell "38,4" [ref=f1e459]:
+              - generic "2025" [ref=f1e460]: 38,4
+            - cell "+1,0" [ref=f1e461]
+          - row "Åpne Olsvikåsen videregående skole" [ref=f1e462] [cursor=pointer]:
+            - cell "Olsvikåsen videregående skole" [ref=f1e463]
+            - cell "Vestland" [ref=f1e464]
+            - cell "38,4" [ref=f1e465]:
+              - generic "2026" [ref=f1e466]: 38,4
+            - cell "-1,4" [ref=f1e467]
+          - row "Åpne Os vidaregåande skule" [ref=f1e468] [cursor=pointer]:
+            - cell "Os vidaregåande skule" [ref=f1e469]
+            - cell "Vestland" [ref=f1e470]
+            - cell "38,4" [ref=f1e471]:
+              - generic "2026" [ref=f1e472]: 38,4
+            - cell "+4,6" [ref=f1e473]
+          - row "Åpne Stabekk" [ref=f1e474] [cursor=pointer]:
+            - cell "Stabekk" [ref=f1e475]
+            - cell "Akershus" [ref=f1e476]
+            - cell "38,3" [ref=f1e477]:
+              - generic "2026" [ref=f1e478]: 38,3
+            - cell "-2,9" [ref=f1e479]
+          - row "Åpne Oslo Handelsgymnasium" [ref=f1e480] [cursor=pointer]:
+            - cell "Oslo Handelsgymnasium" [ref=f1e481]
+            - cell "Oslo" [ref=f1e482]
+            - cell "38,0" [ref=f1e483]:
+              - generic "2026" [ref=f1e484]: 38,0
+            - cell "+2,3" [ref=f1e485]
+          - row "Åpne Sandnes videregående skole" [ref=f1e486] [cursor=pointer]:
+            - cell "Sandnes videregående skole" [ref=f1e487]
+            - cell "Rogaland" [ref=f1e488]
+            - cell "38,0" [ref=f1e489]:
+              - generic "2025" [ref=f1e490]: 38,0
+            - cell "+2,1" [ref=f1e491]
+          - row "Åpne Knarvik vidaregåande skule" [ref=f1e492] [cursor=pointer]:
+            - cell "Knarvik vidaregåande skule" [ref=f1e493]
+            - cell "Vestland" [ref=f1e494]
+            - cell "38,0" [ref=f1e495]:
+              - generic "2026" [ref=f1e496]: 38,0
+            - cell "-1,8" [ref=f1e497]
+          - row "Åpne Trondheim katedralskole" [ref=f1e498] [cursor=pointer]:
+            - cell "Trondheim katedralskole" [ref=f1e499]
+            - cell "Trøndelag" [ref=f1e500]
+            - cell "37,8" [ref=f1e501]:
+              - generic "2025" [ref=f1e502]: 37,8
+            - cell "—" [ref=f1e503]
+          - row "Åpne Karmsund videregående skole" [ref=f1e504] [cursor=pointer]:
+            - cell "Karmsund videregående skole" [ref=f1e505]
+            - cell "Rogaland" [ref=f1e506]
+            - cell "37,8" [ref=f1e507]:
+              - generic "2025" [ref=f1e508]: 37,8
+            - cell "+2,4" [ref=f1e509]
+          - row "Åpne Sotra vidaregåande skule" [ref=f1e510] [cursor=pointer]:
+            - cell "Sotra vidaregåande skule" [ref=f1e511]
+            - cell "Vestland" [ref=f1e512]
+            - cell "37,6" [ref=f1e513]:
+              - generic "2026" [ref=f1e514]: 37,6
+            - cell "+1,6" [ref=f1e515]
+          - row "Åpne Strand videregående skole" [ref=f1e516] [cursor=pointer]:
+            - cell "Strand videregående skole" [ref=f1e517]
+            - cell "Rogaland" [ref=f1e518]
+            - cell "37,5" [ref=f1e519]:
+              - generic "2025" [ref=f1e520]: 37,5
+            - cell "+3,0" [ref=f1e521]
+          - row "Åpne Cissi Klein videregående skole" [ref=f1e522] [cursor=pointer]:
+            - cell "Cissi Klein videregående skole" [ref=f1e523]
+            - cell "Trøndelag" [ref=f1e524]
+            - cell "37,3" [ref=f1e525]:
+              - generic "2025" [ref=f1e526]: 37,3
+            - cell "—" [ref=f1e527]
+          - row "Åpne Stend vidaregåande skule" [ref=f1e528] [cursor=pointer]:
+            - cell "Stend vidaregåande skule" [ref=f1e529]
+            - cell "Vestland" [ref=f1e530]
+            - cell "36,9" [ref=f1e531]:
+              - generic "2026" [ref=f1e532]: 36,9
+            - cell "+1,7" [ref=f1e533]
+          - row "Åpne Voss vidaregåande skule" [ref=f1e534] [cursor=pointer]:
+            - cell "Voss vidaregåande skule" [ref=f1e535]
+            - cell "Vestland" [ref=f1e536]
+            - cell "36,9" [ref=f1e537]:
+              - generic "2026" [ref=f1e538]: 36,9
+            - cell "+5,9" [ref=f1e539]
+          - row "Åpne Hetland videregående skole" [ref=f1e540] [cursor=pointer]:
+            - cell "Hetland videregående skole" [ref=f1e541]
+            - cell "Rogaland" [ref=f1e542]
+            - cell "36,7" [ref=f1e543]:
+              - generic "2025" [ref=f1e544]: 36,7
+            - cell "-0,3" [ref=f1e545]
+          - row "Åpne Austevoll vidaregåande skule" [ref=f1e546] [cursor=pointer]:
+            - cell "Austevoll vidaregåande skule" [ref=f1e547]
+            - cell "Vestland" [ref=f1e548]
+            - cell "36,7" [ref=f1e549]:
+              - generic "2026" [ref=f1e550]: 36,7
+            - cell "+0,6" [ref=f1e551]
+          - row "Åpne Firda vidaregåande skule" [ref=f1e552] [cursor=pointer]:
+            - cell "Firda vidaregåande skule" [ref=f1e553]
+            - cell "Vestland" [ref=f1e554]
+            - cell "36,6" [ref=f1e555]:
+              - generic "2026" [ref=f1e556]: 36,6
+            - cell "+5,6" [ref=f1e557]
+          - row "Åpne Åsane vidaregåande skule" [ref=f1e558] [cursor=pointer]:
+            - cell "Åsane vidaregåande skule" [ref=f1e559]
+            - cell "Vestland" [ref=f1e560]
+            - cell "36,5" [ref=f1e561]:
+              - generic "2026" [ref=f1e562]: 36,5
+            - cell "+0,9" [ref=f1e563]
+          - row "Åpne Vågen videregående skole" [ref=f1e564] [cursor=pointer]:
+            - cell "Vågen videregående skole" [ref=f1e565]
+            - cell "Rogaland" [ref=f1e566]
+            - cell "36,3" [ref=f1e567]:
+              - generic "2025" [ref=f1e568]: 36,3
+            - cell "-1,6" [ref=f1e569]
+          - row "Åpne Dale vidaregåande skule" [ref=f1e570] [cursor=pointer]:
+            - cell "Dale vidaregåande skule" [ref=f1e571]
+            - cell "Vestland" [ref=f1e572]
+            - cell "36,3" [ref=f1e573]:
+              - generic "2026" [ref=f1e574]: 36,3
+            - cell "0,0" [ref=f1e575]
+          - row "Åpne Voss gymnas" [ref=f1e576] [cursor=pointer]:
+            - cell "Voss gymnas" [ref=f1e577]
+            - cell "Vestland" [ref=f1e578]
+            - cell "36,3" [ref=f1e579]:
+              - generic "2026" [ref=f1e580]: 36,3
+            - cell "+2,9" [ref=f1e581]
+          - row "Åpne Sauda vidaregåande skule" [ref=f1e582] [cursor=pointer]:
+            - cell "Sauda vidaregåande skule" [ref=f1e583]
+            - cell "Rogaland" [ref=f1e584]
+            - cell "36,2" [ref=f1e585]:
+              - generic "2025" [ref=f1e586]: 36,2
+            - cell "+1,6" [ref=f1e587]
+          - row "Åpne Nordahl Grieg videregående skole" [ref=f1e588] [cursor=pointer]:
+            - cell "Nordahl Grieg videregående skole" [ref=f1e589]
+            - cell "Vestland" [ref=f1e590]
+            - cell "35,8" [ref=f1e591]:
+              - generic "2026" [ref=f1e592]: 35,8
+            - cell "-4,4" [ref=f1e593]
+          - row "Åpne Rud" [ref=f1e594] [cursor=pointer]:
+            - cell "Rud" [ref=f1e595]
+            - cell "Akershus" [ref=f1e596]
+            - cell "35,6" [ref=f1e597]:
+              - generic "2026" [ref=f1e598]: 35,6
+            - cell "+5,5" [ref=f1e599]
+          - row "Åpne Sogndal vidaregåande skule" [ref=f1e600] [cursor=pointer]:
+            - cell "Sogndal vidaregåande skule" [ref=f1e601]
+            - cell "Vestland" [ref=f1e602]
+            - cell "35,5" [ref=f1e603]:
+              - generic "2026" [ref=f1e604]: 35,5
+            - cell "+5,5" [ref=f1e605]
+          - row "Åpne Sandsli videregående skole" [ref=f1e606] [cursor=pointer]:
+            - cell "Sandsli videregående skole" [ref=f1e607]
+            - cell "Vestland" [ref=f1e608]
+            - cell "35,4" [ref=f1e609]:
+              - generic "2026" [ref=f1e610]: 35,4
+            - cell "-0,4" [ref=f1e611]
+          - row "Åpne Førde vidaregåande skule" [ref=f1e612] [cursor=pointer]:
+            - cell "Førde vidaregåande skule" [ref=f1e613]
+            - cell "Vestland" [ref=f1e614]
+            - cell "35,2" [ref=f1e615]:
+              - generic "2026" [ref=f1e616]: 35,2
+            - cell "+1,1" [ref=f1e617]
+          - row "Åpne Askøy videregående skole" [ref=f1e618] [cursor=pointer]:
+            - cell "Askøy videregående skole" [ref=f1e619]
+            - cell "Vestland" [ref=f1e620]
+            - cell "35,2" [ref=f1e621]:
+              - generic "2026" [ref=f1e622]: 35,2
+            - cell "-0,9" [ref=f1e623]
+          - row "Åpne Mailand" [ref=f1e624] [cursor=pointer]:
+            - cell "Mailand" [ref=f1e625]
+            - cell "Akershus" [ref=f1e626]
+            - cell "35,2" [ref=f1e627]:
+              - generic "2026" [ref=f1e628]: 35,2
+            - cell "+4,1" [ref=f1e629]
+          - row "Åpne Elverum videregående skole" [ref=f1e630] [cursor=pointer]:
+            - cell "Elverum videregående skole" [ref=f1e631]
+            - cell "Innlandet" [ref=f1e632]
+            - cell "35,1" [ref=f1e633]:
+              - generic "2025" [ref=f1e634]: 35,1
+            - cell "+3,5" [ref=f1e635]
+          - row "Åpne Ølen vidaregåande skule" [ref=f1e636] [cursor=pointer]:
+            - cell "Ølen vidaregåande skule" [ref=f1e637]
+            - cell "Rogaland" [ref=f1e638]
+            - cell "35,0" [ref=f1e639]:
+              - generic "2025" [ref=f1e640]: 35,0
+            - cell "-2,1" [ref=f1e641]
+          - row "Åpne Sola videregående skole" [ref=f1e642] [cursor=pointer]:
+            - cell "Sola videregående skole" [ref=f1e643]
+            - cell "Rogaland" [ref=f1e644]
+            - cell "35,0" [ref=f1e645]:
+              - generic "2025" [ref=f1e646]: 35,0
+            - cell "+3,2" [ref=f1e647]
+          - row "Åpne Frogn" [ref=f1e648] [cursor=pointer]:
+            - cell "Frogn" [ref=f1e649]
+            - cell "Akershus" [ref=f1e650]
+            - cell "34,9" [ref=f1e651]:
+              - generic "2026" [ref=f1e652]: 34,9
+            - cell "+3,8" [ref=f1e653]
+          - row "Åpne Årstad videregående skole" [ref=f1e654] [cursor=pointer]:
+            - cell "Årstad videregående skole" [ref=f1e655]
+            - cell "Vestland" [ref=f1e656]
+            - cell "34,8" [ref=f1e657]:
+              - generic "2026" [ref=f1e658]: 34,8
+            - cell "-2,2" [ref=f1e659]
+          - row "Åpne Gand videregående skole" [ref=f1e660] [cursor=pointer]:
+            - cell "Gand videregående skole" [ref=f1e661]
+            - cell "Rogaland" [ref=f1e662]
+            - cell "34,7" [ref=f1e663]:
+              - generic "2025" [ref=f1e664]: 34,7
+            - cell "+1,3" [ref=f1e665]
+          - row "Åpne Nannestad" [ref=f1e666] [cursor=pointer]:
+            - cell "Nannestad" [ref=f1e667]
+            - cell "Akershus" [ref=f1e668]
+            - cell "34,7" [ref=f1e669]:
+              - generic "2026" [ref=f1e670]: 34,7
+            - cell "-0,2" [ref=f1e671]
+          - row "Åpne Slåtthaug videregående skole" [ref=f1e672] [cursor=pointer]:
+            - cell "Slåtthaug videregående skole" [ref=f1e673]
+            - cell "Vestland" [ref=f1e674]
+            - cell "34,5" [ref=f1e675]:
+              - generic "2026" [ref=f1e676]: 34,5
+            - cell "+0,6" [ref=f1e677]
+          - row "Åpne Eiker" [ref=f1e678] [cursor=pointer]:
+            - cell "Eiker" [ref=f1e679]
+            - cell "Buskerud" [ref=f1e680]
+            - cell "34,5" [ref=f1e681]:
+              - generic "2025" [ref=f1e682]: 34,5
+            - cell "+0,5" [ref=f1e683]
+          - row "Åpne Blindern videregående skole" [ref=f1e684] [cursor=pointer]:
+            - cell "Blindern videregående skole" [ref=f1e685]
+            - cell "Oslo" [ref=f1e686]
+            - cell "34,4" [ref=f1e687]:
+              - generic "2026" [ref=f1e688]: 34,4
+            - cell "+1,9" [ref=f1e689]
+          - row "Åpne Fusa vidaregåande skule" [ref=f1e690] [cursor=pointer]:
+            - cell "Fusa vidaregåande skule" [ref=f1e691]
+            - cell "Vestland" [ref=f1e692]
+            - cell "34,1" [ref=f1e693]:
+              - generic "2026" [ref=f1e694]: 34,1
+            - cell "+0,4" [ref=f1e695]
+          - row "Åpne Ulsrud videregående skole" [ref=f1e696] [cursor=pointer]:
+            - cell "Ulsrud videregående skole" [ref=f1e697]
+            - cell "Oslo" [ref=f1e698]
+            - cell "34,1" [ref=f1e699]:
+              - generic "2026" [ref=f1e700]: 34,1
+            - cell "+0,9" [ref=f1e701]
+          - row "Åpne Jåttå videregående skole" [ref=f1e702] [cursor=pointer]:
+            - cell "Jåttå videregående skole" [ref=f1e703]
+            - cell "Rogaland" [ref=f1e704]
+            - cell "33,8" [ref=f1e705]:
+              - generic "2025" [ref=f1e706]: 33,8
+            - cell "-0,3" [ref=f1e707]
+          - row "Åpne Odda vidaregåande skule" [ref=f1e708] [cursor=pointer]:
+            - cell "Odda vidaregåande skule" [ref=f1e709]
+            - cell "Vestland" [ref=f1e710]
+            - cell "33,8" [ref=f1e711]:
+              - generic "2026" [ref=f1e712]: 33,8
+            - cell "+2,1" [ref=f1e713]
+          - row "Åpne Lier" [ref=f1e714] [cursor=pointer]:
+            - cell "Lier" [ref=f1e715]
+            - cell "Buskerud" [ref=f1e716]
+            - cell "33,7" [ref=f1e717]:
+              - generic "2025" [ref=f1e718]: 33,7
+            - cell "-1,3" [ref=f1e719]
+          - row "Åpne Flora vidaregåande skule" [ref=f1e720] [cursor=pointer]:
+            - cell "Flora vidaregåande skule" [ref=f1e721]
+            - cell "Vestland" [ref=f1e722]
+            - cell "33,7" [ref=f1e723]:
+              - generic "2026" [ref=f1e724]: 33,7
+            - cell "+2,4" [ref=f1e725]
+          - row "Åpne Røyken" [ref=f1e726] [cursor=pointer]:
+            - cell "Røyken" [ref=f1e727]
+            - cell "Akershus" [ref=f1e728]
+            - cell "33,7" [ref=f1e729]:
+              - generic "2026" [ref=f1e730]: 33,7
+            - cell "+2,1" [ref=f1e731]
+          - row "Åpne Melhus videregående skole" [ref=f1e732] [cursor=pointer]:
+            - cell "Melhus videregående skole" [ref=f1e733]
+            - cell "Trøndelag" [ref=f1e734]
+            - cell "33,6" [ref=f1e735]:
+              - generic "2025" [ref=f1e736]: 33,6
+            - cell "—" [ref=f1e737]
+          - row "Åpne Hadeland videregående skole" [ref=f1e738] [cursor=pointer]:
+            - cell "Hadeland videregående skole" [ref=f1e739]
+            - cell "Innlandet" [ref=f1e740]
+            - cell "33,5" [ref=f1e741]:
+              - generic "2025" [ref=f1e742]: 33,5
+            - cell "+1,3" [ref=f1e743]
+          - row "Åpne Solør videregående skole" [ref=f1e744] [cursor=pointer]:
+            - cell "Solør videregående skole" [ref=f1e745]
+            - cell "Innlandet" [ref=f1e746]
+            - cell "33,3" [ref=f1e747]:
+              - generic "2025" [ref=f1e748]: 33,3
+            - cell "-0,3" [ref=f1e749]
+          - row "Åpne Rælingen" [ref=f1e750] [cursor=pointer]:
+            - cell "Rælingen" [ref=f1e751]
+            - cell "Akershus" [ref=f1e752]
+            - cell "33,3" [ref=f1e753]:
+              - generic "2026" [ref=f1e754]: 33,3
+            - cell "+13,5" [ref=f1e755]
+          - row "Åpne Godalen videregående skole" [ref=f1e756] [cursor=pointer]:
+            - cell "Godalen videregående skole" [ref=f1e757]
+            - cell "Rogaland" [ref=f1e758]
+            - cell "33,3" [ref=f1e759]:
+              - generic "2025" [ref=f1e760]: 33,3
+            - cell "-0,6" [ref=f1e761]
+          - row "Åpne Vinstra vidaregåande skule" [ref=f1e762] [cursor=pointer]:
+            - cell "Vinstra vidaregåande skule" [ref=f1e763]
+            - cell "Innlandet" [ref=f1e764]
+            - cell "33,2" [ref=f1e765]:
+              - generic "2025" [ref=f1e766]: 33,2
+            - cell "+2,0" [ref=f1e767]
+          - row "Åpne Bryne vidaregåande skule" [ref=f1e768] [cursor=pointer]:
+            - cell "Bryne vidaregåande skule" [ref=f1e769]
+            - cell "Rogaland" [ref=f1e770]
+            - cell "33,1" [ref=f1e771]:
+              - generic "2025" [ref=f1e772]: 33,1
+            - cell "-0,7" [ref=f1e773]
+          - row "Åpne Bømlo vidaregåande skule" [ref=f1e774] [cursor=pointer]:
+            - cell "Bømlo vidaregåande skule" [ref=f1e775]
+            - cell "Vestland" [ref=f1e776]
+            - cell "33,0" [ref=f1e777]:
+              - generic "2026" [ref=f1e778]: 33,0
+            - cell "-1,4" [ref=f1e779]
+          - row "Åpne Ringerike" [ref=f1e780] [cursor=pointer]:
+            - cell "Ringerike" [ref=f1e781]
+            - cell "Buskerud" [ref=f1e782]
+            - cell "33,0" [ref=f1e783]:
+              - generic "2025" [ref=f1e784]: 33,0
+            - cell "-2,5" [ref=f1e785]
+          - row "Åpne Kvam vidaregåande skule" [ref=f1e786] [cursor=pointer]:
+            - cell "Kvam vidaregåande skule" [ref=f1e787]
+            - cell "Vestland" [ref=f1e788]
+            - cell "33,0" [ref=f1e789]:
+              - generic "2026" [ref=f1e790]: 33,0
+            - cell "+0,3" [ref=f1e791]
+          - row "Åpne Osterøy vidaregåande skule" [ref=f1e792] [cursor=pointer]:
+            - cell "Osterøy vidaregåande skule" [ref=f1e793]
+            - cell "Vestland" [ref=f1e794]
+            - cell "32,9" [ref=f1e795]:
+              - generic "2026" [ref=f1e796]: 32,9
+            - cell "-0,7" [ref=f1e797]
+          - row "Åpne Austrheim vidaregåande skule" [ref=f1e798] [cursor=pointer]:
+            - cell "Austrheim vidaregåande skule" [ref=f1e799]
+            - cell "Vestland" [ref=f1e800]
+            - cell "32,7" [ref=f1e801]:
+              - generic "2026" [ref=f1e802]: 32,7
+            - cell "+0,4" [ref=f1e803]
+          - row "Åpne Hønefoss" [ref=f1e804] [cursor=pointer]:
+            - cell "Hønefoss" [ref=f1e805]
+            - cell "Buskerud" [ref=f1e806]
+            - cell "32,7" [ref=f1e807]:
+              - generic "2025" [ref=f1e808]: 32,7
+            - cell "0,0" [ref=f1e809]
+          - row "Åpne Vestby" [ref=f1e810] [cursor=pointer]:
+            - cell "Vestby" [ref=f1e811]
+            - cell "Akershus" [ref=f1e812]
+            - cell "32,7" [ref=f1e813]:
+              - generic "2026" [ref=f1e814]: 32,7
+            - cell "+8,4" [ref=f1e815]
+          - row "Åpne Nesbru" [ref=f1e816] [cursor=pointer]:
+            - cell "Nesbru" [ref=f1e817]
+            - cell "Akershus" [ref=f1e818]
+            - cell "32,6" [ref=f1e819]:
+              - generic "2026" [ref=f1e820]: 32,6
+            - cell "-3,7" [ref=f1e821]
+          - row "Åpne Måløy vidaregåande skule" [ref=f1e822] [cursor=pointer]:
+            - cell "Måløy vidaregåande skule" [ref=f1e823]
+            - cell "Vestland" [ref=f1e824]
+            - cell "32,6" [ref=f1e825]:
+              - generic "2026" [ref=f1e826]: 32,6
+            - cell "+0,5" [ref=f1e827]
+          - row "Åpne Dalane videregående skole" [ref=f1e828] [cursor=pointer]:
+            - cell "Dalane videregående skole" [ref=f1e829]
+            - cell "Rogaland" [ref=f1e830]
+            - cell "32,6" [ref=f1e831]:
+              - generic "2025" [ref=f1e832]: 32,6
+            - cell "+2,9" [ref=f1e833]
+          - row "Åpne Bjertnes" [ref=f1e834] [cursor=pointer]:
+            - cell "Bjertnes" [ref=f1e835]
+            - cell "Akershus" [ref=f1e836]
+            - cell "32,6" [ref=f1e837]:
+              - generic "2026" [ref=f1e838]: 32,6
+            - cell "-1,8" [ref=f1e839]
+          - row "Åpne Åkrehamn vidaregåande skole" [ref=f1e840] [cursor=pointer]:
+            - cell "Åkrehamn vidaregåande skole" [ref=f1e841]
+            - cell "Rogaland" [ref=f1e842]
+            - cell "32,5" [ref=f1e843]:
+              - generic "2025" [ref=f1e844]: 32,5
+            - cell "-1,4" [ref=f1e845]
+          - row "Åpne Ringsaker videregående skole" [ref=f1e846] [cursor=pointer]:
+            - cell "Ringsaker videregående skole" [ref=f1e847]
+            - cell "Innlandet" [ref=f1e848]
+            - cell "32,5" [ref=f1e849]:
+              - generic "2025" [ref=f1e850]: 32,5
+            - cell "+1,0" [ref=f1e851]
+          - row "Åpne Eid vidaregåande skule" [ref=f1e852] [cursor=pointer]:
+            - cell "Eid vidaregåande skule" [ref=f1e853]
+            - cell "Vestland" [ref=f1e854]
+            - cell "32,3" [ref=f1e855]:
+              - generic "2026" [ref=f1e856]: 32,3
+            - cell "-1,0" [ref=f1e857]
+          - row "Åpne Gjøvik videregående skole" [ref=f1e858] [cursor=pointer]:
+            - cell "Gjøvik videregående skole" [ref=f1e859]
+            - cell "Innlandet" [ref=f1e860]
+            - cell "32,2" [ref=f1e861]:
+              - generic "2025" [ref=f1e862]: 32,2
+            - cell "-1,6" [ref=f1e863]
+          - row "Åpne Kongsberg" [ref=f1e864] [cursor=pointer]:
+            - cell "Kongsberg" [ref=f1e865]
+            - cell "Buskerud" [ref=f1e866]
+            - cell "32,1" [ref=f1e867]:
+              - generic "2025" [ref=f1e868]: 32,1
+            - cell "-1,3" [ref=f1e869]
+          - row "Åpne Stord vidaregåande skule" [ref=f1e870] [cursor=pointer]:
+            - cell "Stord vidaregåande skule" [ref=f1e871]
+            - cell "Vestland" [ref=f1e872]
+            - cell "32,1" [ref=f1e873]:
+              - generic "2026" [ref=f1e874]: 32,1
+            - cell "-1,3" [ref=f1e875]
+          - row "Åpne Levanger videregående skole" [ref=f1e876] [cursor=pointer]:
+            - cell "Levanger videregående skole" [ref=f1e877]
+            - cell "Trøndelag" [ref=f1e878]
+            - cell "31,9" [ref=f1e879]:
+              - generic "2025" [ref=f1e880]: 31,9
+            - cell "—" [ref=f1e881]
+          - row "Åpne Gauldal videregående skole" [ref=f1e882] [cursor=pointer]:
+            - cell "Gauldal videregående skole" [ref=f1e883]
+            - cell "Trøndelag" [ref=f1e884]
+            - cell "31,7" [ref=f1e885]:
+              - generic "2025" [ref=f1e886]: 31,7
+            - cell "—" [ref=f1e887]
+          - row "Åpne Storhamar videregående skole" [ref=f1e888] [cursor=pointer]:
+            - cell "Storhamar videregående skole" [ref=f1e889]
+            - cell "Innlandet" [ref=f1e890]
+            - cell "31,4" [ref=f1e891]:
+              - generic "2025" [ref=f1e892]: 31,4
+            - cell "+0,8" [ref=f1e893]
+          - row "Åpne Haugaland videregående skole" [ref=f1e894] [cursor=pointer]:
+            - cell "Haugaland videregående skole" [ref=f1e895]
+            - cell "Rogaland" [ref=f1e896]
+            - cell "31,2" [ref=f1e897]:
+              - generic "2025" [ref=f1e898]: 31,2
+            - cell "+0,9" [ref=f1e899]
+          - row "Åpne Skedsmo" [ref=f1e900] [cursor=pointer]:
+            - cell "Skedsmo" [ref=f1e901]
+            - cell "Akershus" [ref=f1e902]
+            - cell "31,0" [ref=f1e903]:
+              - generic "2026" [ref=f1e904]: 31,0
+            - cell "-1,1" [ref=f1e905]
+          - row "Åpne Nord-Østerdal videregående skole" [ref=f1e906] [cursor=pointer]:
+            - cell "Nord-Østerdal videregående skole" [ref=f1e907]
+            - cell "Innlandet" [ref=f1e908]
+            - cell "31,0" [ref=f1e909]:
+              - generic "2025" [ref=f1e910]: 31,0
+            - cell "-4,3" [ref=f1e911]
+          - row "Åpne Stryn vidaregåande skule" [ref=f1e912] [cursor=pointer]:
+            - cell "Stryn vidaregåande skule" [ref=f1e913]
+            - cell "Vestland" [ref=f1e914]
+            - cell "30,9" [ref=f1e915]:
+              - generic "2026" [ref=f1e916]: 30,9
+            - cell "+4,3" [ref=f1e917]
+          - row "Åpne Storsteigen videregående skole" [ref=f1e918] [cursor=pointer]:
+            - cell "Storsteigen videregående skole" [ref=f1e919]
+            - cell "Innlandet" [ref=f1e920]
+            - cell "30,9" [ref=f1e921]:
+              - generic "2025" [ref=f1e922]: 30,9
+            - cell "+3,0" [ref=f1e923]
+          - row "Åpne Jessheim" [ref=f1e924] [cursor=pointer]:
+            - cell "Jessheim" [ref=f1e925]
+            - cell "Akershus" [ref=f1e926]
+            - cell "30,8" [ref=f1e927]:
+              - generic "2026" [ref=f1e928]: 30,8
+            - cell "-2,0" [ref=f1e929]
+          - row "Åpne Orkland videregående skole" [ref=f1e930] [cursor=pointer]:
+            - cell "Orkland videregående skole" [ref=f1e931]
+            - cell "Trøndelag" [ref=f1e932]
+            - cell "30,8" [ref=f1e933]:
+              - generic "2025" [ref=f1e934]: 30,8
+            - cell "—" [ref=f1e935]
+          - row "Åpne Guri Kunna videregående skole" [ref=f1e936] [cursor=pointer]:
+            - cell "Guri Kunna videregående skole" [ref=f1e937]
+            - cell "Trøndelag" [ref=f1e938]
+            - cell "30,5" [ref=f1e939]:
+              - generic "2025" [ref=f1e940]: 30,5
+            - cell "—" [ref=f1e941]
+          - row "Åpne Eidsvoll" [ref=f1e942] [cursor=pointer]:
+            - cell "Eidsvoll" [ref=f1e943]
+            - cell "Akershus" [ref=f1e944]
+            - cell "30,4" [ref=f1e945]:
+              - generic "2026" [ref=f1e946]: 30,4
+            - cell "-1,4" [ref=f1e947]
+          - row "Åpne Hvam" [ref=f1e948] [cursor=pointer]:
+            - cell "Hvam" [ref=f1e949]
+            - cell "Akershus" [ref=f1e950]
+            - cell "30,4" [ref=f1e951]:
+              - generic "2026" [ref=f1e952]: 30,4
+            - cell "-2,4" [ref=f1e953]
+          - row "Åpne Lillehammer videreg skole, avd Sør" [ref=f1e954] [cursor=pointer]:
+            - cell "Lillehammer videreg skole, avd Sør" [ref=f1e955]
+            - cell "Innlandet" [ref=f1e956]
+            - cell "30,4" [ref=f1e957]:
+              - generic "2025" [ref=f1e958]: 30,4
+            - cell "-0,3" [ref=f1e959]
+          - row "Åpne Valdres vidaregåande skule" [ref=f1e960] [cursor=pointer]:
+            - cell "Valdres vidaregåande skule" [ref=f1e961]
+            - cell "Innlandet" [ref=f1e962]
+            - cell "30,4" [ref=f1e963]:
+              - generic "2025" [ref=f1e964]: 30,4
+            - cell "-7,3" [ref=f1e965]
+          - row "Åpne Høyanger vidaregåande skule" [ref=f1e966] [cursor=pointer]:
+            - cell "Høyanger vidaregåande skule" [ref=f1e967]
+            - cell "Vestland" [ref=f1e968]
+            - cell "30,3" [ref=f1e969]:
+              - generic "2026" [ref=f1e970]: 30,3
+            - cell "-0,9" [ref=f1e971]
+          - row "Åpne Kopervik videregående skole" [ref=f1e972] [cursor=pointer]:
+            - cell "Kopervik videregående skole" [ref=f1e973]
+            - cell "Rogaland" [ref=f1e974]
+            - cell "30,3" [ref=f1e975]:
+              - generic "2025" [ref=f1e976]: 30,3
+            - cell "-6,5" [ref=f1e977]
+          - row "Åpne Øksnevad vidaregåande skole" [ref=f1e978] [cursor=pointer]:
+            - cell "Øksnevad vidaregåande skole" [ref=f1e979]
+            - cell "Rogaland" [ref=f1e980]
+            - cell "30,2" [ref=f1e981]:
+              - generic "2025" [ref=f1e982]: 30,2
+            - cell "-4,4" [ref=f1e983]
+          - row "Åpne Fitjar vidaregåande skule" [ref=f1e984] [cursor=pointer]:
+            - cell "Fitjar vidaregåande skule" [ref=f1e985]
+            - cell "Vestland" [ref=f1e986]
+            - cell "30,2" [ref=f1e987]:
+              - generic "2026" [ref=f1e988]: 30,2
+            - cell "+4,5" [ref=f1e989]
+          - row "Åpne Hamar katedralskole" [ref=f1e990] [cursor=pointer]:
+            - cell "Hamar katedralskole" [ref=f1e991]
+            - cell "Innlandet" [ref=f1e992]
+            - cell "30,0" [ref=f1e993]:
+              - generic "2025" [ref=f1e994]: 30,0
+            - cell "+0,4" [ref=f1e995]
+          - row "Åpne Oppdal videregående skole" [ref=f1e996] [cursor=pointer]:
+            - cell "Oppdal videregående skole" [ref=f1e997]
+            - cell "Trøndelag" [ref=f1e998]
+            - cell "30,0" [ref=f1e999]:
+              - generic "2025" [ref=f1e1000]: 30,0
+            - cell "—" [ref=f1e1001]
+          - row "Åpne Byåsen videregående skole" [ref=f1e1002] [cursor=pointer]:
+            - cell "Byåsen videregående skole" [ref=f1e1003]
+            - cell "Trøndelag" [ref=f1e1004]
+            - cell "30,0" [ref=f1e1005]:
+              - generic "2025" [ref=f1e1006]: 30,0
+            - cell "—" [ref=f1e1007]
+          - row "Åpne Rosenvilde" [ref=f1e1008] [cursor=pointer]:
+            - cell "Rosenvilde" [ref=f1e1009]
+            - cell "Akershus" [ref=f1e1010]
+            - cell "29,8" [ref=f1e1011]:
+              - generic "2026" [ref=f1e1012]: 29,8
+            - cell "-0,7" [ref=f1e1013]
+          - row "Åpne Årdal vidaregåande skule" [ref=f1e1014] [cursor=pointer]:
+            - cell "Årdal vidaregåande skule" [ref=f1e1015]
+            - cell "Vestland" [ref=f1e1016]
+            - cell "29,7" [ref=f1e1017]:
+              - generic "2026" [ref=f1e1018]: 29,7
+            - cell "-2,7" [ref=f1e1019]
+          - row "Åpne Raufoss videregående skole" [ref=f1e1020] [cursor=pointer]:
+            - cell "Raufoss videregående skole" [ref=f1e1021]
+            - cell "Innlandet" [ref=f1e1022]
+            - cell "29,7" [ref=f1e1023]:
+              - generic "2025" [ref=f1e1024]: 29,7
+            - cell "-3,0" [ref=f1e1025]
+          - row "Åpne Lillehammer videreg skole, avd Nord" [ref=f1e1026] [cursor=pointer]:
+            - cell "Lillehammer videreg skole, avd Nord" [ref=f1e1027]
+            - cell "Innlandet" [ref=f1e1028]
+            - cell "29,7" [ref=f1e1029]:
+              - generic "2025" [ref=f1e1030]: 29,7
+            - cell "-2,4" [ref=f1e1031]
+          - row "Åpne Hellerud videregående skole" [ref=f1e1032] [cursor=pointer]:
+            - cell "Hellerud videregående skole" [ref=f1e1033]
+            - cell "Oslo" [ref=f1e1034]
+            - cell "29,1" [ref=f1e1035]:
+              - generic "2026" [ref=f1e1036]: 29,1
+            - cell "-2,0" [ref=f1e1037]
+          - row "Åpne Charlottenlund videregående skole" [ref=f1e1038] [cursor=pointer]:
+            - cell "Charlottenlund videregående skole" [ref=f1e1039]
+            - cell "Trøndelag" [ref=f1e1040]
+            - cell "28,9" [ref=f1e1041]:
+              - generic "2025" [ref=f1e1042]: 28,9
+            - cell "—" [ref=f1e1043]
+          - row "Åpne Bjørkelangen" [ref=f1e1044] [cursor=pointer]:
+            - cell "Bjørkelangen" [ref=f1e1045]
+            - cell "Akershus" [ref=f1e1046]
+            - cell "28,7" [ref=f1e1047]:
+              - generic "2026" [ref=f1e1048]: 28,7
+            - cell "-0,8" [ref=f1e1049]
+          - row "Åpne Sørumsand" [ref=f1e1050] [cursor=pointer]:
+            - cell "Sørumsand" [ref=f1e1051]
+            - cell "Akershus" [ref=f1e1052]
+            - cell "28,7" [ref=f1e1053]:
+              - generic "2026" [ref=f1e1054]: 28,7
+            - cell "—" [ref=f1e1055]
+          - row "Åpne Numedal" [ref=f1e1056] [cursor=pointer]:
+            - cell "Numedal" [ref=f1e1057]
+            - cell "Buskerud" [ref=f1e1058]
+            - cell "28,5" [ref=f1e1059]:
+              - generic "2025" [ref=f1e1060]: 28,5
+            - cell "-0,3" [ref=f1e1061]
+          - row "Åpne Ole Vig videregående skole" [ref=f1e1062] [cursor=pointer]:
+            - cell "Ole Vig videregående skole" [ref=f1e1063]
+            - cell "Trøndelag" [ref=f1e1064]
+            - cell "28,4" [ref=f1e1065]:
+              - generic "2025" [ref=f1e1066]: 28,4
+            - cell "—" [ref=f1e1067]
+          - row "Åpne Steinkjer videregående skole" [ref=f1e1068] [cursor=pointer]:
+            - cell "Steinkjer videregående skole" [ref=f1e1069]
+            - cell "Trøndelag" [ref=f1e1070]
+            - cell "28,0" [ref=f1e1071]:
+              - generic "2025" [ref=f1e1072]: 28,0
+            - cell "—" [ref=f1e1073]
+          - row "Åpne Jønsberg videregående skole" [ref=f1e1074] [cursor=pointer]:
+            - cell "Jønsberg videregående skole" [ref=f1e1075]
+            - cell "Innlandet" [ref=f1e1076]
+            - cell "28,0" [ref=f1e1077]:
+              - generic "2025" [ref=f1e1078]: 28,0
+            - cell "-2,0" [ref=f1e1079]
+          - row "Åpne Ytre Namdal videregående skole" [ref=f1e1080] [cursor=pointer]:
+            - cell "Ytre Namdal videregående skole" [ref=f1e1081]
+            - cell "Trøndelag" [ref=f1e1082]
+            - cell "27,9" [ref=f1e1083]:
+              - generic "2025" [ref=f1e1084]: 27,9
+            - cell "—" [ref=f1e1085]
+          - row "Åpne Lena-Valle videregående skole" [ref=f1e1086] [cursor=pointer]:
+            - cell "Lena-Valle videregående skole" [ref=f1e1087]
+            - cell "Innlandet" [ref=f1e1088]
+            - cell "27,6" [ref=f1e1089]:
+              - generic "2025" [ref=f1e1090]: 27,6
+            - cell "-6,7" [ref=f1e1091]
+          - row "Åpne Sentrum videregående skole" [ref=f1e1092] [cursor=pointer]:
+            - cell "Sentrum videregående skole" [ref=f1e1093]
+            - cell "Innlandet" [ref=f1e1094]
+            - cell "27,5" [ref=f1e1095]:
+              - generic "2025" [ref=f1e1096]: 27,5
+            - cell "-2,8" [ref=f1e1097]
+          - row "Åpne Fosen videregående skole" [ref=f1e1098] [cursor=pointer]:
+            - cell "Fosen videregående skole" [ref=f1e1099]
+            - cell "Trøndelag" [ref=f1e1100]
+            - cell "27,3" [ref=f1e1101]:
+              - generic "2025" [ref=f1e1102]: 27,3
+            - cell "—" [ref=f1e1103]
+          - row "Åpne Hersleb videregående skole" [ref=f1e1104] [cursor=pointer]:
+            - cell "Hersleb videregående skole" [ref=f1e1105]
+            - cell "Oslo" [ref=f1e1106]
+            - cell "27,1" [ref=f1e1107]:
+              - generic "2026" [ref=f1e1108]: 27,1
+            - cell "-2,0" [ref=f1e1109]
+          - row "Åpne Nesodden" [ref=f1e1110] [cursor=pointer]:
+            - cell "Nesodden" [ref=f1e1111]
+            - cell "Akershus" [ref=f1e1112]
+            - cell "27,1" [ref=f1e1113]:
+              - generic "2026" [ref=f1e1114]: 27,1
+            - cell "-7,2" [ref=f1e1115]
+          - row "Åpne Strømmen" [ref=f1e1116] [cursor=pointer]:
+            - cell "Strømmen" [ref=f1e1117]
+            - cell "Akershus" [ref=f1e1118]
+            - cell "26,9" [ref=f1e1119]:
+              - generic "2026" [ref=f1e1120]: 26,9
+            - cell "-2,5" [ref=f1e1121]
+          - row "Åpne Bergeland videregående skole" [ref=f1e1122] [cursor=pointer]:
+            - cell "Bergeland videregående skole" [ref=f1e1123]
+            - cell "Rogaland" [ref=f1e1124]
+            - cell "26,4" [ref=f1e1125]:
+              - generic "2025" [ref=f1e1126]: 26,4
+            - cell "-4,1" [ref=f1e1127]
+          - row "Åpne Åssiden" [ref=f1e1128] [cursor=pointer]:
+            - cell "Åssiden" [ref=f1e1129]
+            - cell "Buskerud" [ref=f1e1130]
+            - cell "26,2" [ref=f1e1131]:
+              - generic "2025" [ref=f1e1132]: 26,2
+            - cell "-2,2" [ref=f1e1133]
+          - row "Åpne Nord-Gudbrandsdal vgs, avd. Otta" [ref=f1e1134] [cursor=pointer]:
+            - cell "Nord-Gudbrandsdal vgs, avd. Otta" [ref=f1e1135]
+            - cell "Innlandet" [ref=f1e1136]
+            - cell "26,2" [ref=f1e1137]:
+              - generic "2025" [ref=f1e1138]: 26,2
+            - cell "+1,2" [ref=f1e1139]
+          - row "Åpne Kjelle" [ref=f1e1140] [cursor=pointer]:
+            - cell "Kjelle" [ref=f1e1141]
+            - cell "Akershus" [ref=f1e1142]
+            - cell "25,3" [ref=f1e1143]:
+              - generic "2026" [ref=f1e1144]: 25,3
+            - cell "-1,6" [ref=f1e1145]
+          - row "Åpne Malvik videregående skole" [ref=f1e1146] [cursor=pointer]:
+            - cell "Malvik videregående skole" [ref=f1e1147]
+            - cell "Trøndelag" [ref=f1e1148]
+            - cell "25,0" [ref=f1e1149]:
+              - generic "2025" [ref=f1e1150]: 25,0
+            - cell "—" [ref=f1e1151]
+          - row "Åpne Buskerud" [ref=f1e1152] [cursor=pointer]:
+            - cell "Buskerud" [ref=f1e1153]
+            - cell "Buskerud" [ref=f1e1154]
+            - cell "25,0" [ref=f1e1155]:
+              - generic "2025" [ref=f1e1156]: 25,0
+            - cell "-6,2" [ref=f1e1157]
+          - row "Åpne Randaberg videregående skole" [ref=f1e1158] [cursor=pointer]:
+            - cell "Randaberg videregående skole" [ref=f1e1159]
+            - cell "Rogaland" [ref=f1e1160]
+            - cell "24,5" [ref=f1e1161]:
+              - generic "2025" [ref=f1e1162]: 24,5
+            - cell "-1,0" [ref=f1e1163]
+          - row "Åpne Ål" [ref=f1e1164] [cursor=pointer]:
+            - cell "Ål" [ref=f1e1165]
+            - cell "Buskerud" [ref=f1e1166]
+            - cell "23,8" [ref=f1e1167]:
+              - generic "2025" [ref=f1e1168]: 23,8
+            - cell "-10,7" [ref=f1e1169]
+          - row "Åpne Olav Duun videregående skole" [ref=f1e1170] [cursor=pointer]:
+            - cell "Olav Duun videregående skole" [ref=f1e1171]
+            - cell "Trøndelag" [ref=f1e1172]
+            - cell "23,2" [ref=f1e1173]:
+              - generic "2025" [ref=f1e1174]: 23,2
+            - cell "—" [ref=f1e1175]
+          - row "Åpne Nes" [ref=f1e1176] [cursor=pointer]:
+            - cell "Nes" [ref=f1e1177]
+            - cell "Akershus" [ref=f1e1178]
+            - cell "22,4" [ref=f1e1179]:
+              - generic "2026" [ref=f1e1180]: 22,4
+            - cell "-3,1" [ref=f1e1181]
+          - row "Åpne Tiller videregående skole" [ref=f1e1182] [cursor=pointer]:
+            - cell "Tiller videregående skole" [ref=f1e1183]
+            - cell "Trøndelag" [ref=f1e1184]
+            - cell "22,0" [ref=f1e1185]:
+              - generic "2025" [ref=f1e1186]: 22,0
+            - cell "—" [ref=f1e1187]
+          - row "Åpne Gol" [ref=f1e1188] [cursor=pointer]:
+            - cell "Gol" [ref=f1e1189]
+            - cell "Buskerud" [ref=f1e1190]
+            - cell "21,9" [ref=f1e1191]:
+              - generic "2025" [ref=f1e1192]: 21,9
+            - cell "-20,8" [ref=f1e1193]
+          - row "Åpne Etterstad videregående skole" [ref=f1e1194] [cursor=pointer]:
+            - cell "Etterstad videregående skole" [ref=f1e1195]
+            - cell "Oslo" [ref=f1e1196]
+            - cell "21,0" [ref=f1e1197]:
+              - generic "2026" [ref=f1e1198]: 21,0
+            - cell "-4,5" [ref=f1e1199]
+          - row "Åpne Stovner videregående skole" [ref=f1e1200] [cursor=pointer]:
+            - cell "Stovner videregående skole" [ref=f1e1201]
+            - cell "Oslo" [ref=f1e1202]
+            - cell "20,9" [ref=f1e1203]:
+              - generic "2026" [ref=f1e1204]: 20,9
+            - cell "-3,4" [ref=f1e1205]
+          - row "Åpne Bjørnholt videregående skole" [ref=f1e1206] [cursor=pointer]:
+            - cell "Bjørnholt videregående skole" [ref=f1e1207]
+            - cell "Oslo" [ref=f1e1208]
+            - cell "20,9" [ref=f1e1209]:
+              - generic "2026" [ref=f1e1210]: 20,9
+            - cell "+2,5" [ref=f1e1211]
+          - row "Åpne Skjetlein videregående skole" [ref=f1e1212] [cursor=pointer]:
+            - cell "Skjetlein videregående skole" [ref=f1e1213]
+            - cell "Trøndelag" [ref=f1e1214]
+            - cell "16,2" [ref=f1e1215]:
+              - generic "2025" [ref=f1e1216]: 16,2
+            - cell "—" [ref=f1e1217]
+          - row "Åpne Dokka videregående skole" [ref=f1e1218] [cursor=pointer]:
+            - cell "Dokka videregående skole" [ref=f1e1219]
+            - cell "Innlandet" [ref=f1e1220]
+            - cell "Ikke data" [ref=f1e1221]
+            - cell "—" [ref=f1e1222]
+          - row "Åpne Drømtorp" [ref=f1e1223] [cursor=pointer]:
+            - cell "Drømtorp" [ref=f1e1224]
+            - cell "Akershus" [ref=f1e1225]
+            - cell "Uten venteliste" [ref=f1e1226]
+            - cell "—" [ref=f1e1228]
+          - row "Åpne Eikeli" [ref=f1e1229] [cursor=pointer]:
+            - cell "Eikeli" [ref=f1e1230]
+            - cell "Akershus" [ref=f1e1231]
+            - cell "Uten venteliste" [ref=f1e1232]
+            - cell "—" [ref=f1e1234]
+          - row "Åpne Grong videregående skole" [ref=f1e1235] [cursor=pointer]:
+            - cell "Grong videregående skole" [ref=f1e1236]
+            - cell "Trøndelag" [ref=f1e1237]
+            - cell "Uten venteliste" [ref=f1e1238]
+            - cell "—" [ref=f1e1240]
+          - row "Åpne Holtet videregående skole" [ref=f1e1241] [cursor=pointer]:
+            - cell "Holtet videregående skole" [ref=f1e1242]
+            - cell "Oslo" [ref=f1e1243]
+            - cell "Ikke data" [ref=f1e1244]
+            - cell "—" [ref=f1e1245]
+          - row "Åpne Inderøy videregående skole" [ref=f1e1246] [cursor=pointer]:
+            - cell "Inderøy videregående skole" [ref=f1e1247]
+            - cell "Trøndelag" [ref=f1e1248]
+            - cell "Uten venteliste" [ref=f1e1249]
+            - cell "—" [ref=f1e1251]
+          - row "Åpne Kyrksæterøra videregående skole" [ref=f1e1252] [cursor=pointer]:
+            - cell "Kyrksæterøra videregående skole" [ref=f1e1253]
+            - cell "Trøndelag" [ref=f1e1254]
+            - cell "Uten venteliste" [ref=f1e1255]
+            - cell "—" [ref=f1e1257]
+          - row "Åpne Meråker videregående skole" [ref=f1e1258] [cursor=pointer]:
+            - cell "Meråker videregående skole" [ref=f1e1259]
+            - cell "Trøndelag" [ref=f1e1260]
+            - cell "Uten venteliste" [ref=f1e1261]
+            - cell "—" [ref=f1e1263]
+          - row "Åpne Mære landbruksskole" [ref=f1e1264] [cursor=pointer]:
+            - cell "Mære landbruksskole" [ref=f1e1265]
+            - cell "Trøndelag" [ref=f1e1266]
+            - cell "Uten venteliste" [ref=f1e1267]
+            - cell "—" [ref=f1e1269]
+          - row "Åpne Nord-Gudbrandsdal vgs, avd. Dombås" [ref=f1e1270] [cursor=pointer]:
+            - cell "Nord-Gudbrandsdal vgs, avd. Dombås" [ref=f1e1271]
+            - cell "Innlandet" [ref=f1e1272]
+            - cell "Ikke data" [ref=f1e1273]
+            - cell "—" [ref=f1e1274]
+          - row "Åpne Nord-Gudbrandsdal vgs, avd. Lom" [ref=f1e1275] [cursor=pointer]:
+            - cell "Nord-Gudbrandsdal vgs, avd. Lom" [ref=f1e1276]
+            - cell "Innlandet" [ref=f1e1277]
+            - cell "Ikke data" [ref=f1e1278]
+            - cell "—" [ref=f1e1279]
+          - row "Åpne Rubbestadnes vidaregåande skule" [ref=f1e1280] [cursor=pointer]:
+            - cell "Rubbestadnes vidaregåande skule" [ref=f1e1281]
+            - cell "Vestland" [ref=f1e1282]
+            - cell "Ikke data" [ref=f1e1283]
+            - cell "—" [ref=f1e1284]
+          - row "Åpne Røros videregående skole" [ref=f1e1285] [cursor=pointer]:
+            - cell "Røros videregående skole" [ref=f1e1286]
+            - cell "Trøndelag" [ref=f1e1287]
+            - cell "Uten venteliste" [ref=f1e1288]
+            - cell "—" [ref=f1e1290]
+          - row "Åpne Selbu videregående skole" [ref=f1e1291] [cursor=pointer]:
+            - cell "Selbu videregående skole" [ref=f1e1292]
+            - cell "Trøndelag" [ref=f1e1293]
+            - cell "Uten venteliste" [ref=f1e1294]
+            - cell "—" [ref=f1e1296]
+          - row "Åpne Skarnes videregående skole" [ref=f1e1297] [cursor=pointer]:
+            - cell "Skarnes videregående skole" [ref=f1e1298]
+            - cell "Innlandet" [ref=f1e1299]
+            - cell "Ikke data" [ref=f1e1300]
+            - cell "—" [ref=f1e1301]
+          - row "Åpne Stavanger Offshore Tekniske skole" [ref=f1e1302] [cursor=pointer]:
+            - cell "Stavanger Offshore Tekniske skole" [ref=f1e1303]
+            - cell "Rogaland" [ref=f1e1304]
+            - cell "Ikke data" [ref=f1e1305]
+            - cell "—" [ref=f1e1306]
+          - row "Åpne Trysil videregående skole" [ref=f1e1307] [cursor=pointer]:
+            - cell "Trysil videregående skole" [ref=f1e1308]
+            - cell "Innlandet" [ref=f1e1309]
+            - cell "Uten venteliste" [ref=f1e1310]
+            - cell "—" [ref=f1e1312]
+          - row "Åpne Verdal videregående skole" [ref=f1e1313] [cursor=pointer]:
+            - cell "Verdal videregående skole" [ref=f1e1314]
+            - cell "Trøndelag" [ref=f1e1315]
+            - cell "Uten venteliste" [ref=f1e1316]
+            - cell "—" [ref=f1e1318]
+          - row "Åpne Åfjord videregående skole" [ref=f1e1319] [cursor=pointer]:
+            - cell "Åfjord videregående skole" [ref=f1e1320]
+            - cell "Trøndelag" [ref=f1e1321]
+            - cell "Uten venteliste" [ref=f1e1322]
+            - cell "—" [ref=f1e1324]
+      - generic [ref=f1e1325]: Fylker publiserer ulike inntaksrunder – tallene kan ikke sammenlignes direkte på tvers av fylker.
+    - complementary "Skoledetaljer" [ref=f1e69]:
+      - generic [ref=f1e70]:
+        - generic [ref=f1e76]:
+          - button [ref=f1e77] [cursor=pointer]
+          - button [ref=f1e78] [cursor=pointer]
+          - button [ref=f1e79] [cursor=pointer]
+        - searchbox [ref=f1e83]
+  - generic [ref=f1e85]:
+    - button "Finn skole" [ref=f1e86] [cursor=pointer]
+    - button "Slik leser du kartet" [ref=f1e90] [cursor=pointer]
+    - button "Innstillinger" [ref=f1e94] [cursor=pointer]
+  - generic [ref=f1e98]:
+    - heading "Poengkart" [level=1] [ref=f1e104]
+    - paragraph [ref=f1e105]: "Poenggrenser for videregående skole: poengsummen til den siste som fikk plass. 195 skoler i 7 fylker, 2017–2026. Velg en skole for detaljer."
+    - group [ref=f1e106]:
+      - button "Kart" [ref=f1e107] [cursor=pointer]
+      - button "Liste" [active] [pressed] [ref=f1e108] [cursor=pointer]
+    - generic [ref=f1e109]:
+      - generic [ref=f1e110]: Fylke
+      - combobox "Fylke" [ref=f1e111] [cursor=pointer]:
+        - option "Hele landet" [selected]
+        - option "Akershus (34)"
+        - option "Buskerud (12)"
+        - option "Innlandet (26)"
+        - option "Oslo (25)"
+        - option "Rogaland (25)"
+        - option "Trøndelag (31)"
+        - option "Vestland (42)"
+    - generic [ref=f1e112]:
+      - generic [ref=f1e113]: Utdanningsprogram
+      - combobox "Utdanningsprogram" [ref=f1e114] [cursor=pointer]:
+        - option "Alle utdanningsprogram" [selected]
+        - option "Studiespesialisering"
+        - option "Idrettsfag"
+        - option "Musikk, dans og drama"
+        - option "Kunst, design og arkitektur"
+        - option "Medier og kommunikasjon"
+        - option "IT og medieproduksjon"
+        - option "Elektro og datateknologi"
+        - option "Helse- og oppvekstfag"
+        - option "Bygg- og anleggsteknikk"
+        - option "Teknologi- og industrifag"
+        - option "Restaurant- og matfag"
+        - option "Salg, service og reiseliv"
+        - option "Naturbruk"
+        - option "Frisør, blomster og interiør"
+        - option "Håndverk og produktutvikling"
+        - option "Påbygg"
+    - generic [ref=f1e115]:
+      - generic [ref=f1e116]: Poengene dine (valgfritt)
+      - generic [ref=f1e117]:
+        - textbox "Poengene dine (valgfritt)" [ref=f1e118]:
+          - /placeholder: f.eks. 42,5
+        - button "Regn ut fra karakterene dine" [ref=f1e119] [cursor=pointer]

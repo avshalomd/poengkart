@@ -60,6 +60,8 @@
     --seq-250:#86b6ef; --seq-350:#5598e7; --seq-450:#2a78d6; --seq-550:#1c5cab; --seq-700:#0d366b;
     --shadow: 0 10px 32px rgba(15,23,32,.12), 0 1px 3px rgba(15,23,32,.08);
     --good: #0b7f0b;
+    --chip-ink: #0f1720;            /* dark text on the pale threshold chips */
+    --chip-b2-ink: #ffffff;         /* the middle band flips per theme */
     --danger: #c0392f;
     /* the chance chips print ~10px text on a 14% tint of these, which the
        band colours themselves do not clear 4.5:1 against — so the text has
@@ -83,6 +85,10 @@
       --seq-250:#9ec5f4; --seq-350:#6da7ec; --seq-450:#3987e5; --seq-550:#256abf; --seq-700:#184f95;
       --shadow: 0 10px 32px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.4);
       --good: #3fbf4a;              /* the one token that had no dark value */
+      --chip-ink: #0f1720;
+      --chip-b2-ink: #0f1720;       /* dark ink clears 4.5:1 on the dark-mode mid blue */
+      --chip-ink: #0f1720;
+      --chip-b2-ink: #0f1720;       /* dark ink clears 4.5:1 on the dark-mode mid blue */
       --danger: #e26b6e;
       --chip-good: #3fbf4a; --chip-warn: #e0a052; --chip-danger: #ea8e90;
       --warn: #e0a052; --warn-soft: rgba(224,160,82,.13);
@@ -274,47 +280,67 @@
   #listview .card {
     background: var(--surface-solid); border: 1px solid var(--line); border-radius: 16px;
     padding: 16px 20px 12px; max-width: 1060px;
-    overflow-x: auto;               /* a phone scrolls the table inside the card */
   }
+  /* only the table scrolls sideways on a phone — header and footer stay put */
+  #listview .tblwrap { overflow-x: auto; }
   #listview .lhead { display: flex; justify-content: space-between; align-items: baseline;
                      gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
   #listview .lhead .t { font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
   #listview .lhead .n { font-size: 11.5px; color: var(--ink-3); }
   #listview table { width: 100%; border-collapse: collapse; font-size: 13px; }
   #listview th {
-    text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line);
+    text-align: left; padding: 0; border-bottom: 1px solid var(--line);
     font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
-    color: var(--ink-3); cursor: pointer; white-space: nowrap; user-select: none;
+    color: var(--ink-3); white-space: nowrap; user-select: none;
   }
+  #listview th button {
+    background: none; border: none; padding: 8px 10px; width: 100%; cursor: pointer;
+    font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit;
+    text-align: inherit;
+  }
+  #listview th.num button { text-align: right; }
   #listview th.num, #listview td.num { text-align: right; font-variant-numeric: tabular-nums; }
   #listview th.on { color: var(--accent); }
   #listview td { padding: 8px 10px; border-bottom: 1px solid var(--line); }
   #listview tbody tr { cursor: pointer; }
-  #listview tbody tr:hover, #listview tbody tr:focus-visible { background: var(--accent-soft); }
-  #listview tbody tr:focus-visible { outline: none; }
+  #listview tbody tr:hover { background: var(--accent-soft); }
   #listview .sc { font-weight: 600; }
+  #listview .sc a { color: inherit; text-decoration: none; }
+  #listview .sc a:hover { text-decoration: underline; }
+  #listview .sc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   #listview .fy { color: var(--ink-2); }
   #listview .chip {
     display: inline-block; min-width: 44px; text-align: center; padding: 2px 9px;
     border-radius: 7px; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums;
   }
-  #listview .chip.lo { color: var(--ink); }        /* light bands need dark text */
+  #listview .chip.b0, #listview .chip.b1 { color: var(--chip-ink); }
+  #listview .chip.b2 { color: var(--chip-b2-ink); }
   #listview .chip.open { border: 1px dashed var(--accent); color: var(--ink-2);
                          font-weight: 400; font-size: 12px; background: none; }
-  #listview .up { color: var(--good); }
+  /* a rising threshold is not good news for the reader: no valence colours,
+     the sign and magnitude carry the message */
+  #listview .up { color: var(--ink); }
   #listview .dn { color: var(--ink-2); }
   #listview .none-v { color: var(--ink-3); }
   #listview .k { display: inline-block; width: 8px; height: 8px; border-radius: 50%;
                  margin-right: 6px; vertical-align: 0; }
   #listview .foot { padding: 10px 2px 0; font-size: 11.5px; color: var(--ink-3); line-height: 1.5; }
-  @media (max-width: 760px) {
-    body.view-list #app { overflow-y: auto; }
-    body.view-list #panel { position: static; margin: 10px; width: auto; max-height: none; }
-    body.view-list #app { flex-direction: column; }
-    #listview { padding: 0 10px 24px; overflow: visible; }
-    body.view-list #controls { display: none; }
+  /* Small screens stack the chrome above the table inside #app's column —
+     the panel and controls are #app children precisely so these rules reach
+     them. The side panel leaves the column entirely: a fixed sheet, as wide
+     as its .open width says, exactly like the map mode slide-over. */
+  @media (max-width: 760px), (max-height: 480px) {
+    body.view-list #app { flex-direction: column; overflow-y: auto; }
+    body.view-list #controls {
+      position: static; order: -2; display: flex; justify-content: flex-end;
+      margin: 10px 10px 0; align-self: flex-end;
+    }
+    body.view-list #panel, body.view-list #controls { flex: none; }  /* the giant table must not crush them */
+    body.view-list #panel { position: static; order: -1; margin: 10px; width: auto; max-height: none; }
+    body.view-list #listview { padding: 0 10px 24px; overflow: visible; }
+    body.view-list #side { position: fixed; top: 0; right: 0; bottom: 0; z-index: 1100; }
   }
-  @media (min-width: 761px) and (max-width: 1100px) {
+  @media (min-width: 761px) and (max-width: 1100px) and (min-height: 481px) {
     body.view-list #panel { width: 260px; }
     #listview { padding-left: 292px; }
   }
@@ -811,7 +837,7 @@
       width: 430px; display: grid; grid-template-columns: 150px minmax(0, 1fr);
       gap: 8px; align-items: end;
     }
-    #panel .brand, #panel #cat-note { grid-column: 1 / -1; }
+    #panel .brand, #panel #cat-note, #panel #view-toggle { grid-column: 1 / -1; }
     #cat-note { margin-top: 0; min-height: 0; }
     .field + .field { margin-top: 0; }
   }
@@ -882,8 +908,6 @@ try {
       <div id="src-note"></div>
     </div>
   </aside>
-</div>
-
 <div id="controls" class="glass">
   <button class="ico" id="searchov-btn" onclick="openSearchOv()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -906,23 +930,6 @@ try {
     </svg>
   </button>
 </div>
-
-<div id="tip" role="tooltip" hidden></div>
-
-<div id="contact" class="modal" hidden onclick="if (event.target === this) closeContact()">
-  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="contact-h">
-    <button class="x" id="contact-x" onclick="closeContact()">✕</button>
-    <div class="head">
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
-           stroke-linejoin="round" aria-hidden="true">
-        <rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.6 6.4 8.4 6 8.4-6"/>
-      </svg>
-      <h2 id="contact-h"></h2>
-    </div>
-    <div id="contact-body"></div>
-  </div>
-</div>
-
 <div id="panel" class="glass" tabindex="-1">
   <div class="brand">
     <svg class="mark" viewBox="0 0 26 26" aria-hidden="true">
@@ -967,6 +974,25 @@ try {
   <!-- the reader's own list of choices, across schools -->
   <div id="choices" hidden></div>
 </div>
+</div>
+
+
+<div id="tip" role="tooltip" hidden></div>
+
+<div id="contact" class="modal" hidden onclick="if (event.target === this) closeContact()">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="contact-h">
+    <button class="x" id="contact-x" onclick="closeContact()">✕</button>
+    <div class="head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
+           stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.6 6.4 8.4 6 8.4-6"/>
+      </svg>
+      <h2 id="contact-h"></h2>
+    </div>
+    <div id="contact-body"></div>
+  </div>
+</div>
+
 
 <div id="legend" class="glass">
   <div class="t" id="legend-title"></div>
@@ -1135,6 +1161,8 @@ const T = {
   listNoData: { no: 'Ikke data', en: 'No data' },
   listChanceCell: { no: (l, n) => `${l} av ${n} sannsynlig`, en: (l, n) => `${l} of ${n} likely` },
   listRowAria: { no: s => `Åpne ${s}`, en: s => `Open ${s}` },
+  listEmpty: { no: 'Ingen skoler passer filtrene.', en: 'No schools match the filters.' },
+  viewLabel: { no: 'Visning', en: 'View' },
   listRounds: { no: 'Fylker publiserer ulike inntaksrunder – tallene kan ikke sammenlignes direkte på tvers av fylker.',
                 en: 'Counties publish different intake rounds – figures are not directly comparable across counties.' },
   calcOpen:  { no: 'Regn ut fra karakterene dine', en: 'Work them out from your grades' },
@@ -1894,7 +1922,7 @@ function setTiles() {
 }
 
 function drawMarkers() {
-  if (view === 'list') renderListView();
+  if (view === 'list') { renderListView(); return; }   // the map is display:none
   if (markerLayer) map.removeLayer(markerLayer);
   const drawn = [];
   // 190 schools overlap badly at national zoom — nearly half had no reachable
@@ -2066,6 +2094,7 @@ function renderPanel() {
   document.getElementById('cat-label').textContent = t('catLabel');
   document.getElementById('view-map').textContent = t('viewMap');
   document.getElementById('view-list').textContent = t('viewList');
+  document.getElementById('view-toggle').setAttribute('aria-label', t('viewLabel'));
   const co = document.getElementById('calc-open');
   co.title = t('calcOpen');
   co.setAttribute('aria-label', t('calcOpen'));
@@ -3258,6 +3287,7 @@ let listSort = { key: 'value', dir: -1 };
 let refitPending = false;      // a county switch made while the map was hidden
 function setView(v) {
   if (v !== 'map' && v !== 'list') return;
+  if (v === 'list' && !DATA) return;     // the toggle is live before the fetch lands
   view = v;
   document.body.classList.toggle('view-list', v === 'list');
   document.getElementById('listview').hidden = v !== 'list';
@@ -3269,6 +3299,7 @@ function setView(v) {
   try { localStorage.setItem('pk-view', v); } catch (e) {}
   if (v === 'list') renderListView();
   else if (map) {
+    drawMarkers();                       // list mode skipped every marker rebuild
     map.invalidateSize();
     if (refitPending) {
       refitPending = false;
@@ -3277,15 +3308,15 @@ function setView(v) {
     }
   }
 }
-// the mean the map colours by, but for an arbitrary year — for the
-// year-over-year column (same pool rules as schoolPressure: F/U out,
-// literal zeros count as filled but stay out of the mean)
-function meanForYear(s, cat, yr) {
-  const scope = cat === 'all' ? s.programs : s.programs.filter(p => p.category === cat);
-  const nums = scope.map(p => p.values[yr])
-    .filter(v => v !== undefined && v !== 'F' && v !== 'U')
-    .filter(isPoints);
-  return nums.length ? meanOf(nums) : null;
+// year-over-year, like-for-like: only programmes with a number in BOTH
+// years enter the comparison — a school whose basket changed between years
+// used to show a delta with the wrong sign (Hvam: −2,4 shown, +11,6 real)
+function deltaFor(s, cat, yr) {
+  const prev = String(+yr - 1);
+  const both = (cat === 'all' ? s.programs : s.programs.filter(p => p.category === cat))
+    .filter(p => isPoints(p.values[yr]) && isPoints(p.values[prev]));
+  if (!both.length) return null;
+  return meanOf(both.map(p => p.values[yr])) - meanOf(both.map(p => p.values[prev]));
 }
 function sortList(key) {
   listSort = listSort.key === key
@@ -3297,12 +3328,15 @@ function renderListView() {
   const host = document.getElementById('listview');
   const chance = chanceMode();
   const allF = mapFylke === 'all';
+  // a sort key can outlive its column (points cleared, county picked)
+  if ((listSort.key === 'chance' && !chance) || (listSort.key === 'fylke' && !allF)) {
+    listSort = { key: 'value', dir: -1 };
+  }
   const rows = visibleSchools().map(s => {
     const pr = schoolPressure(s, mapCat);
     const v = pr.kind === 'points' ? pr.v : null;
-    const prior = pr.kind === 'points' ? meanForYear(s, mapCat, String(+pr.year - 1)) : null;
     const sc = chance ? schoolChance(s, mapCat, myPoints) : null;
-    return { s, pr, v, delta: v !== null && prior !== null ? v - prior : null,
+    return { s, pr, v, delta: pr.kind === 'points' ? deltaFor(s, mapCat, pr.year) : null,
              sc, best: sc ? sc.best : null };
   });
   const nil = x => x === null || x === undefined;
@@ -3318,21 +3352,25 @@ function renderListView() {
     if (nil(vb)) return -1;
     return (va - vb) * listSort.dir || a.s.name.localeCompare(b.s.name, 'no');
   });
-  const arrow = k => listSort.key === k ? (listSort.dir < 0 ? ' ↓' : ' ↑') : '';
+  const arrow = k => listSort.key === k
+    ? `<span aria-hidden="true">${listSort.dir < 0 ? ' ↓' : ' ↑'}</span>` : '';
   const ariaSort = k => listSort.key === k
     ? ` aria-sort="${listSort.dir < 0 ? 'descending' : 'ascending'}"` : '';
   const th = (k, label, num, tip) =>
     `<th class="${num ? 'num ' : ''}${listSort.key === k ? 'on' : ''}"${ariaSort(k)} scope="col"` +
-    `${tip ? ` title="${esc(tip)}"` : ''} onclick="sortList('${k}')">${esc(label)}${arrow(k)}</th>`;
-  const catLabel = mapCat === 'all' ? t('listTitleAll')
-    : (document.querySelector(`#map-cat option[value="${mapCat}"]`)?.textContent || mapCat);
-  const fyLabel = allF ? (lang === 'no' ? 'hele landet' : 'all of Norway') : mapFylke;
+    `${tip ? ` title="${esc(tip)}"` : ''}>` +
+    `<button type="button" onclick="sortList('${k}')">${esc(label)}${arrow(k)}</button></th>`;
+  const catLabel = mapCat === 'all' ? t('listTitleAll') : (CATS[mapCat] || {})[lang] || mapCat;
+  const fyLabel = allF ? t('allFylker') : mapFylke;
   const chip = r => {
     if (r.pr.kind === 'open') return `<span class="chip open">${esc(t('listOpen'))}</span>`;
-    if (r.v === null) return `<span class="none-v">${esc(t('listNoData'))}</span>`;
-    const light = r.v < 34;                       // the two palest bands
-    return `<span class="chip${light ? ' lo' : ''}" style="background:${colorFor(r.v)}"` +
-      ` title="${r.pr.year}">${esc(fmt(r.v))}</span>`;
+    if (r.v === null) {
+      const tip = r.pr.kind === 'stale' ? ` title="${esc(t('tipStale', r.pr.year))}"` : '';
+      return `<span class="none-v"${tip}>${esc(t('listNoData'))}</span>`;
+    }
+    const band = BINS.findIndex(b => r.v < b.max);
+    return `<span class="chip b${band}" style="background:${colorFor(r.v)}"` +
+      ` title="${esc(r.pr.year)}">${esc(fmt(r.v))}</span>`;
   };
   const deltaCell = r => r.delta === null ? `<span class="none-v">—</span>`
     : `<span class="${r.delta >= 0.05 ? 'up' : 'dn'}">${r.delta >= 0.05 ? '+' : ''}${esc(fmt(r.delta))}</span>`;
@@ -3341,9 +3379,10 @@ function renderListView() {
       esc(t('listChanceCell', r.sc.likely, r.sc.n));
   host.innerHTML =
     `<div class="card"><div class="lhead">` +
-    `<span class="t">${esc(catLabel)} · ${esc(fyLabel)}</span>` +
+    `<span class="t" id="list-title">${esc(catLabel)} · ${esc(fyLabel)}</span>` +
     `<span class="n">${esc(t('listCount', rows.length))}</span></div>` +
-    `<table><thead><tr>` +
+    (rows.length === 0 ? `<div class="foot">${esc(t('listEmpty'))}</div>` : '') +
+    `<div class="tblwrap"><table aria-labelledby="list-title"><thead><tr>` +
     th('name', t('listColSchool')) +
     (allF ? th('fylke', t('listColFylke')) : '') +
     th('value', t('listColVal'), true, t('listColValTip')) +
@@ -3351,21 +3390,21 @@ function renderListView() {
     (chance ? th('chance', t('listColChance'), false, t('listColChanceTip', fmt(myPoints))) : '') +
     `</tr></thead><tbody>` +
     rows.map((r, i) =>
-      `<tr tabindex="0" data-i="${i}" aria-label="${esc(t('listRowAria', r.s.name))}">` +
-      `<td class="sc">${esc(r.s.name)}</td>` +
+      `<tr data-i="${i}">` +
+      `<td class="sc"><a href="${schoolHash(r.s)}" aria-label="${esc(t('listRowAria', r.s.name))}">${esc(r.s.name)}</a></td>` +
       (allF ? `<td class="fy">${esc(r.s.fylke)}</td>` : '') +
       `<td class="num">${chip(r)}</td>` +
       `<td class="num">${deltaCell(r)}</td>` +
       (chance ? `<td>${chanceCell(r)}</td>` : '') +
       `</tr>`).join('') +
-    `</tbody></table>` +
-    (allF ? `<div class="foot">${esc(t('listRounds'))}</div>` : '') +
+    `</tbody></table></div>` +
+    (allF && rows.length ? `<div class="foot">${esc(t('listRounds'))}</div>` : '') +
     `</div>`;
   host.querySelectorAll('tbody tr').forEach(tr => {
-    const open = () => openSide(rows[+tr.dataset.i].s);
-    tr.onclick = open;
-    tr.onkeydown = ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); open(); } };
+    const open = ev => { ev.preventDefault(); openSide(rows[+tr.dataset.i].s); };
+    tr.onclick = open;                    // the whole row is a target; the link carries the semantics
   });
+  bindTitleTips(host);
 }
 
 /* ================= grade calculator ================= */
@@ -3574,6 +3613,7 @@ async function main() {
   ['mousedown', 'wheel', 'touchstart'].forEach(ev => map.getContainer()
     .addEventListener(ev, () => { touched = true; }, { once: true, passive: true }));
   setTimeout(() => {
+    if (view === 'list') { refitPending = true; return; }   // a 0×0 map framed here sticks at max zoom
     map.invalidateSize();
     if (!touched) map.fitBounds(HOME, { ...framePad(), animate: false });
   }, 150);
@@ -3583,6 +3623,7 @@ async function main() {
   document.addEventListener('visibilitychange', function fixHiddenBoot() {
     if (document.hidden) return;
     document.removeEventListener('visibilitychange', fixHiddenBoot);
+    if (view === 'list') { refitPending = true; return; }
     map.invalidateSize();
     if (!touched) map.fitBounds(HOME, { ...framePad(), animate: false });
   });
@@ -3651,7 +3692,9 @@ async function main() {
     if (document.getElementById('side').classList.contains('open')) closeSide();
   });
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
-  try { if (localStorage.getItem('pk-view') === 'list') setView('list'); } catch (e) {}
+  let storedView = 'map';
+  try { if (localStorage.getItem('pk-view') === 'list') storedView = 'list'; } catch (e) {}
+  setView(storedView);
   const linked = schoolFromUrl();
   if (linked) {
     if (linked.lat) {
