@@ -283,6 +283,12 @@
   }
   /* only the table scrolls sideways on a phone — header and footer stay put */
   #listview .tblwrap { overflow-x: auto; }
+  /* over the list the utility cluster loses its glass card — a floating
+     pill belongs over a map, not a document */
+  body.view-list #controls {
+    background: none; border-color: transparent; box-shadow: none;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
   /* the floating search/help/settings cluster covers the card's top-right
      corner until the viewport is wide enough for the card to end before it */
   @media (min-width: 761px) and (max-width: 1560px) {
