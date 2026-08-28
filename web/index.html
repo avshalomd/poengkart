@@ -283,19 +283,15 @@
   }
   /* only the table scrolls sideways on a phone — header and footer stay put */
   #listview .tblwrap { overflow-x: auto; }
-  /* over the list the utility cluster loses its glass card — a floating
-     pill belongs over a map, not a document */
-  body.view-list #controls {
-    background: none; border-color: transparent; box-shadow: none;
+  /* docked inside the list card's header (desktop list view) the cluster
+     is plain buttons, not a floating glass pill */
+  #listview .lhead #controls {
+    position: static; padding: 0; background: none; border: none; box-shadow: none;
     -webkit-backdrop-filter: none; backdrop-filter: none;
   }
-  /* the floating search/help/settings cluster covers the card's top-right
-     corner until the viewport is wide enough for the card to end before it */
-  @media (min-width: 761px) and (max-width: 1560px) {
-    #listview .lhead { padding-right: 136px; }
-  }
-  #listview .lhead { display: flex; justify-content: space-between; align-items: baseline;
+  #listview .lhead { display: flex; align-items: center;
                      gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  #listview .lhead .n { margin-left: auto; }
   #listview .lhead .t { font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
   #listview .lhead .n { font-size: 11.5px; color: var(--ink-3); }
   #listview table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -342,11 +338,7 @@
      as its .open width says, exactly like the map mode slide-over. */
   @media (max-width: 760px), (max-height: 480px) {
     body.view-list #app { flex-direction: column; overflow-y: auto; }
-    body.view-list #controls {
-      position: static; order: -2; display: flex; justify-content: flex-end;
-      margin: 10px 10px 0; align-self: flex-end;
-    }
-    body.view-list #panel, body.view-list #controls { flex: none; }  /* the giant table must not crush them */
+    body.view-list #panel { flex: none; }    /* the giant table must not crush it */
     body.view-list #panel { position: static; order: -1; margin: 10px; width: auto; max-height: none; }
     body.view-list #listview { padding: 0 10px 24px; overflow: visible; }
     body.view-list #side { position: fixed; top: 0; right: 0; bottom: 0; z-index: 1100; }
@@ -3299,6 +3291,17 @@ function locate() {
 let view = 'map';
 let listSort = { key: 'value', dir: -1 };
 let refitPending = false;      // a county switch made while the map was hidden
+// The utility cluster has two homes: floating over the map (and over the
+// phone layouts, where it sits on the brand row exactly as in map view),
+// and docked inside the list card's header on a desktop list. Moving the
+// live element keeps its listeners and aria state.
+function relocateControls() {
+  const c = document.getElementById('controls');
+  const phone = matchMedia('(max-width: 760px), (max-height: 480px)').matches;
+  const slot = view === 'list' && !phone ? document.querySelector('#listview .lhead') : null;
+  const home = slot || document.getElementById('app');
+  if (c.parentElement !== home) home.appendChild(c);
+}
 function setView(v) {
   if (v !== 'map' && v !== 'list') return;
   if (v === 'list' && !DATA) return;     // the toggle is live before the fetch lands
@@ -3313,6 +3316,7 @@ function setView(v) {
   try { localStorage.setItem('pk-view', v); } catch (e) {}
   if (v === 'list') renderListView();
   else if (map) {
+    relocateControls();
     drawMarkers();                       // list mode skipped every marker rebuild
     map.invalidateSize();
     if (refitPending) {
@@ -3419,6 +3423,7 @@ function renderListView() {
     tr.onclick = open;                    // the whole row is a target; the link carries the semantics
   });
   bindTitleTips(host);
+  relocateControls();                     // innerHTML above rebuilt its dock
 }
 
 /* ================= grade calculator ================= */
@@ -3667,7 +3672,7 @@ async function main() {
   let reframe;
   addEventListener('resize', () => {
     clearTimeout(reframe);
-    reframe = setTimeout(() => { map.invalidateSize(); liftMapControls(); }, 200);
+    reframe = setTimeout(() => { map.invalidateSize(); liftMapControls(); relocateControls(); }, 200);
   });
   document.addEventListener('touchstart', ev => {
     // a floating tooltip should not outlive the reader's attention
