@@ -262,6 +262,62 @@
   #ov-list .opt .fy { font-size: 12px; color: var(--ink-3); flex: none; }
   #ov-list .opt.act, #ov-list .opt:hover { background: var(--accent-soft); }
   #ov-list .none { padding: 10px 12px; font-size: 13px; color: var(--ink-3); }
+  /* ---------- list view (same filters, table instead of map) ---------- */
+  #view-toggle { display: flex; width: 100%; margin: 0 0 12px; }
+  #view-toggle button { flex: 1; text-align: center; }
+  #listview {
+    flex: 1; min-width: 0; overflow-y: auto; background: var(--page);
+    padding: 14px 16px 24px 346px;
+  }
+  body.view-list #map, body.view-list #legend { display: none; }
+  body.view-list .leaflet-bottom { display: none; }
+  #listview .card {
+    background: var(--surface-solid); border: 1px solid var(--line); border-radius: 16px;
+    padding: 16px 20px 12px; max-width: 1060px;
+    overflow-x: auto;               /* a phone scrolls the table inside the card */
+  }
+  #listview .lhead { display: flex; justify-content: space-between; align-items: baseline;
+                     gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  #listview .lhead .t { font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
+  #listview .lhead .n { font-size: 11.5px; color: var(--ink-3); }
+  #listview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  #listview th {
+    text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line);
+    font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--ink-3); cursor: pointer; white-space: nowrap; user-select: none;
+  }
+  #listview th.num, #listview td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  #listview th.on { color: var(--accent); }
+  #listview td { padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  #listview tbody tr { cursor: pointer; }
+  #listview tbody tr:hover, #listview tbody tr:focus-visible { background: var(--accent-soft); }
+  #listview tbody tr:focus-visible { outline: none; }
+  #listview .sc { font-weight: 600; }
+  #listview .fy { color: var(--ink-2); }
+  #listview .chip {
+    display: inline-block; min-width: 44px; text-align: center; padding: 2px 9px;
+    border-radius: 7px; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums;
+  }
+  #listview .chip.lo { color: var(--ink); }        /* light bands need dark text */
+  #listview .chip.open { border: 1px dashed var(--accent); color: var(--ink-2);
+                         font-weight: 400; font-size: 12px; background: none; }
+  #listview .up { color: var(--good); }
+  #listview .dn { color: var(--ink-2); }
+  #listview .none-v { color: var(--ink-3); }
+  #listview .k { display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+                 margin-right: 6px; vertical-align: 0; }
+  #listview .foot { padding: 10px 2px 0; font-size: 11.5px; color: var(--ink-3); line-height: 1.5; }
+  @media (max-width: 760px) {
+    body.view-list #app { overflow-y: auto; }
+    body.view-list #panel { position: static; margin: 10px; width: auto; max-height: none; }
+    body.view-list #app { flex-direction: column; }
+    #listview { padding: 0 10px 24px; overflow: visible; }
+    body.view-list #controls { display: none; }
+  }
+  @media (min-width: 761px) and (max-width: 1100px) {
+    body.view-list #panel { width: 260px; }
+    #listview { padding-left: 292px; }
+  }
   /* on narrow screens the legend covers the bottom-right map controls;
      --ctrl-lift (set from the legend's measured height) moves them above it */
   .leaflet-bottom.leaflet-right { margin-bottom: var(--ctrl-lift, 0px); }
@@ -797,6 +853,7 @@ try {
 <a class="skip" id="skip" href="#panel"></a>
 <div id="app">
   <div id="map"></div>
+  <div id="listview" hidden></div>
   <aside id="side">
     <div class="scroll">
       <div class="photo" id="s-photo"></div>
@@ -877,6 +934,10 @@ try {
 
   </div>
   <p id="tagline"></p>
+  <div class="seg" id="view-toggle" role="group">
+    <button id="view-map" type="button" onclick="setView('map')" aria-pressed="true"></button>
+    <button id="view-list" type="button" onclick="setView('list')" aria-pressed="false"></button>
+  </div>
   <div class="field" id="fylke-field" hidden>
     <label id="fylke-label" for="map-fylke"></label>
     <select id="map-fylke" onchange="onMapFylke(this.value)"></select>
@@ -1055,6 +1116,22 @@ const T = {
   setNote: { no: 'Valgene lagres bare i denne nettleseren.',
              en: 'Choices are saved only in this browser.' },
   locBtn:    { no: 'Vis hvor jeg er på kartet', en: 'Show where I am on the map' },
+  viewMap:  { no: 'Kart', en: 'Map' },
+  viewList: { no: 'Liste', en: 'List' },
+  listTitleAll: { no: 'Alle utdanningsprogram', en: 'All education programmes' },
+  listCount: { no: n => `${n} skoler · siste publiserte år per skole`,
+               en: n => `${n} schools · each school's latest published year` },
+  listColSchool: { no: 'Skole', en: 'School' },
+  listColFylke:  { no: 'Fylke', en: 'County' },
+  listColVal:    { no: 'Snitt poenggrense', en: 'Avg. threshold' },
+  listColDelta:  { no: 'Endring fra året før', en: 'Change from prior year' },
+  listColChance: { no: x => `Sjanse med ${x} poeng`, en: x => `Chance with ${x} points` },
+  listOpen:   { no: 'Uten venteliste', en: 'No waiting list' },
+  listNoData: { no: 'Ikke data', en: 'No data' },
+  listChanceCell: { no: (l, n) => `${l} av ${n} sannsynlig`, en: (l, n) => `${l} of ${n} likely` },
+  listRowAria: { no: s => `Åpne ${s}`, en: s => `Open ${s}` },
+  listRounds: { no: 'Fylker publiserer ulike inntaksrunder – tallene kan ikke sammenlignes direkte på tvers av fylker.',
+                en: 'Counties publish different intake rounds – figures are not directly comparable across counties.' },
   calcOpen:  { no: 'Regn ut fra karakterene dine', en: 'Work them out from your grades' },
   calcTitle: { no: 'Fra karakterer til poeng', en: 'From grades to points' },
   calcLede:  { no: 'Karakterpoengene er gjennomsnittet av alle tallkarakterene på vitnemålet ganget med 10. Standpunkt og eksamen teller likt; fag uten karakter regnes ikke med. Trykk på karakterene dine:',
@@ -1812,6 +1889,7 @@ function setTiles() {
 }
 
 function drawMarkers() {
+  if (view === 'list') renderListView();
   if (markerLayer) map.removeLayer(markerLayer);
   const drawn = [];
   // 190 schools overlap badly at national zoom — nearly half had no reachable
@@ -1949,6 +2027,7 @@ function onMapFylke(v) {
     mapCat = 'all';
   }
   drawMarkers(); renderPanel(); renderLegend(); renderCatNote(); renderSide();
+  if (view === 'list') { refitPending = true; return; }
   const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon]);
   if (pts.length) {
     const box = L.latLngBounds(pts).pad(0.08);
@@ -1980,6 +2059,8 @@ function renderPanel() {
     DATA.schools.length, DATA.counties.length,
     DATA.years[0], DATA.years[DATA.years.length - 1]);
   document.getElementById('cat-label').textContent = t('catLabel');
+  document.getElementById('view-map').textContent = t('viewMap');
+  document.getElementById('view-list').textContent = t('viewList');
   const co = document.getElementById('calc-open');
   co.title = t('calcOpen');
   co.setAttribute('aria-label', t('calcOpen'));
@@ -3166,6 +3247,122 @@ function locate() {
   }, { timeout: 10000, maximumAge: 60000 });
 }
 
+/* ================= list view ================= */
+let view = 'map';
+let listSort = { key: 'value', dir: -1 };
+let refitPending = false;      // a county switch made while the map was hidden
+function setView(v) {
+  if (v !== 'map' && v !== 'list') return;
+  view = v;
+  document.body.classList.toggle('view-list', v === 'list');
+  document.getElementById('listview').hidden = v !== 'list';
+  for (const [id, name] of [['view-map', 'map'], ['view-list', 'list']]) {
+    const b = document.getElementById(id);
+    b.classList.toggle('on', view === name);
+    b.setAttribute('aria-pressed', String(view === name));
+  }
+  try { localStorage.setItem('pk-view', v); } catch (e) {}
+  if (v === 'list') renderListView();
+  else if (map) {
+    map.invalidateSize();
+    if (refitPending) {
+      refitPending = false;
+      const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon]);
+      if (pts.length) map.fitBounds(L.latLngBounds(pts).pad(0.08), { ...framePad(), animate: false });
+    }
+  }
+}
+// the mean the map colours by, but for an arbitrary year — for the
+// year-over-year column (same pool rules as schoolPressure: F/U out,
+// literal zeros count as filled but stay out of the mean)
+function meanForYear(s, cat, yr) {
+  const scope = cat === 'all' ? s.programs : s.programs.filter(p => p.category === cat);
+  const nums = scope.map(p => p.values[yr])
+    .filter(v => v !== undefined && v !== 'F' && v !== 'U')
+    .filter(isPoints);
+  return nums.length ? meanOf(nums) : null;
+}
+function sortList(key) {
+  listSort = listSort.key === key
+    ? { key, dir: -listSort.dir }
+    : { key, dir: key === 'name' || key === 'fylke' ? 1 : -1 };
+  renderListView();
+}
+function renderListView() {
+  const host = document.getElementById('listview');
+  const chance = chanceMode();
+  const allF = mapFylke === 'all';
+  const rows = visibleSchools().map(s => {
+    const pr = schoolPressure(s, mapCat);
+    const v = pr.kind === 'points' ? pr.v : null;
+    const prior = pr.kind === 'points' ? meanForYear(s, mapCat, String(+pr.year - 1)) : null;
+    const sc = chance ? schoolChance(s, mapCat, myPoints) : null;
+    return { s, pr, v, delta: v !== null && prior !== null ? v - prior : null,
+             sc, best: sc ? sc.best : null };
+  });
+  const nil = x => x === null || x === undefined;
+  rows.sort((a, b) => {
+    const k = listSort.key;
+    if (k === 'name') return a.s.name.localeCompare(b.s.name, 'no') * listSort.dir;
+    if (k === 'fylke') return (a.s.fylke.localeCompare(b.s.fylke, 'no')
+      || a.s.name.localeCompare(b.s.name, 'no')) * listSort.dir;
+    const va = k === 'value' ? a.v : k === 'delta' ? a.delta : a.best;
+    const vb = k === 'value' ? b.v : k === 'delta' ? b.delta : b.best;
+    if (nil(va) && nil(vb)) return a.s.name.localeCompare(b.s.name, 'no');
+    if (nil(va)) return 1;
+    if (nil(vb)) return -1;
+    return (va - vb) * listSort.dir || a.s.name.localeCompare(b.s.name, 'no');
+  });
+  const arrow = k => listSort.key === k ? (listSort.dir < 0 ? ' ↓' : ' ↑') : '';
+  const ariaSort = k => listSort.key === k
+    ? ` aria-sort="${listSort.dir < 0 ? 'descending' : 'ascending'}"` : '';
+  const th = (k, label, num) =>
+    `<th class="${num ? 'num ' : ''}${listSort.key === k ? 'on' : ''}"${ariaSort(k)} scope="col"` +
+    ` onclick="sortList('${k}')">${esc(label)}${arrow(k)}</th>`;
+  const catLabel = mapCat === 'all' ? t('listTitleAll')
+    : (document.querySelector(`#map-cat option[value="${mapCat}"]`)?.textContent || mapCat);
+  const fyLabel = allF ? (lang === 'no' ? 'hele landet' : 'all of Norway') : mapFylke;
+  const chip = r => {
+    if (r.pr.kind === 'open') return `<span class="chip open">${esc(t('listOpen'))}</span>`;
+    if (r.v === null) return `<span class="none-v">${esc(t('listNoData'))}</span>`;
+    const light = r.v < 34;                       // the two palest bands
+    return `<span class="chip${light ? ' lo' : ''}" style="background:${colorFor(r.v)}"` +
+      ` title="${r.pr.year}">${esc(fmt(r.v))}</span>`;
+  };
+  const deltaCell = r => r.delta === null ? `<span class="none-v">—</span>`
+    : `<span class="${r.delta >= 0.05 ? 'up' : 'dn'}">${r.delta >= 0.05 ? '+' : ''}${esc(fmt(r.delta))}</span>`;
+  const chanceCell = r => !r.sc ? `<span class="none-v">—</span>`
+    : `<span class="k" style="background:${bucketColor(bucketOf(r.sc.best))}"></span>` +
+      esc(t('listChanceCell', r.sc.likely, r.sc.n));
+  host.innerHTML =
+    `<div class="card"><div class="lhead">` +
+    `<span class="t">${esc(catLabel)} · ${esc(fyLabel)}</span>` +
+    `<span class="n">${esc(t('listCount', rows.length))}</span></div>` +
+    `<table><thead><tr>` +
+    th('name', t('listColSchool')) +
+    (allF ? th('fylke', t('listColFylke')) : '') +
+    th('value', t('listColVal'), true) +
+    th('delta', t('listColDelta'), true) +
+    (chance ? th('chance', t('listColChance', fmt(myPoints))) : '') +
+    `</tr></thead><tbody>` +
+    rows.map((r, i) =>
+      `<tr tabindex="0" data-i="${i}" aria-label="${esc(t('listRowAria', r.s.name))}">` +
+      `<td class="sc">${esc(r.s.name)}</td>` +
+      (allF ? `<td class="fy">${esc(r.s.fylke)}</td>` : '') +
+      `<td class="num">${chip(r)}</td>` +
+      `<td class="num">${deltaCell(r)}</td>` +
+      (chance ? `<td>${chanceCell(r)}</td>` : '') +
+      `</tr>`).join('') +
+    `</tbody></table>` +
+    (allF ? `<div class="foot">${esc(t('listRounds'))}</div>` : '') +
+    `</div>`;
+  host.querySelectorAll('tbody tr').forEach(tr => {
+    const open = () => openSide(rows[+tr.dataset.i].s);
+    tr.onclick = open;
+    tr.onkeydown = ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); open(); } };
+  });
+}
+
 /* ================= grade calculator ================= */
 // vitnemål subjects with a numeric grade at grunnskole level, official names;
 // the two exam slots come on top of standpunkt, as on the vitnemål itself
@@ -3449,6 +3646,7 @@ async function main() {
     if (document.getElementById('side').classList.contains('open')) closeSide();
   });
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
+  try { if (localStorage.getItem('pk-view') === 'list') setView('list'); } catch (e) {}
   const linked = schoolFromUrl();
   if (linked) {
     if (linked.lat) {
