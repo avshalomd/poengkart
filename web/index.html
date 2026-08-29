@@ -3684,6 +3684,17 @@ async function main() {
     // a floating tooltip should not outlive the reader's attention
     if (!ev.target.closest('[title], .ch, .lv, #tip')) hideTip();
   }, { passive: true });
+  // a deep link pasted into an ALREADY-OPEN tab is a same-document
+  // navigation: no reload, only hashchange. Our own writes never fire it
+  // (replaceState and pushState are silent), so this only ever reacts to
+  // the address bar.
+  addEventListener('hashchange', () => {
+    const s = schoolFromUrl();
+    if (s && s !== current) {
+      if (s.lat && view === 'map') map.setView([s.lat, s.lon], Math.max(map.getZoom(), 11));
+      openSide(s);
+    }
+  });
   addEventListener('popstate', () => {
     // a back-gesture closes what is actually on screen: an open sheet first —
     // and re-pushes the side panel's entry the pop just consumed, so the next
@@ -3701,11 +3712,16 @@ async function main() {
       }
       return;
     }
+    // Chrome fires popstate for same-document hash navigations too, and
+    // BEFORE hashchange — so a deep link pasted over an open panel arrives
+    // here first. A hash naming a different school is forward navigation,
+    // not a back-gesture.
+    const target = schoolFromUrl();
+    if (target && target !== current) { openSide(target); return; }
     if (sideOpen) { closeSide(true); return; }
     // forward-navigation onto a school entry reopens it, so the address bar
     // never claims a school that is not showing
-    const fwd = (history.state || {}).pkSide && schoolFromUrl();
-    if (fwd) openSide(fwd);
+    if (target) openSide(target);
   });
   document.addEventListener('keydown', ev => {
     if (ev.key !== 'Escape') return;
