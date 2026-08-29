@@ -3,10 +3,11 @@
 **https://poengkart-no.vercel.app**
 
 Admission point thresholds (*poenggrenser*) for Norwegian upper secondary
-schools, on a map. A threshold is the score of the last applicant who got a
-place — a grade average × 10 — so it says what it took to get in, not what the
-school requires. 195 schools across the seven counties that publish these
-figures, up to ten years of history, in Norwegian and English.
+schools, on a map — and as a sortable, rankable list. A threshold is the score
+of the last applicant who got a place — a grade average × 10 — so it says what
+it took to get in, not what the school requires. 195 schools across the seven
+counties that publish these figures, up to ten years of history, in Norwegian
+and English.
 
 ![The map: 195 schools across southern and central Norway, clustered and coloured by admission threshold](docs/map.png)
 
@@ -15,9 +16,17 @@ figures, up to ten years of history, in Norwegian and English.
 Type in your own points and the map recolours by your chance of a place at
 the next intake — green likely, amber possible, red unlikely — per school and
 per programme; press + on any programme to collect your choices and see
-whether the list holds up. The chance comes from a model fitted on the whole
+whether the list holds up. Don't know your points? A small calculator turns
+vitnemål grades into them. The chance comes from a model fitted on the whole
 history and checked by forecasting each past year from the years before it;
-the panel says how often that check was right. [docs/model.md](docs/model.md)
+the panel says how often that check was right.
+
+The rest of the furniture: search finds any school by name (⌘K or `/`), the
+Kart ⇄ Liste toggle swaps the map for a sortable table of the same filtered
+figures, every open school is a shareable link (`#s=Fylke/Skolenavn`), a
+locate button centres the map on you (the position never leaves the browser),
+and settings hold language, light/dark theme, text size and a
+colour-blind-friendly palette. [docs/model.md](docs/model.md)
 has the model, the backtest and what it cannot know; the
 [technical report](docs/technical-report.md) is the formal write-up of the
 whole thing — data semantics, model, validation, findings — also published at
