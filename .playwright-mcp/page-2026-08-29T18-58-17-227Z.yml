@@ -1,0 +1,138 @@
+- generic [ref=f4e1]:
+  - link "Skip to the filters" [ref=f4e186] [cursor=pointer]:
+    - /url: "#panel"
+  - generic [ref=f4e3]:
+    - generic [ref=f4e4]:
+      - generic:
+        - generic:
+          - img:
+            - generic:
+              - 'button "Numedal. Average 28.5 pts · 4 of 6 programmes filled up Highest: 34.0 · Building and Construction. Press to open details." [ref=f4e292] [cursor=pointer]'
+              - 'button "Hadeland videregående skole. Average 33.5 pts · 13 of 25 programmes filled up Highest: 50.0 · Sports and Physical Education. Press to open details." [ref=f4e293] [cursor=pointer]'
+              - button "Trysil videregående skole. All programs without waitlist in 2025. Press to open details." [ref=f4e294] [cursor=pointer]
+              - 'button "Dalane videregående skole. Average 32.6 pts · 9 of 20 programmes filled up ⚠ But most programmes admitted everyone who applied Highest: 40.0 · Supplementary Year for General University Admission. Press to open details." [ref=f4e295] [cursor=pointer]'
+              - 'button "Guri Kunna videregående skole. Average 30.5 pts · 2 of 7 programmes filled up ⚠ But most programmes admitted everyone who applied Highest: 36.0 · Agriculture, Fishing and Forestry. Press to open details." [ref=f4e296] [cursor=pointer]'
+              - button "Kyrksæterøra videregående skole. All programs without waitlist in 2025. Press to open details." [ref=f4e297] [cursor=pointer]
+              - button "Meråker videregående skole. All programs without waitlist in 2025. Press to open details." [ref=f4e298] [cursor=pointer]
+              - 'button "Oppdal videregående skole. Average 30.0 pts · 1 of 6 programmes filled up ⚠ But most programmes admitted everyone who applied Highest: 30.0 · Electrical Engineering and Computer Technology. Press to open details." [ref=f4e299] [cursor=pointer]'
+              - 'button "Ytre Namdal videregående skole. Average 27.9 pts · 1 of 6 programmes filled up ⚠ But most programmes admitted everyone who applied Highest: 27.9 · Technical and Industrial Production. Press to open details." [ref=f4e300] [cursor=pointer]'
+        - generic:
+          - button "2 schools in this area. Press to zoom in." [ref=f4e301] [cursor=pointer]:
+            - generic [ref=f4e302]: "2"
+          - button "12 schools in this area. Press to zoom in." [ref=f4e303] [cursor=pointer]:
+            - generic [ref=f4e304]: "12"
+          - button "3 schools in this area. Press to zoom in." [ref=f4e305] [cursor=pointer]:
+            - generic [ref=f4e306]: "3"
+          - button "4 schools in this area. Press to zoom in." [ref=f4e307] [cursor=pointer]:
+            - generic [ref=f4e308]: "4"
+          - button "9 schools in this area. Press to zoom in." [ref=f4e309] [cursor=pointer]:
+            - generic [ref=f4e310]: "9"
+          - button "62 schools in this area. Press to zoom in." [ref=f4e311] [cursor=pointer]:
+            - generic [ref=f4e312]: "62"
+          - button "16 schools in this area. Press to zoom in." [ref=f4e313] [cursor=pointer]:
+            - generic [ref=f4e314]: "16"
+          - button "2 schools in this area. Press to zoom in." [ref=f4e315] [cursor=pointer]:
+            - generic [ref=f4e316]: "2"
+          - button "3 schools in this area. Press to zoom in." [ref=f4e317] [cursor=pointer]:
+            - generic [ref=f4e318]: "3"
+          - button "16 schools in this area. Press to zoom in." [ref=f4e319] [cursor=pointer]:
+            - generic [ref=f4e320]: "16"
+          - button "5 schools in this area. Press to zoom in." [ref=f4e321] [cursor=pointer]:
+            - generic [ref=f4e322]: "5"
+          - button "2 schools in this area. Press to zoom in." [ref=f4e323] [cursor=pointer]:
+            - generic [ref=f4e324]: "2"
+          - button "4 schools in this area. Press to zoom in." [ref=f4e325] [cursor=pointer]:
+            - generic [ref=f4e326]: "4"
+          - button "3 schools in this area. Press to zoom in." [ref=f4e327] [cursor=pointer]:
+            - generic [ref=f4e328]: "3"
+          - button "11 schools in this area. Press to zoom in." [ref=f4e329] [cursor=pointer]:
+            - generic [ref=f4e330]: "11"
+          - button "4 schools in this area. Press to zoom in." [ref=f4e331] [cursor=pointer]:
+            - generic [ref=f4e332]: "4"
+          - button "2 schools in this area. Press to zoom in." [ref=f4e333] [cursor=pointer]:
+            - generic [ref=f4e334]: "2"
+          - button "2 schools in this area. Press to zoom in." [ref=f4e335] [cursor=pointer]:
+            - generic [ref=f4e336]: "2"
+          - button "24 schools in this area. Press to zoom in." [ref=f4e337] [cursor=pointer]:
+            - generic [ref=f4e338]: "24"
+      - generic:
+        - generic:
+          - button "Show where I am on the map" [ref=f4e234] [cursor=pointer]
+          - generic [ref=f4e58]:
+            - button "Zoom in" [ref=f4e59] [cursor=pointer]: +
+            - button "Zoom out" [ref=f4e60] [cursor=pointer]: −
+          - generic [ref=f4e61]:
+            - link "Leaflet" [ref=f4e339] [cursor=pointer]:
+              - /url: https://leafletjs.com
+            - text: "| ©"
+            - link "OSM" [ref=f4e344] [cursor=pointer]:
+              - /url: https://www.openstreetmap.org/copyright
+            - text: ©
+            - link "CARTO" [ref=f4e345] [cursor=pointer]:
+              - /url: https://carto.com/attributions
+    - complementary "School details" [ref=f4e235]:
+      - generic [ref=f4e70]:
+        - generic [ref=f4e76]:
+          - button [ref=f4e77] [cursor=pointer]
+          - button [ref=f4e78] [cursor=pointer]
+          - button [ref=f4e79] [cursor=pointer]
+        - searchbox [ref=f4e83]
+    - generic [ref=f4e85]:
+      - button "Find a school" [ref=f4e236] [cursor=pointer]
+      - button "How to read this map" [ref=f4e237] [cursor=pointer]
+      - button "Settings" [active] [ref=f4e238] [cursor=pointer]
+    - generic [ref=f4e98]:
+      - heading "Poengkart" [level=1] [ref=f4e104]
+      - paragraph [ref=f4e105]: "Admission point thresholds for upper secondary school: the score of the last applicant who got a place. 195 schools across 7 counties, 2017–2026. Open a school for the details."
+      - group "View" [ref=f4e239]:
+        - button "Map" [pressed] [ref=f4e240] [cursor=pointer]
+        - button "List" [ref=f4e241] [cursor=pointer]
+      - generic [ref=f4e109]:
+        - generic [ref=f4e110]: County
+        - combobox "County" [ref=f4e242] [cursor=pointer]:
+          - option "All of Norway" [selected]
+          - option "Akershus (34)"
+          - option "Buskerud (12)"
+          - option "Innlandet (26)"
+          - option "Oslo (25)"
+          - option "Rogaland (25)"
+          - option "Trøndelag (31)"
+          - option "Vestland (42)"
+      - generic [ref=f4e112]:
+        - generic [ref=f4e113]: Education programme
+        - combobox "Education programme" [ref=f4e243] [cursor=pointer]:
+          - option "All education programmes" [selected]
+          - option "General studies"
+          - option "Sports"
+          - option "Music, dance & drama"
+          - option "Art, design & architecture"
+          - option "Media & communication"
+          - option "IT & media production"
+          - option "Electrical & computer tech"
+          - option "Healthcare & childhood"
+          - option "Building & construction"
+          - option "Technology & industry"
+          - option "Restaurant & food"
+          - option "Sales, service & tourism"
+          - option "Agriculture & nature"
+          - option "Hairdressing, floristry & interior"
+          - option "Handicrafts & product design"
+          - option "Supplementary year"
+      - generic [ref=f4e115]:
+        - generic [ref=f4e116]: Your points (optional)
+        - generic [ref=f4e117]:
+          - textbox "Your points (optional)" [ref=f4e244]:
+            - /placeholder: e.g. 42.5
+          - button "Work them out from your grades" [ref=f4e245] [cursor=pointer]
+  - generic [ref=f4e123]:
+    - generic [ref=f4e124]: Average threshold (latest year)
+    - generic [ref=f4e125]:
+      - generic [ref=f4e346]: <30
+      - generic [ref=f4e349]: 30–34
+      - generic [ref=f4e352]: 34–38
+      - generic [ref=f4e355]: 38–42
+      - generic [ref=f4e358]: 42+
+    - generic [ref=f4e141]: Marker size shows what share of the programmes filled up
+    - generic [ref=f4e142]: The map mixes counties with different intake rounds — those numbers are not directly comparable.
+    - generic [ref=f4e143]: No waitlist – all admitted
+    - generic [ref=f4e146]: No data

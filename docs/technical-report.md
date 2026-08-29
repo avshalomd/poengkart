@@ -554,9 +554,9 @@ Rogaland would be an assumption dressed as a measurement.
 
 The school effect $\alpha_s$ in (2) is a school's threshold level relative
 to the same programmes elsewhere in its county — programme mix held
-constant. Re-ranking the 160 schools with five or more published thresholds
-by $\alpha_s$ instead of by raw mean moves the average school 20 places and
-the most extreme school 82. A substantial part of a raw school mean is what
+constant. Re-ranking the 159 schools whose $\alpha_s$ rests on five or more
+fitted cells by $\alpha_s$ instead of by raw mean moves the average school 19
+places and the most extreme school 79. A substantial part of a raw school mean is what
 the school *offers*, not how contested it is. The application prints the
 mix-adjusted effect with a standard error and states that it measures
 demand, not quality.

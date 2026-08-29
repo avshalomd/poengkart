@@ -87,8 +87,6 @@
       --good: #3fbf4a;              /* the one token that had no dark value */
       --chip-ink: #0f1720;
       --chip-b2-ink: #0f1720;       /* dark ink clears 4.5:1 on the dark-mode mid blue */
-      --chip-ink: #0f1720;
-      --chip-b2-ink: #0f1720;       /* dark ink clears 4.5:1 on the dark-mode mid blue */
       --danger: #e26b6e;
       --chip-good: #3fbf4a; --chip-warn: #e0a052; --chip-danger: #ea8e90;
       --warn: #e0a052; --warn-soft: rgba(224,160,82,.13);
@@ -109,6 +107,8 @@
       --danger: #e26b6e;
       --chip-good: #3fbf4a; --chip-warn: #e0a052; --chip-danger: #ea8e90;
       --warn: #e0a052; --warn-soft: rgba(224,160,82,.13);
+    --chip-ink: #0f1720;
+    --chip-b2-ink: #0f1720;       /* dark ink clears 4.5:1 on the dark-mode mid blue */
   }
 
   /* colour-blind-friendly: the chance scale's green swaps to a blue nothing
@@ -236,7 +236,6 @@
   /* invisible, not absent: the slot is reserved so picking a grade never
      shoves the whole row leftwards when the ✕ appears */
   #calc .grades button.rm.off { visibility: hidden; }
-  #calc .grades button[hidden], .modal .cta[hidden] { display: none; }
   #calc .sum { display: flex; align-items: baseline; gap: 14px; margin: 14px 0 4px; }
   #calc .sum .v { font-size: 22px; font-weight: 700; letter-spacing: -.02em;
                   font-variant-numeric: tabular-nums; }
@@ -337,7 +336,7 @@
      them. The side panel leaves the column entirely: a fixed sheet, as wide
      as its .open width says, exactly like the map mode slide-over. */
   @media (max-width: 760px), (max-height: 480px) {
-    body.view-list #app { flex-direction: column; overflow-y: auto; }
+    body.view-list #app { flex-direction: column; overflow-y: auto; position: relative; }
     body.view-list #panel { flex: none; }    /* the giant table must not crush it */
     body.view-list #panel { position: static; order: -1; margin: 10px; width: auto; max-height: none; }
     body.view-list #listview { padding: 0 10px 24px; overflow: visible; }
@@ -365,7 +364,6 @@
     border-radius: 10px; box-shadow: var(--shadow); padding: 10px 14px; font-size: 13px;
     max-width: min(92vw, 420px); text-align: center;
   }
-  #toast[hidden] { display: none; }
   #pts-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; line-height: 1.4; }
   #pts-note .k { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 3px 0 1px; vertical-align: -1px; }
   /* Chance bands are semantic colours, deliberately not the blue threshold
@@ -456,7 +454,6 @@
     padding: 18px; background: rgba(8,11,15,.58); backdrop-filter: blur(3px);
     animation: fade .18s ease-out;
   }
-  .modal[hidden] { display: none; }
   @keyframes fade { from { opacity: 0 } }
   .modal .sheet {
     overscroll-behavior: contain;
@@ -595,7 +592,6 @@
   #legend .none .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--context); flex: none; }
   #legend .none .dot.open-dot { background: var(--accent-soft); border: 1.5px dashed var(--accent); }
   #legend .none + .none { margin-top: 3px; }
-  #legend .none[hidden] { display: none; }     /* the flex rule above would win otherwise */
   #legend .sizenote { margin-top: 7px; color: var(--ink-3); max-width: 210px; line-height: 1.35; }
   #legend .sizenote.warn { color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 6px; }
   .round.unknown { background: transparent; color: var(--ink-2); border: 1px dashed var(--line); }
@@ -1132,7 +1128,6 @@ const T = {
   helpLabel: { no: 'Slik leser du kartet', en: 'How to read this map' },
   searchLabel: { no: 'Finn skole', en: 'Find a school' },
   searchPh:    { no: 'Skolenavn …', en: 'School name …' },
-  searchNone:  { no: 'Ingen treff', en: 'No matches' },
   settingsLabel: { no: 'Innstillinger', en: 'Settings' },
   setTheme:      { no: 'Fargetema', en: 'Theme' },
   setThemeAuto:  { no: 'Auto', en: 'Auto' },
@@ -1150,7 +1145,6 @@ const T = {
   locBtn:    { no: 'Vis hvor jeg er på kartet', en: 'Show where I am on the map' },
   viewMap:  { no: 'Kart', en: 'Map' },
   viewList: { no: 'Liste', en: 'List' },
-  listTitleAll: { no: 'Alle utdanningsprogram', en: 'All education programmes' },
   listCount: { no: n => `${n} skoler · siste publiserte år per skole`,
                en: n => `${n} schools · each school's latest published year` },
   listColSchool: { no: 'Skole', en: 'School' },
@@ -1352,9 +1346,7 @@ const T = {
   pageTitle:  { no: 'Poengkart – poenggrenser for videregående skole',
                 en: 'Poengkart – admission thresholds for Norwegian upper secondary schools' },
   tipHint:    { no: 'Trykk for trender og detaljer', en: 'Open for trends and details' },
-  tipHighest: { no: 'Høyest', en: 'Highest' },
   tipAllOpen: { no: y => `Alle program uten venteliste i ${y}`, en: y => `All programs without waitlist in ${y}` },
-  heroSt:     { no: y => `Studiespes. ${y}`, en: y => `Acad. spec. ${y}` },
   heroDelta:  { no: y => `endring fra ${y}`, en: y => `change vs ${y}` },
   heroDeltaBasis: {
     no: 'Forskjellen mellom de to siste punktene på snittlinjen i grafen under.',
@@ -1394,7 +1386,6 @@ const T = {
   filterPh:   { no: 'Filtrer programområde …', en: 'Filter programs…' },
   website:    { no: 'Nettside', en: 'Website' },
   wiki:       { no: 'Wikipedia', en: 'Wikipedia' },
-  photoCredit:{ no: 'Foto', en: 'Photo' },
   srcNote: {
     no: 'Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaksrunden varierer mellom fylkene og er merket på hver skole. Uoffisiell prototype – tall kan inneholde parsefeil.',
     en: 'Sources: the county authorities of Akershus, Buskerud, Innlandet, Rogaland, Trøndelag and Vestland, the City of Oslo and vilbli.no (thresholds), NSR/Udir (schools), Kartverket (geocoding), Wikimedia Commons and school websites (photos). The intake round differs by county and is labelled on every school. Unofficial prototype — figures may contain parsing errors.',
@@ -1557,7 +1548,6 @@ function yearSpan(s) {
   const ys = [...new Set(s.programs.flatMap(p => Object.keys(p.values)))].sort();
   return !ys.length ? '' : ys.length === 1 ? ys[0] : `${ys[0]}–${ys[ys.length - 1]}`;
 }
-const stProgram = s => s.programs.find(p => p.program.toLowerCase() === 'studiespesialisering');
 // The county publishes the Norwegian name; the English one comes from Udir's
 // register at build time. Falling back to the Norwegian is right for anything
 // the register has never translated.
@@ -1678,7 +1668,7 @@ const pct = c => Math.round(c * 100);
 const chanceMode = () => myPoints !== null && !!MODEL;
 // the forecast for one programme row, or null; keys match tools/model.py
 function predFor(s, p) {
-  const e = MODEL && MODEL.schools[`${s.fylke}|${s.name}`];
+  const e = MODEL && MODEL.schools && MODEL.schools[`${s.fylke}|${s.name}`];
   if (!e || !e.programs) return null;
   const pr = e.programs[progKeyMap(s).get(p)];
   return pr ? { ...pr, year: e.year, round: e.round } : null;
@@ -1842,7 +1832,7 @@ function renderChoices() {
     (choicesNote ? `<div class="vnote">⚠ ${esc(choicesNote)}</div>` : '') + sum;
   box.querySelectorAll('.who').forEach(b => b.onclick = () => {
     const { s } = items[+b.dataset.i]; openSide(s);
-    if (s.lat && map) map.setView([s.lat, s.lon], Math.max(map.getZoom(), 11));
+    if (s.lat && map && view === 'map') map.setView([s.lat, s.lon], Math.max(map.getZoom(), 11));
   });
   box.querySelectorAll('.rm').forEach(b => b.onclick = () => { const { s, p } = items[+b.dataset.i]; toggleChoice(s, p); });
   bindTitleTips(box);
@@ -2133,8 +2123,10 @@ function renderCatNote() {
       && s.programs.some(p => p.category === mapCat)).length);
 }
 function liftMapControls() {
-  const leg = document.getElementById('legend');
-  const lift = innerWidth <= 560 && leg && !leg.hidden ? leg.offsetHeight + 12 : 0;
+  // offsetHeight is 0 whenever the legend is hidden — by attribute OR by the
+  // view-list / side-open CSS — so it doubles as the visibility test
+  const h = document.getElementById('legend')?.offsetHeight || 0;
+  const lift = innerWidth <= 560 && h ? h + 12 : 0;
   document.documentElement.style.setProperty('--ctrl-lift', lift + 'px');
 }
 function renderLegend() {
@@ -2216,6 +2208,7 @@ function closeSide(fromHistory) {
   side.classList.remove('open');
   document.body.classList.remove('side-open');
   setUrlSchool(null);
+  liftMapControls();                       // the legend is visible again
   side.setAttribute('inert', '');          // keep 17 hidden controls out of Tab
   const back = document.getElementById('map-fylke');
   (back && back.offsetParent ? back : document.getElementById('map-cat'))?.focus();
@@ -2236,7 +2229,6 @@ function renderSide() {
   const s = current;
   // photo header
   const ph = document.getElementById('s-photo');
-  ph.classList.toggle('nophoto', false);   // location map fills the same frame
   const creditText = s.photo_credit
     || (s.photo_source === 'commons' ? 'Wikimedia Commons' : 'Wikipedia');
   // esc() protects the attribute but not the scheme, and every one of these
@@ -2374,7 +2366,7 @@ function renderSide() {
 // pointer to the input. Follows the category lens the same way the hero does.
 function renderChance(s, lensCat) {
   const box = document.getElementById('s-chance');
-  const e = MODEL && MODEL.schools[`${s.fylke}|${s.name}`];
+  const e = MODEL && MODEL.schools && MODEL.schools[`${s.fylke}|${s.name}`];
   if (!e || !e.programs) { box.hidden = true; return; }
   box.hidden = false;
   const adj = e.alpha === undefined ? ''
@@ -2959,7 +2951,7 @@ function bindTips(root) {
 // tap on them must keep doing what it says, and their titles are redundant.
 function bindTitleTips(root) {
   root.querySelectorAll('[title]').forEach(el => {
-    if (el.closest('a, select, input, .pick, .who') || el.classList.contains('nm')) return;
+    if (el.closest('a, button, select, input, .pick, .who') || el.classList.contains('nm')) return;
     const txt = el.getAttribute('title');
     if (!txt) return;
     el.addEventListener('touchstart', ev => {
@@ -3032,7 +3024,7 @@ const SHEET_IDS = ['contact', 'intro', 'settings', 'calc', 'searchov'];
 const anySheetOpen = () => SHEET_IDS.some(id => !document.getElementById(id).hidden);
 function setModalTrap() {
   const open = anySheetOpen();
-  ['skip', 'app', 'controls', 'panel', 'legend'].forEach(id =>
+  ['skip', 'app', 'legend'].forEach(id =>     // #panel/#controls are #app children now
     document.getElementById(id)?.toggleAttribute('inert', open));
 }
 
@@ -3175,7 +3167,7 @@ function renderOvList() {
         `<div class="opt${i === ovAct ? ' act' : ''}" id="ov-opt-${i}" role="option"` +
         ` aria-selected="${i === ovAct}"><span>${esc(s.name)}</span>` +
         `<span class="fy">${esc(s.fylke)}</span></div>`).join('')
-    : `<div class="none" role="option" aria-disabled="true">${esc(t('searchNone'))}</div>`;
+    : `<div class="none" role="option" aria-disabled="true">${esc(t('noMatch'))}</div>`;
   q.setAttribute('aria-expanded', String(!!q.value.trim()));
   if (ovAct >= 0) q.setAttribute('aria-activedescendant', 'ov-opt-' + ovAct);
   else q.removeAttribute('aria-activedescendant');
@@ -3198,7 +3190,7 @@ function pickOv(i) {
   // searching for school B
   document.getElementById('searchov').hidden = true;
   setModalTrap();
-  if (s.lat) {
+  if (s.lat && view === 'map') {
     const z = Math.max(map.getZoom(), 11);
     prefersStill() ? map.setView([s.lat, s.lon], z) : map.flyTo([s.lat, s.lon], z);
   }
@@ -3220,7 +3212,8 @@ function closeSearchOv(fromHistory) {
   if (!fromHistory && (history.state || {}).pkSheet) { history.back(); return; }
   document.getElementById('searchov').hidden = true;
   setModalTrap();
-  document.getElementById('searchov-btn')?.focus();
+  const b = document.getElementById('searchov-btn');
+  (b && b.offsetParent ? b : document.getElementById('panel'))?.focus();
 }
 
 /* ================= geolocation ================= */
@@ -3297,6 +3290,7 @@ let refitPending = false;      // a county switch made while the map was hidden
 // live element keeps its listeners and aria state.
 function relocateControls() {
   const c = document.getElementById('controls');
+  if (!c) return;
   const phone = matchMedia('(max-width: 760px), (max-height: 480px)').matches;
   const slot = view === 'list' && !phone ? document.querySelector('#listview .lhead') : null;
   const home = slot || document.getElementById('app');
@@ -3319,6 +3313,7 @@ function setView(v) {
     relocateControls();
     drawMarkers();                       // list mode skipped every marker rebuild
     map.invalidateSize();
+    liftMapControls();
     if (refitPending) {
       refitPending = false;
       const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon]);
@@ -3344,6 +3339,10 @@ function sortList(key) {
 }
 function renderListView() {
   const host = document.getElementById('listview');
+  // the utility cluster may be docked inside the header this render is about
+  // to wipe — move it to safety first, or innerHTML destroys it for good
+  const ctrl = document.getElementById('controls');
+  if (ctrl && host.contains(ctrl)) document.getElementById('app').appendChild(ctrl);
   const chance = chanceMode();
   const allF = mapFylke === 'all';
   // a sort key can outlive its column (points cleared, county picked)
@@ -3378,7 +3377,7 @@ function renderListView() {
     `<th class="${num ? 'num ' : ''}${listSort.key === k ? 'on' : ''}"${ariaSort(k)} scope="col"` +
     `${tip ? ` title="${esc(tip)}"` : ''}>` +
     `<button type="button" onclick="sortList('${k}')">${esc(label)}${arrow(k)}</button></th>`;
-  const catLabel = mapCat === 'all' ? t('listTitleAll') : (CATS[mapCat] || {})[lang] || mapCat;
+  const catLabel = mapCat === 'all' ? t('allCats') : (CATS[mapCat] || {})[lang] || mapCat;
   const fyLabel = allF ? t('allFylker') : mapFylke;
   const chip = r => {
     if (r.pr.kind === 'open') return `<span class="chip open">${esc(t('listOpen'))}</span>`;
@@ -3390,8 +3389,11 @@ function renderListView() {
     return `<span class="chip b${band}" style="background:${colorFor(r.v)}"` +
       ` title="${esc(r.pr.year)}">${esc(fmt(r.v))}</span>`;
   };
-  const deltaCell = r => r.delta === null ? `<span class="none-v">—</span>`
-    : `<span class="${r.delta >= 0.05 ? 'up' : 'dn'}">${r.delta >= 0.05 ? '+' : ''}${esc(fmt(r.delta))}</span>`;
+  const deltaCell = r => {
+    if (r.delta === null) return `<span class="none-v">—</span>`;
+    const d = round1(r.delta);           // sign, colour and text agree
+    return `<span class="${d > 0 ? 'up' : 'dn'}">${d > 0 ? '+' : ''}${esc(fmt(d))}</span>`;
+  };
   const chanceCell = r => !r.sc ? `<span class="none-v">—</span>`
     : `<span class="k" style="background:${bucketColor(bucketOf(r.sc.best))}"></span>` +
       esc(t('listChanceCell', r.sc.likely, r.sc.n));
@@ -3419,8 +3421,11 @@ function renderListView() {
     (allF && rows.length ? `<div class="foot">${esc(t('listRounds'))}</div>` : '') +
     `</div>`;
   host.querySelectorAll('tbody tr').forEach(tr => {
-    const open = ev => { ev.preventDefault(); openSide(rows[+tr.dataset.i].s); };
-    tr.onclick = open;                    // the whole row is a target; the link carries the semantics
+    tr.onclick = ev => {
+      if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button === 1) return;  // new tab stays a new tab
+      ev.preventDefault();
+      openSide(rows[+tr.dataset.i].s);    // the whole row is a target; the link carries the semantics
+    };
   });
   bindTitleTips(host);
   relocateControls();                     // innerHTML above rebuilt its dock
@@ -3566,12 +3571,13 @@ function framePad() {
 // rectangle with nothing to explain it. A build that shipped 195 schools and
 // no coordinates did exactly that, in silence.
 function bootFailed(subKey) {
+  // #panel and #controls live inside #app now — the innerHTML below removes
+  // them, so nothing here may assume they exist afterwards
+  document.getElementById('legend')?.setAttribute('hidden', '');
   document.getElementById('app').innerHTML =
     `<div class="boot-fail"><p class="big">${esc(t('bootFail'))}</p>
      <p>${esc(t(subKey))}</p>
      <button class="cta" onclick="location.reload()">${esc(t('bootRetry'))}</button></div>`;
-  document.getElementById('panel').hidden = true;
-  document.getElementById('legend').hidden = true;
 }
 
 async function main() {

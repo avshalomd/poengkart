@@ -1,0 +1,389 @@
+- generic [ref=f3e1]:
+  - link "Hopp til filtrene" [ref=f3e2] [cursor=pointer]:
+    - /url: "#panel"
+  - generic [ref=f3e3]:
+    - generic [ref=f3e4]:
+      - generic:
+        - generic:
+          - img:
+            - generic:
+              - 'button "Bjertnes. Snitt 32,6 poeng · 4 av 5 program fylte opp Høyest: 42,0 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e337] [cursor=pointer]'
+              - 'button "Eidsvoll. Snitt 30,4 poeng · 4 av 6 program fylte opp Høyest: 35,3 · Elektro og datateknologi. Trykk for detaljer."'
+              - 'button "Frogn. Snitt 34,9 poeng · 3 av 4 program fylte opp Høyest: 39,4 · Idrettsfag. Trykk for detaljer." [ref=f3e338] [cursor=pointer]'
+              - 'button "Hvam. Snitt 30,4 poeng · 5 av 5 program fylte opp Høyest: 44,4 · Naturbruk, realfag og dyrekunnskap, SK 3 år. Trykk for detaljer." [ref=f3e339] [cursor=pointer]'
+              - 'button "Jessheim. Snitt 30,8 poeng · 5 av 5 program fylte opp Høyest: 43,1 · Kunst, design og arkitektur. Trykk for detaljer." [ref=f3e340] [cursor=pointer]'
+              - 'button "Nannestad. Snitt 34,7 poeng · 6 av 7 program fylte opp Høyest: 39,4 · Studiespesialisering. Trykk for detaljer." [ref=f3e341] [cursor=pointer]'
+              - 'button "Nes. Snitt 22,4 poeng · 4 av 5 program fylte opp Høyest: 27,7 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e342] [cursor=pointer]'
+              - 'button "Nesbru. Snitt 32,6 poeng · 3 av 3 program fylte opp Høyest: 36,0 · Studiespesialisering. Trykk for detaljer." [ref=f3e343] [cursor=pointer]'
+              - 'button "Nesodden. Snitt 27,1 poeng · 3 av 4 program fylte opp Høyest: 31,8 · Informasjonsteknologi og medieproduksjon. Trykk for detaljer." [ref=f3e344] [cursor=pointer]'
+              - 'button "Roald Amundsen. Snitt 42,3 poeng · 1 av 2 program fylte opp Høyest: 42,3 · Idrettsfag. Trykk for detaljer." [ref=f3e345] [cursor=pointer]'
+              - 'button "Rælingen. Snitt 33,3 poeng · 1 av 4 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 33,3 · Idrettsfag. Trykk for detaljer." [ref=f3e346] [cursor=pointer]'
+              - 'button "Røyken. Snitt 33,7 poeng · 6 av 7 program fylte opp Høyest: 36,0 · Helse- og oppvekstfag. Trykk for detaljer." [ref=f3e347] [cursor=pointer]'
+              - 'button "Sørumsand. Snitt 28,7 poeng · 2 av 4 program fylte opp Høyest: 30,7 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e348] [cursor=pointer]'
+              - 'button "Vestby. Snitt 32,7 poeng · 2 av 5 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 36,0 · Salg, service og reiseliv. Trykk for detaljer." [ref=f3e349] [cursor=pointer]'
+              - 'button "Ås. Snitt 41,0 poeng · 7 av 7 program fylte opp Høyest: 47,7 · Kunst, design og arkitektur. Trykk for detaljer." [ref=f3e350] [cursor=pointer]'
+              - 'button "Buskerud. Snitt 25,0 poeng · 7 av 9 program fylte opp Høyest: 33,1 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e351] [cursor=pointer]'
+              - 'button "Drammen. Snitt 39,4 poeng · 7 av 7 program fylte opp Høyest: 51,3 · Idrettsfag, toppidrett. Trykk for detaljer." [ref=f3e352] [cursor=pointer]'
+              - 'button "Eiker. Snitt 34,5 poeng · 3 av 3 program fylte opp Høyest: 35,6 · Helse- og oppvekstfag. Trykk for detaljer." [ref=f3e353] [cursor=pointer]'
+              - 'button "Gol. Snitt 21,9 poeng · 3 av 3 program fylte opp Høyest: 29,0 · Idrettsfag. Trykk for detaljer."'
+              - 'button "Kongsberg. Snitt 32,1 poeng · 11 av 12 program fylte opp Høyest: 48,2 · Idrettsfag. Trykk for detaljer." [ref=f3e354] [cursor=pointer]'
+              - 'button "Numedal. Snitt 28,5 poeng · 4 av 6 program fylte opp Høyest: 34,0 · Bygg- og anleggsteknikk. Trykk for detaljer."'
+              - 'button "Ål. Snitt 23,8 poeng · 5 av 5 program fylte opp Høyest: 32,0 · Elektro og datateknologi. Trykk for detaljer."'
+              - 'button "Åssiden. Snitt 26,2 poeng · 7 av 8 program fylte opp Høyest: 32,9 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e355] [cursor=pointer]'
+              - button "Dokka videregående skole. Ingen tall etter 2022. Trykk for detaljer."
+              - 'button "Gjøvik videregående skole. Snitt 32,2 poeng · 19 av 29 program fylte opp Høyest: 47,2 · Helse- og oppvekstfag, SK 3 år. Trykk for detaljer."'
+              - 'button "Hadeland videregående skole. Snitt 33,5 poeng · 13 av 25 program fylte opp Høyest: 50,0 · Idrettsfag. Trykk for detaljer."'
+              - 'button "Jønsberg videregående skole. Snitt 28,0 poeng · 3 av 4 program fylte opp Høyest: 29,3 · Naturbruk. Trykk for detaljer."'
+              - 'button "Lena-Valle videregående skole. Snitt 27,6 poeng · 14 av 18 program fylte opp Høyest: 42,2 · Helse- og oppvekstfag, SK 3 år. Trykk for detaljer."'
+              - 'button "Raufoss videregående skole. Snitt 29,7 poeng · 9 av 11 program fylte opp Høyest: 41,3 · Ambulansefag. Trykk for detaljer."'
+              - button "Skarnes videregående skole. Ingen tall etter 2022. Trykk for detaljer."
+              - 'button "Solør videregående skole. Snitt 33,3 poeng · 10 av 15 program fylte opp Høyest: 42,9 · Elenergi og ekom. Trykk for detaljer."'
+              - 'button "Stange videregående skole. Snitt 40,8 poeng · 5 av 15 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 47,5 · Musikk, dans og drama, musikk. Trykk for detaljer."'
+              - 'button "Bjørnholt videregående skole. Snitt 20,9 poeng · 1 av 3 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 20,9 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e356] [cursor=pointer]'
+              - 'button "Stovner videregående skole. Snitt 20,9 poeng · 3 av 5 program fylte opp Høyest: 22,2 · Helse- og oppvekstfag. Trykk for detaljer." [ref=f3e357] [cursor=pointer]'
+              - 'button "Ullern videregående skole. Snitt 41,6 poeng · 4 av 4 program fylte opp Høyest: 45,3 · Studiespesialisering. Trykk for detaljer." [ref=f3e358] [cursor=pointer]'
+              - 'button "Ulsrud videregående skole. Snitt 34,1 poeng · 2 av 5 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 37,3 · Helse/oppvekst, ambulanse, SK 3 år. Trykk for detaljer." [ref=f3e359] [cursor=pointer]'
+        - generic:
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e360] [cursor=pointer]:
+            - generic [ref=f3e361]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e362] [cursor=pointer]:
+            - generic [ref=f3e363]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e364] [cursor=pointer]:
+            - generic [ref=f3e365]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e366] [cursor=pointer]:
+            - generic [ref=f3e367]: "2"
+          - button "3 skoler i dette området. Trykk for å zoome inn." [ref=f3e368] [cursor=pointer]:
+            - generic [ref=f3e369]: "3"
+          - button "5 skoler i dette området. Trykk for å zoome inn." [ref=f3e370] [cursor=pointer]:
+            - generic [ref=f3e371]: "5"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e372] [cursor=pointer]:
+            - generic [ref=f3e373]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e374] [cursor=pointer]:
+            - generic [ref=f3e375]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e376] [cursor=pointer]:
+            - generic [ref=f3e377]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e378] [cursor=pointer]:
+            - generic [ref=f3e379]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e380] [cursor=pointer]:
+            - generic [ref=f3e381]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e382] [cursor=pointer]:
+            - generic [ref=f3e383]: "2"
+          - button "4 skoler i dette området. Trykk for å zoome inn." [ref=f3e384] [cursor=pointer]:
+            - generic [ref=f3e385]: "4"
+          - button "4 skoler i dette området. Trykk for å zoome inn." [ref=f3e386] [cursor=pointer]:
+            - generic [ref=f3e387]: "4"
+          - button "12 skoler i dette området. Trykk for å zoome inn." [ref=f3e388] [cursor=pointer]:
+            - generic [ref=f3e389]: "12"
+      - generic:
+        - generic:
+          - button "Vis hvor jeg er på kartet" [ref=f3e53] [cursor=pointer]
+          - generic [ref=f3e58]:
+            - button "Zoom in" [ref=f3e59] [cursor=pointer]: +
+            - button "Zoom out" [ref=f3e60] [cursor=pointer]: −
+          - generic [ref=f3e61]:
+            - link "Leaflet" [ref=f3e62] [cursor=pointer]:
+              - /url: https://leafletjs.com
+            - text: "| ©"
+            - link "OSM" [ref=f3e67] [cursor=pointer]:
+              - /url: https://www.openstreetmap.org/copyright
+            - text: ©
+            - link "CARTO" [ref=f3e68] [cursor=pointer]:
+              - /url: https://carto.com/attributions
+    - complementary "Skoledetaljer" [ref=f3e69]:
+      - generic [ref=f3e70]:
+        - generic [ref=f3e71]:
+          - button "Lukk skoledetaljer" [ref=f3e203] [cursor=pointer]: ✕
+          - generic [ref=f3e204]:
+            - heading "Nesbru" [level=2] [ref=f3e205]
+            - 'link "Foto: Far min (CC BY-SA 4.0)" [ref=f3e207] [cursor=pointer]':
+              - /url: https://commons.wikimedia.org/wiki/File:Nesbru_videreg%C3%A5ende_skole_Asker_01.jpg
+        - generic [ref=f3e72]:
+          - link "Nettside ↗" [ref=f3e208] [cursor=pointer]:
+            - /url: https://afk.no/nesbru-vgs/
+          - link "Wikipedia ↗" [ref=f3e209] [cursor=pointer]:
+            - /url: https://no.wikipedia.org/wiki/Nesbru_videreg%C3%A5ende_skole
+          - generic [ref=f3e210]: Torstadåsen 7, 1396, BILLINGSTAD
+          - generic [ref=f3e211]: Akershus
+          - generic "Poenggrensen er poengsummen til den siste søkeren som fikk plass i denne inntaksrunden. Grensen faller mellom rundene, fordi plasser blir ledige. Tall fra ulike runder kan ikke sammenlignes direkte." [ref=f3e212]: 2. inntak
+        - generic [ref=f3e73]:
+          - generic [ref=f3e213]:
+            - generic [ref=f3e214]: 32,6
+            - generic [ref=f3e215]: Snitt · alle program 2026
+          - generic "Forskjellen mellom de to siste punktene på snittlinjen i grafen under." [ref=f3e216]:
+            - generic [ref=f3e217]: "-3,7"
+            - generic [ref=f3e218]: endring fra 2025
+          - generic [ref=f3e219]:
+            - generic [ref=f3e220]: "3"
+            - generic [ref=f3e221]: programområder
+        - generic [ref=f3e222]:
+          - generic [ref=f3e223]: Skriv inn poengene dine øverst til venstre, så viser listen under sjansen din for plass per programområde ved neste inntak.
+          - generic "Hvor mye høyere eller lavere skolens poenggrenser ligger enn de samme programområdene ellers i fylket, når sammensetningen av programområder er tatt hensyn til. Et mål på etterspørsel, ikke på kvalitet." [ref=f3e224]: "Justert for programmiks: +0,7 poeng mot fylkesnormen (± 1,5)"
+        - generic [ref=f3e74]:
+          - generic [ref=f3e76]:
+            - button "Alle" [ref=f3e225] [cursor=pointer]
+            - button "Utdanningsprogram" [ref=f3e226] [cursor=pointer]
+            - button "Programområde" [ref=f3e227] [cursor=pointer]
+          - generic [ref=f3e80]: 3 programområder · snittlinje i blått
+          - img [ref=f3e229]:
+            - generic [ref=f3e230]: "20"
+            - generic [ref=f3e231]: "30"
+            - generic [ref=f3e232]: "40"
+            - generic [ref=f3e233]: "50"
+            - generic [ref=f3e234]: "24"
+            - generic [ref=f3e235]: "25"
+            - generic [ref=f3e236]: "26"
+        - searchbox "Filtrer programområde …" [ref=f3e244]
+        - generic [ref=f3e245]:
+          - button "Studiespesialisering 2" [ref=f3e246] [cursor=pointer]:
+            - generic [ref=f3e247]: Studiespesialisering
+            - generic [ref=f3e248]: "2"
+          - 'button "Studiespesialisering Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 36,0 2026 Legg til i valgene mine" [ref=f3e249] [cursor=pointer]':
+            - generic [ref=f3e250]: Studiespesialisering
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e251]': Vg1
+            - generic [ref=f3e252]:
+              - text: 36,0
+              - generic [ref=f3e253]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e254]: +
+          - 'button "Studiespesialisering, forberedende IB Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 31,0 2026 Legg til i valgene mine" [ref=f3e255] [cursor=pointer]':
+            - generic [ref=f3e256]: Studiespesialisering, forberedende IB
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e257]': Vg1
+            - generic [ref=f3e258]:
+              - text: 31,0
+              - generic [ref=f3e259]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e260]: +
+          - button "Bygg- og anleggsteknikk 1" [ref=f3e261] [cursor=pointer]:
+            - generic [ref=f3e262]: Bygg- og anleggsteknikk
+            - generic [ref=f3e263]: "1"
+          - 'button "Bygg- og anleggsteknikk Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 30,8 2026 Legg til i valgene mine" [ref=f3e264] [cursor=pointer]':
+            - generic [ref=f3e265]: Bygg- og anleggsteknikk
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e266]': Vg1
+            - generic [ref=f3e267]:
+              - text: 30,8
+              - generic [ref=f3e268]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e269]: +
+        - generic [ref=f3e84]: "Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaksrunden varierer mellom fylkene og er merket på hver skole. Uoffisiell prototype – tall kan inneholde parsefeil."
+    - generic [ref=f3e85]:
+      - button "Finn skole" [ref=f3e86] [cursor=pointer]
+      - button "Slik leser du kartet" [ref=f3e90] [cursor=pointer]
+      - button "Innstillinger" [ref=f3e94] [cursor=pointer]
+    - generic [ref=f3e98]:
+      - heading "Poengkart" [level=1] [ref=f3e104]
+      - paragraph [ref=f3e105]: "Poenggrenser for videregående skole: poengsummen til den siste som fikk plass. 195 skoler i 7 fylker, 2017–2026. Velg en skole for detaljer."
+      - group "Visning" [ref=f3e106]:
+        - button "Kart" [pressed] [ref=f3e107] [cursor=pointer]
+        - button "Liste" [ref=f3e108] [cursor=pointer]
+      - generic [ref=f3e109]:
+        - generic [ref=f3e110]: Fylke
+        - combobox "Fylke" [ref=f3e111] [cursor=pointer]:
+          - option "Hele landet" [selected]
+          - option "Akershus (34)"
+          - option "Buskerud (12)"
+          - option "Innlandet (26)"
+          - option "Oslo (25)"
+          - option "Rogaland (25)"
+          - option "Trøndelag (31)"
+          - option "Vestland (42)"
+      - generic [ref=f3e112]:
+        - generic [ref=f3e113]: Utdanningsprogram
+        - combobox "Utdanningsprogram" [ref=f3e114] [cursor=pointer]:
+          - option "Alle utdanningsprogram" [selected]
+          - option "Studiespesialisering"
+          - option "Idrettsfag"
+          - option "Musikk, dans og drama"
+          - option "Kunst, design og arkitektur"
+          - option "Medier og kommunikasjon"
+          - option "IT og medieproduksjon"
+          - option "Elektro og datateknologi"
+          - option "Helse- og oppvekstfag"
+          - option "Bygg- og anleggsteknikk"
+          - option "Teknologi- og industrifag"
+          - option "Restaurant- og matfag"
+          - option "Salg, service og reiseliv"
+          - option "Naturbruk"
+          - option "Frisør, blomster og interiør"
+          - option "Håndverk og produktutvikling"
+          - option "Påbygg"
+      - generic [ref=f3e115]:
+        - generic [ref=f3e116]: Poengene dine (valgfritt)
+        - generic [ref=f3e117]:
+          - textbox "Poengene dine (valgfritt)" [ref=f3e118]:
+            - /placeholder: f.eks. 42,5
+          - button "Regn ut fra karakterene dine" [ref=f3e119] [cursor=pointer]
+  - generic [ref=f3e123]:
+    - generic [ref=f3e124]: Snitt poenggrense (siste år)
+    - generic [ref=f3e125]:
+      - generic [ref=f3e390]: <30
+      - generic [ref=f3e393]: 30–34
+      - generic [ref=f3e396]: 34–38
+      - generic [ref=f3e399]: 38–42
+      - generic [ref=f3e402]: 42+
+    - generic [ref=f3e141]: Størrelsen viser hvor stor andel av programmene som ble fylt opp
+    - generic [ref=f3e142]: Kartet viser fylker med ulike inntaksrunder – tallene kan ikke sammenlignes direkte.
+    - generic [ref=f3e143]: Uten venteliste – alle inntatt
+    - generic [ref=f3e146]: Ikke data
+  - dialog [ref=f3e406]:
+    - button "Lukk" [ref=f3e407] [cursor=pointer]: ✕
+    - heading "Fra karakterer til poeng" [level=2] [ref=f3e412]
+    - generic [ref=f3e413]:
+      - paragraph [ref=f3e734]: "Karakterpoengene er gjennomsnittet av alle tallkarakterene på vitnemålet ganget med 10. Standpunkt og eksamen teller likt; fag uten karakter regnes ikke med. Trykk på karakterene dine:"
+      - generic [ref=f3e735]:
+        - generic [ref=f3e736]: Norsk hovedmål
+        - generic [ref=f3e737]:
+          - button "1 i Norsk hovedmål" [ref=f3e738] [cursor=pointer]: "1"
+          - button "2 i Norsk hovedmål" [ref=f3e739] [cursor=pointer]: "2"
+          - button "3 i Norsk hovedmål" [ref=f3e740] [cursor=pointer]: "3"
+          - button "4 i Norsk hovedmål" [ref=f3e741] [cursor=pointer]: "4"
+          - button "5 i Norsk hovedmål" [pressed] [ref=f3e742] [cursor=pointer]: "5"
+          - button "6 i Norsk hovedmål" [ref=f3e743] [cursor=pointer]: "6"
+          - button "Fjern karakteren i Norsk hovedmål" [ref=f3e744] [cursor=pointer]: ✕
+      - generic [ref=f3e745]:
+        - generic [ref=f3e746]: Norsk sidemål
+        - generic [ref=f3e747]:
+          - button "1 i Norsk sidemål" [ref=f3e748] [cursor=pointer]: "1"
+          - button "2 i Norsk sidemål" [ref=f3e749] [cursor=pointer]: "2"
+          - button "3 i Norsk sidemål" [ref=f3e750] [cursor=pointer]: "3"
+          - button "4 i Norsk sidemål" [ref=f3e751] [cursor=pointer]: "4"
+          - button "5 i Norsk sidemål" [ref=f3e752] [cursor=pointer]: "5"
+          - button "6 i Norsk sidemål" [ref=f3e753] [cursor=pointer]: "6"
+      - generic [ref=f3e754]:
+        - generic [ref=f3e755]: Norsk muntlig
+        - generic [ref=f3e756]:
+          - button "1 i Norsk muntlig" [ref=f3e757] [cursor=pointer]: "1"
+          - button "2 i Norsk muntlig" [ref=f3e758] [cursor=pointer]: "2"
+          - button "3 i Norsk muntlig" [ref=f3e759] [cursor=pointer]: "3"
+          - button "4 i Norsk muntlig" [ref=f3e760] [cursor=pointer]: "4"
+          - button "5 i Norsk muntlig" [ref=f3e761] [cursor=pointer]: "5"
+          - button "6 i Norsk muntlig" [ref=f3e762] [cursor=pointer]: "6"
+      - generic [ref=f3e763]:
+        - generic [ref=f3e764]: Engelsk skriftlig
+        - generic [ref=f3e765]:
+          - button "1 i Engelsk skriftlig" [ref=f3e766] [cursor=pointer]: "1"
+          - button "2 i Engelsk skriftlig" [ref=f3e767] [cursor=pointer]: "2"
+          - button "3 i Engelsk skriftlig" [ref=f3e768] [cursor=pointer]: "3"
+          - button "4 i Engelsk skriftlig" [ref=f3e769] [cursor=pointer]: "4"
+          - button "5 i Engelsk skriftlig" [ref=f3e770] [cursor=pointer]: "5"
+          - button "6 i Engelsk skriftlig" [ref=f3e771] [cursor=pointer]: "6"
+      - generic [ref=f3e772]:
+        - generic [ref=f3e773]: Engelsk muntlig
+        - generic [ref=f3e774]:
+          - button "1 i Engelsk muntlig" [ref=f3e775] [cursor=pointer]: "1"
+          - button "2 i Engelsk muntlig" [ref=f3e776] [cursor=pointer]: "2"
+          - button "3 i Engelsk muntlig" [ref=f3e777] [cursor=pointer]: "3"
+          - button "4 i Engelsk muntlig" [ref=f3e778] [cursor=pointer]: "4"
+          - button "5 i Engelsk muntlig" [ref=f3e779] [cursor=pointer]: "5"
+          - button "6 i Engelsk muntlig" [ref=f3e780] [cursor=pointer]: "6"
+      - generic [ref=f3e781]:
+        - generic [ref=f3e782]: Matematikk
+        - generic [ref=f3e783]:
+          - button "1 i Matematikk" [ref=f3e784] [cursor=pointer]: "1"
+          - button "2 i Matematikk" [ref=f3e785] [cursor=pointer]: "2"
+          - button "3 i Matematikk" [ref=f3e786] [cursor=pointer]: "3"
+          - button "4 i Matematikk" [active] [pressed] [ref=f3e787] [cursor=pointer]: "4"
+          - button "5 i Matematikk" [ref=f3e788] [cursor=pointer]: "5"
+          - button "6 i Matematikk" [ref=f3e789] [cursor=pointer]: "6"
+          - button "Fjern karakteren i Matematikk" [ref=f3e790] [cursor=pointer]: ✕
+      - generic [ref=f3e791]:
+        - generic [ref=f3e792]: Naturfag
+        - generic [ref=f3e793]:
+          - button "1 i Naturfag" [ref=f3e794] [cursor=pointer]: "1"
+          - button "2 i Naturfag" [ref=f3e795] [cursor=pointer]: "2"
+          - button "3 i Naturfag" [ref=f3e796] [cursor=pointer]: "3"
+          - button "4 i Naturfag" [ref=f3e797] [cursor=pointer]: "4"
+          - button "5 i Naturfag" [ref=f3e798] [cursor=pointer]: "5"
+          - button "6 i Naturfag" [ref=f3e799] [cursor=pointer]: "6"
+      - generic [ref=f3e800]:
+        - generic [ref=f3e801]: Samfunnsfag
+        - generic [ref=f3e802]:
+          - button "1 i Samfunnsfag" [ref=f3e803] [cursor=pointer]: "1"
+          - button "2 i Samfunnsfag" [ref=f3e804] [cursor=pointer]: "2"
+          - button "3 i Samfunnsfag" [ref=f3e805] [cursor=pointer]: "3"
+          - button "4 i Samfunnsfag" [ref=f3e806] [cursor=pointer]: "4"
+          - button "5 i Samfunnsfag" [ref=f3e807] [cursor=pointer]: "5"
+          - button "6 i Samfunnsfag" [ref=f3e808] [cursor=pointer]: "6"
+      - generic [ref=f3e809]:
+        - generic [ref=f3e810]: KRLE
+        - generic [ref=f3e811]:
+          - button "1 i KRLE" [ref=f3e812] [cursor=pointer]: "1"
+          - button "2 i KRLE" [ref=f3e813] [cursor=pointer]: "2"
+          - button "3 i KRLE" [ref=f3e814] [cursor=pointer]: "3"
+          - button "4 i KRLE" [ref=f3e815] [cursor=pointer]: "4"
+          - button "5 i KRLE" [ref=f3e816] [cursor=pointer]: "5"
+          - button "6 i KRLE" [ref=f3e817] [cursor=pointer]: "6"
+      - generic [ref=f3e818]:
+        - generic [ref=f3e819]: Fremmedspråk / språklig fordypning
+        - generic [ref=f3e820]:
+          - button "1 i Fremmedspråk / språklig fordypning" [ref=f3e821] [cursor=pointer]: "1"
+          - button "2 i Fremmedspråk / språklig fordypning" [ref=f3e822] [cursor=pointer]: "2"
+          - button "3 i Fremmedspråk / språklig fordypning" [ref=f3e823] [cursor=pointer]: "3"
+          - button "4 i Fremmedspråk / språklig fordypning" [ref=f3e824] [cursor=pointer]: "4"
+          - button "5 i Fremmedspråk / språklig fordypning" [ref=f3e825] [cursor=pointer]: "5"
+          - button "6 i Fremmedspråk / språklig fordypning" [ref=f3e826] [cursor=pointer]: "6"
+      - generic [ref=f3e827]:
+        - generic [ref=f3e828]: Kroppsøving
+        - generic [ref=f3e829]:
+          - button "1 i Kroppsøving" [ref=f3e830] [cursor=pointer]: "1"
+          - button "2 i Kroppsøving" [ref=f3e831] [cursor=pointer]: "2"
+          - button "3 i Kroppsøving" [ref=f3e832] [cursor=pointer]: "3"
+          - button "4 i Kroppsøving" [ref=f3e833] [cursor=pointer]: "4"
+          - button "5 i Kroppsøving" [ref=f3e834] [cursor=pointer]: "5"
+          - button "6 i Kroppsøving" [ref=f3e835] [cursor=pointer]: "6"
+      - generic [ref=f3e836]:
+        - generic [ref=f3e837]: Kunst og håndverk
+        - generic [ref=f3e838]:
+          - button "1 i Kunst og håndverk" [ref=f3e839] [cursor=pointer]: "1"
+          - button "2 i Kunst og håndverk" [ref=f3e840] [cursor=pointer]: "2"
+          - button "3 i Kunst og håndverk" [ref=f3e841] [cursor=pointer]: "3"
+          - button "4 i Kunst og håndverk" [ref=f3e842] [cursor=pointer]: "4"
+          - button "5 i Kunst og håndverk" [ref=f3e843] [cursor=pointer]: "5"
+          - button "6 i Kunst og håndverk" [ref=f3e844] [cursor=pointer]: "6"
+      - generic [ref=f3e845]:
+        - generic [ref=f3e846]: Musikk
+        - generic [ref=f3e847]:
+          - button "1 i Musikk" [ref=f3e848] [cursor=pointer]: "1"
+          - button "2 i Musikk" [ref=f3e849] [cursor=pointer]: "2"
+          - button "3 i Musikk" [ref=f3e850] [cursor=pointer]: "3"
+          - button "4 i Musikk" [ref=f3e851] [cursor=pointer]: "4"
+          - button "5 i Musikk" [ref=f3e852] [cursor=pointer]: "5"
+          - button "6 i Musikk" [ref=f3e853] [cursor=pointer]: "6"
+      - generic [ref=f3e854]:
+        - generic [ref=f3e855]: Mat og helse
+        - generic [ref=f3e856]:
+          - button "1 i Mat og helse" [ref=f3e857] [cursor=pointer]: "1"
+          - button "2 i Mat og helse" [ref=f3e858] [cursor=pointer]: "2"
+          - button "3 i Mat og helse" [ref=f3e859] [cursor=pointer]: "3"
+          - button "4 i Mat og helse" [ref=f3e860] [cursor=pointer]: "4"
+          - button "5 i Mat og helse" [ref=f3e861] [cursor=pointer]: "5"
+          - button "6 i Mat og helse" [ref=f3e862] [cursor=pointer]: "6"
+      - generic [ref=f3e863]:
+        - generic [ref=f3e864]: Valgfag
+        - generic [ref=f3e865]:
+          - button "1 i Valgfag" [ref=f3e866] [cursor=pointer]: "1"
+          - button "2 i Valgfag" [ref=f3e867] [cursor=pointer]: "2"
+          - button "3 i Valgfag" [ref=f3e868] [cursor=pointer]: "3"
+          - button "4 i Valgfag" [ref=f3e869] [cursor=pointer]: "4"
+          - button "5 i Valgfag" [ref=f3e870] [cursor=pointer]: "5"
+          - button "6 i Valgfag" [ref=f3e871] [cursor=pointer]: "6"
+      - generic [ref=f3e872]:
+        - generic [ref=f3e873]: Skriftlig eksamen
+        - generic [ref=f3e874]:
+          - button "1 i Skriftlig eksamen" [ref=f3e875] [cursor=pointer]: "1"
+          - button "2 i Skriftlig eksamen" [ref=f3e876] [cursor=pointer]: "2"
+          - button "3 i Skriftlig eksamen" [ref=f3e877] [cursor=pointer]: "3"
+          - button "4 i Skriftlig eksamen" [ref=f3e878] [cursor=pointer]: "4"
+          - button "5 i Skriftlig eksamen" [ref=f3e879] [cursor=pointer]: "5"
+          - button "6 i Skriftlig eksamen" [ref=f3e880] [cursor=pointer]: "6"
+      - generic [ref=f3e881]:
+        - generic [ref=f3e882]: Muntlig eksamen
+        - generic [ref=f3e883]:
+          - button "1 i Muntlig eksamen" [ref=f3e884] [cursor=pointer]: "1"
+          - button "2 i Muntlig eksamen" [ref=f3e885] [cursor=pointer]: "2"
+          - button "3 i Muntlig eksamen" [ref=f3e886] [cursor=pointer]: "3"
+          - button "4 i Muntlig eksamen" [ref=f3e887] [cursor=pointer]: "4"
+          - button "5 i Muntlig eksamen" [ref=f3e888] [cursor=pointer]: "5"
+          - button "6 i Muntlig eksamen" [ref=f3e889] [cursor=pointer]: "6"
+      - generic [ref=f3e890]:
+        - generic [ref=f3e891]: 4,50 snitt
+        - generic [ref=f3e892]: 45,0 poeng
+      - button "Bruk poengene på kartet" [ref=f3e893] [cursor=pointer]
+      - button "Tøm" [ref=f3e894] [cursor=pointer]
+      - paragraph [ref=f3e895]: Karakterene lagres bare i denne nettleseren. Eksamenskarakterene kommer i tillegg til standpunkt i samme fag — begge teller.

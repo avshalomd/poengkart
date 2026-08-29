@@ -1,0 +1,173 @@
+- generic [active] [ref=f6e1]:
+  - link "Hopp til filtrene" [ref=f6e2] [cursor=pointer]:
+    - /url: "#panel"
+  - generic [ref=f6e3]:
+    - generic [ref=f6e4]:
+      - generic:
+        - generic:
+          - img:
+            - generic:
+              - 'button "Ytre Namdal videregående skole. Snitt 27,9 poeng · 1 av 6 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 27,9 · Teknologi- og industrifag. Trykk for detaljer."'
+              - 'button "Olav Duun videregående skole. Snitt 23,2 poeng · 1 av 9 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 23,2 · Teknologi- og industrifag. Trykk for detaljer."'
+              - button "Grong videregående skole. Alle program uten venteliste i 2025. Trykk for detaljer."
+              - 'button "Årdal vidaregåande skule. Snitt 29,7 poeng · 3 av 9 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 33,4 · Teknologi- og industrifag. Trykk for detaljer."'
+              - 'button "Sogndal vidaregåande skule. Snitt 35,5 poeng · 9 av 21 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 45,8 · Idrettsfag. Trykk for detaljer."'
+              - 'button "Høyanger vidaregåande skule. Snitt 30,3 poeng · 5 av 8 program fylte opp Høyest: 32,5 · Helsearbeiderfag. Trykk for detaljer."'
+              - 'button "Førde vidaregåande skule. Snitt 35,2 poeng · 25 av 30 program fylte opp Høyest: 55,0 · Ambulansefag. Trykk for detaljer."'
+              - 'button "Dale vidaregåande skule. Snitt 36,3 poeng · 5 av 7 program fylte opp Høyest: 41,3 · Helse- og oppvekstfag. Trykk for detaljer."'
+              - 'button "Stryn vidaregåande skule. Snitt 30,9 poeng · 6 av 7 program fylte opp Høyest: 36,9 · Studiespesialisering. Trykk for detaljer."'
+              - 'button "Dalane videregående skole. Snitt 32,6 poeng · 9 av 20 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 40,0 · Påbygg til generell studiekompetanse. Trykk for detaljer."'
+              - 'button "Odda vidaregåande skule. Snitt 33,8 poeng · 4 av 11 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 45,0 · Smed, LAL. Trykk for detaljer."'
+              - 'button "Kvinnherad vidaregåande skule. Snitt 38,8 poeng · 5 av 12 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 47,5 · Påbygg. gen. studiekompetanse. Trykk for detaljer."'
+              - 'button "Sauda vidaregåande skule. Snitt 36,2 poeng · 8 av 18 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 53,8 · Ambulansefag. Trykk for detaljer."'
+              - 'button "Ølen vidaregåande skule. Snitt 35,0 poeng · 7 av 18 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 42,5 · Helsearbeiderfag. Trykk for detaljer."'
+              - button "Meråker videregående skole. Alle program uten venteliste i 2025. Trykk for detaljer."
+              - button "Kyrksæterøra videregående skole. Alle program uten venteliste i 2025. Trykk for detaljer."
+              - 'button "Guri Kunna videregående skole. Snitt 30,5 poeng · 2 av 7 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 36,0 · Naturbruk. Trykk for detaljer."'
+              - button "Åfjord videregående skole. Alle program uten venteliste i 2025. Trykk for detaljer."
+              - 'button "Fosen videregående skole. Snitt 27,3 poeng · 3 av 7 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 30,0 · Elektro og datateknologi. Trykk for detaljer."'
+              - button "Selbu videregående skole. Alle program uten venteliste i 2025. Trykk for detaljer."
+              - 'button "Orkland videregående skole. Snitt 30,8 poeng · 5 av 8 program fylte opp Høyest: 38,2 · Helse- og oppvekstfag, SK 3 år. Trykk for detaljer."'
+              - 'button "Ole Vig videregående skole. Snitt 28,4 poeng · 6 av 11 program fylte opp Høyest: 34,7 · Elektro og datateknologi. Trykk for detaljer."'
+              - 'button "Gauldal videregående skole. Snitt 31,7 poeng · 2 av 4 program fylte opp Høyest: 33,3 · Teknologi- og industrifag. Trykk for detaljer."'
+              - 'button "Oppdal videregående skole. Snitt 30,0 poeng · 1 av 6 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 30,0 · Elektro og datateknologi. Trykk for detaljer."'
+              - button "Røros videregående skole. Alle program uten venteliste i 2025. Trykk for detaljer."
+              - button "Trysil videregående skole. Alle program uten venteliste i 2025. Trykk for detaljer." [ref=f6e158] [cursor=pointer]
+              - button "Dokka videregående skole. Ingen tall etter 2022. Trykk for detaljer." [ref=f6e159] [cursor=pointer]
+              - 'button "Valdres vidaregåande skule. Snitt 30,4 poeng · 11 av 16 program fylte opp Høyest: 37,1 · Elenergi og ekom. Trykk for detaljer." [ref=f6e160] [cursor=pointer]'
+              - 'button "Hadeland videregående skole. Snitt 33,5 poeng · 13 av 25 program fylte opp Høyest: 50,0 · Idrettsfag. Trykk for detaljer." [ref=f6e161] [cursor=pointer]'
+              - 'button "Numedal. Snitt 28,5 poeng · 4 av 6 program fylte opp Høyest: 34,0 · Bygg- og anleggsteknikk. Trykk for detaljer." [ref=f6e162] [cursor=pointer]'
+              - 'button "Eidsvoll. Snitt 30,4 poeng · 4 av 6 program fylte opp Høyest: 35,3 · Elektro og datateknologi. Trykk for detaljer." [ref=f6e163] [cursor=pointer]'
+              - 'button "Kongsberg. Snitt 32,1 poeng · 11 av 12 program fylte opp Høyest: 48,2 · Idrettsfag. Trykk for detaljer." [ref=f6e164] [cursor=pointer]'
+        - generic:
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f6e165] [cursor=pointer]:
+            - generic [ref=f6e166]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f6e167] [cursor=pointer]:
+            - generic [ref=f6e168]: "2"
+          - button "4 skoler i dette området. Trykk for å zoome inn." [ref=f6e169] [cursor=pointer]:
+            - generic [ref=f6e170]: "4"
+          - button "18 skoler i dette området. Trykk for å zoome inn." [ref=f6e171] [cursor=pointer]:
+            - generic [ref=f6e172]: "18"
+          - button "4 skoler i dette området. Trykk for å zoome inn." [ref=f6e173] [cursor=pointer]:
+            - generic [ref=f6e174]: "4"
+          - button "16 skoler i dette området. Trykk for å zoome inn." [ref=f6e175] [cursor=pointer]:
+            - generic [ref=f6e176]: "16"
+          - button "5 skoler i dette området. Trykk for å zoome inn." [ref=f6e177] [cursor=pointer]:
+            - generic [ref=f6e178]: "5"
+          - button "12 skoler i dette området. Trykk for å zoome inn." [ref=f6e179] [cursor=pointer]:
+            - generic [ref=f6e180]: "12"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f6e181] [cursor=pointer]:
+            - generic [ref=f6e182]: "2"
+          - button "4 skoler i dette området. Trykk for å zoome inn." [ref=f6e183] [cursor=pointer]:
+            - generic [ref=f6e184]: "4"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f6e185] [cursor=pointer]:
+            - generic [ref=f6e186]: "2"
+          - button "3 skoler i dette området. Trykk for å zoome inn." [ref=f6e187] [cursor=pointer]:
+            - generic [ref=f6e188]: "3"
+          - button "8 skoler i dette området. Trykk for å zoome inn." [ref=f6e189] [cursor=pointer]:
+            - generic [ref=f6e190]: "8"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f6e191] [cursor=pointer]:
+            - generic [ref=f6e192]: "2"
+          - button "3 skoler i dette området. Trykk for å zoome inn." [ref=f6e193] [cursor=pointer]:
+            - generic [ref=f6e194]: "3"
+          - button "5 skoler i dette området. Trykk for å zoome inn." [ref=f6e195] [cursor=pointer]:
+            - generic [ref=f6e196]: "5"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f6e197] [cursor=pointer]:
+            - generic [ref=f6e198]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f6e199] [cursor=pointer]:
+            - generic [ref=f6e200]: "2"
+          - button "32 skoler i dette området. Trykk for å zoome inn." [ref=f6e201] [cursor=pointer]:
+            - generic [ref=f6e202]: "32"
+          - button "7 skoler i dette området. Trykk for å zoome inn." [ref=f6e203] [cursor=pointer]:
+            - generic [ref=f6e204]: "7"
+          - button "18 skoler i dette området. Trykk for å zoome inn." [ref=f6e205] [cursor=pointer]:
+            - generic [ref=f6e206]: "18"
+      - generic:
+        - generic:
+          - button "Vis hvor jeg er på kartet" [ref=f6e53] [cursor=pointer]
+          - generic [ref=f6e58]:
+            - button "Zoom in" [ref=f6e59] [cursor=pointer]: +
+            - button "Zoom out" [ref=f6e60] [cursor=pointer]: −
+          - generic [ref=f6e61]:
+            - link "Leaflet" [ref=f6e62] [cursor=pointer]:
+              - /url: https://leafletjs.com
+            - text: "| ©"
+            - link "OSM" [ref=f6e67] [cursor=pointer]:
+              - /url: https://www.openstreetmap.org/copyright
+            - text: ©
+            - link "CARTO" [ref=f6e68] [cursor=pointer]:
+              - /url: https://carto.com/attributions
+    - complementary "Skoledetaljer" [ref=f6e69]:
+      - generic [ref=f6e70]:
+        - generic [ref=f6e76]:
+          - button [ref=f6e77] [cursor=pointer]
+          - button [ref=f6e78] [cursor=pointer]
+          - button [ref=f6e79] [cursor=pointer]
+        - searchbox [ref=f6e83]
+    - generic [ref=f6e85]:
+      - button "Finn skole" [ref=f6e86] [cursor=pointer]
+      - button "Slik leser du kartet" [ref=f6e90] [cursor=pointer]
+      - button "Innstillinger" [ref=f6e94] [cursor=pointer]
+    - generic [ref=f6e98]:
+      - heading "Poengkart" [level=1] [ref=f6e104]
+      - group "Visning" [ref=f6e105]:
+        - button "Kart" [pressed] [ref=f6e106] [cursor=pointer]
+        - button "Liste" [ref=f6e107] [cursor=pointer]
+      - generic [ref=f6e108]:
+        - generic [ref=f6e109]: Fylke
+        - combobox "Fylke" [ref=f6e110] [cursor=pointer]:
+          - option "Hele landet" [selected]
+          - option "Akershus (34)"
+          - option "Buskerud (12)"
+          - option "Innlandet (26)"
+          - option "Oslo (25)"
+          - option "Rogaland (25)"
+          - option "Trøndelag (31)"
+          - option "Vestland (42)"
+      - generic [ref=f6e111]:
+        - generic [ref=f6e112]: Utdanningsprogram
+        - combobox "Utdanningsprogram" [ref=f6e113] [cursor=pointer]:
+          - option "Alle utdanningsprogram" [selected]
+          - option "Studiespesialisering"
+          - option "Idrettsfag"
+          - option "Musikk, dans og drama"
+          - option "Kunst, design og arkitektur"
+          - option "Medier og kommunikasjon"
+          - option "IT og medieproduksjon"
+          - option "Elektro og datateknologi"
+          - option "Helse- og oppvekstfag"
+          - option "Bygg- og anleggsteknikk"
+          - option "Teknologi- og industrifag"
+          - option "Restaurant- og matfag"
+          - option "Salg, service og reiseliv"
+          - option "Naturbruk"
+          - option "Frisør, blomster og interiør"
+          - option "Håndverk og produktutvikling"
+          - option "Påbygg"
+      - generic [ref=f6e114]:
+        - generic [ref=f6e115]: Poengene dine (valgfritt)
+        - generic [ref=f6e116]:
+          - textbox "Poengene dine (valgfritt)" [ref=f6e117]:
+            - /placeholder: f.eks. 42,5
+          - button "Regn ut fra karakterene dine" [ref=f6e118] [cursor=pointer]
+      - generic [ref=f6e122]:
+        - generic [ref=f6e123]:
+          - generic [ref=f6e124]: Valgene mine (1)
+          - button "tøm" [ref=f6e125] [cursor=pointer]
+        - generic [ref=f6e127]:
+          - button "Åpne Nesbru – Studiespesialisering · Vg1" [ref=f6e128] [cursor=pointer]:
+            - generic [ref=f6e129]: Nesbru
+            - generic [ref=f6e130]: Studiespesialisering · Vg1
+          - button "Fjern Studiespesialisering · Vg1 ved Nesbru fra valgene mine" [ref=f6e131] [cursor=pointer]: ✕
+        - generic [ref=f6e132]: Skriv inn poengene dine for å se sjansen per valg.
+  - generic [ref=f6e133]:
+    - generic [ref=f6e134]: Snitt poenggrense (siste år)
+    - generic [ref=f6e135]:
+      - generic [ref=f6e136]: <30
+      - generic [ref=f6e139]: 30–34
+      - generic [ref=f6e142]: 34–38
+      - generic [ref=f6e145]: 38–42
+      - generic [ref=f6e148]: 42+
+    - generic [ref=f6e151]: Kartet viser fylker med ulike inntaksrunder – tallene kan ikke sammenlignes direkte.
+    - generic [ref=f6e152]: Uten venteliste – alle inntatt
+    - generic [ref=f6e155]: Ikke data

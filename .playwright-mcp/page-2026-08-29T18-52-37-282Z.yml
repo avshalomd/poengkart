@@ -1,0 +1,223 @@
+- generic [ref=f3e1]:
+  - link "Hopp til filtrene" [ref=f3e2] [cursor=pointer]:
+    - /url: "#panel"
+  - generic [ref=f3e3]:
+    - generic [ref=f3e4]:
+      - generic:
+        - generic:
+          - img:
+            - generic:
+              - 'button "Bjertnes. Med 46,7 poeng i 2027: 5 sannsynlig · 0 mulig · 0 lite sannsynlig (5 programområder) Best sjanse: 100 % · Bygg- og anleggsteknikk. Trykk for detaljer." [ref=f3e1059] [cursor=pointer]'
+              - 'button "Eidsvoll. Med 46,7 poeng i 2027: 6 sannsynlig · 0 mulig · 0 lite sannsynlig (6 programområder) Best sjanse: 100 % · Helse- og oppvekstfag. Trykk for detaljer."'
+              - 'button "Frogn. Med 46,7 poeng i 2027: 4 sannsynlig · 0 mulig · 0 lite sannsynlig (4 programområder) Best sjanse: 100 % · Salg, service og reiseliv. Trykk for detaljer." [ref=f3e1060] [cursor=pointer]'
+              - 'button "Hvam. Med 46,7 poeng i 2027: 5 sannsynlig · 0 mulig · 0 lite sannsynlig (5 programområder) Best sjanse: 100 % · Medier og kommunikasjon. Trykk for detaljer." [ref=f3e1061] [cursor=pointer]'
+              - 'button "Jessheim. Med 46,7 poeng i 2027: 5 sannsynlig · 0 mulig · 0 lite sannsynlig (5 programområder) Best sjanse: 100 % · Helse- og oppvekstfag. Trykk for detaljer." [ref=f3e1062] [cursor=pointer]'
+              - 'button "Nannestad. Med 46,7 poeng i 2027: 7 sannsynlig · 0 mulig · 0 lite sannsynlig (7 programområder) Best sjanse: 100 % · Restaurant- og matfag. Trykk for detaljer." [ref=f3e1063] [cursor=pointer]'
+              - 'button "Nes. Med 46,7 poeng i 2027: 5 sannsynlig · 0 mulig · 0 lite sannsynlig (5 programområder) Best sjanse: 100 % · Bygg- og anleggsteknikk. Trykk for detaljer." [ref=f3e1064] [cursor=pointer]'
+              - 'button "Nesbru. Med 46,7 poeng i 2027: 3 sannsynlig · 0 mulig · 0 lite sannsynlig (3 programområder) Best sjanse: 100 % · Bygg- og anleggsteknikk. Trykk for detaljer." [ref=f3e1065] [cursor=pointer]'
+              - 'button "Nesodden. Med 46,7 poeng i 2027: 4 sannsynlig · 0 mulig · 0 lite sannsynlig (4 programområder) Best sjanse: 100 % · Helse- og oppvekstfag. Trykk for detaljer." [ref=f3e1066] [cursor=pointer]'
+              - 'button "Roald Amundsen. Med 46,7 poeng i 2027: 2 sannsynlig · 0 mulig · 0 lite sannsynlig (2 programområder) Best sjanse: 97 % · Studiespesialisering. Trykk for detaljer." [ref=f3e1067] [cursor=pointer]'
+              - 'button "Rælingen. Med 46,7 poeng i 2027: 4 sannsynlig · 0 mulig · 0 lite sannsynlig (4 programområder) Best sjanse: 100 % · Salg, service og reiseliv. Trykk for detaljer." [ref=f3e1068] [cursor=pointer]'
+              - 'button "Røyken. Med 46,7 poeng i 2027: 8 sannsynlig · 0 mulig · 0 lite sannsynlig (8 programområder) Best sjanse: 99 % · Bygg- og anleggsteknikk. Trykk for detaljer." [ref=f3e1069] [cursor=pointer]'
+              - 'button "Sørumsand. Med 46,7 poeng i 2027: 5 sannsynlig · 0 mulig · 0 lite sannsynlig (5 programområder) Best sjanse: 100 % · Restaurant- og matfag. Trykk for detaljer." [ref=f3e1070] [cursor=pointer]'
+              - 'button "Vestby. Med 46,7 poeng i 2027: 5 sannsynlig · 0 mulig · 0 lite sannsynlig (5 programområder) Best sjanse: 100 % · Restaurant- og matfag. Trykk for detaljer." [ref=f3e1071] [cursor=pointer]'
+              - 'button "Ås. Med 46,7 poeng i 2027: 7 sannsynlig · 1 mulig · 0 lite sannsynlig (8 programområder) Best sjanse: 98 % · Frisør, blomster, interiør og eksponeringsdesign. Trykk for detaljer." [ref=f3e1072] [cursor=pointer]'
+              - 'button "Buskerud. Med 46,7 poeng i 2026: 9 sannsynlig · 0 mulig · 0 lite sannsynlig (9 programområder) Best sjanse: 100 % · Restaurant- og matfag. Trykk for detaljer." [ref=f3e1073] [cursor=pointer]'
+              - 'button "Drammen. Med 46,7 poeng i 2026: 6 sannsynlig · 1 mulig · 0 lite sannsynlig (7 programområder) Best sjanse: 99 % · Studiespesialisering, forskerlinje. Trykk for detaljer." [ref=f3e1074] [cursor=pointer]'
+              - 'button "Eiker. Med 46,7 poeng i 2026: 3 sannsynlig · 0 mulig · 0 lite sannsynlig (3 programområder) Best sjanse: 99 % · Helse- og oppvekstfag. Trykk for detaljer." [ref=f3e1075] [cursor=pointer]'
+              - 'button "Gol. Med 46,7 poeng i 2026: 3 sannsynlig · 0 mulig · 0 lite sannsynlig (3 programområder) Best sjanse: 100 % · Restaurant- og matfag. Trykk for detaljer."'
+              - 'button "Kongsberg. Med 46,7 poeng i 2026: 12 sannsynlig · 0 mulig · 0 lite sannsynlig (12 programområder) Best sjanse: 100 % · Bygg- og anleggsteknikk. Trykk for detaljer." [ref=f3e1076] [cursor=pointer]'
+              - 'button "Numedal. Med 46,7 poeng i 2026: 6 sannsynlig · 0 mulig · 0 lite sannsynlig (6 programområder) Best sjanse: 100 % · Helse- og oppvekstfag. Trykk for detaljer."'
+              - 'button "Ål. Med 46,7 poeng i 2026: 5 sannsynlig · 0 mulig · 0 lite sannsynlig (5 programområder) Best sjanse: 100 % · Bygg- og anleggsteknikk. Trykk for detaljer."'
+              - 'button "Åssiden. Med 46,7 poeng i 2026: 8 sannsynlig · 0 mulig · 0 lite sannsynlig (8 programområder) Best sjanse: 100 % · Restaurant- og matfag. Trykk for detaljer." [ref=f3e1077] [cursor=pointer]'
+              - button "Dokka videregående skole. Ingen prognose for denne skolen. Trykk for detaljer."
+              - 'button "Gjøvik videregående skole. Med 46,7 poeng i 2026: 29 sannsynlig · 0 mulig · 0 lite sannsynlig (29 programområder) Best sjanse: 100 % · Frisør. Trykk for detaljer."'
+              - 'button "Hadeland videregående skole. Med 46,7 poeng i 2026: 25 sannsynlig · 0 mulig · 0 lite sannsynlig (25 programområder) Best sjanse: 100 % · Kokk- og servitørfag. Trykk for detaljer."'
+              - 'button "Jønsberg videregående skole. Med 46,7 poeng i 2026: 4 sannsynlig · 0 mulig · 0 lite sannsynlig (4 programområder) Best sjanse: 100 % · Landbruk og gartnernæring. Trykk for detaljer."'
+              - 'button "Lena-Valle videregående skole. Med 46,7 poeng i 2026: 18 sannsynlig · 0 mulig · 0 lite sannsynlig (18 programområder) Best sjanse: 100 % · Idrettsfag. Trykk for detaljer."'
+              - 'button "Raufoss videregående skole. Med 46,7 poeng i 2026: 12 sannsynlig · 0 mulig · 0 lite sannsynlig (12 programområder) Best sjanse: 100 % · Matproduksjon. Trykk for detaljer."'
+              - button "Skarnes videregående skole. Ingen prognose for denne skolen. Trykk for detaljer."
+              - 'button "Solør videregående skole. Med 46,7 poeng i 2026: 15 sannsynlig · 0 mulig · 0 lite sannsynlig (15 programområder) Best sjanse: 100 % · Skogbruk. Trykk for detaljer."'
+              - 'button "Stange videregående skole. Med 46,7 poeng i 2026: 15 sannsynlig · 0 mulig · 0 lite sannsynlig (15 programområder) Best sjanse: 100 % · Bygg- og anleggsteknikk. Trykk for detaljer."'
+              - 'button "Bjørnholt videregående skole. Med 46,7 poeng i 2027: 3 sannsynlig · 0 mulig · 0 lite sannsynlig (3 programområder) Best sjanse: 100 % · Studiespesialisering. Trykk for detaljer." [ref=f3e1078] [cursor=pointer]'
+              - 'button "Stovner videregående skole. Med 46,7 poeng i 2027: 5 sannsynlig · 0 mulig · 0 lite sannsynlig (5 programområder) Best sjanse: 100 % · Bygg- og anleggsteknikk. Trykk for detaljer." [ref=f3e1079] [cursor=pointer]'
+              - 'button "Ullern videregående skole. Med 46,7 poeng i 2027: 4 sannsynlig · 1 mulig · 0 lite sannsynlig (5 programområder) Best sjanse: 100 % · Studiespesialisering, forskerlinje. Trykk for detaljer." [ref=f3e1080] [cursor=pointer]'
+              - 'button "Ulsrud videregående skole. Med 46,7 poeng i 2027: 5 sannsynlig · 0 mulig · 0 lite sannsynlig (5 programområder) Best sjanse: 100 % · Helse- og oppvekstfag. Trykk for detaljer." [ref=f3e1081] [cursor=pointer]'
+        - generic:
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1082] [cursor=pointer]:
+            - generic [ref=f3e1083]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1084] [cursor=pointer]:
+            - generic [ref=f3e1085]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1086] [cursor=pointer]:
+            - generic [ref=f3e1087]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1088] [cursor=pointer]:
+            - generic [ref=f3e1089]: "2"
+          - button "3 skoler i dette området. Trykk for å zoome inn." [ref=f3e1090] [cursor=pointer]:
+            - generic [ref=f3e1091]: "3"
+          - button "5 skoler i dette området. Trykk for å zoome inn." [ref=f3e1092] [cursor=pointer]:
+            - generic [ref=f3e1093]: "5"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1094] [cursor=pointer]:
+            - generic [ref=f3e1095]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1096] [cursor=pointer]:
+            - generic [ref=f3e1097]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1098] [cursor=pointer]:
+            - generic [ref=f3e1099]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1100] [cursor=pointer]:
+            - generic [ref=f3e1101]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1102] [cursor=pointer]:
+            - generic [ref=f3e1103]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1104] [cursor=pointer]:
+            - generic [ref=f3e1105]: "2"
+          - button "4 skoler i dette området. Trykk for å zoome inn." [ref=f3e1106] [cursor=pointer]:
+            - generic [ref=f3e1107]: "4"
+          - button "4 skoler i dette området. Trykk for å zoome inn." [ref=f3e1108] [cursor=pointer]:
+            - generic [ref=f3e1109]: "4"
+          - button "12 skoler i dette området. Trykk for å zoome inn." [ref=f3e1110] [cursor=pointer]:
+            - generic [ref=f3e1111]: "12"
+      - generic:
+        - generic:
+          - button "Vis hvor jeg er på kartet" [ref=f3e53] [cursor=pointer]
+          - generic [ref=f3e58]:
+            - button "Zoom in" [ref=f3e59] [cursor=pointer]: +
+            - button "Zoom out" [ref=f3e60] [cursor=pointer]: −
+          - generic [ref=f3e61]:
+            - link "Leaflet" [ref=f3e62] [cursor=pointer]:
+              - /url: https://leafletjs.com
+            - text: "| ©"
+            - link "OSM" [ref=f3e67] [cursor=pointer]:
+              - /url: https://www.openstreetmap.org/copyright
+            - text: ©
+            - link "CARTO" [ref=f3e68] [cursor=pointer]:
+              - /url: https://carto.com/attributions
+    - complementary "Skoledetaljer" [ref=f3e69]:
+      - generic [ref=f3e70]:
+        - generic [ref=f3e71]:
+          - button "Lukk skoledetaljer" [ref=f3e203] [cursor=pointer]: ✕
+          - generic [ref=f3e204]:
+            - heading "Nesbru" [level=2] [ref=f3e205]
+            - 'link "Foto: Far min (CC BY-SA 4.0)" [ref=f3e207] [cursor=pointer]':
+              - /url: https://commons.wikimedia.org/wiki/File:Nesbru_videreg%C3%A5ende_skole_Asker_01.jpg
+        - generic [ref=f3e72]:
+          - link "Nettside ↗" [ref=f3e208] [cursor=pointer]:
+            - /url: https://afk.no/nesbru-vgs/
+          - link "Wikipedia ↗" [ref=f3e209] [cursor=pointer]:
+            - /url: https://no.wikipedia.org/wiki/Nesbru_videreg%C3%A5ende_skole
+          - generic [ref=f3e210]: Torstadåsen 7, 1396, BILLINGSTAD
+          - generic [ref=f3e211]: Akershus
+          - generic "Poenggrensen er poengsummen til den siste søkeren som fikk plass i denne inntaksrunden. Grensen faller mellom rundene, fordi plasser blir ledige. Tall fra ulike runder kan ikke sammenlignes direkte." [ref=f3e212]: 2. inntak
+        - generic [ref=f3e73]:
+          - generic [ref=f3e213]:
+            - generic [ref=f3e214]: 32,6
+            - generic [ref=f3e215]: Snitt · alle program 2026
+          - generic "Forskjellen mellom de to siste punktene på snittlinjen i grafen under." [ref=f3e216]:
+            - generic [ref=f3e217]: "-3,7"
+            - generic [ref=f3e218]: endring fra 2025
+          - generic [ref=f3e219]:
+            - generic [ref=f3e220]: "3"
+            - generic [ref=f3e221]: programområder
+        - generic [ref=f3e222]:
+          - generic [ref=f3e223]: Skriv inn poengene dine øverst til venstre, så viser listen under sjansen din for plass per programområde ved neste inntak.
+          - generic "Hvor mye høyere eller lavere skolens poenggrenser ligger enn de samme programområdene ellers i fylket, når sammensetningen av programområder er tatt hensyn til. Et mål på etterspørsel, ikke på kvalitet." [ref=f3e224]: "Justert for programmiks: +0,7 poeng mot fylkesnormen (± 1,5)"
+        - generic [ref=f3e74]:
+          - generic [ref=f3e76]:
+            - button "Alle" [ref=f3e225] [cursor=pointer]
+            - button "Utdanningsprogram" [ref=f3e226] [cursor=pointer]
+            - button "Programområde" [ref=f3e227] [cursor=pointer]
+          - generic [ref=f3e80]: 3 programområder · snittlinje i blått
+          - img [ref=f3e229]:
+            - generic [ref=f3e230]: "20"
+            - generic [ref=f3e231]: "30"
+            - generic [ref=f3e232]: "40"
+            - generic [ref=f3e233]: "50"
+            - generic [ref=f3e234]: "24"
+            - generic [ref=f3e235]: "25"
+            - generic [ref=f3e236]: "26"
+        - searchbox "Filtrer programområde …" [ref=f3e244]
+        - generic [ref=f3e245]:
+          - button "Studiespesialisering 2" [ref=f3e246] [cursor=pointer]:
+            - generic [ref=f3e247]: Studiespesialisering
+            - generic [ref=f3e248]: "2"
+          - 'button "Studiespesialisering Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 36,0 2026 Legg til i valgene mine" [ref=f3e249] [cursor=pointer]':
+            - generic [ref=f3e250]: Studiespesialisering
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e251]': Vg1
+            - generic [ref=f3e252]:
+              - text: 36,0
+              - generic [ref=f3e253]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e254]: +
+          - 'button "Studiespesialisering, forberedende IB Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 31,0 2026 Legg til i valgene mine" [ref=f3e255] [cursor=pointer]':
+            - generic [ref=f3e256]: Studiespesialisering, forberedende IB
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e257]': Vg1
+            - generic [ref=f3e258]:
+              - text: 31,0
+              - generic [ref=f3e259]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e260]: +
+          - button "Bygg- og anleggsteknikk 1" [ref=f3e261] [cursor=pointer]:
+            - generic [ref=f3e262]: Bygg- og anleggsteknikk
+            - generic [ref=f3e263]: "1"
+          - 'button "Bygg- og anleggsteknikk Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 30,8 2026 Legg til i valgene mine" [ref=f3e264] [cursor=pointer]':
+            - generic [ref=f3e265]: Bygg- og anleggsteknikk
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e266]': Vg1
+            - generic [ref=f3e267]:
+              - text: 30,8
+              - generic [ref=f3e268]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e269]: +
+        - generic [ref=f3e84]: "Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaksrunden varierer mellom fylkene og er merket på hver skole. Uoffisiell prototype – tall kan inneholde parsefeil."
+    - generic [ref=f3e85]:
+      - button "Finn skole" [ref=f3e86] [cursor=pointer]
+      - button "Slik leser du kartet" [ref=f3e90] [cursor=pointer]
+      - button "Innstillinger" [ref=f3e94] [cursor=pointer]
+    - generic [ref=f3e98]:
+      - heading "Poengkart" [level=1] [ref=f3e104]
+      - paragraph [ref=f3e105]: "Poenggrenser for videregående skole: poengsummen til den siste som fikk plass. 195 skoler i 7 fylker, 2017–2026. Velg en skole for detaljer."
+      - group "Visning" [ref=f3e106]:
+        - button "Kart" [pressed] [ref=f3e107] [cursor=pointer]
+        - button "Liste" [ref=f3e108] [cursor=pointer]
+      - generic [ref=f3e109]:
+        - generic [ref=f3e110]: Fylke
+        - combobox "Fylke" [ref=f3e111] [cursor=pointer]:
+          - option "Hele landet" [selected]
+          - option "Akershus (34)"
+          - option "Buskerud (12)"
+          - option "Innlandet (26)"
+          - option "Oslo (25)"
+          - option "Rogaland (25)"
+          - option "Trøndelag (31)"
+          - option "Vestland (42)"
+      - generic [ref=f3e112]:
+        - generic [ref=f3e113]: Utdanningsprogram
+        - combobox "Utdanningsprogram" [ref=f3e114] [cursor=pointer]:
+          - option "Alle utdanningsprogram" [selected]
+          - option "Studiespesialisering"
+          - option "Idrettsfag"
+          - option "Musikk, dans og drama"
+          - option "Kunst, design og arkitektur"
+          - option "Medier og kommunikasjon"
+          - option "IT og medieproduksjon"
+          - option "Elektro og datateknologi"
+          - option "Helse- og oppvekstfag"
+          - option "Bygg- og anleggsteknikk"
+          - option "Teknologi- og industrifag"
+          - option "Restaurant- og matfag"
+          - option "Salg, service og reiseliv"
+          - option "Naturbruk"
+          - option "Frisør, blomster og interiør"
+          - option "Håndverk og produktutvikling"
+          - option "Påbygg"
+      - generic [ref=f3e115]:
+        - generic [ref=f3e116]: Poengene dine (valgfritt)
+        - generic [ref=f3e117]:
+          - textbox "Poengene dine (valgfritt)" [ref=f3e118]:
+            - /placeholder: f.eks. 42,5
+            - text: 46,7
+          - button "Fjern poengsummen" [ref=f3e323] [cursor=pointer]: ✕
+          - button "Regn ut fra karakterene dine" [active] [ref=f3e119] [cursor=pointer]
+        - generic [ref=f3e324]: "Sjanse for plass ved neste inntak: sannsynlig · mulig · lite sannsynlig. En pekepinn fra historikken, ikke et løfte."
+  - generic [ref=f3e123]:
+    - generic [ref=f3e124]: Sjanse for plass med 46,7 poeng · neste inntak
+    - generic [ref=f3e125]:
+      - generic [ref=f3e1115]: ≥ 70 %
+      - generic [ref=f3e1118]: 35–70 %
+      - generic [ref=f3e1121]: < 35 %
+    - generic [ref=f3e141]: Størrelsen viser hvor stor andel av programområdene som er innen rekkevidde (≥ 35 %)
+    - generic [ref=f3e142]: Kartet viser fylker med ulike inntaksrunder – tallene kan ikke sammenlignes direkte.
+    - generic [ref=f3e146]: Ingen prognose

@@ -83,7 +83,7 @@ them encodes a defect that was found in the data at some point.
 
 **The intake round is modelled per county, not per year.** Vestland's 2023
 figures come from 3. inntak while the rest of its series is 1. inntak — 53% of
-that year's cells are "no waitlist" against 0–6% in every other year, so the
+that year's cells are "no waitlist" against 0–6% in 2017–2025, so the
 2023 thresholds sit visibly lower for a reason that has nothing to do with
 demand. `build_dataset.py` derives the exception from the rows and records it
 against the county (`round_years`), and the school panel explains it in a
@@ -95,8 +95,13 @@ displayed. That turns a static label into one that changes as you read, in a
 panel that is already dense, for an audience of teenagers and their parents.
 Worth revisiting if more counties turn out to mix rounds inside one series.
 
+(Vestland's own 2026 first round also runs high — 26% of cells admitted
+everyone who applied, printed as «Alle» in the county's own PDF — a genuine
+loosening, not a round artefact: the 3. inntak figures for 2026 sit separately
+in `values_r3`.)
+
 **The alternate-round figures already in the dataset are not shown.** 151
-programmes carry `values_r1` and 586 carry `values_r3`; the app reads only
+programmes carry `values_r1` and 575 carry `values_r3`; the app reads only
 `values`. They are the raw material for numbers that would be comparable across
 counties publishing different rounds — the problem the app currently apologises
 for in three separate strings. Left until the round model above is settled,

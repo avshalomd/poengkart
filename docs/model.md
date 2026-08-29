@@ -172,9 +172,9 @@ measurement.
 
 The school effect α from the level fit is the school's thresholds relative to
 the same programmes elsewhere in its county, with its programme mix taken out.
-Against the raw mean that the map colours by, ranking the 160 schools with five
-or more figures by α instead moves the average school 20 places, and the most
-extreme by 82: a good part of a raw mean is what the school teaches, not how
+Against the raw mean that the map colours by, ranking the 159 schools whose α
+rests on five or more fitted cells instead moves the average school 19 places,
+and the most extreme by 79: a good part of a raw mean is what the school teaches, not how
 hard it is to get into. The panel prints α with an approximate standard error;
 it is a measure of demand, not of quality, and the app says so.
 

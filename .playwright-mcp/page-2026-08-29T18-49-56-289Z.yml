@@ -1,0 +1,138 @@
+- generic [active] [ref=f2e1]:
+  - link "Hopp til filtrene" [ref=f2e2] [cursor=pointer]:
+    - /url: "#panel"
+  - generic [ref=f2e3]:
+    - generic [ref=f2e4]:
+      - generic:
+        - generic:
+          - img:
+            - generic:
+              - 'button "Numedal. Snitt 28,5 poeng · 4 av 6 program fylte opp Høyest: 34,0 · Bygg- og anleggsteknikk. Trykk for detaljer." [ref=f2e5] [cursor=pointer]'
+              - 'button "Hadeland videregående skole. Snitt 33,5 poeng · 13 av 25 program fylte opp Høyest: 50,0 · Idrettsfag. Trykk for detaljer." [ref=f2e6] [cursor=pointer]'
+              - button "Trysil videregående skole. Alle program uten venteliste i 2025. Trykk for detaljer." [ref=f2e7] [cursor=pointer]
+              - 'button "Dalane videregående skole. Snitt 32,6 poeng · 9 av 20 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 40,0 · Påbygg til generell studiekompetanse. Trykk for detaljer." [ref=f2e8] [cursor=pointer]'
+              - 'button "Guri Kunna videregående skole. Snitt 30,5 poeng · 2 av 7 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 36,0 · Naturbruk. Trykk for detaljer." [ref=f2e9] [cursor=pointer]'
+              - button "Kyrksæterøra videregående skole. Alle program uten venteliste i 2025. Trykk for detaljer." [ref=f2e10] [cursor=pointer]
+              - button "Meråker videregående skole. Alle program uten venteliste i 2025. Trykk for detaljer." [ref=f2e11] [cursor=pointer]
+              - 'button "Oppdal videregående skole. Snitt 30,0 poeng · 1 av 6 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 30,0 · Elektro og datateknologi. Trykk for detaljer." [ref=f2e12] [cursor=pointer]'
+              - 'button "Ytre Namdal videregående skole. Snitt 27,9 poeng · 1 av 6 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 27,9 · Teknologi- og industrifag. Trykk for detaljer." [ref=f2e13] [cursor=pointer]'
+        - generic:
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f2e14] [cursor=pointer]:
+            - generic [ref=f2e15]: "2"
+          - button "12 skoler i dette området. Trykk for å zoome inn." [ref=f2e16] [cursor=pointer]:
+            - generic [ref=f2e17]: "12"
+          - button "3 skoler i dette området. Trykk for å zoome inn." [ref=f2e18] [cursor=pointer]:
+            - generic [ref=f2e19]: "3"
+          - button "4 skoler i dette området. Trykk for å zoome inn." [ref=f2e20] [cursor=pointer]:
+            - generic [ref=f2e21]: "4"
+          - button "9 skoler i dette området. Trykk for å zoome inn." [ref=f2e22] [cursor=pointer]:
+            - generic [ref=f2e23]: "9"
+          - button "62 skoler i dette området. Trykk for å zoome inn." [ref=f2e24] [cursor=pointer]:
+            - generic [ref=f2e25]: "62"
+          - button "16 skoler i dette området. Trykk for å zoome inn." [ref=f2e26] [cursor=pointer]:
+            - generic [ref=f2e27]: "16"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f2e28] [cursor=pointer]:
+            - generic [ref=f2e29]: "2"
+          - button "3 skoler i dette området. Trykk for å zoome inn." [ref=f2e30] [cursor=pointer]:
+            - generic [ref=f2e31]: "3"
+          - button "16 skoler i dette området. Trykk for å zoome inn." [ref=f2e32] [cursor=pointer]:
+            - generic [ref=f2e33]: "16"
+          - button "5 skoler i dette området. Trykk for å zoome inn." [ref=f2e34] [cursor=pointer]:
+            - generic [ref=f2e35]: "5"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f2e36] [cursor=pointer]:
+            - generic [ref=f2e37]: "2"
+          - button "4 skoler i dette området. Trykk for å zoome inn." [ref=f2e38] [cursor=pointer]:
+            - generic [ref=f2e39]: "4"
+          - button "3 skoler i dette området. Trykk for å zoome inn." [ref=f2e40] [cursor=pointer]:
+            - generic [ref=f2e41]: "3"
+          - button "11 skoler i dette området. Trykk for å zoome inn." [ref=f2e42] [cursor=pointer]:
+            - generic [ref=f2e43]: "11"
+          - button "4 skoler i dette området. Trykk for å zoome inn." [ref=f2e44] [cursor=pointer]:
+            - generic [ref=f2e45]: "4"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f2e46] [cursor=pointer]:
+            - generic [ref=f2e47]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f2e48] [cursor=pointer]:
+            - generic [ref=f2e49]: "2"
+          - button "24 skoler i dette området. Trykk for å zoome inn." [ref=f2e50] [cursor=pointer]:
+            - generic [ref=f2e51]: "24"
+      - generic:
+        - generic:
+          - button "Vis hvor jeg er på kartet" [ref=f2e53] [cursor=pointer]
+          - generic [ref=f2e58]:
+            - button "Zoom in" [ref=f2e59] [cursor=pointer]: +
+            - button "Zoom out" [ref=f2e60] [cursor=pointer]: −
+          - generic [ref=f2e61]:
+            - link "Leaflet" [ref=f2e62] [cursor=pointer]:
+              - /url: https://leafletjs.com
+            - text: "| ©"
+            - link "OSM" [ref=f2e67] [cursor=pointer]:
+              - /url: https://www.openstreetmap.org/copyright
+            - text: ©
+            - link "CARTO" [ref=f2e68] [cursor=pointer]:
+              - /url: https://carto.com/attributions
+    - complementary "Skoledetaljer" [ref=f2e69]:
+      - generic [ref=f2e70]:
+        - generic [ref=f2e76]:
+          - button [ref=f2e77] [cursor=pointer]
+          - button [ref=f2e78] [cursor=pointer]
+          - button [ref=f2e79] [cursor=pointer]
+        - searchbox [ref=f2e83]
+    - generic [ref=f2e85]:
+      - button "Finn skole" [ref=f2e86] [cursor=pointer]
+      - button "Slik leser du kartet" [ref=f2e90] [cursor=pointer]
+      - button "Innstillinger" [ref=f2e94] [cursor=pointer]
+    - generic [ref=f2e98]:
+      - heading "Poengkart" [level=1] [ref=f2e104]
+      - paragraph [ref=f2e105]: "Poenggrenser for videregående skole: poengsummen til den siste som fikk plass. 195 skoler i 7 fylker, 2017–2026. Velg en skole for detaljer."
+      - group "Visning" [ref=f2e106]:
+        - button "Kart" [pressed] [ref=f2e107] [cursor=pointer]
+        - button "Liste" [ref=f2e108] [cursor=pointer]
+      - generic [ref=f2e109]:
+        - generic [ref=f2e110]: Fylke
+        - combobox "Fylke" [ref=f2e111] [cursor=pointer]:
+          - option "Hele landet" [selected]
+          - option "Akershus (34)"
+          - option "Buskerud (12)"
+          - option "Innlandet (26)"
+          - option "Oslo (25)"
+          - option "Rogaland (25)"
+          - option "Trøndelag (31)"
+          - option "Vestland (42)"
+      - generic [ref=f2e112]:
+        - generic [ref=f2e113]: Utdanningsprogram
+        - combobox "Utdanningsprogram" [ref=f2e114] [cursor=pointer]:
+          - option "Alle utdanningsprogram" [selected]
+          - option "Studiespesialisering"
+          - option "Idrettsfag"
+          - option "Musikk, dans og drama"
+          - option "Kunst, design og arkitektur"
+          - option "Medier og kommunikasjon"
+          - option "IT og medieproduksjon"
+          - option "Elektro og datateknologi"
+          - option "Helse- og oppvekstfag"
+          - option "Bygg- og anleggsteknikk"
+          - option "Teknologi- og industrifag"
+          - option "Restaurant- og matfag"
+          - option "Salg, service og reiseliv"
+          - option "Naturbruk"
+          - option "Frisør, blomster og interiør"
+          - option "Håndverk og produktutvikling"
+          - option "Påbygg"
+      - generic [ref=f2e115]:
+        - generic [ref=f2e116]: Poengene dine (valgfritt)
+        - generic [ref=f2e117]:
+          - textbox "Poengene dine (valgfritt)" [ref=f2e118]:
+            - /placeholder: f.eks. 42,5
+          - button "Regn ut fra karakterene dine" [ref=f2e119] [cursor=pointer]
+  - generic [ref=f2e123]:
+    - generic [ref=f2e124]: Snitt poenggrense (siste år)
+    - generic [ref=f2e125]:
+      - generic [ref=f2e126]: <30
+      - generic [ref=f2e129]: 30–34
+      - generic [ref=f2e132]: 34–38
+      - generic [ref=f2e135]: 38–42
+      - generic [ref=f2e138]: 42+
+    - generic [ref=f2e141]: Størrelsen viser hvor stor andel av programmene som ble fylt opp
+    - generic [ref=f2e142]: Kartet viser fylker med ulike inntaksrunder – tallene kan ikke sammenlignes direkte.
+    - generic [ref=f2e143]: Uten venteliste – alle inntatt
+    - generic [ref=f2e146]: Ikke data

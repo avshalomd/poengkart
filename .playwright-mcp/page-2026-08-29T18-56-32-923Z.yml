@@ -1,0 +1,491 @@
+- generic [ref=f3e1]:
+  - link "Hopp til filtrene" [ref=f3e2] [cursor=pointer]:
+    - /url: "#panel"
+  - generic [ref=f3e3]:
+    - generic [ref=f3e6959]:
+      - generic [ref=f3e6960]:
+        - generic [ref=f3e6961]: Alle utdanningsprogram · Rogaland
+        - generic [ref=f3e6962]: 25 skoler · siste publiserte år per skole
+      - table "Alle utdanningsprogram · Rogaland" [ref=f3e6964]:
+        - rowgroup [ref=f3e6965]:
+          - row [ref=f3e6966]:
+            - columnheader [ref=f3e6967]:
+              - button "Skole" [ref=f3e6968] [cursor=pointer]
+            - columnheader [ref=f3e6969]:
+              - button "Snitt" [ref=f3e6970] [cursor=pointer]: Snitt ↓
+            - columnheader [ref=f3e6971]:
+              - button "Endring" [ref=f3e6972] [cursor=pointer]
+        - rowgroup [ref=f3e6973]:
+          - row [ref=f3e6974] [cursor=pointer]:
+            - cell [ref=f3e6975]:
+              - link "Åpne St.Olav videregående skole" [ref=f3e6976]:
+                - /url: "#s=Rogaland/St.Olav%20videreg%C3%A5ende%20skole"
+                - text: St.Olav videregående skole
+            - cell "44,5" [ref=f3e6977]:
+              - generic "2025" [ref=f3e6978]: 44,5
+            - cell "+8,1" [ref=f3e6979]
+          - row [ref=f3e6980] [cursor=pointer]:
+            - cell [ref=f3e6981]:
+              - link "Åpne Vardafjell videregående skole" [ref=f3e6982]:
+                - /url: "#s=Rogaland/Vardafjell%20videreg%C3%A5ende%20skole"
+                - text: Vardafjell videregående skole
+            - cell "41,0" [ref=f3e6983]:
+              - generic "2025" [ref=f3e6984]: 41,0
+            - cell "0,0" [ref=f3e6985]
+          - row [ref=f3e6986] [cursor=pointer]:
+            - cell [ref=f3e6987]:
+              - link "Åpne Skeisvang videregående skole" [ref=f3e6988]:
+                - /url: "#s=Rogaland/Skeisvang%20videreg%C3%A5ende%20skole"
+                - text: Skeisvang videregående skole
+            - cell "38,9" [ref=f3e6989]:
+              - generic "2025" [ref=f3e6990]: 38,9
+            - cell "+5,0" [ref=f3e6991]
+          - row [ref=f3e6992] [cursor=pointer]:
+            - cell [ref=f3e6993]:
+              - link "Åpne Stavanger Katedralskole" [ref=f3e6994]:
+                - /url: "#s=Rogaland/Stavanger%20Katedralskole"
+                - text: Stavanger Katedralskole
+            - cell "38,5" [ref=f3e6995]:
+              - generic "2025" [ref=f3e6996]: 38,5
+            - cell "-1,3" [ref=f3e6997]
+          - row [ref=f3e6998] [cursor=pointer]:
+            - cell [ref=f3e6999]:
+              - link "Åpne St.Svithun videregående skole" [ref=f3e7000]:
+                - /url: "#s=Rogaland/St.Svithun%20videreg%C3%A5ende%20skole"
+                - text: St.Svithun videregående skole
+            - cell "38,4" [ref=f3e7001]:
+              - generic "2025" [ref=f3e7002]: 38,4
+            - cell "-0,2" [ref=f3e7003]
+          - row [ref=f3e7004] [cursor=pointer]:
+            - cell [ref=f3e7005]:
+              - link "Åpne Sandnes videregående skole" [ref=f3e7006]:
+                - /url: "#s=Rogaland/Sandnes%20videreg%C3%A5ende%20skole"
+                - text: Sandnes videregående skole
+            - cell "38,0" [ref=f3e7007]:
+              - generic "2025" [ref=f3e7008]: 38,0
+            - cell "+1,9" [ref=f3e7009]
+          - row [ref=f3e7010] [cursor=pointer]:
+            - cell [ref=f3e7011]:
+              - link "Åpne Karmsund videregående skole" [ref=f3e7012]:
+                - /url: "#s=Rogaland/Karmsund%20videreg%C3%A5ende%20skole"
+                - text: Karmsund videregående skole
+            - cell "37,8" [ref=f3e7013]:
+              - generic "2025" [ref=f3e7014]: 37,8
+            - cell "+0,4" [ref=f3e7015]
+          - row [ref=f3e7016] [cursor=pointer]:
+            - cell [ref=f3e7017]:
+              - link "Åpne Strand videregående skole" [ref=f3e7018]:
+                - /url: "#s=Rogaland/Strand%20videreg%C3%A5ende%20skole"
+                - text: Strand videregående skole
+            - cell "37,5" [ref=f3e7019]:
+              - generic "2025" [ref=f3e7020]: 37,5
+            - cell "+3,0" [ref=f3e7021]
+          - row [ref=f3e7022] [cursor=pointer]:
+            - cell [ref=f3e7023]:
+              - link "Åpne Hetland videregående skole" [ref=f3e7024]:
+                - /url: "#s=Rogaland/Hetland%20videreg%C3%A5ende%20skole"
+                - text: Hetland videregående skole
+            - cell "36,7" [ref=f3e7025]:
+              - generic "2025" [ref=f3e7026]: 36,7
+            - cell "0,0" [ref=f3e7027]
+          - row [ref=f3e7028] [cursor=pointer]:
+            - cell [ref=f3e7029]:
+              - link "Åpne Vågen videregående skole" [ref=f3e7030]:
+                - /url: "#s=Rogaland/V%C3%A5gen%20videreg%C3%A5ende%20skole"
+                - text: Vågen videregående skole
+            - cell "36,3" [ref=f3e7031]:
+              - generic "2025" [ref=f3e7032]: 36,3
+            - cell "-1,3" [ref=f3e7033]
+          - row [ref=f3e7034] [cursor=pointer]:
+            - cell [ref=f3e7035]:
+              - link "Åpne Sauda vidaregåande skule" [ref=f3e7036]:
+                - /url: "#s=Rogaland/Sauda%20vidareg%C3%A5ande%20skule"
+                - text: Sauda vidaregåande skule
+            - cell "36,2" [ref=f3e7037]:
+              - generic "2025" [ref=f3e7038]: 36,2
+            - cell "+3,1" [ref=f3e7039]
+          - row [ref=f3e7040] [cursor=pointer]:
+            - cell [ref=f3e7041]:
+              - link "Åpne Ølen vidaregåande skule" [ref=f3e7042]:
+                - /url: "#s=Rogaland/%C3%98len%20vidareg%C3%A5ande%20skule"
+                - text: Ølen vidaregåande skule
+            - cell "35,0" [ref=f3e7043]:
+              - generic "2025" [ref=f3e7044]: 35,0
+            - cell "-1,1" [ref=f3e7045]
+          - row [ref=f3e7046] [cursor=pointer]:
+            - cell [ref=f3e7047]:
+              - link "Åpne Sola videregående skole" [ref=f3e7048]:
+                - /url: "#s=Rogaland/Sola%20videreg%C3%A5ende%20skole"
+                - text: Sola videregående skole
+            - cell "35,0" [ref=f3e7049]:
+              - generic "2025" [ref=f3e7050]: 35,0
+            - cell "-0,4" [ref=f3e7051]
+          - row [ref=f3e7052] [cursor=pointer]:
+            - cell [ref=f3e7053]:
+              - link "Åpne Gand videregående skole" [ref=f3e7054]:
+                - /url: "#s=Rogaland/Gand%20videreg%C3%A5ende%20skole"
+                - text: Gand videregående skole
+            - cell "34,7" [ref=f3e7055]:
+              - generic "2025" [ref=f3e7056]: 34,7
+            - cell "+0,4" [ref=f3e7057]
+          - row [ref=f3e7058] [cursor=pointer]:
+            - cell [ref=f3e7059]:
+              - link "Åpne Jåttå videregående skole" [ref=f3e7060]:
+                - /url: "#s=Rogaland/J%C3%A5tt%C3%A5%20videreg%C3%A5ende%20skole"
+                - text: Jåttå videregående skole
+            - cell "33,8" [ref=f3e7061]:
+              - generic "2025" [ref=f3e7062]: 33,8
+            - cell "-0,9" [ref=f3e7063]
+          - row [ref=f3e7064] [cursor=pointer]:
+            - cell [ref=f3e7065]:
+              - link "Åpne Godalen videregående skole" [ref=f3e7066]:
+                - /url: "#s=Rogaland/Godalen%20videreg%C3%A5ende%20skole"
+                - text: Godalen videregående skole
+            - cell "33,3" [ref=f3e7067]:
+              - generic "2025" [ref=f3e7068]: 33,3
+            - cell "+0,1" [ref=f3e7069]
+          - row [ref=f3e7070] [cursor=pointer]:
+            - cell [ref=f3e7071]:
+              - link "Åpne Bryne vidaregåande skule" [ref=f3e7072]:
+                - /url: "#s=Rogaland/Bryne%20vidareg%C3%A5ande%20skule"
+                - text: Bryne vidaregåande skule
+            - cell "33,1" [ref=f3e7073]:
+              - generic "2025" [ref=f3e7074]: 33,1
+            - cell "-0,4" [ref=f3e7075]
+          - row [ref=f3e7076] [cursor=pointer]:
+            - cell [ref=f3e7077]:
+              - link "Åpne Dalane videregående skole" [ref=f3e7078]:
+                - /url: "#s=Rogaland/Dalane%20videreg%C3%A5ende%20skole"
+                - text: Dalane videregående skole
+            - cell "32,6" [ref=f3e7079]:
+              - generic "2025" [ref=f3e7080]: 32,6
+            - cell "+3,6" [ref=f3e7081]
+          - row [ref=f3e7082] [cursor=pointer]:
+            - cell [ref=f3e7083]:
+              - link "Åpne Åkrehamn vidaregåande skole" [ref=f3e7084]:
+                - /url: "#s=Rogaland/%C3%85krehamn%20vidareg%C3%A5ande%20skole"
+                - text: Åkrehamn vidaregåande skole
+            - cell "32,5" [ref=f3e7085]:
+              - generic "2025" [ref=f3e7086]: 32,5
+            - cell "-0,4" [ref=f3e7087]
+          - row [ref=f3e7088] [cursor=pointer]:
+            - cell [ref=f3e7089]:
+              - link "Åpne Haugaland videregående skole" [ref=f3e7090]:
+                - /url: "#s=Rogaland/Haugaland%20videreg%C3%A5ende%20skole"
+                - text: Haugaland videregående skole
+            - cell "31,2" [ref=f3e7091]:
+              - generic "2025" [ref=f3e7092]: 31,2
+            - cell "-0,9" [ref=f3e7093]
+          - row [ref=f3e7094] [cursor=pointer]:
+            - cell [ref=f3e7095]:
+              - link "Åpne Kopervik videregående skole" [ref=f3e7096]:
+                - /url: "#s=Rogaland/Kopervik%20videreg%C3%A5ende%20skole"
+                - text: Kopervik videregående skole
+            - cell "30,3" [ref=f3e7097]:
+              - generic "2025" [ref=f3e7098]: 30,3
+            - cell "—" [ref=f3e7099]
+          - row [ref=f3e7100] [cursor=pointer]:
+            - cell [ref=f3e7101]:
+              - link "Åpne Øksnevad vidaregåande skole" [ref=f3e7102]:
+                - /url: "#s=Rogaland/%C3%98ksnevad%20vidareg%C3%A5ande%20skole"
+                - text: Øksnevad vidaregåande skole
+            - cell "30,2" [ref=f3e7103]:
+              - generic "2025" [ref=f3e7104]: 30,2
+            - cell "-6,1" [ref=f3e7105]
+          - row [ref=f3e7106] [cursor=pointer]:
+            - cell [ref=f3e7107]:
+              - link "Åpne Bergeland videregående skole" [ref=f3e7108]:
+                - /url: "#s=Rogaland/Bergeland%20videreg%C3%A5ende%20skole"
+                - text: Bergeland videregående skole
+            - cell "26,4" [ref=f3e7109]:
+              - generic "2025" [ref=f3e7110]: 26,4
+            - cell "-3,3" [ref=f3e7111]
+          - row [ref=f3e7112] [cursor=pointer]:
+            - cell [ref=f3e7113]:
+              - link "Åpne Randaberg videregående skole" [ref=f3e7114]:
+                - /url: "#s=Rogaland/Randaberg%20videreg%C3%A5ende%20skole"
+                - text: Randaberg videregående skole
+            - cell "24,5" [ref=f3e7115]:
+              - generic "2025" [ref=f3e7116]: 24,5
+            - cell "-1,3" [ref=f3e7117]
+          - row [ref=f3e7118] [cursor=pointer]:
+            - cell [ref=f3e7119]:
+              - link "Åpne Stavanger Offshore Tekniske skole" [ref=f3e7120]:
+                - /url: "#s=Rogaland/Stavanger%20Offshore%20Tekniske%20skole"
+                - text: Stavanger Offshore Tekniske skole
+            - cell "Ikke data" [ref=f3e7121]
+            - cell "—" [ref=f3e7122]
+    - complementary "Skoledetaljer" [ref=f3e69]:
+      - generic [ref=f3e70]:
+        - generic [ref=f3e71]:
+          - button "Lukk skoledetaljer" [ref=f3e1196] [cursor=pointer]: ✕
+          - generic [ref=f3e1197]:
+            - heading "Sotra vidaregåande skule" [level=2] [ref=f3e1198]
+            - 'link "Foto: Sotra vidaregåande skule / Vestland fylkeskommune" [ref=f3e1200] [cursor=pointer]':
+              - /url: https://www.sotra.vgs.no
+        - generic [ref=f3e72]:
+          - link "Nettside ↗" [ref=f3e1201] [cursor=pointer]:
+            - /url: https://www.sotra.vgs.no
+          - generic [ref=f3e1202]: Branndalsmyra 61, 5353, STRAUME
+          - generic [ref=f3e1203]: Vestland
+          - generic "Poenggrensen er poengsummen til den siste søkeren som fikk plass i denne inntaksrunden. Grensen faller mellom rundene, fordi plasser blir ledige. Tall fra ulike runder kan ikke sammenlignes direkte." [ref=f3e1204]: 1. inntak
+        - paragraph [ref=f3e1206]: 2023-tallene er fra 3. inntak, ikke samme runde som de andre årene – flere kom inn, så grensene ligger lavere.
+        - generic [ref=f3e73]:
+          - generic [ref=f3e1207]:
+            - generic [ref=f3e1208]: 37,6
+            - generic [ref=f3e1209]: Snitt · alle program 2026
+          - generic "Forskjellen mellom de to siste punktene på snittlinjen i grafen under." [ref=f3e1210]:
+            - generic [ref=f3e1211]: +1,6
+            - generic [ref=f3e1212]: endring fra 2025
+          - generic [ref=f3e1213]:
+            - generic [ref=f3e1214]: "23"
+            - generic [ref=f3e1215]: programområder
+        - generic [ref=f3e222]:
+          - generic [ref=f3e1216]: Skriv inn poengene dine øverst til venstre, så viser listen under sjansen din for plass per programområde ved neste inntak.
+          - generic "Hvor mye høyere eller lavere skolens poenggrenser ligger enn de samme programområdene ellers i fylket, når sammensetningen av programområder er tatt hensyn til. Et mål på etterspørsel, ikke på kvalitet." [ref=f3e1217]: "Justert for programmiks: +1,3 poeng mot fylkesnormen (± 0,5)"
+        - generic [ref=f3e74]:
+          - generic [ref=f3e76]:
+            - button "Alle" [ref=f3e225] [cursor=pointer]
+            - button "Utdanningsprogram" [ref=f3e226] [cursor=pointer]
+            - button "Programområde" [ref=f3e227] [cursor=pointer]
+          - generic [ref=f3e80]: 22 programområder · snittlinje i blått
+          - img [ref=f3e1218]:
+            - generic [ref=f3e1219]: "20"
+            - generic [ref=f3e1220]: "30"
+            - generic [ref=f3e1221]: "40"
+            - generic [ref=f3e1222]: "50"
+            - generic [ref=f3e1223]: "17"
+            - generic [ref=f3e1224]: "18"
+            - generic [ref=f3e1225]: "19"
+            - generic [ref=f3e1226]: "20"
+            - generic [ref=f3e1227]: "21"
+            - generic [ref=f3e1228]: "22"
+            - generic [ref=f3e1229]: "23"
+            - generic [ref=f3e1230]: "24"
+            - generic [ref=f3e1231]: "25"
+            - generic [ref=f3e1232]: "26"
+        - searchbox "Filtrer programområde …" [ref=f3e244]
+        - generic [ref=f3e245]:
+          - button "Studiespesialisering 2" [ref=f3e1274] [cursor=pointer]:
+            - generic [ref=f3e1275]: Studiespesialisering
+            - generic [ref=f3e1276]: "2"
+          - 'button "Studiespesialisering, teknologifag Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 45,3 2026 Legg til i valgene mine" [ref=f3e1277] [cursor=pointer]':
+            - generic [ref=f3e1278]: Studiespesialisering, teknologifag
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1279]': Vg1
+            - generic [ref=f3e1280]:
+              - text: 45,3
+              - generic [ref=f3e1281]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1282]: +
+          - 'button "Studiespesialisering Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 44,9 2026 Legg til i valgene mine" [ref=f3e1283] [cursor=pointer]':
+            - generic [ref=f3e1284]: Studiespesialisering
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1285]': Vg1
+            - generic [ref=f3e1286]:
+              - text: 44,9
+              - generic [ref=f3e1287]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1288]: +
+          - button "Idrettsfag 1" [ref=f3e1289] [cursor=pointer]:
+            - generic [ref=f3e1290]: Idrettsfag
+            - generic [ref=f3e1291]: "1"
+          - 'button "Idrettsfag Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 40,4 2026 Legg til i valgene mine" [ref=f3e1292] [cursor=pointer]':
+            - generic [ref=f3e1293]: Idrettsfag
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1294]': Vg1
+            - generic [ref=f3e1295]:
+              - text: 40,4
+              - generic [ref=f3e1296]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1297]: +
+          - button "Elektro og datateknologi 4" [ref=f3e1298] [cursor=pointer]:
+            - generic [ref=f3e1299]: Elektro og datateknologi
+            - generic [ref=f3e1300]: "4"
+          - 'button "Automatisering Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 50,0 2026 Legg til i valgene mine" [ref=f3e1301] [cursor=pointer]':
+            - generic [ref=f3e1302]: Automatisering
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1303]': Vg2
+            - generic [ref=f3e1304]:
+              - text: 50,0
+              - generic [ref=f3e1305]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1306]: +
+          - 'button "Elenergi og ekom Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 44,3 2026 Legg til i valgene mine" [ref=f3e1307] [cursor=pointer]':
+            - generic [ref=f3e1308]: Elenergi og ekom
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1309]': Vg2
+            - generic [ref=f3e1310]:
+              - text: 44,3
+              - generic [ref=f3e1311]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1312]: +
+          - 'button "Elektro og datateknologi Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 38,8 2026 Legg til i valgene mine" [ref=f3e1313] [cursor=pointer]':
+            - generic [ref=f3e1314]: Elektro og datateknologi
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1315]': Vg1
+            - generic [ref=f3e1316]:
+              - text: 38,8
+              - generic [ref=f3e1317]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1318]: +
+          - 'button "Automatiseringsfaget Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet. Alle inntatt Legg til i valgene mine" [ref=f3e1319] [cursor=pointer]':
+            - generic [ref=f3e1320]: Automatiseringsfaget
+            - 'generic "Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet." [ref=f3e1321]': Vg3
+            - generic [ref=f3e1322]: Alle inntatt
+            - button "Legg til i valgene mine" [ref=f3e1323]: +
+          - button "Helse- og oppvekstfag 3" [ref=f3e1324] [cursor=pointer]:
+            - generic [ref=f3e1325]: Helse- og oppvekstfag
+            - generic [ref=f3e1326]: "3"
+          - 'button "Barne- og ungdomsarbeider Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 38,8 2026 Legg til i valgene mine" [ref=f3e1327] [cursor=pointer]':
+            - 'generic "Offisielt navn (Udir): Barne- og ungdomsarbeiderfag" [ref=f3e1328]': Barne- og ungdomsarbeider
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1329]': Vg2
+            - generic [ref=f3e1330]:
+              - text: 38,8
+              - generic [ref=f3e1331]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1332]: +
+          - 'button "Helse- og oppvekstfag Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 32,1 2026 Legg til i valgene mine" [ref=f3e1333] [cursor=pointer]':
+            - generic [ref=f3e1334]: Helse- og oppvekstfag
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1335]': Vg1
+            - generic [ref=f3e1336]:
+              - text: 32,1
+              - generic [ref=f3e1337]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1338]: +
+          - 'button "Helsearbeiderfag Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. Alle inntatt Legg til i valgene mine" [ref=f3e1339] [cursor=pointer]':
+            - generic [ref=f3e1340]: Helsearbeiderfag
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1341]': Vg2
+            - generic [ref=f3e1342]: Alle inntatt
+            - button "Legg til i valgene mine" [ref=f3e1343]: +
+          - button "Bygg- og anleggsteknikk 3" [ref=f3e1344] [cursor=pointer]:
+            - generic [ref=f3e1345]: Bygg- og anleggsteknikk
+            - generic [ref=f3e1346]: "3"
+          - 'button "Bygg- og anleggsteknikk Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 31,4 2026 Legg til i valgene mine" [ref=f3e1347] [cursor=pointer]':
+            - generic [ref=f3e1348]: Bygg- og anleggsteknikk
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1349]': Vg1
+            - generic [ref=f3e1350]:
+              - text: 31,4
+              - generic [ref=f3e1351]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1352]: +
+          - 'button "Tømrer Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. Alle inntatt Legg til i valgene mine" [ref=f3e1353] [cursor=pointer]':
+            - generic [ref=f3e1354]: Tømrer
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1355]': Vg2
+            - generic [ref=f3e1356]: Alle inntatt
+            - button "Legg til i valgene mine" [ref=f3e1357]: +
+          - 'button "Betong og mur Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. Alle inntatt Legg til i valgene mine" [ref=f3e1358] [cursor=pointer]':
+            - generic [ref=f3e1359]: Betong og mur
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1360]': Vg2
+            - generic [ref=f3e1361]: Alle inntatt
+            - button "Legg til i valgene mine" [ref=f3e1362]: +
+          - button "Teknologi- og industrifag 3" [ref=f3e1363] [cursor=pointer]:
+            - generic [ref=f3e1364]: Teknologi- og industrifag
+            - generic [ref=f3e1365]: "3"
+          - 'button "Teknologi- og industrifag Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 40,0 2026 Legg til i valgene mine" [ref=f3e1366] [cursor=pointer]':
+            - generic [ref=f3e1367]: Teknologi- og industrifag
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1368]': Vg1
+            - generic [ref=f3e1369]:
+              - text: 40,0
+              - generic [ref=f3e1370]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1371]: +
+          - 'button "Industriteknologi Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 36,3 2026 Legg til i valgene mine" [ref=f3e1372] [cursor=pointer]':
+            - generic [ref=f3e1373]: Industriteknologi
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1374]': Vg2
+            - generic [ref=f3e1375]:
+              - text: 36,3
+              - generic [ref=f3e1376]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1377]: +
+          - 'button "Kjøretøy Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 30,0 2026 Legg til i valgene mine" [ref=f3e1378] [cursor=pointer]':
+            - generic [ref=f3e1379]: Kjøretøy
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1380]': Vg2
+            - generic [ref=f3e1381]:
+              - text: 30,0
+              - generic [ref=f3e1382]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1383]: +
+          - button "Restaurant- og matfag 2" [ref=f3e1384] [cursor=pointer]:
+            - generic [ref=f3e1385]: Restaurant- og matfag
+            - generic [ref=f3e1386]: "2"
+          - 'button "Kokk- og servitørfag Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 30,0 2026 Legg til i valgene mine" [ref=f3e1387] [cursor=pointer]':
+            - generic [ref=f3e1388]: Kokk- og servitørfag
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1389]': Vg2
+            - generic [ref=f3e1390]:
+              - text: 30,0
+              - generic [ref=f3e1391]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1392]: +
+          - 'button "Restaurant- og matfag Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 28,6 2026 Legg til i valgene mine" [ref=f3e1393] [cursor=pointer]':
+            - generic [ref=f3e1394]: Restaurant- og matfag
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1395]': Vg1
+            - generic [ref=f3e1396]:
+              - text: 28,6
+              - generic [ref=f3e1397]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1398]: +
+          - button "Salg, service og reiseliv 3" [ref=f3e1399] [cursor=pointer]:
+            - generic [ref=f3e1400]: Salg, service og reiseliv
+            - generic [ref=f3e1401]: "3"
+          - 'button "Salg, service og reiseliv Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 37,7 2026 Legg til i valgene mine" [ref=f3e1402] [cursor=pointer]':
+            - generic [ref=f3e1403]: Salg, service og reiseliv
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1404]': Vg1
+            - generic [ref=f3e1405]:
+              - text: 37,7
+              - generic [ref=f3e1406]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1407]: +
+          - 'button "Salg og reiseliv Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 30,0 2025 Legg til i valgene mine" [ref=f3e1408] [cursor=pointer]':
+            - generic [ref=f3e1409]: Salg og reiseliv
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1410]': Vg2
+            - generic [ref=f3e1411]:
+              - text: 30,0
+              - generic [ref=f3e1412]: "2025"
+            - button "Legg til i valgene mine" [ref=f3e1413]: +
+          - 'button "Salg, service og reiseliv Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. Alle inntatt Legg til i valgene mine" [ref=f3e1414] [cursor=pointer]':
+            - generic [ref=f3e1415]: Salg, service og reiseliv
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1416]': Vg2
+            - generic [ref=f3e1417]: Alle inntatt
+            - button "Legg til i valgene mine" [ref=f3e1418]: +
+          - button "Påbygg 2" [ref=f3e1419] [cursor=pointer]:
+            - generic [ref=f3e1420]: Påbygg
+            - generic [ref=f3e1421]: "2"
+          - 'button "Påbygg. gen. studiekompetanse Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet. 37,5 2026 Legg til i valgene mine" [ref=f3e1422] [cursor=pointer]':
+            - 'generic "Offisielt navn (Udir): Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram" [ref=f3e1423]': Påbygg. gen. studiekompetanse
+            - 'generic "Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet." [ref=f3e1424]': Vg3
+            - generic [ref=f3e1425]:
+              - text: 37,5
+              - generic [ref=f3e1426]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1427]: +
+          - 'button "Påbygg gen studiekomp e/yrkeskomp Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet. 33,8 2026 Legg til i valgene mine" [ref=f3e1428] [cursor=pointer]':
+            - 'generic "Offisielt navn (Udir): Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram" [ref=f3e1429]': Påbygg gen studiekomp e/yrkeskomp
+            - 'generic "Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet." [ref=f3e1430]': Vg3
+            - generic [ref=f3e1431]:
+              - text: 33,8
+              - generic [ref=f3e1432]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1433]: +
+          - button "6 programområder uten tall fra de siste to årene er skjult – vis dem" [ref=f3e1434] [cursor=pointer]
+        - generic [ref=f3e84]: "Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaksrunden varierer mellom fylkene og er merket på hver skole. Uoffisiell prototype – tall kan inneholde parsefeil."
+    - generic [ref=f3e98]:
+      - heading "Poengkart" [level=1] [ref=f3e104]
+      - paragraph [ref=f3e105]: "Poenggrenser for videregående skole: poengsummen til den siste som fikk plass. 195 skoler i 7 fylker, 2017–2026. Velg en skole for detaljer."
+      - group "Visning" [ref=f3e106]:
+        - button "Kart" [ref=f3e107] [cursor=pointer]
+        - button "Liste" [active] [pressed] [ref=f3e108] [cursor=pointer]
+      - generic [ref=f3e109]:
+        - generic [ref=f3e110]: Fylke
+        - combobox "Fylke" [ref=f3e111] [cursor=pointer]:
+          - option "Hele landet"
+          - option "Akershus (34)"
+          - option "Buskerud (12)"
+          - option "Innlandet (26)"
+          - option "Oslo (25)"
+          - option "Rogaland (25)" [selected]
+          - option "Trøndelag (31)"
+          - option "Vestland (42)"
+      - generic [ref=f3e112]:
+        - generic [ref=f3e113]: Utdanningsprogram
+        - combobox "Utdanningsprogram" [ref=f3e114] [cursor=pointer]:
+          - option "Alle utdanningsprogram" [selected]
+          - option "Studiespesialisering"
+          - option "Idrettsfag"
+          - option "Musikk, dans og drama"
+          - option "Kunst, design og arkitektur"
+          - option "Medier og kommunikasjon"
+          - option "IT og medieproduksjon"
+          - option "Elektro og datateknologi"
+          - option "Helse- og oppvekstfag"
+          - option "Bygg- og anleggsteknikk"
+          - option "Teknologi- og industrifag"
+          - option "Restaurant- og matfag"
+          - option "Salg, service og reiseliv"
+          - option "Naturbruk"
+          - option "Frisør, blomster og interiør"
+          - option "Håndverk og produktutvikling"
+          - option "Påbygg"
+      - generic [ref=f3e115]:
+        - generic [ref=f3e116]: Poengene dine (valgfritt)
+        - generic [ref=f3e117]:
+          - textbox "Poengene dine (valgfritt)" [ref=f3e118]:
+            - /placeholder: f.eks. 42,5
+          - button "Regn ut fra karakterene dine" [ref=f3e119] [cursor=pointer]

@@ -1,0 +1,199 @@
+- generic [ref=f3e1]:
+  - link "Hopp til filtrene" [ref=f3e2] [cursor=pointer]:
+    - /url: "#panel"
+  - generic [ref=f3e3]:
+    - generic [ref=f3e4]:
+      - generic:
+        - generic:
+          - img:
+            - generic:
+              - 'button "Voss vidaregåande skule. Snitt 36,9 poeng · 13 av 20 program fylte opp Høyest: 46,3 · Naturbruk, friluftsliv. Trykk for detaljer."'
+              - 'button "Voss gymnas. Snitt 36,3 poeng · 11 av 13 program fylte opp Høyest: 46,3 · Påbygg. gen. studiekompetanse. Trykk for detaljer."'
+              - 'button "Austrheim vidaregåande skule. Snitt 32,7 poeng · 10 av 13 program fylte opp Høyest: 40,0 · Anleggsteknikk. Trykk for detaljer."'
+              - 'button "Austevoll vidaregåande skule. Snitt 36,7 poeng · 4 av 5 program fylte opp Høyest: 41,3 · Fiske og fangst. Trykk for detaljer."'
+              - 'button "Kvam vidaregåande skule. Snitt 33,0 poeng · 5 av 6 program fylte opp Høyest: 36,5 · Helse- og oppvekstfag. Trykk for detaljer."'
+              - 'button "Fusa vidaregåande skule. Snitt 34,1 poeng · 4 av 8 program fylte opp Høyest: 47,1 · Kokk- og servitørfag. Trykk for detaljer."'
+              - 'button "Os vidaregåande skule. Snitt 38,4 poeng · 18 av 19 program fylte opp Høyest: 56,3 · Ambulansefag. Trykk for detaljer." [ref=f3e5564] [cursor=pointer]'
+              - 'button "Os gymnas. Snitt 42,7 poeng · 1 av 1 program fylte opp Høyest: 42,7 · Studiespesialisering. Trykk for detaljer." [ref=f3e5565] [cursor=pointer]'
+              - 'button "Osterøy vidaregåande skule. Snitt 32,9 poeng · 2 av 6 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 43,1 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e5566] [cursor=pointer]'
+              - 'button "Knarvik vidaregåande skule. Snitt 38,0 poeng · 14 av 14 program fylte opp Høyest: 48,8 · Automatisering. Trykk for detaljer."'
+              - 'button "Sotra vidaregåande skule. Snitt 37,6 poeng · 17 av 22 program fylte opp Høyest: 50,0 · Automatisering. Trykk for detaljer." [ref=f3e5567] [cursor=pointer]'
+              - 'button "Arna vidaregåande skule. Snitt 38,5 poeng · 3 av 8 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 42,4 · Informasjonsteknologi og medieproduksjon. Trykk for detaljer." [ref=f3e5568] [cursor=pointer]'
+              - 'button "Askøy videregående skole. Snitt 35,2 poeng · 10 av 12 program fylte opp Høyest: 46,7 · Barne- og ungdomsarbeider. Trykk for detaljer." [ref=f3e5569] [cursor=pointer]'
+              - 'button "Åsane vidaregåande skule. Snitt 36,5 poeng · 19 av 22 program fylte opp Høyest: 50,0 · Påbygg gen studiekomp e/yrkeskomp. Trykk for detaljer." [ref=f3e5570] [cursor=pointer]'
+              - 'button "Tertnes vidaregåande skule. Snitt 41,3 poeng · 1 av 1 program fylte opp Høyest: 41,3 · Studiespesialisering. Trykk for detaljer." [ref=f3e5571] [cursor=pointer]'
+              - 'button "Stend vidaregåande skule. Snitt 36,9 poeng · 9 av 13 program fylte opp Høyest: 47,4 · Idrettsfag. Trykk for detaljer." [ref=f3e5572] [cursor=pointer]'
+              - 'button "Slåtthaug videregående skole. Snitt 34,5 poeng · 12 av 17 program fylte opp Høyest: 48,6 · Automatisering. Trykk for detaljer." [ref=f3e5573] [cursor=pointer]'
+              - 'button "Sandsli videregående skole. Snitt 35,4 poeng · 5 av 6 program fylte opp Høyest: 43,8 · Studiespesialisering. Trykk for detaljer." [ref=f3e5574] [cursor=pointer]'
+              - 'button "Nordahl Grieg videregående skole. Snitt 35,8 poeng · 7 av 7 program fylte opp Høyest: 43,4 · Studiespesialisering. Trykk for detaljer." [ref=f3e5575] [cursor=pointer]'
+              - 'button "Olsvikåsen videregående skole. Snitt 38,4 poeng · 6 av 6 program fylte opp Høyest: 43,1 · Studiespesialisering. Trykk for detaljer." [ref=f3e5576] [cursor=pointer]'
+              - 'button "Fyllingsdalen videregående skole. Snitt 40,7 poeng · 6 av 6 program fylte opp Høyest: 44,4 · Studiespesialisering. Trykk for detaljer." [ref=f3e5577] [cursor=pointer]'
+              - 'button "Årstad videregående skole. Snitt 34,8 poeng · 15 av 20 program fylte opp Høyest: 40,4 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e5578] [cursor=pointer]'
+              - 'button "Langhaugen videregående skole. Snitt 51,8 poeng · 3 av 3 program fylte opp Høyest: 55,3 · Musikk, dans og drama, musikk. Trykk for detaljer." [ref=f3e5579] [cursor=pointer]'
+              - 'button "Laksevåg og Bergen Maritime videregående skole. Snitt 47,1 poeng · 13 av 13 program fylte opp Høyest: 53,8 · Automatisering. Trykk for detaljer." [ref=f3e5580] [cursor=pointer]'
+              - 'button "Bergen katedralskole. Snitt 44,1 poeng · 2 av 2 program fylte opp Høyest: 47,5 · Studiespesialisering. Trykk for detaljer." [ref=f3e5581] [cursor=pointer]'
+              - 'button "Amalie Skram videregående skole. Snitt 45,0 poeng · 8 av 8 program fylte opp Høyest: 52,5 · Påbygg. gen. studiekompetanse. Trykk for detaljer." [ref=f3e5582] [cursor=pointer]'
+              - 'button "Odda vidaregåande skule. Snitt 33,8 poeng · 4 av 11 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 45,0 · Smed, LAL. Trykk for detaljer."'
+              - 'button "Fitjar vidaregåande skule. Snitt 30,2 poeng · 7 av 9 program fylte opp Høyest: 39,7 · Restaurant- og matfag. Trykk for detaljer."'
+      - generic:
+        - generic:
+          - button "Vis hvor jeg er på kartet" [ref=f3e53] [cursor=pointer]
+          - generic [ref=f3e58]:
+            - button "Zoom in" [ref=f3e59] [cursor=pointer]: +
+            - button "Zoom out" [ref=f3e60] [cursor=pointer]: −
+          - generic [ref=f3e61]:
+            - link "Leaflet" [ref=f3e62] [cursor=pointer]:
+              - /url: https://leafletjs.com
+            - text: "| ©"
+            - link "OSM" [ref=f3e67] [cursor=pointer]:
+              - /url: https://www.openstreetmap.org/copyright
+            - text: ©
+            - link "CARTO" [ref=f3e68] [cursor=pointer]:
+              - /url: https://carto.com/attributions
+    - complementary "Skoledetaljer" [ref=f3e69]:
+      - generic [ref=f3e70]:
+        - generic [ref=f3e71]:
+          - button "Lukk skoledetaljer" [ref=f3e7124] [cursor=pointer]: ✕
+          - generic [ref=f3e7125]:
+            - heading "St.Olav videregående skole" [level=2] [ref=f3e7126]
+            - 'link "Illustrasjon: nybygget – St. Olav vgs / Rogaland fylkeskommune" [ref=f3e7128] [cursor=pointer]':
+              - /url: https://www.st-olav.vgs.no/
+        - generic [ref=f3e72]:
+          - link "Nettside ↗" [ref=f3e7129] [cursor=pointer]:
+            - /url: https://www.st-olav.vgs.no
+          - link "Wikipedia ↗" [ref=f3e7130] [cursor=pointer]:
+            - /url: https://no.wikipedia.org/wiki/St._Olav_videreg%C3%A5ende_skole_(Stavanger)
+          - generic [ref=f3e7131]: Jens Zetlitz' gate 33, 4008, STAVANGER
+          - generic [ref=f3e7132]: Rogaland
+          - generic "Poenggrensen er poengsummen til den siste søkeren som fikk plass i denne inntaksrunden. Grensen faller mellom rundene, fordi plasser blir ledige. Tall fra ulike runder kan ikke sammenlignes direkte." [ref=f3e7133]: 2. inntak
+        - generic [ref=f3e73]:
+          - generic [ref=f3e7134]:
+            - generic [ref=f3e7135]: 44,5
+            - generic [ref=f3e7136]: Snitt · alle program 2025
+          - generic "Forskjellen mellom de to siste punktene på snittlinjen i grafen under." [ref=f3e7137]:
+            - generic [ref=f3e7138]: +8,1
+            - generic [ref=f3e7139]: endring fra 2024
+          - generic [ref=f3e7140]:
+            - generic [ref=f3e7141]: "7"
+            - generic [ref=f3e7142]: programområder
+        - generic [ref=f3e222]:
+          - generic [ref=f3e7143]: Skriv inn poengene dine øverst til venstre, så viser listen under sjansen din for plass per programområde ved neste inntak.
+          - generic "Hvor mye høyere eller lavere skolens poenggrenser ligger enn de samme programområdene ellers i fylket, når sammensetningen av programområder er tatt hensyn til. Et mål på etterspørsel, ikke på kvalitet." [ref=f3e7144]: "Justert for programmiks: +4,8 poeng mot fylkesnormen (± 1,2)"
+        - generic [ref=f3e74]:
+          - generic [ref=f3e76]:
+            - button "Alle" [ref=f3e225] [cursor=pointer]
+            - button "Utdanningsprogram" [ref=f3e226] [cursor=pointer]
+            - button "Programområde" [ref=f3e227] [cursor=pointer]
+          - generic [ref=f3e80]: 3 programområder · snittlinje i blått
+          - img [ref=f3e7145]:
+            - generic [ref=f3e7146]: "30"
+            - generic [ref=f3e7147]: "40"
+            - generic [ref=f3e7148]: "50"
+            - generic [ref=f3e7149]: "18"
+            - generic [ref=f3e7150]: "19"
+            - generic [ref=f3e7151]: "20"
+            - generic [ref=f3e7152]: "21"
+            - generic [ref=f3e7153]: "22"
+            - generic [ref=f3e7154]: "23"
+            - generic [ref=f3e7155]: "24"
+            - generic [ref=f3e7156]: "25"
+        - searchbox "Filtrer programområde …" [ref=f3e244]
+        - generic [ref=f3e245]:
+          - button "Studiespesialisering 7" [ref=f3e7170] [cursor=pointer]:
+            - generic [ref=f3e7171]: Studiespesialisering
+            - generic [ref=f3e7172]: "7"
+          - 'button "Studiespesialisering Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 46,1 2025 Legg til i valgene mine" [ref=f3e7173] [cursor=pointer]':
+            - generic [ref=f3e7174]: Studiespesialisering
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e7175]': Vg1
+            - generic [ref=f3e7176]:
+              - text: 46,1
+              - generic [ref=f3e7177]: "2025"
+            - button "Legg til i valgene mine" [ref=f3e7178]: +
+          - 'button "Realfag Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 44,4 2025 Legg til i valgene mine" [ref=f3e7179] [cursor=pointer]':
+            - generic [ref=f3e7180]: Realfag
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e7181]': Vg2
+            - generic [ref=f3e7182]:
+              - text: 44,4
+              - generic [ref=f3e7183]: "2025"
+            - button "Legg til i valgene mine" [ref=f3e7184]: +
+          - 'button "Språk, samfunn og økonomi Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 43,0 2025 Legg til i valgene mine" [ref=f3e7185] [cursor=pointer]':
+            - 'generic "Offisielt navn (Udir): Språk, samfunnsfag og økonomi vg2" [ref=f3e7186]': Språk, samfunn og økonomi
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e7187]': Vg2
+            - generic [ref=f3e7188]:
+              - text: 43,0
+              - generic [ref=f3e7189]: "2025"
+            - button "Legg til i valgene mine" [ref=f3e7190]: +
+          - 'button "International baccalaureate, IB Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. Dokumentasjon Legg til i valgene mine" [ref=f3e7191] [cursor=pointer]':
+            - generic [ref=f3e7192]: International baccalaureate, IB
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e7193]': Vg2
+            - generic [ref=f3e7194]: Dokumentasjon
+            - button "Legg til i valgene mine" [ref=f3e7195]: +
+          - 'button "International baccalaureate, IB Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet. Dokumentasjon Legg til i valgene mine" [ref=f3e7196] [cursor=pointer]':
+            - generic [ref=f3e7197]: International baccalaureate, IB
+            - 'generic "Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet." [ref=f3e7198]': Vg3
+            - generic [ref=f3e7199]: Dokumentasjon
+            - button "Legg til i valgene mine" [ref=f3e7200]: +
+          - 'button "Realfag Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet. Fortrinn ⓘ" [ref=f3e7201] [cursor=pointer]':
+            - generic [ref=f3e7202]: Realfag
+            - 'generic "Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet." [ref=f3e7203]': Vg3
+            - generic [ref=f3e7204]: Fortrinn ⓘ
+          - 'button "Språk, samfunn og økonomi Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet. Fortrinn ⓘ" [ref=f3e7205] [cursor=pointer]':
+            - 'generic "Offisielt navn (Udir): Språk, samfunnsfag og økonomi vg2" [ref=f3e7206]': Språk, samfunn og økonomi
+            - 'generic "Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet." [ref=f3e7207]': Vg3
+            - generic [ref=f3e7208]: Fortrinn ⓘ
+        - generic [ref=f3e84]: "Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaksrunden varierer mellom fylkene og er merket på hver skole. Uoffisiell prototype – tall kan inneholde parsefeil."
+    - generic [ref=f3e98]:
+      - heading "Poengkart" [level=1] [ref=f3e104]
+      - paragraph [ref=f3e105]: "Poenggrenser for videregående skole: poengsummen til den siste som fikk plass. 195 skoler i 7 fylker, 2017–2026. Velg en skole for detaljer."
+      - group "Visning" [ref=f3e106]:
+        - button "Kart" [active] [pressed] [ref=f3e107] [cursor=pointer]
+        - button "Liste" [ref=f3e108] [cursor=pointer]
+      - generic [ref=f3e109]:
+        - generic [ref=f3e110]: Fylke
+        - combobox "Fylke" [ref=f3e111] [cursor=pointer]:
+          - option "Hele landet"
+          - option "Akershus (34)"
+          - option "Buskerud (12)"
+          - option "Innlandet (26)"
+          - option "Oslo (25)"
+          - option "Rogaland (25)" [selected]
+          - option "Trøndelag (31)"
+          - option "Vestland (42)"
+      - generic [ref=f3e112]:
+        - generic [ref=f3e113]: Utdanningsprogram
+        - combobox "Utdanningsprogram" [ref=f3e114] [cursor=pointer]:
+          - option "Alle utdanningsprogram" [selected]
+          - option "Studiespesialisering"
+          - option "Idrettsfag"
+          - option "Musikk, dans og drama"
+          - option "Kunst, design og arkitektur"
+          - option "Medier og kommunikasjon"
+          - option "IT og medieproduksjon"
+          - option "Elektro og datateknologi"
+          - option "Helse- og oppvekstfag"
+          - option "Bygg- og anleggsteknikk"
+          - option "Teknologi- og industrifag"
+          - option "Restaurant- og matfag"
+          - option "Salg, service og reiseliv"
+          - option "Naturbruk"
+          - option "Frisør, blomster og interiør"
+          - option "Håndverk og produktutvikling"
+          - option "Påbygg"
+      - generic [ref=f3e115]:
+        - generic [ref=f3e116]: Poengene dine (valgfritt)
+        - generic [ref=f3e117]:
+          - textbox "Poengene dine (valgfritt)" [ref=f3e118]:
+            - /placeholder: f.eks. 42,5
+          - button "Regn ut fra karakterene dine" [ref=f3e119] [cursor=pointer]
+  - generic [ref=f3e123]:
+    - generic [ref=f3e124]: Snitt poenggrense (siste år)
+    - generic [ref=f3e125]:
+      - generic [ref=f3e1177]: <30
+      - generic [ref=f3e1180]: 30–34
+      - generic [ref=f3e1183]: 34–38
+      - generic [ref=f3e1186]: 38–42
+      - generic [ref=f3e1189]: 42+
+    - generic [ref=f3e141]: Størrelsen viser hvor stor andel av programmene som ble fylt opp
+    - generic [ref=f3e142]: Kartet viser fylker med ulike inntaksrunder – tallene kan ikke sammenlignes direkte.
+    - generic [ref=f3e143]: Uten venteliste – alle inntatt
+    - generic [ref=f3e146]: Ikke data

@@ -1,0 +1,381 @@
+- generic [ref=f3e1]:
+  - link "Hopp til filtrene" [ref=f3e2] [cursor=pointer]:
+    - /url: "#panel"
+  - generic [ref=f3e3]:
+    - generic [ref=f3e4]:
+      - generic:
+        - generic:
+          - img:
+            - generic:
+              - 'button "Bjertnes. Snitt 32,6 poeng · 4 av 5 program fylte opp Høyest: 42,0 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e1124] [cursor=pointer]'
+              - 'button "Eidsvoll. Snitt 30,4 poeng · 4 av 6 program fylte opp Høyest: 35,3 · Elektro og datateknologi. Trykk for detaljer."'
+              - 'button "Frogn. Snitt 34,9 poeng · 3 av 4 program fylte opp Høyest: 39,4 · Idrettsfag. Trykk for detaljer." [ref=f3e1125] [cursor=pointer]'
+              - 'button "Hvam. Snitt 30,4 poeng · 5 av 5 program fylte opp Høyest: 44,4 · Naturbruk, realfag og dyrekunnskap, SK 3 år. Trykk for detaljer." [ref=f3e1126] [cursor=pointer]'
+              - 'button "Jessheim. Snitt 30,8 poeng · 5 av 5 program fylte opp Høyest: 43,1 · Kunst, design og arkitektur. Trykk for detaljer." [ref=f3e1127] [cursor=pointer]'
+              - 'button "Nannestad. Snitt 34,7 poeng · 6 av 7 program fylte opp Høyest: 39,4 · Studiespesialisering. Trykk for detaljer." [ref=f3e1128] [cursor=pointer]'
+              - 'button "Nes. Snitt 22,4 poeng · 4 av 5 program fylte opp Høyest: 27,7 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e1129] [cursor=pointer]'
+              - 'button "Nesbru. Snitt 32,6 poeng · 3 av 3 program fylte opp Høyest: 36,0 · Studiespesialisering. Trykk for detaljer." [ref=f3e1130] [cursor=pointer]'
+              - 'button "Nesodden. Snitt 27,1 poeng · 3 av 4 program fylte opp Høyest: 31,8 · Informasjonsteknologi og medieproduksjon. Trykk for detaljer." [ref=f3e1131] [cursor=pointer]'
+              - 'button "Roald Amundsen. Snitt 42,3 poeng · 1 av 2 program fylte opp Høyest: 42,3 · Idrettsfag. Trykk for detaljer." [ref=f3e1132] [cursor=pointer]'
+              - 'button "Rælingen. Snitt 33,3 poeng · 1 av 4 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 33,3 · Idrettsfag. Trykk for detaljer." [ref=f3e1133] [cursor=pointer]'
+              - 'button "Røyken. Snitt 33,7 poeng · 6 av 7 program fylte opp Høyest: 36,0 · Helse- og oppvekstfag. Trykk for detaljer." [ref=f3e1134] [cursor=pointer]'
+              - 'button "Sørumsand. Snitt 28,7 poeng · 2 av 4 program fylte opp Høyest: 30,7 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e1135] [cursor=pointer]'
+              - 'button "Vestby. Snitt 32,7 poeng · 2 av 5 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 36,0 · Salg, service og reiseliv. Trykk for detaljer." [ref=f3e1136] [cursor=pointer]'
+              - 'button "Ås. Snitt 41,0 poeng · 7 av 7 program fylte opp Høyest: 47,7 · Kunst, design og arkitektur. Trykk for detaljer." [ref=f3e1137] [cursor=pointer]'
+              - 'button "Buskerud. Snitt 25,0 poeng · 7 av 9 program fylte opp Høyest: 33,1 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e1138] [cursor=pointer]'
+              - 'button "Drammen. Snitt 39,4 poeng · 7 av 7 program fylte opp Høyest: 51,3 · Idrettsfag, toppidrett. Trykk for detaljer." [ref=f3e1139] [cursor=pointer]'
+              - 'button "Eiker. Snitt 34,5 poeng · 3 av 3 program fylte opp Høyest: 35,6 · Helse- og oppvekstfag. Trykk for detaljer." [ref=f3e1140] [cursor=pointer]'
+              - 'button "Gol. Snitt 21,9 poeng · 3 av 3 program fylte opp Høyest: 29,0 · Idrettsfag. Trykk for detaljer."'
+              - 'button "Kongsberg. Snitt 32,1 poeng · 11 av 12 program fylte opp Høyest: 48,2 · Idrettsfag. Trykk for detaljer." [ref=f3e1141] [cursor=pointer]'
+              - 'button "Numedal. Snitt 28,5 poeng · 4 av 6 program fylte opp Høyest: 34,0 · Bygg- og anleggsteknikk. Trykk for detaljer."'
+              - 'button "Ål. Snitt 23,8 poeng · 5 av 5 program fylte opp Høyest: 32,0 · Elektro og datateknologi. Trykk for detaljer."'
+              - 'button "Åssiden. Snitt 26,2 poeng · 7 av 8 program fylte opp Høyest: 32,9 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e1142] [cursor=pointer]'
+              - button "Dokka videregående skole. Ingen tall etter 2022. Trykk for detaljer."
+              - 'button "Gjøvik videregående skole. Snitt 32,2 poeng · 19 av 29 program fylte opp Høyest: 47,2 · Helse- og oppvekstfag, SK 3 år. Trykk for detaljer."'
+              - 'button "Hadeland videregående skole. Snitt 33,5 poeng · 13 av 25 program fylte opp Høyest: 50,0 · Idrettsfag. Trykk for detaljer."'
+              - 'button "Jønsberg videregående skole. Snitt 28,0 poeng · 3 av 4 program fylte opp Høyest: 29,3 · Naturbruk. Trykk for detaljer."'
+              - 'button "Lena-Valle videregående skole. Snitt 27,6 poeng · 14 av 18 program fylte opp Høyest: 42,2 · Helse- og oppvekstfag, SK 3 år. Trykk for detaljer."'
+              - 'button "Raufoss videregående skole. Snitt 29,7 poeng · 9 av 11 program fylte opp Høyest: 41,3 · Ambulansefag. Trykk for detaljer."'
+              - button "Skarnes videregående skole. Ingen tall etter 2022. Trykk for detaljer."
+              - 'button "Solør videregående skole. Snitt 33,3 poeng · 10 av 15 program fylte opp Høyest: 42,9 · Elenergi og ekom. Trykk for detaljer."'
+              - 'button "Stange videregående skole. Snitt 40,8 poeng · 5 av 15 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 47,5 · Musikk, dans og drama, musikk. Trykk for detaljer."'
+              - 'button "Bjørnholt videregående skole. Snitt 20,9 poeng · 1 av 3 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 20,9 · Elektro og datateknologi. Trykk for detaljer." [ref=f3e1143] [cursor=pointer]'
+              - 'button "Stovner videregående skole. Snitt 20,9 poeng · 3 av 5 program fylte opp Høyest: 22,2 · Helse- og oppvekstfag. Trykk for detaljer." [ref=f3e1144] [cursor=pointer]'
+              - 'button "Ullern videregående skole. Snitt 41,6 poeng · 4 av 4 program fylte opp Høyest: 45,3 · Studiespesialisering. Trykk for detaljer." [ref=f3e1145] [cursor=pointer]'
+              - 'button "Ulsrud videregående skole. Snitt 34,1 poeng · 2 av 5 program fylte opp ⚠ Men de fleste programmene tok inn alle søkere Høyest: 37,3 · Helse/oppvekst, ambulanse, SK 3 år. Trykk for detaljer." [ref=f3e1146] [cursor=pointer]'
+        - generic:
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1147] [cursor=pointer]:
+            - generic [ref=f3e1148]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1149] [cursor=pointer]:
+            - generic [ref=f3e1150]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1151] [cursor=pointer]:
+            - generic [ref=f3e1152]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1153] [cursor=pointer]:
+            - generic [ref=f3e1154]: "2"
+          - button "3 skoler i dette området. Trykk for å zoome inn." [ref=f3e1155] [cursor=pointer]:
+            - generic [ref=f3e1156]: "3"
+          - button "5 skoler i dette området. Trykk for å zoome inn." [ref=f3e1157] [cursor=pointer]:
+            - generic [ref=f3e1158]: "5"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1159] [cursor=pointer]:
+            - generic [ref=f3e1160]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1161] [cursor=pointer]:
+            - generic [ref=f3e1162]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1163] [cursor=pointer]:
+            - generic [ref=f3e1164]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1165] [cursor=pointer]:
+            - generic [ref=f3e1166]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1167] [cursor=pointer]:
+            - generic [ref=f3e1168]: "2"
+          - button "2 skoler i dette området. Trykk for å zoome inn." [ref=f3e1169] [cursor=pointer]:
+            - generic [ref=f3e1170]: "2"
+          - button "4 skoler i dette området. Trykk for å zoome inn." [ref=f3e1171] [cursor=pointer]:
+            - generic [ref=f3e1172]: "4"
+          - button "4 skoler i dette området. Trykk for å zoome inn." [ref=f3e1173] [cursor=pointer]:
+            - generic [ref=f3e1174]: "4"
+          - button "12 skoler i dette området. Trykk for å zoome inn." [ref=f3e1175] [cursor=pointer]:
+            - generic [ref=f3e1176]: "12"
+      - generic:
+        - generic:
+          - button "Vis hvor jeg er på kartet" [ref=f3e53] [cursor=pointer]
+          - generic [ref=f3e58]:
+            - button "Zoom in" [ref=f3e59] [cursor=pointer]: +
+            - button "Zoom out" [ref=f3e60] [cursor=pointer]: −
+          - generic [ref=f3e61]:
+            - link "Leaflet" [ref=f3e62] [cursor=pointer]:
+              - /url: https://leafletjs.com
+            - text: "| ©"
+            - link "OSM" [ref=f3e67] [cursor=pointer]:
+              - /url: https://www.openstreetmap.org/copyright
+            - text: ©
+            - link "CARTO" [ref=f3e68] [cursor=pointer]:
+              - /url: https://carto.com/attributions
+    - complementary "Skoledetaljer" [ref=f3e69]:
+      - generic [ref=f3e70]:
+        - generic [ref=f3e71]:
+          - button "Lukk skoledetaljer" [active] [ref=f3e1196] [cursor=pointer]: ✕
+          - generic [ref=f3e1197]:
+            - heading "Sotra vidaregåande skule" [level=2] [ref=f3e1198]
+            - 'link "Foto: Sotra vidaregåande skule / Vestland fylkeskommune" [ref=f3e1200] [cursor=pointer]':
+              - /url: https://www.sotra.vgs.no
+        - generic [ref=f3e72]:
+          - link "Nettside ↗" [ref=f3e1201] [cursor=pointer]:
+            - /url: https://www.sotra.vgs.no
+          - generic [ref=f3e1202]: Branndalsmyra 61, 5353, STRAUME
+          - generic [ref=f3e1203]: Vestland
+          - generic "Poenggrensen er poengsummen til den siste søkeren som fikk plass i denne inntaksrunden. Grensen faller mellom rundene, fordi plasser blir ledige. Tall fra ulike runder kan ikke sammenlignes direkte." [ref=f3e1204]: 1. inntak
+        - paragraph [ref=f3e1206]: 2023-tallene er fra 3. inntak, ikke samme runde som de andre årene – flere kom inn, så grensene ligger lavere.
+        - generic [ref=f3e73]:
+          - generic [ref=f3e1207]:
+            - generic [ref=f3e1208]: 37,6
+            - generic [ref=f3e1209]: Snitt · alle program 2026
+          - generic "Forskjellen mellom de to siste punktene på snittlinjen i grafen under." [ref=f3e1210]:
+            - generic [ref=f3e1211]: +1,6
+            - generic [ref=f3e1212]: endring fra 2025
+          - generic [ref=f3e1213]:
+            - generic [ref=f3e1214]: "23"
+            - generic [ref=f3e1215]: programområder
+        - generic [ref=f3e222]:
+          - generic [ref=f3e1216]: Skriv inn poengene dine øverst til venstre, så viser listen under sjansen din for plass per programområde ved neste inntak.
+          - generic "Hvor mye høyere eller lavere skolens poenggrenser ligger enn de samme programområdene ellers i fylket, når sammensetningen av programområder er tatt hensyn til. Et mål på etterspørsel, ikke på kvalitet." [ref=f3e1217]: "Justert for programmiks: +1,3 poeng mot fylkesnormen (± 0,5)"
+        - generic [ref=f3e74]:
+          - generic [ref=f3e76]:
+            - button "Alle" [ref=f3e225] [cursor=pointer]
+            - button "Utdanningsprogram" [ref=f3e226] [cursor=pointer]
+            - button "Programområde" [ref=f3e227] [cursor=pointer]
+          - generic [ref=f3e80]: 22 programområder · snittlinje i blått
+          - img [ref=f3e1218]:
+            - generic [ref=f3e1219]: "20"
+            - generic [ref=f3e1220]: "30"
+            - generic [ref=f3e1221]: "40"
+            - generic [ref=f3e1222]: "50"
+            - generic [ref=f3e1223]: "17"
+            - generic [ref=f3e1224]: "18"
+            - generic [ref=f3e1225]: "19"
+            - generic [ref=f3e1226]: "20"
+            - generic [ref=f3e1227]: "21"
+            - generic [ref=f3e1228]: "22"
+            - generic [ref=f3e1229]: "23"
+            - generic [ref=f3e1230]: "24"
+            - generic [ref=f3e1231]: "25"
+            - generic [ref=f3e1232]: "26"
+        - searchbox "Filtrer programområde …" [ref=f3e244]
+        - generic [ref=f3e245]:
+          - button "Studiespesialisering 2" [ref=f3e1274] [cursor=pointer]:
+            - generic [ref=f3e1275]: Studiespesialisering
+            - generic [ref=f3e1276]: "2"
+          - 'button "Studiespesialisering, teknologifag Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 45,3 2026 Legg til i valgene mine" [ref=f3e1277] [cursor=pointer]':
+            - generic [ref=f3e1278]: Studiespesialisering, teknologifag
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1279]': Vg1
+            - generic [ref=f3e1280]:
+              - text: 45,3
+              - generic [ref=f3e1281]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1282]: +
+          - 'button "Studiespesialisering Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 44,9 2026 Legg til i valgene mine" [ref=f3e1283] [cursor=pointer]':
+            - generic [ref=f3e1284]: Studiespesialisering
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1285]': Vg1
+            - generic [ref=f3e1286]:
+              - text: 44,9
+              - generic [ref=f3e1287]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1288]: +
+          - button "Idrettsfag 1" [ref=f3e1289] [cursor=pointer]:
+            - generic [ref=f3e1290]: Idrettsfag
+            - generic [ref=f3e1291]: "1"
+          - 'button "Idrettsfag Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 40,4 2026 Legg til i valgene mine" [ref=f3e1292] [cursor=pointer]':
+            - generic [ref=f3e1293]: Idrettsfag
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1294]': Vg1
+            - generic [ref=f3e1295]:
+              - text: 40,4
+              - generic [ref=f3e1296]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1297]: +
+          - button "Elektro og datateknologi 4" [ref=f3e1298] [cursor=pointer]:
+            - generic [ref=f3e1299]: Elektro og datateknologi
+            - generic [ref=f3e1300]: "4"
+          - 'button "Automatisering Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 50,0 2026 Legg til i valgene mine" [ref=f3e1301] [cursor=pointer]':
+            - generic [ref=f3e1302]: Automatisering
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1303]': Vg2
+            - generic [ref=f3e1304]:
+              - text: 50,0
+              - generic [ref=f3e1305]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1306]: +
+          - 'button "Elenergi og ekom Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 44,3 2026 Legg til i valgene mine" [ref=f3e1307] [cursor=pointer]':
+            - generic [ref=f3e1308]: Elenergi og ekom
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1309]': Vg2
+            - generic [ref=f3e1310]:
+              - text: 44,3
+              - generic [ref=f3e1311]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1312]: +
+          - 'button "Elektro og datateknologi Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 38,8 2026 Legg til i valgene mine" [ref=f3e1313] [cursor=pointer]':
+            - generic [ref=f3e1314]: Elektro og datateknologi
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1315]': Vg1
+            - generic [ref=f3e1316]:
+              - text: 38,8
+              - generic [ref=f3e1317]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1318]: +
+          - 'button "Automatiseringsfaget Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet. Alle inntatt Legg til i valgene mine" [ref=f3e1319] [cursor=pointer]':
+            - generic [ref=f3e1320]: Automatiseringsfaget
+            - 'generic "Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet." [ref=f3e1321]': Vg3
+            - generic [ref=f3e1322]: Alle inntatt
+            - button "Legg til i valgene mine" [ref=f3e1323]: +
+          - button "Helse- og oppvekstfag 3" [ref=f3e1324] [cursor=pointer]:
+            - generic [ref=f3e1325]: Helse- og oppvekstfag
+            - generic [ref=f3e1326]: "3"
+          - 'button "Barne- og ungdomsarbeider Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 38,8 2026 Legg til i valgene mine" [ref=f3e1327] [cursor=pointer]':
+            - 'generic "Offisielt navn (Udir): Barne- og ungdomsarbeiderfag" [ref=f3e1328]': Barne- og ungdomsarbeider
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1329]': Vg2
+            - generic [ref=f3e1330]:
+              - text: 38,8
+              - generic [ref=f3e1331]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1332]: +
+          - 'button "Helse- og oppvekstfag Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 32,1 2026 Legg til i valgene mine" [ref=f3e1333] [cursor=pointer]':
+            - generic [ref=f3e1334]: Helse- og oppvekstfag
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1335]': Vg1
+            - generic [ref=f3e1336]:
+              - text: 32,1
+              - generic [ref=f3e1337]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1338]: +
+          - 'button "Helsearbeiderfag Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. Alle inntatt Legg til i valgene mine" [ref=f3e1339] [cursor=pointer]':
+            - generic [ref=f3e1340]: Helsearbeiderfag
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1341]': Vg2
+            - generic [ref=f3e1342]: Alle inntatt
+            - button "Legg til i valgene mine" [ref=f3e1343]: +
+          - button "Bygg- og anleggsteknikk 3" [ref=f3e1344] [cursor=pointer]:
+            - generic [ref=f3e1345]: Bygg- og anleggsteknikk
+            - generic [ref=f3e1346]: "3"
+          - 'button "Bygg- og anleggsteknikk Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 31,4 2026 Legg til i valgene mine" [ref=f3e1347] [cursor=pointer]':
+            - generic [ref=f3e1348]: Bygg- og anleggsteknikk
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1349]': Vg1
+            - generic [ref=f3e1350]:
+              - text: 31,4
+              - generic [ref=f3e1351]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1352]: +
+          - 'button "Tømrer Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. Alle inntatt Legg til i valgene mine" [ref=f3e1353] [cursor=pointer]':
+            - generic [ref=f3e1354]: Tømrer
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1355]': Vg2
+            - generic [ref=f3e1356]: Alle inntatt
+            - button "Legg til i valgene mine" [ref=f3e1357]: +
+          - 'button "Betong og mur Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. Alle inntatt Legg til i valgene mine" [ref=f3e1358] [cursor=pointer]':
+            - generic [ref=f3e1359]: Betong og mur
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1360]': Vg2
+            - generic [ref=f3e1361]: Alle inntatt
+            - button "Legg til i valgene mine" [ref=f3e1362]: +
+          - button "Teknologi- og industrifag 3" [ref=f3e1363] [cursor=pointer]:
+            - generic [ref=f3e1364]: Teknologi- og industrifag
+            - generic [ref=f3e1365]: "3"
+          - 'button "Teknologi- og industrifag Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 40,0 2026 Legg til i valgene mine" [ref=f3e1366] [cursor=pointer]':
+            - generic [ref=f3e1367]: Teknologi- og industrifag
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1368]': Vg1
+            - generic [ref=f3e1369]:
+              - text: 40,0
+              - generic [ref=f3e1370]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1371]: +
+          - 'button "Industriteknologi Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 36,3 2026 Legg til i valgene mine" [ref=f3e1372] [cursor=pointer]':
+            - generic [ref=f3e1373]: Industriteknologi
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1374]': Vg2
+            - generic [ref=f3e1375]:
+              - text: 36,3
+              - generic [ref=f3e1376]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1377]: +
+          - 'button "Kjøretøy Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 30,0 2026 Legg til i valgene mine" [ref=f3e1378] [cursor=pointer]':
+            - generic [ref=f3e1379]: Kjøretøy
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1380]': Vg2
+            - generic [ref=f3e1381]:
+              - text: 30,0
+              - generic [ref=f3e1382]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1383]: +
+          - button "Restaurant- og matfag 2" [ref=f3e1384] [cursor=pointer]:
+            - generic [ref=f3e1385]: Restaurant- og matfag
+            - generic [ref=f3e1386]: "2"
+          - 'button "Kokk- og servitørfag Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 30,0 2026 Legg til i valgene mine" [ref=f3e1387] [cursor=pointer]':
+            - generic [ref=f3e1388]: Kokk- og servitørfag
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1389]': Vg2
+            - generic [ref=f3e1390]:
+              - text: 30,0
+              - generic [ref=f3e1391]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1392]: +
+          - 'button "Restaurant- og matfag Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 28,6 2026 Legg til i valgene mine" [ref=f3e1393] [cursor=pointer]':
+            - generic [ref=f3e1394]: Restaurant- og matfag
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1395]': Vg1
+            - generic [ref=f3e1396]:
+              - text: 28,6
+              - generic [ref=f3e1397]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1398]: +
+          - button "Salg, service og reiseliv 3" [ref=f3e1399] [cursor=pointer]:
+            - generic [ref=f3e1400]: Salg, service og reiseliv
+            - generic [ref=f3e1401]: "3"
+          - 'button "Salg, service og reiseliv Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse. 37,7 2026 Legg til i valgene mine" [ref=f3e1402] [cursor=pointer]':
+            - generic [ref=f3e1403]: Salg, service og reiseliv
+            - 'generic "Vg1: Det første av tre år på videregående. Dette er året du søker på fra 10. klasse." [ref=f3e1404]': Vg1
+            - generic [ref=f3e1405]:
+              - text: 37,7
+              - generic [ref=f3e1406]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1407]: +
+          - 'button "Salg og reiseliv Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. 30,0 2025 Legg til i valgene mine" [ref=f3e1408] [cursor=pointer]':
+            - generic [ref=f3e1409]: Salg og reiseliv
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1410]': Vg2
+            - generic [ref=f3e1411]:
+              - text: 30,0
+              - generic [ref=f3e1412]: "2025"
+            - button "Legg til i valgene mine" [ref=f3e1413]: +
+          - 'button "Salg, service og reiseliv Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre. Alle inntatt Legg til i valgene mine" [ref=f3e1414] [cursor=pointer]':
+            - generic [ref=f3e1415]: Salg, service og reiseliv
+            - 'generic "Vg2: Andre året. Du søker deg hit fra Vg1, som regel på samme skole eller til et yrkesfag som bygger videre." [ref=f3e1416]': Vg2
+            - generic [ref=f3e1417]: Alle inntatt
+            - button "Legg til i valgene mine" [ref=f3e1418]: +
+          - button "Påbygg 2" [ref=f3e1419] [cursor=pointer]:
+            - generic [ref=f3e1420]: Påbygg
+            - generic [ref=f3e1421]: "2"
+          - 'button "Påbygg. gen. studiekompetanse Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet. 37,5 2026 Legg til i valgene mine" [ref=f3e1422] [cursor=pointer]':
+            - 'generic "Offisielt navn (Udir): Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram" [ref=f3e1423]': Påbygg. gen. studiekompetanse
+            - 'generic "Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet." [ref=f3e1424]': Vg3
+            - generic [ref=f3e1425]:
+              - text: 37,5
+              - generic [ref=f3e1426]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1427]: +
+          - 'button "Påbygg gen studiekomp e/yrkeskomp Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet. 33,8 2026 Legg til i valgene mine" [ref=f3e1428] [cursor=pointer]':
+            - 'generic "Offisielt navn (Udir): Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram" [ref=f3e1429]': Påbygg gen studiekomp e/yrkeskomp
+            - 'generic "Vg3: Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet." [ref=f3e1430]': Vg3
+            - generic [ref=f3e1431]:
+              - text: 33,8
+              - generic [ref=f3e1432]: "2026"
+            - button "Legg til i valgene mine" [ref=f3e1433]: +
+          - button "6 programområder uten tall fra de siste to årene er skjult – vis dem" [ref=f3e1434] [cursor=pointer]
+        - generic [ref=f3e84]: "Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaksrunden varierer mellom fylkene og er merket på hver skole. Uoffisiell prototype – tall kan inneholde parsefeil."
+    - generic [ref=f3e85]:
+      - button "Finn skole" [ref=f3e86] [cursor=pointer]
+      - button "Slik leser du kartet" [ref=f3e90] [cursor=pointer]
+      - button "Innstillinger" [ref=f3e94] [cursor=pointer]
+    - generic [ref=f3e98]:
+      - heading "Poengkart" [level=1] [ref=f3e104]
+      - paragraph [ref=f3e105]: "Poenggrenser for videregående skole: poengsummen til den siste som fikk plass. 195 skoler i 7 fylker, 2017–2026. Velg en skole for detaljer."
+      - group "Visning" [ref=f3e106]:
+        - button "Kart" [pressed] [ref=f3e107] [cursor=pointer]
+        - button "Liste" [ref=f3e108] [cursor=pointer]
+      - generic [ref=f3e109]:
+        - generic [ref=f3e110]: Fylke
+        - combobox "Fylke" [ref=f3e111] [cursor=pointer]:
+          - option "Hele landet" [selected]
+          - option "Akershus (34)"
+          - option "Buskerud (12)"
+          - option "Innlandet (26)"
+          - option "Oslo (25)"
+          - option "Rogaland (25)"
+          - option "Trøndelag (31)"
+          - option "Vestland (42)"
+      - generic [ref=f3e112]:
+        - generic [ref=f3e113]: Utdanningsprogram
+        - combobox "Utdanningsprogram" [ref=f3e114] [cursor=pointer]:
+          - option "Alle utdanningsprogram" [selected]
+          - option "Studiespesialisering"
+          - option "Idrettsfag"
+          - option "Musikk, dans og drama"
+          - option "Kunst, design og arkitektur"
+          - option "Medier og kommunikasjon"
+          - option "IT og medieproduksjon"
+          - option "Elektro og datateknologi"
+          - option "Helse- og oppvekstfag"
+          - option "Bygg- og anleggsteknikk"
+          - option "Teknologi- og industrifag"
+          - option "Restaurant- og matfag"
+          - option "Salg, service og reiseliv"
+          - option "Naturbruk"
+          - option "Frisør, blomster og interiør"
+          - option "Håndverk og produktutvikling"
+          - option "Påbygg"
+      - generic [ref=f3e115]:
+        - generic [ref=f3e116]: Poengene dine (valgfritt)
+        - generic [ref=f3e117]:
+          - textbox "Poengene dine (valgfritt)" [ref=f3e118]:
+            - /placeholder: f.eks. 42,5
+          - button "Regn ut fra karakterene dine" [ref=f3e119] [cursor=pointer]
+  - generic [ref=f3e123]:
+    - generic [ref=f3e124]: Snitt poenggrense (siste år)
+    - generic [ref=f3e125]:
+      - generic [ref=f3e1177]: <30
+      - generic [ref=f3e1180]: 30–34
+      - generic [ref=f3e1183]: 34–38
+      - generic [ref=f3e1186]: 38–42
+      - generic [ref=f3e1189]: 42+
+    - generic [ref=f3e141]: Størrelsen viser hvor stor andel av programmene som ble fylt opp
+    - generic [ref=f3e142]: Kartet viser fylker med ulike inntaksrunder – tallene kan ikke sammenlignes direkte.
+    - generic [ref=f3e143]: Uten venteliste – alle inntatt
+    - generic [ref=f3e146]: Ikke data
