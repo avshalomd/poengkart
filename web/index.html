@@ -55,9 +55,22 @@
        10.5px field labels, the source note — so it has to clear 4.5:1 */
     --ink: #0f1720; --ink-2: #46525e; --ink-3: #6b7480;
     --line: rgba(15,23,32,.09);
-    --accent: #2a78d6; --accent-soft: rgba(42,120,214,.10);
+    /* --line is a decorative separator (card edges, table row rules) and stays
+       quiet. A control's boundary is the only thing identifying it as a
+       control, so WCAG 1.4.11 asks 3:1 of it — hence a second token, used by
+       selects, inputs and icon buttons. #8b9299 on white is 3.15:1. */
+    --line-strong: #8b9299;
+    --shade: rgba(15,23,32,.16);   /* the scroll shadow on a table that runs wider than its card */
+    /* Ink for text sitting ON a filled accent. White clears 4.5:1 on the light
+       accent but only reaches 3.64:1 on the lighter dark-mode one, so dark mode
+       flips it — the same trick --chip-b2-ink already plays for the mid chip. */
+    --on-accent: #ffffff;
+    /* 4.42:1 on white missed 4.5 in both directions: white 12.5px on the
+       accent (Kart/Liste, every primary button, the mid threshold chip) and
+       accent on white (the sorted column header, links in the school panel) */
+    --accent: #2876d4; --accent-soft: rgba(42,120,214,.10);
     --context: #c3cdd6;
-    --seq-250:#86b6ef; --seq-350:#5598e7; --seq-450:#2a78d6; --seq-550:#1c5cab; --seq-700:#0d366b;
+    --seq-250:#86b6ef; --seq-350:#5598e7; --seq-450:#2876d4; --seq-550:#1c5cab; --seq-700:#0d366b;
     --shadow: 0 10px 32px rgba(15,23,32,.12), 0 1px 3px rgba(15,23,32,.08);
     --good: #0b7f0b;
     --chip-ink: #0f1720;            /* dark text on the pale threshold chips */
@@ -80,6 +93,9 @@
       --surface-solid: #171b21;
       --ink: #f2f5f8; --ink-2: #a9b4c0; --ink-3: #8b95a1;
       --line: rgba(255,255,255,.09);
+      --line-strong: #6a6f75;      /* a control's boundary needs 3:1: this is 3.41:1 */
+      --shade: rgba(0,0,0,.5);
+      --on-accent: #0f1720;        /* 4.96:1 on #3987e5, where white is 3.64:1 */
       --accent: #3987e5; --accent-soft: rgba(57,135,229,.14);
       --context: #3a4553;
       --seq-250:#9ec5f4; --seq-350:#6da7ec; --seq-450:#3987e5; --seq-550:#256abf; --seq-700:#184f95;
@@ -99,6 +115,9 @@
       --surface-solid: #171b21;
       --ink: #f2f5f8; --ink-2: #a9b4c0; --ink-3: #8b95a1;
       --line: rgba(255,255,255,.09);
+      --line-strong: #6a6f75;      /* a control's boundary needs 3:1: this is 3.41:1 */
+      --shade: rgba(0,0,0,.5);
+      --on-accent: #0f1720;        /* 4.96:1 on #3987e5, where white is 3.64:1 */
       --accent: #3987e5; --accent-soft: rgba(57,135,229,.14);
       --context: #3a4553;
       --seq-250:#9ec5f4; --seq-350:#6da7ec; --seq-450:#3987e5; --seq-550:#256abf; --seq-700:#184f95;
@@ -190,7 +209,7 @@
   .field + .field { margin-top: 10px; }
   .field select {
     width: 100%; padding: 8px 10px; font: inherit; font-size: 13px; color: var(--ink);
-    background: var(--surface-solid); border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface-solid); border: 1px solid var(--line-strong); border-radius: 10px;
     cursor: pointer; outline-offset: 2px;
   }
   /* min-height reserves the line so the note can appear without moving the
@@ -202,14 +221,14 @@
   .ptsrow { display: flex; gap: 6px; align-items: center; }
   .ptsrow input {
     flex: 1; min-width: 0; padding: 8px 10px; font: inherit; font-size: 13px; color: var(--ink);
-    background: var(--surface-solid); border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface-solid); border: 1px solid var(--line-strong); border-radius: 10px;
     font-variant-numeric: tabular-nums; outline-offset: 2px;
   }
   .ptsrow input.on { border-color: var(--accent); }
   .ptsrow input.bad { border-color: var(--danger); }
   #pts-note.bad { color: var(--danger); }
   .ptsrow button {
-    width: 34px; height: 34px; flex: none; border: 1px solid var(--line); border-radius: 10px;
+    width: 34px; height: 34px; flex: none; border: 1px solid var(--line-strong); border-radius: 10px;
     background: var(--surface-solid); color: var(--ink-2); cursor: pointer; font: inherit; font-size: 13px;
   }
   .ptsrow button:hover { background: var(--accent-soft); color: var(--accent); }
@@ -219,13 +238,13 @@
   .seg button svg { width: 15px; height: 15px; display: block; }
   #settings .row .t { font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
                       text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
-  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; }
+  .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 9px; overflow: hidden; }
   .seg button {
     border: none; background: none; padding: 7px 13px; font-size: 12.5px; font-weight: 600;
     color: var(--ink-2); cursor: pointer;
   }
-  .seg button + button { border-left: 1px solid var(--line); }
-  .seg button.on { background: var(--accent); color: #fff; }
+  .seg button + button { border-left: 1px solid var(--line-strong); }
+  .seg button.on { background: var(--accent); color: var(--on-accent); }
   #settings .note { font-size: 11.5px; color: var(--ink-3); line-height: 1.5; margin-top: 16px;
                     border-top: 1px solid var(--line); padding-top: 11px; }
   /* ---------- grade calculator ---------- */
@@ -238,12 +257,12 @@
   #calc .subj.exam .n { font-style: italic; }
   #calc .grades { display: flex; gap: 3px; flex: none; }
   #calc .grades button {
-    width: 26px; height: 26px; border: 1px solid var(--line); border-radius: 6px;
+    width: 26px; height: 26px; border: 1px solid var(--line-strong); border-radius: 6px;
     background: none; color: var(--ink-2); font-size: 12px; font-weight: 600; cursor: pointer;
     display: grid; place-items: center; padding: 0;
   }
   #calc .grades button:hover { border-color: var(--accent); color: var(--accent); }
-  #calc .grades button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  #calc .grades button.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
   #calc .grades button.rm { border: none; color: var(--ink-3); font-weight: 400; }
   /* invisible, not absent: the slot is reserved so picking a grade never
      shoves the whole row leftwards when the ✕ appears */
@@ -267,7 +286,7 @@
   }
   #ov-q {
     width: 100%; padding: 12px 14px; font: inherit; font-size: 16px; color: var(--ink);
-    background: var(--page); border: 1px solid var(--line); border-radius: 10px;
+    background: var(--page); border: 1px solid var(--line-strong); border-radius: 10px;
     outline: none;
   }
   /* a 1px border change is not a focus indicator; match the rest of the app */
@@ -280,6 +299,12 @@
   }
   #ov-list .opt .fy { font-size: 12px; color: var(--ink-3); flex: none; }
   #ov-list .opt.act, #ov-list .opt:hover { background: var(--accent-soft); }
+  /* .act is the result Enter will open — a state, so it needs 3:1 of its own
+     rather than a 1.13:1 tint. It also has to differ from :hover: they shared
+     one declaration, so with the mouse resting on one row and the keyboard on
+     another, both looked chosen and Enter took the one you were not pointing at. */
+  #ov-list .opt { border-left: 3px solid transparent; }
+  #ov-list .opt.act { border-left-color: var(--accent); font-weight: 600; }
   #ov-list .none { padding: 10px 12px; font-size: 13px; color: var(--ink-3); }
   /* ---------- list view (same filters, table instead of map) ---------- */
   #view-toggle { display: flex; width: 100%; margin: 0 0 12px; }
@@ -362,6 +387,30 @@
     #listview .ch-cell { white-space: nowrap; }
   }
   #listview .foot { padding: 10px 2px 0; font-size: 11.5px; color: var(--ink-3); line-height: 1.5; }
+  /* On a 375px phone the five columns want 471px inside a 313px window, and the
+     two that fell off the right were Endring and Sjanse — the chance figure
+     being the whole reason to look. The county is the one column a reader can
+     spare: they have usually just filtered by it, and it is the first line of
+     the school's own panel. Dropping it here is a CSS-only cut, so a rotation
+     brings it straight back with no re-render. */
+  @media (max-width: 560px) {
+    #listview .col-fylke, #listview td.fy { display: none; }
+    /* every millimetre bought back here is one the reader does not have to drag */
+    #listview td, #listview th button { padding-left: 6px; padding-right: 6px; }
+    #listview .chip { min-width: 38px; padding: 2px 6px; }
+  }
+  /* What is left can still overflow — a long school name, a wide chance phrase —
+     and an overlay scrollbar is invisible at rest, so nothing said the table
+     moved sideways at all. These shadows appear only on the side that has more
+     to show and fade out as you reach each end: the two `local` layers scroll
+     with the content and cover the fixed ones when there is nothing beyond. */
+  #listview .tblwrap {
+    background:
+      linear-gradient(to right, var(--surface-solid) 40%, transparent) left center / 28px 100% no-repeat local,
+      linear-gradient(to left,  var(--surface-solid) 40%, transparent) right center / 28px 100% no-repeat local,
+      linear-gradient(to right, var(--shade), transparent) left center / 14px 100% no-repeat scroll,
+      linear-gradient(to left,  var(--shade), transparent) right center / 14px 100% no-repeat scroll;
+  }
   /* Small screens stack the chrome above the table inside #app's column —
      the panel and controls are #app children precisely so these rules reach
      them. The side panel leaves the column entirely: a fixed sheet, as wide
@@ -428,12 +477,15 @@
   /* a 1px border change is not a focus indicator; match the rest of the app */
   .prow .pick:focus-visible { border-color: var(--accent); color: var(--accent);
     outline: 3px solid var(--accent); outline-offset: 2px; }
-  .prow .pick.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .prow .pick.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
   #choices { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 9px; }
   #choices .h { font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
                 color: var(--ink-3); display: flex; justify-content: space-between; align-items: baseline; }
   #choices .h button { border: none; background: none; color: var(--ink-3); font: inherit; font-size: 10.5px;
                        cursor: pointer; text-decoration: underline dotted; padding: 0; }
+  /* armed: the next press really does discard the list, so say so in the colour
+     the app uses for everything else that cannot be undone */
+  #choices .h button.arm { color: var(--danger); font-weight: 700; text-decoration: underline; }
   /* fifteen choices used to push the summary, the legend and the controls off
      the bottom of the screen with nothing to scroll */
   #choices .list { max-height: min(32dvh, 280px); overflow-y: auto; overscroll-behavior: contain; }
@@ -521,7 +573,7 @@
   #intro .step { display: flex; gap: 12px; margin-bottom: 15px; }
   #intro .n {
     flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent);
-    color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center;
+    color: var(--on-accent); font-size: 12px; font-weight: 700; display: grid; place-items: center;
     margin-top: 1px;
   }
   #intro .step h3 { font-size: 13.5px; font-weight: 650; margin-bottom: 3px; }
@@ -544,7 +596,7 @@
   #intro .colophon .who { display: block; margin-top: 2px; }
   .modal .cta {
     display: block; width: 100%; margin-top: 14px; padding: 11px; border: none;
-    border-radius: 11px; background: var(--accent); color: #fff; font: inherit;
+    border-radius: 11px; background: var(--accent); color: var(--on-accent); font: inherit;
     font-size: 14px; font-weight: 650; cursor: pointer;
   }
   .modal .cta:hover { filter: brightness(1.06); }
@@ -561,7 +613,7 @@
   }
   #controls .ico {
     width: 28px; height: 28px; display: grid; place-items: center; padding: 0;
-    border: 1px solid var(--line); border-radius: 8px; background: none;
+    border: 1px solid var(--line-strong); border-radius: 8px; background: none;
     color: var(--ink-2); cursor: pointer;
   }
   #controls .ico:hover { color: var(--accent); border-color: var(--accent); }
@@ -596,7 +648,7 @@
                    text-transform: uppercase; color: var(--ink-3); margin: 12px 0 5px; }
   #contact select, #contact input, #contact textarea {
     width: 100%; padding: 9px 10px; font: inherit; font-size: 13.5px; color: var(--ink);
-    background: var(--page); border: 1px solid var(--line); border-radius: 10px;
+    background: var(--page); border: 1px solid var(--line-strong); border-radius: 10px;
     outline-offset: 2px;
   }
   #contact textarea { min-height: 108px; resize: vertical; line-height: 1.45; }
@@ -644,7 +696,7 @@
   .boot-fail .big { font-size: 17px; font-weight: 650; color: var(--ink); }
   .boot-fail .cta {
     margin-top: 6px; padding: 10px 18px; border: 0; border-radius: 10px;
-    background: var(--accent); color: #fff; font: inherit; font-weight: 600; cursor: pointer;
+    background: var(--accent); color: var(--on-accent); font: inherit; font-weight: 600; cursor: pointer;
   }
 
   /* ---------- legend ---------- */
@@ -751,14 +803,18 @@
   .chart-card { margin: 14px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-solid); }
   .chart-head { display: flex; align-items: center; gap: 8px; padding: 10px 12px 0; flex-wrap: wrap; }
   .tabs { display: flex; background: var(--accent-soft); border-radius: 9px; padding: 2px; }
-  .tabs button { border: none; background: none; padding: 4px 11px; font-size: 12px; font-weight: 600;
+  .tabs button { border: 1px solid transparent; background: none; padding: 4px 11px;
+                 font-size: 12px; font-weight: 600;
                  color: var(--ink-2); border-radius: 7px; cursor: pointer; }
-  /* a literal black shadow is invisible on a dark ground, and it was the
-     only thing separating the selected tab from the strip behind it */
+  /* a literal black shadow is invisible on a dark ground, and it was the only
+     thing separating the selected tab from the strip behind it. The border is
+     the cue that survives both themes — which needs a transparent one reserved
+     on the unselected tabs, or setting border-color on `border: none` does
+     nothing and moves the text when it does. */
   .tabs button.on { background: var(--surface-solid); color: var(--ink);
                     border-color: var(--accent); box-shadow: var(--shadow); }
   .chart-head select { flex: 1; min-width: 120px; padding: 4px 8px; font: inherit; font-size: 12px;
-                       border: 1px solid var(--line); border-radius: 8px; background: var(--surface-solid); color: var(--ink); }
+                       border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface-solid); color: var(--ink); }
   #chart-sub { font-size: 11px; color: var(--ink-3); padding: 6px 14px 0; }
   #chart-wrap { position: relative; padding: 4px 6px 8px; }
   #chart-tip {
@@ -772,7 +828,7 @@
   /* program list */
   .tools { padding: 2px 18px 10px; }
   .tools input {
-    width: 100%; padding: 8px 12px; font: inherit; font-size: 13px; border: 1px solid var(--line);
+    width: 100%; padding: 8px 12px; font: inherit; font-size: 13px; border: 1px solid var(--line-strong);
     border-radius: 10px; background: var(--page); color: var(--ink); outline-offset: 2px;
   }
   .cat-head {
@@ -797,6 +853,10 @@
     padding: 7px 18px; border: none; background: none; cursor: pointer;
   }
   .prow:hover, .prow.sel { background: var(--accent-soft); }
+  /* .sel is the programme the chart is plotting, and the tint alone was its
+     only marker: 1.13:1 across thirty rows told you nothing */
+  .prow { border-left: 3px solid transparent; }
+  .prow.sel { border-left-color: var(--accent); }
   .prow .nm { flex: 1; font-size: 13px; line-height: 1.3; }
   .prow .lv { font-size: 9.5px; font-weight: 600; color: var(--ink-3); border: 1px solid var(--line);
               border-radius: 5px; padding: 1px 5px; flex: none; }
@@ -948,6 +1008,27 @@
      were missed. Last in the sheet so it beats the phone-size rules above. */
   @media (pointer: coarse) {
     .ptsrow input, .tools input, #contact input, #contact textarea { font-size: 16px; }
+    /* Touch targets, on touch devices only — the visible controls keep the size
+       the design gives them and grow an invisible ::after out to 44px, so
+       nothing on a mouse-driven screen loosens up. Each pays sideways only as
+       far as its own gap allows, or neighbours steal each other's taps. */
+    .prow .pick { position: relative; }
+    .prow .pick::after { content: ''; position: absolute; inset: -11px; }
+    #calc .grades button { position: relative; }
+    #calc .grades button::after { content: ''; position: absolute; inset: -7px -1px; }
+    #listview th button { padding-top: 15px; padding-bottom: 14px; }
+    .tabs button { padding-top: 11px; padding-bottom: 11px; }
+    .chart-head select { padding-top: 11px; padding-bottom: 11px; }
+    /* the list row needs nothing: the whole <tr> is the tap target and already
+       stands 49px tall, so padding here would only cost rows on screen */
+    .seg button { padding-top: 12px; padding-bottom: 12px; }
+    /* widen the gap first, then spend it: the reach can only be as generous as
+       the space between two icons, or each starts firing its neighbour */
+    #controls { gap: 12px; }
+    #controls .ico::after { inset: -9px -6px; }
+    .ptsrow button { position: relative; }
+    .ptsrow button::after { content: ''; position: absolute; inset: -5px; }
+    #choices .h button::after { inset: -15px -10px; }
   }
   [hidden] { display: none !important; }
 </style>
@@ -1544,6 +1625,8 @@ const T = {
   pickRemove: { no: 'Fjern fra valgene mine', en: 'Remove from my choices' },
   choicesHead: { no: n => `Valgene mine (${n})`, en: n => `My choices (${n})` },
   choicesClear: { no: 'tøm', en: 'clear' },
+  choicesClearSure: { no: 'sikker?', en: 'sure?' },
+  choicesCleared: { no: 'Valgene er tømt', en: 'Your choices are cleared' },
   choicesOpen: { no: 'Åpne skolen', en: 'Open the school' },
   choicesOpenOne: { no: (sch, what) => `Åpne ${sch} – ${what}`, en: (sch, what) => `Open ${sch} — ${what}` },
   choicesRemoveOne: { no: (sch, what) => `Fjern ${what} ved ${sch} fra valgene mine`,
@@ -1934,11 +2017,29 @@ function renderChoices() {
   });
   box.querySelectorAll('.rm').forEach(b => b.onclick = () => { const { s, p } = items[+b.dataset.i]; toggleChoice(s, p); });
   bindTitleTips(box);
-  document.getElementById('choices-clear').onclick = () => {
+  // Up to ten deliberate picks behind one small underlined word: ask once
+  // rather than pop a system dialog, and forget the question after a few
+  // seconds so a stray tap cannot arm it and a later one confirm it.
+  const clr = document.getElementById('choices-clear');
+  clr.onclick = () => {
+    if (!clr.dataset.armed) {
+      clr.dataset.armed = '1';
+      clr.textContent = t('choicesClearSure');
+      clr.classList.add('arm');
+      clearTimeout(renderChoices.armTimer);
+      renderChoices.armTimer = setTimeout(() => {
+        delete clr.dataset.armed;
+        clr.textContent = t('choicesClear');
+        clr.classList.remove('arm');
+      }, 4000);
+      return;
+    }
+    clearTimeout(renderChoices.armTimer);
     choices = [];
     try { localStorage.removeItem('pk-choices'); } catch (e) {}
     renderChoices();
     if (current) renderList();
+    toast(t('choicesCleared'));
   };
 }
 // Both a comma and a point are typed by real readers, so both are accepted
@@ -2153,8 +2254,16 @@ function onMapFylke(v) {
       (v === 'all' || s.fylke === v) && s.programs.some(p => p.category === mapCat))) {
     mapCat = 'all';
   }
+  // The reader's own filter wins over a panel opened earlier: a school the new
+  // selection excludes can no longer be shown as if it were on the map.
+  if (current && !visibleSchools().includes(current)) closeSide(true);
   drawMarkers(); renderPanel(); renderLegend(); renderCatNote(); renderSide();
-  if (view === 'list') { refitPending = true; return; }
+  syncUrl(true);
+  // A 0x0 container makes Leaflet's projection divide by zero and throw
+  // "Invalid LatLng object: (NaN, NaN)", taking the whole handler with it — the
+  // list view is only the most obvious way to have no map on screen; a hidden
+  // tab or a pane still laying out is another.
+  if (view === 'list' || !map.getContainer().clientWidth) { refitPending = true; return; }
   const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon]);
   if (pts.length) {
     const box = L.latLngBounds(pts).pad(0.08);
@@ -2174,8 +2283,10 @@ function setLens(v) {
   document.getElementById('map-cat').value = v;
   // a selected row survives any lens that still contains it
   if (chart.prog && v !== 'all' && chart.prog.category !== v) chart.prog = null;
+  if (current && !visibleSchools().includes(current)) closeSide(true);
   drawMarkers(); renderLegend(); renderCatNote();
   renderSide();
+  syncUrl(true);
 }
 function onMapCat(v) { setLens(v); }
 
@@ -2275,20 +2386,70 @@ function renderLegend() {
 // lives in the URL fragment: #s=Fylke/Skolenavn. replaceState edits the
 // address without firing popstate, so the back-gesture machinery below never
 // sees these writes.
-const schoolHash = s => '#s=' + encodeURIComponent(s.fylke) + '/' + encodeURIComponent(s.name);
+// The county and programme filters used to live nowhere: a reload dropped you
+// back to the whole country, and a link you sent carried the school but not the
+// selection you were looking at it under. They join the school in the fragment
+// as `&f=` and `&c=`, omitted when they are "all" so the common link stays
+// short and every #s= link already in the wild still parses.
+const schoolPart = s => 's=' + encodeURIComponent(s.fylke) + '/' + encodeURIComponent(s.name);
+function buildHash(s) {
+  const parts = [];
+  if (s) parts.push(schoolPart(s));
+  if (mapFylke !== 'all') parts.push('f=' + encodeURIComponent(mapFylke));
+  if (mapCat !== 'all') parts.push('c=' + encodeURIComponent(mapCat));
+  return parts.length ? '#' + parts.join('&') : location.pathname + location.search;
+}
+const schoolHash = s => buildHash(s);
+function hashParts() {
+  const out = {};
+  (location.hash || '').replace(/^#/, '').split('&').forEach(kv => {
+    const i = kv.indexOf('=');
+    if (i > 0) out[kv.slice(0, i)] = kv.slice(i + 1);
+  });
+  return out;
+}
 function setUrlSchool(s) {
+  try { history.replaceState(history.state, '', buildHash(s)); } catch (e) {}
+}
+// A filter change is a place you can come back to, so it gets its own history
+// entry rather than editing the current one.
+function syncUrl(push) {
   try {
-    history.replaceState(history.state, '',
-      s ? schoolHash(s) : location.pathname + location.search);
+    const h = buildHash(current);
+    if (h === (location.hash || location.pathname + location.search)) return;
+    if (push) history.pushState(history.state, '', h);
+    else history.replaceState(history.state, '', h);
   } catch (e) {}
 }
 function schoolFromUrl() {
-  const m = /^#s=([^/]+)\/(.+)$/.exec(location.hash || '');
+  const p = hashParts();
+  if (!p.s) return null;
+  const m = /^([^/]+)\/(.+)$/.exec(p.s);
   if (!m) return null;
   try {
     const fy = decodeURIComponent(m[1]), name = decodeURIComponent(m[2]);
     return DATA.schools.find(x => x.fylke === fy && x.name === name) || null;
   } catch (e) { return null; }
+}
+// Put the filters named in the address back on the controls. Used at boot and
+// on every history traversal, so Back steps through filter changes too.
+function applyUrlFilters() {
+  const p = hashParts();
+  let fy = 'all', cat = 'all';
+  try {
+    if (p.f) fy = decodeURIComponent(p.f);
+    if (p.c) cat = decodeURIComponent(p.c);
+  } catch (e) { return false; }
+  if (!DATA.schools.some(s => s.fylke === fy)) fy = 'all';        // a county we do not carry
+  if (cat !== 'all' && !CATS[cat]) cat = 'all';
+  if (fy === mapFylke && cat === mapCat) return false;
+  mapFylke = fy; mapCat = cat;
+  const fs = document.getElementById('map-fylke'), cs = document.getElementById('map-cat');
+  if (fs) fs.value = fy;
+  renderPanel();
+  if (cs) cs.value = cat;
+  drawMarkers(); renderLegend(); renderCatNote();
+  return true;
 }
 // On a phone the school sheet covers the screen, and the CSS that hides the
 // panel, legend and controls behind it does not touch #map — whose markers each
@@ -2303,7 +2464,28 @@ function sideTrap(on) {
   if (on && phone) m.setAttribute('inert', '');
   else m.removeAttribute('inert');
 }
+// Opening a school the current filter excludes used to leave the panel and the
+// map disagreeing: full detail on the right, no marker anywhere — and for a
+// search hit, the map flew to an empty patch of coastline. It reaches us that
+// way from a search, a pasted link and the choices list, none of which consult
+// the filter. Relax whichever filter is in the way, so that what the panel
+// describes is always something you can see. Returns true if it changed
+// anything, so the caller can redraw.
+function widenFor(s) {
+  if (!s || !DATA) return false;
+  let moved = false;
+  if (mapFylke !== 'all' && s.fylke !== mapFylke) { mapFylke = 'all'; moved = true; }
+  if (mapCat !== 'all' && !s.programs.some(p => p.category === mapCat)) { mapCat = 'all'; moved = true; }
+  if (!moved) return false;
+  const fy = document.getElementById('map-fylke'), ct = document.getElementById('map-cat');
+  if (fy) fy.value = mapFylke;
+  renderPanel();                       // the category list depends on the county
+  if (ct) ct.value = mapCat;
+  drawMarkers(); renderLegend(); renderCatNote(); syncUrl();
+  return true;
+}
 function openSide(s) {
+  widenFor(s);
   current = s;
   chart.prog = null;                     // the lens itself is global
   const side = document.getElementById('side');
@@ -2706,7 +2888,11 @@ function drawChart() {
   const svgEl = document.getElementById('the-chart');
   const tip = document.getElementById('chart-tip');
   const xh = svgEl.querySelector('#xh');
-  svgEl.addEventListener('mousemove', ev => {
+  // The year-by-year figures were bound to mousemove alone, so on a phone the
+  // numbers behind the school's headline chart could not be reached at all —
+  // against this file's own rule that touch gets whatever hover gets. One
+  // reader takes a clientX/clientY from either kind of event.
+  const readAt = ev => {
     const r = svgEl.getBoundingClientRect();
     const sx = (ev.clientX - r.left) * W / r.width;
     let bi = 0, bd = 1e9;
@@ -2731,8 +2917,21 @@ function drawChart() {
     if (px > wrap.width - 130) px = ev.clientX - wrap.left - 130;
     tip.style.left = px + 'px';
     tip.style.top = (ev.clientY - wrap.top - 34) + 'px';
-  });
-  svgEl.addEventListener('mouseleave', () => { tip.style.display = 'none'; xh.setAttribute('visibility', 'hidden'); });
+  };
+  const clear = () => { tip.style.display = 'none'; xh.setAttribute('visibility', 'hidden'); };
+  svgEl.addEventListener('mousemove', readAt);
+  svgEl.addEventListener('mouseleave', clear);
+  // preventDefault keeps the drag from scrolling the panel while a finger is
+  // reading along the line; the touch lingers a moment after release so the
+  // number can actually be read
+  const touchRead = ev => {
+    if (!ev.touches.length) return;
+    ev.preventDefault();
+    readAt(ev.touches[0]);
+  };
+  svgEl.addEventListener('touchstart', touchRead, { passive: false });
+  svgEl.addEventListener('touchmove', touchRead, { passive: false });
+  svgEl.addEventListener('touchend', () => setTimeout(clear, 2500), { passive: true });
 }
 
 /* ================= program list ================= */
@@ -3542,8 +3741,10 @@ function renderListView() {
     `${listSort.key === k && listSort.dir > 0 ? '↑' : '↓'}</span>`;
   const ariaSort = k => listSort.key === k
     ? ` aria-sort="${listSort.dir < 0 ? 'descending' : 'ascending'}"` : '';
+  // the column key rides on the cell so the stylesheet can drop a whole column
+  // at a breakpoint without this function having to know about viewports
   const th = (k, label, num, tip) =>
-    `<th class="${num ? 'num ' : ''}${listSort.key === k ? 'on' : ''}"${ariaSort(k)} scope="col"` +
+    `<th class="col-${k} ${num ? 'num ' : ''}${listSort.key === k ? 'on' : ''}"${ariaSort(k)} scope="col"` +
     `${tip ? ` title="${esc(tip)}"` : ''}>` +
     `<button type="button" onclick="sortList('${k}')">${esc(label)}${arrow(k)}</button></th>`;
   const catLabel = mapCat === 'all' ? t('allCats') : (CATS[mapCat] || {})[lang] || mapCat;
@@ -3866,6 +4067,7 @@ async function main() {
   // (replaceState and pushState are silent), so this only ever reacts to
   // the address bar.
   addEventListener('hashchange', () => {
+    applyUrlFilters();                    // a pasted link carries its selection too
     const s = schoolFromUrl();
     if (s && s !== current) {
       if (s.lat && view === 'map') map.setView([s.lat, s.lon], Math.max(map.getZoom(), 11));
@@ -3894,7 +4096,12 @@ async function main() {
     // here first. A hash naming a different school is forward navigation,
     // not a back-gesture.
     const target = schoolFromUrl();
+    // the entry may differ only in its filters — stepping back over a county
+    // change has no school to open or close, but still has to move the controls
+    const filtersMoved = applyUrlFilters();
     if (target && target !== current) { openSide(target); return; }
+    if (!target && sideOpen) { closeSide(true); return; }
+    if (filtersMoved) return;
     if (sideOpen) { closeSide(true); return; }
     // forward-navigation onto a school entry reopens it, so the address bar
     // never claims a school that is not showing
@@ -3910,9 +4117,16 @@ async function main() {
     if (document.getElementById('side').classList.contains('open')) closeSide();
   });
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
+  // a shared link carries the selection it was taken under, so read the filters
+  // before the first frame rather than snapping the reader back to Hele landet
+  const framedByUrl = applyUrlFilters();
   let storedView = 'map';
   try { if (localStorage.getItem('pk-view') === 'list') storedView = 'list'; } catch (e) {}
   setView(storedView);
+  if (framedByUrl && view === 'map') {
+    const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon]);
+    if (pts.length) { touched = true; map.fitBounds(L.latLngBounds(pts).pad(0.08), { ...framePad(), animate: false }); }
+  }
   const linked = schoolFromUrl();
   if (linked) {
     if (linked.lat) {
