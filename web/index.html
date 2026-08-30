@@ -119,14 +119,20 @@
   }
   :root[data-theme="dark"][data-cvd="1"] { --good: #58a9e8; --chip-good: #6cb4ef; }
 
-  /* text-size steps scale the floating chrome, never the map itself */
+  /* text-size steps scale the floating chrome, never the map itself.
+     #listview belongs here too: it is a sibling of #panel inside #app, not a
+     descendant of anything already scaled, so without naming it the whole list
+     — the view a low-vision reader is most likely to prefer over the map —
+     stayed at 13px however large the setting was turned up. */
   :root[data-font="lg"] #panel, :root[data-font="lg"] #side .scroll,
   :root[data-font="lg"] #legend, :root[data-font="lg"] .modal .sheet,
   :root[data-font="lg"] #searchov .ovbox, :root[data-font="lg"] #toast,
+  :root[data-font="lg"] #listview,
   :root[data-font="lg"] #controls { zoom: 1.15; }
   :root[data-font="xl"] #panel, :root[data-font="xl"] #side .scroll,
   :root[data-font="xl"] #legend, :root[data-font="xl"] .modal .sheet,
   :root[data-font="xl"] #searchov .ovbox, :root[data-font="xl"] #toast,
+  :root[data-font="xl"] #listview,
   :root[data-font="xl"] #controls { zoom: 1.3; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -159,9 +165,12 @@
 
   /* ---------- top-left control panel ---------- */
   #panel { position: absolute; top: 14px; left: 14px; z-index: 1000; width: 316px; padding: 16px 16px 14px;
-           /* a long choices list on a short phone ran under the legend; the
-              panel scrolls inside instead of growing past it */
-           max-height: calc(100vh - 150px); max-height: calc(100dvh - 150px);
+           /* a long choices list ran under the legend; the panel scrolls inside
+              instead of growing past it. --panel-reserve is the legend's own
+              measured height plus its offsets, set in liftMapControls(); the
+              150px fallback only ever applies before the first measurement */
+           max-height: calc(100vh - var(--panel-reserve, 150px));
+           max-height: calc(100dvh - var(--panel-reserve, 150px));
            overflow-y: auto; overscroll-behavior: contain; }
   #panel:focus { outline: none; }
   .skip {
@@ -184,8 +193,11 @@
     background: var(--surface-solid); border: 1px solid var(--line); border-radius: 10px;
     cursor: pointer; outline-offset: 2px;
   }
+  /* min-height reserves the line so the note can appear without moving the
+     points field and the whole choices list below it; `:empty { display: none }`
+     threw that reservation away again, so picking a programme pushed everything
+     down 20px and clearing it pulled it back up */
   #cat-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; min-height: 14px; }
-  #cat-note:empty { display: none; }
   #pts-field { margin-top: 10px; }
   .ptsrow { display: flex; gap: 6px; align-items: center; }
   .ptsrow input {
@@ -258,7 +270,9 @@
     background: var(--page); border: 1px solid var(--line); border-radius: 10px;
     outline: none;
   }
+  /* a 1px border change is not a focus indicator; match the rest of the app */
   #ov-q:focus { border-color: var(--accent); }
+  #ov-q:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
   #ov-list { margin-top: 6px; max-height: 320px; overflow-y: auto; }
   #ov-list .opt {
     display: flex; justify-content: space-between; gap: 10px; align-items: baseline;
@@ -307,6 +321,11 @@
   #listview th.num button { text-align: right; }
   #listview th.num, #listview td.num { text-align: right; font-variant-numeric: tabular-nums; }
   #listview th.on { color: var(--accent); }
+  /* the slot is always reserved, so sorting never re-flows the columns */
+  #listview th .ar { margin-left: 4px; opacity: 0; }
+  #listview th .ar.on { opacity: 1; }
+  #listview th button:hover .ar { opacity: .45; }
+  #listview th button:hover .ar.on { opacity: 1; }
   #listview td { padding: 8px 10px; border-bottom: 1px solid var(--line); }
   #listview tbody tr { cursor: pointer; }
   #listview tbody tr:hover { background: var(--accent-soft); }
@@ -330,19 +349,37 @@
   #listview .none-v { color: var(--ink-3); }
   #listview .k { display: inline-block; width: 8px; height: 8px; border-radius: 50%;
                  margin-right: 6px; vertical-align: 0; }
+  /* "0 av 13 sannsynlig" is one phrase, and it is the answer the reader came
+     for. Let it claim its width; the school name is the column that can afford
+     to wrap. Left to itself the table squeezed this one and broke almost every
+     row onto two lines between 761px and 1100px. Not on a narrow phone, where
+     the table already scrolls sideways and every unwrapped pixel is one more
+     the reader has to drag to reach — and not on a tablet either, where the
+     docked panel takes 292px and an unwrapped table (535px) overflows the
+     434px left to it, clipping the very column this was meant to protect.
+     Only claim the width where the width exists. */
+  @media (min-width: 901px), (max-height: 480px) and (min-width: 561px) {
+    #listview .ch-cell { white-space: nowrap; }
+  }
   #listview .foot { padding: 10px 2px 0; font-size: 11.5px; color: var(--ink-3); line-height: 1.5; }
   /* Small screens stack the chrome above the table inside #app's column —
      the panel and controls are #app children precisely so these rules reach
      them. The side panel leaves the column entirely: a fixed sheet, as wide
-     as its .open width says, exactly like the map mode slide-over. */
-  @media (max-width: 760px), (max-height: 480px) {
+     as its .open width says, exactly like the map mode slide-over.
+     The cut is at 860px rather than the 760px used elsewhere because this is
+     the one layout where the panel and the table compete for the same row: a
+     docked panel costs 292px, the table will not go under 471px, and the card
+     wants 74px around it — so under ~840px the chance column was pushed out of
+     the card and clipped, with a sideways scroll and no hint it existed. Keep
+     relocateControls() in step with this number. */
+  @media (max-width: 860px), (max-height: 480px) {
     body.view-list #app { flex-direction: column; overflow-y: auto; position: relative; }
     body.view-list #panel { flex: none; }    /* the giant table must not crush it */
     body.view-list #panel { position: static; order: -1; margin: 10px; width: auto; max-height: none; }
     body.view-list #listview { padding: 0 10px 24px; overflow: visible; }
     body.view-list #side { position: fixed; top: 0; right: 0; bottom: 0; z-index: 1100; }
   }
-  @media (min-width: 761px) and (max-width: 1100px) and (min-height: 481px) {
+  @media (min-width: 861px) and (max-width: 1100px) and (min-height: 481px) {
     body.view-list #panel { width: 260px; }
     #listview { padding-left: 292px; }
   }
@@ -411,7 +448,12 @@
                       color: var(--ink-3); cursor: pointer; font-size: 13px; position: relative; }
   /* invisible hit-area extension: a fingertip needs ~40px, the glyphs stay small */
   #choices .row .rm::after, #choices .h button::after,
-  #controls .ico::after, .modal .x::after { content: ''; position: absolute; inset: -9px; }
+  /* a 44px touch target on a 26px button, but -9px against a 5px gap reaches
+     4px into the neighbour, and later siblings paint on top: the right edge
+     of search used to fire help. Pay the inset sideways only as far as the
+     gap allows, and take the rest vertically, where nothing is adjacent. */
+  #controls .ico::after { content: ''; position: absolute; inset: -9px -2px; }
+  .modal .x::after { content: ''; position: absolute; inset: -9px; }
   #choices .h button, #controls .ico, .modal .x { position: relative; }
   #choices .row .rm:hover { background: var(--accent-soft); color: var(--accent); }
   #choices .sum { font-size: 11.5px; color: var(--ink-2); margin-top: 7px; line-height: 1.45; }
@@ -514,7 +556,7 @@
 
   /* ---------- utility window (top right) ---------- */
   #controls {
-    position: absolute; top: 14px; right: 14px; z-index: 1000;
+    position: absolute; top: 14px; right: 14px; z-index: 1001;
     display: flex; align-items: center; gap: 6px; padding: 6px;
   }
   #controls .ico {
@@ -524,8 +566,29 @@
   }
   #controls .ico:hover { color: var(--accent); border-color: var(--accent); }
   #controls .ico svg { width: 15px; height: 15px; }
-  /* the sidebar slides in over this corner, so step out of its way */
-  body.side-open #controls { right: calc(min(480px, max(320px, 100vw - 350px)) + 14px); }
+  /* The sidebar slides in over this corner, so step out of its way — but only
+     as far as the panel. Stepping left by the sheet's full width alone walked
+     the cluster straight into #panel (right edge 330px) on any window between
+     about 761px and 946px: the two are both absolute at the same corner, and
+     whichever painted second swallowed the other's clicks, which on a list-view
+     round trip could be either one. The ceiling keeps a 12px gap: 330 panel +
+     110 cluster + 12. Below 466px the floor wins and the phone rule hides the
+     cluster anyway. */
+  body.side-open #controls {
+    right: clamp(14px, calc(min(480px, max(320px, 100vw - 350px)) + 14px), calc(100vw - 452px));
+  }
+  /* Under ~944px the gap between the panel's right edge and the sheet is
+     narrower than the cluster itself, so there is no "out of the way" left to
+     step into. Ride inside the panel's own header row instead — the same move
+     the phone layout makes, for the same reason. */
+  @media (min-width: 761px) and (max-width: 943px) {
+    body.side-open #controls {
+      left: 204px; right: auto; top: 20px; z-index: 1002;
+      padding: 0; gap: 5px; background: none; border: none; box-shadow: none;
+      -webkit-backdrop-filter: none; backdrop-filter: none;
+    }
+    body.side-open #controls .ico { width: 26px; height: 26px; }
+  }
 
   /* ---------- feedback form ---------- */
   #contact .sheet { max-width: 520px; }
@@ -546,7 +609,12 @@
     margin-top: 12px; padding: 9px 11px; border-radius: 9px; font-size: 12.5px;
     background: rgba(200,40,40,.12); color: var(--danger);
   }
-  #contact .cta[disabled] { opacity: .55; cursor: progress; }
+  /* was scoped to #contact, so the calculator's own primary button — the
+     one every reader meets disabled, before a single grade is entered —
+     rendered at full strength with a pointer cursor and a hover brighten */
+  .modal .cta[disabled] { opacity: .55; cursor: not-allowed; }
+  #contact .cta[disabled] { cursor: progress; }
+  .modal .cta[disabled]:hover { filter: none; }
   /* honeypot: off-screen rather than display:none, which some bots skip */
   #contact .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
   #contact .done { text-align: center; padding: 14px 4px 4px; }
@@ -685,7 +753,10 @@
   .tabs { display: flex; background: var(--accent-soft); border-radius: 9px; padding: 2px; }
   .tabs button { border: none; background: none; padding: 4px 11px; font-size: 12px; font-weight: 600;
                  color: var(--ink-2); border-radius: 7px; cursor: pointer; }
-  .tabs button.on { background: var(--surface-solid); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+  /* a literal black shadow is invisible on a dark ground, and it was the
+     only thing separating the selected tab from the strip behind it */
+  .tabs button.on { background: var(--surface-solid); color: var(--ink);
+                    border-color: var(--accent); box-shadow: var(--shadow); }
   .chart-head select { flex: 1; min-width: 120px; padding: 4px 8px; font: inherit; font-size: 12px;
                        border: 1px solid var(--line); border-radius: 8px; background: var(--surface-solid); color: var(--ink); }
   #chart-sub { font-size: 11px; color: var(--ink-3); padding: 6px 14px 0; }
@@ -843,6 +914,22 @@
     #cat-note { margin-top: 0; min-height: 0; }
     .field + .field { margin-top: 0; }
   }
+  /* The stacked list lays the panel out in flow, so it may have the full width
+     — but it must not have the full HEIGHT, and three controls strung across
+     800px of it look abandoned. Without this the phone rule's `width: auto`
+     (which outranks the grid above on specificity) stacked the filters into a
+     single column: 326px tall on a 375px-tall landscape screen, where the table
+     then began below the fold and the reader saw filters and nothing else. */
+  @media (min-width: 561px) and (max-width: 860px),
+         (min-width: 561px) and (max-height: 480px) {
+    body.view-list #panel {
+      display: grid; grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1fr);
+      gap: 8px 14px; align-items: start;   /* three labels on one baseline */
+    }
+    body.view-list #panel .brand, body.view-list #panel #view-toggle { grid-column: 1 / -1; }
+    body.view-list #panel #cat-note { grid-column: auto; margin-top: 0; min-height: 0; }
+    body.view-list #panel .field + .field { margin-top: 0; }
+  }
 
   @media (max-width: 760px) {
     #side.open { width: 100vw; }
@@ -853,6 +940,15 @@
      (.mixwarn's flex, .notes' grid, the calculator buttons before their
      guards). Restate it with !important so hidden always means hidden, and
      no future display: flex quietly resurrects an empty band. */
+  /* iOS Safari zooms the whole page in when a field it focuses sets text under
+     16px, and does not zoom back out on blur. #panel is absolutely positioned
+     and height-capped against the unzoomed viewport, so tapping the points
+     field left the reader zoomed in with the panel's right-hand column off the
+     screen. #ov-q was already set to 16px for exactly this reason; these four
+     were missed. Last in the sheet so it beats the phone-size rules above. */
+  @media (pointer: coarse) {
+    .ptsrow input, .tools input, #contact input, #contact textarea { font-size: 16px; }
+  }
   [hidden] { display: none !important; }
 </style>
 <script>
@@ -1367,6 +1463,8 @@ const T = {
   chartSubAll:  { no: n => `${n} programområder · snittlinje i blått`, en: n => `${n} programme areas · average in blue` },
   chartSubCat:  { no: n => `${n} programområder i utdanningsprogrammet · snitt i blått`, en: n => `${n} programme areas in this programme · average in blue` },
   chartSubProg: { no: 'Én serie · hule punkter = ingen poenggrense', en: 'Single series · hollow dots = no threshold' },
+  chartNoPoints: { no: 'Ingen poenggrense å tegne for dette utvalget – alle som søkte, fikk plass, eller inntaket gikk på fortrinnsrett eller dokumentasjon.',
+                   en: 'No threshold to plot for this selection — everyone who applied got a place, or admission went by priority quota or documentation.' },
   officialName: { no: n => `Offisielt navn (Udir): ${n}`, en: n => `Official register name: ${n}` },
   oldHidden: {
     no: n => n === 1 ? '1 programområde uten tall fra de siste to årene er skjult – vis det'
@@ -2128,6 +2226,14 @@ function liftMapControls() {
   const h = document.getElementById('legend')?.offsetHeight || 0;
   const lift = innerWidth <= 560 && h ? h + 12 : 0;
   document.documentElement.style.setProperty('--ctrl-lift', lift + 'px');
+  // The panel's height cap used to reserve a flat 150px for the legend, but the
+  // legend is 200px tall in the default national view — it carries the
+  // mixed-rounds warning whenever the selection spans counties that publish
+  // different intake rounds, which "Hele landet" always does. The panel then
+  // ran 80px under it and hid the bottom of the reader's own choices list.
+  // Reserve what the legend actually measures: 22px bottom offset, its height,
+  // a 12px gap and the panel's own 14px top.
+  document.documentElement.style.setProperty('--panel-reserve', (h ? h + 48 : 60) + 'px');
 }
 function renderLegend() {
   const rounds = [...new Set(visibleSchools().map(s => s.round).filter(Boolean))];
@@ -2156,6 +2262,11 @@ function renderLegend() {
   // "no waitlist" is not a dot state once the dots show chances
   document.getElementById('legend-open').parentElement.hidden = chanceMode();
   document.getElementById('legend-open').textContent = t('legendOpen');
+  // the intake-round chip in the title advertises an explanation with a dotted
+  // underline and `cursor: help`, and every other surface that does so is bound
+  // for touch; the legend was the one that never was, so on a phone the single
+  // most load-bearing caveat in the dataset had no way to open
+  bindTitleTips(document.getElementById('legend'));
   liftMapControls();
 }
 
@@ -2179,6 +2290,19 @@ function schoolFromUrl() {
     return DATA.schools.find(x => x.fylke === fy && x.name === name) || null;
   } catch (e) { return null; }
 }
+// On a phone the school sheet covers the screen, and the CSS that hides the
+// panel, legend and controls behind it does not touch #map — whose markers each
+// carry tabindex="0" and role="button", and whose Leaflet container is itself
+// focusable. So Tab and a VoiceOver swipe walked straight through the sheet
+// into a hundred invisible markers underneath. The four modal sheets already
+// avoid this via setModalTrap(); the most-used surface in the app did not.
+function sideTrap(on) {
+  const m = document.getElementById('map');
+  if (!m) return;
+  const phone = matchMedia('(max-width: 760px)').matches;   // where the sheet covers the map
+  if (on && phone) m.setAttribute('inert', '');
+  else m.removeAttribute('inert');
+}
 function openSide(s) {
   current = s;
   chart.prog = null;                     // the lens itself is global
@@ -2187,6 +2311,7 @@ function openSide(s) {
   side.classList.add('open');
   renderSide();
   document.body.classList.add('side-open');
+  sideTrap(true);
   setUrlSchool(s);
   // On a phone the details fill the screen, and the system back gesture is how
   // people expect to leave a screen. Give it something to pop.
@@ -2207,6 +2332,7 @@ function closeSide(fromHistory) {
   }
   side.classList.remove('open');
   document.body.classList.remove('side-open');
+  sideTrap(false);
   setUrlSchool(null);
   liftMapControls();                       // the legend is visible again
   side.setAttribute('inert', '');          // keep 17 hidden controls out of Tab
@@ -2367,7 +2493,16 @@ function renderSide() {
 function renderChance(s, lensCat) {
   const box = document.getElementById('s-chance');
   const e = MODEL && MODEL.schools && MODEL.schools[`${s.fylke}|${s.name}`];
-  if (!e || !e.programs) { box.hidden = true; return; }
+  if (!e || !e.programs) {
+    // The map tooltip says "ingen prognose for denne skolen" for exactly this
+    // case, and the branch below says it when a *category* has no forecast —
+    // but hiding the box outright meant the whole-school case was the one
+    // absence the panel never explained. A reader who never hovered the dot
+    // would not learn the feature existed here at all.
+    box.hidden = false;
+    box.innerHTML = `<div>${esc(t('tipNoForecast'))}</div>`;
+    return;
+  }
   box.hidden = false;
   const adj = e.alpha === undefined ? ''
     : `<div class="adj tipped" title="${esc(t('adjTitle'))}">`
@@ -2422,7 +2557,11 @@ function renderChartCard() {
   const tabs = document.querySelectorAll('#tabs button');
   tabs[0].textContent = t('tabAll'); tabs[1].textContent = t('tabCat'); tabs[2].textContent = t('tabProg');
   tabs.forEach(b => {
-    b.classList.toggle('on', b.dataset.mode === chartMode());
+    const on = b.dataset.mode === chartMode();
+    b.classList.toggle('on', on);
+    // every other toggle in the app says which one is chosen; this one only
+    // said it in colour, so a screen reader heard three identical buttons
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
     b.onclick = () => {
       if (b.dataset.mode === 'all') {
         chart.prog = null;
@@ -2444,6 +2583,7 @@ function renderChartCard() {
     const present = [...new Set(current.programs.map(p => p.category))];
     if (!present.includes(mapCat)) present.push(mapCat);   // lens the school lacks
     cs.hidden = false;
+    cs.setAttribute('aria-label', t('tabCat'));   // a <select> has no placeholder to fall back on
     cs.innerHTML = present.map(c => `<option value="${c}">${CATS[c][lang]}</option>`).join('');
     cs.value = mapCat;
     cs.onchange = () => setLens(cs.value);
@@ -2467,6 +2607,17 @@ function drawChart() {
   if (years.length < 2) {
     document.getElementById('chart-sub').textContent =
       t('oneYearOnly', years[0] || '');
+    svgHost.innerHTML = '';
+    return;
+  }
+  // seriesFor() drops every programme with no numeric cell, so a selection that
+  // is entirely `open`, F or D leaves nothing to draw. The old code carried on
+  // and printed "0 programområder" over a bare grid — directly contradicting
+  // the hero above, which counts the same programmes unfiltered and says 1.
+  // The years.length guard above does not catch it: that measures the whole
+  // school's span, not the selected category's.
+  if (!series.length) {
+    document.getElementById('chart-sub').textContent = t('chartNoPoints');
     svgHost.innerHTML = '';
     return;
   }
@@ -2782,7 +2933,7 @@ function renderContact() {
       <input id="c-website" name="website" type="text" tabindex="-1"
              autocomplete="off" aria-hidden="true" class="hp">
       <p class="privacy">${esc(t('contactPrivacy'))}</p>
-      <p class="err" id="c-err" hidden></p>
+      <p class="err" id="c-err" role="alert" hidden></p>
       <button class="cta" id="c-send" type="submit">${esc(t('contactSend'))}</button>
     </form>`;
   if (keep['c-kind']) document.getElementById('c-kind').value = keep['c-kind'];
@@ -2955,7 +3106,16 @@ function bindTitleTips(root) {
     const txt = el.getAttribute('title');
     if (!txt) return;
     el.addEventListener('touchstart', ev => {
-      ev.preventDefault(); ev.stopPropagation();
+      // The guard above walks UPWARDS, so it clears an element sitting inside a
+      // control but not one wrapped AROUND it — a <th> holding its own sort
+      // button, a value chip inside a clickable row. For those, preventDefault
+      // cancels the click the browser was about to synthesise, and the tap does
+      // nothing at all: on a phone the list could not be sorted by Snitt,
+      // Endring or Sjanse, while Skole and Fylke (which carry no title, so no
+      // shim) sorted fine. Explain the element, but never swallow its action.
+      if (!el.querySelector('a, button, select, input') && !el.closest('tr[data-i]')) {
+        ev.preventDefault(); ev.stopPropagation();
+      }
       showTip(el, esc(txt));
       clearTimeout(showTip.timer);
       showTip.timer = setTimeout(hideTip, 4500);
@@ -3291,7 +3451,9 @@ let refitPending = false;      // a county switch made while the map was hidden
 function relocateControls() {
   const c = document.getElementById('controls');
   if (!c) return;
-  const phone = matchMedia('(max-width: 760px), (max-height: 480px)').matches;
+  // must match the stacked-list breakpoint in the stylesheet: where the panel
+  // sits above the table there is no header row to dock the cluster into
+  const phone = matchMedia('(max-width: 860px), (max-height: 480px)').matches;
   const slot = view === 'list' && !phone ? document.querySelector('#listview .lhead') : null;
   const home = slot || document.getElementById('app');
   if (c.parentElement !== home) home.appendChild(c);
@@ -3369,8 +3531,15 @@ function renderListView() {
     if (nil(vb)) return -1;
     return (va - vb) * listSort.dir || a.s.name.localeCompare(b.s.name, 'no');
   });
-  const arrow = k => listSort.key === k
-    ? `<span aria-hidden="true">${listSort.dir < 0 ? ' ↓' : ' ↑'}</span>` : '';
+  // The glyph is always in the markup, invisible on the columns that are not
+  // sorted. Rendering it only on the active one added ~10px to that header's
+  // min-content width and removed it from the previous one, and with an auto
+  // table layout that re-flowed EVERY column: sorting by Endring visibly jumped
+  // the school, county and value columns sideways. Same trick as the
+  // calculator's ✕ — invisible, not absent — and it doubles as the hint that an
+  // unsorted header is clickable at all.
+  const arrow = k => `<span aria-hidden="true" class="ar${listSort.key === k ? ' on' : ''}">` +
+    `${listSort.key === k && listSort.dir > 0 ? '↑' : '↓'}</span>`;
   const ariaSort = k => listSort.key === k
     ? ` aria-sort="${listSort.dir < 0 ? 'descending' : 'ascending'}"` : '';
   const th = (k, label, num, tip) =>
@@ -3415,7 +3584,7 @@ function renderListView() {
       (allF ? `<td class="fy">${esc(r.s.fylke)}</td>` : '') +
       `<td class="num">${chip(r)}</td>` +
       `<td class="num">${deltaCell(r)}</td>` +
-      (chance ? `<td>${chanceCell(r)}</td>` : '') +
+      (chance ? `<td class="ch-cell">${chanceCell(r)}</td>` : '') +
       `</tr>`).join('') +
     `</tbody></table></div>` +
     (allF && rows.length ? `<div class="foot">${esc(t('listRounds'))}</div>` : '') +
@@ -3637,21 +3806,26 @@ async function main() {
   let touched = false;
   ['mousedown', 'wheel', 'touchstart'].forEach(ev => map.getContainer()
     .addEventListener(ev, () => { touched = true; }, { once: true, passive: true }));
-  setTimeout(() => {
-    if (view === 'list') { refitPending = true; return; }   // a 0×0 map framed here sticks at max zoom
+  // A map framed against a 0×0 container sticks at max zoom over empty terrain
+  // with no markers, and nothing about the page looks broken enough to explain
+  // it. A container is 0×0 at boot for many unrelated reasons — a background
+  // tab, a hidden iframe later revealed, a webview attached after load, a
+  // restored session, a prerender — and each announces itself differently, or
+  // not at all. So do not wait to be told: keep checking, cheaply, until the
+  // frame is honest, and give up once the reader has moved the map themselves.
+  let framed = false;
+  function ensureFramed() {
+    if (framed || touched) return true;
+    if (view === 'list') { refitPending = true; return true; }   // reframed on the way back
+    if (!map.getContainer().clientWidth) return false;            // still nothing to frame
     map.invalidateSize();
-    if (!touched) map.fitBounds(HOME, { ...framePad(), animate: false });
-  }, 150);
-  // a page loaded in a background tab fits its bounds against a 0x0 container
-  // and sticks at max zoom; the 150ms correction is lost if the tab is still
-  // hidden then. Redo the fit the moment the tab is first shown.
-  document.addEventListener('visibilitychange', function fixHiddenBoot() {
-    if (document.hidden) return;
-    document.removeEventListener('visibilitychange', fixHiddenBoot);
-    if (view === 'list') { refitPending = true; return; }
-    map.invalidateSize();
-    if (!touched) map.fitBounds(HOME, { ...framePad(), animate: false });
-  });
+    map.fitBounds(HOME, { ...framePad(), animate: false });
+    framed = true;
+    return true;
+  }
+  [0, 150, 400, 900, 2000, 4000].forEach(ms => setTimeout(ensureFramed, ms));
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) ensureFramed(); });
+  if (window.ResizeObserver) new ResizeObserver(ensureFramed).observe(map.getContainer());
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
     if (PREFS.theme !== 'auto') return;    // a pinned theme does not follow the OS
     setTiles(); drawMarkers(); renderLegend(); renderCatNote(); renderPointsField();
@@ -3678,7 +3852,10 @@ async function main() {
   let reframe;
   addEventListener('resize', () => {
     clearTimeout(reframe);
-    reframe = setTimeout(() => { map.invalidateSize(); liftMapControls(); relocateControls(); }, 200);
+    reframe = setTimeout(() => {
+      map.invalidateSize(); liftMapControls(); relocateControls();
+      sideTrap(document.body.classList.contains('side-open'));   // a rotation crosses the breakpoint
+    }, 200);
   });
   document.addEventListener('touchstart', ev => {
     // a floating tooltip should not outlive the reader's attention
