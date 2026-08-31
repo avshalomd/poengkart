@@ -618,6 +618,28 @@
   }
   #controls .ico:hover { color: var(--accent); border-color: var(--accent); }
   #controls .ico svg { width: 15px; height: 15px; }
+  /* First visit: the help sheet used to open itself over a map nobody had seen
+     yet, which reads as something to get rid of rather than something to read.
+     The button asks for attention instead — accent-coloured, with a ring that
+     breathes out of it a few times and then rests, so it is noticeable without
+     becoming a thing blinking in the corner of the eye all session. ::after is
+     already spoken for as the touch target. */
+  #controls .ico.hint { color: var(--accent); border-color: var(--accent); }
+  #controls .ico.hint::before {
+    content: ''; position: absolute; inset: -3px; border-radius: 11px;
+    border: 2px solid var(--accent); pointer-events: none; opacity: 0;
+    animation: helphint 2.6s ease-out 3;
+  }
+  @keyframes helphint {
+    0%   { transform: scale(.8);  opacity: 0; }
+    18%  { opacity: .6; }
+    55%  { transform: scale(1.45); opacity: 0; }
+    100% { transform: scale(1.45); opacity: 0; }
+  }
+  /* no pulse for a reader who asked for stillness — the colour still carries it */
+  @media (prefers-reduced-motion: reduce) {
+    #controls .ico.hint::before { animation: none; opacity: .55; transform: none; }
+  }
   /* The sidebar slides in over this corner, so step out of its way — but only
      as far as the panel. Stepping left by the sheet's full width alone walked
      the cluster straight into #panel (right edge 330px) on any window between
@@ -3325,9 +3347,28 @@ function bindTitleTips(root) {
 /* ================= intro / help =================
    Poenggrenser are a genuinely confusing unit: the number is a grade average
    times ten, and it describes the *last* person admitted rather than a
-   requirement. A 15-year-old landing here cold should not have to infer that,
-   so it gets said once, up front, and stays reachable behind the ? button. */
+   requirement. A 15-year-old landing here cold should not have to infer that —
+   but pushing the explanation at them before they have looked at anything only
+   taught them to dismiss it. It lives behind the ? button, which marks itself
+   on a first visit, and the button's own label is the sentence it opens. */
 const INTRO_SEEN = 'pk-intro-v1';
+// How many first-visits have pointed at the help button without anyone taking
+// it up. A hint that never gives up stops being a hint.
+const HINT_KEY = 'pk-help-hint';
+const HINT_TRIES = 3;
+function hintHelp() {
+  let n = 0;
+  try { n = +(localStorage.getItem(HINT_KEY) || 0) || 0; } catch (e) {}
+  if (n >= HINT_TRIES) return;
+  try { localStorage.setItem(HINT_KEY, String(n + 1)); } catch (e) {}
+  document.getElementById('help-btn')?.classList.add('hint');
+}
+// Opening it at all — however they got there — is the whole point, so retire
+// the hint for good rather than counting that visit against them.
+function clearHelpHint() {
+  document.getElementById('help-btn')?.classList.remove('hint');
+  try { localStorage.setItem(HINT_KEY, String(HINT_TRIES)); } catch (e) {}
+}
 
 function renderControls() {
   updateLocateAria();
@@ -3395,6 +3436,7 @@ function openSheetHistory() {
   }
 }
 function openIntro() {
+  clearHelpHint();
   renderIntro();
   document.getElementById('intro').hidden = false;
   setModalTrap();
@@ -4138,12 +4180,11 @@ async function main() {
   performance.mark('pk:boot-done');
   let seen = true;
   try { seen = !!localStorage.getItem(INTRO_SEEN); } catch (e) {}
-  if (!seen) setTimeout(() => {
-    // the visitor may already have opened the contact sheet or a school in
-    // these 420ms; the tutorial must not land on top of it
-    if (document.getElementById('contact').hidden &&
-        !document.getElementById('side').classList.contains('open')) openIntro();
-  }, 420);
+  // Not a modal on arrival. A reader who lands on a map they have not looked at
+  // yet treats a full-screen panel as an obstacle, and closes it unread — which
+  // is exactly what the first person to try this did. Mark the door instead and
+  // let them reach it when the map has raised a question worth answering.
+  if (!seen) hintHelp();
 }
 const boot = () => main().catch(e => { console.error(e); bootFailed('bootFailApp'); });
 if (document.readyState === 'loading') addEventListener('DOMContentLoaded', boot);
