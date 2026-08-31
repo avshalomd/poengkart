@@ -620,25 +620,32 @@
   #controls .ico svg { width: 15px; height: 15px; }
   /* First visit: the help sheet used to open itself over a map nobody had seen
      yet, which reads as something to get rid of rather than something to read.
-     The button asks for attention instead — accent-coloured, with a ring that
-     breathes out of it a few times and then rests, so it is noticeable without
-     becoming a thing blinking in the corner of the eye all session. ::after is
-     already spoken for as the touch target. */
-  #controls .ico.hint { color: var(--accent); border-color: var(--accent); }
+     The button asks for attention instead. It has to still be asking whenever
+     the reader happens to look up: a first pass ran three pulses and stopped,
+     which on a phone was over before the map had finished painting, leaving a
+     faint tint on a 26px icon that nobody would call a glow. So the state is
+     carried by the fill — solid accent against two outlined neighbours, legible
+     at any size — and the pulse merely draws the eye to it, on a slow loop that
+     lasts as long as the hint does. It ends the moment the sheet is opened, and
+     never returns after three visits. ::after is the touch target already. */
+  #controls .ico.hint {
+    color: var(--on-accent); background: var(--accent); border-color: var(--accent);
+  }
+  #controls .ico.hint:hover { color: var(--on-accent); border-color: var(--accent); }
   #controls .ico.hint::before {
     content: ''; position: absolute; inset: -3px; border-radius: 11px;
     border: 2px solid var(--accent); pointer-events: none; opacity: 0;
-    animation: helphint 2.6s ease-out 3;
+    animation: helphint 3.2s ease-out infinite;
   }
   @keyframes helphint {
-    0%   { transform: scale(.8);  opacity: 0; }
-    18%  { opacity: .6; }
-    55%  { transform: scale(1.45); opacity: 0; }
-    100% { transform: scale(1.45); opacity: 0; }
+    0%   { transform: scale(.82); opacity: 0; }
+    15%  { opacity: .7; }
+    60%  { transform: scale(1.6); opacity: 0; }
+    100% { transform: scale(1.6); opacity: 0; }
   }
-  /* no pulse for a reader who asked for stillness — the colour still carries it */
+  /* a reader who asked for stillness gets a steady ring instead of a beating one */
   @media (prefers-reduced-motion: reduce) {
-    #controls .ico.hint::before { animation: none; opacity: .55; transform: none; }
+    #controls .ico.hint::before { animation: none; opacity: .5; transform: none; }
   }
   /* The sidebar slides in over this corner, so step out of its way — but only
      as far as the panel. Stepping left by the sheet's full width alone walked
