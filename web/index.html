@@ -2529,11 +2529,19 @@ function openSide(s) {
   renderSide();
   document.body.classList.add('side-open');
   sideTrap(true);
-  setUrlSchool(s);
   // On a phone the details fill the screen, and the system back gesture is how
-  // people expect to leave a screen. Give it something to pop.
+  // people expect to leave a screen. Give it something to pop — ONE entry for
+  // the whole open-sheet episode; switching schools rewrites that entry rather
+  // than stacking new ones. The order matters: the first open must push the
+  // school's own hash directly. Writing it with replaceState first and pushing
+  // after baked the first school into the PRE-open entry, so every ✕ — which
+  // is a history.back() — landed on "#s=first school" and reopened it instead
+  // of closing: school D's close resurrected school A, closing took two
+  // presses, and the address kept naming a school nothing was showing.
   if (!(history.state || {}).pkSide) {
     try { history.pushState({ pkSide: 1 }, '', schoolHash(s)); } catch (e) {}
+  } else {
+    setUrlSchool(s);
   }
   setTimeout(() => document.querySelector('#s-photo .close')?.focus(), 60);
 }
@@ -2541,15 +2549,24 @@ function clearScope() {
   chart.prog = null;
   setLens('all');
 }
+let sideClosing = false;   // a ✕ in flight: the next popstate is a CLOSE,
+                           // whatever school the entry underneath names
 function closeSide(fromHistory) {
   const side = document.getElementById('side');
   if (!fromHistory && (history.state || {}).pkSide) {
+    // The entry below is usually school-less, but a tab BOOTED from a deep
+    // link sits on the pasted "#s=..." itself — and landing there used to
+    // reopen that school, so the ✕ resurrected the first school instead of
+    // closing. The flag makes the intent unambiguous; a genuine back/forward
+    // gesture onto a school entry still reopens it, as a URL should.
+    sideClosing = true;
     history.back();                        // popstate closes it, once
     return;
   }
   side.classList.remove('open');
   document.body.classList.remove('side-open');
   sideTrap(false);
+  current = null;      // or the next county switch writes the closed school back into the URL
   setUrlSchool(null);
   liftMapControls();                       // the legend is visible again
   side.setAttribute('inert', '');          // keep 17 hidden controls out of Tab
@@ -4154,6 +4171,7 @@ async function main() {
     // the entry may differ only in its filters — stepping back over a county
     // change has no school to open or close, but still has to move the controls
     const filtersMoved = applyUrlFilters();
+    if (sideClosing) { sideClosing = false; if (sideOpen) { closeSide(true); return; } }
     if (target && target !== current) { openSide(target); return; }
     if (!target && sideOpen) { closeSide(true); return; }
     if (filtersMoved) return;
