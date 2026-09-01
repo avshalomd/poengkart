@@ -204,3 +204,24 @@ Abshalom Dayan
   opphald» (normalt 1–3 virkedager). Purr vennlig etter en uke.
 - **September**: uavhengig av svarene — sjekk vilbli/fylkessidene for
   2026/27-utgavene fra Rogaland, Buskerud, Innlandet og Trøndelag.
+
+---
+
+## 7 · Telemark fylkeskommune — poenggrenser (2026/27 og tidligere)
+
+**Sendt:** 01.09.2026 · **Til:** inntak@telemarkfylke.no (kopi: post@telemarkfylke.no)
+**Emne:** Poenggrenser i Telemark — spørsmål fra et gratis kartprosjekt
+
+Telemark er det eneste fylket vi kjenner til som gjennomfører inntak uten å
+publisere grensene noe sted: verken på telemarkfylke.no (fylkets egen
+«Søke skoleplass»-side lenker bare til forskriften og til vilbli) eller i
+vilbli-blokka. Den gamle antakelsen om at Telemark lå i vilbli-blokka var en
+artefakt — hver fylkesside der serverer den samme globale vedleggslista, og
+alle fire artikkel-ID-ene er nå identifisert: 041510 Rogaland, 041513
+Innlandet, 041561 Oslo, 041562 Trøndelag.
+
+Brevet er bevisst lettere i formen enn de tidligere innsynskravene: en
+presentasjon av prosjektet først, så det enkle spørsmålet, og § 3 til slutt
+som en mulighet for dem — samme rekkefølge som i Møre og Romsdal-henvendelsen,
+den som ga femten års historikk. Runden spørres om eksplisitt, siden den
+aldri skal gjettes.
