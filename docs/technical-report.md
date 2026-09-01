@@ -230,8 +230,9 @@ opposite reason a genuinely low threshold does.
 
 The panel spans 2012–2026: Møre og Romsdal 2012–2026 (a tidy Excel
 extract of the fifteen years behind the county's Power BI dashboard,
-released to us on request in September 2026; the intake round is not
-stated), Oslo 2017–2026, Vestland 2017–2026
+released to us on request in September 2026; the county confirmed the
+figures describe the second, final intake round), Oslo 2017–2026,
+Vestland 2017–2026
 (2017–2019 as a narrower Bergen-area series), Rogaland 2018–2025, Innlandet
 2020–2025 (2020–2022 released to us under a freedom-of-information request
 in August 2026 rather than published — the county confirmed nothing older

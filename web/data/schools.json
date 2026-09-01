@@ -36,9 +36,8 @@
   {
    "code": "15",
    "fylke": "Møre og Romsdal",
-   "round": null,
+   "round": "2",
    "rights": "ungdomsrett",
-   "round_note": "the extract does not state which intake round the figures are from",
    "free_choice": true,
    "levels": "Vg1",
    "source": "https://mrfylke.no/utdanning-og-karriere/statistikk-og-analyser",
@@ -4207,7 +4206,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/%C3%85ssiden_videreg%C3%A5ende_skole",
    "wiki_extract": "Åssiden videregående skole er en videregående skole i Drammen. Skoleeier er Buskerud fylkeskommune. Rektor er Ann-Mari Henriksen.",
    "address": "Betzy Kjelsbergs vei 267, 3028, DRAMMEN",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Drammen_tekn_fagskole_Aassiden_vgs_IMG_2758.JPG/1280px-Drammen_tekn_fagskole_Aassiden_vgs_IMG_2758.JPG",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Drammen_tekn_fagskole_Aassiden_vgs_IMG_2758.JPG/960px-Drammen_tekn_fagskole_Aassiden_vgs_IMG_2758.JPG",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Drammen_tekn_fagskole_Aassiden_vgs_IMG_2758.JPG",
    "photo_credit": "Foto: Bjoertvedt (CC BY-SA 3.0)",
@@ -4754,7 +4753,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/Elverum_videreg%C3%A5ende_skole",
    "wiki_extract": "Elverum videregående skole er en kombinert videregående skole etablert i 1974 med både studiespesialiserende og yrkesfaglige tilbud i Elverum, i Innlandet.",
    "address": "Kirkevegen 1, 2414, ELVERUM",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Elverum_videreg%C3%A5ende_skole.jpg/1280px-Elverum_videreg%C3%A5ende_skole.jpg",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Elverum_videreg%C3%A5ende_skole.jpg/960px-Elverum_videreg%C3%A5ende_skole.jpg",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Elverum_videreg%C3%A5ende_skole.jpg",
    "photo_credit": "Foto: Gran (CC BY-SA 4.0)",
@@ -10882,8 +10881,9 @@
    "address": "Jonas Lies gate 1, 2213, KONGSVINGER",
    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/%C3%98vrebyen_VGS_Kongsvinger.JPG/960px-%C3%98vrebyen_VGS_Kongsvinger.JPG",
    "photo_source": "reviewed",
-   "photo_credit": "Wikimedia Commons",
-   "photo_license": "se Commons",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:%C3%98vrebyen_VGS_Kongsvinger.JPG",
+   "photo_credit": "Foto: Cato Edvardsen (CC BY-SA 3.0)",
+   "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Øvrebyen videregående skole",
    "lat": 60.19498,
    "lon": 12.00839
@@ -10892,7 +10892,7 @@
    "name": "Atlanten videregående skole",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Idrettsfag",
@@ -11009,7 +11009,7 @@
    "name": "Borgund vidaregåande skole",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Bygg- og anleggsteknikk",
@@ -11203,7 +11203,7 @@
    "name": "Fagerlia videregående skole",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Helse- og oppvekstfag",
@@ -11404,7 +11404,7 @@
    "name": "Gjermundnes vidaregåande skule",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Naturbruk",
@@ -11458,6 +11458,11 @@
    "orgnr": "974576449",
    "url": "www.gjermundnes.vgs.no/",
    "address": "Gjermundnesvegen 200, 6392, VIKEBUKT",
+   "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Gjermundnes_vidareg%C3%A5ande_skule_2.jpg/1280px-Gjermundnes_vidareg%C3%A5ande_skule_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail&width=960&quality=75",
+   "photo_source": "reviewed",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Gjermundnes_vidareg%C3%A5ande_skule_2.jpg",
+   "photo_credit": "Foto: Gran (CC BY-SA 4.0)",
+   "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Gjermundnes vidaregåande skule",
    "lat": 62.62324,
    "lon": 7.16585
@@ -11466,7 +11471,7 @@
    "name": "Haram vidaregåande skule",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Elektro og datateknologi",
@@ -11647,7 +11652,7 @@
    "name": "Herøy vidaregåande skule",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Bygg- og anleggsteknikk",
@@ -11780,7 +11785,7 @@
    "name": "Herøy vidaregåande skule, avd. Vanylven",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Helse- og oppvekstfag",
@@ -11842,7 +11847,7 @@
    "name": "Hustadvika vidaregåande skole",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Bygg- og anleggsteknikk",
@@ -12047,7 +12052,7 @@
    "name": "Kristiansund videregående skole",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Bygg- og anleggsteknikk",
@@ -12360,7 +12365,7 @@
    "name": "Molde videregående skole",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Kunst, design og arkitektur",
@@ -12532,7 +12537,7 @@
    "name": "Rauma videregående skole",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Elektro og datateknologi",
@@ -12670,7 +12675,14 @@
    ],
    "orgnr": "974576562",
    "url": "www.rauma.vgs.no/",
+   "wiki_url": "https://no.wikipedia.org/wiki/Rauma_videreg%C3%A5ende_skole",
+   "wiki_extract": "Rauma videregående skole er sentralt plassert på Åndalsnes.",
    "address": "Ringgata 35, 6300, ÅNDALSNES",
+   "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Rauma_vgs_fra_2017.jpg/1280px-Rauma_vgs_fra_2017.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail&width=960&quality=75",
+   "photo_source": "reviewed",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Rauma_vgs_fra_2017.jpg",
+   "photo_credit": "Foto: Raumavgs (CC BY-SA 4.0)",
+   "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Rauma videregående skole",
    "lat": 62.56393,
    "lon": 7.68267
@@ -12679,7 +12691,7 @@
    "name": "Romsdal videregående skole",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Bygg- og anleggsteknikk",
@@ -13061,6 +13073,11 @@
    "orgnr": "974576546",
    "url": "www.romsdal.vgs.no",
    "address": "Langmyrvegen 83, 6415, MOLDE",
+   "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Romsdal_videreg%C3%A5ende.jpg/1280px-Romsdal_videreg%C3%A5ende.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail&width=960&quality=75",
+   "photo_source": "reviewed",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Romsdal_videreg%C3%A5ende.jpg",
+   "photo_credit": "Foto: Peter Fiskerstrand (CC BY-SA 3.0)",
+   "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Romsdal videregående skole",
    "lat": 62.74438,
    "lon": 7.1913
@@ -13069,7 +13086,7 @@
    "name": "Spjelkavik videregående skole",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Idrettsfag",
@@ -13144,7 +13161,14 @@
    ],
    "orgnr": "974577267",
    "url": "www.spjelkavik.vgs.no",
+   "wiki_url": "https://no.wikipedia.org/wiki/Spjelkavik_videreg%C3%A5ende_skole",
+   "wiki_extract": "Spjelkavik videregående skole er en videregående skole i Ålesund. Skolen ligger på Langhaugen i Spjelkavika.",
    "address": "Nedre Langhaugen 32, 6011, ÅLESUND",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/SVGS.jpg/960px-SVGS.jpg",
+   "photo_source": "reviewed",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:SVGS.jpg",
+   "photo_credit": "Foto: Ziphone (CC BY-SA 3.0)",
+   "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Spjelkavik videregående skole",
    "lat": 62.46099,
    "lon": 6.37479
@@ -13153,7 +13177,7 @@
    "name": "Stranda vidaregåande skule",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Helse- og oppvekstfag",
@@ -13284,7 +13308,7 @@
    "name": "Sunndal vidaregåande skole",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Bygg- og anleggsteknikk",
@@ -13413,7 +13437,7 @@
    "name": "Surnadal vidaregåande skule",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Bygg- og anleggsteknikk",
@@ -13545,7 +13569,7 @@
    "name": "Sykkylven vidaregåande skule",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Design og håndverk",
@@ -13678,7 +13702,7 @@
    "name": "Tingvoll vidaregåande skole",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Bygg- og anleggsteknikk",
@@ -13815,7 +13839,7 @@
    "name": "Ulstein vidaregåande skule",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Elektro og datateknologi",
@@ -13979,7 +14003,7 @@
    "name": "Volda vidaregåande skule",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Kunst, design og arkitektur",
@@ -14097,7 +14121,7 @@
    "name": "Ålesund videregående skole",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Helse- og oppvekstfag",
@@ -14405,7 +14429,7 @@
    "name": "Ørsta vidaregåande skule",
    "fylke": "Møre og Romsdal",
    "fylkesnummer": "15",
-   "round": null,
+   "round": "2",
    "programs": [
     {
      "program": "Bygg- og anleggsteknikk",

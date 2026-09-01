@@ -13,6 +13,13 @@
   "credit": "Foto: Arna vidaregåande skule / Vestland fylkeskommune",
   "license": "© Vestland fylkeskommune"
  },
+ "Asker": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Asker_videreg%C3%A5ende_skole_02.jpg/1280px-Asker_videreg%C3%A5ende_skole_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Asker_videreg%C3%A5ende_skole_02.jpg",
+  "credit": "Foto: Far min (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
  "Askøy videregående skole": {
   "photo": "https://www.askoy.vgs.no/contentassets/dfadef42da04412a8db3ae69c44c31f7/ny-hovedinngang4.jpg",
   "source": "site",
@@ -181,6 +188,13 @@
   "credit": "Foto: Eid vidaregåande skule / Vestland fylkeskommune",
   "license": "© Vestland fylkeskommune"
  },
+ "Eidsvoll": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Eidsvoll_videreg%C3%A5ende_skole_2007.jpg/1280px-Eidsvoll_videreg%C3%A5ende_skole_2007.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Eidsvoll_videreg%C3%A5ende_skole_2007.jpg",
+  "credit": "Foto: Copyright © Harry Wad (CC BY 2.5)",
+  "license": "CC BY 2.5"
+ },
  "Eikeli": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Eikeli_Videreg%C3%A5ende_skole.JPG/1280px-Eikeli_Videreg%C3%A5ende_skole.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
   "source": "wikipedia",
@@ -189,6 +203,13 @@
   "license": "CC BY-SA 3.0",
   "wiki_url": "https://no.wikipedia.org/wiki/Eikeli_videreg%C3%A5ende_skole",
   "wiki_extract": "Eikeli videregående skole er en offentlig videregående skole på Eikeli i Bærum. Skolen ble etablert i 1960 som Eikeli kommunale høyere almenskole."
+ },
+ "Eiker": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Eiker_Videreg%C3%A5ende_Skole_2108.jpg/1280px-Eiker_Videreg%C3%A5ende_Skole_2108.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Eiker_Videreg%C3%A5ende_Skole_2108.jpg",
+  "credit": "Foto: Bingar1234 (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
  },
  "Elvebakken videregående skole": {
   "photo": "https://elvebakken.vgs.no/siteassets/jul-paske-sommer/elvebakken-ekst-liggende-tett.jpeg?width=1600&quality=80",
@@ -294,6 +315,20 @@
   "credit": "Foto: Gauldal videregående skole / Trøndelag fylkeskommune",
   "license": "© Trøndelag fylkeskommune"
  },
+ "Gausdal videregående skole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Gausdal_VGS.jpg/1280px-Gausdal_VGS.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Gausdal_VGS.jpg",
+  "credit": "Foto: Jan-Tore Egge (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
+ "Gjermundnes vidaregåande skule": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Gjermundnes_vidareg%C3%A5ande_skule_2.jpg/1280px-Gjermundnes_vidareg%C3%A5ande_skule_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Gjermundnes_vidareg%C3%A5ande_skule_2.jpg",
+  "credit": "Foto: Gran (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
  "Gjøvik videregående skole": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Gj%C3%B8vik_videreg%C3%A5ende_skole.JPG/1280px-Gj%C3%B8vik_videreg%C3%A5ende_skole.JPG",
   "source": "wikipedia",
@@ -330,6 +365,13 @@
   "page": "https://gurikunna.vgs.no",
   "credit": "Foto: Guri Kunna videregående skole / Trøndelag fylkeskommune",
   "license": "© Trøndelag fylkeskommune"
+ },
+ "Hamar katedralskole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Hamar_katedralskole_2022.jpg/1280px-Hamar_katedralskole_2022.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Hamar_katedralskole_2022.jpg",
+  "credit": "Foto: Vegard Gran (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
  },
  "Hartvig Nissens skole": {
   "photo": "https://hartvig-nissen.vgs.no/siteassets/bilder/dsc_2071-kopi.jpg?width=1600&quality=80",
@@ -370,6 +412,13 @@
   "page": "https://hersleb.vgs.no",
   "credit": "Foto: Hersleb videregående skole / Oslo kommune / Utdanningsetaten",
   "license": "© Oslo kommune / Utdanningsetaten"
+ },
+ "Holtet videregående skole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Holtet_videreg%C3%A5ende_skole_-_2009-09-06_at_16-57-47.jpg/1280px-Holtet_videreg%C3%A5ende_skole_-_2009-09-06_at_16-57-47.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Holtet_videreg%C3%A5ende_skole_-_2009-09-06_at_16-57-47.jpg",
+  "credit": "Foto: Kjetil Ree (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
  },
  "Hvam": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Hvam_videreg%C3%A5ende_skole.JPG/1280px-Hvam_videreg%C3%A5ende_skole.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -471,12 +520,26 @@
   "license": "CC0",
   "page": "https://commons.wikimedia.org/wiki/File:Kopervik_videreg%C3%A5ende_skole,_september_2025.jpg"
  },
+ "Kuben videregående skole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png/1280px-2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png",
+  "credit": "Foto: QUB1 (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
  "Kvam vidaregåande skule": {
   "photo": "https://www.kvam.vgs.no/siteassets/bilete/bilder-2026/skolen/kvam_vgs-30.jpg?width=1600&quality=80",
   "source": "site",
   "page": "https://www.kvam.vgs.no/",
   "credit": "Foto: Kvam vidaregåande skule / Vestland fylkeskommune",
   "license": "© Vestland fylkeskommune"
+ },
+ "Kvinnherad vidaregåande skule": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Kvinnherad_vg_skule.JPG/1280px-Kvinnherad_vg_skule.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Kvinnherad_vg_skule.JPG",
+  "credit": "Foto: Jostein Røstbø (CC BY 3.0)",
+  "license": "CC BY 3.0"
  },
  "Kyrksæterøra videregående skole": {
   "photo": "https://web.trondelagfylke.no/contentassets/b6417965a0b54d0cb8c7b1a52da2794a/hemne-vgs-fra-luften.png",
@@ -512,6 +575,13 @@
   "page": "https://bfk.no/lier-vgs",
   "credit": "Foto: Lier videregående skole / Buskerud fylkeskommune",
   "license": "© Buskerud fylkeskommune"
+ },
+ "Lillestrøm": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Lillestr%C3%B8m_VGS_I.jpg/1280px-Lillestr%C3%B8m_VGS_I.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Lillestr%C3%B8m_VGS_I.jpg",
+  "credit": "Foto: Jan-Tore Egge (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
  },
  "Mailand": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/10-04-17_Mailand_videreg%C3%A5ende_skole.jpg/1280px-10-04-17_Mailand_videreg%C3%A5ende_skole.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -591,6 +661,13 @@
   "wiki_url": "https://no.wikipedia.org/wiki/Nesbru_videreg%C3%A5ende_skole",
   "wiki_extract": "Nesbru videregående skole er en videregående skole på Nesbru i Asker kommune i Akershus."
  },
+ "Nesodden": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Nesodden_videreg%C3%A5ende_skole_2021.jpg/1280px-Nesodden_videreg%C3%A5ende_skole_2021.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Nesodden_videreg%C3%A5ende_skole_2021.jpg",
+  "credit": "Foto: Kimsaka (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
  "Nord-Gudbrandsdal vgs, avd. Otta": {
   "photo": "https://v.imgi.no/8ygnfye7hn__w=1200_h=675_autocrop=true",
   "source": "site",
@@ -633,6 +710,13 @@
   "credit": "Foto: Olav Duun videregående skole / Trøndelag fylkeskommune",
   "license": "© Trøndelag fylkeskommune"
  },
+ "Ole Vig videregående skole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Ole_Vig_videreg%C3%A5ende_skole%2C_inngang_mot_%C3%B8st.jpg/1280px-Ole_Vig_videreg%C3%A5ende_skole%2C_inngang_mot_%C3%B8st.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Ole_Vig_videreg%C3%A5ende_skole,_inngang_mot_%C3%B8st.jpg",
+  "credit": "Foto: Erik Fløan (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
  "Olsvikåsen videregående skole": {
   "photo": "https://www.olsvikasen.vgs.no/contentassets/de0c5d36aa024b178171a92d017d0eca/dsc_6489.jpg?width=1600&quality=80",
   "source": "site",
@@ -668,6 +752,13 @@
   "credit": "Foto: Ssu (CC BY-SA 4.0)",
   "license": "CC BY-SA 4.0"
  },
+ "Oslo katedralskole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Oslo_katedralskole_nord.JPG/1280px-Oslo_katedralskole_nord.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Oslo_katedralskole_nord.JPG",
+  "credit": "Foto: Helge Høifødt (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
+ },
  "Osterøy vidaregåande skule": {
   "photo": "https://www.osteroy.vgs.no/siteassets/bilete-av-skulebygget/osteroy-vgs.jpg?width=1600&height=1440&quality=80",
   "source": "site",
@@ -690,6 +781,15 @@
   "license": "CC BY-SA 4.0",
   "wiki_url": "https://no.wikipedia.org/wiki/Raufoss_videreg%C3%A5ende_skole",
   "wiki_extract": "Raufoss videregående skole er en kombinert videregående skole med både studiespesialiserende og yrkesfaglige tilbud i Raufoss, i Innlandet. Skolen ble bygget i 1980 like ved Raufosshallen, på motsatt side av Vestre Toten ungdomsskole."
+ },
+ "Rauma videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Rauma_vgs_fra_2017.jpg/1280px-Rauma_vgs_fra_2017.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "wikipedia",
+  "page": "https://commons.wikimedia.org/wiki/File:Rauma_vgs_fra_2017.jpg",
+  "credit": "Foto: Raumavgs (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0",
+  "wiki_url": "https://no.wikipedia.org/wiki/Rauma_videreg%C3%A5ende_skole",
+  "wiki_extract": "Rauma videregående skole er sentralt plassert på Åndalsnes."
  },
  "Ringerike": {
   "photo": "https://bfk.no/handlers/bv.ashx/e1/i3cf61c96-312d-496f-b627-14ff8d14c602/w1200/h630/q8813/k2ac21a463ef5/dsc_1903.JPG",
@@ -716,6 +816,13 @@
   "wiki_url": "https://no.wikipedia.org/wiki/Roald_Amundsen_videreg%C3%A5ende_skole",
   "wiki_extract": "Roald Amundsen videregående skole ble etablert som Oppegård Gymnas i 1970 og leide lokaler i Ingieråsen skole fram til 1975. I august samme år flyttet skolen inn i nye lokaler på Sofiemyråsen."
  },
+ "Romsdal videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Romsdal_videreg%C3%A5ende.jpg/1280px-Romsdal_videreg%C3%A5ende.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Romsdal_videreg%C3%A5ende.jpg",
+  "credit": "Foto: Peter Fiskerstrand (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
+ },
  "Rosenvilde": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Rosenvilde_vgs_3.jpg/1280px-Rosenvilde_vgs_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
   "source": "wikipedia",
@@ -731,6 +838,13 @@
   "page": "https://www.bomlo.vgs.no",
   "credit": "Foto: Bømlo vidaregåande skule avd Rubbestadneset / Vestland fylkeskommune",
   "license": "© Vestland fylkeskommune"
+ },
+ "Rud": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/B%C3%A4rum_Rud_vdg_skole_IMG_0151.JPG/1280px-B%C3%A4rum_Rud_vdg_skole_IMG_0151.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:B%C3%A4rum_Rud_vdg_skole_IMG_0151.JPG",
+  "credit": "Foto: Bjoertvedt (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
  },
  "Rælingen": {
   "photo": "https://afk.no/handlers/bv.ashx/e1/i78ea967b-1b45-4a9b-8e13-d03a6ad12d36/w600/h338/q297269/k4fb0ce307b4f/skolen-6.jpg",
@@ -815,6 +929,13 @@
   "credit": "Foto: Skjetlein videregående skole / Trøndelag fylkeskommune",
   "license": "© Trøndelag fylkeskommune"
  },
+ "Slåtthaug videregående skole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Sl%C3%A5tthaug_videreg%C3%A5ende_skole.jpg/1280px-Sl%C3%A5tthaug_videreg%C3%A5ende_skole.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Sl%C3%A5tthaug_videreg%C3%A5ende_skole.jpg",
+  "credit": "Foto: Frode H. Korneliussen (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
  "Sogndal vidaregåande skule": {
   "photo": "https://www.sogndal.vgs.no/contentassets/1792cd05730f469f97f47be25fbf8537/forsidebilete.jpg?width=1600&height=1440&quality=80",
   "source": "site",
@@ -838,6 +959,15 @@
   "credit": "Foto: Sotra vidaregåande skule / Vestland fylkeskommune",
   "license": "© Vestland fylkeskommune"
  },
+ "Spjelkavik videregående skole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/0/08/SVGS.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "source": "wikipedia",
+  "page": "https://commons.wikimedia.org/wiki/File:SVGS.jpg",
+  "credit": "Foto: Ziphone (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0",
+  "wiki_url": "https://no.wikipedia.org/wiki/Spjelkavik_videreg%C3%A5ende_skole",
+  "wiki_extract": "Spjelkavik videregående skole er en videregående skole i Ålesund. Skolen ligger på Langhaugen i Spjelkavika."
+ },
  "St.Hallvard": {
   "photo": "https://bfk.no/handlers/bv.ashx/e1/i2753b072-7ff8-4ac3-8c48-17b7d732ec26/w600/h338/q282784/kbd44ac25ae4c/var_skolenfotos-austad.jpg",
   "source": "site",
@@ -853,6 +983,13 @@
   "license": "CC0",
   "wiki_url": "https://no.wikipedia.org/wiki/Stabekk_videreg%C3%A5ende_skole",
   "wiki_extract": "Stabekk videregående skole, tidligere Stabekk Gymnas, er en videregående skole på Stabekk i Bærum, som ble opprettet i 1923."
+ },
+ "Stange videregående skole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Stange_videreg%C3%A5ende_skole.jpg/1280px-Stange_videreg%C3%A5ende_skole.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Stange_videreg%C3%A5ende_skole.jpg",
+  "credit": "Foto: Vegard Gran (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
  },
  "Stavanger Katedralskole": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Kongsg%C3%A5rd-hovedbygning.JPG/1280px-Kongsg%C3%A5rd-hovedbygning.JPG",
@@ -892,6 +1029,13 @@
   "license": "CC BY-SA 4.0",
   "wiki_url": "https://no.wikipedia.org/wiki/Storhamar_videreg%C3%A5ende_skole",
   "wiki_extract": "Storhamar videregående skole er en videregående skole ved Storhamar på Hamar vest. Skolen ble til under sitt nåværende navn i august 1995 og har i dag rundt 700 elever fordelt på programområdene Idrettsfag, Helse- og oppvekstfag, Restaurant- og matfag og påbygging til generell studiekompetanse, i tillegg til et bredt tilbud innenfor særskilt tilrettelagt opplæring og voksenopplæring."
+ },
+ "Storsteigen videregående skole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Storsteigen_landbruksskole.jpg/1280px-Storsteigen_landbruksskole.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Storsteigen_landbruksskole.jpg",
+  "credit": "Foto: Jensens (Public domain)",
+  "license": "Public domain"
  },
  "Stovner videregående skole": {
   "photo": "https://stovner.vgs.no/siteassets/bilder/bygning/2012-08_stovner_vgs_02.jpg?width=1600&quality=80",
@@ -958,6 +1102,13 @@
   "credit": "Foto: Trondheim katedralskole / Trøndelag fylkeskommune",
   "license": "© Trøndelag fylkeskommune"
  },
+ "Trysil videregående skole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/2017-02_Trysil_vgs.jpg/1280px-2017-02_Trysil_vgs.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:2017-02_Trysil_vgs.jpg",
+  "credit": "Foto: Chell Hill (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
  "Ullern videregående skole": {
   "photo": "https://ullern.vgs.no/siteassets/nyhetsbilder-2019-20/ullern-vgs.jpg",
   "source": "site",
@@ -1020,6 +1171,13 @@
   "wiki_url": "https://no.wikipedia.org/wiki/Vinstra_videreg%C3%A5ende_skole",
   "wiki_extract": "Vinstra videregående skole er en offentlig videregående skole i Nord-Fron kommune i Innlandet. Skoleåret 2024/2025 har skolen 345 elever."
  },
+ "Voss gymnas": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Voss_gymnas.jpg/1280px-Voss_gymnas.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Voss_gymnas.jpg",
+  "credit": "Foto: Jan-Tore Egge (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
  "Voss vidaregåande skule": {
   "photo": "https://www.voss.vgs.no/siteassets/bilete/bilete/voss_videreg_ende_skule_n38_devsize.jpg?width=1600&height=1440&quality=80",
   "source": "site",
@@ -1050,6 +1208,13 @@
   "credit": "Foto: Åfjord videregående skole / Trøndelag fylkeskommune",
   "license": "© Trøndelag fylkeskommune"
  },
+ "Ål": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/%C3%85l_vidareg%C3%A5ande_skole_03.jpg/1280px-%C3%85l_vidareg%C3%A5ande_skole_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:%C3%85l_vidareg%C3%A5ande_skole_03.jpg",
+  "credit": "Foto: Far min (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
  "Årdal vidaregåande skule": {
   "photo": "https://www.ardal.vgs.no/contentassets/c45c51c50a7b4ef18cfeddb63a81632f/nytt-skulen.jpg?width=1600&height=1440&quality=80",
   "source": "site",
@@ -1063,6 +1228,13 @@
   "page": "https://www.arstad.vgs.no/",
   "credit": "Foto: Årstad videregående skole / Vestland fylkeskommune",
   "license": "© Vestland fylkeskommune"
+ },
+ "Ås": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Aas_vdg_skole_01.jpg/1280px-Aas_vdg_skole_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Aas_vdg_skole_01.jpg",
+  "credit": "Foto: Bjoertvedt (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
  },
  "Åsane vidaregåande skule": {
   "photo": "https://www.asane.vgs.no/contentassets/baeb0a3bed2d447789da421de2a76ca0/asane-vgs-skolebygg-ny.jpg?width=1600&height=1440&quality=80",
@@ -1083,150 +1255,10 @@
  "Øvrebyen videregående skole": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/6/6a/%C3%98vrebyen_VGS_Kongsvinger.JPG",
   "source": "wikipedia",
-  "page": null,
-  "credit": "Wikimedia Commons",
-  "license": "se Commons",
+  "page": "https://commons.wikimedia.org/wiki/File:%C3%98vrebyen_VGS_Kongsvinger.JPG",
+  "credit": "Foto: Cato Edvardsen (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0",
   "wiki_url": "https://no.wikipedia.org/wiki/%C3%98vrebyen_videreg%C3%A5ende_skole",
   "wiki_extract": "Øvrebyen videregående skole er en videregående skole som ligger i bydelen Øvrebyen i Kongsvinger, like ved Vinger kirke. Elevene er i hovedsak fra Kongsvinger og nabokommunene. Skolens hovedbygg er fra 1880 og ble bygget for Kongsvinger middelskole. Senere ble skolen gymnas før den fikk navnet Øvrebyen videregående skole. I perioden 1994–1998 ble skolen ombygget og rehabilitert, og fikk nytt under"
- },
- "Asker": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Asker_videreg%C3%A5ende_skole_02.jpg/1280px-Asker_videreg%C3%A5ende_skole_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Asker_videreg%C3%A5ende_skole_02.jpg",
-  "credit": "Foto: Far min (CC BY-SA 4.0)",
-  "license": "CC BY-SA 4.0"
- },
- "Eidsvoll": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Eidsvoll_videreg%C3%A5ende_skole_2007.jpg/1280px-Eidsvoll_videreg%C3%A5ende_skole_2007.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Eidsvoll_videreg%C3%A5ende_skole_2007.jpg",
-  "credit": "Foto: Copyright © Harry Wad (CC BY 2.5)",
-  "license": "CC BY 2.5"
- },
- "Lillestrøm": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Lillestr%C3%B8m_VGS_I.jpg/1280px-Lillestr%C3%B8m_VGS_I.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Lillestr%C3%B8m_VGS_I.jpg",
-  "credit": "Foto: Jan-Tore Egge (CC BY-SA 4.0)",
-  "license": "CC BY-SA 4.0"
- },
- "Nesodden": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Nesodden_videreg%C3%A5ende_skole_2021.jpg/1280px-Nesodden_videreg%C3%A5ende_skole_2021.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Nesodden_videreg%C3%A5ende_skole_2021.jpg",
-  "credit": "Foto: Kimsaka (CC BY-SA 4.0)",
-  "license": "CC BY-SA 4.0"
- },
- "Rud": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/B%C3%A4rum_Rud_vdg_skole_IMG_0151.JPG/1280px-B%C3%A4rum_Rud_vdg_skole_IMG_0151.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:B%C3%A4rum_Rud_vdg_skole_IMG_0151.JPG",
-  "credit": "Foto: Bjoertvedt (CC BY-SA 3.0)",
-  "license": "CC BY-SA 3.0"
- },
- "Ås": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Aas_vdg_skole_01.jpg/1280px-Aas_vdg_skole_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Aas_vdg_skole_01.jpg",
-  "credit": "Foto: Bjoertvedt (CC BY-SA 3.0)",
-  "license": "CC BY-SA 3.0"
- },
- "Eiker": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Eiker_Videreg%C3%A5ende_Skole_2108.jpg/1280px-Eiker_Videreg%C3%A5ende_Skole_2108.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Eiker_Videreg%C3%A5ende_Skole_2108.jpg",
-  "credit": "Foto: Bingar1234 (CC BY-SA 4.0)",
-  "license": "CC BY-SA 4.0"
- },
- "Ål": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/%C3%85l_vidareg%C3%A5ande_skole_03.jpg/1280px-%C3%85l_vidareg%C3%A5ande_skole_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:%C3%85l_vidareg%C3%A5ande_skole_03.jpg",
-  "credit": "Foto: Far min (CC BY-SA 4.0)",
-  "license": "CC BY-SA 4.0"
- },
- "Gausdal videregående skole": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Gausdal_VGS.jpg/1280px-Gausdal_VGS.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Gausdal_VGS.jpg",
-  "credit": "Foto: Jan-Tore Egge (CC BY-SA 4.0)",
-  "license": "CC BY-SA 4.0"
- },
- "Hamar katedralskole": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Hamar_katedralskole_2022.jpg/1280px-Hamar_katedralskole_2022.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Hamar_katedralskole_2022.jpg",
-  "credit": "Foto: Vegard Gran (CC BY-SA 4.0)",
-  "license": "CC BY-SA 4.0"
- },
- "Stange videregående skole": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Stange_videreg%C3%A5ende_skole.jpg/1280px-Stange_videreg%C3%A5ende_skole.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Stange_videreg%C3%A5ende_skole.jpg",
-  "credit": "Foto: Vegard Gran (CC BY-SA 4.0)",
-  "license": "CC BY-SA 4.0"
- },
- "Storsteigen videregående skole": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Storsteigen_landbruksskole.jpg/1280px-Storsteigen_landbruksskole.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Storsteigen_landbruksskole.jpg",
-  "credit": "Foto: Jensens (Public domain)",
-  "license": "Public domain"
- },
- "Trysil videregående skole": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/2017-02_Trysil_vgs.jpg/1280px-2017-02_Trysil_vgs.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:2017-02_Trysil_vgs.jpg",
-  "credit": "Foto: Chell Hill (CC BY-SA 4.0)",
-  "license": "CC BY-SA 4.0"
- },
- "Holtet videregående skole": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Holtet_videreg%C3%A5ende_skole_-_2009-09-06_at_16-57-47.jpg/1280px-Holtet_videreg%C3%A5ende_skole_-_2009-09-06_at_16-57-47.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Holtet_videreg%C3%A5ende_skole_-_2009-09-06_at_16-57-47.jpg",
-  "credit": "Foto: Kjetil Ree (CC BY-SA 3.0)",
-  "license": "CC BY-SA 3.0"
- },
- "Kuben videregående skole": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png/1280px-2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png",
-  "credit": "Foto: QUB1 (CC BY-SA 4.0)",
-  "license": "CC BY-SA 4.0"
- },
- "Oslo katedralskole": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Oslo_katedralskole_nord.JPG/1280px-Oslo_katedralskole_nord.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Oslo_katedralskole_nord.JPG",
-  "credit": "Foto: Helge Høifødt (CC BY-SA 3.0)",
-  "license": "CC BY-SA 3.0"
- },
- "Ole Vig videregående skole": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Ole_Vig_videreg%C3%A5ende_skole%2C_inngang_mot_%C3%B8st.jpg/1280px-Ole_Vig_videreg%C3%A5ende_skole%2C_inngang_mot_%C3%B8st.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Ole_Vig_videreg%C3%A5ende_skole,_inngang_mot_%C3%B8st.jpg",
-  "credit": "Foto: Erik Fløan (CC BY-SA 4.0)",
-  "license": "CC BY-SA 4.0"
- },
- "Slåtthaug videregående skole": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Sl%C3%A5tthaug_videreg%C3%A5ende_skole.jpg/1280px-Sl%C3%A5tthaug_videreg%C3%A5ende_skole.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Sl%C3%A5tthaug_videreg%C3%A5ende_skole.jpg",
-  "credit": "Foto: Frode H. Korneliussen (CC BY-SA 4.0)",
-  "license": "CC BY-SA 4.0"
- },
- "Voss gymnas": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Voss_gymnas.jpg/1280px-Voss_gymnas.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Voss_gymnas.jpg",
-  "credit": "Foto: Jan-Tore Egge (CC BY-SA 4.0)",
-  "license": "CC BY-SA 4.0"
- },
- "Kvinnherad vidaregåande skule": {
-  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Kvinnherad_vg_skule.JPG/1280px-Kvinnherad_vg_skule.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "source": "commons",
-  "page": "https://commons.wikimedia.org/wiki/File:Kvinnherad_vg_skule.JPG",
-  "credit": "Foto: Jostein Røstbø (CC BY 3.0)",
-  "license": "CC BY 3.0"
  }
 }

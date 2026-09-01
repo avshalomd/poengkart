@@ -11,10 +11,10 @@ no field for it — the admitted mean (Gjennomkar).
 
 Semantics, and what the file does NOT say:
 
-- No intake round is stated anywhere. The dashboard refreshes once a year
-  after 2. inntak (Dan's mail of 26.08.2026), but that is a publication
-  cadence, not a statement about which round the figures describe — so the
-  round stays None, like Buskerud and Trøndelag.
+- The figures are from 2. inntak — "Våre tall er basert på 2.inntaket i
+  august (som er det endelige inntaket for oss)", Dan Ernes, 01.09.2026.
+  The file itself does not say so; the round rests on that confirmation,
+  asked for precisely because a round must never be inferred.
 - There is no "everyone got in" marker. Every offered programme carries a
   number, so an undersubscribed programme's figure is simply its weakest
   admitted applicant (min 5.7 in the file) rather than a competitive bar.
@@ -47,9 +47,8 @@ SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                    '..', '..', '..', 'poenggrenser', 'data', 'mro')
 
 META = {
-    'code': '15', 'fylke': 'Møre og Romsdal', 'round': None,
+    'code': '15', 'fylke': 'Møre og Romsdal', 'round': '2',
     'rights': 'ungdomsrett',
-    'round_note': 'the extract does not state which intake round the figures are from',
     'free_choice': True,           # fritt skolevalg i hele fylket
     'levels': 'Vg1',
     'source': 'https://mrfylke.no/utdanning-og-karriere/statistikk-og-analyser',
