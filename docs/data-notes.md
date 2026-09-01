@@ -4,12 +4,19 @@ Detail that would crowd the README: which counties publish at all, why the
 history is so uneven between them, how the documents are turned into a dataset,
 and what was considered and deliberately left unbuilt.
 
-## Only 7 of Norway's 15 counties publish thresholds
+## Only 8 of Norway's 15 counties publish thresholds
 
 Agder, Nordland and Østfold say on the record that they choose not to.
 Vestfold, Troms and Finnmark publish aggregate intake statistics only —
 applicants, offers, and in Vestfold's case per-school head-counts — with no
-thresholds. Møre og Romsdal publishes behind a Power BI dashboard.
+thresholds. Møre og Romsdal publishes only inside a Power BI dashboard whose
+Publish-to-Web mode offers no download — but the county answered a request
+with the tidy Excel extract behind it (September 2026): every school,
+programme and year since 2012/13, the deepest history in the dataset. That
+is also the panel's one hard semantic gap: the extract has no
+"everyone admitted" marker, so an undersubscribed programme's figure is its
+weakest admitted applicant rather than a competitive bar, and no intake
+round is stated.
 
 Telemark is the one still worth chasing: it appears in vilbli's
 county-information block alongside four counties that *are* covered here, but

@@ -30,6 +30,16 @@ MANUAL = {
     # entirely. Kartverket places its registered address, Movegen 30 (the Mo
     # campus), here.
     ('46', 'mo og øyrane vidaregåande skule'): (61.43390, 5.98465),
+    # Møre og Romsdal's two closed campuses are gone from NSR, and the merged
+    # Ålesund vgs's NSR address is the Fagerlia site — which would stack its
+    # dot exactly on Fagerlia's historical one. Kartverket still names the
+    # Fagerlia building; Ålesund vgs gets its own Volsdalsberga lokalitet
+    # (NSR: Sjømannsvegen 47); the Vanylven campus stood in Syvde, which the
+    # place register keeps as a tettsted (the school itself was dropped when
+    # it closed in 2019).
+    ('15', 'fagerlia videregående skole'): (62.4741, 6.2279),
+    ('15', 'ålesund videregående skole'): (62.46859, 6.18485),
+    ('15', 'herøy vidaregåande skule, avd. vanylven'): (62.08897, 5.73953),
 }
 
 

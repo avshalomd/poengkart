@@ -22,6 +22,67 @@ META = json.loads((ROOT / 'web/data/model.json').read_text())['meta']
 failures = []
 checked = 0
 
+# --write: re-pin the numbers in place. Every refit moves ~60 of these, and
+# retyping them by hand is both slow and a fresh chance to transcribe one
+# wrongly. The rewrite uses THE SAME patterns as the checks — a group is only
+# ever replaced inside a sentence that still matches, so reworded prose still
+# fails loudly and gets updated by a person. Formatting follows the old text:
+# same number of decimals, same thousands separator.
+WRITE = '--write' in sys.argv
+RAW = {}          # doc -> current raw text, mutated by rewrites
+ANCHOR = {}       # id(searched text) -> where that text begins in the raw doc.
+                  # Without it, a check scoped to an appendix would rewrite the
+                  # FIRST match in the file — table C1\'s rows landing on table
+                  # 5, which shares the same row shape. That happened.
+
+
+def _flex(pattern):
+    """The check patterns match whitespace-collapsed text; the files have real
+    newlines. Turn every literal space OUTSIDE a character class into \s+."""
+    out, depth, i = [], 0, 0
+    while i < len(pattern):
+        c = pattern[i]
+        if c == '\\' and i + 1 < len(pattern):
+            out.append(pattern[i:i + 2]); i += 2; continue
+        if c == '[':
+            depth += 1
+        elif c == ']':
+            depth = max(0, depth - 1)
+        out.append('\\s+' if c == ' ' and depth == 0 else c)
+        i += 1
+    return ''.join(out)
+
+
+def _fmt(old, value):
+    """Format `value` the way `old` was written: decimals and separators."""
+    sep = ',' if (',' in old and not re.match(r'^\d+,\d$', old)) else (' ' if ' ' in old else '')
+    if sep == ',' and re.match(r'^\d+,\d{1,2}$', old):
+        sep = ''                       # "7,4" was a decimal, not thousands
+    frac = len(old.split('.')[1]) if '.' in old else 0
+    txt = f'{float(value):,.{frac}f}'
+    if sep == ' ':
+        txt = txt.replace(',', ' ')
+    elif sep == '':
+        txt = txt.replace(',', '')
+    return txt
+
+
+def rewrite(doc, name, pattern, expected, anchor=None):
+    raw = RAW[doc]
+    base = raw.index(anchor) if anchor and anchor in raw else 0
+    m = re.search(_flex(pattern), raw[base:])
+    if not m:
+        return False
+    out, last = [], len(raw)
+    for gi in range(m.lastindex or 0, 0, -1):
+        s0, e0 = m.span(gi)[0] + base, m.span(gi)[1] + base   # slice -> file
+        out.append(raw[e0:last])
+        out.append(_fmt(m.group(gi), float(expected[gi - 1])))
+        last = s0
+    out.append(raw[:last])
+    RAW[doc] = ''.join(reversed(out))
+    return True
+
 # tolerance = half a unit in the last displayed digit, plus float slack
 D1, D2, D3, PCT, N = 0.0500001, 0.0050001, 0.0005001, 0.5000001, 0.0000001
 
@@ -52,6 +113,9 @@ def check(doc, name, pattern, expected, text, tol):
     tols = tol if isinstance(tol, (list, tuple)) else [tol] * len(got)
     bad = [(g, w) for g, w, tl in zip(got, expected, tols) if abs(g - float(w)) > tl]
     if bad:
+        if WRITE and rewrite(doc, name, pattern, expected, ANCHOR.get(id(text))):
+            print(f'  re-pinned {doc}: {name}')
+            return
         failures.append(f'{doc}: {name}: doc says {got}, model.json says {[float(e) for e in expected]}')
 
 
@@ -110,6 +174,7 @@ BRIDGE_V = [rb_v['n_pairs'], rb_v['mean'], rb_v['sd'], rb_v['share_vanished'] * 
 # ---------------------------------------------------------------- model.md
 doc = 'docs/model.md'
 raw = norm((ROOT / doc).read_text())
+RAW[doc] = (ROOT / doc).read_text()
 flat = flatten(raw)
 check(doc, 'sigma table', r'\| 0 years \| ([\d.]+) \| \| 1 year \| ([\d.]+) \| \| 2–3 years \| ([\d.]+) \| \| 4\+ years \| ([\d.]+) \|',
       SIGMAS, flat, D1)
@@ -144,8 +209,10 @@ check(doc, 'round bridge V', r'\| Vestland, 1\. → 3\. inntak \| (\d+) \| (-[\d
 # ------------------------------------------------------ technical-report.md
 doc = 'docs/technical-report.md'
 raw = norm((ROOT / doc).read_text())
+RAW[doc] = (ROOT / doc).read_text()
 flat = flatten(raw)
 appendix_c = flatten(raw.split('## Appendix C')[1])
+ANCHOR[id(appendix_c)] = '## Appendix C'
 check(doc, 'n_level', r'([\d,]+) carry a numeric threshold', [META['n_level']], flat, N)
 check(doc, 'n_fill', r'([\d,]+) competed on points \(and thus inform the fill', [META['n_fill']], flat, N)
 m = re.search(r"\\pi' \\;=\\; -([\d.]+) \\;\+\\; ([\d.]+)", flat)
@@ -204,6 +271,10 @@ check(doc, 'round bridge A', r'\| Akershus, round 1 → 2 \| (\d+) \| (-[\d.]+) 
 check(doc, 'round bridge V', r'\| Vestland, round 1 → 3 \| (\d+) \| (-[\d.]+) \(sd ([\d.]+)\) \| (\d+)% of ([\d,]+) \|',
       BRIDGE_V, flat, BRIDGE_TOL)
 
+if WRITE:
+    for doc, txt in RAW.items():
+        (ROOT / doc).write_text(txt)
+    print('docs re-pinned; run again without --write to verify')
 if failures:
     print(f'{checked} checks, {len(failures)} FAILED:')
     for f in failures:
