@@ -305,9 +305,23 @@ check('the two crafts programmes are separate categories',
 uncoded = sorted({p['program'] for _, p in ALL_PROGS
                   if not p.get('grep') and 'baccalaureate' not in p['program'].lower()})
 check('every row except IB carries its Grep code', not uncoded, str(uncoded[:4]))
-bad_code = [(n, p['program']) for n, p in ALL_PROGS if p.get('grep')
-            and taxonomy.resolve(p['program'], p.get('level'))[1] != p['grep']]
-check('the stored Grep code is what the register resolves today', not bad_code, str(bad_code[:3]))
+# A source that publishes its own Kurskode (Møre og Romsdal) outranks the
+# name-derived resolution, so its stored code may legitimately differ from
+# what resolve() reconstructs — but never about WHICH utdanningsprogram the
+# row belongs to: the code's two-letter prefix must still agree with the
+# category the name resolves to (via the successor map for pre-2020 areas).
+bad_code = []
+for n, p in ALL_PROGS:
+    if not p.get('grep'):
+        continue
+    cat, code, _ = taxonomy.resolve(p['program'], p.get('level'))
+    if code == p['grep']:
+        continue
+    stored_cat = taxonomy._category(p['grep'])
+    if stored_cat != cat:
+        bad_code.append((n, p['program'], p['grep'], f'{stored_cat}!={cat}'))
+check('a stored Grep code that differs from resolution still names the same programme',
+      not bad_code, str(bad_code[:3]))
 noisy_off = [(p['program'], p['official']) for _, p in ALL_PROGS
              if p.get('official') and taxonomy.covers(p['program'], p['official'])]
 check('the official title is stored only where it adds a different name', not noisy_off,

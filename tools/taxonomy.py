@@ -87,7 +87,7 @@ CATEGORIES = {
 }
 
 # ------------------------------------------------------------------- DECISION 3
-# The dataset spans 2017-2026 and the 2020 reform lands in the middle of it.
+# The dataset spans 2012-2026 and the 2020 reform lands in the middle of it.
 # Grep still carries the discontinued programmes, so a pre-reform label can
 # resolve to a code that no longer exists. Everything is filed under today's
 # structure: a family reading the map in 2026 thinks in today's terms, and a
@@ -140,6 +140,11 @@ SUCCESSOR_BY_PROGRAM = {
 # stands for the year digit, filled from the row's level: "Språk, samfunn og
 # økonomi" exists as both STSSA2 and STSSA3.
 ALIASES = {
+    # Oslo 2017-2019: plain Studiespesialisering, labelled to distinguish it
+    # from the formgivingsfag variant offered next to it. Fuzzy matching read
+    # the label as the thing it excludes and handed it STFOR1.
+    'studiespesialisering (uten formgivingsfag)': 'STUSP1----',
+    'studiespesialisering uten formgivingsfag': 'STUSP1----',
     'teknikk og industriell produksjon': 'TPTIP1----',
     'teknikk og industrifag': 'TPTIP1----',
     'elektrofag': 'ELELE1----',
@@ -196,12 +201,24 @@ def _load():
 GREP_TITLES, INDEX = _load()
 
 
-def _pick(codes):
+def _pick(codes, level=None):
     """A name can match a live code and a discontinued one — Transport og
     logistikk is SSTRL2 and TPTOL2, blacksmithing is DHSME2 and DTSME2. The
-    live one wins; that is DECISION 3 applied at the register level."""
+    live one wins; that is DECISION 3 applied at the register level.
+
+    Grep's sixth character is the year digit. Where the caller knows the
+    level, a code that agrees with it beats alphabetical order: "Idrettsfag"
+    matches both IDIDR2 (vg2) and IDRET1 (vg1), and plain sorting handed
+    every Vg1 Idrettsfag row the Vg2 identity — 236 entries across all
+    counties wore a code contradicting their own level, which Møre og
+    Romsdal's source (which supplies the codes) was the first to prove."""
     live = [c for c in codes if c[:2] in CATEGORIES]
-    return sorted(live or codes)[0]
+    pool = live or codes
+    if level and len(level) == 3 and level[2].isdigit():
+        lv = [c for c in pool if len(c) > 5 and c[5] == level[2]]
+        if lv:
+            pool = lv
+    return sorted(pool)[0]
 
 
 def _alias(v, level):
@@ -231,7 +248,7 @@ def resolve(program, level=None):
         if cand in ALIASES:
             return (*_alias(ALIASES[cand], level), 'alias')
         if cand in INDEX:
-            return _category(_pick(INDEX[cand])), _pick(INDEX[cand]), 'exact'
+            return _category(_pick(INDEX[cand], level)), _pick(INDEX[cand], level), 'exact'
     # "Studiespesialisering, toppidrett" is Studiespesialisering with a subject
     # bolted on: walk the comma-separated prefixes from longest to shortest.
     parts = [p.strip() for p in program.split(',') if p.strip()]
@@ -240,17 +257,17 @@ def resolve(program, level=None):
         if cand in ALIASES:
             return (*_alias(ALIASES[cand], level), 'alias')
         if cand in INDEX:
-            return _category(_pick(INDEX[cand])), _pick(INDEX[cand]), 'prefix'
+            return _category(_pick(INDEX[cand], level)), _pick(INDEX[cand], level), 'prefix'
     base = _strip_noise(n)
     close = difflib.get_close_matches(base, list(INDEX), n=1, cutoff=0.84)
     if close:
-        code = _pick(INDEX[close[0]])
+        code = _pick(INDEX[close[0]], level)
         ratio = difflib.SequenceMatcher(None, base, close[0]).ratio()
         return _category(code), code, f'fuzzy {ratio:.2f}'
     # last resort: a register name sitting inside a longer county label
     inside = [k for k in INDEX if len(k) > 7 and k in base]
     if inside:
-        code = _pick(INDEX[max(inside, key=len)])
+        code = _pick(INDEX[max(inside, key=len)], level)
         return _category(code), code, 'contains'
     return None, None, 'unresolved'
 

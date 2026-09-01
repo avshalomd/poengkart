@@ -1595,8 +1595,8 @@ const T = {
   website:    { no: 'Nettside', en: 'Website' },
   wiki:       { no: 'Wikipedia', en: 'Wikipedia' },
   srcNote: {
-    no: 'Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaksrunden varierer mellom fylkene og er merket på hver skole. Uoffisiell prototype – tall kan inneholde parsefeil.',
-    en: 'Sources: the county authorities of Akershus, Buskerud, Innlandet, Rogaland, Trøndelag and Vestland, the City of Oslo and vilbli.no (thresholds), NSR/Udir (schools), Kartverket (geocoding), Wikimedia Commons and school websites (photos). The intake round differs by county and is labelled on every school. Unofficial prototype — figures may contain parsing errors.',
+    no: 'Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaksrunden varierer mellom fylkene og er merket på hver skole. Uoffisiell prototype – tall kan inneholde parsefeil.',
+    en: 'Sources: the county authorities of Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Trøndelag and Vestland, the City of Oslo and vilbli.no (thresholds), NSR/Udir (schools), Kartverket (geocoding), Wikimedia Commons and school websites (photos). The intake round differs by county and is labelled on every school. Unofficial prototype — figures may contain parsing errors.',
   },
   noMatch:    { no: 'Ingen treff', en: 'No matches' },
   prioBadge:  { no: 'fortrinnskvote', en: 'priority quota' },
@@ -1806,6 +1806,8 @@ function shownPrograms(s) {
 // the newest year in the dataset, or the one before it: anything older is a
 // school the counties have stopped publishing
 const staleBefore = () => +DATA.years[DATA.years.length - 1] - 1;
+// counties whose sources cannot express "alle inntatt" (see the county note)
+const NO_OPEN_MARKER = new Set(['Møre og Romsdal']);
 function schoolPressure(s, cat) {
   // Demand, judged in the newest dataset year only. Two honest signals:
   //   mean threshold of the programmes that filled up    -> how hard, typically
@@ -1842,7 +1844,11 @@ function schoolPressure(s, cat) {
   return { kind: 'points', v: meanOf(nums), top, topProg, year: yr,
            filled: nums.length + zeroN, total, openN,
            mostlyOpen: openN > total / 2,
-           share: (nums.length + zeroN) / total };
+           // Møre og Romsdal has no "everyone admitted" state, so every cell
+           // is a number and this ratio would be 1.0 for all 22 schools —
+           // maximum-size dots claiming a fill share the source cannot
+           // measure. Unknown, not full: the radius falls back to neutral.
+           share: NO_OPEN_MARKER.has(s.fylke) ? null : (nums.length + zeroN) / total };
 }
 const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(b => v < b.max).css);
 

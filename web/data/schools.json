@@ -283,7 +283,7 @@
       "2025": 39.4,
       "2026": 42.9
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 40.0
      }
@@ -393,7 +393,7 @@
       "2025": 45.9,
       "2026": 45.9
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 46.3
      }
@@ -408,7 +408,7 @@
       "2025": "D",
       "2026": "D"
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": "D"
      }
@@ -587,7 +587,7 @@
       "2025": 43.2,
       "2026": 44.3
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 44.1
      }
@@ -602,7 +602,7 @@
       "2025": "D",
       "2026": "D"
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": "D"
      }
@@ -617,7 +617,7 @@
       "2025": "D",
       "2026": "D"
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": "D"
      }
@@ -729,7 +729,7 @@
       "2025": 35.6,
       "2026": "open"
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 40.4
      }
@@ -846,7 +846,7 @@
       "2025": 37.5,
       "2026": 39.4
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 40.6
      }
@@ -921,7 +921,7 @@
       "2025": "open",
       "2026": 34.4
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 32.5
      }
@@ -1274,7 +1274,7 @@
       "2025": 43.1,
       "2026": 45.6
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 43.5
      }
@@ -1456,7 +1456,7 @@
       "2025": 48.0,
       "2026": 46.3
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 48.4
      }
@@ -1523,7 +1523,7 @@
       "2025": 40.3,
       "2026": 36.5
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 47.6
      }
@@ -1680,7 +1680,7 @@
       "2025": 33.5,
       "2026": 22.3
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 40.6
      }
@@ -1872,7 +1872,7 @@
       "2025": 41.3,
       "2026": 42.3
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 44.0
      }
@@ -2171,7 +2171,7 @@
       "2025": 21.6,
       "2026": 33.3
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 21.8
      }
@@ -2186,7 +2186,7 @@
       "2025": "D",
       "2026": "D"
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": "D"
      }
@@ -2562,7 +2562,7 @@
       "2025": 45.0,
       "2026": 46.3
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 46.5
      }
@@ -3006,7 +3006,7 @@
       "2025": 45.9,
       "2026": 47.6
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r1": {
       "2025": 47.1
      }
@@ -3132,7 +3132,7 @@
       "2024": 42.3,
       "2025": 32.5
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Naturbruk",
@@ -3217,7 +3217,7 @@
      "values": {
       "2024": "D"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Idrettsfag, toppidrett",
@@ -3227,7 +3227,7 @@
      "values": {
       "2025": 51.3
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Kunst, design og arkitektur",
@@ -3377,7 +3377,7 @@
       "2024": 42.7,
       "2025": 29.0
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Restaurant- og matfag",
@@ -3604,7 +3604,7 @@
       "2024": 45.0,
       "2025": 48.2
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Informasjonsteknologi og medieproduksjon",
@@ -3894,6 +3894,9 @@
     }
    ],
    "catchment": true,
+   "orgnr": "974606232",
+   "url": "bfk.no/numedal-vgs/",
+   "address": "Åsbøvegen 16, 3629, NORE",
    "photo": "https://bfk.no/handlers/bv.ashx/ib617b8b1-edc5-40c3-be63-0f162fe1772d/w1200/q32088/k4ac7a4abce5c/skolen5.JPG",
    "photo_source": "reviewed",
    "photo_page": "https://bfk.no/numedal-vgs/",
@@ -3918,7 +3921,7 @@
       "2024": "D",
       "2025": 43.1
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Idrettsfag, toppidrett",
@@ -3928,7 +3931,7 @@
      "values": {
       "2025": 45.0
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Musikk, dans og drama",
@@ -3992,7 +3995,7 @@
       "2024": 43.5,
       "2025": 44.4
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Musikk, dans og drama",
@@ -4449,7 +4452,7 @@
       "2024": 44.4,
       "2025": 39.3
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Kunst, design og arkitektur",
@@ -4661,7 +4664,7 @@
       "2021": "open",
       "2022": "open"
      },
-     "grep": "KDKDA1----"
+     "grep": "KDKDA2----"
     },
     {
      "program": "Realfag",
@@ -4781,7 +4784,7 @@
       "2024": 38.8,
       "2025": 41.3
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Informasjonsteknologi og medieproduksjon",
@@ -4866,7 +4869,7 @@
       "2021": "open",
       "2022": "open"
      },
-     "grep": "MKMED1----"
+     "grep": "MKMED2----"
     },
     {
      "program": "Realfag",
@@ -5271,7 +5274,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "KDKDA1----"
+     "grep": "KDKDA2----"
     },
     {
      "program": "Medier og kommunikasjon",
@@ -5286,7 +5289,7 @@
       "2024": 31.1,
       "2025": "open"
      },
-     "grep": "MKMED1----"
+     "grep": "MKMED2----"
     },
     {
      "program": "Musikk",
@@ -5505,7 +5508,7 @@
       "2024": 48.9,
       "2025": 50.0
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Medier og kommunikasjon",
@@ -5749,7 +5752,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "MKMED1----"
+     "grep": "MKMED2----"
     },
     {
      "program": "Musikk",
@@ -6142,7 +6145,7 @@
       "2024": "open",
       "2025": 26.7
      },
-     "grep": "KDKDA1----"
+     "grep": "KDKDA2----"
     },
     {
      "program": "Medieproduksjon",
@@ -6172,7 +6175,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "MKMED1----"
+     "grep": "MKMED2----"
     },
     {
      "program": "Realfag",
@@ -6420,7 +6423,7 @@
       "2024": 41.5,
       "2025": 31.8
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Naturbruk",
@@ -7121,7 +7124,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "KDKDA1----"
+     "grep": "KDKDA2----"
     },
     {
      "program": "Matfag",
@@ -7380,7 +7383,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Restaurant- og matfag",
@@ -7639,7 +7642,7 @@
       "2024": 39.7,
       "2025": 41.6
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Musikk, dans og drama, musikk",
@@ -8941,7 +8944,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "KDKDA1----"
+     "grep": "KDKDA2----"
     },
     {
      "program": "Medier og kommunikasjon",
@@ -8956,7 +8959,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "MKMED1----"
+     "grep": "MKMED2----"
     },
     {
      "program": "Rørlegger",
@@ -9472,7 +9475,7 @@
       "2024": 27.3,
       "2025": 42.4
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Musikk, dans og drama, dans",
@@ -9740,7 +9743,7 @@
       "2024": 40.0,
       "2025": 41.2
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Restaurant- og matfag",
@@ -10051,7 +10054,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Studiespesialisering",
@@ -10247,7 +10250,7 @@
       "2024": 40.9,
       "2025": 31.8
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Restaurant- og matfag",
@@ -10786,7 +10789,7 @@
       "2024": 46.3,
       "2025": 44.4
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Salg, service og reiseliv",
@@ -10916,7 +10919,7 @@
       "2025": 22.5,
       "2026": 29.3
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Musikk, dans og drama, dans",
@@ -10936,7 +10939,7 @@
       "2025": 34.7,
       "2026": 28.8
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1--4-"
     },
     {
      "program": "Musikk, dans og drama, musikk",
@@ -10960,7 +10963,7 @@
       "2025": 34.7,
       "2026": 26.3
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1--1-"
     },
     {
      "program": "Studiespesialisering",
@@ -10995,7 +10998,7 @@
       "2012": 41.3,
       "2013": 31.3
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--I-"
     }
    ],
    "orgnr": "974576473",
@@ -11165,7 +11168,7 @@
       "2024": 29.4,
       "2026": 25.4
      },
-     "grep": "RMRMF1----"
+     "grep": "RMRMF1--TK"
     },
     {
      "program": "Teknologi- og industrifag",
@@ -11256,7 +11259,7 @@
       "2020": 37.3,
       "2021": 29.3
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1--4-"
     },
     {
      "program": "Musikk, dans og drama, drama",
@@ -11275,7 +11278,7 @@
       "2020": 44.0,
       "2021": 41.4
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1--6-"
     },
     {
      "program": "Musikk, dans og drama, musikk",
@@ -11294,7 +11297,7 @@
       "2020": 36.9,
       "2021": 35.7
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1--1-"
     },
     {
      "program": "Studiespesialisering",
@@ -11316,8 +11319,8 @@
      "grep": "STUSP1----"
     },
     {
-     "program": "Studiespesialisering formgiv",
-     "program_en": "Specialization in General Studies",
+     "program": "Studiespesialisering med formgivingsfag",
+     "program_en": "Art, Craft and Design Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
@@ -11326,7 +11329,7 @@
       "2014": 28.2,
       "2015": 38.9
      },
-     "grep": "STUSP1----"
+     "grep": "STFOR1----"
     },
     {
      "program": "Studiespesialisering, forskerlinje",
@@ -11344,7 +11347,7 @@
       "2020": 43.3,
       "2021": 39.7
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--Q-"
     },
     {
      "program": "Studiespesialisering, internasjonalisering",
@@ -11363,7 +11366,7 @@
       "2020": 40.0,
       "2021": 34.6
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--N-"
     },
     {
      "program": "Studiespesialisering, toppidrett",
@@ -11382,7 +11385,7 @@
       "2020": 36.7,
       "2021": 36.0
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--T-"
     },
     {
      "program": "Teknologi- og industrifag",
@@ -11396,6 +11399,7 @@
      "grep": "TPTIP1----"
     }
    ],
+   "address": "Gangstøvikvegen 27, 6009, ÅLESUND",
    "nsr_name": "(manual)",
    "lat": 62.4741,
    "lon": 6.2279
@@ -11519,7 +11523,7 @@
       "2025": 51.3,
       "2026": 54.1
      },
-     "grep": "ELELE1----"
+     "grep": "ELELE1P---"
     },
     {
      "program": "Helse- og oppvekstfag",
@@ -11589,7 +11593,7 @@
       "2025": 27.2,
       "2026": 28.1
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--N-"
     },
     {
      "program": "Teknologi- og industrifag",
@@ -11637,7 +11641,7 @@
       "2025": 41.0,
       "2026": 45.6
      },
-     "grep": "TPTIP1----",
+     "grep": "TPTIP1P---",
      "official": "Teknologi- og industrifag"
     }
    ],
@@ -11836,9 +11840,7 @@
      "grep": "TPTIP1----"
     }
    ],
-   "orgnr": "974576481",
-   "url": "www.heroy.vgs.no/",
-   "address": "Lisjebøvegen 4, 6091, FOSNAVÅG",
+   "address": "6140 Syvde",
    "nsr_name": "(manual)",
    "lat": 62.08897,
    "lon": 5.73953
@@ -11877,7 +11879,7 @@
       "2019": 35.0,
       "2022": 46.0
      },
-     "grep": "BABAT1----"
+     "grep": "BABAT1P---"
     },
     {
      "program": "Helse- og oppvekstfag",
@@ -11911,7 +11913,7 @@
      "values": {
       "2026": 36.0
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Naturbruk",
@@ -11996,7 +11998,7 @@
       "2016": 38.5,
       "2017": 31.3
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--N-"
     },
     {
      "program": "Teknologi- og industrifag",
@@ -12037,7 +12039,7 @@
       "2023": 46.2,
       "2024": 46.5
      },
-     "grep": "TPTIP1----",
+     "grep": "TPTIP1P---",
      "official": "Teknologi- og industrifag"
     }
    ],
@@ -12212,7 +12214,7 @@
       "2021": 20.6,
       "2022": 20.6
      },
-     "grep": "MKMED1----"
+     "grep": "MEMOK1----"
     },
     {
      "program": "Naturbruk",
@@ -12297,11 +12299,11 @@
       "2015": 36.5,
       "2016": 34.7
      },
-     "grep": "SSSSA1----"
+     "grep": "SSSSA1P---"
     },
     {
-     "program": "Studiespesialisering formgiv",
-     "program_en": "Specialization in General Studies",
+     "program": "Studiespesialisering med formgivingsfag",
+     "program_en": "Art, Craft and Design Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
@@ -12309,7 +12311,7 @@
       "2013": 18.7,
       "2014": 24.7
      },
-     "grep": "STUSP1----"
+     "grep": "STFOR1----"
     },
     {
      "program": "Teknologi- og industrifag",
@@ -12350,7 +12352,7 @@
       "2018": 39.4,
       "2019": 41.2
      },
-     "grep": "TPTIP1----",
+     "grep": "TPTIP1P---",
      "official": "Teknologi- og industrifag"
     }
    ],
@@ -12402,7 +12404,7 @@
       "2018": 22.9,
       "2019": 29.4
      },
-     "grep": "MKMED1----"
+     "grep": "MEMOK1----"
     },
     {
      "program": "Musikk, dans og drama, jazz, LAL",
@@ -12419,7 +12421,7 @@
       "2024": 43.3,
       "2025": 42.9
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1L-J-"
     },
     {
      "program": "Musikk, dans og drama, musikk",
@@ -12443,7 +12445,7 @@
       "2025": 36.9,
       "2026": 28.7
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1--1-"
     },
     {
      "program": "Salg, service og reiseliv med innov/ledelse",
@@ -12457,7 +12459,7 @@
       "2025": 40.9,
       "2026": 34.0
      },
-     "grep": "SRSSR1----"
+     "grep": "SRSSR1--EP"
     },
     {
      "program": "Studiespesialisering",
@@ -12484,8 +12486,8 @@
      "grep": "STUSP1----"
     },
     {
-     "program": "Studiespesialisering formgiv",
-     "program_en": "Specialization in General Studies",
+     "program": "Studiespesialisering med formgivingsfag",
+     "program_en": "Art, Craft and Design Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
@@ -12494,7 +12496,7 @@
       "2014": 23.8,
       "2015": 34.7
      },
-     "grep": "STUSP1----"
+     "grep": "STFOR1----"
     },
     {
      "program": "Studiespesialisering, internasjonalisering",
@@ -12504,7 +12506,7 @@
      "values": {
       "2015": 30.6
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--N-"
     },
     {
      "program": "Studiespesialisering, toppidrett",
@@ -12523,7 +12525,7 @@
       "2025": 36.7,
       "2026": 33.8
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--T-"
     }
    ],
    "orgnr": "974576422",
@@ -12600,7 +12602,7 @@
       "2025": 40.0,
       "2026": 35.3
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1L-BF"
     },
     {
      "program": "Restaurant- og matfag",
@@ -12727,7 +12729,7 @@
       "2014": 42.4,
       "2016": 35.3
      },
-     "grep": "BABAT1----"
+     "grep": "BABAT1P---"
     },
     {
      "program": "Design og håndverk",
@@ -12784,7 +12786,7 @@
       "2025": 37.8,
       "2026": 20.6
      },
-     "grep": "ELELE1----"
+     "grep": "ELELE1N---"
     },
     {
      "program": "Frisør, blomster, interiør og eksponeringsdesign",
@@ -12844,7 +12846,7 @@
       "2022": 23.3,
       "2023": 29.2
      },
-     "grep": "HSHSF1----"
+     "grep": "HSHSF1A---"
     },
     {
      "program": "Helse- og oppvekstfag, 2-årig, 2.år",
@@ -12865,7 +12867,7 @@
       "2022": 10.0,
       "2023": 30.0
      },
-     "grep": "HSHSF1----"
+     "grep": "HSHSF1B---"
     },
     {
      "program": "Helse- og oppvekstfag, SK 3 år",
@@ -12878,7 +12880,7 @@
       "2025": 46.5,
       "2026": 46.9
      },
-     "grep": "HSHSF1----"
+     "grep": "HSHSF1N---"
     },
     {
      "program": "Idrettsfag",
@@ -12902,7 +12904,7 @@
       "2025": 39.3,
       "2026": 34.7
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Informasjonsteknologi og medieproduksjon",
@@ -12945,7 +12947,7 @@
       "2020": 50.3,
       "2021": 45.7
      },
-     "grep": "SRSSR1----"
+     "grep": "SRSSR1--EP"
     },
     {
      "program": "Service og samferdsel",
@@ -12978,7 +12980,7 @@
       "2018": 43.6,
       "2019": 44.1
      },
-     "grep": "SSSSA1----"
+     "grep": "SSSSA1--EP"
     },
     {
      "program": "Studiespesialisering, 2-årig, 1.år",
@@ -12998,7 +13000,7 @@
       "2022": 40.0,
       "2023": 24.1
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1A---"
     },
     {
      "program": "Studiespesialisering, 2-årig, 2.år",
@@ -13017,7 +13019,7 @@
       "2022": 23.3,
       "2023": 40.0
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1B---"
     },
     {
      "program": "Teknologi- og industrifag",
@@ -13053,7 +13055,7 @@
       "2019": 35.9,
       "2021": 34.5
      },
-     "grep": "TPTIP1----",
+     "grep": "TPTIP1N---",
      "official": "Teknologi- og industrifag"
     },
     {
@@ -13066,7 +13068,7 @@
       "2014": 54.4,
       "2016": 47.1
      },
-     "grep": "TPTIP1----",
+     "grep": "TPTIP1P---",
      "official": "Teknologi- og industrifag"
     }
    ],
@@ -13098,7 +13100,7 @@
       "2025": 34.4,
       "2026": 29.4
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Studiespesialisering",
@@ -13132,7 +13134,7 @@
      "values": {
       "2019": 37.1
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1Z---"
     },
     {
      "program": "Studiespesialisering, internasjonalisering",
@@ -13156,7 +13158,7 @@
       "2025": 38.8,
       "2026": 25.0
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--N-"
     }
    ],
    "orgnr": "974577267",
@@ -13225,7 +13227,7 @@
       "2025": 30.7,
       "2026": 37.5
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Naturbruk",
@@ -13429,6 +13431,9 @@
      "grep": "TPTIP1----"
     }
    ],
+   "orgnr": "974576570",
+   "url": "www.sunndal.vgs.no/",
+   "address": "Skoleveien 14, 6600, SUNNDALSØRA",
    "nsr_name": "(stedsnavn)",
    "lat": 62.66917,
    "lon": 8.59046
@@ -13616,7 +13621,7 @@
      "values": {
       "2020": 38.8
      },
-     "grep": "ELELE1----"
+     "grep": "ELELE1N-AU"
     },
     {
      "program": "Helse- og oppvekstfag",
@@ -13776,7 +13781,7 @@
       "2025": 45.0,
       "2026": 27.3
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Medier og kommunikasjon",
@@ -13789,7 +13794,7 @@
       "2016": 30.6,
       "2017": 25.0
      },
-     "grep": "MKMED1----"
+     "grep": "MEMOK1----"
     },
     {
      "program": "Naturbruk",
@@ -13887,7 +13892,7 @@
       "2025": 33.3,
       "2026": 32.0
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Informasjonsteknologi og medieproduksjon",
@@ -13972,7 +13977,7 @@
       "2020": 32.5,
       "2021": 40.0
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--K-"
     },
     {
      "program": "Teknologi-/industrifag, YSK 4 år",
@@ -13988,7 +13993,7 @@
       "2018": 42.2,
       "2019": 50.0
      },
-     "grep": "TPTIP1----",
+     "grep": "TPTIP1P---",
      "official": "Teknologi- og industrifag"
     }
    ],
@@ -14045,7 +14050,7 @@
       "2025": 34.7,
       "2026": 41.9
      },
-     "grep": "MKMED1----"
+     "grep": "MEMOK1----"
     },
     {
      "program": "Musikk, dans og drama, musikk",
@@ -14069,7 +14074,7 @@
       "2025": 36.5,
       "2026": 43.5
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1--1-"
     },
     {
      "program": "Service og samferdsel",
@@ -14156,7 +14161,7 @@
       "2022": 39.3,
       "2023": 34.4
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Informasjonsteknologi og medieproduksjon",
@@ -14203,7 +14208,7 @@
       "2018": 32.7,
       "2019": 27.6
      },
-     "grep": "MKMED1----"
+     "grep": "MEMOK1----"
     },
     {
      "program": "Musikk, dans og drama, dans",
@@ -14217,7 +14222,7 @@
       "2025": 40.0,
       "2026": 34.4
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1--4-"
     },
     {
      "program": "Musikk, dans og drama, drama",
@@ -14231,7 +14236,7 @@
       "2025": 34.7,
       "2026": 30.0
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1--6-"
     },
     {
      "program": "Musikk, dans og drama, musikk",
@@ -14245,7 +14250,7 @@
       "2025": 25.3,
       "2026": 31.3
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1--1-"
     },
     {
      "program": "Naturbruk",
@@ -14316,7 +14321,7 @@
       "2018": 28.2,
       "2019": 34.1
      },
-     "grep": "SSSSA1----"
+     "grep": "SSSSA1P---"
     },
     {
      "program": "Studiespesialisering",
@@ -14355,7 +14360,7 @@
       "2017": 36.3,
       "2018": 33.5
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--I-"
     },
     {
      "program": "Studiespesialisering, forskerlinje",
@@ -14369,7 +14374,7 @@
       "2025": 27.3,
       "2026": 32.5
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--Q-"
     },
     {
      "program": "Studiespesialisering, internasjonalisering",
@@ -14383,7 +14388,7 @@
       "2025": 37.4,
       "2026": 33.4
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--N-"
     },
     {
      "program": "Studiespesialisering, toppidrett",
@@ -14393,7 +14398,7 @@
      "values": {
       "2022": 38.6
      },
-     "grep": "STUSP1----"
+     "grep": "STUSP1--T-"
     },
     {
      "program": "Teknologi- og industrifag",
@@ -14420,7 +14425,7 @@
    ],
    "orgnr": "974576503",
    "url": "www.alesund.vgs.no",
-   "address": "Gangstøvikvegen 27, 6009, ÅLESUND",
+   "address": "Sjømannsvegen 47, 6008, ÅLESUND",
    "nsr_name": "(manual)",
    "lat": 62.46859,
    "lon": 6.18485
@@ -14599,7 +14604,7 @@
       "2025": 40.4,
       "2026": 38.8
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Studiespes, business",
@@ -14635,14 +14640,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 35.6
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     },
     {
      "program": "Studiespesialisering med science",
@@ -14752,14 +14756,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": "open"
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     }
    ],
    "orgnr": "990574898",
@@ -14800,14 +14803,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 41.5
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     },
     {
      "program": "Studiespesialisering med IB, MYP5",
@@ -14998,14 +15000,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 43.5
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     }
    ],
    "orgnr": "912001709",
@@ -15219,14 +15220,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 49.7
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     }
    ],
    "orgnr": "974590999",
@@ -15420,14 +15420,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 44.1
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     }
    ],
    "orgnr": "974590867",
@@ -15503,14 +15502,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 43.8
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     }
    ],
    "orgnr": "995821664",
@@ -15572,14 +15570,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 38.2
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     }
    ],
    "orgnr": "974590891",
@@ -15651,14 +15648,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": "open"
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     }
    ],
    "orgnr": "974590956",
@@ -15733,14 +15729,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": "open"
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     },
     {
      "program": "Studiespesialisering, komp.løp",
@@ -15843,14 +15838,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 30.7
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     }
    ],
    "orgnr": "999173926",
@@ -16069,14 +16063,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 40.6
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     },
     {
      "program": "Studiespesialisering, teknologi og miljø",
@@ -16176,7 +16169,7 @@
       "2025": 45.0,
       "2026": 45.6
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Studiespesialisering",
@@ -16198,14 +16191,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 42.9
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     }
    ],
    "orgnr": "974590913",
@@ -16332,14 +16324,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 50.4
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     },
     {
      "program": "Studiespesialisering, toppidrett",
@@ -16435,14 +16426,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 40.2
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     }
    ],
    "orgnr": "974590883",
@@ -16483,14 +16473,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 45.7
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     }
    ],
    "orgnr": "874590932",
@@ -16528,7 +16517,7 @@
       "2025": 44.7,
       "2026": 44.3
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Studiespesialisering",
@@ -16550,14 +16539,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 30.0
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     },
     {
      "program": "Studiespesialisering, toppidrett",
@@ -16668,14 +16656,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": "open"
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     },
     {
      "program": "Teknikk og industriell produksjon",
@@ -16822,14 +16809,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 48.4
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     },
     {
      "program": "Studiespesialisering med forskerlinje",
@@ -16950,7 +16936,7 @@
       "2025": "open",
       "2026": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Studiespesialisering",
@@ -16972,14 +16958,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": "open"
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     }
    ],
    "orgnr": "974590972",
@@ -17020,14 +17005,13 @@
     },
     {
      "program": "Studiespesialisering (uten formgivingsfag)",
-     "program_en": "Art, Craft and Design Studies",
+     "program_en": "Specialization in General Studies",
      "level": "Vg1",
      "category": "ST",
      "values": {
       "2017": 36.5
      },
-     "grep": "STFOR1----",
-     "official": "Studiespesialisering med formgivingsfag vg1"
+     "grep": "STUSP1----"
     },
     {
      "program": "Studiespesialisering, toppidrett",
@@ -17253,7 +17237,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "KDKDA1----"
+     "grep": "KDKDA2----"
     },
     {
      "program": "Medier og kommunikasjon",
@@ -17269,7 +17253,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "MKMED1----"
+     "grep": "MKMED2----"
     },
     {
      "program": "Realfag",
@@ -17355,7 +17339,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "KDKDA1----"
+     "grep": "KDKDA3----"
     },
     {
      "program": "Medier og kommunikasjon",
@@ -17395,7 +17379,7 @@
       "2018": "F",
       "2019": "U"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -17406,8 +17390,8 @@
       "2018": "F",
       "2019": "U"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     },
     {
      "program": "Tannhelsesekretær",
@@ -17496,7 +17480,7 @@
       "2024": "open",
       "2025": 34.5
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Medier og kommunikasjon",
@@ -17790,7 +17774,7 @@
       "2020": "open",
       "2021": "U"
      },
-     "grep": "MKMED1----"
+     "grep": "MKMED2----"
     },
     {
      "program": "Realfag",
@@ -17954,7 +17938,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDIDR3----"
     },
     {
      "program": "Medier og kommunikasjon",
@@ -18006,7 +17990,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -18023,8 +18007,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     },
     {
      "program": "Påbygg etter yrkeskompetanse, dagtid",
@@ -18519,7 +18503,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -18536,8 +18520,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     }
    ],
    "orgnr": "974624478",
@@ -19990,7 +19974,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "KDKDA1----"
+     "grep": "KDKDA2----"
     },
     {
      "program": "Medieproduksjon",
@@ -20108,7 +20092,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "KDKDA1----"
+     "grep": "KDKDA3----"
     },
     {
      "program": "Påbygg til generell studiekompetanse",
@@ -20216,7 +20200,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "MKMED1----"
+     "grep": "MKMED2----"
     },
     {
      "program": "Realfag",
@@ -20285,7 +20269,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -20302,8 +20286,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     }
    ],
    "uncertain_years": [
@@ -20436,7 +20420,7 @@
       "2024": 41.3,
       "2025": 42.5
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Restaurant- og matfag",
@@ -20812,7 +20796,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDIDR3----"
     },
     {
      "program": "Påbygg til generell studiekompetanse",
@@ -21310,7 +21294,7 @@
       "2024": "open",
       "2025": 33.8
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Medier og kommunikasjon",
@@ -21374,7 +21358,7 @@
       "2022": "open",
       "2023": "open"
      },
-     "grep": "MKMED1----"
+     "grep": "MKMED2----"
     },
     {
      "program": "Realfag",
@@ -21426,7 +21410,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDIDR3----"
     },
     {
      "program": "Medier og kommunikasjon",
@@ -21478,7 +21462,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -21495,8 +21479,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     },
     {
      "program": "Påbygg etter yrkeskompetanse, dagtid",
@@ -21746,7 +21730,7 @@
       "2020": "U",
       "2021": "U"
      },
-     "grep": "MKMED1----"
+     "grep": "MKMED2----"
     },
     {
      "program": "Realfag",
@@ -21833,7 +21817,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -21850,8 +21834,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     },
     {
      "program": "Påbygg etter yrkeskompetanse, dagtid",
@@ -21905,7 +21889,7 @@
       "2024": 44.7,
       "2025": 45.1
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Studiespesialisering",
@@ -21990,7 +21974,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDIDR3----"
     },
     {
      "program": "Realfag",
@@ -22007,7 +21991,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -22024,8 +22008,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     }
    ],
    "orgnr": "974624397",
@@ -22126,7 +22110,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Studiespesialisering",
@@ -22427,7 +22411,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDIDR3----"
     },
     {
      "program": "Realfag",
@@ -22444,7 +22428,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -22461,8 +22445,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     },
     {
      "program": "Påbygg er yrkeskompetanse, PBPBY4P2",
@@ -22682,7 +22666,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "MDDAN2----"
+     "grep": "MDDAN3----"
     },
     {
      "program": "Drama",
@@ -22699,7 +22683,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "MDDRA2----"
+     "grep": "MDDRA3----"
     },
     {
      "program": "Musikk",
@@ -22716,7 +22700,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "MDMUS2----"
+     "grep": "MDMUS3----"
     },
     {
      "program": "Realfag",
@@ -22733,7 +22717,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -22750,8 +22734,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     }
    ],
    "orgnr": "974624362",
@@ -22815,7 +22799,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Studiespesialisering",
@@ -23089,7 +23073,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDIDR3----"
     },
     {
      "program": "Påbygg til generell studiekompetanse",
@@ -23118,7 +23102,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -23135,8 +23119,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     }
    ],
    "orgnr": "974624672",
@@ -23258,7 +23242,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -23275,8 +23259,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     }
    ],
    "orgnr": "974624443",
@@ -23314,7 +23298,7 @@
       "2024": 43.8,
       "2025": 45.3
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Studiespesialisering",
@@ -23463,7 +23447,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDIDR3----"
     },
     {
      "program": "Realfag",
@@ -23480,7 +23464,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Realfag, toppidrett",
@@ -23497,7 +23481,7 @@
       "2024": "D",
       "2025": "D"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -23514,8 +23498,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     },
     {
      "program": "Språk, samfunn og økonomi, toppidrett",
@@ -23724,7 +23708,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "MDDAN2----"
+     "grep": "MDDAN3----"
     },
     {
      "program": "Drama",
@@ -23741,7 +23725,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "MDDRA2----"
+     "grep": "MDDRA3----"
     },
     {
      "program": "Musikk",
@@ -23758,7 +23742,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "MDMUS2----"
+     "grep": "MDMUS3----"
     },
     {
      "program": "Realfag",
@@ -23775,7 +23759,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -23792,8 +23776,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     }
    ],
    "orgnr": "974624400",
@@ -23970,7 +23954,7 @@
       "2024": "open",
       "2025": 41.3
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Naturbruk",
@@ -24295,7 +24279,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDIDR3----"
     },
     {
      "program": "Påbygg gen. Studiekompetanse",
@@ -24326,7 +24310,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -24343,8 +24327,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     },
     {
      "program": "Studieforberedende naturbruk",
@@ -24446,7 +24430,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "MKMED1----"
+     "grep": "MKMED2----"
     },
     {
      "program": "Realfag",
@@ -24548,7 +24532,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -24565,8 +24549,8 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     }
    ],
    "orgnr": "974624435",
@@ -24827,7 +24811,7 @@
       "2024": 30.0,
       "2025": "open"
      },
-     "grep": "KDKDA1----"
+     "grep": "KDKDA2----"
     },
     {
      "program": "Medieproduksjon",
@@ -24861,7 +24845,7 @@
       "2024": "open",
       "2025": 32.2
      },
-     "grep": "MKMED1----"
+     "grep": "MKMED2----"
     },
     {
      "program": "Musikk",
@@ -24895,7 +24879,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "MDDAN2----"
+     "grep": "MDDAN3----"
     },
     {
      "program": "Drama",
@@ -24912,7 +24896,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "MDDRA2----"
+     "grep": "MDDRA3----"
     },
     {
      "program": "Eksponeringsdesign",
@@ -24959,7 +24943,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "KDKDA1----"
+     "grep": "KDKDA3----"
     },
     {
      "program": "Mediedesign",
@@ -25007,7 +24991,7 @@
       "2024": "F",
       "2025": "F"
      },
-     "grep": "MDMUS2----"
+     "grep": "MDMUS3----"
     },
     {
      "program": "Utstillingsdesign",
@@ -25776,7 +25760,7 @@
       "2024": "open",
       "2025": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Studiespesialisering",
@@ -26077,7 +26061,7 @@
       "2022": "F",
       "2023": "F"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDIDR3----"
     },
     {
      "program": "Påbygg til generell studiekompetanse",
@@ -26110,7 +26094,7 @@
       "2022": "F",
       "2023": "F"
      },
-     "grep": "STREA2----"
+     "grep": "STREA3----"
     },
     {
      "program": "Språk, samfunn og økonomi",
@@ -26125,8 +26109,8 @@
       "2022": "F",
       "2023": "F"
      },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3"
     },
     {
      "program": "Påbygg etter yrkeskompetanse",
@@ -26452,7 +26436,7 @@
      "values": {
       "2025": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Restaurant- og matfag",
@@ -26594,7 +26578,7 @@
      "values": {
       "2025": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Naturbruk",
@@ -26756,7 +26740,7 @@
      "values": {
       "2025": 45.0
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Musikk, dans og drama, musikk",
@@ -27131,7 +27115,7 @@
      "values": {
       "2025": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Studiespesialisering",
@@ -27202,7 +27186,7 @@
      "values": {
       "2025": 38.7
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Restaurant- og matfag",
@@ -27263,7 +27247,7 @@
      "values": {
       "2025": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Studiespesialisering",
@@ -27365,7 +27349,7 @@
      "values": {
       "2025": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Musikk, dans og drama, dans",
@@ -27607,7 +27591,7 @@
      "values": {
       "2025": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Salg, service og reiseliv",
@@ -27693,7 +27677,7 @@
      "values": {
       "2025": 34.0
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Salg, service og reiseliv",
@@ -27967,7 +27951,7 @@
      "values": {
       "2025": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Kunst, design og arkitektur",
@@ -28078,7 +28062,7 @@
      "values": {
       "2025": 41.9
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Restaurant- og matfag",
@@ -28352,7 +28336,7 @@
      "values": {
       "2025": "open"
      },
-     "grep": "IDIDR2----"
+     "grep": "IDRET1----"
     },
     {
      "program": "Salg, service og reiseliv",
@@ -28716,7 +28700,7 @@
      "values": {
       "2026": 43.8
      },
-     "grep": "SRSSR1----",
+     "grep": "SRSSR2----",
      "values_r3": {
       "2026": 43.8
      }
@@ -30799,7 +30783,7 @@
       "2025": 25.3,
       "2026": "open"
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r3": {
       "2020": "open",
       "2024": "open",
@@ -31291,7 +31275,7 @@
       "2025": 38.8,
       "2026": 42.5
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r3": {
       "2020": "open",
       "2024": 35.6,
@@ -31839,7 +31823,7 @@
      "values": {
       "2022": 36.7
      },
-     "grep": "KDKDA1----"
+     "grep": "KDKDA2----"
     }
    ],
    "catchment": true,
@@ -32598,7 +32582,7 @@
      "values": {
       "2026": "open"
      },
-     "grep": "SRSSR1----",
+     "grep": "SRSSR2----",
      "values_r3": {
       "2026": "open"
      }
@@ -34959,7 +34943,7 @@
       "2021": 43.3,
       "2022": 42.1
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r3": {
       "2020": "open"
      }
@@ -35719,7 +35703,7 @@
      "values": {
       "2026": 37.5
      },
-     "grep": "SRSSR1----",
+     "grep": "SRSSR2----",
      "values_r3": {
       "2026": 36.3
      }
@@ -36852,7 +36836,7 @@
       "2025": 42.4,
       "2026": 45.8
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r3": {
       "2020": "open",
       "2024": 45.3,
@@ -37213,7 +37197,7 @@
      "values": {
       "2026": "open"
      },
-     "grep": "SRSSR1----",
+     "grep": "SRSSR2----",
      "values_r3": {
       "2026": "open"
      }
@@ -37390,7 +37374,7 @@
       "2025": 38.1,
       "2026": 40.4
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r3": {
       "2020": 40.7,
       "2024": 36.3,
@@ -37732,7 +37716,7 @@
      "values": {
       "2026": "open"
      },
-     "grep": "SRSSR1----",
+     "grep": "SRSSR2----",
      "values_r3": {
       "2026": "open"
      }
@@ -37867,7 +37851,7 @@
       "2025": 42.7,
       "2026": 47.4
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r3": {
       "2020": 47.3,
       "2024": 47.14,
@@ -38179,7 +38163,7 @@
      "values": {
       "2026": 34.4
      },
-     "grep": "SRSSR1----",
+     "grep": "SRSSR2----",
      "values_r3": {
       "2026": 32.2
      }
@@ -38315,7 +38299,7 @@
       "2025": 37.5,
       "2026": 35.6
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r3": {
       "2020": 34.3,
       "2024": "open",
@@ -39092,7 +39076,7 @@
       "2025": 31.9,
       "2026": 37.2
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r3": {
       "2020": "open",
       "2024": "open",
@@ -39335,7 +39319,7 @@
      "values": {
       "2026": "open"
      },
-     "grep": "SRSSR1----",
+     "grep": "SRSSR2----",
      "values_r3": {
       "2026": "open"
      }
@@ -40787,7 +40771,7 @@
       "2025": 43.5,
       "2026": 43.1
      },
-     "grep": "IDIDR2----",
+     "grep": "IDRET1----",
      "values_r3": {
       "2020": 38.0,
       "2024": 39.7,
@@ -41060,7 +41044,7 @@
      "values": {
       "2026": 28.8
      },
-     "grep": "SRSSR1----",
+     "grep": "SRSSR2----",
      "values_r3": {
       "2026": 28.8
      }

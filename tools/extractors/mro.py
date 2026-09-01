@@ -129,6 +129,11 @@ def extract():
             key = (school, program.lower())
             row = rows.setdefault(key, {'school': school, 'program': program,
                                         'level': common.guess_level(program, 'Vg1'),
+                                        # the county supplies the register's own
+                                        # code; it outranks anything re-derived
+                                        # from the label (and keeps the MDD
+                                        # variants distinct)
+                                        'grep': str(kode).strip(),
                                         'values': {},
                                         'county': META['fylke'], 'round': META['round']})
             if year in row['values'] and owner.get((key, year)) not in YIELDS and nr in YIELDS:

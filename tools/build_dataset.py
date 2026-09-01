@@ -120,6 +120,10 @@ def main():
             # the register's own identity for the row: the Grep code, and the
             # official title where the county's label spells it differently
             code, official = taxonomy.grep_info(rec['program'], rec['level'])
+            if rec.get('grep'):
+                # the county's own register column outranks name-derived codes
+                code = rec['grep']
+                official = (taxonomy.GREP_TITLES.get(code) or {}).get('nob') or official
             if code:
                 entry_p['grep'] = code
                 if official and not taxonomy.covers(rec['program'], official):

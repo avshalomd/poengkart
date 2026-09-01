@@ -84,9 +84,9 @@ are as follows:
   (Sections 5–6).
 - **A held-out evaluation** on the 2025–2026 intakes showing the model
   dominates persistence and group-mean baselines in every history stratum
-  (RMSE 4.91 vs 5.91 and 6.03 in the deepest stratum), with 80.9% empirical
+  (RMSE 5.11 vs 6.24 and 6.17 in the deepest stratum), with 84.3% empirical
   coverage of nominal 80% intervals and calibrated probabilities (Brier
-  0.092 vs 0.152 where both are defined), plus ablations of the structural
+  0.093 vs 0.150 where both are defined), plus ablations of the structural
   choices (Section 7).
 - **Measurements of the publication practice itself**: a paired within-year
   estimate of the intake-round effect (−3.2 to −3.4 points, 16–32% of
@@ -151,7 +151,8 @@ not point predictions, the deliverable.
 **Hierarchical models and shrinkage.** Borrowing strength across small
 groups by partial pooling is classical (James & Stein, 1961; Efron & Morris,
 1975) and is standard multilevel practice (Gelman & Hill, 2007). We apply it
-to a censored panel in which 530 of 2,020 series have a single observation,
+to a censored panel in which 530 of the 2,020 series with any numeric
+threshold have a single observation,
 with variance components estimated by an EM-type procedure (Dempster, Laird
 & Rubin, 1977).
 
@@ -240,9 +241,19 @@ survives), Akershus 2024–2026 (the 2024/25 and 2026/27 tables likewise
 released to us under a freedom-of-information request in August 2026, as
 machine-readable workbooks and second intake round only — they were never
 published), Buskerud 2024–2025, and Trøndelag 2025 only. Of the 2,020
-school×programme series, 530 have exactly one observed year. Among the
+school×programme series that ever carry a numeric threshold, 530 have
+exactly one observed year. Among the
 11,891 cells, 11,141 competed on points (and thus inform the fill model) and
-8,011 carry a numeric threshold (and thus inform the level model). The
+8,011 carry a numeric threshold (and thus inform the level model). One
+publication practice deserves its own flag: Møre og Romsdal's extract has no
+"everyone admitted" state — every offered programme carries a number, so an
+undersubscribed programme prints its weakest admitted applicant where other
+counties print a marker. Two consequences follow. The county's low outliers
+enter the level means that other counties' conventions would exclude, and
+every one of its 1,790 cells reaches the fill model labelled "filled", a
+label that is constant by construction and therefore carries no information
+about queue formation — the fill probabilities for these series lean on the
+model's pooled structure rather than on county evidence. The
 non-publishing intake areas either state that they choose not to publish
 (Agder, Nordland, Østfold) or publish aggregate statistics without
 thresholds. The unevenness is a
@@ -450,7 +461,7 @@ row in bold. Persistence is undefined for 0-year series.
 
 The model beats both baselines on RMSE and MAE in every stratum where they
 are defined (Figure 1). The ±3 hit rate tells a subtler story: persistence
-still wins it in the deepest stratum (55% vs 52%) — repeating the last
+still wins it in the deepest stratum (51% vs 50%) — repeating the last
 figure lands inside a narrow band slightly more often there, and misses by
 more when it misses, which is the trade a squared-error forecast makes.
 Overall: RMSE 5.60, MAE 4.24, 46% of forecasts within ±3 points. For
@@ -614,15 +625,21 @@ throughout, and the full dataset is downloadable from the page.
   round 1, more applicants are ultimately admitted than the figure implies;
   Section 8.1 measures the gap where it can be measured, and equation (6)
   passes it on only for the county where it is measured.
-- **Short test window.** Two held-out years (1,606 cells) from one country.
+- **Short test window.** Two held-out years (1,829 cells) from one country.
   We report per-year results (Appendix B) rather than standard errors over
   years; 2026 looks better than 2025 partly because most of its cells are
-  drawn from the two counties with the deepest histories.
+  drawn from the counties with the deepest histories.
 - **Independence in the choice list.** The at-least-one probability treats
   wishes as independent; a hard year hits several of them at once, so the
   true probability is somewhat lower.
 - **Catchment counties.** A threshold binds only residents of the intake
   area; the application states this where it applies.
+- **The open-marker practice gap.** One county (Møre og Romsdal) cannot
+  express "everyone admitted", so its cells are all labelled filled in the
+  hurdle and its lowest figures are weakest-admitted values, not
+  competitive bars (Section 4.4). The application sizes that county's
+  markers neutrally rather than by fill share, which its data cannot
+  measure.
 - **Self-selected counties.** The eight publishing counties chose to
   publish; nothing here is evidence about the seven that do not, and any
   future expansion inherits whatever made them different.
@@ -794,19 +811,20 @@ cleared" counts round-1 queues that no longer existed in round 3.
 ## Appendix B: Held-out results by year
 
 **Table B1:** Threshold accuracy per held-out year. Most 2026 cells come
-from the two counties with the deepest histories (Oslo and Vestland, joined
-in this build by Akershus), which partly explains the better figures.
+from the counties with the deepest histories (Vestland, Møre og Romsdal —
+whose extract reaches 2012 — and Oslo, joined in this build by Akershus),
+which partly explains the better figures.
 
 | Year | n | Model RMSE | Model MAE |
 |---|---|---|---|
-| 2025 | 1,097 | 5.86 | 4.39 |
-| 2026 | 509 | 4.87 | 3.74 |
+| 2025 | 1,209 | 5.86 | 4.41 |
+| 2026 | 620 | 5.05 | 3.90 |
 
 ## Appendix C: Fill-event calibration
 
 **Table C1:** Reliability of the recalibrated fill probability $\pi'$ on the
-held-out years (2,262 cells that competed on points; base rate 0.718).
-Held-out Brier 0.159 against 0.202 for the base-rate forecaster.
+held-out years (2,485 cells that competed on points; base rate 0.744).
+Held-out Brier 0.154 against 0.191 for the base-rate forecaster.
 
 | Predicted | Observed | n |
 |---|---|---|

@@ -42,6 +42,28 @@ MANUAL = {
     ('15', 'herøy vidaregåande skule, avd. vanylven'): (62.08897, 5.73953),
 }
 
+# A MANUAL coordinate skips NSR matching entirely — but build_dataset carries
+# address/url/orgnr across rebuilds, so whatever an EARLIER run matched
+# survives under the hand-placed pin. The Vanylven campus wore its parent
+# school's Fosnavåg address, 28 km across the fjord, and Ålesund printed the
+# Fagerlia-campus street under a Volsdalsberga pin. Say what is true instead:
+# the pin's own identity, or nothing.
+MANUAL_IDENTITY = {
+    # the campus closed in 2019 and left every register; the inherited
+    # identity belonged to the parent school in another kommune
+    ('15', 'herøy vidaregåande skule, avd. vanylven'):
+        {'address': '6140 Syvde', 'url': None, 'orgnr': None},
+    # closed into the 2022 merger; the building still stands but the school
+    # is gone from NSR, and the parent's identity is not its own
+    ('15', 'fagerlia videregående skole'):
+        {'address': 'Gangstøvikvegen 27, 6009, ÅLESUND', 'url': None, 'orgnr': None},
+    # the pin is deliberately the school's own Volsdalsberga lokalitet
+    # (so it does not stack on Fagerlia's); print that address, not the
+    # main record's Fagerlia-campus street
+    ('15', 'ålesund videregående skole'):
+        {'address': 'Sjømannsvegen 47, 6008, ÅLESUND'},
+}
+
 
 def get(url, timeout=30):
     return json.load(urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout))
@@ -189,6 +211,13 @@ def main():
         if man:
             s['lat'], s['lon'] = man
             s['nsr_name'] = '(manual)'
+            fix = MANUAL_IDENTITY.get((s.get('fylkesnummer'), key)) \
+                or MANUAL_IDENTITY.get((s.get('fylkesnummer'), s['name'].lower()))
+            for f, v in (fix or {}).items():
+                if v is None:
+                    s.pop(f, None)
+                else:
+                    s[f] = v
             continue
         pool = by_fylke.get(s.get('fylkesnummer'), nsr)
         hit = best_match(key, pool)
@@ -197,13 +226,17 @@ def main():
             if pt:
                 hit = dict(hit, lat=pt[0], lon=pt[1])
                 print(f'  kartverket fallback: {s["name"]} -> {pt[0]:.4f},{pt[1]:.4f}')
-        if hit and has_coords(hit):
-            s['lat'], s['lon'], s['orgnr'] = hit['lat'], hit['lon'], hit['orgnr']
-            s['nsr_name'] = hit['navn']
+        if hit:
+            # identity first: the register knows who the school is even when
+            # it does not know where (30 records carry lat 0.0)
+            s['orgnr'] = hit['orgnr']
             if hit.get('adresse') and not s.get('address'):
                 s['address'] = hit['adresse']
             if hit.get('url') and '@' not in hit['url'] and not s.get('url'):
                 s['url'] = hit['url']
+        if hit and has_coords(hit):
+            s['lat'], s['lon'] = hit['lat'], hit['lon']
+            s['nsr_name'] = hit['navn']
         else:
             man = MANUAL.get((s.get('fylkesnummer'), key)) or MANUAL.get((s.get('fylkesnummer'), s['name'].lower()))
             if man:

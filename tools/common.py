@@ -80,6 +80,9 @@ def classify_cell(txt, min_value=MIN_PLAUSIBLE, loose=False):
 
 # --- programme names ----------------------------------------------------
 PROGRAM_ALIASES = {
+    # MRO's dashboard truncates the official title; families should read
+    # Udir's own words (Studiespesialisering med formgivingsfag, STFOR1)
+    'studiespesialisering formgiv': 'Studiespesialisering med formgivingsfag',
     'språk, samfunnsfag og økonomi': 'Språk, samfunn og økonomi',
     'helse og oppvekstfag': 'Helse- og oppvekstfag',
     'restaurant og matfag': 'Restaurant- og matfag',
@@ -222,6 +225,10 @@ def merge_rows(rows_newest_first):
                 'category': classify_category(r['program']),
                 'values': {}, 'sources': {},
             })
+            # a code straight from the county's own register column is the
+            # row's identity, not a guess; keep it for build_dataset to prefer
+            if r.get('grep') and 'grep' not in rec:
+                rec['grep'] = r['grep']
             for alt in ('values_r1', 'values_r3'):
                 if r.get(alt):
                     rec.setdefault(alt, {}).update({y: v for y, v in r[alt].items()

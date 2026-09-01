@@ -136,7 +136,7 @@ searching for elite sport will not find them under Idrettsfag.
 
 ### 3. Everything is filed under today's structure
 
-The dataset spans 2017–2026 and the 2020 reform lands in the middle. Trades
+The dataset spans 2012–2026 and the 2020 reform lands in the middle. Trades
 moved: anleggsgartner from building to agriculture, transport og logistikk from
 service to industry, IKT-servicefag from service to IT. A family reading the
 map in 2026 thinks in today's terms, and a filter that hides a school's older
@@ -150,12 +150,16 @@ three separate ways — so successors are recorded per programme area in
 
 ### 4. "Design og håndverk" goes to FD
 
-Five series at five schools, 2018–2021 — the Vg1 that split into the two crafts
-programmes. Nothing in the name can say which half it became. The evidence used
-was what those schools published afterwards: three went on to offer only
-hairdressing and interior areas, one offers both, one neither. The larger
-successor takes it. Its *areas* answer for themselves and are mapped
-individually: interiør and utstillingsdesign to FD, design og tekstil to DT.
+Fourteen series at thirteen schools across three counties (Rogaland
+2018–2021, Oslo 2017–2019, Møre og Romsdal 2012–2019) — the Vg1 that split
+into the two crafts programmes. Nothing in the name can say which half it
+became. The evidence used is what each cohort's schools published
+afterwards, re-checked as each county joined: of Rogaland's five, three
+went on to offer only hairdressing and interior areas, one both, one
+neither; of Møre og Romsdal's five, three offer FD today (one of them DT
+as well) and none offers DT alone. The larger successor takes it. Its
+*areas* answer for themselves and are mapped individually: interiør and
+utstillingsdesign to FD, design og tekstil to DT.
 
 ### 5. Udir's English, lightly edited
 
