@@ -15,9 +15,11 @@ with the tidy Excel extract behind it (September 2026): every school,
 programme and year since 2012/13, the deepest history in the dataset. That
 is also the panel's one hard semantic gap: the extract has no
 "everyone admitted" marker, so an undersubscribed programme's figure is its
-weakest admitted applicant rather than a competitive bar. The figures are
-from 2. inntak — the county's final round — confirmed by the county after
-the extract itself arrived without saying so.
+weakest admitted applicant rather than a competitive bar — which is why the
+county trains the threshold model but not the fill model, whose labels it
+can only ever agree with. The figures are from 2. inntak — the county's
+final round — confirmed by the county after the extract itself arrived
+without saying so.
 
 Telemark is the one still worth chasing: it appears in vilbli's
 county-information block alongside four counties that *are* covered here, but

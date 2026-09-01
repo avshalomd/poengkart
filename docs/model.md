@@ -52,7 +52,7 @@ backtest — it barely mattered, 4 years won by 0.006 RMSE over no decay).
 
 Fitted variance components (points): school 3.2, programme 3.4, series 2.7,
 county×year innovations 1.2, residual 4.7 On the logit scale for fill: school
-1.2, programme 1.4, series 1.7
+1.0, programme 1.3, series 1.6
 
 **Coupling the two fits** — "in demand" as one trait read two ways, so that a
 school whose thresholds are high is also one whose programmes fill — is a
@@ -122,7 +122,7 @@ The 80% interval (m ± 1.2816 s) contained the published figure 84% of the time.
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.97 filled 0.83 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = −0.131 + 0.364 logit π). Held-out Brier 0.154 against 0.191 for the
+(logit π′ = −0.130 + 0.427 logit π). Held-out Brier 0.151 against 0.191 for the
 base rate.
 
 **Chance, held-out 2025–26**, for every cell and every score in
@@ -130,20 +130,20 @@ base rate.
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 2.4% | 452 |
-| 10–20% | 8.1% | 1 221 |
-| 20–30% | 19% | 1 344 |
-| 30–40% | 27% | 1 489 |
-| 40–50% | 35% | 1 120 |
-| 50–60% | 51% | 1153 |
-| 60–70% | 65% | 1 194 |
-| 70–80% | 81% | 1 224 |
-| 80–90% | 88% | 1 357 |
-| 90–100% | 98.8% | 9 326 |
+| 0–10% | 1.2% | 502 |
+| 10–20% | 6.8% | 1 095 |
+| 20–30% | 14% | 1 406 |
+| 30–40% | 29% | 1 499 |
+| 40–50% | 38% | 1 138 |
+| 50–60% | 49% | 1077 |
+| 60–70% | 66% | 1 220 |
+| 70–80% | 80% | 1 167 |
+| 80–90% | 88% | 1 430 |
+| 90–100% | 98.8% | 9 346 |
 
-Brier 0.093, against 0.150 for the rule "the last published figure is the
+Brier 0.092, against 0.150 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
-Brier is 0.095).
+Brier is 0.093).
 From 30% up the forecast is within five points of what happened; below 30% it
 is a few points optimistic — a 15% chance was really about 8% — which the app's
 bands absorb (both are "unlikely") but a reader of the raw percentage should

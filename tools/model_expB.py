@@ -72,18 +72,9 @@ from scipy.special import ndtr, expit
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, '..', 'web', 'data', 'schools.json')
-OUT = os.path.join(HERE, '..', 'web', 'data', 'model.json')
+OUT = '/private/tmp/claude-501/-Users-avshalom-projects-poengkart/0d09b5c1-9b21-4e95-b9d6-7dbba5839431/scratchpad/modelB.json'
 
 # walk-forward: predict each of these years from everything published before it
-# Counties whose sources cannot say "everyone admitted" label every cell
-# "filled" by construction. Those labels carry no information about queue
-# formation, and worse: 1,790 of them flattened the Platt recalibration for
-# every other county (slope 0.36 with them, 0.43 without), washing out the
-# very distinction the hurdle exists to draw. They are excluded from the
-# fill fit and its calibration — their series still get fill probabilities,
-# from the pooled structure — and from nothing else: every cell still
-# trains the level model. Held-out fill Brier on the seven counties with
-# real labels: 0.162 -> 0.159 (log-loss 0.495 -> 0.485).
 FILL_BLIND = {'Møre og Romsdal'}
 BACKTEST_YEARS = list(range(2020, 2027))
 CALIB_YEARS = {2020, 2021, 2022, 2023, 2024}    # tune the error spread here...
@@ -358,7 +349,10 @@ class Model:
         self.dl = self.design(lv, False)
         self.bl, self.sigma = fit_gaussian(self.dl, np.array([r['v'] for r in lv]),
                                            self.weights(lv), self.offsets(lv))
-        hz = [r for r in self.rows if r['fylke'] not in FILL_BLIND]   # num + zero + open, labels informative
+        # counties with no "everyone admitted" state can only ever say
+        # "filled": their labels are constant by construction and teach the
+        # hurdle nothing about queue formation (variant B experiment)
+        hz = [r for r in self.rows if r['fylke'] not in FILL_BLIND]
         alpha = self.dl.coef(self.bl, 'school') if self.couple else None
         self.dh = self.design(hz, True, alpha)
         self.bh = fit_logit(self.dh, np.array([float(r['state'] != 'open') for r in hz]),
@@ -668,6 +662,11 @@ def main():
     sig = calibrate_sigma(preds_best, floor_sigma) if preds_best else {i: model.sigma * 1.25 for i in range(len(HIST_BUCKETS))}
     print('forecast spread by history bucket:', {HIST_BUCKETS[i]: round(v, 2) for i, v in sig.items()})
 
+    import csv as _csv
+    with open('/private/tmp/claude-501/-Users-avshalom-projects-poengkart/0d09b5c1-9b21-4e95-b9d6-7dbba5839431/scratchpad/predsB.csv', 'w', newline='') as fh:
+        w=_csv.writer(fh); w.writerow(['T','fylke','state','v','m','pi_raw','hist'])
+        for p_ in (preds_best or []):
+            w.writerow([p_['T'], p_['fylke'], p_['state'], p_['v'], round(p_['m'],3), round(p_['pi'],5), p_['hist']])
     meta = dict(built=time.strftime('%Y-%m-%d'), halflife=halflife, coupled=couple,
                 sigma_model=round(model.sigma, 3), sigma_floor=round(floor_sigma, 3),
                 sigma_forecast={str(HIST_BUCKETS[i]): round(v, 2) for i, v in sig.items()},

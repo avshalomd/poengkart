@@ -105,7 +105,7 @@ code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
 </tbody></table></div>
 <p>Two consequences are enforced throughout. The dataset is censored by construction, so averages of published numbers are averages over the queued subset, and the fill indicator carries the rest of the signal. And 0.0 is a trap: it prints like a number but is the bottom of the scale, not a height on it — including it in a mean drags a school's level toward zero for the opposite reason a genuinely low threshold does.</p>
 <h3 id='4-4-coverage'>4.4 Coverage</h3>
-<p>The panel spans 2012–2026: Møre og Romsdal 2012–2026 (a tidy Excel extract of the fifteen years behind the county's Power BI dashboard, released to us on request in September 2026; the county confirmed the figures describe the second, final intake round), Oslo 2017–2026, Vestland 2017–2026 (2017–2019 as a narrower Bergen-area series), Rogaland 2018–2025, Innlandet 2020–2025 (2020–2022 released to us under a freedom-of-information request in August 2026 rather than published — the county confirmed nothing older survives), Akershus 2024–2026 (the 2024/25 and 2026/27 tables likewise released to us under a freedom-of-information request in August 2026, as machine-readable workbooks and second intake round only — they were never published), Buskerud 2024–2025, and Trøndelag 2025 only. Of the 2,020 school×programme series that ever carry a numeric threshold, 530 have exactly one observed year. Among the 11,891 cells, 11,141 competed on points (and thus inform the fill model) and 8,011 carry a numeric threshold (and thus inform the level model). One publication practice deserves its own flag: Møre og Romsdal's extract has no "everyone admitted" state — every offered programme carries a number, so an undersubscribed programme prints its weakest admitted applicant where other counties print a marker. Two consequences follow. The county's low outliers enter the level means that other counties' conventions would exclude, and every one of its 1,790 cells reaches the fill model labelled "filled", a label that is constant by construction and therefore carries no information about queue formation — the fill probabilities for these series lean on the model's pooled structure rather than on county evidence. The non-publishing intake areas either state that they choose not to publish (Agder, Nordland, Østfold) or publish aggregate statistics without thresholds. The unevenness is a property of the publication regime, not of the collection: for several counties and periods, county-wide thresholds were never computed, because admission ran on catchment rather than points.</p>
+<p>The panel spans 2012–2026: Møre og Romsdal 2012–2026 (a tidy Excel extract of the fifteen years behind the county's Power BI dashboard, released to us on request in September 2026; the county confirmed the figures describe the second, final intake round), Oslo 2017–2026, Vestland 2017–2026 (2017–2019 as a narrower Bergen-area series), Rogaland 2018–2025, Innlandet 2020–2025 (2020–2022 released to us under a freedom-of-information request in August 2026 rather than published — the county confirmed nothing older survives), Akershus 2024–2026 (the 2024/25 and 2026/27 tables likewise released to us under a freedom-of-information request in August 2026, as machine-readable workbooks and second intake round only — they were never published), Buskerud 2024–2025, and Trøndelag 2025 only. Of the 2,020 school×programme series that ever carry a numeric threshold, 530 have exactly one observed year. Among the 11,891 cells, 9,351 competed on points (and thus inform the fill model) and 8,011 carry a numeric threshold (and thus inform the level model). One publication practice deserves its own flag: Møre og Romsdal's extract has no "everyone admitted" state — every offered programme carries a number, so an undersubscribed programme prints its weakest admitted applicant where other counties print a marker. Two consequences follow. The county's low outliers enter the level means that other counties' conventions would exclude; and its labels for the fill event are constant by construction, so the county is excluded from the fill model's fit and recalibration — including it flattened the Platt slope from 0.43 to 0.36 and cost measurable held-out accuracy in the seven counties whose labels are real (Brier 0.162 against 0.159). Its series still receive fill probabilities, from the pooled structure alone. The non-publishing intake areas either state that they choose not to publish (Agder, Nordland, Østfold) or publish aggregate statistics without thresholds. The unevenness is a property of the publication regime, not of the collection: for several counties and periods, county-wide thresholds were never computed, because admission ran on catchment rather than points.</p>
 <h2 id='5-forecasting-model'>5. Forecasting model</h2>
 <h3 id='5-1-notation-and-target'>5.1 Notation and target</h3>
 <p>A <strong>series</strong> <var>i</var> is one school×programme×level queue; <var>sc</var>[<var>i</var>], <var>p</var>[<var>i</var>], <var>a</var>[<var>i</var>], and <var>c</var>[<var>i</var>] denote its school, utdanningsprogram, programme area, and county, and <var>r</var>(<var>i</var>,<var>t</var>) the intake round its county published in year <var>t</var>. In year <var>t</var>, <var>Q<sub>it</sub></var> &isin; {0,&#8201;1} indicates that the cell filled (a queue formed), and <var>y<sub>it</sub></var> is the published threshold, observed only when <var>Q<sub>it</sub></var> = 1 and the last admitted applicant had points (<var>y</var> &gt; 0). For an applicant with points <var>x</var>, the deployed quantity for the county's next publication year is</p>
@@ -124,10 +124,10 @@ code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
 <p class='caption'><strong>Table 2:</strong> Fitted variance components (standard deviations) of the four random-effect families. Level components in points; fill components on the logit scale. The fixed effects (<var>&mu;</var>, <var>&nu;</var>, <var>&beta;</var>, <var>&rho;</var>) have no variance component.</p>
 <div class='tbl'><table>
 <thead><tr><th>Component</th><th>Level (points)</th><th>Fill (logit)</th></tr></thead><tbody>
-<tr><td>School</td><td>3.2</td><td>1.2</td></tr>
-<tr><td>Programme area (within level)</td><td>3.4</td><td>1.4</td></tr>
-<tr><td>Series (school×programme)</td><td>2.7</td><td>1.7</td></tr>
-<tr><td>County–year innovation</td><td>1.2</td><td>1.5</td></tr>
+<tr><td>School</td><td>3.2</td><td>1.0</td></tr>
+<tr><td>Programme area (within level)</td><td>3.4</td><td>1.3</td></tr>
+<tr><td>Series (school×programme)</td><td>2.7</td><td>1.6</td></tr>
+<tr><td>County–year innovation</td><td>1.2</td><td>1.1</td></tr>
 <tr><td>Residual</td><td>4.7</td><td>—</td></tr>
 </tbody></table></div>
 <p>Coupling the components — the level model's school effect entering the fill model as an offset, so "in demand" is one trait read two ways — is adjudicated by the backtest on every refit. Earlier builds rejected it; with the Innlandet backfill it wins for the first time (Section 7.5), and the deployed hurdle is now coupled.</p>
@@ -149,8 +149,8 @@ code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
 <p><var>&Phi;<sub>F</sub></var> in (1) is the empirical CDF of the standardised walk-forward errors (41 quantiles), not a Gaussian. It is mildly left-skewed — thresholds collapse more often than they jump, because a queue can vanish but cannot exceed its applicant pool — though on this data a Gaussian would have scored almost identically. The empirical CDF is clamped to [0.005, 0.995], so no single cell's probability is ever exactly 1 &minus; <var>&pi;</var> or 1.</p>
 <h3 id='6-3-recalibrating-the-fill-probability'>6.3 Recalibrating the fill probability</h3>
 <p>The raw fill model is overconfident: in the calibration-year walk-forwards, cells given <var>&pi;</var> = 0.97 filled 84% of the time — the series effects fit the training panel too well. We therefore recalibrate by Platt scaling, fitting</p>
-<div class='eq'><span class='eq-body'>logit&#8201;<var>&pi;</var>&prime; = &minus;0.131 + 0.364&#8201;logit&#8201;<var>&pi;</var></span><span class='eq-no'>(5)</span></div>
-<p>on the calibration years only, which are disjoint from the held-out evaluation years. The slope well below 1 is a uniform confidence haircut. Held-out Brier for the fill event: 0.154 against 0.191 for the base-rate forecaster (base rate 0.744). The full reliability table is in Appendix C; the recalibrated <var>&pi;</var>&prime; still wobbles in the sparse mid-range bins (66% observed in the 50–60% bin), which the deployed quantity (1) — the only probability shown to users — absorbs, as Section 7.4 shows.</p>
+<div class='eq'><span class='eq-body'>logit&#8201;<var>&pi;</var>&prime; = &minus;0.130 + 0.427&#8201;logit&#8201;<var>&pi;</var></span><span class='eq-no'>(5)</span></div>
+<p>on the calibration years only, which are disjoint from the held-out evaluation years. The slope well below 1 is a uniform confidence haircut. Held-out Brier for the fill event: 0.151 against 0.191 for the base-rate forecaster (base rate 0.744). The full reliability table is in Appendix C; the recalibrated <var>&pi;</var>&prime; still wobbles in the sparse mid-range bins (66% observed in the 50–60% bin), which the deployed quantity (1) — the only probability shown to users — absorbs, as Section 7.4 shows.</p>
 <h2 id='7-evaluation'>7. Evaluation</h2>
 <h3 id='7-1-protocol'>7.1 Protocol</h3>
 <p>Evaluation is walk-forward with an expanding window (Tashman, 2000; Bergmeir &amp; Benítez, 2012): for each target year <var>t</var> &isin; {2020, &hellip;, 2026}, the model is fitted on everything published before <var>t</var> and forecasts year <var>t</var>. Years 2020–2024 are <strong>calibration years</strong>: they set <var>s</var> (Section 6.1), <var>&Phi;<sub>F</sub></var> (Section 6.2), and the Platt map (5). Years <strong>2025–2026 are held out entirely</strong> and are the only years reported in this section. For the held-out years, no information from 2025 onward touches the forecasts: model fits, spread, error distribution, Platt map, and the half-life were all fixed on earlier data. (Within the calibration years the selection is pooled across 2020–2024, as calibration always is.) One caveat survives: the round bridge of Section 8.1 is computed once on all paired publications, including 2025–2026, and its offsets enter each training fit only for the Vestland 2023 cells — cells that are themselves excluded from all scoring (464 competed cells, 218 with a numeric threshold), so the contamination is confined to a second-order training detail. The exclusion itself is principled: no earlier year can teach any forecaster that administrative event, and grading the model on an offset it is told about would mislead in both directions.</p>
@@ -215,20 +215,20 @@ code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
 <h3 id='7-3-interval-coverage'>7.3 Interval coverage</h3>
 <p>The nominal 80% interval <var>m</var> &plusmn; 1.2816&#8201;<var>s</var> contained the published figure <strong>84.3%</strong> of the time on held-out cells (n = 1,829, so the binomial standard error is about one point, and larger under county–year clustering), at a mean width of 14.9 points. Coverage is the target and width the price (Gneiting, Balabdaoui &amp; Raftery, 2007): roughly ±7 points is what an honest 80% claim costs on this data. The graded interval is the symmetric Gaussian one because that is what the application displays; the deployed error distribution <var>&Phi;<sub>F</sub></var> is mildly skewed, and coverage is conditional on a numeric threshold materialising at all.</p>
 <h3 id='7-4-admission-probability-calibration'>7.4 Admission-probability calibration</h3>
-<p>The deployed quantity is (1). For every held-out cell and every score <var>x</var> &isin; {20, 25, &hellip;, 55} we ask "would an applicant with <var>x</var> points have been admitted?" — the outcome is determined by the published threshold and fill state — and score the predicted probability over all 19,880 score–cell pairs: Brier score <strong>0.095</strong>. The persistence rule ("the most recent published threshold is this year's", a step function in <var>x</var>) is defined only where the series has a prior figure, 16,888 of those pairs; on that common subset the model scores <strong>0.093</strong> against the rule's <strong>0.150</strong>.</p>
+<p>The deployed quantity is (1). For every held-out cell and every score <var>x</var> &isin; {20, 25, &hellip;, 55} we ask "would an applicant with <var>x</var> points have been admitted?" — the outcome is determined by the published threshold and fill state — and score the predicted probability over all 19,880 score–cell pairs: Brier score <strong>0.093</strong>. The persistence rule ("the most recent published threshold is this year's", a step function in <var>x</var>) is defined only where the series has a prior figure, 16,888 of those pairs; on that common subset the model scores <strong>0.092</strong> against the rule's <strong>0.150</strong>.</p>
 <p class='caption'><strong>Table 5:</strong> Reliability of the held-out admission probability (Figure 2 shows the same data as a diagram).</p>
 <div class='tbl'><table>
 <thead><tr><th>Predicted</th><th>Observed</th><th>n</th></tr></thead><tbody>
-<tr><td>0–10%</td><td>2.4%</td><td>452</td></tr>
-<tr><td>10–20%</td><td>8.1%</td><td>1,221</td></tr>
-<tr><td>20–30%</td><td>19%</td><td>1,344</td></tr>
-<tr><td>30–40%</td><td>27%</td><td>1,489</td></tr>
-<tr><td>40–50%</td><td>35%</td><td>1,120</td></tr>
-<tr><td>50–60%</td><td>51%</td><td>1153</td></tr>
-<tr><td>60–70%</td><td>65%</td><td>1,194</td></tr>
-<tr><td>70–80%</td><td>81%</td><td>1,224</td></tr>
-<tr><td>80–90%</td><td>88%</td><td>1,357</td></tr>
-<tr><td>90–100%</td><td>98.8%</td><td>9,326</td></tr>
+<tr><td>0–10%</td><td>1.2%</td><td>502</td></tr>
+<tr><td>10–20%</td><td>6.8%</td><td>1,095</td></tr>
+<tr><td>20–30%</td><td>14%</td><td>1,406</td></tr>
+<tr><td>30–40%</td><td>29%</td><td>1,499</td></tr>
+<tr><td>40–50%</td><td>38%</td><td>1,138</td></tr>
+<tr><td>50–60%</td><td>49%</td><td>1077</td></tr>
+<tr><td>60–70%</td><td>66%</td><td>1,220</td></tr>
+<tr><td>70–80%</td><td>80%</td><td>1,167</td></tr>
+<tr><td>80–90%</td><td>88%</td><td>1,430</td></tr>
+<tr><td>90–100%</td><td>98.8%</td><td>9,346</td></tr>
 </tbody></table></div>
 <p>From 30% upward the forecast tracks observed frequency within five points. Below 30% it is optimistic — a stated 15% was realised at about 8% — a region the application's coarse bands (likely ≥ 70%, possible ≥ 35%, otherwise unlikely) absorb, and which we document wherever the raw percentage is shown.</p>
 <figure><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 560 500' role='img' aria-label='Reliability diagram of the held-out admission probability'>
@@ -257,26 +257,26 @@ code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
 <line x1='70.0' y1='20.0' x2='540.0' y2='20.0' stroke='#e6e9ee' stroke-width='1'/>
 <text x='540.0' y='452' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='middle'>1.0</text>
 <text x='60' y='24.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>1.0</text>
-<rect x='72.0' y='424.9' width='43.0' height='5.1' fill='#8a8f98' opacity='0.18'/>
-<rect x='119.0' y='416.2' width='43.0' height='13.8' fill='#8a8f98' opacity='0.18'/>
-<rect x='166.0' y='414.8' width='43.0' height='15.2' fill='#8a8f98' opacity='0.18'/>
-<rect x='213.0' y='413.1' width='43.0' height='16.9' fill='#8a8f98' opacity='0.18'/>
-<rect x='260.0' y='417.3' width='43.0' height='12.7' fill='#8a8f98' opacity='0.18'/>
-<rect x='307.0' y='416.9' width='43.0' height='13.1' fill='#8a8f98' opacity='0.18'/>
-<rect x='354.0' y='416.5' width='43.0' height='13.5' fill='#8a8f98' opacity='0.18'/>
-<rect x='401.0' y='416.1' width='43.0' height='13.9' fill='#8a8f98' opacity='0.18'/>
-<rect x='448.0' y='414.6' width='43.0' height='15.4' fill='#8a8f98' opacity='0.18'/>
-<rect x='495.0' y='324.2' width='43.0' height='105.8' fill='#8a8f98' opacity='0.18'/>
+<rect x='72.0' y='424.3' width='43.0' height='5.7' fill='#8a8f98' opacity='0.18'/>
+<rect x='119.0' y='417.6' width='43.0' height='12.4' fill='#8a8f98' opacity='0.18'/>
+<rect x='166.0' y='414.1' width='43.0' height='15.9' fill='#8a8f98' opacity='0.18'/>
+<rect x='213.0' y='413.0' width='43.0' height='17.0' fill='#8a8f98' opacity='0.18'/>
+<rect x='260.0' y='417.1' width='43.0' height='12.9' fill='#8a8f98' opacity='0.18'/>
+<rect x='307.0' y='417.8' width='43.0' height='12.2' fill='#8a8f98' opacity='0.18'/>
+<rect x='354.0' y='416.2' width='43.0' height='13.8' fill='#8a8f98' opacity='0.18'/>
+<rect x='401.0' y='416.8' width='43.0' height='13.2' fill='#8a8f98' opacity='0.18'/>
+<rect x='448.0' y='413.8' width='43.0' height='16.2' fill='#8a8f98' opacity='0.18'/>
+<rect x='495.0' y='324.0' width='43.0' height='106.0' fill='#8a8f98' opacity='0.18'/>
 <line x1='70.0' y1='430.0' x2='540.0' y2='20.0' stroke='#8a8f98' stroke-width='1.5' stroke-dasharray='5 4'/>
-<circle cx='102.4' cy='420.2' r='5.5' fill='#2b6cb8'/>
-<circle cx='140.5' cy='396.8' r='5.5' fill='#2b6cb8'/>
-<circle cx='188.9' cy='350.5' r='5.5' fill='#2b6cb8'/>
-<circle cx='233.6' cy='320.5' r='5.5' fill='#2b6cb8'/>
-<circle cx='280.1' cy='288.1' r='5.5' fill='#2b6cb8'/>
-<circle cx='329.0' cy='220.9' r='5.5' fill='#2b6cb8'/>
-<circle cx='376.0' cy='162.7' r='5.5' fill='#2b6cb8'/>
-<circle cx='422.0' cy='99.5' r='5.5' fill='#2b6cb8'/>
-<circle cx='470.0' cy='68.8' r='5.5' fill='#2b6cb8'/>
+<circle cx='105.7' cy='425.1' r='5.5' fill='#2b6cb8'/>
+<circle cx='140.0' cy='402.1' r='5.5' fill='#2b6cb8'/>
+<circle cx='188.9' cy='371.0' r='5.5' fill='#2b6cb8'/>
+<circle cx='234.0' cy='310.3' r='5.5' fill='#2b6cb8'/>
+<circle cx='281.5' cy='273.0' r='5.5' fill='#2b6cb8'/>
+<circle cx='328.0' cy='229.1' r='5.5' fill='#2b6cb8'/>
+<circle cx='376.0' cy='157.8' r='5.5' fill='#2b6cb8'/>
+<circle cx='422.5' cy='103.2' r='5.5' fill='#2b6cb8'/>
+<circle cx='470.0' cy='68.0' r='5.5' fill='#2b6cb8'/>
 <circle cx='531.5' cy='24.9' r='5.5' fill='#2b6cb8'/>
 <text x='305.0' y='478' font-family='Georgia, "Times New Roman", serif' font-size='15' fill='#1d2733' text-anchor='middle'>Predicted probability of admission</text>
 <text x='20' y='225.0' font-family='Georgia, "Times New Roman", serif' font-size='15' fill='#1d2733' text-anchor='middle' transform='rotate(-90 20 225.0)'>Observed admission frequency</text>
@@ -285,7 +285,7 @@ code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
 <p>Both structural choices that could have gone the other way were adjudicated on the calibration years, never the held-out years:</p>
 <ul>
 <li><strong>Recency half-life.</strong> Over half-lives {1.5, 2.5, 4, ∞} years the calibration-year walk-forward RMSE was {6.309, 6.280, 6.271, 6.278}: 4 years wins — kept because it wins, reported because it barely does.</li>
-<li><strong>Level→fill coupling.</strong> Plugging the level model's school effect into the fill model lowered calibration-year fill log-loss from 0.424 to 0.420 on the current panel, so the deployed hurdle is coupled. Every earlier build rejected the same coupling (0.403 vs 0.406 before the Innlandet backfill) — the verdict belongs to the backtest, and this report documents the flip rather than smoothing it over.</li>
+<li><strong>Level→fill coupling.</strong> Plugging the level model's school effect into the fill model lowered calibration-year fill log-loss from 0.427 to 0.422 on the current panel, so the deployed hurdle is coupled. Every earlier build rejected the same coupling (0.403 vs 0.406 before the Innlandet backfill) — the verdict belongs to the backtest, and this report documents the flip rather than smoothing it over.</li>
 </ul>
 <h2 id='8-findings-about-the-publication-practice'>8. Findings about the publication practice</h2>
 <h3 id='8-1-the-intake-round-effect'>8.1 The intake-round effect</h3>
@@ -313,7 +313,7 @@ code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
 <li><strong>Short test window.</strong> Two held-out years (1,829 cells) from one country. We report per-year results (Appendix B) rather than standard errors over years; 2026 looks better than 2025 partly because most of its cells are drawn from the counties with the deepest histories.</li>
 <li><strong>Independence in the choice list.</strong> The at-least-one probability treats wishes as independent; a hard year hits several of them at once, so the true probability is somewhat lower.</li>
 <li><strong>Catchment counties.</strong> A threshold binds only residents of the intake area; the application states this where it applies.</li>
-<li><strong>The open-marker practice gap.</strong> One county (Møre og Romsdal) cannot express "everyone admitted", so its cells are all labelled filled in the hurdle and its lowest figures are weakest-admitted values, not competitive bars (Section 4.4). The application sizes that county's markers neutrally rather than by fill share, which its data cannot measure.</li>
+<li><strong>The open-marker practice gap.</strong> One county (Møre og Romsdal) cannot express "everyone admitted", so its fill labels are constant by construction and it is excluded from the fill fit and recalibration; its fill probabilities come from the pooled structure alone, untested against county evidence (Section 4.4). Its lowest figures are weakest-admitted values, not competitive bars, and the application sizes its markers neutrally rather than by a fill share its data cannot measure.</li>
 <li><strong>Self-selected counties.</strong> The eight publishing counties chose to publish; nothing here is evidence about the seven that do not, and any future expansion inherits whatever made them different.</li>
 <li><strong>Regime changes.</strong> A programme can move between the points queue and the quota states (F/D/U) between years; the hurdle predicts queue formation, not that kind of administrative transition.</li>
 <li><strong>Low-probability optimism.</strong> Below 30%, the raw probability is a few points optimistic (Section 7.4).</li>
@@ -391,15 +391,15 @@ code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
 <p class='caption'><strong>Table C1:</strong> Reliability of the recalibrated fill probability <var>&pi;</var>&prime; on the held-out years (2,485 cells that competed on points; base rate 0.744). Held-out Brier 0.154 against 0.191 for the base-rate forecaster.</p>
 <div class='tbl'><table>
 <thead><tr><th>Predicted</th><th>Observed</th><th>n</th></tr></thead><tbody>
-<tr><td>10–20%</td><td>0.0%</td><td>3</td></tr>
-<tr><td>20–30%</td><td>17%</td><td>94</td></tr>
-<tr><td>30–40%</td><td>30%</td><td>154</td></tr>
-<tr><td>40–50%</td><td>50%</td><td>225</td></tr>
-<tr><td>50–60%</td><td>70%</td><td>195</td></tr>
-<tr><td>60–70%</td><td>75%</td><td>343</td></tr>
-<tr><td>70–80%</td><td>86%</td><td>536</td></tr>
-<tr><td>80–90%</td><td>81%</td><td>531</td></tr>
-<tr><td>90–100%</td><td>96.8%</td><td>404</td></tr>
+<tr><td>10–20%</td><td>10.5%</td><td>19</td></tr>
+<tr><td>20–30%</td><td>17%</td><td>99</td></tr>
+<tr><td>30–40%</td><td>33%</td><td>147</td></tr>
+<tr><td>40–50%</td><td>51%</td><td>201</td></tr>
+<tr><td>50–60%</td><td>68%</td><td>184</td></tr>
+<tr><td>60–70%</td><td>73%</td><td>358</td></tr>
+<tr><td>70–80%</td><td>82%</td><td>626</td></tr>
+<tr><td>80–90%</td><td>88%</td><td>544</td></tr>
+<tr><td>90–100%</td><td>97.7%</td><td>307</td></tr>
 </tbody></table></div>
 </div>
 </body>

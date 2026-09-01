@@ -243,17 +243,19 @@ machine-readable workbooks and second intake round only — they were never
 published), Buskerud 2024–2025, and Trøndelag 2025 only. Of the 2,020
 school×programme series that ever carry a numeric threshold, 530 have
 exactly one observed year. Among the
-11,891 cells, 11,141 competed on points (and thus inform the fill model) and
+11,891 cells, 9,351 competed on points (and thus inform the fill model) and
 8,011 carry a numeric threshold (and thus inform the level model). One
 publication practice deserves its own flag: Møre og Romsdal's extract has no
 "everyone admitted" state — every offered programme carries a number, so an
 undersubscribed programme prints its weakest admitted applicant where other
 counties print a marker. Two consequences follow. The county's low outliers
-enter the level means that other counties' conventions would exclude, and
-every one of its 1,790 cells reaches the fill model labelled "filled", a
-label that is constant by construction and therefore carries no information
-about queue formation — the fill probabilities for these series lean on the
-model's pooled structure rather than on county evidence. The
+enter the level means that other counties' conventions would exclude; and
+its labels for the fill event are constant by construction, so the county
+is excluded from the fill model's fit and recalibration — including it
+flattened the Platt slope from 0.43 to 0.36 and cost measurable held-out
+accuracy in the seven counties whose labels are real (Brier 0.162 against
+0.159). Its series still receive fill probabilities, from the pooled
+structure alone. The
 non-publishing intake areas either state that they choose not to publish
 (Agder, Nordland, Østfold) or publish aggregate statistics without
 thresholds. The unevenness is a
@@ -337,10 +339,10 @@ variance component.
 
 | Component | Level (points) | Fill (logit) |
 |---|---|---|
-| School | 3.2 | 1.2 |
-| Programme area (within level) | 3.4 | 1.4 |
-| Series (school×programme) | 2.7 | 1.7 |
-| County–year innovation | 1.2 | 1.5 |
+| School | 3.2 | 1.0 |
+| Programme area (within level) | 3.4 | 1.3 |
+| Series (school×programme) | 2.7 | 1.6 |
+| County–year innovation | 1.2 | 1.1 |
 | Residual | 4.7 | — |
 
 Coupling the components — the level model's school effect entering the
@@ -408,11 +410,11 @@ cells given $\pi = 0.97$ filled 84% of the time — the series effects fit the
 training panel too well.
 We therefore recalibrate by Platt scaling, fitting
 
-$$\operatorname{logit} \pi' \;=\; -0.131 \;+\; 0.364 \, \operatorname{logit} \pi \tag{5}$$
+$$\operatorname{logit} \pi' \;=\; -0.130 \;+\; 0.427 \, \operatorname{logit} \pi \tag{5}$$
 
 on the calibration years only, which are disjoint from the held-out
 evaluation years. The slope well below 1 is a uniform confidence haircut.
-Held-out Brier for the fill event: 0.154 against 0.191 for the base-rate
+Held-out Brier for the fill event: 0.151 against 0.191 for the base-rate
 forecaster (base rate 0.744). The full reliability table is in Appendix C;
 the recalibrated $\pi'$ still wobbles in the sparse mid-range bins (66%
 observed in the 50–60% bin), which the deployed quantity (1) — the only
@@ -493,26 +495,26 @@ The deployed quantity is (1). For every held-out cell and every score $x \in
 \{20, 25, \dots, 55\}$ we ask "would an applicant with $x$ points have been
 admitted?" — the outcome is determined by the published threshold and fill
 state — and score the predicted probability over all 19,880 score–cell
-pairs: Brier score **0.095**. The persistence rule ("the most recent
+pairs: Brier score **0.093**. The persistence rule ("the most recent
 published threshold is this year's", a step function in $x$) is defined
 only where the series has a prior figure, 16,888 of those pairs; on that
-common subset the model scores **0.093** against the rule's **0.150**.
+common subset the model scores **0.092** against the rule's **0.150**.
 
 **Table 5:** Reliability of the held-out admission probability (Figure 2
 shows the same data as a diagram).
 
 | Predicted | Observed | n |
 |---|---|---|
-| 0–10% | 2.4% | 452 |
-| 10–20% | 8.1% | 1,221 |
-| 20–30% | 19% | 1,344 |
-| 30–40% | 27% | 1,489 |
-| 40–50% | 35% | 1,120 |
-| 50–60% | 51% | 1153 |
-| 60–70% | 65% | 1,194 |
-| 70–80% | 81% | 1,224 |
-| 80–90% | 88% | 1,357 |
-| 90–100% | 98.8% | 9,326 |
+| 0–10% | 1.2% | 502 |
+| 10–20% | 6.8% | 1,095 |
+| 20–30% | 14% | 1,406 |
+| 30–40% | 29% | 1,499 |
+| 40–50% | 38% | 1,138 |
+| 50–60% | 49% | 1077 |
+| 60–70% | 66% | 1,220 |
+| 70–80% | 80% | 1,167 |
+| 80–90% | 88% | 1,430 |
+| 90–100% | 98.8% | 9,346 |
 
 From 30% upward the forecast tracks observed frequency within five points.
 Below 30% it is optimistic — a stated 15% was realised at about 8% — a
@@ -535,7 +537,7 @@ on the calibration years, never the held-out years:
   calibration-year walk-forward RMSE was {6.309, 6.280, 6.271, 6.278}: 4
   years wins — kept because it wins, reported because it barely does.
 - **Level→fill coupling.** Plugging the level model's school effect into the
-  fill model lowered calibration-year fill log-loss from 0.424 to 0.420 on
+  fill model lowered calibration-year fill log-loss from 0.427 to 0.422 on
   the current panel, so the deployed hurdle is coupled. Every earlier build
   rejected the same coupling (0.403 vs 0.406 before the Innlandet
   backfill) — the verdict belongs to the backtest, and this report
@@ -635,11 +637,12 @@ throughout, and the full dataset is downloadable from the page.
 - **Catchment counties.** A threshold binds only residents of the intake
   area; the application states this where it applies.
 - **The open-marker practice gap.** One county (Møre og Romsdal) cannot
-  express "everyone admitted", so its cells are all labelled filled in the
-  hurdle and its lowest figures are weakest-admitted values, not
-  competitive bars (Section 4.4). The application sizes that county's
-  markers neutrally rather than by fill share, which its data cannot
-  measure.
+  express "everyone admitted", so its fill labels are constant by
+  construction and it is excluded from the fill fit and recalibration; its
+  fill probabilities come from the pooled structure alone, untested against
+  county evidence (Section 4.4). Its lowest figures are weakest-admitted
+  values, not competitive bars, and the application sizes its markers
+  neutrally rather than by a fill share its data cannot measure.
 - **Self-selected counties.** The eight publishing counties chose to
   publish; nothing here is evidence about the seven that do not, and any
   future expansion inherits whatever made them different.
@@ -828,12 +831,12 @@ Held-out Brier 0.154 against 0.191 for the base-rate forecaster.
 
 | Predicted | Observed | n |
 |---|---|---|
-| 10–20% | 0.0% | 3 |
-| 20–30% | 17% | 94 |
-| 30–40% | 30% | 154 |
-| 40–50% | 50% | 225 |
-| 50–60% | 70% | 195 |
-| 60–70% | 75% | 343 |
-| 70–80% | 86% | 536 |
-| 80–90% | 81% | 531 |
-| 90–100% | 96.8% | 404 |
+| 10–20% | 10.5% | 19 |
+| 20–30% | 17% | 99 |
+| 30–40% | 33% | 147 |
+| 40–50% | 51% | 201 |
+| 50–60% | 68% | 184 |
+| 60–70% | 73% | 358 |
+| 70–80% | 82% | 626 |
+| 80–90% | 88% | 544 |
+| 90–100% | 97.7% | 307 |
