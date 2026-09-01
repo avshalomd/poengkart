@@ -19,6 +19,7 @@ nobody looked at is not published at all — the location map stands in.
 Run as part of the pipeline:  python3 tools/refresh.py
 """
 
+import collections
 import json
 import os
 import re
@@ -185,10 +186,34 @@ COMMONS_FILE_RE = re.compile(
     r'^https://upload\.wikimedia\.org/wikipedia/commons/(?!thumb/)([0-9a-f])/([0-9a-f]{2})/(.+)$')
 
 
+# Probe verdicts survive across runs: a rendition URL that served an image
+# once is immutable for practical purposes, and re-asking for ~200 of them —
+# each Wikimedia probe behind a mandatory politeness sleep — cost four minutes
+# of every refresh while changing nothing. Only positives are cached; a
+# refusal is retried next run, and link rot is photo_check.py's job.
+_PROBE_CACHE = os.path.join(HERE, '.cache', 'photo-probe.json')
+try:
+    _PROBE_OK = set(json.load(open(_PROBE_CACHE)))
+except (OSError, ValueError):
+    _PROBE_OK = set()
+_PROBE_DIRTY = False
+
+
+def _save_probes():
+    if _PROBE_DIRTY:
+        os.makedirs(os.path.dirname(_PROBE_CACHE), exist_ok=True)
+        tmp = _PROBE_CACHE + '.tmp'
+        json.dump(sorted(_PROBE_OK), open(tmp, 'w'))
+        os.replace(tmp, _PROBE_CACHE)
+
+
 def _serves_image(url):
     """Wikimedia rate-limits probes hard, and a 429 is indistinguishable from
     "this width is not served" — which silently keeps the oversized original.
     Retry before believing a refusal."""
+    global _PROBE_DIRTY
+    if url in _PROBE_OK:
+        return True
     wiki = 'upload.wikimedia.org' in url
     for attempt in range(4):
         # the pause is Wikimedia's price of admission; county servers do not
@@ -200,7 +225,11 @@ def _serves_image(url):
                 url, headers={'User-Agent': 'poengkart/0.1 (prototype)',
                               'Accept': 'image/avif,image/webp,image/*,*/*;q=0.8'}),
                 timeout=30)
-            return r.status == 200 and r.headers.get('content-type', '').startswith('image')
+            ok = r.status == 200 and r.headers.get('content-type', '').startswith('image')
+            if ok:
+                _PROBE_OK.add(url)
+                _PROBE_DIRTY = True
+            return ok
         except Exception as e:
             if getattr(e, 'code', None) != 429:
                 return False
@@ -346,10 +375,19 @@ def main():
                 changed.append(f'{name}: display-sized photo')
 
     json.dump(data, open(DATA, 'w'), ensure_ascii=False, indent=1)
+    _save_probes()
     have = sum(1 for s in data['schools'] if s.get('photo'))
     print(f'{len(changed)} changes; {have}/{len(data["schools"])} schools have a photo')
     for c in changed:
         print('  ', c)
+    # A new county's schools arrive photo-less BY DESIGN (nothing publishes
+    # without review), and that has now been missed more than once because
+    # nothing said so. Say so, loudly, with the counties named.
+    missing = collections.Counter(s['fylke'] for s in data['schools'] if not s.get('photo'))
+    if missing:
+        print('PHOTO GAP: ' + ', '.join(f'{f}: {n}' for f, n in missing.most_common())
+              + ' schools without a photo — run photo_hunt/photo_stage/photo_sheets, '
+                'review the sheets, then photo_accept')
 
 
 if __name__ == '__main__':

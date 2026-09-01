@@ -31,6 +31,7 @@ import math
 import os
 import re
 import sys
+import threading
 import time
 import urllib.parse
 import urllib.request
@@ -67,10 +68,32 @@ STOP = ('videregående', 'vidaregåande', 'videregaande', 'skole', 'skule',
         'skolen', 'skulen', 'vgs', 'avd', 'avdeling', 'og', 'gymnas')
 
 
+# Wikimedia rate-limits bursts hard, and six workers querying three endpoints
+# per school is a burst. A 429 used to surface as a silent empty tier — the
+# hunt reported "no candidates" for entire counties that have Wikipedia
+# articles with photos, and nothing distinguished that from photos genuinely
+# not existing. Wikimedia requests are therefore serialised (photo_stage
+# already does the same, for the same reason) and retried on 429.
+_WIKI_LOCK = threading.Lock()
+_WIKI_HOSTS = ('wikipedia.org', 'wikimedia.org')
+
+
 def fetch(url, timeout=25, limit=None):
-    req = urllib.request.Request(url, headers=UA)
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return (r.read(limit) if limit else r.read()), r.geturl()
+    wiki = any(h in url for h in _WIKI_HOSTS)
+    for attempt in range(4):
+        try:
+            if wiki:
+                with _WIKI_LOCK:
+                    req = urllib.request.Request(url, headers=UA)
+                    with urllib.request.urlopen(req, timeout=timeout) as r:
+                        return (r.read(limit) if limit else r.read()), r.geturl()
+            req = urllib.request.Request(url, headers=UA)
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return (r.read(limit) if limit else r.read()), r.geturl()
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or attempt == 3:
+                raise
+            time.sleep(2.0 + attempt * 3.0)
 
 
 def norm_site(u):
@@ -415,6 +438,13 @@ def hunt(school):
 
 def main():
     data = json.load(open(DATA))
+    # build_dataset deliberately writes no coordinates — geocode restores them
+    # afterwards. Run on the bare intermediate and every tier that proves a
+    # photo belongs to OUR school (wiki distance, Commons geosearch) silently
+    # returns nothing, which looks exactly like "no photos exist". It has
+    # happened; refuse instead.
+    if not any(s.get('lat') for s in data['schools']):
+        sys.exit('schools.json has no coordinates — run tools/geocode.py first')
     todo = [s for s in data['schools'] if not s.get('photo')]
     if len(sys.argv) > 1:
         todo = [s for s in todo if s['fylke'].lower().startswith(sys.argv[1].lower())]
