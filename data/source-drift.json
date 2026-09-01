@@ -242,6 +242,39 @@
   "ignored_from": "poenggrenser-rogaland-2019-2020.pdf"
  },
  {
+  "county": "Innlandet",
+  "school": "Hadeland videregående skole",
+  "program": "Idrettsfag",
+  "level": "Vg1",
+  "year": 2024,
+  "kept": 48.9,
+  "kept_from": "innlandet_2023-2025_2inntak.pdf",
+  "ignored": 46.3,
+  "ignored_from": "innlandet-2024-2026-2inntak.pdf"
+ },
+ {
+  "county": "Innlandet",
+  "school": "Hadeland videregående skole",
+  "program": "Idrettsfag",
+  "level": "Vg1",
+  "year": 2025,
+  "kept": 50.0,
+  "kept_from": "innlandet_2023-2025_2inntak.pdf",
+  "ignored": 44.4,
+  "ignored_from": "innlandet-2024-2026-2inntak.pdf"
+ },
+ {
+  "county": "Innlandet",
+  "school": "Hadeland videregående skole",
+  "program": "Idrettsfag",
+  "level": "Vg1",
+  "year": 2026,
+  "kept": 49.1,
+  "kept_from": "innlandet-2024-2026-2inntak.pdf",
+  "ignored": 41.9,
+  "ignored_from": "innlandet-2024-2026-2inntak.pdf"
+ },
+ {
   "county": "Rogaland",
   "school": "Sola videregående skole",
   "program": "Idrettsfag",

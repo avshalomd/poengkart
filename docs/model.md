@@ -12,7 +12,7 @@ when a programme filled, and when it exists it is one point on the points
 scale. A family with 42 points is not asking "what was the threshold" but
 "will I get in" — and the honest answer to that is a probability, because the
 same programme at the same school moves by a standard deviation of 6.6 points
-from one year to the next (5 266 consecutive-year pairs; only half of all
+from one year to the next (5 389 consecutive-year pairs; only half of all
 moves are within ±3).
 
 So the app forecasts, per programme, for the county's next publication year:
@@ -50,7 +50,7 @@ Variance components come from a few steps of the usual normal-normal EM
 approximation; observations are down-weighted with age (half-life chosen by the
 backtest — it barely mattered, 4 years won by 0.006 RMSE over no decay).
 
-Fitted variance components (points): school 3.2, programme 3.4, series 2.7,
+Fitted variance components (points): school 3.2, programme 3.3, series 2.7,
 county×year innovations 1.2, residual 4.7 On the logit scale for fill: school
 1.0, programme 1.3, series 1.6
 
@@ -112,17 +112,17 @@ flatter nothing and mislead the calibration.
 
 | history | n | model RMSE | "last year's figure" RMSE | programme-county mean RMSE | within ±3 |
 |---|---|---|---|---|---|
-| 0 years | 149 | 8.2 | — | 9.8 | 30% |
-| 1 year | 231 | 5.6 | 6.9 | 6.5 | 52% |
-| 2–3 years | 474 | 5.6 | 7.0 | 6.3 | 42% |
-| 4+ years | 975 | 5.1 | 6.2 | 6.2 | 50% |
+| 0 years | 159 | 8.1 | — | 9.8 | 30% |
+| 1 year | 254 | 5.7 | 7.0 | 6.6 | 52% |
+| 2–3 years | 542 | 5.5 | 7.0 | 6.2 | 43% |
+| 4+ years | 1064 | 5.2 | 6.3 | 6.2 | 49% |
 
 The 80% interval (m ± 1.2816 s) contained the published figure 84% of the time.
 
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.97 filled 0.83 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = −0.130 + 0.427 logit π). Held-out Brier 0.151 against 0.191 for the
+(logit π′ = −0.130 + 0.427 logit π). Held-out Brier 0.156 against 0.196 for the
 base rate.
 
 **Chance, held-out 2025–26**, for every cell and every score in
@@ -132,16 +132,16 @@ base rate.
 |---|---|---|
 | 0–10% | 1.2% | 502 |
 | 10–20% | 6.8% | 1 095 |
-| 20–30% | 14% | 1 406 |
-| 30–40% | 29% | 1 499 |
-| 40–50% | 38% | 1 138 |
-| 50–60% | 49% | 1077 |
-| 60–70% | 66% | 1 220 |
-| 70–80% | 80% | 1 167 |
-| 80–90% | 88% | 1 430 |
-| 90–100% | 98.8% | 9 346 |
+| 20–30% | 14% | 1 455 |
+| 30–40% | 29% | 1 605 |
+| 40–50% | 37% | 1 282 |
+| 50–60% | 49% | 1257 |
+| 60–70% | 65% | 1 446 |
+| 70–80% | 79% | 1 406 |
+| 80–90% | 88% | 1 653 |
+| 90–100% | 98.8% | 10 883 |
 
-Brier 0.092, against 0.150 for the rule "the last published figure is the
+Brier 0.093, against 0.154 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
 Brier is 0.093).
 From 30% up the forecast is within five points of what happened; below 30% it
@@ -181,7 +181,7 @@ it is a measure of demand, not of quality, and the app says so.
 ## The model as a detector
 
 The 25 cells the fitted model finds least plausible are listed in
-`meta.outliers` (|z| ≥ 3: 58 of 8 011 cells). Six of the top twenty-five were
+`meta.outliers` (|z| ≥ 3: 58 of 8 201 cells). Six of the top twenty-five were
 Vestland 2022 — clustering of that kind has meant a parser problem before, so
 three of them, the largest included, were checked against the county's own PDF
 (`vestland_2022-23_1inntak.pdf`): Dale helse- og oppvekstfag Vg1 **12,50**,

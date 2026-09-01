@@ -8110,6 +8110,344 @@ year,fylke,school,program,level,category,state,actual,forecast,p_fill,p_fill_raw
 2026,Akershus,Ås,"kunst, design og arkitektur",Vg1,KD,num,47.7,42.06,0.745,0.943,2,45.0
 2026,Akershus,Ås,studiespesialisering,Vg1,ST,num,44.4,42.96,0.741,0.941,2,45.6
 2026,Akershus,Ås,teknologi- og industrifag,Vg1,TP,num,34.3,34.03,0.875,0.992,2,32.4
+2026,Innlandet,Elverum videregående skole,bygg- og anleggsteknikk,Vg1,BA,num,24.4,29.05,0.579,0.741,3,31.7
+2026,Innlandet,Elverum videregående skole,elektro og datateknologi,Vg1,EL,num,40.9,35.32,0.799,0.972,6,34.3
+2026,Innlandet,Elverum videregående skole,helse- og oppvekstfag,Vg1,HS,zero,,29.44,0.465,0.494,1,21.4
+2026,Innlandet,Elverum videregående skole,idrettsfag,Vg1,ID,num,44.4,41.41,0.672,0.879,5,39.3
+2026,Innlandet,Elverum videregående skole,"salg, service og reiseliv",Vg1,SR,zero,,28.76,0.577,0.737,3,26.9
+2026,Innlandet,Elverum videregående skole,studiespesialisering,Vg1,ST,open,,37.08,0.344,0.231,1,35.4
+2026,Innlandet,Elverum videregående skole,"studiespesialisering, forberedende ib",Vg1,ST,num,41.4,39.84,0.392,0.326,2,43.6
+2026,Innlandet,Elverum videregående skole,teknologi- og industrifag,Vg1,TP,num,26.7,31.73,0.697,0.905,5,33.8
+2026,Innlandet,Elverum videregående skole,barne- og ungdomsarbeider,Vg2,HS,num,20.0,29.47,0.653,0.856,4,27.5
+2026,Innlandet,Elverum videregående skole,"bilskade, lakk og karosseri",Vg2,TP,num,26.3,26.91,0.664,0.87,4,31.3
+2026,Innlandet,Elverum videregående skole,dronefag,Vg2,EL,num,38.6,36.75,0.658,0.863,0,
+2026,Innlandet,Elverum videregående skole,elenergi og ekom,Vg2,EL,num,45.7,41.96,0.799,0.972,5,46.3
+2026,Innlandet,Elverum videregående skole,helsearbeiderfag,Vg2,HS,num,42.5,30.87,0.615,0.803,2,34.4
+2026,Innlandet,Elverum videregående skole,helseservicefag,Vg2,HS,open,,29.01,0.65,0.852,4,33.8
+2026,Innlandet,Elverum videregående skole,idrettsfag,Vg2,ID,open,,31.0,0.347,0.235,1,30.0
+2026,Innlandet,Elverum videregående skole,industriteknologi,Vg2,TP,num,37.1,33.03,0.661,0.866,5,35.0
+2026,Innlandet,Elverum videregående skole,international baccalaureate,Vg2,ST,open,,38.81,0.768,0.957,6,40.0
+2026,Innlandet,Elverum videregående skole,realfag,Vg2,ST,open,,29.24,0.472,0.511,3,23.3
+2026,Innlandet,Elverum videregående skole,"salg og reiseliv, ysk 4 år",Vg2,SR,num,38.0,32.22,0.29,0.143,0,
+2026,Innlandet,Elverum videregående skole,"salg, service og reiseliv",Vg2,SR,num,27.5,32.22,0.509,0.596,0,
+2026,Innlandet,Elverum videregående skole,"språk, samfunn og økonomi",Vg2,ST,open,,30.88,0.349,0.241,1,25.0
+2026,Innlandet,Elverum videregående skole,tømrer,Vg2,BA,zero,,29.31,0.652,0.855,4,38.8
+2026,Innlandet,Gausdal videregående skole,idrettsfag,Vg1,ID,num,43.8,37.89,0.499,0.572,2,41.3
+2026,Innlandet,Gausdal videregående skole,studiespesialisering,Vg1,ST,open,,36.11,0.359,0.259,1,41.3
+2026,Innlandet,Gausdal videregående skole,idrettsfag,Vg2,ID,num,42.2,26.99,0.378,0.296,2,23.3
+2026,Innlandet,Gausdal videregående skole,realfag,Vg2,ST,open,,29.86,0.369,0.278,2,26.7
+2026,Innlandet,Gausdal videregående skole,"språk, samfunn og økonomi",Vg2,ST,open,,28.55,0.315,0.181,1,24.4
+2026,Innlandet,Gjøvik videregående skole,bygg- og anleggsteknikk,Vg1,BA,zero,,29.52,0.742,0.942,6,29.6
+2026,Innlandet,Gjøvik videregående skole,"frisør, blomster, interiør og eksponeringsdesign",Vg1,FD,num,24.7,29.35,0.42,0.39,1,32.5
+2026,Innlandet,Gjøvik videregående skole,helse- og oppvekstfag,Vg1,HS,num,27.5,28.77,0.522,0.626,3,24.1
+2026,Innlandet,Gjøvik videregående skole,"helse- og oppvekstfag, sk 3 år",Vg1,HS,num,40.3,40.75,0.714,0.92,4,47.2
+2026,Innlandet,Gjøvik videregående skole,informasjonsteknologi og medieproduksjon,Vg1,IM,num,35.7,36.76,0.584,0.749,3,38.7
+2026,Innlandet,Gjøvik videregående skole,"kunst, design og arkitektur",Vg1,KD,num,33.8,36.75,0.634,0.831,5,35.6
+2026,Innlandet,Gjøvik videregående skole,medier og kommunikasjon,Vg1,MK,num,36.3,35.51,0.628,0.822,4,31.8
+2026,Innlandet,Gjøvik videregående skole,"musikk, dans og drama, drama",Vg1,MD,open,,37.42,0.415,0.378,2,37.9
+2026,Innlandet,Gjøvik videregående skole,"musikk, dans og drama, musikk",Vg1,MD,open,,37.63,0.455,0.471,1,40.7
+2026,Innlandet,Gjøvik videregående skole,"salg, service og reiseliv",Vg1,SR,num,36.3,33.09,0.587,0.755,4,38.4
+2026,Innlandet,Gjøvik videregående skole,studiespesialisering,Vg1,ST,num,36.3,35.53,0.584,0.749,4,28.8
+2026,Innlandet,Gjøvik videregående skole,"studiespesialisering, forberedende ib",Vg1,ST,open,,37.24,0.263,0.108,0,
+2026,Innlandet,Gjøvik videregående skole,barne- og ungdomsarbeider,Vg2,HS,num,25.0,28.73,0.681,0.889,5,22.5
+2026,Innlandet,Gjøvik videregående skole,drama,Vg2,MD,open,,36.1,0.267,0.114,1,36.7
+2026,Innlandet,Gjøvik videregående skole,frisør,Vg2,FD,open,,26.13,0.393,0.329,2,27.1
+2026,Innlandet,Gjøvik videregående skole,helsearbeiderfag,Vg2,HS,num,30.0,28.1,0.57,0.725,3,23.8
+2026,Innlandet,Gjøvik videregående skole,"helsearbeiderfag, sk 3 år",Vg2,HS,num,35.0,35.57,0.481,0.533,2,33.8
+2026,Innlandet,Gjøvik videregående skole,hudpleie,Vg2,HS,num,32.5,31.11,0.564,0.713,3,38.9
+2026,Innlandet,Gjøvik videregående skole,informasjonsteknologi,Vg2,IM,num,27.5,29.9,0.608,0.791,3,26.7
+2026,Innlandet,Gjøvik videregående skole,international baccalaureate,Vg2,ST,open,,39.12,0.772,0.959,6,40.0
+2026,Innlandet,Gjøvik videregående skole,"kunst, design og arkitektur",Vg2,KD,num,40.0,29.67,0.304,0.163,1,25.6
+2026,Innlandet,Gjøvik videregående skole,medier og kommunikasjon,Vg2,MK,open,,30.43,0.437,0.429,3,31.1
+2026,Innlandet,Gjøvik videregående skole,musikk,Vg2,MD,open,,32.38,0.279,0.128,1,24.4
+2026,Innlandet,Gjøvik videregående skole,realfag,Vg2,ST,open,,32.59,0.451,0.462,3,33.8
+2026,Innlandet,Gjøvik videregående skole,rørlegger,Vg2,BA,num,28.6,32.36,0.539,0.662,2,38.6
+2026,Innlandet,Gjøvik videregående skole,"salg, service og reiseliv",Vg2,SR,open,,31.64,0.52,0.62,0,
+2026,Innlandet,Gjøvik videregående skole,"språk, samfunn og økonomi",Vg2,ST,open,,30.3,0.491,0.554,3,25.0
+2026,Innlandet,Gjøvik videregående skole,tømrer,Vg2,BA,num,31.4,27.07,0.522,0.625,2,25.7
+2026,Innlandet,Hadeland videregående skole,bygg- og anleggsteknikk,Vg1,BA,num,32.8,28.21,0.642,0.841,5,28.4
+2026,Innlandet,Hadeland videregående skole,elektro og datateknologi,Vg1,EL,num,27.0,33.14,0.689,0.897,5,30.9
+2026,Innlandet,Hadeland videregående skole,helse- og oppvekstfag,Vg1,HS,zero,,27.56,0.528,0.639,3,20.9
+2026,Innlandet,Hadeland videregående skole,"helse- og oppvekstfag, sk 3 år",Vg1,HS,num,43.4,39.67,0.616,0.804,3,39.6
+2026,Innlandet,Hadeland videregående skole,idrettsfag,Vg1,ID,num,49.1,44.1,0.678,0.886,5,50.0
+2026,Innlandet,Hadeland videregående skole,restaurant- og matfag,Vg1,RM,zero,,28.16,0.239,0.083,0,
+2026,Innlandet,Hadeland videregående skole,"salg, service og reiseliv",Vg1,SR,zero,,30.06,0.602,0.782,4,28.7
+2026,Innlandet,Hadeland videregående skole,studiespesialisering,Vg1,ST,num,22.5,36.85,0.391,0.325,0,
+2026,Innlandet,Hadeland videregående skole,teknologi- og industrifag,Vg1,TP,num,27.5,28.49,0.635,0.832,4,27.2
+2026,Innlandet,Hadeland videregående skole,barne- og ungdomsarbeider,Vg2,HS,open,,30.16,0.356,0.252,1,23.3
+2026,Innlandet,Hadeland videregående skole,datateknologi og elektronikk,Vg2,EL,num,30.0,29.73,0.354,0.249,1,26.7
+2026,Innlandet,Hadeland videregående skole,elenergi og ekom,Vg2,EL,num,38.6,35.39,0.689,0.897,5,40.0
+2026,Innlandet,Hadeland videregående skole,helsearbeiderfag,Vg2,HS,num,30.0,29.8,0.421,0.392,2,25.6
+2026,Innlandet,Hadeland videregående skole,"helsearbeiderfag, sk 3 år",Vg2,HS,open,,36.62,0.381,0.304,1,38.8
+2026,Innlandet,Hadeland videregående skole,idrettsfag,Vg2,ID,num,34.4,32.0,0.429,0.41,3,33.3
+2026,Innlandet,Hadeland videregående skole,industriteknologi,Vg2,TP,num,28.8,33.24,0.569,0.722,3,38.8
+2026,Innlandet,Hadeland videregående skole,kjøretøy,Vg2,TP,num,21.3,26.49,0.487,0.545,3,17.5
+2026,Innlandet,Hadeland videregående skole,kokk- og servitørfag,Vg2,RM,open,,27.02,0.334,0.213,1,30.0
+2026,Innlandet,Hadeland videregående skole,realfag,Vg2,ST,open,,32.5,0.315,0.181,1,27.8
+2026,Innlandet,Hadeland videregående skole,"salg, service og reiseliv",Vg2,SR,open,,31.79,0.448,0.455,0,
+2026,Innlandet,Hadeland videregående skole,"språk, samfunn og økonomi",Vg2,ST,open,,30.04,0.332,0.208,1,21.4
+2026,Innlandet,Hadeland videregående skole,tømrer,Vg2,BA,num,34.3,32.16,0.658,0.863,4,31.4
+2026,Innlandet,Hamar katedralskole,elektro og datateknologi,Vg1,EL,num,37.9,35.25,0.572,0.729,3,40.0
+2026,Innlandet,Hamar katedralskole,"frisør, blomster, interiør og eksponeringsdesign",Vg1,FD,num,24.3,27.83,0.462,0.487,2,30.4
+2026,Innlandet,Hamar katedralskole,"håndverk, design og produktutv, søm/th, sk 3 år",Vg1,DT,num,15.8,29.32,0.336,0.216,1,23.1
+2026,Innlandet,Hamar katedralskole,informasjonsteknologi og medieproduksjon,Vg1,IM,num,35.6,33.89,0.701,0.909,5,34.7
+2026,Innlandet,Hamar katedralskole,"kunst, design og arkitektur",Vg1,KD,num,32.5,35.16,0.586,0.754,4,35.6
+2026,Innlandet,Hamar katedralskole,medier og kommunikasjon,Vg1,MK,num,33.8,35.38,0.515,0.61,2,44.6
+2026,Innlandet,Hamar katedralskole,"salg, service og reiseliv",Vg1,SR,num,28.4,29.11,0.696,0.904,5,29.4
+2026,Innlandet,Hamar katedralskole,studiespesialisering,Vg1,ST,num,35.9,31.59,0.411,0.368,1,21.8
+2026,Innlandet,Hamar katedralskole,teknologi- og industrifag,Vg1,TP,num,24.4,25.27,0.726,0.93,4,22.0
+2026,Innlandet,Hamar katedralskole,datateknologi og elektronikk,Vg2,EL,num,34.3,28.55,0.618,0.807,3,32.9
+2026,Innlandet,Hamar katedralskole,frisør,Vg2,FD,num,30.0,25.42,0.404,0.353,2,26.3
+2026,Innlandet,Hamar katedralskole,industriteknologi,Vg2,TP,num,27.5,26.19,0.599,0.776,4,22.5
+2026,Innlandet,Hamar katedralskole,informasjonsteknologi,Vg2,IM,num,30.0,29.5,0.661,0.866,4,31.3
+2026,Innlandet,Hamar katedralskole,interiør og eksponeringsdesign,Vg2,FD,num,32.9,29.41,0.566,0.716,3,31.4
+2026,Innlandet,Hamar katedralskole,kjøretøy,Vg2,TP,num,21.3,24.96,0.66,0.865,5,23.8
+2026,Innlandet,Hamar katedralskole,"kunst, design og arkitektur",Vg2,KD,open,,28.0,0.485,0.54,3,26.7
+2026,Innlandet,Hamar katedralskole,medieproduksjon,Vg2,IM,num,35.0,33.76,0.62,0.81,5,37.8
+2026,Innlandet,Hamar katedralskole,medier og kommunikasjon,Vg2,MK,open,,29.13,0.289,0.142,1,26.7
+2026,Innlandet,Hamar katedralskole,realfag,Vg2,ST,open,,30.42,0.338,0.22,1,24.0
+2026,Innlandet,Hamar katedralskole,"salg, service og reiseliv",Vg2,SR,num,31.3,29.97,0.524,0.63,0,
+2026,Innlandet,Hamar katedralskole,"språk, samfunn og økonomi",Vg2,ST,open,,28.8,0.458,0.477,2,28.9
+2026,Innlandet,Hamar katedralskole,"søm og tekstilhåndverk, sk 3 år",Vg2,DT,open,,32.68,0.259,0.104,0,
+2026,Innlandet,Jønsberg videregående skole,naturbruk,Vg1,NA,num,28.3,26.23,0.463,0.489,2,29.3
+2026,Innlandet,Jønsberg videregående skole,teknologi- og industrifag,Vg1,TP,num,23.3,25.39,0.518,0.615,2,17.8
+2026,Innlandet,Jønsberg videregående skole,arbeidsmaskiner,Vg2,TP,num,37.5,28.62,0.669,0.875,5,26.7
+2026,Innlandet,Jønsberg videregående skole,landbruk og gartnernæring,Vg2,NA,open,,24.48,0.407,0.359,2,25.7
+2026,Innlandet,Lena-Valle videregående skole,helse- og oppvekstfag,Vg1,HS,num,28.4,29.95,0.672,0.879,5,27.9
+2026,Innlandet,Lena-Valle videregående skole,"helse- og oppvekstfag, sk 3 år",Vg1,HS,num,36.7,37.6,0.713,0.92,3,42.2
+2026,Innlandet,Lena-Valle videregående skole,idrettsfag,Vg1,ID,open,,36.11,0.582,0.747,3,31.8
+2026,Innlandet,Lena-Valle videregående skole,naturbruk,Vg1,NA,num,30.7,27.92,0.539,0.662,3,24.7
+2026,Innlandet,Lena-Valle videregående skole,studiespesialisering,Vg1,ST,num,33.8,35.68,0.661,0.867,5,32.0
+2026,Innlandet,Lena-Valle videregående skole,teknologi- og industrifag,Vg1,TP,num,25.9,27.45,0.724,0.928,5,23.3
+2026,Innlandet,Lena-Valle videregående skole,anleggsgartner,Vg2,BA,num,33.8,31.41,0.675,0.883,4,34.3
+2026,Innlandet,Lena-Valle videregående skole,arbeidsmaskiner,Vg2,TP,num,25.7,32.03,0.542,0.667,3,33.8
+2026,Innlandet,Lena-Valle videregående skole,helsearbeiderfag,Vg2,HS,num,20.0,26.51,0.57,0.724,3,16.3
+2026,Innlandet,Lena-Valle videregående skole,"helsearbeiderfag, sk 3 år",Vg2,HS,num,32.5,33.29,0.477,0.522,2,27.5
+2026,Innlandet,Lena-Valle videregående skole,heste- og dyrefag,Vg2,NA,open,,31.14,0.65,0.852,4,28.6
+2026,Innlandet,Lena-Valle videregående skole,idrettsfag,Vg2,ID,open,,26.88,0.351,0.243,1,18.9
+2026,Innlandet,Lena-Valle videregående skole,kjøretøy,Vg2,TP,num,26.3,25.24,0.576,0.735,4,23.8
+2026,Innlandet,Lena-Valle videregående skole,landbruk og gartnernæring,Vg2,NA,open,,26.93,0.608,0.79,4,22.9
+2026,Innlandet,Lena-Valle videregående skole,realfag,Vg2,ST,num,28.9,30.7,0.392,0.327,2,30.0
+2026,Innlandet,Lena-Valle videregående skole,skogbruk,Vg2,NA,num,31.4,27.56,0.41,0.366,2,28.6
+2026,Innlandet,Lena-Valle videregående skole,"språk, samfunn og økonomi",Vg2,ST,num,38.8,29.76,0.658,0.863,5,31.1
+2026,Innlandet,Lena-Valle videregående skole,transport og logistikk,Vg2,TP,num,18.8,23.02,0.543,0.669,3,20.0
+2026,Innlandet,"Lillehammer videreg skole, avd Nord",bygg- og anleggsteknikk,Vg1,BA,zero,,26.18,0.475,0.519,1,26.7
+2026,Innlandet,"Lillehammer videreg skole, avd Nord",elektro og datateknologi,Vg1,EL,num,37.5,34.14,0.712,0.919,5,33.3
+2026,Innlandet,"Lillehammer videreg skole, avd Nord","frisør, blomster, interiør og eksponeringsdesign",Vg1,FD,num,32.7,28.11,0.46,0.483,2,32.1
+2026,Innlandet,"Lillehammer videreg skole, avd Nord",helse- og oppvekstfag,Vg1,HS,num,28.7,26.12,0.583,0.749,4,25.8
+2026,Innlandet,"Lillehammer videreg skole, avd Nord","helse- og oppvekstfag, sk 3 år",Vg1,HS,num,30.9,37.48,0.669,0.875,4,34.4
+2026,Innlandet,"Lillehammer videreg skole, avd Nord",teknologi- og industrifag,Vg1,TP,num,32.0,28.5,0.627,0.82,3,28.0
+2026,Innlandet,"Lillehammer videreg skole, avd Nord",barne- og ungdomsarbeider,Vg2,HS,num,31.3,30.83,0.544,0.672,4,31.1
+2026,Innlandet,"Lillehammer videreg skole, avd Nord","barne- og ungdomsarbeiderfag, sk 3 år",Vg2,HS,num,31.3,33.75,0.409,0.364,1,31.1
+2026,Innlandet,"Lillehammer videreg skole, avd Nord",elenergi og ekom,Vg2,EL,num,38.6,34.83,0.713,0.919,5,35.7
+2026,Innlandet,"Lillehammer videreg skole, avd Nord",helsearbeiderfag,Vg2,HS,num,31.3,27.6,0.403,0.352,1,24.3
+2026,Innlandet,"Lillehammer videreg skole, avd Nord",helseservicefag,Vg2,HS,num,26.3,27.8,0.556,0.696,4,25.0
+2026,Innlandet,"Lillehammer videreg skole, avd Nord",industriteknologi,Vg2,TP,num,25.0,27.67,0.376,0.294,1,21.0
+2026,Innlandet,"Lillehammer videreg skole, avd Nord",interiør og eksponeringsdesign,Vg2,FD,open,,29.12,0.43,0.413,1,28.6
+2026,Innlandet,"Lillehammer videreg skole, avd Nord",kjøretøy,Vg2,TP,num,28.8,24.71,0.591,0.763,4,23.3
+2026,Innlandet,"Lillehammer videreg skole, avd Nord","klima, energi og miljøteknikk",Vg2,BA,open,,26.02,0.301,0.158,0,
+2026,Innlandet,"Lillehammer videreg skole, avd Nord",rørlegger,Vg2,BA,open,,30.66,0.678,0.885,4,37.1
+2026,Innlandet,"Lillehammer videreg skole, avd Nord",tømrer,Vg2,BA,num,35.7,24.82,0.636,0.833,4,20.0
+2026,Innlandet,"Lillehammer videreg skole, avd Sør",informasjonsteknologi og medieproduksjon,Vg1,IM,zero,,33.74,0.647,0.849,5,33.8
+2026,Innlandet,"Lillehammer videreg skole, avd Sør","kunst, design og arkitektur",Vg1,KD,zero,,31.57,0.51,0.598,2,26.3
+2026,Innlandet,"Lillehammer videreg skole, avd Sør",restaurant- og matfag,Vg1,RM,zero,,26.4,0.371,0.284,1,27.7
+2026,Innlandet,"Lillehammer videreg skole, avd Sør","salg, service og reiseliv",Vg1,SR,num,33.3,28.19,0.617,0.806,2,26.9
+2026,Innlandet,"Lillehammer videreg skole, avd Sør",studiespesialisering,Vg1,ST,num,37.1,35.53,0.581,0.745,3,36.9
+2026,Innlandet,"Lillehammer videreg skole, avd Sør",informasjonsteknologi,Vg2,IM,num,32.5,29.7,0.41,0.366,1,33.8
+2026,Innlandet,"Lillehammer videreg skole, avd Sør",kokk- og servitørfag,Vg2,RM,open,,24.43,0.417,0.382,2,26.3
+2026,Innlandet,"Lillehammer videreg skole, avd Sør","kunst, design og arkitektur",Vg2,KD,open,,28.17,0.246,0.09,0,
+2026,Innlandet,"Lillehammer videreg skole, avd Sør",matproduksjon,Vg2,RM,open,,27.19,0.191,0.044,0,
+2026,Innlandet,"Lillehammer videreg skole, avd Sør",realfag,Vg2,ST,open,,29.89,0.32,0.189,1,22.5
+2026,Innlandet,"Lillehammer videreg skole, avd Sør","salg, service og reiseliv",Vg2,SR,num,22.5,29.58,0.464,0.492,0,
+2026,Innlandet,"Lillehammer videreg skole, avd Sør","språk, samfunn og økonomi",Vg2,ST,open,,29.06,0.283,0.134,0,
+2026,Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",helse- og oppvekstfag,Vg1,HS,open,,25.96,0.422,0.394,2,22.5
+2026,Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",idrettsfag,Vg1,ID,open,,32.88,0.338,0.22,1,22.9
+2026,Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",restaurant- og matfag,Vg1,RM,open,,23.76,0.191,0.044,0,
+2026,Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta","salg, service og reiseliv",Vg1,SR,zero,,24.75,0.367,0.275,1,17.5
+2026,Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",studiespesialisering,Vg1,ST,open,,30.68,0.358,0.257,1,25.6
+2026,Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",teknologi- og industrifag,Vg1,TP,zero,,26.76,0.584,0.751,4,26.7
+2026,Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",barne- og ungdomsarbeider,Vg2,HS,open,,26.68,0.319,0.188,1,26.0
+2026,Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",helsearbeiderfag,Vg2,HS,num,32.5,26.45,0.537,0.658,4,30.0
+2026,Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",idrettsfag,Vg2,ID,open,,26.39,0.186,0.041,0,
+2026,Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",kjøretøy,Vg2,TP,open,,20.74,0.4,0.343,2,13.3
+2026,Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",realfag,Vg2,ST,open,,29.18,0.275,0.123,1,31.7
+2026,Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta","språk, samfunn og økonomi",Vg2,ST,open,,27.97,0.293,0.147,1,35.0
+2026,Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",transport og logistikk,Vg2,TP,open,,24.0,0.538,0.66,4,22.5
+2026,Innlandet,Nord-Østerdal videregående skole,bygg- og anleggsteknikk,Vg1,BA,open,,25.95,0.545,0.674,3,19.2
+2026,Innlandet,Nord-Østerdal videregående skole,elektro og datateknologi,Vg1,EL,num,14.4,33.39,0.707,0.914,5,35.0
+2026,Innlandet,Nord-Østerdal videregående skole,helse- og oppvekstfag,Vg1,HS,num,34.7,26.27,0.447,0.452,2,18.2
+2026,Innlandet,Nord-Østerdal videregående skole,idrettsfag,Vg1,ID,num,38.3,37.51,0.672,0.88,5,41.6
+2026,Innlandet,Nord-Østerdal videregående skole,"musikk, dans og drama, musikk",Vg1,MD,open,,33.2,0.469,0.504,2,26.7
+2026,Innlandet,Nord-Østerdal videregående skole,restaurant- og matfag,Vg1,RM,open,,27.15,0.245,0.089,0,
+2026,Innlandet,Nord-Østerdal videregående skole,studiespesialisering,Vg1,ST,open,,34.34,0.478,0.524,2,29.0
+2026,Innlandet,Nord-Østerdal videregående skole,teknologi- og industrifag,Vg1,TP,zero,,30.88,0.708,0.915,5,28.7
+2026,Innlandet,Nord-Østerdal videregående skole,arbeidsmaskiner,Vg2,TP,num,23.8,33.34,0.699,0.907,5,31.3
+2026,Innlandet,Nord-Østerdal videregående skole,automatisering,Vg2,EL,num,44.3,41.06,0.766,0.956,6,41.4
+2026,Innlandet,Nord-Østerdal videregående skole,barne- og ungdomsarbeider,Vg2,HS,open,,29.86,0.369,0.279,1,27.8
+2026,Innlandet,Nord-Østerdal videregående skole,datateknologi og elektronikk,Vg2,EL,num,34.3,27.46,0.572,0.727,4,25.7
+2026,Innlandet,Nord-Østerdal videregående skole,elenergi og ekom,Vg2,EL,num,35.7,38.04,0.784,0.965,6,37.1
+2026,Innlandet,Nord-Østerdal videregående skole,helsearbeiderfag,Vg2,HS,open,,29.14,0.437,0.427,2,27.5
+2026,Innlandet,Nord-Østerdal videregående skole,idrettsfag,Vg2,ID,open,,29.72,0.322,0.192,1,30.0
+2026,Innlandet,Nord-Østerdal videregående skole,kjøretøy,Vg2,TP,num,31.3,27.35,0.491,0.554,3,35.7
+2026,Innlandet,Nord-Østerdal videregående skole,musikk,Vg2,MD,open,,31.93,0.26,0.105,1,26.7
+2026,Innlandet,Nord-Østerdal videregående skole,realfag,Vg2,ST,open,,30.95,0.429,0.411,2,25.0
+2026,Innlandet,Nord-Østerdal videregående skole,"språk, samfunn og økonomi",Vg2,ST,open,,29.76,0.414,0.375,2,30.0
+2026,Innlandet,Nord-Østerdal videregående skole,tømrer,Vg2,BA,open,,29.23,0.48,0.529,2,32.9
+2026,Innlandet,Raufoss videregående skole,elektro og datateknologi,Vg1,EL,num,31.5,31.95,0.645,0.845,4,34.7
+2026,Innlandet,Raufoss videregående skole,helse- og oppvekstfag,Vg1,HS,zero,,29.71,0.514,0.608,3,26.9
+2026,Innlandet,Raufoss videregående skole,restaurant- og matfag,Vg1,RM,open,,25.5,0.408,0.363,1,24.9
+2026,Innlandet,Raufoss videregående skole,teknologi- og industrifag,Vg1,TP,num,33.3,27.81,0.714,0.92,4,30.0
+2026,Innlandet,Raufoss videregående skole,ambulansefag,Vg2,HS,num,48.9,43.4,0.791,0.968,3,41.3
+2026,Innlandet,Raufoss videregående skole,automatisering,Vg2,EL,num,41.4,33.54,0.575,0.733,3,37.1
+2026,Innlandet,Raufoss videregående skole,barne- og ungdomsarbeider,Vg2,HS,num,26.3,27.23,0.521,0.623,3,25.0
+2026,Innlandet,Raufoss videregående skole,elenergi og ekom,Vg2,EL,num,31.4,32.61,0.791,0.968,6,28.8
+2026,Innlandet,Raufoss videregående skole,industriteknologi,Vg2,TP,num,35.7,26.38,0.538,0.661,3,26.3
+2026,Innlandet,Raufoss videregående skole,"industriteknologi, ysk 4 år",Vg2,TP,num,42.5,36.34,0.442,0.441,1,44.3
+2026,Innlandet,Raufoss videregående skole,kokk- og servitørfag,Vg2,RM,num,30.0,24.44,0.639,0.838,5,17.1
+2026,Innlandet,Raufoss videregående skole avd Dokka,teknologi- og industrifag,Vg1,TP,zero,,28.8,0.658,0.862,0,
+2026,Innlandet,Ringsaker videregående skole,bygg- og anleggsteknikk,Vg1,BA,open,,26.07,0.547,0.678,3,25.4
+2026,Innlandet,Ringsaker videregående skole,elektro og datateknologi,Vg1,EL,num,35.3,34.71,0.725,0.93,5,37.8
+2026,Innlandet,Ringsaker videregående skole,helse- og oppvekstfag,Vg1,HS,num,13.8,25.4,0.461,0.484,2,17.5
+2026,Innlandet,Ringsaker videregående skole,"helse- og oppvekstfag, sk 3 år",Vg1,HS,num,11.9,36.88,0.706,0.914,4,33.8
+2026,Innlandet,Ringsaker videregående skole,"salg, service og reiseliv",Vg1,SR,num,27.0,28.23,0.613,0.799,4,26.7
+2026,Innlandet,Ringsaker videregående skole,studiespesialisering,Vg1,ST,open,,31.84,0.445,0.447,2,26.3
+2026,Innlandet,Ringsaker videregående skole,teknologi- og industrifag,Vg1,TP,num,27.1,27.69,0.715,0.922,5,28.7
+2026,Innlandet,Ringsaker videregående skole,automatisering,Vg2,EL,num,44.3,36.45,0.775,0.961,6,38.6
+2026,Innlandet,Ringsaker videregående skole,barne- og ungdomsarbeider,Vg2,HS,num,28.9,29.67,0.419,0.388,2,25.0
+2026,Innlandet,Ringsaker videregående skole,"barne- og ungdomsarbeiderfag, sk 3 år",Vg2,HS,open,,35.72,0.572,0.727,4,41.3
+2026,Innlandet,Ringsaker videregående skole,elenergi og ekom,Vg2,EL,num,45.7,40.28,0.793,0.969,6,41.4
+2026,Innlandet,Ringsaker videregående skole,helsearbeiderfag,Vg2,HS,num,25.6,24.84,0.498,0.571,3,14.0
+2026,Innlandet,Ringsaker videregående skole,"helsearbeiderfag, sk 3 år",Vg2,HS,open,,35.25,0.518,0.615,3,45.0
+2026,Innlandet,Ringsaker videregående skole,helseservicefag,Vg2,HS,open,,25.13,0.52,0.62,3,18.8
+2026,Innlandet,Ringsaker videregående skole,industriteknologi,Vg2,TP,num,30.0,26.77,0.517,0.613,3,18.8
+2026,Innlandet,Ringsaker videregående skole,kjemiprosess- og laboratorief,Vg2,TP,num,26.3,30.64,0.595,0.77,2,27.1
+2026,Innlandet,Ringsaker videregående skole,"kulde-, varmepumpe-, vent.tekn",Vg2,EL,num,41.3,34.04,0.766,0.956,5,35.6
+2026,Innlandet,Ringsaker videregående skole,realfag,Vg2,ST,open,,31.15,0.274,0.122,0,
+2026,Innlandet,Ringsaker videregående skole,rørlegger,Vg2,BA,num,31.4,33.21,0.752,0.948,5,37.1
+2026,Innlandet,Ringsaker videregående skole,"salg, service og reiseliv",Vg2,SR,num,23.3,29.79,0.49,0.554,0,
+2026,Innlandet,Ringsaker videregående skole,"språk, samfunn og økonomi",Vg2,ST,open,,29.3,0.437,0.428,1,30.0
+2026,Innlandet,Ringsaker videregående skole,tømrer,Vg2,BA,open,,26.93,0.568,0.719,3,27.5
+2026,Innlandet,Sentrum videregående skole,bygg- og anleggsteknikk,Vg1,BA,num,21.8,24.25,0.47,0.507,1,25.3
+2026,Innlandet,Sentrum videregående skole,elektro og datateknologi,Vg1,EL,num,31.3,26.88,0.653,0.856,4,27.5
+2026,Innlandet,Sentrum videregående skole,"frisør, blomster, interiør og eksponeringsdesign",Vg1,FD,zero,,22.02,0.39,0.322,1,15.7
+2026,Innlandet,Sentrum videregående skole,helse- og oppvekstfag,Vg1,HS,open,,22.4,0.456,0.472,2,19.0
+2026,Innlandet,Sentrum videregående skole,"helse- og oppvekstfag, sk 3 år",Vg1,HS,num,35.4,34.58,0.74,0.94,6,33.8
+2026,Innlandet,Sentrum videregående skole,informasjonsteknologi og medieproduksjon,Vg1,IM,num,21.3,29.63,0.644,0.845,5,28.8
+2026,Innlandet,Sentrum videregående skole,"kunst, design og arkitektur",Vg1,KD,open,,30.59,0.257,0.101,0,
+2026,Innlandet,Sentrum videregående skole,medier og kommunikasjon,Vg1,MK,zero,,32.56,0.472,0.51,3,37.9
+2026,Innlandet,Sentrum videregående skole,restaurant- og matfag,Vg1,RM,open,,23.52,0.282,0.132,1,20.0
+2026,Innlandet,Sentrum videregående skole,"salg, service og reiseliv",Vg1,SR,num,27.9,27.28,0.587,0.756,2,28.9
+2026,Innlandet,Sentrum videregående skole,teknologi- og industrifag,Vg1,TP,num,22.7,25.16,0.543,0.671,3,21.3
+2026,Innlandet,Sentrum videregående skole,automatisering,Vg2,EL,num,40.0,32.42,0.467,0.5,1,28.6
+2026,Innlandet,Sentrum videregående skole,barne- og ungdomsarbeider,Vg2,HS,num,31.3,28.52,0.552,0.689,4,27.5
+2026,Innlandet,Sentrum videregående skole,"barne- og ungdomsarbeiderfag, sk 3 år",Vg2,HS,num,31.3,32.19,0.541,0.665,4,28.9
+2026,Innlandet,Sentrum videregående skole,elenergi og ekom,Vg2,EL,num,44.3,34.79,0.699,0.907,5,41.4
+2026,Innlandet,Sentrum videregående skole,frisør,Vg2,FD,open,,22.85,0.268,0.115,0,
+2026,Innlandet,Sentrum videregående skole,helsearbeiderfag,Vg2,HS,num,33.8,26.23,0.365,0.27,1,26.0
+2026,Innlandet,Sentrum videregående skole,"helsearbeiderfag, sk 3 år",Vg2,HS,open,,32.01,0.609,0.793,5,26.7
+2026,Innlandet,Sentrum videregående skole,industriteknologi,Vg2,TP,num,24.4,27.14,0.593,0.767,3,32.5
+2026,Innlandet,Sentrum videregående skole,informasjonsteknologi,Vg2,IM,num,27.5,26.75,0.298,0.154,0,
+2026,Innlandet,Sentrum videregående skole,kjøretøy,Vg2,TP,num,32.5,25.38,0.6,0.777,5,21.3
+2026,Innlandet,Sentrum videregående skole,kokk- og servitørfag,Vg2,RM,open,,22.67,0.305,0.165,1,24.4
+2026,Innlandet,Sentrum videregående skole,"kunst, design og arkitektur",Vg2,KD,open,,26.43,0.263,0.109,1,27.5
+2026,Innlandet,Sentrum videregående skole,medier og kommunikasjon,Vg2,MK,open,,27.13,0.179,0.037,0,
+2026,Innlandet,Sentrum videregående skole,rørlegger,Vg2,BA,open,,27.31,0.49,0.553,1,27.1
+2026,Innlandet,Sentrum videregående skole,"salg, service og reiseliv",Vg2,SR,num,23.8,27.64,0.402,0.348,0,
+2026,Innlandet,Sentrum videregående skole,tømrer,Vg2,BA,num,45.7,26.31,0.467,0.5,1,31.4
+2026,Innlandet,Solør videregående skole,bygg- og anleggsteknikk,Vg1,BA,zero,,26.94,0.475,0.517,3,36.0
+2026,Innlandet,Solør videregående skole,elektro og datateknologi,Vg1,EL,num,37.5,30.5,0.673,0.88,3,26.4
+2026,Innlandet,Solør videregående skole,helse- og oppvekstfag,Vg1,HS,zero,,27.17,0.561,0.707,2,26.3
+2026,Innlandet,Solør videregående skole,naturbruk,Vg1,NA,open,,25.88,0.49,0.554,2,22.7
+2026,Innlandet,Solør videregående skole,studiespesialisering,Vg1,ST,open,,33.79,0.523,0.627,2,34.6
+2026,Innlandet,Solør videregående skole,teknologi- og industrifag,Vg1,TP,zero,,27.01,0.642,0.842,3,23.1
+2026,Innlandet,Solør videregående skole,ambulansefag,Vg2,HS,num,46.7,43.29,0.787,0.967,3,41.3
+2026,Innlandet,Solør videregående skole,"anleggsteknikk, lal",Vg2,BA,num,40.0,36.6,0.76,0.953,6,41.3
+2026,Innlandet,Solør videregående skole,arbeidsmaskiner,Vg2,TP,num,18.8,32.56,0.702,0.91,5,32.5
+2026,Innlandet,Solør videregående skole,datateknologi og elektronikk,Vg2,EL,num,34.3,29.6,0.606,0.789,4,31.4
+2026,Innlandet,Solør videregående skole,elenergi og ekom,Vg2,EL,num,40.0,38.47,0.787,0.967,6,42.9
+2026,Innlandet,Solør videregående skole,helsearbeiderfag,Vg2,HS,num,36.3,29.47,0.366,0.273,1,33.3
+2026,Innlandet,Solør videregående skole,kjøretøy,Vg2,TP,num,23.8,24.67,0.426,0.403,2,25.0
+2026,Innlandet,Solør videregående skole,"landbruk/gartnernæring, friluftsliv",Vg2,NA,num,38.6,29.21,0.346,0.234,1,25.0
+2026,Innlandet,Solør videregående skole,skogbruk,Vg2,NA,num,27.1,27.25,0.399,0.342,2,22.9
+2026,Innlandet,Solør videregående skole,transport og logistikk,Vg2,TP,num,31.1,26.11,0.601,0.779,4,31.3
+2026,Innlandet,Stange videregående skole,bygg- og anleggsteknikk,Vg1,BA,zero,,25.79,0.527,0.635,2,15.0
+2026,Innlandet,Stange videregående skole,idrettsfag,Vg1,ID,num,34.1,38.24,0.619,0.808,4,42.4
+2026,Innlandet,Stange videregående skole,"musikk, dans og drama, dans",Vg1,MD,num,39.3,38.3,0.264,0.11,0,
+2026,Innlandet,Stange videregående skole,"musikk, dans og drama, drama",Vg1,MD,num,37.5,36.44,0.491,0.555,3,31.6
+2026,Innlandet,Stange videregående skole,"musikk, dans og drama, musikk",Vg1,MD,num,31.6,41.06,0.584,0.749,4,47.5
+2026,Innlandet,Stange videregående skole,studiespesialisering,Vg1,ST,num,22.2,39.07,0.532,0.646,3,40.3
+2026,Innlandet,Stange videregående skole,betong og mur,Vg2,BA,open,,30.07,0.712,0.918,5,32.9
+2026,Innlandet,Stange videregående skole,dans,Vg2,MD,open,,37.37,0.197,0.048,0,
+2026,Innlandet,Stange videregående skole,drama,Vg2,MD,open,,36.0,0.261,0.106,1,31.3
+2026,Innlandet,Stange videregående skole,idrettsfag,Vg2,ID,open,,30.8,0.311,0.175,1,27.1
+2026,Innlandet,Stange videregående skole,musikk,Vg2,MD,num,34.4,34.18,0.273,0.12,1,33.8
+2026,Innlandet,Stange videregående skole,overflateteknikk,Vg2,BA,open,,30.85,0.29,0.143,0,
+2026,Innlandet,Stange videregående skole,realfag,Vg2,ST,num,31.1,33.7,0.397,0.339,2,36.7
+2026,Innlandet,Stange videregående skole,"språk, samfunn og økonomi",Vg2,ST,num,40.0,33.51,0.367,0.275,1,42.2
+2026,Innlandet,Stange videregående skole,tømrer,Vg2,BA,open,,28.28,0.62,0.81,4,31.4
+2026,Innlandet,Storhamar videregående skole,helse- og oppvekstfag,Vg1,HS,num,31.3,29.88,0.476,0.519,2,35.3
+2026,Innlandet,Storhamar videregående skole,"helse- og oppvekstfag, sk 3 år",Vg1,HS,num,31.9,37.05,0.701,0.909,5,38.8
+2026,Innlandet,Storhamar videregående skole,idrettsfag,Vg1,ID,num,23.1,40.31,0.685,0.893,5,41.2
+2026,Innlandet,Storhamar videregående skole,restaurant- og matfag,Vg1,RM,zero,,25.21,0.454,0.469,2,24.3
+2026,Innlandet,Storhamar videregående skole,baker og konditor,Vg2,RM,num,28.6,26.05,0.52,0.621,2,20.0
+2026,Innlandet,Storhamar videregående skole,barne- og ungdomsarbeider,Vg2,HS,num,31.3,29.71,0.637,0.835,4,21.3
+2026,Innlandet,Storhamar videregående skole,"barne- og ungdomsarbeiderfag, sk 3 år",Vg2,HS,num,30.0,36.8,0.672,0.879,5,34.4
+2026,Innlandet,Storhamar videregående skole,helsearbeiderfag,Vg2,HS,num,26.3,25.89,0.589,0.76,3,23.8
+2026,Innlandet,Storhamar videregående skole,"helsearbeiderfag, sk 3 år",Vg2,HS,open,,36.35,0.674,0.882,5,36.7
+2026,Innlandet,Storhamar videregående skole,hudpleie,Vg2,HS,num,30.0,28.04,0.682,0.89,5,33.8
+2026,Innlandet,Storhamar videregående skole,idrettsfag,Vg2,ID,open,,30.2,0.361,0.263,1,33.3
+2026,Innlandet,Storhamar videregående skole,kokk- og servitørfag,Vg2,RM,open,,26.9,0.598,0.775,4,25.7
+2026,Innlandet,Storsteigen videregående skole,naturbruk,Vg1,NA,zero,,30.41,0.666,0.873,5,37.5
+2026,Innlandet,Storsteigen videregående skole,"naturbruk, hest",Vg1,NA,zero,,30.01,0.269,0.116,0,
+2026,Innlandet,Storsteigen videregående skole,heste- og dyrefag,Vg2,NA,open,,28.92,0.326,0.198,0,
+2026,Innlandet,Storsteigen videregående skole,landbruk og gartnernæring,Vg2,NA,open,,28.48,0.553,0.691,4,24.3
+2026,Innlandet,Trysil videregående skole,bygg- og anleggsteknikk,Vg1,BA,open,,26.83,0.517,0.615,4,15.4
+2026,Innlandet,Trysil videregående skole,helse- og oppvekstfag,Vg1,HS,open,,28.95,0.475,0.517,3,30.4
+2026,Innlandet,Trysil videregående skole,idrettsfag,Vg1,ID,open,,37.72,0.302,0.161,0,
+2026,Innlandet,Trysil videregående skole,studiespesialisering,Vg1,ST,open,,35.63,0.339,0.222,1,34.7
+2026,Innlandet,Trysil videregående skole,barne- og ungdomsarbeider,Vg2,HS,num,28.8,30.58,0.516,0.611,4,33.8
+2026,Innlandet,Trysil videregående skole,helsearbeiderfag,Vg2,HS,num,30.0,29.23,0.338,0.22,1,26.7
+2026,Innlandet,Trysil videregående skole,idrettsfag,Vg2,ID,open,,29.8,0.207,0.055,0,
+2026,Innlandet,Trysil videregående skole,realfag,Vg2,ST,open,,33.73,0.293,0.147,1,44.0
+2026,Innlandet,Trysil videregående skole,"språk, samfunn og økonomi",Vg2,ST,open,,28.36,0.405,0.355,2,25.6
+2026,Innlandet,Trysil videregående skole,tømrer,Vg2,BA,num,27.1,29.49,0.38,0.301,1,38.6
+2026,Innlandet,Valdres vidaregåande skule,bygg- og anleggsteknikk,Vg1,BA,open,,24.7,0.476,0.521,2,18.9
+2026,Innlandet,Valdres vidaregåande skule,elektro og datateknologi,Vg1,EL,num,32.7,34.35,0.778,0.962,6,30.7
+2026,Innlandet,Valdres vidaregåande skule,helse- og oppvekstfag,Vg1,HS,zero,,29.84,0.575,0.734,4,28.8
+2026,Innlandet,Valdres vidaregåande skule,idrettsfag,Vg1,ID,open,,35.68,0.679,0.886,5,31.8
+2026,Innlandet,Valdres vidaregåande skule,restaurant- og matfag,Vg1,RM,open,,27.01,0.24,0.084,0,
+2026,Innlandet,Valdres vidaregåande skule,studiespesialisering,Vg1,ST,num,49.7,35.12,0.446,0.451,2,29.3
+2026,Innlandet,Valdres vidaregåande skule,teknologi- og industrifag,Vg1,TP,zero,,29.49,0.574,0.732,3,27.1
+2026,Innlandet,Valdres vidaregåande skule,arbeidsmaskiner,Vg2,TP,num,33.8,32.32,0.695,0.903,5,32.5
+2026,Innlandet,Valdres vidaregåande skule,barne- og ungdomsarbeider,Vg2,HS,num,27.5,29.67,0.445,0.446,1,28.8
+2026,Innlandet,Valdres vidaregåande skule,elenergi og ekom,Vg2,EL,num,24.3,34.64,0.556,0.696,3,37.1
+2026,Innlandet,Valdres vidaregåande skule,helsearbeiderfag,Vg2,HS,num,27.5,30.68,0.562,0.708,4,36.3
+2026,Innlandet,Valdres vidaregåande skule,idrettsfag,Vg2,ID,num,30.0,29.29,0.295,0.15,1,26.7
+2026,Innlandet,Valdres vidaregåande skule,kjøretøy,Vg2,TP,num,31.3,26.89,0.42,0.389,2,31.3
+2026,Innlandet,Valdres vidaregåande skule,realfag,Vg2,ST,open,,33.13,0.41,0.366,2,40.0
+2026,Innlandet,Valdres vidaregåande skule,"språk, samfunn og økonomi",Vg2,ST,open,,29.81,0.466,0.496,1,28.9
+2026,Innlandet,Valdres vidaregåande skule,tømrer,Vg2,BA,open,,28.42,0.516,0.612,2,32.9
+2026,Innlandet,Vinstra vidaregåande skule,bygg- og anleggsteknikk,Vg1,BA,num,29.1,28.77,0.515,0.609,3,34.4
+2026,Innlandet,Vinstra vidaregåande skule,elektro og datateknologi,Vg1,EL,num,26.3,30.48,0.61,0.794,4,28.8
+2026,Innlandet,Vinstra vidaregåande skule,helse- og oppvekstfag,Vg1,HS,open,,27.31,0.353,0.247,1,21.9
+2026,Innlandet,Vinstra vidaregåande skule,"musikk, dans og drama, folkemusikk, lal",Vg1,MD,open,,35.23,0.203,0.052,0,
+2026,Innlandet,Vinstra vidaregåande skule,"musikk, dans og drama, musikk",Vg1,MD,open,,35.68,0.26,0.106,0,
+2026,Innlandet,Vinstra vidaregåande skule,studiespesialisering,Vg1,ST,open,,34.96,0.311,0.174,1,32.7
+2026,Innlandet,Vinstra vidaregåande skule,teknologi- og industrifag,Vg1,TP,num,22.9,29.06,0.587,0.755,4,32.7
+2026,Innlandet,Vinstra vidaregåande skule,arbeidsmaskiner,Vg2,TP,num,32.5,33.21,0.628,0.822,5,38.8
+2026,Innlandet,Vinstra vidaregåande skule,betong og mur,Vg2,BA,open,,25.85,0.396,0.335,1,25.7
+2026,Innlandet,Vinstra vidaregåande skule,datateknologi og elektronikk,Vg2,EL,num,27.1,28.29,0.499,0.574,3,27.1
+2026,Innlandet,Vinstra vidaregåande skule,elenergi og ekom,Vg2,EL,num,40.0,33.64,0.761,0.953,6,38.3
+2026,Innlandet,Vinstra vidaregåande skule,helsearbeiderfag,Vg2,HS,num,23.8,28.71,0.569,0.722,4,32.5
+2026,Innlandet,Vinstra vidaregåande skule,musikk,Vg2,MD,open,,31.84,0.235,0.079,1,30.0
+2026,Innlandet,Vinstra vidaregåande skule,"musikk, folkemusikk, lal",Vg2,MD,open,,35.23,0.203,0.052,0,
+2026,Innlandet,Vinstra vidaregåande skule,realfag,Vg2,ST,open,,31.78,0.3,0.157,1,33.0
+2026,Innlandet,Vinstra vidaregåande skule,"språk, samfunn og økonomi",Vg2,ST,open,,30.32,0.317,0.183,1,34.4
+2026,Innlandet,Vinstra vidaregåande skule,tømrer,Vg2,BA,num,27.1,27.65,0.415,0.377,1,30.0
+2026,Innlandet,Øvrebyen videregående skole,studiespesialisering,Vg1,ST,num,25.9,36.67,0.593,0.766,2,35.0
+2026,Innlandet,Øvrebyen videregående skole,idrettsfag,Vg2,ID,open,,34.04,0.425,0.4,2,42.2
+2026,Innlandet,Øvrebyen videregående skole,realfag,Vg2,ST,open,,33.0,0.442,0.441,2,28.9
+2026,Innlandet,Øvrebyen videregående skole,"språk, samfunn og økonomi",Vg2,ST,open,,31.22,0.414,0.376,2,31.1
 2026,Møre og Romsdal,Atlanten videregående skole,idrettsfag,Vg1,ID,num,29.3,34.57,0.744,0.943,14,22.5
 2026,Møre og Romsdal,Atlanten videregående skole,"musikk, dans og drama, dans",Vg1,MD,num,28.8,36.16,0.53,0.642,10,34.7
 2026,Møre og Romsdal,Atlanten videregående skole,"musikk, dans og drama, musikk",Vg1,MD,num,26.3,33.26,0.62,0.809,14,34.7

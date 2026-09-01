@@ -14,8 +14,8 @@ decision-relevant statistic — the admission threshold (*poenggrense*), the
 points of the last applicant admitted to each programme at each school — is
 published by only 8 of 15 intake areas — mostly as PDF tables, once behind
 a BI dashboard — with inconsistent structure, retention, and semantics. We assemble all retrievable publications
-into an open, register-normalised panel: 217 schools, 2,397 programme rows,
-11,891 observations, 2012–2026, keyed to Norway's national programme register
+into an open, register-normalised panel: 218 schools, 2,406 programme rows,
+12,241 observations, 2012–2026, keyed to Norway's national programme register
 (Grep). On this censored panel we forecast the next intake as the question
 families actually ask — the probability of admission given the applicant's
 points — using a hurdle model: a hierarchical logistic model for whether a
@@ -72,7 +72,7 @@ open dataset, forecasting model, and deployed application. Our contributions
 are as follows:
 
 - **An open, register-normalised dataset** of all retrievable published
-  thresholds — 217 schools, 2,397 programme rows, 11,891 cell-level
+  thresholds — 218 schools, 2,406 programme rows, 12,241 cell-level
   observations across 8 counties and the years 2012–2026 — in which every
   row is resolved against the national Grep register and every cell's state
   (numeric threshold, filled at zero, no waiting list, quota-based
@@ -151,7 +151,7 @@ not point predictions, the deliverable.
 **Hierarchical models and shrinkage.** Borrowing strength across small
 groups by partial pooling is classical (James & Stein, 1961; Efron & Morris,
 1975) and is standard multilevel practice (Gelman & Hill, 2007). We apply it
-to a censored panel in which 530 of the 2,020 series with any numeric
+to a censored panel in which 515 of the 2,032 series with any numeric
 threshold have a single observation,
 with variance components estimated by an EM-type procedure (Dempster, Laird
 & Rubin, 1977).
@@ -194,7 +194,7 @@ implausible values, unmatched schools, county-specific quirks.
 ### 4.2 Register normalisation
 
 Programme labels vary in spelling across counties and across years within a
-county. Every row is resolved against Grep: 2,391 of 2,397 rows carry a
+county. Every row is resolved against Grep: 2,400 of 2,406 rows carry a
 register code (the remaining six are International Baccalaureate, outside
 the register). The classification into utdanningsprogram is therefore the
 state's own, not ours — an earlier keyword classifier misfiled
@@ -235,16 +235,16 @@ released to us on request in September 2026; the county confirmed the
 figures describe the second, final intake round), Oslo 2017–2026,
 Vestland 2017–2026
 (2017–2019 as a narrower Bergen-area series), Rogaland 2018–2025, Innlandet
-2020–2025 (2020–2022 released to us under a freedom-of-information request
+2020–2026 (2020–2022 released to us under a freedom-of-information request
 in August 2026 rather than published — the county confirmed nothing older
 survives), Akershus 2024–2026 (the 2024/25 and 2026/27 tables likewise
 released to us under a freedom-of-information request in August 2026, as
 machine-readable workbooks and second intake round only — they were never
-published), Buskerud 2024–2025, and Trøndelag 2025 only. Of the 2,020
-school×programme series that ever carry a numeric threshold, 530 have
+published), Buskerud 2024–2025, and Trøndelag 2025 only. Of the 2,032
+school×programme series that ever carry a numeric threshold, 515 have
 exactly one observed year. Among the
-11,891 cells, 9,351 competed on points (and thus inform the fill model) and
-8,011 carry a numeric threshold (and thus inform the level model). One
+12,241 cells, 9,689 competed on points (and thus inform the fill model) and
+8,201 carry a numeric threshold (and thus inform the level model). One
 publication practice deserves its own flag: Møre og Romsdal's extract has no
 "everyone admitted" state — every offered programme carries a number, so an
 undersubscribed programme prints its weakest admitted applicant where other
@@ -340,7 +340,7 @@ variance component.
 | Component | Level (points) | Fill (logit) |
 |---|---|---|
 | School | 3.2 | 1.0 |
-| Programme area (within level) | 3.4 | 1.3 |
+| Programme area (within level) | 3.3 | 1.3 |
 | Series (school×programme) | 2.7 | 1.6 |
 | County–year innovation | 1.2 | 1.1 |
 | Residual | 4.7 | — |
@@ -414,8 +414,8 @@ $$\operatorname{logit} \pi' \;=\; -0.130 \;+\; 0.427 \, \operatorname{logit} \pi
 
 on the calibration years only, which are disjoint from the held-out
 evaluation years. The slope well below 1 is a uniform confidence haircut.
-Held-out Brier for the fill event: 0.151 against 0.191 for the base-rate
-forecaster (base rate 0.744). The full reliability table is in Appendix C;
+Held-out Brier for the fill event: 0.156 against 0.196 for the base-rate
+forecaster (base rate 0.731). The full reliability table is in Appendix C;
 the recalibrated $\pi'$ still wobbles in the sparse mid-range bins (66%
 observed in the 50–60% bin), which the deployed quantity (1) — the only
 probability shown to users — absorbs, as Section 7.4 shows.
@@ -456,19 +456,19 @@ row in bold. Persistence is undefined for 0-year series.
 
 | History | n | Model RMSE | Persistence RMSE | Prog–county mean RMSE | Model MAE | Persistence MAE | Model ±3 | Persistence ±3 |
 |---|---|---|---|---|---|---|---|---|
-| 0 years | 149 | **8.21** | — | 9.79 | **6.28** | — | **30%** | — |
-| 1 year | 231 | **5.60** | 6.90 | 6.53 | **4.19** | 5.10 | **52%** | 42% |
-| 2–3 years | 474 | **5.56** | 7.02 | 6.31 | **4.41** | 5.24 | **42%** | 40% |
-| 4+ years | 975 | **5.11** | 6.24 | 6.17 | **3.86** | 4.46 | 50% | **51%** |
+| 0 years | 159 | **8.10** | — | 9.75 | **6.18** | — | **30%** | — |
+| 1 year | 254 | **5.72** | 6.98 | 6.57 | **4.27** | 5.19 | **52%** | 42% |
+| 2–3 years | 542 | **5.55** | 7.04 | 6.23 | **4.37** | 5.27 | **43%** | 40% |
+| 4+ years | 1064 | **5.19** | 6.28 | 6.18 | **3.90** | 4.50 | 49% | **50%** |
 
 The model beats both baselines on RMSE and MAE in every stratum where they
 are defined (Figure 1). The ±3 hit rate tells a subtler story: persistence
 still wins it in the deepest stratum (51% vs 50%) — repeating the last
 figure lands inside a narrow band slightly more often there, and misses by
 more when it misses, which is the trade a squared-error forecast makes.
-Overall: RMSE 5.60, MAE 4.24, 46% of forecasts within ±3 points. For
+Overall: RMSE 5.64, MAE 4.25, 46% of forecasts within ±3 points. For
 scale, the same series moves with a standard deviation of 6.6 points
-between consecutive published years (5,266 pairs; 46% of moves within ±3), so persistence is a strong baseline
+between consecutive published years (5,389 pairs; 46% of moves within ±3), so persistence is a strong baseline
 and the residual year effect is large — which is why the deliverable is the
 distribution, not the point forecast. Per-year results are in Appendix B.
 
@@ -480,9 +480,9 @@ baselines.
 ### 7.3 Interval coverage
 
 The nominal 80% interval $m \pm 1.2816\,s$ contained the published figure
-**84.3%** of the time on held-out cells (n = 1,829, so the binomial
+**84.3%** of the time on held-out cells (n = 2,019, so the binomial
 standard error is about one point, and larger under county–year
-clustering), at a mean width of 14.9 points. Coverage is the target and
+clustering), at a mean width of 14.8 points. Coverage is the target and
 width the price (Gneiting, Balabdaoui & Raftery, 2007): roughly ±7 points
 is what an honest 80% claim costs on this data. The graded interval is the
 symmetric Gaussian one because that is what the application displays; the
@@ -494,11 +494,11 @@ conditional on a numeric threshold materialising at all.
 The deployed quantity is (1). For every held-out cell and every score $x \in
 \{20, 25, \dots, 55\}$ we ask "would an applicant with $x$ points have been
 admitted?" — the outcome is determined by the published threshold and fill
-state — and score the predicted probability over all 19,880 score–cell
+state — and score the predicted probability over all 22,584 score–cell
 pairs: Brier score **0.093**. The persistence rule ("the most recent
 published threshold is this year's", a step function in $x$) is defined
-only where the series has a prior figure, 16,888 of those pairs; on that
-common subset the model scores **0.092** against the rule's **0.150**.
+only where the series has a prior figure, 19,296 of those pairs; on that
+common subset the model scores **0.093** against the rule's **0.154**.
 
 **Table 5:** Reliability of the held-out admission probability (Figure 2
 shows the same data as a diagram).
@@ -507,14 +507,14 @@ shows the same data as a diagram).
 |---|---|---|
 | 0–10% | 1.2% | 502 |
 | 10–20% | 6.8% | 1,095 |
-| 20–30% | 14% | 1,406 |
-| 30–40% | 29% | 1,499 |
-| 40–50% | 38% | 1,138 |
-| 50–60% | 49% | 1077 |
-| 60–70% | 66% | 1,220 |
-| 70–80% | 80% | 1,167 |
-| 80–90% | 88% | 1,430 |
-| 90–100% | 98.8% | 9,346 |
+| 20–30% | 14% | 1,455 |
+| 30–40% | 29% | 1,605 |
+| 40–50% | 37% | 1,282 |
+| 50–60% | 49% | 1257 |
+| 60–70% | 65% | 1,446 |
+| 70–80% | 79% | 1,406 |
+| 80–90% | 88% | 1,653 |
+| 90–100% | 98.8% | 10,883 |
 
 From 30% upward the forecast tracks observed frequency within five points.
 Below 30% it is optimistic — a stated 15% was realised at about 8% — a
@@ -581,7 +581,7 @@ demand, not quality.
 
 ### 8.3 The model as a data audit
 
-The cells the fitted model finds least plausible ($|z| > 3$: 58 of 8,011,
+The cells the fitted model finds least plausible ($|z| > 3$: 58 of 8,201,
 of which the 25 most extreme are published in the model metadata) were
 checked against sources. The
 largest deviation and two further Vestland-2022 extremes (Slåtthaug 18.0,
@@ -831,12 +831,12 @@ Held-out Brier 0.154 against 0.191 for the base-rate forecaster.
 
 | Predicted | Observed | n |
 |---|---|---|
-| 10–20% | 10.5% | 19 |
-| 20–30% | 17% | 99 |
-| 30–40% | 33% | 147 |
-| 40–50% | 51% | 201 |
-| 50–60% | 68% | 184 |
-| 60–70% | 73% | 358 |
-| 70–80% | 82% | 626 |
+| 10–20% | 8.3% | 24 |
+| 20–30% | 18% | 132 |
+| 30–40% | 34% | 198 |
+| 40–50% | 52% | 275 |
+| 50–60% | 72% | 259 |
+| 60–70% | 75% | 423 |
+| 70–80% | 82% | 661 |
 | 80–90% | 88% | 544 |
 | 90–100% | 97.7% | 307 |

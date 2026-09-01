@@ -151,7 +151,7 @@ def extract():
         rows = []
         with pdfplumber.open(os.path.join(SRC, fname)) as pdf:
             school, level, cols = None, 'Vg1', None
-            group_rows = []
+            group_rows, last_row = [], None
             for page in pdf.pages:
                 words = page.extract_words()
                 header = {}
@@ -199,6 +199,20 @@ def extract():
                         d = common.norm(niva_toks[0]['text'])
                         if d in ('1', '2', '3', '4'):
                             level = f'Vg{d}'
+                    # A programme name can wrap too, and its second line
+                    # carries nothing else: no school, no level, no values.
+                    # Dropping it published the row under a truncated name
+                    # ("Håndverk, design og"), which then classified as
+                    # nothing at all. Give the tail back to the row it
+                    # belongs to, exactly as a wrapped school name is.
+                    if prog_toks and not name_toks and not niva_toks and not val_toks:
+                        if last_row is not None:
+                            tail = common.squash(' '.join(common.norm(w['text'])
+                                                          for w in prog_toks))
+                            joiner = '' if last_row['program'].endswith((',', '-')) else ' '
+                            last_row['program'] = common.canon_program(
+                                last_row['program'] + joiner + tail)
+                        continue
                     program = common.canon_program(' '.join(
                         common.norm(w['text']) for w in prog_toks))
                     if not school or not program or not val_toks:
@@ -221,12 +235,21 @@ def extract():
                                'round': META['round']}
                         rows.append(row)
                         group_rows.append(row)
+                        last_row = row
         # the first row of a group is emitted before the school name's
         # continuation line is seen, so "Nord-Østerdal" and "Nord-Østerdal
-        # videregående skole" both appear — fold the prefix into the full name
+        # videregående skole" both appear — fold the prefix into the full name.
+        # Only a TRUNCATION may be folded: a name that already ends in the word
+        # for a school is complete, and one school's name is legitimately the
+        # prefix of a branch campus's. Folding those merged Raufoss vgs into
+        # "Raufoss vgs avd Dokka" and published the parent's own thresholds
+        # under its branch — 13 series of the wrong school.
+        COMPLETE = ('skole', 'skule', 'gymnas', 'katedralskole')
         names = {r['school'] for r in rows}
         fold = {}
         for short in names:
+            if short.lower().endswith(COMPLETE):
+                continue
             longer = [n for n in names if n != short and n.startswith(short + ' ')]
             if len(longer) == 1:
                 fold[short] = longer[0]
