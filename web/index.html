@@ -4168,6 +4168,21 @@ async function main() {
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
   // a shared link carries the selection it was taken under, so read the filters
   // before the first frame rather than snapping the reader back to Hele landet
+  // A deep link can also arrive as ?f=&c=&s= query parameters. The canonical
+  // form is the fragment, but a fragment does not survive the wild: Gmail
+  // wraps every link in a redirect that drops it, so the county links we mail
+  // to the very officials who provided the data opened the plain map. Adopt
+  // the query into the hash once, then let the fragment machinery own it.
+  if (location.search && !location.hash) {
+    const q = new URLSearchParams(location.search);
+    const parts = [];
+    if (q.get('s')) parts.push('s=' + q.get('s'));
+    if (q.get('f')) parts.push('f=' + encodeURIComponent(q.get('f')));
+    if (q.get('c')) parts.push('c=' + encodeURIComponent(q.get('c')));
+    if (parts.length) {
+      try { history.replaceState(history.state, '', location.pathname + '#' + parts.join('&')); } catch (e) {}
+    }
+  }
   const framedByUrl = applyUrlFilters();
   let storedView = 'map';
   try { if (localStorage.getItem('pk-view') === 'list') storedView = 'list'; } catch (e) {}

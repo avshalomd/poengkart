@@ -12,6 +12,7 @@ Running build_dataset on its own leaves every school without a position.
 import os
 import subprocess
 import sys
+import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 VENV = os.path.join(HERE, '..', '.venv', 'bin', 'python3')
@@ -33,13 +34,18 @@ STEPS = [
 
 
 def main():
+    took = []
     for script, what in STEPS:
         print(f'\n=== {script} — {what}')
+        t0 = time.time()
         r = subprocess.run([PY, os.path.join(HERE, script)])
+        took.append((script, time.time() - t0))
         if r.returncode != 0:
             sys.exit(f'\n{script} failed — stopping so a half-built dataset is '
                      f'never published')
-    print('\nPipeline complete.')
+    total = sum(t for _, t in took)
+    print('\nPipeline complete.  ' + '  '.join(f'{s.replace(".py", "")} {t:.0f}s'
+          for s, t in took) + f'  — total {total / 60:.1f} min')
 
 
 if __name__ == '__main__':

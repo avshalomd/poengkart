@@ -8,6 +8,7 @@ merges their rows, carries school-level enrichment (coordinates, photos, links)
 across re-runs, validates, and writes the dataset plus data/source-drift.json.
 """
 
+import hashlib
 import importlib
 import json
 import os
@@ -30,6 +31,52 @@ KEEP = ('orgnr', 'url', 'wiki_url', 'wiki_extract', 'address',
         'photo_position', 'photo_note', 'nsr_name')
 
 
+CACHE_DIR = os.path.join(HERE, '.cache')
+
+
+def _extract_cached(mod):
+    """mod.extract(), memoised on the content of everything it reads.
+
+    Parsing is by far the pipeline's slowest stage — pdfplumber walks some
+    forty PDFs — and the sources are immutable once ingested. The key hashes
+    the extractor's own source, common.py, the Grep registry, and the name,
+    size and mtime of every file in the extractor's data directory, so ANY
+    change re-parses that county and an unchanged county is a file read. The
+    cache stores exactly what extract() returned; the output cannot differ.
+    """
+    h = hashlib.sha256()
+    for f in (mod.__file__, os.path.join(HERE, 'common.py'),
+              os.path.join(HERE, 'grep-programomraader.json')):
+        try:
+            h.update(open(f, 'rb').read())
+        except OSError:
+            h.update(b'-')
+    src = getattr(mod, 'SRC', None)
+    if src and os.path.isdir(src):
+        for fn in sorted(os.listdir(src)):
+            st = os.stat(os.path.join(src, fn))
+            h.update(f'{fn}|{st.st_size}|{st.st_mtime_ns}'.encode())
+    key = h.hexdigest()
+    cpath = os.path.join(CACHE_DIR, f'extract-{mod.__name__.split(".")[-1]}.json')
+    try:
+        c = json.load(open(cpath))
+        if c['key'] == key:
+            def keys_back(row):
+                for f in ('values', 'values_r1', 'values_r3'):
+                    if f in row:
+                        row[f] = {int(y): v for y, v in row[f].items()}
+                return row
+            return [(fname, [keys_back(r) for r in rows]) for fname, rows in c['out']], c['warn']
+    except (OSError, ValueError, KeyError):
+        pass
+    out, warn = mod.extract()
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    tmp = cpath + '.tmp'
+    json.dump({'key': key, 'out': out, 'warn': warn}, open(tmp, 'w'))
+    os.replace(tmp, cpath)
+    return out, warn
+
+
 def load_extractors(only=None):
     mods = []
     for m in pkgutil.iter_modules(extractors.__path__):
@@ -47,7 +94,7 @@ def main():
 
     all_rows, warnings, counties = [], [], []
     for mod in mods:
-        srcs, warn = mod.extract()
+        srcs, warn = _extract_cached(mod)
         rows = sum(len(r) for _, r in srcs)
         cells = sum(len(row['values']) for _, r in srcs for row in r)
         print(f'{mod.META["fylke"]:<18} {rows:>5} rows {cells:>6} cells '
