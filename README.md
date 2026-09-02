@@ -5,11 +5,11 @@
 Admission point thresholds (*poenggrenser*) for Norwegian upper secondary
 schools, on a map — and as a sortable, rankable list. A threshold is the score
 of the last applicant who got a place — a grade average × 10 — so it says what
-it took to get in, not what the school requires. 218 schools across the eight
+it took to get in, not what the school requires. 217 schools across the eight
 counties that publish these figures, up to fifteen years of history, in
 Norwegian and English.
 
-![The map: 218 schools across southern and central Norway, clustered and coloured by admission threshold](docs/map.png)
+![The map: 217 schools across southern and central Norway, clustered and coloured by admission threshold](docs/map.png)
 
 ![A school's page: photo, your chance of a place at the next intake, ten years of trends, and every programme with its own figure](docs/school.png)
 

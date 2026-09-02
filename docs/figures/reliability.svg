@@ -25,25 +25,25 @@
 <text x='540.0' y='452' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='middle'>1.0</text>
 <text x='60' y='24.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>1.0</text>
 <rect x='72.0' y='421.1' width='43.0' height='8.9' fill='#8a8f98' opacity='0.18'/>
-<rect x='119.0' y='418.2' width='43.0' height='11.8' fill='#8a8f98' opacity='0.18'/>
+<rect x='119.0' y='418.1' width='43.0' height='11.9' fill='#8a8f98' opacity='0.18'/>
 <rect x='166.0' y='415.6' width='43.0' height='14.4' fill='#8a8f98' opacity='0.18'/>
 <rect x='213.0' y='415.8' width='43.0' height='14.2' fill='#8a8f98' opacity='0.18'/>
 <rect x='260.0' y='418.2' width='43.0' height='11.8' fill='#8a8f98' opacity='0.18'/>
 <rect x='307.0' y='417.9' width='43.0' height='12.1' fill='#8a8f98' opacity='0.18'/>
 <rect x='354.0' y='417.5' width='43.0' height='12.5' fill='#8a8f98' opacity='0.18'/>
 <rect x='401.0' y='416.1' width='43.0' height='13.9' fill='#8a8f98' opacity='0.18'/>
-<rect x='448.0' y='413.8' width='43.0' height='16.2' fill='#8a8f98' opacity='0.18'/>
+<rect x='448.0' y='413.9' width='43.0' height='16.1' fill='#8a8f98' opacity='0.18'/>
 <rect x='495.0' y='320.3' width='43.0' height='109.7' fill='#8a8f98' opacity='0.18'/>
 <line x1='70.0' y1='430.0' x2='540.0' y2='20.0' stroke='#8a8f98' stroke-width='1.5' stroke-dasharray='5 4'/>
-<circle cx='101.0' cy='419.3' r='5.5' fill='#2b6cb8'/>
-<circle cx='141.9' cy='389.0' r='5.5' fill='#2b6cb8'/>
-<circle cx='187.5' cy='348.8' r='5.5' fill='#2b6cb8'/>
-<circle cx='232.6' cy='306.6' r='5.5' fill='#2b6cb8'/>
-<circle cx='280.6' cy='264.4' r='5.5' fill='#2b6cb8'/>
-<circle cx='328.5' cy='222.5' r='5.5' fill='#2b6cb8'/>
+<circle cx='100.5' cy='419.3' r='5.5' fill='#2b6cb8'/>
+<circle cx='141.9' cy='388.2' r='5.5' fill='#2b6cb8'/>
+<circle cx='187.5' cy='349.6' r='5.5' fill='#2b6cb8'/>
+<circle cx='232.6' cy='306.2' r='5.5' fill='#2b6cb8'/>
+<circle cx='281.0' cy='264.8' r='5.5' fill='#2b6cb8'/>
+<circle cx='328.5' cy='222.1' r='5.5' fill='#2b6cb8'/>
 <circle cx='376.0' cy='168.4' r='5.5' fill='#2b6cb8'/>
-<circle cx='422.5' cy='106.1' r='5.5' fill='#2b6cb8'/>
-<circle cx='470.4' cy='72.1' r='5.5' fill='#2b6cb8'/>
+<circle cx='422.5' cy='106.5' r='5.5' fill='#2b6cb8'/>
+<circle cx='470.4' cy='71.7' r='5.5' fill='#2b6cb8'/>
 <circle cx='531.5' cy='25.7' r='5.5' fill='#2b6cb8'/>
 <text x='305.0' y='478' font-family='Georgia, "Times New Roman", serif' font-size='15' fill='#1d2733' text-anchor='middle'>Predicted probability of admission</text>
 <text x='20' y='225.0' font-family='Georgia, "Times New Roman", serif' font-size='15' fill='#1d2733' text-anchor='middle' transform='rotate(-90 20 225.0)'>Observed admission frequency</text>

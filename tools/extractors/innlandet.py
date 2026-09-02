@@ -143,6 +143,23 @@ INNSYN_FILES = {
 MATRIX_FILES = ['innlandet-2024-2026-2inntak.pdf', 'innlandet_2023-2025_2inntak.pdf']
 
 
+# Dokka videregående skole became an avdeling of Raufoss from the 2025/26
+# school year (Nordre Land kommune, 04.10.2024); the county's 2026 table
+# prints the new name, the FOI files the old one. One school, one series.
+MERGED = {
+    'Dokka videregående skole': ('Raufoss videregående skole avd Dokka', 2025),
+}
+
+
+def _apply_merges(rows):
+    for r in rows:
+        if r['school'] in MERGED:
+            new, year = MERGED[r['school']]
+            r['merged_from'], r['merged_year'] = r['school'], year
+            r['school'] = new
+    return rows
+
+
 def extract():
     warn, out = [], []
     if not os.path.isdir(SRC):
@@ -157,7 +174,7 @@ def extract():
             warn.append(f'{META["fylke"]}: missing source {fname}')
             continue
         if fname in INNSYN_FILES:
-            out.append((fname, INNSYN_FILES[fname](os.path.join(SRC, fname))))
+            out.append((fname, _apply_merges(INNSYN_FILES[fname](os.path.join(SRC, fname)))))
             continue
         rows = []
         with pdfplumber.open(os.path.join(SRC, fname)) as pdf:
@@ -267,5 +284,5 @@ def extract():
         if fold:
             for r in rows:
                 r['school'] = fold.get(r['school'], r['school'])
-        out.append((fname, rows))
+        out.append((fname, _apply_merges(rows)))
     return out, warn

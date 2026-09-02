@@ -14,7 +14,7 @@ decision-relevant statistic — the admission threshold (*poenggrense*), the
 points of the last applicant admitted to each programme at each school — is
 published by only 8 of 15 intake areas — mostly as PDF tables, once behind
 a BI dashboard — with inconsistent structure, retention, and semantics. We assemble all retrievable publications
-into an open, register-normalised panel: 218 schools, 2,406 programme rows,
+into an open, register-normalised panel: 217 schools, 2,405 programme rows,
 12,241 observations, 2012–2026, keyed to Norway's national programme register
 (Grep). On this censored panel we forecast the next intake as the question
 families actually ask — the probability of admission given the applicant's
@@ -26,9 +26,9 @@ the fit, the error distribution is empirical, and fill probabilities are
 recalibrated by Platt scaling. Evaluated walk-forward with 2025–2026 fully
 held out, the model beats persistence and group-mean baselines on RMSE and MAE in
 every history stratum where they are defined (RMSE 5.19 vs 6.28 on series
-with ≥4 observed years), nominal 80% intervals achieve 84.3% empirical
+with ≥4 observed years), nominal 80% intervals achieve 84.2% empirical
 coverage, and the admission probability is both calibrated — the largest
-gap between predicted and observed frequency in any decile is 5.3 points,
+gap between predicted and observed frequency in any decile is 5.4 points,
 optimistic below 70% and slightly cautious above — and more accurate than
 the persistence rule (Brier score 0.092 vs 0.154 on the pairs where both are
 defined). Paired within-year
@@ -73,7 +73,7 @@ open dataset, forecasting model, and deployed application. Our contributions
 are as follows:
 
 - **An open, register-normalised dataset** of all retrievable published
-  thresholds — 218 schools, 2,406 programme rows, 12,241 cell-level
+  thresholds — 217 schools, 2,405 programme rows, 12,241 cell-level
   observations across 8 counties and the years 2012–2026 — in which every
   row is resolved against the national Grep register and every cell's state
   (numeric threshold, filled at zero, no waiting list, quota-based
@@ -85,7 +85,7 @@ are as follows:
   (Sections 5–6).
 - **A held-out evaluation** on the 2025–2026 intakes showing the model
   dominates persistence and group-mean baselines in every history stratum
-  (RMSE 5.19 vs 6.28 and 6.18 in the deepest stratum), with 84.3% empirical
+  (RMSE 5.19 vs 6.28 and 6.18 in the deepest stratum), with 84.2% empirical
   coverage of nominal 80% intervals and calibrated probabilities (Brier
   0.092 vs 0.154 where both are defined), plus ablations of the structural
   choices (Section 7).
@@ -434,7 +434,7 @@ the time, and in the held-out years cells given a mean 0.97 filled 87% — the
 series effects fit the training panel too well.
 We therefore recalibrate by Platt scaling, fitting
 
-$$\operatorname{logit} \pi' \;=\; -0.051 \;+\; 0.504 \, \operatorname{logit} \pi \tag{5}$$
+$$\operatorname{logit} \pi' \;=\; -0.050 \;+\; 0.504 \, \operatorname{logit} \pi \tag{5}$$
 
 on the calibration years only, which are disjoint from the held-out
 evaluation years. The slope well below 1 is a uniform confidence haircut.
@@ -504,7 +504,7 @@ baselines.
 ### 7.3 Interval coverage
 
 The nominal 80% interval $m \pm 1.2816\,s$ contained the published figure
-**84.3%** of the time on held-out cells (n = 2,019, so the binomial
+**84.2%** of the time on held-out cells (n = 2,019, so the binomial
 standard error is about one point, and larger under county–year
 clustering), at a mean width of 15.0 points. Coverage is the target and
 width the price (Gneiting, Balabdaoui & Raftery, 2007): roughly ±7.5
@@ -521,7 +521,7 @@ admitted?" — the outcome is determined by the published threshold and fill
 state — and score the predicted probability over all 22,584 score–cell
 pairs: Brier score **0.093**. The persistence rule ("the most recent
 published threshold is this year's", a step function in $x$) is defined
-only where the series has a prior figure, 19,296 of those pairs; on that
+only where the series has a prior figure, 19,304 of those pairs; on that
 common subset the model scores **0.092** against the rule's **0.154**.
 
 **Table 5:** Reliability of the held-out admission probability (Figure 2
@@ -529,19 +529,19 @@ shows the same data as a diagram).
 
 | Predicted | Observed | n |
 |---|---|---|
-| 0–10% | 2.6% | 895 |
-| 10–20% | 10.0% | 1,185 |
-| 20–30% | 20% | 1,441 |
-| 30–40% | 30% | 1,423 |
-| 40–50% | 40% | 1,182 |
-| 50–60% | 51% | 1,209 |
-| 60–70% | 64% | 1,254 |
-| 70–80% | 79% | 1,393 |
-| 80–90% | 87% | 1,618 |
-| 90–100% | 98.6% | 10,984 |
+| 0–10% | 2.6% | 894 |
+| 10–20% | 10.2% | 1,189 |
+| 20–30% | 20% | 1,443 |
+| 30–40% | 30% | 1,422 |
+| 40–50% | 40% | 1,181 |
+| 50–60% | 51% | 1,210 |
+| 60–70% | 64% | 1,249 |
+| 70–80% | 79% | 1,396 |
+| 80–90% | 87% | 1,615 |
+| 90–100% | 98.6% | 10,985 |
 
-The largest gap between prediction and outcome in any decile is 5.3 points.
-Below 60% the forecast is optimistic by up to 5.3 points — a stated 15% was
+The largest gap between prediction and outcome in any decile is 5.4 points.
+Below 60% the forecast is optimistic by up to 5.4 points — a stated 15% was
 realised at 10% — and by 1 point in the 60–70% bin, a region the
 application's coarse bands (likely ≥ 70%, possible ≥ 35%, otherwise
 unlikely) absorb, and which we document wherever the raw percentage is
@@ -684,7 +684,7 @@ handed a bare percentage.
   quota states (F/D/U) between years; the hurdle predicts queue formation,
   not that kind of administrative transition.
 - **Low-probability optimism.** Below 60%, the raw probability is up to
-  5.3 points optimistic, and 1 point in the 60–70% bin (Section 7.4).
+  5.4 points optimistic, and 1 point in the 60–70% bin (Section 7.4).
 - **Reflexivity.** A public forecast can move where people apply, which
   moves the thresholds being forecast — a Goodhart-type feedback. At the
   current scale we judge this unmeasurable, but it is the reason the
@@ -870,8 +870,8 @@ Held-out Brier 0.152 against 0.196 for the base-rate forecaster.
 | 20–30% | 21% | 137 |
 | 30–40% | 34% | 163 |
 | 40–50% | 48% | 233 |
-| 50–60% | 66% | 216 |
-| 60–70% | 80% | 294 |
-| 70–80% | 76% | 547 |
-| 80–90% | 86% | 642 |
-| 90–100% | 94.6% | 552 |
+| 50–60% | 66% | 215 |
+| 60–70% | 80% | 295 |
+| 70–80% | 76% | 546 |
+| 80–90% | 86% | 641 |
+| 90–100% | 94.4% | 554 |

@@ -40,6 +40,11 @@ MANUAL = {
     ('15', 'fagerlia videregående skole'): (62.4741, 6.2279),
     ('15', 'ålesund videregående skole'): (62.46859, 6.18485),
     ('15', 'herøy vidaregåande skule, avd. vanylven'): (62.08897, 5.73953),
+    # Nord-Gudbrandsdal's two former campuses share the parent's NSR address
+    # in Otta, 40-50 km away from where they stood; the place register keeps
+    # the Lom school and the Dombås tettsted
+    ('34', 'nord-gudbrandsdal vgs, avd. dombås'): (62.07554, 9.12785),
+    ('34', 'nord-gudbrandsdal vgs, avd. lom'): (61.84065, 8.56306),
 }
 
 # A MANUAL coordinate skips NSR matching entirely — but build_dataset carries
@@ -62,6 +67,10 @@ MANUAL_IDENTITY = {
     # main record's Fagerlia-campus street
     ('15', 'ålesund videregående skole'):
         {'address': 'Sjømannsvegen 47, 6008, ÅLESUND'},
+    # the campuses' figures end in 2022 and the parent's Otta address is not
+    # theirs; say where they stood and nothing more
+    ('34', 'nord-gudbrandsdal vgs, avd. dombås'): {'address': '2660 Dombås', 'url': None, 'orgnr': None},
+    ('34', 'nord-gudbrandsdal vgs, avd. lom'): {'address': '2686 Lom', 'url': None, 'orgnr': None},
 }
 
 

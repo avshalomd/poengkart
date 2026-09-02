@@ -31,7 +31,7 @@
    "levels": "Vg1–Vg4",
    "source": "https://www.vilbli.no/nb/innlandet/a/poengsum-og-karakterer-6",
    "source_note": "exact vilbli attachment URL not yet pinned",
-   "schools": 27
+   "schools": 26
   },
   {
    "code": "15",
@@ -4219,176 +4219,6 @@
    "lon": 10.12074
   },
   {
-   "name": "Dokka videregående skole",
-   "fylke": "Innlandet",
-   "fylkesnummer": "34",
-   "round": "2",
-   "programs": [
-    {
-     "program": "Bygg- og anleggsteknikk",
-     "program_en": "Building and Construction",
-     "level": "Vg1",
-     "category": "BA",
-     "values": {
-      "2020": 25.7,
-      "2021": "open",
-      "2022": 27.6
-     },
-     "grep": "BABAT1----"
-    },
-    {
-     "program": "Elektro og datateknologi",
-     "program_en": "Electrical Engineering and Computer Technology",
-     "level": "Vg1",
-     "category": "EL",
-     "values": {
-      "2020": 36.3,
-      "2021": 35.0,
-      "2022": 29.8
-     },
-     "grep": "ELELE1----"
-    },
-    {
-     "program": "Helse- og oppvekstfag",
-     "program_en": "Healthcare, Childhood and Youth Development",
-     "level": "Vg1",
-     "category": "HS",
-     "values": {
-      "2020": "open",
-      "2021": "open",
-      "2022": 21.9
-     },
-     "grep": "HSHSF1----"
-    },
-    {
-     "program": "Studiespesialisering",
-     "program_en": "Specialization in General Studies",
-     "level": "Vg1",
-     "category": "ST",
-     "values": {
-      "2020": "open",
-      "2021": "open",
-      "2022": "open"
-     },
-     "grep": "STUSP1----"
-    },
-    {
-     "program": "Teknologi- og industrifag",
-     "program_en": "Technical and Industrial Production",
-     "level": "Vg1",
-     "category": "TP",
-     "values": {
-      "2020": 26.7,
-      "2021": "open",
-      "2022": 19.0
-     },
-     "grep": "TPTIP1----"
-    },
-    {
-     "program": "Barne- og ungdomsarbeider",
-     "program_en": "Child Care and Youth Work",
-     "level": "Vg2",
-     "category": "HS",
-     "values": {
-      "2020": "open",
-      "2021": "open",
-      "2022": "open"
-     },
-     "grep": "HSBUA2----",
-     "official": "Barne- og ungdomsarbeiderfag"
-    },
-    {
-     "program": "Byggteknikk",
-     "program_en": "Construction Techniques",
-     "level": "Vg2",
-     "category": "BA",
-     "values": {
-      "2020": 20.0
-     },
-     "grep": "BABYG2----"
-    },
-    {
-     "program": "Elenergi og ekom",
-     "program_en": "Electrical Energy and Electronic Communications",
-     "level": "Vg2",
-     "category": "EL",
-     "values": {
-      "2020": 25.6,
-      "2021": 32.9,
-      "2022": 30.0
-     },
-     "grep": "ELELE2----"
-    },
-    {
-     "program": "Helsearbeiderfag",
-     "program_en": "Health Work",
-     "level": "Vg2",
-     "category": "HS",
-     "values": {
-      "2020": 35.6,
-      "2021": 30.0,
-      "2022": 25.0
-     },
-     "grep": "HSHEA2----"
-    },
-    {
-     "program": "Industriteknologi",
-     "program_en": "Industrial Technology",
-     "level": "Vg2",
-     "category": "TP",
-     "values": {
-      "2020": "open",
-      "2021": "open",
-      "2022": 26.3
-     },
-     "grep": "TPPIN2----"
-    },
-    {
-     "program": "Realfag",
-     "program_en": "Natural Science and Mathematics Studies",
-     "level": "Vg2",
-     "category": "ST",
-     "values": {
-      "2020": 34.0,
-      "2021": "open",
-      "2022": "open"
-     },
-     "grep": "STREA2----"
-    },
-    {
-     "program": "Språk, samfunn og økonomi",
-     "program_en": "Languages, Social Sciences and Economics Studies",
-     "level": "Vg2",
-     "category": "ST",
-     "values": {
-      "2020": 28.0,
-      "2021": "open",
-      "2022": "open"
-     },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
-    },
-    {
-     "program": "Tømrer",
-     "program_en": "Carpentry",
-     "level": "Vg2",
-     "category": "BA",
-     "values": {
-      "2021": "open",
-      "2022": "open"
-     },
-     "grep": "BATMF2----"
-    }
-   ],
-   "catchment": true,
-   "orgnr": "974597373",
-   "url": "www.dokka.vgs.no/",
-   "address": "Nedre Smebyveg 3, 2870, DOKKA",
-   "nsr_name": "Raufoss videregående skole avd Dokka",
-   "lat": 60.83884,
-   "lon": 10.08038
-  },
-  {
    "name": "Elverum videregående skole",
    "fylke": "Innlandet",
    "fylkesnummer": "34",
@@ -7470,12 +7300,10 @@
     }
    ],
    "catchment": true,
-   "orgnr": "974597209",
-   "url": "www.n-g.vgs.no",
-   "address": "Skansen 9, 2670, OTTA",
-   "nsr_name": "Nord-Gudbrandsdal vidaregåande skule",
-   "lat": 61.77895,
-   "lon": 9.5422
+   "address": "2660 Dombås",
+   "nsr_name": "(manual)",
+   "lat": 62.07554,
+   "lon": 9.12785
   },
   {
    "name": "Nord-Gudbrandsdal vgs, avd. Lom",
@@ -7555,12 +7383,10 @@
     }
    ],
    "catchment": true,
-   "orgnr": "974597209",
-   "url": "www.n-g.vgs.no",
-   "address": "Skansen 9, 2670, OTTA",
-   "nsr_name": "Nord-Gudbrandsdal vidaregåande skule",
-   "lat": 61.77895,
-   "lon": 9.5422
+   "address": "2686 Lom",
+   "nsr_name": "(manual)",
+   "lat": 61.84065,
+   "lon": 8.56306
   },
   {
    "name": "Nord-Gudbrandsdal vgs, avd. Otta",
@@ -8436,16 +8262,166 @@
    "round": "2",
    "programs": [
     {
+     "program": "Bygg- og anleggsteknikk",
+     "program_en": "Building and Construction",
+     "level": "Vg1",
+     "category": "BA",
+     "values": {
+      "2020": 25.7,
+      "2021": "open",
+      "2022": 27.6
+     },
+     "grep": "BABAT1----"
+    },
+    {
+     "program": "Elektro og datateknologi",
+     "program_en": "Electrical Engineering and Computer Technology",
+     "level": "Vg1",
+     "category": "EL",
+     "values": {
+      "2020": 36.3,
+      "2021": 35.0,
+      "2022": 29.8
+     },
+     "grep": "ELELE1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2020": "open",
+      "2021": "open",
+      "2022": 21.9
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2020": "open",
+      "2021": "open",
+      "2022": "open"
+     },
+     "grep": "STUSP1----"
+    },
+    {
      "program": "Teknologi- og industrifag",
      "program_en": "Technical and Industrial Production",
      "level": "Vg1",
      "category": "TP",
      "values": {
+      "2020": 26.7,
+      "2021": "open",
+      "2022": 19.0,
       "2026": 0.0
      },
      "grep": "TPTIP1----"
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "program_en": "Child Care and Youth Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2020": "open",
+      "2021": "open",
+      "2022": "open"
+     },
+     "grep": "HSBUA2----",
+     "official": "Barne- og ungdomsarbeiderfag"
+    },
+    {
+     "program": "Byggteknikk",
+     "program_en": "Construction Techniques",
+     "level": "Vg2",
+     "category": "BA",
+     "values": {
+      "2020": 20.0
+     },
+     "grep": "BABYG2----"
+    },
+    {
+     "program": "Elenergi og ekom",
+     "program_en": "Electrical Energy and Electronic Communications",
+     "level": "Vg2",
+     "category": "EL",
+     "values": {
+      "2020": 25.6,
+      "2021": 32.9,
+      "2022": 30.0
+     },
+     "grep": "ELELE2----"
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "program_en": "Health Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2020": 35.6,
+      "2021": 30.0,
+      "2022": 25.0
+     },
+     "grep": "HSHEA2----"
+    },
+    {
+     "program": "Industriteknologi",
+     "program_en": "Industrial Technology",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2020": "open",
+      "2021": "open",
+      "2022": 26.3
+     },
+     "grep": "TPPIN2----"
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2020": 34.0,
+      "2021": "open",
+      "2022": "open"
+     },
+     "grep": "STREA2----"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2020": 28.0,
+      "2021": "open",
+      "2022": "open"
+     },
+     "grep": "STSSA2----",
+     "official": "Språk, samfunnsfag og økonomi vg2"
+    },
+    {
+     "program": "Tømrer",
+     "program_en": "Carpentry",
+     "level": "Vg2",
+     "category": "BA",
+     "values": {
+      "2021": "open",
+      "2022": "open"
+     },
+     "grep": "BATMF2----"
     }
    ],
+   "merged_from": [
+    "Dokka videregående skole"
+   ],
+   "merged_year": 2025,
    "catchment": true,
    "orgnr": "974597373",
    "url": "www.dokka.vgs.no/",

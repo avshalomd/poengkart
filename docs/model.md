@@ -125,7 +125,7 @@ The 80% interval (m ± 1.2816 s) contained the published figure 84% of the time.
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.97 filled 0.87 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = −0.051 + 0.504 logit π). Held-out Brier 0.152 against 0.196 for the
+(logit π′ = −0.050 + 0.504 logit π). Held-out Brier 0.152 against 0.196 for the
 base rate.
 
 **Chance, held-out 2025–26**, for every cell and every score in
@@ -133,21 +133,21 @@ base rate.
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 2.6% | 895 |
-| 10–20% | 10.0% | 1 185 |
-| 20–30% | 20% | 1 441 |
-| 30–40% | 30% | 1 423 |
-| 40–50% | 40% | 1 182 |
-| 50–60% | 51% | 1 209 |
-| 60–70% | 64% | 1 254 |
-| 70–80% | 79% | 1 393 |
-| 80–90% | 87% | 1 618 |
-| 90–100% | 98.6% | 10 984 |
+| 0–10% | 2.6% | 894 |
+| 10–20% | 10.2% | 1 189 |
+| 20–30% | 20% | 1 443 |
+| 30–40% | 30% | 1 422 |
+| 40–50% | 40% | 1 181 |
+| 50–60% | 51% | 1 210 |
+| 60–70% | 64% | 1 249 |
+| 70–80% | 79% | 1 396 |
+| 80–90% | 87% | 1 615 |
+| 90–100% | 98.6% | 10 985 |
 
 Brier 0.092, against 0.154 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
 Brier is 0.093).
-Below 60% the forecast is optimistic by up to 5.3 points — a 15% chance was
+Below 60% the forecast is optimistic by up to 5.4 points — a 15% chance was
 really 10% — and by 1 point in the 60–70% bin, which the app's bands absorb
 (15% and 10% are both "unlikely") but a reader of the raw percentage should
 know; from 70% up it is slightly cautious — a stated 75% came true 79% of the
