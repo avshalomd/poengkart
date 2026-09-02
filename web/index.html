@@ -32,9 +32,11 @@
 <meta name="twitter:description" content="Poenggrensene for 218 videregående skoler i åtte fylker, 2012–2026, på kart.">
 <meta name="twitter:image" content="https://poengkart-no.vercel.app/og.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
+<!-- Instrument Sans (SIL Open Font License) is served from here rather than
+     from Google Fonts: no visitor's IP reaches a third party for a typeface,
+     and a network that blocks Google still gets the font. -->
+<link rel="preload" href="fonts/InstrumentSans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/instrument-sans.css">
 <!-- Leaflet 1.9.4 and markercluster 1.5.3, served from here rather than from
      unpkg: a school or municipal network that blocks the CDN used to get a
      blank page, and a third party could otherwise change the code that runs
