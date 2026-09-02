@@ -83,15 +83,21 @@ admission regime, which is itself worth a line in the report.
 
 Ordered by expected value per conversation.
 
-1. **Novari IKS** (formerly Vigo IKS) — *the* structural answer. Owned by
-   all 14 counties + Oslo; runs the VIGO system the entire intake happens
-   in. **VIGO Sentralbase holds every county's intake data and already
-   feeds the counties' statistics deliveries to Udir and SSB.** One
-   agreement here replaces seven county scrapes and would give exact,
-   round-labelled thresholds — potentially for every county and year,
-   including the never-published ones. Also runs vilbli.no. (novari.no)
-2. **Fylkeskommunenes inntakskontor** — hold what they never published.
-   Offentleglova applies; eInnsyn requests work (Budstikka's precedent).
+1. ~~**Novari IKS** (formerly Vigo IKS) — *the* structural answer.~~
+   **Closed 02.09.2026.** Novari runs VIGO as *databehandler*; the
+   counties are *behandlingsansvarlige*, and a processor cannot release a
+   controller's data on its own authority. Natalia K.-Gundersen, closing
+   SERVICE-1779: «Du må kontakte fylkeskommunene som er
+   behandlingsansvarlige for sine data. Vi har ikke anledning til å dele
+   [fylkeskommunenes] data.» Not a statement that the data is missing —
+   VIGO Sentralbase holds every county's intake uniformly — but that each
+   county is the only door to its slice. The useful residue: a county can
+   no longer say the figures are unavailable in a usable form; it is the
+   controller of a uniform VIGO extract it can pull or instruct Novari to
+   release. Say so in every request to a non-publishing county.
+2. **Fylkeskommunenes inntakskontor** — the only route, and the one that
+   has actually delivered (Akershus, Innlandet, Møre og Romsdal). Offentleglova
+   applies; eInnsyn requests work (Budstikka's precedent).
 
    | County | E-mail | Phone / note |
    |---|---|---|
@@ -104,11 +110,11 @@ Ordered by expected value per conversation.
    | Vestland | via vestlandfylke.no contact form | publishes everything already |
    | Møre og Romsdal | inntak@mrfylke.no | 71 28 01 50 · Power BI holder |
 
-Novari-status (28.08.2026): Natalia K.-Gundersen — tjenesteansvarlig VIGO og
-vilbli.no — svarte på samarbeidsbrevet: legg saken inn i Novari Servicedesk
-(support.jira.novari.no, portal 4) med presisering av formål, målgruppe og
-rolle. Ikke et avslag — en saksgang, hos riktig person. Sak registrert
-samme dag: **SERVICE-1779** (support.jira.novari.no, status OPEN).
+Novari-status: 28.08.2026 ba Natalia K.-Gundersen (tjenesteansvarlig VIGO
+og vilbli.no) om at saken ble lagt inn i Novari Servicedesk — registrert
+samme dag som **SERVICE-1779**. 02.09.2026 lukket hun den som Done:
+fylkeskommunene er behandlingsansvarlige, Novari kan ikke dele deres data.
+Nasjonalt uttrekk via Novari er dermed en lukket vei; se punkt 1 over.
    | Agder | inntak@agderfk.no | 38 05 00 00 |
    | Vestfold | inntak@vestfoldfylke.no | 33 34 41 72 |
    | Telemark | inntak@telemarkfylke.no | 35 91 73 70 |
@@ -172,8 +178,11 @@ samme dag: **SERVICE-1779** (support.jira.novari.no, status OPEN).
    the rolling matrix.
 4. **September recheck** (two minutes each): Rogaland, Buskerud, Innlandet,
    Trøndelag 2026/27 publications.
-5. **One well-aimed letter to Novari IKS** with the technical report
-   attached — the conversation that could obsolete the scraping entirely.
+5. ~~**One well-aimed letter to Novari IKS**~~ — closed 02.09.2026, see
+   §3.1. Replaced by: **innsynskrav to each non-publishing county** (Telemark
+   sent 01.09.2026; Agder, Nordland, Østfold, Vestfold, Troms, Finnmark
+   next), each citing Novari's confirmation that the county is the
+   controller of a uniform VIGO extract.
 6. **Scoping pass on Møre og Romsdal's Power BI** — the one new-county
    expansion with data already public.
 7. **Outreach wave with the report**: Udir analysis division, NIFU, then
