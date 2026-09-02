@@ -117,7 +117,13 @@ def pressure(s, stale_before):
             if yr in p['values'] and p['values'][yr] not in ('F', 'U')]
     nums = sorted(v for v in pool if isinstance(v, (int, float)) and v > 0)
     if not nums:
-        return 'open' if pool else None
+        if not pool:
+            return None
+        # the app's rule: any 0-cell with no positive figure is 'zero' (the
+        # programmes filled, the last admitted had no points), drawn like
+        # open but solid and never called "ingen venteliste"; 'open' only
+        # when no cell is 0
+        return 'zero' if any(v == 0 for v in pool) else 'open'
     m = len(nums) // 2
     return nums[m] if len(nums) % 2 else (nums[m - 1] + nums[m]) / 2
 
@@ -153,9 +159,10 @@ def main():
             continue
         if v is None:
             d.ellipse([x - 3, y - 3, x + 3, y + 3], fill=(58, 69, 83, 220))
-        elif v == 'open':
+        elif v in ('open', 'zero'):
             d.ellipse([x - 4.5, y - 4.5, x + 4.5, y + 4.5],
-                      outline=ACCENT + (230,), width=2)
+                      outline=ACCENT + (230,), width=2,
+                      fill=ACCENT + (90,) if v == 'zero' else None)
         else:
             c = colour(v)
             d.ellipse([x - 7, y - 7, x + 7, y + 7], fill=c + (70,))

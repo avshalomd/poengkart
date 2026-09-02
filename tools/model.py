@@ -80,11 +80,18 @@ OUT = os.path.join(HERE, '..', 'web', 'data', 'model.json')
 # formation, and worse: 1,790 of them flattened the Platt recalibration for
 # every other county (slope 0.36 with them, 0.43 without), washing out the
 # very distinction the hurdle exists to draw. They are excluded from the
-# fill fit and its calibration — their series still get fill probabilities,
-# from the pooled structure — and from nothing else: every cell still
-# trains the level model. Held-out fill Brier on the seven counties with
-# real labels: 0.162 -> 0.159 (log-loss 0.495 -> 0.485).
+# fill fit and its calibration, and their published fill probability is
+# fixed at 1 (the output loop below): such a county can only ever fill, so
+# its chance rests on the threshold alone. They are excluded from nothing
+# else: every cell still trains the level model. Held-out fill Brier on the
+# seven counties with real labels: 0.162 -> 0.159 (log-loss 0.495 -> 0.485).
 FILL_BLIND = {'Møre og Romsdal'}
+# County-years that are not what they look like: Hordaland 2017-19 is 15
+# Bergen studiespesialisering cells stored under Vestland, Vestland 2020 is
+# Vg1 only with no "ingen venteliste" cells. They stay in every school's
+# history and in the series/programme effects, but they do not set where the
+# county's random walk starts (decision of 2 Sept 2026, Q34).
+PARTIAL_YEARS = {('Vestland', 2017), ('Vestland', 2018), ('Vestland', 2019), ('Vestland', 2020)}
 BACKTEST_YEARS = list(range(2020, 2027))
 CALIB_YEARS = {2020, 2021, 2022, 2023, 2024}    # tune the error spread here...
 EVAL_YEARS = {2025, 2026}                        # ...and report honesty here
@@ -121,7 +128,8 @@ def load_obs(data):
                 rows.append(dict(school=sid, fylke=s['fylke'], series=f'{sid}|{key}',
                                  prog=f'{k}|{p["level"]}', cat=p['category'], year=y,
                                  state=state, v=float(v) if state == 'num' else None,
-                                 round=rnd, r3=int(rnd == '3' and cy[s['fylke']].get('round') != '3')))
+                                 round=rnd, r3=int(rnd == '3' and cy[s['fylke']].get('round') != '3'),
+                                 partial=int((s['fylke'], y) in PARTIAL_YEARS)))
             # the alternate-round pairs, for the round bridge
             for alt, r_alt in (('values_r1', '1'), ('values_r3', '3')):
                 for y, va in (p.get(alt) or {}).items():
@@ -346,7 +354,9 @@ class Model:
         d.add('cat', [r['cat'] for r in rows], 'fixed')
         d.add('prog', [r['prog'] for r in rows], 'ridge', 3.0)
         d.add('series', [r['series'] for r in rows], 'ridge', 3.0)
-        d.add('cy', [(r['fylke'], r['year']) for r in rows], 'rw', 1.0)
+        # a partial county-year is one pooled level outside every walk: its
+        # rows still train the other effects without moving the county
+        d.add('cy', [('_partial', 0) if r['partial'] else (r['fylke'], r['year']) for r in rows], 'rw', 1.0)
         if hurdle:
             d.add('r3', [r['r3'] for r in rows], 'fixed')
             if alpha is not None:
@@ -374,12 +384,20 @@ class Model:
         el, eh = self._effects_cached()
         def g(e, name, key):
             return e[name].get(key, 0.0)
-        def cy(e, f, y):
-            # random-walk forecast: the newest fitted year of that county
+        def cy(e, f, y, pooled=False):
+            # random-walk forecast: the newest fitted year of that county.
+            # When a county has only partial years so far (Vestland in the
+            # 2020 and 2021 folds) the pooled partial level is all there is
+            # for the LEVEL: those cells are real thresholds. Their fill
+            # labels are not information (Vestland 2020 has no "ingen
+            # venteliste" cell by construction), so the fill walk stays at 0
+            # rather than predicting that everything fills.
             ys = [yy for (ff, yy) in e['cy'] if ff == f and yy <= y]
-            return e['cy'][(f, max(ys))] if ys else 0.0
+            if ys:
+                return e['cy'][(f, max(ys))]
+            return e['cy'].get(('_partial', 0), 0.0) if pooled else 0.0
         m = (g(el, 'mu', 0) + g(el, 'school', school) + g(el, 'cat', cat) + g(el, 'prog', prog)
-             + g(el, 'series', series) + cy(el, fylke, year))
+             + g(el, 'series', series) + cy(el, fylke, year, pooled=True))
         eta = (g(eh, 'mu', 0) + g(eh, 'r3', 0) + g(eh, 'school', school) + g(eh, 'cat', cat)
                + g(eh, 'prog', prog) + g(eh, 'series', series) + cy(eh, fylke, year))
         if self.couple:
@@ -676,7 +694,8 @@ def main():
                 taus_fill={f['name']: round(f['tau'], 3) for f in model.dh.factors if f['kind'] != 'fixed'},
                 round_bridge=bridge, year_pairs=year_pairs,
                 target_year={f: y + 1 for f, y in newest.items()},
-                chance_bands=dict(likely=0.70, realistic=0.35))
+                chance_bands=dict(likely=0.70, possible=0.35),
+                partial_years=sorted([list(x) for x in PARTIAL_YEARS]))
     zq = error_quantiles(preds_best, sig) if preds_best else None
     meta['error_quantiles'] = zq
     fc = calibrate_fill(preds_best) if preds_best else dict(a=0.0, b=1.0)
@@ -733,9 +752,16 @@ def main():
             # year or the one before (the app's own staleness rule)
             if series not in last_year or last_year[series] < newest[s['fylke']] - 1:
                 continue
+            # ...and not discontinued: a series whose newest cell is "utgått"
+            # has nothing to forecast, whatever the year before said
+            if p['values'][max(p['values'], key=int)] == 'U':
+                continue
             m, pi = model.predict(sid, s['fylke'], f'{k}|{p["level"]}', p['category'], series, T)
             h = hist.get(series, 0)
-            progs[key] = dict(m=round(m, 1), s=round(sig[hist_bucket(h)], 1), pi=round(recal(pi, fc), 3), h=h)
+            # a county with no "ingen venteliste" state can only ever fill:
+            # its chance rests on the threshold alone
+            pi_out = 1.0 if s['fylke'] in FILL_BLIND else round(recal(pi, fc), 3)
+            progs[key] = dict(m=round(m, 1), s=round(sig[hist_bucket(h)], 1), pi=pi_out, h=h)
         if progs:
             ent['programs'] = progs
         out_schools[sid] = ent

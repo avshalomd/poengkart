@@ -13,3 +13,14 @@ tools/.cache/
 .env*.local
 archive/
 tools/.cache/
+
+# standing rules for Claude Code, local only by choice
+CLAUDE.md
+CLAUDE.local.md
+# plan-execution scratch
+.superpowers/
+
+# named contacts and outreach drafts stay off GitHub
+docs/private/
+# browser snapshots from QA runs
+.playwright-mcp/

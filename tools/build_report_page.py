@@ -53,7 +53,6 @@ INLINE = [
     (r'\beta', '<var>&beta;</var>'),
     (r'\gamma', '<var>&gamma;</var>'),
     (r'\rho', '<var>&rho;</var>'),
-    (r'\pi = 0.97', '<var>&pi;</var> = 0.97'),
     (r"\pi'", '<var>&pi;</var>&prime;'),
     (r'\pi', '<var>&pi;</var>'),
     (r'\sigma^2', '<var>&sigma;</var><sup>2</sup>'),
@@ -287,6 +286,8 @@ page = f"""<!DOCTYPE html>
 <meta name="description" content="Technical report: an open dataset of Norwegian upper-secondary admission thresholds and a calibrated hurdle-model forecast of the next intake.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://poengkart-no.vercel.app/report">
+<!-- cookieless page counts; a no-op until Web Analytics is enabled on the Vercel project -->
+<script defer src="/_vercel/insights/script.js"></script>
 <style>{CSS}</style>
 </head>
 <body>

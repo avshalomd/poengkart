@@ -20,7 +20,7 @@ Cell values:  float | 'open' | 'F' | 'D' | 'U'
 import re
 import unicodedata
 
-MIN_PLAUSIBLE = 8.0     # points below this are parse noise, not thresholds
+MIN_PLAUSIBLE = 8.0     # bare integers below this are parse noise (course-code digits); a printed decimal is always a threshold
 MAX_PLAUSIBLE = 65.0
 
 # --- text ---------------------------------------------------------------
@@ -69,12 +69,43 @@ def classify_cell(txt, min_value=MIN_PLAUSIBLE, loose=False):
         return 'open'
     if NUM_RE.match(t):
         v = float(t.replace(',', '.'))
-        return v if min_value <= v <= MAX_PLAUSIBLE else None
+        # the noise guard is for bare integers: course-code digits never
+        # carry a decimal separator, so a printed "5,6" is a poenggrense
+        has_decimal = any(sep in t for sep in ',.')
+        floor = 0.0 if has_decimal else min_value
+        return v if floor <= v <= MAX_PLAUSIBLE else None
     if loose:
         m = re.match(r'^(\d{1,2}(?:[.,]\d{1,2})?)\b', t)
         if m:
             v = float(m.group(1).replace(',', '.'))
             return v if min_value <= v <= MAX_PLAUSIBLE else None
+    return None
+
+
+def dropped_digit(a, b):
+    """The fuller of two figures when one is the other with one digit
+    missing (3.9 beside 38.9 in two editions of the same table), else None.
+
+    A county retypes its own rolling table every year, and once dropped a
+    digit doing so; the printed decimal is real, the disagreement is a typo.
+    Digit strings are compared without the separator, and the dropped digit
+    may sit anywhere (38.9 -> 3.9 lost its middle one), so the test is: the
+    shorter string is the longer with exactly one digit deleted, AND the
+    shorter figure is implausible as a poenggrense while the fuller one is
+    plausible: 8.0 beside 38.0 is two real figures that disagree, and the
+    year is doubted as any such disagreement is.
+    """
+    if not all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in (a, b)):
+        return None
+    da, db = (f'{x:.1f}'.replace('.', '') for x in (a, b))
+    if len(da) == len(db):
+        return None
+    short, long, full, part = (da, db, b, a) if len(da) < len(db) else (db, da, a, b)
+    # a 0 cell is a state ("fullt, siste inntatte uten poeng"), never a typo
+    if part <= 0 or not (part < MIN_PLAUSIBLE <= full):
+        return None
+    if any(long[:i] + long[i + 1:] == short for i in range(len(long))):
+        return full
     return None
 
 
@@ -236,11 +267,8 @@ def merge_rows(rows_newest_first):
             for y, v in r['values'].items():
                 if y in rec['values']:
                     if rec['values'][y] != v:
-                        drift.append({'county': r.get('county', ''),
-                                      'school': r['school'], 'program': r['program'],
-                                      'level': r['level'], 'year': y,
-                                      'kept': rec['values'][y], 'kept_from': rec['sources'][y],
-                                      'ignored': v, 'ignored_from': source})
+                        _record_drift(drift, rec, y, v, source, r.get('county', ''),
+                                      r['school'], r['program'], r['level'])
                 else:
                     rec['values'][y] = v
                     rec['sources'][y] = source
@@ -287,16 +315,28 @@ def _fold_series(schools, drift):
                     into['values'][y] = v
                     into['sources'][y] = rec['sources'][y]
                 elif into['values'][y] != v:
-                    drift.append({'county': county, 'school': name,
-                                  'program': rec['program'], 'level': rec['level'],
-                                  'year': y, 'kept': into['values'][y],
-                                  'kept_from': into['sources'][y],
-                                  'ignored': v, 'ignored_from': rec['sources'][y]})
+                    _record_drift(drift, into, y, v, rec['sources'][y], county,
+                                  name, rec['program'], rec['level'])
             for alt in ('values_r1', 'values_r3'):
                 if rec.get(alt):
                     into.setdefault(alt, {}).update(
                         {y: v for y, v in rec[alt].items() if y not in into.get(alt, {})})
             del recs[key]
+
+
+def _record_drift(drift, rec, y, v, source, county, school, program, level):
+    """Two sources disagree about a cell: log it, and let a typographic drop
+    resolve in favour of the fuller figure whichever edition carries it."""
+    kept = rec['values'][y]
+    full = dropped_digit(kept, v)
+    if full is not None and full != kept:
+        rec['values'][y], rec['sources'][y], kept, v, source = full, source, full, kept, rec['sources'][y]
+    entry = {'county': county, 'school': school, 'program': program, 'level': level,
+             'year': y, 'kept': rec['values'][y], 'kept_from': rec['sources'][y],
+             'ignored': v, 'ignored_from': source}
+    if full is not None:
+        entry['reason'] = 'dropped digit'
+    drift.append(entry)
 
 
 def validate(schools, min_value=MIN_PLAUSIBLE):

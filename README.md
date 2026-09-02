@@ -40,8 +40,9 @@ python3 -m http.server 8742 -d web
 
 Then open http://localhost:8742. No build step, no dependencies.
 
-Rebuilding the dataset from the source documents needs the county PDFs and the
-Python environment in `.venv`:
+Rebuilding the dataset from the source documents needs the county source
+documents, which ship under `sources/` (including the files released under
+freedom-of-information requests), and the Python environment in `.venv`:
 
 ```bash
 .venv/bin/python3 tools/refresh.py
@@ -49,9 +50,11 @@ Python environment in `.venv`:
 
 ## The dataset
 
-`web/data/schools.json` is what the app reads, and it is free to use. The same
+`web/data/schools.json` is what the app reads, and is published under the
+Norwegian Licence for Open Government Data
+([NLOD 2.0](https://data.norge.no/nlod/no/2.0)); the code is MIT. The same
 data ships as SQLite and CSV in `data/` for anyone who would rather query it —
-`samples` carries every cell with its county, intake round and Grep code, `forecasts` the
+`samples` carries every cell with its county, inntak and Grep code, `forecasts` the
 model's expected threshold, spread and fill probability per programme, and
 `data/model-backtest.csv` every walk-forward forecast the accuracy claims rest
 on.
@@ -63,13 +66,15 @@ Each (school, programme, year) cell is one of:
 | a number | the threshold — the last admitted applicant's points |
 | `0` | the programme filled, but the last admitted had no registered points, so everyone with points got in. The counties print this as its own state, distinct from `open` — Innlandet: *"der det er merket med «0» er det ikke ledige plasser, men siste inntatte har ingen poeng"* |
 | `open` | no waitlist; everyone qualified was admitted (**not** zero) |
-| `F` | filled on *fortrinnsrett*, a statutory priority quota with no threshold |
+| `F` | filled on *fortrinnsrett*, a statutory priority right with no threshold |
 | `D` | admission by documentation (IB, elite sport), so no threshold exists |
 | `U` | the programme was discontinued that year |
 
-Where the figures come from, and which intake round each county publishes:
+Where the figures come from, and which inntak each county publishes. Agder,
+Finnmark, Nordland, Telemark, Troms, Vestfold and Østfold do not publish
+thresholds; the app says so when you pick them.
 
-| County | Format | Years | Round |
+| County | Format | Years | Inntak |
 |---|---|---|---|
 | [Akershus](https://afk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/poenggrenser.222835.aspx) | HTML tables; 2024 and 2026 as Excel, released under an FOI request | 2024–2026 | 1. and 2. (FOI years: 2. only) |
 | [Buskerud](https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/) | HTML matrix | 2024–2025 | not stated |
@@ -88,9 +93,9 @@ the register has no coordinates. Map tiles by [CARTO](https://carto.com/) and
 
 ## Notes
 
-**Rounds are not comparable.** Counties publish different intake rounds and
-thresholds fall between them, so every figure is labelled with its round and
-the app warns when a view mixes them.
+**Inntak are not comparable.** Counties publish different inntak (1., 2. or
+3.) and thresholds fall between them, so every figure is labelled with its
+inntak and the app warns when a view mixes them.
 
 **Photos** come from [Wikimedia Commons](https://commons.wikimedia.org) under
 the licence shown on each image, or from the school's own site, credited to the

@@ -19,8 +19,8 @@ from bs4 import BeautifulSoup
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import common  # noqa: E402
 
-SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                   '..', '..', '..', 'poenggrenser', 'data', 'buskerud')
+HERE = os.path.dirname(os.path.abspath(__file__))
+SRC = os.path.join(HERE, '..', '..', 'sources', 'buskerud')
 
 META = {
     'code': '33', 'fylke': 'Buskerud', 'round': None, 'rights': 'ungdomsrett',

@@ -2,17 +2,17 @@
 """Møre og Romsdal — one FOI Excel extract, Vg1, 15 years.
 
 The county publishes its poenggrenser only inside a Power BI dashboard
-("karakterstatistikk"), whose Publish-to-Web mode offers no download. Dan
-Ernes at Kompetanse- og næringsavdelinga answered our request of 25.08.2026
-with the tidy extract behind it (dan.ernes@mrfylke.no, 01.09.2026):
-one row per (school year, school, programme), with the official Grep
+("karakterstatistikk"), whose Publish-to-Web mode offers no download.
+Kompetanse- og næringsavdelinga answered our request of 25.08.2026 with the
+tidy extract behind it (reply of 01.09.2026, case reference in
+`docs/private/`): one row per (school year, school, programme), with the official Grep
 kurskode, the lower threshold (Nedrekar) and — unused here, our schema has
 no field for it — the admitted mean (Gjennomkar).
 
 Semantics, and what the file does NOT say:
 
 - The figures are from 2. inntak — "Våre tall er basert på 2.inntaket i
-  august (som er det endelige inntaket for oss)", Dan Ernes, 01.09.2026.
+  august (som er det endelige inntaket for oss)", the department's reply of 01.09.2026.
   The file itself does not say so; the round rests on that confirmation,
   asked for precisely because a round must never be inferred.
 - There is no "everyone got in" marker. Every offered programme carries a
@@ -43,8 +43,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import common  # noqa: E402
 
-SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                   '..', '..', '..', 'poenggrenser', 'data', 'mro')
+HERE = os.path.dirname(os.path.abspath(__file__))
+SRC = os.path.join(HERE, '..', '..', 'sources', 'mro')
 
 META = {
     'code': '15', 'fylke': 'Møre og Romsdal', 'round': '2',

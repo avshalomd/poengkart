@@ -37,7 +37,7 @@ from taxonomy import classify_category   # noqa: E402  (one taxonomy, in one pla
 import pdfplumber
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, '..', '..', 'poenggrenser', 'data')
+SRC = os.path.join(HERE, '..', 'sources', 'rogaland')
 OUT = os.path.join(HERE, '..', 'web', 'data')
 DRIFT = os.path.join(HERE, '..', 'data', 'source-drift.json')
 
@@ -98,7 +98,7 @@ NUM_RE = re.compile(r'^\d+(?:,\d+)?$')
 YEAR_RE = re.compile(r'^20\d\d$')
 LEVEL_RE = re.compile(r'^Vg\d$')
 COL_HALFSPAN = 62      # pt: how close a word must sit to a year-column centre
-MIN_PLAUSIBLE = 8.0    # points below this are parse noise, not thresholds
+MIN_PLAUSIBLE = 8.0    # bare integers below this are parse noise (course-code digits); a printed decimal is always a threshold
 
 
 def norm(s):
@@ -280,7 +280,10 @@ def parse_pdf(path, warn):
                     v = classify_cell(' '.join(toks))
                     if v is None:
                         continue
-                    if isinstance(v, float) and v < MIN_PLAUSIBLE:
+                    # course-code digits never carry a decimal separator, so a
+                    # printed "3,9" is the county's own figure (kept; a newer
+                    # edition that disagrees wins the merge and the drift log)
+                    if isinstance(v, float) and v < MIN_PLAUSIBLE and ',' not in ''.join(toks):
                         warn.append(f'{os.path.basename(path)} p{pi+1} {school} '
                                     f'"{program}" {year_cols[yi][0]}: implausible '
                                     f'value {v} dropped')
@@ -311,7 +314,7 @@ def validate(schools, warn):
             if rec['category'] == 'annet':
                 problems.append(f'{name}: uncategorised program: "{p}"')
             for y, v in rec['values'].items():
-                if isinstance(v, float) and not (MIN_PLAUSIBLE <= v <= 65):
+                if isinstance(v, float) and not (0 <= v <= 65):
                     problems.append(f'{name} "{p}" {y}: out-of-range value {v}')
     return problems
 

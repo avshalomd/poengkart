@@ -32,14 +32,17 @@ empirical distribution of the backtest's own forecast errors (see *Spread*).
 
 Two fits, one structure. Every effect is a random effect, so a school or
 programme with a single year of data borrows its level from the hundreds of
-similar ones around it instead of being trusted on its own — 525 of the 1 846
+similar ones around it instead of being trusted on its own — 523 of the 2 029
 series have exactly one year.
 
-**Level** (on the 6 221 cells that carry a number):
+**Level** (on the 8 201 cells that carry a number):
 
     y = μ + school + category + programme|level + series + county×year + round offset + ε
 
-**Fill** (on all 9 351 cells that competed on points — number, 0,0 or "no waitlist"):
+**Fill** (on the 9 689 cells that competed on points — number, 0,0 or "no waitlist" —
+outside Møre og Romsdal, whose extract has no "no waitlist" state and so cannot
+inform it; in the shipped forecasts that county's fill probability is fixed
+at 1, so an applicant's chance there rests on the poenggrense alone):
 
     logit P(filled) = ν + school + category + programme|level + series + county×year + round-3 shift
 
@@ -48,10 +51,10 @@ the newest year is the forecast for the next. *Series* is the school×programme
 interaction: a school can be strong in music and ordinary in electro.
 Variance components come from a few steps of the usual normal-normal EM
 approximation; observations are down-weighted with age (half-life chosen by the
-backtest — it barely mattered, 4 years won by 0.006 RMSE over no decay).
+backtest — it barely mattered, 4 years won by 0.005 RMSE over no decay).
 
 Fitted variance components (points): school 3.2, programme 3.3, series 2.7,
-county×year innovations 1.2, residual 4.7 On the logit scale for fill: school
+county×year innovations 1.2, residual 4.7. On the logit scale for fill: school
 1.0, programme 1.3, series 1.6
 
 **Coupling the two fits** — "in demand" as one trait read two ways, so that a
@@ -59,7 +62,7 @@ school whose thresholds are high is also one whose programmes fill — is a
 plug-in of the level model's school effect into the fill model, with the
 backtest as judge on every refit. Earlier builds rejected it (0.406 coupled
 against 0.403 independent); with the Innlandet 2020–2022 backfill the
-verdict flipped — 0.446 coupled against 0.449 — so the shipped hurdle is now
+verdict flipped — 0.429 coupled against 0.434 — so the shipped hurdle is now
 coupled (`meta.coupled`). This is exactly the day the flag was kept for.
 
 **What each cell means to the model.** A number > 0 is an observation of the
@@ -78,18 +81,18 @@ random walk does not learn the dip as a market event.
 
 ## Spread, and why it is not the model's own
 
-A hierarchical fit is sure of itself. The residual sd is 4.5 points, but the
+A hierarchical fit is sure of itself. The residual sd is 4.7 points, but the
 forecast for next year also carries the uncertainty of every effect and of
 the market move, and for a series with one year of history the effects are
 mostly borrowed. So *s* is not taken from the fit at all: it is the RMSE of the
 walk-forward forecasts (below) in the calibration years, bucketed by how many
 years of history the series had when it was forecast — floored at the
-residual sd of the newest fit that saw no held-out year (4.4), so the
+residual sd of the newest fit that saw no held-out year (4.7), so the
 held-out years cannot narrow their own intervals:
 
 | history | s |
 |---|---|
-| 0 years | 7.2 |
+| 0 years | 7.9 |
 | 1 year | 6.3 |
 | 2–3 years | 5.7 |
 | 4+ years | 5.5 |
@@ -108,11 +111,11 @@ no earlier year can teach a forecast what that does, and the final fit handles
 it with the fixed offset; grading the model on an event it is told about would
 flatter nothing and mislead the calibration.
 
-**Level, held-out 2025–26** (1 606 cells that got a number):
+**Level, held-out 2025–26** (2 019 cells that got a number):
 
 | history | n | model RMSE | "last year's figure" RMSE | programme-county mean RMSE | within ±3 |
 |---|---|---|---|---|---|
-| 0 years | 159 | 8.1 | — | 9.8 | 30% |
+| 0 years | 159 | 8.2 | — | 9.8 | 30% |
 | 1 year | 254 | 5.7 | 7.0 | 6.6 | 52% |
 | 2–3 years | 542 | 5.5 | 7.0 | 6.2 | 43% |
 | 4+ years | 1064 | 5.2 | 6.3 | 6.2 | 49% |
@@ -120,9 +123,9 @@ flatter nothing and mislead the calibration.
 The 80% interval (m ± 1.2816 s) contained the published figure 84% of the time.
 
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
-gave 0.97 filled 0.83 of the time in the held-out years. So π is passed
+gave 0.97 filled 0.87 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = −0.130 + 0.427 logit π). Held-out Brier 0.156 against 0.196 for the
+(logit π′ = −0.051 + 0.504 logit π). Held-out Brier 0.152 against 0.196 for the
 base rate.
 
 **Chance, held-out 2025–26**, for every cell and every score in
@@ -130,24 +133,25 @@ base rate.
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 1.2% | 502 |
-| 10–20% | 6.8% | 1 095 |
-| 20–30% | 14% | 1 455 |
-| 30–40% | 29% | 1 605 |
-| 40–50% | 37% | 1 282 |
-| 50–60% | 49% | 1257 |
-| 60–70% | 65% | 1 446 |
-| 70–80% | 79% | 1 406 |
-| 80–90% | 88% | 1 653 |
-| 90–100% | 98.8% | 10 883 |
+| 0–10% | 2.6% | 895 |
+| 10–20% | 10.0% | 1 185 |
+| 20–30% | 20% | 1 441 |
+| 30–40% | 30% | 1 423 |
+| 40–50% | 40% | 1 182 |
+| 50–60% | 51% | 1 209 |
+| 60–70% | 64% | 1 254 |
+| 70–80% | 79% | 1 393 |
+| 80–90% | 87% | 1 618 |
+| 90–100% | 98.6% | 10 984 |
 
-Brier 0.093, against 0.154 for the rule "the last published figure is the
+Brier 0.092, against 0.154 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
 Brier is 0.093).
-From 30% up the forecast is within five points of what happened; below 30% it
-is a few points optimistic — a 15% chance was really about 8% — which the app's
-bands absorb (both are "unlikely") but a reader of the raw percentage should
-know. The walk-forward forecasts themselves are in `data/model-backtest.csv`.
+Below 60% the forecast is optimistic by up to 5.3 points — a 15% chance was
+really 10% — and by 1 point in the 60–70% bin, which the app's bands absorb
+(15% and 10% are both "unlikely") but a reader of the raw percentage should
+know; from 70% up it is slightly cautious — a stated 75% came true 79% of the
+time. The walk-forward forecasts themselves are in `data/model-backtest.csv`.
 
 ## The round bridge
 

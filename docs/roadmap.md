@@ -29,3 +29,95 @@ list view (Kart ⇄ Liste toggle: the map's filters as a sortable table).
   basemaps in favour of vector (MapLibre); no date yet and our key covers
   both. When it becomes real: Leaflet + maplibre-gl-leaflet, or a move to
   MapLibre GL proper.
+
+## Added September 2026 (grilling session)
+
+- **Move large source documents to object storage.** The FOI-released
+  county files (Akershus 2024/2026 xlsx, Innlandet 2020–22 PDFs, the Møre og
+  Romsdal extract) get committed to the repo first so the pipeline is
+  reproducible from a clone; once they grow, move them to Cloudflare R2 (or
+  similar) with the hashes recorded in the repo.
+- **Model the intake round explicitly.** Oslo publishes 1st-intake figures,
+  most other counties 2nd, Buskerud and Trøndelag do not say. Today the
+  difference is absorbed by the county level and stated in an inline caveat;
+  the next data-science step is an explicit round adjustment so an Oslo
+  chance and a Rogaland chance mean the same thing.
+- **Suggestion, not adopted: hide raw percentages below 30%.** The fill
+  model is documented as optimistic in that range. Decision for now is to
+  show what the model says; revisit if calibration in that range does not
+  improve.
+
+## Launch list (agreed 2 September 2026)
+
+Soft launch now to county contacts, a few parents of 10. trinn pupils, and
+the videregående schools whose figures are shown (they can check their own
+numbers and photos); real push January 2027 after the autumn refresh.
+Distribution via the kommune education departments, with a Norwegian
+one-pager attached to a short e-mail.
+
+Owner's own tasks:
+- Ask Møre og Romsdal (same thread as the data) for the filled / not-filled
+  state per programområde, so the county can enter the fill model instead of
+  being treated as always filled. Draft goes in chat first, sent only on his go.
+  *Deferred: owner's own task; until then the model fixes the county's fill probability at 1.*
+- Register `poengkart.no` (domene.no) and cut over during the autumn refresh,
+  keeping the vercel.app address as a redirect. The domain is hard-coded in
+  five files and the CARTO key is domain-bound.
+  *Deferred: owner's own task, timed with the autumn refresh.*
+
+Agreed product changes:
+- Lookup leads; chance is an opt-in layer with its own one-line explanation
+  (ADR 0001).
+  *Done 2 Sept 2026.*
+- Drop "prototype" from the source note: "uoffisiell" plus the sources line;
+  author name and the feedback route in the intro.
+  *Done 2 Sept 2026.*
+- County select: a transparent "flere" row that reveals the counties without
+  data, greyed; tapping one says the county does not publish these figures.
+  *Done 2 Sept 2026; the README names the seven counties too.*
+- Dot colour in chance mode: best programme by default, labelled "beste
+  sjanse"; when an utdanningsprogram filter is active, colour by that one.
+  *Done 2 Sept 2026.*
+- Inline inntak caveat for the counties whose inntak is not stated (Buskerud,
+  Trøndelag) and for Møre og Romsdal, which cannot express "ingen venteliste".
+  MRO's fill probability is set to 1 until the county supplies the state.
+  *Done 2 Sept 2026: `FILL_BLIND` in `tools/model.py`, checked by `test_model.py`, documented in report v1.4 §4.4.*
+- No percentage for a series with zero history ("ingen historikk"); a
+  "lite historikk" tag at one year.
+  *Done 2 Sept 2026.*
+- Photos stay as they are, credited to the fylkeskommune with opt-out by
+  issue; no permission round.
+  *Done: nothing to change; the README states the opt-out.*
+- Contacts and outreach drafts move to a gitignored `docs/private/`; the
+  civil-servant address leaves `tools/extractors/mro.py`; FOI case numbers
+  stay public.
+  *Done 2 Sept 2026: `docs/private/` is gitignored, case numbers in `sources/README.md`.*
+- Vocabulary sweep to CONTEXT.md: cell-state labels, "inntak" for round,
+  chance band keys renamed in code, official programme names in `CATS`.
+  *Done 2 Sept 2026 (ADR 0002).*
+- Vercel Web Analytics (cookieless) plus a minimal client error beacon, with a
+  personvern line in the intro; self-host the font.
+  *Script tag, error beacon and personvern line done 2 Sept 2026. Deferred: switching Web Analytics on in the Vercel project (owner, dashboard toggle) and the self-hosted font (needs the font files downloaded; Google Fonts stays until then).*
+- Data licence NLOD 2.0 stated in README and in the CSV/SQLite headers.
+  *Done 2 Sept 2026.*
+- Commit the FOI source files under `sources/` with case numbers.
+  *Done 2 Sept 2026: 47 source documents plus `sources/README.md`; extractors read from there.*
+- Norwegian one-pager for rådgivere and foresatte (what a poenggrense is,
+  what the app does and does not claim, sources, contact).
+  *Deferred: written after the soft launch, before the kommune e-mails go out.*
+
+Phone onboarding stays as is: the glowing "?" is the first-visit prompt.
+
+## Open decisions after the soft-launch pass (2 September 2026)
+
+- **Git history.** The old contact file and one official's address exist in
+  earlier commits. Accept (work address on a public-record reply) or rewrite
+  history with `git filter-repo` and a force push.
+- **Scope denominators.** A school panel can show three counts at once (hero
+  "4 programområder", chart "3", chance "2 av 2"). Proposal: name the scope
+  ("3 av 4 har poenggrense", "2 av 4 – 2 uten prognose").
+- **County short names.** Buskerud and Akershus store the county's short
+  school names (Kongsberg), so `#s=Buskerud/Kongsberg videregående skole`
+  does not resolve; `nsr_name` holds the full name. Pipeline-side choice.
+- **Kongsberg photo** has the school name baked in and is cropped mid-word.
+- **List view at 375 px**: the Sjanse column needs a horizontal swipe.

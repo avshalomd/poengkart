@@ -23,7 +23,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import common  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, '..', '..', '..', 'poenggrenser', 'data', 'trondelag')
+SRC = os.path.join(HERE, '..', '..', 'sources', 'trondelag')
 GREP = os.path.join(HERE, '..', 'grep-programomraader.json')
 
 META = {

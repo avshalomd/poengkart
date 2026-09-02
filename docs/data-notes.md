@@ -38,7 +38,14 @@ layouts, together with the county's own caveat that the 2020 merger and the
 2022 vocational-structure reform limit comparability across that boundary —
 which the Grep normalisation and per-series identity absorb. The same letter
 confirmed that nothing older survives, on either the Hedmark or the Oppland
-side.
+side. The release's own legend reads "-" as "inntak uten poenggrense, eller
+hvor poenggrensen ikke er relevant", and 2021 has 290 such cells against 93
+figures (2020: 100 against 266, 2022: 186 against 197); a spot-check of 18
+rows against the PDF (12 dashes, 6 figures, September 2026) found the parse
+faithful, so the high share is the county's own publication, not a parser
+artefact. The programmes admitted on other grounds, where a poenggrense is
+not relevant (the four-year YSK, admitted by interview), are absent from the
+tables altogether rather than marked.
 
 Where a county shows a single year, that is all that was ever published in a
 form anyone can still retrieve — not a gap in the collection. Trøndelag says so
@@ -86,7 +93,7 @@ is recorded in `data/source-drift.json` rather than hidden. Any year two
 publications disagree about by close to a whole grade point is flagged on the
 school as `uncertain_years`, and the app says so in words.
 
-`tools/test_parse.py` runs 74 regression checks over the result; every one of
+`tools/test_parse.py` runs 88 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built

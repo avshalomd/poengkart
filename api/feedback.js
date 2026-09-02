@@ -8,17 +8,17 @@
  * Delivery, in order of preference:
  *   RESEND_API_KEY  -> send through Resend. Nobody else sees the message.
  *   WEB3FORMS_KEY   -> send through Web3Forms.
- *   neither         -> hand the browser a prefilled mailto: so the visitor can
- *                      send it from their own mail app. Not one click, but it
- *                      never silently swallows what someone took the time to
- *                      write.
+ *   neither, or the relay fails -> { ok: false }. The page keeps the text in
+ *                      the form for another try. There is no mailto: fallback
+ *                      any more: one built from FEEDBACK_TO handed the address
+ *                      to any browser that asked once the day's quota was spent,
+ *                      which is exactly what keeping it out of the page was for.
  *
  * formsubmit.co was the first choice because it needs no account, and it works
  * from a laptop — but from a serverless function it comes back 403 behind a
  * Cloudflare "Just a moment..." challenge, because the request arrives from a
  * datacentre. Defeating that check is not something to build into a product,
- * so the relay needs a provider key instead. Adding one turns the mailto
- * fallback into real one-click sending with no other change.
+ * so the relay needs a provider key instead.
  */
 
 const MAX = { message: 4000, field: 200 };
@@ -35,12 +35,9 @@ const LABELS = {
 // flood from one browser rather than a determined attacker.
 const seen = new Map();
 const RATE = { window: 600_000, max: 3 };
-// The provider's free tier is 100 messages a day, and running it dry is what
-// turns this endpoint into an address discloser: every send after that fails,
-// and a failed send hands the browser a mailto: built from FEEDBACK_TO. At the
-// old 3-a-minute one address could drain the day's quota in half an hour.
-// Real feedback here is a handful a week, so a cap this far above the traffic
-// costs a genuine sender nothing and takes that path off the table.
+// The provider's free tier is 100 messages a day. Real feedback here is a
+// handful a week, so a cap this far above the traffic costs a genuine sender
+// nothing and keeps one browser from draining the day's quota for everyone.
 const DAY = { since: 0, sent: 0, max: 80 };
 
 function dayFull() {
@@ -111,7 +108,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       destination: !!(process.env.FEEDBACK_TO || '').trim(),
       provider: process.env.RESEND_API_KEY ? 'resend'
-        : process.env.WEB3FORMS_KEY ? 'web3forms' : 'mailto-fallback',
+        : process.env.WEB3FORMS_KEY ? 'web3forms' : 'none',
     });
   }
   if (req.method !== 'POST') {
@@ -170,18 +167,15 @@ export default async function handler(req, res) {
   const text = `${message}\n\n---\n`
     + details.map(([k, v]) => `${k}: ${v}`).join('\n');
 
-  const mailto = () => `mailto:${to}?subject=${encodeURIComponent(subject)}`
-    + `&body=${encodeURIComponent(text)}`;
-
   try {
     if (process.env.RESEND_API_KEY) await viaResend(subject, text, replyTo, to);
     else if (process.env.WEB3FORMS_KEY) await viaWeb3Forms(subject, text, replyTo);
-    else return res.status(200).json({ ok: false, mailto: mailto() });
+    else return res.status(200).json({ ok: false });
     DAY.sent += 1;
     return res.status(200).json({ ok: true });
   } catch (err) {
-    // The message is already written; hand it back rather than lose it.
+    // The message is still in the visitor's form; the page asks them to retry.
     console.error('feedback relay failed:', err.message);
-    return res.status(200).json({ ok: false, mailto: mailto() });
+    return res.status(200).json({ ok: false });
   }
 }

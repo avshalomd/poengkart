@@ -675,7 +675,7 @@ def main():
                 taus_fill={f['name']: round(f['tau'], 3) for f in model.dh.factors if f['kind'] != 'fixed'},
                 round_bridge=bridge, year_pairs=year_pairs,
                 target_year={f: y + 1 for f, y in newest.items()},
-                chance_bands=dict(likely=0.70, realistic=0.35))
+                chance_bands=dict(likely=0.70, possible=0.35))
     zq = error_quantiles(preds_best, sig) if preds_best else None
     meta['error_quantiles'] = zq
     fc = calibrate_fill(preds_best) if preds_best else dict(a=0.0, b=1.0)

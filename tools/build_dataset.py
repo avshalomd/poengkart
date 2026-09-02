@@ -45,7 +45,10 @@ def _extract_cached(mod):
     cache stores exactly what extract() returned; the output cannot differ.
     """
     h = hashlib.sha256()
+    # parse_pdfs.py is Rogaland's real parser (extractors/rogaland.py wraps
+    # it), so it is part of every extractor's key rather than only that one's
     for f in (mod.__file__, os.path.join(HERE, 'common.py'),
+              os.path.join(HERE, 'parse_pdfs.py'),
               os.path.join(HERE, 'grep-programomraader.json')):
         try:
             h.update(open(f, 'rb').read())
@@ -155,6 +158,8 @@ def main():
     # at all, while a hand-written entry flagged gaps a quarter that size.
     DRIFT_LIMIT = 8.0
     for d in drift:
+        if d.get('reason') == 'dropped digit':      # 3,9 beside 38,9: a typo, not doubt
+            continue
         if not (isinstance(d['kept'], (int, float))
                 and isinstance(d['ignored'], (int, float))
                 and abs(d['kept'] - d['ignored']) >= DRIFT_LIMIT):

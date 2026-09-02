@@ -41,6 +41,8 @@
      on every visit. -->
 <link rel="preload" href="data/schools.json" as="fetch" crossorigin>
 <link rel="preload" href="data/model.json" as="fetch" crossorigin>
+<!-- cookieless page counts; a no-op until Web Analytics is enabled on the Vercel project -->
+<script defer src="/_vercel/insights/script.js"></script>
 <link rel="stylesheet" href="leaflet-1.9.4.css">
 <link rel="stylesheet" href="MarkerCluster-1.5.3.css">
 <script defer src="leaflet-1.9.4.js"></script>
@@ -217,6 +219,9 @@
      threw that reservation away again, so picking a programme pushed everything
      down 20px and clearing it pulled it back up */
   #cat-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; min-height: 14px; }
+  /* the county note only exists while it has something to say */
+  #fylke-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; }
+  #fylke-note:empty { display: none; }
   #pts-field { margin-top: 10px; }
   .ptsrow { display: flex; gap: 6px; align-items: center; }
   .ptsrow input {
@@ -367,6 +372,10 @@
   #listview .chip.b2 { color: var(--chip-b2-ink); }
   #listview .chip.open { border: 1px dashed var(--accent); color: var(--ink-2);
                          font-weight: 400; font-size: 12px; background: none; }
+  /* filled with no figure to print: the map's solid zero dot, in words */
+  #listview .chip.zero { background: color-mix(in srgb, var(--accent) 35%, var(--surface-solid));
+                         border: 1px solid var(--accent); color: var(--ink-2);
+                         font-weight: 400; font-size: 12px; }
   /* a rising threshold is not good news for the reader: no valence colours,
      the sign and magnitude carry the message */
   #listview .up { color: var(--ink); }
@@ -455,8 +464,8 @@
   /* Chance bands are semantic colours, deliberately not the blue threshold
      ramp: a dot's colour answers a different question once points are set. */
   .b-likely { --b: var(--good); --bt: var(--chip-good); }
-  .b-realistic { --b: var(--warn); --bt: var(--chip-warn); }
-  .b-long { --b: var(--danger); --bt: var(--chip-danger); }
+  .b-possible { --b: var(--warn); --bt: var(--chip-warn); }
+  .b-unlikely { --b: var(--danger); --bt: var(--chip-danger); }
   .chance {
     margin: 10px 18px 0; padding: 9px 12px 9px 11px; border-radius: 9px;
     background: var(--accent-soft); border-left: 2px solid var(--accent);
@@ -740,6 +749,9 @@
   #legend .none { display: flex; align-items: center; gap: 6px; margin-top: 7px; color: var(--ink-3); }
   #legend .none .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--context); flex: none; }
   #legend .none .dot.open-dot { background: var(--accent-soft); border: 1.5px dashed var(--accent); }
+  /* the filled-without-points marker: the open ring with a solid 35% fill */
+  #legend .none .dot.zero-dot { background: color-mix(in srgb, var(--accent) 35%, var(--surface-solid));
+                                border: 1.5px solid var(--accent); }
   #legend .none + .none { margin-top: 3px; }
   #legend .sizenote { margin-top: 7px; color: var(--ink-3); max-width: 210px; line-height: 1.35; }
   #legend .sizenote.warn { color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 6px; }
@@ -895,6 +907,10 @@
   .prow .val { font-size: 13.5px; font-weight: 650; font-variant-numeric: tabular-nums; flex: none; width: 68px; text-align: right; }
   .prow .val small { display: block; font-weight: 400; font-size: 9px; color: var(--ink-3); }
   .prow .val .soft { color: var(--ink-2); font-weight: 500; font-size: 11.5px; }
+  .prow .chw { display: flex; align-items: center; gap: 6px; flex: none; }
+  .prow .hist { font-size: 10px; color: var(--ink-3); white-space: nowrap; }
+  /* not a chip: this says why there is no percentage, so no pill around it */
+  .ch.none { background: none; border: none; padding: 0; color: var(--ink-3); font-weight: 500; }
   #src-note { padding: 14px 18px 20px; font-size: 10.5px; color: var(--ink-3); line-height: 1.5; }
 
   .leaflet-control-attribution { background: var(--surface) !important; color: var(--ink-3) !important; font-size: 9.5px !important; }
@@ -923,7 +939,7 @@
     #panel .brand { grid-column: 1 / -1; padding-right: 140px; }
     #panel #view-toggle { grid-column: 1 / -1; margin-bottom: 2px; }
     #panel .brand h1 { font-size: 17px; }
-    #cat-note { grid-column: 1 / -1; margin-top: 0; min-height: 0; }
+    #cat-note, #fylke-note { grid-column: 1 / -1; margin-top: 0; min-height: 0; }
     #pts-field { grid-column: 1 / -1; margin-top: 4px; }
     #pts-note { margin-top: 4px; }
     #choices { grid-column: 1 / -1; margin-top: 8px; padding-top: 7px; }
@@ -958,7 +974,7 @@
     #legend .t { grid-column: 1 / -1; margin-bottom: 0; }
     /* every cell is placed by hand: auto-flow reads the warning before the two
        keys and would drop it between them */
-    #legend .bins { grid-area: 2 / 1 / 4 / 2; }
+    #legend .bins { grid-area: 2 / 1 / 5 / 2; }
     /* the keys take the width their text needs and the scale spreads across
        whatever is left, so no phone width leaves a gutter between the two */
     #legend .bin { flex: 1 1 0; min-width: 0; }
@@ -968,13 +984,21 @@
     #legend .bl { font-size: 9px; }
     #legend .none { grid-column: 2; grid-row: 2; margin-top: 0; }
     #legend .none + .none { grid-row: 3; margin-top: 0; }
+    #legend .none + .none + .none { grid-row: 4; }
     #legend .sizenote { display: none; }
     #legend .sizenote.warn:not([hidden]) {
-      display: block; grid-area: 4 / 1 / 5 / -1; max-width: none;
+      display: block; grid-area: 5 / 1 / 6 / -1; max-width: none;
       margin-top: 2px; padding-top: 5px;
     }
     /* a 16px chip is a poor tap target; the tooltip is worth reaching */
     .prow .lv { padding: 4px 7px; }
+    /* the history tag stacks under its chip: side by side it pushed the
+       figure and the pick button off a 375px row. And a name column that
+       could not break "Studiespesialisering," is what overflowed first, so
+       it may now break a word rather than the row. */
+    .prow .chw { flex-direction: column; align-items: flex-start; gap: 2px; }
+    .prow .hist { font-size: 9.5px; }
+    .prow .nm { overflow-wrap: anywhere; }
     /* fingers, not cursors: everything worth pressing gets a real target */
     .photo .close { width: 40px; height: 40px; font-size: 17px; }
     .meta a { display: inline-block; padding: 8px 0; }
@@ -999,8 +1023,8 @@
       width: 430px; display: grid; grid-template-columns: 150px minmax(0, 1fr);
       gap: 8px; align-items: end;
     }
-    #panel .brand, #panel #cat-note, #panel #view-toggle { grid-column: 1 / -1; }
-    #cat-note { margin-top: 0; min-height: 0; }
+    #panel .brand, #panel #cat-note, #panel #fylke-note, #panel #view-toggle { grid-column: 1 / -1; }
+    #cat-note, #fylke-note { margin-top: 0; min-height: 0; }
     .field + .field { margin-top: 0; }
   }
   /* The stacked list lays the panel out in flow, so it may have the full width
@@ -1016,7 +1040,7 @@
       gap: 8px 14px; align-items: start;   /* three labels on one baseline */
     }
     body.view-list #panel .brand, body.view-list #panel #view-toggle { grid-column: 1 / -1; }
-    body.view-list #panel #cat-note { grid-column: auto; margin-top: 0; min-height: 0; }
+    body.view-list #panel #cat-note, body.view-list #panel #fylke-note { grid-column: auto; margin-top: 0; min-height: 0; }
     body.view-list #panel .field + .field { margin-top: 0; }
   }
 
@@ -1157,6 +1181,9 @@ try {
     <label id="fylke-label" for="map-fylke"></label>
     <select id="map-fylke" onchange="onMapFylke(this.value)"></select>
   </div>
+  <!-- the select snaps back to its old value when a county without figures is
+       picked, so the reason has to be announced, not only drawn -->
+  <div id="fylke-note" role="status"></div>
   <div class="field">
     <label id="cat-label" for="map-cat"></label>
     <select id="map-cat" onchange="onMapCat(this.value)"></select>
@@ -1208,6 +1235,7 @@ try {
   <div class="sizenote" id="legend-size"></div>
   <div class="sizenote warn" id="legend-mixed" hidden></div>
   <div class="none"><span class="dot open-dot"></span><span id="legend-open"></span></div>
+  <div class="none"><span class="dot zero-dot"></span><span id="legend-zero"></span></div>
   <div class="none"><span class="dot"></span><span id="legend-none"></span></div>
 </div>
 
@@ -1277,7 +1305,7 @@ const CATS = {
   MD: { no: 'Musikk, dans og drama',       en: 'Music, dance & drama' },
   KD: { no: 'Kunst, design og arkitektur', en: 'Art, design & architecture' },
   MK: { no: 'Medier og kommunikasjon',     en: 'Media & communication' },
-  IM: { no: 'IT og medieproduksjon',       en: 'IT & media production' },
+  IM: { no: 'Informasjonsteknologi og medieproduksjon', en: 'IT & media production' },
   EL: { no: 'Elektro og datateknologi',    en: 'Electrical & computer tech' },
   HS: { no: 'Helse- og oppvekstfag',       en: 'Healthcare & childhood' },
   BA: { no: 'Bygg- og anleggsteknikk',     en: 'Building & construction' },
@@ -1285,8 +1313,8 @@ const CATS = {
   RM: { no: 'Restaurant- og matfag',       en: 'Restaurant & food' },
   SR: { no: 'Salg, service og reiseliv',   en: 'Sales, service & tourism' },
   NA: { no: 'Naturbruk',                   en: 'Agriculture & nature' },
-  FD: { no: 'Frisør, blomster og interiør', en: 'Hairdressing, floristry & interior' },
-  DT: { no: 'Håndverk og produktutvikling', en: 'Handicrafts & product design' },
+  FD: { no: 'Frisør, blomster, interiør og eksponeringsdesign', en: 'Hairdressing, floristry, interior & display design' },
+  DT: { no: 'Håndverk, design og produktutvikling', en: 'Crafts, design & product development' },
   PB: { no: 'Påbygg',                      en: 'Supplementary year' },
 };
 const T = {
@@ -1323,12 +1351,12 @@ const T = {
   },
   introCalc: { no: ['4,2 i snitt', '42 poeng'], en: ['4.2 average', '42 points'] },
   introKeys: {
-    no: ['lav grense', 'høy grense', 'alle kom inn', 'ingen tall'],
-    en: ['low threshold', 'high threshold', 'everyone got in', 'no figures'],
+    no: ['lav grense', 'høy grense', 'ingen venteliste', 'ingen tall'],
+    en: ['low threshold', 'high threshold', 'no waiting list', 'no figures'],
   },
   introCaveat: {
-    no: 'Tallene er historiske og endrer seg hvert år – de er en pekepinn, ikke et løfte. Fylkene publiserer ulike inntaksrunder, så to fylker kan ikke alltid sammenlignes direkte. Uoffisiell tjeneste: sjekk alltid vilbli.no og fylket ditt før du søker.',
-    en: 'These are historical figures and they move every year — a guide, not a promise. Counties publish different intake rounds, so two counties are not always directly comparable. Unofficial: always check vilbli.no and your own county before applying.',
+    no: 'Tallene er historiske og endrer seg hvert år – de er en pekepinn, ikke et løfte. Fylkene publiserer ulike inntak, så to fylker kan ikke alltid sammenlignes direkte. Uoffisiell tjeneste: sjekk alltid vilbli.no og fylket ditt før du søker.',
+    en: 'These are historical figures and they move every year — a guide, not a promise. Counties publish different intakes, so two counties are not always directly comparable. Unofficial: always check vilbli.no and your own county before applying.',
   },
   introCta: { no: 'Vis meg kartet', en: 'Show me the map' },
   helpLabel: { no: 'Slik leser du kartet', en: 'How to read this map' },
@@ -1363,14 +1391,14 @@ const T = {
   listColChance: { no: 'Sjanse', en: 'Chance' },
   listColChanceTip: { no: x => `Sjanse for plass med ${x} poeng ved neste inntak`,
                       en: x => `Chance of a place with ${x} points at the next intake` },
-  listOpen:   { no: 'Uten venteliste', en: 'No waiting list' },
+  listOpen:   { no: 'Ingen venteliste', en: 'No waiting list' },
   listNoData: { no: 'Ikke data', en: 'No data' },
   listChanceCell: { no: (l, n) => `${l} av ${n} sannsynlig`, en: (l, n) => `${l} of ${n} likely` },
   listRowAria: { no: s => `Åpne ${s}`, en: s => `Open ${s}` },
   listEmpty: { no: 'Ingen skoler passer filtrene.', en: 'No schools match the filters.' },
   viewLabel: { no: 'Visning', en: 'View' },
-  listRounds: { no: 'Fylker publiserer ulike inntaksrunder – tallene kan ikke sammenlignes direkte på tvers av fylker.',
-                en: 'Counties publish different intake rounds – figures are not directly comparable across counties.' },
+  listRounds: { no: 'Fylker publiserer ulike inntak – tallene kan ikke sammenlignes direkte på tvers av fylker.',
+                en: 'Counties publish different intakes – figures are not directly comparable across counties.' },
   calcOpen:  { no: 'Regn ut fra karakterene dine', en: 'Work them out from your grades' },
   calcTitle: { no: 'Fra karakterer til poeng', en: 'From grades to points' },
   calcLede:  { no: 'Karakterpoengene er gjennomsnittet av alle tallkarakterene på vitnemålet ganget med 10. Standpunkt og eksamen teller likt; fag uten karakter regnes ikke med. Trykk på karakterene dine:',
@@ -1446,15 +1474,9 @@ const T = {
   contactSending: { no: 'Sender…', en: 'Sending…' },
   contactSent:    { no: 'Takk! Meldingen er sendt.', en: 'Thank you! Your message is on its way.' },
   contactSentSub: { no: 'Du kan lukke dette vinduet.', en: 'You can close this window.' },
-  contactHandoff: { no: 'Vi åpnet e-postprogrammet ditt', en: 'We opened your mail app' },
-  contactHandoffSub: {
-    no: 'Meldingen er ferdig skrevet – du trenger bare å trykke send. Skjedde det ingenting, bruk knappen under.',
-    en: 'The message is written for you — you only need to press send. If nothing happened, use the button below.',
-  },
-  contactOpenMail: { no: 'Åpne e-post', en: 'Open mail app' },
   contactFail: {
-    no: 'Klarte ikke å sende akkurat nå. Prøv igjen om litt.',
-    en: 'Could not send just now. Try again in a moment.',
+    no: 'Kunne ikke sende nå. Teksten din står igjen – prøv igjen om litt.',
+    en: 'Could not send just now. Your text is still here – try again in a moment.',
   },
   contactNeedMsg: { no: 'Skriv en melding først.', en: 'Write a message first.' },
   contactNeedSchool: { no: 'Skriv hvilken skole det gjelder.', en: 'Say which school this is about.' },
@@ -1463,46 +1485,57 @@ const T = {
   contactLabel:   { no: 'Send tilbakemelding', en: 'Send feedback' },
   fylkeLabel: { no: 'Fylke', en: 'County' },
   allFylker:  { no: 'Hele landet', en: 'All of Norway' },
-  roundChip:  { no: r => `${r}. inntak`, en: r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : r === '3' ? 'rd' : 'th'} intake round` },
-  roundTitle: { no: 'Poenggrensen er poengsummen til den siste søkeren som fikk plass i denne inntaksrunden. Grensen faller mellom rundene, fordi plasser blir ledige. Tall fra ulike runder kan ikke sammenlignes direkte.',
-                en: 'The threshold is the score of the last applicant admitted in this intake round. Thresholds fall between rounds as places free up, so numbers from different rounds are not directly comparable.' },
-  mixedRounds:{ no: 'Kartet viser fylker med ulike inntaksrunder – tallene kan ikke sammenlignes direkte.',
-                en: 'The map mixes counties with different intake rounds — those numbers are not directly comparable.' },
+  roundChip:  { no: r => `${r}. inntak`, en: r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : r === '3' ? 'rd' : 'th'} intake` },
+  roundTitle: { no: 'Poenggrensen er poengsummen til den siste søkeren som fikk plass i dette inntaket. Grensen faller mellom inntakene, fordi plasser blir ledige. Tall fra ulike inntak kan ikke sammenlignes direkte.',
+                en: 'The threshold is the score of the last applicant admitted in this intake. Thresholds fall between intakes as places free up, so numbers from different intakes are not directly comparable.' },
+  mixedRounds:{ no: 'Kartet viser fylker med ulike inntak – tallene kan ikke sammenlignes direkte.',
+                en: 'The map mixes counties with different intakes — those numbers are not directly comparable.' },
   catLabel:   { no: 'Utdanningsprogram', en: 'Education programme' },
   allCats:    { no: 'Alle utdanningsprogram', en: 'All education programmes' },
   catNote:    { no: n => `${n} skoler tilbyr dette`, en: n => `${n} schools offer this` },
   legendAll:  { no: 'Snitt poenggrense (siste år)', en: 'Average threshold (latest year)' },
-  legendSize: { no: 'Størrelsen viser hvor stor andel av programmene som ble fylt opp',
+  legendSize: { no: 'Størrelsen viser hvor stor andel av programområdene som ble fylt opp',
                 en: 'Marker size shows what share of the programmes filled up' },
-  tipMedian:  { no: (v, n, tot) => `Snitt <b>${v}</b> poeng · ${n} av ${tot} program fylte opp`,
+  tipMedian:  { no: (v, n, tot) => `Snitt <b>${v}</b> poeng · ${n} av ${tot} programområder fylte opp`,
                 en: (v, n, tot) => `Average <b>${v}</b> pts · ${n} of ${tot} programmes filled up` },
-  tipMostlyOpen: { no: 'Men de fleste programmene tok inn alle søkere',
-                   en: 'But most programmes admitted everyone who applied' },
-  mostlyOpenShort: { no: 'de fleste tok inn alle', en: 'most admitted everyone' },
+  tipMostlyOpen: { no: 'Men de fleste programområdene hadde ingen venteliste',
+                   en: 'But most programmes had no waiting list' },
+  mostlyOpenShort: { no: 'de fleste hadde ingen venteliste', en: 'most had no waiting list' },
   tipTop:     { no: 'Høyest:', en: 'Highest:' },
   scopeAll:   { no: 'Vis alle utdanningsprogram', en: 'Show all education programmes' },
   heroTypical:{ no: 'Snitt', en: 'Average' },
-  heroTypicalAll: { no: 'alle program', en: 'all programmes' },
+  heroTypicalAll: { no: 'alle programområder', en: 'all programmes' },
   legendCat:  { no: c => `${CATS[c].no} · siste år`, en: c => `${CATS[c].en} · latest year` },
-  legendOpen: { no: 'Uten venteliste – alle inntatt', en: 'No waitlist – all admitted' },
+  legendOpen: { no: 'Ingen venteliste – alle søkere tatt inn', en: 'No waiting list – all applicants admitted' },
   legendNone: { no: 'Ikke data', en: 'No data' },
   fortrinnTitle: {
     no: 'Fortrinnsrett: søkere med lovfestet rett (bl.a. behov for spesialundervisning) tas inn utenom poengkonkurransen. Derfor finnes ingen poenggrense.',
     en: 'Priority right (fortrinnsrett): applicants with a statutory right (e.g. special educational needs) are admitted outside the points competition, so no threshold exists.',
   },
   pts:        { no: 'poeng', en: 'pts' },
-  allIn:      { no: 'Alle inntatt', en: 'All admitted' },
+  allIn:      { no: 'Ingen venteliste', en: 'No waiting list' },
   // A 0,0 is not a threshold anyone could miss and not "everyone got in"
   // either: the counties print it as its own state. Innlandet's legend —
   // "der det er merket med «0» er det ikke ledige plasser, men siste inntatte
   // har ingen poeng" — is the wording this follows.
-  noPoints:   { no: 'Alle med poeng', en: 'All with points' },
+  noPoints:   { no: 'Fullt – siste inntatte uten poeng', en: 'Filled – last admitted had no points' },
+  // the 68px value column and the list chip: the full phrase rides in the title
+  noPointsShort: { no: 'Fullt', en: 'Filled' },
+  // the no-break space keeps the separator on the first half: at 375px the
+  // headline wrapped to a line that began "· 2 ingen venteliste"
+  zeroMix:    { no: (z, o) => `${z} fullt uten poeng · ${o} ingen venteliste`,
+                en: (z, o) => `${z} filled without points · ${o} no waiting list` },
+  noHist:     { no: 'ingen historikk', en: 'no history' },
+  noHistTitle:{ no: 'Programområdet har aldri hatt en publisert poenggrense her, så det finnes ingen prognose å bygge på.',
+                en: 'This programme has never had a published threshold here, so there is nothing to forecast from.' },
+  lowHist:    { no: 'lite historikk', en: 'little history' },
   noPointsTitle: {
     no: 'Programområdet ble fylt opp, men den siste som kom inn hadde ingen poeng registrert. Alle søkere med poeng fikk plass.',
     en: 'The programme filled up, but the last applicant admitted had no registered points. Everyone with points got a place.',
   },
   priority:   { no: 'Fortrinn', en: 'Priority' },
-  docAdm:     { no: 'Dokumentasjon', en: 'By documentation' },
+  docAdm:     { no: 'Inntak etter dokumentasjon', en: 'By documentation' },
+  docAdmShort:{ no: 'Dokumentasjon', en: 'Documentation' },
   docTitle:   { no: 'Inntak på grunnlag av dokumentasjon (f.eks. IB eller toppidrett) – ingen poenggrense.',
                 en: 'Admission on documented grounds (e.g. IB or elite sport) — no points threshold.' },
   tipNoData:  { no: y => `Ingen data for ${y}`, en: y => `No data for ${y}` },
@@ -1521,15 +1554,20 @@ const T = {
   introReport:{ no: a => `Metoden, modellen og valideringen er beskrevet i ${a}.`,
                 en: a => `The method, the model and the validation are written up in ${a}.` },
   introReportLink: { no: 'den tekniske rapporten', en: 'the technical report' },
-  introCredit:{ no: 'Laget av Abshalom Dayan · fritt å bruke (MIT-lisens)',
-                en: 'Built by Abshalom Dayan · free to use (MIT licence)' },
+  introCredit:{ no: 'Uoffisiell tjeneste laget av Abshalom Dayan · kode MIT, data NLOD 2.0',
+                en: 'Unofficial service by Abshalom Dayan · code MIT, data NLOD 2.0' },
+  introPrivacy: { no: 'Personvern: poengene dine lagres bare i nettleseren din. Posisjonen brukes én gang og sendes ikke videre. Besøk telles uten informasjonskapsler (Vercel Web Analytics).',
+                  en: 'Privacy: your points are stored only in your browser. Your position is used once and never sent. Visits are counted without cookies (Vercel Web Analytics).' },
+  fylkeNoData: { no: 'Fylker uten tall', en: 'Counties without figures' },
+  fylkeNoDataNote: { no: f => `${f} publiserer ikke poenggrenser. Spør fylkeskommunen – de eneste som har tallene.`,
+                     en: f => `${f} does not publish admission thresholds. Ask the county authority, the only one that has the figures.` },
   listAnd:    { no: ' og ', en: ' and ' },
   mergedNote: { no: (from, y) => `Skolen ble slått sammen fra ${from} i ${y}. Tall før ${y} er fra disse skolene.`,
                 en: (from, y) => `This school was formed from ${from} in ${y}. Figures before ${y} come from those schools.` },
   uncertainNote: { no: y => `Tallene for ${y} er usikre: to publikasjoner fra fylket oppgir ulike verdier.`,
                    en: y => `The figures for ${y} are uncertain: two county publications give different values.` },
-  roundYearNote: { no: (y, r) => `${y}-tallene er fra ${r}. inntak, ikke samme runde som de andre årene – flere kom inn, så grensene ligger lavere.`,
-                   en: (y, r) => `The ${y} figures are from intake round ${r}, not the same round as the other years — more applicants were admitted, so the thresholds sit lower.` },
+  roundYearNote: { no: (y, r) => `${y}-tallene er fra ${r}. inntak, ikke samme inntak som de andre årene – flere kom inn, så grensene ligger lavere.`,
+                   en: (y, r) => `The ${y} figures are from intake ${r}, not the same intake as the other years — more applicants were admitted, so the thresholds sit lower.` },
   closeAria:  { no: 'Lukk skoledetaljer', en: 'Close school details' },
   skipToControls: { no: 'Hopp til filtrene', en: 'Skip to the filters' },
   clusterAria: { no: n => `${n} skoler i dette området. Trykk for å zoome inn.`,
@@ -1537,9 +1575,9 @@ const T = {
   markerAria: { no: (n, v) => `${n}. ${v}. Trykk for detaljer.`, en: (n, v) => `${n}. ${v}. Press to open details.` },
   gone:       { no: 'Utgått', en: 'Discontinued' },
   tipPrograms:{ no: (n, span) => `${n} programområde · ${span}`, en: (n, span) => `${n} programmes · ${span}` },
-  roundUnknown: { no: 'inntaksrunde ikke oppgitt', en: 'intake round not stated' },
-  roundUnknownTitle: { no: 'Fylket oppgir ikke hvilken inntaksrunde tallene er fra. Grensen faller mellom rundene, så tallene kan ikke sammenlignes direkte med fylker som oppgir runden.',
-                       en: 'This county does not state which intake round the figures are from. Thresholds fall between rounds, so they cannot be compared directly with counties that do state it.' },
+  roundUnknown: { no: 'inntak ikke oppgitt', en: 'intake not stated' },
+  roundUnknownTitle: { no: 'Fylket oppgir ikke hvilket inntak tallene er fra. Grensen faller mellom inntakene, så tallene kan ikke sammenlignes direkte med fylker som oppgir inntaket.',
+                       en: 'This county does not state which intake the figures are from. Thresholds fall between intakes, so they cannot be compared directly with counties that do state it.' },
   oneYearOnly: { no: y => `Fylket publiserer bare ${y} – ingen trend ennå`, en: y => `This county publishes ${y} only — no trend yet` },
   bootFail:   { no: 'Kartet kunne ikke lastes', en: 'The map could not be loaded' },
   bootFailSub:{ no: 'Datasettet svarte ikke. Sjekk nettforbindelsen og prøv igjen.',
@@ -1552,7 +1590,7 @@ const T = {
   pageTitle:  { no: 'Poengkart – poenggrenser for videregående skole',
                 en: 'Poengkart – admission thresholds for Norwegian upper secondary schools' },
   tipHint:    { no: 'Trykk for trender og detaljer', en: 'Open for trends and details' },
-  tipAllOpen: { no: y => `Alle program uten venteliste i ${y}`, en: y => `All programs without waitlist in ${y}` },
+  tipAllOpen: { no: y => `Alle programområder: ingen venteliste i ${y}`, en: y => `All programmes: no waiting list in ${y}` },
   heroDelta:  { no: y => `endring fra ${y}`, en: y => `change vs ${y}` },
   heroDeltaBasis: {
     no: 'Forskjellen mellom de to siste punktene på snittlinjen i grafen under.',
@@ -1561,9 +1599,9 @@ const T = {
   // Said wherever a mean is printed, because a mean over the few programmes
   // that filled up says nothing about the many that did not.
   mostlyOpenNote: {
-    no: (o, tot, y, n) => `${o} av ${tot} programområder tok inn alle søkere i ${y}. `
+    no: (o, tot, y, n) => `${o} av ${tot} programområder hadde ingen venteliste i ${y}. `
       + `Snittet gjelder bare de ${n} som hadde en poenggrense.`,
-    en: (o, tot, y, n) => `${o} of ${tot} programme areas admitted everyone who applied in ${y}. `
+    en: (o, tot, y, n) => `${o} of ${tot} programme areas had no waiting list in ${y}. `
       + `The average covers only the ${n} that had a threshold.`,
   },
   heroProgs:  { no: 'programområder', en: 'program areas' },
@@ -1591,15 +1629,15 @@ const T = {
                   en: 'For Vg1 you can apply to at most three different education programmes.' },
   midLabel:   { no: 'snitt', en: 'avg' },
   series:     { no: 'serier', en: 'series' },
-  filterPh:   { no: 'Filtrer programområde …', en: 'Filter programs…' },
+  filterPh:   { no: 'Filtrer programområde …', en: 'Filter programme areas…' },
   website:    { no: 'Nettside', en: 'Website' },
   wiki:       { no: 'Wikipedia', en: 'Wikipedia' },
   srcNote: {
-    no: 'Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaksrunden varierer mellom fylkene og er merket på hver skole. Uoffisiell prototype – tall kan inneholde parsefeil.',
-    en: 'Sources: the county authorities of Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Trøndelag and Vestland, the City of Oslo and vilbli.no (thresholds), NSR/Udir (schools), Kartverket (geocoding), Wikimedia Commons and school websites (photos). The intake round differs by county and is labelled on every school. Unofficial prototype — figures may contain parsing errors.',
+    no: 'Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaket varierer mellom fylkene og er merket på hver skole. Uoffisiell tjeneste, laget av Abshalom Dayan. Tallene er lest maskinelt fra fylkenes publikasjoner og kan inneholde feil – meld fra via tilbakemelding.',
+    en: 'Sources: the county authorities of Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Trøndelag and Vestland, the City of Oslo and vilbli.no (thresholds), NSR/Udir (schools), Kartverket (geocoding), Wikimedia Commons and school websites (photos). The intake differs by county and is labelled on every school. Unofficial service, built by Abshalom Dayan. The figures are read by machine from the county publications and may contain errors – please report them via feedback.',
   },
   noMatch:    { no: 'Ingen treff', en: 'No matches' },
-  prioBadge:  { no: 'fortrinnskvote', en: 'priority quota' },
+  prioBadge:  { no: 'fortrinnsrett', en: 'priority right' },
   // ----- chance of a place: the forecast in data/model.json (tools/model.py) -----
   ptsLabel:   { no: 'Poengene dine (valgfritt)', en: 'Your points (optional)' },
   ptsPh:      { no: 'f.eks. 42,5', en: 'e.g. 42.5' },
@@ -1609,13 +1647,13 @@ const T = {
     en: 'Enter a number between 0 and 70 — for example 42.5.',
   },
   ptsNoteSet: {
-    no: 'Sjanse for plass ved neste inntak: {likely} sannsynlig · {realistic} mulig · {long} lite sannsynlig. En pekepinn fra historikken, ikke et løfte.',
-    en: 'Chance of a place at the next intake: {likely} likely · {realistic} possible · {long} unlikely. A pointer from the history, not a promise.',
+    no: 'Sjanse for plass ved neste inntak: {likely} sannsynlig · {possible} mulig · {unlikely} lite sannsynlig. En pekepinn fra historikken, ikke et løfte.',
+    en: 'Chance of a place at the next intake: {likely} likely · {possible} possible · {unlikely} unlikely. A pointer from the history, not a promise.',
   },
-  bandLabel:  { no: b => ({ likely: '≥ 70 %', realistic: '35–70 %', long: '< 35 %' })[b],
-                en: b => ({ likely: '≥ 70%', realistic: '35–70%', long: '< 35%' })[b] },
-  legendChance: { no: x => `Sjanse for plass med ${x} poeng · neste inntak`,
-                  en: x => `Chance of a place with ${x} points · next intake` },
+  bandLabel:  { no: b => ({ likely: '≥ 70 %', possible: '35–70 %', unlikely: '< 35 %' })[b],
+                en: b => ({ likely: '≥ 70%', possible: '35–70%', unlikely: '< 35%' })[b] },
+  legendChance: { no: x => `Sjanse for plass med ${x} poeng · beste programområde`,
+                  en: x => `Chance of a place with ${x} points · best programme` },
   legendChanceSize: { no: 'Størrelsen viser hvor stor andel av programområdene som er innen rekkevidde (≥ 35 %)',
                       en: 'Size shows what share of the programmes are within reach (≥ 35%)' },
   legendNoForecast: { no: 'Ingen prognose', en: 'No forecast' },
@@ -1639,15 +1677,17 @@ const T = {
                   en: (L, R, U) => `${L} likely (≥ 70%) · ${R} possible (35–70%) · ${U} unlikely (< 35%)` },
   chanceSub: {
     no: (y, r, lo, hi) => `Prognose for inntaket ${y}${r ? ` (${r}. inntak)` : ''}, regnet ut fra skolens og programområdets historikk. En pekepinn, ikke et løfte: prognosen bommer typisk med ±${lo} til ±${hi} poeng, mest der historikken er kort.`,
-    en: (y, r, lo, hi) => `Forecast for the ${y} intake${r ? ` (round ${r})` : ''}, from the history of this school and programme. A pointer, not a promise: the forecast is typically off by ±${lo} to ±${hi} points, most where the history is short.`,
+    en: (y, r, lo, hi) => `Forecast for the ${y} intake${r ? ` (intake ${r})` : ''}, from the history of this school and programme. A pointer, not a promise: the forecast is typically off by ±${lo} to ±${hi} points, most where the history is short.`,
   },
   chanceCatchment: { no: 'Gjelder søkere bosatt i skolens inntaksområde.',
                      en: 'Applies to applicants resident in the school\'s intake area.' },
   chanceCal:  { no: c => `Testet mot 2025–26 traff 80 %-intervallet ${c} % av gangene.`,
                 en: c => `Tested against 2025–26, the 80% interval was right ${c}% of the time.` },
   chTitle: {
-    no: (p, y, m, sd, pf, h) => `Sjanse for plass i ${y} med poengene dine: ${p} %. Forventet grense ca. ${m} ± ${sd}; sannsynlighet for at det blir venteliste: ${pf} %. Bygger på ${h} år med tall for dette programområdet.`,
-    en: (p, y, m, sd, pf, h) => `Chance of a place in ${y} with your points: ${p}%. Expected threshold about ${m} ± ${sd}; probability of a waitlist at all: ${pf}%. Built on ${h} ${h === 1 ? 'year' : 'years'} of figures for this programme.`,
+    // pf is null where the county cannot express "ingen venteliste": the fill
+    // probability is 1 there by rule, not by evidence, so it is not a figure
+    no: (p, y, m, sd, pf, h) => `Sjanse for plass i ${y} med poengene dine: ${p} %. Forventet grense ca. ${m} ± ${sd}${pf == null ? '' : `; sannsynlighet for at det blir venteliste: ${pf} %`}. Bygger på ${h} år med tall for dette programområdet.`,
+    en: (p, y, m, sd, pf, h) => `Chance of a place in ${y} with your points: ${p}%. Expected threshold about ${m} ± ${sd}${pf == null ? '' : `; probability of a waiting list at all: ${pf}%`}. Built on ${h} ${h === 1 ? 'year' : 'years'} of figures for this programme.`,
   },
   // ----- my choices -----
   pickAdd:    { no: 'Legg til i valgene mine', en: 'Add to my choices' },
@@ -1675,14 +1715,18 @@ const T = {
   choicesPartial: { no: (n, m) => `Regnet ut fra ${n} av ${m} valg – resten har ingen prognose.`,
                     en: (n, m) => `Worked out from ${n} of ${m} choices — the rest have no forecast.` },
   // ----- the final round, where the county publishes an earlier one -----
-  finalRoundChip: { no: (r, p) => `Ved ${r}. inntak (siste): ca. ${p} %`, en: (r, p) => `By round ${r} (final): about ${p}%` },
+  finalRoundChip: { no: (r, p) => `Ved ${r}. inntak (siste): ca. ${p} %`, en: (r, p) => `By intake ${r} (final): about ${p}%` },
   finalRoundNote: {
-    no: (r, L, n) => `Fylket publiserer 1. inntak. Ved ${r}. inntak – det siste – er sjansen høyere: sannsynlig plass på ${L} av ${n}. Målt på fylkets egne tall for begge rundene.`,
-    en: (r, L, n) => `The county publishes round 1. By round ${r} — the final one — the chance is higher: a place is likely at ${L} of ${n}. Measured on the county's own figures for both rounds.`,
+    no: (r, L, n) => `Fylket publiserer 1. inntak. Ved ${r}. inntak – det siste – er sjansen høyere: sannsynlig plass på ${L} av ${n}. Målt på fylkets egne tall for begge inntakene.`,
+    en: (r, L, n) => `The county publishes intake 1. By intake ${r} — the final one — the chance is higher: a place is likely at ${L} of ${n}. Measured on the county's own figures for both intakes.`,
   },
+  chanceRoundUnknown: { no: 'Fylket oppgir ikke hvilket inntak tallene er fra. Sjansen gjelder det inntaket fylket publiserer.',
+                        en: 'The county does not state which intake its figures are from. The chance refers to the intake the county publishes.' },
+  chanceNoOpenMarker: { no: 'Møre og Romsdal publiserer aldri «ingen venteliste», bare poenggrensen. Sjansen bygger derfor bare på grensen, og en lav grense gir i praksis plass.',
+                        en: 'Møre og Romsdal never publishes "no waiting list", only the threshold, so the chance rests on the threshold alone; a low threshold means a place in practice.' },
   finalRoundUnknown: {
-    no: 'Fylket publiserer bare 1. inntak. Flere kommer inn i senere runder, men det finnes ikke tall for hvor mange.',
-    en: 'The county publishes round 1 only. More get in at later rounds, but there are no figures for how many.',
+    no: 'Fylket publiserer bare 1. inntak. Flere kommer inn i senere inntak, men det finnes ikke tall for hvor mange.',
+    en: 'The county publishes intake 1 only. More get in at later intakes, but there are no figures for how many.',
   },
   adjLine:    { no: (d, se) => `Justert for programmiks: ${d} poeng mot fylkesnormen (± ${se})`,
                 en: (d, se) => `Adjusted for programme mix: ${d} points against the county norm (± ${se})` },
@@ -1808,6 +1852,8 @@ function shownPrograms(s) {
 const staleBefore = () => +DATA.years[DATA.years.length - 1] - 1;
 // counties whose sources cannot express "alle inntatt" (see the county note)
 const NO_OPEN_MARKER = new Set(['Møre og Romsdal']);
+// counties that do not publish poenggrenser (docs/data-notes.md)
+const MISSING_COUNTIES = ['Agder', 'Finnmark', 'Nordland', 'Telemark', 'Troms', 'Vestfold', 'Østfold'];
 function schoolPressure(s, cat) {
   // Demand, judged in the newest dataset year only. Two honest signals:
   //   mean threshold of the programmes that filled up    -> how hard, typically
@@ -1835,7 +1881,14 @@ function schoolPressure(s, cat) {
   const nums = cells.filter(isPoints).sort((a, b) => a - b);
   const openN = cells.filter(v => v === 'open').length;
   const total = nums.length + openN + zeroN;
-  if (!nums.length) return total ? { kind: 'open', year: yr, total } : { kind: 'none' };
+  if (!nums.length) {
+    if (!total) return { kind: 'none' };
+    // A 0 is a real threshold: that programme filled. It outranks "ingen
+    // venteliste", so a school is open only when every cell says so; a mix
+    // carries both counts for the label (ruling of 2 Sept 2026).
+    return zeroN ? { kind: 'zero', year: yr, total, zeroN, openN }
+                 : { kind: 'open', year: yr, total };
+  }
   let top = -1, topProg = null;
   for (const p of pool) {
     const v = p.values[yr];
@@ -1851,6 +1904,9 @@ function schoolPressure(s, cat) {
            share: NO_OPEN_MARKER.has(s.fylke) ? null : (nums.length + zeroN) / total };
 }
 const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(b => v < b.max).css);
+// what a filled-without-points state says: the mix when some programmes had
+// no waiting list, the plain state otherwise
+const zeroLabel = (zeroN, openN) => openN ? t('zeroMix', zeroN, openN) : t('noPoints');
 
 /* ================= chance of a place =================
    tools/model.py forecasts, per programme, for the county's next publication
@@ -1861,7 +1917,7 @@ const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(b => v 
    where F is the empirical distribution of the backtest's own forecast errors
    rather than a bell curve — thresholds collapse more often than they jump,
    and a Gaussian understated the chance at the low end by half. */
-const BANDS = { likely: 0.70, realistic: 0.35 };
+const BANDS = { likely: 0.70, possible: 0.35 };
 const ZQ_GRID = Array.from({ length: 41 }, (_, i) => i / 40);
 function errCdf(z) {
   const q = MODEL && MODEL.meta && MODEL.meta.error_quantiles;
@@ -1878,21 +1934,39 @@ function errCdf(z) {
   return Math.min(0.995, Math.max(0.005, ZQ_GRID[i - 1] + f * (ZQ_GRID[i] - ZQ_GRID[i - 1])));
 }
 const chanceOf = (pr, x) => (1 - pr.pi) + pr.pi * errCdf((x - pr.m) / pr.s);
-const bucketOf = c => c >= BANDS.likely ? 'likely' : c >= BANDS.realistic ? 'realistic' : 'long';
-const bucketColor = b => cssVar(b === 'likely' ? '--good' : b === 'realistic' ? '--warn' : '--danger');
+const bucketOf = c => c >= BANDS.likely ? 'likely' : c >= BANDS.possible ? 'possible' : 'unlikely';
+const bucketColor = b => cssVar(b === 'likely' ? '--good' : b === 'possible' ? '--warn' : '--danger');
 const pct = c => Math.round(c * 100);
+// Norwegian puts a space before the unit sign, English does not. Every T
+// string already splits on this; the chips printed "99 %" in both languages,
+// beside a legend that said "≥ 70%".
+const pctS = c => lang === 'no' ? `${pct(c)} %` : `${pct(c)}%`;
 const chanceMode = () => myPoints !== null && !!MODEL;
-// the forecast for one programme row, or null; keys match tools/model.py
-function predFor(s, p) {
+// the model's raw entry for one programme row, or null; keys match tools/model.py
+function modelEntry(s, p) {
   const e = MODEL && MODEL.schools && MODEL.schools[`${s.fylke}|${s.name}`];
   if (!e || !e.programs) return null;
   const pr = e.programs[progKeyMap(s).get(p)];
   return pr ? { ...pr, year: e.year, round: e.round } : null;
 }
+// the forecast the app is willing to show for that row, or null. Two entries
+// the model may carry are refused here, so that every consumer (dot, chance
+// block, choices, list view) agrees without each having to know why:
+//   a programme whose newest cell is discontinued has no next intake to
+//   forecast (tools/model.py drops these too; belt and braces), and
+//   a programme that never had a published poenggrense here (h = 0) gets the
+//   county prior, which is not this programme's history. The row says so
+//   instead of printing a percentage.
+function predFor(s, p) {
+  const ys = Object.keys(p.values); const newest = ys[ys.length - 1];
+  if (p.values[newest] === 'U') return null;
+  const pr = modelEntry(s, p);
+  return pr && pr.h > 0 ? pr : null;
+}
 // one school's prospects for x points over the programmes in scope
 function schoolChance(s, cat, x) {
   const scope = cat === 'all' ? s.programs : s.programs.filter(p => p.category === cat);
-  const out = { n: 0, likely: 0, realistic: 0, long: 0, best: -1, bestProg: null, year: null };
+  const out = { n: 0, likely: 0, possible: 0, unlikely: 0, best: -1, bestProg: null, year: null };
   for (const p of scope) {
     const pr = predFor(s, p);
     if (!pr) continue;
@@ -2016,9 +2090,9 @@ function renderChoices() {
       const pr = predFor(s, p);
       if (pr) {
         const c = chanceOf(pr, myPoints), b = bucketOf(c);
-        n++; if (b === 'likely') L++; else if (b === 'realistic') R++; else U++;
+        n++; if (b === 'likely') L++; else if (b === 'possible') R++; else U++;
         pNone *= 1 - c;
-        chip = `<span class="ch b-${b}">${pct(c)} %</span>`;
+        chip = `<span class="ch b-${b}">${pctS(c)}</span>`;
       } else chip = `<span class="ch" style="--b:var(--ink-3)">${esc(t('choicesNoPred'))}</span>`;
     }
     // each row names its own school and programme: "Remove from my choices",
@@ -2033,7 +2107,7 @@ function renderChoices() {
   });
   let sum = '';
   if (chanceMode() && n) {
-    const bar = [['likely', L], ['realistic', R], ['long', U]]
+    const bar = [['likely', L], ['possible', R], ['unlikely', U]]
       .map(([b, k]) => `<span class="b-${b}" style="width:${100 * k / n}%"></span>`).join('');
     sum = `<div class="bar">${bar}</div><div class="sum"><b>${esc(t('choicesSum', L, R, U))}</b>` +
       ` · <span class="tipped" title="${esc(t('choicesAnyTitle'))}">${esc(t('choicesAny', pct(1 - pNone)))}</span>` +
@@ -2128,7 +2202,7 @@ function renderPointsField() {
   note.hidden = !bad && myPoints === null;
   note.innerHTML = bad ? esc(t('ptsBad'))
     : myPoints === null ? ''
-    : esc(t('ptsNoteSet')).replace(/\{(likely|realistic|long)\}/g,
+    : esc(t('ptsNoteSet')).replace(/\{(likely|possible|unlikely)\}/g,
         (_, b) => `<span class="k" style="background:${bucketColor(b)}"></span>`);
 }
 
@@ -2181,7 +2255,7 @@ function drawMarkers() {
     const ch = chanceMode() ? schoolChance(s, mapCat, myPoints) : null;
     const style = chanceMode()
       ? (ch
-        ? { radius: 7 + 5 * ((ch.likely + ch.realistic) / ch.n), weight: 2.5,
+        ? { radius: 7 + 5 * ((ch.likely + ch.possible) / ch.n), weight: 2.5,
             color: cssVar('--surface-solid'), fillColor: bucketColor(bucketOf(ch.best)), fillOpacity: 0.96 }
         : { radius: 7.5, weight: 2, color: cssVar('--surface-solid'), fillColor: cssVar('--context'), fillOpacity: 0.9 })
       : st8.kind === 'points'
@@ -2189,12 +2263,15 @@ function drawMarkers() {
           color: cssVar('--surface-solid'), fillColor: colorFor(v), fillOpacity: 0.96 }
       : st8.kind === 'open'
       ? { radius: 8, weight: 2, color: cssVar('--accent'), dashArray: '3 3', fillColor: cssVar('--accent'), fillOpacity: 0.14 }
+      // filled, but the last admitted had no points: the open ring, solid
+      : st8.kind === 'zero'
+      ? { radius: 8, weight: 2, color: cssVar('--accent'), fillColor: cssVar('--accent'), fillOpacity: 0.35 }
       : { radius: 7.5, weight: 2, color: cssVar('--surface-solid'), fillColor: cssVar('--context'), fillOpacity: 0.9 };
     const m = L.circleMarker([s.lat, s.lon], style).addTo(markerLayer);
     let line;
     if (chanceMode()) {
       line = (mapCat === 'all' ? '' : `${CATS[mapCat][lang]}: `) + (ch
-        ? t('tipChance', fmt(myPoints), ch.likely, ch.realistic, ch.long, ch.n, ch.year)
+        ? t('tipChance', fmt(myPoints), ch.likely, ch.possible, ch.unlikely, ch.n, ch.year)
           + `<br>${t('tipBest', pct(ch.best), esc(progName(ch.bestProg)))}`
         : t('tipNoForecast'));
     } else if (mapCat === 'all') {
@@ -2204,6 +2281,8 @@ function drawMarkers() {
                `<br>${t('tipTop')} ${fmt(st8.top)} · ${esc(progName(st8.topProg))}`;
       } else if (st8.kind === 'open') {
         line = t('tipAllOpen', st8.year);
+      } else if (st8.kind === 'zero') {
+        line = `${zeroLabel(st8.zeroN, st8.openN)} (${st8.year})`;
       } else if (st8.kind === 'stale') {
         line = t('tipStale', st8.year);
       } else {
@@ -2215,6 +2294,7 @@ function drawMarkers() {
              ? `${CATS[mapCat][lang]}: ` + t('tipMedian', fmt(st8.v), st8.filled, st8.total)
                + (st8.mostlyOpen ? `<br><span class="warn">⚠ ${t('tipMostlyOpen')}</span>` : '')
            : st8.kind === 'open' ? `${CATS[mapCat][lang]}: ${t('allIn').toLowerCase()} (${st8.year})`
+           : st8.kind === 'zero' ? `${CATS[mapCat][lang]}: ${zeroLabel(st8.zeroN, st8.openN).toLowerCase()} (${st8.year})`
            : st8.kind === 'stale' ? `${CATS[mapCat][lang]}: ` + t('tipStale', st8.year)
            : `${CATS[mapCat][lang]}: –`;
     }
@@ -2282,6 +2362,19 @@ function drawMarkers() {
 }
 
 function onMapFylke(v) {
+  // a county without figures: say so under the select and keep the map where
+  // it was; the note clears on the next real change
+  const fnote = document.getElementById('fylke-note');
+  if (v.startsWith('missing:')) {
+    // the county is remembered so renderControls() can re-render the note in
+    // the other language; without it a NO/EN switch left the old sentence
+    fnote.dataset.county = v.slice(8);
+    fnote.textContent = t('fylkeNoDataNote', fnote.dataset.county);
+    document.getElementById('map-fylke').value = mapFylke;
+    return;
+  }
+  delete fnote.dataset.county;
+  fnote.textContent = '';
   mapFylke = v;
   // a county may not offer the selected category at all; widen rather than
   // leave a blank control over an empty map
@@ -2348,7 +2441,15 @@ function renderPanel() {
       const n = DATA.schools.filter(s => s.fylke === c.fylke && s.lat).length;
       return `<option value="${esc(c.fylke)}">${esc(c.fylke)} (${n})</option>`;
     }).join('');
+  // a parent in Agder should learn here that the county has no figures,
+  // rather than conclude the map forgot their school
+  fsel.innerHTML += `<optgroup label="${esc(t('fylkeNoData'))}">` +
+    MISSING_COUNTIES.map(f => `<option value="missing:${esc(f)}">${esc(f)}</option>`).join('') + '</optgroup>';
   fsel.value = mapFylke;
+  // renderPanel() runs on every language change: the standing "no figures"
+  // note has to follow the language too, not stay in the one it was written in
+  const fnote = document.getElementById('fylke-note');
+  if (fnote.dataset.county) fnote.textContent = t('fylkeNoDataNote', fnote.dataset.county);
   const present = new Set();
   DATA.schools.filter(s => mapFylke === 'all' || s.fylke === mapFylke)
     .forEach(s => s.programs.forEach(p => present.add(p.category)));
@@ -2395,7 +2496,7 @@ function renderLegend() {
   mix.hidden = !(rounds.length > 1 || (rounds.length && anyUnknown));
   mix.textContent = t('mixedRounds');
   if (chanceMode()) {
-    document.getElementById('legend-bins').innerHTML = ['likely', 'realistic', 'long'].map(b =>
+    document.getElementById('legend-bins').innerHTML = ['likely', 'possible', 'unlikely'].map(b =>
       `<div class="bin"><span class="sw" style="background:${bucketColor(b)}"></span><span class="bl">${t('bandLabel', b)}</span></div>`).join('');
     document.getElementById('legend-size').textContent = t('legendChanceSize');
     document.getElementById('legend-none').textContent = t('legendNoForecast');
@@ -2405,9 +2506,12 @@ function renderLegend() {
     document.getElementById('legend-size').textContent = t('legendSize');
     document.getElementById('legend-none').textContent = t('legendNone');
   }
-  // "no waitlist" is not a dot state once the dots show chances
+  // "no waitlist" and "filled without points" are not dot states once the
+  // dots show chances
   document.getElementById('legend-open').parentElement.hidden = chanceMode();
   document.getElementById('legend-open').textContent = t('legendOpen');
+  document.getElementById('legend-zero').parentElement.hidden = chanceMode();
+  document.getElementById('legend-zero').textContent = t('noPoints');
   // the intake-round chip in the title advertises an explanation with a dotted
   // underline and `cursor: help`, and every other surface that does so is bound
   // for touch; the legend was the one that never was, so on a phone the single
@@ -2693,7 +2797,10 @@ function renderSide() {
     cells.push({ v: '\u2013', l: `${scopeLabel} \u00b7 ${t('notOffered')}` });
   } else {
     const last = scopePrograms.map(p => p.values[latest]).filter(v => v !== undefined);
-    const label = last.includes('open') ? t('allIn')
+    // a 0 outranks "ingen venteliste": see schoolPressure
+    const zeroN = last.filter(v => v === 0).length, openN = last.filter(v => v === 'open').length;
+    const label = zeroN ? zeroLabel(zeroN, openN)
+                : openN ? t('allIn')
                 : last.includes('D') ? t('docAdm')
                 : last.includes('F') ? t('priority')
                 : last.length && last.every(v => v === 'U') ? t('gone')
@@ -2750,9 +2857,9 @@ function renderChance(s, lensCat) {
   const ch = schoolChance(s, lensCat || 'all', myPoints);
   if (!ch) { box.innerHTML = `<div>${esc(t('chanceNoneInScope'))}</div>${adj}`; return; }
   const head = ch.likely ? t('chanceHeadL', fmt(myPoints), ch.likely, ch.n)
-             : ch.realistic ? t('chanceHeadR', fmt(myPoints), ch.realistic, ch.n)
+             : ch.possible ? t('chanceHeadR', fmt(myPoints), ch.possible, ch.n)
              : t('chanceHeadU', fmt(myPoints), ch.n);
-  const bar = ['likely', 'realistic', 'long']
+  const bar = ['likely', 'possible', 'unlikely']
     .map(b => `<span class="b-${b}" style="width:${100 * ch[b] / ch.n}%"></span>`).join('');
   const sf = Object.values((MODEL.meta || {}).sigma_forecast || {});
   const lo = sf.length ? Math.round(Math.min(...sf)) : 5, hi = sf.length ? Math.round(Math.max(...sf)) : 8;
@@ -2772,8 +2879,11 @@ function renderChance(s, lensCat) {
   } else if (s.round === '1') {
     fin = `<div>${esc(t('finalRoundUnknown'))}</div>`;
   }
+  // what the county's publication cannot tell the reader about this chance
+  if (!s.round) fin += `<div>${esc(t('chanceRoundUnknown'))}</div>`;
+  if (NO_OPEN_MARKER.has(s.fylke)) fin += `<div>${esc(t('chanceNoOpenMarker'))}</div>`;
   box.innerHTML = `<div class="h">${esc(head)}</div><div class="bar">${bar}</div>` +
-    `<div>${esc(t('chanceCounts', ch.likely, ch.realistic, ch.long))}</div>` +
+    `<div>${esc(t('chanceCounts', ch.likely, ch.possible, ch.unlikely))}</div>` +
     `<div>${esc(t('chanceSub', ch.year, e.round, lo, hi))}` +
     (s.catchment ? ' ' + esc(t('chanceCatchment')) : '') +
     (cov != null ? ' ' + esc(t('chanceCal', Math.round(cov * 100))) : '') + `</div>` + fin + adj;
@@ -3024,10 +3134,10 @@ function renderList() {
       const orphan = latestYear === null;
       const hasF = ys.some(y => p.values[y] === 'F');
       const val = orphan ? `<span class="soft" title="${esc(t('fortrinnTitle'))}">${t('priority')} ⓘ</span>`
-        : lv === 0 ? `<span class="soft" title="${esc(t('noPointsTitle'))}">${t('noPoints')} ⓘ</span>`
+        : lv === 0 ? `<span class="soft" title="${esc(t('noPoints'))} – ${esc(t('noPointsTitle'))}">${t('noPointsShort')} ⓘ</span>`
         : typeof lv === 'number' ? `${fmt(lv)}<small>${latestYear}</small>`
         : lv === 'open' ? `<span class="soft">${t('allIn')}</span>`
-        : lv === 'D' ? `<span class="soft" title="${esc(t('docTitle'))}">${t('docAdm')}</span>`
+        : lv === 'D' ? `<span class="soft" title="${esc(t('docAdm'))} – ${esc(t('docTitle'))}">${t('docAdmShort')}</span>`
         : `<span class="soft">${t('gone')}</span>`;
       const key = progId(p);
       let badge = '';
@@ -3041,10 +3151,15 @@ function renderList() {
         const pr = predFor(current, p);
         if (pr) {
           const ch = chanceOf(pr, myPoints);
-          let tip = t('chTitle', pct(ch), pr.year, fmt(pr.m), fmt(pr.s), pct(pr.pi), pr.h);
+          let tip = t('chTitle', pct(ch), pr.year, fmt(pr.m), fmt(pr.s),
+                      NO_OPEN_MARKER.has(current.fylke) ? null : pct(pr.pi), pr.h);
           const fb = finalRoundBridge(current);
           if (fb) tip += ' ' + t('finalRoundChip', fb.to_round, pct(chanceFinal(pr, myPoints, p.category, fb)));
-          chip = `<span class="ch b-${bucketOf(ch)}" data-tip="${esc(tip)}">${pct(ch)} %</span>`;
+          chip = `<span class="ch b-${bucketOf(ch)}" data-tip="${esc(tip)}">${pctS(ch)}</span>`;
+          // one observed year is a thin basis: say so next to the figure
+          if (pr.h === 1) chip = `<span class="chw">${chip}<span class="hist">${t('lowHist')}</span></span>`;
+        } else if ((modelEntry(current, p) || {}).h === 0) {
+          chip = `<span class="ch none" title="${esc(t('noHistTitle'))}">${t('noHist')}</span>`;
         }
       }
       const on = isChosen(current, p);
@@ -3130,22 +3245,12 @@ function renderContactFields() {
   el.hidden = !hint;
 }
 
-// Both end states live here so that a language switch can redraw them. Going
+// The sent state lives here so that a language switch can redraw it. Going
 // back to a blank form instead would replace a confirmation with an empty
 // sheet, and the sender would reasonably conclude nothing had been sent.
 function renderContactDone() {
   const body = document.getElementById('contact-body');
-  body.innerHTML = body.dataset.done === 'handoff'
-    ? `<div class="done">
-         <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
-              stroke-linejoin="round" aria-hidden="true">
-           <rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.6 6.4 8.4 6 8.4-6"/>
-         </svg>
-         <p class="big">${esc(t('contactHandoff'))}</p>
-         <p>${esc(t('contactHandoffSub'))}</p>
-         <a class="cta" href="${esc(body.dataset.mailto || '')}">${esc(t('contactOpenMail'))}</a>
-       </div>`
-    : `<div class="done">
+  body.innerHTML = `<div class="done">
          <svg viewBox="0 0 24 24" fill="none" stroke="var(--good)" stroke-width="2.4"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
            <path d="m4.5 12.5 5 5 10-11"/>
@@ -3244,16 +3349,12 @@ async function sendContact(ev) {
     });
     if (!r.ok) throw new Error(String(r.status));
     const data = await r.json().catch(() => ({ ok: true }));
-    // No provider key configured yet: the server hands back a prefilled
-    // mailto: so the message the visitor wrote is not thrown away.
-    const body = document.getElementById('contact-body');
-    if (data.mailto) {
-      location.href = data.mailto;
-      body.dataset.done = 'handoff';
-      body.dataset.mailto = data.mailto;
-    } else {
-      body.dataset.done = 'sent';
-    }
+    // { ok: false } is a relay that could not deliver. The message stays in
+    // the textarea for another try; nothing built from the destination
+    // address ever reaches the browser (a mailto: fallback used to, and a
+    // drained provider quota turned it into an address discloser).
+    if (data.ok === false) throw new Error('relay');
+    document.getElementById('contact-body').dataset.done = 'sent';
     renderContactDone();
   } catch (e) {
     err.textContent = t('contactFail');
@@ -3273,7 +3374,6 @@ function switchToContact() {
 function openContact() {
   const body = document.getElementById('contact-body');
   delete body.dataset.done;
-  delete body.dataset.mailto;
   renderContact();
   document.getElementById('contact').hidden = false;
   setModalTrap();
@@ -3431,6 +3531,7 @@ function renderIntro() {
           <span class="key">${dot(6, cssVar('--seq-250'))}${esc(keys[0])}</span>
           <span class="key">${dot(6, cssVar('--seq-700'))}${esc(keys[1])}</span>
           <span class="key">${dot(6, 'none', `stroke="${cssVar('--accent')}" stroke-width="1.6" stroke-dasharray="3 2"`)}${esc(keys[2])}</span>
+          <span class="key">${dot(6, cssVar('--accent'), `fill-opacity="0.35" stroke="${cssVar('--accent')}" stroke-width="1.6"`)}${esc(t('noPoints'))}</span>
           <span class="key">${dot(6, cssVar('--context'))}${esc(keys[3])}</span>
         </div>` : ''}
       </div>
@@ -3439,6 +3540,7 @@ function renderIntro() {
     `<p class="lede">${esc(t('introLede'))}</p>${steps}` +
     `<p class="caveat">${esc(t('introCaveat'))} `
       + `<a href="data/schools.json">${esc(t('introData'))}</a></p>` +
+    `<p class="caveat">${esc(t('introPrivacy'))}</p>` +
     `<p class="colophon">${t('introRepo', REPO_LINK)} ` +
       `${t('introReport', `<a href="report">${esc(t('introReportLink'))}</a>`)}` +
       `<span class="who">${esc(t('introCredit'))}</span></p>` +
@@ -3471,7 +3573,10 @@ function openIntro() {
   document.getElementById('intro').hidden = false;
   setModalTrap();
   openSheetHistory();
-  setTimeout(() => document.querySelector('#intro .cta')?.focus(), 40);
+  // preventScroll: the call to action sits at the foot of a sheet taller than
+  // a phone screen, and focusing it scrolled the sheet past its own heading —
+  // the intro opened on step 3 of 4
+  setTimeout(() => document.querySelector('#intro .cta')?.focus({ preventScroll: true }), 40);
 }
 
 function closeIntro(fromHistory) {
@@ -3823,6 +3928,7 @@ function renderListView() {
   const fyLabel = allF ? t('allFylker') : mapFylke;
   const chip = r => {
     if (r.pr.kind === 'open') return `<span class="chip open">${esc(t('listOpen'))}</span>`;
+    if (r.pr.kind === 'zero') return `<span class="chip zero" title="${esc(r.pr.openN ? zeroLabel(r.pr.zeroN, r.pr.openN) : `${t('noPoints')} – ${t('noPointsTitle')}`)}">${esc(t('noPointsShort'))}</span>`;
     if (r.v === null) {
       const tip = r.pr.kind === 'stale' ? ` title="${esc(t('tipStale', r.pr.year))}"` : '';
       return `<span class="none-v"${tip}>${esc(t('listNoData'))}</span>`;
@@ -4013,6 +4119,7 @@ function framePad() {
 // rectangle with nothing to explain it. A build that shipped 195 schools and
 // no coordinates did exactly that, in silence.
 function bootFailed(subKey) {
+  try { window.va && window.va('event', { name: 'boot-failed', data: { msg: String(subKey).slice(0, 120) } }); } catch (_) {}
   // #panel and #controls live inside #app now — the innerHTML below removes
   // them, so nothing here may assume they exist afterwards
   document.getElementById('legend')?.setAttribute('hidden', '');
@@ -4232,6 +4339,8 @@ async function main() {
   // let them reach it when the map has raised a question worth answering.
   if (!seen) hintHelp();
 }
+// a broken deploy should show up in the analytics before a parent writes in
+window.addEventListener('error', e => { try { window.va && window.va('event', { name: 'js-error', data: { msg: String(e.message).slice(0, 120) } }); } catch (_) {} });
 const boot = () => main().catch(e => { console.error(e); bootFailed('bootFailApp'); });
 if (document.readyState === 'loading') addEventListener('DOMContentLoaded', boot);
 else boot();

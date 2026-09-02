@@ -248,7 +248,7 @@
   "level": "Vg1",
   "year": 2024,
   "kept": 48.9,
-  "kept_from": "innlandet_2023-2025_2inntak.pdf",
+  "kept_from": "innlandet-2024-2026-2inntak.pdf",
   "ignored": 46.3,
   "ignored_from": "innlandet-2024-2026-2inntak.pdf"
  },
@@ -259,7 +259,7 @@
   "level": "Vg1",
   "year": 2025,
   "kept": 50.0,
-  "kept_from": "innlandet_2023-2025_2inntak.pdf",
+  "kept_from": "innlandet-2024-2026-2inntak.pdf",
   "ignored": 44.4,
   "ignored_from": "innlandet-2024-2026-2inntak.pdf"
  },
@@ -328,6 +328,18 @@
   "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
   "ignored": "open",
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "county": "Rogaland",
+  "school": "Sola videregående skole",
+  "program": "Flyfag, Landslinje",
+  "level": "Vg2",
+  "year": 2019,
+  "kept": 38.9,
+  "kept_from": "poenggrenser-rogaland-2021-2022.pdf",
+  "ignored": 3.9,
+  "ignored_from": "poenggrenser-rogaland-2019-2020.pdf",
+  "reason": "dropped digit"
  },
  {
   "county": "Rogaland",

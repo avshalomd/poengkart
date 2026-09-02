@@ -28,6 +28,21 @@ def check(desc, cond, detail=''):
         fails.append(f'{desc}' + (f' — {detail}' if detail else ''))
 
 
+# --- unit: the cell classifier (2 Sept 2026 review) ---------------------
+# Course-code digits leak into PDF tables as bare integers; a printed decimal
+# separator never comes from a code, so a low decimal is a real poenggrense.
+sys.path.insert(0, HERE)
+import common  # noqa: E402
+check('a printed decimal below 8 is a threshold, not noise', common.classify_cell('5,6') == 5.6)
+check('a bare integer below 8 is still treated as noise by default', common.classify_cell('5') is None)
+check('a bare integer at or above 8 is a threshold', common.classify_cell('36') == 36.0)
+# a dropped digit only resolves an implausible figure into a plausible one;
+# two plausible figures that differ by a digit are a real disagreement
+check('3,9 beside 38,9 is a dropped digit', common.dropped_digit(3.9, 38.9) == 38.9)
+check('8,0 beside 38,0 is not', common.dropped_digit(8.0, 38.0) is None)
+check('a 0 cell beside 40,0 is a state, not a dropped digit', common.dropped_digit(0, 40.0) is None)
+
+
 def progs(school_sub, prog_sub=None, level=None):
     out = []
     for name, s in SCHOOLS.items():
@@ -99,10 +114,66 @@ zero_counties = {s['fylke'] for s in DATA['schools'] for p in s['programs']
 # Innlandet/Vestland print a literal 0 in the table
 check('0,0 appears only where the source publishes it',
       zero_counties <= {'Akershus', 'Innlandet', 'Vestland'}, str(sorted(zero_counties)))
+# a printed decimal below 8 is kept (classify_cell), so every such cell is
+# listed here by hand after a look at its source; a new one fails until it
+# has been looked at too
+SUB8 = {
+    ('Buskerud', 'Kongsberg', 'Musikk, dans og drama', 'Vg1', '2025', 4.0),
+    ('Møre og Romsdal', 'Romsdal videregående skole', 'Studiespesialisering, 2-årig, 2.år', 'Vg1', '2014', 5.7),
+    ('Oslo', 'Etterstad videregående skole', 'Restaurant- og matfag', 'Vg1', '2026', 6.0),
+    ('Oslo', 'Etterstad videregående skole', 'Teknikk og industriell produksjon', 'Vg1', '2019', 5.6),
+}
+sub8 = {(s['fylke'], s['name'], p['program'], p['level'], y, v) for s in DATA['schools']
+        for p in s['programs'] for y, v in p['values'].items()
+        if isinstance(v, (int, float)) and 0 < v < 8}
+check('every poenggrense below 8 has been looked at (allowlist)', sub8 == SUB8,
+      f'new: {sorted(sub8 - SUB8)} gone: {sorted(SUB8 - sub8)}')
 nat_uncat = sorted({f'{s}: {p["program"]}' for s, p, _, _ in nat_cells if p['category'] == 'annet'})
 check('every programme categorised nationally', not nat_uncat, str(nat_uncat[:5]))
 check('no duplicate (county, school)',
       len({(s['fylke'], s['name']) for s in DATA['schools']}) == len(DATA['schools']))
+
+# --- gates from the 2 Sept 2026 review: photos vanished after ingest
+# twice, and a school with no current figure is the first thing a user sees
+import subprocess
+try:
+    prev = json.loads(subprocess.run(['git', 'show', 'HEAD:web/data/schools.json'],
+                                     capture_output=True, text=True, check=True, cwd=HERE).stdout)
+    had = {(s['fylke'], s['name']) for s in prev['schools'] if s.get('photo')}
+    have = {(s['fylke'], s['name']) for s in DATA['schools'] if s.get('photo')}
+    lost = sorted(had - have)
+    check('no school lost its photo since the last commit', not lost, str(lost[:5]))
+except Exception:   # no git, or first build: the coverage floor still holds
+    check('no school lost its photo since the last commit (skipped: no git baseline)', True)
+with_photo = sum(1 for s in DATA['schools'] if s.get('photo'))
+check('photo coverage >= 80%', with_photo >= 0.8 * len(DATA['schools']), f'{with_photo}/{len(DATA["schools"])}')
+
+
+def newest_numeric(s):
+    ys = sorted({y for p in s['programs'] for y in p['values']})
+    return ys and any(isinstance(p['values'].get(ys[-1]), (int, float)) and p['values'][ys[-1]] > 0
+                      for p in s['programs'])
+
+
+# "ingen venteliste" and "0" are states, not poenggrenser, so a school whose
+# every programme admitted everyone lands here too. Each of these was looked
+# at (2 Sept 2026); a school joining or leaving the list fails until it is
+NO_NEWEST_FIGURE = {
+    ('Akershus', 'Drømtorp'), ('Akershus', 'Eikeli'),
+    ('Innlandet', 'Nord-Gudbrandsdal vgs, avd. Dombås'),
+    ('Innlandet', 'Raufoss videregående skole avd Dokka'),
+    ('Innlandet', 'Storsteigen videregående skole'),
+    ('Rogaland', 'Stavanger Offshore Tekniske skole'),
+    ('Trøndelag', 'Grong videregående skole'), ('Trøndelag', 'Inderøy videregående skole'),
+    ('Trøndelag', 'Kyrksæterøra videregående skole'), ('Trøndelag', 'Meråker videregående skole'),
+    ('Trøndelag', 'Mære landbruksskole'), ('Trøndelag', 'Røros videregående skole'),
+    ('Trøndelag', 'Selbu videregående skole'), ('Trøndelag', 'Verdal videregående skole'),
+    ('Trøndelag', 'Åfjord videregående skole'),
+}
+without = {(s['fylke'], s['name']) for s in DATA['schools'] if not newest_numeric(s)}
+check('the schools with no poenggrense in their newest year are the 15 known ones',
+      without == NO_NEWEST_FIGURE,
+      f'new: {sorted(without - NO_NEWEST_FIGURE)} gone: {sorted(NO_NEWEST_FIGURE - without)}')
 
 # --- QA D2: two tables on one page were merged under one school --------
 check('St.Olav does not carry Sola flyfag', not progs('St.Olav', 'flyfag'))
@@ -146,8 +217,10 @@ glued = [f'{s}: {p["program"]}' for s, p, _, _ in cells
          if re.search(r'ventelis|fortrinn|fortinn|utgår|ledige|dokumentasjon',
                       p['program'], re.I)]
 check('no value token glued into a program name', not glued, str(glued[:3]))
+# the noise floor lives in the classifier (bare integers only); a printed
+# decimal below 8 is the county's figure, so the range check starts at 0
 absurd = [(s, p['program'], y, v) for s, p, y, v in cells
-          if isinstance(v, (int, float)) and not (8 <= v <= 65)]
+          if isinstance(v, (int, float)) and not (0 <= v <= 65)]
 check('no absurd thresholds', not absurd, str(absurd[:3]))
 uncat = sorted({f'{s}: {p["program"]}' for s, p, _, _ in cells if p['category'] == 'annet'})
 check('every program categorised', not uncat, str(uncat[:5]))
@@ -161,6 +234,15 @@ check('Bergeland ST discontinued in 2019',
       str(value('Bergeland', 'Studiespesialisering', 2019)))
 check('Sauda Ambulansefag 2025 = 53.8', value('Sauda', 'Ambulansefag', 2025) == 53.8,
       str(value('Sauda', 'Ambulansefag', 2025)))
+# the 2019-2020 edition prints Sola's Vg2 flyfag 2019 as "3,9" where its own
+# page 7 and the 2021-22 edition print 38,9: a dropped digit, so the fuller
+# figure wins and the year is not doubted (fix round 1, 2 Sept 2026)
+check('Sola Flyfag Vg2 2019 = 38.9 (dropped digit resolved)',
+      value('Sola videregående', 'Flyfag, Landslinje', 2019, 'Vg2') == 38.9,
+      str(value('Sola videregående', 'Flyfag, Landslinje', 2019, 'Vg2')))
+check('Sola has no uncertain_years',
+      not SCHOOLS['Sola videregående skole'].get('uncertain_years'),
+      str(SCHOOLS['Sola videregående skole'].get('uncertain_years')))
 
 # --- semantics ---------------------------------------------------------
 statuses = {v for _, _, _, v in cells if isinstance(v, str)}
@@ -338,6 +420,25 @@ _unpublished = sorted(
     and _photos.OVERRIDES.get(s['name'], {}).get('photo', 1) is not None)
 check('every reviewed harvest photo is published (run tools/photos.py after build_dataset)',
       not _unpublished, str(_unpublished[:4]))
+
+# --- the SQLite export: identity and licence (2 Sept 2026 review) --------
+# school identity everywhere else is (fylke, name); the DB keyed on the name
+# alone, and the exports said nothing about the licence they ship under
+import sqlite3
+DBP = os.path.join(HERE, '..', 'data', 'poengkart.db')
+if os.path.exists(DBP):
+    con = sqlite3.connect(DBP)
+    pk = [r[1] for r in con.execute('PRAGMA table_info(schools)') if r[5]]
+    check('schools keyed by (fylke, name)', pk == ['fylke', 'name'], str(pk))
+    try:
+        lic = (con.execute("SELECT value FROM meta WHERE key='licence'").fetchone() or [''])[0]
+    except sqlite3.OperationalError:
+        lic = ''
+    check('exports carry the data licence', 'NLOD' in lic, repr(lic))
+    con.close()
+else:                # the count of checks must not depend on the build order
+    check('schools keyed by (fylke, name) (skipped: no db)', True)
+    check('exports carry the data licence (skipped: no db)', True)
 
 # ...and so does data-notes.md, which had fallen two behind
 notes = open(os.path.join(HERE, '..', 'docs', 'data-notes.md'), encoding='utf-8').read()

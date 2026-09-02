@@ -6,18 +6,23 @@ web/data/model.json, so a refit can no longer leave the prose describing a
 model that is not the one deployed. Comparisons carry a tolerance of half a
 unit in the last displayed digit, so a value that sits exactly on a rounding
 boundary (3.45 shown as 3.4 or 3.5) never fails on the coin flip. Numbers the
-docs state as one-off measurements of the sources (year-to-year sd, series
-counts, the ranking experiment) are not re-derivable from meta and are not
-checked here.
+docs state as one-off measurements of the sources (year-to-year sd, the
+ranking experiment, the Møre og Romsdal exclusion experiment) are not
+re-derivable from meta and are not checked here. Panel counts come from
+schools.json, the two test-suite sizes from running the suites, and the
+rest from meta and the backtest file.
 """
 import csv
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-META = json.loads((ROOT / 'web/data/model.json').read_text())['meta']
+MODEL = json.loads((ROOT / 'web/data/model.json').read_text())
+META = MODEL['meta']
+N_FORECASTS = sum(len(v.get('programs') or {}) for v in MODEL['schools'].values())
 
 failures = []
 checked = 0
@@ -149,6 +154,64 @@ for b in sig_by:
 all_err = [float(r['actual']) - float(r['forecast']) for r in rows]
 mae_all = sum(abs(x) for x in all_err) / len(all_err)
 mean_width = sum(2 * 1.28 * sig_by[bucket(r['history_years'])] for r in rows) / len(rows)
+by_year = {}
+for r in rows:
+    by_year.setdefault(r['year'], []).append(float(r['actual']) - float(r['forecast']))
+year_row = {y: [len(e), (sum(x * x for x in e) / len(e)) ** 0.5, sum(abs(x) for x in e) / len(e)]
+            for y, e in by_year.items()}
+
+# panel counts come from schools.json, the dataset the model was fitted on
+DATA = json.loads((ROOT / 'web/data/schools.json').read_text())
+N_SCHOOLS = len(DATA['schools'])
+N_ROWS = n_cells = n_competed = n_series_num = n_series_one = 0
+for s in DATA['schools']:
+    for p in s['programs']:
+        N_ROWS += 1
+        vals = list(p['values'].values())
+        n_cells += len(vals)
+        nums = [v for v in vals if isinstance(v, (int, float)) and not isinstance(v, bool)]
+        n_competed += len(nums) + sum(1 for v in vals if v == 'open')
+        pos = [v for v in nums if v > 0]          # a poenggrense, not the 0 state
+        if pos:
+            n_series_num += 1
+            n_series_one += len(pos) == 1
+
+# the reliability table's shape, quoted in the prose around it
+mass_hi = 100 * sum(r['n'] for r in rel_chance if r['bin'] in ('80-90', '90-100')) / sum(r['n'] for r in rel_chance)
+max_gap = 100 * max(abs(r['observed'] - r['predicted']) for r in rel_chance)
+fill_5060 = next(r['observed'] for r in rel_fill if r['bin'] == '50-60') * 100
+
+
+def _count(script, pattern):
+    """How many checks a test script runs; the report quotes the counts."""
+    out = subprocess.run([sys.executable, str(ROOT / 'tools' / script)],
+                         capture_output=True, text=True).stdout
+    m = re.search(pattern, out)
+    return int(m.group(1)) if m else -1
+
+
+def rel(rows, b):
+    """A reliability row by its bin label, never by list position."""
+    return next(r for r in rows if r['bin'] == b)
+
+
+GAP = {r['bin']: 100 * (r['predicted'] - r['observed']) for r in rel_chance}   # + = optimistic
+max_gap_lo60 = max(GAP[b] for b in ('0-10', '10-20', '20-30', '30-40', '40-50', '50-60'))
+
+# the raw (pre-Platt) fill probability is not in meta; its top bin comes from
+# the backtest file, calibration years and held-out years separately
+_bt = list(csv.DictReader(open(ROOT / 'data/model-backtest.csv')))
+
+
+def raw_top(years):
+    t = [r for r in _bt if int(r['year']) in years and r['p_fill_raw'] and float(r['p_fill_raw']) >= 0.9]
+    return [sum(float(r['p_fill_raw']) for r in t) / len(t), 100 * sum(r['state'] != 'open' for r in t) / len(t)]
+
+
+RAW_CAL, RAW_EVAL = raw_top(range(2020, 2025)), raw_top({2025, 2026})
+
+N_PARSE = _count('test_parse.py', r'(\d+)/\d+ checks passed')
+N_MODEL = _count('test_model.py', r'(\d+) checks, \d+ failed')
 
 
 def reliability_row(r):
@@ -201,6 +264,23 @@ for r in rel_chance:
     obs, n, tol = reliability_row(r)
     check(doc, f'chance reliability {r["bin"]}', rf'\| {lo}–{hi}% \| ([\d.]+)% \| ([\d ]+) \|', [obs, n], flat, [tol, N])
 check(doc, 'outlier denominator', r'\|z\| ≥ 3: \d+ of ([\d ]+) cells', [META['n_level']], flat, N)
+check(doc, 'series', r'([\d ]+) of the ([\d ]+) series have exactly one year', [n_series_one, n_series_num], flat, N)
+check(doc, 'level cells', r'\*\*Level\*\* \(on the ([\d ]+) cells that carry a number\)', [META['n_level']], flat, N)
+check(doc, 'fill cells', r'\*\*Fill\*\* \(on the ([\d ]+) cells that competed on points', [META['n_fill']], flat, N)
+check(doc, 'held-out n', r'held-out 2025–26\*\* \(([\d ]+) cells that got a number\)', [ev['level_all']['n']], flat, N)
+hs = META['halflife_search']
+check(doc, 'halflife margin', r'4 years won by ([\d.]+) RMSE over no decay', [hs['None'] - hs['4.0']], flat, D3)
+check(doc, 'coupling', r'verdict flipped — ([\d.]+) coupled against ([\d.]+) —',
+      [hs['coupled_fill_logloss']['coupled'], hs['coupled_fill_logloss']['independent']], flat, D3)
+check(doc, 'residual sd', r'The residual sd is ([\d.]+) points', [META['sigma_model']], flat, D1)
+check(doc, 'sigma floor', r'saw no held-out year \(([\d.]+)\)', [META['sigma_floor']], flat, D1)
+check(doc, 'raw fill held-out', r'gave ([\d.]+) filled ([\d.]+) of the time in the held-out years',
+      [RAW_EVAL[0], RAW_EVAL[1] / 100], flat, D2)
+check(doc, 'calibration prose', r'optimistic by up to ([\d.]+) points — a (\d+)% chance was really (\d+)% — and by (\d+) point in the 60–70% bin',
+      [max_gap_lo60, 100 * rel(rel_chance, '10-20')['predicted'], 100 * rel(rel_chance, '10-20')['observed'], GAP['60-70']],
+      flat, [D2, PCT, PCT, PCT])
+check(doc, 'calibration prose 70–80', r'a stated (\d+)% came true (\d+)% of the time',
+      [100 * rel(rel_chance, '70-80')['predicted'], 100 * rel(rel_chance, '70-80')['observed']], flat, PCT)
 check(doc, 'round bridge A', r'\| Akershus, 1\. → 2\. inntak \| (\d+) \| (-[\d.]+) \(sd ([\d.]+)\) \| (\d+)% of ([\d ]+) \|',
       BRIDGE_A, flat, BRIDGE_TOL)
 check(doc, 'round bridge V', r'\| Vestland, 1\. → 3\. inntak \| (\d+) \| (-[\d.]+) \(sd ([\d.]+)\) \| (\d+)% of ([\d ]+) \|',
@@ -214,7 +294,45 @@ flat = flatten(raw)
 appendix_c = flatten(raw.split('## Appendix C')[1])
 ANCHOR[id(appendix_c)] = '## Appendix C'
 check(doc, 'n_level', r'([\d,]+) carry a numeric threshold', [META['n_level']], flat, N)
-check(doc, 'n_fill', r'([\d,]+) competed on points \(and thus inform the fill', [META['n_fill']], flat, N)
+check(doc, 'n_fill', r'the ([\d,]+) of them outside Møre og Romsdal inform the fill model', [META['n_fill']], flat, N)
+check(doc, 'cells', r'Among the ([\d,]+) cells, ([\d,]+) competed on points', [n_cells, n_competed], flat, N)
+check(doc, 'series', r'Of the ([\d,]+) school×programme series that ever carry a numeric threshold, ([\d,]+) have exactly one observed year',
+      [n_series_num, n_series_one], flat, N)
+check(doc, 'abstract panel', r'([\d,]+) schools, ([\d,]+) programme rows, ([\d,]+) observations', [N_SCHOOLS, N_ROWS, n_cells], flat, N)
+check(doc, 'intro panel', r'([\d,]+) schools, ([\d,]+) programme rows, ([\d,]+) cell-level', [N_SCHOOLS, N_ROWS, n_cells], flat, N)
+h4 = lvl['4+']
+check(doc, 'abstract rmse', r'\(RMSE ([\d.]+) vs ([\d.]+) on series with ≥4 observed years\)', [h4['rmse'], h4['rmse_last_year']], flat, D2)
+check(doc, 'abstract coverage', r'nominal 80% intervals achieve ([\d.]+)% empirical coverage', [ev['coverage80'] * 100], flat, D2 * 10)
+check(doc, 'abstract calibration gap', r'largest gap between predicted and observed frequency in any decile is ([\d.]+) points', [max_gap], flat, D2)
+check(doc, 'abstract brier', r'\(Brier score ([\d.]+) vs ([\d.]+) on the pairs where both are defined\)',
+      [ev['chance']['brier_model_common'], ev['chance']['brier_last_year_rule']], flat, D3)
+check(doc, 'intro bullet', r'\(RMSE ([\d.]+) vs ([\d.]+) and ([\d.]+) in the deepest stratum\), with ([\d.]+)% empirical coverage of nominal 80% intervals and calibrated probabilities \(Brier ([\d.]+) vs ([\d.]+) where both are defined\)',
+      [h4['rmse'], h4['rmse_last_year'], h4['rmse_prog_mean'], ev['coverage80'] * 100,
+       ev['chance']['brier_model_common'], ev['chance']['brier_last_year_rule']], flat, [D2, D2, D2, D2 * 10, D3, D3])
+check(doc, 'parser checks (4.1)', r'A suite of (\d+) regression checks locks known failure modes', [N_PARSE], flat, N)
+check(doc, '5.2 cells', r'fitted on the ([\d,]+) cells with a numeric threshold; the fill component on the ([\d,]+) cells that competed on points',
+      [META['n_level'], META['n_fill']], flat, N)
+check(doc, 'sigma prose', r'forecast ([\d.]+) points loose; four observed years buy the spread down to ([\d.]+)\.', [sig_by['0'], sig_by['4+']], flat, D1)
+check(doc, 'raw fill top bin', r'cells the raw model gave a mean \$\\pi\$ of ([\d.]+) \(the ≥ 0\.9 bin\) filled (\d+)% of the time, and in the held-out years cells given a mean ([\d.]+) filled (\d+)%',
+      RAW_CAL + RAW_EVAL, flat, [D2, PCT, D2, PCT])
+check(doc, 'table 4 caption', r'2025–2026 \(([\d,]+) cells with a published number\)', [ev['level_all']['n']], flat, N)
+check(doc, 'deepest stratum ±3', r'deepest stratum \((\d+)% vs (\d+)%\)', [h4['within3_last_year'] * 100, h4['within3'] * 100], flat, PCT)
+check(doc, '7.4 calibration gap', r'largest gap between prediction and outcome in any decile is ([\d.]+) points', [max_gap], flat, D2)
+check(doc, 'table 5 prose below 60', r'optimistic by up to ([\d.]+) points — a stated (\d+)% was realised at (\d+)% — and by (\d+) point in the 60–70% bin',
+      [max_gap_lo60, 100 * rel(rel_chance, '10-20')['predicted'], 100 * rel(rel_chance, '10-20')['observed'], GAP['60-70']],
+      flat, [D2, PCT, PCT, PCT])
+check(doc, 'limitations optimism', r'Below 60%, the raw probability is up to ([\d.]+) points optimistic, and (\d+) point in the 60–70% bin',
+      [max_gap_lo60, GAP['60-70']], flat, [D2, PCT])
+check(doc, 'table 5 prose 70–80', r'a stated (\d+)% was realised at (\d+)%, so',
+      [100 * rel(rel_chance, '70-80')['predicted'], 100 * rel(rel_chance, '70-80')['observed']], flat, PCT)
+check(doc, 'forecast count', r'shipped model carries ([\d,]+) programme forecasts', [N_FORECASTS], flat, N)
+check(doc, 'figure 2 mass', r'\((\d+)% of score–cell pairs land above 80%\)', [mass_hi], flat, PCT)
+check(doc, 'fill 50–60 bin', r'\((\d+)% observed in the 50–60% bin\)', [fill_5060], flat, PCT)
+check(doc, 'table C1 caption', r'\(([\d,]+) cells that competed on points; base rate ([\d.]+)\)\. Held-out Brier ([\d.]+) against ([\d.]+) for the base-rate forecaster',
+      [ev['fill']['n'], ev['fill']['base_rate'], ev['fill']['brier'], ev['fill']['brier_base_rate']], appendix_c, [N, D3, D3, D3])
+for y in sorted(year_row):
+    check(doc, f'table B1 {y}', rf'\| {y} \| ([\d,]+) \| ([\d.]+) \| ([\d.]+) \|', year_row[y], flat, [N, D2, D2])
+check(doc, 'validation counts', r'Validation comprises (\d+) parser regression checks, ([\d,]+) model invariants', [N_PARSE, N_MODEL], flat, N)
 m = re.search(r"\\pi' \\;=\\; -([\d.]+) \\;\+\\; ([\d.]+)", flat)
 checked += 1
 if not m:

@@ -83,7 +83,10 @@ for s in DATA['schools']:
         key = f"{k}|{p['level']}|{o}"
         live_years = [int(y) for y, v in p['values'].items()
                       if v == 'open' or (isinstance(v, (int, float)) and not isinstance(v, bool))]
-        live = live_years and max(live_years) >= newest[s['fylke']] - 1
+        # a programme whose newest cell is "utgått" is not live, whatever the
+        # year before said (review of 2 Sept 2026)
+        discontinued = p['values'][max(p['values'], key=int)] == 'U'
+        live = live_years and max(live_years) >= newest[s['fylke']] - 1 and not discontinued
         pr = (ent.get('programs') or {}).get(key)
         if live:
             n_live += 1
@@ -147,6 +150,34 @@ if vest:
                 c3 = (1 - pr['pi']) + pr['pi'] * (gone + (1 - gone) * err_cdf((x - pr['m'] - off) / pr['s']))
                 check('final-round chance never below published-round chance', c3 >= c1 - 1e-9, f'{sid} {key} x={x}: {c3:.3f} < {c1:.3f}')
 check('meta says whether the hurdle is coupled', 'coupled' in META)
+
+# ---- the review of 2 Sept 2026: what the model must not forecast ----------
+# 1. no forecast for a programme whose newest cell is discontinued
+for s in DATA['schools']:
+    ent = SCHOOLS.get(f'{s["fylke"]}|{s["name"]}') or {}
+    progs = ent.get('programs') or {}
+    occ = {}
+    for p in s['programs']:
+        k = p['program'].lower(); o = occ.get(k, 0); occ[k] = o + 1
+        key = f'{k}|{p["level"]}|{o}'
+        newest_cell = max(p['values'], key=int)
+        if p['values'][newest_cell] == 'U':
+            check(f'no forecast for discontinued {s["name"]} · {p["program"]}', key not in progs)
+# 2. Møre og Romsdal cannot express "ingen venteliste": fill probability is 1
+for sid, ent in SCHOOLS.items():
+    if sid.startswith('Møre og Romsdal|'):
+        for key, pr in (ent.get('programs') or {}).items():
+            check(f'MRO fill probability is 1 ({sid} · {key})', pr['pi'] == 1.0, str(pr['pi']))
+# 3. band keys use the glossary (CONTEXT.md: likely / possible / unlikely)
+check('chance bands named likely/possible/unlikely', set(META['chance_bands']) == {'likely', 'possible'}, str(META['chance_bands']))
+# 4a. ...but a county whose only fitted years are partial still uses them:
+# when the walk found nothing it returned 0 and every sigma bucket widened
+check('long-history forecast spread has not regressed (partial-year starvation)',
+      META['sigma_forecast']['(4, 99)'] <= 5.7, str(META['sigma_forecast']))
+# 4. partial county-years are excluded from the county random walk
+check('partial county-years listed in meta',
+      META.get('partial_years') == [['Vestland', 2017], ['Vestland', 2018], ['Vestland', 2019], ['Vestland', 2020]],
+      str(META.get('partial_years')))
 
 print(f'{checks} checks, {len(fails)} failed')
 for f in fails:

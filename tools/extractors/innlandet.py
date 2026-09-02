@@ -17,8 +17,8 @@ import pdfplumber
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import common  # noqa: E402
 
-SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                   '..', '..', '..', 'poenggrenser', 'data', 'innlandet')
+HERE = os.path.dirname(os.path.abspath(__file__))
+SRC = os.path.join(HERE, '..', '..', 'sources', 'innlandet')
 
 META = {
     'code': '34', 'fylke': 'Innlandet', 'round': '2', 'rights': 'ungdomsrett',
@@ -138,12 +138,23 @@ INNSYN_FILES = {
 }
 
 
+# the rolling three-year matrices, newest first; every other PDF in the folder
+# (the 2026 applicant-count tables, a future drop-in) is ignored with a warning
+MATRIX_FILES = ['innlandet-2024-2026-2inntak.pdf', 'innlandet_2023-2025_2inntak.pdf']
+
+
 def extract():
     warn, out = [], []
     if not os.path.isdir(SRC):
         return out, [f'{META["fylke"]}: no source directory']
-    for fname in sorted(os.listdir(SRC), reverse=True):
-        if not fname.endswith('.pdf'):
+    known = MATRIX_FILES + list(INNSYN_FILES)
+    for fname in sorted(os.listdir(SRC)):
+        if fname.endswith('.pdf') and fname not in known:
+            warn.append(f'{META["fylke"]}: {fname} is not a poenggrense table, ignored '
+                        f'(add it to MATRIX_FILES or INNSYN_FILES if it is one)')
+    for fname in MATRIX_FILES + sorted(INNSYN_FILES, reverse=True):
+        if not os.path.exists(os.path.join(SRC, fname)):
+            warn.append(f'{META["fylke"]}: missing source {fname}')
             continue
         if fname in INNSYN_FILES:
             out.append((fname, INNSYN_FILES[fname](os.path.join(SRC, fname))))

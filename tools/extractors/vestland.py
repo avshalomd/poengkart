@@ -20,8 +20,8 @@ import pdfplumber
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import common  # noqa: E402
 
-SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                   '..', '..', '..', 'poenggrenser', 'data', 'vestland')
+HERE = os.path.dirname(os.path.abspath(__file__))
+SRC = os.path.join(HERE, '..', '..', 'sources', 'vestland')
 
 META = {
     'code': '46', 'fylke': 'Vestland', 'round': '1', 'rights': 'ungdomsrett',
