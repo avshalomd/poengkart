@@ -56,8 +56,11 @@
     --surface: rgba(255,255,255,.85);
     --surface-solid: #ffffff;
     /* --ink-3 carries every smallest string in the app — 9px legend labels,
-       10.5px field labels, the source note — so it has to clear 4.5:1 */
-    --ink: #0f1720; --ink-2: #46525e; --ink-3: #6b7480;
+       10.5px field labels, the source note — so it has to clear 4.5:1. The old
+       #6b7480 cleared it by a hair (4.68:1 on the composited panel, 4.74:1 on
+       --surface-solid); at this size that is no margin at all, so it is one
+       step darker: 5.42:1 composited, 5.49:1 on white, 5.07:1 on --page. */
+    --ink: #0f1720; --ink-2: #46525e; --ink-3: #616a75;
     --line: rgba(15,23,32,.09);
     /* --line is a decorative separator (card edges, table row rules) and stays
        quiet. A control's boundary is the only thing identifying it as a
@@ -1613,8 +1616,17 @@ const T = {
   tabAll:     { no: 'Alle', en: 'All' },
   tabCat:     { no: 'Utdanningsprogram', en: 'Programme' },
   tabProg:    { no: 'Programområde', en: 'Programme area' },
-  chartSubAll:  { no: n => `${n} programområder · snittlinje i blått`, en: n => `${n} programme areas · average in blue` },
-  chartSubCat:  { no: n => `${n} programområder i utdanningsprogrammet · snitt i blått`, en: n => `${n} programme areas in this programme · average in blue` },
+  // The chart draws only the programme areas that HAVE a poenggrense, so its
+  // count is normally smaller than the hero's row count right above it. Name
+  // the denominator instead of printing a bare, contradicting number.
+  chartSubAll:  { no: (n, tot) => (n === tot ? `${n} ${n === 1 ? 'programområde' : 'programområder'} har poenggrense · snittlinje i blått`
+                                             : `${n} av ${tot} programområder har poenggrense · snittlinje i blått`),
+                  en: (n, tot) => (n === tot ? `${n} programme area${n === 1 ? ' has' : 's have'} a threshold · mean line in blue`
+                                             : `${n} of ${tot} programme areas have a threshold · mean line in blue`) },
+  chartSubCat:  { no: (n, tot) => (n === tot ? `${n} ${n === 1 ? 'programområde' : 'programområder'} i utdanningsprogrammet har poenggrense · snitt i blått`
+                                             : `${n} av ${tot} programområder i utdanningsprogrammet har poenggrense · snitt i blått`),
+                  en: (n, tot) => (n === tot ? `${n} programme area${n === 1 ? ' has' : 's have'} a threshold in this programme · mean line in blue`
+                                             : `${n} of ${tot} programme areas in this programme have a threshold · mean line in blue`) },
   chartSubProg: { no: 'Én serie · hule punkter = ingen poenggrense', en: 'Single series · hollow dots = no threshold' },
   chartNoPoints: { no: 'Ingen poenggrense å tegne for dette utvalget – alle som søkte, fikk plass, eller inntaket gikk på fortrinnsrett eller dokumentasjon.',
                    en: 'No threshold to plot for this selection — everyone who applied got a place, or admission went by priority quota or documentation.' },
@@ -1671,12 +1683,23 @@ const T = {
   },
   chanceNoneInScope: { no: 'Ingen prognose for programområdene i dette utvalget.',
                        en: 'No forecast for the programmes in this selection.' },
-  chanceHeadL: { no: (x, L, n) => `Med ${x} poeng: sannsynlig plass på ${L} av ${n} programområder`,
-                 en: (x, L, n) => `With ${x} points: a place is likely at ${L} of ${n} programmes` },
-  chanceHeadR: { no: (x, R, n) => `Med ${x} poeng: mulig plass på ${R} av ${n} programområder`,
-                 en: (x, R, n) => `With ${x} points: a place is possible at ${R} of ${n} programmes` },
-  chanceHeadU: { no: (x, n) => `Med ${x} poeng: lite sannsynlig plass på alle ${n} programområdene`,
-                 en: (x, n) => `With ${x} points: a place is unlikely at all ${n} programmes` },
+  // The head counts over the programme areas that HAVE a forecast (n, which is
+  // also the number of chips the list renders below) and then names that scope
+  // outright, with the rest of the panel's rows in the parenthetical. Printing
+  // n as a bare denominator was the bug: it read as the whole school, and the
+  // hero right above it said something larger. The tail is dropped when every
+  // programme area in scope has a forecast.
+  chanceScope: { no: (m, tot) => (m ? ` med prognose (${m} av ${tot} uten)` : ''),
+                 en: (m, tot) => (m ? ` with a forecast (${m} of ${tot} without)` : '') },
+  chanceHeadL: { no: (x, L, n, m, tot) => `Med ${x} poeng: sannsynlig plass på ${L} av ${n} programområde${n === 1 ? '' : 'r'}${T.chanceScope.no(m, tot)}`,
+                 en: (x, L, n, m, tot) => `With ${x} points: a place is likely at ${L} of ${n} programme area${n === 1 ? '' : 's'}${T.chanceScope.en(m, tot)}` },
+  chanceHeadR: { no: (x, R, n, m, tot) => `Med ${x} poeng: mulig plass på ${R} av ${n} programområde${n === 1 ? '' : 'r'}${T.chanceScope.no(m, tot)}`,
+                 en: (x, R, n, m, tot) => `With ${x} points: a place is possible at ${R} of ${n} programme area${n === 1 ? '' : 's'}${T.chanceScope.en(m, tot)}` },
+  // "alle 1 programområdene" keeps its digit on purpose: figure-invariants I10
+  // reads ch.n out of this string, and "det ene programområdet" would leave the
+  // count nowhere in the head for it (and for a reader) to check.
+  chanceHeadU: { no: (x, n, m, tot) => `Med ${x} poeng: lite sannsynlig plass på alle ${n} programområdene${T.chanceScope.no(m, tot)}`,
+                 en: (x, n, m, tot) => `With ${x} points: a place is unlikely at all ${n} programme areas${T.chanceScope.en(m, tot)}` },
   chanceCounts: { no: (L, R, U) => `${L} sannsynlig (≥ 70 %) · ${R} mulig (35–70 %) · ${U} lite sannsynlig (< 35 %)`,
                   en: (L, R, U) => `${L} likely (≥ 70%) · ${R} possible (35–70%) · ${U} unlikely (< 35%)` },
   chanceSub: {
@@ -1969,8 +1992,15 @@ function predFor(s, p) {
 }
 // one school's prospects for x points over the programmes in scope
 function schoolChance(s, cat, x) {
-  const scope = cat === 'all' ? s.programs : s.programs.filter(p => p.category === cat);
-  const out = { n: 0, likely: 0, possible: 0, unlikely: 0, best: -1, bestProg: null, year: null };
+  // Scope is the programme areas the panel LISTS for this lens — the recency
+  // filter and the fortrinnsrett fold, counted exactly as the hero counts its
+  // rows — so `total` is that same figure and `total - n` is the number with
+  // no forecast. Reading s.programs here instead let the head quote a
+  // denominator that contradicted the hero directly above it.
+  const base = shownPrograms(s);
+  const pp = partitionPrograms(cat === 'all' ? base : base.filter(p => p.category === cat));
+  const scope = [...pp.regular, ...pp.orphans];
+  const out = { n: 0, total: scope.length, likely: 0, possible: 0, unlikely: 0, best: -1, bestProg: null, year: null };
   for (const p of scope) {
     const pr = predFor(s, p);
     if (!pr) continue;
@@ -2576,7 +2606,18 @@ function schoolFromUrl() {
   if (!m) return null;
   try {
     const fy = decodeURIComponent(m[1]), name = decodeURIComponent(m[2]);
-    return DATA.schools.find(x => x.fylke === fy && x.name === name) || null;
+    const inFylke = DATA.schools.filter(x => x.fylke === fy);
+    const key = name.toLowerCase();
+    // Buskerud and Akershus carry the county's own short school name ("Kongsberg");
+    // the national register's full name ("Kongsberg videregående skole") is on
+    // nsr_name, and that is the form people paste from elsewhere. Accept both.
+    // The school's own `name` wins outright: Innlandet has a "Dokka videregående
+    // skole" whose nsr_name is "Raufoss videregående skole avd Dokka" — which is
+    // ALSO the name of a different school, and that link must keep opening its
+    // own school. Links the app writes are unaffected; buildHash still uses name.
+    return inFylke.find(x => x.name.toLowerCase() === key)
+        || inFylke.find(x => (x.nsr_name || '').toLowerCase() === key)
+        || null;
   } catch (e) { return null; }
 }
 // Put the filters named in the address back on the controls. Used at boot and
@@ -2864,9 +2905,10 @@ function renderChance(s, lensCat) {
   box.className = 'chance';
   const ch = schoolChance(s, lensCat || 'all', myPoints);
   if (!ch) { box.innerHTML = `<div>${esc(t('chanceNoneInScope'))}</div>${adj}`; return; }
-  const head = ch.likely ? t('chanceHeadL', fmt(myPoints), ch.likely, ch.n)
-             : ch.possible ? t('chanceHeadR', fmt(myPoints), ch.possible, ch.n)
-             : t('chanceHeadU', fmt(myPoints), ch.n);
+  const noPred = Math.max(0, ch.total - ch.n);
+  const head = ch.likely ? t('chanceHeadL', fmt(myPoints), ch.likely, ch.n, noPred, ch.total)
+             : ch.possible ? t('chanceHeadR', fmt(myPoints), ch.possible, ch.n, noPred, ch.total)
+             : t('chanceHeadU', fmt(myPoints), ch.n, noPred, ch.total);
   const bar = ['likely', 'possible', 'unlikely']
     .map(b => `<span class="b-${b}" style="width:${100 * ch[b] / ch.n}%"></span>`).join('');
   const sf = Object.values((MODEL.meta || {}).sigma_forecast || {});
@@ -2989,13 +3031,20 @@ function drawChart() {
   const x = i => ML + i * iw / (years.length - 1);
   const y = v => MT + ih - (Math.min(Math.max(v, LO), HI) - LO) * ih / (HI - LO);
   const sub = document.getElementById('chart-sub');
+  // The chart's own scope, counted the way the hero and the list count rows:
+  // series.length only counts the programme areas that HAVE a poenggrense to
+  // plot, so printing it bare put a smaller number under the hero's larger one
+  // with nothing to say the two were counting different things.
+  const chartScope = chartMode() === 'cat'
+    ? shownPrograms(current).filter(p => p.category === mapCat) : shownPrograms(current);
+  const scopeN = visibleIn(chartScope);
   sub.textContent = chartMode() === 'prog'
     ? `${chart.prog ? progName(chart.prog) + ' · ' : ''}${t('chartSubProg')}`
-    : chartMode() === 'cat' ? t('chartSubCat', series.length) : t('chartSubAll', series.length);
+    : chartMode() === 'cat' ? t('chartSubCat', series.length, scopeN)
+                            : t('chartSubAll', series.length, scopeN);
   if (chartMode() !== 'prog') {
     const cy = [...new Set(series.flatMap(p => Object.keys(p.values)))].sort().pop();
-    const cm = openMix(chartMode() === 'cat'
-      ? shownPrograms(current).filter(p => p.category === mapCat) : shownPrograms(current), cy);
+    const cm = openMix(chartScope, cy);
     if (cm.mostly) sub.textContent += ` · ⚠ ${t('mostlyOpenShort')}`;
   }
 

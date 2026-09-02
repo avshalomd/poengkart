@@ -42,6 +42,14 @@ list view (Kart ⇄ Liste toggle: the map's filters as a sortable table).
   difference is absorbed by the county level and stated in an inline caveat;
   the next data-science step is an explicit round adjustment so an Oslo
   chance and a Rogaland chance mean the same thing.
+- **Downweight single-applicant cells in the level model.** Møre og Romsdal's
+  extract also carries the admitted mean (Gjennomkar); where the lower bound
+  equals the mean, one applicant was admitted and the "threshold" is that
+  person's score, not a competitive bar (Romsdal 2018: 56,0; Stranda 2014:
+  45,6; the 5,7 and 8,6 at the other end are the same mechanism). All eight
+  |z| > 4 outliers on 2 Sept 2026 were verified genuine in the sources; five
+  are this. Carrying Gjennomkar into the dataset and downweighting min = mean
+  cells is a data-science change with a measurable backtest effect.
 - **Suggestion, not adopted: hide raw percentages below 30%.** The fill
   model is documented as optimistic in that range. Decision for now is to
   show what the model says; revisit if calibration in that range does not
@@ -108,16 +116,16 @@ Agreed product changes:
 
 Phone onboarding stays as is: the glowing "?" is the first-visit prompt.
 
-## Open decisions after the soft-launch pass (2 September 2026)
+## Decided after the soft-launch pass (2 September 2026)
 
-- **Git history.** The old contact file and one official's address exist in
-  earlier commits. Accept (work address on a public-record reply) or rewrite
-  history with `git filter-repo` and a force push.
-- **Scope denominators.** A school panel can show three counts at once (hero
-  "4 programområder", chart "3", chance "2 av 2"). Proposal: name the scope
-  ("3 av 4 har poenggrense", "2 av 4 – 2 uten prognose").
-- **County short names.** Buskerud and Akershus store the county's short
-  school names (Kongsberg), so `#s=Buskerud/Kongsberg videregående skole`
-  does not resolve; `nsr_name` holds the full name. Pipeline-side choice.
-- **Kongsberg photo** has the school name baked in and is cropped mid-word.
-- **List view at 375 px**: the Sjanse column needs a horizontal swipe.
+- Git history keeps the old contact file and one work address in earlier
+  commits: accepted as a public-record reply, no rewrite.
+- Scope is named in the school panel's three counts ("3 av 4 har
+  poenggrense", "2 av 4 – 2 uten prognose").
+- Permalinks accept the full NSR school name as an alias where a county
+  stores the short name (Buskerud, Akershus).
+- The muted text colour is darkened one step for contrast margin.
+- The Kongsberg photo stays as it is: photo coverage is valued over polish;
+  a cleaner photo is a candidate for the photo-coverage item above.
+- The list view's Sjanse column keeps its horizontal swipe at 375 px until
+  the January push.
