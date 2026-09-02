@@ -98,7 +98,7 @@ Agreed product changes:
 - Vercel Web Analytics (cookieless) plus a minimal client error beacon, with a
   personvern line in the intro; self-host the font.
   *Script tag, error beacon and personvern line done 2 Sept 2026. Deferred: switching Web Analytics on in the Vercel project (owner, dashboard toggle) and the self-hosted font (needs the font files downloaded; Google Fonts stays until then).*
-- Data licence NLOD 2.0 stated in README and in the CSV/SQLite headers.
+- Data licence NLOD 2.0 stated in README, in the SQLite `meta` table and in `data/README.md`.
   *Done 2 Sept 2026.*
 - Commit the FOI source files under `sources/` with case numbers.
   *Done 2 Sept 2026: 47 source documents plus `sources/README.md`; extractors read from there.*

@@ -21,7 +21,7 @@ Akershus,Bjørkelangen,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,21.7,
 Akershus,Bjørkelangen,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,31.3,points
 Akershus,Bjørkelangen,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,29.8,points
 Akershus,Bjørkelangen,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,2,24.3,points
-Akershus,Bjørkelangen,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,2,0.0,points
+Akershus,Bjørkelangen,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,2,0.0,filled_no_points
 Akershus,Bjørkelangen,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2026,2,15.0,points
 Akershus,Bjørkelangen,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,27.8,points
 Akershus,Bjørkelangen,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,25.8,points
@@ -132,7 +132,7 @@ Akershus,Hvam,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,,open
 Akershus,Hvam,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,,open
 Akershus,Hvam,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,2,14.7,points
 Akershus,Hvam,Naturbruk,0,NA,NANAB1----,Vg1,2024,2,,open
-Akershus,Hvam,Naturbruk,0,NA,NANAB1----,Vg1,2025,2,0.0,points
+Akershus,Hvam,Naturbruk,0,NA,NANAB1----,Vg1,2025,2,0.0,filled_no_points
 Akershus,Hvam,Naturbruk,0,NA,NANAB1----,Vg1,2026,2,33.2,points
 Akershus,Hvam,"Naturbruk, energi-/miljøfag, SK 3 år",0,NA,NANAB1----,Vg1,2025,2,,open
 Akershus,Hvam,"Naturbruk, energi-/miljøfag, SK 3 år",0,NA,NANAB1----,Vg1,2026,2,25.1,points
@@ -398,7 +398,7 @@ Akershus,Strømmen,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,32.0,poi
 Akershus,Strømmen,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,30.0,points
 Akershus,Strømmen,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,32.5,points
 Akershus,Sørumsand,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,31.5,points
-Akershus,Sørumsand,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,0.0,points
+Akershus,Sørumsand,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,0.0,filled_no_points
 Akershus,Sørumsand,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,30.7,points
 Akershus,Sørumsand,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,,open
 Akershus,Sørumsand,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,,open
@@ -644,7 +644,7 @@ Innlandet,Dokka videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2022,2,,open
 Innlandet,Elverum videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,2,32.7,points
 Innlandet,Elverum videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2021,2,,open
 Innlandet,Elverum videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2022,2,26.4,points
-Innlandet,Elverum videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2023,2,0.0,points
+Innlandet,Elverum videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2023,2,0.0,filled_no_points
 Innlandet,Elverum videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,2,31.7,points
 Innlandet,Elverum videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,,open
 Innlandet,Elverum videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,24.4,points
@@ -660,8 +660,8 @@ Innlandet,Elverum videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,
 Innlandet,Elverum videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2022,2,,open
 Innlandet,Elverum videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2023,2,,open
 Innlandet,Elverum videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,,open
-Innlandet,Elverum videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,0.0,points
-Innlandet,Elverum videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,0.0,points
+Innlandet,Elverum videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,0.0,filled_no_points
+Innlandet,Elverum videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Elverum videregående skole,Idrettsfag,0,ID,IDRET1----,Vg1,2020,2,42.0,points
 Innlandet,Elverum videregående skole,Idrettsfag,0,ID,IDRET1----,Vg1,2021,2,49.3,points
 Innlandet,Elverum videregående skole,Idrettsfag,0,ID,IDRET1----,Vg1,2022,2,45.7,points
@@ -678,7 +678,7 @@ Innlandet,Elverum videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1---
 Innlandet,Elverum videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2023,2,,open
 Innlandet,Elverum videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,26.3,points
 Innlandet,Elverum videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,26.9,points
-Innlandet,Elverum videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,0.0,points
+Innlandet,Elverum videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Elverum videregående skole,"Salg, service og reiseliv, YSK",0,SR,SRSSR1----,Vg1,2021,2,,documentation
 Innlandet,Elverum videregående skole,"Salg, service og reiseliv, YSK",0,SR,SRSSR1----,Vg1,2022,2,,documentation
 Innlandet,Elverum videregående skole,"Salg, service og reiseliv, YSK",0,SR,SRSSR1----,Vg1,2023,2,,documentation
@@ -727,7 +727,7 @@ Innlandet,Elverum videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,
 Innlandet,Elverum videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,2,45.7,points
 Innlandet,Elverum videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2021,2,,open
 Innlandet,Elverum videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2022,2,,open
-Innlandet,Elverum videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2023,2,0.0,points
+Innlandet,Elverum videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2023,2,0.0,filled_no_points
 Innlandet,Elverum videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,2,26.7,points
 Innlandet,Elverum videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,2,34.4,points
 Innlandet,Elverum videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,2,42.5,points
@@ -793,7 +793,7 @@ Innlandet,Elverum videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2022,2,25.7,po
 Innlandet,Elverum videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2023,2,,open
 Innlandet,Elverum videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2024,2,24.3,points
 Innlandet,Elverum videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2025,2,38.8,points
-Innlandet,Elverum videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2026,2,0.0,points
+Innlandet,Elverum videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2026,2,0.0,filled_no_points
 Innlandet,Gausdal videregående skole,Idrettsfag,0,ID,IDRET1----,Vg1,2020,2,,open
 Innlandet,Gausdal videregående skole,Idrettsfag,0,ID,IDRET1----,Vg1,2021,2,,open
 Innlandet,Gausdal videregående skole,Idrettsfag,0,ID,IDRET1----,Vg1,2022,2,,open
@@ -845,7 +845,7 @@ Innlandet,Gjøvik videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg
 Innlandet,Gjøvik videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2023,2,32.9,points
 Innlandet,Gjøvik videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,2,31.3,points
 Innlandet,Gjøvik videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,29.6,points
-Innlandet,Gjøvik videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,0.0,points
+Innlandet,Gjøvik videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Gjøvik videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2020,2,,open
 Innlandet,Gjøvik videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2021,2,,open
 Innlandet,Gjøvik videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2022,2,,open
@@ -886,7 +886,7 @@ Innlandet,Gjøvik videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg
 Innlandet,Gjøvik videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2022,2,46.4,points
 Innlandet,Gjøvik videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2023,2,31.8,points
 Innlandet,Gjøvik videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,,open
-Innlandet,Gjøvik videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,0.0,points
+Innlandet,Gjøvik videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,0.0,filled_no_points
 Innlandet,Gjøvik videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,2,36.3,points
 Innlandet,Gjøvik videregående skole,"Musikk, dans og drama, drama",0,MD,MDMDD1----,Vg1,2020,2,41.0,points
 Innlandet,Gjøvik videregående skole,"Musikk, dans og drama, drama",0,MD,MDMDD1----,Vg1,2021,2,,open
@@ -900,7 +900,7 @@ Innlandet,Gjøvik videregående skole,"Musikk, dans og drama, musikk",0,MD,MDMDD
 Innlandet,Gjøvik videregående skole,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2022,2,,open
 Innlandet,Gjøvik videregående skole,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2023,2,,open
 Innlandet,Gjøvik videregående skole,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2024,2,,open
-Innlandet,Gjøvik videregående skole,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2025,2,0.0,points
+Innlandet,Gjøvik videregående skole,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2025,2,0.0,filled_no_points
 Innlandet,Gjøvik videregående skole,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2026,2,,open
 Innlandet,Gjøvik videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,2,34.3,points
 Innlandet,Gjøvik videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2021,2,32.3,points
@@ -1062,7 +1062,7 @@ Innlandet,Hadeland videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1
 Innlandet,Hadeland videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2023,2,,open
 Innlandet,Hadeland videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,26.8,points
 Innlandet,Hadeland videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,20.9,points
-Innlandet,Hadeland videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,0.0,points
+Innlandet,Hadeland videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Hadeland videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2021,2,,open
 Innlandet,Hadeland videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2022,2,45.7,points
 Innlandet,Hadeland videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2023,2,,open
@@ -1089,20 +1089,20 @@ Innlandet,Hadeland videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1
 Innlandet,Hadeland videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2023,2,,open
 Innlandet,Hadeland videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,2,,open
 Innlandet,Hadeland videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,2,,open
-Innlandet,Hadeland videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,2,0.0,points
+Innlandet,Hadeland videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Hadeland videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,2,28.7,points
 Innlandet,Hadeland videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2021,2,,open
 Innlandet,Hadeland videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2022,2,39.8,points
 Innlandet,Hadeland videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2023,2,,open
 Innlandet,Hadeland videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,23.1,points
 Innlandet,Hadeland videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,28.7,points
-Innlandet,Hadeland videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,0.0,points
+Innlandet,Hadeland videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Hadeland videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,2,,open
 Innlandet,Hadeland videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,2,,open
 Innlandet,Hadeland videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,2,,open
 Innlandet,Hadeland videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,2,,open
 Innlandet,Hadeland videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,,open
-Innlandet,Hadeland videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,0.0,points
+Innlandet,Hadeland videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,0.0,filled_no_points
 Innlandet,Hadeland videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,22.5,points
 Innlandet,Hadeland videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2020,2,,open
 Innlandet,Hadeland videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2021,2,15.0,points
@@ -1261,7 +1261,7 @@ Innlandet,Hamar katedralskole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2021,2
 Innlandet,Hamar katedralskole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2022,2,44.6,points
 Innlandet,Hamar katedralskole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2023,2,,open
 Innlandet,Hamar katedralskole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,,open
-Innlandet,Hamar katedralskole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,0.0,points
+Innlandet,Hamar katedralskole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,0.0,filled_no_points
 Innlandet,Hamar katedralskole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,2,33.8,points
 Innlandet,Hamar katedralskole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,2,27.9,points
 Innlandet,Hamar katedralskole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2021,2,,open
@@ -1280,14 +1280,14 @@ Innlandet,Hamar katedralskole,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,35
 Innlandet,Hamar katedralskole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2020,2,24.0,points
 Innlandet,Hamar katedralskole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2021,2,,open
 Innlandet,Hamar katedralskole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2022,2,20.0,points
-Innlandet,Hamar katedralskole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2023,2,0.0,points
+Innlandet,Hamar katedralskole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2023,2,0.0,filled_no_points
 Innlandet,Hamar katedralskole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,22.5,points
 Innlandet,Hamar katedralskole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,22.0,points
 Innlandet,Hamar katedralskole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,24.4,points
 Innlandet,Hamar katedralskole,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2020,2,28.9,points
 Innlandet,Hamar katedralskole,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2021,2,,open
 Innlandet,Hamar katedralskole,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2022,2,,open
-Innlandet,Hamar katedralskole,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2023,2,0.0,points
+Innlandet,Hamar katedralskole,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2023,2,0.0,filled_no_points
 Innlandet,Hamar katedralskole,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2024,2,24.3,points
 Innlandet,Hamar katedralskole,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2025,2,32.9,points
 Innlandet,Hamar katedralskole,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2026,2,34.3,points
@@ -1395,7 +1395,7 @@ Innlandet,Jønsberg videregående skole,Teknologi- og industrifag,0,TP,TPTIP1---
 Innlandet,Jønsberg videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2022,2,,open
 Innlandet,Jønsberg videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2023,2,,open
 Innlandet,Jønsberg videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,,open
-Innlandet,Jønsberg videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,0.0,points
+Innlandet,Jønsberg videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,0.0,filled_no_points
 Innlandet,Jønsberg videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,23.3,points
 Innlandet,Jønsberg videregående skole,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2020,2,35.6,points
 Innlandet,Jønsberg videregående skole,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2021,2,,open
@@ -1420,7 +1420,7 @@ Innlandet,Lena-Valle videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,V
 Innlandet,Lena-Valle videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,28.4,points
 Innlandet,Lena-Valle videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2021,2,,open
 Innlandet,Lena-Valle videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2022,2,41.4,points
-Innlandet,Lena-Valle videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2023,2,0.0,points
+Innlandet,Lena-Valle videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2023,2,0.0,filled_no_points
 Innlandet,Lena-Valle videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2024,2,34.1,points
 Innlandet,Lena-Valle videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2025,2,42.2,points
 Innlandet,Lena-Valle videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2026,2,36.7,points
@@ -1542,8 +1542,8 @@ Innlandet,"Lillehammer videreg skole, avd Nord",Bygg- og anleggsteknikk,0,BA,BAB
 Innlandet,"Lillehammer videreg skole, avd Nord",Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2022,2,26.7,points
 Innlandet,"Lillehammer videreg skole, avd Nord",Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2023,2,,open
 Innlandet,"Lillehammer videreg skole, avd Nord",Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,2,,open
-Innlandet,"Lillehammer videreg skole, avd Nord",Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,0.0,points
-Innlandet,"Lillehammer videreg skole, avd Nord",Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,0.0,points
+Innlandet,"Lillehammer videreg skole, avd Nord",Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,0.0,filled_no_points
+Innlandet,"Lillehammer videreg skole, avd Nord",Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,"Lillehammer videreg skole, avd Nord",Elektro og datateknologi,0,EL,ELELE1----,Vg1,2020,2,33.7,points
 Innlandet,"Lillehammer videreg skole, avd Nord",Elektro og datateknologi,0,EL,ELELE1----,Vg1,2021,2,,open
 Innlandet,"Lillehammer videreg skole, avd Nord",Elektro og datateknologi,0,EL,ELELE1----,Vg1,2022,2,39.7,points
@@ -1577,7 +1577,7 @@ Innlandet,"Lillehammer videreg skole, avd Nord",Teknologi- og industrifag,0,TP,T
 Innlandet,"Lillehammer videreg skole, avd Nord",Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2022,2,33.1,points
 Innlandet,"Lillehammer videreg skole, avd Nord",Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2023,2,,open
 Innlandet,"Lillehammer videreg skole, avd Nord",Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,28.0,points
-Innlandet,"Lillehammer videreg skole, avd Nord",Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,0.0,points
+Innlandet,"Lillehammer videreg skole, avd Nord",Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,0.0,filled_no_points
 Innlandet,"Lillehammer videreg skole, avd Nord",Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,32.0,points
 Innlandet,"Lillehammer videreg skole, avd Nord",Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2020,2,32.2,points
 Innlandet,"Lillehammer videreg skole, avd Nord",Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2021,2,38.8,points
@@ -1660,31 +1660,31 @@ Innlandet,"Lillehammer videreg skole, avd Sør",Informasjonsteknologi og mediepr
 Innlandet,"Lillehammer videreg skole, avd Sør",Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2023,2,33.2,points
 Innlandet,"Lillehammer videreg skole, avd Sør",Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,2,,open
 Innlandet,"Lillehammer videreg skole, avd Sør",Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,2,33.8,points
-Innlandet,"Lillehammer videreg skole, avd Sør",Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,2,0.0,points
+Innlandet,"Lillehammer videreg skole, avd Sør",Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,"Lillehammer videreg skole, avd Sør","Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2021,2,,open
 Innlandet,"Lillehammer videreg skole, avd Sør","Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2022,2,,open
 Innlandet,"Lillehammer videreg skole, avd Sør","Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2023,2,,open
 Innlandet,"Lillehammer videreg skole, avd Sør","Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,2,35.0,points
 Innlandet,"Lillehammer videreg skole, avd Sør","Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,2,26.3,points
-Innlandet,"Lillehammer videreg skole, avd Sør","Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2026,2,0.0,points
+Innlandet,"Lillehammer videreg skole, avd Sør","Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,"Lillehammer videreg skole, avd Sør",Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2020,2,,open
 Innlandet,"Lillehammer videreg skole, avd Sør",Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2021,2,,open
 Innlandet,"Lillehammer videreg skole, avd Sør",Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2022,2,,open
 Innlandet,"Lillehammer videreg skole, avd Sør",Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2023,2,,open
 Innlandet,"Lillehammer videreg skole, avd Sør",Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,2,,open
 Innlandet,"Lillehammer videreg skole, avd Sør",Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,2,27.7,points
-Innlandet,"Lillehammer videreg skole, avd Sør",Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,2,0.0,points
+Innlandet,"Lillehammer videreg skole, avd Sør",Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,"Lillehammer videreg skole, avd Sør","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,2,27.6,points
 Innlandet,"Lillehammer videreg skole, avd Sør","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2021,2,,open
 Innlandet,"Lillehammer videreg skole, avd Sør","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2022,2,,open
-Innlandet,"Lillehammer videreg skole, avd Sør","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2023,2,0.0,points
+Innlandet,"Lillehammer videreg skole, avd Sør","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2023,2,0.0,filled_no_points
 Innlandet,"Lillehammer videreg skole, avd Sør","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,26.9,points
-Innlandet,"Lillehammer videreg skole, avd Sør","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,0.0,points
+Innlandet,"Lillehammer videreg skole, avd Sør","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,0.0,filled_no_points
 Innlandet,"Lillehammer videreg skole, avd Sør","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,33.3,points
 Innlandet,"Lillehammer videreg skole, avd Sør",Studiespesialisering,0,ST,STUSP1----,Vg1,2020,2,37.3,points
 Innlandet,"Lillehammer videreg skole, avd Sør",Studiespesialisering,0,ST,STUSP1----,Vg1,2021,2,,open
 Innlandet,"Lillehammer videreg skole, avd Sør",Studiespesialisering,0,ST,STUSP1----,Vg1,2022,2,,open
-Innlandet,"Lillehammer videreg skole, avd Sør",Studiespesialisering,0,ST,STUSP1----,Vg1,2023,2,0.0,points
+Innlandet,"Lillehammer videreg skole, avd Sør",Studiespesialisering,0,ST,STUSP1----,Vg1,2023,2,0.0,filled_no_points
 Innlandet,"Lillehammer videreg skole, avd Sør",Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,36.3,points
 Innlandet,"Lillehammer videreg skole, avd Sør",Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,36.9,points
 Innlandet,"Lillehammer videreg skole, avd Sør",Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,37.1,points
@@ -1784,7 +1784,7 @@ Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta","Salg, service og reiseliv",0,SR,SR
 Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2023,2,17.5,points
 Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,2,,open
 Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,2,,open
-Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,0.0,points
+Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta","Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",Studiespesialisering,0,ST,STUSP1----,Vg1,2020,2,,open
 Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",Studiespesialisering,0,ST,STUSP1----,Vg1,2021,2,,open
 Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",Studiespesialisering,0,ST,STUSP1----,Vg1,2022,2,,open
@@ -1798,7 +1798,7 @@ Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",Teknologi- og industrifag,0,TP,TPTI
 Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2023,2,22.5,points
 Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,,open
 Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,26.7,points
-Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,0.0,points
+Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2020,2,26.0,points
 Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2021,2,,open
 Innlandet,"Nord-Gudbrandsdal vgs, avd. Otta",Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2022,2,,open
@@ -1906,7 +1906,7 @@ Innlandet,Nord-Østerdal videregående skole,Teknologi- og industrifag,0,TP,TPTI
 Innlandet,Nord-Østerdal videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2023,2,36.2,points
 Innlandet,Nord-Østerdal videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,33.5,points
 Innlandet,Nord-Østerdal videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,28.7,points
-Innlandet,Nord-Østerdal videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,0.0,points
+Innlandet,Nord-Østerdal videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Nord-Østerdal videregående skole,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2020,2,34.4,points
 Innlandet,Nord-Østerdal videregående skole,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2021,2,,open
 Innlandet,Nord-Østerdal videregående skole,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2022,2,35.0,points
@@ -2006,19 +2006,19 @@ Innlandet,Raufoss videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,
 Innlandet,Raufoss videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2023,2,,open
 Innlandet,Raufoss videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,,open
 Innlandet,Raufoss videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,26.9,points
-Innlandet,Raufoss videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,0.0,points
+Innlandet,Raufoss videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Raufoss videregående skole,"Helse- og oppvekstfag, ambulansefag, SK 3 år",0,HS,HSHSF1----,Vg1,2020,2,40.0,points
 Innlandet,Raufoss videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2020,2,,open
 Innlandet,Raufoss videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2021,2,,open
 Innlandet,Raufoss videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2022,2,24.9,points
-Innlandet,Raufoss videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2023,2,0.0,points
+Innlandet,Raufoss videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2023,2,0.0,filled_no_points
 Innlandet,Raufoss videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,2,,open
 Innlandet,Raufoss videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,2,,open
 Innlandet,Raufoss videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,2,,open
 Innlandet,Raufoss videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2020,2,22.2,points
 Innlandet,Raufoss videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2021,2,,open
 Innlandet,Raufoss videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2022,2,29.6,points
-Innlandet,Raufoss videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2023,2,0.0,points
+Innlandet,Raufoss videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2023,2,0.0,filled_no_points
 Innlandet,Raufoss videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,26.3,points
 Innlandet,Raufoss videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,30.0,points
 Innlandet,Raufoss videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,33.3,points
@@ -2084,7 +2084,7 @@ Innlandet,Raufoss videregående skole,Matfag,0,RM,RMMFG2----,Vg2,2020,2,23.3,poi
 Innlandet,Raufoss videregående skole,Matproduksjon,0,RM,RMMPR2----,Vg2,2021,2,,open
 Innlandet,Raufoss videregående skole,Matproduksjon,0,RM,RMMPR2----,Vg2,2022,2,,open
 Innlandet,Raufoss videregående skole,Matproduksjon,0,RM,RMMPR2----,Vg2,2024,2,,open
-Innlandet,Raufoss videregående skole avd Dokka,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,0.0,points
+Innlandet,Raufoss videregående skole avd Dokka,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Ringsaker videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,2,26.0,points
 Innlandet,Ringsaker videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2021,2,,open
 Innlandet,Ringsaker videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2022,2,,open
@@ -2109,7 +2109,7 @@ Innlandet,Ringsaker videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg
 Innlandet,Ringsaker videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2020,2,38.2,points
 Innlandet,Ringsaker videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2021,2,,open
 Innlandet,Ringsaker videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2022,2,39.3,points
-Innlandet,Ringsaker videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2023,2,0.0,points
+Innlandet,Ringsaker videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2023,2,0.0,filled_no_points
 Innlandet,Ringsaker videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2024,2,40.6,points
 Innlandet,Ringsaker videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2025,2,33.8,points
 Innlandet,Ringsaker videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2026,2,11.9,points
@@ -2228,7 +2228,7 @@ Innlandet,Ringsaker videregående skole,"Salg, service og sikkerhet",0,SR,SSSSS2
 Innlandet,Ringsaker videregående skole,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2020,2,,open
 Innlandet,Ringsaker videregående skole,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2021,2,,open
 Innlandet,Ringsaker videregående skole,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2022,2,30.0,points
-Innlandet,Ringsaker videregående skole,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2023,2,0.0,points
+Innlandet,Ringsaker videregående skole,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2023,2,0.0,filled_no_points
 Innlandet,Ringsaker videregående skole,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2024,2,,open
 Innlandet,Ringsaker videregående skole,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2025,2,,open
 Innlandet,Ringsaker videregående skole,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2026,2,,open
@@ -2255,7 +2255,7 @@ Innlandet,Sentrum videregående skole,"Frisør, blomster, interiør og eksponeri
 Innlandet,Sentrum videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2023,2,,open
 Innlandet,Sentrum videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,2,,open
 Innlandet,Sentrum videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,2,15.7,points
-Innlandet,Sentrum videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2026,2,0.0,points
+Innlandet,Sentrum videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Sentrum videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,2,,open
 Innlandet,Sentrum videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2021,2,,open
 Innlandet,Sentrum videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2022,2,11.4,points
@@ -2290,7 +2290,7 @@ Innlandet,Sentrum videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg
 Innlandet,Sentrum videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2023,2,,open
 Innlandet,Sentrum videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,2,37.9,points
 Innlandet,Sentrum videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,2,,open
-Innlandet,Sentrum videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,2,0.0,points
+Innlandet,Sentrum videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Sentrum videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2020,2,20.0,points
 Innlandet,Sentrum videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2021,2,,open
 Innlandet,Sentrum videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2022,2,,open
@@ -2447,21 +2447,21 @@ Innlandet,Solør videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1
 Innlandet,Solør videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2023,2,,open
 Innlandet,Solør videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,2,,open
 Innlandet,Solør videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,,open
-Innlandet,Solør videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,0.0,points
+Innlandet,Solør videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Solør videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2020,2,,open
 Innlandet,Solør videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2021,2,,open
 Innlandet,Solør videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2022,2,35.0,points
 Innlandet,Solør videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2023,2,23.9,points
 Innlandet,Solør videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,2,26.4,points
-Innlandet,Solør videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,0.0,points
+Innlandet,Solør videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,2,0.0,filled_no_points
 Innlandet,Solør videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,2,37.5,points
 Innlandet,Solør videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,2,,open
 Innlandet,Solør videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2021,2,,open
 Innlandet,Solør videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2022,2,,open
 Innlandet,Solør videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2023,2,23.5,points
 Innlandet,Solør videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,26.3,points
-Innlandet,Solør videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,0.0,points
-Innlandet,Solør videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,0.0,points
+Innlandet,Solør videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,0.0,filled_no_points
+Innlandet,Solør videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Solør videregående skole,Naturbruk,0,NA,NANAB1----,Vg1,2020,2,,open
 Innlandet,Solør videregående skole,Naturbruk,0,NA,NANAB1----,Vg1,2021,2,,open
 Innlandet,Solør videregående skole,Naturbruk,0,NA,NANAB1----,Vg1,2022,2,10.0,points
@@ -2477,9 +2477,9 @@ Innlandet,Solør videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,V
 Innlandet,Solør videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2021,2,27.1,points
 Innlandet,Solør videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2022,2,25.3,points
 Innlandet,Solør videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2023,2,,open
-Innlandet,Solør videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,0.0,points
+Innlandet,Solør videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,0.0,filled_no_points
 Innlandet,Solør videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,23.1,points
-Innlandet,Solør videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,0.0,points
+Innlandet,Solør videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Solør videregående skole,Ambulansefag,0,HS,HSAMB2----,Vg2,2023,2,42.5,points
 Innlandet,Solør videregående skole,Ambulansefag,0,HS,HSAMB2----,Vg2,2024,2,43.8,points
 Innlandet,Solør videregående skole,Ambulansefag,0,HS,HSAMB2----,Vg2,2025,2,41.3,points
@@ -2561,8 +2561,8 @@ Innlandet,Stange videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1
 Innlandet,Stange videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2022,2,15.0,points
 Innlandet,Stange videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2023,2,,open
 Innlandet,Stange videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,2,,open
-Innlandet,Stange videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,0.0,points
-Innlandet,Stange videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,0.0,points
+Innlandet,Stange videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,2,0.0,filled_no_points
+Innlandet,Stange videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Stange videregående skole,Idrettsfag,0,ID,IDRET1----,Vg1,2020,2,39.3,points
 Innlandet,Stange videregående skole,Idrettsfag,0,ID,IDRET1----,Vg1,2021,2,,open
 Innlandet,Stange videregående skole,Idrettsfag,0,ID,IDRET1----,Vg1,2022,2,42.1,points
@@ -2686,7 +2686,7 @@ Innlandet,Storhamar videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg
 Innlandet,Storhamar videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2023,2,,open
 Innlandet,Storhamar videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,2,,open
 Innlandet,Storhamar videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,2,24.3,points
-Innlandet,Storhamar videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,2,0.0,points
+Innlandet,Storhamar videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Storhamar videregående skole,Baker og konditor,0,RM,RMBAK2----,Vg2,2021,2,,open
 Innlandet,Storhamar videregående skole,Baker og konditor,0,RM,RMBAK2----,Vg2,2022,2,,open
 Innlandet,Storhamar videregående skole,Baker og konditor,0,RM,RMBAK2----,Vg2,2023,2,,open
@@ -2696,7 +2696,7 @@ Innlandet,Storhamar videregående skole,Baker og konditor,0,RM,RMBAK2----,Vg2,20
 Innlandet,Storhamar videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2020,2,42.2,points
 Innlandet,Storhamar videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2021,2,33.8,points
 Innlandet,Storhamar videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2022,2,30.0,points
-Innlandet,Storhamar videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2023,2,0.0,points
+Innlandet,Storhamar videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2023,2,0.0,filled_no_points
 Innlandet,Storhamar videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,2,21.3,points
 Innlandet,Storhamar videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,2,,open
 Innlandet,Storhamar videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,2,31.3,points
@@ -2751,14 +2751,14 @@ Innlandet,Storsteigen videregående skole,Naturbruk,0,NA,NANAB1----,Vg1,2022,2,3
 Innlandet,Storsteigen videregående skole,Naturbruk,0,NA,NANAB1----,Vg1,2023,2,25.9,points
 Innlandet,Storsteigen videregående skole,Naturbruk,0,NA,NANAB1----,Vg1,2024,2,27.9,points
 Innlandet,Storsteigen videregående skole,Naturbruk,0,NA,NANAB1----,Vg1,2025,2,37.5,points
-Innlandet,Storsteigen videregående skole,Naturbruk,0,NA,NANAB1----,Vg1,2026,2,0.0,points
+Innlandet,Storsteigen videregående skole,Naturbruk,0,NA,NANAB1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Storsteigen videregående skole,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2020,2,,open
 Innlandet,Storsteigen videregående skole,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2021,2,,open
 Innlandet,Storsteigen videregående skole,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2022,2,,open
 Innlandet,Storsteigen videregående skole,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2023,2,,open
 Innlandet,Storsteigen videregående skole,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2024,2,,open
 Innlandet,Storsteigen videregående skole,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2025,2,,open
-Innlandet,Storsteigen videregående skole,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2026,2,0.0,points
+Innlandet,Storsteigen videregående skole,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Storsteigen videregående skole,Heste- og dyrefag,0,NA,NAHDF2----,Vg2,2021,2,,open
 Innlandet,Storsteigen videregående skole,Heste- og dyrefag,0,NA,NAHDF2----,Vg2,2022,2,,open
 Innlandet,Storsteigen videregående skole,Heste- og dyrefag,0,NA,NAHDF2----,Vg2,2023,2,,open
@@ -2862,7 +2862,7 @@ Innlandet,Valdres vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,
 Innlandet,Valdres vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2023,2,,open
 Innlandet,Valdres vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,2,36.9,points
 Innlandet,Valdres vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,2,28.8,points
-Innlandet,Valdres vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,0.0,points
+Innlandet,Valdres vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Valdres vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2020,2,41.8,points
 Innlandet,Valdres vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2021,2,,open
 Innlandet,Valdres vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2022,2,33.6,points
@@ -2890,7 +2890,7 @@ Innlandet,Valdres vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,
 Innlandet,Valdres vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2023,2,32.3,points
 Innlandet,Valdres vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,2,,open
 Innlandet,Valdres vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,2,27.1,points
-Innlandet,Valdres vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,0.0,points
+Innlandet,Valdres vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,2,0.0,filled_no_points
 Innlandet,Valdres vidaregåande skule,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2020,2,33.3,points
 Innlandet,Valdres vidaregåande skule,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2021,2,,open
 Innlandet,Valdres vidaregåande skule,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2022,2,26.3,points
@@ -2946,7 +2946,7 @@ Innlandet,Valdres vidaregåande skule,Realfag,0,ST,STREA2----,Vg2,2026,2,,open
 Innlandet,Valdres vidaregåande skule,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2020,2,,open
 Innlandet,Valdres vidaregåande skule,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2021,2,,open
 Innlandet,Valdres vidaregåande skule,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2022,2,,open
-Innlandet,Valdres vidaregåande skule,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2023,2,0.0,points
+Innlandet,Valdres vidaregåande skule,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2023,2,0.0,filled_no_points
 Innlandet,Valdres vidaregåande skule,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2024,2,,open
 Innlandet,Valdres vidaregåande skule,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2025,2,28.9,points
 Innlandet,Valdres vidaregåande skule,"Språk, samfunn og økonomi",0,ST,STSSA2----,Vg2,2026,2,,open
@@ -3089,9 +3089,9 @@ Innlandet,Øvrebyen videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1-
 Innlandet,Øvrebyen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,2,35.3,points
 Innlandet,Øvrebyen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,2,,open
 Innlandet,Øvrebyen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,2,,open
-Innlandet,Øvrebyen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,2,0.0,points
+Innlandet,Øvrebyen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,2,0.0,filled_no_points
 Innlandet,Øvrebyen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,2,35.0,points
-Innlandet,Øvrebyen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,0.0,points
+Innlandet,Øvrebyen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,2,0.0,filled_no_points
 Innlandet,Øvrebyen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,2,25.9,points
 Innlandet,Øvrebyen videregående skole,Idrettsfag,1,ID,IDIDR2----,Vg2,2020,2,32.5,points
 Innlandet,Øvrebyen videregående skole,Idrettsfag,1,ID,IDIDR2----,Vg2,2021,2,,open
@@ -9321,7 +9321,7 @@ Vestland,Arna vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,20
 Vestland,Arna vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2022,1,22.3,points
 Vestland,Arna vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2023,3,,open
 Vestland,Arna vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,1,26.0,points
-Vestland,Arna vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,1,0.0,points
+Vestland,Arna vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,1,0.0,filled_no_points
 Vestland,Arna vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,1,,open
 Vestland,Arna vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,1,17.3,points
 Vestland,Arna vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2021,1,32.5,points
@@ -9331,7 +9331,7 @@ Vestland,Arna vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024
 Vestland,Arna vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,,open
 Vestland,Arna vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,1,,open
 Vestland,Arna vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2023,3,30.7,points
-Vestland,Arna vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,1,0.0,points
+Vestland,Arna vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,1,0.0,filled_no_points
 Vestland,Arna vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,1,28.0,points
 Vestland,Arna vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,1,42.4,points
 Vestland,Arna vidaregåande skule,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2020,1,36.7,points
@@ -9704,7 +9704,7 @@ Vestland,Eid vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1
 Vestland,Eid vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,28.7,points
 Vestland,Eid vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,31.5,points
 Vestland,Eid vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,3,31.9,points
-Vestland,Eid vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,0.0,points
+Vestland,Eid vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,0.0,filled_no_points
 Vestland,Eid vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,23.1,points
 Vestland,Eid vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,30.0,points
 Vestland,Eid vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,1,29.3,points
@@ -9885,12 +9885,12 @@ Vestland,Flora vidaregåande skule,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg
 Vestland,Flora vidaregåande skule,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2023,3,,open
 Vestland,Flora vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2021,1,28.9,points
 Vestland,Flora vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2022,1,24.7,points
-Vestland,Flora vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,1,0.0,points
+Vestland,Flora vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,1,0.0,filled_no_points
 Vestland,Flora vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,26.0,points
 Vestland,Flora vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,42.7,points
 Vestland,Flora vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2022,1,32.9,points
 Vestland,Flora vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2023,3,,open
-Vestland,Flora vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,0.0,points
+Vestland,Flora vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,1,0.0,filled_no_points
 Vestland,Flora vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,36.6,points
 Vestland,Flora vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,1,37.6,points
 Vestland,Flora vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,1,23.8,points
@@ -10632,7 +10632,7 @@ Vestland,Måløy vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2
 Vestland,Måløy vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2022,1,21.7,points
 Vestland,Måløy vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2023,3,,open
 Vestland,Måløy vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,1,40.0,points
-Vestland,Måløy vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,1,0.0,points
+Vestland,Måløy vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,1,0.0,filled_no_points
 Vestland,Måløy vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,1,,open
 Vestland,Måløy vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,44.0,points
 Vestland,Måløy vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2021,1,33.3,points
@@ -11190,7 +11190,7 @@ Vestland,Sogndal vidaregåande skule,Medier og kommunikasjon,0,MK,MKMED1----,Vg1
 Vestland,Sogndal vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2020,1,22.7,points
 Vestland,Sogndal vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2022,1,31.7,points
 Vestland,Sogndal vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2023,3,,open
-Vestland,Sogndal vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,1,0.0,points
+Vestland,Sogndal vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,1,0.0,filled_no_points
 Vestland,Sogndal vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,1,25.3,points
 Vestland,Sogndal vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,1,,open
 Vestland,Sogndal vidaregåande skule,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,1,32.5,points
@@ -11713,7 +11713,7 @@ Vestland,Voss gymnas,Idrettsfag,0,ID,IDRET1----,Vg1,2020,1,38.0,points
 Vestland,Voss gymnas,Idrettsfag,0,ID,IDRET1----,Vg1,2021,1,28.0,points
 Vestland,Voss gymnas,Idrettsfag,0,ID,IDRET1----,Vg1,2022,1,21.4,points
 Vestland,Voss gymnas,Idrettsfag,0,ID,IDRET1----,Vg1,2023,3,,open
-Vestland,Voss gymnas,Idrettsfag,0,ID,IDRET1----,Vg1,2024,1,0.0,points
+Vestland,Voss gymnas,Idrettsfag,0,ID,IDRET1----,Vg1,2024,1,0.0,filled_no_points
 Vestland,Voss gymnas,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,31.9,points
 Vestland,Voss gymnas,Idrettsfag,0,ID,IDRET1----,Vg1,2026,1,37.2,points
 Vestland,Voss gymnas,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2020,1,32.7,points
@@ -11741,7 +11741,7 @@ Vestland,Voss gymnas,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,1,30.7,
 Vestland,Voss gymnas,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2023,3,,open
 Vestland,Voss gymnas,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2021,1,26.3,points
 Vestland,Voss gymnas,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2022,1,28.5,points
-Vestland,Voss gymnas,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,1,0.0,points
+Vestland,Voss gymnas,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,1,0.0,filled_no_points
 Vestland,Voss gymnas,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,,open
 Vestland,Voss gymnas,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,1,,open
 Vestland,Voss gymnas,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,1,27.0,points
@@ -11824,7 +11824,7 @@ Vestland,Voss vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2021
 Vestland,Voss vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2022,1,35.4,points
 Vestland,Voss vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2023,3,,open
 Vestland,Voss vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,1,43.8,points
-Vestland,Voss vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,1,0.0,points
+Vestland,Voss vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,1,0.0,filled_no_points
 Vestland,Voss vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,1,,open
 Vestland,Voss vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,1,35.3,points
 Vestland,Voss vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2021,1,34.4,points

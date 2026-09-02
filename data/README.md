@@ -13,3 +13,10 @@ never edited by hand. Data: [NLOD 2.0](https://data.norge.no/nlod/no/2.0)
   series × held-out year.
 - `source-drift.json`: cells where two county publications disagree; the newer
   edition wins unless the disagreement is a dropped digit (`reason`).
+
+The `status` column of `samples` (and of `samples.csv`) says what each cell is:
+`points` (a poenggrense; `points` holds it), `filled_no_points` (the programme
+filled but the last admitted had no registered points; `points` is 0.0 and must
+stay out of any average), `open` (ingen venteliste), `priority` (fortrinnsrett),
+`documentation` (inntak etter dokumentasjon) and `discontinued` (utgått). Only
+`points` rows carry a figure that can be averaged.

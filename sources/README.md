@@ -5,9 +5,9 @@ that `.venv/bin/python3 tools/refresh.py` rebuilds the dataset from a clone
 with nothing else on disk. Each extractor under `tools/extractors/` reads its
 county's folder; `tools/parse_pdfs.py` reads `rogaland/`. Nothing here is
 edited by hand: a file is either the county's own document or an extract the
-county sent, its content untouched. Document metadata (the author and
-last-modified-by fields of the Excel extracts and of the PDFs released on
-request, which named individual officials) has been stripped; nothing else.
+county sent, its content untouched. Document metadata (author, last-modified-by
+and author e-mail fields, which named individual officials) has been stripped
+from every file here; nothing else.
 
 Public records of the fylkeskommuner, reproduced for reproducibility; data
 derived from them is published under NLOD 2.0.
@@ -85,8 +85,10 @@ columns keyed by Grep code, no intake round stated.
 
 ## vestland
 
-`vestland_<year>_1inntak.pdf` and `_3inntak.pdf` for 2020/21 through 2026/27
-are the county's poenggrenser PDFs for 1. and 3. inntaksomgang
+`vestland_<year>_1inntak.pdf` and `_3inntak.pdf` are the county's poenggrenser
+PDFs for 1. and 3. inntak: both rounds for 2020/21, 2024/25, 2025/26 and
+2026/27, 1. inntak only for 2021/22 and 2022/23, 3. inntak only for 2023/24
+(eleven files; the county's page no longer offers the others)
 (<https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/>),
 Vg1. `hordaland_2018_1inntak_bergen-st.pdf` and
 `hordaland_2019_1inntak_bergen-st.pdf` are Hordaland fylkeskommune's two press

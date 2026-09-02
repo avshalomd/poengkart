@@ -137,13 +137,13 @@ export default async function handler(req, res) {
 
   // Counted before the honeypot, so a bot that trips it still spends its quota.
   const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
-  if (limited(ip)) return res.status(429).json({ error: 'rate_limited' });
+  if (limited(ip)) { res.setHeader('Retry-After', '600'); return res.status(429).json({ error: 'rate_limited' }); }
 
   // Honeypot: a real person never fills a field they cannot see. Answer 200 so
   // a bot learns nothing from the difference.
   if (clean(body.website, 50)) return res.status(200).json({ ok: true });
 
-  if (dayFull()) return res.status(429).json({ error: 'daily_cap' });
+  if (dayFull()) { res.setHeader('Retry-After', '3600'); return res.status(429).json({ error: 'daily_cap' }); }
 
   const type = TYPES.has(body.type) ? body.type : 'annet';
   const message = multiline(body.message, MAX.message);

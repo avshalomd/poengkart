@@ -222,8 +222,6 @@
      down 20px and clearing it pulled it back up */
   #cat-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; min-height: 14px; }
   /* the county note only exists while it has something to say */
-  #fylke-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; }
-  #fylke-note:empty { display: none; }
   #pts-field { margin-top: 10px; }
   .ptsrow { display: flex; gap: 6px; align-items: center; }
   .ptsrow input {
@@ -283,6 +281,15 @@
   @media (max-width: 560px) {
     #calc .subj .n { font-size: 12px; }
     #calc .grades button { width: 30px; height: 30px; }
+  }
+  /* Six grades, a remove slot and the gaps come to 236px, so inside the 270px
+     sheet body of a 375px phone the subject name was left 34px — every name ran
+     under the buttons, "Samfunnsfag" by 31px and "Matematikk" by 24px. There is
+     no width to win back at that size, so the row stacks instead: the name on
+     its own line, the grades under it. Above ~440px the name has room again. */
+  @media (max-width: 460px) {
+    #calc .subj { flex-wrap: wrap; row-gap: 3px; padding: 7px 0; }
+    #calc .subj .n { flex: 1 0 100%; }
   }
   /* ---------- search overlay (design C trial) ---------- */
   #searchov { align-items: flex-start; }
@@ -869,11 +876,6 @@
   #chart-tip .r { color: var(--ink-2); font-variant-numeric: tabular-nums; }
 
   /* program list */
-  .tools { padding: 2px 18px 10px; }
-  .tools input {
-    width: 100%; padding: 8px 12px; font: inherit; font-size: 13px; border: 1px solid var(--line-strong);
-    border-radius: 10px; background: var(--page); color: var(--ink); outline-offset: 2px;
-  }
   .cat-head {
     display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left;
     border: none; background: none; cursor: pointer;
@@ -909,6 +911,12 @@
   .prow .val { font-size: 13.5px; font-weight: 650; font-variant-numeric: tabular-nums; flex: none; width: 68px; text-align: right; }
   .prow .val small { display: block; font-weight: 400; font-size: 9px; color: var(--ink-3); }
   .prow .val .soft { color: var(--ink-2); font-weight: 500; font-size: 11.5px; }
+  /* A state label is a word, not a number: "Dokumentasjon" (85px), the English
+     "Documentation" (84px) and "Discontinued" (72px) do not fit the 68px number
+     column and, having nowhere to wrap, ran out under the pick button. A row
+     carrying one borrows the width from the name; the numbers keep the fixed
+     column so they stay in line. */
+  .prow .val:has(.soft) { width: auto; min-width: 68px; max-width: 92px; }
   .prow .chw { display: flex; align-items: center; gap: 6px; flex: none; }
   .prow .hist { font-size: 10px; color: var(--ink-3); white-space: nowrap; }
   /* not a chip: this says why there is no percentage, so no pill around it */
@@ -941,7 +949,7 @@
     #panel .brand { grid-column: 1 / -1; padding-right: 140px; }
     #panel #view-toggle { grid-column: 1 / -1; margin-bottom: 2px; }
     #panel .brand h1 { font-size: 17px; }
-    #cat-note, #fylke-note { grid-column: 1 / -1; margin-top: 0; min-height: 0; }
+    #cat-note { grid-column: 1 / -1; margin-top: 0; min-height: 0; }
     #pts-field { grid-column: 1 / -1; margin-top: 4px; }
     #pts-note { margin-top: 4px; }
     #choices { grid-column: 1 / -1; margin-top: 8px; padding-top: 7px; }
@@ -1005,7 +1013,6 @@
     .photo .close { width: 40px; height: 40px; font-size: 17px; }
     .meta a { display: inline-block; padding: 8px 0; }
     .tabs button { padding: 8px 13px; font-size: 12.5px; }
-    .tools input { padding: 11px 12px; font-size: 13.5px; }
     .prow { padding-top: 11px; padding-bottom: 11px; }
   }
   /* ---------- short viewports (a phone held sideways) ----------
@@ -1025,8 +1032,8 @@
       width: 430px; display: grid; grid-template-columns: 150px minmax(0, 1fr);
       gap: 8px; align-items: end;
     }
-    #panel .brand, #panel #cat-note, #panel #fylke-note, #panel #view-toggle { grid-column: 1 / -1; }
-    #cat-note, #fylke-note { margin-top: 0; min-height: 0; }
+    #panel .brand, #panel #cat-note, #panel #view-toggle { grid-column: 1 / -1; }
+    #cat-note { margin-top: 0; min-height: 0; }
     .field + .field { margin-top: 0; }
   }
   /* The stacked list lays the panel out in flow, so it may have the full width
@@ -1042,7 +1049,7 @@
       gap: 8px 14px; align-items: start;   /* three labels on one baseline */
     }
     body.view-list #panel .brand, body.view-list #panel #view-toggle { grid-column: 1 / -1; }
-    body.view-list #panel #cat-note, body.view-list #panel #fylke-note { grid-column: auto; margin-top: 0; min-height: 0; }
+    body.view-list #panel #cat-note { grid-column: auto; margin-top: 0; min-height: 0; }
     body.view-list #panel .field + .field { margin-top: 0; }
   }
 
@@ -1062,7 +1069,7 @@
      screen. #ov-q was already set to 16px for exactly this reason; these four
      were missed. Last in the sheet so it beats the phone-size rules above. */
   @media (pointer: coarse) {
-    .ptsrow input, .tools input, #contact input, #contact textarea { font-size: 16px; }
+    .ptsrow input, #contact input, #contact textarea { font-size: 16px; }
     /* Touch targets, on touch devices only — the visible controls keep the size
        the design gives them and grow an invisible ::after out to 44px, so
        nothing on a mouse-driven screen loosens up. Each pays sideways only as
@@ -1137,7 +1144,6 @@ try {
           <div id="chart-svg"></div>
         </div>
       </div>
-      <div class="tools"><input id="s-filter" type="search"></div>
       <div id="s-list"></div>
       <div id="src-note"></div>
     </div>
@@ -1183,9 +1189,6 @@ try {
     <label id="fylke-label" for="map-fylke"></label>
     <select id="map-fylke" onchange="onMapFylke(this.value)"></select>
   </div>
-  <!-- the select snaps back to its old value when a county without figures is
-       picked, so the reason has to be announced, not only drawn -->
-  <div id="fylke-note" role="status"></div>
   <div class="field">
     <label id="cat-label" for="map-cat"></label>
     <select id="map-cat" onchange="onMapCat(this.value)"></select>
@@ -1535,7 +1538,9 @@ const T = {
     no: 'Programområdet ble fylt opp, men den siste som kom inn hadde ingen poeng registrert. Alle søkere med poeng fikk plass.',
     en: 'The programme filled up, but the last applicant admitted had no registered points. Everyone with points got a place.',
   },
-  priority:   { no: 'Fortrinn', en: 'Priority' },
+  // the official state is fortrinnsrett; "Fortrinn" alone is not Udir's word and
+  // contradicted the badge and the tooltip on the very same row
+  priority:   { no: 'Fortrinnsrett', en: 'Priority right' },
   docAdm:     { no: 'Inntak etter dokumentasjon', en: 'By documentation' },
   docAdmShort:{ no: 'Dokumentasjon', en: 'Documentation' },
   docTitle:   { no: 'Inntak på grunnlag av dokumentasjon (f.eks. IB eller toppidrett) – ingen poenggrense.',
@@ -1560,9 +1565,7 @@ const T = {
                 en: 'Unofficial service by Abshalom Dayan · code MIT, data NLOD 2.0' },
   introPrivacy: { no: 'Personvern: poengene dine lagres bare i nettleseren din. Posisjonen brukes én gang og sendes ikke videre. Besøk telles uten informasjonskapsler (Vercel Web Analytics).',
                   en: 'Privacy: your points are stored only in your browser. Your position is used once and never sent. Visits are counted without cookies (Vercel Web Analytics).' },
-  fylkeNoData: { no: 'Fylker uten tall', en: 'Counties without figures' },
-  fylkeNoDataNote: { no: f => `${f} publiserer ikke poenggrenser. Spør fylkeskommunen – de eneste som har tallene.`,
-                     en: f => `${f} does not publish admission thresholds. Ask the county authority, the only one that has the figures.` },
+  fylkeNoData: { no: '(ingen data)', en: '(no data)' },
   listAnd:    { no: ' og ', en: ' and ' },
   mergedNote: { no: (from, y) => `Skolen ble slått sammen fra ${from} i ${y}. Tall før ${y} er fra disse skolene.`,
                 en: (from, y) => `This school was formed from ${from} in ${y}. Figures before ${y} come from those schools.` },
@@ -1631,7 +1634,6 @@ const T = {
                   en: 'For Vg1 you can apply to at most three different education programmes.' },
   midLabel:   { no: 'snitt', en: 'avg' },
   series:     { no: 'serier', en: 'series' },
-  filterPh:   { no: 'Filtrer programområde …', en: 'Filter programme areas…' },
   website:    { no: 'Nettside', en: 'Website' },
   wiki:       { no: 'Wikipedia', en: 'Wikipedia' },
   srcNote: {
@@ -2364,19 +2366,6 @@ function drawMarkers() {
 }
 
 function onMapFylke(v) {
-  // a county without figures: say so under the select and keep the map where
-  // it was; the note clears on the next real change
-  const fnote = document.getElementById('fylke-note');
-  if (v.startsWith('missing:')) {
-    // the county is remembered so renderControls() can re-render the note in
-    // the other language; without it a NO/EN switch left the old sentence
-    fnote.dataset.county = v.slice(8);
-    fnote.textContent = t('fylkeNoDataNote', fnote.dataset.county);
-    document.getElementById('map-fylke').value = mapFylke;
-    return;
-  }
-  delete fnote.dataset.county;
-  fnote.textContent = '';
   mapFylke = v;
   // a county may not offer the selected category at all; widen rather than
   // leave a blank control over an empty map
@@ -2443,15 +2432,11 @@ function renderPanel() {
       const n = DATA.schools.filter(s => s.fylke === c.fylke && s.lat).length;
       return `<option value="${esc(c.fylke)}">${esc(c.fylke)} (${n})</option>`;
     }).join('');
-  // a parent in Agder should learn here that the county has no figures,
-  // rather than conclude the map forgot their school
+  // the counties without figures are listed, greyed and unselectable, so a
+  // parent in Agder learns the map did not forget their school
   fsel.innerHTML += `<optgroup label="${esc(t('fylkeNoData'))}">` +
-    MISSING_COUNTIES.map(f => `<option value="missing:${esc(f)}">${esc(f)}</option>`).join('') + '</optgroup>';
+    MISSING_COUNTIES.map(f => `<option disabled>${esc(f)}</option>`).join('') + '</optgroup>';
   fsel.value = mapFylke;
-  // renderPanel() runs on every language change: the standing "no figures"
-  // note has to follow the language too, not stay in the one it was written in
-  const fnote = document.getElementById('fylke-note');
-  if (fnote.dataset.county) fnote.textContent = t('fylkeNoDataNote', fnote.dataset.county);
   const present = new Set();
   DATA.schools.filter(s => mapFylke === 'all' || s.fylke === mapFylke)
     .forEach(s => s.programs.forEach(p => present.add(p.category)));
@@ -2470,9 +2455,14 @@ function renderCatNote() {
       && s.programs.some(p => p.category === mapCat)).length);
 }
 function liftMapControls() {
-  // offsetHeight is 0 whenever the legend is hidden — by attribute OR by the
-  // view-list / side-open CSS — so it doubles as the visibility test
-  const h = document.getElementById('legend')?.offsetHeight || 0;
+  // The rect and not offsetHeight: the text-size setting puts a `zoom` on the
+  // legend, and offsetHeight reports the height BEFORE that zoom — 125px for a
+  // legend really 162px tall at the largest step. Both numbers below were then
+  // short by a third: the map's zoom-out button sat buried under the legend and
+  // the panel ran off the bottom of a phone. The rect is 0 whenever the legend
+  // is hidden — by attribute OR by the view-list / side-open CSS — so it still
+  // doubles as the visibility test.
+  const h = document.getElementById('legend')?.getBoundingClientRect().height || 0;
   const lift = innerWidth <= 560 && h ? h + 12 : 0;
   document.documentElement.style.setProperty('--ctrl-lift', lift + 'px');
   // The panel's height cap used to reserve a flat 150px for the legend, but the
@@ -2482,7 +2472,24 @@ function liftMapControls() {
   // ran 80px under it and hid the bottom of the reader's own choices list.
   // Reserve what the legend actually measures: 22px bottom offset, its height,
   // a 12px gap and the panel's own 14px top.
-  document.documentElement.style.setProperty('--panel-reserve', (h ? h + 48 : 60) + 'px');
+  let gap = h ? h + 48 : 60;
+  // On a phone the panel spans the whole width, so the map's bottom-right
+  // controls have only the strip between the panel and the legend to stand in.
+  // Reserve that strip as well: with the ten wishes vigo allows, the choices
+  // list grew the panel down over the locate and zoom buttons and they stopped
+  // taking taps. The panel scrolls inside itself, so nothing is lost by it.
+  const ctrls = document.querySelector('.leaflet-bottom.leaflet-right');
+  if (innerWidth <= 560 && ctrls) {
+    const cr = ctrls.getBoundingClientRect();
+    if (cr.height) gap = Math.max(gap, innerHeight - cr.top + 12);
+  }
+  // The panel spends that reserve inside its own `zoom`, where a px length is
+  // multiplied by the zoom before it is painted, so `calc(100dvh - gap)` gave a
+  // panel a third too tall at the largest text step. Divide the budget by the
+  // zoom; at z = 1 this is exactly the old `gap`.
+  const z = parseFloat(getComputedStyle(document.getElementById('panel')).zoom) || 1;
+  document.documentElement.style.setProperty(
+    '--panel-reserve', Math.round(innerHeight - (innerHeight - gap) / z) + 'px');
 }
 function renderLegend() {
   const rounds = [...new Set(visibleSchools().map(s => s.round).filter(Boolean))];
@@ -2822,7 +2829,6 @@ function renderSide() {
     cells.map(c => `<div class="cell"${c.ti ? ` title="${esc(c.ti)}"` : ''}>` +
                    `<div class="v ${c.cls || ''}">${c.v}</div><div class="l">${c.l}</div></div>`).join('');
   renderChance(s, lensCat);
-  document.getElementById('s-filter').placeholder = t('filterPh');
   document.getElementById('src-note').textContent = t('srcNote');
   renderChartCard();
   renderList();
@@ -3100,19 +3106,14 @@ function drawChart() {
 
 /* ================= program list ================= */
 function renderList() {
-  const q = (document.getElementById('s-filter').value || '').toLowerCase();
   // One scope for the whole app: the utdanningsprogram lens. Selecting a
   // programme-area row narrows the chart but never the list or the map.
+  // (The programme-area filter box was removed 2 Sept 2026 — the longest list
+  // is 41 rows, short enough to scroll — so the lens is the only filter left.)
   const scope = mapCat !== 'all' ? mapCat : null;
   const base = shownPrograms(current);
   const inScope = base.filter(p => !scope || p.category === scope);
-  const matches = p => p.program.toLowerCase().includes(q)
-                    || (p.program_en || '').toLowerCase().includes(q)
-                    || (p.official || '').toLowerCase().includes(q);
-  const { regular, orphans, prioNames } = partitionPrograms(
-    // search both languages: an English reader types "health", a Norwegian
-    // parent types "helse", and either should find the row
-    inScope.filter(matches));
+  const { regular, orphans, prioNames } = partitionPrograms(inScope);
   const byCat = {};
   [...regular, ...orphans].forEach(p => (byCat[p.category] = byCat[p.category] || []).push(p));
   let html = '';
@@ -3172,9 +3173,9 @@ function renderList() {
     }
   }
   // the disclosure for history: how many rows the recency filter is hiding
-  // from this view (same lens and search), or the way back once shown
+  // from this view (same lens), or the way back once shown
   const hiddenMatch = showOld ? []
-    : current.programs.filter(p => !base.includes(p) && (!scope || p.category === scope) && matches(p));
+    : current.programs.filter(p => !base.includes(p) && (!scope || p.category === scope));
   const anyOld = current.programs.some(p => !isRecent(p, current.fylke));
   let oldBtn = '';
   if (hiddenMatch.length) oldBtn = `<button class="oldnote">${esc(t('oldHidden', hiddenMatch.length))}</button>`;
@@ -4214,7 +4215,6 @@ async function main() {
     if (current) renderSide();
   });
   document.getElementById('side').setAttribute('inert', '');
-  document.getElementById('s-filter').addEventListener('input', renderList);
   const ovq = document.getElementById('ov-q');
   ovq.addEventListener('input', () => {
     ovAct = -1; ovHits = runSearch(ovq.value) || []; renderOvList();

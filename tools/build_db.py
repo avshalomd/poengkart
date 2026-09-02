@@ -8,7 +8,9 @@ Schema:
              identity is (fylke, name) here as everywhere else in the pipeline
   samples(fylke, school, program, occurrence, category, grep_code, level, year, round,
           points REAL NULL, status TEXT)   -- one row per (program, school, year)
-    status: 'points' (points set), 'open' (no waitlist, everyone admitted),
+    status: 'points' (points set), 'filled_no_points' (filled, but the last
+    admitted had no registered points; points is 0.0 and must stay out of any
+    average), 'open' (no waitlist, everyone admitted),
             'priority' (fortrinnsrett quota), 'documentation' (admission by
             documentation, e.g. IB/toppidrett), 'discontinued' (utgått)
     round:  the intake round the figure is from ('1', '2', '3'), NULL where the
@@ -68,7 +70,7 @@ def main():
         year INTEGER NOT NULL,
         round TEXT,
         points REAL,
-        status TEXT NOT NULL CHECK (status IN ('points','open','priority','discontinued','documentation')),
+        status TEXT NOT NULL CHECK (status IN ('points','filled_no_points','open','priority','discontinued','documentation')),
         PRIMARY KEY (fylke, school, program, occurrence, year),
         FOREIGN KEY (fylke, school) REFERENCES schools(fylke, name)
       );
@@ -115,7 +117,7 @@ def main():
             occ_seen[k] = occ + 1
             for year, v in p['values'].items():
                 points = v if isinstance(v, (int, float)) else None
-                status = 'points' if points is not None else STATUS.get(v)
+                status = ('filled_no_points' if points == 0 else 'points') if points is not None else STATUS.get(v)
                 if status is None:
                     continue
                 rnd = (c.get('round_years') or {}).get(str(year)) or s.get('round')
