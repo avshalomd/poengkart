@@ -1,0 +1,241 @@
+{
+ "bucket_url": "https://pub-c369d56420af4a86b26b83c79c442355.r2.dev",
+ "licence": "Public records of the fylkeskommuner; derived data NLOD 2.0",
+ "files": {
+  "akershus/Karaktergrense 2024-2025.xlsx": {
+   "size": 14323,
+   "sha256": "f4bea200eed43bc9f34bc27c75adb88e77fa026ba11526e75d96305a3d436e40",
+   "provenance": "Akershus fylkeskommune. HTML: afk.no poenggrenser page (2025/26). xlsx: released by e-mail on request, asked 25.08.2026, received 27.08.2026 (2024/25 and 2026/27, 2. inntak)."
+  },
+  "akershus/Nedre_poenggrense_Vg1_2026-2027_Akershus_2.inntak.xlsx": {
+   "size": 20533,
+   "sha256": "41a5afc43867b6a2c6f9eac28afd7d4d61b77c6d5e0cbb25427b2dfd626dd0ff",
+   "provenance": "Akershus fylkeskommune. HTML: afk.no poenggrenser page (2025/26). xlsx: released by e-mail on request, asked 25.08.2026, received 27.08.2026 (2024/25 and 2026/27, 2. inntak)."
+  },
+  "akershus/akershus-2025-2026.html": {
+   "size": 488968,
+   "sha256": "8b2518cddc23b12a48163831ca95c8ff0e7d1c566049578a1bcae6acb8233634",
+   "provenance": "Akershus fylkeskommune. HTML: afk.no poenggrenser page (2025/26). xlsx: released by e-mail on request, asked 25.08.2026, received 27.08.2026 (2024/25 and 2026/27, 2. inntak)."
+  },
+  "buskerud/buskerud-2024-2025.html": {
+   "size": 211632,
+   "sha256": "797724ad50d4fe3a9ca839cea8b920502e894e38fec06f4f2252ac958e0a5126",
+   "provenance": "Buskerud fylkeskommune, bfk.no poenggrenser page, saved HTML (2024/25, 2025/26)."
+  },
+  "buskerud/buskerud-2025-2026.html": {
+   "size": 120838,
+   "sha256": "fdd7389caba7fc74db5ac32b2cd3083b551c0b86d3de7d14271ab820d7a10ce2",
+   "provenance": "Buskerud fylkeskommune, bfk.no poenggrenser page, saved HTML (2024/25, 2025/26)."
+  },
+  "innlandet/innlandet-2020-21-mottatt-innsyn.pdf": {
+   "size": 353248,
+   "sha256": "6ee57aebbbce7f891fc207adf1d576257b8b0eabc1247fe50a8eda437e762441",
+   "provenance": "Innlandet fylkeskommune. Rolling matrices from vilbli.no/innlandet (2023-2025, 2024-2026, 2. inntak); 2020-21 and 2021-22 released under innsynskrav, case 2026/1-152, 26.08.2026; the 2026 applicant/admitted counts came with the same reply."
+  },
+  "innlandet/innlandet-2021-2022-mottatt-innsyn.pdf": {
+   "size": 482079,
+   "sha256": "35350f3daba5d693f0ca112bbecdcda5c98500f7a93c58167f793c7fa677ace3",
+   "provenance": "Innlandet fylkeskommune. Rolling matrices from vilbli.no/innlandet (2023-2025, 2024-2026, 2. inntak); 2020-21 and 2021-22 released under innsynskrav, case 2026/1-152, 26.08.2026; the 2026 applicant/admitted counts came with the same reply."
+  },
+  "innlandet/innlandet-2024-2026-2inntak.pdf": {
+   "size": 147428,
+   "sha256": "ec0b262acc9a5a533f6ca43073bef110af5eac7cbd257bd84e09c2b7be988625",
+   "provenance": "Innlandet fylkeskommune. Rolling matrices from vilbli.no/innlandet (2023-2025, 2024-2026, 2. inntak); 2020-21 and 2021-22 released under innsynskrav, case 2026/1-152, 26.08.2026; the 2026 applicant/admitted counts came with the same reply."
+  },
+  "innlandet/innlandet-2026-sokere-og-inntatte-per-skole-og-programomrade.pdf": {
+   "size": 689754,
+   "sha256": "8a149c72b8b13bf1e8ba66b3dfdecd63e4fb69742b8d442107518711eac2f307",
+   "provenance": "Innlandet fylkeskommune. Rolling matrices from vilbli.no/innlandet (2023-2025, 2024-2026, 2. inntak); 2020-21 and 2021-22 released under innsynskrav, case 2026/1-152, 26.08.2026; the 2026 applicant/admitted counts came with the same reply."
+  },
+  "innlandet/innlandet-2026-sum-sokere-og-inntatte-per-skole.pdf": {
+   "size": 206298,
+   "sha256": "62bbe9d031b247e320b622d6bd51d99f91c4a67ce65dde943ba315a651133095",
+   "provenance": "Innlandet fylkeskommune. Rolling matrices from vilbli.no/innlandet (2023-2025, 2024-2026, 2. inntak); 2020-21 and 2021-22 released under innsynskrav, case 2026/1-152, 26.08.2026; the 2026 applicant/admitted counts came with the same reply."
+  },
+  "innlandet/innlandet_2023-2025_2inntak.pdf": {
+   "size": 264065,
+   "sha256": "78e017646874dc5d01557f08ae43e77f21087c0b6175a11f4e918a854bb69bd7",
+   "provenance": "Innlandet fylkeskommune. Rolling matrices from vilbli.no/innlandet (2023-2025, 2024-2026, 2. inntak); 2020-21 and 2021-22 released under innsynskrav, case 2026/1-152, 26.08.2026; the 2026 applicant/admitted counts came with the same reply."
+  },
+  "mro/Inntakspoeng_vg1_siste15ar.xlsx": {
+   "size": 78605,
+   "sha256": "2d342a3d5983e4e2b3b498b152472ef095c4528b973476e20ba8b20ece471b3e",
+   "provenance": "Møre og Romsdal fylkeskommune, Kompetanse- og næringsavdelinga: Excel extract behind the Power BI karakterstatistikk, released by e-mail on request, asked 25.08.2026, received 01.09.2026 (2. inntak, 2012-2026)."
+  },
+  "oslo/oslo-2009-2inntak.pdf": {
+   "size": 5604,
+   "sha256": "558dfe68f7ecf2fbfb3096095d401a203583f4398579e1805712c4c16fc13991",
+   "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
+  },
+  "oslo/oslo-2017.pdf": {
+   "size": 42153,
+   "sha256": "128ee2ee745c168c0cd802c4f6abbf66a728049146995c6a58e4064cb9a7493a",
+   "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
+  },
+  "oslo/oslo-2018.pdf": {
+   "size": 45281,
+   "sha256": "cf17270689282c8abeb39ab0f0e8c1889a5685ad43af9891ccddb3ed354ae26b",
+   "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
+  },
+  "oslo/oslo-2019.pdf": {
+   "size": 285727,
+   "sha256": "fba3f4abbe3bd1754a6865f6a1890da7fa260d42ab700fff134534a138772e70",
+   "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
+  },
+  "oslo/oslo-2020.pdf": {
+   "size": 289029,
+   "sha256": "2af30d574a38cf7ffbdc8399baeb236cfd88280da59b8ae78cfbb4af3201658f",
+   "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
+  },
+  "oslo/oslo-2021.pdf": {
+   "size": 246405,
+   "sha256": "39896e37a3fcaadadb349360f68462b56cab025f51750005115e2d14315ebc95",
+   "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
+  },
+  "oslo/oslo-2022.pdf": {
+   "size": 266897,
+   "sha256": "15e2dff7360d224a287005a1a4f9bd9304bcc176c9ad6870aa8e57688e3feb04",
+   "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
+  },
+  "oslo/oslo-2023.pdf": {
+   "size": 264495,
+   "sha256": "4b17d3e0720c4d7fffefcddd71d169149eedd4f455702705d3cc5ee528d69605",
+   "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
+  },
+  "oslo/oslo-2024.pdf": {
+   "size": 258724,
+   "sha256": "db54cbb25be4f6907f47247bdd24d1281c04a1216a3a5b2728b87e20cf6d6818",
+   "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
+  },
+  "oslo/oslo-2025.pdf": {
+   "size": 266299,
+   "sha256": "26852841e987cbd29e3b7451d4ea82613be6e2652121231bc533b06da32b67c3",
+   "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
+  },
+  "oslo/oslo-2026.html": {
+   "size": 28987,
+   "sha256": "101c89fbdd89be58807651643838f370a33148bfdc358b33e09f6ec156870f39",
+   "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
+  },
+  "rogaland/poenggrenser-rogaland-2019-2020.pdf": {
+   "size": 121108,
+   "sha256": "b1e2381fcaaf9d134ee6f0544410d452d8b351660f356b0ac2a2ad7439289e69",
+   "provenance": "Rogaland fylkeskommune via vilbli.no/rogaland (2. inntak); the 2022-2024 edition from the Wayback Machine."
+  },
+  "rogaland/poenggrenser-rogaland-2021-2022.pdf": {
+   "size": 150372,
+   "sha256": "f955afb12b9104288f0e91cab45666da092fc89d1f55aea6cfc9c1a0dcd5d95f",
+   "provenance": "Rogaland fylkeskommune via vilbli.no/rogaland (2. inntak); the 2022-2024 edition from the Wayback Machine."
+  },
+  "rogaland/poenggrenser-rogaland-2022-2023.pdf": {
+   "size": 145833,
+   "sha256": "7dfb0b0070651930c8e4ae421482aaec51bb978a98d3664ad95b445d2c295d2f",
+   "provenance": "Rogaland fylkeskommune via vilbli.no/rogaland (2. inntak); the 2022-2024 edition from the Wayback Machine."
+  },
+  "rogaland/poenggrenser-rogaland-2022-2024-wayback.pdf": {
+   "size": 714767,
+   "sha256": "7d1a28ecd96f0369893d797a30841369a62474c6684f69fa8f32f7e0c6346ebe",
+   "provenance": "Rogaland fylkeskommune via vilbli.no/rogaland (2. inntak); the 2022-2024 edition from the Wayback Machine."
+  },
+  "rogaland/poenggrenser-rogaland-2023-2024.pdf": {
+   "size": 1163084,
+   "sha256": "49657a8fc08b5303c4657e93c847fef71c25832f69a5ca6e0f41f37c7e39a749",
+   "provenance": "Rogaland fylkeskommune via vilbli.no/rogaland (2. inntak); the 2022-2024 edition from the Wayback Machine."
+  },
+  "rogaland/poenggrenser-rogaland-2023-2025-official.pdf": {
+   "size": 194883,
+   "sha256": "1ac998ed876b2a48214a7d85d1f164b032844e864bbf42f4992ce301c831a143",
+   "provenance": "Rogaland fylkeskommune via vilbli.no/rogaland (2. inntak); the 2022-2024 edition from the Wayback Machine."
+  },
+  "trondelag/trondelag_2025-26_fosen.pdf": {
+   "size": 122775,
+   "sha256": "6b71eaa90ab6c5e9a6c1956fe0760450435fbbd319e4bc79eb6ae9a3842be41e",
+   "provenance": "Trøndelag fylkeskommune via vilbli.no/trondelag, one PDF per inntaksregion (2025/26)."
+  },
+  "trondelag/trondelag_2025-26_innherred-vaernes.pdf": {
+   "size": 126144,
+   "sha256": "889757eae137bce931f9f3290bab259ab83b9a25b7befc45c050da1e847992d9",
+   "provenance": "Trøndelag fylkeskommune via vilbli.no/trondelag, one PDF per inntaksregion (2025/26)."
+  },
+  "trondelag/trondelag_2025-26_namdal.pdf": {
+   "size": 122282,
+   "sha256": "23dba536bc002ca0101587cc82fc9e8d57604246d6c854b9e590de53417d502f",
+   "provenance": "Trøndelag fylkeskommune via vilbli.no/trondelag, one PDF per inntaksregion (2025/26)."
+  },
+  "trondelag/trondelag_2025-26_trondelag-sor.pdf": {
+   "size": 125531,
+   "sha256": "420bb0d27100cb29e9298eb91e5987284589cc9411e4934a0bc2c5859e9c7a2f",
+   "provenance": "Trøndelag fylkeskommune via vilbli.no/trondelag, one PDF per inntaksregion (2025/26)."
+  },
+  "trondelag/trondelag_2025-26_trondheim.pdf": {
+   "size": 128030,
+   "sha256": "bc225bf1bac1436552cd05b7bb349f62cb21a1288b6ffa0c8ea16395195c4517",
+   "provenance": "Trøndelag fylkeskommune via vilbli.no/trondelag, one PDF per inntaksregion (2025/26)."
+  },
+  "vestland/hordaland_2018_1inntak_bergen-st.pdf": {
+   "size": 11926,
+   "sha256": "e627ac04c874b437d0f7337e43f3f5e38c138194f2042e98f5b3cb5c358fdaf6",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/hordaland_2019_1inntak_bergen-st.pdf": {
+   "size": 128542,
+   "sha256": "4c766d132631b062c37eb3df7796fb1f635fba651a79e7976f08001ce6d8fcea",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/vestland_2020-21_1inntak.pdf": {
+   "size": 288212,
+   "sha256": "fac6353f4cfdbb64b6e325173e77c3957e81dfc0d2fcefece482f8e4161d78d5",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/vestland_2020-21_3inntak.pdf": {
+   "size": 285625,
+   "sha256": "c41babd6a2175840fdf810e86d6e4ee2e93eef5f1dd0c20ba8ceea7c866dcd3c",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/vestland_2021-22_1inntak.pdf": {
+   "size": 806290,
+   "sha256": "30937fbd13ddc81022b8fadc022b54062174a68884d85d57ed943e23c0fe51fc",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/vestland_2022-23_1inntak.pdf": {
+   "size": 605996,
+   "sha256": "13f6a0ffbb55e3581dce1b9f49dac410f8a8404a5dfeb8ace09b37e8a651afd3",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/vestland_2023-24_3inntak.pdf": {
+   "size": 667771,
+   "sha256": "49fd6bd5832352bf660a6b8bb9c4a8148eeda456109febaa3c5958c66d8dd522",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/vestland_2024-25_1inntak.pdf": {
+   "size": 489827,
+   "sha256": "1ab24b7b711f247e5e38f55e690366e8e35844a6452371010070b95c13192605",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/vestland_2024-25_3inntak.pdf": {
+   "size": 1022238,
+   "sha256": "e4a67f43d6cf8ee04ac0a664d2c6a51819c1de63ece1cf9775062cb6d0958e58",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/vestland_2025-26_1inntak.pdf": {
+   "size": 444505,
+   "sha256": "b56eabac0ba3679259fae34f6e6b82f88fa07bf24da6b577b35975e12021a464",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/vestland_2025-26_3inntak.pdf": {
+   "size": 168055,
+   "sha256": "e0eaf56da3d932c8edba48e4e2d25ee5a7716be0e19bf56122e87f1f5c0236b8",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/vestland_2026-27_1inntak.pdf": {
+   "size": 543215,
+   "sha256": "32b425c651f46555f24c650bb875b8a6dd167bbf02806a1237083ce3666da158",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/vestland_2026-27_3inntak.pdf": {
+   "size": 169119,
+   "sha256": "f0c30542a3d5306c2636a901230e45bc0bdea8741bf3cb5734561364e0348a96",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  }
+ }
+}

@@ -95,3 +95,14 @@ Vg1. `hordaland_2018_1inntak_bergen-st.pdf` and
 releases on Vg1 studiespesialisering in the Bergen area, each printing the
 previous year's figure beside the current one, which is where 2017–2019 come
 from.
+
+## Mirror
+
+Every file here is mirrored, byte for byte, in a public Cloudflare R2 bucket:
+<https://pub-c369d56420af4a86b26b83c79c442355.r2.dev/> plus the path in
+`manifest.json` (for example `…/innlandet/innlandet-2021-2022-mottatt-innsyn.pdf`).
+`manifest.json` lists each file with its size, SHA-256 and provenance;
+`tools/sources_manifest.py --check` verifies the folder against it and
+`tools/sources_r2.py fetch` restores any missing file from the bucket, so a
+clone without this folder still rebuilds. Objects in the bucket are never
+overwritten: a corrected document gets a new name and a new manifest entry.

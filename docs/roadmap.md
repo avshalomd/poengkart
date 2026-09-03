@@ -32,11 +32,11 @@ list view (Kart ⇄ Liste toggle: the map's filters as a sortable table).
 
 ## Added September 2026 (grilling session)
 
-- **Move large source documents to object storage.** The FOI-released
-  county files (Akershus 2024/2026 xlsx, Innlandet 2020–22 PDFs, the Møre og
-  Romsdal extract) get committed to the repo first so the pipeline is
-  reproducible from a clone; once they grow, move them to Cloudflare R2 (or
-  similar) with the hashes recorded in the repo.
+- **Source documents mirrored to object storage.** Done 3 September 2026:
+  `sources/` stays in git and is mirrored to the public R2 bucket
+  `poengkart-sources`, with `sources/manifest.json` carrying every file's
+  SHA-256 and provenance and `tools/sources_r2.py` doing push and fetch.
+  When the folder outgrows git, drop it from the tree and rely on fetch.
 - **Model the intake round explicitly.** Oslo publishes 1st-intake figures,
   most other counties 2nd, Buskerud and Trøndelag do not say. Today the
   difference is absorbed by the county level and stated in an inline caveat;
@@ -64,9 +64,10 @@ Distribution via the kommune education departments, with a Norwegian
 one-pager attached to a short e-mail.
 
 Owner's own tasks:
-- Ask Møre og Romsdal (same thread as the data) for the filled / not-filled
-  state per programområde, so the county can enter the fill model instead of
-  being treated as always filled. Draft goes in chat first, sent only on his go.
+- Møre og Romsdal was asked on 2 September 2026 (same thread as the data)
+  for the filled / not-filled state per programområde, or places and admitted
+  counts, at 2. inntak; when it arrives the county can enter the fill model
+  instead of being fixed at 1. Chase after a week if no reply.
   *Deferred: owner's own task; until then the model fixes the county's fill probability at 1.*
 - Register `poengkart.no` (domene.no) and cut over during the autumn refresh,
   keeping the vercel.app address as a redirect. The domain is hard-coded in
