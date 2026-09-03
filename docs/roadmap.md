@@ -84,9 +84,11 @@ Agreed product changes:
 - Drop "prototype" from the source note: "uoffisiell" plus the sources line;
   author name and the feedback route in the intro.
   *Done 2 Sept 2026.*
-- County select: a transparent "flere" row that reveals the counties without
-  data, greyed; tapping one says the county does not publish these figures.
-  *Done 2 Sept 2026; the README names the seven counties too.*
+- County select: a greyed "(ingen data)" group lists the counties without
+  data; they cannot be selected.
+  *Done 2 Sept 2026; the README names the seven counties too. The tap-to-explain
+  sentence was dropped on 3 Sept 2026: a disabled option fires no event, and the
+  greyed group already says what it needs to.*
 - Dot colour in chance mode: best programme by default, labelled "beste
   sjanse"; when an utdanningsprogram filter is active, colour by that one.
   *Done 2 Sept 2026.*

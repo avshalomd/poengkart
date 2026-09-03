@@ -58,8 +58,11 @@ def push():
     for rel, ent in man['files'].items():
         if rel in have:
             meta = s3.head_object(Bucket=BUCKET, Key=rel).get('Metadata', {})
-            if meta.get('sha256') and meta['sha256'] != ent['sha256']:
-                sys.exit(f'{rel} exists in the bucket with a different hash; upload under a new name')
+            if meta.get('sha256') != ent['sha256']:
+                # An object this script did not write carries no sha256 metadata;
+                # treat that like a mismatch rather than trusting it blindly.
+                sys.exit(f'{rel} exists in the bucket with a different or unknown hash; '
+                         'upload under a new name or delete the object first')
             same += 1
             continue
         p = os.path.join(ROOT, rel)

@@ -99,12 +99,12 @@ def basemap(cx_lat, cx_lon, z, win_w, win_h, tile=512):
 
 # ------------------------------------------------------------------ data
 def pressure(s, stale_before):
-    """Mirror of the app's schoolPressure(): median threshold among the
+    """Mirror of the app's schoolPressure(): mean threshold among the
     programmes that filled up, judged in that school's own newest year.
 
     It has to stay a mirror, or the card advertises colours the map does not
     have. Two rules are easy to leave out and both change dots: a 0,0 is a
-    real threshold but not part of the median, and a school whose newest
+    real threshold but not part of the mean, and a school whose newest
     figures predate stale_before is drawn as no-data rather than coloured.
     """
     years = sorted({y for p in s['programs'] for y in p['values']})
@@ -124,8 +124,7 @@ def pressure(s, stale_before):
         # open but solid and never called "ingen venteliste"; 'open' only
         # when no cell is 0
         return 'zero' if any(v == 0 for v in pool) else 'open'
-    m = len(nums) // 2
-    return nums[m] if len(nums) % 2 else (nums[m - 1] + nums[m]) / 2
+    return sum(nums) / len(nums)
 
 
 def colour(v):

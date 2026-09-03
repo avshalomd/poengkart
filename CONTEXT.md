@@ -75,6 +75,10 @@ _Avoid_: dokumentasjonsinntak, individual assessment
 The programområde was not offered that year.
 _Avoid_: nedlagt, gone, closed
 
+**Ingen data** (no data):
+No figure published for that school, county or year; not a cell state, the absence of one.
+_Avoid_: ikke data, ingen tall, mangler
+
 ## Chance
 
 **Sjanse for plass** (chance of a place):
