@@ -71,7 +71,10 @@ Owner's own tasks:
   *Deferred: owner's own task; until then the model fixes the county's fill probability at 1.*
 - Register `poengkart.no` (domene.no) and cut over during the autumn refresh,
   keeping the vercel.app address as a redirect. The domain is hard-coded in
-  five files and the CARTO key is domain-bound.
+  five files and the CARTO key is domain-bound. At the same time, attach a
+  custom domain (for example `kilder.poengkart.no`) to the R2 bucket
+  `poengkart-sources` and change `bucket_url` in `sources/manifest.json`,
+  the one place the r2.dev address lives.
   *Deferred: owner's own task, timed with the autumn refresh.*
 
 Agreed product changes:
