@@ -33,7 +33,10 @@ def env():
     keys = ['R2_ACCOUNT_ID', 'R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY']
     missing = [k for k in keys if not os.environ.get(k)]
     if missing:
-        sys.exit(f'set {", ".join(missing)} in the environment or .env.local')
+        # a refresh on a machine without the keys must still finish; the
+        # mirror is a convenience, the manifest is the record
+        print(f'R2 push skipped: set {", ".join(missing)} in the environment or .env.local')
+        sys.exit(0)
     return [os.environ[k] for k in keys]
 
 

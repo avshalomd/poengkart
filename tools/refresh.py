@@ -19,6 +19,7 @@ VENV = os.path.join(HERE, '..', '.venv', 'bin', 'python3')
 PY = VENV if os.path.exists(VENV) else sys.executable
 
 STEPS = [
+    ('sources_manifest.py', 'sources/manifest.json: hash every source document (provenance kept)'),
     ('build_dataset.py', 'parse every county into web/data/schools.json'),
     ('geocode.py', 'NSR → Kartverket address → Kartverket place names'),
     ('photos.py', 'curated photo and identity overrides'),
@@ -30,6 +31,7 @@ STEPS = [
     ('test_parse.py', 'regression checks on the dataset'),
     ('test_model.py', 'invariants on the forecast'),
     ('test_docs.py', 'the documentation quotes the shipped model'),
+    ('sources_r2.py push', 'mirror new source documents to the R2 bucket (skipped without keys)'),
 ]
 
 
@@ -38,7 +40,8 @@ def main():
     for script, what in STEPS:
         print(f'\n=== {script} — {what}')
         t0 = time.time()
-        r = subprocess.run([PY, os.path.join(HERE, script)])
+        name, *args = script.split()
+        r = subprocess.run([PY, os.path.join(HERE, name), *args])
         took.append((script, time.time() - t0))
         if r.returncode != 0:
             sys.exit(f'\n{script} failed — stopping so a half-built dataset is '
