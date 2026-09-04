@@ -21,9 +21,11 @@ can only ever agree with. The figures are from 2. inntak — the county's
 final round — confirmed by the county after the extract itself arrived
 without saying so.
 
-Telemark is the one still worth chasing: it appears in vilbli's
-county-information block alongside four counties that *are* covered here, but
-the block would not render during verification.
+Telemark runs an intake and publishes the thresholds nowhere, neither on its
+own site nor on vilbli (the "Telemark appears in vilbli's county block" lead
+was an artifact: every vilbli county page serves the same global attachment
+list, and all four articles in it belong to counties already covered). The
+county was asked for the figures on 1 September 2026.
 
 ## Why the depth is so uneven
 

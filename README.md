@@ -15,9 +15,9 @@ Norwegian and English.
 
 Type in your own points and the map recolours by your chance of a place at
 the next intake — green likely, amber possible, red unlikely — per school and
-per programme; press + on any programme to collect your choices and see
-whether the list holds up. Don't know your points? A small calculator turns
-vitnemål grades into them. The chance comes from a model fitted on the whole
+per programme; press + on any programme to collect your wishes (*ønsker*, the
+ten a vigo application allows) and see whether the list holds up. Don't know
+your points? A small calculator turns vitnemål grades into them. The chance comes from a model fitted on the whole
 history and checked by forecasting each past year from the years before it;
 the panel says how often that check was right.
 
@@ -48,6 +48,10 @@ freedom-of-information requests), and the Python environment in `.venv`:
 .venv/bin/python3 tools/refresh.py
 ```
 
+The same files are mirrored to a public bucket, with every file's SHA-256 in
+`sources/manifest.json`; `tools/sources_r2.py fetch` restores a missing
+`sources/` from there and verifies each file against the manifest.
+
 ## The dataset
 
 `web/data/schools.json` is what the app reads, and is published under the
@@ -72,7 +76,7 @@ Each (school, programme, year) cell is one of:
 
 Where the figures come from, and which inntak each county publishes. Agder,
 Finnmark, Nordland, Telemark, Troms, Vestfold and Østfold do not publish
-thresholds; the app says so when you pick them.
+thresholds; the county select lists them greyed out as *(ingen data)*.
 
 | County | Format | Years | Inntak |
 |---|---|---|---|
