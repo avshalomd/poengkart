@@ -25,7 +25,7 @@ STEPS = [
     ('photos.py', 'curated photo and identity overrides'),
     ('model.py', 'the forecast: fit, walk-forward backtest, web/data/model.json'),
     ('build_db.py', 'SQLite + CSV, including the forecasts'),
-    ('make_og.py', 'the social share card, which is drawn from the data'),
+    ('make_og.py', 'the social share card: the map from the data, the school panel photographed from web/'),
     ('report_figures.py', 'the technical report’s figures, from model.json'),
     ('build_report_page.py', 'docs/technical-report.md → web/report.html'),
     ('test_parse.py', 'regression checks on the dataset'),

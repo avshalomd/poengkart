@@ -48,6 +48,11 @@ freedom-of-information requests), and the Python environment in `.venv`:
 .venv/bin/python3 tools/refresh.py
 ```
 
+One step of that pipeline, the share card, photographs the app's own school
+panel and so wants a browser: `pip install playwright` and `playwright install
+chromium-headless-shell`. Without one the card still builds, reusing the last
+capture in `tools/og-panel.png`.
+
 The same files are mirrored to a public bucket, with every file's SHA-256 in
 `sources/manifest.json`; `tools/sources_r2.py fetch` restores a missing
 `sources/` from there and verifies each file against the manifest.
