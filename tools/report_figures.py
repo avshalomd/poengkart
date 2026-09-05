@@ -5,6 +5,7 @@ numbers. No plotting library: the figures are simple enough to emit directly,
 and this keeps the report's pipeline dependency-free.
 """
 import json
+import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -61,15 +62,17 @@ def rmse_svg():
     W, H = 620, 420
     L, R, T, B = 64, 16, 24, 84
     pw, ph = W - L - R, H - T - B
-    ymax = 9.0
     labels = {'0': '0 years', '1': '1 year', '2-3': '2–3 years', '4+': '4+ years'}
-    series = [('model', 'rmse', BLUE), ('last year’s figure', 'rmse_last_year', COPPER),
+    series = [('model', 'rmse', BLUE), ('persistence', 'rmse_last_year', COPPER),
               ('programme–county mean', 'rmse_prog_mean', GREY)]
+    # the axis follows the data: a fixed ceiling once clipped the tallest bar
+    top = max(row.get(k) or 0 for row in ev for _, k, _ in series)
+    ymax = 2 * math.ceil(top * 1.12 / 2)
     parts = [f"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {W} {H}' role='img' "
              f"aria-label='Held-out RMSE by history stratum, model against two baselines'>"]
     parts.append(f"<rect width='{W}' height='{H}' fill='white'/>")
     def Y(v): return T + (1 - v / ymax) * ph
-    for g in range(0, 10, 2):
+    for g in range(0, int(ymax) + 1, 2):
         parts.append(f"<line x1='{L}' y1='{Y(g):.1f}' x2='{W-R}' y2='{Y(g):.1f}' stroke='#e6e9ee'/>")
         parts.append(f"<text x='{L-8}' y='{Y(g)+4:.1f}' {FONT} font-size='13' fill='{INK}' text-anchor='end'>{g}</text>")
     gw = pw / len(ev)

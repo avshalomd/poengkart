@@ -1,0 +1,1661 @@
+fylke,school,program,occurrence,category,grep_code,level,year,round,points,status
+Akershus,Asker,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,44.6,points
+Akershus,Bjertnes,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,1,35.0,points
+Akershus,Bjertnes,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,42.2,points
+Akershus,Bjertnes,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,,open
+Akershus,Bjertnes,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,37.8,points
+Akershus,Bjertnes,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,42.8,points
+Akershus,Bjørkelangen,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,32.2,points
+Akershus,Bjørkelangen,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,1,22.5,points
+Akershus,Bjørkelangen,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,29.6,points
+Akershus,Bjørkelangen,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,40.0,points
+Akershus,Bjørkelangen,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,25.0,points
+Akershus,Bjørkelangen,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,33.5,points
+Akershus,Bjørkelangen,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,1,22.7,points
+Akershus,Bleiker,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,36.9,points
+Akershus,Bleiker,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,32.5,points
+Akershus,Bleiker,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,46.3,points
+Akershus,Bleiker,"Idrettsfag, toppidrett",0,ID,IDRET1----,Vg1,2025,1,,documentation
+Akershus,Bleiker,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,1,24.7,points
+Akershus,Bleiker,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,1,40.0,points
+Akershus,Bleiker,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,39.1,points
+Akershus,Bleiker,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,1,33.0,points
+Akershus,Drømtorp,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,17.5,points
+Akershus,Drømtorp,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,1,29.6,points
+Akershus,Drømtorp,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,1,34.0,points
+Akershus,Drømtorp,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,,open
+Akershus,Dønski,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,44.1,points
+Akershus,Dønski,"Idrettsfag, alpin, 4-årig",0,ID,IDRET1----,Vg1,2025,1,,documentation
+Akershus,Dønski,"Idrettsfag, toppidrett",0,ID,IDRET1----,Vg1,2025,1,,documentation
+Akershus,Dønski,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,41.9,points
+Akershus,Dønski,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2025,1,,documentation
+Akershus,Eidsvoll,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,1,31.9,points
+Akershus,Eidsvoll,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,40.4,points
+Akershus,Eidsvoll,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,29.0,points
+Akershus,Eidsvoll,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,40.4,points
+Akershus,Eidsvoll,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,29.3,points
+Akershus,Eidsvoll,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,1,32.1,points
+Akershus,Eikeli,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,,open
+Akershus,Eikeli,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,33.3,points
+Akershus,Frogn,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,40.6,points
+Akershus,Frogn,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,32.7,points
+Akershus,Frogn,"Salg, service og reiseliv, SK",0,SR,SRSSR1----,Vg1,2025,1,38.8,points
+Akershus,Frogn,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,,open
+Akershus,Hvam,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,32.5,points
+Akershus,Hvam,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,1,,open
+Akershus,Hvam,Naturbruk,0,NA,NANAB1----,Vg1,2025,1,30.6,points
+Akershus,Hvam,"Naturbruk, energi-/miljøfag, SK 3 år",0,NA,NANAB1----,Vg1,2025,1,38.7,points
+Akershus,Hvam,"Naturbruk, realfag og dyrekunnskap, SK 3 år",0,NA,NANAB1----,Vg1,2025,1,37.9,points
+Akershus,Jessheim,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,29.4,points
+Akershus,Jessheim,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,1,41.8,points
+Akershus,Jessheim,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2025,1,,documentation
+Akershus,Jessheim,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,31.3,points
+Akershus,Jessheim,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,42.1,points
+Akershus,Jessheim,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,1,35.3,points
+Akershus,Kjelle,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,1,15.6,points
+Akershus,Kjelle,Naturbruk,0,NA,NANAB1----,Vg1,2025,1,31.3,points
+Akershus,Lillestrøm,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,1,41.9,points
+Akershus,Lillestrøm,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2025,1,,documentation
+Akershus,Lillestrøm,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,49.4,points
+Akershus,Lillestrøm,"Studiespesialisering, forberedende IB",0,ST,STUSP1----,Vg1,2025,1,39.3,points
+Akershus,Lørenskog,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,1,31.3,points
+Akershus,Lørenskog,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,43.5,points
+Akershus,Lørenskog,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,1,38.1,points
+Akershus,Lørenskog,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,1,26.3,points
+Akershus,Lørenskog,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,44.4,points
+Akershus,Lørenskog,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2025,1,50.3,points
+Akershus,Mailand,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,33.1,points
+Akershus,Mailand,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,1,36.0,points
+Akershus,Mailand,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,35.9,points
+Akershus,Mailand,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,36.5,points
+Akershus,Nadderud,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,48.4,points
+Akershus,Nadderud,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,50.3,points
+Akershus,Nannestad,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,32.8,points
+Akershus,Nannestad,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,47.6,points
+Akershus,Nannestad,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,1,38.8,points
+Akershus,Nannestad,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,1,38.4,points
+Akershus,Nannestad,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,1,22.5,points
+Akershus,Nannestad,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,34.4,points
+Akershus,Nannestad,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,41.0,points
+Akershus,Nes,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,1,24.3,points
+Akershus,Nes,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,30.7,points
+Akershus,Nes,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,24.1,points
+Akershus,Nes,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,40.6,points
+Akershus,Nes,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,,open
+Akershus,Nesbru,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,1,30.6,points
+Akershus,Nesbru,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,40.2,points
+Akershus,Nesbru,"Studiespesialisering, forberedende IB",0,ST,STUSP1----,Vg1,2025,1,46.6,points
+Akershus,Nesodden,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,35.7,points
+Akershus,Nesodden,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,30.8,points
+Akershus,Nesodden,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,1,35.3,points
+Akershus,Nesodden,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,38.8,points
+Akershus,Roald Amundsen,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,44.0,points
+Akershus,Roald Amundsen,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,,open
+Akershus,Rosenvilde,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,32.5,points
+Akershus,Rosenvilde,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,1,42.0,points
+Akershus,Rosenvilde,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,1,39.2,points
+Akershus,Rosenvilde,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,1,38.7,points
+Akershus,Rosenvilde,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,1,39.7,points
+Akershus,Rosenvilde,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,36.3,points
+Akershus,Rud,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,32.6,points
+Akershus,Rud,"Elektro og datateknologi, SK 3 år",0,EL,ELELE1----,Vg1,2025,1,38.2,points
+Akershus,Rud,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,1,35.5,points
+Akershus,Rud,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,31.6,points
+Akershus,Rud,"Håndverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2025,1,31.9,points
+Akershus,Rud,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2025,1,,documentation
+Akershus,Rud,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,1,33.3,points
+Akershus,Rælingen,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,21.8,points
+Akershus,Rælingen,"Idrettsfag, toppidrett",0,ID,IDRET1----,Vg1,2025,1,,documentation
+Akershus,Rælingen,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,26.0,points
+Akershus,Rælingen,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,0.0,filled_no_points
+Akershus,Rælingen,"Studiespesialisering, toppidrett",0,ST,STUSP1----,Vg1,2025,1,,open
+Akershus,Røyken,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,1,33.3,points
+Akershus,Røyken,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,28.7,points
+Akershus,Røyken,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,1,31.0,points
+Akershus,Røyken,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,32.1,points
+Akershus,Røyken,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,1,,open
+Akershus,Røyken,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,1,,open
+Akershus,Røyken,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,37.9,points
+Akershus,Røyken,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,32.2,points
+Akershus,Sandvika,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,36.0,points
+Akershus,Sandvika,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,1,43.1,points
+Akershus,Sandvika,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,44.4,points
+Akershus,Skedsmo,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,1,30.7,points
+Akershus,Skedsmo,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,35.3,points
+Akershus,Skedsmo,"Håndverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2025,1,,open
+Akershus,Skedsmo,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,38.1,points
+Akershus,Ski,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,46.5,points
+Akershus,Ski,"Musikk, dans og drama",0,MD,MDMDD1----,Vg1,2025,1,,documentation
+Akershus,Ski,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,46.3,points
+Akershus,Stabekk,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,42.5,points
+Akershus,Strømmen,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,31.0,points
+Akershus,Strømmen,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,,open
+Akershus,Strømmen,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,1,31.3,points
+Akershus,Sørumsand,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,24.0,points
+Akershus,Sørumsand,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,1,,open
+Akershus,Sørumsand,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,1,,open
+Akershus,Sørumsand,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,,open
+Akershus,Sørumsand,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,1,0.0,filled_no_points
+Akershus,Valler,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,47.5,points
+Akershus,Vestby,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,1,28.1,points
+Akershus,Vestby,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,1,,open
+Akershus,Vestby,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,1,35.0,points
+Akershus,Vestby,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,36.6,points
+Akershus,Vestby,"Studiespesialisering, forskerlinje",0,ST,STUSP1----,Vg1,2025,1,,open
+Akershus,Ås,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,1,39.7,points
+Akershus,Ås,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,1,38.5,points
+Akershus,Ås,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,1,40.7,points
+Akershus,Ås,Idrettsfag,0,ID,IDRET1----,Vg1,2025,1,47.1,points
+Akershus,Ås,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,1,46.2,points
+Akershus,Ås,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,1,46.9,points
+Akershus,Ås,"Studiespesialisering, forberedende IB",0,ST,STUSP1----,Vg1,2025,1,,open
+Akershus,Ås,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,1,35.0,points
+Vestland,Amalie Skram videregående skole,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2020,3,42.0,points
+Vestland,Amalie Skram videregående skole,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,3,39.4,points
+Vestland,Amalie Skram videregående skole,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,3,41.9,points
+Vestland,Amalie Skram videregående skole,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,3,30.7,points
+Vestland,Amalie Skram videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2020,3,42.1,points
+Vestland,Amalie Skram videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,3,39.7,points
+Vestland,Amalie Skram videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,3,41.3,points
+Vestland,Amalie Skram videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,3,39.4,points
+Vestland,Amalie Skram videregående skole,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,3,30.7,points
+Vestland,Amalie Skram videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,3,38.1,points
+Vestland,Amalie Skram videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,3,40.0,points
+Vestland,Amalie Skram videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,3,36.7,points
+Vestland,Amalie Skram videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,50.0,points
+Vestland,Amalie Skram videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,50.8,points
+Vestland,Amalie Skram videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,49.7,points
+Vestland,Amalie Skram videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,44.1,points
+Vestland,Amalie Skram videregående skole,Informasjonsteknologi,0,IM,IMITK2----,Vg2,2024,3,,open
+Vestland,Amalie Skram videregående skole,Informasjonsteknologi,0,IM,IMITK2----,Vg2,2025,3,38.9,points
+Vestland,Amalie Skram videregående skole,Informasjonsteknologi,0,IM,IMITK2----,Vg2,2026,3,41.1,points
+Vestland,Amalie Skram videregående skole,Medieproduksjon,0,IM,IMMED2----,Vg2,2024,3,48.8,points
+Vestland,Amalie Skram videregående skole,Medieproduksjon,0,IM,IMMED2----,Vg2,2025,3,32.5,points
+Vestland,Amalie Skram videregående skole,Medieproduksjon,0,IM,IMMED2----,Vg2,2026,3,43.8,points
+Vestland,Amalie Skram videregående skole,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2024,3,44.4,points
+Vestland,Amalie Skram videregående skole,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2025,3,47.5,points
+Vestland,Amalie Skram videregående skole,"Salg, service og reiseliv",1,SR,SRSSR2----,Vg2,2026,3,43.8,points
+Vestland,Amalie Skram videregående skole,"Service, sikkerhet og admin",0,SR,SRSSH2----,Vg2,2024,3,,open
+Vestland,Amalie Skram videregående skole,"Service, sikkerhet og admin",0,SR,SRSSH2----,Vg2,2025,3,42.5,points
+Vestland,Amalie Skram videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,51.1,points
+Vestland,Amalie Skram videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,51.3,points
+Vestland,Amalie Skram videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,48.8,points
+Vestland,Arna vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,18.7,points
+Vestland,Arna vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,,open
+Vestland,Arna vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,16.3,points
+Vestland,Arna vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,,open
+Vestland,Arna vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,,open
+Vestland,Arna vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,,open
+Vestland,Arna vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,,open
+Vestland,Arna vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Arna vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,3,,open
+Vestland,Arna vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,3,,open
+Vestland,Arna vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,3,,open
+Vestland,Arna vidaregåande skule,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2020,3,,open
+Vestland,Arna vidaregåande skule,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,3,,open
+Vestland,Arna vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,35.7,points
+Vestland,Arna vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,33.8,points
+Vestland,Arna vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,,open
+Vestland,Arna vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
+Vestland,Arna vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,,open
+Vestland,Arna vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Arna vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Arna vidaregåande skule,Informasjonsteknologi,0,IM,IMITK2----,Vg2,2024,3,,open
+Vestland,Arna vidaregåande skule,Informasjonsteknologi,0,IM,IMITK2----,Vg2,2025,3,,open
+Vestland,Arna vidaregåande skule,Informasjonsteknologi,0,IM,IMITK2----,Vg2,2026,3,,open
+Vestland,Arna vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,,open
+Vestland,Arna vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,31.3,points
+Vestland,Arna vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,,open
+Vestland,Askøy videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,28.7,points
+Vestland,Askøy videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,,open
+Vestland,Askøy videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,22.7,points
+Vestland,Askøy videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,,open
+Vestland,Askøy videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,32.5,points
+Vestland,Askøy videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,34.4,points
+Vestland,Askøy videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,34.0,points
+Vestland,Askøy videregående skole,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,32.0,points
+Vestland,Askøy videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,31.3,points
+Vestland,Askøy videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,29.4,points
+Vestland,Askøy videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,38.2,points
+Vestland,Askøy videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,27.3,points
+Vestland,Askøy videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Askøy videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,32.2,points
+Vestland,Askøy videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,41.9,points
+Vestland,Askøy videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,25.3,points
+Vestland,Askøy videregående skole,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,30.0,points
+Vestland,Askøy videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,36.3,points
+Vestland,Askøy videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,35.0,points
+Vestland,Askøy videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,35.9,points
+Vestland,Askøy videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,33.8,points
+Vestland,Askøy videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,23.3,points
+Vestland,Askøy videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,45.0,points
+Vestland,Askøy videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,42.9,points
+Vestland,Askøy videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,38.6,points
+Vestland,Askøy videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,35.7,points
+Vestland,Askøy videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,30.0,points
+Vestland,Askøy videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,35.6,points
+Vestland,Askøy videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Askøy videregående skole,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,32.2,points
+Vestland,Askøy videregående skole,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,32.2,points
+Vestland,Askøy videregående skole,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,27.8,points
+Vestland,Askøy videregående skole,Kjøretøy,0,TP,TPKJT2----,Vg2,2024,3,28.6,points
+Vestland,Askøy videregående skole,Kjøretøy,0,TP,TPKJT2----,Vg2,2025,3,,open
+Vestland,Askøy videregående skole,Kjøretøy,0,TP,TPKJT2----,Vg2,2026,3,,open
+Vestland,Askøy videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2024,3,28.6,points
+Vestland,Askøy videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2025,3,31.4,points
+Vestland,Askøy videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2026,3,21.4,points
+Vestland,Askøy videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,,open
+Vestland,Askøy videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,45.0,points
+Vestland,Askøy videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,22.5,points
+Vestland,Austevoll vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,,open
+Vestland,Austevoll vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2020,3,,open
+Vestland,Austevoll vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2024,3,33.1,points
+Vestland,Austevoll vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2025,3,34.7,points
+Vestland,Austevoll vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2026,3,,open
+Vestland,Austevoll vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Austevoll vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,,open
+Vestland,Austevoll vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,28.0,points
+Vestland,Austevoll vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,,open
+Vestland,Austevoll vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,,open
+Vestland,Austevoll vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2024,3,25.7,points
+Vestland,Austevoll vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2025,3,,open
+Vestland,Austevoll vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2026,3,38.6,points
+Vestland,Austevoll vidaregåande skule,Fiske og fangst,0,NA,NAFFA2----,Vg2,2024,3,41.4,points
+Vestland,Austevoll vidaregåande skule,Fiske og fangst,0,NA,NAFFA2----,Vg2,2025,3,44.3,points
+Vestland,Austevoll vidaregåande skule,Fiske og fangst,0,NA,NAFFA2----,Vg2,2026,3,40.0,points
+Vestland,Austevoll vidaregåande skule,Maritime fag,0,TP,TPMAR2----,Vg2,2024,3,35.0,points
+Vestland,Austevoll vidaregåande skule,Maritime fag,0,TP,TPMAR2----,Vg2,2025,3,,open
+Vestland,Austevoll vidaregåande skule,Maritime fag,0,TP,TPMAR2----,Vg2,2026,3,26.3,points
+Vestland,Austrheim vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,30.0,points
+Vestland,Austrheim vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,32.5,points
+Vestland,Austrheim vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,,open
+Vestland,Austrheim vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,,open
+Vestland,Austrheim vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,32.7,points
+Vestland,Austrheim vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,35.6,points
+Vestland,Austrheim vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,30.6,points
+Vestland,Austrheim vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,24.7,points
+Vestland,Austrheim vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2024,3,25.0,points
+Vestland,Austrheim vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2025,3,33.9,points
+Vestland,Austrheim vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2026,3,29.8,points
+Vestland,Austrheim vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Austrheim vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Austrheim vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,,open
+Vestland,Austrheim vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,29.4,points
+Vestland,Austrheim vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,32.0,points
+Vestland,Austrheim vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,36.9,points
+Vestland,Austrheim vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,35.6,points
+Vestland,Austrheim vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,31.1,points
+Vestland,Austrheim vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2024,3,,open
+Vestland,Austrheim vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2025,3,24.3,points
+Vestland,Austrheim vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2026,3,,open
+Vestland,Austrheim vidaregåande skule,Anleggsteknikk,0,BA,BAANL2----,Vg2,2024,3,34.3,points
+Vestland,Austrheim vidaregåande skule,Anleggsteknikk,0,BA,BAANL2----,Vg2,2025,3,36.3,points
+Vestland,Austrheim vidaregåande skule,Anleggsteknikk,0,BA,BAANL2----,Vg2,2026,3,40.0,points
+Vestland,Austrheim vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,20.0,points
+Vestland,Austrheim vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Austrheim vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Austrheim vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,36.3,points
+Vestland,Austrheim vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,37.5,points
+Vestland,Austrheim vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,33.8,points
+Vestland,Austrheim vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2024,3,,open
+Vestland,Austrheim vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2026,3,,open
+Vestland,Austrheim vidaregåande skule,Maritime fag,0,TP,TPMAR2----,Vg2,2024,3,36.3,points
+Vestland,Austrheim vidaregåande skule,Maritime fag,0,TP,TPMAR2----,Vg2,2025,3,27.8,points
+Vestland,Austrheim vidaregåande skule,Maritime fag,0,TP,TPMAR2----,Vg2,2026,3,32.5,points
+Vestland,Austrheim vidaregåande skule,Overflateteknikk,0,BA,BAOFT2----,Vg2,2026,3,,open
+Vestland,Austrheim vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,,open
+Vestland,Austrheim vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,,open
+Vestland,Austrheim vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,,open
+Vestland,Bergen katedralskole,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,46.3,points
+Vestland,Bergen katedralskole,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,45.6,points
+Vestland,Bergen katedralskole,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,45.3,points
+Vestland,Bergen katedralskole,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,44.4,points
+Vestland,Bergen katedralskole,"Studiespesialisering, forberedende IB",0,ST,STUSP1----,Vg1,2026,3,36.7,points
+Vestland,Bømlo vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,,open
+Vestland,Bømlo vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,23.3,points
+Vestland,Bømlo vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,,open
+Vestland,Bømlo vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,28.0,points
+Vestland,Bømlo vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,31.4,points
+Vestland,Bømlo vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,,open
+Vestland,Bømlo vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,30.4,points
+Vestland,Bømlo vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2024,3,28.8,points
+Vestland,Bømlo vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2025,3,,open
+Vestland,Bømlo vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2026,3,,open
+Vestland,Bømlo vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Bømlo vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Bømlo vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,41.6,points
+Vestland,Bømlo vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,36.9,points
+Vestland,Bømlo vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,,open
+Vestland,Bømlo vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,,open
+Vestland,Bømlo vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,,open
+Vestland,Bømlo vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2024,3,35.7,points
+Vestland,Bømlo vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2025,3,21.4,points
+Vestland,Bømlo vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2026,3,,open
+Vestland,Bømlo vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2024,3,36.3,points
+Vestland,Bømlo vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2025,3,35.7,points
+Vestland,Bømlo vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2026,3,36.3,points
+Vestland,Bømlo vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,35.0,points
+Vestland,Bømlo vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,,open
+Vestland,Bømlo vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,,open
+Vestland,Bømlo vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,27.1,points
+Vestland,Bømlo vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,,open
+Vestland,Bømlo vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,,open
+Vestland,Bømlo vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,37.5,points
+Vestland,Bømlo vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Bømlo vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,25.0,points
+Vestland,Bømlo vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,,open
+Vestland,Bømlo vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,22.2,points
+Vestland,Bømlo vidaregåande skule,Maritime fag,0,TP,TPMAR2----,Vg2,2024,3,32.5,points
+Vestland,Bømlo vidaregåande skule,Maritime fag,0,TP,TPMAR2----,Vg2,2025,3,31.3,points
+Vestland,Bømlo vidaregåande skule,Maritime fag,0,TP,TPMAR2----,Vg2,2026,3,33.8,points
+Vestland,Bømlo vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2024,3,25.7,points
+Vestland,Bømlo vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2025,3,27.1,points
+Vestland,Bømlo vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2026,3,,open
+Vestland,Bømlo vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,26.3,points
+Vestland,Bømlo vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,30.0,points
+Vestland,Bømlo vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Dale vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,,open
+Vestland,Dale vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,,open
+Vestland,Dale vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,,open
+Vestland,Dale vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,41.3,points
+Vestland,Dale vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Dale vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Dale vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,43.4,points
+Vestland,Dale vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,39.6,points
+Vestland,Dale vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,,open
+Vestland,Dale vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,39.1,points
+Vestland,Dale vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,,open
+Vestland,Dale vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,,open
+Vestland,Dale vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Dale vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Dale vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,,open
+Vestland,Dale vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,,open
+Vestland,Dale vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,23.8,points
+Vestland,Dale vidaregåande skule,Påbygg gen studiekomp e/yrkeskomp,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Dale vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,27.1,points
+Vestland,Dale vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,28.8,points
+Vestland,Dale vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Eid vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,30.6,points
+Vestland,Eid vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,,open
+Vestland,Eid vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,35.0,points
+Vestland,Eid vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,30.7,points
+Vestland,Eid vidaregåande skule,"Frisør, blomar, interiør og eksponeringdesign",0,FD,FDFRI2----,Vg1,2020,3,,open
+Vestland,Eid vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,3,38.7,points
+Vestland,Eid vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,3,36.5,points
+Vestland,Eid vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2026,3,33.8,points
+Vestland,Eid vidaregåande skule,"Handverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2020,3,,open
+Vestland,Eid vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2025,3,,open
+Vestland,Eid vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Eid vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Eid vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,,open
+Vestland,Eid vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
+Vestland,Eid vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,29.3,points
+Vestland,Eid vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,,open
+Vestland,Eid vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,22.8,points
+Vestland,Eid vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,33.4,points
+Vestland,Eid vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2024,3,37.1,points
+Vestland,Eid vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2025,3,,open
+Vestland,Eid vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2026,3,27.1,points
+Vestland,Eid vidaregåande skule,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2024,3,31.4,points
+Vestland,Eid vidaregåande skule,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2025,3,,open
+Vestland,Eid vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,38.6,points
+Vestland,Eid vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,32.9,points
+Vestland,Eid vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,32.9,points
+Vestland,Eid vidaregåande skule,Frisør,0,FD,FDFRI2----,Vg2,2024,3,,open
+Vestland,Eid vidaregåande skule,Frisør,0,FD,FDFRI2----,Vg2,2025,3,34.3,points
+Vestland,Eid vidaregåande skule,Frisør,0,FD,FDFRI2----,Vg2,2026,3,,open
+Vestland,Eid vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,33.8,points
+Vestland,Eid vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,,open
+Vestland,Eid vidaregåande skule,Interiør og eksponeringsdesign,0,FD,FDIED2----,Vg2,2024,3,,open
+Vestland,Eid vidaregåande skule,Interiør og eksponeringsdesign,0,FD,FDIED2----,Vg2,2025,3,38.6,points
+Vestland,Eid vidaregåande skule,Interiør og eksponeringsdesign,0,FD,FDIED2----,Vg2,2026,3,25.7,points
+Vestland,Eid vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2024,3,,open
+Vestland,Eid vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2025,3,,open
+Vestland,Eid vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2026,3,,open
+Vestland,Eid vidaregåande skule,Påbygg gen studiekomp e/yrkeskomp,0,PB,PBPBY3----,Vg3,2026,3,35.0,points
+Vestland,Eid vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,33.8,points
+Vestland,Eid vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,38.8,points
+Vestland,Eid vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,32.9,points
+Vestland,Firda vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2020,3,,open
+Vestland,Firda vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2024,3,,open
+Vestland,Firda vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2025,3,,open
+Vestland,Firda vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2026,3,,open
+Vestland,Firda vidaregåande skule,"Musikk, dans og drama med dans",0,MD,MDMUS2----,Vg1,2020,3,48.0,points
+Vestland,Firda vidaregåande skule,"Musikk, dans og drama med drama",0,MD,MDMUS2----,Vg1,2020,3,41.7,points
+Vestland,Firda vidaregåande skule,"Musikk, dans og drama med musikk",0,MD,MDMUS2----,Vg1,2020,3,32.3,points
+Vestland,Firda vidaregåande skule,"Musikk, dans og drama, dans",0,MD,MDMDD1----,Vg1,2024,3,,open
+Vestland,Firda vidaregåande skule,"Musikk, dans og drama, dans",0,MD,MDMDD1----,Vg1,2025,3,33.4,points
+Vestland,Firda vidaregåande skule,"Musikk, dans og drama, dans",0,MD,MDMDD1----,Vg1,2026,3,,open
+Vestland,Firda vidaregåande skule,"Musikk, dans og drama, drama",0,MD,MDMDD1----,Vg1,2024,3,,open
+Vestland,Firda vidaregåande skule,"Musikk, dans og drama, drama",0,MD,MDMDD1----,Vg1,2025,3,,open
+Vestland,Firda vidaregåande skule,"Musikk, dans og drama, drama",0,MD,MDMDD1----,Vg1,2026,3,,open
+Vestland,Firda vidaregåande skule,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2024,3,,open
+Vestland,Firda vidaregåande skule,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2025,3,,open
+Vestland,Firda vidaregåande skule,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2026,3,29.4,points
+Vestland,Firda vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Firda vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Firda vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,27.5,points
+Vestland,Firda vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
+Vestland,Fitjar vidaregåande skule,"Frisør, blomar, interiør og eksponeringdesign",0,FD,FDFRI2----,Vg1,2020,3,,open
+Vestland,Fitjar vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,3,,open
+Vestland,Fitjar vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,3,,open
+Vestland,Fitjar vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2026,3,,open
+Vestland,Fitjar vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,,open
+Vestland,Fitjar vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,26.0,points
+Vestland,Fitjar vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,12.1,points
+Vestland,Fitjar vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Fitjar vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2025,3,,open
+Vestland,Fitjar vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2026,3,29.4,points
+Vestland,Fitjar vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2020,3,,open
+Vestland,Fitjar vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,3,28.1,points
+Vestland,Fitjar vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,3,,open
+Vestland,Fitjar vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,3,39.7,points
+Vestland,Fitjar vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,28.8,points
+Vestland,Fitjar vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,,open
+Vestland,Fitjar vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,,open
+Vestland,Fitjar vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,26.3,points
+Vestland,Fitjar vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Fitjar vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,23.3,points
+Vestland,Fitjar vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2024,3,28.6,points
+Vestland,Fitjar vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2026,3,,open
+Vestland,Fitjar vidaregåande skule,Påbygg gen studiekomp e/yrkeskomp,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Fitjar vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,36.7,points
+Vestland,Fitjar vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,40.0,points
+Vestland,Fitjar vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Flora vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,,open
+Vestland,Flora vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,28.7,points
+Vestland,Flora vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,20.6,points
+Vestland,Flora vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,,open
+Vestland,Flora vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,,open
+Vestland,Flora vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,29.0,points
+Vestland,Flora vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,26.3,points
+Vestland,Flora vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,,open
+Vestland,Flora vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,37.0,points
+Vestland,Flora vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,39.4,points
+Vestland,Flora vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,29.0,points
+Vestland,Flora vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,31.6,points
+Vestland,Flora vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2020,3,,open
+Vestland,Flora vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2024,3,35.6,points
+Vestland,Flora vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2025,3,38.8,points
+Vestland,Flora vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2026,3,39.9,points
+Vestland,Flora vidaregåande skule,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,3,,open
+Vestland,Flora vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,3,,open
+Vestland,Flora vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Flora vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Flora vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,,open
+Vestland,Flora vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,30.0,points
+Vestland,Flora vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,,open
+Vestland,Flora vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,0.0,filled_no_points
+Vestland,Flora vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,16.5,points
+Vestland,Flora vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,,open
+Vestland,Flora vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,,open
+Vestland,Flora vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,,open
+Vestland,Flora vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,,open
+Vestland,Flora vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,32.9,points
+Vestland,Flora vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,32.9,points
+Vestland,Flora vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,,open
+Vestland,Flora vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,26.3,points
+Vestland,Flora vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Flora vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Flora vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,,open
+Vestland,Flora vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,,open
+Vestland,Flora vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,,open
+Vestland,Flora vidaregåande skule,Rørlegger,0,BA,BARLF2----,Vg2,2024,3,,open
+Vestland,Flora vidaregåande skule,Rørlegger,0,BA,BARLF2----,Vg2,2026,3,25.7,points
+Vestland,Flora vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,,open
+Vestland,Flora vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,,open
+Vestland,Flora vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,,open
+Vestland,Flora vidaregåande skule,Påbygg gen studiekomp e/yrkeskomp,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Flora vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,37.5,points
+Vestland,Flora vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,31.4,points
+Vestland,Flora vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Fusa vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,27.6,points
+Vestland,Fusa vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,21.5,points
+Vestland,Fusa vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,31.6,points
+Vestland,Fusa vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Fusa vidaregåande skule,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2020,3,,open
+Vestland,Fusa vidaregåande skule,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,3,,open
+Vestland,Fusa vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2020,3,28.0,points
+Vestland,Fusa vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2024,3,,open
+Vestland,Fusa vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2025,3,,open
+Vestland,Fusa vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2026,3,,open
+Vestland,Fusa vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2020,3,,open
+Vestland,Fusa vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,3,,open
+Vestland,Fusa vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,3,,open
+Vestland,Fusa vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,3,,open
+Vestland,Fusa vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,37.3,points
+Vestland,Fusa vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,36.5,points
+Vestland,Fusa vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,,open
+Vestland,Fusa vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,,open
+Vestland,Fusa vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2024,3,25.7,points
+Vestland,Fusa vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2025,3,40.0,points
+Vestland,Fusa vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2026,3,25.7,points
+Vestland,Fusa vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Fusa vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Fusa vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,24.4,points
+Vestland,Fusa vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,30.0,points
+Vestland,Fusa vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,23.8,points
+Vestland,Fusa vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2026,3,47.1,points
+Vestland,Fyllingsdalen videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,,open
+Vestland,Fyllingsdalen videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,29.0,points
+Vestland,Fyllingsdalen videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,36.8,points
+Vestland,Fyllingsdalen videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,31.3,points
+Vestland,Fyllingsdalen videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2025,3,42.5,points
+Vestland,Fyllingsdalen videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2026,3,37.2,points
+Vestland,Fyllingsdalen videregående skole,"Musikk, dans og drama med drama",0,MD,MDMUS2----,Vg1,2020,3,40.3,points
+Vestland,Fyllingsdalen videregående skole,"Musikk, dans og drama, drama",0,MD,MDMDD1----,Vg1,2024,3,40.3,points
+Vestland,Fyllingsdalen videregående skole,"Musikk, dans og drama, drama",0,MD,MDMDD1----,Vg1,2025,3,34.0,points
+Vestland,Fyllingsdalen videregående skole,"Musikk, dans og drama, drama",0,MD,MDMDD1----,Vg1,2026,3,41.9,points
+Vestland,Fyllingsdalen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,32.7,points
+Vestland,Fyllingsdalen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,38.4,points
+Vestland,Fyllingsdalen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,43.1,points
+Vestland,Fyllingsdalen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,36.5,points
+Vestland,Fyllingsdalen videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,26.3,points
+Vestland,Fyllingsdalen videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,25.0,points
+Vestland,Fyllingsdalen videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,35.0,points
+Vestland,Fyllingsdalen videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,41.7,points
+Vestland,Fyllingsdalen videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,42.2,points
+Vestland,Fyllingsdalen videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,36.7,points
+Vestland,Førde vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,24.7,points
+Vestland,Førde vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,30.6,points
+Vestland,Førde vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,25.2,points
+Vestland,Førde vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,42.5,points
+Vestland,Førde vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,36.9,points
+Vestland,Førde vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,40.4,points
+Vestland,Førde vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,27.5,points
+Vestland,Førde vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,39.4,points
+Vestland,Førde vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,31.0,points
+Vestland,Førde vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2025,3,45.0,points
+Vestland,Førde vidaregåande skule,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,3,35.7,points
+Vestland,Førde vidaregåande skule,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,3,41.5,points
+Vestland,Førde vidaregåande skule,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2026,3,42.6,points
+Vestland,Førde vidaregåande skule,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,3,,open
+Vestland,Førde vidaregåande skule,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,3,35.5,points
+Vestland,Førde vidaregåande skule,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,3,36.9,points
+Vestland,Førde vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2024,3,,open
+Vestland,Førde vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2025,3,,open
+Vestland,Førde vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2026,3,,open
+Vestland,Førde vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2024,3,27.1,points
+Vestland,Førde vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2025,3,,open
+Vestland,Førde vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2026,3,,open
+Vestland,Førde vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,3,,open
+Vestland,Førde vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,3,36.3,points
+Vestland,Førde vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,3,24.2,points
+Vestland,Førde vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,3,36.3,points
+Vestland,Førde vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,3,38.5,points
+Vestland,Førde vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,3,31.9,points
+Vestland,Førde vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Førde vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,40.6,points
+Vestland,Førde vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,32.2,points
+Vestland,Førde vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,29.4,points
+Vestland,Førde vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,27.3,points
+Vestland,Førde vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,37.1,points
+Vestland,Førde vidaregåande skule,Ambulansefag,0,HS,HSAMB2----,Vg2,2024,3,53.3,points
+Vestland,Førde vidaregåande skule,Ambulansefag,0,HS,HSAMB2----,Vg2,2025,3,47.5,points
+Vestland,Førde vidaregåande skule,Ambulansefag,0,HS,HSAMB2----,Vg2,2026,3,52.5,points
+Vestland,Førde vidaregåande skule,Anleggsteknikk,0,BA,BAANL2----,Vg2,2024,3,38.6,points
+Vestland,Førde vidaregåande skule,Anleggsteknikk,0,BA,BAANL2----,Vg2,2025,3,28.8,points
+Vestland,Førde vidaregåande skule,Anleggsteknikk,0,BA,BAANL2----,Vg2,2026,3,28.8,points
+Vestland,Førde vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,40.0,points
+Vestland,Førde vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,21.3,points
+Vestland,Førde vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,17.8,points
+Vestland,Førde vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2024,3,38.6,points
+Vestland,Førde vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2025,3,,open
+Vestland,Førde vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2026,3,,open
+Vestland,Førde vidaregåande skule,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2024,3,24.3,points
+Vestland,Førde vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,42.9,points
+Vestland,Førde vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,30.0,points
+Vestland,Førde vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,28.6,points
+Vestland,Førde vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,45.0,points
+Vestland,Førde vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Førde vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,37.8,points
+Vestland,Førde vidaregåande skule,Helseservicefag,0,HS,HSHES2----,Vg2,2024,3,27.5,points
+Vestland,Førde vidaregåande skule,Helseservicefag,0,HS,HSHES2----,Vg2,2025,3,37.5,points
+Vestland,Førde vidaregåande skule,Helseservicefag,0,HS,HSHES2----,Vg2,2026,3,27.5,points
+Vestland,Førde vidaregåande skule,Heste- og dyrefag,0,NA,NAHDF2----,Vg2,2024,3,,open
+Vestland,Førde vidaregåande skule,Heste- og dyrefag,0,NA,NAHDF2----,Vg2,2025,3,47.1,points
+Vestland,Førde vidaregåande skule,Heste- og dyrefag,0,NA,NAHDF2----,Vg2,2026,3,27.1,points
+Vestland,Førde vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,27.5,points
+Vestland,Førde vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,32.2,points
+Vestland,Førde vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,28.9,points
+Vestland,Førde vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2024,3,,open
+Vestland,Førde vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2025,3,,open
+Vestland,Førde vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2026,3,34.4,points
+Vestland,Førde vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2024,3,,open
+Vestland,Førde vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2025,3,24.3,points
+Vestland,Førde vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2026,3,,open
+Vestland,Førde vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2024,3,,open
+Vestland,Førde vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2025,3,,open
+Vestland,Førde vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2026,3,,open
+Vestland,Førde vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2024,3,,open
+Vestland,Førde vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2025,3,32.2,points
+Vestland,Førde vidaregåande skule,"Salg, service og reiseliv",1,SR,SRSSR2----,Vg2,2026,3,,open
+Vestland,Førde vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2024,3,,open
+Vestland,Førde vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2025,3,,open
+Vestland,Førde vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2026,3,20.0,points
+Vestland,Førde vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,30.0,points
+Vestland,Førde vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,,open
+Vestland,Førde vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,27.1,points
+Vestland,Førde vidaregåande skule,Landbruk,0,NA,NAAGR3----,Vg3,2024,3,,open
+Vestland,Førde vidaregåande skule,Påbygg gen studiekomp e/yrkeskomp,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Førde vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,30.0,points
+Vestland,Førde vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,47.5,points
+Vestland,Førde vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,41.3,points
+Vestland,Førde vidaregåande skule,Studieforberedende naturbruk,0,NA,NANAB3----,Vg3,2026,3,,open
+Vestland,Høyanger vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,,open
+Vestland,Høyanger vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,30.6,points
+Vestland,Høyanger vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,,open
+Vestland,Høyanger vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,,open
+Vestland,Høyanger vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,24.4,points
+Vestland,Høyanger vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Høyanger vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Høyanger vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,,open
+Vestland,Høyanger vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,23.8,points
+Vestland,Høyanger vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,,open
+Vestland,Høyanger vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,22.9,points
+Vestland,Høyanger vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,,open
+Vestland,Høyanger vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,25.0,points
+Vestland,Høyanger vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,,open
+Vestland,Høyanger vidaregåande skule,Kjemiprosess- og laboratorief,0,TP,TPKPL2----,Vg2,2025,3,38.8,points
+Vestland,Høyanger vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,,open
+Vestland,Knarvik vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,28.7,points
+Vestland,Knarvik vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,29.3,points
+Vestland,Knarvik vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,33.8,points
+Vestland,Knarvik vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,,open
+Vestland,Knarvik vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,42.7,points
+Vestland,Knarvik vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,36.9,points
+Vestland,Knarvik vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,36.5,points
+Vestland,Knarvik vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,38.8,points
+Vestland,Knarvik vidaregåande skule,"Handverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2020,3,,open
+Vestland,Knarvik vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,17.1,points
+Vestland,Knarvik vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,,open
+Vestland,Knarvik vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,24.0,points
+Vestland,Knarvik vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Knarvik vidaregåande skule,"Håndverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2024,3,24.7,points
+Vestland,Knarvik vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Knarvik vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,26.7,points
+Vestland,Knarvik vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,,open
+Vestland,Knarvik vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
+Vestland,Knarvik vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,36.0,points
+Vestland,Knarvik vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,38.2,points
+Vestland,Knarvik vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,42.4,points
+Vestland,Knarvik vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,37.2,points
+Vestland,Knarvik vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2026,3,46.3,points
+Vestland,Knarvik vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,37.5,points
+Vestland,Knarvik vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,30.0,points
+Vestland,Knarvik vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,36.3,points
+Vestland,Knarvik vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,32.9,points
+Vestland,Knarvik vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,45.7,points
+Vestland,Knarvik vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,40.0,points
+Vestland,Knarvik vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,32.0,points
+Vestland,Knarvik vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,36.7,points
+Vestland,Knarvik vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,37.5,points
+Vestland,Knarvik vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,43.8,points
+Vestland,Knarvik vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,42.5,points
+Vestland,Knarvik vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,41.3,points
+Vestland,Knarvik vidaregåande skule,Kjemiprosess- og laboratorief,0,TP,TPKPL2----,Vg2,2025,3,50.0,points
+Vestland,Knarvik vidaregåande skule,Kjemiprosess- og laboratorief,0,TP,TPKPL2----,Vg2,2026,3,47.5,points
+Vestland,Knarvik vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2024,3,25.0,points
+Vestland,Knarvik vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2025,3,25.0,points
+Vestland,Knarvik vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2026,3,,open
+Vestland,Knarvik vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,25.7,points
+Vestland,Knarvik vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,32.9,points
+Vestland,Knarvik vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,,open
+Vestland,Knarvik vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,37.1,points
+Vestland,Knarvik vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,40.0,points
+Vestland,Knarvik vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,43.8,points
+Vestland,Kvam vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,28.4,points
+Vestland,Kvam vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,,open
+Vestland,Kvam vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,31.7,points
+Vestland,Kvam vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,,open
+Vestland,Kvam vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,,open
+Vestland,Kvam vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,35.4,points
+Vestland,Kvam vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,,open
+Vestland,Kvam vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,29.7,points
+Vestland,Kvam vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Kvam vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,40.4,points
+Vestland,Kvam vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,,open
+Vestland,Kvam vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
+Vestland,Kvam vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,,open
+Vestland,Kvam vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,30.3,points
+Vestland,Kvam vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,24.4,points
+Vestland,Kvam vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,,open
+Vestland,Kvam vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Kvam vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,35.0,points
+Vestland,Kvam vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,,open
+Vestland,Kvam vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2024,3,,open
+Vestland,Kvam vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2025,3,22.5,points
+Vestland,Kvam vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2026,3,22.9,points
+Vestland,Kvinnherad vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,30.6,points
+Vestland,Kvinnherad vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,20.8,points
+Vestland,Kvinnherad vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,35.0,points
+Vestland,Kvinnherad vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,,open
+Vestland,Kvinnherad vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,42.4,points
+Vestland,Kvinnherad vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,40.9,points
+Vestland,Kvinnherad vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,43.1,points
+Vestland,Kvinnherad vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,,open
+Vestland,Kvinnherad vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,,open
+Vestland,Kvinnherad vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,33.1,points
+Vestland,Kvinnherad vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,,open
+Vestland,Kvinnherad vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Kvinnherad vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Kvinnherad vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Kvinnherad vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,41.8,points
+Vestland,Kvinnherad vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
+Vestland,Kvinnherad vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,,open
+Vestland,Kvinnherad vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,34.4,points
+Vestland,Kvinnherad vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,37.6,points
+Vestland,Kvinnherad vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,,open
+Vestland,Kvinnherad vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,24.4,points
+Vestland,Kvinnherad vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,,open
+Vestland,Kvinnherad vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,,open
+Vestland,Kvinnherad vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,30.0,points
+Vestland,Kvinnherad vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,38.8,points
+Vestland,Kvinnherad vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,27.1,points
+Vestland,Kvinnherad vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,36.3,points
+Vestland,Kvinnherad vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,36.7,points
+Vestland,Kvinnherad vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Kvinnherad vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,,open
+Vestland,Kvinnherad vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,26.7,points
+Vestland,Kvinnherad vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,,open
+Vestland,Kvinnherad vidaregåande skule,Kjemiprosess- og laboratorief,0,TP,TPKPL2----,Vg2,2025,3,38.8,points
+Vestland,Kvinnherad vidaregåande skule,Kjemiprosess- og laboratorief,0,TP,TPKPL2----,Vg2,2026,3,43.8,points
+Vestland,Kvinnherad vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,,open
+Vestland,Kvinnherad vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,,open
+Vestland,Kvinnherad vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,,open
+Vestland,Kvinnherad vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,26.3,points
+Vestland,Kvinnherad vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,27.5,points
+Vestland,Kvinnherad vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,33.8,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,29.4,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,32.0,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,29.3,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,45.3,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,46.3,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,"Elektro og datateknologi, SK 3 år",0,EL,ELELE1----,Vg1,2025,3,46.7,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,"Elektro og datateknologi, SK 3 år",0,EL,ELELE1----,Vg1,2026,3,48.1,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,44.2,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,"Elektrofag, SK 3-årig",0,EL,ELELE1----,Vg1,2020,3,46.7,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,42.0,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,43.3,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,40.7,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Automatisering,0,EL,ELAUT2----,Vg2,2024,3,50.0,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Automatisering,0,EL,ELAUT2----,Vg2,2025,3,52.9,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Automatisering,0,EL,ELAUT2----,Vg2,2026,3,52.9,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Brønnteknikk,0,TP,TPBRT2----,Vg2,2024,3,52.2,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Brønnteknikk,0,TP,TPBRT2----,Vg2,2025,3,52.5,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Brønnteknikk,0,TP,TPBRT2----,Vg2,2026,3,51.3,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,47.1,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,50.0,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,48.8,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,26.3,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,47.8,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,46.3,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Kjemiprosess- og laboratorief,0,TP,TPKPL2----,Vg2,2025,3,52.5,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Kjemiprosess- og laboratorief,0,TP,TPKPL2----,Vg2,2026,3,52.5,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Maritime fag,0,TP,TPMAR2----,Vg2,2024,3,46.7,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Maritime fag,0,TP,TPMAR2----,Vg2,2025,3,43.8,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Maritime fag,0,TP,TPMAR2----,Vg2,2026,3,46.3,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2024,3,34.3,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2025,3,22.9,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2026,3,35.0,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2024,3,44.3,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2025,3,45.7,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2026,3,,open
+Vestland,Laksevåg og Bergen Maritime videregående skole,Maritim elektrikerfaget vg3 sk,0,EL,ELMEL3----,Vg3,2025,3,42.9,points
+Vestland,Laksevåg og Bergen Maritime videregående skole,Maritim elektrikerfaget vg3 sk,0,EL,ELMEL3----,Vg3,2026,3,48.8,points
+Vestland,Langhaugen videregående skole,"Musikk, dans og drama med dans",0,MD,MDMUS2----,Vg1,2020,3,50.0,points
+Vestland,Langhaugen videregående skole,"Musikk, dans og drama med musikk",0,MD,MDMUS2----,Vg1,2020,3,56.7,points
+Vestland,Langhaugen videregående skole,"Musikk, dans og drama, dans",0,MD,MDMDD1----,Vg1,2024,3,,open
+Vestland,Langhaugen videregående skole,"Musikk, dans og drama, dans",0,MD,MDMDD1----,Vg1,2025,3,42.5,points
+Vestland,Langhaugen videregående skole,"Musikk, dans og drama, dans",0,MD,MDMDD1----,Vg1,2026,3,49.4,points
+Vestland,Langhaugen videregående skole,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2024,3,50.6,points
+Vestland,Langhaugen videregående skole,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2025,3,53.7,points
+Vestland,Langhaugen videregående skole,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2026,3,45.6,points
+Vestland,Langhaugen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,46.7,points
+Vestland,Langhaugen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,45.3,points
+Vestland,Langhaugen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,46.7,points
+Vestland,Langhaugen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,47.5,points
+Vestland,Måløy vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,,open
+Vestland,Måløy vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,,open
+Vestland,Måløy vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,,open
+Vestland,Måløy vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,31.4,points
+Vestland,Måløy vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,34.3,points
+Vestland,Måløy vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,38.8,points
+Vestland,Måløy vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,35.6,points
+Vestland,Måløy vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,26.3,points
+Vestland,Måløy vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2020,3,32.9,points
+Vestland,Måløy vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,3,,open
+Vestland,Måløy vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2020,3,37.3,points
+Vestland,Måløy vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2024,3,34.1,points
+Vestland,Måløy vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2025,3,,open
+Vestland,Måløy vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2026,3,31.7,points
+Vestland,Måløy vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2020,3,,open
+Vestland,Måløy vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,3,,open
+Vestland,Måløy vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,3,,open
+Vestland,Måløy vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,3,,open
+Vestland,Måløy vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,42.7,points
+Vestland,Måløy vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,40.0,points
+Vestland,Måløy vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,28.1,points
+Vestland,Måløy vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
+Vestland,Måløy vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,,open
+Vestland,Måløy vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,30.0,points
+Vestland,Måløy vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,,open
+Vestland,Måløy vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,,open
+Vestland,Måløy vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2024,3,,open
+Vestland,Måløy vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2025,3,33.8,points
+Vestland,Måløy vidaregåande skule,Akvakultur,0,NA,NAAKV2----,Vg2,2026,3,,open
+Vestland,Måløy vidaregåande skule,Fiske og fangst,0,NA,NAFFA2----,Vg2,2024,3,40.0,points
+Vestland,Måløy vidaregåande skule,Fiske og fangst,0,NA,NAFFA2----,Vg2,2025,3,36.3,points
+Vestland,Måløy vidaregåande skule,Fiske og fangst,0,NA,NAFFA2----,Vg2,2026,3,31.4,points
+Vestland,Måløy vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Måløy vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Måløy vidaregåande skule,Informasjonsteknologi,0,IM,IMITK2----,Vg2,2024,3,,open
+Vestland,Måløy vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2024,3,26.3,points
+Vestland,Måløy vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2025,3,28.8,points
+Vestland,Måløy vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2026,3,,open
+Vestland,Måløy vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2024,3,28.6,points
+Vestland,Måløy vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2025,3,,open
+Vestland,Måløy vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2026,3,,open
+Vestland,Måløy vidaregåande skule,Maritime fag,0,TP,TPMAR2----,Vg2,2024,3,38.8,points
+Vestland,Måløy vidaregåande skule,Maritime fag,0,TP,TPMAR2----,Vg2,2025,3,36.3,points
+Vestland,Måløy vidaregåande skule,Maritime fag,0,TP,TPMAR2----,Vg2,2026,3,31.3,points
+Vestland,Måløy vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,,open
+Vestland,Måløy vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,,open
+Vestland,Måløy vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,,open
+Vestland,Nordahl Grieg videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,38.0,points
+Vestland,Nordahl Grieg videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,28.6,points
+Vestland,Nordahl Grieg videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,34.3,points
+Vestland,Nordahl Grieg videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Nordahl Grieg videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2025,3,40.4,points
+Vestland,Nordahl Grieg videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2026,3,33.3,points
+Vestland,Nordahl Grieg videregående skole,"Helse- og oppvekstfag, SK 3-årig",0,HS,HSHSF1----,Vg1,2020,3,41.3,points
+Vestland,Nordahl Grieg videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2020,3,42.3,points
+Vestland,Nordahl Grieg videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,3,,open
+Vestland,Nordahl Grieg videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,3,,open
+Vestland,Nordahl Grieg videregående skole,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,3,31.8,points
+Vestland,Nordahl Grieg videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,44.7,points
+Vestland,Nordahl Grieg videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,40.9,points
+Vestland,Nordahl Grieg videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,37.2,points
+Vestland,Nordahl Grieg videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,39.2,points
+Vestland,Nordahl Grieg videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,27.5,points
+Vestland,Nordahl Grieg videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,36.7,points
+Vestland,Nordahl Grieg videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,33.8,points
+Vestland,Nordahl Grieg videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,42.5,points
+Vestland,Nordahl Grieg videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,30.0,points
+Vestland,Nordahl Grieg videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Nordahl Grieg videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,41.3,points
+Vestland,Nordahl Grieg videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,26.3,points
+Vestland,Nordahl Grieg videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,20.0,points
+Vestland,Odda vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,,open
+Vestland,Odda vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,,open
+Vestland,Odda vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,35.6,points
+Vestland,Odda vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,26.7,points
+Vestland,Odda vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,31.6,points
+Vestland,Odda vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,36.4,points
+Vestland,Odda vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,,open
+Vestland,Odda vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,,open
+Vestland,Odda vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,,open
+Vestland,Odda vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,,open
+Vestland,Odda vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,,open
+Vestland,Odda vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Odda vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2020,3,,open
+Vestland,Odda vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Odda vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Odda vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,,open
+Vestland,Odda vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
+Vestland,Odda vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,,open
+Vestland,Odda vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,29.1,points
+Vestland,Odda vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,34.8,points
+Vestland,Odda vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,,open
+Vestland,Odda vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,25.7,points
+Vestland,Odda vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,32.9,points
+Vestland,Odda vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,,open
+Vestland,Odda vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Odda vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Odda vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,24.4,points
+Vestland,Odda vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,26.3,points
+Vestland,Odda vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,,open
+Vestland,Odda vidaregåande skule,Kjemiprosess- og laboratorief,0,TP,TPKPL2----,Vg2,2025,3,27.5,points
+Vestland,Odda vidaregåande skule,Kjemiprosess- og laboratorief,0,TP,TPKPL2----,Vg2,2026,3,,open
+Vestland,Odda vidaregåande skule,"Smed, LAL",0,DT,DTSME2----,Vg2,2024,3,,open
+Vestland,Odda vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,,open
+Vestland,Odda vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,,open
+Vestland,Olsvikåsen videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,35.6,points
+Vestland,Olsvikåsen videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,26.7,points
+Vestland,Olsvikåsen videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,36.3,points
+Vestland,Olsvikåsen videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Olsvikåsen videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2025,3,37.3,points
+Vestland,Olsvikåsen videregående skole,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2026,3,37.1,points
+Vestland,Olsvikåsen videregående skole,"Helse- og oppvekstfag, SK 3-årig",0,HS,HSHSF1----,Vg1,2020,3,44.7,points
+Vestland,Olsvikåsen videregående skole,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2020,3,35.5,points
+Vestland,Olsvikåsen videregående skole,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,3,24.6,points
+Vestland,Olsvikåsen videregående skole,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,3,33.6,points
+Vestland,Olsvikåsen videregående skole,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2026,3,32.7,points
+Vestland,Olsvikåsen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,44.7,points
+Vestland,Olsvikåsen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,40.0,points
+Vestland,Olsvikåsen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,37.5,points
+Vestland,Olsvikåsen videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,35.6,points
+Vestland,Olsvikåsen videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,32.2,points
+Vestland,Olsvikåsen videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,28.8,points
+Vestland,Olsvikåsen videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,35.0,points
+Vestland,Olsvikåsen videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,38.8,points
+Vestland,Olsvikåsen videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,37.8,points
+Vestland,Olsvikåsen videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,37.5,points
+Vestland,Os gymnas,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,30.0,points
+Vestland,Os gymnas,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,39.2,points
+Vestland,Os gymnas,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,36.5,points
+Vestland,Os vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,27.7,points
+Vestland,Os vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,25.8,points
+Vestland,Os vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,26.9,points
+Vestland,Os vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,33.8,points
+Vestland,Os vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,33.8,points
+Vestland,Os vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,33.1,points
+Vestland,Os vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,35.3,points
+Vestland,Os vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,27.2,points
+Vestland,Os vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,36.7,points
+Vestland,Os vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,20.0,points
+Vestland,Os vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,34.7,points
+Vestland,Os vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,33.1,points
+Vestland,Os vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2025,3,,open
+Vestland,Os vidaregåande skule,"Helse- og oppvekstfag, SK 3 år",0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Os vidaregåande skule,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,3,33.7,points
+Vestland,Os vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,3,40.0,points
+Vestland,Os vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,3,40.2,points
+Vestland,Os vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,3,30.9,points
+Vestland,Os vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,40.3,points
+Vestland,Os vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,16.7,points
+Vestland,Os vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,34.7,points
+Vestland,Os vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,33.4,points
+Vestland,Os vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,34.4,points
+Vestland,Os vidaregåande skule,Ambulansefag,0,HS,HSAMB2----,Vg2,2024,3,56.3,points
+Vestland,Os vidaregåande skule,Ambulansefag,0,HS,HSAMB2----,Vg2,2025,3,55.6,points
+Vestland,Os vidaregåande skule,Ambulansefag,0,HS,HSAMB2----,Vg2,2026,3,56.3,points
+Vestland,Os vidaregåande skule,"Anleggsteknikk, LAL",0,BA,BAANL2----,Vg2,2024,3,34.3,points
+Vestland,Os vidaregåande skule,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2024,3,30.0,points
+Vestland,Os vidaregåande skule,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2025,3,36.3,points
+Vestland,Os vidaregåande skule,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2026,3,40.0,points
+Vestland,Os vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,38.8,points
+Vestland,Os vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,22.5,points
+Vestland,Os vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,36.7,points
+Vestland,Os vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,38.6,points
+Vestland,Os vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,38.6,points
+Vestland,Os vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,35.0,points
+Vestland,Os vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,47.5,points
+Vestland,Os vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Os vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Os vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2024,3,,open
+Vestland,Os vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2025,3,31.3,points
+Vestland,Os vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2026,3,22.5,points
+Vestland,Os vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2024,3,27.5,points
+Vestland,Os vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2025,3,27.5,points
+Vestland,Os vidaregåande skule,"Salg, service og reiseliv",1,SR,SRSSR2----,Vg2,2026,3,36.3,points
+Vestland,Os vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2024,3,,open
+Vestland,Os vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2025,3,,open
+Vestland,Os vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2026,3,23.3,points
+Vestland,Os vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,,open
+Vestland,Os vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,,open
+Vestland,Os vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,28.6,points
+Vestland,Os vidaregåande skule,"Anleggsmaskinmekanikerfaget, LAL",0,TP,TPAMM3----,Vg3,2024,3,27.1,points
+Vestland,Os vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,,open
+Vestland,Os vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,41.4,points
+Vestland,Os vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Osterøy vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,38.1,points
+Vestland,Osterøy vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,36.9,points
+Vestland,Osterøy vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,43.1,points
+Vestland,Osterøy vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,40.0,points
+Vestland,Osterøy vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,,open
+Vestland,Osterøy vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,,open
+Vestland,Osterøy vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,33.6,points
+Vestland,Osterøy vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Osterøy vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Osterøy vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Osterøy vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,,open
+Vestland,Osterøy vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,,open
+Vestland,Osterøy vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,35.0,points
+Vestland,Osterøy vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,31.3,points
+Vestland,Osterøy vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,,open
+Vestland,Osterøy vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,38.6,points
+Vestland,Osterøy vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,31.4,points
+Vestland,Osterøy vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,,open
+Vestland,Osterøy vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,,open
+Vestland,Osterøy vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Osterøy vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Osterøy vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,,open
+Vestland,Osterøy vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,24.3,points
+Vestland,Osterøy vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,,open
+Vestland,Rubbestadnes vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,30.0,points
+Vestland,Rubbestadnes vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,,open
+Vestland,Sandsli videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2020,3,,open
+Vestland,Sandsli videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,3,0.0,filled_no_points
+Vestland,Sandsli videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,3,20.0,points
+Vestland,Sandsli videregående skole,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,3,,open
+Vestland,Sandsli videregående skole,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,3,35.6,points
+Vestland,Sandsli videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,39.8,points
+Vestland,Sandsli videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,43.0,points
+Vestland,Sandsli videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,42.8,points
+Vestland,Sandsli videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,38.8,points
+Vestland,Sandsli videregående skole,Baker og konditor,0,RM,RMBAK2----,Vg2,2024,3,,open
+Vestland,Sandsli videregående skole,Baker og konditor,0,RM,RMBAK2----,Vg2,2025,3,,open
+Vestland,Sandsli videregående skole,Baker og konditor,0,RM,RMBAK2----,Vg2,2026,3,,open
+Vestland,Sandsli videregående skole,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2024,3,,open
+Vestland,Sandsli videregående skole,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2025,3,25.7,points
+Vestland,Sandsli videregående skole,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2026,3,,open
+Vestland,Sandsli videregående skole,Påbygg gen studiekomp e/yrkeskomp,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Sandsli videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,32.5,points
+Vestland,Slåtthaug videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,29.7,points
+Vestland,Slåtthaug videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,,open
+Vestland,Slåtthaug videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,26.3,points
+Vestland,Slåtthaug videregående skole,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,29.4,points
+Vestland,Slåtthaug videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,35.0,points
+Vestland,Slåtthaug videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,39.4,points
+Vestland,Slåtthaug videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,39.4,points
+Vestland,Slåtthaug videregående skole,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,38.7,points
+Vestland,Slåtthaug videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,18.0,points
+Vestland,Slåtthaug videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,,open
+Vestland,Slåtthaug videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,30.6,points
+Vestland,Slåtthaug videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Slåtthaug videregående skole,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,36.7,points
+Vestland,Slåtthaug videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,33.1,points
+Vestland,Slåtthaug videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,35.9,points
+Vestland,Slåtthaug videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,34.1,points
+Vestland,Slåtthaug videregående skole,Automatisering,0,EL,ELAUT2----,Vg2,2024,3,48.6,points
+Vestland,Slåtthaug videregående skole,Automatisering,0,EL,ELAUT2----,Vg2,2025,3,47.5,points
+Vestland,Slåtthaug videregående skole,Automatisering,0,EL,ELAUT2----,Vg2,2026,3,47.5,points
+Vestland,Slåtthaug videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,,open
+Vestland,Slåtthaug videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,30.0,points
+Vestland,Slåtthaug videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,30.0,points
+Vestland,Slåtthaug videregående skole,Betong og mur,0,BA,BABMO2----,Vg2,2024,3,,open
+Vestland,Slåtthaug videregående skole,Betong og mur,0,BA,BABMO2----,Vg2,2025,3,,open
+Vestland,Slåtthaug videregående skole,Betong og mur,0,BA,BABMO2----,Vg2,2026,3,,open
+Vestland,Slåtthaug videregående skole,"Bilskade, lakk og karosseri",0,TP,TPBLK2----,Vg2,2024,3,,open
+Vestland,Slåtthaug videregående skole,"Bilskade, lakk og karosseri",0,TP,TPBLK2----,Vg2,2025,3,,open
+Vestland,Slåtthaug videregående skole,"Bilskade, lakk og karosseri",0,TP,TPBLK2----,Vg2,2026,3,,open
+Vestland,Slåtthaug videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,37.1,points
+Vestland,Slåtthaug videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,38.6,points
+Vestland,Slåtthaug videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,40.0,points
+Vestland,Slåtthaug videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,27.5,points
+Vestland,Slåtthaug videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,18.8,points
+Vestland,Slåtthaug videregående skole,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,21.3,points
+Vestland,Slåtthaug videregående skole,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,32.5,points
+Vestland,Slåtthaug videregående skole,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,21.3,points
+Vestland,Slåtthaug videregående skole,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,,open
+Vestland,Slåtthaug videregående skole,Kjøretøy,0,TP,TPKJT2----,Vg2,2024,3,,open
+Vestland,Slåtthaug videregående skole,Kjøretøy,0,TP,TPKJT2----,Vg2,2025,3,35.7,points
+Vestland,Slåtthaug videregående skole,Kjøretøy,0,TP,TPKJT2----,Vg2,2026,3,23.8,points
+Vestland,Slåtthaug videregående skole,"Kulde-, varmepumpe-, vent.tekn",0,EL,ELKVV2----,Vg2,2024,3,23.8,points
+Vestland,Slåtthaug videregående skole,"Kulde-, varmepumpe-, vent.tekn",0,EL,ELKVV2----,Vg2,2025,3,22.2,points
+Vestland,Slåtthaug videregående skole,"Kulde-, varmepumpe-, vent.tekn",0,EL,ELKVV2----,Vg2,2026,3,,open
+Vestland,Slåtthaug videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2024,3,28.6,points
+Vestland,Slåtthaug videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2025,3,15.7,points
+Vestland,Slåtthaug videregående skole,Tømrer,0,BA,BATMF2----,Vg2,2026,3,,open
+Vestland,Slåtthaug videregående skole,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2024,3,24.3,points
+Vestland,Slåtthaug videregående skole,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2025,3,,open
+Vestland,Slåtthaug videregående skole,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2026,3,,open
+Vestland,Slåtthaug videregående skole,Påbygg gen studiekomp e/yrkeskomp,0,PB,PBPBY3----,Vg3,2026,3,32.5,points
+Vestland,Slåtthaug videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,,open
+Vestland,Slåtthaug videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,28.6,points
+Vestland,Slåtthaug videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,20.0,points
+Vestland,Sogndal vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,,open
+Vestland,Sogndal vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,,open
+Vestland,Sogndal vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,23.8,points
+Vestland,Sogndal vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,,open
+Vestland,Sogndal vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,42.0,points
+Vestland,Sogndal vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,37.7,points
+Vestland,Sogndal vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,39.4,points
+Vestland,Sogndal vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,32.9,points
+Vestland,Sogndal vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,,open
+Vestland,Sogndal vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,35.0,points
+Vestland,Sogndal vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,38.4,points
+Vestland,Sogndal vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Sogndal vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2020,3,,open
+Vestland,Sogndal vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2024,3,45.3,points
+Vestland,Sogndal vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2025,3,46.5,points
+Vestland,Sogndal vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2026,3,45.5,points
+Vestland,Sogndal vidaregåande skule,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2020,3,,open
+Vestland,Sogndal vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2020,3,,open
+Vestland,Sogndal vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,3,,open
+Vestland,Sogndal vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,3,,open
+Vestland,Sogndal vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,3,,open
+Vestland,Sogndal vidaregåande skule,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,3,,open
+Vestland,Sogndal vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,3,,open
+Vestland,Sogndal vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,3,32.2,points
+Vestland,Sogndal vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,3,,open
+Vestland,Sogndal vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Sogndal vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Sogndal vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,28.2,points
+Vestland,Sogndal vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
+Vestland,Sogndal vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,27.3,points
+Vestland,Sogndal vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,33.1,points
+Vestland,Sogndal vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,31.6,points
+Vestland,Sogndal vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,31.3,points
+Vestland,Sogndal vidaregåande skule,Anleggsteknikk,0,BA,BAANL2----,Vg2,2024,3,34.3,points
+Vestland,Sogndal vidaregåande skule,Anleggsteknikk,0,BA,BAANL2----,Vg2,2025,3,32.9,points
+Vestland,Sogndal vidaregåande skule,Anleggsteknikk,0,BA,BAANL2----,Vg2,2026,3,30.0,points
+Vestland,Sogndal vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,,open
+Vestland,Sogndal vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,22.2,points
+Vestland,Sogndal vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,,open
+Vestland,Sogndal vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2024,3,31.4,points
+Vestland,Sogndal vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2025,3,25.0,points
+Vestland,Sogndal vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2026,3,,open
+Vestland,Sogndal vidaregåande skule,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2024,3,,open
+Vestland,Sogndal vidaregåande skule,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2026,3,38.6,points
+Vestland,Sogndal vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,44.3,points
+Vestland,Sogndal vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,35.7,points
+Vestland,Sogndal vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,40.0,points
+Vestland,Sogndal vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,35.0,points
+Vestland,Sogndal vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,27.5,points
+Vestland,Sogndal vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Sogndal vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2024,3,,open
+Vestland,Sogndal vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2025,3,,open
+Vestland,Sogndal vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2026,3,31.3,points
+Vestland,Sogndal vidaregåande skule,"Klima, energi og miljøteknikk",0,BA,BAKEM2----,Vg2,2025,3,,open
+Vestland,Sogndal vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2024,3,,open
+Vestland,Sogndal vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2025,3,,open
+Vestland,Sogndal vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2026,3,,open
+Vestland,Sogndal vidaregåande skule,Rørlegger,0,BA,BARLF2----,Vg2,2024,3,34.3,points
+Vestland,Sogndal vidaregåande skule,Rørlegger,0,BA,BARLF2----,Vg2,2025,3,31.4,points
+Vestland,Sogndal vidaregåande skule,Rørlegger,0,BA,BARLF2----,Vg2,2026,3,,open
+Vestland,Sogndal vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2024,3,,open
+Vestland,Sogndal vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2025,3,,open
+Vestland,Sogndal vidaregåande skule,"Salg, service og reiseliv",1,SR,SRSSR2----,Vg2,2026,3,,open
+Vestland,Sogndal vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2024,3,20.0,points
+Vestland,Sogndal vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2025,3,,open
+Vestland,Sogndal vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2026,3,26.3,points
+Vestland,Sogndal vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,,open
+Vestland,Sogndal vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,,open
+Vestland,Sogndal vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,,open
+Vestland,Sogndal vidaregåande skule,Dataelektronikerfaget,0,EL,ELDAT3----,Vg3,2024,3,,open
+Vestland,Sogndal vidaregåande skule,Dataelektronikerfaget,0,EL,ELDAT3----,Vg3,2025,3,,open
+Vestland,Sogndal vidaregåande skule,Dataelektronikerfaget,0,EL,ELDAT3----,Vg3,2026,3,,open
+Vestland,Sotra vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,26.4,points
+Vestland,Sotra vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,,open
+Vestland,Sotra vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,21.3,points
+Vestland,Sotra vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,,open
+Vestland,Sotra vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,34.1,points
+Vestland,Sotra vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,35.7,points
+Vestland,Sotra vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,35.6,points
+Vestland,Sotra vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,38.7,points
+Vestland,Sotra vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,,open
+Vestland,Sotra vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,,open
+Vestland,Sotra vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,29.7,points
+Vestland,Sotra vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Sotra vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2020,3,40.7,points
+Vestland,Sotra vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2024,3,36.3,points
+Vestland,Sotra vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2025,3,,open
+Vestland,Sotra vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2026,3,,open
+Vestland,Sotra vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2020,3,31.1,points
+Vestland,Sotra vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,3,27.7,points
+Vestland,Sotra vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,3,27.3,points
+Vestland,Sotra vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,3,,open
+Vestland,Sotra vidaregåande skule,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,3,13.1,points
+Vestland,Sotra vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,3,30.3,points
+Vestland,Sotra vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,3,31.3,points
+Vestland,Sotra vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,3,23.8,points
+Vestland,Sotra vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,26.9,points
+Vestland,Sotra vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,30.6,points
+Vestland,Sotra vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,21.0,points
+Vestland,Sotra vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,28.8,points
+Vestland,Sotra vidaregåande skule,Studiespesialisering med teknologifag,0,ST,STUSP1----,Vg1,2020,3,40.2,points
+Vestland,Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2024,3,31.9,points
+Vestland,Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2025,3,,open
+Vestland,Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2026,3,45.3,points
+Vestland,Sotra vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,40.7,points
+Vestland,Sotra vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,38.0,points
+Vestland,Sotra vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,36.3,points
+Vestland,Sotra vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,38.8,points
+Vestland,Sotra vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2024,3,46.3,points
+Vestland,Sotra vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2025,3,46.7,points
+Vestland,Sotra vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2026,3,50.0,points
+Vestland,Sotra vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,43.8,points
+Vestland,Sotra vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,23.8,points
+Vestland,Sotra vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,38.8,points
+Vestland,Sotra vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2024,3,24.4,points
+Vestland,Sotra vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2025,3,,open
+Vestland,Sotra vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2026,3,,open
+Vestland,Sotra vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,38.8,points
+Vestland,Sotra vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,40.0,points
+Vestland,Sotra vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,44.3,points
+Vestland,Sotra vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,28.8,points
+Vestland,Sotra vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Sotra vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Sotra vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,36.3,points
+Vestland,Sotra vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,38.8,points
+Vestland,Sotra vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,35.7,points
+Vestland,Sotra vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2024,3,,open
+Vestland,Sotra vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2025,3,,open
+Vestland,Sotra vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2026,3,,open
+Vestland,Sotra vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2024,3,30.0,points
+Vestland,Sotra vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2025,3,,open
+Vestland,Sotra vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2026,3,,open
+Vestland,Sotra vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2024,3,,open
+Vestland,Sotra vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2025,3,27.8,points
+Vestland,Sotra vidaregåande skule,"Salg, service og reiseliv",1,SR,SRSSR2----,Vg2,2026,3,,open
+Vestland,Sotra vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,25.7,points
+Vestland,Sotra vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,30.0,points
+Vestland,Sotra vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,,open
+Vestland,Sotra vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2024,3,38.6,points
+Vestland,Sotra vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2025,3,,open
+Vestland,Sotra vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2026,3,,open
+Vestland,Sotra vidaregåande skule,Påbygg gen studiekomp e/yrkeskomp,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Sotra vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,33.8,points
+Vestland,Sotra vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,22.5,points
+Vestland,Sotra vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,25.7,points
+Vestland,Stend vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2020,3,47.3,points
+Vestland,Stend vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2024,3,47.14,points
+Vestland,Stend vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2025,3,34.7,points
+Vestland,Stend vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2026,3,45.3,points
+Vestland,Stend vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2024,3,27.9,points
+Vestland,Stend vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2026,3,,open
+Vestland,Stend vidaregåande skule,Naturbruk med anleggsgartnar,0,NA,NANAB1----,Vg1,2020,3,,open
+Vestland,Stend vidaregåande skule,Naturbruk med dyrefag,0,NA,NANAB1----,Vg1,2020,3,32.3,points
+Vestland,Stend vidaregåande skule,Naturbruk med friluftsliv,0,NA,NANAB1----,Vg1,2020,3,,open
+Vestland,Stend vidaregåande skule,Naturbruk med hest,0,NA,NANAB1----,Vg1,2020,3,30.7,points
+Vestland,Stend vidaregåande skule,"Naturbruk, anleggsgartner",0,NA,NANAB1----,Vg1,2024,3,,open
+Vestland,Stend vidaregåande skule,"Naturbruk, anleggsgartner",0,NA,NANAB1----,Vg1,2025,3,,open
+Vestland,Stend vidaregåande skule,"Naturbruk, anleggsgartner",0,NA,NANAB1----,Vg1,2026,3,,open
+Vestland,Stend vidaregåande skule,"Naturbruk, dyrefag",0,NA,NANAB1----,Vg1,2024,3,,open
+Vestland,Stend vidaregåande skule,"Naturbruk, dyrefag",0,NA,NANAB1----,Vg1,2025,3,19.0,points
+Vestland,Stend vidaregåande skule,"Naturbruk, dyrefag",0,NA,NANAB1----,Vg1,2026,3,,open
+Vestland,Stend vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2024,3,32.7,points
+Vestland,Stend vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2025,3,,open
+Vestland,Stend vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2026,3,36.3,points
+Vestland,Stend vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2024,3,37.7,points
+Vestland,Stend vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2025,3,37.8,points
+Vestland,Stend vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2026,3,36.7,points
+Vestland,Stend vidaregåande skule,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,3,23.0,points
+Vestland,Stend vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,3,,open
+Vestland,Stend vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,3,31.6,points
+Vestland,Stend vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,3,,open
+Vestland,Stend vidaregåande skule,Anleggsgartner,0,BA,BAANG2----,Vg2,2024,3,,open
+Vestland,Stend vidaregåande skule,Anleggsgartner,0,BA,BAANG2----,Vg2,2025,3,26.3,points
+Vestland,Stend vidaregåande skule,Anleggsgartner,0,BA,BAANG2----,Vg2,2026,3,32.9,points
+Vestland,Stend vidaregåande skule,Heste- og dyrefag,0,NA,NAHDF2----,Vg2,2024,3,,open
+Vestland,Stend vidaregåande skule,Heste- og dyrefag,0,NA,NAHDF2----,Vg2,2025,3,32.9,points
+Vestland,Stend vidaregåande skule,Heste- og dyrefag,0,NA,NAHDF2----,Vg2,2026,3,32.5,points
+Vestland,Stend vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2024,3,,open
+Vestland,Stend vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2025,3,,open
+Vestland,Stend vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2026,3,,open
+Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2024,3,,open
+Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2025,3,35.7,points
+Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2026,3,,open
+Vestland,Stend vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2024,3,28.8,points
+Vestland,Stend vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2025,3,41.3,points
+Vestland,Stend vidaregåande skule,"Salg, service og reiseliv",1,SR,SRSSR2----,Vg2,2026,3,32.2,points
+Vestland,Stend vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,45.7,points
+Vestland,Stend vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,32.9,points
+Vestland,Stend vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,32.5,points
+Vestland,Stord vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,27.3,points
+Vestland,Stord vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,28.6,points
+Vestland,Stord vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,23.3,points
+Vestland,Stord vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,21.3,points
+Vestland,Stord vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,35.0,points
+Vestland,Stord vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,21.3,points
+Vestland,Stord vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,35.6,points
+Vestland,Stord vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,36.2,points
+Vestland,Stord vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2020,3,34.3,points
+Vestland,Stord vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2024,3,,open
+Vestland,Stord vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2025,3,,open
+Vestland,Stord vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2026,3,33.5,points
+Vestland,Stord vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2020,3,,open
+Vestland,Stord vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,3,,open
+Vestland,Stord vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,3,27.2,points
+Vestland,Stord vidaregåande skule,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,3,,open
+Vestland,Stord vidaregåande skule,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2020,3,,open
+Vestland,Stord vidaregåande skule,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2024,3,,open
+Vestland,Stord vidaregåande skule,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2025,3,32.8,points
+Vestland,Stord vidaregåande skule,Medier og kommunikasjon,0,MK,MKMED1----,Vg1,2026,3,,open
+Vestland,Stord vidaregåande skule,"Musikk, dans og drama med musikk",0,MD,MDMUS2----,Vg1,2020,3,,open
+Vestland,Stord vidaregåande skule,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2024,3,,open
+Vestland,Stord vidaregåande skule,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2025,3,39.4,points
+Vestland,Stord vidaregåande skule,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2026,3,,open
+Vestland,Stord vidaregåande skule,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,3,,open
+Vestland,Stord vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,3,,open
+Vestland,Stord vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,3,,open
+Vestland,Stord vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,3,25.6,points
+Vestland,Stord vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Stord vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Stord vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,,open
+Vestland,Stord vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
+Vestland,Stord vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,,open
+Vestland,Stord vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,15.3,points
+Vestland,Stord vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,20.9,points
+Vestland,Stord vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,27.2,points
+Vestland,Stord vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2024,3,32.9,points
+Vestland,Stord vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2025,3,42.9,points
+Vestland,Stord vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2026,3,28.6,points
+Vestland,Stord vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,34.3,points
+Vestland,Stord vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,34.3,points
+Vestland,Stord vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,37.5,points
+Vestland,Stord vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,,open
+Vestland,Stord vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,,open
+Vestland,Stord vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,,open
+Vestland,Stord vidaregåande skule,Informasjonsteknologi,0,IM,IMITK2----,Vg2,2024,3,,open
+Vestland,Stord vidaregåande skule,Informasjonsteknologi,0,IM,IMITK2----,Vg2,2025,3,,open
+Vestland,Stord vidaregåande skule,Informasjonsteknologi,0,IM,IMITK2----,Vg2,2026,3,,open
+Vestland,Stord vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2024,3,,open
+Vestland,Stord vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2025,3,,open
+Vestland,Stord vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2026,3,20.0,points
+Vestland,Stord vidaregåande skule,"Klima, energi og miljøteknikk",0,BA,BAKEM2----,Vg2,2024,3,,open
+Vestland,Stord vidaregåande skule,Overflateteknikk,0,BA,BAOFT2----,Vg2,2024,3,,open
+Vestland,Stord vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2024,3,,open
+Vestland,Stord vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2025,3,,open
+Vestland,Stord vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,22.9,points
+Vestland,Stord vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,32.9,points
+Vestland,Stord vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,35.7,points
+Vestland,Stord vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2024,3,31.4,points
+Vestland,Stord vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2025,3,32.9,points
+Vestland,Stord vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2026,3,,open
+Vestland,Stord vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,22.9,points
+Vestland,Stord vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,25.0,points
+Vestland,Stord vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Stryn vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,,open
+Vestland,Stryn vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,,open
+Vestland,Stryn vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,,open
+Vestland,Stryn vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,,open
+Vestland,Stryn vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,31.3,points
+Vestland,Stryn vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,32.6,points
+Vestland,Stryn vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,29.2,points
+Vestland,Stryn vidaregåande skule,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,3,,open
+Vestland,Stryn vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Stryn vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Stryn vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,,open
+Vestland,Stryn vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,35.4,points
+Vestland,Stryn vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,26.4,points
+Vestland,Stryn vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,21.6,points
+Vestland,Stryn vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,,open
+Vestland,Stryn vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,,open
+Vestland,Stryn vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2024,3,35.7,points
+Vestland,Stryn vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2025,3,,open
+Vestland,Stryn vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2026,3,24.3,points
+Vestland,Stryn vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,33.8,points
+Vestland,Stryn vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,,open
+Vestland,Stryn vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,,open
+Vestland,Stryn vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2024,3,32.5,points
+Vestland,Stryn vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2025,3,25.0,points
+Vestland,Stryn vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2026,3,23.8,points
+Vestland,Stryn vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,30.0,points
+Vestland,Stryn vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,22.9,points
+Vestland,Stryn vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,28.6,points
+Vestland,Tertnes vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Tertnes vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,31.3,points
+Vestland,Tertnes vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,32.5,points
+Vestland,Tertnes vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
+Vestland,Voss gymnas,"Frisør, blomar, interiør og eksponeringdesign",0,FD,FDFRI2----,Vg1,2020,3,,open
+Vestland,Voss gymnas,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,3,,open
+Vestland,Voss gymnas,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,3,35.9,points
+Vestland,Voss gymnas,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2026,3,,open
+Vestland,Voss gymnas,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,31.1,points
+Vestland,Voss gymnas,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,,open
+Vestland,Voss gymnas,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,37.1,points
+Vestland,Voss gymnas,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,20.6,points
+Vestland,Voss gymnas,Idrettsfag,0,ID,IDRET1----,Vg1,2020,3,,open
+Vestland,Voss gymnas,Idrettsfag,0,ID,IDRET1----,Vg1,2024,3,,open
+Vestland,Voss gymnas,Idrettsfag,0,ID,IDRET1----,Vg1,2025,3,,open
+Vestland,Voss gymnas,Idrettsfag,0,ID,IDRET1----,Vg1,2026,3,32.0,points
+Vestland,Voss gymnas,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2020,3,,open
+Vestland,Voss gymnas,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2024,3,,open
+Vestland,Voss gymnas,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2025,3,,open
+Vestland,Voss gymnas,Informasjonsteknologi og medieproduksjon,0,IM,IMIKM1----,Vg1,2026,3,,open
+Vestland,Voss gymnas,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2020,3,24.3,points
+Vestland,Voss gymnas,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,3,35.9,points
+Vestland,Voss gymnas,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,3,31.9,points
+Vestland,Voss gymnas,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2026,3,,open
+Vestland,Voss gymnas,"Musikk, dans og drama med musikk",0,MD,MDMUS2----,Vg1,2020,3,,open
+Vestland,Voss gymnas,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2024,3,,open
+Vestland,Voss gymnas,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2025,3,31.9,points
+Vestland,Voss gymnas,"Musikk, dans og drama, musikk",0,MD,MDMDD1----,Vg1,2026,3,,open
+Vestland,Voss gymnas,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,3,,open
+Vestland,Voss gymnas,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,3,,open
+Vestland,Voss gymnas,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,3,,open
+Vestland,Voss gymnas,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,3,,open
+Vestland,Voss gymnas,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Voss gymnas,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Voss gymnas,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,,open
+Vestland,Voss gymnas,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,38.1,points
+Vestland,Voss gymnas,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,25.0,points
+Vestland,Voss gymnas,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,40.0,points
+Vestland,Voss gymnas,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,22.2,points
+Vestland,Voss gymnas,Frisør,0,FD,FDFRI2----,Vg2,2024,3,,open
+Vestland,Voss gymnas,Frisør,0,FD,FDFRI2----,Vg2,2026,3,32.9,points
+Vestland,Voss gymnas,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,25.0,points
+Vestland,Voss gymnas,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,25.0,points
+Vestland,Voss gymnas,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,37.8,points
+Vestland,Voss gymnas,Informasjonsteknologi,0,IM,IMITK2----,Vg2,2024,3,,open
+Vestland,Voss gymnas,Informasjonsteknologi,0,IM,IMITK2----,Vg2,2025,3,,open
+Vestland,Voss gymnas,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2024,3,,open
+Vestland,Voss gymnas,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2025,3,,open
+Vestland,Voss gymnas,"Salg, service og reiseliv",1,SR,SRSSR2----,Vg2,2026,3,,open
+Vestland,Voss gymnas,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,42.5,points
+Vestland,Voss gymnas,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,40.0,points
+Vestland,Voss gymnas,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,34.3,points
+Vestland,Voss vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,30.7,points
+Vestland,Voss vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,25.9,points
+Vestland,Voss vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,33.5,points
+Vestland,Voss vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,29.4,points
+Vestland,Voss vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,32.8,points
+Vestland,Voss vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,35.7,points
+Vestland,Voss vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,39.7,points
+Vestland,Voss vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,,open
+Vestland,Voss vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2020,3,,open
+Vestland,Voss vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2024,3,20.2,points
+Vestland,Voss vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2025,3,26.5,points
+Vestland,Voss vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2026,3,,open
+Vestland,Voss vidaregåande skule,Naturbruk med friluftsliv,0,NA,NANAB1----,Vg1,2020,3,46.4,points
+Vestland,Voss vidaregåande skule,Naturbruk med hest,0,NA,NANAB1----,Vg1,2020,3,,open
+Vestland,Voss vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2024,3,,open
+Vestland,Voss vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2025,3,38.7,points
+Vestland,Voss vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2026,3,46.3,points
+Vestland,Voss vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2024,3,33.8,points
+Vestland,Voss vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2025,3,35.7,points
+Vestland,Voss vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2026,3,,open
+Vestland,Voss vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2020,3,38.2,points
+Vestland,Voss vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2024,3,43.8,points
+Vestland,Voss vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2025,3,,open
+Vestland,Voss vidaregåande skule,Restaurant- og matfag,0,RM,RMRMF1----,Vg1,2026,3,,open
+Vestland,Voss vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,34.3,points
+Vestland,Voss vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,,open
+Vestland,Voss vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,34.4,points
+Vestland,Voss vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,31.9,points
+Vestland,Voss vidaregåande skule,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2024,3,,open
+Vestland,Voss vidaregåande skule,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2025,3,,open
+Vestland,Voss vidaregåande skule,Arbeidsmaskiner,0,TP,TPAMK2----,Vg2,2026,3,34.4,points
+Vestland,Voss vidaregåande skule,Baker og konditor,0,RM,RMBAK2----,Vg2,2024,3,41.4,points
+Vestland,Voss vidaregåande skule,Baker og konditor,0,RM,RMBAK2----,Vg2,2025,3,,open
+Vestland,Voss vidaregåande skule,Baker og konditor,0,RM,RMBAK2----,Vg2,2026,3,,open
+Vestland,Voss vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2024,3,,open
+Vestland,Voss vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2025,3,,open
+Vestland,Voss vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2026,3,,open
+Vestland,Voss vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,42.9,points
+Vestland,Voss vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,41.4,points
+Vestland,Voss vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,44.3,points
+Vestland,Voss vidaregåande skule,Heste- og dyrefag,0,NA,NAHDF2----,Vg2,2024,3,28.8,points
+Vestland,Voss vidaregåande skule,Heste- og dyrefag,0,NA,NAHDF2----,Vg2,2025,3,22.5,points
+Vestland,Voss vidaregåande skule,Heste- og dyrefag,0,NA,NAHDF2----,Vg2,2026,3,35.0,points
+Vestland,Voss vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,41.3,points
+Vestland,Voss vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,28.6,points
+Vestland,Voss vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,35.6,points
+Vestland,Voss vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2025,3,,open
+Vestland,Voss vidaregåande skule,Kjøretøy,0,TP,TPKJT2----,Vg2,2026,3,,open
+Vestland,Voss vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2024,3,,open
+Vestland,Voss vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2025,3,,open
+Vestland,Voss vidaregåande skule,Kokk- og servitørfag,0,RM,RMKOS2----,Vg2,2026,3,38.6,points
+Vestland,Voss vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2024,3,33.8,points
+Vestland,Voss vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2025,3,27.5,points
+Vestland,Voss vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2026,3,,open
+Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2024,3,26.3,points
+Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2025,3,38.8,points
+Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2026,3,,open
+Vestland,Voss vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,30.0,points
+Vestland,Voss vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,,open
+Vestland,Voss vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,35.7,points
+Vestland,Voss vidaregåande skule,Landbruk,0,NA,NAAGR3----,Vg3,2024,3,35.7,points
+Vestland,Voss vidaregåande skule,Landbruk,0,NA,NAAGR3----,Vg3,2025,3,,open
+Vestland,Voss vidaregåande skule,Landbruk,0,NA,NAAGR3----,Vg3,2026,3,,open
+Vestland,Voss vidaregåande skule,Studieforberedende naturbruk,0,NA,NANAB3----,Vg3,2024,3,,open
+Vestland,Voss vidaregåande skule,Studieforberedende naturbruk,0,NA,NANAB3----,Vg3,2025,3,,open
+Vestland,Voss vidaregåande skule,Studieforberedende naturbruk,0,NA,NANAB3----,Vg3,2026,3,,open
+Vestland,Årdal vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,25.8,points
+Vestland,Årdal vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,31.4,points
+Vestland,Årdal vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,22.8,points
+Vestland,Årdal vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,29.0,points
+Vestland,Årdal vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,,open
+Vestland,Årdal vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
+Vestland,Årdal vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,,open
+Vestland,Årdal vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
+Vestland,Årdal vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,,open
+Vestland,Årdal vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,,open
+Vestland,Årdal vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,25.4,points
+Vestland,Årdal vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,33.4,points
+Vestland,Årdal vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2024,3,,open
+Vestland,Årdal vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2025,3,34.3,points
+Vestland,Årdal vidaregåande skule,Automatisering,0,EL,ELAUT2----,Vg2,2026,3,,open
+Vestland,Årdal vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,,open
+Vestland,Årdal vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,,open
+Vestland,Årdal vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,,open
+Vestland,Årdal vidaregåande skule,Kjemiprosess- og laboratorief,0,TP,TPKPL2----,Vg2,2025,3,31.4,points
+Vestland,Årdal vidaregåande skule,Kjemiprosess- og laboratorief,0,TP,TPKPL2----,Vg2,2026,3,,open
+Vestland,Årdal vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2024,3,,open
+Vestland,Årdal vidaregåande skule,Automatiseringsfaget,0,EL,ELAUT3----,Vg3,2026,3,,open
+Vestland,Årdal vidaregåande skule,Påbygg gen studiekomp e/yrkeskomp,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Årdal vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,,open
+Vestland,Årdal vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,30.0,points
+Vestland,Årdal vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,,open
+Vestland,Årstad videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,38.8,points
+Vestland,Årstad videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,38.8,points
+Vestland,Årstad videregående skole,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,38.7,points
+Vestland,Årstad videregående skole,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,38.0,points
+Vestland,Årstad videregående skole,"Frisør, blomar, interiør og eksponeringdesign",0,FD,FDFRI2----,Vg1,2020,3,26.7,points
+Vestland,Årstad videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,3,23.1,points
+Vestland,Årstad videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,3,30.3,points
+Vestland,Årstad videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2026,3,,open
+Vestland,Årstad videregående skole,"Handverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2020,3,40.0,points
+Vestland,Årstad videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,24.2,points
+Vestland,Årstad videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,31.2,points
+Vestland,Årstad videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,31.6,points
+Vestland,Årstad videregående skole,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,20.0,points
+Vestland,Årstad videregående skole,"Håndverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2024,3,41.9,points
+Vestland,Årstad videregående skole,"Håndverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2025,3,34.9,points
+Vestland,Årstad videregående skole,"Håndverk, design og produktutvikling",0,DT,DTDTH1----,Vg1,2026,3,23.8,points
+Vestland,Årstad videregående skole,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2020,3,38.7,points
+Vestland,Årstad videregående skole,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2024,3,27.7,points
+Vestland,Årstad videregående skole,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2025,3,36.9,points
+Vestland,Årstad videregående skole,"Kunst, design og arkitektur",0,KD,KDKDA1----,Vg1,2026,3,34.1,points
+Vestland,Årstad videregående skole,Studiespesialisering,0,ST,STUSP1----,Vg1,2020,3,23.3,points
+Vestland,Årstad videregående skole,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,31.1,points
+Vestland,Årstad videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,34.4,points
+Vestland,Årstad videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,34.4,points
+Vestland,Årstad videregående skole,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,33.0,points
+Vestland,Årstad videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,32.5,points
+Vestland,Årstad videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,33.3,points
+Vestland,Årstad videregående skole,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,,open
+Vestland,Årstad videregående skole,Blomsterdekoratør,0,FD,FDBLD2----,Vg2,2024,3,,open
+Vestland,Årstad videregående skole,Blomsterdekoratør,0,FD,FDBLD2----,Vg2,2025,3,31.4,points
+Vestland,Årstad videregående skole,Blomsterdekoratør,0,FD,FDBLD2----,Vg2,2026,3,,open
+Vestland,Årstad videregående skole,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2024,3,,open
+Vestland,Årstad videregående skole,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2025,3,27.1,points
+Vestland,Årstad videregående skole,Datateknologi og elektronikk,0,EL,ELDEL2----,Vg2,2026,3,21.4,points
+Vestland,Årstad videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,42.9,points
+Vestland,Årstad videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,40.0,points
+Vestland,Årstad videregående skole,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,34.3,points
+Vestland,Årstad videregående skole,Frisør,0,FD,FDFRI2----,Vg2,2024,3,,open
+Vestland,Årstad videregående skole,Frisør,0,FD,FDFRI2----,Vg2,2025,3,28.6,points
+Vestland,Årstad videregående skole,Frisør,0,FD,FDFRI2----,Vg2,2026,3,32.9,points
+Vestland,Årstad videregående skole,Hudpleie,0,HS,HSHUD2----,Vg2,2024,3,27.5,points
+Vestland,Årstad videregående skole,Hudpleie,0,HS,HSHUD2----,Vg2,2025,3,40.0,points
+Vestland,Årstad videregående skole,Hudpleie,0,HS,HSHUD2----,Vg2,2026,3,35.0,points
+Vestland,Årstad videregående skole,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,32.5,points
+Vestland,Årstad videregående skole,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,32.2,points
+Vestland,Årstad videregående skole,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,33.8,points
+Vestland,Årstad videregående skole,Interiør og eksponeringsdesign,0,FD,FDIED2----,Vg2,2024,3,41.4,points
+Vestland,Årstad videregående skole,Interiør og eksponeringsdesign,0,FD,FDIED2----,Vg2,2025,3,38.6,points
+Vestland,Årstad videregående skole,Interiør og eksponeringsdesign,0,FD,FDIED2----,Vg2,2026,3,,open
+Vestland,Årstad videregående skole,Kjøretøy,0,TP,TPKJT2----,Vg2,2024,3,,open
+Vestland,Årstad videregående skole,Kjøretøy,0,TP,TPKJT2----,Vg2,2025,3,25.0,points
+Vestland,Årstad videregående skole,Kjøretøy,0,TP,TPKJT2----,Vg2,2026,3,,open
+Vestland,Årstad videregående skole,Søm og tekstilhåndverk,0,DT,DTSTH2----,Vg2,2024,3,27.1,points
+Vestland,Årstad videregående skole,Søm og tekstilhåndverk,0,DT,DTSTH2----,Vg2,2025,3,35.7,points
+Vestland,Årstad videregående skole,Søm og tekstilhåndverk,0,DT,DTSTH2----,Vg2,2026,3,,open
+Vestland,Årstad videregående skole,Dataelektronikerfaget,0,EL,ELDAT3----,Vg3,2024,3,28.6,points
+Vestland,Årstad videregående skole,Dataelektronikerfaget,0,EL,ELDAT3----,Vg3,2025,3,35.7,points
+Vestland,Årstad videregående skole,Dataelektronikerfaget,0,EL,ELDAT3----,Vg3,2026,3,,open
+Vestland,Årstad videregående skole,Hudpleier,0,HS,HSHUD2----,Vg3,2024,3,26.3,points
+Vestland,Årstad videregående skole,Hudterapi,0,HS,HSHUD3----,Vg3,2025,3,27.5,points
+Vestland,Årstad videregående skole,Hudterapi,0,HS,HSHUD3----,Vg3,2026,3,30.0,points
+Vestland,Årstad videregående skole,Interiør,0,FD,FDINT3----,Vg3,2024,3,,open
+Vestland,Årstad videregående skole,Interiør,0,FD,FDINT3----,Vg3,2025,3,,open
+Vestland,Årstad videregående skole,Interiør,0,FD,FDINT3----,Vg3,2026,3,,open
+Vestland,Årstad videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,35.0,points
+Vestland,Årstad videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,35.7,points
+Vestland,Årstad videregående skole,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,35.7,points
+Vestland,Åsane vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2020,3,34.3,points
+Vestland,Åsane vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2024,3,35.9,points
+Vestland,Åsane vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2025,3,34.3,points
+Vestland,Åsane vidaregåande skule,Bygg- og anleggsteknikk,0,BA,BABAT1----,Vg1,2026,3,32.4,points
+Vestland,Åsane vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2024,3,40.6,points
+Vestland,Åsane vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,37.6,points
+Vestland,Åsane vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,39.1,points
+Vestland,Åsane vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,35.2,points
+Vestland,Åsane vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2020,3,34.3,points
+Vestland,Åsane vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2024,3,22.9,points
+Vestland,Åsane vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2025,3,28.8,points
+Vestland,Åsane vidaregåande skule,Helse- og oppvekstfag,0,HS,HSHSF1----,Vg1,2026,3,,open
+Vestland,Åsane vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2020,3,38.0,points
+Vestland,Åsane vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2024,3,39.7,points
+Vestland,Åsane vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2025,3,34.0,points
+Vestland,Åsane vidaregåande skule,Idrettsfag,0,ID,IDRET1----,Vg1,2026,3,38.1,points
+Vestland,Åsane vidaregåande skule,"Sal, service og reiseliv",0,SR,SRSSR1----,Vg1,2020,3,26.7,points
+Vestland,Åsane vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2024,3,30.6,points
+Vestland,Åsane vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2025,3,31.9,points
+Vestland,Åsane vidaregåande skule,"Salg, service og reiseliv",0,SR,SRSSR1----,Vg1,2026,3,27.3,points
+Vestland,Åsane vidaregåande skule,Teknikk og industriell produksjon,0,TP,TPTIP1----,Vg1,2020,3,32.0,points
+Vestland,Åsane vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2024,3,37.6,points
+Vestland,Åsane vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2025,3,38.8,points
+Vestland,Åsane vidaregåande skule,Teknologi- og industrifag,0,TP,TPTIP1----,Vg1,2026,3,36.5,points
+Vestland,Åsane vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2024,3,42.5,points
+Vestland,Åsane vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2025,3,43.8,points
+Vestland,Åsane vidaregåande skule,Barne- og ungdomsarbeider,0,HS,HSBUA2----,Vg2,2026,3,31.3,points
+Vestland,Åsane vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2024,3,,open
+Vestland,Åsane vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2025,3,,open
+Vestland,Åsane vidaregåande skule,Betong og mur,0,BA,BABMO2----,Vg2,2026,3,,open
+Vestland,Åsane vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2024,3,37.5,points
+Vestland,Åsane vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2025,3,41.3,points
+Vestland,Åsane vidaregåande skule,Elenergi og ekom,0,EL,ELELE2----,Vg2,2026,3,31.4,points
+Vestland,Åsane vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2024,3,41.3,points
+Vestland,Åsane vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2025,3,36.3,points
+Vestland,Åsane vidaregåande skule,Helsearbeiderfag,0,HS,HSHEA2----,Vg2,2026,3,43.8,points
+Vestland,Åsane vidaregåande skule,Helseservicefag,0,HS,HSHES2----,Vg2,2024,3,27.8,points
+Vestland,Åsane vidaregåande skule,Helseservicefag,0,HS,HSHES2----,Vg2,2025,3,25.6,points
+Vestland,Åsane vidaregåande skule,Helseservicefag,0,HS,HSHES2----,Vg2,2026,3,30.0,points
+Vestland,Åsane vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2024,3,38.9,points
+Vestland,Åsane vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2025,3,37.5,points
+Vestland,Åsane vidaregåande skule,Industriteknologi,0,TP,TPPIN2----,Vg2,2026,3,37.5,points
+Vestland,Åsane vidaregåande skule,"Klima, energi og miljøteknikk",0,BA,BAKEM2----,Vg2,2024,3,,open
+Vestland,Åsane vidaregåande skule,"Klima, energi og miljøteknikk",0,BA,BAKEM2----,Vg2,2025,3,,open
+Vestland,Åsane vidaregåande skule,"Klima, energi og miljøteknikk",0,BA,BAKEM2----,Vg2,2026,3,,open
+Vestland,Åsane vidaregåande skule,Rørlegger,0,BA,BARLF2----,Vg2,2024,3,38.6,points
+Vestland,Åsane vidaregåande skule,Rørlegger,0,BA,BARLF2----,Vg2,2025,3,38.6,points
+Vestland,Åsane vidaregåande skule,Rørlegger,0,BA,BARLF2----,Vg2,2026,3,38.6,points
+Vestland,Åsane vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2024,3,35.0,points
+Vestland,Åsane vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2025,3,37.5,points
+Vestland,Åsane vidaregåande skule,"Salg, service og reiseliv",1,SR,SRSSR2----,Vg2,2026,3,28.8,points
+Vestland,Åsane vidaregåande skule,"Service, sikkerhet og admin",0,SR,SRSSH2----,Vg2,2024,3,23.8,points
+Vestland,Åsane vidaregåande skule,"Service, sikkerhet og admin",0,SR,SRSSH2----,Vg2,2025,3,25.6,points
+Vestland,Åsane vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2024,3,31.3,points
+Vestland,Åsane vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2025,3,23.8,points
+Vestland,Åsane vidaregåande skule,Transport og logistikk,0,TP,TPTOL2----,Vg2,2026,3,32.2,points
+Vestland,Åsane vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,48.6,points
+Vestland,Åsane vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2025,3,41.4,points
+Vestland,Åsane vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2026,3,38.6,points
+Vestland,Åsane vidaregåande skule,Apotekteknikk,0,HS,HSAPO3----,Vg3,2024,3,26.3,points
+Vestland,Åsane vidaregåande skule,Apotekteknikk,0,HS,HSAPO3----,Vg3,2025,3,25.0,points
+Vestland,Åsane vidaregåande skule,Apotekteknikk,0,HS,HSAPO3----,Vg3,2026,3,,open
+Vestland,Åsane vidaregåande skule,Helsesekretær,0,HS,HSHSE3----,Vg3,2024,3,,open
+Vestland,Åsane vidaregåande skule,Helsesekretær,0,HS,HSHSE3----,Vg3,2025,3,31.3,points
+Vestland,Åsane vidaregåande skule,Helsesekretær,0,HS,HSHSE3----,Vg3,2026,3,,open
+Vestland,Åsane vidaregåande skule,Påbygg gen studiekomp e/yrkeskomp,0,PB,PBPBY3----,Vg3,2026,3,47.5,points
+Vestland,Åsane vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2024,3,42.5,points
+Vestland,Åsane vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2025,3,38.8,points
+Vestland,Åsane vidaregåande skule,Påbygg. gen. studiekompetanse,0,PB,PBPBY3----,Vg3,2026,3,43.8,points
+Vestland,Åsane vidaregåande skule,Tannhelsesekretær,0,HS,HSTAN3----,Vg3,2024,3,,open
+Vestland,Åsane vidaregåande skule,Tannhelsesekretær,0,HS,HSTAN3----,Vg3,2025,3,,open
+Vestland,Åsane vidaregåande skule,Tannhelsesekretær,0,HS,HSTAN3----,Vg3,2026,3,,open

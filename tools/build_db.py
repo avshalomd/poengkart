@@ -15,13 +15,20 @@ Schema:
             documentation, e.g. IB/toppidrett), 'discontinued' (utgått)
     round:  the intake round the figure is from ('1', '2', '3'), NULL where the
             county does not say — a figure is only comparable within its round
+  alternate_rounds(same columns as samples)
+            -- the same cell as published in ANOTHER intake round the county
+               also published that year (Akershus 1. inntak beside its 2.,
+               Vestland 3. inntak beside its 1.); the raw material of the
+               round bridge in docs/model.md and of the technical report's
+               Table 6 and Appendix A. `round` is always set here.
   forecasts(fylke, school, program, occurrence, level, category, year, round,
             expected REAL, spread REAL, p_fill REAL, history_years)
             -- tools/model.py's forecast for the county's next publication year,
                from web/data/model.json when it exists
   meta(key PK, value)   -- licence, source repository, build date
 
-Outputs: data/poengkart.db, data/samples.csv, data/forecasts.csv
+Outputs: data/poengkart.db, data/samples.csv, data/alternate-rounds.csv,
+data/forecasts.csv
 The licence and what each file is are in data/README.md.
 """
 
@@ -38,6 +45,7 @@ OUT_DIR = os.path.join(HERE, '..', 'data')
 DB = os.path.join(OUT_DIR, 'poengkart.db')
 CSV = os.path.join(OUT_DIR, 'samples.csv')
 FCSV = os.path.join(OUT_DIR, 'forecasts.csv')
+ACSV = os.path.join(OUT_DIR, 'alternate-rounds.csv')
 
 STATUS = {'open': 'open', 'F': 'priority', 'U': 'discontinued', 'D': 'documentation'}
 LICENCE = 'Data: NLOD 2.0 (Norsk lisens for offentlige data); code: MIT'
@@ -78,6 +86,21 @@ def main():
       CREATE INDEX idx_samples_category ON samples(category, year);
       CREATE INDEX idx_samples_program ON samples(program);
       CREATE INDEX idx_samples_fylke ON samples(fylke, year);
+      CREATE TABLE alternate_rounds (
+        fylke TEXT NOT NULL,
+        school TEXT NOT NULL,
+        program TEXT NOT NULL,
+        occurrence INTEGER NOT NULL DEFAULT 0,
+        category TEXT NOT NULL,
+        grep_code TEXT,
+        level TEXT,
+        year INTEGER NOT NULL,
+        round TEXT NOT NULL,
+        points REAL,
+        status TEXT NOT NULL CHECK (status IN ('points','filled_no_points','open','priority','discontinued','documentation')),
+        PRIMARY KEY (fylke, school, program, occurrence, year, round),
+        FOREIGN KEY (fylke, school) REFERENCES schools(fylke, name)
+      );
       CREATE TABLE forecasts (
         fylke TEXT NOT NULL,
         school TEXT NOT NULL,
@@ -101,7 +124,7 @@ def main():
     # county itself marks as another round (Vestland 2023 is 3. inntak)
     cy = {c['fylke']: c for c in data.get('counties', [])}
     model = json.load(open(MODEL)) if os.path.exists(MODEL) else {'schools': {}}
-    rows, fc = [], []
+    rows, alt, fc = [], [], []
     for s in data['schools']:
         c = cy.get(s.get('fylke'), {})
         con.execute('INSERT INTO schools VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', (
@@ -123,12 +146,23 @@ def main():
                 rnd = (c.get('round_years') or {}).get(str(year)) or s.get('round')
                 rows.append((s.get('fylke'), s['name'], p['program'], occ, p['category'],
                              p.get('grep'), p.get('level'), int(year), rnd, points, status))
+            # the same cell from the county's other published round, kept
+            # apart from `samples` so no average ever mixes two rounds
+            for key, r_alt in (('values_r1', '1'), ('values_r3', '3')):
+                for year, v in (p.get(key) or {}).items():
+                    points = v if isinstance(v, (int, float)) else None
+                    status = ('filled_no_points' if points == 0 else 'points') if points is not None else STATUS.get(v)
+                    if status is None:
+                        continue
+                    alt.append((s.get('fylke'), s['name'], p['program'], occ, p['category'],
+                                p.get('grep'), p.get('level'), int(year), r_alt, points, status))
             pr = (ment.get('programs') or {}).get(f"{k}|{p['level']}|{occ}")
             if pr:
                 fc.append((s.get('fylke'), s['name'], p['program'], occ, p.get('level'),
                            p['category'], ment['year'], ment.get('round'),
                            pr['m'], pr['s'], pr['pi'], pr['h']))
     con.executemany('INSERT INTO samples VALUES (?,?,?,?,?,?,?,?,?,?,?)', rows)
+    con.executemany('INSERT INTO alternate_rounds VALUES (?,?,?,?,?,?,?,?,?,?,?)', alt)
     con.executemany('INSERT INTO forecasts VALUES (?,?,?,?,?,?,?,?,?,?,?,?)', fc)
     con.commit()
 
@@ -137,6 +171,11 @@ def main():
         w.writerow(['fylke', 'school', 'program', 'occurrence', 'category', 'grep_code',
                     'level', 'year', 'round', 'points', 'status'])
         w.writerows(rows)
+    with open(ACSV, 'w', newline='') as f:
+        w = csv.writer(f)
+        w.writerow(['fylke', 'school', 'program', 'occurrence', 'category', 'grep_code',
+                    'level', 'year', 'round', 'points', 'status'])
+        w.writerows(alt)
     with open(FCSV, 'w', newline='') as f:
         w = csv.writer(f)
         w.writerow(['fylke', 'school', 'program', 'occurrence', 'level', 'category', 'year',
@@ -148,8 +187,10 @@ def main():
     by_status = dict(con.execute('SELECT status, COUNT(*) FROM samples GROUP BY status'))
     yr = con.execute('SELECT MIN(year), MAX(year) FROM samples').fetchone()
     nf = con.execute('SELECT COUNT(*) FROM forecasts').fetchone()[0]
-    print(f'schools: {n_schools}, samples: {n}, years {yr[0]}-{yr[1]}, by status: {by_status}, forecasts: {nf}')
-    print(f'-> {DB}\n-> {CSV}\n-> {FCSV}')
+    na = con.execute('SELECT COUNT(*) FROM alternate_rounds').fetchone()[0]
+    print(f'schools: {n_schools}, samples: {n}, years {yr[0]}-{yr[1]}, by status: {by_status}, '
+          f'alternate-round cells: {na}, forecasts: {nf}')
+    print(f'-> {DB}\n-> {CSV}\n-> {ACSV}\n-> {FCSV}')
     # taste test: Bryne ST trend straight from SQL
     q = """SELECT year, points FROM samples
            WHERE school LIKE 'Bryne%' AND program='Studiespesialisering' AND status='points'

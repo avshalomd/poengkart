@@ -83,9 +83,13 @@ OUT = os.path.join(HERE, '..', 'web', 'data', 'model.json')
 # fill fit and its calibration, and their published fill probability is
 # fixed at 1 (the output loop below): such a county can only ever fill, so
 # its chance rests on the threshold alone. They are excluded from nothing
-# else: every cell still trains the level model. Held-out fill Brier on the
-# seven counties with real labels: 0.162 -> 0.159 (log-loss 0.495 -> 0.485).
+# else: every cell still trains the level model. What admitting the county
+# does to the recalibration and to the seven counties whose labels are real
+# is re-measured on every refit (meta.halflife_search.fill_blind_experiment),
+# and the fill scores in meta.backtest_* are over those seven counties only.
 FILL_BLIND = {'Møre og Romsdal'}
+FORECAST_BANDS = [(0, 25), (25, 30), (30, 35), (35, 40), (40, 45), (45, 99)]  # points; conditional coverage
+BOOT = 1000                                       # cluster-bootstrap replicates for the held-out intervals
 # County-years that are not what they look like: Hordaland 2017-19 is 15
 # Bergen studiespesialisering cells stored under Vestland, Vestland 2020 is
 # Vg1 only with no "ingen venteliste" cells. They stay in every school's
@@ -324,8 +328,9 @@ def update_taus(design, b, h):
 
 # ------------------------------------------------------------------ the model
 class Model:
-    def __init__(self, rows, bridge, halflife, newest, couple=False):
+    def __init__(self, rows, bridge, halflife, newest, couple=False, fill_blind=None):
         self.rows = rows
+        self.fill_blind = FILL_BLIND if fill_blind is None else fill_blind
         self.halflife = halflife
         self.newest = newest            # per county, newest year in THIS fit
         # couple=True: the hurdle gets the level model's school effect as a
@@ -368,7 +373,7 @@ class Model:
         self.dl = self.design(lv, False)
         self.bl, self.sigma = fit_gaussian(self.dl, np.array([r['v'] for r in lv]),
                                            self.weights(lv), self.offsets(lv))
-        hz = [r for r in self.rows if r['fylke'] not in FILL_BLIND]   # num + zero + open, labels informative
+        hz = [r for r in self.rows if r['fylke'] not in self.fill_blind]   # num + zero + open, labels informative
         alpha = self.dl.coef(self.bl, 'school') if self.couple else None
         self.dh = self.design(hz, True, alpha)
         self.bh = fit_logit(self.dh, np.array([float(r['state'] != 'open') for r in hz]),
@@ -456,7 +461,7 @@ def error_quantiles(preds, sig_by_bucket):
 
 
 # -------------------------------------------------------------------- backtest
-def walk_forward(rows, bridge, halflife, newest_all, couple=False):
+def walk_forward(rows, bridge, halflife, newest_all, couple=False, fill_blind=None):
     """Fit on years < T, predict year T, for every T in BACKTEST_YEARS."""
     preds, fit_sigmas = [], {}
     for T in BACKTEST_YEARS:
@@ -471,7 +476,7 @@ def walk_forward(rows, bridge, halflife, newest_all, couple=False):
         newest = collections.defaultdict(int)
         for r in train:
             newest[r['fylke']] = max(newest[r['fylke']], r['year'])
-        m = Model(train, bridge, halflife, newest, couple).fit()
+        m = Model(train, bridge, halflife, newest, couple, fill_blind).fit()
         fit_sigmas[T] = m.sigma
         hist = collections.Counter(r['series'] for r in train if r['state'] == 'num')
         last = {}
@@ -487,79 +492,192 @@ def walk_forward(rows, bridge, halflife, newest_all, couple=False):
             mm, pi = m.predict(r['school'], r['fylke'], r['prog'], r['cat'], r['series'], T)
             preds.append(dict(T=T, series=r['series'], state=r['state'], v=r['v'], m=mm, pi=pi,
                               hist=hist.get(r['series'], 0), last=last.get(r['series']),
-                              pm=pm.get((r['fylke'], r['prog'])), cat=r['cat'], fylke=r['fylke']))
+                              pm=pm.get((r['fylke'], r['prog'])), cat=r['cat'], fylke=r['fylke'],
+                              school=r['school']))
         print(f'  backtest {T}: train {len(train)} test {len(test)}  sigma {m.sigma:.2f}')
     return preds, fit_sigmas
 
 
-def summarise(preds, sig_by_bucket, zq=None):
-    """Error spread by history bucket, baselines, hurdle scores, chance reliability."""
-    out = {}
+def _wrmse(w, e):
+    return math.sqrt(float(np.sum(w * e * e) / np.sum(w)))
+
+
+def _wmean(w, x):
+    return float(np.sum(w * x) / np.sum(w))
+
+
+def cluster_bootstrap(cluster_keys, stats, B=BOOT, seed=20260905):
+    """95% percentile intervals of each statistic under a cluster bootstrap.
+
+    Cells in one school-year are not independent forecasts (a county-year
+    innovation moves all of them), so clusters are resampled whole and each
+    statistic is evaluated with the resulting per-cell weights. `stats` maps a
+    name to f(weights)."""
+    rng = np.random.default_rng(seed)
+    keys = {k: i for i, k in enumerate(sorted(set(cluster_keys)))}
+    c = np.array([keys[k] for k in cluster_keys])
+    K = len(keys)
+    vals = {k: [] for k in stats}
+    for _ in range(B):
+        w = np.bincount(rng.integers(0, K, K), minlength=K)[c].astype(float)
+        for k, f in stats.items():
+            vals[k].append(f(w))
+    return {k: [round(float(v), 4) for v in np.percentile(vals[k], [2.5, 97.5])] for k in stats}
+
+
+def summarise(preds, sig_by_bucket, zq=None, boot=0):
+    """Error spread by history bucket, baselines, hurdle scores, chance
+    reliability; with `boot` > 0, cluster-bootstrap intervals over
+    school-years for the headline comparisons."""
+    out, ci = {}, {}
     num = [p for p in preds if p['state'] == 'num']
+    S = lambda p: sig_by_bucket[hist_bucket(p['hist'])]
+    cl = lambda g: [(p['school'], p['T']) for p in g]
+    arr = lambda g, f: np.array([f(p) for p in g], dtype=float)
     # level forecast error, model vs baselines, by bucket
     buckets = []
     for i, (lo, hi) in enumerate(HIST_BUCKETS):
         g = [p for p in num if hist_bucket(p['hist']) == i]
         if not g:
             continue
-        e = np.array([p['v'] - p['m'] for p in g])
-        row = dict(history=f'{lo}' if lo == hi else f'{lo}-{hi}' if hi < 99 else f'{lo}+',
-                   n=len(g), rmse=round(float(np.sqrt(np.mean(e ** 2))), 2),
+        h = f'{lo}' if lo == hi else f'{lo}-{hi}' if hi < 99 else f'{lo}+'
+        e = arr(g, lambda p: p['v'] - p['m'])
+        row = dict(history=h, n=len(g), rmse=round(float(np.sqrt(np.mean(e ** 2))), 2),
+                   mae=round(float(np.mean(np.abs(e))), 2),
                    bias=round(float(np.mean(e)), 2), sd=round(float(np.std(e)), 2),
                    within3=round(float(np.mean(np.abs(e) <= 3)), 3))
         gl = [p for p in g if p['last'] is not None]
         if gl:
-            el = np.array([p['v'] - p['last'] for p in gl])
+            el, em = arr(gl, lambda p: p['v'] - p['last']), arr(gl, lambda p: p['v'] - p['m'])
             row['rmse_last_year'] = round(float(np.sqrt(np.mean(el ** 2))), 2)
+            row['mae_last_year'] = round(float(np.mean(np.abs(el))), 2)
             row['within3_last_year'] = round(float(np.mean(np.abs(el) <= 3)), 3)
+            if boot:
+                st = {'rmse': lambda w: _wrmse(w, em) - _wrmse(w, el),
+                      'mae': lambda w: _wmean(w, np.abs(em)) - _wmean(w, np.abs(el)),
+                      'within3': lambda w: _wmean(w, (np.abs(em) <= 3) * 1.0) - _wmean(w, (np.abs(el) <= 3) * 1.0)}
+                r = cluster_bootstrap(cl(gl), st, boot)
+                ci[f'level {h}: model minus persistence, rmse'] = r['rmse']
+                ci[f'level {h}: model minus persistence, mae'] = r['mae']
+                ci[f'level {h}: model minus persistence, within3'] = r['within3']
         gp = [p for p in g if p['pm'] is not None]
         if gp:
-            ep = np.array([p['v'] - p['pm'] for p in gp])
+            ep, emp = arr(gp, lambda p: p['v'] - p['pm']), arr(gp, lambda p: p['v'] - p['m'])
             row['rmse_prog_mean'] = round(float(np.sqrt(np.mean(ep ** 2))), 2)
+            # the baseline exists only where the programme was seen before in
+            # that county; the model on the same cells is the fair comparison
+            row['n_prog_mean'] = len(gp)
+            row['rmse_model_on_prog_mean_cells'] = round(float(np.sqrt(np.mean(emp ** 2))), 2)
+            if boot:
+                ci[f'level {h}: model minus programme-county mean, rmse'] = cluster_bootstrap(
+                    cl(gp), {'d': lambda w: _wrmse(w, emp) - _wrmse(w, ep)}, boot)['d']
         buckets.append(row)
     out['level'] = buckets
-    e = np.array([p['v'] - p['m'] for p in num])
+    e = arr(num, lambda p: p['v'] - p['m'])
     out['level_all'] = dict(n=len(num), rmse=round(float(np.sqrt(np.mean(e ** 2))), 2),
+                            mae=round(float(np.mean(np.abs(e))), 2),
+                            bias=round(float(np.mean(e)), 2),
                             within3=round(float(np.mean(np.abs(e) <= 3)), 3))
-    # 80% interval coverage with the calibrated spread
-    cov = [abs(p['v'] - p['m']) <= 1.2816 * sig_by_bucket[hist_bucket(p['hist'])] for p in num]
-    out['coverage80'] = round(float(np.mean(cov)), 3)
-    # hurdle
-    y = np.array([float(p['state'] != 'open') for p in preds])
-    pi = np.array([p['pi'] for p in preds])
+    # interval coverage with the calibrated spread: the Gaussian band the
+    # application draws, and the empirical-quantile band the chance implies
+    z = arr(num, lambda p: (p['v'] - p['m']) / S(p))
+    cov80 = (np.abs(z) <= 1.2816) * 1.0
+    out['coverage80'] = round(float(np.mean(cov80)), 3)
+    out['interval_width80'] = round(float(np.mean(arr(num, lambda p: 2 * 1.2816 * S(p)))), 1)
+    from scipy.stats import norm as _norm
+    gauss = {str(c): round(float(np.mean(np.abs(z) <= _norm.ppf(0.5 + c / 200))), 3) for c in (50, 80, 90, 95)}
+    out['coverage'] = dict(gaussian=gauss)
+    if zq:
+        pit = np.interp(z, zq, ZQ_GRID)
+        out['coverage']['empirical'] = {str(c): round(float(np.mean((pit >= 0.5 - c / 200) & (pit <= 0.5 + c / 200))), 3)
+                                        for c in (50, 80, 90, 95)}
+        out['pit_histogram'] = [int(v) for v in np.histogram(pit, bins=10, range=(0, 1))[0]]
+    by_band = []
+    for lo, hi in FORECAST_BANDS:
+        g = [p for p in num if lo <= p['m'] < hi]
+        if not g:
+            continue
+        eg = arr(g, lambda p: p['v'] - p['m'])
+        by_band.append(dict(band=f'{lo}-{hi}' if hi < 99 else f'{lo}+', n=len(g),
+                            coverage80=round(float(np.mean(np.abs(eg / arr(g, S)) <= 1.2816)), 3),
+                            rmse=round(float(np.sqrt(np.mean(eg ** 2))), 2),
+                            bias=round(float(np.mean(eg)), 2),
+                            s_mean=round(float(np.mean(arr(g, S))), 2)))
+    out['coverage80_by_forecast'] = by_band
+    out['coverage80_by_fylke'] = [dict(fylke=f, n=len(g),
+                                       coverage80=round(float(np.mean(np.abs(arr(g, lambda p: (p['v'] - p['m']) / S(p))) <= 1.2816)), 3))
+                                  for f, g in sorted(groupby(num, lambda p: p['fylke']).items())]
+    if boot:
+        ci['coverage80'] = cluster_bootstrap(cl(num), {'c': lambda w: _wmean(w, cov80)}, boot)['c']
+        ci['level all: rmse'] = cluster_bootstrap(cl(num), {'r': lambda w: _wrmse(w, e)}, boot)['r']
+    # hurdle: scored only where the labels carry information. A county whose
+    # source cannot say "ingen venteliste" is filled by construction, and its
+    # deployed fill probability is 1 (see FILL_BLIND), so it is neither fitted
+    # nor scored here
+    fp = [p for p in preds if p['fylke'] not in FILL_BLIND]
+    y = arr(fp, lambda p: float(p['state'] != 'open'))
+    pi = arr(fp, lambda p: p['pi'])
     base = float(np.mean(y))
-    out['fill'] = dict(n=len(preds), brier=round(float(np.mean((y - pi) ** 2)), 4),
+    out['fill'] = dict(n=len(fp), n_excluded=len(preds) - len(fp),
+                       brier=round(float(np.mean((y - pi) ** 2)), 4),
                        brier_base_rate=round(float(np.mean((y - base) ** 2)), 4),
                        base_rate=round(base, 3))
     # hurdle reliability: does "will fill" happen as often as said
     out['fill']['reliability'] = reliability(pi, y)
-    # chance reliability over a grid of applicant scores
-    pg, pe, oo, pl = [], [], [], []
+    if boot:
+        fb = (y - pi) ** 2
+        ci['fill: model minus base rate, brier'] = cluster_bootstrap(
+            cl(fp), {'d': lambda w: _wmean(w, fb) - _wmean(w, (y - _wmean(w, y)) ** 2)}, boot)['d']
+    # chance reliability over a grid of applicant scores. Every cell yields
+    # one pair per grid point, so a per-cell mean is the pooled mean and the
+    # bootstrap can resample cells. Three forecasts are scored on the cells
+    # where a prior figure exists: the model; the step rule "last year's figure
+    # is the cutoff" (no spread, no fill probability); and a probabilistic
+    # persistence that centres the model's own spread, error distribution and
+    # fill probability on last year's figure - the fair test of the level model
+    pg, pe, oo = [], [], []
+    cell_m, cell_step, cell_prob, has_last = [], [], [], []
     for p in preds:
-        s = sig_by_bucket[hist_bucket(p['hist'])]
+        s = S(p)
+        bm, bs, bp = [], [], []
         for x in CHANCE_GRID:
             got = 1.0 if p['state'] in ('open', 'zero') else float(x >= p['v'])
-            pg.append(chance(x, p['m'], s, p['pi']))
-            pe.append(chance(x, p['m'], s, p['pi'], zq) if zq else None)
-            oo.append(got)
-            # baseline: last year's figure is the cutoff
+            g_ = chance(x, p['m'], s, p['pi'])
+            e_ = chance(x, p['m'], s, p['pi'], zq) if zq else g_
+            pg.append(g_); pe.append(e_); oo.append(got)
+            bm.append((e_ - got) ** 2)
             if p['last'] is not None:
-                pl.append((float(x >= p['last']), got, pe[-1] if zq else pg[-1]))
-    pg, oo = np.array(pg), np.array(oo)
+                bs.append((float(x >= p['last']) - got) ** 2)
+                bp.append((chance(x, p['last'], s, p['pi'], zq) - got) ** 2)
+        cell_m.append(np.mean(bm))
+        has_last.append(p['last'] is not None)
+        cell_step.append(np.mean(bs) if bs else np.nan)
+        cell_prob.append(np.mean(bp) if bp else np.nan)
+    pg, pe, oo = np.array(pg), np.array(pe), np.array(oo)
     out['chance_gaussian'] = dict(brier=round(float(np.mean((pg - oo) ** 2)), 4),
                                   reliability=reliability(pg, oo))
-    if zq:
-        pe = np.array(pe, dtype=float)
-        out['chance'] = dict(brier=round(float(np.mean((pe - oo) ** 2)), 4),
-                             reliability=reliability(pe, oo))
-    else:
-        out['chance'] = out['chance_gaussian']
+    out['chance'] = dict(brier=round(float(np.mean((pe - oo) ** 2)), 4), reliability=reliability(pe, oo))
     out['chance']['n_pairs'] = int(len(oo))
-    if pl:
-        pl = np.array(pl, dtype=float)
-        out['chance']['brier_last_year_rule'] = round(float(np.mean((pl[:, 0] - pl[:, 1]) ** 2)), 4)
-        out['chance']['brier_model_common'] = round(float(np.mean((pl[:, 2] - pl[:, 1]) ** 2)), 4)
-        out['chance']['n_last_year_rule'] = int(len(pl))
+    out['chance']['n_cells'] = len(preds)
+    cell_m, cell_step, cell_prob, has_last = (np.array(cell_m), np.array(cell_step),
+                                              np.array(cell_prob), np.array(has_last))
+    if has_last.any():
+        hl = has_last
+        out['chance']['brier_last_year_rule'] = round(float(np.mean(cell_step[hl])), 4)
+        out['chance']['brier_persistence_prob'] = round(float(np.mean(cell_prob[hl])), 4)
+        out['chance']['brier_model_common'] = round(float(np.mean(cell_m[hl])), 4)
+        out['chance']['n_last_year_rule'] = int(hl.sum() * len(CHANCE_GRID))
+    if boot:
+        ci['chance: brier'] = cluster_bootstrap(cl(preds), {'b': lambda w: _wmean(w, cell_m)}, boot)['b']
+        if has_last.any():
+            gl = [p for p, h in zip(preds, has_last) if h]
+            cm, cs, cp = cell_m[has_last], cell_step[has_last], cell_prob[has_last]
+            r = cluster_bootstrap(cl(gl), {'step': lambda w: _wmean(w, cm) - _wmean(w, cs),
+                                           'prob': lambda w: _wmean(w, cm) - _wmean(w, cp)}, boot)
+            ci['chance: model minus step persistence, brier'] = r['step']
+            ci['chance: model minus probabilistic persistence, brier'] = r['prob']
+        out['ci'] = dict(clusters='school-year', n_clusters=len(set(cl(preds))), replicates=boot,
+                         intervals=ci)
     return out
 
 
@@ -576,8 +694,7 @@ def reliability(pred, obs):
     return rel
 
 
-def calibrate_fill(preds):
-    preds = [p for p in preds if p['fylke'] not in FILL_BLIND]
+def calibrate_fill(preds, fill_blind=None):
     """Platt scaling for the fill probability: logit p' = a + b logit p.
 
     The hurdle's series effects make it sure of itself (a programme that filled
@@ -585,7 +702,8 @@ def calibrate_fill(preds):
     in the held-out years programmes given 0.97 filled 0.82 of the time. Two
     numbers fitted on the walk-forward forecasts for the calibration years
     pull the extremes in; reported, and checked on the held-out years."""
-    g = [p for p in preds if p['T'] in CALIB_YEARS]
+    blind = FILL_BLIND if fill_blind is None else fill_blind
+    g = [p for p in preds if p['T'] in CALIB_YEARS and p['fylke'] not in blind]
     y = np.array([float(p['state'] != 'open') for p in g])
     lp = np.array([math.log(max(p['pi'], 1e-6) / max(1 - p['pi'], 1e-6)) for p in g])
 
@@ -619,6 +737,51 @@ def calibrate_sigma(preds, floor_sigma):
     return sig
 
 
+# ------------------------------------------------------- raw school means
+def school_mean_decomposition(model, min_cells=5):
+    """Where a raw school mean comes from. Every fitted cell is the sum of the
+    level model's components, so a school's raw mean of its fitted cells is
+    the sum of the components' school means, and var(raw mean) splits into
+    cov(component mean, raw mean) shares: the school's own demand (alpha),
+    its programme mix (utdanningsprogram + programme-area effects), the
+    county-year level and round the county publishes, the series effects, and
+    the rest (intercept, offsets, residual). Also the within-county rank
+    displacement between the raw mean and alpha, the only ranking alpha
+    licenses (it is a deviation from the county level)."""
+    lv = [r for r in model.rows if r['state'] == 'num']
+    d, b = model.dl, model.bl
+    part = {f['name']: b[d.slices[f['name']]][f['ix']] for f in d.factors}
+    y = np.array([r['v'] for r in lv])
+    comp = dict(alpha=part['school'], mix=part['cat'] + part['prog'], county_year=part['cy'],
+                series=part['series'])
+    comp['other'] = y - sum(comp.values())
+    by_school = collections.defaultdict(list)
+    for i, r in enumerate(lv):
+        by_school[r['school']].append(i)
+    keys = [k for k, ix in by_school.items() if len(ix) >= min_cells]
+    raw = np.array([y[by_school[k]].mean() for k in keys])
+    means = {c: np.array([v[by_school[k]].mean() for k in keys]) for c, v in comp.items()}
+    var = float(raw.var())
+    share = lambda x, r: float(np.cov(x, r, bias=True)[0, 1] / r.var())
+    out = dict(n_schools=len(keys), min_cells=min_cells, sd_raw=round(math.sqrt(var), 2),
+               share={c: round(share(m, raw), 3) for c, m in means.items()})
+    moves, by_fylke = [], {}
+    for f, idx in groupby(list(range(len(keys))), lambda i: keys[i].split('|')[0]).items():
+        idx = np.array(idx)
+        if len(idx) < 5:
+            continue
+        r, a = raw[idx], means['alpha'][idx]
+        rk = lambda v: np.argsort(np.argsort(-v))
+        mv = np.abs(rk(r) - rk(a))
+        moves.extend(mv.tolist())
+        by_fylke[f] = dict(n=len(idx), share_alpha=round(share(a, r), 3),
+                           share_mix=round(share(means['mix'][idx], r), 3),
+                           rank_move_mean=round(float(mv.mean()), 1), rank_move_max=int(mv.max()))
+    out['within_county'] = dict(n_schools=len(moves), rank_move_mean=round(float(np.mean(moves)), 1),
+                                rank_move_max=int(max(moves)), by_fylke=by_fylke)
+    return out
+
+
 # ------------------------------------------------------------------------ main
 def main():
     quick = '--quick' in sys.argv
@@ -647,10 +810,11 @@ def main():
     # ---- choose the half-life and calibrate the spread by walk-forward
     best, preds_best, sig_best = None, None, None
     if not quick:
-        hl_search = {}
+        hl_search, preds_by_hl = {}, {}
         for hl in HALFLIVES:
             print(f'half-life {hl}:')
             preds, fit_sigmas = walk_forward(rows, bridge, hl, newest)
+            preds_by_hl[str(hl)] = preds
             # select on level RMSE over the calibration years only
             e = [p['v'] - p['m'] for p in preds if p['state'] == 'num' and p['T'] in CALIB_YEARS]
             rmse = float(np.sqrt(np.mean(np.square(e))))
@@ -659,22 +823,66 @@ def main():
             if best is None or rmse < best[1]:
                 best, preds_best, sigmas_best = (hl, rmse), preds, fit_sigmas
         halflife = best[0]
+        # how sure is the half-life verdict? paired cluster bootstrap of the
+        # calibration-year RMSE difference, no decay against the winner
+        def paired(pa, pb, years):
+            ka = {(p['series'], p['T']): p for p in pa if p['state'] == 'num' and p['T'] in years}
+            g = [(ka[k], p) for p in pb if (k := (p['series'], p['T'])) in ka]
+            return g
+        g = paired(preds_by_hl['None'], preds_best, CALIB_YEARS)
+        ea = np.array([a['v'] - a['m'] for a, _ in g]); eb = np.array([b['v'] - b['m'] for _, b in g])
+        hl_search['ci_none_minus_best'] = cluster_bootstrap(
+            [(b['school'], b['T']) for _, b in g], {'d': lambda w: _wrmse(w, ea) - _wrmse(w, eb)})['d']
+        print(f'  no decay minus half-life {halflife}: {float(np.sqrt(np.mean(ea**2)) - np.sqrt(np.mean(eb**2))):+.4f} '
+              f'RMSE, 95% CI {hl_search["ci_none_minus_best"]}')
         # ---- couple the hurdle to the level's school effect? decided by the
-        # fill log-loss on the calibration years, after the same recalibration
-        def fill_logloss(preds):
+        # fill log-loss on the calibration years, after the same recalibration,
+        # on the counties whose labels carry information
+        def fill_ll_cells(preds):
             fc = calibrate_fill(preds)
-            g = [p for p in preds if p['T'] in CALIB_YEARS]
+            g = [p for p in preds if p['T'] in CALIB_YEARS and p['fylke'] not in FILL_BLIND]
             y = np.array([float(p['state'] != 'open') for p in g])
             q = np.clip([recal(p['pi'], fc) for p in g], 1e-6, 1 - 1e-6)
-            return float(-np.mean(y * np.log(q) + (1 - y) * np.log(1 - q)))
+            return g, -(y * np.log(q) + (1 - y) * np.log(1 - q))
         print('coupled hurdle:')
         preds_c, sigmas_c = walk_forward(rows, bridge, halflife, newest, couple=True)
-        ll0, ll1 = fill_logloss(preds_best), fill_logloss(preds_c)
+        g0, l0 = fill_ll_cells(preds_best)
+        g1, l1 = fill_ll_cells(preds_c)
+        ll0, ll1 = float(np.mean(l0)), float(np.mean(l1))
         print(f'  fill log-loss, calibration years: independent {ll0:.4f}  coupled {ll1:.4f}')
         couple = ll1 < ll0
+        hl_search['coupled_fill_logloss'] = dict(independent=round(ll0, 4), coupled=round(ll1, 4))
+        k1 = {(p['series'], p['T']): l for p, l in zip(g1, l1)}
+        pairs_ll = [(l, k1[(p['series'], p['T'])], p) for p, l in zip(g0, l0) if (p['series'], p['T']) in k1]
+        la = np.array([a for a, _, _ in pairs_ll]); lb = np.array([b for _, b, _ in pairs_ll])
+        hl_search['coupled_fill_logloss']['ci_coupled_minus_independent'] = cluster_bootstrap(
+            [(p['school'], p['T']) for _, _, p in pairs_ll], {'d': lambda w: _wmean(w, lb) - _wmean(w, la)})['d']
+        print(f'  coupled minus independent: {ll1 - ll0:+.4f}, 95% CI {hl_search["coupled_fill_logloss"]["ci_coupled_minus_independent"]}')
+        # the held-out check nobody adjudicates on: the same comparison on 2025-26
+        def fill_brier7(preds, fc):
+            g = [p for p in preds if p['T'] in EVAL_YEARS and p['fylke'] not in FILL_BLIND]
+            y = np.array([float(p['state'] != 'open') for p in g])
+            q = np.array([recal(p['pi'], fc) for p in g])
+            return round(float(np.mean((y - q) ** 2)), 4), len(g)
+        hl_search['coupled_fill_logloss']['heldout_brier'] = dict(
+            independent=fill_brier7(preds_best, calibrate_fill(preds_best))[0],
+            coupled=fill_brier7(preds_c, calibrate_fill(preds_c))[0])
         if couple:
             preds_best, sigmas_best = preds_c, sigmas_c
-        hl_search['coupled_fill_logloss'] = dict(independent=round(ll0, 4), coupled=round(ll1, 4))
+        # ---- what admitting the fill-blind county to the fill fit does: the
+        # Platt slope, and the held-out fill Brier of the seven counties whose
+        # labels are informative. Measured here so the report cannot quote a
+        # stale build of this experiment
+        print('fill-blind county admitted to the fill fit:')
+        preds_x, _ = walk_forward(rows, bridge, halflife, newest, couple=couple, fill_blind=set())
+        fc_x, fc_0 = calibrate_fill(preds_x, fill_blind=set()), calibrate_fill(preds_best)
+        b_in, n7 = fill_brier7(preds_x, fc_x)
+        b_out, _ = fill_brier7(preds_best, fc_0)
+        hl_search['fill_blind_experiment'] = dict(
+            counties=sorted(FILL_BLIND), platt_b_excluded=fc_0['b'], platt_b_included=fc_x['b'],
+            heldout_brier7_excluded=b_out, heldout_brier7_included=b_in, n7=n7)
+        print(f'  Platt slope {fc_0["b"]:.3f} -> {fc_x["b"]:.3f}; held-out fill Brier on the other '
+              f'{n7} cells {b_out} -> {b_in}')
     else:
         halflife, couple, hl_search = 4.0, False, {}
 
@@ -702,11 +910,13 @@ def main():
     meta['fill_calibration'] = fc
     print(f'fill recalibration: logit p\' = {fc["a"]:+.3f} + {fc["b"]:.3f} logit p')
     if preds_best:
+        # the scored fill probability is the deployed one: recalibrated, and 1
+        # for a county whose source cannot say "ingen venteliste"
         for p in preds_best:
-            p['pi_raw'], p['pi'] = p['pi'], recal(p['pi'], fc)
+            p['pi_raw'], p['pi'] = p['pi'], (1.0 if p['fylke'] in FILL_BLIND else recal(p['pi'], fc))
     if preds_best:
         meta['backtest_calibration_years'] = summarise([p for p in preds_best if p['T'] in CALIB_YEARS], sig, zq)
-        meta['backtest_eval_years'] = summarise([p for p in preds_best if p['T'] in EVAL_YEARS], sig, zq)
+        meta['backtest_eval_years'] = summarise([p for p in preds_best if p['T'] in EVAL_YEARS], sig, zq, boot=BOOT)
         meta['halflife_search'] = hl_search
         # every walk-forward forecast, for anyone who wants to check the claims
         import csv
@@ -777,8 +987,14 @@ def main():
                              program=lv[i]['series'].split('|')[2], level=lv[i]['series'].split('|')[3],
                              year=lv[i]['year'], value=lv[i]['v'], fitted=round(float(fitted[i]), 1),
                              z=round(float(z[i]), 1)) for i in order]
-    print('least plausible cells (|z| > 3):',
-          sum(1 for i in range(len(z)) if abs(z[i]) > 3), 'of', len(z))
+    n3 = [i for i in range(len(z)) if abs(z[i]) > 3]
+    meta['outliers_z3'] = dict(n=len(n3), n_level=len(z),
+                               n_fill_blind=sum(1 for i in n3 if lv[i]['fylke'] in FILL_BLIND))
+    print('least plausible cells (|z| > 3):', len(n3), 'of', len(z))
+    meta['school_means'] = school_mean_decomposition(model)
+    sm = meta['school_means']
+    print(f'raw school means ({sm["n_schools"]} schools): shares', sm['share'],
+          f'; within-county rank move {sm["within_county"]["rank_move_mean"]} (max {sm["within_county"]["rank_move_max"]})')
     for o in meta['outliers'][:8]:
         print(f'   z={o["z"]:+.1f}  {o["fylke"]} {o["school"]} · {o["program"]} {o["year"]}: {o["value"]} (fitted {o["fitted"]})')
 
@@ -793,7 +1009,12 @@ def main():
               f'(within 3: {ev["level_all"]["within3"]:.0%}), 80% coverage {ev["coverage80"]:.0%}, '
               f'chance Brier {ev["chance"]["brier"]} (gaussian {ev["chance_gaussian"]["brier"]}) '
               f'vs last-year rule {ev["chance"].get("brier_last_year_rule")}; '
-              f'fill Brier {ev["fill"]["brier"]} vs base {ev["fill"]["brier_base_rate"]}')
+              f'fill Brier {ev["fill"]["brier"]} vs base {ev["fill"]["brier_base_rate"]} '
+              f'(n {ev["fill"]["n"]}, {ev["fill"]["n_excluded"]} fill-blind cells excluded)')
+        print('    probabilistic persistence Brier', ev['chance'].get('brier_persistence_prob'))
+        print('    coverage by forecast band:', [(b['band'], b['coverage80']) for b in ev['coverage80_by_forecast']])
+        for k, v in ev.get('ci', {}).get('intervals', {}).items():
+            print(f'    CI {k}: {v}')
         for r in ev['fill']['reliability']:
             print('    fill reliability', r)
         for b in ev['level']:

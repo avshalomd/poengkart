@@ -8,6 +8,12 @@ never edited by hand. Data: [NLOD 2.0](https://data.norge.no/nlod/no/2.0)
   per school × programområde × year: the poenggrense, or its state), `forecasts`
   (the model's next-year forecast per series), `meta` (licence, source, build date).
 - `samples.csv`: the `samples` table, plain header row.
+- `alternate-rounds.csv` (and the `alternate_rounds` table): the same cell as
+  the county published it in its *other* intake round the same year — Akershus
+  1. inntak beside its published 2., Vestland 3. inntak beside its published 1.
+  Kept apart from `samples` so no average mixes two rounds; this is the raw
+  material of the round bridge (`docs/model.md`, the report's Table 6 and
+  Appendix A).
 - `forecasts.csv`: the `forecasts` table.
 - `model-backtest.csv`: every walk-forward forecast the backtest made, one row per
   series × held-out year.
