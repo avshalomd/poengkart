@@ -73,8 +73,11 @@ observed state.
 (<https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/>),
 wide PDFs with one table per municipal school, Vg1, after 1. inntak;
 `oslo-2026.html` is the same publication as the HTML page it became in 2026.
-`oslo-2009-2inntak.pdf` is the one older edition recovered through the
-Wayback Machine.
+`oslo-2015.pdf` is the 2015/16 edition of the same table, in the same
+layout, which survives on a school's own site
+(<https://ris.osloskolen.no/siteassets/dokumenter-til-lenking/2015--nedre-poenggrense-1--inntak-vg11.pdf>);
+2016 has not been found. `oslo-2009-2inntak.pdf` is the one older edition
+recovered through the Wayback Machine.
 
 ## rogaland
 
@@ -97,15 +100,28 @@ columns keyed by Grep code, no intake round stated.
 ## vestland
 
 `vestland_<year>_1inntak.pdf` and `_3inntak.pdf` are the county's poenggrenser
-PDFs for 1. and 3. inntak: both rounds for 2020/21, 2024/25, 2025/26 and
-2026/27, 1. inntak only for 2021/22 and 2022/23, 3. inntak only for 2023/24
-(eleven files; the county's page no longer offers the others)
-(<https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/>),
-Vg1. `hordaland_2018_1inntak_bergen-st.pdf` and
-`hordaland_2019_1inntak_bergen-st.pdf` are Hordaland fylkeskommune's two press
-releases on Vg1 studiespesialisering in the Bergen area, each printing the
-previous year's figure beside the current one, which is where 2017–2019 come
-from.
+PDFs for 1. and 3. inntak
+(<https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/>):
+both rounds for every year from 2020/21 to 2026/27 except 2021/22, which has
+1. inntak only. The 2022/23 3. inntak and 2023/24 1. inntak files are no
+longer linked from the county's page but are still served from its site
+(recovered 5 September 2026). `vestland_2026-27_3inntak-rev2.pdf` is the
+county's corrected reprint of 28 August 2026 (one cell, Langhaugen musikk
+54,6 for 45,6); the first print is kept beside it because mirrored objects
+are never overwritten, and the extractor reads the highest revision.
+
+`hordaland_2018_1inntak_bergen-st.pdf` and `hordaland_2019_1inntak_bergen-st.pdf`
+are Hordaland fylkeskommune's two press releases on Vg1 studiespesialisering
+in the Bergen area, 1. inntak, each printing the previous year's figure
+beside the current one, which is where 2017–2019 first-round figures come
+from. `hordaland_2017-2019_3inntak_vg1-vg3.pdf` is the county's full
+3. inntak table for the same three years, Vg1–Vg3, every public school, keyed
+by programområdekode, still hosted by Vestland fylkeskommune
+(<https://www.vestlandfylke.no/globalassets/utdanning-og-karriere/elev/inntak/nedre-karaktergrense-vg1-vg2-vg3-tidlegare-hordaland.pdf>);
+its cells sit beside the series as `values_r3`.
+`sogn-og-fjordane_2018-2019_1inntak_vg1.pdf` is Sogn og Fjordane
+fylkeskommune's 1. inntak Vg1 table for 2018/19 and 2019/20, from the same
+host (<https://www.vestlandfylke.no/globalassets/utdanning-og-karriere/elev/inntak/nedre-karaktergrense-vg1-tidlegare-sogn-og-fjordane.pdf>).
 
 ## Mirror
 

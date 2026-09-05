@@ -739,7 +739,7 @@
   "license": "© Vestland fylkeskommune"
  },
  "Os vidaregåande skule": {
-  "photo": "https://www.os.vgs.no/contentassets/8a8e2d5a3a32481c9cf6e168a9f0814a/profil-hd--kopi.jpg?width=1600&quality=80",
+  "photo": "https://www.os.vgs.no/siteassets/bilete-osv/os-vidaregaande-skule.jpg",
   "source": "site",
   "page": "https://www.os.vgs.no/",
   "credit": "Foto: Os vidaregåande skule / Vestland fylkeskommune",
@@ -969,11 +969,11 @@
   "wiki_extract": "Spjelkavik videregående skole er en videregående skole i Ålesund. Skolen ligger på Langhaugen i Spjelkavika."
  },
  "St.Hallvard": {
-  "photo": "https://bfk.no/handlers/bv.ashx/e1/i2753b072-7ff8-4ac3-8c48-17b7d732ec26/w600/h338/q282784/kbd44ac25ae4c/var_skolenfotos-austad.jpg",
-  "source": "site",
-  "page": "https://bfk.no/st-hallvard-vgs/",
-  "credit": "Foto: St Hallvard videregående skole / Buskerud fylkeskommune",
-  "license": "© Buskerud fylkeskommune"
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/St._Hallvard_videreg%C3%A5ende_skole_Lier_02.jpg/1280px-St._Hallvard_videreg%C3%A5ende_skole_Lier_02.jpg",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:St._Hallvard_videreg%C3%A5ende_skole_Lier_02.jpg",
+  "credit": "Foto: Far min (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
  },
  "Stabekk": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Stabekk_vgs._2015-11-09.jpg/1280px-Stabekk_vgs._2015-11-09.jpg",
@@ -1260,5 +1260,110 @@
   "license": "CC BY-SA 3.0",
   "wiki_url": "https://no.wikipedia.org/wiki/%C3%98vrebyen_videreg%C3%A5ende_skole",
   "wiki_extract": "Øvrebyen videregående skole er en videregående skole som ligger i bydelen Øvrebyen i Kongsvinger, like ved Vinger kirke. Elevene er i hovedsak fra Kongsvinger og nabokommunene. Skolens hovedbygg er fra 1880 og ble bygget for Kongsvinger middelskole. Senere ble skolen gymnas før den fikk navnet Øvrebyen videregående skole. I perioden 1994–1998 ble skolen ombygget og rehabilitert, og fikk nytt under"
+ },
+ "Atlanten videregående skole": {
+  "photo": "https://atlanten.vgs.no/handlers/bv.ashx/i3db2a562-cb54-40f5-aa54-062503a59281/w1920/k5311bf65c7af/atlanten_bilde2.jpg",
+  "source": "site",
+  "page": "https://atlanten.vgs.no/",
+  "credit": "Foto: Atlanten videregående skole / Møre og Romsdal fylkeskommune",
+  "license": "© Møre og Romsdal fylkeskommune"
+ },
+ "Haram vidaregåande skule": {
+  "photo": "https://haram.vgs.no/handlers/bv.ashx/i66f335ec-10e9-4cfe-9c6e-bf1bd22b0832/w1920/kc0a5c8479677/haram-vgs_inngangsparti_5.jpg",
+  "source": "site",
+  "page": "https://haram.vgs.no/",
+  "credit": "Foto: Haram vidaregåande skule / Møre og Romsdal fylkeskommune",
+  "license": "© Møre og Romsdal fylkeskommune"
+ },
+ "Hustadvika vidaregåande skole": {
+  "photo": "https://hustadvika.vgs.no/handlers/bv.ashx/ia364c88e-3892-41d7-a609-be94e9036e87/w1920/kf8c802fa8e7d/hustadvika-vgs.jpg",
+  "source": "site",
+  "page": "https://hustadvika.vgs.no/",
+  "credit": "Foto: Hustadvika vidaregåande skole / Møre og Romsdal fylkeskommune",
+  "license": "© Møre og Romsdal fylkeskommune"
+ },
+ "Molde videregående skole": {
+  "photo": "https://molde.vgs.no/handlers/bv.ashx/i1ea10848-ec97-4559-a079-2ca1fd487878/w1920/k7bde94d382e4/hovedinngang-sommer-roser.jpg",
+  "source": "site",
+  "page": "https://molde.vgs.no/",
+  "credit": "Foto: Molde videregående skole / Møre og Romsdal fylkeskommune",
+  "license": "© Møre og Romsdal fylkeskommune"
+ },
+ "Stranda vidaregåande skule": {
+  "photo": "https://stranda.vgs.no/handlers/bv.ashx/i0c0aeaf2-ba21-4235-8e34-22ed90a892fb/w1920/k4edf7069950a/stranda-vgs.png",
+  "source": "site",
+  "page": "https://stranda.vgs.no/",
+  "credit": "Foto: Stranda vidaregåande skule / Møre og Romsdal fylkeskommune",
+  "license": "© Møre og Romsdal fylkeskommune"
+ },
+ "Surnadal vidaregåande skule": {
+  "photo": "https://surnadal.vgs.no/handlers/bv.ashx/i05cdc488-2a35-4f28-bb4b-edea32358e26/w1920/q1773/k7d87085f79a8/surnadal-vgs1.jpg",
+  "source": "site",
+  "page": "https://surnadal.vgs.no/",
+  "credit": "Foto: Surnadal vidaregåande skule / Møre og Romsdal fylkeskommune",
+  "license": "© Møre og Romsdal fylkeskommune"
+ },
+ "Sykkylven vidaregåande skule": {
+  "photo": "https://sykkylven.vgs.no/handlers/bv.ashx/if28dc0a7-124c-4e06-9546-1cbc61dc9cc7/w1920/k4bd42e3aa196/28a0226.JPG",
+  "source": "site",
+  "page": "https://sykkylven.vgs.no/",
+  "credit": "Foto: Sykkylven vidaregåande skule / Møre og Romsdal fylkeskommune",
+  "license": "© Møre og Romsdal fylkeskommune"
+ },
+ "Tingvoll vidaregåande skole": {
+  "photo": "https://tingvoll.vgs.no/handlers/bv.ashx/i504a966b-ef91-4fcc-8393-510103125a32/w1920/kdb3adb1469e8/bilde-tvs.jpg",
+  "source": "site",
+  "page": "https://tingvoll.vgs.no/",
+  "credit": "Foto: Tingvoll vidaregåande skole / Møre og Romsdal fylkeskommune",
+  "license": "© Møre og Romsdal fylkeskommune"
+ },
+ "Ulstein vidaregåande skule": {
+  "photo": "https://ulstein.vgs.no/handlers/bv.ashx/i3ed08e05-fa64-4a4c-83c8-1b2528f64509/w1920/k80a70b9efb61/dronebilde1-berge.jpg",
+  "source": "site",
+  "page": "https://ulstein.vgs.no/",
+  "credit": "Foto: Ulstein vidaregåande skule / Møre og Romsdal fylkeskommune",
+  "license": "© Møre og Romsdal fylkeskommune"
+ },
+ "Volda vidaregåande skule": {
+  "photo": "https://volda.vgs.no/handlers/bv.ashx/i8f3295c5-5e78-4894-bde0-e65be3d4a826/w1920/k48dbb46a2185/volda-vgs-7.jpg",
+  "source": "site",
+  "page": "https://volda.vgs.no/",
+  "credit": "Foto: Volda vidaregåande skule / Møre og Romsdal fylkeskommune",
+  "license": "© Møre og Romsdal fylkeskommune"
+ },
+ "Ålesund videregående skole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Alesund_Videregaende_Skole_-_Kirkegata.jpg/1280px-Alesund_Videregaende_Skole_-_Kirkegata.jpg",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Alesund_Videregaende_Skole_-_Kirkegata.jpg",
+  "credit": "Foto: GangerRolf (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
+ },
+ "Skarnes videregående skole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Skarnes_High_School.jpg/1280px-Skarnes_High_School.jpg",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Skarnes_High_School.jpg",
+  "credit": "Foto: HenrikNordmann (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
+ "Lillehammer videreg skole, avd Nord": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Vargstad_VGS_1.JPG/1280px-Vargstad_VGS_1.JPG",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Vargstad_VGS_1.JPG",
+  "credit": "Foto: Jan-Tore Egge (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
+ },
+ "Lillehammer videreg skole, avd Sør": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Lillehammer_VGS.jpg/1280px-Lillehammer_VGS.jpg",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Lillehammer_VGS.jpg",
+  "credit": "Foto: Jan-Tore Egge (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
+ },
+ "Frogn": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Frogn_videreg%C3%A5ende_skole_2015_-_3.jpg",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Frogn_videreg%C3%A5ende_skole_2015_-_3.jpg",
+  "credit": "Foto: Kimsaka (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
  }
 }

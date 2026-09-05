@@ -15,16 +15,19 @@ list view (Kart ⇄ Liste toggle: the map's filters as a sortable table).
 - **Mix-adjusted toggle.** Colour the map by the α_s school effect instead
   of the raw mean. The number is computed and documented in the report;
   surfacing it in the UI shows the data-science depth where visitors see it.
-- **Better photo coverage.** 181/217 schools (83%) have a reviewed photo;
-  the 36 gaps concentrate where automatic harvesting has nothing clean to
-  find — Møre og Romsdal 18 (the county CMS serves only news-article
-  images), Innlandet 11 (school sites expose 234×63 header strips),
-  Akershus 4 (one boilerplate hero shared across schools, rejected as
-  template art). The automatic tiers are exhausted; what remains is manual
-  work per school: municipal image archives, county communications offices
-  (the same channel that supplied the data — MRO answered within a week),
-  or commissioning uploads to Wikimedia Commons. Every accepted photo still
-  passes the standing review: shows that school, no identifiable pupils.
+- **Better photo coverage.** 196/217 schools (90%) have a reviewed photo
+  after the data-hole sweep of 5 September 2026 (which fixed the Møre og
+  Romsdal site URLs and found 15 more, 10 of them in that county). The 21
+  gaps are where nothing usable exists online: Innlandet 8 (school sites
+  expose 234×63 header strips), Møre og Romsdal 7, Akershus 3 (one
+  boilerplate hero shared across schools, rejected as template art),
+  Rogaland, Trøndelag and Vestland one each. The automatic tiers are
+  exhausted; what remains is manual work per school: municipal image
+  archives, county communications offices (the same channel that supplied
+  the data — MRO answered within a week), or commissioning uploads to
+  Wikimedia Commons. Every accepted photo still passes the standing review:
+  shows that school, no identifiable pupils (Borgund's only exterior has
+  pupils in frame and stays out).
 - **Raster→vector basemap migration.** CARTO is retiring its raster
   basemaps in favour of vector (MapLibre); no date yet and our key covers
   both. When it becomes real: Leaflet + maplibre-gl-leaflet, or a move to
@@ -61,6 +64,53 @@ list view (Kart ⇄ Liste toggle: the map's filters as a sortable table).
   improve. *5 Sept 2026: with Møre og Romsdal's under-25 rule the held-out
   optimism below 60% is at most 1.8 points; the largest gap is now the
   cautious 70–80% bin.*
+
+## Owner asks from the data-hole sweep (5 September 2026)
+
+The sweep's report is `.claude/qa/2026-09-05-data-holes.md` (gitignored, with
+the evidence beside it). Merged the same day: Hordaland's 2017–19 3. inntak
+table, Sogn og Fjordane's 2018–19 Vg1 table, Vestland's unlinked 2022/23
+3. inntak and 2023/24 1. inntak files, the county's corrected 2026/27 reprint,
+Oslo 2015/16, fifteen photos, the label and header repairs. What needs a
+person:
+
+- **Møre og Romsdal, existing thread (inntak@mrfylke.no):** the same extract
+  for all levels («Karaktergrense alle nivå» in the county's dashboard has
+  Vg2 thresholds), same columns, as far back as it exists. Ours is Vg1 only.
+- **Utdanningsetaten Oslo (postmottak@osloskolen.no):** innsyn in «Nedre
+  poenggrense 1. inntak Vg1» for 2011, 2012, 2013 and 2016, by their original
+  filenames (the archived linking pages are in the sweep's Lane B report).
+  2015 was found on a school site; 2010–2014 and 2016 are not archived.
+- **Innlandet (inntak@innlandetfylke.no, sak 2026/1-152):** what `-` (11
+  cells) and «Ikke igangsatt» (3) mean in the rolling matrices, and why
+  Dombås, Lom and Skarnes left the tables from the 2023 edition, two years
+  before they closed.
+- **Vestland (contact form):** does a 3. inntak file for 2021/22 exist; the
+  2022/23 3. inntak and 2023/24 1. inntak files should be linked from the
+  poenggrense page again.
+- **Rogaland (inntak@rogfk.no):** the 2026/27 publication promised on 26 Aug
+  («this week or next») is overdue; one follow-up. The header typo we fixed
+  ourselves (the parser now trusts the edition's majority header).
+- **Buskerud:** chase the 5 Sept mail after a week (Kongsberg 4,0; which
+  inntak).
+- **Photos:** ask Innlandet, Akershus and Møre og Romsdal communications
+  for building photos of the 21 schools with nothing usable online (list in
+  the sweep's Lane D report).
+- **Fagerlia / Ålesund identity (decision):** orgnr 974576503 is the Fagerlia
+  lineage (renamed Ålesund vgs in 2021) and sits on the Ålesund row; the
+  pre-2021 Ålesund vgs was 974576538. Recommendation: keep 974576503 on
+  Ålesund and add `merged_from: ["Fagerlia videregående skole"]`,
+  `merged_year: 2021`, the way Førde carries Hafstad and Mo og Øyrane.
+- **Kunnskapsløftet-2020 renames (design call):** Elektrofag → Elektro og
+  datateknologi, Design og håndverk → the two 2020 programmes, Service og
+  samferdsel → Salg, service og reiseliv, Elenergi → Elenergi og ekom,
+  Hudpleie → Hudpleier, and so on. Same Grep code, different official name;
+  today each is its own series, with a break at 2020. Joining them would give
+  longer trend lines at the cost of the register's own names.
+- **2026/27 not yet published:** Rogaland (overdue), Trøndelag (December,
+  by their PDF dates), Buskerud (a new page slug will appear), Akershus's own
+  page (November). Recheck monthly; the seven counties outside the dataset
+  are unchanged.
 
 ## Launch list (agreed 2 September 2026)
 

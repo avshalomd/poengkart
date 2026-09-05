@@ -56,8 +56,9 @@ MANUAL = {
 MANUAL_IDENTITY = {
     # the campus closed in 2019 and left every register; the inherited
     # identity belonged to the parent school in another kommune
+    # its own (now deleted) register unit; no website of its own
     ('15', 'herøy vidaregåande skule, avd. vanylven'):
-        {'address': '6140 Syvde', 'url': None, 'orgnr': None},
+        {'address': '6140 Syvde', 'url': None, 'orgnr': '974577011'},
     # closed into the 2022 merger; the building still stands but the school
     # is gone from NSR, and the parent's identity is not its own
     ('15', 'fagerlia videregående skole'):
@@ -69,8 +70,12 @@ MANUAL_IDENTITY = {
         {'address': 'Sjømannsvegen 47, 6008, ÅLESUND'},
     # the campuses' figures end in 2022 and the parent's Otta address is not
     # theirs; say where they stood and nothing more
-    ('34', 'nord-gudbrandsdal vgs, avd. dombås'): {'address': '2660 Dombås', 'url': None, 'orgnr': None},
-    ('34', 'nord-gudbrandsdal vgs, avd. lom'): {'address': '2686 Lom', 'url': None, 'orgnr': None},
+    # their own register units (closed 2025), no website of their own
+    ('34', 'nord-gudbrandsdal vgs, avd. dombås'): {'address': '2660 Dombås', 'url': None, 'orgnr': '916178360'},
+    ('34', 'nord-gudbrandsdal vgs, avd. lom'): {'address': '2686 Lom', 'url': None, 'orgnr': '974597217'},
+    # hand-placed pins skip the register match, so their identity is set here
+    ('11', 'stavanger offshore tekniske skole'): {'orgnr': '919938331'},
+    ('11', 'øksnevad'): {'orgnr': '974624451'},
 }
 
 
@@ -243,9 +248,11 @@ def main():
                 s['address'] = hit['adresse']
             if hit.get('url') and '@' not in hit['url'] and not s.get('url'):
                 s['url'] = hit['url']
+        if hit:
+            # the register name is the match's, whichever service placed the pin
+            s['nsr_name'] = hit['navn']
         if hit and has_coords(hit):
             s['lat'], s['lon'] = hit['lat'], hit['lon']
-            s['nsr_name'] = hit['navn']
         else:
             man = MANUAL.get((s.get('fylkesnummer'), key)) or MANUAL.get((s.get('fylkesnummer'), s['name'].lower()))
             if man:
@@ -265,7 +272,8 @@ def main():
                         break
                 if pt:
                     s['lat'], s['lon'] = pt
-                    s['nsr_name'] = '(stedsnavn)'
+                    if not hit:
+                        s['nsr_name'] = '(stedsnavn)'
                     print(f'  stedsnavn: {s["name"]} -> {pt[0]:.4f},{pt[1]:.4f}')
                 else:
                     unmatched.append(f'{s["fylke"]}: {s["name"]}')

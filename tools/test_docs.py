@@ -272,9 +272,12 @@ check(doc, 'sigma table', r'\| 0 years \| ([\d.]+) \| \| 1 year \| ([\d.]+) \| \
 MULT = META['sigma_level_multiplier']
 LS = META['halflife_search']['level_spread_experiment']
 SW = META['halflife_search']['single_weight_search']
-check(doc, 'level multipliers', r'×([\d.]+) below 25 points, ×([\d.]+) from 25 to 45, ×([\d.]+) at 45 and above',
-      [MULT['0-25'], MULT['25-30'], MULT['45+']], flat, D2)
-check(doc, 'level multipliers pooled middle', r'×[\d.]+ below 25 points, ×([\d.]+) from 25 to 45', [MULT['40-45']], flat, D2)
+check(doc, 'level multipliers', r'×([\d.]+) below 25 points, ×([\d.]+) from 25 to 40, ×([\d.]+) from 40 to 45, ×([\d.]+) at 45 and above',
+      [MULT['0-25'], MULT['25-30'], MULT['40-45'], MULT['45+']], flat, D2)
+# the prose quotes one figure for 25-40: the monotone fit must have pooled those bands
+checked += 1
+if not (MULT['25-30'] == MULT['30-35'] == MULT['35-40']):
+    failures.append(f'{doc}: level multipliers: the 25–40 bands are no longer pooled ({MULT}); reword the prose and Table 3b')
 check(doc, 'level spread held-out', r"top band's 80% coverage from ([\d.]+)% to ([\d.]+)% and the bottom band's from ([\d.]+)% to ([\d.]+)%",
       [LS['history_only']['coverage80_by_forecast']['45+'] * 100, LS['with_level']['coverage80_by_forecast']['45+'] * 100,
        LS['history_only']['coverage80_by_forecast']['0-25'] * 100, LS['with_level']['coverage80_by_forecast']['0-25'] * 100], flat, D2 * 10)
@@ -303,7 +306,7 @@ sm = META['school_means']
 check(doc, 'school means', r"over the (\d+) schools whose α rests on five or more fitted cells: the school's own effect explains (\d+)% of the variance between schools, the programme mix (\d+)%, the county's level that year \([^)]*\) (\d+)%, and the series interactions (\d+)%\. Ranked within their own county by α instead of by raw mean, schools move ([\d.]+) places on average and at most (\d+)",
       [sm['n_schools'], sm['share']['alpha'] * 100, sm['share']['mix'] * 100, sm['share']['county_year'] * 100, sm['share']['series'] * 100,
        sm['within_county']['rank_move_mean'], sm['within_county']['rank_move_max']], flat, [N, PCT, PCT, PCT, PCT, D1, N])
-check(doc, 'coupling interval', r'puts the difference at \[(-[\d.]+), \+([\d.]+)\]',
+check(doc, 'coupling interval', r'puts the difference at \[(-[\d.]+), ([+-][\d.]+)\]',
       META['halflife_search']['coupled_fill_logloss']['ci_coupled_minus_independent'], flat, D3)
 check(doc, 'year pairs', r'standard deviation of ([\d.]+) points from one year to the next \((\d[\d ]+) consecutive-year pairs',
       [META['year_pairs']['sd'], META['year_pairs']['n']], flat, [D1, N])
@@ -451,9 +454,8 @@ check(doc, 'coverage by county prose', rf'coverage runs from (\d+)% in {lo_f["fy
 check(doc, 'coverage MRO prose', r'Møre og Romsdal, forecast from proxy-labelled cells, sits at (\d+)%', [cov_f['Møre og Romsdal']['coverage80'] * 100], flat, PCT)
 check(doc, 'interval half-width', r'roughly ±([\d.]+) points is what an honest 80% claim costs', [ev['interval_width80'] / 2], flat, D1)
 # ---- v1.7: level-conditioned spread, single-applicant weight, EWMA baseline
-check(doc, 'table 3b', r'\| below 25 \| ([\d.]+) \| \| 25–45 \| ([\d.]+) \| \| 45 and above \| ([\d.]+) \|',
-      [MULT['0-25'], MULT['25-30'], MULT['45+']], flat, D2)
-check(doc, 'table 3b pooled middle', r'\| 25–45 \| ([\d.]+) \|', [MULT['40-45']], flat, D2)
+check(doc, 'table 3b', r'\| below 25 \| ([\d.]+) \| \| 25–40 \| ([\d.]+) \| \| 40–45 \| ([\d.]+) \| \| 45 and above \| ([\d.]+) \|',
+      [MULT['0-25'], MULT['25-30'], MULT['40-45'], MULT['45+']], flat, D2)
 check(doc, 'table 3b prose', r'gets a band (\d+)% narrower than its history alone would give, one below 25 a band (\d+)% wider',
       [(1 - MULT['45+']) * 100, (MULT['0-25'] - 1) * 100], flat, PCT)
 H_, W_ = LS['history_only'], LS['with_level']
@@ -504,10 +506,10 @@ for r in rel_chance:
 check(doc, 'figure 2 mass', r'\((\d+)% of score–cell pairs land above 80%\)', [mass_hi], flat, PCT)
 hs = META['halflife_search']
 check(doc, 'halflife', r'RMSE was \{([\d.]+), ([\d.]+), ([\d.]+), ([\d.]+)\}', [hs['1.5'], hs['2.5'], hs['4.0'], hs['None']], flat, D3)
-check(doc, 'halflife interval', r'by ([\d.]+) points over no decay \[(-[\d.]+), \+([\d.]+)\]',
+check(doc, 'halflife interval', r'by ([\d.]+) points over no decay \[([+-][\d.]+), \+([\d.]+)\]',
       [hs['None'] - hs['4.0']] + hs['ci_none_minus_best'], flat, D3)
 cp = hs['coupled_fill_logloss']
-check(doc, 'coupling', r'lowered calibration-year fill log-loss from ([\d.]+) to ([\d.]+) \(difference \[(-[\d.]+), \+([\d.]+)\]\)',
+check(doc, 'coupling', r'lowered calibration-year fill log-loss from ([\d.]+) to ([\d.]+) \(difference \[(-[\d.]+), ([+-][\d.]+)\]\)',
       [cp['independent'], cp['coupled']] + cp['ci_coupled_minus_independent'], flat, D3)
 check(doc, 'coupling held-out', r'the same fill Brier \(([\d.]+) against ([\d.]+)\)', [cp['heldout_brier']['coupled'], cp['heldout_brier']['independent']], flat, D3)
 px = hs['proxy_label_experiment']

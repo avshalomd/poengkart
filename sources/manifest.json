@@ -67,6 +67,11 @@
    "sha256": "558dfe68f7ecf2fbfb3096095d401a203583f4398579e1805712c4c16fc13991",
    "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
   },
+  "oslo/oslo-2015.pdf": {
+   "size": 194663,
+   "sha256": "c3e88b2d37e7db70b30e4b095865f2cfac3d5f24f02f3c06a14e31540828ba7c",
+   "provenance": "Oslo kommune, Utdanningsetaten: the 2015/16 poengtabell (1. inntak, Vg1) as served by Ris skole, ris.osloskolen.no/siteassets/dokumenter-til-lenking/2015--nedre-poenggrense-1--inntak-vg11.pdf (fetched 5 Sept 2026)."
+  },
   "oslo/oslo-2017.pdf": {
    "size": 42153,
    "sha256": "128ee2ee745c168c0cd802c4f6abbf66a728049146995c6a58e4064cb9a7493a",
@@ -172,6 +177,11 @@
    "sha256": "bc225bf1bac1436552cd05b7bb349f62cb21a1288b6ffa0c8ea16395195c4517",
    "provenance": "Trøndelag fylkeskommune via vilbli.no/trondelag, one PDF per inntaksregion (2025/26)."
   },
+  "vestland/hordaland_2017-2019_3inntak_vg1-vg3.pdf": {
+   "size": 245632,
+   "sha256": "ae8426925c1643041b6a1f2f568cfaab5a706076a9594e4acbd83228eb1a0ae7",
+   "provenance": "Hordaland fylkeskommune: nedre karaktergrense etter 3. inntaksrunde, skuleåra 2017/18–2019/20, Vg1–Vg3, hosted by Vestland fylkeskommune at vestlandfylke.no/globalassets/utdanning-og-karriere/elev/inntak/nedre-karaktergrense-vg1-vg2-vg3-tidlegare-hordaland.pdf (fetched 5 Sept 2026)."
+  },
   "vestland/hordaland_2018_1inntak_bergen-st.pdf": {
    "size": 11926,
    "sha256": "e627ac04c874b437d0f7337e43f3f5e38c138194f2042e98f5b3cb5c358fdaf6",
@@ -181,6 +191,11 @@
    "size": 128542,
    "sha256": "4c766d132631b062c37eb3df7796fb1f635fba651a79e7976f08001ce6d8fcea",
    "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/sogn-og-fjordane_2018-2019_1inntak_vg1.pdf": {
+   "size": 271862,
+   "sha256": "acfef0cba25ad7c20f657a605c8a4698178e67e4ab34c71decf41965a587d9bf",
+   "provenance": "Sogn og Fjordane fylkeskommune: nedre karaktergrense etter 1. inntaksrunde, skuleåra 2018/19 og 2019/20, Vg1, hosted by Vestland fylkeskommune at vestlandfylke.no/globalassets/utdanning-og-karriere/elev/inntak/nedre-karaktergrense-vg1-tidlegare-sogn-og-fjordane.pdf (fetched 5 Sept 2026)."
   },
   "vestland/vestland_2020-21_1inntak.pdf": {
    "size": 288212,
@@ -201,6 +216,16 @@
    "size": 605996,
    "sha256": "13f6a0ffbb55e3581dce1b9f49dac410f8a8404a5dfeb8ace09b37e8a651afd3",
    "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/vestland_2022-23_3inntak.pdf": {
+   "size": 495718,
+   "sha256": "b2e91453ac55a2f2f860b310a3058b3f464645fa862640c76f859bdf18ebefc1",
+   "provenance": "Vestland fylkeskommune: nedre poenggrense etter 3. inntak 2022/23, vestlandfylke.no/globalassets/foto/dokument/skulenedrepoenggrenseinntake32022.pdf (no longer linked from the poenggrenser page; fetched 5 Sept 2026)."
+  },
+  "vestland/vestland_2023-24_1inntak.pdf": {
+   "size": 163288,
+   "sha256": "b5ae12c0155d5112061e5ec23e249906b4f16d4d100845afe0ae4138c8931ea6",
+   "provenance": "Vestland fylkeskommune: nedre poenggrense etter 1. inntak 2023/24, vestlandfylke.no/globalassets/utdanning-og-karriere/elev/inntak/inntak-2023---nedre-poenggrene-1innt-media.pdf (no longer linked from the poenggrenser page; fetched 5 Sept 2026)."
   },
   "vestland/vestland_2023-24_3inntak.pdf": {
    "size": 667771,
@@ -231,6 +256,11 @@
    "size": 543215,
    "sha256": "32b425c651f46555f24c650bb875b8a6dd167bbf02806a1237083ce3666da158",
    "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page (1. and 3. inntak); Hordaland 2018 and 2019 press releases for Bergen studiespesialisering."
+  },
+  "vestland/vestland_2026-27_3inntak-rev2.pdf": {
+   "size": 610122,
+   "sha256": "9a1fee2e626c1f47857764f26bd541726f06d27e802f5cce350c624db2835919",
+   "provenance": "Vestland fylkeskommune, vestlandfylke.no poenggrenser page: the corrected reprint of the 2026/27 3. inntak file published 28 Aug 2026 (vestlandfylke.no/globalassets/utdanning-og-karriere/elev/inntak/nedre-poenggrense-3.-inntak-20262027.pdf); one cell differs from the first print (Langhaugen musikk 54,6 for 45,6)."
   },
   "vestland/vestland_2026-27_3inntak.pdf": {
    "size": 169119,

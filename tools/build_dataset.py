@@ -112,9 +112,17 @@ def main():
     by_meta = {c['fylke']: c for c in counties}
     out = {'counties': counties, 'schools': []}
     all_years = set()
+    alt_only = 0
     for (county, name) in sorted(schools):
         progs = []
         for rec in schools[(county, name)].values():
+            if not rec['values']:
+                # a programme published only in a round other than the
+                # county's (Hordaland's 2017-19 3. inntak table, Vg2-Vg3) has
+                # no series for the app to draw or the model to pair against;
+                # the source stays in sources/, the row stays out of the data
+                alt_only += 1
+                continue
             all_years.update(rec['values'])
             entry_p = {'program': rec['program'],
                        'program_en': common.english_program(rec['program']),
@@ -219,6 +227,8 @@ def main():
     for p in problems[:12]:
         print('  ', p)
     print(f'source disagreements: {len(drift)} -> {DRIFT}')
+    if alt_only:
+        print(f'{alt_only} programmes with only alternate-round cells left out (no first-round series)')
     print(f'-> {OUT}')
 
 

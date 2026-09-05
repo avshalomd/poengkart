@@ -50,9 +50,13 @@ FILES = [
     'poenggrenser-rogaland-2019-2020.pdf',
 ]
 
-# schools whose year columns the county relabelled between publications, so
-# the merged mid-years cannot be trusted to a specific year (QA 2026-08-19)
-UNCERTAIN = {'Hetland videregående skole': [2019, 2020, 2021, 2022]}
+# Each edition prints its year header on every school's page, and one page
+# per edition carries a wrong one — Hetland's reads "2019 2020 2022" in the
+# 2022-23 edition and "2020 2022 2023" in the next, Kopervik's "2022 2023 2023"
+# and "2023 2023 2025". The document's own majority header is the truth: a page
+# whose header disagrees with it is re-labelled and the repair is logged. This
+# replaced a hand-kept list of "uncertain" years (QA 2026-08-19; data-hole
+# sweep 2026-09-05 found the cause).
 
 # non-Rogaland schools appearing on the national "landslinje flyfag" pages
 BLACKLIST = {'bardufoss', 'bardufoss videregående skole',
@@ -211,10 +215,25 @@ def band_level(bands, line):
     return None
 
 
+def modal_headers(pdf):
+    """The year header most pages of the document print, per column count."""
+    seen = {}
+    for page in pdf.pages:
+        for line in cluster_lines(page.extract_words()):
+            if 'Programområde' not in squash(' '.join(norm(w['text']) for w in line)):
+                continue
+            ys = tuple(int(norm(w['text'])) for w in line if YEAR_RE.match(norm(w['text'])))
+            if ys:
+                ys = tuple(repair_years(list(ys))[0])
+                seen.setdefault(len(ys), {})[ys] = seen.get(len(ys), {}).get(ys, 0) + 1
+    return {n: max(c, key=c.get) for n, c in seen.items()}
+
+
 def parse_pdf(path, warn):
     """Yield row dicts with exact per-year cells."""
     rows = []
     with pdfplumber.open(path) as pdf:
+        modal = modal_headers(pdf)
         school, year_cols = None, None      # carry across pages (continuations)
         for pi, page in enumerate(pdf.pages):
             words = page.extract_words()
@@ -239,6 +258,12 @@ def parse_pdf(path, warn):
                         if note:
                             warn.append(f'{os.path.basename(path)} p{pi+1} '
                                         f'{school}: {note}')
+                        want = modal.get(len(years))
+                        if want and tuple(years) != want:
+                            warn.append(f'{os.path.basename(path)} p{pi+1} '
+                                        f'{school}: header years {years} relabelled '
+                                        f'to the edition\'s {list(want)}')
+                            years = list(want)
                         year_cols = list(zip(years, [x for _, x in ycs]))
                     continue
                 if school is None or year_cols is None:
@@ -370,8 +395,6 @@ def main():
                           'values': {str(y): v for y, v in sorted(rec['values'].items())}})
         progs.sort(key=lambda p: (p['level'], p['program']))
         entry = {'name': school, 'programs': progs}
-        if school in UNCERTAIN:
-            entry['uncertain_years'] = UNCERTAIN[school]
         out['schools'].append(entry)
     out['years'] = sorted(all_years)
 

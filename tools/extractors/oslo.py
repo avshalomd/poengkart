@@ -40,7 +40,12 @@ SCHOOL_ALIASES = {
 
 def _school(name):
     n = common.squash(name)
-    return SCHOOL_ALIASES.get(n.lower(), n)
+    n = SCHOOL_ALIASES.get(n.lower(), n)
+    # the 2015 edition writes "Bjerke videregående" for the register's
+    # "Bjerke videregående skole"; the register name is the school's identity
+    if n.lower().endswith(' videregående'):
+        n += ' skole'
+    return n
 
 
 VIGO_RE = re.compile(r'^\d{4}$')

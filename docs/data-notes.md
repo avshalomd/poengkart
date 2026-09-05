@@ -75,10 +75,18 @@ first-round figures.
 Many of the county links rot yearly; older editions were recovered through the
 [Wayback Machine](https://web.archive.org/).
 
-**The 2017–2019 Hordaland rows are narrower than everything else here**: Vg1
-studiespesialisering, public schools in the Bergen area only. Two press
-releases each printed the previous year's figure beside the current one, and
-they agree on all fifteen schools where they overlap.
+**The 2017–2019 rows of Vestland's predecessors are narrower than everything
+else here.** The first-round series for those years is Hordaland's Vg1
+studiespesialisering in the Bergen area (two press releases, each printing the
+previous year's figure beside the current one; they agree on all fifteen
+schools where they overlap) plus Sogn og Fjordane's Vg1 table for 2018 and
+2019 (ten schools, all utdanningsprogram). Hordaland's full 3. inntak table
+for the same years — every public school, Vg1–Vg3 — sits beside the series as
+`values_r3`, not in it: Vestland's series is 1. inntak, and a later round
+inside it would read as a dip that never happened. Programmes that exist only
+in that table (Vg2 and Vg3, and Vg1 outside studiespesialisering) have no
+first-round series to sit beside and are left out of the dataset; the source
+document is kept in `sources/`.
 
 ## How the documents are parsed
 
@@ -102,24 +110,29 @@ is recorded in `data/source-drift.json` rather than hidden. Any year two
 publications disagree about by close to a whole grade point is flagged on the
 school as `uncertain_years`, and the app says so in words.
 
-`tools/test_parse.py` runs 88 regression checks over the result; every one of
+`tools/test_parse.py` runs 103 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built
 
-**The intake round is modelled per county, not per year.** Vestland's 2023
-figures come from 3. inntak while the rest of its series is 1. inntak — 53% of
-that year's cells are "no waitlist" against 0–6% in 2017–2025, so the
-2023 thresholds sit visibly lower for a reason that has nothing to do with
-demand. `build_dataset.py` derives the exception from the rows and records it
-against the county (`round_years`), and the school panel explains it in a
-sentence.
+**The intake round is modelled per county, not per year.** Vestland
+published only a 3. inntak file for 2023/24 on its poenggrense page, and for
+two years the dataset carried that round inside a 1. inntak series: 53% of
+that year's cells were "no waitlist" against 0–6% in the other years, so the
+2023 thresholds sat visibly lower for a reason that had nothing to do with
+demand. The county's 1. inntak file for 2023/24 turned out to be still served
+from its site, unlinked, and since 5 September 2026 it is the series; the
+3. inntak file moved to `values_r3` like every other year's. The mechanism
+that handled the exception stays: `build_dataset.py` derives any year whose
+only published round differs from the county's (`round_years`), the panel
+explains it in a sentence, and the forecast offsets such a year by the round
+bridge. Today no county-year triggers it.
 
 The fuller version would carry the round on each cell — the extractors already
 know it per source file — and make the round chip follow the year being
 displayed. That turns a static label into one that changes as you read, in a
 panel that is already dense, for an audience of teenagers and their parents.
-Worth revisiting if more counties turn out to mix rounds inside one series.
+Worth revisiting if a county starts mixing rounds inside one series again.
 
 (Vestland's own 2026 first round also runs high — 26% of cells admitted
 everyone who applied, printed as «Alle» in the county's own PDF — a genuine
@@ -133,8 +146,7 @@ counties publishing different rounds — the problem the app currently apologise
 for in three separate strings. Left until the round model above is settled,
 because two series per programme without a coherent story about rounds would
 add confusion rather than remove it. What they *are* used for is measuring the
-gap between rounds — see the round bridge in [model.md](model.md) — and
-correcting Vestland's 2023 figures inside the forecast.
+gap between rounds — see the round bridge in [model.md](model.md).
 
 ## One programme, two labels
 

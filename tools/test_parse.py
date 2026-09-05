@@ -307,6 +307,81 @@ check('the recovered Hordaland years are plausible thresholds',
 early = {int(y) for s in county('Vestland') for p in s['programs'] for y in p['values']}
 check('Vestland now reaches back to 2017', min(early) == 2017, str(sorted(early)))
 
+# --- the data-hole sweep of 5 September 2026 -------------------------------
+def vprog(school_sub, prog_exact, level='Vg1', fylke='Vestland'):
+    for s in county(fylke):
+        if school_sub.lower() in s['name'].lower():
+            for p in s['programs']:
+                if p['program'].lower() == prog_exact.lower() and p['level'] == level:
+                    return p
+    return None
+
+# Vestland spelt one programme "Sal, service og reiseliv" in two editions and
+# "Salg, ..." in the rest, and the app drew it as two broken series
+v_progs = {p['program'] for s in county('Vestland') for p in s['programs']}
+check('nynorsk «Sal, service og reiseliv» folds into the register spelling',
+      'Sal, service og reiseliv' not in v_progs)
+check('the landslinje / LAL spellings are one series',
+      not [p for p in v_progs if p.endswith(', LAL')], str([p for p in v_progs if p.endswith(', LAL')]))
+# Sogn og Fjordane's 1. inntak Vg1 table (2018-19) is in the first-round series
+_sog = vprog('Sogndal', 'Bygg- og anleggsteknikk')
+check('Sogn og Fjordane 2018-2019 Vg1 figures are in the series',
+      _sog is not None and _sog['values'].get('2018') == 22.0 and _sog['values'].get('2019') == 23.8,
+      str(_sog and _sog['values']))
+# Hordaland's full 3. inntak table (2017-19, Vg1-Vg3) sits beside the series,
+# never in it: Vestland's series is 1. inntak
+_arna = vprog('Arna', 'Bygg- og anleggsteknikk')
+check('Hordaland 3. inntak cells land in values_r3, not values',
+      _arna is not None and (_arna.get('values_r3') or {}).get('2017') == 26.8
+      and (_arna.get('values_r3') or {}).get('2019') == 32.6 and '2017' not in _arna['values'],
+      str(_arna and (_arna['values'], _arna.get('values_r3'))))
+_ask = vprog('Askøy', 'Bygg- og anleggsteknikk')
+check('Hordaland «Alle» reads as open, a blank as absent',
+      _ask is not None and (_ask.get('values_r3') or {}).get('2019') == 'open'
+      and (_ask.get('values_r3') or {}).get('2018') == 25.3
+      and (_ask.get('values_r3') or {}).get('2017') == 32.5,
+      str(_ask and _ask.get('values_r3')))
+# 2023 was the one year the series carried the wrong round; the county's own
+# 1. inntak file for 2023/24 is in sources/ since 5 Sept 2026
+_vc = next(c for c in DATA['counties'] if c['fylke'] == 'Vestland')
+check('Vestland has no year on another round than its own', not _vc.get('round_years'),
+      str(_vc.get('round_years')))
+v23 = sum(1 for _, _, y, _ in ccells('Vestland') if y == '2023')
+check('Vestland 2023 is the full 1. inntak edition', v23 >= 450, f'{v23} cells')
+# the 3. inntak editions add a fourth column on their Vg2/Vg3 pages; the
+# parser used to lose every row on them
+v22r3 = sum(1 for s in county('Vestland') for p in s['programs'] if '2022' in (p.get('values_r3') or {}))
+check('Vestland 2022 3. inntak reads its Vg2/Vg3 pages', v22r3 >= 400, f'{v22r3} cells')
+# the county reprinted the 2026/27 3. inntak file on 28 Aug 2026 with one cell
+# corrected; the revision is the one read
+_lang = vprog('Langhaugen', 'Musikk, dans og drama, musikk')
+check('the corrected 2026/27 3. inntak reprint wins over the first print',
+      _lang is not None and (_lang.get('values_r3') or {}).get('2026') == 54.6,
+      str(_lang and _lang.get('values_r3')))
+# Rogaland's editions each print one wrong year header (Hetland, Kopervik);
+# the document's modal header now decides, and the hand-kept flag is gone
+_het = [p for p in progs('Hetland', 'Studiespesialisering', 'Vg1') if p['program'] == 'Studiespesialisering']
+check('Hetland carries an unbroken 2018-2025 series after the header repair',
+      _het and all(str(y) in _het[0]['values'] for y in range(2018, 2026))
+      and _het[0]['values'].get('2022') == 43.5 and _het[0]['values'].get('2021') == 40.4,
+      str(_het and _het[0]['values']))
+# the flag that remains (Åkrehamn 2022) is the automatic one: two editions
+# really do disagree about that cell by more than a grade point
+check('Hetland no longer carries the hand-kept uncertain_years flag',
+      not SCHOOLS['Hetland videregående skole'].get('uncertain_years'),
+      str(SCHOOLS['Hetland videregående skole'].get('uncertain_years')))
+# Oslo's 2015/16 table survives on a school site; its names lack "skole"
+o15 = {s['name'] for s in county('Oslo') for p in s['programs'] if '2015' in p['values']}
+check('Oslo 2015 is in the dataset for its 22 municipal schools', len(o15) >= 20, f'{len(o15)} schools')
+check('Oslo school names carry the register form',
+      not [n for n in (s['name'] for s in county('Oslo')) if n.lower().endswith('videregående')],
+      str([n for n in (s['name'] for s in county('Oslo')) if n.lower().endswith('videregående')]))
+check('every programme in the dataset has at least one first-round cell',
+      not [1 for s in DATA['schools'] for p in s['programs'] if not p['values']])
+# enrichment: the register's www hosts for Møre og Romsdal do not resolve
+mro_www = [s['name'] for s in county('Møre og Romsdal') if 'www.' in (s.get('url') or '')]
+check('Møre og Romsdal school links use the bare domain', not mro_www, str(mro_www[:3]))
+
 # The page's own copy carries headline numbers (meta description, the
 # noscript fallback, the alt text for the share card). Those are read by people
 # and by link previews, not rendered from the data, so they rot silently when a

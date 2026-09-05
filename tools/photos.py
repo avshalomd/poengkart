@@ -102,9 +102,11 @@ OVERRIDES = {
     },
     'Dalane videregående skole': {
         # 800px variant: the original is a 2.9 MB PNG, too heavy for a header
+        # the CMS rotates the key segment of the path (k...) now and then and
+        # the old URL 404s; same image id, re-fetched 5 Sept 2026
         'photo': ('https://www.dalane.vgs.no/handlers/bv.ashx/e1/'
                   'i90447595-a2e2-4985-bbe8-94b6fa947462/w800/h550/q35672/'
-                  'k80e3d0596c62/fasade-var-2.png'),
+                  'k35aecf9021cc/fasade-var-2.png'),
         'page': 'https://www.dalane.vgs.no/',
         'credit': 'Foto: Dalane vgs / Rogaland fylkeskommune',
         'license': '© Rogaland fylkeskommune',
@@ -167,8 +169,15 @@ OVERRIDES = {
 URL_FIXES = {
     'Øksnevad vidaregåande skole': 'https://www.oksnevad.vgs.no/',
     'Vardafjell videregående skole': 'https://www.vardafjell.vgs.no/',
+    'Asker': 'https://afk.no/asker-vgs',
+    'Stavanger Offshore Tekniske skole': 'https://www.sots.no/',
 }
+# Møre og Romsdal's register entries carry a www host that does not exist
+# (NXDOMAIN on every one, 5 Sept 2026); the bare domain serves. Two schools
+# also changed domain with their name.
+MRO_HOSTS = {'krsund.vgs.no': 'kristiansund.vgs.no', 'frana.vgs.no': 'hustadvika.vgs.no'}
 URL_REPLACE = {
+    'Skarnes videregående skole': 'https://www.sentrum.vgs.no/',
     'Eidsvoll': 'https://afk.no/eidsvoll-vgs',
     'Roald Amundsen': 'https://afk.no/roaldamundsen-vgs',
     'Buskerud': 'https://bfk.no/buskerud-vgs',
@@ -317,9 +326,15 @@ def main():
     changed = []
     for s in data['schools']:
         name = s['name']
-        if name in URL_FIXES and '@' in (s.get('url') or ''):
+        if name in URL_FIXES and (not s.get('url') or '@' in s['url']):
             s['url'] = URL_FIXES[name]
-            changed.append(f'{name}: url (was an e-mail address)')
+            changed.append(f'{name}: url (was an e-mail address or missing)')
+        if s.get('fylke') == 'Møre og Romsdal' and s.get('url'):
+            host = re.sub(r'^(https?://)?(www\.)?', '', s['url']).split('/')[0]
+            host = MRO_HOSTS.get(host, host)
+            if host.endswith('.vgs.no') and s['url'] != f'https://{host}/':
+                s['url'] = f'https://{host}/'
+                changed.append(f'{name}: url (bare domain; the www host does not resolve)')
         if name in URL_REPLACE and s.get('url') != URL_REPLACE[name]:
             s['url'] = URL_REPLACE[name]
             changed.append(f'{name}: url (previous one did not resolve)')

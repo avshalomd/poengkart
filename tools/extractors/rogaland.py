@@ -9,7 +9,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from parse_pdfs import FILES, SRC, UNCERTAIN, parse_pdf   # noqa: E402
+from parse_pdfs import FILES, SRC, parse_pdf   # noqa: E402
 
 META = {
     'code': '11',
@@ -18,7 +18,6 @@ META = {
     'rights': 'ungdomsrett',
     'free_choice': True,              # fritt skolevalg countywide (FOR-2024-12-11-3099 §3)
     'source': 'https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6',
-    'uncertain': UNCERTAIN,
 }
 
 

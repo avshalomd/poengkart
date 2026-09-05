@@ -156,6 +156,55 @@ PROGRAM_ALIASES = {
     'inform.tekn og medieprod. sk 3 år':
         'Informasjonsteknologi og medieproduksjon, SK 3 år',
     'naturbruk, energi/miljøfag, sk 3 år': 'Naturbruk, energi-/miljøfag, SK 3 år',
+    # One county spells one programme two ways across its own editions, and
+    # each spelling started a series of its own (data-hole sweep, 5 Sept 2026).
+    # Only spelling, truncation and typo variants are joined here; the
+    # Kunnskapsløftet-2020 renames keep their own names, as the register does.
+    'sal, service og reiseliv': 'Salg, service og reiseliv',           # nynorsk
+    'salg og reiseliv': 'Salg og reiseliv',                             # capitalisation
+    'handverk, design og produktutvikling': 'Håndverk, design og produktutvikling',
+    'kjemiprosess- og laboratorief': 'Kjemiprosess- og laboratoriefag',  # truncated
+    'service, sikkerhet og admin': 'Service, sikkerhet og administrasjon',
+    'service og sikkerhet og admin': 'Service, sikkerhet og administrasjon',
+    'klima, energi og miljø': 'Klima-, energi- og miljøteknikk',
+    'klima-, energi- og miljø': 'Klima-, energi- og miljøteknikk',
+    'klima, energi og miljøteknikk': 'Klima-, energi- og miljøteknikk',
+    'klima, energi – og miljøteknikk': 'Klima-, energi- og miljøteknikk',
+    'teknolog og idustrifag': 'Teknologi- og industrifag',
+    'eletro og datateknologi': 'Elektro og datateknologi',
+    'anleggsteknikk, lal': 'Anleggsteknikk, landslinje',
+    'smed, lal': 'Smed, landslinje',
+    'anleggsmaskinmekanikerfaget, lal': 'Anleggsmaskinmekanikerfaget, landslinje',
+    'anleggsmaskinmekaniker, landslinje': 'Anleggsmaskinmekanikerfaget, landslinje',
+    'anleggsmaskinmekaniker landslinje': 'Anleggsmaskinmekanikerfaget, landslinje',
+    'studiespesialisering, skiskyting, lal': 'Studiespesialisering, skiskyting, landslinje',
+    'studiespes., skiskyting, landslinje': 'Studiespesialisering, skiskyting, landslinje',
+    'musikk, dans og drama med musikk': 'Musikk, dans og drama, musikk',
+    'musikk, dans og drama med dans': 'Musikk, dans og drama, dans',
+    'musikk, dans og drama med drama': 'Musikk, dans og drama, drama',
+    'studiespes med teknologifag': 'Studiespesialisering med teknologifag',
+    'helse/oppvekst, sk 3 år': 'Helse- og oppvekstfag, SK 3 år',
+    'påbygg til generell studiekompetanse': 'Påbygging til generell studiekompetanse',
+    'påbygg. gen. studiekompetanse': 'Påbygging til generell studiekompetanse',
+    'påbygg generell studiekompetanse': 'Påbygging til generell studiekompetanse',
+    'påbygg gen. studiekompetanse': 'Påbygging til generell studiekompetanse',
+    'påbygg gen studiekomp e/yrkeskomp':
+        'Påbygging til generell studiekompetanse etter yrkeskompetanse',
+    'påbygg gen studiekomp etter yrkeskompetanse':
+        'Påbygging til generell studiekompetanse etter yrkeskompetanse',
+    'påbygg. gen. studiekomp. etter yrkeskomp':
+        'Påbygging til generell studiekompetanse etter yrkeskompetanse',
+    'påbygg til generell studiekompetanse e/yrkeskompetanse':
+        'Påbygging til generell studiekompetanse etter yrkeskompetanse',
+    'påbygg etter yrkeskompetanse':
+        'Påbygging til generell studiekompetanse etter yrkeskompetanse',
+    # Vestland 2023/24 prints "Påbygg" and "e/yk" on top of each other in six
+    # rows (the glyphs come out interleaved) and drops the "e/yk" in four
+    # more; the same schools' previous edition names the programme in full
+    'p/åbykggk gen studiekomp':
+        'Påbygging til generell studiekompetanse etter yrkeskompetanse',
+    'påbygg gen studiekomp':
+        'Påbygging til generell studiekompetanse etter yrkeskompetanse',
 }
 
 
@@ -165,6 +214,7 @@ def canon_program(name):
     n = re.sub(r'\s*\.\s*$', '', n).strip(' -–,')
     n = re.sub(r'\bSK\s*(\d)\s*år', r'SK \1 år', n)      # 'SK 3år' -> 'SK 3 år'
     n = re.sub(r'\bSK\s*(\d)$', r'SK \1 år', n)          # truncated rotated label
+    n = re.sub(r'\bSK\s*(\d)-årig\b', r'SK \1 år', n)     # 'SK 3-årig' (Vestland 2020)
     n = re.sub(r'\s+vg\s?[1-4]$', '', n, flags=re.I)      # Grep's 'Idrettsfag vg1'
     # Resolve a known spelling before normalising, or a rule below would edit
     # the raw name out of the table's reach ("Bygg og anlegg" is listed there

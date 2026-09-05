@@ -97,9 +97,10 @@ FILL_BLIND = set()
 PROXY_LABELS = {'Møre og Romsdal'}
 FORECAST_BANDS = [(0, 25), (25, 30), (30, 35), (35, 40), (40, 45), (45, 99)]  # points; conditional coverage
 BOOT = 1000                                       # cluster-bootstrap replicates for the held-out intervals
-# County-years that are not what they look like: Hordaland 2017-19 is 15
-# Bergen studiespesialisering cells stored under Vestland, Vestland 2020 is
-# Vg1 only with no "ingen venteliste" cells. They stay in every school's
+# County-years that are not what they look like: Vestland 2017-19 is the
+# Bergen-area studiespesialisering press releases plus Sogn og Fjordane's Vg1
+# table (2018-19), a tenth of the later county; Vestland 2020 is Vg1 only with
+# no "ingen venteliste" cells. They stay in every school's
 # history and in the series/programme effects, but they do not set where the
 # county's random walk starts (decision of 2 Sept 2026, Q34).
 PARTIAL_YEARS = {('Vestland', 2017), ('Vestland', 2018), ('Vestland', 2019), ('Vestland', 2020)}
