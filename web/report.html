@@ -7,7 +7,24 @@
 <title>Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake</title>
 <meta name="description" content="Technical report: an open dataset of Norwegian upper-secondary admission thresholds and a calibrated hurdle-model forecast of the next intake.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="canonical" href="https://poengkart-no.vercel.app/report">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Poengkart">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://poengkart-no.vercel.app/report">
+<meta property="og:title" content="Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake">
+<meta property="og:description" content="Technical report on Poengkart: an open dataset of Norwegian upper-secondary admission thresholds and a calibrated forecast of the next intake. Technical report · September 2026 · v1.7">
+<meta property="og:image" content="https://poengkart-no.vercel.app/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Map of Norway with 217 upper-secondary schools as dots coloured by admission threshold, and one school’s panel with its photo and trend.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake">
+<meta name="twitter:description" content="Technical report on Poengkart: an open dataset of Norwegian upper-secondary admission thresholds and a calibrated forecast of the next intake. Technical report · September 2026 · v1.7">
+<meta name="twitter:image" content="https://poengkart-no.vercel.app/og.png">
 <!-- cookieless page counts; a no-op until Web Analytics is enabled on the Vercel project -->
 <script defer src="/_vercel/insights/script.js"></script>
 <style>
@@ -37,7 +54,14 @@ var { font-style:italic; font-family:inherit; }
 .frac .num { border-bottom:1px solid var(--ink); padding:0 .3em; }
 .frac .den { padding:0 .3em; }
 .caption { font-size:.88rem; color:var(--soft); margin:1.4rem 0 .4rem; }
-.tbl { overflow-x:auto; margin:0 0 1.2rem; }
+.tbl { overflow-x:auto; margin:0 0 1.2rem;
+  /* the shadow shows only on the side with more to see, and scrolls away at each end */
+  background:
+    linear-gradient(to right, var(--bg) 40%, transparent) left center / 28px 100% no-repeat local,
+    linear-gradient(to left,  var(--bg) 40%, transparent) right center / 28px 100% no-repeat local,
+    linear-gradient(to right, rgba(0,0,0,.18), transparent) left center / 14px 100% no-repeat scroll,
+    linear-gradient(to left,  rgba(0,0,0,.18), transparent) right center / 14px 100% no-repeat scroll; }
+.tbl table { background: transparent; }
 table { border-collapse:collapse; width:100%; font-size:.9rem;
   font-variant-numeric:tabular-nums; }
 th { text-align:left; border-top:2px solid var(--ink);
@@ -380,13 +404,13 @@ code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
 <h2 id='9-the-deployed-application'>9. The deployed application</h2>
 <p>The map colours each school by the mean of its current-year thresholds and sizes each marker by the share of its programmes that filled — the censoring is displayed, not hidden inside the mean. One global filter follows the register's hierarchy (all → utdanningsprogram → programområde), with county row labels preserved as queue identities and official register names attached where spellings diverge. With the applicant's points entered, every row shows the probability (1); a choice list enforces vigo's real constraints — ten wishes, at most three distinct Vg1 utdanningsprogram — and reports the probability of at least one place as 1 &minus; &prod;<sub><var>k</var></sub>&#8201;(1 &minus; <var>p<sub>k</sub></var>) under an explicit independence caveat. Where a county publishes 1. inntak but admits through 3. inntak (Vestland), the application also shows the chance by the final intake,</p>
 <div class='eq'><span class='eq-body'><var>P</var>(place by round 3) = (1 &minus; <var>&pi;</var>) + <var>&pi;</var>&#8201;(<var>v<sub>p</sub></var> + (1 &minus; <var>v<sub>p</sub></var>)&#8201;<var>&Phi;<sub>F</sub></var>&#8239;(<span class='frac'><span class='num'><var>x</var> &minus; <var>m</var> &minus; <var>&delta;<sub>p</sub></var></span><span class='den'><var>s</var></span></span>))</span><span class='eq-no'>(6)</span></div>
-<p>with <var>v<sub>p</sub></var> the share of 1. inntak queues cleared by 3. inntak and <var>&delta;<sub>p</sub></var> the surviving-queue drop, both per programme from Section 8.1 where a programme has at least ten pairs, and the county-wide values otherwise. The interface is bilingual (Norwegian/English), phrased in the official Udir/vigo vocabulary throughout, and the compiled dataset is available from the page as JSON and in the repository as CSV and SQLite. The shipped model carries 1,753 programme forecasts, of which 207 are for series with no observed year. Two things it deliberately does not forecast: a series whose newest cell is <em>utgått</em> (discontinued; 65 series) gets no forecast, whatever the year before said, and a series with no observed year is tagged "ingen historikk" (no history) — with "lite historikk" (little history) at a single year — rather than handed a bare percentage. Those 205 forecasts are in the exported files, tagged by their zero history, so that a reader can exclude them.</p>
+<p>with <var>v<sub>p</sub></var> the share of 1. inntak queues cleared by 3. inntak and <var>&delta;<sub>p</sub></var> the surviving-queue drop, both per programme from Section 8.1 where a programme has at least ten pairs, and the county-wide values otherwise. The interface is bilingual (Norwegian/English), phrased in the official Udir/vigo vocabulary throughout, and the compiled dataset is available from the page as JSON and in the repository as CSV and SQLite. The shipped model carries 1,753 programme forecasts, of which 207 are for series with no observed year. Two things it deliberately does not forecast: a series whose newest cell is <em>utgått</em> (discontinued; 65 series) gets no forecast, whatever the year before said, and a series with no observed year is tagged "ingen historikk" (no history) — with "lite historikk" (little history) at a single year — rather than handed a bare percentage. Those 207 forecasts are in the exported files, tagged by their zero history, so that a reader can exclude them.</p>
 <h2 id='10-limitations'>10. Limitations</h2>
 <ul>
 <li><strong>Marginal, not individual.</strong> The model forecasts the queue's cutoff, not an individual's outcome. It ignores that applicants compete only at their highest surviving wish, tie-breaking, and seats consumed by priority and documentation quotas.</li>
 <li><strong>Stationarity.</strong> The random walk extrapolates a smoothly moving market. Capacity changes, new schools, catchment redistricting, and reputation shocks are structurally unforecastable from thresholds alone; the model will be wrong at exactly the discontinuities families most want warned about, and the spread <var>s</var> prices this only on average. The panel's own window contains one such shock — the 2020–2022 examination cancellations moved the whole points scale (Section 2) — which the county walk absorbed as a level move; a future shock of that kind would first appear as a one-year bias.</li>
 <li><strong>The published number, in the published intake.</strong> Where a county publishes 1. inntak, more applicants are ultimately admitted than the figure implies; Section 8.1 measures the gap where it can be measured, and equation (6) passes it on only for the county where it is measured.</li>
-<li><strong>Short test window.</strong> Two held-out years (2,019 cells with a number, 2,823 that competed) from one country and fourteen county-years. The cluster bootstrap of Section 7.1 prices the within-school dependence but treats county-years as exchangeable; the by-county coverage of Table 4b, from 75% to 90%, is the honest size of what it leaves out. 2026 looks better than 2025 partly because most of its cells are drawn from the counties with the deepest histories (Appendix B).</li>
+<li><strong>Short test window.</strong> Two held-out years (1,964 cells with a number, 2,823 that competed) from one country and fourteen county-years. The cluster bootstrap of Section 7.1 prices the within-school dependence but treats county-years as exchangeable; the by-county coverage of Table 4b, from 75% to 90%, is the honest size of what it leaves out. 2026 looks better than 2025 partly because most of its cells are drawn from the counties with the deepest histories (Appendix B).</li>
 <li><strong>Cold starts.</strong> Trøndelag has one published year and Buskerud two, so their forecasts rest almost entirely on borrowed effects; Buskerud's intervals cover 75% instead of 80%, and Trøndelag's first forecasts cannot be evaluated at all until the county publishes again.</li>
 <li><strong>Independence in the choice list.</strong> The at-least-one probability treats wishes as independent; a hard year hits several of them at once, so the true probability is somewhat lower.</li>
 <li><strong>Catchment counties.</strong> A threshold binds only residents of the intake area (<em>inntaksområde</em>); the application states this where it applies, and the model does not know where an applicant lives.</li>

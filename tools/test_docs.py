@@ -546,6 +546,8 @@ check(doc, 'school means ranks', r'schools move ([\d.]+) places on average and a
 check(doc, 'outliers', rf'> 3\$: (\d+) of ([\d,]+), (\d+) of them in {OZ_TOP}', [oz['n'], oz['n_level'], oz['by_fylke'][OZ_TOP]], flat, N)
 check(doc, 'forecast count', r'shipped model carries ([\d,]+) programme forecasts, of which (\d+) are for series with no observed year', [N_FORECASTS, N_FORECASTS_H0], flat, N)
 check(doc, 'discontinued series', r'\(discontinued; (\d+) series\)', [N_SERIES_U], flat, N)
+check(doc, 'zero-history forecasts exported', r'Those (\d+) forecasts are in the exported files', [N_FORECASTS_H0], flat, N)
+check(doc, 'short test window', r'Two held-out years \(([\d,]+) cells with a number, ([\d,]+) that competed\)', [ev['level_all']['n'], ev['fill']['n']], flat, N)
 for y in sorted(year_row):
     check(doc, f'table B1 {y}', rf'\| {y} \| ([\d,]+) \| ([\d.]+) \| ([\d.]+) \|', year_row[y], flat, [N, D2, D2])
 check(doc, 'table C1 caption', r"\(([\d,]+) cells that competed on points, all eight counties, Møre og Romsdal's (\d+) proxy-labelled cells included; base rate ([\d.]+)\)\. Held-out Brier ([\d.]+) against ([\d.]+) for the base-rate forecaster",

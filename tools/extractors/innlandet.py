@@ -22,7 +22,7 @@ SRC = os.path.join(HERE, '..', '..', 'sources', 'innlandet')
 
 META = {
     'code': '34', 'fylke': 'Innlandet', 'round': '2', 'rights': 'ungdomsrett',
-    'free_choice': False, 'levels': 'Vg1–Vg4',
+    'free_choice': False, 'levels': 'Vg1–Vg2',
     # innlandetfylke.no does not host or link this PDF — its own search, its
     # sitemap and the Wayback index all return nothing for "poenggrense".
     # The file is distributed through vilbli's county-information block (the

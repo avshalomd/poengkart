@@ -951,7 +951,7 @@ series with no observed year. Two things it deliberately does not forecast:
 a series whose newest cell is *utgått* (discontinued; 65 series) gets no
 forecast, whatever the year before said, and a series with no observed year
 is tagged "ingen historikk" (no history) — with "lite historikk" (little
-history) at a single year — rather than handed a bare percentage. Those 205
+history) at a single year — rather than handed a bare percentage. Those 207
 forecasts are in the exported files, tagged by their zero history, so that
 a reader can exclude them.
 
@@ -974,7 +974,7 @@ a reader can exclude them.
   publishes 1. inntak, more applicants are ultimately admitted than the
   figure implies; Section 8.1 measures the gap where it can be measured, and
   equation (6) passes it on only for the county where it is measured.
-- **Short test window.** Two held-out years (2,019 cells with a number,
+- **Short test window.** Two held-out years (1,964 cells with a number,
   2,823 that competed) from one country and fourteen county-years. The
   cluster bootstrap of Section 7.1 prices the within-school dependence but
   treats county-years as exchangeable; the by-county coverage of Table 4b,

@@ -225,6 +225,12 @@ html_body = re.sub(
     r"\1\n<div class='abstract'>\2</div>", html_body, count=1, flags=re.S)
 
 header_html = "<p class='byline'>" + "<br>".join(span(h) for h in header_lines) + "</p>"
+# the share card's description carries the byline's version and date, so it
+# cannot drift from the page it describes
+esc_attr = lambda x: x.replace('&', '&amp;').replace('"', '&quot;').replace('<', '&lt;')
+_byline = next((l for l in header_lines if 'Technical report' in l), '')
+og_description = ('Technical report on Poengkart: an open dataset of Norwegian upper-secondary admission '
+                  'thresholds and a calibrated forecast of the next intake. ' + re.sub(r'\s*\(.*?\)', '', _byline)).strip()
 
 CSS = """
 :root { --ink:#1d2733; --soft:#4a5568; --line:#d9dee5; --accent:#2b6cb8; --bg:#ffffff; --wash:#f5f7fa; }
@@ -253,7 +259,14 @@ var { font-style:italic; font-family:inherit; }
 .frac .num { border-bottom:1px solid var(--ink); padding:0 .3em; }
 .frac .den { padding:0 .3em; }
 .caption { font-size:.88rem; color:var(--soft); margin:1.4rem 0 .4rem; }
-.tbl { overflow-x:auto; margin:0 0 1.2rem; }
+.tbl { overflow-x:auto; margin:0 0 1.2rem;
+  /* the shadow shows only on the side with more to see, and scrolls away at each end */
+  background:
+    linear-gradient(to right, var(--bg) 40%, transparent) left center / 28px 100% no-repeat local,
+    linear-gradient(to left,  var(--bg) 40%, transparent) right center / 28px 100% no-repeat local,
+    linear-gradient(to right, rgba(0,0,0,.18), transparent) left center / 14px 100% no-repeat scroll,
+    linear-gradient(to left,  rgba(0,0,0,.18), transparent) right center / 14px 100% no-repeat scroll; }
+.tbl table { background: transparent; }
 table { border-collapse:collapse; width:100%; font-size:.9rem;
   font-variant-numeric:tabular-nums; }
 th { text-align:left; border-top:2px solid var(--ink);
@@ -288,7 +301,24 @@ page = f"""<!DOCTYPE html>
 <title>{title}</title>
 <meta name="description" content="Technical report: an open dataset of Norwegian upper-secondary admission thresholds and a calibrated hurdle-model forecast of the next intake.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="canonical" href="https://poengkart-no.vercel.app/report">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Poengkart">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://poengkart-no.vercel.app/report">
+<meta property="og:title" content="{esc_attr(title)}">
+<meta property="og:description" content="{esc_attr(og_description)}">
+<meta property="og:image" content="https://poengkart-no.vercel.app/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Map of Norway with 217 upper-secondary schools as dots coloured by admission threshold, and one school’s panel with its photo and trend.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{esc_attr(title)}">
+<meta name="twitter:description" content="{esc_attr(og_description)}">
+<meta name="twitter:image" content="https://poengkart-no.vercel.app/og.png">
 <!-- cookieless page counts; a no-op until Web Analytics is enabled on the Vercel project -->
 <script defer src="/_vercel/insights/script.js"></script>
 <style>{CSS}</style>
