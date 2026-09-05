@@ -50,11 +50,22 @@ extractor reads only the files it lists and ignores these.
 ## mro
 
 `Inntakspoeng_vg1_siste15ar.xlsx` is the tidy extract behind the county's
-Power BI dashboard (<https://mrfylke.no/utdanning-og-karriere/statistikk-og-analyser>),
-whose Publish-to-Web mode offers no download: sent by e-mail on request (asked
-25.08.2026, received 01.09.2026; no case number), one row
-per (school year, school, programme) with the Grep kurskode, the lower
-threshold and the admitted mean, Vg1, 2012/13 onwards, 2. inntak.
+Power BI dashboard (<https://app.powerbi.com/view?r=eyJrIjoiNjk4M2E1M2YtYWNmYi00ODU1LTg2ZGQtNjM5YmU1NzJmOTM4IiwidCI6ImI5MzJlY2U3LTljZGYtNGQ5NC1iNGMxLTE1MjU2ZTQzYzdlYSIsImMiOjl9>,
+embedded in the county's poenggrenser page, which moved during 2026; the
+Wayback Machine holds a copy of 11.06.2026), whose Publish-to-Web mode
+offers no download: sent by e-mail on request (asked 25.08.2026, received
+01.09.2026; no case number), one row per (school year, school, programme)
+with the Grep kurskode, the lower threshold and the admitted mean, Vg1,
+2012/13 onwards, 2. inntak (confirmed by the county on 01.09.2026).
+
+The file carries a number for every offered programme, down to 5.7; the
+dashboard does not. Its page "Vg1 Nedre karaktergrense" masks every figure
+under 25 with `*` and legends it «Ruter markert med * betyr at alle kom inn,
+eller at laveste karakter var under 25.» The extractor applies that rule
+(a figure under 25 becomes «ingen venteliste»), so the dataset shows what
+the county publishes; the county confirmed the reading on 03.09.2026 and
+may link capacity data during 2027, which would replace the rule with the
+observed state.
 
 ## oslo
 

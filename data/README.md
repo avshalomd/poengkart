@@ -25,4 +25,9 @@ The `status` column of `samples` (and of `samples.csv`) says what each cell is:
 filled but the last admitted had no registered points; `points` is 0.0 and must
 stay out of any average), `open` (ingen venteliste), `priority` (fortrinnsrett),
 `documentation` (inntak etter dokumentasjon) and `discontinued` (utgått). Only
-`points` rows carry a figure that can be averaged.
+`points` rows carry a figure that can be averaged. `admitted_mean` is
+Gjennomkar, the mean points of those admitted, which Møre og Romsdal publishes
+beside every threshold and no other county does (NULL elsewhere); where it
+equals `points`, one applicant set the threshold; the forecast model's
+backtest chooses what weight such a cell gets in the level fit
+(`single_weight` in `model.json`).

@@ -56,8 +56,12 @@ Every (school, programområde, year) cell is exactly one of these. Internal toke
 See above.
 
 **Ingen venteliste** (no waiting list; token `open`):
-Every qualified applicant was admitted; this is not a poenggrense of zero.
+Every qualified applicant was admitted; this is not a poenggrense of zero. In Møre og Romsdal the state is the county's own dashboard rule — a Vg1 figure under 25 is shown as `*`, «alle kom inn, eller at laveste karakter var under 25» — applied in `tools/extractors/mro.py`; a proxy for the observed state, until the county links capacity data (see `docs/data-notes.md`).
 _Avoid_: uten venteliste, open, ledig, alle inntatt
+
+**Gjennomkar** (mean points of the admitted; `means` in `schools.json`, `admitted_mean` in `samples.csv`):
+Møre og Romsdal's extract publishes it beside every Nedrekar (the poenggrense); no other county does. Where it equals the poenggrense, one applicant set the figure; the forecast model's backtest chooses what weight such a cell gets (`single_weight` in `model.json`).
+_Avoid_: snittpoeng, average score, mean threshold
 
 **Fullt, siste inntatte uten poeng** (filled, last admitted had no points; token `0`):
 The programområde filled, but the last admitted applicant had no registered points, so everyone with points got in. Counties print this as its own state.

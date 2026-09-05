@@ -15,6 +15,7 @@ OUT = ROOT / 'docs/figures'
 BLUE = '#2b6cb8'
 COPPER = '#b0672e'
 GREY = '#8a8f98'
+OLIVE = '#7a8f3a'
 INK = '#1d2733'
 
 FONT = "font-family='Georgia, \"Times New Roman\", serif'"
@@ -64,22 +65,23 @@ def rmse_svg():
     pw, ph = W - L - R, H - T - B
     labels = {'0': '0 years', '1': '1 year', '2-3': '2–3 years', '4+': '4+ years'}
     series = [('model', 'rmse', BLUE), ('persistence', 'rmse_last_year', COPPER),
+              ('EWMA (α = 0.4)', 'rmse_ewma', OLIVE),
               ('programme–county mean', 'rmse_prog_mean', GREY)]
     # the axis follows the data: a fixed ceiling once clipped the tallest bar
     top = max(row.get(k) or 0 for row in ev for _, k, _ in series)
     ymax = 2 * math.ceil(top * 1.12 / 2)
     parts = [f"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {W} {H}' role='img' "
-             f"aria-label='Held-out RMSE by history stratum, model against two baselines'>"]
+             f"aria-label='Held-out RMSE by history stratum, model against three baselines'>"]
     parts.append(f"<rect width='{W}' height='{H}' fill='white'/>")
     def Y(v): return T + (1 - v / ymax) * ph
     for g in range(0, int(ymax) + 1, 2):
         parts.append(f"<line x1='{L}' y1='{Y(g):.1f}' x2='{W-R}' y2='{Y(g):.1f}' stroke='#e6e9ee'/>")
         parts.append(f"<text x='{L-8}' y='{Y(g)+4:.1f}' {FONT} font-size='13' fill='{INK}' text-anchor='end'>{g}</text>")
     gw = pw / len(ev)
-    bw = 30
+    bw = 26
     for i, row in enumerate(ev):
         cx = L + (i + 0.5) * gw
-        offsets = [-bw - 4, 0, bw + 4]
+        offsets = [(k - (len(series) - 1) / 2) * (bw + 4) for k in range(len(series))]
         for (name, key, col), off in zip(series, offsets):
             v = row.get(key)
             if v is None:

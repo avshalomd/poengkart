@@ -7,7 +7,12 @@ Schema:
           -- the same school name exists in two counties (St. Olav), so the
              identity is (fylke, name) here as everywhere else in the pipeline
   samples(fylke, school, program, occurrence, category, grep_code, level, year, round,
-          points REAL NULL, status TEXT)   -- one row per (program, school, year)
+          points REAL NULL, status TEXT, admitted_mean REAL NULL)
+                                          -- one row per (program, school, year)
+    admitted_mean: Gjennomkar, the mean points of those admitted; published by
+            Møre og Romsdal only, NULL elsewhere. Equal to `points` where one
+            applicant set the threshold (tools/model.py lets the backtest
+            choose that cell's weight in the level fit)
     status: 'points' (points set), 'filled_no_points' (filled, but the last
     admitted had no registered points; points is 0.0 and must stay out of any
     average), 'open' (no waitlist, everyone admitted),
@@ -79,6 +84,7 @@ def main():
         round TEXT,
         points REAL,
         status TEXT NOT NULL CHECK (status IN ('points','filled_no_points','open','priority','discontinued','documentation')),
+        admitted_mean REAL,
         PRIMARY KEY (fylke, school, program, occurrence, year),
         FOREIGN KEY (fylke, school) REFERENCES schools(fylke, name)
       );
@@ -145,7 +151,8 @@ def main():
                     continue
                 rnd = (c.get('round_years') or {}).get(str(year)) or s.get('round')
                 rows.append((s.get('fylke'), s['name'], p['program'], occ, p['category'],
-                             p.get('grep'), p.get('level'), int(year), rnd, points, status))
+                             p.get('grep'), p.get('level'), int(year), rnd, points, status,
+                             (p.get('means') or {}).get(str(year))))
             # the same cell from the county's other published round, kept
             # apart from `samples` so no average ever mixes two rounds
             for key, r_alt in (('values_r1', '1'), ('values_r3', '3')):
@@ -161,7 +168,7 @@ def main():
                 fc.append((s.get('fylke'), s['name'], p['program'], occ, p.get('level'),
                            p['category'], ment['year'], ment.get('round'),
                            pr['m'], pr['s'], pr['pi'], pr['h']))
-    con.executemany('INSERT INTO samples VALUES (?,?,?,?,?,?,?,?,?,?,?)', rows)
+    con.executemany('INSERT INTO samples VALUES (?,?,?,?,?,?,?,?,?,?,?,?)', rows)
     con.executemany('INSERT INTO alternate_rounds VALUES (?,?,?,?,?,?,?,?,?,?,?)', alt)
     con.executemany('INSERT INTO forecasts VALUES (?,?,?,?,?,?,?,?,?,?,?,?)', fc)
     con.commit()
@@ -169,7 +176,7 @@ def main():
     with open(CSV, 'w', newline='') as f:
         w = csv.writer(f)
         w.writerow(['fylke', 'school', 'program', 'occurrence', 'category', 'grep_code',
-                    'level', 'year', 'round', 'points', 'status'])
+                    'level', 'year', 'round', 'points', 'status', 'admitted_mean'])
         w.writerows(rows)
     with open(ACSV, 'w', newline='') as f:
         w = csv.writer(f)

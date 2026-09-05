@@ -6,8 +6,8 @@ The county publishes its poenggrenser only inside a Power BI dashboard
 Kompetanse- og næringsavdelinga answered our request of 25.08.2026 with the
 tidy extract behind it (reply of 01.09.2026, case reference in
 `docs/private/`): one row per (school year, school, programme), with the official Grep
-kurskode, the lower threshold (Nedrekar) and — unused here, our schema has
-no field for it — the admitted mean (Gjennomkar).
+kurskode, the lower threshold (Nedrekar) and the admitted mean (Gjennomkar,
+carried as `means` and published as `admitted_mean` in data/samples.csv).
 
 Semantics, and what the file does NOT say:
 
@@ -15,12 +15,23 @@ Semantics, and what the file does NOT say:
   august (som er det endelige inntaket for oss)", the department's reply of 01.09.2026.
   The file itself does not say so; the round rests on that confirmation,
   asked for precisely because a round must never be inferred.
-- There is no "everyone got in" marker. Every offered programme carries a
-  number, so an undersubscribed programme's figure is simply its weakest
-  admitted applicant (min 5.7 in the file) rather than a competitive bar.
-  That is still "the points of the last admitted", which is what a
-  poenggrense means everywhere in the app — but this county cannot be
-  distinguished from full-with-waitlist, hence `no_open_marker` below.
+- The file has no "everyone got in" marker: every offered programme carries
+  a number, down to 5.7. The dashboard the county actually publishes does
+  not print those numbers. Its page "Vg1 Nedre karaktergrense" masks a cell
+  with * and legends it «Ruter markert med * betyr at alle kom inn, eller
+  at laveste karakter var under 25.» — everyone admitted, or the lowest
+  score under 25 — and the file reproduces that mask exactly: every 2026/27
+  cell starred on the dashboard has Nedrekar below 25 in the file, every
+  unstarred cell 25 or more. The county's adviser confirmed the reading
+  (Dan Ernes, 03.09.2026): with the county's high fill rates a star on Vg1
+  «kan nesten tolkes som at det er ledig plass», and the capacity data that
+  would settle it may be linked next year. So the county's own rule is
+  applied here, `OPEN_BELOW`: a figure under 25 is published as "ingen
+  venteliste", the state the dashboard shows, not the number it hides.
+  It is a proxy — a programme with a queue whose cutoff was 24.6 is labelled
+  open, and one that took everyone with the weakest at 27 keeps its number —
+  and tools/model.py measures what the proxy labels are worth
+  (meta.halflife_search.proxy_label_experiment).
 - '-' means no figure (2 cells of 1793); the cell is skipped, not zero.
 
 School numbers, not names, are the identity in the file, and the county has
@@ -51,11 +62,19 @@ META = {
     'rights': 'ungdomsrett',
     'free_choice': True,           # fritt skolevalg i hele fylket
     'levels': 'Vg1',
-    'source': 'https://mrfylke.no/utdanning-og-karriere/statistikk-og-analyser',
-    'note': ('FOI extract from the Power BI dashboard, received 01.09.2026; '
-             'no "everyone admitted" marker exists, so an undersubscribed '
-             "programme's figure is its weakest admitted applicant"),
+    # the dashboard itself (Publish to Web); the county page that embeds it,
+    # mrfylke.no/.../overgang-og-innsoking-til-vidaregaande/poenggrenser/,
+    # moved in 2026 (archived copy of 11.06.2026 in the Wayback Machine)
+    'source': ('https://app.powerbi.com/view?r=eyJrIjoiNjk4M2E1M2YtYWNmYi00ODU1LTg2ZGQtNjM5'
+               'YmU1NzJmOTM4IiwidCI6ImI5MzJlY2U3LTljZGYtNGQ5NC1iNGMxLTE1MjU2ZTQzYzdlYSIsImMiOjl9'),
+    'note': ('FOI extract behind the Power BI dashboard, received 01.09.2026; '
+             '"ingen venteliste" follows the dashboard\'s own rule: a figure '
+             'under 25 is shown as * («alle kom inn, eller laveste karakter '
+             'var under 25»)'),
 }
+# the dashboard's mask, as its legend states it: a Vg1 threshold under this
+# is published as "everyone got in or under 25", never as the number
+OPEN_BELOW = 25.0
 
 # file skolenr -> published name. Everything else keeps the file's own name.
 SCHOOL_NAMES = {
@@ -79,6 +98,15 @@ def _clean_program(name):
     return common.canon_program(n)
 
 
+def _mean(cell):
+    if cell is None or str(cell).strip() in ('', '-'):
+        return None
+    try:
+        return float(str(cell).replace(',', '.'))
+    except ValueError:
+        return None
+
+
 def extract():
     warn, out = [], []
     if not os.path.isdir(SRC):
@@ -98,6 +126,7 @@ def extract():
                     break
                 continue
             skolear, nr, navn, niva, kode, kursnavn, nedre = r[0], r[1], r[2], r[3], r[4], r[5], r[6]
+            gjennom = r[7] if len(r) > 7 else None        # Gjennomkar: mean points of the admitted
             if not skolear or nr is None:
                 continue
             year = int(str(skolear)[:4])
@@ -126,6 +155,8 @@ def extract():
                     continue
             if v is None:
                 continue
+            if v < OPEN_BELOW:
+                v = 'open'                  # the county's own rule, see above
             key = (school, program.lower())
             row = rows.setdefault(key, {'school': school, 'program': program,
                                         'level': common.guess_level(program, 'Vg1'),
@@ -140,5 +171,11 @@ def extract():
                 continue                    # the main school's figure stands
             row['values'][year] = v
             owner[(key, year)] = nr
+            # the admitted mean travels with the cell (`means`): where it equals
+            # the threshold, one applicant set the figure — tools/model.py lets
+            # the backtest choose such a cell's weight in the level fit
+            g = _mean(gjennom)
+            if g is not None:
+                row.setdefault('means', {})[year] = round(g, 1)
         out.append((fname, list(rows.values())))
     return out, warn

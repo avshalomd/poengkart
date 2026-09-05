@@ -65,6 +65,14 @@ check('forecast spread never narrower than the pre-evaluation residual',
       all(v >= META.get('sigma_floor', META['sigma_model']) - 0.0050001 for v in sig.values()), str(sig))
 check('spread shrinks with history',
       list(sig.values()) == sorted(sig.values(), reverse=True), str(sig))
+mult = META.get('sigma_level_multiplier') or {}
+check('a level multiplier for every forecast band, within its clip',
+      len(mult) == 6 and all(0.5 <= v <= 1.5 for v in mult.values()), str(mult))
+check('the spread narrows where the forecast is high',
+      mult.get('45+', 1.0) < mult.get('25-30', 1.0), str(mult))
+check('single-applicant weight recorded and a weight',
+      0.0 <= META.get('single_weight', -1) <= 1.0 and 'n_single' in META,
+      f"{META.get('single_weight')} on {META.get('n_single')} cells")
 
 # ---- coverage: every live programme has a forecast --------------------------
 newest = {}
@@ -163,11 +171,15 @@ for s in DATA['schools']:
         newest_cell = max(p['values'], key=int)
         if p['values'][newest_cell] == 'U':
             check(f'no forecast for discontinued {s["name"]} · {p["program"]}', key not in progs)
-# 2. Møre og Romsdal cannot express "ingen venteliste": fill probability is 1
-for sid, ent in SCHOOLS.items():
-    if sid.startswith('Møre og Romsdal|'):
-        for key, pr in (ent.get('programs') or {}).items():
-            check(f'MRO fill probability is 1 ({sid} · {key})', pr['pi'] == 1.0, str(pr['pi']))
+# 2. every county's fill probability is fitted, none pinned at 1 across the
+# board. Møre og Romsdal was pinned from 2 to 5 Sept 2026, while its extract
+# had no "ingen venteliste" state; since then the county's own dashboard rule
+# (a figure under 25 is shown as "alle kom inn, eller under 25") supplies one
+for f in sorted({sid.split('|')[0] for sid in SCHOOLS}):
+    pis = [pr['pi'] for sid, ent in SCHOOLS.items() if sid.startswith(f + '|')
+           for pr in (ent.get('programs') or {}).values()]
+    check(f'{f}: fill probability is fitted, not pinned at 1', any(p < 1.0 for p in pis),
+          f'{len(pis)} forecasts, min π {min(pis) if pis else None}')
 # 3. band keys use the glossary (CONTEXT.md: likely / possible / unlikely)
 check('chance bands named likely/possible/unlikely', set(META['chance_bands']) == {'likely', 'possible'}, str(META['chance_bands']))
 # 4a. ...but a county whose only fitted years are partial still uses them:
@@ -178,6 +190,13 @@ check('long-history forecast spread has not regressed (partial-year starvation)'
 check('partial county-years listed in meta',
       META.get('partial_years') == [['Vestland', 2017], ['Vestland', 2018], ['Vestland', 2019], ['Vestland', 2020]],
       str(META.get('partial_years')))
+
+ev_ = META['backtest_eval_years']
+check('EWMA baseline reported on every stratum with history',
+      all('rmse_ewma' in b for b in ev_['level'] if b['history'] != '0'),
+      str([b.get('rmse_ewma') for b in ev_['level']]))
+check('the model beats the EWMA baseline on long series (RMSE)',
+      ev_['level'][-1]['rmse'] < ev_['level'][-1].get('rmse_ewma', 99), str(ev_['level'][-1]))
 
 print(f'{checks} checks, {len(fails)} failed')
 for f in fails:

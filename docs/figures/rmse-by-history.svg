@@ -1,4 +1,4 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 620 420' role='img' aria-label='Held-out RMSE by history stratum, model against two baselines'>
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 620 420' role='img' aria-label='Held-out RMSE by history stratum, model against three baselines'>
 <rect width='620' height='420' fill='white'/>
 <line x1='64' y1='336.0' x2='604' y2='336.0' stroke='#e6e9ee'/>
 <text x='56' y='340.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>0</text>
@@ -14,38 +14,46 @@
 <text x='56' y='80.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>10</text>
 <line x1='64' y1='24.0' x2='604' y2='24.0' stroke='#e6e9ee'/>
 <text x='56' y='28.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>12</text>
-<rect x='82.5' y='122.0' width='30' height='214.0' fill='#2b6cb8'/>
-<text x='97.5' y='116.0' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>8.2</text>
-<rect x='150.5' y='82.5' width='30' height='253.5' fill='#8a8f98'/>
-<text x='165.5' y='76.5' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>9.8</text>
+<rect x='73.5' y='122.0' width='26' height='214.0' fill='#2b6cb8'/>
+<text x='86.5' y='116.0' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>8.2</text>
+<rect x='163.5' y='82.5' width='26' height='253.5' fill='#8a8f98'/>
+<text x='176.5' y='76.5' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>9.8</text>
 <text x='131.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>0 years</text>
-<rect x='217.5' y='187.3' width='30' height='148.7' fill='#2b6cb8'/>
-<text x='232.5' y='181.3' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.7</text>
-<rect x='251.5' y='154.5' width='30' height='181.5' fill='#b0672e'/>
-<text x='266.5' y='148.5' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.0</text>
-<rect x='285.5' y='165.2' width='30' height='170.8' fill='#8a8f98'/>
-<text x='300.5' y='159.2' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.6</text>
+<rect x='208.5' y='187.3' width='26' height='148.7' fill='#2b6cb8'/>
+<text x='221.5' y='181.3' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.7</text>
+<rect x='238.5' y='154.3' width='26' height='181.7' fill='#b0672e'/>
+<text x='251.5' y='148.3' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.0</text>
+<rect x='268.5' y='154.3' width='26' height='181.7' fill='#7a8f3a'/>
+<text x='281.5' y='148.3' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.0</text>
+<rect x='298.5' y='165.7' width='26' height='170.3' fill='#8a8f98'/>
+<text x='311.5' y='159.7' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.5</text>
 <text x='266.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>1 year</text>
-<rect x='352.5' y='191.7' width='30' height='144.3' fill='#2b6cb8'/>
-<text x='367.5' y='185.7' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.5</text>
-<rect x='386.5' y='153.0' width='30' height='183.0' fill='#b0672e'/>
-<text x='401.5' y='147.0' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.0</text>
-<rect x='420.5' y='174.0' width='30' height='162.0' fill='#8a8f98'/>
-<text x='435.5' y='168.0' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.2</text>
+<rect x='343.5' y='192.2' width='26' height='143.8' fill='#2b6cb8'/>
+<text x='356.5' y='186.2' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.5</text>
+<rect x='373.5' y='154.8' width='26' height='181.2' fill='#b0672e'/>
+<text x='386.5' y='148.8' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.0</text>
+<rect x='403.5' y='176.1' width='26' height='159.9' fill='#7a8f3a'/>
+<text x='416.5' y='170.1' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.2</text>
+<rect x='433.5' y='174.5' width='26' height='161.5' fill='#8a8f98'/>
+<text x='446.5' y='168.5' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.2</text>
 <text x='401.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>2–3 years</text>
-<rect x='487.5' y='201.1' width='30' height='134.9' fill='#2b6cb8'/>
-<text x='502.5' y='195.1' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.2</text>
-<rect x='521.5' y='172.7' width='30' height='163.3' fill='#b0672e'/>
-<text x='536.5' y='166.7' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.3</text>
-<rect x='555.5' y='175.3' width='30' height='160.7' fill='#8a8f98'/>
-<text x='570.5' y='169.3' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.2</text>
+<rect x='478.5' y='206.8' width='26' height='129.2' fill='#2b6cb8'/>
+<text x='491.5' y='200.8' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.0</text>
+<rect x='508.5' y='181.6' width='26' height='154.4' fill='#b0672e'/>
+<text x='521.5' y='175.6' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.9</text>
+<rect x='538.5' y='203.1' width='26' height='132.9' fill='#7a8f3a'/>
+<text x='551.5' y='197.1' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.1</text>
+<rect x='568.5' y='182.3' width='26' height='153.7' fill='#8a8f98'/>
+<text x='581.5' y='176.3' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.9</text>
 <text x='536.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>4+ years</text>
 <text x='334.0' y='384' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>History of the series at forecast time</text>
 <rect x='70' y='394' width='12' height='12' fill='#2b6cb8'/>
 <text x='87' y='404' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733'>model</text>
 <rect x='153' y='394' width='12' height='12' fill='#b0672e'/>
 <text x='170' y='404' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733'>persistence</text>
-<rect x='284' y='394' width='12' height='12' fill='#8a8f98'/>
-<text x='301' y='404' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733'>programme–county mean</text>
+<rect x='284' y='394' width='12' height='12' fill='#7a8f3a'/>
+<text x='301' y='404' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733'>EWMA (α = 0.4)</text>
+<rect x='439' y='394' width='12' height='12' fill='#8a8f98'/>
+<text x='456' y='404' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733'>programme–county mean</text>
 <text x='18' y='180.0' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle' transform='rotate(-90 18 180.0)'>RMSE (points)</text>
 </svg>

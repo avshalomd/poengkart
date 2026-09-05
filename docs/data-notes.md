@@ -12,14 +12,21 @@ applicants, offers, and in Vestfold's case per-school head-counts — with no
 thresholds. Møre og Romsdal publishes only inside a Power BI dashboard whose
 Publish-to-Web mode offers no download — but the county answered a request
 with the tidy Excel extract behind it (September 2026): every school,
-programme and year since 2012/13, the deepest history in the dataset. That
-is also the panel's one hard semantic gap: the extract has no
-"everyone admitted" marker, so an undersubscribed programme's figure is its
-weakest admitted applicant rather than a competitive bar — which is why the
-county trains the threshold model but not the fill model, whose labels it
-can only ever agree with. The figures are from 2. inntak — the county's
-final round — confirmed by the county after the extract itself arrived
-without saying so.
+programme and year since 2012/13, the deepest history in the dataset. The
+extract has no "everyone admitted" marker of its own — every offered
+programme carries a number, down to 5.7 — but the dashboard the county
+publishes does: it masks every Vg1 figure under 25 with `*` and legends it
+«alle kom inn, eller laveste karakter var under 25». The dataset applies
+that rule, so a figure under 25 is shown as «ingen venteliste», the state
+the county shows rather than the number it hides; the county confirmed the
+reading and may link capacity data during 2027. It is a proxy — a programme
+with a queue whose cutoff was 24.6 is labelled open — and the model
+measures on every refit what the proxy labels are worth. The figures are
+from 2. inntak — the county's final round — confirmed by the county after
+the extract itself arrived without saying so. The extract also carries the
+admitted mean (Gjennomkar), published as `admitted_mean` in `samples.csv`;
+where it equals the threshold, one applicant set the figure — 14 cells,
+flagged for the model, whose backtest kept them at full weight.
 
 Telemark runs an intake and publishes the thresholds nowhere, neither on its
 own site nor on vilbli (the "Telemark appears in vilbli's county block" lead

@@ -119,7 +119,6 @@ check('0,0 appears only where the source publishes it',
 # has been looked at too
 SUB8 = {
     ('Buskerud', 'Kongsberg', 'Musikk, dans og drama', 'Vg1', '2025', 4.0),
-    ('Møre og Romsdal', 'Romsdal videregående skole', 'Studiespesialisering, 2-årig, 2.år', 'Vg1', '2014', 5.7),
     ('Oslo', 'Etterstad videregående skole', 'Restaurant- og matfag', 'Vg1', '2026', 6.0),
     ('Oslo', 'Etterstad videregående skole', 'Teknikk og industriell produksjon', 'Vg1', '2019', 5.6),
 }
@@ -163,6 +162,9 @@ NO_NEWEST_FIGURE = {
     ('Innlandet', 'Nord-Gudbrandsdal vgs, avd. Dombås'),
     ('Innlandet', 'Raufoss videregående skole avd Dokka'),
     ('Innlandet', 'Storsteigen videregående skole'),
+    # both 2026 figures were under 25, which the county's own dashboard rule
+    # shows as "ingen venteliste" (tools/extractors/mro.py, 5 Sept 2026)
+    ('Møre og Romsdal', 'Gjermundnes vidaregåande skule'),
     ('Rogaland', 'Stavanger Offshore Tekniske skole'),
     ('Trøndelag', 'Grong videregående skole'), ('Trøndelag', 'Inderøy videregående skole'),
     ('Trøndelag', 'Kyrksæterøra videregående skole'), ('Trøndelag', 'Meråker videregående skole'),
@@ -171,7 +173,7 @@ NO_NEWEST_FIGURE = {
     ('Trøndelag', 'Åfjord videregående skole'),
 }
 without = {(s['fylke'], s['name']) for s in DATA['schools'] if not newest_numeric(s)}
-check('the schools with no poenggrense in their newest year are the 15 known ones',
+check('the schools with no poenggrense in their newest year are the 16 known ones',
       without == NO_NEWEST_FIGURE,
       f'new: {sorted(without - NO_NEWEST_FIGURE)} gone: {sorted(NO_NEWEST_FIGURE - without)}')
 

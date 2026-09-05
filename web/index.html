@@ -1734,8 +1734,8 @@ const T = {
   chanceCal:  { no: c => `Testet mot 2025–26 traff 80 %-intervallet ${c} % av gangene.`,
                 en: c => `Tested against 2025–26, the 80% interval was right ${c}% of the time.` },
   chTitle: {
-    // pf is null where the county cannot express "ingen venteliste": the fill
-    // probability is 1 there by rule, not by evidence, so it is not a figure
+    // pf may be null: a county pinned at π = 1 by rule (none today; the
+    // mechanism is FILL_BLIND in tools/model.py) has no fill figure to show
     no: (p, y, m, sd, pf, h) => `Sjanse for plass i ${y} med poengene dine: ${p} %. Forventet grense ca. ${m} ± ${sd}${pf == null ? '' : `; sannsynlighet for at det blir venteliste: ${pf} %`}. Bygger på ${h} år med tall for dette programområdet.`,
     en: (p, y, m, sd, pf, h) => `Chance of a place in ${y} with your points: ${p}%. Expected threshold about ${m} ± ${sd}${pf == null ? '' : `; probability of a waiting list at all: ${pf}%`}. Built on ${h} ${h === 1 ? 'year' : 'years'} of figures for this programme.`,
   },
@@ -1772,8 +1772,12 @@ const T = {
   },
   chanceRoundUnknown: { no: 'Fylket oppgir ikke hvilket inntak tallene er fra. Sjansen gjelder det inntaket fylket publiserer.',
                         en: 'The county does not state which intake its figures are from. The chance refers to the intake the county publishes.' },
-  chanceNoOpenMarker: { no: 'Møre og Romsdal publiserer aldri «ingen venteliste», bare poenggrensen. Sjansen bygger derfor bare på grensen, og en lav grense gir i praksis plass.',
-                        en: 'Møre og Romsdal never publishes "no waiting list", only the threshold, so the chance rests on the threshold alone; a low threshold means a place in practice.' },
+  // Møre og Romsdal's dashboard masks any Vg1 figure under 25 with * and
+  // legends it «alle kom inn, eller laveste karakter var under 25»; the
+  // dataset follows that rule (tools/extractors/mro.py), so its "ingen
+  // venteliste" is the county's own reading, not an observed queue state
+  openRuleNote: { no: 'Møre og Romsdal viser «ingen venteliste» der alle kom inn eller poenggrensen var under 25 poeng – fylkets egen regel. Hvilken av de to, sier ikke fylket.',
+                  en: 'Møre og Romsdal shows "no waiting list" where everyone got in or the threshold was below 25 points – the county\'s own rule. Which of the two, the county does not say.' },
   finalRoundUnknown: {
     no: 'Fylket publiserer bare 1. inntak. Flere kommer inn i senere inntak, men det finnes ikke tall for hvor mange.',
     en: 'The county publishes intake 1 only. More get in at later intakes, but there are no figures for how many.',
@@ -1900,8 +1904,9 @@ function shownPrograms(s) {
 // the newest year in the dataset, or the one before it: anything older is a
 // school the counties have stopped publishing
 const staleBefore = () => +DATA.years[DATA.years.length - 1] - 1;
-// counties whose sources cannot express "alle inntatt" (see the county note)
-const NO_OPEN_MARKER = new Set(['Møre og Romsdal']);
+// counties whose "ingen venteliste" is the county's own rule rather than an
+// observed queue state (openRuleNote; tools/extractors/mro.py)
+const OPEN_RULE = new Set(['Møre og Romsdal']);
 // counties that do not publish poenggrenser (docs/data-notes.md)
 const MISSING_COUNTIES = ['Agder', 'Finnmark', 'Nordland', 'Telemark', 'Troms', 'Vestfold', 'Østfold'];
 function schoolPressure(s, cat) {
@@ -1947,11 +1952,7 @@ function schoolPressure(s, cat) {
   return { kind: 'points', v: meanOf(nums), top, topProg, year: yr,
            filled: nums.length + zeroN, total, openN,
            mostlyOpen: openN > total / 2,
-           // Møre og Romsdal has no "everyone admitted" state, so every cell
-           // is a number and this ratio would be 1.0 for all 22 schools —
-           // maximum-size dots claiming a fill share the source cannot
-           // measure. Unknown, not full: the radius falls back to neutral.
-           share: NO_OPEN_MARKER.has(s.fylke) ? null : (nums.length + zeroN) / total };
+           share: (nums.length + zeroN) / total };
 }
 const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(b => v < b.max).css);
 // what a filled-without-points state says: the mix when some programmes had
@@ -2842,6 +2843,10 @@ function renderSide() {
   const odd = Object.entries(cy.round_years || {})
     .filter(([y]) => s.programs.some(p => y in p.values));
   for (const [y, r] of odd) notes.push(t('roundYearNote', y, r));
+  // where "ingen venteliste" is the county's own rule, say so beside the rows
+  if (OPEN_RULE.has(s.fylke) && s.programs.some(p => Object.values(p.values).includes('open'))) {
+    notes.push(t('openRuleNote'));
+  }
   const noteBox = document.getElementById('s-notes');
   noteBox.innerHTML = notes.map(n => `<p>${esc(n)}</p>`).join('');
   noteBox.hidden = !notes.length;
@@ -2940,8 +2945,12 @@ function renderChance(s, lensCat) {
              : t('chanceHeadU', fmt(myPoints), ch.n, noPred, ch.total);
   const bar = ['likely', 'possible', 'unlikely']
     .map(b => `<span class="b-${b}" style="width:${100 * ch[b] / ch.n}%"></span>`).join('');
+  // the spread range the footnote quotes: history buckets times the level
+  // multipliers (model.json meta), i.e. the narrowest and widest s deployed
   const sf = Object.values((MODEL.meta || {}).sigma_forecast || {});
-  const lo = sf.length ? Math.round(Math.min(...sf)) : 5, hi = sf.length ? Math.round(Math.max(...sf)) : 8;
+  const sm = Object.values((MODEL.meta || {}).sigma_level_multiplier || {});
+  const mlo = sm.length ? Math.min(...sm) : 1, mhi = sm.length ? Math.max(...sm) : 1;
+  const lo = sf.length ? Math.round(Math.min(...sf) * mlo) : 5, hi = sf.length ? Math.round(Math.max(...sf) * mhi) : 8;
   const cov = MODEL.meta && MODEL.meta.backtest_eval_years && MODEL.meta.backtest_eval_years.coverage80;
   // where the county publishes round 1: what the final round does, if measured
   let fin = '';
@@ -2960,7 +2969,6 @@ function renderChance(s, lensCat) {
   }
   // what the county's publication cannot tell the reader about this chance
   if (!s.round) fin += `<div>${esc(t('chanceRoundUnknown'))}</div>`;
-  if (NO_OPEN_MARKER.has(s.fylke)) fin += `<div>${esc(t('chanceNoOpenMarker'))}</div>`;
   box.innerHTML = `<div class="h">${esc(head)}</div><div class="bar">${bar}</div>` +
     `<div>${esc(t('chanceCounts', ch.likely, ch.possible, ch.unlikely))}</div>` +
     `<div>${esc(t('chanceSub', ch.year, e.round, lo, hi))}` +
@@ -3236,8 +3244,7 @@ function renderList() {
         const pr = predFor(current, p);
         if (pr) {
           const ch = chanceOf(pr, myPoints);
-          let tip = t('chTitle', pct(ch), pr.year, fmt(pr.m), fmt(pr.s),
-                      NO_OPEN_MARKER.has(current.fylke) ? null : pct(pr.pi), pr.h);
+          let tip = t('chTitle', pct(ch), pr.year, fmt(pr.m), fmt(pr.s), pct(pr.pi), pr.h);
           const fb = finalRoundBridge(current);
           if (fb) tip += ' ' + t('finalRoundChip', fb.to_round, pct(chanceFinal(pr, myPoints, p.category, fb)));
           chip = `<span class="ch b-${bucketOf(ch)}" data-tip="${esc(tip)}">${pctS(ch)}</span>`;

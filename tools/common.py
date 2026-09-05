@@ -260,7 +260,9 @@ def merge_rows(rows_newest_first):
             # row's identity, not a guess; keep it for build_dataset to prefer
             if r.get('grep') and 'grep' not in rec:
                 rec['grep'] = r['grep']
-            for alt in ('values_r1', 'values_r3'):
+            # the alternate rounds, and the admitted mean (Gjennomkar, Møre og
+            # Romsdal only), travel with the cell; the newest source wins
+            for alt in ('values_r1', 'values_r3', 'means'):
                 if r.get(alt):
                     rec.setdefault(alt, {}).update({y: v for y, v in r[alt].items()
                                                     if y not in rec.get(alt, {})})

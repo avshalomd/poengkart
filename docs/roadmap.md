@@ -48,12 +48,19 @@ list view (Kart ⇄ Liste toggle: the map's filters as a sortable table).
   person's score, not a competitive bar (Romsdal 2018: 56,0; Stranda 2014:
   45,6; the 5,7 and 8,6 at the other end are the same mechanism). All eight
   |z| > 4 outliers on 2 Sept 2026 were verified genuine in the sources; five
-  are this. Carrying Gjennomkar into the dataset and downweighting min = mean
+    are this. Carrying Gjennomkar into the dataset and downweighting min = mean
   cells is a data-science change with a measurable backtest effect.
+  *Done 5 Sept 2026 (report v1.7): Gjennomkar is carried (`means` in
+  `schools.json`, `admitted_mean` in `samples.csv`), the 14 min = mean
+  cells are flagged, and the backtest chose their level-fit weight among
+  {1, ½, ¼, 0}: full weight, by less than a thousandth of a point of RMSE.
+  The mechanism stays; §7.5 reports the verdict.*
 - **Suggestion, not adopted: hide raw percentages below 30%.** The fill
   model is documented as optimistic in that range. Decision for now is to
   show what the model says; revisit if calibration in that range does not
-  improve.
+  improve. *5 Sept 2026: with Møre og Romsdal's under-25 rule the held-out
+  optimism below 60% is at most 1.8 points; the largest gap is now the
+  cautious 70–80% bin.*
 
 ## Launch list (agreed 2 September 2026)
 
@@ -66,9 +73,14 @@ one-pager attached to a short e-mail.
 Owner's own tasks:
 - Møre og Romsdal was asked on 2 September 2026 (same thread as the data)
   for the filled / not-filled state per programområde, or places and admitted
-  counts, at 2. inntak; when it arrives the county can enter the fill model
-  instead of being fixed at 1. Chase after a week if no reply.
-  *Deferred: owner's own task; until then the model fixes the county's fill probability at 1.*
+  counts, at 2. inntak. The county answered on 3 September: the state is not
+  in the data behind the file, capacity may be linked «i løpet av neste år»,
+  and the dashboard's own `*` («alle kom inn, eller laveste karakter var
+  under 25») can be read as «ledig plass» for Vg1.
+  *Done 5 Sept 2026 as far as the data allows: the county's rule is applied
+  in `tools/extractors/mro.py` (a figure under 25 → ingen venteliste), the
+  county is in the fill model, and `FILL_BLIND` is empty. Still open: ask
+  again in 2027 for the capacity data, which would replace the proxy.*
 - Register `poengkart.no` (domene.no) and cut over during the autumn refresh,
   keeping the vercel.app address as a redirect. The domain is hard-coded in
   five files and the CARTO key is domain-bound. At the same time, attach a
@@ -95,7 +107,9 @@ Agreed product changes:
 - Inline inntak caveat for the counties whose inntak is not stated (Buskerud,
   Trøndelag) and for Møre og Romsdal, which cannot express "ingen venteliste".
   MRO's fill probability is set to 1 until the county supplies the state.
-  *Done 2 Sept 2026: `FILL_BLIND` in `tools/model.py`, checked by `test_model.py`, documented in report v1.4 §4.4.*
+  *Done 2 Sept 2026: `FILL_BLIND` in `tools/model.py`, checked by `test_model.py`, documented in report v1.4 §4.4.
+  Superseded 5 Sept 2026: the county's own dashboard rule supplies the state (see the owner task above); the
+  caveat now explains the rule instead.*
 - No percentage for a series with zero history ("ingen historikk"); a
   "lite historikk" tag at one year.
   *Done 2 Sept 2026.*
