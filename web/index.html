@@ -88,6 +88,7 @@
        its own, darker value while the dots and bars keep the band colour */
     --chip-good: #0a6b0a; --chip-warn: #8a5308; --chip-danger: #a82f26;
     --warn: #a1620a; --warn-soft: rgba(180,120,20,.11);
+    --dot-possible: var(--warn); --dot-unlikely: var(--danger);   /* map dots and chips; text keeps --warn/--danger */
   }
   /* The dark palette exists twice: under the OS preference (yielding to an
      explicit light choice) and under the explicit dark choice. Keep the two
@@ -138,12 +139,14 @@
   }
 
   /* colour-blind-friendly: the chance scale's green swaps to a blue nothing
-     else on that scale uses; red–green is the axis most CVD readers lose */
-  :root[data-cvd="1"] { --good: #0072b2; --chip-good: #005a8f; }
+     else on that scale uses; red–green is the axis most CVD readers lose.
+     Orange and red sit on the same lost axis (ΔE 2.2 under deuteranopia in
+     dark), so the two lower bins move to a lightness gap: yellow and a dark red */
+  :root[data-cvd="1"] { --good: #0072b2; --chip-good: #005a8f; --dot-possible: #e6b800; --dot-unlikely: #7a1414; }
   @media (prefers-color-scheme: dark) {
-    :root[data-cvd="1"]:not([data-theme="light"]) { --good: #58a9e8; --chip-good: #6cb4ef; }
+    :root[data-cvd="1"]:not([data-theme="light"]) { --good: #58a9e8; --chip-good: #6cb4ef; --dot-possible: #f2cc5c; --dot-unlikely: #b23a3a; }
   }
-  :root[data-theme="dark"][data-cvd="1"] { --good: #58a9e8; --chip-good: #6cb4ef; }
+  :root[data-theme="dark"][data-cvd="1"] { --good: #58a9e8; --chip-good: #6cb4ef; --dot-possible: #f2cc5c; --dot-unlikely: #b23a3a; }
 
   /* text-size steps scale the floating chrome, never the map itself.
      #listview belongs here too: it is a sibling of #panel inside #app, not a
@@ -199,6 +202,7 @@
            max-height: calc(100dvh - var(--panel-reserve, 150px));
            overflow-y: auto; overscroll-behavior: contain; }
   #panel:focus { outline: none; }
+  #panel:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }   /* the skip link lands here */
   /* on a short desktop the card overflows and the last line was sliced through
      the glyphs with nothing to say there is more; a sticky fade says it */
   #panel::after { content: ''; display: block; position: sticky; bottom: -14px; height: 18px;
@@ -301,13 +305,14 @@
   }
   /* ---------- search overlay (design C trial) ---------- */
   #searchov { align-items: flex-start; }
+  #searchov .x { top: 18px; right: 18px; }
   #searchov .ovbox {
-    margin-top: min(18vh, 150px); width: min(560px, 92vw);
+    position: relative; margin-top: min(18vh, 150px); width: min(560px, 92vw);
     background: var(--surface-solid); border: 1px solid var(--line); border-radius: 14px;
     box-shadow: var(--shadow); padding: 10px;
   }
   #ov-q {
-    width: 100%; padding: 12px 14px; font: inherit; font-size: 16px; color: var(--ink);
+    width: 100%; padding: 12px 52px 12px 14px; font: inherit; font-size: 16px; color: var(--ink);
     background: var(--page); border: 1px solid var(--line-strong); border-radius: 10px;
     outline: none;
   }
@@ -320,6 +325,7 @@
     padding: 10px 12px; border-radius: 8px; cursor: pointer; font-size: 14px;
   }
   #ov-list .opt .fy { font-size: 12px; color: var(--ink-3); flex: none; }
+  #ov-list .opt.county { color: var(--accent-ink); font-weight: 600; }
   #ov-list .opt.act, #ov-list .opt:hover { background: var(--accent-soft); }
   /* .act is the result Enter will open — a state, so it needs 3:1 of its own
      rather than a 1.13:1 tint. It also has to differ from :hover: they shared
@@ -424,6 +430,8 @@
     /* every millimetre bought back here is one the reader does not have to drag */
     #listview td, #listview th button { padding-left: 6px; padding-right: 6px; }
     #listview .chip { min-width: 38px; padding: 2px 6px; }
+    /* the swipe to Sjanse hid every school name; the first column stays put */
+    #listview th:first-child, #listview td:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface-solid); }
   }
   /* What is left can still overflow — a long school name, a wide chance phrase —
      and an overlay scrollbar is invisible at rest, so nothing said the table
@@ -476,13 +484,14 @@
     border-radius: 10px; box-shadow: var(--shadow); padding: 10px 14px; font-size: 13px;
     max-width: min(92vw, 420px); text-align: center;
   }
+  @media (max-width: 760px) { #toast { bottom: calc(20px + var(--ctrl-lift, 0px)); } }
   #pts-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; line-height: 1.4; }
   #pts-note .k { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 3px 0 1px; vertical-align: -1px; }
   /* Chance bands are semantic colours, deliberately not the blue threshold
      ramp: a dot's colour answers a different question once points are set. */
   .b-likely { --b: var(--good); --bt: var(--chip-good); }
-  .b-possible { --b: var(--warn); --bt: var(--chip-warn); }
-  .b-unlikely { --b: var(--danger); --bt: var(--chip-danger); }
+  .b-possible { --b: var(--dot-possible); --bt: var(--chip-warn); }
+  .b-unlikely { --b: var(--dot-unlikely); --bt: var(--chip-danger); }
   .chance {
     margin: 10px 18px 0; padding: 9px 12px 9px 11px; border-radius: 9px;
     background: var(--accent-soft); border-left: 2px solid var(--accent);
@@ -514,7 +523,6 @@
   #choices .h button.arm { color: var(--danger); font-weight: 700; text-decoration: underline; }
   /* fifteen choices used to push the summary, the legend and the controls off
      the bottom of the screen with nothing to scroll */
-  #choices .list { max-height: min(32dvh, 280px); overflow-y: auto; overscroll-behavior: contain; }
   #choices .row { display: flex; align-items: center; gap: 7px; padding: 5px 0; border-bottom: 1px solid var(--line); }
   #choices .row:last-of-type { border-bottom: none; }
   #choices .row .who { flex: 1; min-width: 0; text-align: left; border: none; background: none; font: inherit;
@@ -786,6 +794,9 @@
     border-radius: 12px; box-shadow: var(--shadow); padding: 9px 12px;
   }
   .leaflet-tooltip-top.tip::before { border-top-color: var(--surface-solid); }
+  .leaflet-tooltip-bottom.tip::before { border-bottom-color: var(--surface-solid); }
+  .leaflet-tooltip-left.tip::before { border-left-color: var(--surface-solid); }
+  .leaflet-tooltip-right.tip::before { border-right-color: var(--surface-solid); }
   .tip .n { font-weight: 650; font-size: 13px; letter-spacing: -.01em; }
   .tip .v { font-size: 12px; color: var(--ink-2); margin-top: 2px; font-variant-numeric: tabular-nums; }
   .tip .h { font-size: 10.5px; color: var(--ink-3); margin-top: 4px; }
@@ -793,7 +804,7 @@
   /* ---------- marker clusters ---------- */
   .pk-cluster {
     display: flex; align-items: center; justify-content: center;
-    border-radius: 999px; font-weight: 700; font-size: 12px; color: #fff;
+    border-radius: 999px; font-weight: 700; font-size: 12px; color: var(--on-accent);
     background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft),
                 0 2px 8px rgba(0,0,0,.35);
     border: 2px solid var(--surface-solid);
@@ -809,7 +820,7 @@
   }
   /* keep the control panel clear of the sidebar at tablet widths */
   #side.open { width: min(480px, max(320px, 100vw - 350px)); }
-  #side > .scroll { overflow-y: auto; flex: 1; min-width: min(480px, max(320px, 100vw - 350px)); overscroll-behavior: contain; }
+  #side > .scroll { overflow-y: auto; overflow-x: hidden; flex: 1; min-width: min(480px, max(320px, 100vw - 350px)); overscroll-behavior: contain; }
   /* the text-size zoom multiplies that min-width, so at Stor/Ekstra stor the
      scroll box laid out 552/624px inside a 480px panel and the close button
      and every + sat off-screen; divide by the step's zoom to land on 480 */
@@ -907,7 +918,7 @@
   }
   .cat-head .cnt { font-weight: 500; letter-spacing: 0; text-transform: none; }
   .prow {
-    display: flex; align-items: center; gap: 10px; width: 100%; text-align: left;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px; width: 100%; text-align: left;   /* wrap: at Ekstra stor the chance chip pushed the + off-screen */
     padding: 7px 18px; border: none; background: none; cursor: pointer;
   }
   .prow:hover, .prow.sel { background: var(--accent-soft); }
@@ -1042,12 +1053,15 @@
   }
   @media (max-height: 480px) and (min-width: 561px) {
     #panel {
-      width: 430px; display: grid; grid-template-columns: 150px minmax(0, 1fr);
+      width: 520px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px; align-items: end;
     }
-    #panel .brand, #panel #cat-note, #panel #view-toggle { grid-column: 1 / -1; }
+    /* the points field sat 24px below the card's fold with no cue; three
+       fields on one row keep the card inside 231px */
+    #panel .brand, #panel #cat-note, #panel #view-toggle, #panel #choices { grid-column: 1 / -1; }
     #cat-note { margin-top: 0; min-height: 0; }
-    .field + .field { margin-top: 0; }
+    #cat-note:empty { display: none; }
+    .field + .field, #pts-field { margin-top: 0; }
   }
   /* The stacked list lays the panel out in flow, so it may have the full width
      — but it must not have the full HEIGHT, and three controls strung across
@@ -1058,12 +1072,15 @@
   @media (min-width: 561px) and (max-width: 860px),
          (min-width: 561px) and (max-height: 480px) {
     body.view-list #panel {
-      display: grid; grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1fr);
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px 14px; align-items: start;   /* three labels on one baseline */
     }
-    body.view-list #panel .brand, body.view-list #panel #view-toggle { grid-column: 1 / -1; }
-    body.view-list #panel #cat-note { grid-column: auto; margin-top: 0; min-height: 0; }
-    body.view-list #panel .field + .field { margin-top: 0; }
+    body.view-list #panel .brand, body.view-list #panel #view-toggle, body.view-list #panel #tagline { grid-column: 1 / -1; }
+    /* the empty category note took the third cell and pushed the points
+       field to a row of its own; a note spans, an empty one takes nothing */
+    body.view-list #panel #cat-note, body.view-list #panel #choices { grid-column: 1 / -1; margin-top: 0; min-height: 0; }
+    body.view-list #panel #cat-note:empty { display: none; }
+    body.view-list #panel .field + .field, body.view-list #panel #pts-field { margin-top: 0; }
   }
 
   @media (max-width: 760px) {
@@ -1072,6 +1089,25 @@
        sheet's left edge off the phone; 100% follows the zoomed box instead */
     #side > .scroll, :root[data-font="lg"] #side > .scroll, :root[data-font="xl"] #side > .scroll { min-width: 100%; }
     body.side-open #panel, body.side-open #legend, body.side-open #controls { display: none; }
+    /* at Stor/Ekstra stor the tab strip outgrew the card and dragged the whole
+       sheet sideways ("45,6" read "5,6"); the three tabs wrap instead */
+    :root[data-font="lg"] .tabs, :root[data-font="xl"] .tabs { flex-wrap: wrap; }
+  }
+  /* Stor/Ekstra stor grow the control card to 363/411px, and at iPad widths the
+     docked panel painted over the calculator and Settings — the one way back
+     to a smaller text size. Up to 940px the enlarged card gets the phone
+     sheet instead; sideTrap() applies the same rule to the map's inert. */
+  @media (min-width: 761px) and (max-width: 1024px) {
+    :root[data-font="lg"] #side.open { width: 100vw; }
+    :root[data-font="lg"] #side > .scroll { min-width: 100%; }
+    :root[data-font="lg"] body.side-open #panel, :root[data-font="lg"] body.side-open #legend, :root[data-font="lg"] body.side-open #controls { display: none; }
+    :root[data-font="lg"] .tabs { flex-wrap: wrap; }
+  }
+  @media (min-width: 761px) and (max-width: 1080px) {
+    :root[data-font="xl"] #side.open { width: 100vw; }
+    :root[data-font="xl"] #side > .scroll { min-width: 100%; }
+    :root[data-font="xl"] body.side-open #panel, :root[data-font="xl"] body.side-open #legend, :root[data-font="xl"] body.side-open #controls { display: none; }
+    :root[data-font="xl"] .tabs { flex-wrap: wrap; }
   }
   /* The UA's [hidden] { display: none } loses to any author display rule
      (.mixwarn's flex, .notes' grid, the calculator buttons before their
@@ -1101,17 +1137,26 @@
     .seg button { padding-top: 12px; padding-bottom: 12px; }
     /* widen the gap first, then spend it: the reach can only be as generous as
        the space between two icons, or each starts firing its neighbour */
-    #controls { gap: 12px; }
-    #controls .ico::after { inset: -9px -6px; }
+    #controls { gap: 18px; }
+    #controls .ico::after { inset: -9px -9px; }
     .ptsrow button { position: relative; }
     .ptsrow button::after { content: ''; position: absolute; inset: -5px; }
     #choices .h button::after { inset: -15px -10px; }
     /* Leaflet's own zoom and locate buttons stay 30px on touch; 40 is the floor */
     .leaflet-touch .leaflet-bar a, .leaflet-touch .leaflet-bar button.locate { width: 40px; height: 40px; line-height: 40px; }
+    .boot-fail .cta { min-height: 40px; }
+    .field select, .ptsrow input { min-height: 40px; }
+    #ov-list .opt { min-height: 40px; }
+    .photo .close { width: 40px; height: 40px; }
   }
   /* three Norwegian tab labels overflowed the chart card by 17px at 375px */
   @media (max-width: 400px) {
     .tabs button { padding-left: 8px; padding-right: 8px; }
+  }
+  /* forced colours strip author backgrounds: the ramp and key dots must keep
+     theirs or the map is coloured and its key is blank */
+  @media (forced-colors: active) {
+    #legend .sw, #legend svg, #legend .dot, .pk-cluster { forced-color-adjust: none; }
   }
   [hidden] { display: none !important; }
 </style>
@@ -1139,7 +1184,7 @@ try {
 <!-- the map comes first in the document, so a keyboard reader would otherwise
      tab through thirty markers before reaching a single control -->
 <a class="skip" id="skip" href="#panel"></a>
-<div id="app">
+<div id="app" role="main">
   <div id="map"></div>
   <div id="listview" hidden></div>
   <aside id="side">
@@ -1162,7 +1207,7 @@ try {
         <div id="chart-sub"></div>
         <div id="chart-wrap">
           <div id="chart-tip"></div>
-          <div id="chart-svg"></div>
+          <div id="chart-svg" role="img" aria-labelledby="chart-sub"></div>
         </div>
       </div>
       <div id="s-list"></div>
@@ -1257,6 +1302,7 @@ try {
 
 <div id="legend" class="glass">
   <div class="t" id="legend-title"></div>
+  <div class="sizenote" id="legend-zoom" hidden></div>
   <div class="bins" id="legend-bins"></div>
   <div class="sizenote" id="legend-size"></div>
   <div class="sizenote warn" id="legend-mixed" hidden></div>
@@ -1274,7 +1320,7 @@ try {
         <circle cx="13" cy="11" r="3.4" fill="#fff"/>
         <path d="M13 21c3.6-3.4 6-6.2 6-9.6A6 6 0 0 0 7 11.4C7 14.8 9.4 17.6 13 21z" fill="none" stroke="#fff" stroke-width="1.7"/>
       </svg>
-      <h2 id="intro-h"></h2>
+      <h2 id="intro-h" tabindex="-1"></h2>
     </div>
     <div id="intro-body"></div>
   </div>
@@ -1313,6 +1359,7 @@ try {
   <div class="ovbox" id="ov-box" role="dialog" aria-modal="true">
     <input id="ov-q" type="text" role="combobox" aria-expanded="false" aria-controls="ov-list"
            aria-autocomplete="list" autocomplete="off" spellcheck="false" autocapitalize="off">
+    <button class="x" id="ov-x" onclick="closeSearchOv()">✕</button>
     <div id="ov-list" role="listbox"></div>
   </div>
 </div>
@@ -1343,6 +1390,7 @@ const CATS = {
   DT: { no: 'Håndverk, design og produktutvikling', en: 'Crafts, design & product development' },
   PB: { no: 'Påbygg',                      en: 'Supplementary year' },
 };
+const ordEn = r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : r === '3' ? 'rd' : 'th'}`;
 const T = {
   tagline: {
     no: (n, f, y0, y1) => `Poenggrenser for videregående skole: poengsummen til den siste som fikk plass. ${n} skoler i ${f} fylker, ${y0}–${y1}. Velg en skole for å se detaljer.`,
@@ -1351,7 +1399,7 @@ const T = {
   introTitle: { no: 'Slik leser du kartet', en: 'How to read this map' },
   introLede: {
     no: 'Hver prikk er en videregående skole. Fargen viser hvor mange poeng du i snitt måtte ha for å komme inn ved siste inntak – jo mørkere, desto høyere.',
-    en: 'Every dot is an upper secondary school. The colour shows the score you needed on average to get a place last time — the darker, the higher.',
+    en: 'Every dot is an upper secondary school. The colour shows the score you needed on average to get a place last time – the darker, the higher.',
   },
   introSteps: {
     no: [
@@ -1366,9 +1414,9 @@ const T = {
     ],
     en: [
       ['Your points',
-       'Points = your grade average × 10. The threshold is the score of the last applicant who got a place — if you were above it, you would have got in.'],
+       'Points = your grade average × 10. The threshold is the score of the last applicant who got a place – if you were above it, you would have got in.'],
       ['Colours and sizes',
-       'Colour = the average of the thresholds in the newest year that school has figures for. Size = what share of its programmes filled up — a small dot means most admitted everyone who applied.'],
+       'Colour = the average of the thresholds in the newest year that school has figures for. Size = what share of its programmes filled up – a small dot means most admitted everyone who applied.'],
       ['Find the schools that matter to you',
        'Pick a county and a programme at the top. Open a dot for the year-by-year trend and the figures per programme.'],
       ['Your chance',
@@ -1382,7 +1430,7 @@ const T = {
   },
   introCaveat: {
     no: 'Tallene er historiske og endrer seg hvert år – de er en pekepinn, ikke et løfte. Fylkene publiserer tall fra ulike inntak, så to fylker kan ikke alltid sammenlignes direkte. Uoffisiell tjeneste: sjekk alltid vilbli.no og fylket ditt før du søker.',
-    en: 'These are historical figures and they move every year — a guide, not a promise. Counties publish different intakes, so two counties are not always directly comparable. Unofficial: always check vilbli.no and your own county before applying.',
+    en: 'These are historical figures and they move every year – a guide, not a promise. Counties publish different intakes, so two counties are not always directly comparable. Unofficial: always check vilbli.no and your own county before applying.',
   },
   introCta: { no: 'Vis kartet', en: 'Show the map' },
   helpLabel: { no: 'Slik leser du kartet', en: 'How to read this map' },
@@ -1430,14 +1478,14 @@ const T = {
   calcOpen:  { no: 'Regn ut fra karakterene dine', en: 'Work them out from your grades' },
   calcTitle: { no: 'Fra karakterer til poeng', en: 'From grades to points' },
   calcLede:  { no: 'Karakterpoengene er gjennomsnittet av alle tallkarakterene på vitnemålet ganget med 10. Standpunkt og eksamen teller likt; fag uten karakter regnes ikke med. Trykk på karakterene dine:',
-               en: 'Your points are the average of every numeric grade on the vitnemål, times ten. Standpunkt and eksamen count equally; subjects without a grade are left out. Tap your grades:' },
+               en: 'Your points are the average of every numeric grade on your vitnemål (leaving certificate), times ten. The subjects below are named as they are printed on it. Standpunkt (teacher-assessed) and eksamen (exam) grades count equally; subjects without a grade are left out. Tap your grades:' },
   calcSnitt: { no: 'snitt', en: 'average' },
   calcPoeng: { no: 'poeng', en: 'points' },
   calcEmpty: { no: '–', en: '–' },
   calcUse:   { no: 'Bruk poengene på kartet', en: 'Use the points on the map' },
   calcReset: { no: 'Tøm', en: 'Clear' },
   calcNote:  { no: 'Karakterene lagres bare i denne nettleseren. Eksamenskarakterene kommer i tillegg til standpunkt i samme fag – begge teller.',
-               en: 'Grades are saved only in this browser. Exam grades count in addition to the standpunkt grade in the same subject — both are included.' },
+               en: 'Grades are saved only in this browser. Eksamen grades count in addition to the standpunkt grade in the same subject – both are included.' },
   calcClearAria: { no: (f) => `Fjern karakteren i ${f}`, en: (f) => `Clear the grade in ${f}` },
   calcGradeAria: { no: (g, f) => `${g} i ${f}`, en: (g, f) => `${g} in ${f}` },
   locDenied: { no: 'Nettleseren har ikke tilgang til posisjonen din.',
@@ -1451,15 +1499,15 @@ const T = {
       Vg3: ['Vg3 – tredje året', 'Tredje og siste året på skolen. På yrkesfag går mange ut i lære i stedet.'],
     },
     en: {
-      Vg1: ['Vg1 — first year', 'The first of three years of upper secondary. This is the year you apply for from lower secondary school.'],
-      Vg2: ['Vg2 — second year', 'The second year. You move up from Vg1, usually at the same school.'],
-      Vg3: ['Vg3 — third year', 'The third and final year at school. On vocational tracks many take an apprenticeship instead.'],
+      Vg1: ['Vg1 – first year', 'The first of three years of upper secondary. This is the year you apply for from lower secondary school.'],
+      Vg2: ['Vg2 – second year', 'The second year. You move up from Vg1, usually at the same school, or to a vocational programme that builds on it.'],
+      Vg3: ['Vg3 – third year', 'The third and final year at school. On vocational tracks many take an apprenticeship instead.'],
     },
   },
   contactTitle: { no: 'Send tilbakemelding', en: 'Send feedback' },
   contactLede: {
     no: 'Har du funnet en feil, eller savner du noe? Si fra – det er sånn kartet blir bedre.',
-    en: 'Found a mistake, or missing something? Say so — that is how the map gets better.',
+    en: 'Found a mistake, or missing something? Say so – that is how the map gets better.',
   },
   contactKind: { no: 'Hva gjelder det?', en: 'What is it about?' },
   contactKinds: {
@@ -1497,7 +1545,7 @@ const T = {
   },
   contactPrivacy: {
     no: 'Meldingen sendes som e-post til den som lager kartet. Ingenting lagres i nettleseren din, og e-postadressen er valgfri – uten den kan du ikke få svar.',
-    en: 'Your message is e-mailed to the person who maintains the map. Nothing is stored in your browser, and your e-mail address is optional — without it you cannot get a reply.',
+    en: 'Your message is e-mailed to the person who maintains the map. Nothing is stored in your browser, and your e-mail address is optional – without it you cannot get a reply.',
   },
   contactSend:    { no: 'Send', en: 'Send' },
   contactSending: { no: 'Sender…', en: 'Sending…' },
@@ -1514,19 +1562,19 @@ const T = {
   contactLabel:   { no: 'Send tilbakemelding', en: 'Send feedback' },
   fylkeLabel: { no: 'Fylke', en: 'County' },
   allFylker:  { no: 'Hele landet', en: 'All of Norway' },
-  roundChip:  { no: r => `${r}. inntak`, en: r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : r === '3' ? 'rd' : 'th'} intake` },
+  roundChip:  { no: r => `${r}. inntak`, en: r => `${ordEn(r)} intake` },
   roundTitle: { no: 'Poenggrensen er poengsummen til den siste søkeren som fikk plass i dette inntaket. Grensen faller mellom inntakene, fordi plasser blir ledige. Tall fra ulike inntak kan ikke sammenlignes direkte.',
                 en: 'The threshold is the score of the last applicant admitted in this intake. Thresholds fall between intakes as places free up, so numbers from different intakes are not directly comparable.' },
   mixedRounds:{ no: 'Kartet viser fylker med ulike inntak – tallene kan ikke sammenlignes direkte.',
-                en: 'The map mixes counties with different intakes — those numbers are not directly comparable.' },
+                en: 'The map mixes counties with different intakes – those numbers are not directly comparable.' },
   catLabel:   { no: 'Utdanningsprogram', en: 'Education programme' },
   allCats:    { no: 'Alle utdanningsprogram', en: 'All education programmes' },
   catNote:    { no: n => `${n} ${n === 1 ? 'skole' : 'skoler'} tilbyr dette`, en: n => `${n} ${n === 1 ? 'school offers' : 'schools offer'} this` },
   legendAll:  { no: 'Snittgrense (siste år)', en: 'Average threshold (latest year)' },
   legendSize: { no: 'Størrelsen viser hvor stor andel av programområdene som ble fylt opp',
                 en: 'Marker size shows what share of the programmes filled up' },
-  tipMedian:  { no: (v, n, tot) => `Snitt <b>${v}</b> poeng · ${n} av ${tot} programområder ble fylt opp`,
-                en: (v, n, tot) => `Average <b>${v}</b> pts · ${n} of ${tot} programmes filled up` },
+  tipMedian:  { no: (v, n, tot) => `Snitt <b>${v}</b> poeng · ${n} av ${tot} programområde${tot === 1 ? '' : 'r'} ble fylt opp`,
+                en: (v, n, tot) => `Average <b>${v}</b> pts · ${n} of ${tot} programme area${tot === 1 ? '' : 's'} filled up` },
   tipMostlyOpen: { no: 'Men de fleste programområdene hadde ingen venteliste',
                    en: 'But most programmes had no waiting list' },
   mostlyOpenShort: { no: 'de fleste hadde ingen venteliste', en: 'most had no waiting list' },
@@ -1568,10 +1616,10 @@ const T = {
   docAdm:     { no: 'Inntak etter dokumentasjon', en: 'By documentation' },
   docAdmShort:{ no: 'Dokumentasjon', en: 'Documentation' },
   docTitle:   { no: 'Inntak på grunnlag av dokumentasjon (f.eks. IB eller toppidrett) – ingen poenggrense.',
-                en: 'Admission on documented grounds (e.g. IB or elite sport) — no points threshold.' },
+                en: 'Admission on documented grounds (e.g. IB or elite sport) – no points threshold.' },
   tipNoData:  { no: y => `Ingen data for ${y}`, en: y => `No data for ${y}` },
-  tipStale:   { no: y => `Ingen data etter ${y}`, en: y => `No figures after ${y}` },
-  staleChip:  { no: y => `Ingen data etter ${y}`, en: y => `No figures after ${y}` },
+  tipStale:   { no: y => `Ingen data etter ${y}`, en: y => `No data after ${y}` },
+  staleChip:  { no: y => `Ingen data etter ${y}`, en: y => `No data after ${y}` },
   staleTitle: { no: 'Fylket har ikke publisert tall for denne skolen de siste årene. Historikken under er den siste som finnes.',
                 en: 'The county has not published figures for this school in recent years. The history below is the last there is.' },
   introData:  { no: 'Last ned hele datasettet (JSON).', en: 'Download the whole dataset (JSON).' },
@@ -1584,7 +1632,7 @@ const T = {
   // validation — for anyone who wants more than the tooltips give.
   introReport:{ no: a => `Metoden, modellen og valideringen er beskrevet i ${a}.`,
                 en: a => `The method, the model and the validation are written up in ${a}.` },
-  introReportLink: { no: 'den tekniske rapporten', en: 'the technical report' },
+  introReportLink: { no: 'den tekniske rapporten (på engelsk)', en: 'the technical report' },
   introCredit:{ no: 'Uoffisiell tjeneste laget av Abshalom Dayan · kode MIT, data NLOD 2.0',
                 en: 'Unofficial service by Abshalom Dayan · code MIT, data NLOD 2.0' },
   introPrivacy: { no: 'Personvern: poengene dine lagres bare i nettleseren din. Posisjonen brukes én gang og sendes ikke videre. Besøk telles uten informasjonskapsler (Vercel Web Analytics).',
@@ -1596,7 +1644,7 @@ const T = {
   uncertainNote: { no: y => `Tallene for ${y} er usikre: to publikasjoner fra fylket oppgir ulike verdier.`,
                    en: y => `The figures for ${y} are uncertain: two county publications give different values.` },
   roundYearNote: { no: (y, r) => `${y}-tallene er fra ${r}. inntak, ikke samme inntak som de andre årene – flere kom inn, så grensene ligger lavere.`,
-                   en: (y, r) => `The ${y} figures are from intake ${r}, not the same intake as the other years — more applicants were admitted, so the thresholds sit lower.` },
+                   en: (y, r) => `The ${y} figures are from the ${ordEn(r)} intake, not the same intake as the other years – more applicants were admitted, so the thresholds sit lower.` },
   closeAria:  { no: 'Lukk skoledetaljer', en: 'Close school details' },
   skipToControls: { no: 'Hopp til filtrene', en: 'Skip to the filters' },
   clusterAria: { no: n => `${n} skoler i dette området. Trykk for å zoome inn.`,
@@ -1607,11 +1655,12 @@ const T = {
   roundUnknown: { no: 'inntak ikke oppgitt', en: 'intake not stated' },
   roundUnknownTitle: { no: 'Fylket oppgir ikke hvilket inntak tallene er fra. Grensen faller mellom inntakene, så tallene kan ikke sammenlignes direkte med fylker som oppgir inntaket.',
                        en: 'This county does not state which intake the figures are from. Thresholds fall between intakes, so they cannot be compared directly with counties that do state it.' },
-  oneYearOnly: { no: y => `Fylket publiserer bare ${y} – ingen trend ennå`, en: y => `This county publishes ${y} only — no trend yet` },
+  oneYearOnly: { no: y => `Fylket publiserer bare ${y} – ingen trend ennå`, en: y => `This county publishes ${y} only – no trend yet` },
   bootFail:   { no: 'Kartet kunne ikke lastes', en: 'The map could not be loaded' },
   bootFailSub:{ no: 'Fikk ikke lastet datasettet. Sjekk nettforbindelsen og prøv igjen.',
                 en: 'The dataset could not be loaded. Check your connection and try again.' },
   bootRetry:  { no: 'Prøv igjen', en: 'Try again' },
+  bootLoading:{ no: 'Laster kartet …', en: 'Loading the map …' },
   bootFailApp:{ no: 'Noe gikk galt da kartet skulle bygges. Prøv å laste siden på nytt.',
                 en: 'Something went wrong while building the map. Try reloading the page.' },
   sideLabel:  { no: 'Skoledetaljer', en: 'School details' },
@@ -1633,9 +1682,12 @@ const T = {
     en: (o, tot, y, n) => `${o} of ${tot} programme areas had no waiting list in ${y}. `
       + `The average covers only the ${n} that had a threshold.`,
   },
-  heroProgs:  { no: 'programområder', en: 'program areas' },
+  linkNotFound: { no: n => `Fant ikke «${n}» i kartet.`, en: n => `Could not find “${n}” on the map.` },
+  photoCredit: { no: c => `Foto: ${c}`, en: c => `Photo: ${c}` },
+  heroProgs:  { no: n => n === 1 ? 'programområde' : 'programområder', en: n => n === 1 ? 'programme area' : 'programme areas' },
+  searchCounty: { no: f => `Vis ${f} på kartet`, en: f => `Show ${f} on the map` },
   tabAll:     { no: 'Alle', en: 'All' },
-  tabCat:     { no: 'Utdanningsprogram', en: 'Programme' },
+  tabCat:     { no: 'Utdanningsprogram', en: 'Education programme' },
   tabProg:    { no: 'Programområde', en: 'Programme area' },
   // The chart draws only the programme areas that HAVE a poenggrense, so its
   // count is normally smaller than the hero's row count right above it. Name
@@ -1650,9 +1702,9 @@ const T = {
                                                    : `${n} av ${tot} programområder i utdanningsprogrammet har hatt poenggrense i ${span} · snitt i blått`),
                   en: (n, tot, span) => (n === tot ? `${n} programme area${n === 1 ? ' has' : 's have'} had a threshold in this programme in ${span} · mean line in blue`
                                                    : `${n} of ${tot} programme areas in this programme have had a threshold in ${span} · mean line in blue`) },
-  chartSubProg: { no: 'Én serie · hule punkter = ingen poenggrense', en: 'Single series · hollow dots = no threshold' },
+  chartSubProg: { no: 'Ett programområde · hule punkter = ingen poenggrense', en: 'One programme area · hollow dots = no threshold' },
   chartNoPoints: { no: 'Ingen poenggrense å tegne for dette utvalget – alle som søkte, fikk plass, eller inntaket gikk på fortrinnsrett eller dokumentasjon.',
-                   en: 'No threshold to plot for this selection — everyone who applied got a place, or admission went by priority quota or documentation.' },
+                   en: 'No threshold to plot for this selection – everyone who applied got a place, or admission went by priority quota or documentation.' },
   officialName: { no: n => `Offisielt navn (Udir): ${n}`, en: n => `Official register name: ${n}` },
   oldHidden: {
     no: n => n === 1 ? '1 programområde uten tall fra de siste to årene er skjult – vis det'
@@ -1664,11 +1716,11 @@ const T = {
               en: 'Hide programme areas without recent figures' },
   notOffered: { no: 'tilbys ikke her', en: 'not offered here' },
   vigoMaxWishes: { no: 'Vigo-søknaden har plass til ti ønsker – lista er full.',
-                   en: 'The vigo application takes ten wishes – the list is full.' },
+                   en: 'A vigo application has room for ten wishes – your list is full.' },
   vigoMaxProgs: { no: 'Til Vg1 kan du søke på inntil tre ulike utdanningsprogram.',
                   en: 'For Vg1 you can apply to at most three different education programmes.' },
   midLabel:   { no: 'snitt', en: 'avg' },
-  series:     { no: 'programområder', en: 'programme areas' },
+  series:     { no: n => n === 1 ? 'programområde' : 'programområder', en: n => n === 1 ? 'programme area' : 'programme areas' },
   website:    { no: 'Nettside', en: 'Website' },
   wiki:       { no: 'Wikipedia', en: 'Wikipedia' },
   srcNote: {
@@ -1683,7 +1735,7 @@ const T = {
   ptsClear:   { no: 'Fjern poengsummen', en: 'Clear your points' },
   ptsBad: {
     no: 'Skriv et tall mellom 0 og 70 – for eksempel 42,5.',
-    en: 'Enter a number between 0 and 70 — for example 42.5.',
+    en: 'Enter a number between 0 and 70 – for example 42.5.',
   },
   ptsNoteSet: {
     no: 'Sjanse for plass ved neste inntak: {likely} sannsynlig · {possible} mulig · {unlikely} lite sannsynlig.',
@@ -1691,13 +1743,14 @@ const T = {
   },
   bandLabel:  { no: b => ({ likely: '≥ 70 %', possible: '35–70 %', unlikely: '< 35 %' })[b],
                 en: b => ({ likely: '≥ 70%', possible: '35–70%', unlikely: '< 35%' })[b] },
+  legendZoomHint: { no: 'Zoom inn for å se sjansen per skole.', en: 'Zoom in to see each school’s chance.' },
   legendChance: { no: x => `Sjanse for plass med ${x} poeng · beste programområde`,
                   en: x => `Chance of a place with ${x} points · best programme` },
   legendChanceSize: { no: 'Størrelsen viser hvor stor andel av programområdene som er innen rekkevidde (≥ 35 %)',
                       en: 'Size shows what share of the programmes are within reach (≥ 35%)' },
   legendNoForecast: { no: 'Ingen prognose', en: 'No forecast' },
-  tipChance:  { no: (x, L, R, U, n, y) => `Med ${x} poeng i ${y}: <b>${L}</b> sannsynlig · ${R} mulig · ${U} lite sannsynlig (${n} programområder)`,
-                en: (x, L, R, U, n, y) => `With ${x} points in ${y}: <b>${L}</b> likely · ${R} possible · ${U} unlikely (${n} programmes)` },
+  tipChance:  { no: (x, L, R, U, n, y) => `Med ${x} poeng i ${y}: <b>${L}</b> sannsynlig · ${R} mulig · ${U} lite sannsynlig (${n} programområde${n === 1 ? '' : 'r'})`,
+                en: (x, L, R, U, n, y) => `With ${x} points in ${y}: <b>${L}</b> likely · ${R} possible · ${U} unlikely (${n} programme area${n === 1 ? '' : 's'})` },
   tipBest:    { no: (p, prog) => `Best sjanse: ${p} % · ${prog}`, en: (p, prog) => `Best chance: ${p}% · ${prog}` },
   tipNoForecast: { no: 'Ingen prognose for denne skolen', en: 'No forecast for this school' },
   chancePrompt: {
@@ -1727,7 +1780,7 @@ const T = {
                   en: (L, R, U) => `${L} likely (≥ 70%) · ${R} possible (35–70%) · ${U} unlikely (< 35%)` },
   chanceSub: {
     no: (y, r, lo, hi) => `Prognose for inntaket ${y}${r ? ` (${r}. inntak)` : ''}, regnet ut fra skolens og programområdets historikk. En pekepinn, ikke et løfte: prognosen bommer typisk med ±${lo} til ±${hi} poeng, mest der historikken er kort.`,
-    en: (y, r, lo, hi) => `Forecast for the ${y} intake${r ? ` (intake ${r})` : ''}, from the history of this school and programme. A pointer, not a promise: the forecast is typically off by ±${lo} to ±${hi} points, most where the history is short.`,
+    en: (y, r, lo, hi) => `Forecast for the ${y} intake${r ? ` (${ordEn(r)} intake)` : ''}, from the history of this school and programme. A pointer, not a promise: the forecast is typically off by ±${lo} to ±${hi} points, most where the history is short.`,
   },
   chanceCatchment: { no: 'Gjelder søkere bosatt i skolens inntaksområde.',
                      en: 'Applies to applicants resident in the school\'s intake area.' },
@@ -1747,7 +1800,7 @@ const T = {
   choicesClearSure: { no: 'Sikker?', en: 'Sure?' },
   choicesCleared: { no: 'Ønskene er tømt', en: 'Your wishes are cleared' },
   choicesOpen: { no: 'Åpne skolen', en: 'Open the school' },
-  choicesOpenOne: { no: (sch, what) => `Åpne ${sch} – ${what}`, en: (sch, what) => `Open ${sch} — ${what}` },
+  choicesOpenOne: { no: (sch, what) => `Åpne ${sch} – ${what}`, en: (sch, what) => `Open ${sch} – ${what}` },
   choicesRemoveOne: { no: (sch, what) => `Fjern ${what} ved ${sch} fra ønskene mine`,
                       en: (sch, what) => `Remove ${what} at ${sch} from my wishes` },
   choicesSum: { no: (L, R, U) => `${L} sannsynlig · ${R} mulig · ${U} lite sannsynlig`,
@@ -1755,7 +1808,7 @@ const T = {
   choicesAny: { no: p => `Sjansen for minst én plass: ca. ${p} %`, en: p => `Chance of at least one place: about ${p}%` },
   choicesAnyTitle: {
     no: 'Regnet som om ønskene var uavhengige av hverandre. Det er de ikke helt – et år med hard konkurranse rammer flere av dem samtidig – så dette tallet er litt for høyt.',
-    en: 'Computed as if the wishes were independent of each other. They are not quite — a hard year hits several of them at once — so this figure is a little too high.',
+    en: 'Computed as if the wishes were independent of each other. They are not quite – a hard year hits several of them at once – so this figure is a little too high.',
   },
   choicesNudge: { no: 'Ingen av ønskene er sannsynlige. Vurder å ta med et sikrere ønske.',
                   en: 'None of the wishes is likely. Consider adding a safer one.' },
@@ -1763,12 +1816,12 @@ const T = {
                   en: 'Enter your points to see the chance per wish.' },
   choicesNoPred: { no: 'Ingen prognose', en: 'No forecast' },
   choicesPartial: { no: (n, m) => `Regnet ut fra ${n} av ${m} ønsker – resten har ingen prognose.`,
-                    en: (n, m) => `Worked out from ${n} of ${m} wishes — the rest have no forecast.` },
+                    en: (n, m) => `Worked out from ${n} of ${m} wishes – the rest have no forecast.` },
   // ----- the final round, where the county publishes an earlier one -----
-  finalRoundChip: { no: (r, p) => `Ved ${r}. inntak (siste): ca. ${p} %`, en: (r, p) => `By intake ${r} (final): about ${p}%` },
+  finalRoundChip: { no: (r, p) => `Ved ${r}. inntak (siste): ca. ${p} %`, en: (r, p) => `By the ${ordEn(r)} intake (final): about ${p}%` },
   finalRoundNote: {
     no: (r, L, n) => `Fylket publiserer 1. inntak. Ved ${r}. inntak – det siste – er sjansen høyere: sannsynlig plass på ${L} av ${n}. Målt på fylkets egne tall for begge inntakene.`,
-    en: (r, L, n) => `The county publishes intake 1. By intake ${r} — the final one — the chance is higher: a place is likely at ${L} of ${n}. Measured on the county's own figures for both intakes.`,
+    en: (r, L, n) => `The county publishes the 1st intake. By the ${ordEn(r)} intake – the final one – the chance is higher: a place is likely at ${L} of ${n}. Measured on the county's own figures for both intakes.`,
   },
   chanceRoundUnknown: { no: 'Fylket oppgir ikke hvilket inntak tallene er fra. Sjansen gjelder det inntaket fylket publiserer.',
                         en: 'The county does not state which intake its figures are from. The chance refers to the intake the county publishes.' },
@@ -1777,7 +1830,7 @@ const T = {
   // dataset follows that rule (tools/extractors/mro.py), so its "ingen
   // venteliste" is the county's own reading, not an observed queue state
   openRuleNote: { no: 'Møre og Romsdal viser «ingen venteliste» der alle kom inn eller poenggrensen var under 25 poeng – fylkets egen regel. Hvilken av de to, sier ikke fylket.',
-                  en: 'Møre og Romsdal shows "no waiting list" where everyone got in or the threshold was below 25 points – the county\'s own rule. Which of the two, the county does not say.' },
+                  en: 'Møre og Romsdal shows “no waiting list” where everyone got in or the threshold was below 25 points – the county\'s own rule. Which of the two, the county does not say.' },
   finalRoundUnknown: {
     no: 'Fylket publiserer bare 1. inntak. Flere kommer inn i senere inntak, men det finnes ikke tall for hvor mange.',
     en: 'The county publishes intake 1 only. More get in at later intakes, but there are no figures for how many.',
@@ -1986,7 +2039,7 @@ function errCdf(z) {
 }
 const chanceOf = (pr, x) => (1 - pr.pi) + pr.pi * errCdf((x - pr.m) / pr.s);
 const bucketOf = c => c >= BANDS.likely ? 'likely' : c >= BANDS.possible ? 'possible' : 'unlikely';
-const bucketColor = b => cssVar(b === 'likely' ? '--good' : b === 'possible' ? '--warn' : '--danger');
+const bucketColor = b => cssVar(b === 'likely' ? '--good' : b === 'possible' ? '--dot-possible' : '--dot-unlikely');
 const pct = c => Math.round(c * 100);
 // Norwegian puts a space before the unit sign, English does not. Every T
 // string already splits on this; the chips printed "99 %" in both languages,
@@ -2107,7 +2160,14 @@ function toggleChoice(s, p) {
     const refuse = key => {
       choicesNote = t(key);
       renderChoices();
-      if (!document.getElementById('choices').offsetParent) pickNote(choicesNote);
+      // the note is rendered inside #choices; on a desktop that card scrolls,
+      // and the note landed 200px below its fold with nothing else happening
+      const note = document.querySelector('#choices .vnote'), card = document.getElementById('panel');
+      const onScreen = note && note.offsetParent && card && (() => {
+        const n = note.getBoundingClientRect(), c = card.getBoundingClientRect();
+        return n.top >= c.top && n.bottom <= c.bottom + 1;
+      })();
+      if (!onScreen) pickNote(choicesNote);
     };
     if (items.length >= 10) { refuse('vigoMaxWishes'); return; }
     if (p.level === 'Vg1') {
@@ -2269,7 +2329,8 @@ let labelMarkers = () => {};
 const isDark = () => PREFS.theme === 'dark' ||
   (PREFS.theme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
 const prefersStill = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
-let tileLayer = null, miniMap = null;
+let tileLayer = null, miniMap = null, miniMapRO = null;
+let sideOpener = null;      // the marker or cluster that opened the panel, for Escape to return to
 // the key is CARTO's free non-commercial basemap tier (domain-bound,
 // requested for poengkart's domains 27.08.2026); it belongs in the client
 const CARTO_KEY = 'cb1_2bsv_1_23dae695a38f70885d3b4f7b';
@@ -2361,12 +2422,15 @@ function drawMarkers() {
       ` · <span class="round${s.round ? '' : ' unknown'}">` +
       `${s.round ? t('roundChip', s.round) : t('roundUnknown')}</span></div>` +
       `<div class="h">${t('tipHint')}</div>`;
-    const tipOpts = dir => ({ className: 'tip', direction: dir, opacity: 1,
-                              offset: dir === 'top' ? [0, -10] : [0, 10] });
+    const OFF = { top: [0, -10], bottom: [0, 10], left: [-10, 0], right: [10, 0] };
+    const tipOpts = dir => ({ className: 'tip', direction: dir, opacity: 1, offset: OFF[dir] });
     m.bindTooltip(html, tipOpts('top'));
     // flip below the marker near the top edge, where a 'top' tooltip is clipped
     m.on('mouseover', () => {
-      const want = map.latLngToContainerPoint(m.getLatLng()).y < 140 ? 'bottom' : 'top';
+      // and sideways near the left or right edge: the chance tooltip is 480px
+      // wide and lost its last words on the easternmost Oslo school
+      const pt = map.latLngToContainerPoint(m.getLatLng()), W = map.getSize().x;
+      const want = pt.y < 140 ? 'bottom' : pt.x > W - 260 ? 'left' : pt.x < 260 ? 'right' : 'top';
       if (m.getTooltip().options.direction !== want) {
         m.unbindTooltip().bindTooltip(html, tipOpts(want)).openTooltip();
       }
@@ -2413,9 +2477,19 @@ function drawMarkers() {
       });
     }
   };
+  // Tab used to stop on every marker and cluster on screen — 32 stops before
+  // the county select. One of them holds tabindex 0; the arrow keys, Home and
+  // End move between them (a roving tabindex, WAI-ARIA toolbar pattern).
+  const roveMarkers = () => {
+    const els = mapKeyed();
+    if (!els.length) return;
+    const cur = els.includes(document.activeElement) ? document.activeElement
+      : els.find(e => e.dataset.pkRove === '0') || els[0];
+    els.forEach(e => { const on = e === cur; e.setAttribute('tabindex', on ? '0' : '-1'); e.dataset.pkRove = on ? '0' : '1'; });
+  };
   const labelPoints = labelMarkers;
-  labelMarkers = () => { labelPoints(); labelClusters(); };
-  markerLayer.on('animationend', labelMarkers);
+  labelMarkers = () => { labelPoints(); labelClusters(); roveMarkers(); };
+  markerLayer.on('animationend', () => { labelMarkers(); legendZoomHint(); });
   labelMarkers();
 }
 
@@ -2549,6 +2623,16 @@ function liftMapControls() {
   document.documentElement.style.setProperty(
     '--panel-reserve', Math.round(innerHeight - (innerHeight - gap) / z) + 'px');
 }
+// with points entered the legend shows a green/amber/red ramp, but at the
+// national zoom every marker is a blue cluster: say why until a dot appears
+function legendZoomHint() {
+  const el = document.getElementById('legend-zoom');
+  if (!el) return;
+  const fg = markerLayer && markerLayer._featureGroup;
+  const clustered = !!fg && fg.getLayers().some(l => typeof l.getChildCount === 'function');
+  el.textContent = t('legendZoomHint');
+  el.hidden = !(chanceMode() && clustered);
+}
 function renderLegend() {
   const rounds = [...new Set(visibleSchools().map(s => s.round).filter(Boolean))];
   const anyUnknown = visibleSchools().some(s => !s.round);
@@ -2561,6 +2645,7 @@ function renderLegend() {
       ? ` <span class="round unknown" title="${esc(t('roundUnknownTitle'))}">${t('roundUnknown')}</span>` : '');
   const mix = document.getElementById('legend-mixed');
   mix.hidden = !(rounds.length > 1 || (rounds.length && anyUnknown));
+  legendZoomHint();
   mix.textContent = t('mixedRounds');
   if (chanceMode()) {
     document.getElementById('legend-bins').innerHTML = ['likely', 'possible', 'unlikely'].map(b =>
@@ -2647,8 +2732,17 @@ function schoolFromUrl() {
         // nsr_name also holds the geocoder's provenance sentinels "(manual)" and
         // "(stedsnavn)"; those are not names and must not open a school
         || inFylke.find(x => { const a = x.nsr_name || ''; return a && a[0] !== '(' && a.toLowerCase() === key; })
+        // a link shared before a merger names the old school; it lives on as
+        // merged_from of the school that absorbed it
+        || inFylke.find(x => (x.merged_from || []).some(a => a.toLowerCase() === key))
         || null;
   } catch (e) { return null; }
+}
+// The name a #s= link asked for, when no school answers to it.
+function unresolvedLinkName() {
+  const p = hashParts();
+  const m = p.s && /^([^/]+)\/(.+)$/.exec(p.s);
+  try { return m ? decodeURIComponent(m[2]).trim() : ''; } catch (e) { return p.s; }
 }
 // Put the filters named in the address back on the controls. Used at boot and
 // on every history traversal, so Back steps through filter changes too.
@@ -2676,10 +2770,18 @@ function applyUrlFilters() {
 // focusable. So Tab and a VoiceOver swipe walked straight through the sheet
 // into a hundred invisible markers underneath. The four modal sheets already
 // avoid this via setModalTrap(); the most-used surface in the app did not.
+// where #side is the full-width sheet: phones, and iPad widths at Stor/Ekstra
+// stor text (the CSS rule of the same shape lives beside the 760px block)
+const phoneSheet = () => {
+  const f = document.documentElement.dataset.font;
+  return matchMedia('(max-width: 760px)').matches
+    || (f === 'lg' && matchMedia('(max-width: 1024px)').matches)
+    || (f === 'xl' && matchMedia('(max-width: 1080px)').matches);
+};
 function sideTrap(on) {
   const m = document.getElementById('map');
   if (!m) return;
-  const phone = matchMedia('(max-width: 760px)').matches;   // where the sheet covers the map
+  const phone = phoneSheet();                                // where the sheet covers the map
   if (on && phone) m.setAttribute('inert', '');
   else m.removeAttribute('inert');
 }
@@ -2703,7 +2805,40 @@ function widenFor(s) {
   drawMarkers(); renderLegend(); renderCatNote(); syncUrl();
   return true;
 }
+// the location map in the photo header: a school with no photo, or a photo
+// whose upstream URL has since died
+// every marker and cluster the keyboard can reach, in DOM order
+const mapKeyed = () => [...document.querySelectorAll('#map [role="button"][data-pk-keyed]')];
+document.addEventListener('keydown', ev => {
+  const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1, Home: 0, End: 0 };
+  if (!(ev.key in keys)) return;
+  const els = mapKeyed(), i = els.indexOf(document.activeElement);
+  if (i < 0) return;
+  ev.preventDefault();
+  const j = ev.key === 'Home' ? 0 : ev.key === 'End' ? els.length - 1 : (i + keys[ev.key] + els.length) % els.length;
+  els[i].setAttribute('tabindex', '-1'); els[i].dataset.pkRove = '1';
+  els[j].setAttribute('tabindex', '0'); els[j].dataset.pkRove = '0';
+  els[j].focus();
+});
+function buildMiniMap(s) {
+  miniMap = L.map('s-minimap', {
+    zoomControl: false, attributionControl: false, dragging: false,
+    scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false,
+    keyboard: false, touchZoom: false, tap: false,
+  }).setView([s.lat, s.lon], 16);
+  L.tileLayer(tileUrl(), { detectRetina: true }).addTo(miniMap);
+  L.circleMarker([s.lat, s.lon], {
+    radius: 9, weight: 3, color: '#fff', fillColor: cssVar('--accent'), fillOpacity: 1,
+  }).addTo(miniMap);
+  // the phone sheet is still sliding in when the map is built, so a single
+  // deferred redraw left tiles on a fifth of the box; redraw on every resize
+  if (miniMapRO) miniMapRO.disconnect();
+  miniMapRO = new ResizeObserver(() => miniMap && miniMap.invalidateSize());
+  miniMapRO.observe(document.getElementById('s-minimap'));
+}
 function openSide(s) {
+  const ae = document.activeElement;
+  sideOpener = ae && document.getElementById('map')?.contains(ae) ? ae : null;
   widenFor(s);
   current = s;
   chart.prog = null;                     // the lens itself is global
@@ -2736,6 +2871,9 @@ function clearScope() {
 let sideClosing = false;   // a ✕ in flight: the next popstate is a CLOSE,
                            // whatever school the entry underneath names
 function closeSide(fromHistory) {
+  // opened from the map by keyboard: Escape goes back to that school's marker,
+  // found by name because drawMarkers() has rebuilt the marker DOM since
+  const openedName = sideOpener && current ? current.name : null;
   const side = document.getElementById('side');
   if (!fromHistory && (history.state || {}).pkSide) {
     // The entry below is usually school-less, but a tab BOOTED from a deep
@@ -2754,8 +2892,13 @@ function closeSide(fromHistory) {
   setUrlSchool(null);
   liftMapControls();                       // the legend is visible again
   side.setAttribute('inert', '');          // keep 17 hidden controls out of Tab
+  const opener = openedName
+    ? mapKeyed().find(e => (e.getAttribute('aria-label') || '').startsWith(openedName + '.')) || null
+    : null;
+  if (opener) { mapKeyed().forEach(e => { e.setAttribute('tabindex', '-1'); e.dataset.pkRove = '1'; }); opener.setAttribute('tabindex', '0'); opener.dataset.pkRove = '0'; }
+  sideOpener = null;
   const back = document.getElementById('map-fylke');
-  (back && back.offsetParent ? back : document.getElementById('map-cat'))?.focus();
+  (opener || (back && back.offsetParent ? back : document.getElementById('map-cat')))?.focus();
 }
 
 // Rogaland's image handler serves nothing but the original: a width in the
@@ -2773,8 +2916,10 @@ function renderSide() {
   const s = current;
   // photo header
   const ph = document.getElementById('s-photo');
-  const creditText = s.photo_credit
-    || (s.photo_source === 'commons' ? 'Wikimedia Commons' : 'Wikipedia');
+  // the pipeline stores the credit with a Norwegian "Foto:" prefix; the label
+  // is UI text and follows the language, the credited name does not
+  const creditText = t('photoCredit', (s.photo_credit
+    || (s.photo_source === 'commons' ? 'Wikimedia Commons' : 'Wikipedia')).replace(/^\s*(foto|photo)\s*:\s*/i, ''));
   // esc() protects the attribute but not the scheme, and every one of these
   // comes from a scrape rather than from us
   const web = u => (/^https?:\/\//i.test(u || '') ? u : '');
@@ -2796,25 +2941,18 @@ function renderSide() {
   const pimg = ph.querySelector('img');
   if (pimg) {
     pimg.onerror = () => {
-      pimg.onerror = null;
-      if (pimg.dataset.full && pimg.src !== pimg.dataset.full) pimg.src = pimg.dataset.full;
-      else { pimg.remove(); ph.querySelector('.credit')?.remove(); }
+      if (!pimg.isConnected) return;                       // the panel has moved on
+      if (pimg.dataset.full && pimg.src !== pimg.dataset.full) { pimg.src = pimg.dataset.full; return; }
+      // both the proxy and the county URL are gone (St.Hallvard, Os): the header
+      // used to keep a broken-image glyph and a credit for a photo that is not there
+      pimg.onerror = null; pimg.remove(); ph.querySelector('.credit')?.remove();
+      if (s.lat && !ph.querySelector('#s-minimap')) { ph.insertAdjacentHTML('afterbegin', '<div id="s-minimap"></div>'); buildMiniMap(s); }
     };
   }
   // no freely licensed photo exists for this school: show where it actually is
   if (miniMap) { miniMap.remove(); miniMap = null; }
-  if (!s.photo && s.lat) {
-    miniMap = L.map('s-minimap', {
-      zoomControl: false, attributionControl: false, dragging: false,
-      scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false,
-      keyboard: false, touchZoom: false, tap: false,
-    }).setView([s.lat, s.lon], 16);
-    L.tileLayer(tileUrl(), { detectRetina: true }).addTo(miniMap);
-    L.circleMarker([s.lat, s.lon], {
-      radius: 9, weight: 3, color: '#fff', fillColor: cssVar('--accent'), fillOpacity: 1,
-    }).addTo(miniMap);
-    setTimeout(() => miniMap && miniMap.invalidateSize(), 30);
-  }
+  if (miniMapRO) { miniMapRO.disconnect(); miniMapRO = null; }
+  if (!s.photo && s.lat) buildMiniMap(s);
   // meta links
   const meta = [];
   if (s.url) meta.push(`<a href="${esc(s.url.startsWith('http') ? s.url : 'https://' + s.url)}" target="_blank" rel="noopener">${t('website')} ↗</a>`);
@@ -2859,19 +2997,13 @@ function renderSide() {
   const cells = [];
   const base = shownPrograms(s);
   const scopePrograms = lensCat ? base.filter(p => p.category === lensCat) : base;
-  const meanAt = year => meanOf(scopePrograms.map(p => p.values[year]).filter(isPoints));
-  const yrs = [...new Set(scopePrograms.flatMap(p => Object.keys(p.values)))].sort();
-  const latest = yrs[yrs.length - 1];
-  // the previous year the line actually plots, not merely the previous year
-  // the school appears in — otherwise the change is a step off the chart
-  const plotted = yrs.filter(y => meanAt(y) !== null);
-  const prev = plotted[plotted.length - 2];
-  const mean = meanAt(latest), meanPrev = prev === undefined ? null : meanAt(prev);
+  const step = meanStep(scopePrograms);
+  const { latest, prev, mean, meanPrev } = step;
   const scopeLabel = lensCat ? CATS[lensCat][lang] : t('heroTypicalAll');
   if (mean !== null) {
     cells.push({ v: fmt(mean), l: `${t('heroTypical')} · ${scopeLabel} ${latest}` });
     if (meanPrev !== null) {
-      const d = round1(mean - meanPrev);
+      const d = step.d;
       cells.push({ v: (d > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
                    cls: d > 0 ? 'up' : d < 0 ? 'dn' : '', ti: t('heroDeltaBasis') });
     }
@@ -2891,7 +3023,7 @@ function renderSide() {
                 : t('allIn');
     cells.push({ v: label, l: `${scopeLabel} ${latest || ''}`.trim() });
   }
-  cells.push({ v: visibleIn(scopePrograms), l: t('heroProgs') });
+  cells.push({ v: visibleIn(scopePrograms), l: t('heroProgs', visibleIn(scopePrograms)) });
   const mix = openMix(scopePrograms, latest);
   const mixBox = document.getElementById('s-mix');
   mixBox.hidden = !(mix.mostly && mean !== null);
@@ -2930,7 +3062,7 @@ function renderChance(s, lensCat) {
   box.hidden = false;
   const adj = e.alpha === undefined ? ''
     : `<div class="adj tipped" title="${esc(t('adjTitle'))}">`
-      + `${esc(t('adjLine', (e.alpha > 0 ? '+' : '') + fmt(e.alpha), fmt(e.alpha_se)))}</div>`;
+      + `${esc(t('adjLine', (round1(e.alpha) > 0 ? '+' : '') + fmt(e.alpha), fmt(e.alpha_se)))}</div>`;
   if (!chanceMode()) {
     box.className = 'chance prompt';
     box.innerHTML = `<div>${esc(t('chancePrompt'))}</div>${adj}`;
@@ -2999,7 +3131,9 @@ function renderChartCard() {
         setLens('all');
       } else if (b.dataset.mode === 'cat') {
         chart.prog = null;
-        const present = [...new Set(current.programs.map(p => p.category))];
+        // from the programmes the hero and the list count, not the unfiltered set:
+        // Elvebakken's default landed on a programme its own hero called "tilbys ikke her"
+        const present = [...new Set(shownPrograms(current).map(p => p.category))];
         setLens(mapCat !== 'all' && present.includes(mapCat) ? mapCat : present[0]);
       } else {
         const pool = current.programs.filter(p => mapCat === 'all' || p.category === mapCat);
@@ -3048,7 +3182,10 @@ function drawChart() {
   // The years.length guard above does not catch it: that measures the whole
   // school's span, not the selected category's.
   if (!series.length) {
-    document.getElementById('chart-sub').textContent = t('chartNoPoints');
+    // a lens the school does not run at all is "tilbys ikke her", as the hero says,
+    // not "everyone who applied got in"
+    const offered = mapCat === 'all' || shownPrograms(current).some(p => p.category === mapCat);
+    document.getElementById('chart-sub').textContent = offered ? t('chartNoPoints') : `${CATS[mapCat][lang]} · ${t('notOffered')}`;
     svgHost.innerHTML = '';
     return;
   }
@@ -3165,7 +3302,7 @@ function drawChart() {
         : v === 'open' ? t('allIn') : v === 'F' ? t('priority')
         : v === 'D' ? t('docAdm') : t('gone');
     } else {
-      body = mid[yr] != null ? `${t('midLabel')} ${fmt(mid[yr])} · ${cnt[yr]} ${t('series')}` : '–';
+      body = mid[yr] != null ? `${t('midLabel')} ${fmt(mid[yr])} · ${cnt[yr]} ${t('series', cnt[yr])}` : '–';
     }
     tip.innerHTML = `<span class="y">${yr}</span> <span class="r">${body}</span>`;
     tip.style.display = 'block';
@@ -3213,7 +3350,7 @@ function renderList() {
   for (const c of Object.keys(CATS).filter(c => byCat[c])) {
     const list = byCat[c];
     list.sort((a, b) => (numericLatest(b.values)?.[1] ?? -1) - (numericLatest(a.values)?.[1] ?? -1));
-    html += `<button class="cat-head" data-cat="${c}"><span>${CATS[c][lang]}</span><span class="cnt">${list.length}</span></button>`;
+    html += `<button class="cat-head" data-cat="${c}" aria-pressed="${mapCat === c}"><span>${CATS[c][lang]}</span><span class="cnt">${list.length}</span></button>`;
     for (const p of list) {
       // headline value: newest non-priority cell (F is a quota fact, not a value)
       let latestYear = null, lv;
@@ -3627,7 +3764,7 @@ function renderIntro() {
           <span class="key">${dot(6, cssVar('--seq-250'))}${esc(keys[0])}</span>
           <span class="key">${dot(6, cssVar('--seq-700'))}${esc(keys[1])}</span>
           <span class="key">${dot(6, 'none', `stroke="${cssVar('--accent')}" stroke-width="1.6" stroke-dasharray="3 2"`)}${esc(keys[2])}</span>
-          <span class="key">${dot(6, cssVar('--accent'), `fill-opacity="0.35" stroke="${cssVar('--accent')}" stroke-width="1.6"`)}${esc(t('noPoints'))}</span>
+          <span class="key">${dot(6, cssVar('--accent'), `fill-opacity="0.35" stroke="${cssVar('--accent')}" stroke-width="1.6"`)}${esc(t('noPointsShort').toLocaleLowerCase())}</span>
           <span class="key">${dot(6, cssVar('--context'))}${esc(keys[3])}</span>
         </div>` : ''}
       </div>
@@ -3650,6 +3787,20 @@ function renderIntro() {
 // select behind the backdrop, where nothing was visible to act on.
 const SHEET_IDS = ['contact', 'intro', 'settings', 'calc', 'searchov'];
 const anySheetOpen = () => SHEET_IDS.some(id => !document.getElementById(id).hidden);
+// inert keeps focus inside an open sheet, but past its last control the browser
+// parks focus on <body> for one press before coming back; wrap it instead
+const SHEETS = ['searchov', 'settings', 'intro', 'calc', 'contact'];
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Tab') return;
+  const sheet = SHEETS.map(id => document.getElementById(id)).find(el => el && !el.hidden);
+  if (!sheet) return;
+  const f = [...sheet.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+    .filter(el => el.offsetParent !== null);
+  if (!f.length) return;
+  const first = f[0], last = f[f.length - 1], outside = !sheet.contains(e.target);
+  if (!e.shiftKey && (e.target === last || outside)) { e.preventDefault(); first.focus(); }
+  else if (e.shiftKey && (e.target === first || outside)) { e.preventDefault(); last.focus(); }
+});
 function setModalTrap() {
   const open = anySheetOpen();
   ['skip', 'app', 'legend'].forEach(id =>     // #panel/#controls are #app children now
@@ -3674,10 +3825,10 @@ function openIntro() {
   document.getElementById('intro').hidden = false;
   setModalTrap();
   openSheetHistory();
-  // preventScroll: the call to action sits at the foot of a sheet taller than
-  // a phone screen, and focusing it scrolled the sheet past its own heading —
-  // the intro opened on step 3 of 4
-  setTimeout(() => document.querySelector('#intro .cta')?.focus({ preventScroll: true }), 40);
+  // the heading, not the call to action: that sits at the foot of a sheet taller
+  // than a 700px window, where a keyboard reader got an invisible focus and an
+  // Enter that closed the sheet they had just opened
+  setTimeout(() => document.getElementById('intro-h')?.focus({ preventScroll: true }), 40);
 }
 
 function closeIntro(fromHistory) {
@@ -3788,9 +3939,13 @@ function runSearch(q) {
     : e.f.startsWith(f) ? 1
     : e.f.split(' ').some(w => w.startsWith(f)) ? 2
     : e.f.includes(f) ? 3 : -1;
-  return searchIx.map(e => [score(e), e.s]).filter(x => x[0] >= 0)
+  const hits = searchIx.map(e => [score(e), e.s]).filter(x => x[0] >= 0)
     .sort((a, b) => a[0] - b[0] || a[1].name.localeCompare(b[1].name, 'no'))
     .slice(0, 8).map(x => x[1]);
+  // "Møre" answered "Ingen treff": one county row above the names, never more
+  const county = DATA.counties.map(c => c.fylke)
+    .find(c => { const cf = foldName(c); return cf.startsWith(f) || cf.split(' ').some(w => w.startsWith(f)); });
+  return county ? [{ county }, ...hits] : hits;
 }
 
 /* ================= search overlay (design C trial) ================= */
@@ -3801,7 +3956,10 @@ function renderOvList() {
   box.innerHTML = !q.value.trim() ? ''
     : ovHits.length
     ? ovHits.map((s, i) =>
-        `<div class="opt${i === ovAct ? ' act' : ''}" id="ov-opt-${i}" role="option"` +
+        s.county
+        ? `<div class="opt county${i === ovAct ? ' act' : ''}" id="ov-opt-${i}" role="option"` +
+          ` aria-selected="${i === ovAct}"><span>${esc(t('searchCounty', s.county))}</span></div>`
+        : `<div class="opt${i === ovAct ? ' act' : ''}" id="ov-opt-${i}" role="option"` +
         ` aria-selected="${i === ovAct}"><span>${esc(s.name)}</span>` +
         `<span class="fy">${esc(s.fylke)}</span></div>`).join('')
     : `<div class="none" role="option" aria-disabled="true">${esc(t('noMatch'))}</div>`;
@@ -3827,6 +3985,12 @@ function pickOv(i) {
   // searching for school B
   document.getElementById('searchov').hidden = true;
   setModalTrap();
+  if (s.county) {                          // the county row: filter, as the select would
+    const sel = document.getElementById('map-fylke');
+    if (sel) sel.value = s.county;
+    onMapFylke(s.county);
+    return;
+  }
   if (s.lat && view === 'map') {
     const z = Math.max(map.getZoom(), 11);
     prefersStill() ? map.setView([s.lat, s.lon], z) : map.flyTo([s.lat, s.lon], z);
@@ -3969,12 +4133,26 @@ function setView(v) {
 // year-over-year, like-for-like: only programmes with a number in BOTH
 // years enter the comparison — a school whose basket changed between years
 // used to show a delta with the wrong sign (Hvam: −2,4 shown, +11,6 real)
+// The step between the last two points of the average line: the hero's
+// "endring fra <år>" and the list's ENDRING are this one number. The list used
+// to compare like-for-like programmes instead, and beside an identical snitt
+// the two disagreed on 109 schools and flipped sign on 30.
+function meanStep(progs) {
+  const meanAt = year => meanOf(progs.map(p => p.values[year]).filter(isPoints));
+  const yrs = [...new Set(progs.flatMap(p => Object.keys(p.values)))].sort();
+  const latest = yrs[yrs.length - 1];
+  // the previous year the line actually plots, not merely the previous year
+  // the school appears in — otherwise the change is a step off the chart
+  const plotted = yrs.filter(y => meanAt(y) !== null);
+  const prev = plotted[plotted.length - 2];
+  const mean = latest === undefined ? null : meanAt(latest);
+  const meanPrev = prev === undefined ? null : meanAt(prev);
+  return { latest, prev, mean, meanPrev, d: mean !== null && meanPrev !== null ? round1(mean - meanPrev) : null };
+}
 function deltaFor(s, cat, yr) {
-  const prev = String(+yr - 1);
-  const both = (cat === 'all' ? s.programs : s.programs.filter(p => p.category === cat))
-    .filter(p => isPoints(p.values[yr]) && isPoints(p.values[prev]));
-  if (!both.length) return null;
-  return meanOf(both.map(p => p.values[yr])) - meanOf(both.map(p => p.values[prev]));
+  const base = shownPrograms(s);
+  const st = meanStep(cat === 'all' ? base : base.filter(p => p.category === cat));
+  return st.latest === yr ? st.d : null;
 }
 function sortList(key) {
   listSort = listSort.key === key
@@ -4057,7 +4235,7 @@ function renderListView() {
     `<span class="t" id="list-title">${esc(catLabel)} · ${esc(fyLabel)}</span>` +
     `<span class="n">${esc(t('listCount', rows.length))}</span></div>` +
     (rows.length === 0 ? `<div class="foot">${esc(t('listEmpty'))}</div>` : '') +
-    `<div class="tblwrap"><table aria-labelledby="list-title"><thead><tr>` +
+    `<div class="tblwrap"${rows.length ? '' : ' hidden'}><table aria-labelledby="list-title"><thead><tr>` +
     th('name', t('listColSchool')) +
     (allF ? th('fylke', t('listColFylke')) : '') +
     th('value', t('listColVal'), true, t('listColValTip')) +
@@ -4254,6 +4432,10 @@ async function main() {
   // both requests leave together (and were already preloaded from <head>);
   // the forecast is optional: without it the points field stays hidden and
   // the app is exactly what it was
+  // a megabyte of data on a slow link is a blank card for many seconds:
+  // say so, in the failure screen's own place
+  document.getElementById('map').insertAdjacentHTML('beforeend',
+    `<div class="boot-fail boot-pending" aria-live="polite"><p class="big">${esc(t('bootLoading'))}</p></div>`);
   const modelReq = fetch('data/model.json').catch(() => null);
   try {
     const r = await fetch('data/schools.json');
@@ -4286,11 +4468,15 @@ async function main() {
   // purely as a correction for a pane that was still laying out.
   const pts = DATA.schools.filter(s => s.lat).map(s => [s.lat, s.lon]);
   HOME = L.latLngBounds(pts).pad(0.06);
-  map = L.map('map', { zoomControl: false, zoomSnap: 0.25 }).fitBounds(HOME, framePad());
+  document.querySelector('#map .boot-pending')?.remove();
+  map = L.map('map', { zoomControl: false, zoomSnap: 0.25,
+    // the app's transitions already stop under reduced motion; Leaflet's zoom,
+    // fade and fling are its own options
+    ...(prefersStill() ? { zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false, inertia: false } : {}) }).fitBounds(HOME, framePad());
   L.control.zoom({ position: 'bottomright' }).addTo(map);
   updateZoomAria();
   addLocateControl();
-  map.on('zoomend moveend', () => labelMarkers());
+  map.on('zoomend moveend', () => { labelMarkers(); legendZoomHint(); });
   setTiles();
   let touched = false;
   ['mousedown', 'wheel', 'touchstart'].forEach(ev => map.getContainer()
@@ -4359,7 +4545,7 @@ async function main() {
     if (s && s !== current) {
       if (s.lat && view === 'map') map.setView([s.lat, s.lon], Math.max(map.getZoom(), 11));
       openSide(s);
-    }
+    } else if (!s && hashParts().s) toast(t('linkNotFound', unresolvedLinkName()));
   });
   addEventListener('popstate', () => {
     // a back-gesture closes what is actually on screen: an open sheet first —
@@ -4438,6 +4624,7 @@ async function main() {
     if (pts.length) { touched = true; map.fitBounds(L.latLngBounds(pts).pad(0.08), { ...framePad(), animate: false }); }
   }
   const linked = schoolFromUrl();
+  if (!linked && hashParts().s) toast(t('linkNotFound', unresolvedLinkName()));
   if (linked) {
     if (linked.lat) {
       touched = true;                  // the deferred HOME refit must not undo this

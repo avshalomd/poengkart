@@ -81,6 +81,11 @@ Owner's own tasks:
   in `tools/extractors/mro.py` (a figure under 25 → ingen venteliste), the
   county is in the fill model, and `FILL_BLIND` is empty. Still open: ask
   again in 2027 for the capacity data, which would replace the proxy.*
+- Ask Buskerud whether Kongsberg's «Musikk, dans og drama» threshold of 4,0 in
+  2025 is a real threshold (a 0,4 grade average) or a publication artefact. It
+  is in the source and is shown as-is; the app invents no plausibility
+  threshold (QA pass 5 Sept 2026). *Asked 5 Sept 2026 (inntak@bfk.no), together
+  with which inntak the page reports; chase after a week.*
 - Register `poengkart.no` (domene.no) and cut over during the autumn refresh,
   keeping the vercel.app address as a redirect. The domain is hard-coded in
   five files and the CARTO key is domain-bound. At the same time, attach a
