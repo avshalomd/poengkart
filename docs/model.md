@@ -2,7 +2,7 @@
 
 What the "your points" field computes, how the model behind it is fitted, how
 it was tested, and what it cannot know. Everything here is produced by
-`tools/model.py`; the numbers are from the August 2026 dataset and are
+`tools/model.py`; the numbers are from the September 2026 dataset and are
 rewritten into `web/data/model.json` → `meta` on every refresh.
 
 ## The question
@@ -62,8 +62,11 @@ school whose thresholds are high is also one whose programmes fill — is a
 plug-in of the level model's school effect into the fill model, with the
 backtest as judge on every refit. Earlier builds rejected it (0.406 coupled
 against 0.403 independent); with the Innlandet 2020–2022 backfill the
-verdict flipped — 0.429 coupled against 0.434 — so the shipped hurdle is now
-coupled (`meta.coupled`). This is exactly the day the flag was kept for.
+verdict flipped — 0.454 coupled against 0.457 — so the shipped hurdle is now
+coupled (`meta.coupled`). This is exactly the day the flag was kept for,
+though the margin is inside its own noise: a cluster bootstrap over
+school×year puts the difference at [−0.006, +0.001], and on the held-out
+years the two variants score the same fill Brier.
 
 **What each cell means to the model.** A number > 0 is an observation of the
 level and counts as *filled*. "No waitlist" is *not filled* and says nothing
@@ -123,34 +126,39 @@ flatter nothing and mislead the calibration.
 The 80% interval (m ± 1.2816 s) contained the published figure 84% of the time.
 
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
-gave 0.97 filled 0.87 of the time in the held-out years. So π is passed
+gave 0.97 filled 0.86 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = −0.050 + 0.504 logit π). Held-out Brier 0.152 against 0.196 for the
-base rate.
+(logit π′ = −0.050 + 0.504 logit π). Scored on the seven counties whose
+tables carry a fill label (Møre og Romsdal's π is fixed at 1 and stays
+outside the score): held-out Brier 0.161 against 0.207 for the base rate.
 
 **Chance, held-out 2025–26**, for every cell and every score in
 {20, 25, …, 55} — "did an applicant with x points get a place":
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 2.6% | 894 |
-| 10–20% | 10.2% | 1 189 |
-| 20–30% | 20% | 1 443 |
-| 30–40% | 30% | 1 422 |
-| 40–50% | 40% | 1 181 |
-| 50–60% | 51% | 1 210 |
-| 60–70% | 64% | 1 249 |
-| 70–80% | 79% | 1 396 |
-| 80–90% | 87% | 1 615 |
-| 90–100% | 98.6% | 10 985 |
+| 0–10% | 3.0% | 1106 |
+| 10–20% | 11.4% | 1 230 |
+| 20–30% | 21% | 1 405 |
+| 30–40% | 32% | 1 344 |
+| 40–50% | 42% | 1 150 |
+| 50–60% | 52% | 1 170 |
+| 60–70% | 64% | 1 241 |
+| 70–80% | 80% | 1 376 |
+| 80–90% | 87% | 1 608 |
+| 90–100% | 98.7% | 10 954 |
 
-Brier 0.092, against 0.154 for the rule "the last published figure is the
+Brier 0.091, against 0.154 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
-Brier is 0.093).
-Below 60% the forecast is optimistic by up to 5.4 points — a 15% chance was
-really 10% — and by 1 point in the 60–70% bin, which the app's bands absorb
+Brier is 0.092). The fairer comparison centres the same spread, error
+distribution and fill probability on the last published figure instead of
+on the forecast: that scores 0.097, so most of the gain over the bare rule
+is the uncertainty treatment, and the model's own point forecast is worth
+the last 0.006 of it.
+Below 60% the forecast is optimistic by up to 4.0 points — a 15% chance was
+really 11% — and by 1 point in the 60–70% bin, which the app's bands absorb
 (15% and 10% are both "unlikely") but a reader of the raw percentage should
-know; from 70% up it is slightly cautious — a stated 75% came true 79% of the
+know; from 70% up it is slightly cautious — a stated 75% came true 80% of the
 time. The walk-forward forecasts themselves are in `data/model-backtest.csv`.
 
 ## The round bridge
@@ -176,17 +184,25 @@ measurement.
 
 The school effect α from the level fit is the school's thresholds relative to
 the same programmes elsewhere in its county, with its programme mix taken out.
-Against the raw mean that the map colours by, ranking the 159 schools whose α
-rests on five or more fitted cells instead moves the average school 19 places,
-and the most extreme by 79: a good part of a raw mean is what the school teaches, not how
-hard it is to get into. The panel prints α with an approximate standard error;
-it is a measure of demand, not of quality, and the app says so.
+Decomposing the raw mean that the map colours by, over the 181 schools whose
+α rests on five or more fitted cells: the school's own effect explains 42%
+of the variance between schools, the programme mix 23%, the county's level
+that year (which inntak it publishes, and its market) 17%, and the series
+interactions 9%. Ranked within their own county by α instead of by raw
+mean, schools move 2.9 places on average and at most 19 — a good part of a
+raw mean is what the school teaches and when its county publishes, not how
+hard it is to get into. The panel prints α with an approximate standard
+error; it is a measure of demand, not of quality, and the app says so.
+Schools are never ranked across counties: the published inntak differs, and
+the county level is the largest single term after the school's own.
 
 ## The model as a detector
 
 The 25 cells the fitted model finds least plausible are listed in
-`meta.outliers` (|z| ≥ 3: 58 of 8 201 cells). Six of the top twenty-five were
-Vestland 2022 — clustering of that kind has meant a parser problem before, so
+`meta.outliers` (|z| ≥ 3: 86 of 8 201 cells, 32 of them in Møre og Romsdal,
+whose weakest-admitted figures are low by construction). Five of the top
+twenty-five are Vestland 2022 — clustering of that kind has meant a parser
+problem before, so
 three of them, the largest included, were checked against the county's own PDF
 (`vestland_2022-23_1inntak.pdf`): Dale helse- og oppvekstfag Vg1 **12,50**,
 Slåtthaug automatisering Vg2 **18,00**, Fitjar helsearbeiderfag Vg2 **48,80**
