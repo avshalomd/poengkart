@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · September 2026 · v1.8 (version history in Appendix D)
+Technical report · September 2026 · v1.9 (version history in Appendix D)
 Application: [poengkart-no.vercel.app](https://poengkart-no.vercel.app) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
@@ -1094,7 +1094,7 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.8`, and the numbers
+the version this report describes is tagged `report-v1.9`, and the numbers
 quoted here are from the build of 2026-09-08. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
@@ -1327,7 +1327,7 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   smoothing (Muth, 1960) as a third baseline in Table 4, which shows that
   most of the model's margin over persistence on long series is smoothing,
   not pooling.
-- **v1.8** (this version). A data release, no model change: Vestland's
+- **v1.8**. A data release, no model change: Vestland's
   2023 series switches from the county's 3. inntak file to its recovered
   1. inntak file, so the intake exception of Section 5.4 is no longer
   exercised; the round bridge grows from four to nine years (2017–2020,
@@ -1338,5 +1338,13 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   repaired at the parser, retiring the hand-kept "uncertain years" flag.
   The level multiplier's monotone fit now separates the 40–45 band from
   25–40 (Table 3b); held-out coverage is unchanged to the decimal.
+- **v1.9** (this version). A data release, no model change: Rogaland's
+  2026/27 thresholds, published on vilbli on 7 September 2026 as the
+  rolling 2024–2026 edition, join the panel (413 cells, all Rogaland; every
+  2024 and 2025 cell the new edition reprints agrees with the previous
+  one). The model is refit and the walk-forward backtest re-run on the
+  enlarged panel, and the quoted numbers are re-pinned; the model's edge
+  over exponential smoothing on two- to three-year series now has an
+  interval that touches zero (Section 7.3), which the text says.
 
 
