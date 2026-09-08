@@ -26,13 +26,13 @@
 <text x='60' y='24.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>1.0</text>
 <rect x='72.0' y='415.9' width='43.0' height='14.1' fill='#8a8f98' opacity='0.18'/>
 <rect x='119.0' y='413.4' width='43.0' height='16.6' fill='#8a8f98' opacity='0.18'/>
-<rect x='166.0' y='416.5' width='43.0' height='13.5' fill='#8a8f98' opacity='0.18'/>
+<rect x='166.0' y='416.4' width='43.0' height='13.6' fill='#8a8f98' opacity='0.18'/>
 <rect x='213.0' y='418.0' width='43.0' height='12.0' fill='#8a8f98' opacity='0.18'/>
 <rect x='260.0' y='419.5' width='43.0' height='10.5' fill='#8a8f98' opacity='0.18'/>
 <rect x='307.0' y='418.7' width='43.0' height='11.3' fill='#8a8f98' opacity='0.18'/>
 <rect x='354.0' y='418.1' width='43.0' height='11.9' fill='#8a8f98' opacity='0.18'/>
 <rect x='401.0' y='417.7' width='43.0' height='12.3' fill='#8a8f98' opacity='0.18'/>
-<rect x='448.0' y='414.4' width='43.0' height='15.6' fill='#8a8f98' opacity='0.18'/>
+<rect x='448.0' y='414.3' width='43.0' height='15.7' fill='#8a8f98' opacity='0.18'/>
 <rect x='495.0' y='322.4' width='43.0' height='107.6' fill='#8a8f98' opacity='0.18'/>
 <line x1='70.0' y1='430.0' x2='540.0' y2='20.0' stroke='#8a8f98' stroke-width='1.5' stroke-dasharray='5 4'/>
 <circle cx='96.3' cy='410.7' r='5.5' fill='#2b6cb8'/>
@@ -42,8 +42,8 @@
 <circle cx='281.5' cy='244.3' r='5.5' fill='#2b6cb8'/>
 <circle cx='328.5' cy='183.6' r='5.5' fill='#2b6cb8'/>
 <circle cx='376.9' cy='139.3' r='5.5' fill='#2b6cb8'/>
-<circle cx='423.9' cy='89.7' r='5.5' fill='#2b6cb8'/>
-<circle cx='471.4' cy='65.9' r='5.5' fill='#2b6cb8'/>
+<circle cx='423.9' cy='89.3' r='5.5' fill='#2b6cb8'/>
+<circle cx='471.4' cy='66.3' r='5.5' fill='#2b6cb8'/>
 <circle cx='531.5' cy='24.9' r='5.5' fill='#2b6cb8'/>
 <text x='305.0' y='478' font-family='Georgia, "Times New Roman", serif' font-size='15' fill='#1d2733' text-anchor='middle'>Predicted probability of admission</text>
 <text x='20' y='225.0' font-family='Georgia, "Times New Roman", serif' font-size='15' fill='#1d2733' text-anchor='middle' transform='rotate(-90 20 225.0)'>Observed admission frequency</text>

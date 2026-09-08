@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · September 2026 · v1.9 (version history in Appendix D)
+Technical report · September 2026 · v1.9.1 (version history in Appendix D)
 Application: [poengkart-no.vercel.app](https://poengkart-no.vercel.app) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
@@ -28,7 +28,7 @@ exponential-smoothing and group-mean baselines on RMSE in every history
 stratum where they are defined (5.04 vs 6.17 and 5.24 points on series with
 four or more observed years; cluster-bootstrap intervals exclude zero), nominal 80% intervals cover
 80.1% [78.1, 82.0] of outcomes, and the admission probability is calibrated
-to within 7.7 points in every decile and beats both a deterministic and a
+to within 7.8 points in every decile and beats both a deterministic and a
 probabilistic persistence rule (Brier 0.090 vs 0.155 and 0.095). Paired
 within-year publications identify an intake-round effect of −3.2 to −3.4
 points that makes cross-county comparison of raw thresholds misleading.
@@ -578,7 +578,7 @@ held-out years cells given a mean 0.97 filled 89% — the series effects fit
 the training panel too well. We therefore recalibrate by Platt scaling,
 fitting
 
-$$\operatorname{logit} \pi' \;=\; 0.173 \;+\; 0.584 \, \operatorname{logit} \pi \tag{5}$$
+$$\operatorname{logit} \pi' \;=\; 0.172 \;+\; 0.584 \, \operatorname{logit} \pi \tag{5}$$
 
 on the calibration years only, which are disjoint from the held-out
 evaluation years. The slope well below 1 is a uniform confidence haircut.
@@ -589,7 +589,7 @@ overconfidence is stable in time, which the held-out reliability table
 bins. Held-out Brier for the fill event: 0.157 against 0.208 for the base-rate
 forecaster (base rate 0.706; difference −0.050, cluster-bootstrap 95%
 interval [−0.059, −0.042], Section 7.2). The recalibrated $\pi'$ is still
-uneven in the mid-range (58% observed in the 50–60% bin, 65% in the 60–70%
+uneven in the mid-range (59% observed in the 50–60% bin, 65% in the 60–70%
 bin, but 75% in the 70–80% bin), which the deployed quantity (1) — the
 only probability shown to users — absorbs, as Section 7.4 shows.
 
@@ -659,7 +659,7 @@ EWMA is exponential smoothing of the series' own past figures with
 | History | n | Model RMSE | Persistence RMSE | EWMA RMSE | Prog–county mean RMSE | Model MAE | Persistence MAE | Model bias | Model ±3 | Persistence ±3 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 0 years | 167 | **8.62** | — | — | 10.22 | **6.50** | — | −3.30 | **29%** | — |
-| 1 year | 259 | **5.74** | 6.93 | 6.93 | 6.61 | **4.31** | 5.14 | −1.23 | **49%** | 42% |
+| 1 year | 259 | **5.74** | 6.93 | 6.93 | 6.61 | **4.30** | 5.14 | −1.23 | **49%** | 42% |
 | 2–3 years | 415 | **5.75** | 6.51 | 5.96 | 6.41 | **4.40** | 4.88 | +0.32 | **44%** | 41% |
 | 4+ years | 1,346 | **5.04** | 6.17 | 5.24 | 6.00 | **3.80** | 4.40 | +0.10 | 50% | **51%** |
 
@@ -669,7 +669,7 @@ sampling noise: the
 model-minus-persistence RMSE difference is −1.19 points [−1.69, −0.69]
 with one year of history, −0.76 [−1.24, −0.29] with two or three, and
 −1.13 [−1.39, −0.87] with four or more; against the programme–county mean
-the intervals are [−1.30, −0.50], [−1.02, −0.34] and [−1.28, −0.68]. The
+the intervals are [−1.31, −0.50], [−1.02, −0.34] and [−1.28, −0.68]. The
 one exception is the 0-year stratum, where the mean baseline exists for a
 third of the cells and the difference, −1.40 points on those 57, has an
 interval [−2.60, +0.06] that touches zero. The ±3 hit rate tells a subtler
@@ -715,7 +715,7 @@ programme–county mean.
 The nominal 80% interval $m \pm 1.2816\,s$ contained the published figure
 **80.1%** of the time on held-out cells (n = 2,187; cluster-bootstrap
 interval [78.1, 82.0]), at a mean width of 13.4 points; the 50, 90 and 95%
-Gaussian intervals covered 52.8, 88.8 and 93.3%. The deployed
+Gaussian intervals covered 52.9, 88.8 and 93.3%. The deployed
 distribution $\Phi_F$ is the empirical one, and its central 80% band
 covered 79.1% (50/90/95: 49.1, 88.9, 93.6%): the Gaussian band lands on
 its nominal level, and the empirical quantiles, learned on the calibration
@@ -789,18 +789,18 @@ shows the same data as a diagram).
 
 | Predicted | Observed | n |
 |---|---|---|
-| 0–10% | 4.7% | 1,578 |
-| 10–20% | 15% | 1,862 |
-| 20–30% | 27% | 1,520 |
-| 30–40% | 38% | 1,352 |
-| 40–50% | 45% | 1,179 |
-| 50–60% | 60% | 1,271 |
-| 60–70% | 71% | 1,335 |
-| 70–80% | 83% | 1,380 |
-| 80–90% | 89% | 1,755 |
+| 0–10% | 4.7% | 1,580 |
+| 10–20% | 15% | 1,861 |
+| 20–30% | 27% | 1,523 |
+| 30–40% | 38% | 1,351 |
+| 40–50% | 45% | 1,176 |
+| 50–60% | 60% | 1,272 |
+| 60–70% | 71% | 1,334 |
+| 70–80% | 83% | 1,378 |
+| 80–90% | 89% | 1,757 |
 | 90–100% | 98.8% | 12,080 |
 
-The largest gap between prediction and outcome in any decile is 7.7 points,
+The largest gap between prediction and outcome in any decile is 7.8 points,
 in the 70–80% bin, where the forecast is cautious: a stated 75% was
 realised at 83%, so the *likely* band (≥ 70%) understates the chance
 rather than overstating it. Below 70% the forecast is within 5.6 points of
@@ -839,7 +839,7 @@ calibration-year folds:
 - **A county's proxy fill labels.** Møre og Romsdal's "ingen venteliste" is
   the dashboard's rule of Section 4.4, not an observed state. Holding the
   county out of the fill fit instead — its $\pi$ forced to 1, as deployed
-  before the rule — moves the Platt slope from 0.584 to 0.536 and the
+  before the rule — moves the Platt slope from 0.584 to 0.537 and the
   held-out fill Brier on the seven counties whose labels are observed from
   0.158 to 0.160: the proxy labels do not distort the other counties'
   calibration, they sharpen it slightly. On the county's own 223 held-out
@@ -917,7 +917,7 @@ across counties at all (Section 11).
 
 ### 8.3 The model as a data audit
 
-The cells the fitted model finds least plausible ($|z| > 3$: 83 of 8,254, 40 of
+The cells the fitted model finds least plausible ($|z| > 3$: 84 of 8,254, 40 of
 them in Vestland, the county with the most cells; the 25 most extreme are
 published in the model metadata) were checked against sources. The largest deviation and two
 further Vestland-2022 extremes (Slåtthaug 18.0, Dale 12.5, Fitjar 48.8)
@@ -1094,7 +1094,7 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.9`, and the numbers
+the version this report describes is tagged `report-v1.9.1`, and the numbers
 quoted here are from the build of 2026-09-08. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
@@ -1277,13 +1277,13 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
 |---|---|---|
 | 10–20% | 9.6% | 52 |
 | 20–30% | 19% | 139 |
-| 30–40% | 27% | 191 |
-| 40–50% | 46% | 211 |
-| 50–60% | 58% | 250 |
-| 60–70% | 65% | 344 |
+| 30–40% | 27% | 192 |
+| 40–50% | 46% | 210 |
+| 50–60% | 59% | 251 |
+| 60–70% | 65% | 343 |
 | 70–80% | 75% | 387 |
-| 80–90% | 83% | 715 |
-| 90–100% | 92% | 875 |
+| 80–90% | 83% | 714 |
+| 90–100% | 92% | 876 |
 
 ## Appendix D: Version history
 
@@ -1338,7 +1338,7 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   repaired at the parser, retiring the hand-kept "uncertain years" flag.
   The level multiplier's monotone fit now separates the 40–45 band from
   25–40 (Table 3b); held-out coverage is unchanged to the decimal.
-- **v1.9** (this version). A data release, no model change: Rogaland's
+- **v1.9**. A data release, no model change: Rogaland's
   2026/27 thresholds, published on vilbli on 7 September 2026 as the
   rolling 2024–2026 edition, join the panel (413 cells, all Rogaland; every
   2024 and 2025 cell the new edition reprints agrees with the previous
@@ -1346,5 +1346,19 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   enlarged panel, and the quoted numbers are re-pinned; the model's edge
   over exponential smoothing on two- to three-year series now has an
   interval that touches zero (Section 7.3), which the text says.
+
+- **v1.9.1** (this version). A refit on the maintainer's Mac, with no change
+  to data or code. The v1.9 numbers came from a build on another machine,
+  and a refit here moves the last displayed digit of many quoted values (the
+  reliability bucket counts by one to eight cells, the Platt slope by
+  0.0006, no forecast by more than a tenth of a point) because the fit is
+  resolved only to about 0.3 %: three outer passes of L-BFGS-B at scipy's
+  default tolerance on a ridge objective that is flat around its optimum,
+  so where it stops depends on the floating-point path. A one-ulp change in
+  the inputs moves more values than the change of machine did. Every
+  headline figure is unchanged (half-life 4.0, 80 % coverage 0.801, chance
+  Brier 0.093, spread 4.56), and no conclusion moves; digits beyond that
+  resolution are this build's, not reproducible ones. The quoted numbers are
+  re-pinned to this build.
 
 

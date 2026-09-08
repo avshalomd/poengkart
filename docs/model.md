@@ -147,12 +147,12 @@ The 80% interval (m ± 1.2816 s) contained the published figure 80% of the time.
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.97 filled 0.89 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = 0.173 + 0.584 logit π). Scored on all eight counties, Møre og
+(logit π′ = 0.172 + 0.584 logit π). Scored on all eight counties, Møre og
 Romsdal's proxy labels included: held-out Brier 0.157 against 0.208 for the
 base rate. Held out of the fill fit instead, with its fill probability
 fixed at 1 as it was until 5 September 2026, the other seven counties'
 held-out Brier goes from 0.158 to 0.160 and the Platt slope from 0.584 to
-0.536; on the county's own 223 held-out cells the proxy-labelled hurdle
+0.537; on the county's own 223 held-out cells the proxy-labelled hurdle
 scores 0.147 against 0.186 for its base rate
 (`meta.halflife_search.proxy_label_experiment`).
 
@@ -161,15 +161,15 @@ scores 0.147 against 0.186 for its base rate
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 4.7% | 1578 |
-| 10–20% | 15.0% | 1 862 |
-| 20–30% | 27% | 1 520 |
-| 30–40% | 38% | 1 352 |
-| 40–50% | 45% | 1 179 |
-| 50–60% | 60% | 1 271 |
-| 60–70% | 71% | 1 335 |
-| 70–80% | 83% | 1 380 |
-| 80–90% | 89% | 1 755 |
+| 0–10% | 4.7% | 1580 |
+| 10–20% | 15.0% | 1 861 |
+| 20–30% | 27% | 1 523 |
+| 30–40% | 38% | 1 351 |
+| 40–50% | 45% | 1 176 |
+| 50–60% | 60% | 1 272 |
+| 60–70% | 71% | 1 334 |
+| 70–80% | 83% | 1 378 |
+| 80–90% | 89% | 1 757 |
 | 90–100% | 98.8% | 12 080 |
 
 Brier 0.090, against 0.155 for the rule "the last published figure is the
@@ -223,7 +223,7 @@ the county level is the largest single term after the school's own.
 ## The model as a detector
 
 The 25 cells the fitted model finds least plausible are listed in
-`meta.outliers` (|z| ≥ 3: 83 of 8 254 cells, 40 of them in Vestland, the
+`meta.outliers` (|z| ≥ 3: 84 of 8 254 cells, 40 of them in Vestland, the
 county with the most cells). Five of the top twenty-five are Vestland 2022 — clustering of that kind has meant a parser
 problem before, so
 three of them, the largest included, were checked against the county's own PDF

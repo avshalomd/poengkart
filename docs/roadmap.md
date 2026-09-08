@@ -113,6 +113,33 @@ person:
   Buskerud (a new page slug will appear), Akershus's own page (November).
   Recheck monthly; the seven counties outside the dataset are unchanged.
 
+## Found 8 September 2026 (licence change)
+
+- **The pinned model numbers are finer than the fit resolves.** Root cause,
+  established by experiment (`.claude/qa/2026-09-08-rogaland-2026-merge.md`
+  §9): `tools/model.py` fits by three outer EM passes of L-BFGS-B stopped at
+  scipy's default tolerance, on a ridge objective that is flat around its
+  optimum, so the solution is determined only to about 0.2–0.4 % relative
+  (90th percentile ≈ 1 %). The report and `test_docs.py` pin values to the
+  last displayed digit, which is below that resolution, so any change in the
+  floating-point path moves them: the v1.9 `model.json` built on the branch's
+  Linux box differs from a Mac refit in 389 of 9 450 values; scaling every
+  input by one ulp on the Mac moves 1 601; tightening the solver moves
+  2 263 and still leaves 275 moving under one ulp. Inputs and code were
+  identical in every case, two Mac refits were bit-identical, and every
+  headline number (coverage80 0.801, Brier 0.0926, half-life 4.0, spread
+  4.56) is unchanged; what flips is the last digit, bucket counts at bin
+  edges and the order of two outliers tied at |z| = 3.9. Options, owner's
+  call: (a) give `test_docs.py` a tolerance of the fit's resolution (about
+  0.5 % relative, ±2 in counts) and say in the report that quoted digits
+  beyond that are not reproducible — recommended, no numbers change; (b)
+  iterate the EM loop and solver to convergence, re-pin and bump the
+  version — costs a refit and a v1.9.1, still not bit-reproducible across
+  machines; (c) build `model.json` in one named environment only. v1.9.1
+  (8 Sept) re-pinned the docs to a Mac build and says so in Appendix D; a
+  refit on any other machine will fail `test_docs.py` again until one of the
+  three is chosen.
+
 ## Launch list (agreed 2 September 2026)
 
 Soft launch now to county contacts, a few parents of 10. trinn pupils, and
