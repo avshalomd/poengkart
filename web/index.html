@@ -1819,9 +1819,21 @@ const T = {
                     en: (n, m) => `Worked out from ${n} of ${m} wishes – the rest have no forecast.` },
   // ----- the final round, where the county publishes an earlier one -----
   finalRoundChip: { no: (r, p) => `Ved ${r}. inntak (siste): ca. ${p} %`, en: (r, p) => `By the ${ordEn(r)} intake (final): about ${p}%` },
+  // `same` is true when the final round's likely count equals the published
+  // round's: the probability is still higher (never lower, measured 8 Sept
+  // 2026 on 4 266 pairs), but the reader sees the same count, so the sentence
+  // says so instead of promising a rise the figure beside it does not show
   finalRoundNote: {
-    no: (r, L, n) => `Fylket publiserer 1. inntak. Ved ${r}. inntak – det siste – er sjansen høyere: sannsynlig plass på ${L} av ${n}. Målt på fylkets egne tall for begge inntakene.`,
-    en: (r, L, n) => `The county publishes the 1st intake. By the ${ordEn(r)} intake – the final one – the chance is higher: a place is likely at ${L} of ${n}. Measured on the county's own figures for both intakes.`,
+    no: (r, L, n, same) => `Fylket publiserer 1. inntak. Ved ${r}. inntak – det siste – er sjansen ` +
+      (!same ? `høyere: sannsynlig plass på ${L} av ${n}.`
+       : L ? `noe høyere: fortsatt sannsynlig plass på ${L} av ${n}.`
+       : `noe høyere, men fortsatt ikke sannsynlig plass: 0 av ${n}.`) +
+      ` Målt på fylkets egne tall for begge inntakene.`,
+    en: (r, L, n, same) => `The county publishes the 1st intake. By the ${ordEn(r)} intake – the final one – the chance is ` +
+      (!same ? `higher: a place is likely at ${L} of ${n}.`
+       : L ? `somewhat higher: a place is still likely at ${L} of ${n}.`
+       : `somewhat higher, but a place is still not likely: 0 of ${n}.`) +
+      ` Measured on the county's own figures for both intakes.`,
   },
   chanceRoundUnknown: { no: 'Fylket oppgir ikke hvilket inntak tallene er fra. Sjansen gjelder det inntaket fylket publiserer.',
                         en: 'The county does not state which intake its figures are from. The chance refers to the intake the county publishes.' },
@@ -2077,12 +2089,12 @@ function schoolChance(s, cat, x) {
   const base = shownPrograms(s);
   const pp = partitionPrograms(cat === 'all' ? base : base.filter(p => p.category === cat));
   const scope = [...pp.regular, ...pp.orphans];
-  const out = { n: 0, total: scope.length, likely: 0, possible: 0, unlikely: 0, best: -1, bestProg: null, year: null };
+  const out = { n: 0, total: scope.length, likely: 0, possible: 0, unlikely: 0, best: -1, bestProg: null, year: null, progs: [] };
   for (const p of scope) {
     const pr = predFor(s, p);
     if (!pr) continue;
     const c = chanceOf(pr, x);
-    out.n++; out[bucketOf(c)]++; out.year = pr.year;
+    out.n++; out[bucketOf(c)]++; out.year = pr.year; out.progs.push(p);
     if (c > out.best) { out.best = c; out.bestProg = p; }
   }
   return out.n ? out : null;
@@ -3088,14 +3100,11 @@ function renderChance(s, lensCat) {
   let fin = '';
   const fb = finalRoundBridge(s);
   if (fb) {
-    const scope = (lensCat ? s.programs.filter(p => p.category === lensCat) : s.programs);
-    let L3 = 0, n3 = 0;
-    for (const p of scope) {
-      const pr = predFor(s, p);
-      if (!pr) continue;
-      n3++; if (bucketOf(chanceFinal(pr, myPoints, p.category, fb)) === 'likely') L3++;
-    }
-    fin = `<div>${esc(t('finalRoundNote', fb.to_round, L3, n3))}</div>`;
+    // the same programme areas the head just counted (ch.progs), so the
+    // note's "av n" is the head's n and the two never disagree
+    let L3 = 0;
+    for (const p of ch.progs) if (bucketOf(chanceFinal(predFor(s, p), myPoints, p.category, fb)) === 'likely') L3++;
+    fin = `<div>${esc(t('finalRoundNote', fb.to_round, L3, ch.n, L3 === ch.likely))}</div>`;
   } else if (s.round === '1') {
     fin = `<div>${esc(t('finalRoundUnknown'))}</div>`;
   }
