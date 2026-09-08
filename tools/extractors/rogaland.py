@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rogaland — 5 rolling multi-year PDF matrices published via vilbli.no.
+"""Rogaland — 6 rolling multi-year PDF matrices published via vilbli.no.
 
 Coordinate extraction (pdfplumber); the layout specifics live in
 tools/parse_pdfs.py, which this module wraps so the Rogaland logic and its

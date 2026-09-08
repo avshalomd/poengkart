@@ -37,7 +37,7 @@ county was asked for the figures on 1 September 2026.
 ## Why the depth is so uneven
 
 Rogaland's PDFs are rolling tables that reprint the previous three or four
-years, so five documents cover eight years. Everyone else publishes one year
+years, so six documents cover nine years. Everyone else publishes one year
 per document and overwrites the page, and the archive crawler mostly did not
 catch the older versions.
 
@@ -110,7 +110,7 @@ is recorded in `data/source-drift.json` rather than hidden. Any year two
 publications disagree about by close to a whole grade point is flagged on the
 school as `uncertain_years`, and the app says so in words.
 
-`tools/test_parse.py` runs 103 regression checks over the result; every one of
+`tools/test_parse.py` runs 106 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built

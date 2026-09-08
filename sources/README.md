@@ -82,10 +82,14 @@ recovered through the Wayback Machine.
 ## rogaland
 
 `poenggrenser-rogaland-2019-2020.pdf`, `-2021-2022.pdf`, `-2022-2023.pdf`,
-`-2023-2024.pdf` and `-2023-2025-official.pdf` are the rolling multi-year
-matrices the county publishes through vilbli
+`-2023-2024.pdf`, `-2023-2025-official.pdf` and `-2024-2026-official.pdf` are
+the rolling multi-year matrices the county publishes through vilbli
 (<https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6>), 2. inntak;
-each edition reprints the previous years, so five documents cover 2018–2025.
+each edition reprints the previous years, so six documents cover 2018–2026.
+The 2024–2026 edition (`Poenggrenser 2024-2026.pdf` on vilbli, dated
+07.09.2026, fetched 08.09.2026) replaced the 2023–2025 file at the same
+attachment id; both are kept because a superseded edition can still hold
+the only print of a cell.
 `poenggrenser-rogaland-2022-2024-wayback.pdf` is an edition that had already
 been overwritten, recovered through the Wayback Machine.
 

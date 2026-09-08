@@ -152,6 +152,11 @@
    "sha256": "1ac998ed876b2a48214a7d85d1f164b032844e864bbf42f4992ce301c831a143",
    "provenance": "Rogaland fylkeskommune via vilbli.no/rogaland (2. inntak); the 2022-2024 edition from the Wayback Machine."
   },
+  "rogaland/poenggrenser-rogaland-2024-2026-official.pdf": {
+   "size": 486780,
+   "sha256": "3897687a7b9f6c0174f4caab98f511d19ac9779f3d5621dde8e42f0a41f47792",
+   "provenance": "Rogaland fylkeskommune via vilbli.no/rogaland (2. inntak); the 2024-2026 edition, fetched 08.09.2026 (file dated 07.09.2026)."
+  },
   "trondelag/trondelag_2025-26_fosen.pdf": {
    "size": 122775,
    "sha256": "6b71eaa90ab6c5e9a6c1956fe0760450435fbbd319e4bc79eb6ae9a3842be41e",
