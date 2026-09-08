@@ -90,7 +90,7 @@ thresholds; the county select lists them greyed out as *(ingen data)*.
 | [Innlandet](https://www.vilbli.no/nb/innlandet/a/poengsum-og-karakterer-6) | PDF matrix; 2020–2022 released under an FOI request | 2020–2026 | 2. |
 | Møre og Romsdal | Excel extract from the county's Power BI dashboard, released on request | 2012–2026 | 2. |
 | [Oslo](https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/) | HTML + PDF, oldest years via school-site PDFs | 2015, 2017–2026 | 1. |
-| [Rogaland](https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6) | PDF | 2018–2025 | 2. |
+| [Rogaland](https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6) | PDF | 2018–2026 | 2. |
 | [Trøndelag](https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6) | PDF, per intake region | 2025 | not stated |
 | [Vestland](https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/) | PDF | 2020–2026 | 1. and 3. |
 | ↳ Hordaland, pre-merger | PDF: press releases via the Wayback Machine (1.), the county's full table (3.) | 2017–2019 | 1. (Bergen studiespesialisering) and 3. (Vg1–Vg3) |

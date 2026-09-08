@@ -66,8 +66,8 @@ def value(school_sub, prog_exact, year, level=None):
 
 # --- shape -------------------------------------------------------------
 check('Rogaland has 25 schools', len(ROGALAND) == 25, f'got {len(ROGALAND)}')
-check('years cover 2018-2025 contiguously',
-      set(range(2018, 2026)) <= set(DATA['years'])
+check('years cover 2018-2026 contiguously',
+      set(range(2018, 2027)) <= set(DATA['years'])
       and DATA['years'] == sorted(set(DATA['years'])), str(DATA['years']))
 cells = [(s['name'], p, y, v) for s in ROGALAND for p in s['programs']
          for y, v in p['values'].items()]
@@ -121,6 +121,10 @@ SUB8 = {
     ('Buskerud', 'Kongsberg', 'Musikk, dans og drama', 'Vg1', '2025', 4.0),
     ('Oslo', 'Etterstad videregående skole', 'Restaurant- og matfag', 'Vg1', '2026', 6.0),
     ('Oslo', 'Etterstad videregående skole', 'Teknikk og industriell produksjon', 'Vg1', '2019', 5.6),
+    # the 2024-2026 edition prints "3,0" in the 2026 column (p1, Vg2 block);
+    # 2024 and 2025 are "Ingen venteliste", so no neighbour suggests a dropped
+    # digit. Kept as the county's own figure (8 Sept 2026); worth a query.
+    ('Rogaland', 'Bergeland videregående skole', 'Medier og kommunikasjon', 'Vg2', '2026', 3.0),
 }
 sub8 = {(s['fylke'], s['name'], p['program'], p['level'], y, v) for s in DATA['schools']
         for p in s['programs'] for y, v in p['values'].items()
@@ -231,6 +235,16 @@ check('every program categorised', not uncat, str(uncat[:5]))
 check('Bryne ST 2023 = 38.8', value('Bryne', 'Studiespesialisering', 2023) == 38.8)
 check('Bryne ST 2024 = 36.5', value('Bryne', 'Studiespesialisering', 2024) == 36.5)
 check('Bryne ST 2025 = 37.7', value('Bryne', 'Studiespesialisering', 2025) == 37.7)
+# the 2024-2026 edition (vilbli, 07.09.2026) brings 2026; its 2024 and 2025
+# columns reprint the previous edition, so the two figures above also guard
+# the merge order (newest file wins)
+check('Bryne ST 2026 = 31.0', value('Bryne', 'Studiespesialisering', 2026) == 31.0,
+      str(value('Bryne', 'Studiespesialisering', 2026)))
+check('Bergeland Helse- og oppvekstfag 2026 = 30.2',
+      value('Bergeland', 'Helse- og oppvekstfag', 2026, 'Vg1') == 30.2,
+      str(value('Bergeland', 'Helse- og oppvekstfag', 2026, 'Vg1')))
+n2026_rog = sum(1 for _, _, y, _ in cells if y == '2026')
+check('Rogaland 2026 has >= 380 cells', n2026_rog >= 380, f'got {n2026_rog}')
 check('Bergeland ST discontinued in 2019',
       value('Bergeland', 'Studiespesialisering', 2019) == 'U',
       str(value('Bergeland', 'Studiespesialisering', 2019)))

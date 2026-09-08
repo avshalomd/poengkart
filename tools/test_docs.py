@@ -477,7 +477,7 @@ check(doc, 'single weight chosen', r'among \{1, ½, ¼, 0\}; it chose (\d+) \(Se
 check(doc, 'single weight flagged', r'flagged in (\d+) Møre og Romsdal cells', [META['n_single']], flat, N)
 check(doc, 'ewma prose', r"RMSE ([\d.]+) against persistence's ([\d.]+) with two or three years of history, and ([\d.]+) against ([\d.]+) with four or more",
       [lvl['2-3']['rmse_ewma'], lvl['2-3']['rmse_last_year'], lvl['4+']['rmse_ewma'], lvl['4+']['rmse_last_year']], flat, D2)
-check(doc, 'ewma intervals', r'by less — (-[\d.]+) points \[(-[\d.]+), (-[\d.]+)\] and (-[\d.]+) \[(-[\d.]+), (-[\d.]+)\]',
+check(doc, 'ewma intervals', r'by less — (-[\d.]+) points \[(-[\d.]+), ([-+][\d.]+)\] and (-[\d.]+) \[(-[\d.]+), (-[\d.]+)\]',
       [lvl['2-3']['rmse'] - lvl['2-3']['rmse_ewma']] + CI['level 2-3: model minus ewma, rmse']
       + [lvl['4+']['rmse'] - lvl['4+']['rmse_ewma']] + CI['level 4+: model minus ewma, rmse'], flat, D2)
 check(doc, 'ewma one year', r'smoothing is persistence, and the model beats it by ([\d.]+) points', [lvl['1']['rmse_ewma'] - lvl['1']['rmse']], flat, D2)

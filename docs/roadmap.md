@@ -89,8 +89,10 @@ person:
   2022/23 3. inntak and 2023/24 1. inntak files should be linked from the
   poenggrense page again.
 - **Rogaland (inntak@rogfk.no):** the 2026/27 publication promised on 26 Aug
-  («this week or next») is overdue; one follow-up. The header typo we fixed
-  ourselves (the parser now trusts the edition's majority header).
+  («this week or next») arrived on vilbli on 7 Sept as the 2024–2026 edition
+  and is ingested; nothing to chase. The header typo we fixed ourselves (the
+  parser now trusts the edition's majority header) recurs in the new edition
+  on the same Kopervik page.
 - **Buskerud:** chase the 5 Sept mail after a week (Kongsberg 4,0; which
   inntak).
 - **Photos:** ask Innlandet, Akershus and Møre og Romsdal communications
@@ -107,10 +109,9 @@ person:
   Hudpleie → Hudpleier, and so on. Same Grep code, different official name;
   today each is its own series, with a break at 2020. Joining them would give
   longer trend lines at the cost of the register's own names.
-- **2026/27 not yet published:** Rogaland (overdue), Trøndelag (December,
-  by their PDF dates), Buskerud (a new page slug will appear), Akershus's own
-  page (November). Recheck monthly; the seven counties outside the dataset
-  are unchanged.
+- **2026/27 not yet published:** Trøndelag (December, by their PDF dates),
+  Buskerud (a new page slug will appear), Akershus's own page (November).
+  Recheck monthly; the seven counties outside the dataset are unchanged.
 
 ## Launch list (agreed 2 September 2026)
 

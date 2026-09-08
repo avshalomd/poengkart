@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Parse Rogaland poenggrenser PDFs (2018-2025) into one merged dataset.
+"""Parse Rogaland poenggrenser PDFs (2018-2026) into one merged dataset.
 
 Coordinate-based extraction (pdfplumber): every word carries an x/y, so year
 columns are resolved by x-proximity to the header's year positions and Vg-level
@@ -43,6 +43,7 @@ DRIFT = os.path.join(HERE, '..', 'data', 'source-drift.json')
 
 # newest first: on overlapping (school, program, level, year) the newest wins
 FILES = [
+    'poenggrenser-rogaland-2024-2026-official.pdf',
     'poenggrenser-rogaland-2023-2025-official.pdf',
     'poenggrenser-rogaland-2023-2024.pdf',
     'poenggrenser-rogaland-2022-2023.pdf',
