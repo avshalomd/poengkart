@@ -590,6 +590,18 @@
     animation: rise .22s cubic-bezier(.2,.8,.3,1);
   }
   @keyframes rise { from { transform: translateY(10px); opacity: 0 } }
+  /* A sheet that rises in and then vanishes teaches a path and immediately
+     breaks it, so the exit runs the enter backwards along the same 10px.
+     It is quicker than the entrance on purpose: arriving is the part worth
+     watching, leaving is the part worth getting out of the way. The sheet
+     stops taking clicks the moment it starts leaving. */
+  .modal.closing { animation: unfade .16s ease-out forwards; pointer-events: none; }
+  .modal.closing .sheet { animation: sink .16s cubic-bezier(.2,.8,.3,1) forwards; }
+  @keyframes unfade { to { opacity: 0 } }
+  /* the sheet only moves: its opacity is the backdrop's, and animating both
+     would multiply them, emptying the sheet a hundred milliseconds before the
+     scrim it sits on */
+  @keyframes sink { to { transform: translateY(10px) } }
   .modal .x {
     position: absolute; top: 14px; right: 14px; width: 30px; height: 30px;
     border: none; border-radius: 9px; background: var(--accent-soft);
@@ -999,7 +1011,7 @@
     /* this used to name #side alone, while the sheets still rose and faded,
        the clusters still slid and the map still flew */
     #side, #tip { transition: none; }
-    .modal, .sheet { animation: none; }
+    .modal, .sheet, .modal.closing, .modal.closing .sheet { animation: none; }
     .leaflet-cluster-anim .leaflet-marker-icon, .leaflet-cluster-anim .leaflet-marker-shadow {
       transition: none; }
   }
@@ -3681,7 +3693,10 @@ async function sendContact(ev) {
 // from the help sheet to the feedback sheet without touching the history
 // entry both share — closeIntro()'s history.back() would race openContact()
 function switchToContact() {
-  document.getElementById('intro').hidden = true;
+  // A swap, not a dismissal, so it skips the exit animation: the two sheets
+  // share a backdrop and a history entry, and fading one out while the other
+  // arrives would show both at once behind a doubled scrim.
+  document.getElementById('intro').hidden = true;   // deliberately instant
   try { localStorage.setItem(INTRO_SEEN, '1'); } catch (e) {}
   openContact();
 }
@@ -3689,7 +3704,7 @@ function openContact() {
   const body = document.getElementById('contact-body');
   delete body.dataset.done;
   renderContact();
-  document.getElementById('contact').hidden = false;
+  showSheet('contact');
   setModalTrap();
   openSheetHistory();
   setTimeout(() => document.getElementById('c-kind')?.focus(), 40);
@@ -3697,7 +3712,7 @@ function openContact() {
 
 function closeContact(fromHistory) {
   if (!fromHistory && (history.state || {}).pkSheet) { history.back(); return; }
-  document.getElementById('contact').hidden = true;
+  hideSheet('contact');
   setModalTrap();
   document.getElementById('help-btn')?.focus();
 }
@@ -3871,13 +3886,41 @@ function renderIntro() {
 // it: tabbing off the end of the feedback form used to land on the county
 // select behind the backdrop, where nothing was visible to act on.
 const SHEET_IDS = ['contact', 'intro', 'settings', 'calc', 'searchov'];
-const anySheetOpen = () => SHEET_IDS.some(id => !document.getElementById(id).hidden);
+/* A sheet on its way out is still on screen but is no longer the thing you
+   are talking to: it takes no clicks (CSS), holds no focus and traps no Tab.
+   Everything below therefore asks "open" rather than "visible". */
+const isSheetOpen = el => el && !el.hidden && !el.classList.contains('closing');
+const anySheetOpen = () => SHEET_IDS.some(id => isSheetOpen(document.getElementById(id)));
+
+/* Hiding a sheet waits for the exit animation; nothing else does. Focus, the
+   inert trap and the history entry are handled by the caller and stay
+   immediate — a keyboard user must never wait 160ms to get their focus back.
+   Reopening during the exit cancels it, because a sheet you ask for again has
+   to come back rather than finish leaving. */
+const SHEET_EXIT_MS = 160;
+function hideSheet(id) {
+  const el = document.getElementById(id);
+  if (!el || el.hidden) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.hidden = true; return; }
+  el.classList.add('closing');
+  clearTimeout(el._exit);
+  el._exit = setTimeout(() => {
+    el._exit = null; el.classList.remove('closing'); el.hidden = true;
+  }, SHEET_EXIT_MS);
+}
+function showSheet(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  clearTimeout(el._exit); el._exit = null;   // caught mid-exit: it comes back
+  el.classList.remove('closing');
+  el.hidden = false;
+}
 // inert keeps focus inside an open sheet, but past its last control the browser
 // parks focus on <body> for one press before coming back; wrap it instead
 const SHEETS = ['searchov', 'settings', 'intro', 'calc', 'contact'];
 document.addEventListener('keydown', e => {
   if (e.key !== 'Tab') return;
-  const sheet = SHEETS.map(id => document.getElementById(id)).find(el => el && !el.hidden);
+  const sheet = SHEETS.map(id => document.getElementById(id)).find(isSheetOpen);
   if (!sheet) return;
   const f = [...sheet.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')]
     .filter(el => el.offsetParent !== null);
@@ -3907,7 +3950,7 @@ function openSheetHistory() {
 function openIntro() {
   clearHelpHint();
   renderIntro();
-  document.getElementById('intro').hidden = false;
+  showSheet('intro');
   setModalTrap();
   openSheetHistory();
   // the heading, not the call to action: that sits at the foot of a sheet taller
@@ -3918,7 +3961,7 @@ function openIntro() {
 
 function closeIntro(fromHistory) {
   if (!fromHistory && (history.state || {}).pkSheet) { history.back(); return; }
-  document.getElementById('intro').hidden = true;
+  hideSheet('intro');
   try { localStorage.setItem(INTRO_SEEN, '1'); } catch (e) {}
   setModalTrap();
   document.getElementById('help-btn')?.focus();
@@ -3994,14 +4037,14 @@ function renderSettings() {
 }
 function openSettings() {
   renderSettings();
-  document.getElementById('settings').hidden = false;
+  showSheet('settings');
   setModalTrap();
   openSheetHistory();
   setTimeout(() => document.querySelector('#settings .seg button.on')?.focus(), 40);
 }
 function closeSettings(fromHistory) {
   if (!fromHistory && (history.state || {}).pkSheet) { history.back(); return; }
-  document.getElementById('settings').hidden = true;
+  hideSheet('settings');
   setModalTrap();
   document.getElementById('settings-btn')?.focus();
 }
@@ -4064,11 +4107,13 @@ function pickOv(i) {
   const s = ovHits[i];
   if (!s) return;
   ovHits = []; ovAct = -1;               // a second event on the same option is a no-op
-  // hide synchronously instead of via closeSearchOv(): its history.back() is
+  // dismiss directly instead of via closeSearchOv(): its history.back() is
   // asynchronous, and openSide() below would write the new school's hash onto
   // an entry the traversal was about to leave — sharing school A's link after
-  // searching for school B
-  document.getElementById('searchov').hidden = true;
+  // searching for school B. hideSheet touches no history, and the overlay
+  // stops counting as the open sheet the moment it starts leaving, so the
+  // panel below is reachable while the last frames of the fade play out.
+  hideSheet('searchov');
   setModalTrap();
   if (s.county) {                          // the county row: filter, as the select would
     const sel = document.getElementById('map-fylke');
@@ -4089,14 +4134,14 @@ function openSearchOv() {
   q.setAttribute('aria-label', t('searchLabel'));
   document.getElementById('ov-box').setAttribute('aria-label', t('searchLabel'));
   renderOvList();
-  document.getElementById('searchov').hidden = false;
+  showSheet('searchov');
   setModalTrap();
   openSheetHistory();
   setTimeout(() => q.focus(), 40);
 }
 function closeSearchOv(fromHistory) {
   if (!fromHistory && (history.state || {}).pkSheet) { history.back(); return; }
-  document.getElementById('searchov').hidden = true;
+  hideSheet('searchov');
   setModalTrap();
   const b = document.getElementById('searchov-btn');
   (b && b.offsetParent ? b : document.getElementById('panel'))?.focus();
@@ -4415,14 +4460,14 @@ function renderCalc() {
 }
 function openCalc() {
   renderCalc();
-  document.getElementById('calc').hidden = false;
+  showSheet('calc');
   setModalTrap();
   openSheetHistory();
   setTimeout(() => document.querySelector('#calc .grades button')?.focus(), 40);
 }
 function closeCalc(fromHistory) {
   if (!fromHistory && (history.state || {}).pkSheet) { history.back(); return; }
-  document.getElementById('calc').hidden = true;
+  hideSheet('calc');
   setModalTrap();
   document.getElementById('calc-open')?.focus();
 }
