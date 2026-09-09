@@ -156,13 +156,11 @@
   :root[data-font="lg"] #panel, :root[data-font="lg"] #side .scroll,
   :root[data-font="lg"] #legend, :root[data-font="lg"] .modal .sheet,
   :root[data-font="lg"] #searchov .ovbox, :root[data-font="lg"] #toast,
-  :root[data-font="lg"] #listview,
-  :root[data-font="lg"] #controls { zoom: 1.15; }
+  :root[data-font="lg"] #listview { zoom: 1.15; }
   :root[data-font="xl"] #panel, :root[data-font="xl"] #side .scroll,
   :root[data-font="xl"] #legend, :root[data-font="xl"] .modal .sheet,
   :root[data-font="xl"] #searchov .ovbox, :root[data-font="xl"] #toast,
-  :root[data-font="xl"] #listview,
-  :root[data-font="xl"] #controls { zoom: 1.3; }
+  :root[data-font="xl"] #listview { zoom: 1.3; }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -335,7 +333,7 @@
   #ov-list .opt.act { border-left-color: var(--accent); font-weight: 600; }
   #ov-list .none { padding: 10px 12px; font-size: 13px; color: var(--ink-3); }
   /* ---------- list view (same filters, table instead of map) ---------- */
-  #view-toggle { display: flex; width: 100%; margin: 0 0 12px; }
+  #view-toggle { display: flex; margin: 0 0 12px; }
   #view-toggle button { flex: 1; text-align: center; }
   #listview {
     flex: 1; min-width: 0; overflow-y: auto; background: var(--page);
@@ -349,12 +347,6 @@
   }
   /* only the table scrolls sideways on a phone — header and footer stay put */
   #listview .tblwrap { overflow-x: auto; }
-  /* docked inside the list card's header (desktop list view) the cluster
-     is plain buttons, not a floating glass pill */
-  #listview .lhead #controls {
-    position: static; padding: 0; background: none; border: none; box-shadow: none;
-    -webkit-backdrop-filter: none; backdrop-filter: none;
-  }
   #listview .lhead { display: flex; align-items: center;
                      gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
   #listview .lhead .n { margin-left: auto; }
@@ -453,8 +445,7 @@
      the one layout where the panel and the table compete for the same row: a
      docked panel costs 292px, the table will not go under 471px, and the card
      wants 74px around it — so under ~840px the chance column was pushed out of
-     the card and clipped, with a sideways scroll and no hint it existed. Keep
-     relocateControls() in step with this number. */
+     the card and clipped, with a sideways scroll and no hint it existed. */
   @media (max-width: 860px), (max-height: 480px) {
     body.view-list #app { flex-direction: column; overflow-y: auto; position: relative; }
     body.view-list #panel { flex: none; }    /* the giant table must not crush it */
@@ -549,13 +540,13 @@
                       color: var(--ink-3); cursor: pointer; font-size: 13px; position: relative; }
   /* invisible hit-area extension: a fingertip needs ~40px, the glyphs stay small */
   #choices .row .rm::after, #choices .h button::after,
-  /* a 44px touch target on a 26px button, but -9px against a 5px gap reaches
-     4px into the neighbour, and later siblings paint on top: the right edge
-     of search used to fire help. Pay the inset sideways only as far as the
-     gap allows, and take the rest vertically, where nothing is adjacent. */
-  #controls .ico::after { content: ''; position: absolute; inset: -9px -2px; }
+  /* a 44px touch target on a 28px button, but -9px against a 6px gap reaches
+     into the neighbour, and later siblings paint on top: the right edge of
+     help used to fire settings. Pay the inset sideways only as far as the gap
+     allows, and take the rest vertically, where nothing is adjacent. */
+  .brand .util .ico::after { content: ''; position: absolute; inset: -9px -3px; }
   .modal .x::after { content: ''; position: absolute; inset: -9px; }
-  #choices .h button, #controls .ico, .modal .x { position: relative; }
+  #choices .h button, .ico, .modal .x { position: relative; }
   #choices .row .rm:hover { background: var(--accent-soft); color: var(--accent); }
   #choices .sum { font-size: 11.5px; color: var(--ink-2); margin-top: 7px; line-height: 1.45; }
   #choices .sum b { color: var(--ink); }
@@ -655,33 +646,36 @@
   }
   .modal .cta.ghost:hover { filter: none; color: var(--ink); border-color: var(--ink-3); }
 
-  /* ---------- utility window (top right) ---------- */
-  #controls {
-    position: absolute; top: 14px; right: 14px; z-index: 1001;
-    display: flex; align-items: center; gap: 6px; padding: 6px;
-  }
-  #controls .ico {
-    width: 28px; height: 28px; display: grid; place-items: center; padding: 0;
+  /* ---------- utility buttons (inside the control panel) ---------- */
+  .ico {
+    display: grid; place-items: center; padding: 0;
     border: 1px solid var(--line-strong); border-radius: 8px; background: none;
     color: var(--ink-2); cursor: pointer;
   }
-  #controls .ico:hover { color: var(--accent); border-color: var(--accent); }
-  #controls .ico svg { width: 15px; height: 15px; }
+  .ico:hover { color: var(--accent); border-color: var(--accent); }
+  .ico svg { width: 15px; height: 15px; }
+  /* help and settings ride the title's baseline, hard right */
+  .brand .util { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+  .brand .util .ico { width: 28px; height: 28px; }
+  /* the view toggle and search: two separate controls, one row, one height */
+  .viewrow { display: flex; align-items: stretch; gap: 6px; margin: 0 0 12px; }
+  .viewrow #view-toggle { flex: 1; margin: 0; }
+  .viewrow .ico { flex: none; width: 34px; border-radius: 9px; }
   /* First visit: the help sheet used to open itself over a map nobody had seen
      yet, which reads as something to get rid of rather than something to read.
      The button asks for attention instead. It has to still be asking whenever
      the reader happens to look up: a first pass ran three pulses and stopped,
      which on a phone was over before the map had finished painting, leaving a
      faint tint on a 26px icon that nobody would call a glow. So the state is
-     carried by the fill — solid accent against two outlined neighbours, legible
+     carried by the fill — solid accent against its outlined neighbour, legible
      at any size — and the pulse merely draws the eye to it, on a slow loop that
      lasts as long as the hint does. It ends the moment the sheet is opened, and
      never returns after three visits. ::after is the touch target already. */
-  #controls .ico.hint {
+  .ico.hint {
     color: var(--on-accent); background: var(--accent); border-color: var(--accent);
   }
-  #controls .ico.hint:hover { color: var(--on-accent); border-color: var(--accent); }
-  #controls .ico.hint::before {
+  .ico.hint:hover { color: var(--on-accent); border-color: var(--accent); }
+  .ico.hint::before {
     content: ''; position: absolute; inset: -3px; border-radius: 11px;
     border: 2px solid var(--accent); pointer-events: none; opacity: 0;
     animation: helphint 3.2s ease-out infinite;
@@ -694,32 +688,8 @@
   }
   /* a reader who asked for stillness gets a steady ring instead of a beating one */
   @media (prefers-reduced-motion: reduce) {
-    #controls .ico.hint::before { animation: none; opacity: .5; transform: none; }
+    .ico.hint::before { animation: none; opacity: .5; transform: none; }
   }
-  /* The sidebar slides in over this corner, so step out of its way — but only
-     as far as the panel. Stepping left by the sheet's full width alone walked
-     the cluster straight into #panel (right edge 330px) on any window between
-     about 761px and 946px: the two are both absolute at the same corner, and
-     whichever painted second swallowed the other's clicks, which on a list-view
-     round trip could be either one. The ceiling keeps a 12px gap: 330 panel +
-     110 cluster + 12. Below 466px the floor wins and the phone rule hides the
-     cluster anyway. */
-  body.side-open #controls {
-    right: clamp(14px, calc(min(480px, max(320px, 100vw - 350px)) + 14px), calc(100vw - 452px));
-  }
-  /* Under ~944px the gap between the panel's right edge and the sheet is
-     narrower than the cluster itself, so there is no "out of the way" left to
-     step into. Ride inside the panel's own header row instead — the same move
-     the phone layout makes, for the same reason. */
-  @media (min-width: 761px) and (max-width: 943px) {
-    body.side-open #controls {
-      left: 204px; right: auto; top: 20px; z-index: 1002;
-      padding: 0; gap: 5px; background: none; border: none; box-shadow: none;
-      -webkit-backdrop-filter: none; backdrop-filter: none;
-    }
-    body.side-open #controls .ico { width: 26px; height: 26px; }
-  }
-
   /* ---------- feedback form ---------- */
   #contact .sheet { max-width: 520px; }
   #contact label { display: block; font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
@@ -987,8 +957,8 @@
       display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 8px; align-items: end;
     }
-    #panel .brand { grid-column: 1 / -1; padding-right: 140px; }
-    #panel #view-toggle { grid-column: 1 / -1; margin-bottom: 2px; }
+    #panel .brand { grid-column: 1 / -1; }
+    #panel .viewrow { grid-column: 1 / -1; margin-bottom: 2px; }
     #panel .brand h1 { font-size: 17px; }
     #cat-note { grid-column: 1 / -1; margin-top: 0; min-height: 0; }
     #pts-field { grid-column: 1 / -1; margin-top: 4px; }
@@ -1002,14 +972,6 @@
     .field label { font-size: 9.5px; letter-spacing: .04em; margin-bottom: 3px; }
     .field + .field { margin-top: 0; }
     .field select { padding: 7px 8px; font-size: 12.5px; }
-
-    /* sits inside the panel's header row rather than fighting it for the corner */
-    #controls {
-      top: 20px; right: 22px; z-index: 1002; padding: 0; gap: 5px;
-      background: none; border: none; box-shadow: none;
-      -webkit-backdrop-filter: none; backdrop-filter: none;
-    }
-    #controls .ico { width: 26px; height: 26px; }
 
     /* The legend runs the width of the screen, but its scale is only 170px of
        that, so a wrapping row left the right half of the box empty and pushed
@@ -1075,7 +1037,7 @@
     }
     /* the points field sat 24px below the card's fold with no cue; three
        fields on one row keep the card inside 231px */
-    #panel .brand, #panel #cat-note, #panel #view-toggle, #panel #choices { grid-column: 1 / -1; }
+    #panel .brand, #panel #cat-note, #panel .viewrow, #panel #choices { grid-column: 1 / -1; }
     #cat-note { margin-top: 0; min-height: 0; }
     #cat-note:empty { display: none; }
     .field + .field, #pts-field { margin-top: 0; }
@@ -1092,7 +1054,7 @@
       display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px 14px; align-items: start;   /* three labels on one baseline */
     }
-    body.view-list #panel .brand, body.view-list #panel #view-toggle, body.view-list #panel #tagline { grid-column: 1 / -1; }
+    body.view-list #panel .brand, body.view-list #panel .viewrow, body.view-list #panel #tagline { grid-column: 1 / -1; }
     /* the empty category note took the third cell and pushed the points
        field to a row of its own; a note spans, an empty one takes nothing */
     body.view-list #panel #cat-note, body.view-list #panel #choices { grid-column: 1 / -1; margin-top: 0; min-height: 0; }
@@ -1105,7 +1067,7 @@
     /* 100vw here laid out 487px wide inside the text-size zoom and pushed the
        sheet's left edge off the phone; 100% follows the zoomed box instead */
     #side > .scroll, :root[data-font="lg"] #side > .scroll, :root[data-font="xl"] #side > .scroll { min-width: 100%; }
-    body.side-open #panel, body.side-open #legend, body.side-open #controls { display: none; }
+    body.side-open #panel, body.side-open #legend { display: none; }
     /* at Stor/Ekstra stor the tab strip outgrew the card and dragged the whole
        sheet sideways ("45,6" read "5,6"); the three tabs wrap instead */
     :root[data-font="lg"] .tabs, :root[data-font="xl"] .tabs { flex-wrap: wrap; }
@@ -1117,13 +1079,13 @@
   @media (min-width: 761px) and (max-width: 1024px) {
     :root[data-font="lg"] #side.open { width: 100vw; }
     :root[data-font="lg"] #side > .scroll { min-width: 100%; }
-    :root[data-font="lg"] body.side-open #panel, :root[data-font="lg"] body.side-open #legend, :root[data-font="lg"] body.side-open #controls { display: none; }
+    :root[data-font="lg"] body.side-open #panel, :root[data-font="lg"] body.side-open #legend { display: none; }
     :root[data-font="lg"] .tabs { flex-wrap: wrap; }
   }
   @media (min-width: 761px) and (max-width: 1080px) {
     :root[data-font="xl"] #side.open { width: 100vw; }
     :root[data-font="xl"] #side > .scroll { min-width: 100%; }
-    :root[data-font="xl"] body.side-open #panel, :root[data-font="xl"] body.side-open #legend, :root[data-font="xl"] body.side-open #controls { display: none; }
+    :root[data-font="xl"] body.side-open #panel, :root[data-font="xl"] body.side-open #legend { display: none; }
     :root[data-font="xl"] .tabs { flex-wrap: wrap; }
   }
   /* The UA's [hidden] { display: none } loses to any author display rule
@@ -1154,8 +1116,8 @@
     .seg button { padding-top: 12px; padding-bottom: 12px; }
     /* widen the gap first, then spend it: the reach can only be as generous as
        the space between two icons, or each starts firing its neighbour */
-    #controls { gap: 18px; }
-    #controls .ico::after { inset: -9px -9px; }
+    .brand .util { gap: 14px; }
+    .brand .util .ico::after { inset: -9px -7px; }
     .ptsrow button { position: relative; }
     .ptsrow button::after { content: ''; position: absolute; inset: -5px; }
     #choices .h button::after { inset: -15px -10px; }
@@ -1231,28 +1193,6 @@ try {
       <div id="src-note"></div>
     </div>
   </aside>
-<div id="controls" class="glass">
-  <button class="ico" id="searchov-btn" onclick="openSearchOv()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-         stroke-linecap="round" aria-hidden="true">
-      <circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/>
-    </svg>
-  </button>
-  <button class="ico" id="help-btn" onclick="openIntro()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-         stroke-linecap="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="9"/><path d="M9.2 9.3a2.9 2.9 0 1 1 3.6 2.8v1.4"/>
-      <path d="M12.4 17.2h.01"/>
-    </svg>
-  </button>
-  <button class="ico" id="settings-btn" onclick="openSettings()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="3.2"/>
-      <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1.11 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.01A1.7 1.7 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.01c.26.62.86 1.03 1.53 1.03H21a2 2 0 1 1 0 4h-.09c-.67 0-1.27.4-1.51 1.02z"/>
-    </svg>
-  </button>
-</div>
 <div id="panel" class="glass" tabindex="-1">
   <div class="brand">
     <svg class="mark" viewBox="0 0 26 26" aria-hidden="true">
@@ -1261,12 +1201,44 @@ try {
       <path d="M13 21c3.6-3.4 6-6.2 6-9.6A6 6 0 0 0 7 11.4C7 14.8 9.4 17.6 13 21z" fill="none" stroke="#fff" stroke-width="1.7"/>
     </svg>
     <h1>Poengkart</h1>
-
+    <!-- Help and settings used to float over the map's top-right corner in a
+         glass pill that had four homes: over the map, stepped left when the
+         school sheet opened, inside this header at tablet widths and on
+         phones, and docked in the list card's header. They live here now, in
+         one place, at every width, and nothing about opening a school moves
+         them. -->
+    <div class="util">
+      <button class="ico" id="help-btn" onclick="openIntro()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/><path d="M9.2 9.3a2.9 2.9 0 1 1 3.6 2.8v1.4"/>
+          <path d="M12.4 17.2h.01"/>
+        </svg>
+      </button>
+      <button class="ico" id="settings-btn" onclick="openSettings()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.2"/>
+          <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1.11 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.01A1.7 1.7 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.01c.26.62.86 1.03 1.53 1.03H21a2 2 0 1 1 0 4h-.09c-.67 0-1.27.4-1.51 1.02z"/>
+        </svg>
+      </button>
+    </div>
   </div>
   <p id="tagline"></p>
-  <div class="seg" id="view-toggle" role="group">
-    <button id="view-map" type="button" onclick="setView('map')" aria-pressed="true"></button>
-    <button id="view-list" type="button" onclick="setView('list')" aria-pressed="false"></button>
+  <!-- search is its own control, not a third segment: it opens a sheet rather
+       than switching the view. Same row and same height as the toggle, its own
+       border. -->
+  <div class="viewrow">
+    <div class="seg" id="view-toggle" role="group">
+      <button id="view-map" type="button" onclick="setView('map')" aria-pressed="true"></button>
+      <button id="view-list" type="button" onclick="setView('list')" aria-pressed="false"></button>
+    </div>
+    <button class="ico" id="searchov-btn" onclick="openSearchOv()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/>
+      </svg>
+    </button>
   </div>
   <div class="field" id="fylke-field" hidden>
     <label id="fylke-label" for="map-fylke"></label>
@@ -3850,7 +3822,7 @@ document.addEventListener('keydown', e => {
 });
 function setModalTrap() {
   const open = anySheetOpen();
-  ['skip', 'app', 'legend'].forEach(id =>     // #panel/#controls are #app children now
+  ['skip', 'app', 'legend'].forEach(id =>     // #panel is an #app child now
     document.getElementById(id)?.toggleAttribute('inert', open));
 }
 
@@ -4138,20 +4110,6 @@ function locate() {
 let view = 'map';
 let listSort = { key: 'value', dir: -1 };
 let refitPending = false;      // a county switch made while the map was hidden
-// The utility cluster has two homes: floating over the map (and over the
-// phone layouts, where it sits on the brand row exactly as in map view),
-// and docked inside the list card's header on a desktop list. Moving the
-// live element keeps its listeners and aria state.
-function relocateControls() {
-  const c = document.getElementById('controls');
-  if (!c) return;
-  // must match the stacked-list breakpoint in the stylesheet: where the panel
-  // sits above the table there is no header row to dock the cluster into
-  const phone = matchMedia('(max-width: 860px), (max-height: 480px)').matches;
-  const slot = view === 'list' && !phone ? document.querySelector('#listview .lhead') : null;
-  const home = slot || document.getElementById('app');
-  if (c.parentElement !== home) home.appendChild(c);
-}
 function setView(v) {
   if (v !== 'map' && v !== 'list') return;
   if (v === 'list' && !DATA) return;     // the toggle is live before the fetch lands
@@ -4166,7 +4124,6 @@ function setView(v) {
   try { localStorage.setItem('pk-view', v); } catch (e) {}
   if (v === 'list') renderListView();
   else if (map) {
-    relocateControls();
     drawMarkers();                       // list mode skipped every marker rebuild
     map.invalidateSize();
     liftMapControls();
@@ -4209,10 +4166,6 @@ function sortList(key) {
 }
 function renderListView() {
   const host = document.getElementById('listview');
-  // the utility cluster may be docked inside the header this render is about
-  // to wipe — move it to safety first, or innerHTML destroys it for good
-  const ctrl = document.getElementById('controls');
-  if (ctrl && host.contains(ctrl)) document.getElementById('app').appendChild(ctrl);
   const chance = chanceMode();
   const allF = mapFylke === 'all';
   // a sort key can outlive its column (points cleared, county picked)
@@ -4308,7 +4261,6 @@ function renderListView() {
     };
   });
   bindTitleTips(host);
-  relocateControls();                     // innerHTML above rebuilt its dock
 }
 
 /* ================= grade calculator ================= */
@@ -4453,8 +4405,8 @@ function framePad() {
 // no coordinates did exactly that, in silence.
 function bootFailed(subKey) {
   try { window.va && window.va('event', { name: 'boot-failed', data: { msg: String(subKey).slice(0, 120) } }); } catch (_) {}
-  // #panel and #controls live inside #app now — the innerHTML below removes
-  // them, so nothing here may assume they exist afterwards
+  // #panel lives inside #app now — the innerHTML below removes it, so nothing
+  // here may assume it exists afterwards
   document.getElementById('legend')?.setAttribute('hidden', '');
   document.getElementById('app').innerHTML =
     `<div class="boot-fail"><p class="big">${esc(t('bootFail'))}</p>
@@ -4574,7 +4526,7 @@ async function main() {
   addEventListener('resize', () => {
     clearTimeout(reframe);
     reframe = setTimeout(() => {
-      map.invalidateSize(); liftMapControls(); relocateControls();
+      map.invalidateSize(); liftMapControls();
       sideTrap(document.body.classList.contains('side-open'));   // a rotation crosses the breakpoint
     }, 200);
   });
