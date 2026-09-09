@@ -1069,7 +1069,12 @@
        it may now break a word rather than the row. */
     .prow .chw { flex-direction: column; align-items: flex-start; gap: 2px; }
     .prow .hist { font-size: 9.5px; }
-    .prow .nm { overflow-wrap: anywhere; }
+    /* anywhere alone broke "Studiespesialisering" as "Studiespesiali|sering",
+       with no hyphen to say a word was cut. hyphens: auto gives the browser
+       the Norwegian (or English) dictionary the lang attribute names, so the
+       break lands at a syllable and carries a hyphen; anywhere stays as the
+       last resort for a word no dictionary can split. */
+    .prow .nm { overflow-wrap: anywhere; hyphens: auto; -webkit-hyphens: auto; }
     /* fingers, not cursors: everything worth pressing gets a real target */
     .photo .close { width: 40px; height: 40px; font-size: 17px; }
     .meta a { display: inline-block; padding: 8px 0; }
