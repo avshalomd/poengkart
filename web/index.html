@@ -219,7 +219,7 @@
   .brand { display: flex; align-items: center; gap: 9px; }
   .brand .mark { width: 26px; height: 26px; flex: none; }
   .brand h1 { font-size: 19px; font-weight: 700; letter-spacing: -.02em; }
-  #tagline { font-size: 12px; color: var(--ink-2); line-height: 1.45; margin: 8px 0 12px; }
+  #tagline { font-size: 12px; color: var(--ink-3); line-height: 1.45; margin: 4px 0 12px; font-variant-numeric: tabular-nums; }
   .field label { display: block; font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
                  text-transform: uppercase; color: var(--ink-3); margin-bottom: 5px; }
   .field + .field { margin-top: 10px; }
@@ -501,6 +501,21 @@
   .chance .bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; margin: 6px 0; background: var(--line); }
   .chance .bar span { height: 100%; background: var(--b); }
   .chance .adj { margin-top: 6px; color: var(--ink-3); }
+  /* the chance block and the legend show their essentials and fold the rest
+     behind a native <details>: keyboard-reachable, no state to invent, and the
+     open flag survives a re-render (renderChance/renderLegend read it back) */
+  .more { margin-top: 5px; }
+  .more > summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 4px;
+                    color: var(--accent); font-weight: 600; font-size: 11px; user-select: none; }
+  .more > summary::-webkit-details-marker { display: none; }
+  .more > summary::before { content: ''; width: 5px; height: 5px; border-right: 1.5px solid currentColor;
+                            border-bottom: 1.5px solid currentColor; transform: rotate(-45deg); margin: 0 2px 1px 1px; }
+  .more[open] > summary::before { transform: rotate(45deg); margin-bottom: 3px; }
+  .more > summary .lt { display: none; }
+  .more[open] > summary .lt { display: inline; }
+  .more[open] > summary .mt { display: none; }
+  .more > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+  .more > *:not(summary) { margin-top: 5px; }
   .chance.prompt { background: transparent; border-left-color: var(--line); color: var(--ink-3); }
   /* my choices: a pick toggle on every programme row, a list in the panel */
   .prow .pick {
@@ -780,6 +795,8 @@
   #legend .none + .none { margin-top: 3px; }
   #legend .sizenote { margin-top: 7px; color: var(--ink-3); max-width: 210px; line-height: 1.35; }
   #legend .sizenote.warn { color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 6px; }
+  #legend .more { margin-top: 7px; }
+  #legend .more .sizenote:first-of-type { margin-top: 5px; }
   .round.unknown { background: transparent; color: var(--ink-2); border: 1px dashed var(--line); }
   .round {
     display: inline-block; font-size: 9.5px; font-weight: 650; letter-spacing: .02em;
@@ -1016,9 +1033,9 @@
     /* half a point smaller keeps a gap between "30–34" and "34–38" once
        the scale is squeezed on a 360px screen */
     #legend .bl { font-size: 9px; }
-    #legend .none { grid-column: 2; grid-row: 2; margin-top: 0; }
-    #legend .none + .none { grid-row: 3; margin-top: 0; }
-    #legend .none + .none + .none { grid-row: 4; }
+    /* the folded keys sit beside the scale; unfolded they stack in the same cell */
+    #legend .more { grid-area: 2 / 2 / 5 / 3; margin-top: 0; align-self: start; }
+    #legend .none { margin-top: 0; }
     #legend .sizenote { display: none; }
     #legend .sizenote.warn:not([hidden]) {
       display: block; grid-area: 5 / 1 / 6 / -1; max-width: none;
@@ -1304,11 +1321,14 @@ try {
   <div class="t" id="legend-title"></div>
   <div class="sizenote" id="legend-zoom" hidden></div>
   <div class="bins" id="legend-bins"></div>
-  <div class="sizenote" id="legend-size"></div>
   <div class="sizenote warn" id="legend-mixed" hidden></div>
-  <div class="none"><span class="dot open-dot"></span><span id="legend-open"></span></div>
-  <div class="none"><span class="dot zero-dot"></span><span id="legend-zero"></span></div>
-  <div class="none"><span class="dot"></span><span id="legend-none"></span></div>
+  <details class="more" id="legend-more">
+    <summary><span class="mt" id="legend-more-t"></span><span class="lt" id="legend-less-t"></span></summary>
+    <div class="sizenote" id="legend-size"></div>
+    <div class="none"><span class="dot open-dot"></span><span id="legend-open"></span></div>
+    <div class="none"><span class="dot zero-dot"></span><span id="legend-zero"></span></div>
+    <div class="none"><span class="dot"></span><span id="legend-none"></span></div>
+  </details>
 </div>
 
 <div id="intro" class="modal" hidden onclick="if (event.target === this) closeIntro()">
@@ -1392,9 +1412,15 @@ const CATS = {
 };
 const ordEn = r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : r === '3' ? 'rd' : 'th'}`;
 const T = {
+  // the header keeps the scope alone; the definition and the gesture live in
+  // the (?) sheet, which every first visit opens anyway
   tagline: {
-    no: (n, f, y0, y1) => `Poenggrenser for videregående skole: poengsummen til den siste som fikk plass. ${n} skoler i ${f} fylker, ${y0}–${y1}. Velg en skole for å se detaljer.`,
-    en: (n, f, y0, y1) => `Admission point thresholds for upper secondary school: the score of the last applicant who got a place. ${n} schools across ${f} counties, ${y0}–${y1}. Open a school for the details.`,
+    no: (n, f, y0, y1) => `${n} skoler · ${f} fylker · ${y0}–${y1}`,
+    en: (n, f, y0, y1) => `${n} schools · ${f} counties · ${y0}–${y1}`,
+  },
+  introScope: {
+    no: (n, f, y0, y1) => `Dekker ${n} skoler i ${f} fylker, ${y0}–${y1}.`,
+    en: (n, f, y0, y1) => `Covers ${n} schools across ${f} counties, ${y0}–${y1}.`,
   },
   introTitle: { no: 'Slik leser du kartet', en: 'How to read this map' },
   introLede: {
@@ -1748,6 +1774,8 @@ const T = {
                   en: x => `Chance of a place with ${x} points · best programme` },
   legendChanceSize: { no: 'Størrelsen viser hvor stor andel av programområdene som er innen rekkevidde (≥ 35 %)',
                       en: 'Size shows what share of the programmes are within reach (≥ 35%)' },
+  moreLabel: { no: 'Vis mer', en: 'Show more' },
+  lessLabel: { no: 'Vis mindre', en: 'Show less' },
   legendNoForecast: { no: 'Ingen prognose', en: 'No forecast' },
   tipChance:  { no: (x, L, R, U, n, y) => `Med ${x} poeng i ${y}: <b>${L}</b> sannsynlig · ${R} mulig · ${U} lite sannsynlig (${n} programområde${n === 1 ? '' : 'r'})`,
                 en: (x, L, R, U, n, y) => `With ${x} points in ${y}: <b>${L}</b> likely · ${R} possible · ${U} unlikely (${n} programme area${n === 1 ? '' : 's'})` },
@@ -2659,6 +2687,8 @@ function renderLegend() {
   mix.hidden = !(rounds.length > 1 || (rounds.length && anyUnknown));
   legendZoomHint();
   mix.textContent = t('mixedRounds');
+  document.getElementById('legend-more-t').textContent = t('moreLabel');
+  document.getElementById('legend-less-t').textContent = t('lessLabel');
   if (chanceMode()) {
     document.getElementById('legend-bins').innerHTML = ['likely', 'possible', 'unlikely'].map(b =>
       `<div class="bin"><span class="sw" style="background:${bucketColor(b)}"></span><span class="bl">${t('bandLabel', b)}</span></div>`).join('');
@@ -2683,6 +2713,9 @@ function renderLegend() {
   bindTitleTips(document.getElementById('legend'));
   liftMapControls();
 }
+// the legend's height feeds the panel's reserve and the control lift, so an
+// unfolded legend has to be measured again
+document.getElementById('legend-more').addEventListener('toggle', liftMapControls);
 
 /* ================= sidebar ================= */
 // The open school is a place someone will want to send to someone else, so it
@@ -3058,6 +3091,10 @@ function renderSide() {
 // The forecast block: with points set, how many of the school's programmes
 // are within reach and on what basis; without, the mix-adjusted level and a
 // pointer to the input. Follows the category lens the same way the hero does.
+let chanceMoreOpen = false;
+const chanceMore = inner =>
+  `<details class="more"${chanceMoreOpen ? ' open' : ''} ontoggle="chanceMoreOpen = this.open">` +
+  `<summary><span class="mt">${esc(t('moreLabel'))}</span><span class="lt">${esc(t('lessLabel'))}</span></summary>${inner}</details>`;
 function renderChance(s, lensCat) {
   const box = document.getElementById('s-chance');
   const e = MODEL && MODEL.schools && MODEL.schools[`${s.fylke}|${s.name}`];
@@ -3077,12 +3114,12 @@ function renderChance(s, lensCat) {
       + `${esc(t('adjLine', (round1(e.alpha) > 0 ? '+' : '') + fmt(e.alpha), fmt(e.alpha_se)))}</div>`;
   if (!chanceMode()) {
     box.className = 'chance prompt';
-    box.innerHTML = `<div>${esc(t('chancePrompt'))}</div>${adj}`;
+    box.innerHTML = `<div>${esc(t('chancePrompt'))}</div>` + (adj ? chanceMore(adj) : '');
     return;
   }
   box.className = 'chance';
   const ch = schoolChance(s, lensCat || 'all', myPoints);
-  if (!ch) { box.innerHTML = `<div>${esc(t('chanceNoneInScope'))}</div>${adj}`; return; }
+  if (!ch) { box.innerHTML = `<div>${esc(t('chanceNoneInScope'))}</div>` + (adj ? chanceMore(adj) : ''); return; }
   const noPred = Math.max(0, ch.total - ch.n);
   const head = ch.likely ? t('chanceHeadL', fmt(myPoints), ch.likely, ch.n, noPred, ch.total)
              : ch.possible ? t('chanceHeadR', fmt(myPoints), ch.possible, ch.n, noPred, ch.total)
@@ -3110,11 +3147,11 @@ function renderChance(s, lensCat) {
   }
   // what the county's publication cannot tell the reader about this chance
   if (!s.round) fin += `<div>${esc(t('chanceRoundUnknown'))}</div>`;
-  box.innerHTML = `<div class="h">${esc(head)}</div><div class="bar">${bar}</div>` +
+  box.innerHTML = `<div class="h">${esc(head)}</div><div class="bar">${bar}</div>` + chanceMore(
     `<div>${esc(t('chanceCounts', ch.likely, ch.possible, ch.unlikely))}</div>` +
     `<div>${esc(t('chanceSub', ch.year, e.round, lo, hi))}` +
     (s.catchment ? ' ' + esc(t('chanceCatchment')) : '') +
-    (cov != null ? ' ' + esc(t('chanceCal', Math.round(cov * 100))) : '') + `</div>` + fin + adj;
+    (cov != null ? ' ' + esc(t('chanceCal', Math.round(cov * 100))) : '') + `</div>` + fin + adj);
 }
 
 /* ================= chart (3 resolution levels) ================= */
@@ -3779,7 +3816,8 @@ function renderIntro() {
       </div>
     </div>`).join('');
   document.getElementById('intro-body').innerHTML =
-    `<p class="lede">${esc(t('introLede'))}</p>${steps}` +
+    `<p class="lede">${esc(t('introLede'))} ${esc(t('introScope', DATA.schools.length, DATA.counties.length,
+      DATA.years[0], DATA.years[DATA.years.length - 1]))}</p>${steps}` +
     `<p class="caveat">${esc(t('introCaveat'))} `
       + `<a href="data/schools.json">${esc(t('introData'))}</a></p>` +
     `<p class="caveat">${esc(t('introPrivacy'))}</p>` +

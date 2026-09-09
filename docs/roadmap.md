@@ -136,9 +136,10 @@ person:
   iterate the EM loop and solver to convergence, re-pin and bump the
   version — costs a refit and a v1.9.1, still not bit-reproducible across
   machines; (c) build `model.json` in one named environment only. v1.9.1
-  (8 Sept) re-pinned the docs to a Mac build and says so in Appendix D; a
-  refit on any other machine will fail `test_docs.py` again until one of the
-  three is chosen.
+  (8 Sept) re-pinned the docs to a Mac build and says so in Appendix D.
+  Owner's decision, 8 Sept: leave it; if a refit on another machine fails
+  `test_docs.py`, take option (a) and widen the test's tolerance to the
+  fit's resolution rather than chase the environment.
 
 ## Launch list (agreed 2 September 2026)
 
