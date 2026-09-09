@@ -246,7 +246,6 @@
     width: 34px; height: 34px; flex: none; border: 1px solid var(--line-strong); border-radius: 10px;
     background: var(--surface-solid); color: var(--ink-2); cursor: pointer; font: inherit; font-size: 13px;
   }
-  .ptsrow button:hover { background: var(--accent-soft); color: var(--accent); }
   /* ---------- settings ---------- */
   #settings .sheet { max-width: 420px; }
   #settings .row { margin-top: 14px; }
@@ -276,7 +275,6 @@
     background: none; color: var(--ink-2); font-size: 12px; font-weight: 600; cursor: pointer;
     display: grid; place-items: center; padding: 0;
   }
-  #calc .grades button:hover { border-color: var(--accent); color: var(--accent); }
   #calc .grades button.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
   #calc .grades button.rm { border: none; color: var(--ink-3); font-weight: 400; }
   /* invisible, not absent: the slot is reserved so picking a grade never
@@ -324,7 +322,7 @@
   }
   #ov-list .opt .fy { font-size: 12px; color: var(--ink-3); flex: none; }
   #ov-list .opt.county { color: var(--accent-ink); font-weight: 600; }
-  #ov-list .opt.act, #ov-list .opt:hover { background: var(--accent-soft); }
+  #ov-list .opt.act { background: var(--accent-soft); }
   /* .act is the result Enter will open — a state, so it needs 3:1 of its own
      rather than a 1.13:1 tint. It also has to differ from :hover: they shared
      one declaration, so with the mouse resting on one row and the keyboard on
@@ -369,14 +367,10 @@
   /* the slot is always reserved, so sorting never re-flows the columns */
   #listview th .ar { margin-left: 4px; opacity: 0; }
   #listview th .ar.on { opacity: 1; }
-  #listview th button:hover .ar { opacity: .45; }
-  #listview th button:hover .ar.on { opacity: 1; }
   #listview td { padding: 8px 10px; border-bottom: 1px solid var(--line); }
   #listview tbody tr { cursor: pointer; }
-  #listview tbody tr:hover { background: var(--accent-soft); }
   #listview .sc { font-weight: 600; }
   #listview .sc a { color: inherit; text-decoration: none; }
-  #listview .sc a:hover { text-decoration: underline; }
   #listview .sc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   #listview .fy { color: var(--ink-2); }
   #listview .chip {
@@ -466,7 +460,6 @@
     border: none; background: var(--surface-solid); color: var(--ink-2); cursor: pointer;
     border-radius: 4px;
   }
-  .leaflet-bar button.locate:hover { color: var(--accent); }
   .leaflet-bar button.locate.on { color: var(--accent); }
   .leaflet-bar button.locate svg { width: 16px; height: 16px; }
   #toast {
@@ -514,7 +507,6 @@
     border: 1px solid var(--line); color: var(--ink-3); font-size: 14px; line-height: 1;
     background: var(--surface-solid); cursor: pointer;
   }
-  .prow .pick:hover { border-color: var(--accent); color: var(--accent); }
   /* a 1px border change is not a focus indicator; match the rest of the app */
   .prow .pick:focus-visible { border-color: var(--accent); color: var(--accent);
     outline: 3px solid var(--accent); outline-offset: 2px; }
@@ -533,7 +525,7 @@
   #choices .row:last-of-type { border-bottom: none; }
   #choices .row .who { flex: 1; min-width: 0; text-align: left; border: none; background: none; font: inherit;
                        color: var(--ink); cursor: pointer; padding: 0; line-height: 1.3; }
-  #choices .row .who:hover .sc, #choices .row .who:focus-visible .sc { color: var(--accent); }
+  #choices .row .who:focus-visible .sc { color: var(--accent); }
   #choices .row .sc { font-size: 12px; font-weight: 600; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #choices .row .pr { font-size: 11px; color: var(--ink-2); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #choices .row .rm { flex: none; width: 22px; height: 22px; border: none; border-radius: 7px; background: none;
@@ -547,7 +539,6 @@
   .brand .util .ico::after { content: ''; position: absolute; inset: -9px -3px; }
   .modal .x::after { content: ''; position: absolute; inset: -9px; }
   #choices .h button, .ico, .modal .x { position: relative; }
-  #choices .row .rm:hover { background: var(--accent-soft); color: var(--accent); }
   #choices .sum { font-size: 11.5px; color: var(--ink-2); margin-top: 7px; line-height: 1.45; }
   #choices .sum b { color: var(--ink); }
   #choices .sum .nudge { display: block; margin-top: 3px; color: var(--warn); }
@@ -569,7 +560,6 @@
   #s-list .oldnote { display: block; width: 100%; border: none; background: none; cursor: pointer;
                      text-align: left; padding: 9px 14px 11px; font: inherit; font-size: 11.5px;
                      color: var(--ink-3); text-decoration: underline; text-underline-offset: 2px; }
-  #s-list .oldnote:hover { color: var(--ink-2); }
   #choices .bar { display: flex; height: 5px; border-radius: 3px; overflow: hidden; margin: 6px 0 2px; background: var(--line); }
   #choices .bar span { height: 100%; background: var(--b); }
   .ch {
@@ -605,7 +595,6 @@
     border: none; border-radius: 9px; background: var(--accent-soft);
     color: var(--ink-2); font-size: 15px; cursor: pointer; line-height: 1;
   }
-  .modal .x:hover { color: var(--ink); }
   .modal .head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding-right: 34px; }
   .modal .head svg { width: 28px; height: 28px; flex: none; }
   .modal h2 { font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
@@ -639,12 +628,10 @@
     border-radius: 11px; background: var(--accent); color: var(--on-accent); font: inherit;
     font-size: 14px; font-weight: 650; cursor: pointer;
   }
-  .modal .cta:hover { filter: brightness(1.06); }
   .modal .cta.ghost {
     margin-top: 8px; background: none; color: var(--ink-2);
     border: 1px solid var(--line); font-weight: 600;
   }
-  .modal .cta.ghost:hover { filter: none; color: var(--ink); border-color: var(--ink-3); }
 
   /* ---------- utility buttons (inside the control panel) ---------- */
   .ico {
@@ -652,7 +639,6 @@
     border: 1px solid var(--line-strong); border-radius: 8px; background: none;
     color: var(--ink-2); cursor: pointer;
   }
-  .ico:hover { color: var(--accent); border-color: var(--accent); }
   .ico svg { width: 15px; height: 15px; }
   /* help and settings ride the title's baseline, hard right */
   .brand .util { margin-left: auto; display: flex; align-items: center; gap: 6px; }
@@ -674,7 +660,6 @@
   .ico.hint {
     color: var(--on-accent); background: var(--accent); border-color: var(--accent);
   }
-  .ico.hint:hover { color: var(--on-accent); border-color: var(--accent); }
   .ico.hint::before {
     content: ''; position: absolute; inset: -3px; border-radius: 11px;
     border: 2px solid var(--accent); pointer-events: none; opacity: 0;
@@ -714,7 +699,6 @@
      rendered at full strength with a pointer cursor and a hover brighten */
   .modal .cta[disabled] { opacity: .55; cursor: not-allowed; }
   #contact .cta[disabled] { cursor: progress; }
-  .modal .cta[disabled]:hover { filter: none; }
   /* honeypot: off-screen rather than display:none, which some bots skip */
   #contact .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
   #contact .done { text-align: center; padding: 14px 4px 4px; }
@@ -724,12 +708,88 @@
   #contact .done .cta { max-width: 220px; margin: 18px auto 0; text-align: center;
                         text-decoration: none; box-sizing: border-box; }
 
+  /* ---------- hover ----------
+     A touch device has no pointer to hover with, but it still matches a bare
+     :hover after a tap and keeps it until the next one, so a tapped control sat
+     there looking chosen. Every hover state in the app lives behind this query;
+     the states that mean something — .on, .sel, .act, :focus-visible — are
+     declared outside it and reach every device. */
+  @media (hover: hover) and (pointer: fine) {
+  .ptsrow button:hover { background: var(--accent-soft); color: var(--accent); }
+  #calc .grades button:hover { border-color: var(--accent); color: var(--accent); }
+  #listview th button:hover .ar { opacity: .45; }
+  #listview th button:hover .ar.on { opacity: 1; }
+  #listview tbody tr:hover { background: var(--accent-soft); }
+  #listview .sc a:hover { text-decoration: underline; }
+  .leaflet-bar button.locate:hover { color: var(--accent); }
+  .prow .pick:hover { border-color: var(--accent); color: var(--accent); }
+  #choices .row .rm:hover { background: var(--accent-soft); color: var(--accent); }
+  #s-list .oldnote:hover { color: var(--ink-2); }
+  .modal .x:hover { color: var(--ink); }
+  .modal .cta:hover { filter: brightness(1.06); }
+  .modal .cta.ghost:hover { filter: none; color: var(--ink); border-color: var(--ink-3); }
+  .ico:hover { color: var(--accent); border-color: var(--accent); }
+  .ico.hint:hover { color: var(--on-accent); border-color: var(--accent); }
+  .modal .cta[disabled]:hover { filter: none; }
+  .meta a:hover { text-decoration: underline; }
+  .cat-head:hover { color: var(--accent); }
+  #ov-list .opt:hover { background: var(--accent-soft); }
+  .prow:hover { background: var(--accent-soft); }
+  #choices .row .who:hover .sc { color: var(--accent); }
+  }
+
+  /* ---------- press feedback ----------
+     Every control here had a hover state and nothing on press, so between the
+     tap and the result the interface said nothing at all — on a phone, where
+     there is no hover, it said nothing ever. Scale is the acknowledgement for
+     a discrete control; a full-width row scales badly (the 3px state border
+     shifts and the text blurs), so rows deepen their tint instead.
+     100ms ease-out: fast enough to read as "heard you", not as animation. */
+  .ico, .seg button, .modal .x, .modal .cta, .ptsrow button, .prow .pick,
+  #choices .row .rm, #choices .h button, #calc .grades button, .tabs button,
+  .more > summary, .scope-chip button, #listview th button,
+  .leaflet-bar button.locate {
+    transition: transform .1s ease-out;
+  }
+  .ico:active, .seg button:active, .modal .x:active, .modal .cta:active,
+  .ptsrow button:active, .prow .pick:active, #choices .row .rm:active,
+  #choices .h button:active, #calc .grades button:active, .tabs button:active,
+  .more > summary:active, .scope-chip button:active, #listview th button:active,
+  .leaflet-bar button.locate:active {
+    transform: scale(.96);
+  }
+  /* rows and full-width targets: tint, not scale */
+  .prow:active, .prow.sel:active, #listview tbody tr:active,
+  #ov-list .opt:active, #ov-list .opt.act:active,
+  .cat-head:active, #s-list .oldnote:active {
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+  /* a disabled control must not pretend to respond */
+  /* a 4% shrink reads as a tap on a 28px icon and as a lurch on a 480px bar,
+     so the wide controls press more gently */
+  .modal .cta:active, #listview th button:active, .more > summary:active { transform: scale(.985); }
+  .modal .cta[disabled]:active { transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    /* the press still answers, it just stops moving */
+    .ico, .seg button, .modal .x, .modal .cta, .ptsrow button, .prow .pick,
+    #choices .row .rm, #choices .h button, #calc .grades button, .tabs button,
+    .more > summary, .scope-chip button, #listview th button,
+    .leaflet-bar button.locate { transition: none; }
+    .ico:active, .seg button:active, .modal .x:active, .modal .cta:active,
+    .ptsrow button:active, .prow .pick:active, #choices .row .rm:active,
+    #choices .h button:active, #calc .grades button:active, .tabs button:active,
+    .more > summary:active, .scope-chip button:active, #listview th button:active,
+    .leaflet-bar button.locate:active {
+      transform: none; background: color-mix(in srgb, var(--accent) 18%, transparent);
+    }
+  }
+
   /* ---------- tooltip ---------- */
   #tip {
     position: fixed; z-index: 2200; max-width: 260px; padding: 8px 10px;
     background: var(--surface-solid); color: var(--ink-2); border: 1px solid var(--line);
     border-radius: 10px; box-shadow: var(--shadow); font-size: 11.5px; line-height: 1.45;
-    pointer-events: none; opacity: 0; transition: opacity .12s;
+    pointer-events: none; opacity: 0; transition: opacity .12s ease-out;
   }
   #tip.on { opacity: 1; }
   #tip b { color: var(--ink); }
@@ -833,7 +893,6 @@
 
   .meta { padding: 12px 18px 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--ink-2); }
   .meta a { color: var(--accent); text-decoration: none; font-weight: 550; }
-  .meta a:hover { text-decoration: underline; }
 
   /* what the county did to this school: a merger, a disputed figure, a year
      published from a different intake round */
@@ -893,7 +952,6 @@
     padding: 12px 18px 5px; font-size: 11px; font-weight: 700; letter-spacing: .07em;
     text-transform: uppercase; color: var(--ink-3);
   }
-  .cat-head:hover { color: var(--accent); }
   .scope-chip {
     display: flex; align-items: center; gap: 8px; margin: 10px 18px 2px; padding: 6px 10px;
     background: var(--accent-soft); border-radius: 9px; font-size: 11.5px; color: var(--ink-2);
@@ -908,7 +966,7 @@
     display: flex; flex-wrap: wrap; align-items: center; gap: 10px; width: 100%; text-align: left;   /* wrap: at Ekstra stor the chance chip pushed the + off-screen */
     padding: 7px 18px; border: none; background: none; cursor: pointer;
   }
-  .prow:hover, .prow.sel { background: var(--accent-soft); }
+  .prow.sel { background: var(--accent-soft); }
   /* .sel is the programme the chart is plotting, and the tint alone was its
      only marker: 1.13:1 across thirty rows told you nothing */
   .prow { border-left: 3px solid transparent; }
@@ -1120,6 +1178,9 @@
     .brand .util .ico::after { inset: -9px -7px; }
     .ptsrow button { position: relative; }
     .ptsrow button::after { content: ''; position: absolute; inset: -5px; }
+    /* search sat in the utility pill and inherited its touch allowance; on the
+       toggle row it is a 34px control on a row that has width to spare */
+    .viewrow .ico { width: 44px; }
     #choices .h button::after { inset: -15px -10px; }
     /* Leaflet's own zoom and locate buttons stay 30px on touch; 40 is the floor */
     .leaflet-touch .leaflet-bar a, .leaflet-touch .leaflet-bar button.locate { width: 40px; height: 40px; line-height: 40px; }
