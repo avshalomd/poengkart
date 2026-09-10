@@ -471,6 +471,7 @@
   @media (max-width: 760px) { #toast { bottom: calc(20px + var(--ctrl-lift, 0px)); } }
   #pts-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; line-height: 1.4; }
   #pts-note .k { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 3px 0 1px; vertical-align: -1px; }
+  #pts-note .kl { white-space: nowrap; }
   /* Chance bands are semantic colours, deliberately not the blue threshold
      ramp: a dot's colour answers a different question once points are set. */
   .b-likely { --b: var(--good); --bt: var(--chip-good); }
@@ -906,7 +907,9 @@
   .photo .name .credit { font-size: 9.5px; opacity: .85; margin-top: 2px; text-shadow: 0 1px 3px rgba(0,0,0,.7); }
   .photo .name .credit a { color: inherit; }
 
-  .meta { padding: 12px 18px 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--ink-2); }
+  /* baseline: on a phone the website link grows 8px of touch padding above
+     its text, and top-aligned it sat a line lower than the address beside it */
+  .meta { padding: 12px 18px 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; font-size: 12px; color: var(--ink-2); }
   .meta a { color: var(--accent); text-decoration: none; font-weight: 550; }
 
   /* what the county did to this school: a merger, a disputed figure, a year
@@ -1033,6 +1036,10 @@
     #panel .brand { grid-column: 1 / -1; }
     #panel .viewrow { grid-column: 1 / -1; margin-bottom: 2px; }
     #panel .brand h1 { font-size: 17px; }
+    /* the fade is pulled out to the card's edges by its padding; left at the
+       desktop 16/14px it overshot this padding by 3px, and those 3px were
+       enough to put a scrollbar on a panel with nothing to scroll */
+    #panel::after { margin: -4px -12px -11px; bottom: -11px; }
     #cat-note { grid-column: 1 / -1; margin-top: 0; min-height: 0; }
     #pts-field { grid-column: 1 / -1; margin-top: 4px; }
     #pts-note { margin-top: 4px; }
@@ -1103,6 +1110,7 @@
   @media (max-height: 480px) {
     #tagline { display: none; }
     #panel { padding: 10px 12px 11px; }
+    #panel::after { margin: -4px -12px -11px; bottom: -11px; }
     #legend { padding: 7px 10px 6px; }
     #legend .t { font-size: 10.5px; margin-bottom: 5px; }
     /* matches the phone rule's specificity so it still wins when both apply */
@@ -2413,8 +2421,10 @@ function renderPointsField() {
   note.hidden = !bad && myPoints === null;
   note.innerHTML = bad ? esc(t('ptsBad'))
     : myPoints === null ? ''
-    : esc(t('ptsNoteSet')).replace(/\{(likely|possible|unlikely)\}/g,
-        (_, b) => `<span class="k" style="background:${bucketColor(b)}"></span>`);
+    // each dot travels with its label: loose, the line broke between the
+    // orange dot and «mulig», so the key read as a dot for nothing
+    : esc(t('ptsNoteSet')).replace(/\{(likely|possible|unlikely)\} ([^·.]+?)(?= ·|\.|$)/g,
+        (_, b, label) => `<span class="kl"><span class="k" style="background:${bucketColor(b)}"></span>${label}</span>`);
 }
 
 /* ================= map ================= */
