@@ -1119,8 +1119,14 @@
   @media (max-height: 480px) and (min-width: 561px) {
     #panel {
       width: 520px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px; align-items: end;
+      gap: 8px; align-items: start;
     }
+    /* «Poengene dine (valgfritt)» takes two lines in a third of 520px, and the
+       note hangs under its input; bottom-aligned, the two selects sat 50px
+       below the points box. Every label reserves those two lines and rests on
+       its control, so the three controls share a top and the note hangs free. */
+    body:not(.view-list) #panel .field label { min-height: 2.4em; line-height: 1.2; display: flex; align-items: flex-end; }
+    #panel .field select { text-overflow: ellipsis; }
     /* the points field sat 24px below the card's fold with no cue; three
        fields on one row keep the card inside 231px */
     #panel .brand, #panel #cat-note, #panel .viewrow, #panel #choices { grid-column: 1 / -1; }
