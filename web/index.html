@@ -889,6 +889,20 @@
     border: 2px solid var(--surface-solid);
   }
   .pk-cluster.big { font-size: 13.5px; }
+  /* With points entered a cluster showed only a count, and «Zoom inn for å se
+     sjansen» was the whole answer until the map was zoomed to street level. The
+     halo now carries the mix of the schools inside it, in the dots' own colours
+     and in the legend's order from twelve o'clock: sannsynlig, mulig, lite
+     sannsynlig, then grey for no forecast. It takes exactly the 4px the plain
+     halo had, so no cluster grows. */
+  .pk-cluster.mix { position: relative; box-shadow: 0 2px 8px rgba(0,0,0,.35); }
+  .pk-cluster.mix::before {
+    content: ''; position: absolute; inset: -6px; border-radius: 50%;
+    background: conic-gradient(var(--good) 0 var(--l), var(--dot-possible) 0 var(--p),
+                               var(--dot-unlikely) 0 var(--u), var(--context) 0);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4.5px), #000 calc(100% - 3.5px));
+            mask: radial-gradient(farthest-side, transparent calc(100% - 4.5px), #000 calc(100% - 3.5px));
+  }
   .leaflet-cluster-anim .leaflet-marker-icon { transition: transform .2s ease; }
 
   /* ---------- sidebar ---------- */
@@ -1797,8 +1811,9 @@ const T = {
                    en: (y, r) => `The ${y} figures are from the ${ordEn(r)} intake, not the same intake as the other years – more applicants were admitted, so the thresholds sit lower.` },
   closeAria:  { no: 'Lukk skoledetaljer', en: 'Close school details' },
   skipToControls: { no: 'Hopp til filtrene', en: 'Skip to the filters' },
-  clusterAria: { no: n => `${n} skoler i dette området. Trykk for å zoome inn.`,
-                 en: n => `${n} schools in this area. Press to zoom in.` },
+  // x: the cluster's mix when points are entered, so the label says what the ring shows
+  clusterAria: { no: (n, x) => `${n} skoler i dette området.` + (x ? ` Best sjanse: ${x.likely} sannsynlig · ${x.possible} mulig · ${x.unlikely} lite sannsynlig${x.none ? ` · ${x.none} uten prognose` : ''}.` : '') + ' Trykk for å zoome inn.',
+                 en: (n, x) => `${n} schools in this area.` + (x ? ` Best chance: ${x.likely} likely · ${x.possible} possible · ${x.unlikely} unlikely${x.none ? ` · ${x.none} without a forecast` : ''}.` : '') + ' Press to zoom in.' },
   markerAria: { no: (n, v) => `${n}. ${v}. Trykk for å se detaljer.`, en: (n, v) => `${n}. ${v}. Press to open details.` },
   gone:       { no: 'Utgått', en: 'Discontinued' },
   tipPrograms:{ no: (n, span) => `${n} programområde${n === 1 ? '' : 'r'} · ${span}`, en: (n, span) => `${n} programme area${n === 1 ? '' : 's'} · ${span}` },
@@ -2511,6 +2526,14 @@ function setTiles() {
   }).addTo(map);
 }
 
+// A cluster's schools counted by the rule that colours their dots: the bucket
+// of each school's best chance, or none without a forecast. The ring and the
+// cluster's spoken label both read it, so neither can disagree with the dots.
+function clusterMix(cluster) {
+  const mix = { likely: 0, possible: 0, unlikely: 0, none: 0 };
+  for (const m of cluster.getAllChildMarkers()) mix[m.options.pkBucket || 'none']++;
+  return mix;
+}
 function drawMarkers() {
   if (view === 'list') { renderListView(); return; }   // the map is display:none
   if (markerLayer) map.removeLayer(markerLayer);
@@ -2526,9 +2549,15 @@ function drawMarkers() {
     iconCreateFunction: cluster => {
       const n = cluster.getChildCount();
       const size = n < 10 ? 32 : n < 30 ? 38 : 44;
+      let mix = '', ring = '';
+      if (chanceMode()) {
+        const x = clusterMix(cluster), at = k => `${(100 * k / n).toFixed(2)}%`;
+        mix = ` data-mix="${x.likely},${x.possible},${x.unlikely},${x.none}"`;
+        ring = `;--l:${at(x.likely)};--p:${at(x.likely + x.possible)};--u:${at(x.likely + x.possible + x.unlikely)}`;
+      }
       return L.divIcon({
-        html: `<div class="pk-cluster${n >= 30 ? ' big' : ''}" `
-            + `style="width:${size}px;height:${size}px">${n}</div>`,
+        html: `<div class="pk-cluster${n >= 30 ? ' big' : ''}${mix ? ' mix' : ''}"${mix} `
+            + `style="width:${size}px;height:${size}px${ring}">${n}</div>`,
         className: '', iconSize: [size, size],
       });
     },
@@ -2553,7 +2582,8 @@ function drawMarkers() {
       : st8.kind === 'zero'
       ? { radius: 8, weight: 2, color: cssVar('--accent'), fillColor: cssVar('--accent'), fillOpacity: 0.35 }
       : { radius: 7.5, weight: 2, color: cssVar('--surface-solid'), fillColor: cssVar('--context'), fillOpacity: 0.9 };
-    const m = L.circleMarker([s.lat, s.lon], style).addTo(markerLayer);
+    const m = L.circleMarker([s.lat, s.lon],
+      { ...style, pkSchool: s, pkBucket: ch ? bucketOf(ch.best) : 'none' }).addTo(markerLayer);
     let line;
     if (chanceMode()) {
       line = (mapCat === 'all' ? '' : `${CATS[mapCat][lang]}: `) + (ch
@@ -2636,7 +2666,7 @@ function drawMarkers() {
       const el = l._icon;
       if (!el || typeof l.getChildCount !== 'function' || el.dataset.pkKeyed) continue;
       el.dataset.pkKeyed = '1';
-      el.setAttribute('aria-label', t('clusterAria', l.getChildCount()));
+      el.setAttribute('aria-label', t('clusterAria', l.getChildCount(), chanceMode() ? clusterMix(l) : null));
       el.addEventListener('keydown', ev => {
         if (ev.key !== 'Enter' && ev.key !== ' ') return;
         ev.preventDefault();
