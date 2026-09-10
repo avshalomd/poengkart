@@ -306,6 +306,9 @@
     position: relative; margin-top: min(18vh, 150px); width: min(560px, 92vw);
     background: var(--surface-solid); border: 1px solid var(--line); border-radius: 14px;
     box-shadow: var(--shadow); padding: 10px;
+    /* the other sheets rise out of their scrim and this one used to pop in
+       over a fading one; it takes the same 10px path in and out now */
+    animation: rise .22s cubic-bezier(.2,.8,.3,1);
   }
   #ov-q {
     width: 100%; padding: 12px 52px 12px 14px; font: inherit; font-size: 16px; color: var(--ink);
@@ -555,7 +558,8 @@
     z-index: 2400; padding: 11px 14px; border-radius: 11px; font-size: 13.5px; line-height: 1.45;
     background: var(--surface-solid); color: var(--warn); border: 1px solid var(--line);
     box-shadow: var(--shadow); opacity: 0; transform: translateY(8px); pointer-events: none;
-    transition: opacity .18s ease, transform .18s ease; max-width: 480px; margin: 0 auto;
+    transition: opacity .18s cubic-bezier(.2,.8,.3,1), transform .18s cubic-bezier(.2,.8,.3,1);
+    max-width: 480px; margin: 0 auto;
   }
   #pick-note.show { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { #pick-note { transition: none; transform: none; } }
@@ -598,7 +602,7 @@
      watching, leaving is the part worth getting out of the way. The sheet
      stops taking clicks the moment it starts leaving. */
   .modal.closing { animation: unfade .16s ease-out forwards; pointer-events: none; }
-  .modal.closing .sheet { animation: sink .16s cubic-bezier(.2,.8,.3,1) forwards; }
+  .modal.closing .sheet, #searchov.closing .ovbox { animation: sink .16s cubic-bezier(.2,.8,.3,1) forwards; }
   @keyframes unfade { to { opacity: 0 } }
   /* the sheet only moves: its opacity is the backdrop's, and animating both
      would multiply them, emptying the sheet a hundred milliseconds before the
@@ -1022,6 +1026,8 @@
        the clusters still slid and the map still flew */
     #side, #tip { transition: none; }
     .modal, .sheet, .modal.closing, .modal.closing .sheet { animation: none; }
+    /* the overlay's box is styled by id, so a class alone would lose to it */
+    #searchov .ovbox, #searchov.closing .ovbox { animation: none; }
     .leaflet-cluster-anim .leaflet-marker-icon, .leaflet-cluster-anim .leaflet-marker-shadow {
       transition: none; }
   }
