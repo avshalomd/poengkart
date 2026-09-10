@@ -1021,6 +1021,8 @@
      only marker: 1.13:1 across thirty rows told you nothing */
   .prow { border-left: 3px solid transparent; }
   .prow.sel { border-left-color: var(--accent); }
+  /* a group of one, with no heading of its own: the rule is where it begins */
+  .prow.solo { margin-top: 6px; border-top: 1px solid var(--line); }
   .prow .nm { flex: 1; font-size: 13px; line-height: 1.3; }
   .prow .lv { font-size: 10.5px; font-weight: 600; color: var(--ink-3); border: 1px solid var(--line);
               border-radius: 5px; padding: 1px 5px; flex: none; }
@@ -3514,10 +3516,16 @@ function renderList() {
             `<button onclick="clearScope()">${t('scopeAll')}${hidden ? ` (+${hidden})` : ''}</button></div>`;
   }
   const badged = new Set();  // badge only the first row per program name
+  let rowsSoFar = 0;
   for (const c of Object.keys(CATS).filter(c => byCat[c])) {
     const list = byCat[c];
     list.sort((a, b) => (numericLatest(b.values)?.[1] ?? -1) - (numericLatest(a.values)?.[1] ?? -1));
-    html += `<button class="cat-head" data-cat="${c}" aria-pressed="${mapCat === c}"><span>${CATS[c][lang]}</span><span class="cnt">${list.length}</span></button>`;
+    // A group of one whose row carries the group's own name said the same thing
+    // twice, a heading over itself («STUDIESPESIALISERING 1» above
+    // «Studiespesialisering»). That row stands alone; a rule sets it off from
+    // the group above, whose last row it otherwise seemed to be.
+    const solo = list.length === 1 && progName(list[0]).toLowerCase() === CATS[c][lang].toLowerCase();
+    if (!solo) html += `<button class="cat-head" data-cat="${c}" aria-pressed="${mapCat === c}"><span>${CATS[c][lang]}</span><span class="cnt">${list.length}</span></button>`;
     for (const p of list) {
       // headline value: newest non-priority cell (F is a quota fact, not a value)
       let latestYear = null, lv;
@@ -3561,8 +3569,9 @@ function renderList() {
       const on = isChosen(current, p);
       const pick = orphan ? '' : `<span class="pick${on ? ' on' : ''}" role="button" tabindex="0" data-idx="${current.programs.indexOf(p)}"` +
         ` aria-pressed="${on}" aria-label="${esc(t(on ? 'pickRemove' : 'pickAdd'))}" title="${esc(t(on ? 'pickRemove' : 'pickAdd'))}">${on ? '✓' : '+'}</span>`;
-      html += `<button class="prow${sel}${orphan ? ' muted' : ''}" data-cat="${c}" data-idx="${current.programs.indexOf(p)}">` +
+      html += `<button class="prow${sel}${orphan ? ' muted' : ''}${solo && rowsSoFar ? ' solo' : ''}" data-cat="${c}" data-idx="${current.programs.indexOf(p)}">` +
               `<span class="nm"${p.official ? ` title="${esc(t('officialName', p.official))}"` : ''}>${esc(progName(p))}${badge}</span>${chip}<span class="lv">${esc(p.level)}</span><span class="val">${val}</span>${pick}</button>`;
+      rowsSoFar++;
     }
   }
   // the disclosure for history: how many rows the recency filter is hiding
