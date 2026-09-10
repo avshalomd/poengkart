@@ -847,7 +847,10 @@
   }
 
   /* ---------- map marker & tooltip ---------- */
-  .leaflet-interactive:focus { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .leaflet-interactive:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  /* a click, a tap and a sheet closed with the mouse all focus the dot too, and
+     the browser then drew its own square ring round it; only the keyboard gets one */
+  .leaflet-interactive:focus:not(:focus-visible) { outline: none; }
   .leaflet-tooltip.tip {
     background: var(--surface-solid); color: var(--ink); border: 1px solid var(--line);
     border-radius: 12px; box-shadow: var(--shadow); padding: 9px 12px;
@@ -2421,6 +2424,7 @@ const isDark = () => PREFS.theme === 'dark' ||
 const prefersStill = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 let tileLayer = null, miniMap = null, miniMapRO = null;
 let sideOpener = null;      // the marker or cluster that opened the panel, for Escape to return to
+const markerOf = new WeakMap();   // a marker's element → its layer, so closeSide can reach the tooltip
 // the key is CARTO's free non-commercial basemap tier (domain-bound,
 // requested for poengkart's domains 27.08.2026); it belongs in the client
 const CARTO_KEY = 'cb1_2bsv_1_23dae695a38f70885d3b4f7b';
@@ -2538,6 +2542,7 @@ function drawMarkers() {
       const el = m.getElement();
       if (!el || el.dataset.pkKeyed) continue;
       el.dataset.pkKeyed = '1';                   // keyboard access (WCAG 2.1.1)
+      markerOf.set(el, m);
       el.setAttribute('tabindex', '0');
       el.setAttribute('role', 'button');
       el.setAttribute('aria-label', t('markerAria', s.name,
@@ -2966,8 +2971,8 @@ function clearScope() {
 let sideClosing = false;   // a ✕ in flight: the next popstate is a CLOSE,
                            // whatever school the entry underneath names
 function closeSide(fromHistory) {
-  // opened from the map by keyboard: Escape goes back to that school's marker,
-  // found by name because drawMarkers() has rebuilt the marker DOM since
+  // opened from the map: closing goes back to that school's marker, found by
+  // name because drawMarkers() has rebuilt the marker DOM since
   const openedName = sideOpener && current ? current.name : null;
   const side = document.getElementById('side');
   if (!fromHistory && (history.state || {}).pkSide) {
@@ -2994,6 +2999,11 @@ function closeSide(fromHistory) {
   sideOpener = null;
   const back = document.getElementById('map-fylke');
   (opener || (back && back.offsetParent ? back : document.getElementById('map-cat')))?.focus();
+  // A click or a tap focuses the marker too, so a sheet opened that way hands
+  // focus back like any other, and Leaflet opens a tooltip on every focus: the
+  // school's tooltip was left floating over the map after the ✕. Only a return
+  // the keyboard can see keeps it.
+  if (opener && !opener.matches(':focus-visible')) markerOf.get(opener)?.closeTooltip();
 }
 
 // Rogaland's image handler serves nothing but the original: a width in the
