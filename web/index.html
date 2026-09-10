@@ -1216,6 +1216,12 @@
     .brand .util .ico::after { inset: -9px -7px; }
     .ptsrow button { position: relative; }
     .ptsrow button::after { content: ''; position: absolute; inset: -5px; }
+    /* «Vis mer» and the scope chip's «Vis alle utdanningsprogram» are 14-16px
+       tall, the two text controls this list had missed; the programme heading
+       sits 8px under the chip, so that one reaches up rather than down */
+    .more > summary, .scope-chip button { position: relative; }
+    .more > summary::after { content: ''; position: absolute; inset: -14px 0; }
+    .scope-chip button::after { content: ''; position: absolute; inset: -15px 0 -7px; }
     /* search sat in the utility pill and inherited its touch allowance; on the
        toggle row it is a 34px control on a row that has width to spare */
     .viewrow .ico { width: 44px; }
