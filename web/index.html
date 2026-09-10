@@ -673,6 +673,21 @@
   .viewrow { display: flex; align-items: stretch; gap: 6px; margin: 0 0 12px; }
   .viewrow #view-toggle { flex: 1; margin: 0; }
   .viewrow .ico { flex: none; width: 34px; border-radius: 9px; }
+  /* the folded phone panel's one line for fylke and utdanningsprogram: drawn
+     like the selects it stands in for, and shown only while folded */
+  #panel-sum {
+    display: none; position: relative; align-items: center; gap: 6px; width: 100%; min-height: 40px;
+    padding: 4px 8px 4px 10px; font: inherit; font-size: 12.5px; line-height: 1.2; color: var(--ink);
+    text-align: left; background: var(--surface-solid); border: 1px solid var(--line-strong);
+    border-radius: 10px; cursor: pointer; outline-offset: 2px;
+  }
+  #panel-sum-t { flex: 1 1 auto; min-width: 0; }
+  #panel-sum-t .ln { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #panel-sum-t .ln + .ln { font-size: 11px; color: var(--ink-3); }
+  #panel-sum svg { flex: none; width: 15px; height: 15px; color: var(--ink-2); }
+  /* read aloud, not drawn */
+  .vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0;
+        overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   /* First visit: the help sheet used to open itself over a map nobody had seen
      yet, which reads as something to get rid of rather than something to read.
      The button asks for attention instead. It has to still be asking whenever
@@ -1210,6 +1225,42 @@
     body.view-list #panel .field + .field, body.view-list #panel #pts-field { margin-top: 0; }
   }
 
+  /* ---------- the folded phone panel ----------
+     On a phone the panel lay across 279 of 812px, a third of the map, with the
+     northern clusters under it. foldPanel() sets body.panel-folded once the
+     reader starts using the map: the selects, the notes and the wishes give way
+     to a button saying what the selects hold, and the points field stays beside
+     it, being the control a reader changes while looking at the map. Stacked,
+     the two still took 229px; side by side the card is 148px. The field's
+     label is only hidden from sight there: the legend below already says
+     «med 40,0 poeng». The rules exist only at the sizes where the panel lies
+     across the map, so turning to a wider screen shows the whole card again;
+     display: none also takes the folded controls out of the tab order. */
+  @media (max-width: 560px), (max-height: 480px) {
+    body.panel-folded:not(.view-list) #panel > .field:not(#pts-field),
+    body.panel-folded:not(.view-list) #panel #cat-note,
+    body.panel-folded:not(.view-list) #panel #choices,
+    body.panel-folded:not(.view-list) #pts-note:not(.bad) { display: none; }
+    body.panel-folded:not(.view-list) #panel-sum { display: flex; grid-column: 1; align-self: start; }
+    body.panel-folded:not(.view-list) #panel #pts-field { grid-column: 2; margin-top: 0; align-self: start; }
+    body.panel-folded:not(.view-list) #panel #pts-label {
+      position: absolute; width: 1px; height: 1px; min-height: 0; margin: -1px; padding: 0;
+      overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    /* at Ekstra stor half the card leaves the points box under 40px, too
+       narrow for «40,0» beside the clear button; the two stack instead */
+    :root[data-font="xl"] body.panel-folded:not(.view-list) #panel-sum,
+    :root[data-font="xl"] body.panel-folded:not(.view-list) #panel #pts-field { grid-column: 1 / -1; }
+  }
+  /* and on a 320px phone, where the box is 53px and clips the figure */
+  @media (max-width: 340px) {
+    body.panel-folded:not(.view-list) #panel-sum,
+    body.panel-folded:not(.view-list) #panel #pts-field { grid-column: 1 / -1; }
+  }
+  /* sideways the card is three columns: the button takes the selects' two */
+  @media (max-height: 480px) and (min-width: 561px) {
+    body.panel-folded:not(.view-list) #panel-sum { grid-column: 1 / 3; }
+    body.panel-folded:not(.view-list) #panel #pts-field { grid-column: 3; }
+  }
   @media (max-width: 760px) {
     #side.open { width: 100vw; }
     /* 100vw here laid out 487px wide inside the text-size zoom and pushed the
@@ -1406,6 +1457,13 @@ try {
       </svg>
     </button>
   </div>
+  <!-- on a phone the two selects fold into this line once the reader starts
+       using the map (foldPanel); pressing it brings them back -->
+  <button id="panel-sum" type="button" aria-expanded="false" onclick="unfoldPanel(event)">
+    <span id="panel-sum-t"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
   <div class="field" id="fylke-field" hidden>
     <label id="fylke-label" for="map-fylke"></label>
     <select id="map-fylke" onchange="onMapFylke(this.value)"></select>
@@ -2729,11 +2787,39 @@ function setLens(v) {
   // a selected row survives any lens that still contains it
   if (chart.prog && v !== 'all' && chart.prog.category !== v) chart.prog = null;
   if (current && !visibleSchools().includes(current)) closeSide(true);
-  drawMarkers(); renderLegend(); renderCatNote();
+  drawMarkers(); renderLegend(); renderCatNote(); renderPanelSum();
   renderSide();
   syncUrl(true);
 }
 function onMapCat(v) { setLens(v); }
+
+// The folded panel's button (see the CSS for why it folds). Drawn: the county
+// over the education programme; read: each value after its select's own label,
+// so a screen reader hears what it would have heard on the selects.
+function renderPanelSum() {
+  if (!DATA) return;
+  const parts = [];
+  if (!document.getElementById('fylke-field').hidden)
+    parts.push([t('fylkeLabel'), mapFylke === 'all' ? t('allFylker') : mapFylke]);
+  parts.push([t('catLabel'), mapCat === 'all' ? t('allCats') : CATS[mapCat][lang]]);
+  document.getElementById('panel-sum-t').innerHTML = parts.map(([l, v], i) =>
+    `<span class="ln"><span class="vh">${i ? ', ' : ''}${esc(l)}: </span>${esc(v)}</span>`).join('');
+}
+const panelFolds = () => view === 'map' && matchMedia('(max-width: 560px), (max-height: 480px)').matches;
+function foldPanel(fold) {
+  if (fold && !panelFolds()) return;
+  if (fold === document.body.classList.contains('panel-folded')) return;
+  if (fold) renderPanelSum();
+  document.body.classList.toggle('panel-folded', fold);
+}
+function unfoldPanel(ev) {
+  foldPanel(false);
+  // the pressed line is gone; from the keyboard, land on the first select it
+  // uncovered. A tap moves nothing: focusing a select on iOS opens its picker.
+  if (ev && ev.detail === 0) {
+    document.getElementById(document.getElementById('fylke-field').hidden ? 'map-cat' : 'map-fylke').focus();
+  }
+}
 
 /* ================= static chrome rendering ================= */
 function renderPanel() {
@@ -2772,6 +2858,7 @@ function renderPanel() {
       .map(c => `<option value="${c}">${CATS[c][lang]}</option>`).join('');
   sel.value = mapCat;
   renderPointsField();
+  renderPanelSum();
 }
 function renderCatNote() {
   const el = document.getElementById('cat-note');
@@ -4712,6 +4799,10 @@ async function main() {
   let touched = false;
   ['mousedown', 'wheel', 'touchstart'].forEach(ev => map.getContainer()
     .addEventListener(ev, () => { touched = true; }, { once: true, passive: true }));
+  // the panel folds on every return to the map, not the first only: a reader
+  // who unfolded it to change a select is done with it once they pan again
+  ['mousedown', 'wheel', 'touchstart'].forEach(ev => map.getContainer()
+    .addEventListener(ev, () => foldPanel(true), { passive: true }));
   // A map framed against a 0×0 container sticks at max zoom over empty terrain
   // with no markers, and nothing about the page looks broken enough to explain
   // it. A container is 0×0 at boot for many unrelated reasons — a background
