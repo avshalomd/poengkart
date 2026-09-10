@@ -938,16 +938,21 @@
     border-left: 2px solid var(--line); padding: 1px 0 1px 9px;
   }
   .round.stale { background: transparent; color: var(--ink-2); border: 1px dashed var(--ink-3); }
-  .hero { display: flex; gap: 26px; padding: 14px 18px 12px; border-bottom: 1px solid var(--line); }
+  /* At Ekstra stor on a 360px phone «2 programområder» ran 12px past the sheet
+     (30px with a programme's name in the first cell) and the whole sheet
+     scrolled sideways. Breaking the labels was the wrong cure: hyphenation
+     fills lines greedily and split «programområ-der» on 180 sheets at normal
+     size. So no word breaks. The first cell, the one with the long label,
+     starts at its narrowest and grows back to its natural width as room
+     allows; the figures keep theirs; and when even that does not fit, the last
+     cell moves to a second row, as large text does on a phone. */
+  .hero { display: flex; flex-wrap: wrap; gap: 10px 26px;
+          padding: 14px 18px 12px; border-bottom: 1px solid var(--line); }
+  .hero .cell { flex: none; }
+  .hero .cell:first-child { flex: 1 1 auto; width: min-content; max-width: max-content; }
   .hero .cell .v { font-size: 26px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
   .hero .cell .v.up { color: var(--good); } .hero .cell .v.dn { color: var(--ink-2); }
   .hero .cell .l { font-size: 10.5px; color: var(--ink-3); margin-top: 1px; }
-  /* at Ekstra stor on a 360px phone «2 programområder» ran 12px past the sheet
-     (30px with a programme's name in the first cell) and the whole sheet
-     scrolled sideways. The small label may now break, at a syllable where it
-     can; the figure above it cannot, so a cell still never gets narrower than
-     its own number. */
-  .hero .cell .l { overflow-wrap: anywhere; hyphens: auto; -webkit-hyphens: auto; }
   /* A mean over the few programmes that filled up reads like a busy school
      even when most of it took everyone who applied. Wherever a mean is
      printed, this says so. */
@@ -973,7 +978,12 @@
   .tabs button { border: 1px solid transparent; background: none; padding: 4px 11px;
                  font-size: 12px; font-weight: 600;
                  color: var(--ink-2); border-radius: 7px; cursor: pointer;
-                 min-width: 0; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+                 min-width: 0; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word;
+                 /* hyphenation fills the line greedily, which at Stor gave
+                    «Utdanningspro-gram» and «Programom-råde»; five letters
+                    after the hyphen moves the break to the compound's seam */
+                 hyphenate-limit-chars: auto 4 5;
+                 -webkit-hyphenate-limit-before: 4; -webkit-hyphenate-limit-after: 5; }
   .tabs button[data-mode="all"] { flex-shrink: 0; }
   /* a literal black shadow is invisible on a dark ground, and it was the only
      thing separating the selected tab from the strip behind it. The border is
