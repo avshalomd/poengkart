@@ -422,6 +422,14 @@
     /* the swipe to Sjanse hid every school name; the first column stays put */
     #listview th:first-child, #listview td:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface-solid); }
   }
+  /* With points entered, four columns still wanted 53px more than a 375px
+     phone has (38px at 390, 14px at 414), so Sjanse sat half behind the edge.
+     Endring goes next: it is the one figure the school's own panel repeats
+     («endring fra»). A reader who sorted by it keeps it. */
+  @media (max-width: 429px) {
+    #listview table.has-chance:not(.by-delta) .col-delta,
+    #listview table.has-chance:not(.by-delta) td.dl { display: none; }
+  }
   /* What is left can still overflow — a long school name, a wide chance phrase —
      and an overlay scrollbar is invisible at rest, so nothing said the table
      moved sideways at all. These shadows appear only on the side that has more
@@ -4391,7 +4399,8 @@ function renderListView() {
     `<span class="t" id="list-title">${esc(catLabel)} · ${esc(fyLabel)}</span>` +
     `<span class="n">${esc(t('listCount', rows.length))}</span></div>` +
     (rows.length === 0 ? `<div class="foot">${esc(t('listEmpty'))}</div>` : '') +
-    `<div class="tblwrap"${rows.length ? '' : ' hidden'}><table aria-labelledby="list-title"><thead><tr>` +
+    `<div class="tblwrap"${rows.length ? '' : ' hidden'}>` +
+    `<table aria-labelledby="list-title" class="${chance ? 'has-chance' : ''}${listSort.key === 'delta' ? ' by-delta' : ''}"><thead><tr>` +
     th('name', t('listColSchool')) +
     (allF ? th('fylke', t('listColFylke')) : '') +
     th('value', t('listColVal'), true, t('listColValTip')) +
@@ -4403,7 +4412,7 @@ function renderListView() {
       `<td class="sc"><a href="${schoolHash(r.s)}" aria-label="${esc(t('listRowAria', r.s.name))}">${esc(r.s.name)}</a></td>` +
       (allF ? `<td class="fy">${esc(r.s.fylke)}</td>` : '') +
       `<td class="num">${chip(r)}</td>` +
-      `<td class="num">${deltaCell(r)}</td>` +
+      `<td class="num dl">${deltaCell(r)}</td>` +
       (chance ? `<td class="ch-cell">${chanceCell(r)}</td>` : '') +
       `</tr>`).join('') +
     `</tbody></table></div>` +
