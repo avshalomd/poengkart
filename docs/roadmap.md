@@ -112,6 +112,8 @@ person:
 - **2026/27 not yet published:** Trøndelag (December, by their PDF dates),
   Buskerud (a new page slug will appear), Akershus's own page (November).
   Recheck monthly; the seven counties outside the dataset are unchanged.
+  *Rechecked 10 Sept 2026: all ten unchanged. Telemark's intake news of
+  9 July 2026 gives per-school head-counts only, no thresholds.*
 
 ## Found 8 September 2026 (licence change)
 
