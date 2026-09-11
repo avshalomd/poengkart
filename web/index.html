@@ -310,6 +310,10 @@
        over a fading one; it takes the same 10px path in and out now */
     animation: rise .22s cubic-bezier(.2,.8,.3,1);
   }
+  /* 92vw is multiplied by the text-size zoom as well: at Ekstra stor on a 375px
+     phone the box ran to x 466 and took the ✕ off the screen with it */
+  :root[data-font="lg"] #searchov .ovbox { width: min(560px, 92vw / 1.15); }
+  :root[data-font="xl"] #searchov .ovbox { width: min(560px, 92vw / 1.3); }
   #ov-q {
     width: 100%; padding: 12px 52px 12px 14px; font: inherit; font-size: 16px; color: var(--ink);
     background: var(--page); border: 1px solid var(--line-strong); border-radius: 10px;
@@ -603,6 +607,12 @@
     border-radius: 18px; box-shadow: var(--shadow); padding: 26px 26px 22px;
     animation: rise .22s cubic-bezier(.2,.8,.3,1);
   }
+  /* the sheet sits inside the text-size zoom, which multiplies 100dvh too: at
+     Ekstra stor on a 375×812 phone help, the calculator and the contact form
+     stood 1009px tall, centred, with the ✕ at y −79 and no way to scroll to it
+     or to the Send button. Divide by the step's zoom, as #panel's reserve does. */
+  :root[data-font="lg"] .modal .sheet { max-height: calc((100dvh - 36px) / 1.15); }
+  :root[data-font="xl"] .modal .sheet { max-height: calc((100dvh - 36px) / 1.3); }
   @keyframes rise { from { transform: translateY(10px); opacity: 0 } }
   /* A sheet that rises in and then vanishes teaches a path and immediately
      breaks it, so the exit runs the enter backwards along the same 10px.
@@ -1192,6 +1202,15 @@
       width: 520px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px; align-items: start;
     }
+    /* 520px is multiplied by the text-size zoom: at Ekstra stor the card
+       painted 676px, scrolled a 667px-wide phone sideways and sat on the locate
+       button, and at Stor it covered locate at 568 and 640. The map controls
+       stand 55px in from the right; the card stops 8px short of them, its 14px
+       left inset zoomed with it. The list lays the card out in flow, clear of
+       the controls, and keeps its own width. */
+    body:not(.view-list) #panel { width: min(520px, 100vw - 77px); }
+    :root[data-font="lg"] body:not(.view-list) #panel { width: min(520px, (100vw - 63px) / 1.15 - 14px); }
+    :root[data-font="xl"] body:not(.view-list) #panel { width: min(520px, (100vw - 63px) / 1.3 - 14px); }
     /* «Poengene dine (valgfritt)» takes two lines in a third of 520px, and the
        note hangs under its input; bottom-aligned, the two selects sat 50px
        below the points box. Every label reserves those two lines and rests on
@@ -1264,8 +1283,14 @@
   @media (max-width: 760px) {
     #side.open { width: 100vw; }
     /* 100vw here laid out 487px wide inside the text-size zoom and pushed the
-       sheet's left edge off the phone; 100% follows the zoomed box instead */
-    #side > .scroll, :root[data-font="lg"] #side > .scroll, :root[data-font="xl"] #side > .scroll { min-width: 100%; }
+       sheet's left edge off the phone. 100% fixed that, but the sheet opens by
+       growing its width, and 100% re-wrapped every line on every frame of it:
+       a third of the way in, each chart tab stood 279px tall. The viewport
+       divided by the step's zoom paints exactly the sheet's final width and
+       holds still while the sheet's edge slides across it. */
+    #side > .scroll { min-width: 100vw; }
+    :root[data-font="lg"] #side > .scroll { min-width: calc(100vw / 1.15); }
+    :root[data-font="xl"] #side > .scroll { min-width: calc(100vw / 1.3); }
     body.side-open #panel, body.side-open #legend { display: none; }
     /* at Stor/Ekstra stor the tab strip outgrew the card and dragged the whole
        sheet sideways ("45,6" read "5,6"); the labels now break onto a second
@@ -1280,12 +1305,12 @@
      sheet instead; sideTrap() applies the same rule to the map's inert. */
   @media (min-width: 761px) and (max-width: 1024px) {
     :root[data-font="lg"] #side.open { width: 100vw; }
-    :root[data-font="lg"] #side > .scroll { min-width: 100%; }
+    :root[data-font="lg"] #side > .scroll { min-width: calc(100vw / 1.15); }
     :root[data-font="lg"] body.side-open #panel, :root[data-font="lg"] body.side-open #legend { display: none; }
   }
   @media (min-width: 761px) and (max-width: 1080px) {
     :root[data-font="xl"] #side.open { width: 100vw; }
-    :root[data-font="xl"] #side > .scroll { min-width: 100%; }
+    :root[data-font="xl"] #side > .scroll { min-width: calc(100vw / 1.3); }
     :root[data-font="xl"] body.side-open #panel, :root[data-font="xl"] body.side-open #legend { display: none; }
   }
   /* The UA's [hidden] { display: none } loses to any author display rule
