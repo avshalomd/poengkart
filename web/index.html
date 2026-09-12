@@ -4911,11 +4911,21 @@ async function main() {
       if (!anySheetOpen()) openSearchOv();   // never stack two aria-modal sheets
     }
   });
+  // A phone keyboard takes half the screen. The panel's height cap shrinks with
+  // the viewport while the legend and map controls keep their reserve, so an
+  // iPhone showed a 99px card with the points field being typed into below it,
+  // out of sight. Whatever has focus in the panel is scrolled into its view.
+  const panelEl = document.getElementById('panel');
+  const keepPanelFocusInView = () => {
+    const el = document.activeElement;
+    if (el && el !== panelEl && panelEl.contains(el)) el.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  };
+  panelEl.addEventListener('focusin', () => requestAnimationFrame(keepPanelFocusInView));
   let reframe;
   addEventListener('resize', () => {
     clearTimeout(reframe);
     reframe = setTimeout(() => {
-      map.invalidateSize(); liftMapControls();
+      map.invalidateSize(); liftMapControls(); keepPanelFocusInView();
       sideTrap(document.body.classList.contains('side-open'));   // a rotation crosses the breakpoint
     }, 200);
   });
