@@ -53,13 +53,15 @@
   :root {
     color-scheme: light;
     --page: #f4f6f9;
-    --surface: rgba(255,255,255,.85);
+    --surface: rgba(255,255,255,.72);
     --surface-solid: #ffffff;
     /* --ink-3 carries every smallest string in the app — 9px legend labels,
        10.5px field labels, the source note — so it has to clear 4.5:1. The old
        #6b7480 cleared it by a hair (4.68:1 on the composited panel, 4.74:1 on
        --surface-solid); at this size that is no margin at all, so it is one
-       step darker: 5.42:1 composited, 5.49:1 on white, 5.07:1 on --page. */
+       step darker: 5.49:1 on white, 5.07:1 on --page, and on the glass panel
+       with the largest map cluster directly behind the text 4.69:1 (5.08:1 in
+       dark; the old 85% panel measured 4.90:1). */
     --ink: #0f1720; --ink-2: #46525e; --ink-3: #616a75;
     --line: rgba(15,23,32,.09);
     /* --line is a decorative separator (card edges, table row rules) and stays
@@ -79,6 +81,11 @@
     --context: #c3cdd6;
     --seq-250:#86b6ef; --seq-350:#5598e7; --seq-450:#2876d4; --seq-550:#1c5cab; --seq-700:#0d366b;
     --shadow: 0 10px 32px rgba(15,23,32,.12), 0 1px 3px rgba(15,23,32,.08);
+    /* the glass chrome: a bright top edge where light catches the material, a
+       rim that keeps its outline over pale tiles, and a deeper shadow that
+       lifts it off the map */
+    --g-sheen: rgba(255,255,255,.6); --g-rim: rgba(15,23,32,.10);
+    --g-shadow: 0 1px 2px rgba(15,23,32,.06), 0 10px 28px rgba(15,23,32,.12), 0 28px 64px rgba(15,23,32,.10);
     --good: #0b7f0b;
     --chip-ink: #0f1720;            /* dark text on the pale threshold chips */
     --chip-b2-ink: #ffffff;         /* the middle band flips per theme */
@@ -97,7 +104,7 @@
     :root:not([data-theme="light"]) {
       color-scheme: dark;
       --page: #0e1116;
-      --surface: rgba(23,27,33,.85);
+      --surface: rgba(23,27,33,.72);
       --surface-solid: #171b21;
       --ink: #f2f5f8; --ink-2: #a9b4c0; --ink-3: #8b95a1;
       --line: rgba(255,255,255,.09);
@@ -108,6 +115,8 @@
       --context: #3a4553;
       --seq-250:#9ec5f4; --seq-350:#6da7ec; --seq-450:#3987e5; --seq-550:#256abf; --seq-700:#184f95;
       --shadow: 0 10px 32px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.4);
+      --g-sheen: rgba(255,255,255,.08); --g-rim: rgba(255,255,255,.12);   /* a dark rim vanished into the dark tiles */
+      --g-shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.4), 0 28px 64px rgba(0,0,0,.35);
       --good: #3fbf4a;              /* the one token that had no dark value */
       --chip-ink: #0f1720;
       --chip-b2-ink: #0f1720;       /* dark ink clears 4.5:1 on the dark-mode mid blue */
@@ -119,7 +128,7 @@
   :root[data-theme="dark"] {
       color-scheme: dark;
       --page: #0e1116;
-      --surface: rgba(23,27,33,.85);
+      --surface: rgba(23,27,33,.72);
       --surface-solid: #171b21;
       --ink: #f2f5f8; --ink-2: #a9b4c0; --ink-3: #8b95a1;
       --line: rgba(255,255,255,.09);
@@ -130,6 +139,8 @@
       --context: #3a4553;
       --seq-250:#9ec5f4; --seq-350:#6da7ec; --seq-450:#3987e5; --seq-550:#256abf; --seq-700:#184f95;
       --shadow: 0 10px 32px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.4);
+      --g-sheen: rgba(255,255,255,.08); --g-rim: rgba(255,255,255,.12);   /* a dark rim vanished into the dark tiles */
+      --g-shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.4), 0 28px 64px rgba(0,0,0,.35);
       --good: #3fbf4a;              /* the one token that had no dark value */
       --danger: #e26b6e;
       --chip-good: #3fbf4a; --chip-warn: #e0a052; --chip-danger: #ea8e90;
@@ -182,12 +193,19 @@
   #map { flex: 1; min-width: 0; background: var(--page); }
   .leaflet-container { font: inherit; }
 
+  /* Glass is for the chrome floating over the map (panel, legend, map buttons,
+     toast), never for content: the school sheet and the modals stay solid.
+     72% is as clear as it goes. With the largest cluster directly behind a
+     label, --ink-3 measures 4.69:1 at 72% and 22px; 66% gives 4.51:1, too close
+     to 4.5 to count. The blur does real work: at 16px the same 72% measures
+     4.45:1, because less of the cluster's blue gets spread before it reaches
+     the text. */
   .glass {
-    background: var(--surface);
-    -webkit-backdrop-filter: blur(16px) saturate(1.5);
-    backdrop-filter: blur(16px) saturate(1.5);
-    border: 1px solid var(--line); border-radius: 16px;
-    box-shadow: var(--shadow);
+    background: linear-gradient(to bottom, var(--g-sheen), transparent) no-repeat 0 0 / 100% 70px, var(--surface);
+    -webkit-backdrop-filter: blur(22px) saturate(1.8);
+    backdrop-filter: blur(22px) saturate(1.8);
+    border: 1px solid var(--g-rim); border-radius: 22px;
+    box-shadow: inset 0 1px 0 var(--g-sheen), var(--g-shadow);
   }
 
   /* ---------- top-left control panel ---------- */
@@ -204,7 +222,7 @@
   /* on a short desktop the card overflows and the last line was sliced through
      the glyphs with nothing to say there is more; a sticky fade says it */
   #panel::after { content: ''; display: block; position: sticky; bottom: -14px; height: 18px;
-                  margin: -4px -16px -14px; background: linear-gradient(to bottom, transparent, var(--surface-solid));
+                  margin: -4px -16px -14px; background: linear-gradient(to bottom, transparent, var(--surface));
                   pointer-events: none; }
   .skip {
     position: absolute; left: 14px; top: 14px; z-index: 3000; padding: 9px 14px;
@@ -472,15 +490,16 @@
   /* ---------- locate control + toast ---------- */
   .leaflet-bar button.locate {
     width: 30px; height: 30px; display: grid; place-items: center;
-    border: none; background: var(--surface-solid); color: var(--ink-2); cursor: pointer;
-    border-radius: 4px;
+    border: none; background: transparent; color: var(--ink-2); cursor: pointer;
+    border-radius: 50%;
   }
   .leaflet-bar button.locate.on { color: var(--accent); }
   .leaflet-bar button.locate svg { width: 16px; height: 16px; }
   #toast {
     position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 3000;
-    background: var(--surface-solid); color: var(--ink); border: 1px solid var(--line);
-    border-radius: 10px; box-shadow: var(--shadow); padding: 10px 14px; font-size: 13px;
+    background: var(--surface); color: var(--ink); border: 1px solid var(--g-rim);
+    -webkit-backdrop-filter: blur(22px) saturate(1.8); backdrop-filter: blur(22px) saturate(1.8);
+    border-radius: 16px; box-shadow: inset 0 1px 0 var(--g-sheen), var(--g-shadow); padding: 10px 14px; font-size: 13px;
     max-width: min(92vw, 420px); text-align: center;
   }
   @media (max-width: 760px) { #toast { bottom: calc(20px + var(--ctrl-lift, 0px)); } }
@@ -957,7 +976,8 @@
     border: none; cursor: pointer; font-size: 15px; line-height: 1;
     /* at .45 a bright corner of the photo (Stavanger Offshore Tekniske skole's sky)
        left the white ✕ at 2.95:1; at .55 every photo that can be measured clears 3:1 */
-    background: rgba(15,23,32,.55); color: #fff; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    background: rgba(15,23,32,.55); color: #fff; -webkit-backdrop-filter: blur(12px) saturate(1.6); backdrop-filter: blur(12px) saturate(1.6);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.35), inset 0 0 0 1px rgba(255,255,255,.16), 0 4px 14px rgba(0,0,0,.28);
   }
   .photo .name { position: absolute; left: 18px; right: 18px; bottom: 12px; color: #fff; }
   .photo .name h2 { font-size: 19px; font-weight: 700; letter-spacing: -.015em; text-wrap: balance; text-shadow: 0 1px 8px rgba(0,0,0,.5); }
@@ -1093,9 +1113,26 @@
   .ch.none { background: none; border: none; padding: 0; color: var(--ink-3); font-weight: 500; }
   #src-note { padding: 14px 18px 20px; font-size: 10.5px; color: var(--ink-3); line-height: 1.5; }
 
-  .leaflet-control-attribution { background: var(--surface) !important; color: var(--ink-3) !important; font-size: 10.5px !important; }
+  /* the credit strip has no blur behind it, so it keeps the 85% it had before
+     --surface became glass: at 72% a tile label under its 10.5px text showed through */
+  .leaflet-control-attribution { background: color-mix(in srgb, var(--surface-solid) 85%, transparent) !important; color: var(--ink-3) !important; font-size: 10.5px !important; }
   .leaflet-control-attribution a { color: var(--ink-2) !important; }
-  .leaflet-control-zoom a { background: var(--surface-solid) !important; color: var(--ink) !important; border-color: var(--line) !important; }
+  /* the map's own buttons are the panel's glass: one capsule for zoom, a round
+     one for locate. The buttons inside stay clear so the material shows */
+  .leaflet-bar {
+    background: var(--surface) !important; border: 1px solid var(--g-rim) !important; border-radius: 999px !important;
+    -webkit-backdrop-filter: blur(22px) saturate(1.8); backdrop-filter: blur(22px) saturate(1.8);
+    box-shadow: inset 0 1px 0 var(--g-sheen), var(--g-shadow) !important;
+  }
+  .leaflet-control-zoom a { background: transparent !important; color: var(--ink) !important; border-color: var(--line) !important; }
+  .leaflet-control-zoom a:first-child { border-radius: 999px 999px 0 0 !important; }
+  .leaflet-control-zoom a:last-child { border-radius: 0 0 999px 999px !important; }
+  /* a reader who has asked the system for more contrast, or for less
+     transparency, gets the chrome solid */
+  @media (prefers-contrast: more), (prefers-reduced-transparency: reduce) {
+    .glass, #toast, .leaflet-bar { background: var(--surface-solid) !important; -webkit-backdrop-filter: none; backdrop-filter: none; }
+    #panel::after { background: linear-gradient(to bottom, transparent, var(--surface-solid)); }
+  }
   @media (prefers-reduced-motion: reduce) {
     /* this used to name #side alone, while the sheets still rose and faded,
        the clusters still slid and the map still flew */
@@ -2599,8 +2636,12 @@ const markerOf = new WeakMap();   // a marker's element → its layer, so closeS
 // the key is CARTO's free non-commercial basemap tier (domain-bound,
 // requested for poengkart's domains 27.08.2026); it belongs in the client
 const CARTO_KEY = 'cb1_2bsv_1_23dae695a38f70885d3b4f7b';
+// Light mode is CARTO Voyager rather than Positron: the same pale land, but
+// with tinted water and parks, so the map has some colour and the glass has
+// something to show through. No marker loses contrast. The palest dot on
+// water goes from 1.49:1 to 1.67:1, and the rest stay within 0.07:1 of before.
 const tileUrl = () =>
-  `https://{s}.basemaps.cartocdn.com/${isDark() ? 'dark_all' : 'light_all'}/{z}/{x}/{y}{r}.png?key=${CARTO_KEY}`;
+  `https://{s}.basemaps.cartocdn.com/${isDark() ? 'dark_all' : 'rastertiles/voyager'}/{z}/{x}/{y}{r}.png?key=${CARTO_KEY}`;
 function setTiles() {
   if (tileLayer) map.removeLayer(tileLayer);
   tileLayer = L.tileLayer(tileUrl(), {
