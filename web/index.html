@@ -357,7 +357,7 @@
   }
   /* a 1px border change is not a focus indicator; match the rest of the app */
   #ov-q:focus { border-color: var(--accent); }
-  #ov-q:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  #ov-q:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   /* the UA's grey placeholder was 4.26:1 on the light field, 4.10:1 on the dark */
   #ov-q::placeholder { color: var(--ink-3); opacity: 1; }
   /* A fixed 320px never shrank with the screen: on a phone held sideways the box
@@ -395,13 +395,15 @@
     background: var(--surface-solid); border: 1px solid var(--line); border-radius: 16px;
     /* 16px sides, the control card's own: the two share one column, so the
        table's edge now lines up with the controls above it */
-    padding: 16px 16px 12px; max-width: 1060px;
+    padding: 16px 16px 12px;
   }
   /* only the table scrolls sideways on a phone — header and footer stay put */
   #listview .tblwrap { overflow-x: auto; }
-  #listview .lhead { display: flex; align-items: center;
+  /* space-between rather than an auto margin: beside the title the count sits
+     hard right, and alone on a second line (a phone) it starts flush left
+     instead of leaving 140px empty before it */
+  #listview .lhead { display: flex; align-items: center; justify-content: space-between;
                      gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
-  #listview .lhead .n { margin-left: auto; }
   #listview .lhead .t { font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
   #listview .lhead .n { font-size: 11.5px; color: var(--ink-3); }
   #listview table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -537,7 +539,10 @@
   :root[data-font="xl"] body.lv-wide #panel { max-height: calc((100dvh - 14px) / 1.3 - 14px); }
   body.lv-stack #app { flex-direction: column; overflow-y: auto; position: relative; }
   body.lv-stack #panel { flex: none; }    /* the giant table must not crush it */
-  body.lv-stack #panel { position: static; order: -1; margin: 10px auto; width: calc(100% - 20px); max-width: 1060px; max-height: none; }
+  /* no width cap: held to 1060px and centred, the list with no school open left
+     190px empty either side at 1440px; the controls and the table now fill the
+     row, as the wide layout's table does */
+  body.lv-stack #panel { position: static; order: -1; margin: 10px auto; width: calc(100% - 20px); max-height: none; }
   body.lv-stack #listview { padding: 0 10px 24px; overflow: visible; }
   body.lv-stack #listview .card { margin-inline: auto; }
   body.lv-stack #side { position: fixed; top: 0; right: 0; bottom: 0; z-index: 1100; }
@@ -613,7 +618,7 @@
   }
   /* a 1px border change is not a focus indicator; match the rest of the app */
   .prow .pick:focus-visible { border-color: var(--accent); color: var(--accent);
-    outline: 3px solid var(--accent); outline-offset: 2px; }
+    outline: 2px solid var(--accent); outline-offset: 2px; }
   .prow .pick.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
   #choices { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 9px; }
   #choices .h { font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
@@ -771,9 +776,16 @@
     color: var(--ink-2); cursor: pointer;
   }
   .ico svg { width: 15px; height: 15px; }
+  /* the close and remove cross: the icon set's own stroke, not a ✕ glyph whose
+     ink changed with the font */
+  .xi { display: block; width: 1em; height: 1em; margin: auto; fill: none;
+        stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+  .ptsrow button .xi { width: 16px; height: 16px; }
   /* help and settings ride the title's baseline, hard right */
   .brand .util { margin-left: auto; display: flex; align-items: center; gap: 6px; }
-  .brand .util .ico { width: 28px; height: 28px; }
+  /* 31px and a 9px corner: the view toggle's height and the search button's
+     corner, so the card's utility buttons are one size */
+  .brand .util .ico { width: 31px; height: 31px; border-radius: 9px; }
   /* the view toggle and search: two separate controls, one row, one height */
   .viewrow { display: flex; align-items: stretch; gap: 6px; margin: 0 0 12px; }
   .viewrow #view-toggle { flex: 1; margin: 0; }
@@ -854,6 +866,19 @@
   #contact .done .cta { max-width: 220px; margin: 18px auto 0; text-align: center;
                         text-decoration: none; box-sizing: border-box; }
 
+  /* ---------- focus ----------
+     One ring for every control: 2px of accent, 2px off the edge. Most controls
+     had the browser's own 1px ring while the panel, the rows and the pick had
+     2-3px of accent. Where a clipping or scrolling box would cut an outer ring
+     off (inside a segmented control, the table's header, the map itself) the
+     same ring is drawn 2px inside the edge instead. */
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  /* Tab scrolls the next control flush with its scroller's edge, and the ring
+     outside it was cut off there: a table row's link lost 4px of it */
+  a, button, input, select, summary, [tabindex] { scroll-margin: 8px; }
+  .seg button:focus-visible, #listview th button:focus-visible,
+  .leaflet-container:focus-visible { outline-offset: -2px; }
+
   /* ---------- hover ----------
      A touch device has no pointer to hover with, but it still matches a bare
      :hover after a tap and keeps it until the next one, so a tapped control sat
@@ -882,6 +907,17 @@
   #ov-list .opt:hover { background: var(--accent-soft); }
   .prow:hover { background: var(--accent-soft); }
   #choices .row .who:hover .sc { color: var(--accent); }
+  /* ten controls answered nothing to a pointer while their neighbours turned
+     the accent: the view toggle, the settings segments, the chart tabs, Tøm,
+     Vis mer, the sheet's close and the zoom buttons */
+  .seg button:not(.on):hover, .tabs button:not(.on):hover,
+  #choices .h button:not(.arm):hover { color: var(--accent); }
+  .leaflet-control-zoom a:hover { color: var(--accent) !important; }
+  /* Vis mer is accent text already, and the brighter accent would drop 11px
+     text under 4.5:1 on the chance box's tint: it underlines instead */
+  .more > summary:hover .mt, .more > summary:hover .lt { text-decoration: underline; text-underline-offset: 2px; }
+  /* white on a photo: the accent would fail there, so the glass darkens */
+  .photo .close:hover { background: rgba(15,23,32,.75); }
   }
 
   /* ---------- press feedback ----------
@@ -955,14 +991,16 @@
 
   /* ---------- legend ---------- */
   /* the side padding matches the panel's, so the two cards' text starts on one line */
-  #legend { position: absolute; bottom: 22px; left: 14px; z-index: 1000; padding: 11px 16px 10px; font-size: 11px; color: var(--ink-2); }
+  /* the panel's own 316px: sized by its title, the legend stood 26px wider than
+     the card above it, and its scale used 126px of the 308 */
+  #legend { position: absolute; bottom: 22px; left: 14px; z-index: 1000; width: 316px; padding: 11px 16px 10px; font-size: 11px; color: var(--ink-2); }
   #legend .t { font-weight: 600; color: var(--ink); font-size: 11.5px; margin-bottom: 7px; letter-spacing: .01em; }
   #legend .bins { display: flex; align-items: center; gap: 0; }
-  #legend .bin { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  /* at 10.5px «≥ 70 %» and «35–70 %» need 35px between their centres just to
-     touch, and the 34px keys left them 2px apart; 42px keeps 7px between the
-     widest neighbours. Phones size the keys to the screen instead. */
-  #legend .sw { width: 42px; height: 8px; }
+  /* the keys share the legend's width: at 10.5px «≥ 70 %» and «35–70 %» need
+     35px between their centres just to touch, and five keys across 284px give
+     each 57px */
+  #legend .bin { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1 1 0; min-width: 0; }
+  #legend .sw { width: 100%; height: 8px; }
   #legend .bin:first-child .sw { border-radius: 4px 0 0 4px; }
   #legend .bin:last-child .sw { border-radius: 0 4px 4px 0; }
   #legend .bl { font-size: 10.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
@@ -973,7 +1011,7 @@
   #legend .none .dot.zero-dot { background: color-mix(in srgb, var(--accent) 35%, var(--surface-solid));
                                 border: 1.5px solid var(--accent); }
   #legend .none + .none { margin-top: 3px; }
-  #legend .sizenote { margin-top: 7px; color: var(--ink-3); max-width: 210px; line-height: 1.35; }
+  #legend .sizenote { margin-top: 7px; color: var(--ink-3); line-height: 1.35; }
   #legend .sizenote.warn { color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 6px; }
   #legend .more { margin-top: 7px; }
   #legend .more .sizenote:first-of-type { margin-top: 5px; }
@@ -985,7 +1023,7 @@
   }
 
   /* ---------- map marker & tooltip ---------- */
-  .leaflet-interactive:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .leaflet-interactive:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   /* a click, a tap and a sheet closed with the mouse all focus the dot too, and
      the browser then drew its own square ring round it; only the keyboard gets one */
   .leaflet-interactive:focus:not(:focus-visible) { outline: none; }
@@ -1018,12 +1056,13 @@
      halo now carries the mix of the schools inside it, in the dots' own colours
      and in the legend's order from twelve o'clock: sannsynlig, mulig, lite
      sannsynlig, then grey for no forecast. It takes exactly the 4px the plain
-     halo had, so no cluster grows. */
+     halo had, so no cluster grows. The grey is --ink-3, not the dots' pale
+     --context: that one stood 1.0-1.9:1 on the tiles, too faint for a 4px arc. */
   .pk-cluster.mix { position: relative; box-shadow: 0 2px 8px rgba(0,0,0,.35); }
   .pk-cluster.mix::before {
     content: ''; position: absolute; inset: -6px; border-radius: 50%;
     background: conic-gradient(var(--good) 0 var(--l), var(--dot-possible) 0 var(--p),
-                               var(--dot-unlikely) 0 var(--u), var(--context) 0);
+                               var(--dot-unlikely) 0 var(--u), var(--ink-3) 0);
     -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4.5px), #000 calc(100% - 3.5px));
             mask: radial-gradient(farthest-side, transparent calc(100% - 4.5px), #000 calc(100% - 3.5px));
   }
@@ -1289,7 +1328,7 @@
        phone reader never saw — across the bottom of the freed space. */
     #legend {
       /* clears the Leaflet attribution strip, which the taller box overlapped */
-      left: 10px; right: 10px; bottom: 16px; padding: 8px 12px 7px;
+      left: 10px; right: 10px; bottom: 16px; width: auto; padding: 8px 12px 7px;
       display: grid; row-gap: 4px; column-gap: 12px; align-items: center;
       grid-template-columns: minmax(140px, 1fr) minmax(0, max-content);
     }
@@ -1691,7 +1730,7 @@ try {
     <div class="ptsrow">
       <input id="my-points" type="text" inputmode="decimal" autocomplete="off" spellcheck="false"
              maxlength="5" oninput="onPoints(this.value)">
-      <button id="pts-clear" type="button" onclick="onPoints(''); refocus('#my-points')" hidden>✕</button>
+      <button id="pts-clear" type="button" onclick="onPoints(''); refocus('#my-points')" hidden><svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       <button id="calc-open" type="button" onclick="openCalc()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1741,7 +1780,7 @@ try {
 
 <div id="contact" class="modal" hidden onclick="if (event.target === this) closeContact()">
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="contact-h">
-    <button class="x" id="contact-x" onclick="closeContact()">✕</button>
+    <button class="x" id="contact-x" onclick="closeContact()"><svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     <div class="head">
       <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
            stroke-linejoin="round" aria-hidden="true">
@@ -1770,7 +1809,7 @@ try {
 
 <div id="intro" class="modal" hidden onclick="if (event.target === this) closeIntro()">
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="intro-h">
-    <button class="x" id="intro-x" onclick="closeIntro()">✕</button>
+    <button class="x" id="intro-x" onclick="closeIntro()"><svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     <div class="head">
       <svg viewBox="0 0 26 26" aria-hidden="true">
         <rect x="1" y="1" width="24" height="24" rx="7" fill="var(--accent)"/>
@@ -1785,7 +1824,7 @@ try {
 
 <div id="settings" class="modal" hidden onclick="if (event.target === this) closeSettings()">
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="settings-h">
-    <button class="x" id="settings-x" onclick="closeSettings()">✕</button>
+    <button class="x" id="settings-x" onclick="closeSettings()"><svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     <div class="head">
       <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1800,7 +1839,7 @@ try {
 
 <div id="calc" class="modal" hidden onclick="if (event.target === this) closeCalc()">
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="calc-h">
-    <button class="x" id="calc-x" onclick="closeCalc()">✕</button>
+    <button class="x" id="calc-x" onclick="closeCalc()"><svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     <div class="head">
       <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1816,7 +1855,7 @@ try {
   <div class="ovbox" id="ov-box" role="dialog" aria-modal="true">
     <input id="ov-q" type="text" role="combobox" aria-expanded="false" aria-controls="ov-list"
            aria-autocomplete="list" autocomplete="off" spellcheck="false" autocapitalize="off">
-    <button class="x" id="ov-x" onclick="closeSearchOv()">✕</button>
+    <button class="x" id="ov-x" onclick="closeSearchOv()"><svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     <div id="ov-list" role="listbox"></div>
   </div>
 </div>
@@ -1873,7 +1912,7 @@ const T = {
       ['Finn skolene som er aktuelle',
        'Velg fylke og utdanningsprogram øverst. Trykk på en prikk for å se utviklingen år for år og tallene for hvert programområde.'],
       ['Sjansen din',
-       'Skriv inn poengene dine, så farges kartet etter sjansen for plass ved neste inntak: grønt = sannsynlig, gult = mulig, rødt = lite sannsynlig. Trykk + på et programområde for å samle ønskene dine og se om lista holder. Regnet ut fra historikken.'],
+       'Skriv inn poengene dine, så farges kartet etter sjansen for plass: grønt = sannsynlig, gult = mulig, rødt = lite sannsynlig. Trykk + på et programområde for å samle ønskene dine og se om lista holder. Regnet ut fra historikken.'],
     ],
     en: [
       ['Your points',
@@ -1883,7 +1922,7 @@ const T = {
       ['Find the schools that matter to you',
        'Pick a county and an education programme at the top. Open a dot for the year-by-year trend and the figures per programme area.'],
       ['Your chance',
-       'Enter your points and the map recolours by your chance of a place at the next intake: green = likely, amber = possible, red = unlikely. Press + on a programme area to collect your wishes and see whether the list holds up. Worked out from the history.'],
+       'Enter your points and the map recolours by your chance of a place: green = likely, amber = possible, red = unlikely. Press + on a programme area to collect your wishes and see whether the list holds up. Worked out from the history.'],
     ],
   },
   introCalc: { no: ['4,2 i snitt', '42 poeng'], en: ['4.2 average', '42 points'] },
@@ -1928,8 +1967,9 @@ const T = {
   listColDelta:  { no: 'Endring', en: 'Change' },
   listColDeltaTip: { no: 'Endring fra året før', en: 'Change from the prior year' },
   listColChance: { no: 'Sjanse', en: 'Chance' },
-  listColChanceTip: { no: x => `Sjanse for plass med ${x} poeng ved neste inntak`,
-                      en: x => `Chance of a place with ${x} points at the next intake` },
+  // ys: the intake years the rows forecast, «2026 eller 2027» over the whole country
+  listColChanceTip: { no: (x, ys) => `Sjanse for plass med ${x} poeng ved inntaket ${ys}`,
+                      en: (x, ys) => `Chance of a place with ${x} points at the ${ys} intake` },
   listOpen:   { no: 'Ingen venteliste', en: 'No waiting list' },
   listNoData: { no: 'Ingen data', en: 'No data' },
   listChanceCell: { no: (l, n) => `${l} av ${n} sannsynlig`, en: (l, n) => `${l} of ${n} likely` },
@@ -2056,7 +2096,7 @@ const T = {
   legendSize: { no: 'Størrelsen viser hvor stor andel av programområdene som ble fylt opp',
                 en: 'Marker size shows what share of the programme areas filled up' },
   tipMedian:  { no: (v, n, tot) => `Snitt <b>${v}</b> poeng · ${n} av ${tot} programområde${tot === 1 ? '' : 'r'} ble fylt opp`,
-                en: (v, n, tot) => `Average <b>${v}</b> pts · ${n} of ${tot} programme area${tot === 1 ? '' : 's'} filled up` },
+                en: (v, n, tot) => `Average <b>${v}</b> points · ${n} of ${tot} programme area${tot === 1 ? '' : 's'} filled up` },
   tipMostlyOpen: { no: 'Men de fleste programområdene hadde ingen venteliste',
                    en: 'But most programme areas had no waiting list' },
   mostlyOpenShort: { no: 'de fleste hadde ingen venteliste', en: 'most had no waiting list' },
@@ -2065,13 +2105,13 @@ const T = {
   heroTypical:{ no: 'Snitt', en: 'Average' },
   heroTypicalAll: { no: 'alle programområder', en: 'all programme areas' },
   legendCat:  { no: c => `${CATS[c].no} · siste år`, en: c => `${CATS[c].en} · latest year` },
-  legendOpen: { no: 'Ingen venteliste – alle søkere tatt inn', en: 'No waiting list – all applicants admitted' },
+  legendOpen: { no: 'Ingen venteliste – alle kvalifiserte søkere fikk plass', en: 'No waiting list – all qualified applicants got a place' },
   legendNone: { no: 'Ingen data', en: 'No data' },
   fortrinnTitle: {
     no: 'Fortrinnsrett: søkere med lovfestet rett (bl.a. behov for spesialundervisning) tas inn utenom poengkonkurransen. Derfor finnes det ingen poenggrense.',
     en: 'Priority right (fortrinnsrett): applicants with a statutory right (e.g. special educational needs) are admitted outside the points competition, so no threshold exists.',
   },
-  pts:        { no: 'poeng', en: 'pts' },
+  pts:        { no: 'poeng', en: 'points' },
   allIn:      { no: 'Ingen venteliste', en: 'No waiting list' },
   // A 0,0 is not a threshold anyone could miss and not "everyone got in"
   // either: the counties print it as its own state. Innlandet's legend —
@@ -2152,7 +2192,7 @@ const T = {
                 en: 'Poengkart – admission thresholds for Norwegian upper secondary schools' },
   tipHint:    { no: 'Trykk for å se trender og detaljer', en: 'Open for trends and details' },
   tipAllOpen: { no: y => `Alle programområder: ingen venteliste i ${y}`, en: y => `All programme areas: no waiting list in ${y}` },
-  heroDelta:  { no: y => `endring fra ${y}`, en: y => `change vs ${y}` },
+  heroDelta:  { no: y => `Endring fra ${y}`, en: y => `Change vs ${y}` },
   heroDeltaBasis: {
     no: 'Forskjellen mellom de to siste punktene på snittlinjen i grafen under.',
     en: 'The difference between the last two points on the average line below.',
@@ -2167,7 +2207,7 @@ const T = {
   },
   linkNotFound: { no: n => `Fant ikke «${n}» i kartet.`, en: n => `Could not find “${n}” on the map.` },
   photoCredit: { no: c => `Foto: ${c}`, en: c => `Photo: ${c}` },
-  heroProgs:  { no: n => n === 1 ? 'programområde' : 'programområder', en: n => n === 1 ? 'programme area' : 'programme areas' },
+  heroProgs:  { no: n => n === 1 ? 'Programområde' : 'Programområder', en: n => n === 1 ? 'Programme area' : 'Programme areas' },
   searchCounty: { no: f => `Vis ${f} på kartet`, en: f => `Show ${f} on the map` },
   tabAll:     { no: 'Alle', en: 'All' },
   tabCat:     { no: 'Utdanningsprogram', en: 'Education programme' },
@@ -2223,8 +2263,10 @@ const T = {
   bandLabel:  { no: b => ({ likely: '≥ 70 %', possible: '35–70 %', unlikely: '< 35 %' })[b],
                 en: b => ({ likely: '≥ 70%', possible: '35–70%', unlikely: '< 35%' })[b] },
   legendZoomHint: { no: 'Zoom inn for å se sjansen per skole.', en: 'Zoom in to see each school’s chance.' },
-  legendChance: { no: x => `Sjanse for plass med ${x} poeng · beste programområde`,
-                  en: x => `Chance of a place with ${x} points · best programme area` },
+  legendChance: { no: (x, ys) => `Sjanse for plass med ${x} poeng ved inntaket ${ys} · beste programområde`,
+                  en: (x, ys) => `Chance of a place with ${x} points at the ${ys} intake · best programme area` },
+  yearsOr: { no: ys => ys.length < 2 ? ys.join('') : `${ys.slice(0, -1).join(', ')} eller ${ys.at(-1)}`,
+             en: ys => ys.length < 2 ? ys.join('') : `${ys.slice(0, -1).join(', ')} or ${ys.at(-1)}` },
   legendChanceSize: { no: 'Størrelsen viser hvor stor andel av programområdene som er innen rekkevidde (≥ 35 %)',
                       en: 'Size shows what share of the programme areas are within reach (≥ 35%)' },
   moreLabel: { no: 'Vis mer', en: 'Show more' },
@@ -2235,8 +2277,8 @@ const T = {
   tipBest:    { no: (p, prog) => `Best sjanse: ${p} % · ${prog}`, en: (p, prog) => `Best chance: ${p}% · ${prog}` },
   tipNoForecast: { no: 'Ingen prognose for denne skolen', en: 'No forecast for this school' },
   chancePrompt: {
-    no: 'Skriv inn poengene dine i poengfeltet over kartet, så viser lista under sjansen din for plass per programområde ved neste inntak.',
-    en: 'Enter your points in the points field over the map, and the list below shows your chance of a place per programme area at the next intake.',
+    no: y => `Skriv inn poengene dine i poengfeltet over kartet, så viser lista under sjansen din for plass per programområde ved inntaket ${y}.`,
+    en: y => `Enter your points in the points field over the map, and the list below shows your chance of a place per programme area at the ${y} intake.`,
   },
   chanceNoneInScope: { no: 'Ingen prognose for programområdene i dette utvalget.',
                        en: 'No forecast for the programme areas in this selection.' },
@@ -2396,7 +2438,13 @@ function numericLatest(values) {
     if (isPoints(values[ys[i]])) return [ys[i], values[ys[i]]];
   return null;
 }
-const fmt = v => lang === 'no' ? fmtNum(v) : String(fmtNum(v)).replace(',', '.');
+// a negative figure prints with a true minus (U+2212), as the zoom control's «−»
+// does, rather than a hyphen
+const fmt = v => {
+  const out = lang === 'no' ? fmtNum(v) : String(fmtNum(v)).replace(',', '.');
+  return typeof out === 'string' ? out.replace(/^-/, '\u2212') : out;
+};
+const X_ICON = '<svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>';
 
 function yearSpan(s) {
   const ys = [...new Set(s.programs.flatMap(p => Object.keys(p.values)))].sort();
@@ -2756,7 +2804,7 @@ function renderChoices() {
         ` aria-label="${esc(t('choicesOpenOne', s.name, what))}">` +
         `<span class="sc">${esc(s.name)}</span><span class="pr">${esc(what)}</span></button>` +
       chip + `<button class="rm" data-i="${i}"` +
-        ` aria-label="${esc(t('choicesRemoveOne', s.name, what))}">✕</button></div>`;
+        ` aria-label="${esc(t('choicesRemoveOne', s.name, what))}">${X_ICON}</button></div>`;
   });
   let sum = '';
   if (chanceMode() && n) {
@@ -3309,11 +3357,19 @@ function legendZoomHint() {
   // the line changes the legend's height, which the panel's cap is measured from
   if (el.hidden !== was) liftMapControls();
 }
+// The intake a forecast is for is the county's first year without published
+// figures: 2026 in Buskerud and Trøndelag, 2027 elsewhere (model.json). Said as
+// «neste inntak», the legend and the list told those two counties' readers
+// about an intake that has already happened.
+function forecastYears(schools) {
+  const ys = [...new Set(schools.map(s => MODEL?.schools?.[`${s.fylke}|${s.name}`]?.year).filter(Boolean))].sort();
+  return t('yearsOr', ys);
+}
 function renderLegend() {
   const rounds = [...new Set(visibleSchools().map(s => s.round).filter(Boolean))];
   const anyUnknown = visibleSchools().some(s => !s.round);
   document.getElementById('legend-title').innerHTML =
-    (chanceMode() ? esc(t('legendChance', fmt(myPoints)))
+    (chanceMode() ? esc(t('legendChance', fmt(myPoints), forecastYears(visibleSchools())))
       : mapCat === 'all' ? t('legendAll') : t('legendCat', mapCat)) +
     (rounds.length === 1 && !anyUnknown
       ? ` <span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', rounds[0])}</span>`
@@ -3688,7 +3744,7 @@ function renderSide() {
                           + ` alt="" loading="lazy"${pos}>`
                           : `<div id="s-minimap"></div>`) +
     `<div class="veil"></div>` +
-    `<button class="close" onclick="closeSide()" aria-label="${esc(t('closeAria'))}">✕</button>` +
+    `<button class="close" onclick="closeSide()" aria-label="${esc(t('closeAria'))}">${X_ICON}</button>` +
     `<div class="name"><h2>${esc(s.name)}</h2>${credit}</div>`;
   // an optimiser that is not there, or a county URL that has expired since the
   // last build, should not leave a broken image in the header
@@ -3788,7 +3844,7 @@ function renderSide() {
   }
   document.getElementById('s-hero').innerHTML =
     cells.map(c => `<div class="cell"${c.ti ? ` title="${esc(c.ti)}"` : ''}>` +
-                   `<div class="v ${c.cls || ''}">${c.v}</div><div class="l">${c.l}</div></div>`).join('');
+                   `<div class="v ${c.cls || ''}">${c.v}</div><div class="l">${capFirst(c.l)}</div></div>`).join('');
   renderChance(s, lensCat);
   document.getElementById('src-note').textContent = t('srcNote');
   renderChartCard();
@@ -3804,6 +3860,9 @@ let chanceMoreOpen = false;
 const chanceMore = inner =>
   `<details class="more"${chanceMoreOpen ? ' open' : ''} ontoggle="chanceMoreOpen = this.open">` +
   `<summary><span class="mt">${esc(t('moreLabel'))}</span><span class="lt">${esc(t('lessLabel'))}</span></summary>${inner}</details>`;
+// every hero label starts with a capital, including the ones that open with
+// «alle programområder»
+function capFirst(x) { return x.charAt(0).toUpperCase() + x.slice(1); }
 function renderChance(s, lensCat) {
   const box = document.getElementById('s-chance');
   const e = MODEL && MODEL.schools && MODEL.schools[`${s.fylke}|${s.name}`];
@@ -3823,7 +3882,7 @@ function renderChance(s, lensCat) {
       + `${esc(t('adjLine', (round1(e.alpha) > 0 ? '+' : '') + fmt(e.alpha), fmt(e.alpha_se)))}</div>`;
   if (!chanceMode()) {
     box.className = 'chance prompt';
-    box.innerHTML = `<div>${esc(t('chancePrompt'))}</div>` + (adj ? chanceMore(adj) : '');
+    box.innerHTML = `<div>${esc(t('chancePrompt', e.year))}</div>` + (adj ? chanceMore(adj) : '');
     return;
   }
   box.className = 'chance';
@@ -5147,7 +5206,7 @@ function renderListView() {
     (allF ? th('fylke', t('listColFylke')) : '') +
     th('value', t('listColVal'), true, t('listColValTip')) +
     th('delta', t('listColDelta'), true, t('listColDeltaTip')) +
-    (chance ? th('chance', t('listColChance'), false, t('listColChanceTip', fmt(myPoints))) : '') +
+    (chance ? th('chance', t('listColChance'), false, t('listColChanceTip', fmt(myPoints), forecastYears(rows.map(r => r.s)))) : '') +
     `</tr></thead><tbody>` +
     rows.map((r, i) =>
       `<tr data-i="${i}">` +
@@ -5219,7 +5278,7 @@ function renderCalc() {
         `<button type="button" data-f="${esc(f)}" data-g="${g}" class="${cur === g ? 'on' : ''}"` +
         ` aria-pressed="${cur === g}" aria-label="${esc(t('calcGradeAria', g, f))}">${g}</button>`).join('') +
       `<button type="button" class="rm${cur ? '' : ' off'}" data-f="${esc(f)}" data-g=""` +
-      ` aria-label="${esc(t('calcClearAria', f))}">✕</button>` +
+      ` aria-label="${esc(t('calcClearAria', f))}">${X_ICON}</button>` +
       `</span></div>`;
   };
   const mean = calcMean();
