@@ -3019,6 +3019,7 @@ function liftMapControls() {
   const z = parseFloat(getComputedStyle(document.getElementById('panel')).zoom) || 1;
   document.documentElement.style.setProperty(
     '--panel-reserve', Math.round(innerHeight - (innerHeight - gap) / z) + 'px');
+  placeToast();   // the legend it steers around may have moved or grown
 }
 // with points entered the legend shows a green/amber/red ramp, but at the
 // national zoom every marker is a blue cluster: say why until a dot appears
@@ -4479,9 +4480,38 @@ function toast(msg, ms = 4000) {
   }
   // reveal first: text set inside a hidden live region is not announced
   el.textContent = ''; el.hidden = false;
-  setTimeout(() => { el.textContent = msg; }, 30);
+  setTimeout(() => { el.textContent = msg; placeToast(); }, 30);
   clearTimeout(toast._t);
   toast._t = setTimeout(() => { el.hidden = true; }, ms);
+}
+// The CSS spot (centred at the foot of the map, or beside the controls on a
+// phone) is kept while it is clear. It was not whenever the legend stands
+// bottom-left: the steps for allowing location covered the legend's right end at
+// every width from 561 to 1100px and in landscape. Next it tries the strip
+// between the legend and the map buttons, then just above the legend. Lengths
+// are divided by the toast's text-size zoom, which multiplies them when painted.
+function placeToast() {
+  const el = document.getElementById('toast'), s = el.style;
+  s.left = s.right = s.bottom = s.width = s.margin = s.transform = '';
+  const lg = document.getElementById('legend')?.getBoundingClientRect();
+  if (el.hidden || !lg?.height) return;
+  const bars = [...document.querySelectorAll('.leaflet-bottom.leaflet-right .leaflet-bar')].map(b => b.getBoundingClientRect());
+  const avoid = [lg, document.getElementById('panel').getBoundingClientRect(), ...bars].filter(a => a.height);
+  const clear = () => {
+    const r = el.getBoundingClientRect();
+    return !avoid.some(a => r.right > a.left && r.left < a.right && r.bottom > a.top && r.top < a.bottom);
+  };
+  if (clear()) return;
+  const z = parseFloat(getComputedStyle(el).zoom) || 1, px = v => Math.round(v / z) + 'px';
+  const barsLeft = Math.min(innerWidth, ...bars.map(b => b.left));
+  if (barsLeft - lg.right - 20 >= 280) {
+    Object.assign(s, { left: px(lg.right + 10), right: px(innerWidth - barsLeft + 10),
+                       bottom: px(innerHeight - lg.bottom), width: 'fit-content', margin: '0 auto', transform: 'none' });
+    if (clear()) return;
+    s.left = s.right = s.width = s.margin = s.transform = '';
+  }
+  s.bottom = px(innerHeight - lg.top + 10);
+  if (!clear()) s.bottom = '';
 }
 // Where this browser keeps the switch for location, so a blocked request can
 // say how to allow it. On iPhone every browser is WebKit inside an app, and the
