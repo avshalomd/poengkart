@@ -209,7 +209,12 @@
   }
 
   /* ---------- top-left control panel ---------- */
-  #panel { position: absolute; top: 14px; left: 14px; z-index: 1000; width: 316px; padding: 16px 16px 14px;
+  /* Concentric corners: the card's radius is its controls' 10px radius plus
+     the inset between them, the same on all four sides, so the gap around a
+     corner control stays even round the bend. 16px padding + 1px rim + 10px
+     = 27px here; the phone's 12px padding gives the .glass 22px. */
+  #panel { position: absolute; top: 14px; left: 14px; z-index: 1000; width: 316px; padding: 16px;
+           border-radius: 27px;
            /* a long choices list ran under the legend; the panel scrolls inside
               instead of growing past it. --panel-reserve is the legend's own
               measured height plus its offsets, set in liftMapControls(); the
@@ -220,9 +225,13 @@
   #panel:focus { outline: none; }
   #panel:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }   /* the skip link lands here */
   /* on a short desktop the card overflows and the last line was sliced through
-     the glyphs with nothing to say there is more; a sticky fade says it */
-  #panel::after { content: ''; display: block; position: sticky; bottom: -14px; height: 18px;
-                  margin: -4px -16px -14px; background: linear-gradient(to bottom, transparent, var(--surface));
+     the glyphs with nothing to say there is more; a sticky fade says it. It is
+     exactly the bottom padding, tall and wide, and its margins take back all
+     the room it occupies: 3px of it used to add to the padding, and on a phone,
+     where the card is a grid, a row gap as well, so the bottom inset was 23px
+     under 13px sides. */
+  #panel::after { content: ''; display: block; position: sticky; bottom: -16px; height: 16px;
+                  margin: 0 -16px -16px; background: linear-gradient(to bottom, transparent, var(--surface));
                   pointer-events: none; }
   .skip {
     position: absolute; left: 14px; top: 14px; z-index: 3000; padding: 9px 14px;
@@ -500,9 +509,16 @@
     background: var(--surface); color: var(--ink); border: 1px solid var(--g-rim);
     -webkit-backdrop-filter: blur(22px) saturate(1.8); backdrop-filter: blur(22px) saturate(1.8);
     border-radius: 16px; box-shadow: inset 0 1px 0 var(--g-sheen), var(--g-shadow); padding: 10px 14px; font-size: 13px;
-    max-width: min(92vw, 420px); text-align: center;
+    /* max-content: pinned at left: 50%, the box shrank to half the screen, and
+       the steps for allowing location ran five centred lines 206px wide */
+    width: max-content; max-width: min(92vw, 420px); text-align: start; cursor: default;
   }
-  @media (max-width: 760px) { #toast { bottom: calc(20px + var(--ctrl-lift, 0px)); } }
+  /* on a phone it lines up with the panel and legend on the left and stops
+     short of the zoom and locate column (42px + 10px margin + 10px gap), which
+     a toast twelve seconds long would otherwise cover */
+  @media (max-width: 760px) {
+    #toast { bottom: calc(20px + var(--ctrl-lift, 0px)); left: 10px; right: 62px; transform: none; width: auto; max-width: none; }
+  }
   #pts-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; line-height: 1.4; }
   #pts-note .k { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 3px 0 1px; vertical-align: -1px; }
   #pts-note .kl { white-space: nowrap; }
@@ -878,7 +894,8 @@
   }
 
   /* ---------- legend ---------- */
-  #legend { position: absolute; bottom: 22px; left: 14px; z-index: 1000; padding: 11px 14px 10px; font-size: 11px; color: var(--ink-2); }
+  /* the side padding matches the panel's, so the two cards' text starts on one line */
+  #legend { position: absolute; bottom: 22px; left: 14px; z-index: 1000; padding: 11px 16px 10px; font-size: 11px; color: var(--ink-2); }
   #legend .t { font-weight: 600; color: var(--ink); font-size: 11.5px; margin-bottom: 7px; letter-spacing: .01em; }
   #legend .bins { display: flex; align-items: center; gap: 0; }
   #legend .bin { display: flex; flex-direction: column; align-items: center; gap: 4px; }
@@ -952,9 +969,13 @@
   /* ---------- sidebar ---------- */
   #side {
     width: 0; overflow: hidden; transition: width .22s cubic-bezier(.4,0,.2,1);
-    background: var(--surface-solid); border-left: 1px solid var(--line);
+    /* no rule while closed: a 1px border on the 0px sheet took a pixel from
+       the map, and the zoom and locate buttons stood 11px from the screen's
+       edge where the panel and legend stand 10px */
+    background: var(--surface-solid); border-left: 0 solid var(--line);
     display: flex; flex-direction: column; z-index: 1100;
   }
+  #side.open { border-left-width: 1px; }
   /* keep the control panel clear of the sidebar at tablet widths */
   #side.open { width: min(480px, max(320px, 100vw - 350px)); }
   #side > .scroll { overflow-y: auto; overflow-x: hidden; flex: 1; min-width: min(480px, max(320px, 100vw - 350px)); overscroll-behavior: contain; }
@@ -1149,7 +1170,9 @@
      brand and utilities on one row, the two selects side by side underneath. */
   @media (max-width: 560px) {
     #panel {
-      left: 10px; right: 10px; width: auto; padding: 10px 12px 11px;
+      /* 10px from the screen on every side, and 12px inside on every side: the
+         top used to sit 14px down and the card's own top inset was 11px */
+      top: 10px; left: 10px; right: 10px; width: auto; padding: 12px 12px 4px; border-radius: 22px;
       /* equal halves: the 116px first column predates the view toggle and
          truncated whichever select landed in it */
       display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -1159,9 +1182,12 @@
     #panel .viewrow { grid-column: 1 / -1; margin-bottom: 2px; }
     #panel .brand h1 { font-size: 17px; }
     /* the fade is pulled out to the card's edges by its padding; left at the
-       desktop 16/14px it overshot this padding by 3px, and those 3px were
-       enough to put a scrollbar on a panel with nothing to scroll */
-    #panel::after { margin: -4px -12px -11px; bottom: -11px; }
+       desktop 16px it overshot this padding, and 3px of overshoot were enough
+       to put a scrollbar on a panel with nothing to scroll. Here it is a grid
+       item on a row of its own, and a grid row cannot be shorter than nothing,
+       so the 8px row gap above it stays: the card's 4px bottom padding plus
+       that gap make the 12px, and the fade reaches back over both. */
+    #panel::after { grid-column: 1 / -1; height: 12px; margin: -8px -12px -4px; bottom: -4px; }
     #cat-note { grid-column: 1 / -1; margin-top: 0; min-height: 0; }
     #pts-field { grid-column: 1 / -1; margin-top: 4px; }
     #pts-note { margin-top: 4px; }
@@ -1182,7 +1208,7 @@
        phone reader never saw — across the bottom of the freed space. */
     #legend {
       /* clears the Leaflet attribution strip, which the taller box overlapped */
-      left: 10px; right: 10px; bottom: 16px; padding: 8px 11px 7px;
+      left: 10px; right: 10px; bottom: 16px; padding: 8px 12px 7px;
       display: grid; row-gap: 4px; column-gap: 12px; align-items: center;
       grid-template-columns: minmax(140px, 1fr) minmax(0, max-content);
     }
@@ -1227,9 +1253,9 @@
      lay the filters out side by side. */
   @media (max-height: 480px) {
     #tagline { display: none; }
-    #panel { padding: 10px 12px 11px; }
-    #panel::after { margin: -4px -12px -11px; bottom: -11px; }
-    #legend { padding: 7px 10px 6px; }
+    #panel { padding: 12px 12px 4px; border-radius: 22px; }   /* 4px + the grid's 8px row gap, as on a phone */
+    #panel::after { grid-column: 1 / -1; height: 12px; margin: -8px -12px -4px; bottom: -4px; }
+    #legend { padding: 7px 12px 6px; }
     #legend .t { font-size: 10.5px; margin-bottom: 5px; }
     /* matches the phone rule's specificity so it still wins when both apply */
     #legend .sizenote, #legend .sizenote.warn:not([hidden]) { display: none; }
@@ -1774,6 +1800,25 @@ const T = {
   calcGradeAria: { no: (g, f) => `${g} i ${f}`, en: (g, f) => `${g} in ${f}` },
   locDenied: { no: 'Nettleseren har ikke tilgang til posisjonen din.',
                en: 'Location access is blocked in your browser.' },
+  // follows locDenied; the kind and the app name come from locHelpKind()
+  locHow: {
+    no: (k, app) => ({
+      iosApp: `Gå til Innstillinger > Apper > ${app} > Posisjon og gi tilgang, og last siden inn på nytt.`,
+      iosSafari: 'Gå til Innstillinger > Apper > Safari > Posisjon og velg Spør eller Tillat, og last siden inn på nytt. Stedstjenester må også være på.',
+      android: 'Trykk på ikonet til venstre for nettadressen, slå på Posisjon og last siden inn på nytt.',
+      chromium: 'Klikk på ikonet til venstre for nettadressen, tillat Posisjon og last siden inn på nytt.',
+      firefox: 'Klikk på posisjonsikonet i adressefeltet, fjern blokkeringen og last siden inn på nytt.',
+      safariMac: 'Velg Safari > Innstillinger > Nettsteder > Posisjon, og tillat dette nettstedet.',
+    })[k] || 'Tillat posisjon for dette nettstedet i innstillingene til nettleseren, og last siden inn på nytt.',
+    en: (k, app) => ({
+      iosApp: `Go to Settings > Apps > ${app} > Location and allow access, then reload this page.`,
+      iosSafari: 'Go to Settings > Apps > Safari > Location and choose Ask or Allow, then reload this page. Location Services must also be on.',
+      android: 'Tap the icon to the left of the web address, turn on Location, then reload this page.',
+      chromium: 'Click the icon to the left of the web address, allow Location, then reload this page.',
+      firefox: 'Click the location icon in the address bar, remove the block, then reload this page.',
+      safariMac: 'Choose Safari > Settings > Websites > Location and allow this website.',
+    })[k] || "Allow location for this website in your browser's settings, then reload this page.",
+  },
   locFail:   { no: 'Fant ikke posisjonen din.', en: 'Could not find your location.' },
   close:     { no: 'Lukk', en: 'Close' },
   levels: {
@@ -2954,8 +2999,9 @@ function liftMapControls() {
   // different intake rounds, which "Hele landet" always does. The panel then
   // ran 80px under it and hid the bottom of the reader's own choices list.
   // Reserve what the legend actually measures: 22px bottom offset, its height,
-  // a 12px gap and the panel's own 14px top.
-  let gap = h ? h + 48 : 60;
+  // a 12px gap and the panel's own top (14px, 10px on a phone).
+  const panelTop = parseFloat(getComputedStyle(document.getElementById('panel')).top) || 14;
+  let gap = h ? h + 34 + panelTop : 46 + panelTop;
   // On a phone the panel spans the whole width, so the map's bottom-right
   // controls have only the strip between the panel and the legend to stand in.
   // Reserve that strip as well: with the ten wishes vigo allows, the choices
@@ -2964,7 +3010,7 @@ function liftMapControls() {
   const ctrls = document.querySelector('.leaflet-bottom.leaflet-right');
   if (innerWidth <= 560 && ctrls) {
     const cr = ctrls.getBoundingClientRect();
-    if (cr.height) gap = Math.max(gap, innerHeight - cr.top + 12 + 14);   // 12 gap + the panel's own 14px top
+    if (cr.height) gap = Math.max(gap, innerHeight - cr.top + 12 + panelTop);   // 12 gap + the panel's own top
   }
   // The panel spends that reserve inside its own `zoom`, where a px length is
   // multiplied by the zoom before it is painted, so `calc(100dvh - gap)` gave a
@@ -4423,13 +4469,36 @@ function closeSearchOv(fromHistory) {
 /* ================= geolocation ================= */
 // the position is used for one map move and a marker; it never leaves the page
 let locLayer = null, locBtnEl = null, locBusy = false;
-function toast(msg) {
+// ms: how long it stays. Steps to follow need longer than a one-line notice,
+// and a tap puts any toast away early.
+function toast(msg, ms = 4000) {
   const el = document.getElementById('toast');
+  if (!el._tap) {
+    el._tap = true;
+    el.addEventListener('click', () => { clearTimeout(toast._t); el.hidden = true; });
+  }
   // reveal first: text set inside a hidden live region is not announced
   el.textContent = ''; el.hidden = false;
   setTimeout(() => { el.textContent = msg; }, 30);
   clearTimeout(toast._t);
-  toast._t = setTimeout(() => { el.hidden = true; }, 4000);
+  toast._t = setTimeout(() => { el.hidden = true; }, ms);
+}
+// Where this browser keeps the switch for location, so a blocked request can
+// say how to allow it. On iPhone every browser is WebKit inside an app, and the
+// switch is under the app in the Settings app; Safari also has a per-website
+// setting. The paths are the ones Apple's and Google's own help pages give.
+function locHelpKind() {
+  const ua = navigator.userAgent;
+  const ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  if (ios) {
+    const app = { CriOS: 'Chrome', FxiOS: 'Firefox', EdgiOS: 'Edge' }[(ua.match(/CriOS|FxiOS|EdgiOS/) || [])[0]];
+    return app ? ['iosApp', app] : ['iosSafari'];
+  }
+  if (/Android/.test(ua)) return /Firefox\//.test(ua) ? ['other'] : ['android'];
+  if (/Firefox\//.test(ua)) return ['firefox'];
+  if (/Edg\/|Chrome\/|Chromium\//.test(ua)) return ['chromium'];
+  if (/Safari\//.test(ua) && /Macintosh/.test(ua)) return ['safariMac'];
+  return ['other'];
 }
 function addLocateControl() {
   if (!('geolocation' in navigator)) return;
@@ -4486,7 +4555,8 @@ function locate() {
     prefersStill() ? map.setView(ll, z) : map.flyTo(ll, z);
   }, err => {
     locBusy = false;
-    toast(t(err && err.code === 1 ? 'locDenied' : 'locFail'));
+    if (err && err.code === 1) toast(t('locDenied') + ' ' + t('locHow', ...locHelpKind()), 12000);
+    else toast(t('locFail'));
   }, { timeout: 10000, maximumAge: 60000 });
 }
 
