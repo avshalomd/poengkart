@@ -12,7 +12,7 @@ when a programme filled, and when it exists it is one point on the points
 scale. A family with 42 points is not asking "what was the threshold" but
 "will I get in" — and the honest answer to that is a probability, because the
 same programme at the same school moves by a standard deviation of 6.3 points
-from one year to the next (5 416 consecutive-year pairs; only half of all
+from one year to the next (5 428 consecutive-year pairs; only half of all
 moves are within ±3).
 
 So the app forecasts, per programme, for the county's next publication year:
@@ -32,14 +32,14 @@ empirical distribution of the backtest's own forecast errors (see *Spread*).
 
 Two fits, one structure. Every effect is a random effect, so a school or
 programme with a single year of data borrows its level from the hundreds of
-similar ones around it instead of being trusted on its own —444 of the 1 986
+similar ones around it instead of being trusted on its own —428 of the 1 965
 series have exactly one year.
 
-**Level** (on the 8 254 cells that carry a number):
+**Level** (on the 8 248 cells that carry a number):
 
     y = μ + school + category + programme|level + series + county×year + round offset + ε
 
-**Fill** (on the 11 998 cells that competed on points — number, 0,0 or "no waitlist".
+**Fill** (on the 11 984 cells that competed on points — number, 0,0 or "no waitlist".
 In Møre og Romsdal "no waitlist" is the county's own dashboard rule, a Vg1
 figure under 25 — see `docs/data-notes.md` — so its labels are a proxy, and
 the backtest measures what they are worth, below):
@@ -59,17 +59,17 @@ it.
 
 Fitted variance components (points): school 3.2, programme 3.3, series 2.7,
 county×year innovations 0.9, residual 4.6. On the logit scale for fill: school
-1.0, programme 1.3, series 1.6
+1.0, programme 1.2, series 1.6
 
 **Coupling the two fits** — "in demand" as one trait read two ways, so that a
 school whose thresholds are high is also one whose programmes fill — is a
 plug-in of the level model's school effect into the fill model, with the
 backtest as judge on every refit. Earlier builds rejected it (0.406 coupled
 against 0.403 independent); with the Innlandet 2020–2022 backfill the
-verdict flipped, and on the current panel it reads 0.445 coupled against
+verdict flipped, and on the current panel it reads 0.444 coupled against
 0.451, so the shipped hurdle is coupled (`meta.coupled`). This is exactly the day the flag was kept for,
 though the margin is inside its own noise: a cluster bootstrap over
-school×year puts the difference at [−0.010, −0.003], and on the held-out
+school×year puts the difference at [−0.011, −0.003], and on the held-out
 years the two variants score the same fill Brier.
 
 **What each cell means to the model.** A number > 0 is an observation of the
@@ -101,16 +101,16 @@ held-out years cannot narrow their own intervals:
 | history | s |
 |---|---|
 | 0 years | 7.2 |
-| 1 year | 6.1 |
+| 1 year | 6.0 |
 | 2–3 years | 5.6 |
-| 4+ years | 4.7 |
+| 4+ years | 4.9 |
 
 That history component is then scaled by the band the forecast falls in — a
 queue cannot outgrow its applicants' scores, so high forecasts miss by less:
 ×1.13 below 25 points, ×1.01 from 25 to 40, ×0.97 from 40 to 45, ×0.64 at 45 and above (fitted on
 the calibration years, constrained to fall with the level;
 `meta.sigma_level_multiplier`). On the held-out years it moved the top
-band's 80% coverage from 95.5% to 80.3% and the bottom band's from 67.4% to
+band's 80% coverage from 97.0% to 80.3% and the bottom band's from 67.4% to
 74.4%, and nothing else.
 
 F, the error distribution, is likewise the empirical distribution of those
@@ -133,26 +133,26 @@ flatter nothing and mislead the calibration.
 |---|---|---|---|---|---|
 | 0 years | 167 | 8.6 | — | 10.2 | 29% |
 | 1 year | 259 | 5.7 | 6.9 | 6.6 | 49% |
-| 2–3 years | 415 | 5.8 | 6.5 | 6.4 | 44% |
-| 4+ years | 1346 | 5.0 | 6.2 | 6.0 | 50% |
+| 2–3 years | 406 | 5.7 | 6.5 | 6.4 | 44% |
+| 4+ years | 1355 | 5.1 | 6.2 | 6.0 | 50% |
 
 Exponential smoothing of the series' own figures (α = 0.4; Muth, 1960) is a
-stronger baseline than either: RMSE 6.0 with two or three years of history
-and 5.2 with four or more, against the model's 5.8 and 5.0 — most of the
+stronger baseline than either: RMSE 5.9 with two or three years of history
+and 5.2 with four or more, against the model's 5.7 and 5.1 — most of the
 model's margin over "last year's figure" on long series is smoothing, not
 pooling.
 
-The 80% interval (m ± 1.2816 s) contained the published figure 80% of the time.
+The 80% interval (m ± 1.2816 s) contained the published figure 81% of the time.
 
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.97 filled 0.89 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = 0.172 + 0.584 logit π). Scored on all eight counties, Møre og
+(logit π′ = 0.170 + 0.587 logit π). Scored on all eight counties, Møre og
 Romsdal's proxy labels included: held-out Brier 0.157 against 0.208 for the
 base rate. Held out of the fill fit instead, with its fill probability
 fixed at 1 as it was until 5 September 2026, the other seven counties'
-held-out Brier goes from 0.158 to 0.160 and the Platt slope from 0.584 to
-0.537; on the county's own 223 held-out cells the proxy-labelled hurdle
+held-out Brier goes from 0.158 to 0.160 and the Platt slope from 0.587 to
+0.538; on the county's own 223 held-out cells the proxy-labelled hurdle
 scores 0.147 against 0.186 for its base rate
 (`meta.halflife_search.proxy_label_experiment`).
 
@@ -161,26 +161,26 @@ scores 0.147 against 0.186 for its base rate
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 4.7% | 1580 |
-| 10–20% | 15.0% | 1 861 |
-| 20–30% | 27% | 1 523 |
-| 30–40% | 38% | 1 351 |
-| 40–50% | 45% | 1 176 |
-| 50–60% | 60% | 1 272 |
-| 60–70% | 71% | 1 334 |
-| 70–80% | 83% | 1 378 |
-| 80–90% | 89% | 1 757 |
-| 90–100% | 98.8% | 12 080 |
+| 0–10% | 4.6% | 1553 |
+| 10–20% | 14.9% | 1 837 |
+| 20–30% | 27% | 1 536 |
+| 30–40% | 38% | 1 366 |
+| 40–50% | 45% | 1 171 |
+| 50–60% | 60% | 1 297 |
+| 60–70% | 72% | 1 357 |
+| 70–80% | 82% | 1 375 |
+| 80–90% | 89% | 1 785 |
+| 90–100% | 98.9% | 12 035 |
 
-Brier 0.090, against 0.155 for the rule "the last published figure is the
+Brier 0.090, against 0.156 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
 Brier is 0.091). The fairer comparison centres the same spread, error
 distribution and fill probability on the last published figure instead of
 on the forecast: that scores 0.095, so most of the gain over the bare rule
 is the uncertainty treatment, and the model's own point forecast is worth
 the last 0.006 of it.
-Below 70% the forecast is within 5.6 points of the outcome in every bin,
-optimistic by at most 0.9 points in the three lowest — a 15% chance was
+Below 70% the forecast is within 6.3 points of the outcome in every bin,
+optimistic by at most 1.1 points in the three lowest — a 15% chance was
 really 15% — which the app's bands absorb (both are "unlikely"); from 70%
 up it is cautious — a stated 75% came true 83% of the time, the largest gap
 in any bin. The walk-forward forecasts themselves are in `data/model-backtest.csv`.
@@ -194,7 +194,7 @@ later round does:
 | | pairs with a queue in both | later − earlier | of the queues present in the earlier round, gone by the later |
 |---|---|---|---|
 | Akershus, 1. → 2. inntak | 101 | −3.4 (sd 3.1) | 16% of 124 |
-| Vestland, 1. → 3. inntak | 1424 | −3.0 (sd 3.9) | 37% of 2 259 |
+| Vestland, 1. → 3. inntak | 1431 | −3.0 (sd 3.9) | 37% of 2 267 |
 
 The drop is conditional on the queue surviving; the right-hand column is the
 rest of the story. It differs by programme: in Vestland, studiespesialisering
@@ -223,7 +223,7 @@ the county level is the largest single term after the school's own.
 ## The model as a detector
 
 The 25 cells the fitted model finds least plausible are listed in
-`meta.outliers` (|z| ≥ 3: 84 of 8 254 cells, 40 of them in Vestland, the
+`meta.outliers` (|z| ≥ 3: 82 of 8 248 cells, 39 of them in Vestland, the
 county with the most cells). Five of the top twenty-five are Vestland 2022 — clustering of that kind has meant a parser
 problem before, so
 three of them, the largest included, were checked against the county's own PDF

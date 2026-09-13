@@ -626,7 +626,7 @@ Vestland,Eid vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,20
 Vestland,Eid vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2025,3,,open
 Vestland,Eid vidaregåande skule,Elektro og datateknologi,0,EL,ELELE1----,Vg1,2026,3,35.0,points
 Vestland,Eid vidaregåande skule,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,30.7,points
-Vestland,Eid vidaregåande skule,"Frisør, blomar, interiør og eksponeringdesign",0,FD,FDFRI2----,Vg1,2020,3,,open
+Vestland,Eid vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2020,3,,open
 Vestland,Eid vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2023,3,,open
 Vestland,Eid vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,3,38.7,points
 Vestland,Eid vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,3,36.5,points
@@ -716,7 +716,7 @@ Vestland,Firda vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2023
 Vestland,Firda vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,,open
 Vestland,Firda vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,27.5,points
 Vestland,Firda vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
-Vestland,Fitjar vidaregåande skule,"Frisør, blomar, interiør og eksponeringdesign",0,FD,FDFRI2----,Vg1,2020,3,,open
+Vestland,Fitjar vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2020,3,,open
 Vestland,Fitjar vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2023,3,,open
 Vestland,Fitjar vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,3,,open
 Vestland,Fitjar vidaregåande skule,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,3,,open
@@ -2246,10 +2246,11 @@ Vestland,Sotra vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2023
 Vestland,Sotra vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,30.6,points
 Vestland,Sotra vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,21.0,points
 Vestland,Sotra vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,28.8,points
-Vestland,Sotra vidaregåande skule,Studiespesialisering med teknologifag,0,ST,STUSP1----,Vg1,2017,3,40.9,points
-Vestland,Sotra vidaregåande skule,Studiespesialisering med teknologifag,0,ST,STUSP1----,Vg1,2018,3,,open
-Vestland,Sotra vidaregåande skule,Studiespesialisering med teknologifag,0,ST,STUSP1----,Vg1,2019,3,45.0,points
-Vestland,Sotra vidaregåande skule,Studiespesialisering med teknologifag,0,ST,STUSP1----,Vg1,2020,3,40.2,points
+Vestland,Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2017,3,40.9,points
+Vestland,Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2018,3,,open
+Vestland,Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2019,3,45.0,points
+Vestland,Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2020,3,40.2,points
+Vestland,Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2022,3,29.7,points
 Vestland,Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2023,3,39.4,points
 Vestland,Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2024,3,31.9,points
 Vestland,Sotra vidaregåande skule,"Studiespesialisering, teknologifag",0,ST,STUSP1----,Vg1,2025,3,,open
@@ -2361,31 +2362,34 @@ Vestland,Stend vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2022,3,,open
 Vestland,Stend vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2023,3,32.3,points
 Vestland,Stend vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2024,3,27.9,points
 Vestland,Stend vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2026,3,,open
-Vestland,Stend vidaregåande skule,Naturbruk med anleggsgartnar,0,NA,NANAB1----,Vg1,2020,3,,open
-Vestland,Stend vidaregåande skule,Naturbruk med dyrefag,0,NA,NANAB1----,Vg1,2017,3,31.2,points
-Vestland,Stend vidaregåande skule,Naturbruk med dyrefag,0,NA,NANAB1----,Vg1,2018,3,25.7,points
-Vestland,Stend vidaregåande skule,Naturbruk med dyrefag,0,NA,NANAB1----,Vg1,2019,3,24.6,points
-Vestland,Stend vidaregåande skule,Naturbruk med dyrefag,0,NA,NANAB1----,Vg1,2020,3,32.3,points
-Vestland,Stend vidaregåande skule,Naturbruk med friluftsliv,0,NA,NANAB1----,Vg1,2017,3,31.8,points
-Vestland,Stend vidaregåande skule,Naturbruk med friluftsliv,0,NA,NANAB1----,Vg1,2018,3,36.3,points
-Vestland,Stend vidaregåande skule,Naturbruk med friluftsliv,0,NA,NANAB1----,Vg1,2019,3,32.2,points
-Vestland,Stend vidaregåande skule,Naturbruk med friluftsliv,0,NA,NANAB1----,Vg1,2020,3,,open
-Vestland,Stend vidaregåande skule,Naturbruk med hest,0,NA,NANAB1----,Vg1,2017,3,,open
-Vestland,Stend vidaregåande skule,Naturbruk med hest,0,NA,NANAB1----,Vg1,2018,3,,open
-Vestland,Stend vidaregåande skule,Naturbruk med hest,0,NA,NANAB1----,Vg1,2019,3,30.0,points
-Vestland,Stend vidaregåande skule,Naturbruk med hest,0,NA,NANAB1----,Vg1,2020,3,30.7,points
+Vestland,Stend vidaregåande skule,"Naturbruk, anleggsgartner",0,NA,NANAB1----,Vg1,2020,3,,open
 Vestland,Stend vidaregåande skule,"Naturbruk, anleggsgartner",0,NA,NANAB1----,Vg1,2023,3,,open
 Vestland,Stend vidaregåande skule,"Naturbruk, anleggsgartner",0,NA,NANAB1----,Vg1,2024,3,,open
 Vestland,Stend vidaregåande skule,"Naturbruk, anleggsgartner",0,NA,NANAB1----,Vg1,2025,3,,open
 Vestland,Stend vidaregåande skule,"Naturbruk, anleggsgartner",0,NA,NANAB1----,Vg1,2026,3,,open
+Vestland,Stend vidaregåande skule,"Naturbruk, dyrefag",0,NA,NANAB1----,Vg1,2017,3,31.2,points
+Vestland,Stend vidaregåande skule,"Naturbruk, dyrefag",0,NA,NANAB1----,Vg1,2018,3,25.7,points
+Vestland,Stend vidaregåande skule,"Naturbruk, dyrefag",0,NA,NANAB1----,Vg1,2019,3,24.6,points
+Vestland,Stend vidaregåande skule,"Naturbruk, dyrefag",0,NA,NANAB1----,Vg1,2020,3,32.3,points
+Vestland,Stend vidaregåande skule,"Naturbruk, dyrefag",0,NA,NANAB1----,Vg1,2022,3,31.8,points
 Vestland,Stend vidaregåande skule,"Naturbruk, dyrefag",0,NA,NANAB1----,Vg1,2023,3,22.2,points
 Vestland,Stend vidaregåande skule,"Naturbruk, dyrefag",0,NA,NANAB1----,Vg1,2024,3,,open
 Vestland,Stend vidaregåande skule,"Naturbruk, dyrefag",0,NA,NANAB1----,Vg1,2025,3,19.0,points
 Vestland,Stend vidaregåande skule,"Naturbruk, dyrefag",0,NA,NANAB1----,Vg1,2026,3,,open
+Vestland,Stend vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2017,3,31.8,points
+Vestland,Stend vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2018,3,36.3,points
+Vestland,Stend vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2019,3,32.2,points
+Vestland,Stend vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2020,3,,open
+Vestland,Stend vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2022,3,38.3,points
 Vestland,Stend vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2023,3,35.3,points
 Vestland,Stend vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2024,3,32.7,points
 Vestland,Stend vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2025,3,,open
 Vestland,Stend vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2026,3,36.3,points
+Vestland,Stend vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2017,3,,open
+Vestland,Stend vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2018,3,,open
+Vestland,Stend vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2019,3,30.0,points
+Vestland,Stend vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2020,3,30.7,points
+Vestland,Stend vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2022,3,39.2,points
 Vestland,Stend vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2023,3,,open
 Vestland,Stend vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2024,3,37.7,points
 Vestland,Stend vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2025,3,37.8,points
@@ -2410,13 +2414,14 @@ Vestland,Stend vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg
 Vestland,Stend vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2024,3,,open
 Vestland,Stend vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2025,3,,open
 Vestland,Stend vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2026,3,,open
-Vestland,Stend vidaregåande skule,Landbruk og gartnernæring med friluftsliv,0,NA,NALGA2----,Vg2,2017,3,,open
-Vestland,Stend vidaregåande skule,Landbruk og gartnernæring med friluftsliv,0,NA,NALGA2----,Vg2,2018,3,,open
-Vestland,Stend vidaregåande skule,Landbruk og gartnernæring med friluftsliv,0,NA,NALGA2----,Vg2,2019,3,,open
-Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2023,3,40.0,points
-Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2024,3,,open
-Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2025,3,35.7,points
-Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2026,3,,open
+Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2017,3,,open
+Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2018,3,,open
+Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2019,3,,open
+Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2022,3,30.0,points
+Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2023,3,40.0,points
+Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2024,3,,open
+Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2025,3,35.7,points
+Vestland,Stend vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2026,3,,open
 Vestland,Stend vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2022,3,21.3,points
 Vestland,Stend vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2023,3,,open
 Vestland,Stend vidaregåande skule,Salg og reiseliv,0,SR,SRSRL2----,Vg2,2024,3,28.8,points
@@ -2620,7 +2625,7 @@ Vestland,Tertnes vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,20
 Vestland,Tertnes vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2024,3,31.3,points
 Vestland,Tertnes vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2025,3,32.5,points
 Vestland,Tertnes vidaregåande skule,Studiespesialisering,0,ST,STUSP1----,Vg1,2026,3,,open
-Vestland,Voss gymnas,"Frisør, blomar, interiør og eksponeringdesign",0,FD,FDFRI2----,Vg1,2020,3,,open
+Vestland,Voss gymnas,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2020,3,,open
 Vestland,Voss gymnas,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2023,3,,open
 Vestland,Voss gymnas,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,3,,open
 Vestland,Voss gymnas,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,3,35.9,points
@@ -2745,18 +2750,20 @@ Vestland,Voss vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2023,3,,open
 Vestland,Voss vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2024,3,20.2,points
 Vestland,Voss vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2025,3,26.5,points
 Vestland,Voss vidaregåande skule,Naturbruk,0,NA,NANAB1----,Vg1,2026,3,,open
-Vestland,Voss vidaregåande skule,Naturbruk med friluftsliv,0,NA,NANAB1----,Vg1,2017,3,41.7,points
-Vestland,Voss vidaregåande skule,Naturbruk med friluftsliv,0,NA,NANAB1----,Vg1,2018,3,40.0,points
-Vestland,Voss vidaregåande skule,Naturbruk med friluftsliv,0,NA,NANAB1----,Vg1,2019,3,32.2,points
-Vestland,Voss vidaregåande skule,Naturbruk med friluftsliv,0,NA,NANAB1----,Vg1,2020,3,46.4,points
-Vestland,Voss vidaregåande skule,Naturbruk med hest,0,NA,NANAB1----,Vg1,2017,3,,open
-Vestland,Voss vidaregåande skule,Naturbruk med hest,0,NA,NANAB1----,Vg1,2018,3,,open
-Vestland,Voss vidaregåande skule,Naturbruk med hest,0,NA,NANAB1----,Vg1,2019,3,,open
-Vestland,Voss vidaregåande skule,Naturbruk med hest,0,NA,NANAB1----,Vg1,2020,3,,open
+Vestland,Voss vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2017,3,41.7,points
+Vestland,Voss vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2018,3,40.0,points
+Vestland,Voss vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2019,3,32.2,points
+Vestland,Voss vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2020,3,46.4,points
+Vestland,Voss vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2022,3,42.1,points
 Vestland,Voss vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2023,3,,open
 Vestland,Voss vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2024,3,,open
 Vestland,Voss vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2025,3,38.7,points
 Vestland,Voss vidaregåande skule,"Naturbruk, friluftsliv",0,NA,NANAB1----,Vg1,2026,3,46.3,points
+Vestland,Voss vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2017,3,,open
+Vestland,Voss vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2018,3,,open
+Vestland,Voss vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2019,3,,open
+Vestland,Voss vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2020,3,,open
+Vestland,Voss vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2022,3,22.1,points
 Vestland,Voss vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2023,3,25.0,points
 Vestland,Voss vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2024,3,33.8,points
 Vestland,Voss vidaregåande skule,"Naturbruk, hest",0,NA,NANAB1----,Vg1,2025,3,35.7,points
@@ -2835,13 +2842,14 @@ Vestland,Voss vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2
 Vestland,Voss vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2024,3,33.8,points
 Vestland,Voss vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2025,3,27.5,points
 Vestland,Voss vidaregåande skule,Landbruk og gartnernæring,0,NA,NALGA2----,Vg2,2026,3,,open
-Vestland,Voss vidaregåande skule,Landbruk og gartnernæring med friluftsliv,0,NA,NALGA2----,Vg2,2017,3,,open
-Vestland,Voss vidaregåande skule,Landbruk og gartnernæring med friluftsliv,0,NA,NALGA2----,Vg2,2018,3,40.0,points
-Vestland,Voss vidaregåande skule,Landbruk og gartnernæring med friluftsliv,0,NA,NALGA2----,Vg2,2019,3,33.8,points
-Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2023,3,,open
-Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2024,3,26.3,points
-Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2025,3,38.8,points
-Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NAGAN3----,Vg2,2026,3,,open
+Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2017,3,,open
+Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2018,3,40.0,points
+Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2019,3,33.8,points
+Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2022,3,,open
+Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2023,3,,open
+Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2024,3,26.3,points
+Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2025,3,38.8,points
+Vestland,Voss vidaregåande skule,"Landbruk/gartnernæring, friluftsliv",0,NA,NALGA2----,Vg2,2026,3,,open
 Vestland,Voss vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2022,3,,open
 Vestland,Voss vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2023,3,,open
 Vestland,Voss vidaregåande skule,Tømrer,0,BA,BATMF2----,Vg2,2024,3,30.0,points
@@ -2915,7 +2923,7 @@ Vestland,Årstad videregående skole,Elektrofag,0,EL,ELELE1----,Vg1,2017,3,32.4,
 Vestland,Årstad videregående skole,Elektrofag,0,EL,ELELE1----,Vg1,2018,3,36.5,points
 Vestland,Årstad videregående skole,Elektrofag,0,EL,ELELE1----,Vg1,2019,3,37.4,points
 Vestland,Årstad videregående skole,Elektrofag,0,EL,ELELE1----,Vg1,2020,3,38.0,points
-Vestland,Årstad videregående skole,"Frisør, blomar, interiør og eksponeringdesign",0,FD,FDFRI2----,Vg1,2020,3,26.7,points
+Vestland,Årstad videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2020,3,26.7,points
 Vestland,Årstad videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2023,3,,open
 Vestland,Årstad videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2024,3,23.1,points
 Vestland,Årstad videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,FD,FDFBI1----,Vg1,2025,3,30.3,points

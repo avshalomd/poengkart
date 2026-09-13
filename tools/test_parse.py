@@ -146,8 +146,34 @@ try:
     have = {(s['fylke'], s['name']) for s in DATA['schools'] if s.get('photo')}
     lost = sorted(had - have)
     check('no school lost its photo since the last commit', not lost, str(lost[:5]))
+    # coordinates and links are keyed by school, not programme; renaming a
+    # programme must never move a school's identity (13 Sept 2026)
+    _had = {(s['fylke'], s['name'], f) for s in prev['schools'] for f in ('lat', 'url') if s.get(f)}
+    _have = {(s['fylke'], s['name'], f) for s in DATA['schools'] for f in ('lat', 'url') if s.get(f)}
+    check('no school lost its coordinates or link since the last commit',
+          not (_had - _have), str(sorted(_had - _have)[:5]))
 except Exception:   # no git, or first build: the coverage floor still holds
     check('no school lost its photo since the last commit (skipped: no git baseline)', True)
+    check('no school lost its coordinates or link since the last commit (skipped)', True)
+
+# Forecasts are keyed by series — lower-case programme name, level, occurrence,
+# counted the way web/index.html and test_model.py count them — so a renamed
+# programme must be refitted, never left pointing at a name that is gone
+_MODEL_P = os.path.join(HERE, '..', 'web', 'data', 'model.json')
+if os.path.exists(_MODEL_P):
+    _series = {}
+    for s in DATA['schools']:
+        _occ, _keys = {}, _series.setdefault(f"{s['fylke']}|{s['name']}", set())
+        for p in s['programs']:
+            k = p['program'].lower()
+            o = _occ.get(k, 0)
+            _occ[k] = o + 1
+            _keys.add(f"{k}|{p['level']}|{o}")
+    _orph = sorted((sid, k) for sid, e in json.load(open(_MODEL_P))['schools'].items()
+                   for k in (e.get('programs') or {}) if k not in _series.get(sid, set()))
+    check('every forecast in model.json belongs to a published series', not _orph, str(_orph[:4]))
+else:
+    check('every forecast in model.json belongs to a published series (skipped: no model)', True)
 with_photo = sum(1 for s in DATA['schools'] if s.get('photo'))
 check('photo coverage >= 80%', with_photo >= 0.8 * len(DATA['schools']), f'{with_photo}/{len(DATA["schools"])}')
 
@@ -454,6 +480,83 @@ stray = sorted({p['category'] for _, p in ALL_PROGS} - set(taxonomy.CATEGORIES))
 check('every category is one Udir publishes', not stray, str(stray))
 missing_en = sorted({p['program'] for _, p in ALL_PROGS if not p.get('program_en')})
 check('every programme has an English name', not missing_en, str(missing_en[:4]))
+
+# English must tell apart what the Norwegian tells apart (13 Sept 2026 QA):
+# english_program() dropped every appended tail it had no gloss for, so Lier's
+# three Elektro og datateknologi Vg1 rows, and Elverum's Studiespesialisering
+# beside its forberedende IB, each read as one programme in English
+import collections   # noqa: E402
+_en_groups = collections.defaultdict(set)
+for s in DATA['schools']:
+    for p in s['programs']:
+        _en_groups[(s['fylke'], s['name'], p['level'], p.get('program_en'))].add(p['program'])
+_en_clash = sorted((k[1], k[2], k[3], sorted(v)) for k, v in _en_groups.items() if len(v) > 1)
+check('no two programme names at one school and level share an English name', not _en_clash,
+      f'{len(_en_clash)} groups, e.g. {_en_clash[:2]}')
+_EN = {'Studiespesialisering, forberedende IB': 'Specialization in General Studies, pre-IB',
+       'Restaurant- og matfag, toppkokk': 'Restaurant and Food Processing (toppkokk)',
+       'Naturbruk med hest': 'Agriculture, Fishing and Forestry, horses',
+       'Bygg- og anleggsteknikk, YSK 4 år': 'Building and Construction, 4-year vocational + academic'}
+check('an appended tail keeps an English gloss, or its Norwegian words where none exists',
+      all(taxonomy.english_program(a) == b for a, b in _EN.items()),
+      str({a: taxonomy.english_program(a) for a in _EN}))
+
+# ...and the names themselves are spelt one way (same QA): Bergeland printed
+# "SK 3år" beside a lower-case "barne- og ungdomsarbeiderfag, SK 3 år"
+TIDY = {'Helse- og oppvekstfag, SK 3år': 'Helse- og oppvekstfag, SK 3 år',
+        'barne- og ungdomsarbeiderfag, SK 3 år': 'Barne- og ungdomsarbeiderfag, SK 3 år',
+        'Naturbruk dyrekunnskap SK 3år': 'Naturbruk dyrekunnskap SK 3 år',
+        'International baccalaureate': 'International Baccalaureate'}
+check('tidy_program fixes case and spacing only',
+      all(common.tidy_program(a) == b for a, b in TIDY.items()),
+      str({a: common.tidy_program(a) for a in TIDY}))
+untidy = sorted({p['program'] for _, p in ALL_PROGS if common.tidy_program(p['program']) != p['program']})
+check('every published programme name is tidy', not untidy, str(untidy[:4]))
+# whatever reads a name through the register (Grep code, category, English)
+# must read the tidied spelling exactly as it read the old one
+moved = [a for a, b in TIDY.items()
+         if taxonomy.resolve(a)[:2] != taxonomy.resolve(b)[:2]
+         or taxonomy.english_program(a) != taxonomy.english_program(b)]
+check('tidying a name changes neither its Grep code nor its English', not moved, str(moved))
+
+# A saved wish is keyed by the lower-case name, so joining or respelling a
+# series pruned every wish saved under the old label (34 of them on 13 Sept
+# 2026). The former labels travel with the series as `aliases`.
+_fx, _, _ = common.merge_rows([('fixture', [
+    {'school': 'X', 'county': 'Rogaland', 'program': 'Hudpleier', 'level': 'Vg2', 'values': {2020: 40.0}},
+    {'school': 'X', 'county': 'Rogaland', 'program': 'Helse- og oppvekstfag, SK 3år', 'level': 'Vg1',
+     'values': {2020: 38.0}},
+    {'school': 'X', 'county': 'Vestland', 'program': common.canon_program('Naturbruk med hest'),
+     'level': 'Vg1', 'values': {2020: 30.0}}])])
+_fx_al = {r['program']: sorted(r.get('aliases', ())) for recs in _fx.values() for r in recs.values()}
+check('a respelt or joined series keeps the label it was read under',
+      _fx_al == {'Hudpleie': ['hudpleier'], 'Helse- og oppvekstfag, SK 3 år': ['helse- og oppvekstfag, sk 3år'],
+                 'Naturbruk, hest': ['naturbruk med hest']}, str(_fx_al))
+_BY_SL = {(s['fylke'], s['name'], p['level'], p['program']): p for s in DATA['schools'] for p in s['programs']}
+_KNOWN_AL = [('Vestland', 'Stend vidaregåande skule', 'Vg1', 'Naturbruk, hest', 'naturbruk med hest'),
+             ('Oslo', 'Elvebakken videregående skole', 'Vg1',
+              'Informasjonsteknologi og medieproduksjon, SK 3 år', 'it og medieproduksjon, sk 3 år'),
+             ('Rogaland', 'Bryne vidaregåande skule', 'Vg2', 'Kokk og servitørfag', 'kokk og servitør')]
+_lost_al = [k for k in _KNOWN_AL if k[4] not in (_BY_SL.get(k[:4]) or {}).get('aliases', [])]
+check('published series carry their former labels in aliases', not _lost_al, str(_lost_al))
+# ...and an alias names one series: lower-case, not its own name, not shared
+# with or equal to another programme at the same school and level
+_al_bad = []
+for s in DATA['schools']:
+    _names, _owner = {}, {}
+    for p in s['programs']:
+        _names.setdefault(p['level'], set()).add(p['program'].lower())
+    for p in s['programs']:
+        al = p.get('aliases')
+        if al is None:
+            continue
+        if not al or len(set(al)) != len(al):
+            _al_bad.append((s['name'], p['program'], 'empty or repeated'))
+        for a in al:
+            if a != a.lower() or a in _names[p['level']] or (p['level'], a) in _owner:
+                _al_bad.append((s['name'], p['level'], p['program'], a))
+            _owner[(p['level'], a)] = p['program']
+check('every alias names exactly one series at its school and level', not _al_bad, str(_al_bad[:4]))
 
 # the four the keyword list got wrong, each for a different reason
 def cat_of(sub):

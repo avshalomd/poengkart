@@ -73,6 +73,7 @@ def _extract_cached(mod):
     except (OSError, ValueError, KeyError):
         pass
     out, warn = mod.extract()
+    common.carry_labels(out)       # former spellings, as data the cache keeps
     os.makedirs(CACHE_DIR, exist_ok=True)
     tmp = cpath + '.tmp'
     json.dump({'key': key, 'out': out, 'warn': warn}, open(tmp, 'w'))
@@ -139,6 +140,12 @@ def main():
                 entry_p['grep'] = code
                 if official and not taxonomy.covers(rec['program'], official):
                     entry_p['official'] = official
+            # aliases: the lower-case labels this series was published under
+            # before an alias, tidy_program or SERIES_ALIASES renamed it, so the
+            # app can find a wish saved under one of them
+            aliases = sorted(rec.get('aliases', set()) - {rec['program'].lower()})
+            if aliases:
+                entry_p['aliases'] = aliases
             # values_r1/values_r3: the same cell from another intake round;
             # means: Gjennomkar, the mean points of those admitted (Møre og
             # Romsdal publishes it; no other county does)

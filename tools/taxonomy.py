@@ -51,6 +51,7 @@ substrings of words they were never meant to touch.
 """
 import collections
 import difflib
+import functools
 import json
 import os
 import re
@@ -164,6 +165,13 @@ ALIASES = {
     'international baccalaureate': 'ST',
     'international baccalaureate ib': 'ST',
     'naturbruk med anleggsgartnar': 'NANAB1----',   # else the old BA anleggsgartner wins
+    # 13 Sept 2026: three labels the last-resort steps read as a narrower area.
+    # "Medieproduksjon" sits inside "IT og medieproduksjon" (Rogaland, Oslo),
+    # "Gartnerfaget" inside "Landbruk/gartnernæring", and "Frisør" is the first
+    # word of Rogaland's abbreviated Vg1 — which then read "Hairdresser"
+    'it og medieproduksjon': 'IMIKM1----',
+    'landbruk gartnernæring': 'NALGA2----',
+    'frisør blomst int eksp design': 'FDFBI1----',
 }
 
 NOISE = [
@@ -361,42 +369,176 @@ SHORTEN = {
         'Supplementary year for general university admission',
 }
 
-# What the county appended, and what it means. Order matters: a longer pattern
-# has to consume its words before a shorter one can claim them, or "SK 3 år"
-# reports itself twice.
-SUFFIX = [
-    (r',?\s*SK\s*3[\s-]*(år|årig)?', '3-year academic track'),
-    (r',?\s*SK\b', 'academic track'),
-    (r',?\s*YSK\s*4?\s*(år)?', '4-year vocational + academic'),
-    (r',?\s*landslinje', 'national programme'), (r',?\s*LAL\b', 'national programme'),
-    (r',?\s*m/toppidrett', 'elite sport'), (r',?\s*toppidrett', 'elite sport'),
-    (r',?\s*friluftsliv', 'outdoor life'), (r',?\s*dyrekunnskap', 'animal science'),
-    (r',?\s*hest\b', 'horses'), (r',?\s*forskerlinje', 'research track'),
-    (r',?\s*entreprenørskap', 'entrepreneurship'), (r',?\s*teknologifag', 'technology'),
-    (r',?\s*internasjonalisering', 'internationalisation'), (r',?\s*skiskyting', 'biathlon'),
-    (r',?\s*dagtid', 'daytime'), (r',?\s*kveld', 'evening'), (r',?\s*nett\b', 'online'),
-    (r',?\s*folkemusikk', 'folk music'), (r',?\s*alpin', 'alpine skiing'),
-    (r',?\s*business', 'business'), (r',?\s*ambulanse', 'ambulance'),
+# What the county appended after the programme's own name, and what it means.
+# Where the words name a programme area Udir has translated, the gloss is Udir's
+# English in lower case (helsearbeider -> Health Work, søm/th -> Sewing and
+# Textile Handicrafts); the rest are the plain words, as the first entries have
+# always been. Order matters: a longer pattern has to consume its words before
+# a shorter one can claim them, or "SK 3 år" reports itself twice.
+#
+# Every tail keeps its meaning (13 Sept 2026 QA). This list used to be the only
+# thing that survived, so a tail it lacked vanished: Lier's three Elektro og
+# datateknologi Vg1 rows, 115 groups in 83 schools, read as one programme in
+# English. A tail no pattern explains now stays in Norwegian, in parentheses.
+QUALIFIERS = [
+    (r'\bvg\s*3\s+sk\b', 'Vg3 in school'),               # Grep: "vg3 i skole"
+    (r'\bstudiekompetanse\s*\(\s*3\s*år\s*\)', '3-year academic track'),
+    (r'\bSK\s*3[\s-]*(år|årig)?(?!\w)', '3-year academic track'),
+    # \b: "YSK" used to be read as "SK", so the 4-year track said "academic track"
+    (r'\bYSK(\s*4\s*(år)?)?(?!\w)', '4-year vocational + academic'),
+    (r'\bSK\b', 'academic track'), (r'\bstudiekompetanse\b', 'academic track'),
+    (r'\b(etter|er)\s+yrkeskomp\w*|\be\s*/\s*yrkeskomp\w*|\byrkeskomp\w*',
+     'after vocational qualification'),
+    (r'\blandslinje\b', 'national programme'), (r'\bLAL\b', 'national programme'),
+    (r'\bm/\s*toppidrett\b', 'elite sport'), (r'\btoppidrett\b', 'elite sport'),
+    (r'\bheste-?\s*og\s+dyrefag\b', 'equestrian and animal studies'),
+    (r'(?<!bratt )\bfriluftsliv\b', 'outdoor life'),
+    (r'\bdyrekunnskap\b', 'animal science'), (r'\bdyrefag\b', 'animal studies'),
+    (r'\bhest\b', 'horses'), (r'\banleggsgartn[ae]r\b', 'landscaping'),
+    (r'\bforskerlinje\b', 'research track'),
+    (r'\bentrepr(?:enør|\.)?\s*skap\b', 'entrepreneurship'),
+    (r'\bbedr\.?\s*utv(?:ikling)?\b\.?', 'business development'),
+    (r'\bteknologifag\b', 'technology'),
+    (r'\bteknologi\s+og\s+miljø\b', 'technology and environment'),
+    (r'\bhelse-\s*og\s+miljøteknologi\b', 'health and environmental technology'),
+    (r'\binternasjonalisering\b', 'internationalisation'), (r'\bskiskyting\b', 'biathlon'),
+    (r'\bdagtid\b', 'daytime'), (r'\bkveld\b', 'evening'), (r'\bnett\b', 'online'),
+    (r'\bfolkemusikk\b', 'folk music'), (r'\bjazz\b', 'jazz'), (r'\balpin\b', 'alpine skiing'),
+    (r'\bbusiness\b', 'business'), (r'\bscience\b', 'science'),
+    (r'\bambulanse(?:fag)?\b', 'ambulance'),
+    (r'\bhelsearbeid(?:er)?(?:fag)?\b', 'health work'),
+    (r'\bbarne\s*(?:-\s*og\s+|og\s+|/\s*)ungd(?:oms)?\.?\s*arb(?:eider)?(?:fag)?\b\.?',
+     'child care and youth work'),
+    (r'\bautom(?:atisering)?\b', 'automation'), (r'\belenergi\b', 'electrical power'),
+    (r'\brealfag\b', 'natural science and mathematics studies'),
+    (r'\benergi-?\s*/\s*miljøfag\b', 'energy and environmental studies'),
+    (r'\bsøm\s*[/ ]\s*th\b', 'sewing and textile handicrafts'),
+    (r'\bgull\s*/\s*sølv\b', 'goldsmith and silversmith'),
+    (r'\btrearb(?:eid)?\b\.?', 'woodworking'),
+    (r'\binnov(?:asjon)?\s*/\s*ledelse\b', 'innovation and leadership'),
+    (r'\binnovasjon\b', 'innovation'),
+    (r'\bforberedende\s+IB\b', 'pre-IB'),
+    (r'\b2-årig,?\s*1\.\s*år\b', 'year 1 of 2'), (r'\b2-årig,?\s*2\.\s*år\b', 'year 2 of 2'),
+    (r'\b4-årig\b', '4-year'),
 ]
 
-# Music, dance and drama names the discipline chosen *inside* the programme, so
-# the generic "programme + appended subject" reading produces "Music, Dance and
-# Drama, music, dance, drama". Written out instead.
-MDD = {
+# Names the generic "programme + appended words" reading gets wrong, written
+# out. Music, dance and drama names the discipline chosen *inside* the
+# programme ("Music, Dance and Drama, music, dance, drama" otherwise). The
+# others, 13 Sept 2026: Udir gives Teknikk og industriell produksjon and its
+# 2020 successor Teknologi- og industrifag the same English title, so the older
+# name keeps its own words; Oslo's "uten formgivingsfag" is glossed with Udir's
+# title for Studiespesialisering med formgivingsfag; Godalen's automation Vg1
+# has the register area inside the label, not at its start.
+WHOLE_EN = {
     'musikk dans og drama musikk': 'Music, Dance and Drama — music',
     'musikk dans og drama dans': 'Music, Dance and Drama — dance',
     'musikk dans og drama drama': 'Music, Dance and Drama — drama',
     'musikk dans og drama folkemusikk lal': 'Music, Dance and Drama — folk music, national programme',
     'musikk folkemusikk lal': 'Music — folk music, national programme',
+    'teknikk og industriell produksjon':
+        'Technical and Industrial Production (Teknikk og industriell produksjon)',
+    'studiespesialisering uten formgivingsfag':
+        'Specialization in General Studies (without Art, Craft and Design Studies)',
+    'elektro og data automatisering og robotikk sk 3 år':
+        'Electrical Engineering and Computer Technology, automation and robotics, 3-year academic track',
+    'interiør og eksponeringsdesign interiør og utstillingsdesign':
+        'Interior and Exposure Design (Interior and Display Design)',
 }
 
+_WORDS = re.compile(r'[^\W_]+')
+_JOINERS = {'og', 'til', 'for', 'i'}
+_NOT_ABBREV = {'med', 'm', 'og', 'til', 'for', 'i', 'etter', 'er', 'e', 'sk', 'ysk',
+               'lal', 'ib', 'vg'}
 
+
+def _same_word(a, b):
+    """A label word spells a title word: equal, abbreviated, or misspelt."""
+    if a == b:
+        return True
+    if a in _NOT_ABBREV or b in _NOT_ABBREV:
+        return False
+    if len(a) >= 3 and len(b) >= 3 and (a.startswith(b) or b.startswith(a)):
+        return True
+    return len(a) >= 5 and len(b) >= 5 and difflib.SequenceMatcher(None, a, b).ratio() >= 0.8
+
+
+def _consumed(words, title):
+    """How many of the label's leading words spell the programme's own name.
+    Counties abbreviate ("Håndverk, design og produktutv"), misspell
+    ("produkutvikl"), drop a joiner ("Håndverk, design, produktutvikling") and
+    split a word ("Energi operatørfaget")."""
+    i = j = 0
+    while i < len(words) and j < len(title):
+        a, b = words[i], title[j]
+        if a != b and len(a) >= 3 and a not in _NOT_ABBREV and b.startswith(a):
+            k = i
+            while k + 1 < len(words) and b.startswith(''.join(words[i:k + 2])):
+                k += 1
+            i, j = k + 1, j + 1
+        elif _same_word(a, b):
+            i, j = i + 1, j + 1
+        elif b in _JOINERS and j + 1 < len(title) and _same_word(a, title[j + 1]):
+            j += 1
+        elif a in _JOINERS and i + 1 < len(words) and _same_word(words[i + 1], b):
+            i += 1
+        else:
+            break
+    return i
+
+
+def _strip_qualifiers(s):
+    for pat, _ in QUALIFIERS:
+        s = re.sub(pat, ' ', s, flags=re.I)
+    return s
+
+
+# the spellings a programme's own name can take: the register's two titles, and
+# the hand-kept keys that resolve to the same category — minus any qualifier a
+# key carries ("studiespes business" names Studiespesialisering plus a tail)
+_KEY_CAT = {**{k: _alias(v, None)[0] for k, v in ALIASES.items()},
+            **{k: resolve(k)[0] for k in BASE_EN}}
+
+
+def _name_spellings(cat, code):
+    out = []
+    t = GREP_TITLES.get(code) or {}
+    for title in (t.get('nob'), t.get('nno')):
+        if title:
+            out.append(_norm(title).split())
+    for k, c in _KEY_CAT.items():
+        if c == cat:
+            out.append(_norm(_strip_qualifiers(_norm(k))).split())
+    return [w for w in out if w]
+
+
+def _tail_items(tail):
+    """(position, text, is_english) for everything in the tail: a gloss per
+    qualifier, and the Norwegian words no qualifier explains."""
+    items, masked = [], tail
+    for pat, en in QUALIFIERS:
+        for m in re.finditer(pat, masked, flags=re.I):
+            items.append((m.start(), en, True))
+        masked = re.sub(pat, lambda m: '\0' * len(m.group()), masked, flags=re.I)
+    for m in re.finditer(r'[^\0]+', masked):
+        c, prev = m.group(), None
+        while c != prev:
+            prev = c
+            c = c.strip(' ,.;:/()-–')
+            c = re.sub(r'^(?:med|og|m/)\s*', '', c, flags=re.I)
+            c = re.sub(r'\s+(?:og|med)$', '', c, flags=re.I)
+        if re.search(r'[^\W\d_]{2,}', c):
+            items.append((m.start(), c, False))
+    return sorted(items)
+
+
+@functools.lru_cache(maxsize=None)
 def english_program(program):
     """Programme name -> English title, or None if nothing can be built."""
     n = _norm(program)
-    if n in MDD:
-        return MDD[n]
-    _, code, _ = resolve(program)
+    if n in WHOLE_EN:
+        return WHOLE_EN[n]
+    cat, code, _ = resolve(program)
     base = BASE_EN.get(n) or BASE_EN.get(_strip_noise(n))
     if not base and code:
         base = (GREP_TITLES.get(code) or {}).get('eng')
@@ -404,27 +546,34 @@ def english_program(program):
         # the register knows the programme but has never translated it: fall
         # back to the category's own English title, which is always right if
         # less specific
-        cat, _, _ = resolve(program)
         base = CATEGORIES[cat][1] if cat in CATEGORIES else None
     if not base:
         return None
     base = SHORTEN.get(base, base)
     base = _title(re.sub(r'\s*vg\s*[1-4]\s*$', '', base, flags=re.I).strip())
-    # scan for suffixes only in what the county added after the programme's own
+    # read qualifiers only in what the county added after the programme's own
     # name, or "Ambulansefag" reports "ambulance" as if it were an add-on
-    tail = program
-    _, hit_code, how = resolve(program)
-    if hit_code:
-        head = _norm((GREP_TITLES.get(hit_code) or {}).get('nob') or '').split(' ')[0]
-        if head:
-            cut = re.sub(r'^.*?' + re.escape(head) + r'[^,]*', '', tail, count=1, flags=re.I)
-            if cut != tail:
-                tail = cut
-    extras = []
-    for pat, en in SUFFIX:
-        stripped = re.sub(pat, ' ', tail, flags=re.I)
-        if stripped != tail:
-            tail = stripped
-            if en not in extras:
-                extras.append(en)
-    return base + (', ' + ', '.join(extras) if extras else '')
+    words = [(m.group().lower(), m.end()) for m in _WORDS.finditer(program)]
+    start = 0
+    while start < len(words) and re.fullmatch(r'vg\d?|\d', words[start][0]):
+        start += 1                                   # "Vg 4 Påbygg ..."
+    label = [w for w, _ in words[start:]]
+    used = max((_consumed(label, s) for s in _name_spellings(cat, code)), default=0)
+    if not used:
+        # the programme's name could not be found in the label: gloss what can
+        # be glossed and keep no Norwegian, which would repeat the whole label
+        items = [it for it in _tail_items(program) if it[2]]
+    else:
+        items = _tail_items(program[words[start + used - 1][1]:])
+    # a tail that only repeats the programme's own name adds nothing: the
+    # register title's words ("Studieforberedende naturbruk", whose area is
+    # Naturbruk) or its English ("Naturbruk med heste- og dyrefag")
+    own = set(_norm((GREP_TITLES.get(code) or {}).get('nob') or '').split())
+    out, seen = base, {base.lower()}
+    for _, text, is_english in items:
+        if text.lower() in seen or (not is_english and own
+                                    and set(_norm(text).split()) <= own):
+            continue
+        seen.add(text.lower())
+        out += f', {text}' if is_english else f' ({text})'
+    return out

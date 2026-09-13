@@ -205,10 +205,55 @@ PROGRAM_ALIASES = {
         'Påbygging til generell studiekompetanse etter yrkeskompetanse',
     'påbygg gen studiekomp':
         'Påbygging til generell studiekompetanse etter yrkeskompetanse',
+    # Spelling variants that split a series and read identically in English
+    # (13 Sept 2026): Oslo drops a hyphen in one edition; Vestland's Sogn og
+    # Fjordane table writes "med" and nynorsk where the county's own writes a
+    # comma and bokmål
+    'helse- og oppvekstfag, barne og ungd.arbeiderfag, sk 3 år':
+        'Helse- og oppvekstfag, barne- og ungd.arbeiderfag, SK 3 år',
+    'naturbruk med anleggsgartnar': 'Naturbruk, anleggsgartner',
+    'naturbruk med dyrefag': 'Naturbruk, dyrefag',
+    'naturbruk med friluftsliv': 'Naturbruk, friluftsliv',
+    'naturbruk med hest': 'Naturbruk, hest',
+    'frisør, blomar, interiør og eksponeringdesign': 'Frisør, blomster, interiør og eksponeringsdesign',
+    'studiespesialisering med forskerlinje': 'Studiespesialisering, forskerlinje',
+    'studiespesialisering med teknologifag': 'Studiespesialisering, teknologifag',
+    'landbruk og gartnernæring med friluftsliv': 'Landbruk/gartnernæring, friluftsliv',
+    'it og medieproduksjon, sk 3 år': 'Informasjonsteknologi og medieproduksjon, SK 3 år',
 }
 
 
+class Label(str):
+    """A programme name that remembers the spellings it was read under.
+
+    A saved wish in the app is keyed by the lower-case name, so a refresh that
+    joins or respells a series (an alias below, tidy_program, SERIES_ALIASES)
+    would orphan every wish saved under the old spelling. The spellings travel
+    with the row as `was` (carry_labels) and reach schools.json as `aliases`."""
+    was = frozenset()
+
+
+def _spelled(final, seen):
+    lab = Label(final)
+    lab.was = frozenset(s.lower() for s in seen) - {final.lower()}
+    return lab
+
+
+def carry_labels(sources):
+    """[(source, rows)] from an extractor: store each Label's former spellings
+    on its row as plain data, so they survive the extract cache's JSON."""
+    for _, rows in sources:
+        for r in rows:
+            was = getattr(r.get('program'), 'was', None)
+            if was:
+                r['was'] = sorted(set(r.get('was', ())) | was)
+    return sources
+
+
 def canon_program(name):
+    # the spellings before each renaming step: the label as printed (after
+    # the long-standing spacing and punctuation clean-up), and after each alias
+    seen = list(getattr(name, 'was', ()))
     n = squash(name)
     n = re.sub(r',(?=\S)', ', ', n)          # "Kunst,design" -> "Kunst, design"
     n = re.sub(r'\s*\.\s*$', '', n).strip(' -–,')
@@ -216,6 +261,7 @@ def canon_program(name):
     n = re.sub(r'\bSK\s*(\d)$', r'SK \1 år', n)          # truncated rotated label
     n = re.sub(r'\bSK\s*(\d)-årig\b', r'SK \1 år', n)     # 'SK 3-årig' (Vestland 2020)
     n = re.sub(r'\s+vg\s?[1-4]$', '', n, flags=re.I)      # Grep's 'Idrettsfag vg1'
+    seen.append(n)
     # Resolve a known spelling before normalising, or a rule below would edit
     # the raw name out of the table's reach ("Bygg og anlegg" is listed there
     # as the short form of "Bygg- og anleggsteknikk").
@@ -227,7 +273,55 @@ def canon_program(name):
     n = re.sub(r'^(Bygg|Helse|Restaurant|Teknologi) og ', r'\1- og ', n)
     n = re.sub(r'\bint\.\s*eksp\.', 'int, eksp.', n)               # 'int.eksp. design'
     n = re.sub(r'\beksp\.(?=\S)', 'eksp. ', n)                     # 'eksp.design'
-    return PROGRAM_ALIASES.get(n.lower(), n)
+    seen.append(n)
+    n = PROGRAM_ALIASES.get(n.lower(), n)
+    seen.append(n)
+    return _spelled(tidy_program(n), seen)
+
+
+def tidy_program(name):
+    """The spelling every published programme name ends in, whichever parser
+    read it (13 Sept 2026 QA). Rogaland's parser keeps its own clean-up, so
+    Bergeland printed 'Helse- og oppvekstfag, SK 3år' beside 'barne- og
+    ungdomsarbeiderfag, SK 3 år', and Elverum's 'International baccalaureate'
+    lost the capital of the programme's own name. merge_rows() applies this to
+    every row, so no extractor can skip it.
+
+    Only case and spacing change, never a word, so the Grep code, the English
+    name and the category a name resolves to stay what they were."""
+    n = re.sub(r'\bSK\s*(\d)\s*år\b', r'SK \1 år', name)
+    n = re.sub(r'\bInternational baccalaureate\b', 'International Baccalaureate', n, flags=re.I)
+    if n[:1].islower():
+        n = n[0].upper() + n[1:]
+    return n
+
+
+# One programme printed under two spellings in a county's own editions, which
+# splits its series in two — and two rows that differ only in spelling cannot
+# be told apart in English either (13 Sept 2026). These are Rogaland's, whose
+# parser (parse_pdfs.py) does not use PROGRAM_ALIASES, and two of them only
+# hold at one level: "Automatisering" is the Vg2 programme's name, printed on
+# Godalen's Vg3 row in the 2019-2022 editions, and "Hudpleier" at Vg3 is its
+# own series. Each pair was checked: where both spellings carry a year, they
+# agree. Keyed by (lower-case name, level), None meaning any level.
+SERIES_ALIASES = {
+    ('kokk og servitør', 'Vg2'): 'Kokk og servitørfag',            # 2018-19 editions
+    ('hudpleier', 'Vg2'): 'Hudpleie',
+    ('automatisering', 'Vg3'): 'Automatiseringsfaget',
+    ('service, sikkerhet og admin', None): 'Service, sikkerhet og administrasjon',
+    ('service og sikkerhet og admin', None): 'Service og sikkerhet og administrasjon',
+    ('elektro og data, automatisering og robotikk, sk 3 år. ny', 'Vg1'):
+        'Elektro og data, automatisering og robotikk, SK 3 år',  # "NY": new that year
+    ('påbygg etter yrkeskompetanse, dagtid(pbpby4yk)', 'Vg4'):
+        'Påbygg etter yrkeskompetanse, dagtid',                  # the other 7 schools' spelling
+}
+
+
+def series_name(program, level):
+    """The name a row's series is published under: tidied, then folded."""
+    n = tidy_program(program)
+    return (SERIES_ALIASES.get((n.lower(), level))
+            or SERIES_ALIASES.get((n.lower(), None)) or n)
 
 
 VG1_PROGRAMS = {
@@ -273,6 +367,10 @@ def merge_rows(rows_newest_first):
     for source, rows in rows_newest_first:
         occ_seen = {}
         for r in rows:
+            printed = r['program']
+            r['program'] = series_name(printed, r['level'])
+            former = ({printed.lower(), *r.get('was', ()), *getattr(printed, 'was', ())}
+                      - {r['program'].lower()})
             # school identity is (county, name): the same school name exists in
             # more than one county (St. Olav in both Stavanger and Sarpsborg).
             # Case is not part of the identity — one Vestland edition writes
@@ -306,6 +404,8 @@ def merge_rows(rows_newest_first):
                 'category': classify_category(r['program']),
                 'values': {}, 'sources': {},
             })
+            if former:
+                rec.setdefault('aliases', set()).update(former)
             # a code straight from the county's own register column is the
             # row's identity, not a guess; keep it for build_dataset to prefer
             if r.get('grep') and 'grep' not in rec:
@@ -373,6 +473,8 @@ def _fold_series(schools, drift):
                 if rec.get(alt):
                     into.setdefault(alt, {}).update(
                         {y: v for y, v in rec[alt].items() if y not in into.get(alt, {})})
+            if rec.get('aliases'):
+                into.setdefault('aliases', set()).update(rec['aliases'])
             del recs[key]
 
 

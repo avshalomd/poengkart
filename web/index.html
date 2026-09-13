@@ -10,8 +10,8 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#2a78d6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#2a78d6" data-c="#2a78d6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1116" data-c="#0e1116" media="(prefers-color-scheme: dark)">
 
 <!-- link previews in messaging apps and social; og.png is built by
      tools/make_og.py from the live dataset, so it never goes stale -->
@@ -153,11 +153,15 @@
      else on that scale uses; red–green is the axis most CVD readers lose.
      Orange and red sit on the same lost axis (ΔE 2.2 under deuteranopia in
      dark), so the two lower bins move to a lightness gap: yellow and a dark red */
-  :root[data-cvd="1"] { --good: #0072b2; --chip-good: #005a8f; --dot-possible: #e6b800; --dot-unlikely: #7a1414; }
+  /* the dots sit in a ring of --surface-solid, and #e6b800 on the light ring
+     was 1.87:1, #b23a3a on the dark one 2.93:1: under the 3:1 a mark needs.
+     #a88400 (3.52:1) and #bd4444 (3.35:1) keep the lightness gap to the
+     neighbouring band that the choice above rests on. */
+  :root[data-cvd="1"] { --good: #0072b2; --chip-good: #005a8f; --dot-possible: #a88400; --dot-unlikely: #7a1414; }
   @media (prefers-color-scheme: dark) {
-    :root[data-cvd="1"]:not([data-theme="light"]) { --good: #58a9e8; --chip-good: #6cb4ef; --dot-possible: #f2cc5c; --dot-unlikely: #b23a3a; }
+    :root[data-cvd="1"]:not([data-theme="light"]) { --good: #58a9e8; --chip-good: #6cb4ef; --dot-possible: #f2cc5c; --dot-unlikely: #bd4444; }
   }
-  :root[data-theme="dark"][data-cvd="1"] { --good: #58a9e8; --chip-good: #6cb4ef; --dot-possible: #f2cc5c; --dot-unlikely: #b23a3a; }
+  :root[data-theme="dark"][data-cvd="1"] { --good: #58a9e8; --chip-good: #6cb4ef; --dot-possible: #f2cc5c; --dot-unlikely: #bd4444; }
 
   /* text-size steps scale the floating chrome, never the map itself.
      #listview belongs here too: it is a sibling of #panel inside #app, not a
@@ -190,7 +194,10 @@
   }
   button { font: inherit; color: inherit; }
   #app { display: flex; height: 100%; }
-  #map { flex: 1; min-width: 0; background: var(--page); }
+  /* isolate: the panel now comes before the map in the document (Tab order),
+     and Leaflet's controls share its z-index 1000, so without their own
+     stacking context they would paint over the panel instead of under it */
+  #map { flex: 1; min-width: 0; background: var(--page); isolation: isolate; }
   .leaflet-container { font: inherit; }
 
   /* Glass is for the chrome floating over the map (panel, legend, map buttons,
@@ -223,7 +230,7 @@
            max-height: calc(100dvh - var(--panel-reserve, 150px));
            overflow-y: auto; overscroll-behavior: contain; }
   #panel:focus { outline: none; }
-  #panel:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }   /* the skip link lands here */
+  #panel:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
   /* on a short desktop the card overflows and the last line was sliced through
      the glyphs with nothing to say there is more; a sticky fade says it. It is
      exactly the bottom padding, tall and wide, and its margins take back all
@@ -233,14 +240,6 @@
   #panel::after { content: ''; display: block; position: sticky; bottom: -16px; height: 16px;
                   margin: 0 -16px -16px; background: linear-gradient(to bottom, transparent, var(--surface));
                   pointer-events: none; }
-  .skip {
-    position: absolute; left: 14px; top: 14px; z-index: 3000; padding: 9px 14px;
-    background: var(--surface-solid); color: var(--ink); border: 1px solid var(--line);
-    border-radius: 10px; box-shadow: var(--shadow); font-weight: 600; font-size: 13px;
-    text-decoration: none; transform: translateY(-220%);
-  }
-  .skip:focus { transform: none; outline: 3px solid var(--accent); outline-offset: 2px; }
-  @media (prefers-reduced-motion: no-preference) { .skip { transition: transform .12s ease-out; } }
   .brand { display: flex; align-items: center; gap: 9px; }
   .brand .mark { width: 26px; height: 26px; flex: none; }
   .brand h1 { font-size: 19px; font-weight: 700; letter-spacing: -.02em; }
@@ -252,6 +251,9 @@
     width: 100%; padding: 8px 10px; font: inherit; font-size: 13px; color: var(--ink);
     background: var(--surface-solid); border: 1px solid var(--line-strong); border-radius: 10px;
     cursor: pointer; outline-offset: 2px;
+    /* the menulist drew 36px from the same padding the points field draws 34px
+       from, and side by side in the List view card their bottoms missed by 2px */
+    box-sizing: border-box; height: 34px;
   }
   /* min-height reserves the line so the note can appear without moving the
      points field and the whole choices list below it; `:empty { display: none }`
@@ -279,10 +281,13 @@
   .seg button svg { width: 15px; height: 15px; display: block; }
   #settings .row .t { font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
                       text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
-  .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 9px; overflow: hidden; }
+  /* max-width and min-width: 0: at Ekstra stor on a 320px phone the one-word
+     «Fargeblindvennlig» could not shrink, ran 31px off the sheet and scrolled it
+     sideways; it now breaks at a syllable inside its button */
+  .seg { display: inline-flex; max-width: 100%; border: 1px solid var(--line-strong); border-radius: 9px; overflow: hidden; }
   .seg button {
     border: none; background: none; padding: 7px 13px; font-size: 12.5px; font-weight: 600;
-    color: var(--ink-2); cursor: pointer;
+    color: var(--ink-2); cursor: pointer; min-width: 0; hyphens: auto; -webkit-hyphens: auto;
   }
   .seg button + button { border-left: 1px solid var(--line-strong); }
   .seg button.on { background: var(--accent); color: var(--on-accent); }
@@ -325,6 +330,10 @@
   @media (max-width: 460px) {
     #calc .subj { flex-wrap: wrap; row-gap: 3px; padding: 7px 0; }
     #calc .subj .n { flex: 1 0 100%; }
+    /* the seven 30px slots need 228px, and at Ekstra stor on a 320px phone the
+       sheet has 165: the ✕ landed outside it, where a tap closed the sheet */
+    #calc .grades { flex: 0 1 auto; min-width: 0; }
+    #calc .grades button { flex: 0 1 30px; min-width: 0; }
   }
   /* ---------- search overlay (design C trial) ---------- */
   #searchov { align-items: flex-start; }
@@ -349,7 +358,17 @@
   /* a 1px border change is not a focus indicator; match the rest of the app */
   #ov-q:focus { border-color: var(--accent); }
   #ov-q:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-  #ov-list { margin-top: 6px; max-height: 320px; overflow-y: auto; }
+  /* the UA's grey placeholder was 4.26:1 on the light field, 4.10:1 on the dark */
+  #ov-q::placeholder { color: var(--ink-3); opacity: 1; }
+  /* A fixed 320px never shrank with the screen: on a phone held sideways the box
+     ran 105px below it, nothing scrolled, and ArrowDown moved the choice out of
+     sight. The list takes what the viewport leaves: the box's top margin, the
+     field above it and the modal's padding (112px), all inside the text-size
+     zoom, so the budget is divided by it as the sheets' is. */
+  #ov-list { margin-top: 6px; max-height: min(320px, calc(100dvh - min(18vh, 150px) - 112px)); overflow-y: auto; }
+  :root[data-font="lg"] #ov-list { max-height: min(320px, calc((100dvh - 36px) / 1.15 - min(18vh, 150px) - 76px)); }
+  :root[data-font="xl"] #ov-list { max-height: min(320px, calc((100dvh - 36px) / 1.3 - min(18vh, 150px) - 76px)); }
+  @media (max-height: 480px) { #searchov .ovbox { margin-top: 0; } }
   #ov-list .opt {
     display: flex; justify-content: space-between; gap: 10px; align-items: baseline;
     padding: 10px 12px; border-radius: 8px; cursor: pointer; font-size: 14px;
@@ -408,6 +427,10 @@
   #listview .sc a { color: inherit; text-decoration: none; }
   #listview .sc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   #listview .fy { color: var(--ink-2); }
+  /* beside an open school the auto layout squeezed the county column instead,
+     and 22 «Møre og Romsdal» rows went to two lines: the row just clicked slid
+     up to 45px from under the pointer. The wrapping belongs to the long names. */
+  body.lv-split #listview .fy, body.lv-wide #listview .fy { white-space: nowrap; }
   #listview .chip {
     display: inline-block; min-width: 44px; text-align: center; padding: 2px 9px;
     border-radius: 7px; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums;
@@ -586,7 +609,7 @@
   .prow .pick {
     flex: none; width: 22px; height: 22px; border-radius: 7px; display: grid; place-items: center;
     border: 1px solid var(--line); color: var(--ink-3); font-size: 14px; line-height: 1;
-    background: var(--surface-solid); cursor: pointer;
+    background: var(--surface-solid); cursor: pointer; padding: 0; font-family: inherit;
   }
   /* a 1px border change is not a focus indicator; match the rest of the app */
   .prow .pick:focus-visible { border-color: var(--accent); color: var(--accent);
@@ -607,12 +630,14 @@
   /* A wish is one line where the school and its programme fit on it whole, and
      the programme drops under the school where they do not. Held to one line
      at any cost, 2,161 of the 2,343 possible wishes lost words in the 316px
-     panel, «videregående skole» first. */
+     panel, «videregående skole» first. A part too long for a line of its own
+     wraps rather than ending in «…»: cut there, Lier's three Elektro wishes
+     lost the qualifier and the level that tell them apart. */
   #choices .row .who { flex: 1; min-width: 0; text-align: left; border: none; background: none; font: inherit;
                        color: var(--ink); cursor: pointer; padding: 0; line-height: 1.3;
                        display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 6px; }
   #choices .row .who:focus-visible .sc { color: var(--accent); }
-  #choices .row .sc, #choices .row .pr { min-width: 0; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #choices .row .sc, #choices .row .pr { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
   #choices .row .sc { font-size: 12px; font-weight: 600; }
   #choices .row .pr { font-size: 11px; color: var(--ink-2); }
   #choices .row .rm { flex: none; width: 22px; height: 22px; border: none; border-radius: 7px; background: none;
@@ -970,6 +995,9 @@
   }
   .leaflet-tooltip-top.tip::before { border-top-color: var(--surface-solid); }
   .leaflet-tooltip-bottom.tip::before { border-bottom-color: var(--surface-solid); }
+  /* a tooltip slid sideways to clear the panel or the map's edge keeps its
+     arrow on the school (aimTip sets --ax) */
+  .leaflet-tooltip-top.tip::before, .leaflet-tooltip-bottom.tip::before { left: calc(50% + var(--ax, 0px)); }
   .leaflet-tooltip-left.tip::before { border-left-color: var(--surface-solid); }
   .leaflet-tooltip-right.tip::before { border-right-color: var(--surface-solid); }
   .tip .n { font-weight: 650; font-size: 13px; letter-spacing: -.01em; }
@@ -1023,7 +1051,9 @@
   /* fallback ground is fixed dark blues so the white name reads in both themes */
   .photo { position: relative; height: 168px; background: linear-gradient(135deg, #2a6cbf, #0d366b); }
   .photo #s-minimap { position: absolute; inset: 0; z-index: 0; }
-  .photo #s-minimap .leaflet-container { background: var(--page); }
+  /* #s-minimap IS the Leaflet container, so the descendant form never matched
+     and Leaflet's #ddd filled the dark theme's header until the tiles came */
+  .photo #s-minimap.leaflet-container { background: var(--page); }
   .photo img { width: 100%; height: 100%; object-fit: cover;
                object-position: var(--photo-pos, center); display: block; }
   .photo .veil { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(10,14,18,.62)); }
@@ -1127,7 +1157,8 @@
     text-transform: uppercase; color: var(--ink-3);
   }
   .scope-chip {
-    display: flex; align-items: center; gap: 8px; margin: 10px 18px 2px; padding: 6px 10px;
+    /* wrap: at Ekstra stor on 320px «Vis alle utdanningsprogram» ran off the sheet */
+    display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 10px 18px 2px; padding: 6px 10px;
     background: var(--accent-soft); border-radius: 9px; font-size: 11.5px; color: var(--ink-2);
   }
   .scope-chip span { font-weight: 650; color: var(--ink); }
@@ -1148,7 +1179,20 @@
   .prow.sel { border-left-color: var(--accent); }
   /* a group of one, with no heading of its own: the rule is where it begins */
   .prow.solo { margin-top: 6px; border-top: 1px solid var(--line); }
-  .prow .nm { flex: 1; font-size: 13px; line-height: 1.3; }
+  /* 8em, not 0: from a zero basis the name gave up all the width to the chips
+     beside it and broke «Informasjonsteknologi og medieproduksjon» over 13 lines
+     27px wide on a 320px phone. Now the chips move to a line of their own first,
+     and the ones that do sit at the right, where the figures stand. */
+  .prow .nm { flex: 1 1 8em; min-width: 0; font-size: 13px; line-height: 1.3; }
+  /* the figure and its + wrap as one: alone, the + was stranded at the start
+     of a line of its own under «Ingen venteliste» on a 375px phone */
+  .prow .end { display: flex; align-items: center; gap: 10px; margin-left: auto; flex: none; }
+  /* the name is the row's button (the pick beside it is a button of its own,
+     which a button may not contain) */
+  .prow button.nm { border: none; background: none; padding: 0; margin: 0; text-align: left;
+                    color: inherit; font: inherit; font-size: 13px; line-height: 1.3; cursor: pointer; }
+  .prow button.nm:focus-visible { outline: none; }
+  .prow:has(button.nm:focus-visible) { outline: 2px solid var(--accent); outline-offset: -2px; }
   .prow .lv { font-size: 10.5px; font-weight: 600; color: var(--ink-3); border: 1px solid var(--line);
               border-radius: 5px; padding: 1px 5px; flex: none; }
   .fbadge { font-size: 10.5px; color: var(--ink-3); border: 1px dashed var(--line); border-radius: 5px;
@@ -1232,7 +1276,9 @@
     .field select { text-overflow: ellipsis; }
     #cat-note:empty { display: none; }
     #tagline { display: none; }            /* the panel hid 23 markers */
-    .field label { font-size: 10.5px; letter-spacing: .04em; margin-bottom: 3px; }
+    /* half a 320px card at Stor cut «UTDANNINGSPROGRAM» at the panel's edge */
+    .field label { font-size: 10.5px; letter-spacing: .04em; margin-bottom: 3px;
+                   hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
     .field + .field { margin-top: 0; }
     .field select { padding: 7px 8px; font-size: 12.5px; }
 
@@ -1416,8 +1462,12 @@
     body.panel-folded:not(.view-list) #panel #pts-label {
       position: absolute; width: 1px; height: 1px; min-height: 0; margin: -1px; padding: 0;
       overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-    /* at Ekstra stor half the card leaves the points box under 40px, too
-       narrow for «40,0» beside the clear button; the two stack instead */
+  }
+  /* at Ekstra stor half the card leaves the points box under 40px, too
+     narrow for «40,0» beside the clear button; the two stack instead. Only on
+     a portrait phone: sideways this rule outranked the three columns below,
+     the folded card grew taller than the unfolded one and cut the points row. */
+  @media (max-width: 560px) {
     :root[data-font="xl"] body.panel-folded:not(.view-list) #panel-sum,
     :root[data-font="xl"] body.panel-folded:not(.view-list) #panel #pts-field { grid-column: 1 / -1; }
   }
@@ -1431,7 +1481,11 @@
     body.panel-folded:not(.view-list) #panel-sum { grid-column: 1 / 3; }
     body.panel-folded:not(.view-list) #panel #pts-field { grid-column: 3; }
   }
-  @media (max-width: 760px) {
+  /* a phone held sideways is wider than 760px but no taller than 480: the
+     520px landscape card and the 480px sheet overlapped by up to 184px there,
+     with help, settings, search and the points field under the sheet. It gets
+     the phone's full sheet; phoneSheet() applies the same query. */
+  @media (max-width: 760px), (max-width: 1023px) and (max-height: 480px) {
     #side.open { width: 100vw; }
     /* 100vw here laid out 487px wide inside the text-size zoom and pushed the
        sheet's left edge off the phone. 100% fixed that, but the sheet opens by
@@ -1530,6 +1584,10 @@
      theirs or the map is coloured and its key is blank */
   @media (forced-colors: active) {
     #legend .sw, #legend svg, #legend .dot, .pk-cluster { forced-color-adjust: none; }
+    /* the pressed option was a fill, which forced colours strip: Kart/Liste,
+       the chart tabs, Settings and the grades all looked unpressed */
+    .seg button.on, #calc .grades button.on, .tabs button.on, #view-toggle button.on {
+      forced-color-adjust: none; background: Highlight; color: HighlightText; border-color: Highlight; }
   }
   [hidden] { display: none !important; }
 </style>
@@ -1537,7 +1595,12 @@
 /* saved display preferences, applied before first paint so nothing flashes */
 try {
   var _d = document.documentElement, _v;
-  if ((_v = localStorage.getItem('pk-theme')) === 'light' || _v === 'dark') _d.dataset.theme = _v;
+  if ((_v = localStorage.getItem('pk-theme')) === 'light' || _v === 'dark') {
+    _d.dataset.theme = _v;
+    /* the browser's own toolbar follows the pinned theme, not the OS */
+    var _ms = document.querySelectorAll('meta[name="theme-color"]');
+    for (var _i = 0; _i < _ms.length; _i++) _ms[_i].content = _v === 'dark' ? '#0e1116' : '#2a78d6';
+  }
   if ((_v = localStorage.getItem('pk-font')) === 'lg' || _v === 'xl') _d.dataset.font = _v;
   if (localStorage.getItem('pk-cvd') === '1') _d.dataset.cvd = '1';
 } catch (e) {}
@@ -1554,39 +1617,11 @@ try {
        available as <a href="data/schools.json">schools.json</a>.</p>
   </div>
 </noscript>
-<!-- the map comes first in the document, so a keyboard reader would otherwise
-     tab through thirty markers before reaching a single control -->
-<a class="skip" id="skip" href="#panel"></a>
 <div id="app" role="main">
-  <div id="map"></div>
-  <div id="listview" hidden></div>
-  <aside id="side">
-    <div class="scroll">
-      <div class="photo" id="s-photo"></div>
-      <div class="meta" id="s-meta"></div>
-      <div class="notes" id="s-notes" hidden></div>
-      <div class="hero" id="s-hero"></div>
-      <div class="chance" id="s-chance" hidden></div>
-      <div class="mixwarn" id="s-mix" hidden></div>
-      <div class="chart-card">
-        <div class="chart-head">
-          <div class="tabs" id="tabs">
-            <button data-mode="all"></button>
-            <button data-mode="cat"></button>
-            <button data-mode="prog"></button>
-          </div>
-          <select id="chart-cat" hidden></select>
-        </div>
-        <div id="chart-sub"></div>
-        <div id="chart-wrap">
-          <div id="chart-tip"></div>
-          <div id="chart-svg" role="img" aria-labelledby="chart-sub"></div>
-        </div>
-      </div>
-      <div id="s-list"></div>
-      <div id="src-note"></div>
-    </div>
-  </aside>
+<!-- The controls come first in the document, before the map's markers and the
+     list's 217 rows: the List view draws this card above the table, and Tab
+     used to reach it only after every row. Where it floats over the map, its
+     z-index and #map's isolation keep it on top. -->
 <div id="panel" class="glass" tabindex="-1">
   <div class="brand">
     <svg class="mark" viewBox="0 0 26 26" aria-hidden="true">
@@ -1656,7 +1691,7 @@ try {
     <div class="ptsrow">
       <input id="my-points" type="text" inputmode="decimal" autocomplete="off" spellcheck="false"
              maxlength="5" oninput="onPoints(this.value)">
-      <button id="pts-clear" type="button" onclick="onPoints('')" hidden>✕</button>
+      <button id="pts-clear" type="button" onclick="onPoints(''); refocus('#my-points')" hidden>✕</button>
       <button id="calc-open" type="button" onclick="openCalc()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1670,6 +1705,35 @@ try {
   <!-- the reader's own list of choices, across schools -->
   <div id="choices" hidden></div>
 </div>
+  <div id="map"></div>
+  <div id="listview" hidden></div>
+  <aside id="side">
+    <div class="scroll">
+      <div class="photo" id="s-photo"></div>
+      <div class="meta" id="s-meta"></div>
+      <div class="notes" id="s-notes" hidden></div>
+      <div class="hero" id="s-hero"></div>
+      <div class="chance" id="s-chance" hidden></div>
+      <div class="mixwarn" id="s-mix" hidden></div>
+      <div class="chart-card">
+        <div class="chart-head">
+          <div class="tabs" id="tabs">
+            <button data-mode="all"></button>
+            <button data-mode="cat"></button>
+            <button data-mode="prog"></button>
+          </div>
+          <select id="chart-cat" hidden></select>
+        </div>
+        <div id="chart-sub"></div>
+        <div id="chart-wrap">
+          <div id="chart-tip"></div>
+          <div id="chart-svg" role="img" aria-labelledby="chart-sub"></div>
+        </div>
+      </div>
+      <div id="s-list"></div>
+      <div id="src-note"></div>
+    </div>
+  </aside>
 </div>
 
 
@@ -1815,11 +1879,11 @@ const T = {
       ['Your points',
        'Points = your grade average × 10. The threshold is the score of the last applicant who got a place – if you were above it, you would have got in.'],
       ['Colours and sizes',
-       'Colour = the average of the thresholds in the newest year that school has figures for. Size = what share of its programmes filled up – a small dot means most admitted everyone who applied.'],
+       'Colour = the average of the thresholds in the newest year that school has figures for. Size = what share of its programme areas filled up – a small dot means most admitted everyone who applied.'],
       ['Find the schools that matter to you',
-       'Pick a county and a programme at the top. Open a dot for the year-by-year trend and the figures per programme.'],
+       'Pick a county and an education programme at the top. Open a dot for the year-by-year trend and the figures per programme area.'],
       ['Your chance',
-       'Enter your points and the map recolours by your chance of a place at the next intake: green = likely, amber = possible, red = unlikely. Press + on a programme to collect your wishes and see whether the list holds up. Worked out from the history.'],
+       'Enter your points and the map recolours by your chance of a place at the next intake: green = likely, amber = possible, red = unlikely. Press + on a programme area to collect your wishes and see whether the list holds up. Worked out from the history.'],
     ],
   },
   introCalc: { no: ['4,2 i snitt', '42 poeng'], en: ['4.2 average', '42 points'] },
@@ -1990,16 +2054,16 @@ const T = {
   catNote:    { no: n => `${n} ${n === 1 ? 'skole' : 'skoler'} tilbyr dette`, en: n => `${n} ${n === 1 ? 'school offers' : 'schools offer'} this` },
   legendAll:  { no: 'Snittgrense (siste år)', en: 'Average threshold (latest year)' },
   legendSize: { no: 'Størrelsen viser hvor stor andel av programområdene som ble fylt opp',
-                en: 'Marker size shows what share of the programmes filled up' },
+                en: 'Marker size shows what share of the programme areas filled up' },
   tipMedian:  { no: (v, n, tot) => `Snitt <b>${v}</b> poeng · ${n} av ${tot} programområde${tot === 1 ? '' : 'r'} ble fylt opp`,
                 en: (v, n, tot) => `Average <b>${v}</b> pts · ${n} of ${tot} programme area${tot === 1 ? '' : 's'} filled up` },
   tipMostlyOpen: { no: 'Men de fleste programområdene hadde ingen venteliste',
-                   en: 'But most programmes had no waiting list' },
+                   en: 'But most programme areas had no waiting list' },
   mostlyOpenShort: { no: 'de fleste hadde ingen venteliste', en: 'most had no waiting list' },
   tipTop:     { no: 'Høyest:', en: 'Highest:' },
   scopeAll:   { no: 'Vis alle utdanningsprogram', en: 'Show all education programmes' },
   heroTypical:{ no: 'Snitt', en: 'Average' },
-  heroTypicalAll: { no: 'alle programområder', en: 'all programmes' },
+  heroTypicalAll: { no: 'alle programområder', en: 'all programme areas' },
   legendCat:  { no: c => `${CATS[c].no} · siste år`, en: c => `${CATS[c].en} · latest year` },
   legendOpen: { no: 'Ingen venteliste – alle søkere tatt inn', en: 'No waiting list – all applicants admitted' },
   legendNone: { no: 'Ingen data', en: 'No data' },
@@ -2022,11 +2086,11 @@ const T = {
                 en: (z, o) => `${z} filled without points · ${o} no waiting list` },
   noHist:     { no: 'Ingen historikk', en: 'No history' },
   noHistTitle:{ no: 'Programområdet har aldri hatt en publisert poenggrense her, så det finnes ingen prognose å bygge på.',
-                en: 'This programme has never had a published threshold here, so there is nothing to forecast from.' },
+                en: 'This programme area has never had a published threshold here, so there is nothing to forecast from.' },
   lowHist:    { no: 'lite historikk', en: 'little history' },
   noPointsTitle: {
     no: 'Programområdet ble fylt opp, men den siste som kom inn hadde ingen poeng registrert. Alle søkere med poeng fikk plass.',
-    en: 'The programme filled up, but the last applicant admitted had no registered points. Everyone with points got a place.',
+    en: 'The programme area filled up, but the last applicant admitted had no registered points. Everyone with points got a place.',
   },
   // the official state is fortrinnsrett; "Fortrinn" alone is not Udir's word and
   // contradicted the badge and the tooltip on the very same row
@@ -2064,7 +2128,7 @@ const T = {
   roundYearNote: { no: (y, r) => `${y}-tallene er fra ${r}. inntak, ikke samme inntak som de andre årene – flere kom inn, så grensene ligger lavere.`,
                    en: (y, r) => `The ${y} figures are from the ${ordEn(r)} intake, not the same intake as the other years – more applicants were admitted, so the thresholds sit lower.` },
   closeAria:  { no: 'Lukk skoledetaljer', en: 'Close school details' },
-  skipToControls: { no: 'Hopp til filtrene', en: 'Skip to the filters' },
+  leafletTitle: { no: 'Et JavaScript-bibliotek for interaktive kart', en: 'A JavaScript library for interactive maps' },
   // x: the cluster's mix when points are entered, so the label says what the ring shows
   clusterAria: { no: (n, x) => `${n} skoler i dette området.` + (x ? ` Best sjanse: ${x.likely} sannsynlig · ${x.possible} mulig · ${x.unlikely} lite sannsynlig${x.none ? ` · ${x.none} uten prognose` : ''}.` : '') + ' Trykk for å zoome inn.',
                  en: (n, x) => `${n} schools in this area.` + (x ? ` Best chance: ${x.likely} likely · ${x.possible} possible · ${x.unlikely} unlikely${x.none ? ` · ${x.none} without a forecast` : ''}.` : '') + ' Press to zoom in.' },
@@ -2087,7 +2151,7 @@ const T = {
   pageTitle:  { no: 'Poengkart – poenggrenser for videregående skole',
                 en: 'Poengkart – admission thresholds for Norwegian upper secondary schools' },
   tipHint:    { no: 'Trykk for å se trender og detaljer', en: 'Open for trends and details' },
-  tipAllOpen: { no: y => `Alle programområder: ingen venteliste i ${y}`, en: y => `All programmes: no waiting list in ${y}` },
+  tipAllOpen: { no: y => `Alle programområder: ingen venteliste i ${y}`, en: y => `All programme areas: no waiting list in ${y}` },
   heroDelta:  { no: y => `endring fra ${y}`, en: y => `change vs ${y}` },
   heroDeltaBasis: {
     no: 'Forskjellen mellom de to siste punktene på snittlinjen i grafen under.',
@@ -2097,9 +2161,9 @@ const T = {
   // that filled up says nothing about the many that did not.
   mostlyOpenNote: {
     no: (o, tot, y, n) => `${o} av ${tot} programområder hadde ingen venteliste i ${y}. `
-      + `Snittet gjelder bare de ${n} som hadde en poenggrense.`,
+      + `Snittet gjelder bare ${n === 1 ? 'det ene programområdet' : `de ${n}`} som hadde en poenggrense.`,
     en: (o, tot, y, n) => `${o} of ${tot} programme areas had no waiting list in ${y}. `
-      + `The average covers only the ${n} that had a threshold.`,
+      + `The average covers only ${n === 1 ? 'the one' : `the ${n}`} that had a threshold.`,
   },
   linkNotFound: { no: n => `Fant ikke «${n}» i kartet.`, en: n => `Could not find “${n}” on the map.` },
   photoCredit: { no: c => `Foto: ${c}`, en: c => `Photo: ${c}` },
@@ -2116,14 +2180,14 @@ const T = {
   chartSubAll:  { no: (n, tot, span) => (n === tot ? `${n} ${n === 1 ? 'programområde' : 'programområder'} har hatt poenggrense i ${span} · snittlinje i blått`
                                                    : `${n} av ${tot} programområder har hatt poenggrense i ${span} · snittlinje i blått`),
                   en: (n, tot, span) => (n === tot ? `${n} programme area${n === 1 ? ' has' : 's have'} had a threshold in ${span} · mean line in blue`
-                                                   : `${n} of ${tot} programme areas have had a threshold in ${span} · mean line in blue`) },
+                                                   : `${n} of ${tot} programme areas ${n === 1 ? 'has' : 'have'} had a threshold in ${span} · mean line in blue`) },
   chartSubCat:  { no: (n, tot, span) => (n === tot ? `${n} ${n === 1 ? 'programområde' : 'programområder'} i utdanningsprogrammet har hatt poenggrense i ${span} · snitt i blått`
                                                    : `${n} av ${tot} programområder i utdanningsprogrammet har hatt poenggrense i ${span} · snitt i blått`),
                   en: (n, tot, span) => (n === tot ? `${n} programme area${n === 1 ? ' has' : 's have'} had a threshold in this programme in ${span} · mean line in blue`
-                                                   : `${n} of ${tot} programme areas in this programme have had a threshold in ${span} · mean line in blue`) },
+                                                   : `${n} of ${tot} programme areas in this programme ${n === 1 ? 'has' : 'have'} had a threshold in ${span} · mean line in blue`) },
   chartSubProg: { no: 'Ett programområde · hule punkter = ingen poenggrense', en: 'One programme area · hollow dots = no threshold' },
   chartNoPoints: { no: 'Ingen poenggrense å tegne for dette utvalget – alle som søkte, fikk plass, eller inntaket gikk på fortrinnsrett eller dokumentasjon.',
-                   en: 'No threshold to plot for this selection – everyone who applied got a place, or admission went by priority quota or documentation.' },
+                   en: 'No threshold to plot for this selection – everyone who applied got a place, or admission went by priority right or documentation.' },
   officialName: { no: n => `Offisielt navn (Udir): ${n}`, en: n => `Official register name: ${n}` },
   oldHidden: {
     no: n => n === 1 ? '1 programområde uten tall fra de siste to årene er skjult – vis det'
@@ -2160,9 +2224,9 @@ const T = {
                 en: b => ({ likely: '≥ 70%', possible: '35–70%', unlikely: '< 35%' })[b] },
   legendZoomHint: { no: 'Zoom inn for å se sjansen per skole.', en: 'Zoom in to see each school’s chance.' },
   legendChance: { no: x => `Sjanse for plass med ${x} poeng · beste programområde`,
-                  en: x => `Chance of a place with ${x} points · best programme` },
+                  en: x => `Chance of a place with ${x} points · best programme area` },
   legendChanceSize: { no: 'Størrelsen viser hvor stor andel av programområdene som er innen rekkevidde (≥ 35 %)',
-                      en: 'Size shows what share of the programmes are within reach (≥ 35%)' },
+                      en: 'Size shows what share of the programme areas are within reach (≥ 35%)' },
   moreLabel: { no: 'Vis mer', en: 'Show more' },
   lessLabel: { no: 'Vis mindre', en: 'Show less' },
   legendNoForecast: { no: 'Ingen prognose', en: 'No forecast' },
@@ -2172,10 +2236,10 @@ const T = {
   tipNoForecast: { no: 'Ingen prognose for denne skolen', en: 'No forecast for this school' },
   chancePrompt: {
     no: 'Skriv inn poengene dine i poengfeltet over kartet, så viser lista under sjansen din for plass per programområde ved neste inntak.',
-    en: 'Enter your points in the points field over the map, and the list below shows your chance of a place per programme at the next intake.',
+    en: 'Enter your points in the points field over the map, and the list below shows your chance of a place per programme area at the next intake.',
   },
   chanceNoneInScope: { no: 'Ingen prognose for programområdene i dette utvalget.',
-                       en: 'No forecast for the programmes in this selection.' },
+                       en: 'No forecast for the programme areas in this selection.' },
   // The head counts over the programme areas that HAVE a forecast (n, which is
   // also the number of chips the list renders below) and then names that scope
   // outright, with the rest of the panel's rows in the parenthetical. Printing
@@ -2192,7 +2256,7 @@ const T = {
   // reads ch.n out of this string, and "det ene programområdet" would leave the
   // count nowhere in the head for it (and for a reader) to check.
   chanceHeadU: { no: (x, n, m, tot) => `Med ${x} poeng: lite sannsynlig plass på alle ${n} programområdene${T.chanceScope.no(m, tot)}`,
-                 en: (x, n, m, tot) => `With ${x} points: a place is unlikely at all ${n} programme areas${T.chanceScope.en(m, tot)}` },
+                 en: (x, n, m, tot) => `With ${x} points: a place is unlikely at ${n === 1 ? 'the 1 programme area' : `all ${n} programme areas`}${T.chanceScope.en(m, tot)}` },
   chanceCounts: { no: (L, R, U) => `${L} sannsynlig (≥ 70 %) · ${R} mulig (35–70 %) · ${U} lite sannsynlig (< 35 %)`,
                   en: (L, R, U) => `${L} likely (≥ 70%) · ${R} possible (35–70%) · ${U} unlikely (< 35%)` },
   chanceSub: {
@@ -2207,7 +2271,7 @@ const T = {
     // pf may be null: a county pinned at π = 1 by rule (none today; the
     // mechanism is FILL_BLIND in tools/model.py) has no fill figure to show
     no: (p, y, m, sd, pf, h) => `Sjanse for plass i ${y} med poengene dine: ${p} %. Forventet grense ca. ${m} ± ${sd}${pf == null ? '' : `; sannsynlighet for at det blir venteliste: ${pf} %`}. Bygger på ${h} år med tall for dette programområdet.`,
-    en: (p, y, m, sd, pf, h) => `Chance of a place in ${y} with your points: ${p}%. Expected threshold about ${m} ± ${sd}${pf == null ? '' : `; probability of a waiting list at all: ${pf}%`}. Built on ${h} ${h === 1 ? 'year' : 'years'} of figures for this programme.`,
+    en: (p, y, m, sd, pf, h) => `Chance of a place in ${y} with your points: ${p}%. Expected threshold about ${m} ± ${sd}${pf == null ? '' : `; probability of a waiting list at all: ${pf}%`}. Built on ${h} ${h === 1 ? 'year' : 'years'} of figures for this programme area.`,
   },
   // ----- my choices -----
   pickAdd:    { no: 'Legg til i ønskene mine', en: 'Add to my wishes' },
@@ -2262,13 +2326,13 @@ const T = {
                   en: 'Møre og Romsdal shows “no waiting list” where everyone got in or the threshold was below 25 points – the county\'s own rule. Which of the two, the county does not say.' },
   finalRoundUnknown: {
     no: 'Fylket publiserer bare 1. inntak. Flere kommer inn i senere inntak, men det finnes ikke tall for hvor mange.',
-    en: 'The county publishes intake 1 only. More get in at later intakes, but there are no figures for how many.',
+    en: 'The county publishes the 1st intake only. More get in at later intakes, but there are no figures for how many.',
   },
   adjLine:    { no: (d, se) => `${d} poeng i forhold til samme programområder ellers i fylket (± ${se})`,
                 en: (d, se) => `${d} points relative to the same programme areas elsewhere in the county (± ${se})` },
   adjTitle: {
     no: 'Hvor mye høyere eller lavere skolens poenggrenser ligger enn de samme programområdene ellers i fylket, når sammensetningen av programområder er tatt hensyn til. Et mål på etterspørsel, ikke på kvalitet.',
-    en: 'How much higher or lower this school\'s thresholds run than the same programmes elsewhere in the county, once its mix of programmes is accounted for. A measure of demand, not of quality.',
+    en: 'How much higher or lower this school\'s thresholds run than the same programme areas elsewhere in the county, once its mix of programme areas is accounted for. A measure of demand, not of quality.',
   },
 };
 let lang = 'no';
@@ -2572,6 +2636,17 @@ function pickNote(msg) {
     document.body.appendChild(el);
   }
   el.textContent = '\u26a0 ' + msg;
+  // Centred on the window it lay across the edge of a school sheet beside the
+  // map, and over the legend's corner. Centre it on the free part instead, and
+  // clear the legend beside it, or above it where the strip is too narrow.
+  const sd = document.getElementById('side').getBoundingClientRect();
+  const right = document.body.classList.contains('side-open') && sd.width > 0 && sd.left > 0 ? innerWidth - sd.left + 16 : 16;
+  const lg = document.getElementById('legend')?.getBoundingClientRect();
+  const nearLegend = lg && lg.height && lg.top < innerHeight - 70;
+  el.style.right = right + 'px';
+  el.style.left = el.style.bottom = '';
+  if (nearLegend && innerWidth - right - (lg.right + 12) >= 280) el.style.left = Math.round(lg.right + 12) + 'px';
+  else if (nearLegend) el.style.bottom = Math.round(innerHeight - lg.top + 12) + 'px';
   el.classList.add('show');
   clearTimeout(pickNoteTimer);
   pickNoteTimer = setTimeout(() => el.classList.remove('show'), 4500);
@@ -2609,21 +2684,52 @@ function toggleChoice(s, p) {
   renderChoices();
   if (current) renderList();
 }
+// A redraw that replaces the focused control drops focus to <body>, and a
+// keyboard or screen-reader user loses their place. Put it on the first of the
+// given successors that is on screen, as renderSettings does; a focus the redraw
+// did not touch is left alone. A control hidden with its container (Tøm, once
+// the wishes are gone) still holds focus until the browser tidies up, so it
+// counts as lost too. getClientRects, not offsetParent, which is null for a
+// fixed element as well as a hidden one.
+function refocus(...cands) {
+  const shown = el => el && el.isConnected && el.getClientRects().length > 0;
+  const a = document.activeElement;
+  if (a && a !== document.body && shown(a)) return;
+  for (const c of cands) {
+    const el = typeof c === 'string' ? document.querySelector(c) : c;
+    if (shown(el)) { el.focus({ preventScroll: true }); return; }
+  }
+}
 function resolveChoice(c) {
   if (!okChoice(c) || !DATA) return null;
   const s = DATA.schools.find(x => x.fylke === c.f && x.name === c.s);
   if (!s) return null;
   const km = progKeyMap(s);
-  const p = s.programs.find(q => km.get(q) === c.k);
+  let p = s.programs.find(q => km.get(q) === c.k);
+  // A refresh that tidies a label («SK 3år» to «SK 3 år») or joins two spellings
+  // of one series changes the key, and the wish was pruned for good. Find the
+  // series by its name at another position, or by a former label the pipeline
+  // keeps in aliases, and re-key the wish to it.
+  if (!p) {
+    // a joined series can also settle on one level of a «Vg2/Vg3» row
+    const [name, level] = c.k.split('|'), lv = q => q.level === level || level.split('/').includes(q.level);
+    p = s.programs.find(q => lv(q) && q.program.toLowerCase() === name)
+      || s.programs.find(q => lv(q) && (q.aliases || []).includes(name));
+    if (p) c.k = km.get(p);
+  }
   return p ? { s, p } : null;
 }
 function renderChoices() {
   const box = document.getElementById('choices');
   if (!DATA) return;
   // a school or programme the dataset has since dropped or renamed leaves an
-  // entry that can never render again; prune it rather than carry it forever
-  const kept = choices.filter(c => resolveChoice(c));
-  if (kept.length !== choices.length) {
+  // entry that can never render again; prune it rather than carry it forever.
+  // A re-keyed wish is saved under its new key, and two spellings joined into
+  // one series keep one wish.
+  const before = JSON.stringify(choices), seen = new Set();
+  const kept = choices.filter(c => resolveChoice(c))
+    .filter(c => { const id = `${c.f}|${c.s}|${c.k}`; return !seen.has(id) && seen.add(id); });
+  if (JSON.stringify(kept) !== before) {
     choices = kept;
     try { localStorage.setItem('pk-choices', JSON.stringify(choices)); } catch (e) {}
   }
@@ -2671,7 +2777,14 @@ function renderChoices() {
     const { s } = items[+b.dataset.i]; openSide(s);
     if (s.lat && map && view === 'map') map.setView([s.lat, s.lon], Math.max(map.getZoom(), 11));
   });
-  box.querySelectorAll('.rm').forEach(b => b.onclick = () => { const { s, p } = items[+b.dataset.i]; toggleChoice(s, p); });
+  box.querySelectorAll('.rm').forEach(b => b.onclick = () => {
+    const i = +b.dataset.i, { s, p } = items[i];
+    toggleChoice(s, p);
+    // the redraw removed the pressed ✕: the next one takes its place, then the
+    // points field once the list is gone
+    const rms = document.querySelectorAll('#choices .rm');
+    refocus(rms[Math.min(i, rms.length - 1)], '#my-points', '#map-cat', '#panel-sum', '#panel');
+  });
   bindTitleTips(box);
   // Up to ten deliberate picks behind one small underlined word: ask once
   // rather than pop a system dialog, and forget the question after a few
@@ -2695,6 +2808,7 @@ function renderChoices() {
     try { localStorage.removeItem('pk-choices'); } catch (e) {}
     renderChoices();
     if (current) renderList();
+    refocus('#my-points', '#map-cat', '#panel-sum', '#panel');
     toast(t('choicesCleared'));
   };
 }
@@ -2754,6 +2868,71 @@ function renderPointsField() {
 
 /* ================= map ================= */
 let labelMarkers = () => {};
+let mapFocusPending = 0;   // when Enter zoomed into a cluster, for the focus to follow
+
+// A tooltip reads 180-480px wide, and at a fixed 'top' it slid under the panel
+// for a school near the panel's edge (at 1280px the whole of Bergen's west
+// side) or past the map's edge. Try each side, slide top and bottom sideways,
+// and keep the placement that hides the least of it.
+const TIP_OFF = { top: [0, -10], bottom: [0, 10], left: [-10, 0], right: [10, 0] };
+const tipOpts = (dir, dx = 0) => ({ className: 'tip', direction: dir, opacity: 1, offset: [TIP_OFF[dir][0] + dx, TIP_OFF[dir][1]] });
+function aimTip(m, html, wrapTo = 0) {
+  if (!map || !m.getTooltip()) return;
+  if (!m.isTooltipOpen()) m.openTooltip();
+  const te = m.getTooltip().getElement();
+  if (!te) return;
+  const wrap = el => { el.style.maxWidth = wrapTo ? wrapTo + 'px' : ''; el.style.whiteSpace = wrapTo ? 'normal' : ''; };
+  wrap(te);
+  const w = te.offsetWidth, h = te.offsetHeight, W = map.getSize().x, H = map.getSize().y;
+  const pt = map.latLngToContainerPoint(m.getLatLng());
+  const mr = map.getContainer().getBoundingClientRect(), pr = document.getElementById('panel').getBoundingClientRect();
+  const pn = view === 'map' && pr.width ? { l: pr.left - mr.left, t: pr.top - mr.top, r: pr.right - mr.left, b: pr.bottom - mr.top } : null;
+  const span = (a0, a1, b0, b1) => Math.max(0, Math.min(a1, b1) - Math.max(a0, b0));
+  const lost = (x, y) => w * h - span(x, x + w, 0, W) * span(y, y + h, 0, H)
+    + (pn ? span(x, x + w, pn.l, pn.r) * span(y, y + h, pn.t, pn.b) : 0);
+  const cands = [];
+  for (const dir of ['top', 'bottom']) {
+    const y = dir === 'top' ? pt.y - 16 - h : pt.y + 16, x0 = pt.x - w / 2;
+    const lo = pn && span(y, y + h, pn.t, pn.b) ? pn.r + 8 : 8, hi = W - 8 - w;
+    const room = Math.max(0, w / 2 - 18);            // the arrow stays on the box
+    const dx = Math.round(Math.max(-room, Math.min(room, Math.min(Math.max(x0, lo), Math.max(lo, hi)) - x0)));
+    cands.push({ dir, dx, lost: lost(x0 + dx, y) });
+  }
+  cands.push({ dir: 'right', dx: 0, lost: lost(pt.x + 16, pt.y - h / 2) });
+  cands.push({ dir: 'left', dx: 0, lost: lost(pt.x - 16 - w, pt.y - h / 2) });
+  const least = Math.min(...cands.map(c => c.lost));
+  const pick = cands.find(c => c.lost <= least + 1);
+  // No side has room: at Ekstra stor with a sheet open, the 480px chance
+  // tooltip met a 449px strip between the panel and the sheet and lost 33px
+  // whichever way it went. Wrap it to the strip and aim again.
+  const free = Math.floor(W - 8 - Math.max(8, pn ? pn.r + 8 : 8));
+  if (pick.lost > 0 && !wrapTo && free >= 200 && free < w) return aimTip(m, html, free);
+  if (m._pkAim !== pick.dir + pick.dx) {
+    const was = m._pkAim;
+    m._pkAim = pick.dir + pick.dx;
+    if (was !== undefined || pick.dir !== 'top' || pick.dx) m.unbindTooltip().bindTooltip(html, tipOpts(pick.dir, pick.dx)).openTooltip();
+  }
+  const el = m.getTooltip().getElement();
+  if (!el) return;
+  wrap(el);
+  el.style.setProperty('--ax', -pick.dx + 'px');
+  m.getTooltip().update();
+}
+
+// Under a lens with no figure in its newest year, the reason, as the sheet
+// gives it: a bare «–» said nothing about a lens that is admission by
+// documentation, fortrinnsrett or discontinued.
+function lensNoFigure(s) {
+  const scope = s.programs.filter(p => p.category === mapCat);
+  const yr = [...new Set(scope.flatMap(p => Object.keys(p.values)))].sort().pop()
+    || DATA.years[DATA.years.length - 1];
+  const cells = scope.filter(p => yr in p.values).map(p => p.values[yr]);
+  const all = set => cells.length && cells.every(v => set.includes(v));
+  if (cells.includes('D') && all(['D', 'F', 'U'])) return `${t('docAdm').toLowerCase()} (${yr})`;
+  if (all(['F'])) return `${t('priority').toLowerCase()} (${yr})`;
+  if (all(['U', 'F'])) return `${t('gone').toLowerCase()} (${yr})`;
+  return t('tipNoData', yr).toLowerCase();
+}
 const isDark = () => PREFS.theme === 'dark' ||
   (PREFS.theme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
 const prefersStill = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2863,48 +3042,39 @@ function drawMarkers() {
            : st8.kind === 'open' ? `${CATS[mapCat][lang]}: ${t('allIn').toLowerCase()} (${st8.year})`
            : st8.kind === 'zero' ? `${CATS[mapCat][lang]}: ${zeroLabel(st8.zeroN, st8.openN).toLowerCase()} (${st8.year})`
            : st8.kind === 'stale' ? `${CATS[mapCat][lang]}: ` + t('tipStale', st8.year)
-           : `${CATS[mapCat][lang]}: –`;
+           : `${CATS[mapCat][lang]}: ${lensNoFigure(s)}`;
     }
     const html = `<div class="n">${esc(s.name)}</div><div class="v">${line}</div>` +
       `<div class="v">${t('tipPrograms', visibleCount(s), yearSpan(s))}` +
       ` · <span class="round${s.round ? '' : ' unknown'}">` +
       `${s.round ? t('roundChip', s.round) : t('roundUnknown')}</span></div>` +
       `<div class="h">${t('tipHint')}</div>`;
-    const OFF = { top: [0, -10], bottom: [0, 10], left: [-10, 0], right: [10, 0] };
-    const tipOpts = dir => ({ className: 'tip', direction: dir, opacity: 1, offset: OFF[dir] });
     m.bindTooltip(html, tipOpts('top'));
-    // flip below the marker near the top edge, where a 'top' tooltip is clipped
-    m.on('mouseover', () => {
-      // and sideways near the left or right edge: the chance tooltip is 480px
-      // wide and lost its last words on the easternmost Oslo school
-      const pt = map.latLngToContainerPoint(m.getLatLng()), W = map.getSize().x;
-      const want = pt.y < 140 ? 'bottom' : pt.x > W - 260 ? 'left' : pt.x < 260 ? 'right' : 'top';
-      if (m.getTooltip().options.direction !== want) {
-        m.unbindTooltip().bindTooltip(html, tipOpts(want)).openTooltip();
-      }
-    });
+    m.on('mouseover', () => aimTip(m, html));
     m.on('click', () => openSide(s));
     m.on('dblclick', e => L.DomEvent.stop(e));   // don't zoom the map underneath
-    drawn.push([m, s, line]);
+    drawn.push([m, s, line, html]);
   }
   // A clustered marker has no element yet — and at the opening view almost
   // every school is clustered, so labelling here and only here left the map
   // with nothing a keyboard could reach. Label whatever is on screen now, and
   // again each time clustering hands a marker a new element.
   labelMarkers = () => {
-    for (const [m, s, line] of drawn) {
+    for (const [m, s, line, html] of drawn) {
       const el = m.getElement();
       if (!el || el.dataset.pkKeyed) continue;
       el.dataset.pkKeyed = '1';                   // keyboard access (WCAG 2.1.1)
       markerOf.set(el, m);
       el.setAttribute('tabindex', '0');
       el.setAttribute('role', 'button');
+      // a <br> is a sentence break: stripped to a space, the best programme's
+      // name ran straight into the next figure
       el.setAttribute('aria-label', t('markerAria', s.name,
-        line.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()));
+        line.replace(/<br\s*\/?>/g, '. ').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').replace(/ \./g, '.').trim()));
       el.addEventListener('keydown', ev => {
         if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openSide(s); }
       });
-      el.addEventListener('focus', () => m.openTooltip());
+      el.addEventListener('focus', () => { m.openTooltip(); aimTip(m, html); });
       el.addEventListener('blur', () => m.closeTooltip());
     }
   };
@@ -2921,6 +3091,7 @@ function drawMarkers() {
       el.addEventListener('keydown', ev => {
         if (ev.key !== 'Enter' && ev.key !== ' ') return;
         ev.preventDefault();
+        mapFocusPending = Date.now();    // the zoom removes this element; see below
         if (l._bounds && map.getBoundsZoom(l._bounds) > map.getZoom()) l.zoomToBounds({ padding: [30, 30] });
         else l.spiderfy();
       });
@@ -2937,7 +3108,17 @@ function drawMarkers() {
     els.forEach(e => { const on = e === cur; e.setAttribute('tabindex', on ? '0' : '-1'); e.dataset.pkRove = on ? '0' : '1'; });
   };
   const labelPoints = labelMarkers;
-  labelMarkers = () => { labelPoints(); labelClusters(); roveMarkers(); };
+  labelMarkers = () => {
+    labelPoints(); labelClusters(); roveMarkers();
+    // Enter on a cluster zooms in, and the zoom takes the focused cluster away:
+    // focus fell to <body> and the next Tab began at the top of the page. Once
+    // the new markers are keyed, hand focus to the one the roving tabindex holds.
+    if (mapFocusPending && Date.now() - mapFocusPending < 3000
+        && (!document.activeElement || document.activeElement === document.body)) {
+      mapFocusPending = 0;
+      (mapKeyed().find(e => e.dataset.pkRove === '0') || map.getContainer()).focus({ preventScroll: true });
+    }
+  };
   markerLayer.on('animationend', () => { labelMarkers(); legendZoomHint(); });
   labelMarkers();
 }
@@ -2947,7 +3128,7 @@ function onMapFylke(v) {
   // a county may not offer the selected category at all; widen rather than
   // leave a blank control over an empty map
   if (mapCat !== 'all' && !DATA.schools.some(s =>
-      (v === 'all' || s.fylke === v) && s.programs.some(p => p.category === mapCat))) {
+      (v === 'all' || s.fylke === v) && shownPrograms(s).some(p => p.category === mapCat))) {
     mapCat = 'all';
   }
   // The reader's own filter wins over a panel opened earlier: a school the new
@@ -2968,10 +3149,13 @@ function onMapFylke(v) {
   }
 }
 
+// Under a lens, the programme areas the school's sheet lists: counted over every
+// row, a lens took in 58 schools whose sheets then said «tilbys ikke her», the
+// lens's rows there being history the list hides (shownPrograms).
 function visibleSchools() {
   return DATA.schools.filter(s =>
     (mapFylke === 'all' || s.fylke === mapFylke) &&
-    (mapCat === 'all' || s.programs.some(p => p.category === mapCat)));
+    (mapCat === 'all' || shownPrograms(s).some(p => p.category === mapCat)));
 }
 
 function setLens(v) {
@@ -3059,7 +3243,7 @@ function renderCatNote() {
   el.textContent = mapCat === 'all' ? '' :
     t('catNote', DATA.schools.filter(s =>
       (mapFylke === 'all' || s.fylke === mapFylke)
-      && s.programs.some(p => p.category === mapCat)).length);
+      && shownPrograms(s).some(p => p.category === mapCat)).length);
 }
 function liftMapControls() {
   // The rect and not offsetHeight: the text-size setting puts a `zoom` on the
@@ -3083,8 +3267,12 @@ function liftMapControls() {
   // ran 80px under it and hid the bottom of the reader's own choices list.
   // Reserve what the legend actually measures: 22px bottom offset, its height,
   // a 12px gap and the panel's own top (14px, 10px on a phone).
-  const panelTop = parseFloat(getComputedStyle(document.getElementById('panel')).top) || 14;
-  let gap = h ? h + 34 + panelTop : 46 + panelTop;
+  // Painted lengths, not the stylesheet's: at Ekstra stor the panel's 14px top
+  // and the legend's 22px offset are both drawn a third larger, and the
+  // unzoomed figures left the panel 1px from the legend instead of 12.
+  const pEl = document.getElementById('panel'), pr = pEl.getBoundingClientRect();
+  const panelTop = pr.height ? pr.top : parseFloat(getComputedStyle(pEl).top) || 14;
+  let gap = h ? innerHeight - lr.top + 12 + panelTop : 46 + panelTop;
   // On a phone the panel spans the whole width, so the map's bottom-right
   // controls have only the strip between the panel and the legend to stand in.
   // Reserve that strip as well: with the ten wishes vigo allows, the choices
@@ -3093,7 +3281,11 @@ function liftMapControls() {
   const ctrls = document.querySelector('.leaflet-bottom.leaflet-right');
   if (innerWidth <= 560 && ctrls) {
     const cr = ctrls.getBoundingClientRect();
-    if (cr.height) gap = Math.max(gap, innerHeight - cr.top + 12 + panelTop);   // 12 gap + the panel's own top
+    // From the lift set above, not from the column's top: the margin that lifts
+    // it is transitioned, so its rect still stood at the foot of the screen when
+    // read here, and at boot the panel's cap came out 125px too tall and covered
+    // the locate and zoom buttons. 12 gap + the panel's own top.
+    if (cr.height) gap = Math.max(gap, lift + cr.height + 12 + panelTop);
   }
   // The panel spends that reserve inside its own `zoom`, where a px length is
   // multiplied by the zoom before it is painted, so `calc(100dvh - gap)` gave a
@@ -3112,7 +3304,10 @@ function legendZoomHint() {
   const fg = markerLayer && markerLayer._featureGroup;
   const clustered = !!fg && fg.getLayers().some(l => typeof l.getChildCount === 'function');
   el.textContent = t('legendZoomHint');
+  const was = el.hidden;
   el.hidden = !(chanceMode() && clustered);
+  // the line changes the legend's height, which the panel's cap is measured from
+  if (el.hidden !== was) liftMapControls();
 }
 function renderLegend() {
   const rounds = [...new Set(visibleSchools().map(s => s.round).filter(Boolean))];
@@ -3260,7 +3455,9 @@ function applyUrlFilters() {
 // stor text (the CSS rule of the same shape lives beside the 760px block)
 const phoneSheet = () => {
   const f = document.documentElement.dataset.font;
-  return matchMedia('(max-width: 760px)').matches
+  // a phone held sideways too: wider than 760px, but the 480px sheet stood over
+  // the right third of its landscape card (the CSS query is the same)
+  return matchMedia('(max-width: 760px), (max-width: 1023px) and (max-height: 480px)').matches
     || (f === 'lg' && matchMedia('(max-width: 1024px)').matches)
     || (f === 'xl' && matchMedia('(max-width: 1080px)').matches);
 };
@@ -3271,8 +3468,20 @@ function listLayout() {
   const [split, wide] = LIST_LAYOUT[document.documentElement.dataset.font] || LIST_LAYOUT.n;
   const lv = view !== 'list' ? '' : innerWidth >= wide ? 'wide' : innerWidth >= split ? 'split' : 'thin';
   const c = document.body.classList;
+  // Wide scrolls #listview and the stacked layouts scroll #app, so crossing
+  // between them (a resize, a text size) handed the list to a scroller at 0: a
+  // reader 120 rows down was thrown back to the top, and closing a school then
+  // focused a row 4,600px away. The first row on screen stays where it was.
+  const was = c.contains('lv-wide') ? 'wide' : c.contains('lv-stack') ? 'stack' : '';
+  const now = lv === 'wide' ? 'wide' : lv ? 'stack' : '';
+  let anchor = null, anchorTop = 0;
+  if (was && now && was !== now) {
+    anchor = [...document.querySelectorAll('#listview tbody tr')].find(r => r.getBoundingClientRect().bottom > 0);
+    if (anchor) anchorTop = anchor.getBoundingClientRect().top;
+  }
   for (const k of ['wide', 'split', 'thin']) c.toggle('lv-' + k, lv === k);
   c.toggle('lv-stack', lv === 'split' || lv === 'thin');
+  if (anchor) document.getElementById(now === 'wide' ? 'listview' : 'app').scrollTop += anchor.getBoundingClientRect().top - anchorTop;
   return lv;
 }
 addEventListener('resize', listLayout);   // not debounced: a stale class is a broken layout
@@ -3297,7 +3506,7 @@ function widenFor(s) {
   if (!s || !DATA) return false;
   let moved = false;
   if (mapFylke !== 'all' && s.fylke !== mapFylke) { mapFylke = 'all'; moved = true; }
-  if (mapCat !== 'all' && !s.programs.some(p => p.category === mapCat)) { mapCat = 'all'; moved = true; }
+  if (mapCat !== 'all' && !shownPrograms(s).some(p => p.category === mapCat)) { mapCat = 'all'; moved = true; }
   if (!moved) return false;
   const fy = document.getElementById('map-fylke'), ct = document.getElementById('map-cat');
   if (fy) fy.value = mapFylke;
@@ -3340,6 +3549,12 @@ function buildMiniMap(s) {
 function openSide(s) {
   const ae = document.activeElement;
   sideOpener = ae && document.getElementById('map')?.contains(ae) ? ae : null;
+  // opened from a wish or from search: closing goes back there, not to the
+  // county select above them (a marker and a list row have their own way back)
+  if (!document.getElementById('side').classList.contains('open')) {
+    sideReturn = ae?.closest?.('#choices .who') ? { who: ae.getAttribute('aria-label') }
+      : ae?.closest?.('#searchov') ? { id: 'searchov-btn' } : null;
+  }
   widenFor(s);
   current = s;
   chart.prog = null;                     // the lens itself is global
@@ -3364,11 +3579,28 @@ function openSide(s) {
     setUrlSchool(s);
   }
   setTimeout(() => document.querySelector('#s-photo .close')?.focus(), 60);
+  // Beside the map the sheet takes 480px of it, and a school clicked in that
+  // part vanished under its own sheet. Bring it into the strip left between the
+  // panel and the sheet once the sheet is in (and after any flight has landed).
+  if (view === 'map' && s.lat && map && !phoneSheet()) {
+    clearTimeout(openSide.pan);
+    const reveal = () => {
+      const mc = map.getContainer();
+      if (current !== s || !mc.clientWidth) return;
+      map.invalidateSize({ pan: false });
+      const mr = mc.getBoundingClientRect(), pr = document.getElementById('panel').getBoundingClientRect();
+      let left = pr.width && pr.right > mr.left ? Math.round(pr.right - mr.left) + 24 : 24;
+      if (left + 64 > mc.clientWidth) left = 24;     // no strip beside the panel to aim for
+      map.panInside([s.lat, s.lon], { paddingTopLeft: [left, 24], paddingBottomRight: [24, 24], animate: !prefersStill() });
+    };
+    openSide.pan = setTimeout(() => (map._flyToFrame ? map.once('moveend', reveal) : reveal()), prefersStill() ? 0 : 260);
+  }
 }
 function clearScope() {
   chart.prog = null;
   setLens('all');
 }
+let sideReturn = null;     // a wish or the search button, for closing to return to
 let sideClosing = false;   // a ✕ in flight: the next popstate is a CLOSE,
                            // whatever school the entry underneath names
 function closeSide(fromHistory) {
@@ -3399,14 +3631,23 @@ function closeSide(fromHistory) {
     : null;
   if (opener) { mapKeyed().forEach(e => { e.setAttribute('tabindex', '-1'); e.dataset.pkRove = '1'; }); opener.setAttribute('tabindex', '0'); opener.dataset.pkRove = '0'; }
   sideOpener = null;
-  const back = document.getElementById('map-fylke');
+  const ret = sideReturn && (sideReturn.id ? document.getElementById(sideReturn.id)
+    : [...document.querySelectorAll('#choices .who')].find(b => b.getAttribute('aria-label') === sideReturn.who));
+  sideReturn = null;
   // From the list, focus goes back to the school's own row. The county select
   // at the top of the card scrolled a list read halfway down back up to it.
   const row = view === 'list' && closed
     ? [...document.querySelectorAll('#listview td.sc a')].find(a => a.getAttribute('href') === schoolHash(closed))
     : null;
-  (row || opener || (back && back.offsetParent ? back : document.getElementById('map-cat')))
-    ?.focus({ preventScroll: view === 'list' });
+  // Otherwise the first of these on screen: with a phone's panel folded both
+  // selects are hidden, and focus() on a hidden one left focus on <body>.
+  const fallback = [ret, 'map-fylke', 'map-cat', 'panel-sum', 'searchov-btn']
+    .map(e => typeof e === 'string' ? document.getElementById(e) : e).find(e => e && e.offsetParent)
+    || document.getElementById('panel');
+  // A row that a rotation or a text size moved off screen is scrolled to; one
+  // still in view keeps the list exactly where it was.
+  const rr = row && row.getBoundingClientRect();
+  (row || opener || fallback)?.focus({ preventScroll: view === 'list' && (!row || (rr.top >= 0 && rr.bottom <= innerHeight)) });
   // A click or a tap focuses the marker too, so a sheet opened that way hands
   // focus back like any other, and Leaflet opens a tooltip on every focus: the
   // school's tooltip was left floating over the map after the ✕. Only a return
@@ -3820,11 +4061,16 @@ function drawChart() {
     }
     tip.innerHTML = `<span class="y">${yr}</span> <span class="r">${body}</span>`;
     tip.style.display = 'block';
-    const wrap = document.getElementById('chart-wrap').getBoundingClientRect();
-    let px = ev.clientX - wrap.left + 14;
-    if (px > wrap.width - 130) px = ev.clientX - wrap.left - 130;
+    // In the wrap's own lengths: at Stor and Ekstra stor the sheet is zoomed, so
+    // a viewport offset written as style.left was drawn 15-30% further right.
+    // And flip by the tip's real width, 142-276px: a fixed 130 let
+    // «15 programområder» run off the sheet.
+    const wrapEl = document.getElementById('chart-wrap'), wrap = wrapEl.getBoundingClientRect();
+    const z = wrap.width / wrapEl.offsetWidth || 1, cx = (ev.clientX - wrap.left) / z, tw = tip.offsetWidth;
+    let px = cx + 14;
+    if (px + tw > wrapEl.offsetWidth - 4) px = Math.max(4, cx - 14 - tw);
     tip.style.left = px + 'px';
-    tip.style.top = (ev.clientY - wrap.top - 34) + 'px';
+    tip.style.top = ((ev.clientY - wrap.top) / z - 34) + 'px';
   };
   const clear = () => { tip.style.display = 'none'; xh.setAttribute('visibility', 'hidden'); };
   svgEl.addEventListener('mousemove', readAt);
@@ -3856,9 +4102,11 @@ function renderList() {
   [...regular, ...orphans].forEach(p => (byCat[p.category] = byCat[p.category] || []).push(p));
   let html = '';
   if (scope) {
-    const hidden = current.programs.length - inScope.length;
+    // the rows the lens hides, of those the list would show without it: counted
+    // over every row, «(+34)» promised history rows that «Vis alle» never showed
+    const hidden = visibleIn(base) - visibleIn(inScope);
     html += `<div class="scope-chip"><span>${CATS[scope][lang]}</span>` +
-            `<button onclick="clearScope()">${t('scopeAll')}${hidden ? ` (+${hidden})` : ''}</button></div>`;
+            `<button type="button" class="scope-all">${t('scopeAll')}${hidden ? ` (+${hidden})` : ''}</button></div>`;
   }
   const badged = new Set();  // badge only the first row per program name
   let rowsSoFar = 0;
@@ -3896,7 +4144,7 @@ function renderList() {
         badge = `<span class="fbadge" title="${esc(t('fortrinnTitle'))}">${t('prioBadge')}</span>`;
       }
       const sel = chart.prog === p ? ' sel' : '';
-      let chip = '';
+      let chip = '', chipTxt = '';
       if (chanceMode() && !orphan) {
         const pr = predFor(current, p);
         if (pr) {
@@ -3905,17 +4153,35 @@ function renderList() {
           const fb = finalRoundBridge(current);
           if (fb) tip += ' ' + t('finalRoundChip', fb.to_round, pct(chanceFinal(pr, myPoints, p.category, fb)));
           chip = `<span class="ch b-${bucketOf(ch)}" data-tip="${esc(tip)}">${pctS(ch)}</span>`;
+          chipTxt = tip + (pr.h === 1 ? ` (${t('lowHist')})` : '');
           // one observed year is a thin basis: say so next to the figure
           if (pr.h === 1) chip = `<span class="chw">${chip}<span class="hist">${t('lowHist')}</span></span>`;
         } else if ((modelEntry(current, p) || {}).h === 0) {
           chip = `<span class="ch none" data-tip="${esc(t('noHistTitle'))}">${t('noHist')}</span>`;
+          chipTxt = t('noHistTitle');
         }
       }
-      const on = isChosen(current, p);
-      const pick = orphan ? '' : `<span class="pick${on ? ' on' : ''}" role="button" tabindex="0" data-idx="${current.programs.indexOf(p)}"` +
-        ` aria-pressed="${on}" aria-label="${esc(t(on ? 'pickRemove' : 'pickAdd'))}" title="${esc(t(on ? 'pickRemove' : 'pickAdd'))}">${on ? '✓' : '+'}</span>`;
-      html += `<button class="prow${sel}${orphan ? ' muted' : ''}${solo && rowsSoFar ? ' solo' : ''}" data-cat="${c}" data-idx="${current.programs.indexOf(p)}">` +
-              `<span class="nm"${p.official ? ` title="${esc(t('officialName', p.official))}"` : ''}>${esc(progName(p))}${badge}</span>${chip}<span class="lv">${esc(p.level)}</span><span class="val">${val}</span>${pick}</button>`;
+      const on = isChosen(current, p), idx = current.programs.indexOf(p);
+      // A button inside a button is invalid, and a screen reader read the whole
+      // row as one control: the + had no name of its own and no role, and the
+      // chips' help was unreachable. The name is now the row's button, the + a
+      // button beside it, and what the chips and the figure say is the name's
+      // description.
+      const pick = orphan ? '' : `<button type="button" class="pick${on ? ' on' : ''}" data-idx="${idx}"` +
+        ` aria-pressed="${on}" aria-label="${esc(t(on ? 'pickRemove' : 'pickAdd'))}" title="${esc(t(on ? 'pickRemove' : 'pickAdd'))}">${on ? '✓' : '+'}</button>`;
+      const lvl = t('levels')[p.level];
+      const valTxt = orphan ? t('fortrinnTitle')
+        : lv === 0 ? `${t('noPoints')} – ${t('noPointsTitle')}`
+        : typeof lv === 'number' ? `${fmt(lv)} (${latestYear})`
+        : lv === 'open' ? t('allIn')
+        : lv === 'D' ? `${t('docAdm')} – ${t('docTitle')}`
+        : t('gone');
+      const desc = [chipTxt, lvl ? `${p.level}: ${lvl[1]}` : p.level, valTxt]
+        .filter(Boolean).map(x => String(x).trim().replace(/\.$/, '')).join('. ') + '.';
+      html += `<div class="prow${sel}${orphan ? ' muted' : ''}${solo && rowsSoFar ? ' solo' : ''}" data-cat="${c}" data-idx="${idx}">` +
+              `<button type="button" class="nm" aria-describedby="pd-${idx}"${p.official ? ` title="${esc(t('officialName', p.official))}"` : ''}>${esc(progName(p))}${badge}</button>` +
+              `${chip}<span class="lv">${esc(p.level)}</span><span class="end"><span class="val">${val}</span>${pick}</span>` +
+              `<span id="pd-${idx}" hidden>${esc(desc)}</span></div>`;
       rowsSoFar++;
     }
   }
@@ -3935,21 +4201,50 @@ function renderList() {
   el.querySelector('.oldnote')?.addEventListener('click', () => {
     showOld = !showOld;
     try { localStorage.setItem('pk-showold', showOld ? '1' : '0'); } catch (e) {}
-    // the map tooltips count the same shown set, so the markers re-render too
-    drawMarkers();
+    // Everything that counts the shown set follows: the lens (hiding history
+    // can leave it empty), the dots and their tooltips, the legend's count,
+    // the note under the select and the List view's rows.
+    widenFor(current);
+    drawMarkers(); renderLegend(); renderCatNote();
+    if (view === 'list') renderListView();
     renderSide();
+    refocus('#s-list .oldnote', '#s-list .prow button.nm');
   });
-  el.querySelectorAll('.cat-head[data-cat]').forEach(b =>
-    b.onclick = () => { chart.prog = null; setLens(b.dataset.cat); });
-  el.querySelectorAll('.prow').forEach(b =>
-    b.onclick = () => { chart.prog = current.programs[+b.dataset.idx]; renderChartCard(); renderList(); });
-  // the pick toggle sits inside the row button: stop the row from selecting
-  el.querySelectorAll('.pick').forEach(k => {
-    const act = ev => { ev.preventDefault(); ev.stopPropagation(); toggleChoice(current, current.programs[+k.dataset.idx]); };
-    k.onclick = act;
-    k.onkeydown = ev => { if (ev.key === 'Enter' || ev.key === ' ') act(ev); };
+  // Each of these redraws the list under the pressed control; the refocus puts
+  // a keyboard reader back on it rather than on <body>.
+  el.querySelector('.scope-all')?.addEventListener('click', () => {
+    clearScope();
+    refocus('#s-list .cat-head[data-cat="' + scope + '"]', '#s-list .prow button.nm');
+  });
+  el.querySelectorAll('.cat-head[data-cat]').forEach(b => b.onclick = () => {
+    const cat = b.dataset.cat;
+    chart.prog = null; setLens(cat);
+    refocus(`#s-list .cat-head[data-cat="${cat}"]`, '#s-list .scope-all', '#s-list .prow button.nm');
+  });
+  // the whole row still selects, as it did as one button; its name carries the focus
+  el.querySelectorAll('.prow').forEach(r => r.onclick = ev => {
+    if (ev.target.closest('.pick')) return;
+    chart.prog = current.programs[+r.dataset.idx]; renderChartCard(); renderList();
+    refocus(`#s-list .prow[data-idx="${r.dataset.idx}"] button.nm`);
+  });
+  el.querySelectorAll('.pick').forEach(k => k.onclick = ev => {
+    ev.stopPropagation();
+    toggleChoice(current, current.programs[+k.dataset.idx]);
+    refocus(`#s-list .pick[data-idx="${k.dataset.idx}"]`);
   });
   bindTips(el);
+  // what a chip or the level says on hover, on keyboard focus too
+  el.querySelectorAll('.prow button.nm').forEach(b => {
+    const row = b.closest('.prow'), c = row.querySelector('.ch[data-tip], .soft[data-tip]');
+    const entry = t('levels')[row.querySelector('.lv')?.textContent.trim()];
+    const html = c ? esc(c.dataset.tip) : entry ? `<b>${esc(entry[0])}</b><br>${esc(entry[1])}` : '';
+    if (!html) return;
+    b.addEventListener('focus', () => { if (b.matches(':focus-visible')) showTip(b, html); });
+    b.addEventListener('blur', hideTip);
+    b.addEventListener('keydown', ev => {
+      if (ev.key === 'Escape' && !document.getElementById('tip').hidden) { hideTip(); ev.stopPropagation(); }
+    });
+  });
 }
 
 /* ================= feedback =================
@@ -4178,20 +4473,16 @@ function bindTips(root) {
       showTip.timer = setTimeout(hideTip, 4500);
     }, { passive: false });
   };
-  // Rows are <button>s, so bindTitleTips below leaves anything inside them
-  // alone; the row's own chips carry data-tip instead and get the same touch
-  // handling as the chance chip.
-  root.querySelectorAll('.ch[data-tip], .soft[data-tip]').forEach(el => {
-    el.setAttribute('aria-label', el.dataset.tip);
-    attach(el, esc(el.dataset.tip));
-  });
+  // The row's chips carry data-tip rather than a title, and get the same touch
+  // handling as the chance chip. Their text reaches a screen reader as the
+  // name button's description: an aria-label on a plain span is not read.
+  root.querySelectorAll('.ch[data-tip], .soft[data-tip]').forEach(el => attach(el, esc(el.dataset.tip)));
   bindTitleTips(root);
   root.querySelectorAll('.lv').forEach(el => {
     const key = el.textContent.trim();
     const entry = t('levels')[key];
     if (!entry) return;
     el.classList.add('tipped');
-    el.setAttribute('aria-label', `${key}: ${entry[1]}`);
     const html = `<b>${esc(entry[0])}</b><br>${esc(entry[1])}`;
     el.onmouseenter = () => showTip(el, html);
     el.onmouseleave = hideTip;
@@ -4266,7 +4557,6 @@ function renderControls() {
     el.setAttribute('aria-label', t(key));
   }
   // these two were written into the markup in English and so stayed English
-  document.getElementById('skip').textContent = t('skipToControls');
   document.getElementById('side').setAttribute('aria-label', t('sideLabel'));
 }
 
@@ -4356,8 +4646,7 @@ document.addEventListener('keydown', e => {
 });
 function setModalTrap() {
   const open = anySheetOpen();
-  ['skip', 'app', 'legend'].forEach(id =>     // #panel is an #app child now
-    document.getElementById(id)?.toggleAttribute('inert', open));
+  ['app', 'legend'].forEach(id => document.getElementById(id)?.toggleAttribute('inert', open));
 }
 
 let sheetPushPending = false;   // openSheetHistory() called while closeSide's back() is in flight
@@ -4408,6 +4697,9 @@ function applyPrefs(rerender) {
   if (PREFS.theme === 'auto') delete de.dataset.theme; else de.dataset.theme = PREFS.theme;
   if (PREFS.font === 'n') delete de.dataset.font; else de.dataset.font = PREFS.font;
   if (PREFS.cvd) de.dataset.cvd = '1'; else delete de.dataset.cvd;
+  document.querySelectorAll('meta[name="theme-color"]').forEach(m => {
+    m.content = PREFS.theme === 'dark' ? '#0e1116' : PREFS.theme === 'light' ? '#2a78d6' : m.dataset.c;
+  });
   try {
     if (PREFS.theme === 'auto') localStorage.removeItem('pk-theme');
     else localStorage.setItem('pk-theme', PREFS.theme);
@@ -4473,7 +4765,10 @@ function closeSettings(fromHistory) {
   if (!fromHistory && (history.state || {}).pkSheet) { history.back(); return; }
   hideSheet('settings');
   setModalTrap();
-  document.getElementById('settings-btn')?.focus();
+  // a text size can turn the school sheet full-screen and hide the panel with
+  // this button in it, and focus() on a hidden button left focus on <body>
+  const b = document.getElementById('settings-btn');
+  (b && b.offsetParent ? b : document.querySelector('#side.open #s-photo .close') || document.getElementById('panel'))?.focus();
 }
 
 /* ================= school search ================= */
@@ -4560,6 +4855,7 @@ function openSearchOv() {
   q.placeholder = t('searchPh');
   q.setAttribute('aria-label', t('searchLabel'));
   document.getElementById('ov-box').setAttribute('aria-label', t('searchLabel'));
+  document.getElementById('ov-list').setAttribute('aria-label', t('searchLabel'));
   renderOvList();
   showSheet('searchov');
   setModalTrap();
@@ -4600,16 +4896,29 @@ function toast(msg, ms = 4000) {
 function placeToast() {
   const el = document.getElementById('toast'), s = el.style;
   s.left = s.right = s.bottom = s.width = s.margin = s.transform = '';
+  if (el.hidden) return;
+  // a school sheet standing beside the map or list is not free space: centred
+  // on the window, the location steps lay half over the school's chart
+  const sd = document.getElementById('side').getBoundingClientRect();
+  const beside = document.body.classList.contains('side-open') && sd.width > 0 && sd.left > 0;
   const lg = document.getElementById('legend')?.getBoundingClientRect();
-  if (el.hidden || !lg?.height) return;
+  if (!beside && !lg?.height) return;
   const bars = [...document.querySelectorAll('.leaflet-bottom.leaflet-right .leaflet-bar')].map(b => b.getBoundingClientRect());
-  const avoid = [lg, document.getElementById('panel').getBoundingClientRect(), ...bars].filter(a => a.height);
+  const avoid = [lg, document.getElementById('panel').getBoundingClientRect(), ...bars, ...(beside ? [sd] : [])]
+    .filter(a => a && a.height);
   const clear = () => {
     const r = el.getBoundingClientRect();
     return !avoid.some(a => r.right > a.left && r.left < a.right && r.bottom > a.top && r.top < a.bottom);
   };
   if (clear()) return;
   const z = parseFloat(getComputedStyle(el).zoom) || 1, px = v => Math.round(v / z) + 'px';
+  if (beside) {
+    Object.assign(s, { left: px(10), right: px(innerWidth - sd.left + 10), width: 'fit-content', margin: '0 auto', transform: 'none' });
+    if (clear() || !lg?.height) return;
+    s.bottom = px(innerHeight - lg.top + 10);
+    if (!clear()) s.bottom = '';
+    return;
+  }
   const barsLeft = Math.min(innerWidth, ...bars.map(b => b.left));
   if (barsLeft - lg.right - 20 >= 280) {
     Object.assign(s, { left: px(lg.right + 10), right: px(innerWidth - barsLeft + 10),
@@ -4752,10 +5061,13 @@ function deltaFor(s, cat, yr) {
   return st.latest === yr ? st.d : null;
 }
 function sortList(key) {
+  const fromHeader = !!document.activeElement?.closest?.('#listview th');
   listSort = listSort.key === key
     ? { key, dir: -listSort.dir }
     : { key, dir: key === 'name' || key === 'fylke' ? 1 : -1 };
   renderListView();
+  // the table was rebuilt under the pressed header; keep the reader on it
+  if (fromHeader) document.querySelector(`#listview th.col-${key} button`)?.focus({ preventScroll: true });
 }
 function renderListView() {
   const host = document.getElementById('listview');
@@ -4801,7 +5113,8 @@ function renderListView() {
   const th = (k, label, num, tip) =>
     `<th class="col-${k} ${num ? 'num ' : ''}${listSort.key === k ? 'on' : ''}"${ariaSort(k)} scope="col"` +
     `${tip ? ` title="${esc(tip)}"` : ''}>` +
-    `<button type="button" onclick="sortList('${k}')">${esc(label)}${arrow(k)}</button></th>`;
+    `<button type="button" onclick="sortList('${k}')"${tip ? ` aria-describedby="thd-${k}"` : ''}>${esc(label)}${arrow(k)}</button>` +
+    `${tip ? `<span id="thd-${k}" hidden>${esc(tip)}</span>` : ''}</th>`;
   const catLabel = mapCat === 'all' ? t('allCats') : (CATS[mapCat] || {})[lang] || mapCat;
   const fyLabel = allF ? t('allFylker') : mapFylke;
   const chip = r => {
@@ -4855,6 +5168,12 @@ function renderListView() {
     };
   });
   bindTitleTips(host);
+  // a title reaches a pointer only; the keyboard gets the same help on focus
+  host.querySelectorAll('th button[aria-describedby]').forEach(b => {
+    const d = document.getElementById(b.getAttribute('aria-describedby'));
+    b.addEventListener('focus', () => { if (d && b.matches(':focus-visible')) showTip(b, esc(d.textContent)); });
+    b.addEventListener('blur', hideTip);
+  });
 }
 
 /* ================= grade calculator ================= */
@@ -4962,7 +5281,7 @@ function setLang(l) {
   try { localStorage.setItem('pk-lang', l); } catch (e) {}
   document.documentElement.lang = l === 'no' ? 'no' : 'en';
   document.title = t('pageTitle');
-  updateZoomAria(); updateLocateAria();
+  updateZoomAria(); updateLocateAria(); updateMapLabels();
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
   if (current) renderSide();
   if (!document.getElementById('intro').hidden) renderIntro();
@@ -4972,6 +5291,18 @@ function setLang(l) {
 }
 
 /* ================= boot ================= */
+// The map's container had no name, and Leaflet's own credit link says "A
+// JavaScript library for interactive maps" in English on the Norwegian page.
+function updateMapLabels() {
+  if (!map) return;
+  const mc = map.getContainer();
+  mc.setAttribute('role', 'region');
+  mc.setAttribute('aria-label', t('viewMap'));
+  const ac = map.attributionControl;
+  if (!ac) return;
+  if (ac._pkPrefix === undefined) ac._pkPrefix = ac.options.prefix;
+  if (typeof ac._pkPrefix === 'string') ac.setPrefix(ac._pkPrefix.replace(/title="[^"]*"/, `title="${esc(t('leafletTitle'))}"`));
+}
 function framePad() {
   // The panel and legend float over the map, so fit the country into what is
   // actually visible. Each pad is capped: on a phone held sideways the panel
@@ -5067,7 +5398,7 @@ async function main() {
     // fade and fling are its own options
     ...(prefersStill() ? { zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false, inertia: false } : {}) }).fitBounds(HOME, framePad());
   L.control.zoom({ position: 'bottomright' }).addTo(map);
-  updateZoomAria();
+  updateZoomAria(); updateMapLabels();
   addLocateControl();
   map.on('zoomend moveend', () => { labelMarkers(); legendZoomHint(); });
   setTiles();
@@ -5097,11 +5428,32 @@ async function main() {
   }
   [0, 150, 400, 900, 2000, 4000].forEach(ms => setTimeout(ensureFramed, ms));
   document.addEventListener('visibilitychange', () => { if (!document.hidden) ensureFramed(); });
-  if (window.ResizeObserver) new ResizeObserver(ensureFramed).observe(map.getContainer());
+  // Leaflet re-measures on a window resize only. A container that changes size
+  // on its own (the school sheet opening beside the map, the panel docking)
+  // left the map drawing to its old width: a click landed on the wrong school
+  // and the right edge stayed blank. Pan to keep the centre only when the
+  // window itself changed. The controls are measured again here too: closing
+  // a phone's full-screen sheet measured them against a 0px map, and the
+  // panel's cap stayed 59px short until the next points edit.
+  let lastW = innerWidth;
+  if (window.ResizeObserver) new ResizeObserver(() => {
+    if (map.getContainer().clientWidth) {
+      map.invalidateSize({ pan: innerWidth !== lastW });
+      lastW = innerWidth;
+      if (view === 'map') liftMapControls();
+    }
+    ensureFramed();
+  }).observe(map.getContainer());
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
     if (PREFS.theme !== 'auto') return;    // a pinned theme does not follow the OS
     setTiles(); drawMarkers(); renderLegend(); renderCatNote(); renderPointsField();
     if (current) renderSide();
+    // the guide draws its sample dots in the theme's colours
+    if (!document.getElementById('intro').hidden) {
+      const inside = document.getElementById('intro-body').contains(document.activeElement);
+      renderIntro();
+      if (inside) document.getElementById('intro-h').focus();
+    }
   });
   document.getElementById('side').setAttribute('inert', '');
   const ovq = document.getElementById('ov-q');
