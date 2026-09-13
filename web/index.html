@@ -520,6 +520,12 @@
     #toast { bottom: calc(20px + var(--ctrl-lift, 0px)); left: 10px; right: 62px; transform: none; width: auto; max-width: none; }
   }
   #pts-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; line-height: 1.4; }
+  /* On the map the legend is the colour key, so the sentence under the field
+     only repeated it, on two broken lines. The list hides the legend, and there
+     the note is the only key for the Chance column's dots. A typing error still
+     shows everywhere. Hidden from sight only: the field's aria-describedby
+     still reads it. */
+  body:not(.view-list) #pts-note:not(.bad) { display: none; }
   #pts-note .k { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 3px 0 1px; vertical-align: -1px; }
   #pts-note .kl { white-space: nowrap; }
   /* Chance bands are semantic colours, deliberately not the blue threshold
@@ -1321,8 +1327,7 @@
   @media (max-width: 560px), (max-height: 480px) {
     body.panel-folded:not(.view-list) #panel > .field:not(#pts-field),
     body.panel-folded:not(.view-list) #panel #cat-note,
-    body.panel-folded:not(.view-list) #panel #choices,
-    body.panel-folded:not(.view-list) #pts-note:not(.bad) { display: none; }
+    body.panel-folded:not(.view-list) #panel #choices { display: none; }
     body.panel-folded:not(.view-list) #panel-sum { display: flex; grid-column: 1; align-self: start; }
     body.panel-folded:not(.view-list) #panel #pts-field { grid-column: 2; margin-top: 0; align-self: start; }
     body.panel-folded:not(.view-list) #panel #pts-label {
