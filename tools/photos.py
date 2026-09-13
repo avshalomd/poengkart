@@ -101,12 +101,12 @@ OVERRIDES = {
         'license': '© Rogaland fylkeskommune',
     },
     'Dalane videregående skole': {
-        # 800px variant: the original is a 2.9 MB PNG, too heavy for a header
-        # the CMS rotates the key segment of the path (k...) now and then and
-        # the old URL 404s; same image id, re-fetched 5 Sept 2026
+        # the original, not a sized rendition: the CMS signs renditions with a
+        # key segment (k...) it rotates, and the 800px one 404'd twice (5 and
+        # 13 Sept 2026). The unsigned original is a 2.9 MB PNG, but bv.ashx
+        # photos reach readers through Vercel's optimizer at 960px (25 KB AVIF)
         'photo': ('https://www.dalane.vgs.no/handlers/bv.ashx/e1/'
-                  'i90447595-a2e2-4985-bbe8-94b6fa947462/w800/h550/q35672/'
-                  'k35aecf9021cc/fasade-var-2.png'),
+                  'i90447595-a2e2-4985-bbe8-94b6fa947462/fasade-var-2.png'),
         'page': 'https://www.dalane.vgs.no/',
         'credit': 'Foto: Dalane vgs / Rogaland fylkeskommune',
         'license': '© Rogaland fylkeskommune',
@@ -259,10 +259,13 @@ def shrink_url(url):
         return re.sub(r'/\d+px-', f'/{DISPLAY_W}px-', url)
     if 'v.imgi.no' in url:
         return re.sub(r'__w=\d+', f'__w={DISPLAY_W}', url)
-    # Rogaland's bv.ashx renditions are signed: a width in the path 404s and a
-    # width in the query is ignored, so there is nothing to ask for.
+    # The county CMS's bv.ashx renditions are signed: the path carries a key
+    # segment (k...) that the CMS rotates, after which the rendition 404s
+    # (Dalane and Strømmen, Sept 2026), and an unsigned width is refused. The
+    # unsigned original is stable, and bv.ashx photos reach readers through
+    # Vercel's optimizer at 960 px (photoSrc in web/index.html), so publish it.
     if '/bv.ashx/' in url:
-        return url
+        return re.sub(r'(/i[0-9a-f-]{36})(?:/[whqk][0-9a-f]+)+(?=/[^/]+$)', r'\1', url)
     p = urllib.parse.urlparse(url)
     if not p.path.lower().endswith(('.jpg', '.jpeg', '.png', '.webp')):
         return url
@@ -387,7 +390,8 @@ def main():
             small = shrink_url(s['photo'])
             if small != s['photo'] and _serves_image(small):
                 s['photo'] = small
-                changed.append(f'{name}: display-sized photo')
+                changed.append(f'{name}: ' + ('unsigned original' if '/bv.ashx/' in small
+                                              else 'display-sized photo'))
 
     json.dump(data, open(DATA, 'w'), ensure_ascii=False, indent=1)
     _save_probes()

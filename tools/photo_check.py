@@ -30,20 +30,24 @@ UA = {'User-Agent': 'poengkart/0.1 (photo link check)',
 # like a dead link — which would send someone hunting for a replacement photo
 # that was never missing. Serialise those.
 WM_LOCK = threading.Lock()
+# bv.ashx photos are published as the county's unsigned original (photos.py
+# shrink_url), and Bjørkelangen's is a 24.7 MB PNG: a smaller cap truncates it
+# and reports a live photo as dead.
+MAX_BYTES = 40_000_000
 
 
 def fetch_bytes(url):
     if 'wikimedia.org' not in url:
         with urllib.request.urlopen(
                 urllib.request.Request(url, headers=UA), timeout=25) as r:
-            return r.read(15_000_000), r.headers.get('content-type', '')
+            return r.read(MAX_BYTES), r.headers.get('content-type', '')
     for attempt in range(4):
         try:
             with WM_LOCK:
                 time.sleep(1.0 + attempt * 4.0)
                 with urllib.request.urlopen(
                         urllib.request.Request(url, headers=UA), timeout=30) as r:
-                    return r.read(15_000_000), r.headers.get('content-type', '')
+                    return r.read(MAX_BYTES), r.headers.get('content-type', '')
         except Exception as e:
             err = e
     raise err
