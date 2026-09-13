@@ -155,6 +155,29 @@ OVERRIDES = {
         'position': 'top',
     },
 
+    # --- the harvest's crop, re-framed for the unsigned original ------------
+    # These were reviewed as the CMS's 16:9 renditions. The original is taller
+    # (shrink_url publishes it since Sept 2026), so the header's centre band
+    # moved: Hønefoss's 'top' now shows only sky, and Bjertnes's school sits in
+    # the bottom fifth. Both framings were compared in the app at 393 and 1440 px.
+    'Hønefoss': {
+        'photo': ('https://bfk.no/handlers/bv.ashx/e1/'
+                  'i2a6abeaf-e004-4ad2-8d61-27b2afb73f48/20200819_115328.jpg'),
+        'page': 'https://bfk.no/honefoss-vgs/',
+        'credit': 'Foto: Hønefoss videregående skole / Buskerud fylkeskommune',
+        'license': '© Buskerud fylkeskommune',
+        'position': None,    # centred; None also clears the 'top' a rebuild carries
+    },
+    'Bjertnes': {
+        'photo': ('https://afk.no/handlers/bv.ashx/e1/'
+                  'i3898c8d5-1af4-45fa-95be-125c6f5cb9ca/skolebygget-sett-fra-ost-'
+                  'gronn-plen-norsk-flagg-flott-utstrakt-i-vinden-tekst-velkommen-til-bjertnes.png'),
+        'page': 'https://afk.no/bjertnes-vgs',
+        'credit': 'Foto: Bjertnes videregående skole / Akershus fylkeskommune',
+        'license': '© Akershus fylkeskommune',
+        'position': '50% 85%',
+    },
+
     # --- nothing usable exists: the location map stands in ------------------
     # (Godalen was here until the national sweep found an exterior on the
     # school's own site; it is now in photos-auto.json)
