@@ -1365,11 +1365,9 @@
     body.lv-stack #panel #cat-note:empty { display: none; }
     /* Across 1000px one wish per line put each ✕ half a screen from the name
        it removes; the wishes flow into columns instead, in their order. */
+    /* one wish to a row, as everywhere else: laid out in columns, two or three
+       wishes shared a line and read as one */
     body.lv-stack #panel #choices { order: 5; flex: 0 0 100%; min-width: 0; }
-    /* 340px a column: in the 1060px card that is two columns, where 2,285 of
-       the 2,343 possible wishes sit on one line; at 240px, three columns, 624 */
-    body.lv-stack #panel #choices .list { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); column-gap: 24px; }
-    body.lv-stack #panel #choices .row:last-of-type { border-bottom: 1px solid var(--line); }
   }
   /* Where the three controls cannot share a row (the points label alone is
      169px), the points field used to wrap to a row of its own and stop at its
