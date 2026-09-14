@@ -5681,6 +5681,11 @@ async function main() {
   // (replaceState and pushState are silent), so this only ever reacts to
   // the address bar.
   addEventListener('hashchange', () => {
+    // the ✕'s back() also fires hashchange; its popstate closes the sheet and
+    // writes the filters in memory into the entry, so reading the entry's
+    // old hash here would undo them (order-independent: popstate first is
+    // a no-op read, hashchange first is skipped)
+    if (sideClosing) return;
     applyUrlFilters();                    // a pasted link carries its selection too
     const s = schoolFromUrl();
     if (s && s !== current) {
