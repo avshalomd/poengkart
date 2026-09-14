@@ -3538,7 +3538,11 @@ function syncUrl(push) {
   try {
     const h = buildHash(current);
     if (h === (location.hash || location.pathname + location.search)) return;
-    if (push) history.pushState(history.state, '', h);
+    // An open sheet is ONE history entry (see openSide). A filter changed
+    // while it is open rewrites that entry: pushed, it sat on top of the
+    // sheet's, so the ✕'s back() landed on the sheet's own entry, re-read
+    // its filters and turned the Vg2+ switch (or a county change) back off.
+    if (push && !(history.state || {}).pkSide) history.pushState(history.state, '', h);
     else history.replaceState(history.state, '', h);
   } catch (e) {}
 }
@@ -5690,10 +5694,13 @@ async function main() {
     // back still closes the panel instead of leaving the page
     const sideOpen = document.getElementById('side').classList.contains('open');
     if (sideClosing) {
-      // the ✕'s own back() landing: close, never treat it as a gesture on a sheet
+      // the ✕'s own back() landing: close, never treat it as a gesture on a
+      // sheet — and keep the filters the reader set while it was open. The
+      // entry underneath is the pre-open one; re-reading its filters undid a
+      // Vg2+ or county change made from the sheet. closeSide writes the
+      // current filters into that entry instead.
       sideClosing = false;
-      applyUrlFilters();
-      if (sideOpen) closeSide(true);
+      if (sideOpen) closeSide(true); else syncUrl();
       if (sheetPushPending) { sheetPushPending = false; openSheetHistory(); }
       return;
     }
