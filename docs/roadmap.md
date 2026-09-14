@@ -243,10 +243,12 @@ every level a county publishes. Five counties publish Vg1 only, but in
 Innlandet, Rogaland and Vestland the Vg2–Vg4 rows outnumber Vg1 (290 vs 159,
 398 vs 157, 320 vs 272), so a school's colour there was mostly the years a
 10. trinn family cannot apply for. Decision: Vg1 is the default scope
-everywhere; Vg2 and up are one click away (a «Vg2+» switch on the
-utdanningsprogram label line, a disclosure line in the school sheet, `l=all`
-in the permalink), the same pattern as the history toggle. Shipped 14
-September. Two data-science items follow from it:
+everywhere; Vg2 and up are one click away (a «Trinn» choice in the settings
+sheet, remembered like the other preferences; a disclosure line in the school
+sheet; `l=all` in the permalink), the same pattern as the history toggle.
+Shipped 14 September; the first cut put a «Vg2+» switch in the filter panel
+and was taken out the same day: a third kind of control in a row built for
+two selects. Two data-science items follow from it:
 
 - **Backtest accuracy by level.** The headline numbers (coverage80 0.801,
   Brier 0.0926) pool every cell. With Vg1 as the product's default, the
