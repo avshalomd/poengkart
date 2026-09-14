@@ -260,6 +260,22 @@
      threw that reservation away again, so picking a programme pushed everything
      down 20px and clearing it pulled it back up */
   #cat-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; min-height: 14px; }
+  /* the level switch shares the label line of the programme select */
+  .lrow { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 5px; }
+  /* in the landscape card's third the label kept 93px beside the switch and
+     «UTDANNINGSPROGRAM» ran under it; let it break as on a phone */
+  .lrow label { margin-bottom: 0; min-width: 0; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
+  .lvsw { display: inline-flex; align-items: center; gap: 6px; border: none; background: none; flex: none;
+          padding: 4px 0; margin: -4px 0; font: inherit; font-size: 11px; font-weight: 600; line-height: 1;
+          color: var(--ink-2); cursor: pointer; border-radius: 4px; }
+  .lvsw:hover { color: var(--ink); }
+  .lvsw .knob { width: 26px; height: 15px; border-radius: 999px; background: var(--line-strong); position: relative;
+                transition: background .15s; }
+  .lvsw .knob::after { content: ''; position: absolute; top: 2px; left: 2px; width: 11px; height: 11px; border-radius: 50%;
+                       background: #fff; transition: left .15s; }
+  .lvsw[aria-checked="true"] .knob { background: var(--accent); }
+  .lvsw[aria-checked="true"] .knob::after { left: 13px; }
+  @media (prefers-reduced-motion: reduce) { .lvsw .knob, .lvsw .knob::after { transition: none; } }
   /* the county note only exists while it has something to say */
   #pts-field { margin-top: 10px; }
   .ptsrow { display: flex; gap: 6px; align-items: center; }
@@ -675,7 +691,7 @@
   }
   #pick-note.show { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { #pick-note { transition: none; transform: none; } }
-  #s-list .oldnote { display: block; width: 100%; border: none; background: none; cursor: pointer;
+  #s-list .oldnote, #s-list .lvnote { display: block; width: 100%; border: none; background: none; cursor: pointer;
                      text-align: left; padding: 9px 14px 11px; font: inherit; font-size: 11.5px;
                      color: var(--ink-3); text-decoration: underline; text-underline-offset: 2px; }
   #choices .bar { display: flex; height: 5px; border-radius: 3px; overflow: hidden; margin: 6px 0 2px; background: var(--line); }
@@ -895,7 +911,7 @@
   .leaflet-bar button.locate:hover { color: var(--accent); }
   .prow .pick:hover { border-color: var(--accent); color: var(--accent); }
   #choices .row .rm:hover { background: var(--accent-soft); color: var(--accent); }
-  #s-list .oldnote:hover { color: var(--ink-2); }
+  #s-list .oldnote:hover, #s-list .lvnote:hover { color: var(--ink-2); }
   .modal .x:hover { color: var(--ink); }
   .modal .cta:hover { filter: brightness(1.06); }
   .modal .cta.ghost:hover { filter: none; color: var(--ink); border-color: var(--ink-3); }
@@ -943,7 +959,7 @@
   /* rows and full-width targets: tint, not scale */
   .prow:active, .prow.sel:active, #listview tbody tr:active,
   #ov-list .opt:active, #ov-list .opt.act:active,
-  .cat-head:active, #s-list .oldnote:active {
+  .cat-head:active, #s-list .oldnote:active, #s-list .lvnote:active {
     background: color-mix(in srgb, var(--accent) 18%, transparent);
   }
   /* a disabled control must not pretend to respond */
@@ -1307,6 +1323,7 @@
        that gap make the 12px, and the fade reaches back over both. */
     #panel::after { grid-column: 1 / -1; height: 12px; margin: -8px -12px -4px; bottom: -4px; }
     #cat-note { grid-column: 1 / -1; margin-top: 0; min-height: 0; }
+    .lvsw { padding: 8px 0 8px 8px; margin: -8px 0; }   /* a finger's target on the label line */
     #pts-field { grid-column: 1 / -1; margin-top: 4px; }
     #pts-note { margin-top: 4px; }
     #choices { grid-column: 1 / -1; margin-top: 8px; padding-top: 7px; }
@@ -1720,7 +1737,13 @@ try {
     <select id="map-fylke" onchange="onMapFylke(this.value)"></select>
   </div>
   <div class="field">
-    <label id="cat-label" for="map-cat"></label>
+    <div class="lrow">
+      <label id="cat-label" for="map-cat"></label>
+      <!-- the later years, off by default (levelScope): a switch on the label
+           line, so it costs the panel no height -->
+      <button type="button" id="map-levels" class="lvsw" role="switch" aria-checked="false"
+              onclick="onLevels(!allLevels)" hidden><span id="levels-label"></span><span class="knob" aria-hidden="true"></span></button>
+    </div>
     <select id="map-cat" onchange="onMapCat(this.value)"></select>
   </div>
   <div id="cat-note"></div>
@@ -2237,6 +2260,22 @@ const T = {
   },
   oldShown: { no: 'Skjul programområder uten nye tall',
               en: 'Hide programme areas without recent figures' },
+  levelsToggle: { no: 'Vg2+', en: 'Vg2+' },
+  levelsToggleTitle: { no: 'Vis også Vg2 og Vg3 på kartet. Vg1 er året du søker på når du går på 10. trinn.',
+                       en: 'Also show Vg2 and Vg3 on the map. Vg1 is the year you apply for from lower secondary school.' },
+  levelsHidden: {
+    no: n => n === 1 ? '1 programområde på Vg2 eller Vg3 er skjult – vis det'
+                     : `${n} programområder på Vg2 og Vg3 er skjult – vis dem`,
+    en: n => n === 1 ? '1 programme area at Vg2 or Vg3 is hidden – show it'
+                     : `${n} programme areas at Vg2 and Vg3 are hidden – show them`,
+  },
+  levelsShown: { no: 'Vis bare Vg1', en: 'Show Vg1 only' },
+  levelsSumLabel: { no: 'Trinn', en: 'Levels' },
+  levelsChipAll: { no: 'Vg1–Vg3', en: 'Vg1–Vg3' },
+  levelsChipTitle: { no: 'Kartet viser bare Vg1 – året du søker på når du går på 10. trinn. Vg2 og Vg3 kan slås på i panelet.',
+                     en: 'The map shows Vg1 only – the year you apply for from lower secondary school. Vg2 and Vg3 can be switched on in the panel.' },
+  levelsChipAllTitle: { no: 'Vg1, Vg2 og Vg3 – og påbygging der fylket publiserer det.',
+                        en: 'Vg1, Vg2 and Vg3 – and påbygging where the county publishes it.' },
   notOffered: { no: 'tilbys ikke her', en: 'not offered here' },
   vigoMaxWishes: { no: 'Vigo-søknaden har plass til ti ønsker – lista er full.',
                    en: 'A vigo application has room for ten wishes – your list is full.' },
@@ -2422,6 +2461,7 @@ let DATA = null, map = null, markerLayer = null;
 let MODEL = null;         // data/model.json — forecasts; optional
 let myPoints = null;      // the reader's own points, or null
 let showOld = false;      // show programme areas with no figures lately
+let allLevels = false;    // show Vg2 and up as well; Vg1 alone is the default (levelScope)
 let HOME = null;          // bounds of the whole dataset, the map's home view
 let mapCat = 'all';
 let mapFylke = 'all';
@@ -2490,10 +2530,25 @@ function countyNewest(f) {
   return _newestByFylke[f] || 0;
 }
 const isRecent = (p, f) => Object.keys(p.values).some(y => +y >= countyNewest(f) - 1);
+/* Vg1 is the year a 10. trinn family applies for; Vg2 and up are reached from
+   inside a school. Five counties publish Vg1 only, but in Innlandet, Rogaland
+   and Vestland the later years outnumber it, so a dot, a List value and a
+   «beste sjanse» computed over every level were mostly years a first
+   application cannot name. Vg1 is therefore the scope everywhere by default,
+   and the later years are one control away (the panel's checkbox, the sheet's
+   disclosure line) for a Vg1 pupil choosing a Vg2 programområde. A school with
+   no Vg1 row keeps every row: hiding all of them would hide the school. */
+const isVg1 = p => p.level === 'Vg1';
+function levelScope(progs) {
+  if (allLevels) return progs;
+  const vg1 = progs.filter(isVg1);
+  return vg1.length ? vg1 : progs;
+}
 function shownPrograms(s) {
-  if (showOld) return s.programs;
-  const cur = s.programs.filter(p => isRecent(p, s.fylke));
-  return cur.length ? cur : s.programs;
+  const pool = levelScope(s.programs);
+  if (showOld) return pool;
+  const cur = pool.filter(p => isRecent(p, s.fylke));
+  return cur.length ? cur : pool;
 }
 // the newest year in the dataset, or the one before it: anything older is a
 // school the counties have stopped publishing
@@ -2511,7 +2566,8 @@ function schoolPressure(s, cat) {
   // school. Note this measures demand vs capacity, not school quality.)
   // counties publish different years (Oslo and Vestland already have 2026,
   // most stop at 2025), so judge each school on the newest year IT has
-  const scope = cat === 'all' ? s.programs : s.programs.filter(p => p.category === cat);
+  const inLevel = levelScope(s.programs);
+  const scope = cat === 'all' ? inLevel : inLevel.filter(p => p.category === cat);
   const years = [...new Set(scope.flatMap(p => Object.keys(p.values)))].sort();
   const yr = years[years.length - 1];
   if (!yr) return { kind: 'none' };
@@ -2971,7 +3027,7 @@ function aimTip(m, html, wrapTo = 0) {
 // gives it: a bare «–» said nothing about a lens that is admission by
 // documentation, fortrinnsrett or discontinued.
 function lensNoFigure(s) {
-  const scope = s.programs.filter(p => p.category === mapCat);
+  const scope = levelScope(s.programs).filter(p => p.category === mapCat);
   const yr = [...new Set(scope.flatMap(p => Object.keys(p.values)))].sort().pop()
     || DATA.years[DATA.years.length - 1];
   const cells = scope.filter(p => yr in p.values).map(p => p.values[yr]);
@@ -3217,6 +3273,23 @@ function setLens(v) {
   syncUrl(true);
 }
 function onMapCat(v) { setLens(v); }
+// The level scope (levelScope). Everything that counts the shown set follows,
+// as it does for the history toggle; a lens with nothing left at Vg1
+// (påbygging) is relaxed rather than left pointing at an empty map, and a
+// selected row that left the scope is let go.
+function setLevels(v) {
+  allLevels = !!v;
+  try { localStorage.setItem('pk-alllevels', allLevels ? '1' : '0'); } catch (e) {}
+  if (chart.prog && current && !levelScope(current.programs).includes(chart.prog)) chart.prog = null;
+  if (mapCat !== 'all' && (current ? !shownPrograms(current).some(p => p.category === mapCat)
+                                   : !visibleSchools().length)) mapCat = 'all';
+  renderPanel();                       // the category list depends on the scope
+  drawMarkers(); renderLegend(); renderCatNote(); renderPanelSum();
+  if (view === 'list') renderListView();
+  renderSide();
+  syncUrl(true);
+}
+function onLevels(v) { setLevels(v); }
 
 // The folded panel's button (see the CSS for why it folds). Drawn: the county
 // over the education programme; read: each value after its select's own label,
@@ -3227,6 +3300,9 @@ function renderPanelSum() {
   if (!document.getElementById('fylke-field').hidden)
     parts.push([t('fylkeLabel'), mapFylke === 'all' ? t('allFylker') : mapFylke]);
   parts.push([t('catLabel'), mapCat === 'all' ? t('allCats') : CATS[mapCat][lang]]);
+  // the scope only when it is not the default: the folded line has to say
+  // what the checkbox it hides is set to
+  if (allLevels && !document.getElementById('map-levels').hidden) parts.push([t('levelsSumLabel'), t('levelsChipAll')]);
   document.getElementById('panel-sum-t').innerHTML = parts.map(([l, v], i) =>
     `<span class="ln"><span class="vh">${i ? ', ' : ''}${esc(l)}: </span>${esc(v)}</span>`).join('');
 }
@@ -3277,12 +3353,20 @@ function renderPanel() {
   fsel.value = mapFylke;
   const present = new Set();
   DATA.schools.filter(s => mapFylke === 'all' || s.fylke === mapFylke)
-    .forEach(s => s.programs.forEach(p => present.add(p.category)));
+    .forEach(s => levelScope(s.programs).forEach(p => present.add(p.category)));
   const sel = document.getElementById('map-cat');
   sel.innerHTML = `<option value="all">${t('allCats')}</option>` +
     Object.keys(CATS).filter(c => present.has(c))
       .map(c => `<option value="${c}">${CATS[c][lang]}</option>`).join('');
   sel.value = mapCat;
+  // the level control has nothing to do where the county publishes Vg1 only
+  const anyLater = DATA.schools.some(s => (mapFylke === 'all' || s.fylke === mapFylke)
+                                          && s.programs.some(p => !isVg1(p)));
+  const sw = document.getElementById('map-levels');
+  sw.hidden = !anyLater;
+  sw.setAttribute('aria-checked', String(allLevels));
+  sw.title = t('levelsToggleTitle');
+  document.getElementById('levels-label').textContent = t('levelsToggle');
   renderPointsField();
   renderPanelSum();
 }
@@ -3365,6 +3449,13 @@ function forecastYears(schools) {
   const ys = [...new Set(schools.map(s => MODEL?.schools?.[`${s.fylke}|${s.name}`]?.year).filter(Boolean))].sort();
   return t('yearsOr', ys);
 }
+// the dots are Vg1 unless the reader asked for the later years and the
+// counties on screen publish any: the legend says which
+function levelChip() {
+  const on = allLevels && visibleSchools().some(s => s.programs.some(p => !isVg1(p)));
+  return ` <span class="round lv" title="${esc(t(on ? 'levelsChipAllTitle' : 'levelsChipTitle'))}">` +
+         `${esc(on ? t('levelsChipAll') : 'Vg1')}</span>`;
+}
 function renderLegend() {
   const rounds = [...new Set(visibleSchools().map(s => s.round).filter(Boolean))];
   const anyUnknown = visibleSchools().some(s => !s.round);
@@ -3374,7 +3465,8 @@ function renderLegend() {
     (rounds.length === 1 && !anyUnknown
       ? ` <span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', rounds[0])}</span>`
       : !rounds.length && anyUnknown
-      ? ` <span class="round unknown" title="${esc(t('roundUnknownTitle'))}">${t('roundUnknown')}</span>` : '');
+      ? ` <span class="round unknown" title="${esc(t('roundUnknownTitle'))}">${t('roundUnknown')}</span>` : '') +
+    levelChip();
   const mix = document.getElementById('legend-mixed');
   mix.hidden = !(rounds.length > 1 || (rounds.length && anyUnknown));
   legendZoomHint();
@@ -3425,6 +3517,7 @@ function buildHash(s) {
   if (s) parts.push(schoolPart(s));
   if (mapFylke !== 'all') parts.push('f=' + encodeURIComponent(mapFylke));
   if (mapCat !== 'all') parts.push('c=' + encodeURIComponent(mapCat));
+  if (allLevels) parts.push('l=all');
   return parts.length ? '#' + parts.join('&') : location.pathname + location.search;
 }
 const schoolHash = s => buildHash(s);
@@ -3483,22 +3576,32 @@ function unresolvedLinkName() {
 }
 // Put the filters named in the address back on the controls. Used at boot and
 // on every history traversal, so Back steps through filter changes too.
-function applyUrlFilters() {
+function applyUrlFilters(boot) {
   const p = hashParts();
   let fy = 'all', cat = 'all';
+  // the level scope rides as `l=all` when it is not the Vg1 default. A link
+  // without it leaves a reader's own saved choice alone on a fresh load, while
+  // Back over a toggle steps the scope back to Vg1 like any other filter.
+  let lv = 'l' in p ? p.l === 'all' : boot ? allLevels : false;
   try {
     if (p.f) fy = decodeURIComponent(p.f);
     if (p.c) cat = decodeURIComponent(p.c);
   } catch (e) { return false; }
   if (!DATA.schools.some(s => s.fylke === fy)) fy = 'all';        // a county we do not carry
   if (cat !== 'all' && !CATS[cat]) cat = 'all';
-  if (fy === mapFylke && cat === mapCat) return false;
-  mapFylke = fy; mapCat = cat;
+  // a lens with nothing at Vg1 (påbygging) is a link to the later years
+  if (cat !== 'all' && !lv && !DATA.schools.some(s => (fy === 'all' || s.fylke === fy)
+        && s.programs.some(q => isVg1(q) && q.category === cat))) lv = true;
+  if (fy === mapFylke && cat === mapCat && lv === allLevels) return false;
+  mapFylke = fy; mapCat = cat; allLevels = lv;
   const fs = document.getElementById('map-fylke'), cs = document.getElementById('map-cat');
   if (fs) fs.value = fy;
   renderPanel();
   if (cs) cs.value = cat;
   drawMarkers(); renderLegend(); renderCatNote();
+  // an open sheet lists what the scope lists: stepping Back over a toggle
+  // left it showing the rows the address no longer names
+  if (current) renderSide();
   return true;
 }
 // On a phone the school sheet covers the screen, and the CSS that hides the
@@ -3950,7 +4053,7 @@ function renderChartCard() {
         const present = [...new Set(shownPrograms(current).map(p => p.category))];
         setLens(mapCat !== 'all' && present.includes(mapCat) ? mapCat : present[0]);
       } else {
-        const pool = current.programs.filter(p => mapCat === 'all' || p.category === mapCat);
+        const pool = levelScope(current.programs).filter(p => mapCat === 'all' || p.category === mapCat);
         chart.prog = pool.find(p => numericLatest(p.values)) || pool[0] || null;
         renderChartCard(); renderList();
       }
@@ -3959,7 +4062,7 @@ function renderChartCard() {
   // category select inside chart
   const cs = document.getElementById('chart-cat');
   if (chartMode() === 'cat') {
-    const present = [...new Set(current.programs.map(p => p.category))];
+    const present = [...new Set(levelScope(current.programs).map(p => p.category))];
     if (!present.includes(mapCat)) present.push(mapCat);   // lens the school lacks
     cs.hidden = false;
     cs.setAttribute('aria-label', t('tabCat'));   // a <select> has no placeholder to fall back on
@@ -4246,17 +4349,32 @@ function renderList() {
   }
   // the disclosure for history: how many rows the recency filter is hiding
   // from this view (same lens), or the way back once shown
+  const inLevel = levelScope(current.programs);
   const hiddenMatch = showOld ? []
-    : current.programs.filter(p => !base.includes(p) && (!scope || p.category === scope));
-  const anyOld = current.programs.some(p => !isRecent(p, current.fylke));
+    : inLevel.filter(p => !base.includes(p) && (!scope || p.category === scope));
+  const anyOld = inLevel.some(p => !isRecent(p, current.fylke));
   let oldBtn = '';
   if (hiddenMatch.length) oldBtn = `<button class="oldnote">${esc(t('oldHidden', hiddenMatch.length))}</button>`;
   else if (showOld && anyOld) oldBtn = `<button class="oldnote">${esc(t('oldShown'))}</button>`;
+  // the disclosure for the later years: the Vg2+ rows the level default keeps
+  // out of this view (same lens, same recency rule), or the way back to Vg1
+  const later = current.programs.filter(p => !inLevel.includes(p) && (!scope || p.category === scope)
+                                             && (showOld || isRecent(p, current.fylke)));
+  const anyLater = current.programs.some(p => !isVg1(p));
+  let lvBtn = '';
+  // its own class: the history line's handler binds to the first .oldnote, and
+  // a shared class made one click flip both toggles
+  if (later.length) lvBtn = `<button class="lvnote">${esc(t('levelsHidden', later.length))}</button>`;
+  else if (allLevels && anyLater) lvBtn = `<button class="lvnote">${esc(t('levelsShown'))}</button>`;
   const el = document.getElementById('s-list');
   // the scope chip alone is not content: an empty row set says "no matches"
   // whether or not a chip sits above it
   if (![...regular, ...orphans].length) html += `<div class="cat-head">${t('noMatch')}</div>`;
-  el.innerHTML = html + oldBtn;
+  el.innerHTML = html + lvBtn + oldBtn;
+  el.querySelector('.lvnote')?.addEventListener('click', () => {
+    setLevels(!allLevels);
+    refocus('#s-list .lvnote', '#s-list .prow button.nm');
+  });
   el.querySelector('.oldnote')?.addEventListener('click', () => {
     showOld = !showOld;
     try { localStorage.setItem('pk-showold', showOld ? '1' : '0'); } catch (e) {}
@@ -5407,6 +5525,7 @@ async function main() {
     if (l === 'no' || l === 'en') lang = l;   // anything else is not a language
   } catch (e) {}
   try { showOld = localStorage.getItem('pk-showold') === '1'; } catch (e) {}
+  try { allLevels = localStorage.getItem('pk-alllevels') === '1'; } catch (e) {}
   // setLang() does this on every switch, but a fresh load never called it, so a
   // reader who had chosen English got an English page inside a document still
   // declaring itself Norwegian — wrong to a screen reader and to a translator.
@@ -5629,11 +5748,12 @@ async function main() {
     if (q.get('s')) parts.push('s=' + q.get('s'));
     if (q.get('f')) parts.push('f=' + encodeURIComponent(q.get('f')));
     if (q.get('c')) parts.push('c=' + encodeURIComponent(q.get('c')));
+    if (q.get('l')) parts.push('l=' + encodeURIComponent(q.get('l')));
     if (parts.length) {
       try { history.replaceState(history.state, '', location.pathname + '#' + parts.join('&')); } catch (e) {}
     }
   }
-  const framedByUrl = applyUrlFilters();
+  const framedByUrl = applyUrlFilters(true);
   let storedView = 'map';
   try { if (localStorage.getItem('pk-view') === 'list') storedView = 'list'; } catch (e) {}
   setView(storedView);

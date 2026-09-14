@@ -235,3 +235,31 @@ Phone onboarding stays as is: the glowing "?" is the first-visit prompt.
   a cleaner photo is a candidate for the photo-coverage item above.
 - The list view's Sjanse column keeps its horizontal swipe at 375 px until
   the January push.
+
+## Added 14 September 2026 (Vg1 as the default scope)
+
+The map dot, the List view's value and «beste sjanse» were computed over
+every level a county publishes. Five counties publish Vg1 only, but in
+Innlandet, Rogaland and Vestland the Vg2–Vg4 rows outnumber Vg1 (290 vs 159,
+398 vs 157, 320 vs 272), so a school's colour there was mostly the years a
+10. trinn family cannot apply for. Decision: Vg1 is the default scope
+everywhere; Vg2 and up are one click away (a «Vg2+» switch on the
+utdanningsprogram label line, a disclosure line in the school sheet, `l=all`
+in the permalink), the same pattern as the history toggle. Shipped 14
+September. Two data-science items follow from it:
+
+- **Backtest accuracy by level.** The headline numbers (coverage80 0.801,
+  Brier 0.0926) pool every cell. With Vg1 as the product's default, the
+  backtest should print RMSE, coverage80 and Brier for Vg1 and for Vg2+
+  separately, the report should quote the Vg1 figures beside the pooled
+  ones, and the app's spread footnote should use the Vg1 figures if they
+  differ.
+- **Experiment: pooled fit versus Vg1-only fit, judged on Vg1 cells.** The
+  model separates levels through programme|level, but the school effect and
+  the county×year walk are shared across levels, and Vg2+ is about half the
+  numeric evidence in the three counties that publish it (Innlandet 525 Vg1
+  / 724 Vg2+, Rogaland 713 / 1 019, Vestland 1 444 / 1 457). Fit once with
+  every cell and once with Vg1 only, compare RMSE and coverage80 on Vg1
+  cells, keep the winner: the procedure that chose the single-applicant
+  weight. If Vg1-only wins clearly, the follow-up is a school|level effect,
+  not dropping the data.
