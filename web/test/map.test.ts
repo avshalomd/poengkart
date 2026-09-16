@@ -78,10 +78,11 @@ describe('the map layer', () => {
       const cells = scope.filter((p: any) => yr! in p.values).map((p: any) => p.values[yr!]);
       return cells.length && cells.every((v: any) => ['D', 'F', 'U'].includes(v));
     });
-    const line = lensNoFigure(s || asker());
+    expect(s, 'no school in the fixture has an all-D/F/U ST scope').toBeTruthy();
+    const line = lensNoFigure(s);
     expect(line).toBe(line.toLowerCase());
     expect(line.length).toBeGreaterThan(0);
-    if (s) expect([t('docAdm'), t('priority'), t('gone')].map(x => x.toLowerCase())
+    expect([t('docAdm'), t('priority'), t('gone')].map(x => x.toLowerCase())
       .some(x => line.startsWith(x))).toBe(true);
   });
 
@@ -146,9 +147,14 @@ describe('the map layer', () => {
     setTiles();
     expect(S.tileLayer).toBeTruthy();
     expect(S.tileLayer._url).toBe(tileUrl());
+    const old = S.tileLayer;
     setTiles();                                          // the old layer comes off first
+    expect(S.tileLayer).not.toBe(old);
+    expect(S.tileLayer._url).toBe(tileUrl());
     PREFS.theme = 'auto';
-    expect(typeof prefersStill()).toBe('boolean');
+    // happy-dom answers every media query it does not model with "no": nothing
+    // here asks for still motion, so the animated flights stay on
+    expect(prefersStill()).toBe(false);
   });
 
   it('every dot’s tooltip names the school, its figure and how many programme areas it has', () => {

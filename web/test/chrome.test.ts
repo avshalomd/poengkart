@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { loadFixtures, DATA } from './fixtures';
 import { stubMap } from './mapstub';
 import { renderPanel, renderLegend, renderCatNote, forecastYears, levelChip, legendZoomHint, liftMapControls } from '../src/chrome';
-import { renderPanelSum, visibleSchools } from '../src/map';
+import { renderPanelSum, visibleSchools, laterPublished } from '../src/map';
 import { renderControls } from '../src/intro';
 import { initHelpers, BIN_EDGES } from '../src/helpers';
 import { t } from '../src/i18n';
@@ -33,7 +33,9 @@ describe('panel and legend', () => {
     expect(sum()).toContain('Oslo');
     // the scope rides on the line only when it is not the Vg1 default, and
     // only where the counties on screen publish a later year at all
-    S.mapFylke = 'all'; S.allLevels = true; renderPanelSum();
+    S.mapFylke = 'all'; S.allLevels = true;
+    expect(laterPublished()).toBe(true);        // the precondition: Vg2/Vg3 exist on screen
+    renderPanelSum();
     expect(sum()).toContain(t('levelsChipAll'));
   });
 

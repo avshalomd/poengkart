@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { loadFixtures } from './fixtures';
 import { stubMap } from './mapstub';
 import { toast, placeToast, locHelpKind, addLocateControl, locate, updateLocateAria, updateZoomAria } from '../src/locate';
@@ -14,9 +14,21 @@ const ua = (s: string) => {
 const geolocation = (impl: any) => {
   Object.defineProperty(navigator, 'geolocation', { value: impl, configurable: true });
 };
+// both live on Navigator.prototype in happy-dom; the two helpers above shadow
+// them with own properties, so put the navigator back as it was handed over
+const ownBefore: Record<string, PropertyDescriptor | undefined> = {
+  userAgent: Object.getOwnPropertyDescriptor(navigator, 'userAgent'),
+  geolocation: Object.getOwnPropertyDescriptor(navigator, 'geolocation'),
+};
 
 describe('the toast and the locate button', () => {
   beforeEach(() => { S.locLayer = null; S.locBtnEl = null; S.locBusy = false; });
+  afterEach(() => {
+    for (const [k, d] of Object.entries(ownBefore)) {
+      delete (navigator as any)[k];
+      if (d) Object.defineProperty(navigator, k, d);
+    }
+  });
 
   it('a toast reveals itself first and speaks a tick later, then goes', () => {
     loadFixtures(); initHelpers();

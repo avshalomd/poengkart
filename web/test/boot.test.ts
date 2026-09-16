@@ -1,7 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { DATA, MODEL } from './fixtures';
-import 'leaflet';
-import 'leaflet.markercluster';
 import { main, framePad, bootFailed, updateMapLabels, initBoot } from '../src/boot';
 import { isSheetOpen } from '../src/intro';
 import { showTip } from '../src/tips';
@@ -49,8 +47,12 @@ describe('boot', () => {
     await main();
     // the deferred reframes: with a 0×0 container in happy-dom each one gives up
     vi.advanceTimersByTime(5000);
+    // a tab brought back to the front reframes the map; with the list on screen
+    // that is deferred until the map is visible again (boot.ts's own branch)
+    S.view = 'list'; S.refitPending = false;
     document.dispatchEvent(new Event('visibilitychange'));
-    expect(S.current).toBeNull();
+    expect(S.refitPending).toBe(true);
+    S.view = 'map'; S.refitPending = false;
 
     // a link pasted into the open tab is a hashchange, and only ever that
     const elvebakken = DATA.schools.find((s: any) => /^Elvebakken/.test(s.name))!;

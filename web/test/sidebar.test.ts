@@ -7,6 +7,7 @@ import { meanStep } from '../src/listview';
 import { shownPrograms, visibleIn, fmt } from '../src/helpers';
 import { initHelpers } from '../src/helpers';
 import { initListview } from '../src/listview';
+import { t } from '../src/i18n';
 import { S } from '../src/state';
 
 describe('the school sheet', () => {
@@ -41,7 +42,12 @@ describe('the school sheet', () => {
     const ch = schoolChance(asker(), 'all', 45)!;
     expect(ch).toBeTruthy();
     const box = document.getElementById('s-chance')!;
-    expect(box.querySelector('.h')!.textContent).toContain(`${ch.likely || ch.possible || ch.n} av ${ch.n}`);
+    // renderChance picks one of three heads by which band has anything in it
+    const noPred = Math.max(0, ch.total - ch.n);
+    const head = ch.likely ? t('chanceHeadL', fmt(45), ch.likely, ch.n, noPred, ch.total)
+               : ch.possible ? t('chanceHeadR', fmt(45), ch.possible, ch.n, noPred, ch.total)
+               : t('chanceHeadU', fmt(45), ch.n, noPred, ch.total);
+    expect(box.querySelector('.h')!.textContent).toBe(head);
     expect(box.textContent).toMatch(/%/);
     expect(box.querySelectorAll('.bar span').length).toBe(3);
   });
@@ -107,11 +113,15 @@ describe('the school sheet', () => {
     S.view = 'map';
     expect(listLayout()).toBe('');
     S.view = 'list';
-    expect(['wide', 'split', 'thin']).toContain(listLayout());
-    expect(document.body.classList.contains('lv-wide') || document.body.classList.contains('lv-stack')).toBe(true);
-    expect(phoneSheet()).toBe(false);            // happy-dom's window is 1024×768
-    expect(typeof sheetFull()).toBe('boolean');
+    // happy-dom's window is 1024×768: below LIST_LAYOUT.n's 1068 two-column
+    // point, so the thinnest of the three list layouts
+    expect(listLayout()).toBe('thin');
+    expect(document.body.classList.contains('lv-thin')).toBe(true);
+    expect(document.body.classList.contains('lv-stack')).toBe(true);
+    expect(phoneSheet()).toBe(false);            // wide enough not to be a phone
+    expect(sheetFull()).toBe(true);              // but the sheet covers the thin list
     S.view = 'map';
+    expect(sheetFull()).toBe(false);
   });
   it('capFirst and photoSrc are the small shapes the header depends on', () => {
     expect(capFirst('alle programområder')).toBe('Alle programområder');

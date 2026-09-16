@@ -1,10 +1,5 @@
-// src/main.ts is the app's only importer of leaflet.markercluster, and it
-// patches L in place; without it here L.markerClusterGroup is undefined and
-// drawMarkers() throws. The plugin is a plain script that reads the `L`
-// global Leaflet's own module body sets, so Leaflet must be imported first —
-// the same reason main.ts imports it before the plugin.
-import 'leaflet';
-import 'leaflet.markercluster';
+// Leaflet and leaflet.markercluster are loaded by test/setup.ts, for every
+// test file: this one only stubs the map object itself.
 import { S } from '../src/state';
 
 /** Only what the render functions call on the map between two frames. */

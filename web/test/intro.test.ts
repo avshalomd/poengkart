@@ -19,8 +19,9 @@ describe('the help sheet', () => {
     expect(body.querySelector('.lede')!.textContent)
       .toContain(t('introScope', S.DATA.schools.length, S.DATA.counties.length,
                    S.DATA.years[0], S.DATA.years[S.DATA.years.length - 1]));
-    // the colour key draws its sample dots, one per legend entry plus «fullt»
-    expect(body.querySelectorAll('.keyrow .key').length).toBe(5);
+    // the colour key draws one dot per t('introKeys') entry, plus the
+    // "no points" swatch renderIntro adds from t('noPointsShort')
+    expect(body.querySelectorAll('.keyrow .key').length).toBe(t('introKeys').length + 1);
     expect(body.querySelector('a[href="data/schools.json"]')).toBeTruthy();
     expect(document.getElementById('intro-x')!.getAttribute('aria-label')).toBe(t('close'));
   });

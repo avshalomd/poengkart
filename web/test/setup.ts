@@ -2,6 +2,11 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, beforeEach, vi } from 'vitest';
+// src/main.ts is the app's only importer of leaflet.markercluster and it patches
+// L in place, so every test file needs the plugin loaded after Leaflet itself:
+// it is a plain script that reads the `L` global Leaflet's module body sets.
+import 'leaflet';
+import 'leaflet.markercluster';
 
 // happy-dom replaces the global URL with its own, which resolves a relative
 // URL against the environment's window.location rather than the base passed
@@ -19,8 +24,10 @@ beforeEach(() => {
   // Every open* defers a focus, every sheet defers its exit and the boot
   // defers six reframes. On real timers those fire after the file's last test,
   // into a document happy-dom has already torn down. Fake timers park them;
-  // a test that wants one runs it with vi.advanceTimersByTime().
-  vi.useFakeTimers();
+  // a test that wants one runs it with vi.advanceTimersByTime(). Only the
+  // timer functions are faked: Date, performance and requestAnimationFrame
+  // stay the environment's own.
+  vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval'] });
   document.head.innerHTML = metas;
   document.body.innerHTML = body.replace(/<script[\s\S]*?<\/script>/g, '');
   localStorage.clear();
