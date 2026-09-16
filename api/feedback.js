@@ -22,14 +22,26 @@
  */
 
 const MAX = { message: 4000, field: 200 };
-const TYPES = new Set(['tall', 'bilde', 'skole', 'funksjon', 'annet']);
+const TYPES = new Set(['tall', 'bilde', 'skole', 'feil', 'funksjon', 'annet']);
 const LABELS = {
   tall: 'Feil i tallene',
   bilde: 'Feil eller manglende bilde',
   skole: 'Skole mangler eller feil sted',
+  feil: 'Feil i appen',
   funksjon: 'Forslag til funksjon',
   annet: 'Annet',
 };
+// The bug report's snapshot (bugContext() in the page): only these keys, in
+// this order, each a single cleaned line — rows is a list and keeps its lines.
+const CTX = [
+  ['from', 'Fra'], ['link', 'Lenke'], ['view', 'Visning'], ['fylke', 'Fylke'],
+  ['program', 'Utdanningsprogram'], ['points', 'Poeng'], ['levels', 'Trinn'],
+  ['history', 'Historikk'], ['choices', 'Ønsker'], ['lang', 'Språk'],
+  ['font', 'Tekststørrelse'], ['theme', 'Fargetema'], ['cvd', 'Fargeblindvennlig'],
+  ['viewport', 'Vindu'], ['ua', 'Nettleser'], ['data', 'Data'], ['school', 'Skole'],
+  ['chart', 'Graf'], ['hero', 'Nøkkeltall'],
+];
+const CTX_ROWS = 40;
 
 // Best effort only: serverless instances come and go, so this stops a naive
 // flood from one browser rather than a determined attacker.
@@ -162,10 +174,20 @@ export default async function handler(req, res) {
     ['Språk', clean(body.lang, 8)],
   ].filter(([, v]) => v);
 
-  const subject = `[Poengkart] ${LABELS[type]}`
-    + (clean(body.school, 60) ? ` – ${clean(body.school, 60)}` : '');
+  const ctx = body.context && typeof body.context === 'object' ? body.context : null;
+  const ctxLines = ctx ? CTX.map(([k, label]) => [label, clean(ctx[k], 500)]).filter(([, v]) => v) : [];
+  if (ctx && Array.isArray(ctx.rows)) {
+    const rows = ctx.rows.slice(0, CTX_ROWS).map(r => clean(r, 200)).filter(Boolean);
+    if (rows.length) ctxLines.push(['Rader', '\n  ' + rows.join('\n  ')]);
+  }
+  // the deployment that served the page, so a report can be matched to a build
+  if (ctx && process.env.VERCEL_URL) ctxLines.push(['Utgave', clean(process.env.VERCEL_URL, 200)]);
+
+  const schoolName = clean(body.school, 60) || (ctx ? clean(ctx.school, 60) : '');
+  const subject = `[Poengkart] ${LABELS[type]}` + (schoolName ? ` – ${schoolName}` : '');
   const text = `${message}\n\n---\n`
-    + details.map(([k, v]) => `${k}: ${v}`).join('\n');
+    + details.map(([k, v]) => `${k}: ${v}`).join('\n')
+    + (ctxLines.length ? '\n\nKontekst\n' + ctxLines.map(([k, v]) => `${k}: ${v}`).join('\n') : '');
 
   try {
     if (process.env.RESEND_API_KEY) await viaResend(subject, text, replyTo, to);

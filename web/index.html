@@ -873,6 +873,12 @@
   /* a textarea cannot be a pill; it takes the card's corner */
   #contact textarea { min-height: 108px; resize: vertical; line-height: 1.45; border-radius: 16px; }
   #contact .hint { font-size: 11.5px; color: var(--ink-3); margin: 0 0 6px; line-height: 1.45; }
+  /* the bug report says what it carries, in the open; the list is long, so it folds */
+  #contact .ctx { font-size: 11.5px; color: var(--ink-3); margin: 0 0 12px; line-height: 1.45; }
+  #contact .ctx summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+  #contact .ctx ul { margin: 6px 0 0; padding-left: 16px; }
+  #contact .ctx li { overflow-wrap: anywhere; }
+  #contact .ctx b { color: var(--ink-2); font-weight: 600; }
   #contact .privacy {
     font-size: 11px; line-height: 1.5; color: var(--ink-3);
     border-top: 1px solid var(--line); padding-top: 11px; margin-top: 18px;
@@ -947,6 +953,9 @@
   .more > summary:hover .mt, .more > summary:hover .lt { text-decoration: underline; text-underline-offset: 2px; }
   /* white on a photo: the accent would fail there, so the glass darkens */
   .photo .close:hover { background: rgba(15,23,32,.75); }
+  /* the ✕'s twin, one step to its left: a bug report about this school */
+  .photo .close.bug { right: 50px; display: grid; place-items: center; }
+  .photo .close.bug svg { width: 15px; height: 15px; }
   }
 
   /* ---------- press feedback ----------
@@ -1280,6 +1289,9 @@
   /* not a chip: this says why there is no percentage, so no pill around it */
   .ch.none { background: none; border: none; padding: 0; color: var(--ink-3); font-weight: 500; }
   #src-note { padding: 14px 18px 20px; font-size: 10.5px; color: var(--ink-3); line-height: 1.5; }
+  #src-note .lnk { background: none; border: 0; padding: 0; font: inherit; color: var(--accent);
+                   text-decoration: underline; cursor: pointer; }
+  #src-note .lnk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   /* the credit strip has no blur behind it, so it keeps the 85% it had before
      --surface became glass: at 72% a tile label under its 10.5px text showed through */
@@ -1396,6 +1408,7 @@
     .prow .nm { overflow-wrap: anywhere; hyphens: auto; -webkit-hyphens: auto; }
     /* fingers, not cursors: everything worth pressing gets a real target */
     .photo .close { width: 40px; height: 40px; font-size: 17px; }
+    .photo .close.bug { right: 62px; }
     .meta a { display: inline-block; padding: 8px 0; }
     .tabs button { padding: 8px 13px; font-size: 12.5px; }
     .prow { padding-top: 11px; padding-bottom: 11px; }
@@ -1646,6 +1659,7 @@
     .field select, .ptsrow input { min-height: 40px; }
     #ov-list .opt { min-height: 40px; }
     .photo .close { width: 40px; height: 40px; }
+    .photo .close.bug { right: 62px; }
   }
   /* three Norwegian tab labels overflowed the chart card by 17px at 375px */
   @media (max-width: 400px) {
@@ -1713,6 +1727,15 @@ try {
          one place, at every width, and nothing about opening a school moves
          them. -->
     <div class="util">
+      <!-- a report about the app as a whole: the view, the layout, the filters
+           and the browser travel with it, so a fault can be reproduced -->
+      <button class="ico" id="bug-btn" onclick="openBug(null, this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m8 2 1.88 1.88M14.12 3.88 16 2M9 7.13v-1a3 3 0 1 1 6 0v1"/>
+          <path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6M12 20v-9M6.53 9C4.6 8.8 3 7.1 3 5M6 13H2M3 21c0-2.1 1.7-3.9 3.8-4M20.97 5c0 2.1-1.6 3.8-3.5 4M22 13h-4M17.2 17c2.1.1 3.8 1.9 3.8 4"/>
+        </svg>
+      </button>
       <button class="ico" id="help-btn" onclick="openIntro()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
              stroke-linecap="round" aria-hidden="true">
@@ -1976,6 +1999,8 @@ const T = {
   searchLabel: { no: 'Finn skole', en: 'Find a school' },
   searchPh:    { no: 'Skolenavn…', en: 'School name…' },
   settingsLabel: { no: 'Innstillinger', en: 'Settings' },
+  bugLabel: { no: 'Meld feil', en: 'Report a bug' },
+  bugSchoolLabel: { no: 'Meld feil på denne skolen', en: 'Report a bug on this school' },
   setTheme:      { no: 'Fargetema', en: 'Theme' },
   setThemeAuto:  { no: 'Automatisk', en: 'Auto' },
   setThemeLight: { no: 'Lyst', en: 'Light' },
@@ -2076,9 +2101,11 @@ const T = {
   contactKinds: {
     no: { tall: 'Et tall ser feil ut', bilde: 'Feil eller manglende bilde',
           skole: 'En skole mangler eller ligger på feil sted',
+          feil: 'Noe i appen virker ikke',
           funksjon: 'Forslag til noe nytt', annet: 'Noe annet' },
     en: { tall: 'A figure looks wrong', bilde: 'Wrong or missing photo',
           skole: 'A school is missing or in the wrong place',
+          feil: 'Something in the app does not work',
           funksjon: 'Suggestion for something new', annet: 'Something else' },
   },
   contactSchool:  { no: 'Hvilken skole? *', en: 'Which school? *' },
@@ -2095,6 +2122,7 @@ const T = {
       tall: 'Skriv gjerne hvilket tall du så og hva du mener det skulle vært.',
       bilde: 'Er bildet av en annen skole, eller mangler det helt?',
       skole: 'Hva heter skolen, og hvor ligger den?',
+      feil: 'Hva gjorde du, hva skjedde, og hva ventet du?',
       funksjon: 'Hva skulle du ønske kartet kunne?',
       annet: '',
     },
@@ -2102,6 +2130,7 @@ const T = {
       tall: 'Say which figure you saw and what you think it should be.',
       bilde: 'Is the photo of a different school, or missing entirely?',
       skole: 'What is the school called, and where is it?',
+      feil: 'What did you do, what happened, and what did you expect?',
       funksjon: 'What do you wish the map could do?',
       annet: '',
     },
@@ -2111,6 +2140,10 @@ const T = {
     en: 'Your message is e-mailed to the person who maintains the map. Nothing is stored in your browser, and your e-mail address is optional – without it you cannot get a reply.',
   },
   contactSend:    { no: 'Send', en: 'Send' },
+  // the bug report's disclosure: what travels with it, listed in the open
+  contactCtx:     { no: 'Dette sendes med', en: 'Sent with the report' },
+  contactCtxHint: { no: 'Visningen og valgene dine akkurat nå, så feilen kan gjenskapes. Ikke noe bilde.',
+                    en: 'Your view and choices right now, so the fault can be reproduced. No picture.' },
   contactSending: { no: 'Sender…', en: 'Sending…' },
   contactSent:    { no: 'Takk! Meldingen er sendt.', en: 'Thank you! Your message is on its way.' },
   contactSentSub: { no: 'Du kan lukke dette vinduet.', en: 'You can close this window.' },
@@ -2300,9 +2333,10 @@ const T = {
   series:     { no: n => n === 1 ? 'programområde' : 'programområder', en: n => n === 1 ? 'programme area' : 'programme areas' },
   website:    { no: 'Nettside', en: 'Website' },
   wiki:       { no: 'Wikipedia', en: 'Wikipedia' },
+  srcNoteLink: { no: 'Meld fra via tilbakemelding', en: 'Report an error via feedback' },
   srcNote: {
-    no: 'Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaket varierer mellom fylkene og er merket på hver skole. Uoffisiell tjeneste, laget av Abshalom Dayan. Tallene er lest maskinelt fra fylkenes publikasjoner og kan inneholde feil – meld fra via tilbakemelding.',
-    en: 'Sources: the county authorities of Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Trøndelag and Vestland, the City of Oslo and vilbli.no (thresholds), NSR/Udir (schools), Kartverket (geocoding), Wikimedia Commons and school websites (photos). The intake differs by county and is labelled on every school. Unofficial service, built by Abshalom Dayan. The figures are read by machine from the county publications and may contain errors – please report them via feedback.',
+    no: 'Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaket varierer mellom fylkene og er merket på hver skole. Uoffisiell tjeneste, laget av Abshalom Dayan. Tallene er lest maskinelt fra fylkenes publikasjoner og kan inneholde feil.',
+    en: 'Sources: the county authorities of Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Trøndelag and Vestland, the City of Oslo and vilbli.no (thresholds), NSR/Udir (schools), Kartverket (geocoding), Wikimedia Commons and school websites (photos). The intake differs by county and is labelled on every school. Unofficial service, built by Abshalom Dayan. The figures are read by machine from the county publications and may contain errors.',
   },
   noMatch:    { no: 'Ingen treff', en: 'No matches' },
   prioBadge:  { no: 'fortrinnsrett', en: 'priority right' },
@@ -2500,6 +2534,9 @@ const fmt = v => {
   return typeof out === 'string' ? out.replace(/^-/, '\u2212') : out;
 };
 const X_ICON = '<svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+const BUG_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+  + '<path d="m8 2 1.88 1.88M14.12 3.88 16 2M9 7.13v-1a3 3 0 1 1 6 0v1"/>'
+  + '<path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6M12 20v-9M6.53 9C4.6 8.8 3 7.1 3 5M6 13H2M3 21c0-2.1 1.7-3.9 3.8-4M20.97 5c0 2.1-1.6 3.8-3.5 4M22 13h-4M17.2 17c2.1.1 3.8 1.9 3.8 4"/></svg>';
 
 function yearSpan(s) {
   const ys = [...new Set(s.programs.flatMap(p => Object.keys(p.values)))].sort();
@@ -3863,6 +3900,7 @@ function renderSide() {
                           + ` alt="" loading="lazy"${pos}>`
                           : `<div id="s-minimap"></div>`) +
     `<div class="veil"></div>` +
+    `<button class="close bug" onclick="openBug(current, this)" aria-label="${esc(t('bugSchoolLabel'))}">${BUG_ICON}</button>` +
     `<button class="close" onclick="closeSide()" aria-label="${esc(t('closeAria'))}">${X_ICON}</button>` +
     `<div class="name"><h2>${esc(s.name)}</h2>${credit}</div>`;
   // an optimiser that is not there, or a county URL that has expired since the
@@ -3965,7 +4003,8 @@ function renderSide() {
     cells.map(c => `<div class="cell"${c.ti ? ` title="${esc(c.ti)}"` : ''}>` +
                    `<div class="v ${c.cls || ''}">${c.v}</div><div class="l">${capFirst(c.l)}</div></div>`).join('');
   renderChance(s, lensCat);
-  document.getElementById('src-note').textContent = t('srcNote');
+  document.getElementById('src-note').innerHTML = esc(t('srcNote')) +
+    ` <button class="lnk" onclick="contactOpener = this; openContact('tall')">${esc(t('srcNoteLink'))}</button>`;
   renderChartCard();
   renderList();
   ['s-meta', 's-hero', 's-chance', 's-notes'].forEach(id =>
@@ -4450,9 +4489,72 @@ const FIELDS = {
   tall:     ['school', 'program', 'year'],
   bilde:    ['school', 'photo'],
   skole:    ['school', 'fylke'],
+  feil:     [],
   funksjon: [],
   annet:    [],
 };
+
+/* ---- the bug report's snapshot ----
+   A "something does not work" without the view, the filters and the browser
+   is a message nobody can act on. The two bug buttons (the header's, for the
+   app as a whole; the sheet's, for one school) take this snapshot at the
+   moment they are pressed, the form lists it under «Dette sendes med», and the
+   relay prints it under the message. What the reader saw is read from the
+   rendered sheet, not recomputed, so the report shows the figures as they were
+   on the screen. No picture: a screenshot is more than a bug report needs. */
+let contactOpener = null;   // the control that opened the sheet; focus returns to it
+let bugCtx = null;          // the snapshot, taken when a bug button was pressed
+let DATA_STAMP = '';        // schools.json's Last-Modified, when the server sends one
+// child nodes joined with a space: «49,1<small>2026</small>» reads 49,1 2026
+const text1 = el => [...el.childNodes].map(n => n.textContent.trim()).filter(Boolean).join(' ').replace(/\s+/g, ' ');
+function bugContext(school, from) {
+  const lv = [...document.body.classList].find(c => /^lv-(wide|split|thin)$/.test(c));
+  const ctx = {
+    from, link: location.href,
+    view: view + (lv ? ` (${lv.slice(3)})` : ''),
+    fylke: mapFylke, program: mapCat, points: myPoints == null ? '' : String(myPoints),
+    levels: allLevels ? 'Vg1–Vg3' : 'Vg1', history: showOld ? 'on' : 'off',
+    choices: String(choices.length), lang, font: PREFS.font, theme: PREFS.theme,
+    cvd: PREFS.cvd ? 'on' : 'off',
+    viewport: `${innerWidth}×${innerHeight} @${devicePixelRatio}`,
+    ua: navigator.userAgent,
+    data: `${DATA.schools.length} skoler, ${DATA.years[0]}–${DATA.years[DATA.years.length - 1]}`
+          + (DATA_STAMP ? `, ${DATA_STAMP}` : ''),
+  };
+  if (!school && document.getElementById('side').classList.contains('open')) school = current;
+  if (school) {
+    ctx.school = `${school.name} (${school.fylke})`;
+    ctx.chart = chartMode() + (chart.prog ? `: ${chart.prog}` : '');
+    ctx.hero = [...document.querySelectorAll('#s-hero .cell')]
+      .map(c => `${text1(c.querySelector('.v'))} ${text1(c.querySelector('.l'))}`).join(' · ');
+    // the row as the reader saw it: name, chance, level, figure — not the
+    // hidden description each row carries for screen readers
+    ctx.rows = [...document.querySelectorAll('#s-list .prow')].map(r =>
+      ['.nm', '.ch', '.lv', '.val'].map(q => r.querySelector(q)).filter(Boolean).map(text1).join(' · ')
+    ).slice(0, 40);
+  }
+  return ctx;
+}
+const CTX_LABELS = {
+  from: 'Fra', link: 'Lenke', view: 'Visning', fylke: 'Fylke', program: 'Utdanningsprogram',
+  points: 'Poeng', levels: 'Trinn', history: 'Historikk', choices: 'Ønsker', lang: 'Språk',
+  font: 'Tekststørrelse', theme: 'Fargetema', cvd: 'Fargeblindvennlig', viewport: 'Vindu',
+  ua: 'Nettleser', data: 'Data', school: 'Skole', chart: 'Graf', hero: 'Nøkkeltall', rows: 'Rader',
+};
+function renderContactCtx() {
+  if (!bugCtx) return '';
+  const items = Object.entries(bugCtx).filter(([, v]) => v !== '' && !(Array.isArray(v) && !v.length))
+    .map(([k, v]) => `<li><b>${esc(CTX_LABELS[k] || k)}:</b> ${esc(Array.isArray(v) ? v.join(' | ') : v)}</li>`);
+  return `<details class="ctx"><summary>${esc(t('contactCtx'))}</summary>` +
+         `<p class="hint">${esc(t('contactCtxHint'))}</p><ul>${items.join('')}</ul></details>`;
+}
+// el is the button pressed: a click does not focus a button in every browser,
+// so activeElement alone would send the focus back to the page body
+function openBug(school, el) {
+  bugCtx = bugContext(school || null, school ? 'school' : 'header');
+  contactOpener = el || document.activeElement;
+  openContact('feil');
+}
 
 function contactField(name) {
   const key = { school: 'contactSchool', program: 'contactProgram', year: 'contactYear',
@@ -4475,8 +4577,10 @@ function contactField(name) {
 
 function renderContactFields() {
   const kind = document.getElementById('c-kind').value;
+  // the kind picked by hand in the form takes its snapshot here, like a button would
+  if (kind === 'feil' && !bugCtx) bugCtx = bugContext(null, 'form');
   document.getElementById('c-extra').innerHTML =
-    FIELDS[kind].map(contactField).join('');
+    FIELDS[kind].map(contactField).join('') + (kind === 'feil' ? renderContactCtx() : '');
   const hint = t('contactHints')[kind];
   const el = document.getElementById('c-hint');
   el.textContent = hint || '';
@@ -4576,9 +4680,10 @@ async function sendContact(ev) {
     message: msg.value,
     email: document.getElementById('c-email').value,
     website: document.getElementById('c-website').value,
-    lang, page: location.pathname + location.search,
+    lang, page: location.pathname + location.search + location.hash,
   };
   document.querySelectorAll('#c-extra input').forEach(i => { payload[i.dataset.f] = i.value; });
+  if (payload.type === 'feil' && bugCtx) payload.context = bugCtx;
   btn.disabled = true;
   btn.textContent = t('contactSending');
   try {
@@ -4613,10 +4718,11 @@ function switchToContact() {
   try { localStorage.setItem(INTRO_SEEN, '1'); } catch (e) {}
   openContact();
 }
-function openContact() {
+function openContact(kind) {
   const body = document.getElementById('contact-body');
   delete body.dataset.done;
   renderContact();
+  if (kind) { document.getElementById('c-kind').value = kind; renderContactFields(); }
   showSheet('contact');
   setModalTrap();
   openSheetHistory();
@@ -4627,7 +4733,10 @@ function closeContact(fromHistory) {
   if (!fromHistory && (history.state || {}).pkSheet) { history.back(); return; }
   hideSheet('contact');
   setModalTrap();
-  document.getElementById('help-btn')?.focus();
+  const back = contactOpener && document.contains(contactOpener) ? contactOpener
+             : document.getElementById('help-btn');
+  contactOpener = null; bugCtx = null;
+  back?.focus();
 }
 
 /* ================= tooltips =================
@@ -4743,8 +4852,8 @@ function clearHelpHint() {
 
 function renderControls() {
   updateLocateAria();
-  for (const [id, key] of [['help-btn', 'helpLabel'], ['settings-btn', 'settingsLabel'],
-                           ['searchov-btn', 'searchLabel']]) {
+  for (const [id, key] of [['bug-btn', 'bugLabel'], ['help-btn', 'helpLabel'],
+                           ['settings-btn', 'settingsLabel'], ['searchov-btn', 'searchLabel']]) {
     const el = document.getElementById(id);
     el.title = t(key);
     el.setAttribute('aria-label', t(key));
@@ -5563,6 +5672,7 @@ async function main() {
     const r = await fetch('data/schools.json');
     if (!r.ok) throw new Error(String(r.status));
     DATA = await r.json();
+    try { DATA_STAMP = r.headers.get('last-modified') || ''; } catch (e) {}
     performance.mark('pk:data');
   } catch (e) {
     return bootFailed('bootFailSub');
@@ -5817,5 +5927,6 @@ const boot = () => main().catch(e => { console.error(e); bootFailed('bootFailApp
 if (document.readyState === 'loading') addEventListener('DOMContentLoaded', boot);
 else boot();
 </script>
+
 </body>
 </html>
