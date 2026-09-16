@@ -1,5 +1,7 @@
 # Poengkart
 
+[![test](https://github.com/avshalomd/poengkart/actions/workflows/test.yml/badge.svg)](https://github.com/avshalomd/poengkart/actions/workflows/test.yml)
+
 **https://poengkart-no.vercel.app**
 
 Admission point thresholds (*poenggrenser*) for Norwegian upper secondary
