@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { loadFixtures, asker, forde, DATA } from './fixtures';
-import { meanOf, round1, isPoints, fmtNum, fmt, esc, numericLatest, yearSpan, levelScope, shownPrograms, visibleIn, isRecent, countyNewest, partitionPrograms } from '../src/helpers';
+import { meanOf, round1, isPoints, fmtNum, fmt, esc, numericLatest, yearSpan, levelScope, shownPrograms, visibleIn, isRecent, countyNewest, partitionPrograms, progId } from '../src/helpers';
 import { parsePoints } from '../src/chance';
 import { S } from '../src/state';
 
@@ -35,6 +35,16 @@ describe('points field', () => {
   });
 });
 
+// One regular row, its F-only (fortrinnsrett) duplicate — same progId, so
+// partitionPrograms folds it away — and one genuine orphan: priority-only
+// with no regular twin. Shared by the visibleIn and partitionPrograms tests
+// below, which check the two halves of the same fold/orphan split.
+const PARTITION_FIXTURE = [
+  { program: 'Studiespesialisering', level: 'Vg1', values: { '2026': 40 } },
+  { program: 'Studiespesialisering', level: 'Vg1', values: { '2026': 'F' } },   // folded: same progId as above
+  { program: 'Idrettsfag', level: 'Vg1', values: { '2026': 'F' } },             // orphan: no regular twin
+];
+
 describe('dataset helpers', () => {
   it('yearSpan is one school’s own year range, "y0–y1" (or a single year)', () => {
     // yearSpan(s) takes a school, not the dataset (S.DATA.years is a separate
@@ -64,12 +74,7 @@ describe('dataset helpers', () => {
     // folds away an F-only (fortrinnsrett) duplicate of a row that also has a
     // real, numeric row — it does not take a county or category (that
     // filtering is visibleSchools()'s and schoolPressure()'s job, upstream).
-    const progs = [
-      { program: 'Studiespesialisering', level: 'Vg1', values: { '2026': 40 } },
-      { program: 'Studiespesialisering', level: 'Vg1', values: { '2026': 'F' } },   // folded: same progId as above
-      { program: 'Idrettsfag', level: 'Vg1', values: { '2026': 'F' } },             // orphan: no regular twin
-    ];
-    expect(visibleIn(progs as any)).toBe(2);
+    expect(visibleIn(PARTITION_FIXTURE as any)).toBe(2);
   });
   it('countyNewest is the newest year any school of the county reports', () => {
     loadFixtures();
@@ -77,11 +82,32 @@ describe('dataset helpers', () => {
       .flatMap((s: any) => s.programs.flatMap((p: any) => Object.keys(p.values).map(Number))));
     expect(countyNewest('Akershus')).toBe(expected);
   });
-  it('partitionPrograms splits regular programmes from priority-only (fortrinnsrett) rows', () => {
+  it('partitionPrograms folds the F-only duplicate into regular, keeps the true orphan, and lists both F-only ids in prioNames', () => {
     // partitionPrograms(progs) takes a programme array, not a school, and
-    // splits by isPrioOnly (every year is 'F'), not by isRecent.
-    loadFixtures(); const s = forde(); const parts = partitionPrograms(s.programs);
-    expect(Object.keys(parts).length).toBeGreaterThan(0);
-    expect(parts.regular.length + parts.orphans.length).toBeLessThanOrEqual(s.programs.length);
+    // splits by isPrioOnly (every year is 'F'), not by isRecent. Concrete
+    // shape on the same fixture as visibleIn's test above, so a fold/orphan
+    // regression that still returns a 3-key, size-bounded object is caught.
+    const parts = partitionPrograms(PARTITION_FIXTURE as any);
+    expect(parts.regular.length).toBe(1);
+    expect(parts.regular.map(progId)).toEqual(['studiespesialisering|Vg1']);
+    expect(parts.orphans.map(progId)).toEqual(['idrettsfag|Vg1']);
+    expect(parts.prioNames).toEqual(new Set(['studiespesialisering|Vg1', 'idrettsfag|Vg1']));
+  });
+  it('levelScope keeps Vg1 rows unless allLevels is on, and falls back to every row when there is no Vg1', () => {
+    const mixed = [{ level: 'Vg1' }, { level: 'Vg2' }];
+    S.allLevels = false;
+    expect(levelScope(mixed as any)).toEqual([mixed[0]]);
+    S.allLevels = true;
+    expect(levelScope(mixed as any)).toBe(mixed);
+    S.allLevels = false;
+    const noVg1 = [{ level: 'Vg2' }, { level: 'Vg3' }];
+    expect(levelScope(noVg1 as any)).toBe(noVg1);
+  });
+  it('isRecent is true only within one year of the county’s newest', () => {
+    loadFixtures();
+    const newest = countyNewest('Akershus');
+    expect(isRecent({ values: { [String(newest)]: 40 } } as any, 'Akershus')).toBe(true);
+    expect(isRecent({ values: { [String(newest - 1)]: 40 } } as any, 'Akershus')).toBe(true);
+    expect(isRecent({ values: { [String(newest - 5)]: 40 } } as any, 'Akershus')).toBe(false);
   });
 });

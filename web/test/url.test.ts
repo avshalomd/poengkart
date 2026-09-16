@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { loadFixtures, asker } from './fixtures';
+import { loadFixtures, asker, school } from './fixtures';
 import { buildHash, hashParts, schoolFromUrl } from '../src/sidebar';
 import { S } from '../src/state';
 
@@ -14,10 +14,23 @@ describe('permalinks', () => {
     location.hash = h;
     expect(hashParts().s).toBe('Akershus/Asker');
   });
-  it('schoolFromUrl resolves the register name and tolerates encoding', () => {
+  it('schoolFromUrl resolves a plain register name, and is falsy when nothing matches', () => {
     loadFixtures();
     location.hash = '#s=Akershus/Asker'; expect(schoolFromUrl()?.name).toBe('Asker');
     location.hash = '#s=Akershus/Finnes%20ikke'; expect(schoolFromUrl()).toBeFalsy();
+  });
+  it('schoolFromUrl decodes a percent-encoded space in the school name', () => {
+    // A genuine positive encoding case: a real school whose name has a space,
+    // built the way encodeURIComponent (and so buildHash/schoolPart) encodes
+    // it, and resolved back — unlike the %20 "not found" case above, this one
+    // would fail if decodeURIComponent were missing or broken.
+    loadFixtures();
+    const s = school('Roald Amundsen');
+    expect(s.fylke).toBe('Akershus');
+    const h = `#s=${s.fylke}/${encodeURIComponent(s.name)}`;
+    expect(h).toContain('%20');
+    location.hash = h;
+    expect(schoolFromUrl()?.name).toBe('Roald Amundsen');
   });
   it.todo(
     'schoolFromUrl should tolerate an encoded "/" in #s=Fylke%2FSkole — ' +
