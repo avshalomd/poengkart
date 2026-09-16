@@ -4,7 +4,6 @@ __pycache__/
 node_modules/
 .vercel
 .claude/
-.venv/
 .venv
 
 # font cache for the share card (downloaded at build time)

@@ -1,8 +1,8 @@
 /* Load-bearing, not a debug aid: three separate callers reach the app through
    `window` and would break silently without this file.
 
-   1. `web/index.html` has twenty-one inline `on*=` attributes — setView,
-      onPoints, unfoldPanel, openSettings, openSearchOv, openIntro, openCalc,
+   1. `web/index.html` has twenty-two inline `on*=` attributes — setView,
+      onPoints, refocus, unfoldPanel, openSettings, openSearchOv, openIntro, openCalc,
       openBug, onMapFylke, onMapCat and the close* pair for every sheet. An
       inline handler is compiled in global scope, so it can only see globals;
       a module's exports are not.
@@ -44,7 +44,7 @@ export function exposeGlobals(): void {
   const mods = [i18n, helpers, chance, map, chrome, sidebar, chart, programs, feedback, tips, intro, prefs, search, searchov, locate, listview, calc, lang, boot];
   // The app's own names win over whatever the platform happens to call the
   // same thing: an inline handler that says openSide() means this openSide.
-  for (const m of mods) for (const [k, v] of Object.entries(m)) if (!k.startsWith('init')) w[k] = v;
+  for (const m of mods) for (const [k, v] of Object.entries(m)) if (!/^init[A-Z]/.test(k)) w[k] = v;
   for (const k of Object.keys(S)) {
     if (k in w && !documentNamed(w, k)) continue;   // never shadow a built-in like window.name
     Object.defineProperty(w, k, { get: () => (S as any)[k], set: v => { (S as any)[k] = v; }, configurable: true });
