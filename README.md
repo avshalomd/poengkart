@@ -40,8 +40,8 @@ npm run dev
 ```
 
 Opens on http://localhost:8123. `npm run build` writes the deployable site to
-`web/dist`; `npm test` runs the unit tests, `npm run e2e` the browser suite.
-To rebuild the dataset from the county source documents in `sources/`:
+`web/dist`. To rebuild the dataset from the county source documents in
+`sources/`:
 
 ```bash
 .venv/bin/python3 tools/refresh.py
