@@ -24,3 +24,8 @@ CLAUDE.local.md
 docs/private/
 # browser snapshots from QA runs
 .playwright-mcp/
+
+web/dist/
+coverage/
+playwright-report/
+test-results/

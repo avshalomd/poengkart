@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render web/og.png — the 1200x630 card that messaging apps and social
+"""Render web/public/og.png — the 1200x630 card that messaging apps and social
 networks show when someone pastes the link.
 
 Nothing on it is mocked up. The map is the real basemap with one dot per
@@ -29,15 +29,16 @@ import math
 import os
 import re
 import socketserver
+import subprocess
 import threading
 import urllib.request
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-WEB = os.path.join(HERE, '..', 'web')
-INDEX = os.path.join(WEB, 'index.html')
-DATA = os.path.join(WEB, 'data', 'schools.json')
+WEB = os.path.join(HERE, '..', 'web', 'dist')
+INDEX = os.path.join(HERE, '..', 'web', 'src', 'app.js')
+DATA = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
 CACHE = os.path.join(HERE, '.cache')
 PANEL_FALLBACK = os.path.join(HERE, 'og-panel.png')
 UA = {'User-Agent': 'poengkart/0.1 (og image build)'}
@@ -98,7 +99,7 @@ def carto_key():
     """
     m = re.search(r"const CARTO_KEY = '([^']+)'", open(INDEX, encoding='utf-8').read())
     if not m:
-        raise SystemExit('CARTO_KEY not found in web/index.html')
+        raise SystemExit('CARTO_KEY not found in web/src/app.js')
     return m.group(1)
 
 
@@ -191,6 +192,7 @@ def capture_panel(css_h):
     """
     from playwright.sync_api import sync_playwright
     fylke, name = PANEL_SCHOOL
+    subprocess.run(['npm', 'run', 'build', '--silent'], check=True, cwd=os.path.join(HERE, '..'))
     srv, base = serve_web()
     try:
         with sync_playwright() as p:
@@ -314,7 +316,7 @@ def main():
     d.line([(px, 0), (px, H)], fill=(255, 255, 255, 26), width=1)
 
     x = 68
-    icon = Image.open(os.path.join(WEB, 'favicon-192.png')).convert('RGBA') \
+    icon = Image.open(os.path.join(HERE, '..', 'web', 'public', 'favicon-192.png')).convert('RGBA') \
                 .resize((46, 46), Image.LANCZOS)
     card.paste(icon, (x, 74), icon)
     d.text((x + 60, 82), 'Poengkart', font=font(31, 'bold'), fill=INK)
@@ -340,7 +342,7 @@ def main():
 
     d.text((x, 545), 'poengkart-no.vercel.app', font=font(20, 'bold'), fill=INK2)
 
-    out = os.path.join(WEB, 'og.png')
+    out = os.path.join(HERE, '..', 'web', 'public', 'og.png')
     card.convert('RGB').save(out, optimize=True)
     print(f'{out}  {os.path.getsize(out)//1024} KB  ({len(pts)} schools plotted)')
 

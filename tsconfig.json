@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "strict": false,
+    "noImplicitAny": false,
+    "allowJs": true,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "types": ["vite/client"]
+  },
+  "include": ["web/src", "web/test", "web/e2e", "vite.config.ts", "playwright.config.ts"]
+}

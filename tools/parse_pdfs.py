@@ -13,7 +13,7 @@ Handles, deliberately:
   * source spelling typos — "Ingen ventesliste", "Fortrinsrett", "Fortinnsrett"
   * non-Rogaland schools on the national landslinje pages (blacklisted)
 
-Cell semantics in web/data/schools.json:
+Cell semantics in web/public/data/schools.json:
   number  -> threshold (last admitted applicant's points; grade avg x 10)
   "open"  -> no waitlist / everyone qualified admitted
   "F"     -> fortrinnsrett quota (statutory priority, outside points competition)
@@ -21,7 +21,7 @@ Cell semantics in web/data/schools.json:
   "U"     -> program discontinued that year (Utgår)
   absent  -> no data (program not offered / not in any source PDF)
 
-Outputs web/data/schools.json (+ data/source-drift.json for cells where the
+Outputs web/public/data/schools.json (+ data/source-drift.json for cells where the
 county's own PDFs disagree with each other).
 """
 
@@ -38,7 +38,7 @@ import pdfplumber
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, '..', 'sources', 'rogaland')
-OUT = os.path.join(HERE, '..', 'web', 'data')
+OUT = os.path.join(HERE, '..', 'web', 'public', 'data')
 DRIFT = os.path.join(HERE, '..', 'data', 'source-drift.json')
 
 # newest first: on overlapping (school, program, level, year) the newest wins

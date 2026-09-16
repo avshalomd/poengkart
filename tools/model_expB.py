@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fit the threshold model and write web/data/model.json.
+"""Fit the threshold model and write web/public/data/model.json.
 
     .venv/bin/python3 tools/model.py            # fit + walk-forward backtest
     .venv/bin/python3 tools/model.py --quick    # fit only (no backtest)
@@ -53,7 +53,7 @@ how many years the series had — the model's posterior is overconfident and
 the backtest says by how much. The reliability of (3) is then checked on the
 held-out years and written into the output, so the app can print it.
 
-Output: web/data/model.json — per school the mix-adjusted level and per
+Output: web/public/data/model.json — per school the mix-adjusted level and per
 programme the forecast (m, s, pi) for the county's next publication year;
 plus the backtest, calibration and round-bridge tables under "meta".
 """
@@ -71,7 +71,7 @@ from scipy.optimize import minimize
 from scipy.special import ndtr, expit
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, '..', 'web', 'data', 'schools.json')
+SRC = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
 OUT = '/private/tmp/claude-501/-Users-avshalom-projects-poengkart/0d09b5c1-9b21-4e95-b9d6-7dbba5839431/scratchpad/modelB.json'
 
 # walk-forward: predict each of these years from everything published before it

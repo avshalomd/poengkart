@@ -28,7 +28,7 @@ import urllib.parse
 import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DATA = os.path.join(HERE, '..', 'web', 'data', 'schools.json')
+DATA = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
 AUTO = os.path.join(HERE, 'photos-auto.json')
 REJECTED = os.path.join(HERE, 'photos-rejected.json')
 

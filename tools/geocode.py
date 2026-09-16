@@ -17,7 +17,7 @@ import urllib.parse
 import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DATA = os.path.join(HERE, '..', 'web', 'data', 'schools.json')
+DATA = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
 CACHE = os.path.join(HERE, 'nsr-vgs.json')
 UA = {'User-Agent': 'poengkart/0.1 (prototype)', 'Accept': 'application/json'}
 

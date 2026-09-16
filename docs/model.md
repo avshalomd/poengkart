@@ -3,7 +3,7 @@
 What the "your points" field computes, how the model behind it is fitted, how
 it was tested, and what it cannot know. Everything here is produced by
 `tools/model.py`; the numbers are from the September 2026 dataset and are
-rewritten into `web/data/model.json` → `meta` on every refresh.
+rewritten into `web/public/data/model.json` → `meta` on every refresh.
 
 ## The question
 
@@ -286,6 +286,6 @@ them at once. If none of the choices is likely the list says so.
 - `tools/model.py` — everything above; `--quick` fits without the backtest
 - `tools/test_model.py` — invariants: probabilities, monotonicity in points,
   coverage, spread ≥ residual, and that the backtest the app quotes is in the file
-- `web/data/model.json` — per school α, per programme (m, s, π, history), `meta`
+- `web/public/data/model.json` — per school α, per programme (m, s, π, history), `meta`
 - `data/forecasts.csv`, and the `forecasts` table in `data/poengkart.db`
 - `data/model-backtest.csv` — every walk-forward forecast and its outcome

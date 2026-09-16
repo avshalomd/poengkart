@@ -1,0 +1,1630 @@
+  :root {
+    color-scheme: light;
+    --page: #f4f6f9;
+    --surface: rgba(255,255,255,.72);
+    --surface-solid: #ffffff;
+    /* --ink-3 carries every smallest string in the app — 9px legend labels,
+       10.5px field labels, the source note — so it has to clear 4.5:1. The old
+       #6b7480 cleared it by a hair (4.68:1 on the composited panel, 4.74:1 on
+       --surface-solid); at this size that is no margin at all, so it is one
+       step darker: 5.49:1 on white, 5.07:1 on --page, and on the glass panel
+       with the largest map cluster directly behind the text 4.69:1 (5.08:1 in
+       dark; the old 85% panel measured 4.90:1). */
+    --ink: #0f1720; --ink-2: #46525e; --ink-3: #616a75;
+    --line: rgba(15,23,32,.09);
+    /* --line is a decorative separator (card edges, table row rules) and stays
+       quiet. A control's boundary is the only thing identifying it as a
+       control, so WCAG 1.4.11 asks 3:1 of it — hence a second token, used by
+       selects, inputs and icon buttons. #8b9299 on white is 3.15:1. */
+    --line-strong: #8b9299;
+    --chev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2346525e' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");          /* the selects' arrow, --ink-2 */
+    --shade: rgba(15,23,32,.16);   /* the scroll shadow on a table that runs wider than its card */
+    /* Ink for text sitting ON a filled accent. White clears 4.5:1 on the light
+       accent but only reaches 3.64:1 on the lighter dark-mode one, so dark mode
+       flips it — the same trick --chip-b2-ink already plays for the mid chip. */
+    --on-accent: #ffffff;
+    /* 4.42:1 on white missed 4.5 in both directions: white 12.5px on the
+       accent (Kart/Liste, every primary button, the mid threshold chip) and
+       accent on white (the sorted column header, links in the school panel) */
+    --accent: #2876d4; --accent-soft: rgba(42,120,214,.10); --accent-ink: #1c5aa8;
+    --context: #c3cdd6;
+    --seq-250:#86b6ef; --seq-350:#5598e7; --seq-450:#2876d4; --seq-550:#1c5cab; --seq-700:#0d366b;
+    --shadow: 0 10px 32px rgba(15,23,32,.12), 0 1px 3px rgba(15,23,32,.08);
+    /* the glass chrome: a bright top edge where light catches the material, a
+       rim that keeps its outline over pale tiles, and a deeper shadow that
+       lifts it off the map */
+    --g-sheen: rgba(255,255,255,.6); --g-rim: rgba(15,23,32,.10);
+    --g-shadow: 0 1px 2px rgba(15,23,32,.06), 0 10px 28px rgba(15,23,32,.12), 0 28px 64px rgba(15,23,32,.10);
+    --good: #0b7f0b;
+    --chip-ink: #0f1720;            /* dark text on the pale threshold chips */
+    --chip-b2-ink: #ffffff;         /* the middle band flips per theme */
+    --danger: #c0392f;
+    /* the chance chips print ~10px text on a 14% tint of these, which the
+       band colours themselves do not clear 4.5:1 against — so the text has
+       its own, darker value while the dots and bars keep the band colour */
+    --chip-good: #0a6b0a; --chip-warn: #8a5308; --chip-danger: #a82f26;
+    --warn: #a1620a; --warn-soft: rgba(180,120,20,.11);
+    --dot-possible: var(--warn); --dot-unlikely: var(--danger);   /* map dots and chips; text keeps --warn/--danger */
+  }
+  /* The dark palette exists twice: under the OS preference (yielding to an
+     explicit light choice) and under the explicit dark choice. Keep the two
+     token blocks identical — they are the same theme reached two ways. */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --page: #0e1116;
+      --surface: rgba(23,27,33,.72);
+      --surface-solid: #171b21;
+      --ink: #f2f5f8; --ink-2: #a9b4c0; --ink-3: #8b95a1;
+      --line: rgba(255,255,255,.09);
+      --line-strong: #6a6f75;      /* a control's boundary needs 3:1: this is 3.41:1 */
+      --chev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a9b4c0' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      --shade: rgba(0,0,0,.5);
+      --on-accent: #0f1720;        /* 4.96:1 on #3987e5, where white is 3.64:1 */
+      --accent: #3987e5; --accent-soft: rgba(57,135,229,.14); --accent-ink: #7fb3f0;
+      --context: #3a4553;
+      --seq-250:#9ec5f4; --seq-350:#6da7ec; --seq-450:#3987e5; --seq-550:#256abf; --seq-700:#184f95;
+      --shadow: 0 10px 32px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.4);
+      --g-sheen: rgba(255,255,255,.08); --g-rim: rgba(255,255,255,.12);   /* a dark rim vanished into the dark tiles */
+      --g-shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.4), 0 28px 64px rgba(0,0,0,.35);
+      --good: #3fbf4a;              /* the one token that had no dark value */
+      --chip-ink: #0f1720;
+      --chip-b2-ink: #0f1720;       /* dark ink clears 4.5:1 on the dark-mode mid blue */
+      --danger: #e26b6e;
+      --chip-good: #3fbf4a; --chip-warn: #e0a052; --chip-danger: #ea8e90;
+      --warn: #e0a052; --warn-soft: rgba(224,160,82,.13);
+    }
+  }
+  :root[data-theme="dark"] {
+      color-scheme: dark;
+      --page: #0e1116;
+      --surface: rgba(23,27,33,.72);
+      --surface-solid: #171b21;
+      --ink: #f2f5f8; --ink-2: #a9b4c0; --ink-3: #8b95a1;
+      --line: rgba(255,255,255,.09);
+      --line-strong: #6a6f75;      /* a control's boundary needs 3:1: this is 3.41:1 */
+      --chev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a9b4c0' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      --shade: rgba(0,0,0,.5);
+      --on-accent: #0f1720;        /* 4.96:1 on #3987e5, where white is 3.64:1 */
+      --accent: #3987e5; --accent-soft: rgba(57,135,229,.14); --accent-ink: #7fb3f0;
+      --context: #3a4553;
+      --seq-250:#9ec5f4; --seq-350:#6da7ec; --seq-450:#3987e5; --seq-550:#256abf; --seq-700:#184f95;
+      --shadow: 0 10px 32px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.4);
+      --g-sheen: rgba(255,255,255,.08); --g-rim: rgba(255,255,255,.12);   /* a dark rim vanished into the dark tiles */
+      --g-shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.4), 0 28px 64px rgba(0,0,0,.35);
+      --good: #3fbf4a;              /* the one token that had no dark value */
+      --danger: #e26b6e;
+      --chip-good: #3fbf4a; --chip-warn: #e0a052; --chip-danger: #ea8e90;
+      --warn: #e0a052; --warn-soft: rgba(224,160,82,.13);
+    --chip-ink: #0f1720;
+    --chip-b2-ink: #0f1720;       /* dark ink clears 4.5:1 on the dark-mode mid blue */
+  }
+
+  /* colour-blind-friendly: the chance scale's green swaps to a blue nothing
+     else on that scale uses; red–green is the axis most CVD readers lose.
+     Orange and red sit on the same lost axis (ΔE 2.2 under deuteranopia in
+     dark), so the two lower bins move to a lightness gap: yellow and a dark red */
+  /* the dots sit in a ring of --surface-solid, and #e6b800 on the light ring
+     was 1.87:1, #b23a3a on the dark one 2.93:1: under the 3:1 a mark needs.
+     #a88400 (3.52:1) and #bd4444 (3.35:1) keep the lightness gap to the
+     neighbouring band that the choice above rests on. */
+  :root[data-cvd="1"] { --good: #0072b2; --chip-good: #005a8f; --dot-possible: #a88400; --dot-unlikely: #7a1414; }
+  @media (prefers-color-scheme: dark) {
+    :root[data-cvd="1"]:not([data-theme="light"]) { --good: #58a9e8; --chip-good: #6cb4ef; --dot-possible: #f2cc5c; --dot-unlikely: #bd4444; }
+  }
+  :root[data-theme="dark"][data-cvd="1"] { --good: #58a9e8; --chip-good: #6cb4ef; --dot-possible: #f2cc5c; --dot-unlikely: #bd4444; }
+
+  /* text-size steps scale the floating chrome, never the map itself.
+     #listview belongs here too: it is a sibling of #panel inside #app, not a
+     descendant of anything already scaled, so without naming it the whole list
+     — the view a low-vision reader is most likely to prefer over the map —
+     stayed at 13px however large the setting was turned up. */
+  :root[data-font="lg"] #panel, :root[data-font="lg"] #side .scroll,
+  :root[data-font="lg"] #legend, :root[data-font="lg"] .modal .sheet,
+  :root[data-font="lg"] #searchov .ovbox, :root[data-font="lg"] #toast,
+  :root[data-font="lg"] #listview { zoom: 1.15; }
+  :root[data-font="xl"] #panel, :root[data-font="xl"] #side .scroll,
+  :root[data-font="xl"] #legend, :root[data-font="xl"] .modal .sheet,
+  :root[data-font="xl"] #searchov .ovbox, :root[data-font="xl"] #toast,
+  :root[data-font="xl"] #listview { zoom: 1.3; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: .01ms !important; animation-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+
+  * { margin: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page); color: var(--ink);
+    font-size: 14px; -webkit-font-smoothing: antialiased;
+  }
+  button { font: inherit; color: inherit; }
+  #app { display: flex; height: 100%; }
+  /* isolate: the panel now comes before the map in the document (Tab order),
+     and Leaflet's controls share its z-index 1000, so without their own
+     stacking context they would paint over the panel instead of under it */
+  #map { flex: 1; min-width: 0; background: var(--page); isolation: isolate; }
+  .leaflet-container { font: inherit; }
+
+  /* Glass is for the chrome floating over the map (panel, legend, map buttons,
+     toast), never for content: the school sheet and the modals stay solid.
+     72% is as clear as it goes. With the largest cluster directly behind a
+     label, --ink-3 measures 4.69:1 at 72% and 22px; 66% gives 4.51:1, too close
+     to 4.5 to count. The blur does real work: at 16px the same 72% measures
+     4.45:1, because less of the cluster's blue gets spread before it reaches
+     the text. */
+  .glass {
+    background: linear-gradient(to bottom, var(--g-sheen), transparent) no-repeat 0 0 / 100% 70px, var(--surface);
+    -webkit-backdrop-filter: blur(22px) saturate(1.8);
+    backdrop-filter: blur(22px) saturate(1.8);
+    border: 1px solid var(--g-rim); border-radius: 22px;
+    box-shadow: inset 0 1px 0 var(--g-sheen), var(--g-shadow);
+  }
+
+  /* ---------- top-left control panel ---------- */
+  /* Concentric corners: the card's radius is its controls' 10px radius plus
+     the inset between them, the same on all four sides, so the gap around a
+     corner control stays even round the bend. 16px padding + 1px rim + 10px
+     = 27px here; the phone's 12px padding gives the .glass 22px. */
+  #panel { position: absolute; top: 14px; left: 14px; z-index: 1000; width: 316px; padding: 16px;
+           border-radius: 27px;
+           /* a long choices list ran under the legend; the panel scrolls inside
+              instead of growing past it. --panel-reserve is the legend's own
+              measured height plus its offsets, set in liftMapControls(); the
+              150px fallback only ever applies before the first measurement */
+           max-height: calc(100vh - var(--panel-reserve, 150px));
+           max-height: calc(100dvh - var(--panel-reserve, 150px));
+           overflow-y: auto; overscroll-behavior: contain; }
+  #panel:focus { outline: none; }
+  #panel:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  /* on a short desktop the card overflows and the last line was sliced through
+     the glyphs with nothing to say there is more; a sticky fade says it. It is
+     exactly the bottom padding, tall and wide, and its margins take back all
+     the room it occupies: 3px of it used to add to the padding, and on a phone,
+     where the card is a grid, a row gap as well, so the bottom inset was 23px
+     under 13px sides. */
+  #panel::after { content: ''; display: block; position: sticky; bottom: -16px; height: 16px;
+                  margin: 0 -16px -16px; background: linear-gradient(to bottom, transparent, var(--surface));
+                  pointer-events: none; }
+  .brand { display: flex; align-items: center; gap: 9px; }
+  .brand .mark { width: 26px; height: 26px; flex: none; }
+  .brand h1 { font-size: 19px; font-weight: 700; letter-spacing: -.02em; }
+  #tagline { font-size: 12px; color: var(--ink-3); line-height: 1.45; margin: 4px 0 12px; font-variant-numeric: tabular-nums; }
+  .field label { display: block; font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
+                 text-transform: uppercase; color: var(--ink-3); margin-bottom: 5px; }
+  .field + .field { margin-top: 10px; }
+  .field select {
+    width: 100%; padding: 8px 12px; font: inherit; font-size: 13px; color: var(--ink);
+    background-color: var(--surface-solid); border: 1px solid var(--line-strong); border-radius: 999px;
+    cursor: pointer; outline-offset: 2px;
+    /* the menulist drew 36px from the same padding the points field draws 34px
+       from, and side by side in the List view card their bottoms missed by 2px */
+    box-sizing: border-box; height: 34px;
+  }
+  /* min-height reserves the line so the note can appear without moving the
+     points field and the whole choices list below it; `:empty { display: none }`
+     threw that reservation away again, so picking a programme pushed everything
+     down 20px and clearing it pulled it back up */
+  #cat-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; min-height: 14px; }
+  /* the county note only exists while it has something to say */
+  #pts-field { margin-top: 10px; }
+  .ptsrow { display: flex; gap: 6px; align-items: center; }
+  .ptsrow input {
+    flex: 1; min-width: 0; padding: 8px 12px; font: inherit; font-size: 13px; color: var(--ink);
+    background: var(--surface-solid); border: 1px solid var(--line-strong); border-radius: 999px;
+    font-variant-numeric: tabular-nums; outline-offset: 2px;
+  }
+  .ptsrow input.on { border-color: var(--accent); }
+  .ptsrow input.bad { border-color: var(--danger); }
+  #pts-note.bad { color: var(--danger); }
+  .ptsrow button {
+    width: 34px; height: 34px; flex: none; border: 1px solid var(--line-strong); border-radius: 999px;
+    background: var(--surface-solid); color: var(--ink-2); cursor: pointer; font: inherit; font-size: 13px;
+  }
+  /* ---------- settings ---------- */
+  #settings .sheet { max-width: 420px; }
+  #settings .row { margin-top: 14px; }
+  .seg button svg { width: 15px; height: 15px; display: block; }
+  #settings .row .t { font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
+                      text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+  #settings .row .hint { font-size: 11.5px; color: var(--ink-3); line-height: 1.45; margin-top: 6px; }
+  /* max-width and min-width: 0: at Ekstra stor on a 320px phone the one-word
+     «Fargeblindvennlig» could not shrink, ran 31px off the sheet and scrolled it
+     sideways; it now breaks at a syllable inside its button */
+  .seg { display: inline-flex; max-width: 100%; border: 1px solid var(--line-strong); border-radius: 999px; overflow: hidden; }
+  .seg button {
+    border: none; background: none; padding: 7px 13px; font-size: 12.5px; font-weight: 600;
+    color: var(--ink-2); cursor: pointer; min-width: 0; hyphens: auto; -webkit-hyphens: auto;
+  }
+  .seg button + button { border-left: 1px solid var(--line-strong); }
+  .seg button.on { background: var(--accent); color: var(--on-accent); }
+  #settings .note { font-size: 11.5px; color: var(--ink-3); line-height: 1.5; margin-top: 16px;
+                    border-top: 1px solid var(--line); padding-top: 11px; }
+  /* ---------- grade calculator ---------- */
+  #calc-open svg { width: 16px; height: 16px; }
+  #calc .sheet { max-width: 480px; }
+  #calc .lede { font-size: 12.5px; color: var(--ink-2); line-height: 1.5; margin: 2px 0 12px; }
+  #calc .subj { display: flex; align-items: center; justify-content: space-between; gap: 8px;
+                padding: 4.5px 0; border-bottom: 1px solid var(--line); }
+  #calc .subj .n { font-size: 12.5px; color: var(--ink); min-width: 0; }
+  #calc .subj.exam .n { font-style: italic; }
+  #calc .grades { display: flex; gap: 3px; flex: none; }
+  #calc .grades button {
+    width: 26px; height: 26px; border: 1px solid var(--line-strong); border-radius: 999px;
+    background: none; color: var(--ink-2); font-size: 12px; font-weight: 600; cursor: pointer;
+    display: grid; place-items: center; padding: 0;
+  }
+  #calc .grades button.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  #calc .grades button.rm { border: none; color: var(--ink-3); font-weight: 400; }
+  /* invisible, not absent: the slot is reserved so picking a grade never
+     shoves the whole row leftwards when the ✕ appears */
+  #calc .grades button.rm.off { visibility: hidden; }
+  #calc .sum { display: flex; align-items: baseline; gap: 14px; margin: 14px 0 4px; }
+  #calc .sum .v { font-size: 22px; font-weight: 700; letter-spacing: -.02em;
+                  font-variant-numeric: tabular-nums; }
+  #calc .sum .l { font-size: 11px; color: var(--ink-3); }
+  #calc .note { font-size: 11px; color: var(--ink-3); line-height: 1.5; margin-top: 12px;
+                border-top: 1px solid var(--line); padding-top: 10px; }
+  @media (max-width: 560px) {
+    #calc .subj .n { font-size: 12px; }
+    #calc .grades button { width: 30px; height: 30px; }
+  }
+  /* Six grades, a remove slot and the gaps come to 236px, so inside the 270px
+     sheet body of a 375px phone the subject name was left 34px — every name ran
+     under the buttons, "Samfunnsfag" by 31px and "Matematikk" by 24px. There is
+     no width to win back at that size, so the row stacks instead: the name on
+     its own line, the grades under it. Above ~440px the name has room again. */
+  @media (max-width: 460px) {
+    #calc .subj { flex-wrap: wrap; row-gap: 3px; padding: 7px 0; }
+    #calc .subj .n { flex: 1 0 100%; }
+    /* the seven 30px slots need 228px, and at Ekstra stor on a 320px phone the
+       sheet has 165: the ✕ landed outside it, where a tap closed the sheet */
+    #calc .grades { flex: 0 1 auto; min-width: 0; }
+    #calc .grades button { flex: 0 1 30px; min-width: 0; }
+  }
+  /* ---------- search overlay (design C trial) ---------- */
+  #searchov { align-items: flex-start; }
+  #searchov .x { top: 18px; right: 18px; }
+  #searchov .ovbox {
+    position: relative; margin-top: min(18vh, 150px); width: min(560px, 92vw);
+    background: var(--surface-solid); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: var(--shadow); padding: 10px;
+    /* the other sheets rise out of their scrim and this one used to pop in
+       over a fading one; it takes the same 10px path in and out now */
+    animation: rise .22s cubic-bezier(.2,.8,.3,1);
+  }
+  /* 92vw is multiplied by the text-size zoom as well: at Ekstra stor on a 375px
+     phone the box ran to x 466 and took the ✕ off the screen with it */
+  :root[data-font="lg"] #searchov .ovbox { width: min(560px, 92vw / 1.15); }
+  :root[data-font="xl"] #searchov .ovbox { width: min(560px, 92vw / 1.3); }
+  #ov-q {
+    width: 100%; padding: 12px 52px 12px 18px; font: inherit; font-size: 16px; color: var(--ink);
+    background: var(--page); border: 1px solid var(--line-strong); border-radius: 999px;
+    outline: none;
+  }
+  /* a 1px border change is not a focus indicator; match the rest of the app */
+  #ov-q:focus { border-color: var(--accent); }
+  #ov-q:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  /* the UA's grey placeholder was 4.26:1 on the light field, 4.10:1 on the dark */
+  #ov-q::placeholder { color: var(--ink-3); opacity: 1; }
+  /* A fixed 320px never shrank with the screen: on a phone held sideways the box
+     ran 105px below it, nothing scrolled, and ArrowDown moved the choice out of
+     sight. The list takes what the viewport leaves: the box's top margin, the
+     field above it and the modal's padding (112px), all inside the text-size
+     zoom, so the budget is divided by it as the sheets' is. */
+  #ov-list { margin-top: 6px; max-height: min(320px, calc(100dvh - min(18vh, 150px) - 112px)); overflow-y: auto; }
+  :root[data-font="lg"] #ov-list { max-height: min(320px, calc((100dvh - 36px) / 1.15 - min(18vh, 150px) - 76px)); }
+  :root[data-font="xl"] #ov-list { max-height: min(320px, calc((100dvh - 36px) / 1.3 - min(18vh, 150px) - 76px)); }
+  @media (max-height: 480px) { #searchov .ovbox { margin-top: 0; } }
+  #ov-list .opt {
+    display: flex; justify-content: space-between; gap: 10px; align-items: baseline;
+    padding: 10px 12px; border-radius: 8px; cursor: pointer; font-size: 14px;
+  }
+  #ov-list .opt .fy { font-size: 12px; color: var(--ink-3); flex: none; }
+  #ov-list .opt.county { color: var(--accent-ink); font-weight: 600; }
+  #ov-list .opt.act { background: var(--accent-soft); }
+  /* .act is the result Enter will open — a state, so it needs 3:1 of its own
+     rather than a 1.13:1 tint. It also has to differ from :hover: they shared
+     one declaration, so with the mouse resting on one row and the keyboard on
+     another, both looked chosen and Enter took the one you were not pointing at. */
+  #ov-list .opt { border-left: 3px solid transparent; }
+  #ov-list .opt.act { border-left-color: var(--accent); font-weight: 600; }
+  #ov-list .none { padding: 10px 12px; font-size: 13px; color: var(--ink-3); }
+  /* ---------- list view (same filters, table instead of map) ---------- */
+  #view-toggle { display: flex; margin: 0 0 12px; }
+  #view-toggle button { flex: 1; text-align: center; }
+  #listview {
+    flex: 1; min-width: 0; overflow-y: auto; background: var(--page);
+  }
+  body.view-list #map, body.view-list #legend { display: none; }
+  body.view-list .leaflet-bottom { display: none; }
+  #listview .card {
+    background: var(--surface-solid); border: 1px solid var(--line); border-radius: 16px;
+    /* 16px sides, the control card's own: the two share one column, so the
+       table's edge now lines up with the controls above it */
+    padding: 16px 16px 12px;
+  }
+  /* only the table scrolls sideways on a phone — header and footer stay put */
+  #listview .tblwrap { overflow-x: auto; }
+  /* space-between rather than an auto margin: beside the title the count sits
+     hard right, and alone on a second line (a phone) it starts flush left
+     instead of leaving 140px empty before it */
+  #listview .lhead { display: flex; align-items: center; justify-content: space-between;
+                     gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  #listview .lhead .t { font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
+  #listview .lhead .n { font-size: 11.5px; color: var(--ink-3); }
+  #listview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  #listview th {
+    text-align: left; padding: 0; border-bottom: 1px solid var(--line);
+    font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--ink-3); white-space: nowrap; user-select: none;
+  }
+  #listview th button {
+    background: none; border: none; padding: 8px 10px; width: 100%; cursor: pointer;
+    font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit;
+    text-align: inherit;
+  }
+  #listview th.num button { text-align: right; }
+  #listview th.num, #listview td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  #listview th.on { color: var(--accent); }
+  /* the slot is always reserved, so sorting never re-flows the columns */
+  #listview th .ar { margin-left: 4px; opacity: 0; }
+  #listview th .ar.on { opacity: 1; }
+  #listview td { padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  #listview tbody tr { cursor: pointer; }
+  #listview .sc { font-weight: 600; }
+  #listview .sc a { color: inherit; text-decoration: none; }
+  #listview .sc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  #listview .fy { color: var(--ink-2); }
+  /* beside an open school the auto layout squeezed the county column instead,
+     and 22 «Møre og Romsdal» rows went to two lines: the row just clicked slid
+     up to 45px from under the pointer. The wrapping belongs to the long names. */
+  body.lv-split #listview .fy, body.lv-wide #listview .fy { white-space: nowrap; }
+  #listview .chip {
+    display: inline-block; min-width: 44px; text-align: center; padding: 2px 9px;
+    border-radius: 999px; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums;
+  }
+  #listview .chip.b0, #listview .chip.b1 { color: var(--chip-ink); }
+  #listview .chip.b2 { color: var(--chip-b2-ink); }
+  #listview .chip.open { border: 1px dashed var(--accent); color: var(--ink-2);
+                         font-weight: 400; font-size: 12px; background: none; }
+  /* filled with no figure to print: the map's solid zero dot, in words */
+  #listview .chip.zero { background: color-mix(in srgb, var(--accent) 35%, var(--surface-solid));
+                         border: 1px solid var(--accent); color: var(--ink-2);
+                         font-weight: 400; font-size: 12px; }
+  /* a rising threshold is not good news for the reader: no valence colours,
+     the sign and magnitude carry the message */
+  #listview .up { color: var(--ink); }
+  #listview .dn { color: var(--ink-2); }
+  #listview .none-v { color: var(--ink-3); }
+  #listview .k { display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+                 margin-right: 6px; vertical-align: 0; }
+  /* "0 av 13 sannsynlig" is one phrase, and it is the answer the reader came
+     for. Let it claim its width; the school name is the column that can afford
+     to wrap. Left to itself the table squeezed this one and broke almost every
+     row onto two lines between 761px and 1100px. Not on a narrow phone, where
+     the table already scrolls sideways and every unwrapped pixel is one more
+     the reader has to drag to reach. Only claim the width where the width
+     exists: unwrapped, the table cannot go under 553px (Norwegian, every
+     county, points set), and the card and page take 54px around it, plus 17px
+     for a scrollbar that takes room. The text sizes zoom all of that. */
+  @media (min-width: 625px) { #listview .ch-cell { white-space: nowrap; } }
+  @media (max-width: 715px) { :root[data-font="lg"] #listview .ch-cell { white-space: normal; } }
+  @media (max-width: 806px) { :root[data-font="xl"] #listview .ch-cell { white-space: normal; } }
+  #listview .foot { padding: 10px 2px 0; font-size: 11.5px; color: var(--ink-3); line-height: 1.5; }
+  /* On a 375px phone the five columns want 471px inside a 313px window, and the
+     two that fell off the right were Endring and Sjanse — the chance figure
+     being the whole reason to look. The county is the one column a reader can
+     spare: they have usually just filtered by it, and it is the first line of
+     the school's own panel. Dropping it here is a CSS-only cut, so a rotation
+     brings it straight back with no re-render. */
+  @media (max-width: 560px) {
+    #listview .col-fylke, #listview td.fy { display: none; }
+    /* every millimetre bought back here is one the reader does not have to drag */
+    #listview td, #listview th button { padding-left: 6px; padding-right: 6px; }
+    #listview .chip { min-width: 38px; padding: 2px 6px; }
+    /* the swipe to Sjanse hid every school name; the first column stays put */
+    #listview th:first-child, #listview td:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface-solid); }
+  }
+  /* Stor and Ekstra stor zoom the table past the card above 560px as well: the
+     county goes there too, until the table fits with it (485px unzoomed, plus
+     the card, page and a scrollbar's 71px). */
+  @media (min-width: 561px) and (max-width: 636px) {
+    :root[data-font="lg"] #listview .col-fylke, :root[data-font="lg"] #listview td.fy { display: none; }
+  }
+  @media (min-width: 561px) and (max-width: 717px) {
+    :root[data-font="xl"] #listview .col-fylke, :root[data-font="xl"] #listview td.fy { display: none; }
+  }
+  /* and under 600px at Ekstra stor it was still 25px too wide: the phone's
+     tighter cells */
+  @media (min-width: 561px) and (max-width: 599px) {
+    :root[data-font="xl"] #listview td, :root[data-font="xl"] #listview th button { padding-left: 6px; padding-right: 6px; }
+    :root[data-font="xl"] #listview .chip { min-width: 38px; padding: 2px 6px; }
+  }
+  /* With points entered, four columns still wanted 53px more than a 375px
+     phone has (38px at 390, 14px at 414), so Sjanse sat half behind the edge.
+     Endring goes next: it is the one figure the school's own panel repeats
+     («endring fra»). A reader who sorted by it keeps it. */
+  @media (max-width: 429px) {
+    #listview table.has-chance:not(.by-delta) .col-delta,
+    #listview table.has-chance:not(.by-delta) td.dl { display: none; }
+  }
+  /* What is left can still overflow — a long school name, a wide chance phrase —
+     and an overlay scrollbar is invisible at rest, so nothing said the table
+     moved sideways at all. These shadows appear only on the side that has more
+     to show and fade out as you reach each end: the two `local` layers scroll
+     with the content and cover the fixed ones when there is nothing beyond. */
+  #listview .tblwrap {
+    background:
+      linear-gradient(to right, var(--surface-solid) 40%, transparent) left center / 28px 100% no-repeat local,
+      linear-gradient(to left,  var(--surface-solid) 40%, transparent) right center / 28px 100% no-repeat local,
+      linear-gradient(to right, var(--shade), transparent) left center / 14px 100% no-repeat scroll,
+      linear-gradient(to left,  var(--shade), transparent) right center / 14px 100% no-repeat scroll;
+  }
+  /* ---------- the List view's three layouts ----------
+     listLayout() puts one class on body by the window's width:
+     lv-wide   three columns. The control panel is docked left as on the map,
+               the table fills the middle, and an open school takes the right;
+               with none open the table spreads over that column too.
+     lv-split  two columns. The controls, the wishes and the table share one
+               scrolling column, and an open school stands beside it.
+     lv-thin   one column, stacked the same way; an open school covers it.
+     lv-stack  marks both of the last two.
+     Beside a school the table's column is never under 668px (768 at Stor, 868
+     at Ekstra stor): the table's minimum (591px, Norwegian, every county,
+     points set: the county and the chance phrase unwrapped, the longest
+     single word of a school name) plus the card, the page and a scrollbar's
+     69px, so every column shows and nothing scrolls sideways; the long
+     school names take a second line. The sheet gives first: it is min(480px,
+     the window minus that column), 400px at the narrowest. So two columns
+     start at 1068px (the column plus a 400px sheet) — it stood at 1240 with
+     a 760px column and a fixed 480px sheet, and a 1237px window then showed
+     one school across the whole of it — and three where the docked panel's
+     346px fits as well, 1582px; LIST_LAYOUT carries the numbers per text
+     size.
+     While a school covers the thin list, sideTrap() takes the list and the
+     controls out of Tab rather than out of the layout, so closing it leaves the
+     list scrolled where it was. */
+  body.lv-wide #listview { padding: 14px 16px 24px 346px; }
+  body.lv-wide #listview .card { max-width: none; }
+  /* the legend the panel's reserve is measured from is hidden here */
+  body.lv-wide #panel { max-height: calc(100vh - 28px); max-height: calc(100dvh - 28px); }
+  :root[data-font="lg"] body.lv-wide #panel { max-height: calc((100dvh - 14px) / 1.15 - 14px); }
+  :root[data-font="xl"] body.lv-wide #panel { max-height: calc((100dvh - 14px) / 1.3 - 14px); }
+  body.lv-stack #app { flex-direction: column; overflow-y: auto; position: relative; }
+  body.lv-stack #panel { flex: none; }    /* the giant table must not crush it */
+  /* no width cap: held to 1060px and centred, the list with no school open left
+     190px empty either side at 1440px; the controls and the table now fill the
+     row, as the wide layout's table does */
+  body.lv-stack #panel { position: static; order: -1; margin: 10px auto; width: calc(100% - 20px); max-height: none; }
+  body.lv-stack #listview { padding: 0 10px 24px; overflow: visible; }
+  body.lv-stack #listview .card { margin-inline: auto; }
+  body.lv-stack #side { position: fixed; top: 0; right: 0; bottom: 0; z-index: 1100; }
+  body.lv-split { --split-side: min(480px, 100vw - 668px); }
+  :root[data-font="lg"] body.lv-split { --split-side: min(480px, 100vw - 768px); }
+  :root[data-font="xl"] body.lv-split { --split-side: min(480px, 100vw - 868px); }
+  body.lv-split #app { transition: margin-right .22s cubic-bezier(.4,0,.2,1); }
+  body.lv-split.side-open #app { margin-right: var(--split-side); }
+  body.lv-split #side.open { width: var(--split-side); }
+  body.lv-split #side > .scroll { min-width: var(--split-side); }
+  :root[data-font="lg"] body.lv-split #side > .scroll { min-width: calc(var(--split-side) / 1.15); }
+  :root[data-font="xl"] body.lv-split #side > .scroll { min-width: calc(var(--split-side) / 1.3); }
+  body.lv-thin #side.open { width: 100vw; }
+  body.lv-thin #side > .scroll { min-width: 100vw; }
+  :root[data-font="lg"] body.lv-thin #side > .scroll { min-width: calc(100vw / 1.15); }
+  :root[data-font="xl"] body.lv-thin #side > .scroll { min-width: calc(100vw / 1.3); }
+  /* on narrow screens the legend covers the bottom-right map controls;
+     --ctrl-lift (set from the legend's measured height) moves them above it */
+  .leaflet-bottom.leaflet-right { margin-bottom: var(--ctrl-lift, 0px); }
+  /* ---------- locate control + toast ---------- */
+  .leaflet-bar button.locate {
+    width: 30px; height: 30px; display: grid; place-items: center;
+    border: none; background: transparent; color: var(--ink-2); cursor: pointer;
+    border-radius: 50%;
+  }
+  .leaflet-bar button.locate.on { color: var(--accent); }
+  .leaflet-bar button.locate svg { width: 16px; height: 16px; }
+  #toast {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 3000;
+    background: var(--surface); color: var(--ink); border: 1px solid var(--g-rim);
+    -webkit-backdrop-filter: blur(22px) saturate(1.8); backdrop-filter: blur(22px) saturate(1.8);
+    border-radius: 16px; box-shadow: inset 0 1px 0 var(--g-sheen), var(--g-shadow); padding: 10px 14px; font-size: 13px;
+    /* max-content: pinned at left: 50%, the box shrank to half the screen, and
+       the steps for allowing location ran five centred lines 206px wide */
+    width: max-content; max-width: min(92vw, 420px); text-align: start; cursor: default;
+  }
+  /* on a phone it lines up with the panel and legend on the left and stops
+     short of the zoom and locate column (42px + 10px margin + 10px gap), which
+     a toast twelve seconds long would otherwise cover */
+  @media (max-width: 760px) {
+    #toast { bottom: calc(20px + var(--ctrl-lift, 0px)); left: 10px; right: 62px; transform: none; width: auto; max-width: none; }
+  }
+  #pts-note { font-size: 11px; color: var(--ink-3); margin-top: 6px; line-height: 1.4; }
+  /* Chance bands are semantic colours, deliberately not the blue threshold
+     ramp: a dot's colour answers a different question once points are set. */
+  .b-likely { --b: var(--good); --bt: var(--chip-good); }
+  .b-possible { --b: var(--dot-possible); --bt: var(--chip-warn); }
+  .b-unlikely { --b: var(--dot-unlikely); --bt: var(--chip-danger); }
+  .chance {
+    margin: 10px 18px 0; padding: 9px 12px 9px 11px; border-radius: 9px;
+    background: var(--accent-soft); border-left: 2px solid var(--accent);
+    font-size: 11.5px; line-height: 1.45; color: var(--ink-2);
+  }
+  .chance .h { font-size: 13px; color: var(--ink); font-weight: 600; margin-bottom: 3px; }
+  .chance .bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; margin: 6px 0; background: var(--line); }
+  .chance .bar span { height: 100%; background: var(--b); }
+  .chance .adj { margin-top: 6px; color: var(--ink-3); }
+  /* the chance block and the legend show their essentials and fold the rest
+     behind a native <details>: keyboard-reachable, no state to invent, and the
+     open flag survives a re-render (renderChance/renderLegend read it back) */
+  .more { margin-top: 5px; }
+  .more > summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 4px;
+                    /* 11px text needs 4.5:1; the accent was 4.0:1 on the chance box's tint */
+                    color: var(--accent-ink); font-weight: 600; font-size: 11px; user-select: none; }
+  .more > summary::-webkit-details-marker { display: none; }
+  .more > summary::before { content: ''; width: 5px; height: 5px; border-right: 1.5px solid currentColor;
+                            border-bottom: 1.5px solid currentColor; transform: rotate(-45deg); margin: 0 2px 1px 1px; }
+  .more[open] > summary::before { transform: rotate(45deg); margin-bottom: 3px; }
+  .more > summary .lt { display: none; }
+  .more[open] > summary .lt { display: inline; }
+  .more[open] > summary .mt { display: none; }
+  .more > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+  .more > *:not(summary) { margin-top: 5px; }
+  .chance.prompt { background: transparent; border-left-color: var(--line); color: var(--ink-3); }
+  /* my choices: a pick toggle on every programme row, a list in the panel */
+  .prow .pick {
+    flex: none; width: 22px; height: 22px; border-radius: 999px; display: grid; place-items: center;
+    border: 1px solid var(--line); color: var(--ink-3); font-size: 14px; line-height: 1;
+    background: var(--surface-solid); cursor: pointer; padding: 0; font-family: inherit;
+  }
+  /* a 1px border change is not a focus indicator; match the rest of the app */
+  .prow .pick:focus-visible { border-color: var(--accent); color: var(--accent);
+    outline: 2px solid var(--accent); outline-offset: 2px; }
+  .prow .pick.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  #choices { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 9px; }
+  #choices .h { font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+                color: var(--ink-3); display: flex; justify-content: space-between; align-items: baseline; }
+  #choices .h button { border: none; background: none; color: var(--ink-3); font: inherit; font-size: 10.5px;
+                       cursor: pointer; text-decoration: underline dotted; padding: 0; }
+  /* armed: the next press really does discard the list, so say so in the colour
+     the app uses for everything else that cannot be undone */
+  #choices .h button.arm { color: var(--danger); font-weight: 700; text-decoration: underline; }
+  /* fifteen choices used to push the summary, the legend and the controls off
+     the bottom of the screen with nothing to scroll */
+  #choices .row { display: flex; align-items: center; gap: 7px; padding: 5px 0; border-bottom: 1px solid var(--line); }
+  #choices .row:last-of-type { border-bottom: none; }
+  /* A wish is one line where the school and its programme fit on it whole, and
+     the programme drops under the school where they do not. Held to one line
+     at any cost, 2,161 of the 2,343 possible wishes lost words in the 316px
+     panel, «videregående skole» first. A part too long for a line of its own
+     wraps rather than ending in «…»: cut there, Lier's three Elektro wishes
+     lost the qualifier and the level that tell them apart. */
+  #choices .row .who { flex: 1; min-width: 0; text-align: left; border: none; background: none; font: inherit;
+                       color: var(--ink); cursor: pointer; padding: 0; line-height: 1.3;
+                       display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 6px; }
+  #choices .row .who:focus-visible .sc { color: var(--accent); }
+  #choices .row .sc, #choices .row .pr { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+  #choices .row .sc { font-size: 12px; font-weight: 600; }
+  #choices .row .pr { font-size: 11px; color: var(--ink-2); }
+  #choices .row .rm { flex: none; width: 22px; height: 22px; border: none; border-radius: 999px; background: none;
+                      color: var(--ink-3); cursor: pointer; font-size: 13px; position: relative; }
+  /* invisible hit-area extension: a fingertip needs ~40px, the glyphs stay small */
+  #choices .row .rm::after, #choices .h button::after,
+  /* a 44px touch target on a 28px button, but -9px against a 6px gap reaches
+     into the neighbour, and later siblings paint on top: the right edge of
+     help used to fire settings. Pay the inset sideways only as far as the gap
+     allows, and take the rest vertically, where nothing is adjacent. */
+  .brand .util .ico::after { content: ''; position: absolute; inset: -9px -3px; }
+  .modal .x::after { content: ''; position: absolute; inset: -9px; }
+  #choices .h button, .ico, .modal .x { position: relative; }
+  #choices .sum { font-size: 11.5px; color: var(--ink-2); margin-top: 7px; line-height: 1.45; }
+  #choices .sum b { color: var(--ink); }
+  #choices .sum .nudge { display: block; margin-top: 3px; color: var(--warn); }
+  /* the counts and the combined figure cover only the choices that have a
+     forecast; say so rather than let them read as covering the whole list */
+  #choices .sum .part { display: block; margin-top: 3px; color: var(--ink-3); }
+  #choices .vnote { font-size: 11.5px; color: var(--warn); margin-top: 7px; line-height: 1.45; }
+  /* the same refusal, shown where the tap happened: on a phone the choices
+     box lives in the hidden control panel while the school sheet is open */
+  #pick-note {
+    position: fixed; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    z-index: 2400; padding: 11px 14px; border-radius: 11px; font-size: 13.5px; line-height: 1.45;
+    background: var(--surface-solid); color: var(--warn); border: 1px solid var(--line);
+    box-shadow: var(--shadow); opacity: 0; transform: translateY(8px); pointer-events: none;
+    transition: opacity .18s cubic-bezier(.2,.8,.3,1), transform .18s cubic-bezier(.2,.8,.3,1);
+    max-width: 480px; margin: 0 auto;
+  }
+  #pick-note.show { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { #pick-note { transition: none; transform: none; } }
+  #s-list .oldnote, #s-list .lvnote { display: block; width: 100%; border: none; background: none; cursor: pointer;
+                     text-align: left; padding: 9px 14px 11px; font: inherit; font-size: 11.5px;
+                     color: var(--ink-3); text-decoration: underline; text-underline-offset: 2px; }
+  #choices .bar { display: flex; height: 5px; border-radius: 3px; overflow: hidden; margin: 6px 0 2px; background: var(--line); }
+  #choices .bar span { height: 100%; background: var(--b); }
+  .ch {
+    font-size: 10.5px; font-weight: 650; letter-spacing: .01em; padding: 2px 6px; border-radius: 999px;
+    flex: none; cursor: help; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--bt, var(--b));
+    /* opaque, not a tint: in the choices panel the chip sits on frosted glass
+       with the map showing through, so a translucent background made the text
+       contrast depend on whatever the reader had scrolled to */
+    background: color-mix(in srgb, var(--b) 14%, var(--surface-solid));
+    border: 1px solid color-mix(in srgb, var(--b) 40%, transparent);
+  }
+
+  /* ---------- intro / help ---------- */
+  .modal {
+    position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center;
+    padding: 18px; background: rgba(8,11,15,.58); backdrop-filter: blur(3px);
+    animation: fade .18s ease-out;
+  }
+  @keyframes fade { from { opacity: 0 } }
+  .modal .sheet {
+    overscroll-behavior: contain;
+    /* stable gutter: content growing past the fold (the calculator's Tøm
+       button) must not summon a scrollbar that shoves every row sideways */
+    scrollbar-gutter: stable;
+    position: relative; width: min(560px, 100%); max-height: calc(100dvh - 36px);
+    overflow: auto; background: var(--surface-solid); border: 1px solid var(--line);
+    border-radius: 18px; box-shadow: var(--shadow); padding: 26px 26px 22px;
+    animation: rise .22s cubic-bezier(.2,.8,.3,1);
+  }
+  /* the sheet sits inside the text-size zoom, which multiplies 100dvh too: at
+     Ekstra stor on a 375×812 phone help, the calculator and the contact form
+     stood 1009px tall, centred, with the ✕ at y −79 and no way to scroll to it
+     or to the Send button. Divide by the step's zoom, as #panel's reserve does. */
+  :root[data-font="lg"] .modal .sheet { max-height: calc((100dvh - 36px) / 1.15); }
+  :root[data-font="xl"] .modal .sheet { max-height: calc((100dvh - 36px) / 1.3); }
+  @keyframes rise { from { transform: translateY(10px); opacity: 0 } }
+  /* A sheet that rises in and then vanishes teaches a path and immediately
+     breaks it, so the exit runs the enter backwards along the same 10px.
+     It is quicker than the entrance on purpose: arriving is the part worth
+     watching, leaving is the part worth getting out of the way. The sheet
+     stops taking clicks the moment it starts leaving. */
+  .modal.closing { animation: unfade .16s ease-out forwards; pointer-events: none; }
+  .modal.closing .sheet, #searchov.closing .ovbox { animation: sink .16s cubic-bezier(.2,.8,.3,1) forwards; }
+  @keyframes unfade { to { opacity: 0 } }
+  /* the sheet only moves: its opacity is the backdrop's, and animating both
+     would multiply them, emptying the sheet a hundred milliseconds before the
+     scrim it sits on */
+  @keyframes sink { to { transform: translateY(10px) } }
+  .modal .x {
+    position: absolute; top: 14px; right: 14px; width: 30px; height: 30px;
+    border: none; border-radius: 999px; background: var(--accent-soft);
+    color: var(--ink-2); font-size: 15px; cursor: pointer; line-height: 1;
+  }
+  .modal .head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding-right: 34px; }
+  .modal .head svg { width: 28px; height: 28px; flex: none; }
+  .modal h2 { font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+  #intro .lede { font-size: 14px; line-height: 1.5; color: var(--ink-2); margin-bottom: 18px; }
+  #intro .step { display: flex; gap: 12px; margin-bottom: 15px; }
+  #intro .n {
+    flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent);
+    color: var(--on-accent); font-size: 12px; font-weight: 700; display: grid; place-items: center;
+    margin-top: 1px;
+  }
+  #intro .step h3 { font-size: 13.5px; font-weight: 650; margin-bottom: 3px; }
+  #intro .step p { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  #intro .calc {
+    display: flex; align-items: baseline; gap: 8px; margin: 9px 0 2px; padding: 9px 12px;
+    background: var(--accent-soft); border-radius: 10px; font-size: 14px; color: var(--ink);
+  }
+  #intro .calc b { font-size: 17px; font-variant-numeric: tabular-nums; }
+  #intro .keyrow { display: flex; gap: 16px; margin: 10px 0 2px; flex-wrap: wrap; }
+  #intro .key { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--ink-3); }
+  #intro .key .swatch { flex: none; }
+  #intro .caveat a { color: var(--accent); }
+  #intro .caveat {
+    font-size: 11.5px; line-height: 1.5; color: var(--ink-3);
+    border-top: 1px solid var(--line); padding-top: 12px; margin-top: 16px;
+  }
+  #intro .colophon { font-size: 11.5px; line-height: 1.5; color: var(--ink-3); margin-top: 9px; }
+  #intro .colophon a { color: var(--accent); }
+  #intro .colophon .who { display: block; margin-top: 2px; }
+  .modal .cta {
+    display: block; width: 100%; margin-top: 14px; padding: 11px; border: none;
+    border-radius: 999px; background: var(--accent); color: var(--on-accent); font: inherit;
+    font-size: 14px; font-weight: 650; cursor: pointer;
+  }
+  .modal .cta.ghost {
+    margin-top: 8px; background: none; color: var(--ink-2);
+    border: 1px solid var(--line); font-weight: 600;
+  }
+
+  /* ---------- utility buttons (inside the control panel) ---------- */
+  .ico {
+    display: grid; place-items: center; padding: 0;
+    border: 1px solid var(--line-strong); border-radius: 999px; background: none;
+    color: var(--ink-2); cursor: pointer;
+  }
+  .ico svg { width: 15px; height: 15px; }
+  /* the close and remove cross: the icon set's own stroke, not a ✕ glyph whose
+     ink changed with the font */
+  .xi { display: block; width: 1em; height: 1em; margin: auto; fill: none;
+        stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+  .ptsrow button .xi { width: 16px; height: 16px; }
+  /* help and settings ride the title's baseline, hard right */
+  .brand .util { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+  /* 31px: the view toggle's height, so the card's utility buttons are one size */
+  .brand .util .ico { width: 31px; height: 31px; }
+  /* the view toggle and search: two separate controls, one row, one height */
+  .viewrow { display: flex; align-items: stretch; gap: 6px; margin: 0 0 12px; }
+  .viewrow #view-toggle { flex: 1; margin: 0; }
+  .viewrow .ico { flex: none; width: 34px; }
+  /* the folded phone panel's one line for fylke and utdanningsprogram: drawn
+     like the selects it stands in for, and shown only while folded */
+  #panel-sum {
+    display: none; position: relative; align-items: center; gap: 6px; width: 100%; min-height: 40px;
+    padding: 4px 8px 4px 10px; font: inherit; font-size: 12.5px; line-height: 1.2; color: var(--ink);
+    text-align: left; background: var(--surface-solid); border: 1px solid var(--line-strong);
+    border-radius: 999px; cursor: pointer; outline-offset: 2px;
+  }
+  #panel-sum-t { flex: 1 1 auto; min-width: 0; }
+  #panel-sum-t .ln { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #panel-sum-t .ln + .ln { font-size: 11px; color: var(--ink-3); }
+  #panel-sum svg { flex: none; width: 15px; height: 15px; color: var(--ink-2); }
+  /* read aloud, not drawn */
+  .vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0;
+        overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  /* First visit: the help sheet used to open itself over a map nobody had seen
+     yet, which reads as something to get rid of rather than something to read.
+     The button asks for attention instead. It has to still be asking whenever
+     the reader happens to look up: a first pass ran three pulses and stopped,
+     which on a phone was over before the map had finished painting, leaving a
+     faint tint on a 26px icon that nobody would call a glow. So the state is
+     carried by the fill — solid accent against its outlined neighbour, legible
+     at any size — and the pulse merely draws the eye to it, on a slow loop that
+     lasts as long as the hint does. It ends the moment the sheet is opened, and
+     never returns after three visits. ::after is the touch target already. */
+  .ico.hint {
+    color: var(--on-accent); background: var(--accent); border-color: var(--accent);
+  }
+  .ico.hint::before {
+    content: ''; position: absolute; inset: -3px; border-radius: 999px;
+    border: 2px solid var(--accent); pointer-events: none; opacity: 0;
+    animation: helphint 3.2s ease-out infinite;
+  }
+  @keyframes helphint {
+    0%   { transform: scale(.82); opacity: 0; }
+    15%  { opacity: .7; }
+    60%  { transform: scale(1.6); opacity: 0; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+  /* a reader who asked for stillness gets a steady ring instead of a beating one */
+  @media (prefers-reduced-motion: reduce) {
+    .ico.hint::before { animation: none; opacity: .5; transform: none; }
+  }
+  /* ---------- feedback form ---------- */
+  #contact .sheet { max-width: 520px; }
+  #contact label { display: block; font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
+                   text-transform: uppercase; color: var(--ink-3); margin: 12px 0 5px; }
+  #contact select, #contact input, #contact textarea {
+    width: 100%; padding: 9px 14px; font: inherit; font-size: 13.5px; color: var(--ink);
+    background-color: var(--page); border: 1px solid var(--line-strong); border-radius: 999px;
+    outline-offset: 2px;
+  }
+  /* The arrow is ours, not the browser's: the native one sits 6px from the
+     edge whatever the padding, which a pill's rounded end makes look cramped.
+     This one sits at the text's own inset, mirrored; the right padding keeps
+     a long value off it. Colour per theme in --chev (--ink-2). */
+  #panel select, .chart-head select, #contact select {
+    appearance: none; -webkit-appearance: none;
+    background-image: var(--chev); background-repeat: no-repeat; background-size: 12px 12px;
+    background-position: right 12px center; padding-right: 30px;
+  }
+  .chart-head select { background-position: right 10px center; }   /* its padding-right is set with its padding, below */
+  #contact select { background-position: right 14px center; padding-right: 32px; }
+  /* a textarea cannot be a pill; it takes the card's corner */
+  #contact textarea { min-height: 108px; resize: vertical; line-height: 1.45; border-radius: 16px; }
+  #contact .hint { font-size: 11.5px; color: var(--ink-3); margin: 0 0 6px; line-height: 1.45; }
+  /* the bug report says what it carries, in the open; the list is long, so it folds */
+  #contact .ctx { font-size: 11.5px; color: var(--ink-3); margin: 0 0 12px; line-height: 1.45; }
+  #contact .ctx summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+  #contact .ctx ul { margin: 6px 0 0; padding-left: 16px; }
+  #contact .ctx li { overflow-wrap: anywhere; }
+  #contact .ctx b { color: var(--ink-2); font-weight: 600; }
+  #contact .privacy {
+    font-size: 11px; line-height: 1.5; color: var(--ink-3);
+    border-top: 1px solid var(--line); padding-top: 11px; margin-top: 18px;
+  }
+  #contact .err {
+    margin-top: 12px; padding: 9px 11px; border-radius: 9px; font-size: 12.5px;
+    background: rgba(200,40,40,.12); color: var(--danger);
+  }
+  /* was scoped to #contact, so the calculator's own primary button — the
+     one every reader meets disabled, before a single grade is entered —
+     rendered at full strength with a pointer cursor and a hover brighten */
+  .modal .cta[disabled] { opacity: .55; cursor: not-allowed; }
+  #contact .cta[disabled] { cursor: progress; }
+  /* honeypot: off-screen rather than display:none, which some bots skip */
+  #contact .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  #contact .done { text-align: center; padding: 14px 4px 4px; }
+  #contact .done svg { width: 46px; height: 46px; margin-bottom: 12px; }
+  #contact .done .big { font-size: 16px; font-weight: 650; color: var(--ink); margin-bottom: 4px; }
+  #contact .done p { font-size: 13px; color: var(--ink-2); }
+  #contact .done .cta { max-width: 220px; margin: 18px auto 0; text-align: center;
+                        text-decoration: none; box-sizing: border-box; }
+
+  /* ---------- focus ----------
+     One ring for every control: 2px of accent, 2px off the edge. Most controls
+     had the browser's own 1px ring while the panel, the rows and the pick had
+     2-3px of accent. Where a clipping or scrolling box would cut an outer ring
+     off (inside a segmented control, the table's header, the map itself) the
+     same ring is drawn 2px inside the edge instead. */
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  /* Tab scrolls the next control flush with its scroller's edge, and the ring
+     outside it was cut off there: a table row's link lost 4px of it */
+  a, button, input, select, summary, [tabindex] { scroll-margin: 8px; }
+  .seg button:focus-visible, #listview th button:focus-visible,
+  .leaflet-container:focus-visible { outline-offset: -2px; }
+
+  /* ---------- hover ----------
+     A touch device has no pointer to hover with, but it still matches a bare
+     :hover after a tap and keeps it until the next one, so a tapped control sat
+     there looking chosen. Every hover state in the app lives behind this query;
+     the states that mean something — .on, .sel, .act, :focus-visible — are
+     declared outside it and reach every device. */
+  @media (hover: hover) and (pointer: fine) {
+  .ptsrow button:hover { background: var(--accent-soft); color: var(--accent); }
+  #calc .grades button:hover { border-color: var(--accent); color: var(--accent); }
+  #listview th button:hover .ar { opacity: .45; }
+  #listview th button:hover .ar.on { opacity: 1; }
+  #listview tbody tr:hover { background: var(--accent-soft); }
+  #listview .sc a:hover { text-decoration: underline; }
+  .leaflet-bar button.locate:hover { color: var(--accent); }
+  .prow .pick:hover { border-color: var(--accent); color: var(--accent); }
+  #choices .row .rm:hover { background: var(--accent-soft); color: var(--accent); }
+  #s-list .oldnote:hover, #s-list .lvnote:hover { color: var(--ink-2); }
+  .modal .x:hover { color: var(--ink); }
+  .modal .cta:hover { filter: brightness(1.06); }
+  .modal .cta.ghost:hover { filter: none; color: var(--ink); border-color: var(--ink-3); }
+  .ico:hover { color: var(--accent); border-color: var(--accent); }
+  .ico.hint:hover { color: var(--on-accent); border-color: var(--accent); }
+  .modal .cta[disabled]:hover { filter: none; }
+  .meta a:hover { text-decoration: underline; }
+  .cat-head:hover { color: var(--accent); }
+  #ov-list .opt:hover { background: var(--accent-soft); }
+  .prow:hover { background: var(--accent-soft); }
+  #choices .row .who:hover .sc { color: var(--accent); }
+  /* ten controls answered nothing to a pointer while their neighbours turned
+     the accent: the view toggle, the settings segments, the chart tabs, Tøm,
+     Vis mer, the sheet's close and the zoom buttons */
+  .seg button:not(.on):hover, .tabs button:not(.on):hover,
+  #choices .h button:not(.arm):hover { color: var(--accent); }
+  .leaflet-control-zoom a:hover { color: var(--accent) !important; }
+  /* Vis mer is accent text already, and the brighter accent would drop 11px
+     text under 4.5:1 on the chance box's tint: it underlines instead */
+  .more > summary:hover .mt, .more > summary:hover .lt { text-decoration: underline; text-underline-offset: 2px; }
+  /* white on a photo: the accent would fail there, so the glass darkens */
+  .photo .close:hover { background: rgba(15,23,32,.75); }
+  /* the ✕'s twin, one step to its left: a bug report about this school */
+  .photo .close.bug { right: 50px; display: grid; place-items: center; }
+  .photo .close.bug svg { width: 15px; height: 15px; }
+  }
+
+  /* ---------- press feedback ----------
+     Every control here had a hover state and nothing on press, so between the
+     tap and the result the interface said nothing at all — on a phone, where
+     there is no hover, it said nothing ever. Scale is the acknowledgement for
+     a discrete control; a full-width row scales badly (the 3px state border
+     shifts and the text blurs), so rows deepen their tint instead.
+     100ms ease-out: fast enough to read as "heard you", not as animation. */
+  .ico, .seg button, .modal .x, .modal .cta, .ptsrow button, .prow .pick,
+  #choices .row .rm, #choices .h button, #calc .grades button, .tabs button,
+  .more > summary, .scope-chip button, #listview th button,
+  .leaflet-bar button.locate {
+    transition: transform .1s ease-out;
+  }
+  .ico:active, .seg button:active, .modal .x:active, .modal .cta:active,
+  .ptsrow button:active, .prow .pick:active, #choices .row .rm:active,
+  #choices .h button:active, #calc .grades button:active, .tabs button:active,
+  .more > summary:active, .scope-chip button:active, #listview th button:active,
+  .leaflet-bar button.locate:active {
+    transform: scale(.96);
+  }
+  /* rows and full-width targets: tint, not scale */
+  .prow:active, .prow.sel:active, #listview tbody tr:active,
+  #ov-list .opt:active, #ov-list .opt.act:active,
+  .cat-head:active, #s-list .oldnote:active, #s-list .lvnote:active {
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+  /* a disabled control must not pretend to respond */
+  /* a 4% shrink reads as a tap on a 28px icon and as a lurch on a 480px bar,
+     so the wide controls press more gently */
+  .modal .cta:active, #listview th button:active, .more > summary:active { transform: scale(.985); }
+  .modal .cta[disabled]:active { transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    /* the press still answers, it just stops moving */
+    .ico, .seg button, .modal .x, .modal .cta, .ptsrow button, .prow .pick,
+    #choices .row .rm, #choices .h button, #calc .grades button, .tabs button,
+    .more > summary, .scope-chip button, #listview th button,
+    .leaflet-bar button.locate { transition: none; }
+    .ico:active, .seg button:active, .modal .x:active, .modal .cta:active,
+    .ptsrow button:active, .prow .pick:active, #choices .row .rm:active,
+    #choices .h button:active, #calc .grades button:active, .tabs button:active,
+    .more > summary:active, .scope-chip button:active, #listview th button:active,
+    .leaflet-bar button.locate:active {
+      transform: none; background: color-mix(in srgb, var(--accent) 18%, transparent);
+    }
+  }
+
+  /* ---------- tooltip ---------- */
+  #tip {
+    position: fixed; z-index: 2200; max-width: 260px; padding: 8px 10px;
+    background: var(--surface-solid); color: var(--ink-2); border: 1px solid var(--line);
+    border-radius: 10px; box-shadow: var(--shadow); font-size: 11.5px; line-height: 1.45;
+    pointer-events: none; opacity: 0; transition: opacity .12s ease-out;
+  }
+  #tip.on { opacity: 1; }
+  #tip b { color: var(--ink); }
+  .tipped { cursor: help; text-decoration: underline dotted var(--ink-3); text-underline-offset: 2px; }
+
+  /* ---------- the dataset did not load ---------- */
+  .boot-fail {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 10px; padding: 24px;
+    text-align: center; color: var(--ink-2); font-size: 13.5px;
+  }
+  .boot-fail .big { font-size: 17px; font-weight: 650; color: var(--ink); }
+  .boot-fail .cta {
+    margin-top: 6px; padding: 10px 18px; border: 0; border-radius: 999px;
+    background: var(--accent); color: var(--on-accent); font: inherit; font-weight: 600; cursor: pointer;
+  }
+
+  /* ---------- legend ---------- */
+  /* the side padding matches the panel's, so the two cards' text starts on one line */
+  /* the panel's own 316px: sized by its title, the legend stood 26px wider than
+     the card above it, and its scale used 126px of the 308 */
+  #legend { position: absolute; bottom: 22px; left: 14px; z-index: 1000; width: 316px; padding: 11px 16px 10px; font-size: 11px; color: var(--ink-2); }
+  #legend .t { font-weight: 600; color: var(--ink); font-size: 11.5px; margin-bottom: 7px; letter-spacing: .01em; }
+  #legend .bins { display: flex; align-items: center; gap: 0; }
+  /* the keys share the legend's width: at 10.5px «≥ 70 %» and «35–70 %» need
+     35px between their centres just to touch, and five keys across 284px give
+     each 57px */
+  #legend .bin { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1 1 0; min-width: 0; }
+  #legend .sw { width: 100%; height: 8px; }
+  #legend .bin:first-child .sw { border-radius: 999px 0 0 999px; }
+  #legend .bin:last-child .sw { border-radius: 0 999px 999px 0; }
+  #legend .bl { font-size: 10.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  #legend .none { display: flex; align-items: center; gap: 6px; margin-top: 7px; color: var(--ink-3); }
+  #legend .none .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--context); flex: none; }
+  #legend .none .dot.open-dot { background: var(--accent-soft); border: 1.5px dashed var(--accent); }
+  /* the filled-without-points marker: the open ring with a solid 35% fill */
+  #legend .none .dot.zero-dot { background: color-mix(in srgb, var(--accent) 35%, var(--surface-solid));
+                                border: 1.5px solid var(--accent); }
+  #legend .none + .none { margin-top: 3px; }
+  #legend .sizenote { margin-top: 7px; color: var(--ink-3); line-height: 1.35; }
+  #legend .sizenote.warn { color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 6px; }
+  #legend .more { margin-top: 7px; }
+  #legend .more .sizenote:first-of-type { margin-top: 5px; }
+  .round.unknown { background: transparent; color: var(--ink-2); border: 1px dashed var(--line); }
+  .round {
+    display: inline-block; font-size: 10.5px; font-weight: 650; letter-spacing: .02em;
+    padding: 1px 6px; border-radius: 999px; background: var(--accent-soft);
+    color: var(--accent-ink); vertical-align: 1px; white-space: nowrap; cursor: help;   /* 10.5px text needs 4.5:1; the accent itself is 4.0:1 */
+  }
+
+  /* ---------- map marker & tooltip ---------- */
+  .leaflet-interactive:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  /* a click, a tap and a sheet closed with the mouse all focus the dot too, and
+     the browser then drew its own square ring round it; only the keyboard gets one */
+  .leaflet-interactive:focus:not(:focus-visible) { outline: none; }
+  .leaflet-tooltip.tip {
+    background: var(--surface-solid); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 12px; box-shadow: var(--shadow); padding: 9px 12px;
+  }
+  .leaflet-tooltip-top.tip::before { border-top-color: var(--surface-solid); }
+  .leaflet-tooltip-bottom.tip::before { border-bottom-color: var(--surface-solid); }
+  /* a tooltip slid sideways to clear the panel or the map's edge keeps its
+     arrow on the school (aimTip sets --ax) */
+  .leaflet-tooltip-top.tip::before, .leaflet-tooltip-bottom.tip::before { left: calc(50% + var(--ax, 0px)); }
+  .leaflet-tooltip-left.tip::before { border-left-color: var(--surface-solid); }
+  .leaflet-tooltip-right.tip::before { border-right-color: var(--surface-solid); }
+  .tip .n { font-weight: 650; font-size: 13px; letter-spacing: -.01em; }
+  .tip .v { font-size: 12px; color: var(--ink-2); margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .tip .h { font-size: 10.5px; color: var(--ink-3); margin-top: 4px; }
+
+  /* ---------- marker clusters ---------- */
+  .pk-cluster {
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 999px; font-weight: 700; font-size: 12px; color: var(--on-accent);
+    background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft),
+                0 2px 8px rgba(0,0,0,.35);
+    border: 2px solid var(--surface-solid);
+  }
+  .pk-cluster.big { font-size: 13.5px; }
+  /* With points entered a cluster showed only a count, and «Zoom inn for å se
+     sjansen» was the whole answer until the map was zoomed to street level. The
+     halo now carries the mix of the schools inside it, in the dots' own colours
+     and in the legend's order from twelve o'clock: sannsynlig, mulig, lite
+     sannsynlig, then grey for no forecast. It takes exactly the 4px the plain
+     halo had, so no cluster grows. The grey is --ink-3, not the dots' pale
+     --context: that one stood 1.0-1.9:1 on the tiles, too faint for a 4px arc. */
+  .pk-cluster.mix { position: relative; box-shadow: 0 2px 8px rgba(0,0,0,.35); }
+  .pk-cluster.mix::before {
+    content: ''; position: absolute; inset: -6px; border-radius: 50%;
+    background: conic-gradient(var(--good) 0 var(--l), var(--dot-possible) 0 var(--p),
+                               var(--dot-unlikely) 0 var(--u), var(--ink-3) 0);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4.5px), #000 calc(100% - 3.5px));
+            mask: radial-gradient(farthest-side, transparent calc(100% - 4.5px), #000 calc(100% - 3.5px));
+  }
+  .leaflet-cluster-anim .leaflet-marker-icon { transition: transform .2s ease; }
+
+  /* ---------- sidebar ---------- */
+  #side {
+    width: 0; overflow: hidden; transition: width .22s cubic-bezier(.4,0,.2,1);
+    /* no rule while closed: a 1px border on the 0px sheet took a pixel from
+       the map, and the zoom and locate buttons stood 11px from the screen's
+       edge where the panel and legend stand 10px */
+    background: var(--surface-solid); border-left: 0 solid var(--line);
+    display: flex; flex-direction: column; z-index: 1100;
+  }
+  #side.open { border-left-width: 1px; }
+  /* keep the control panel clear of the sidebar at tablet widths */
+  #side.open { width: min(480px, max(320px, 100vw - 350px)); }
+  #side > .scroll { overflow-y: auto; overflow-x: hidden; flex: 1; min-width: min(480px, max(320px, 100vw - 350px)); overscroll-behavior: contain; }
+  /* the text-size zoom multiplies that min-width, so at Stor/Ekstra stor the
+     scroll box laid out 552/624px inside a 480px panel and the close button
+     and every + sat off-screen; divide by the step's zoom to land on 480 */
+  :root[data-font="lg"] #side > .scroll { min-width: calc(min(480px, max(320px, 100vw - 350px)) / 1.15); }
+  :root[data-font="xl"] #side > .scroll { min-width: calc(min(480px, max(320px, 100vw - 350px)) / 1.3); }
+
+  /* fallback ground is fixed dark blues so the white name reads in both themes */
+  .photo { position: relative; height: 168px; background: linear-gradient(135deg, #2a6cbf, #0d366b); }
+  .photo #s-minimap { position: absolute; inset: 0; z-index: 0; }
+  /* #s-minimap IS the Leaflet container, so the descendant form never matched
+     and Leaflet's #ddd filled the dark theme's header until the tiles came */
+  .photo #s-minimap.leaflet-container { background: var(--page); }
+  .photo img { width: 100%; height: 100%; object-fit: cover;
+               object-position: var(--photo-pos, center); display: block; }
+  .photo .veil { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(10,14,18,.62)); }
+  .photo .close {
+    position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%;
+    border: none; cursor: pointer; font-size: 15px; line-height: 1;
+    /* at .45 a bright corner of the photo (Stavanger Offshore Tekniske skole's sky)
+       left the white ✕ at 2.95:1; at .55 every photo that can be measured clears 3:1 */
+    background: rgba(15,23,32,.55); color: #fff; -webkit-backdrop-filter: blur(12px) saturate(1.6); backdrop-filter: blur(12px) saturate(1.6);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.35), inset 0 0 0 1px rgba(255,255,255,.16), 0 4px 14px rgba(0,0,0,.28);
+  }
+  .photo .name { position: absolute; left: 18px; right: 18px; bottom: 12px; color: #fff; }
+  .photo .name h2 { font-size: 19px; font-weight: 700; letter-spacing: -.015em; text-wrap: balance; text-shadow: 0 1px 8px rgba(0,0,0,.5); }
+  .photo .name .credit { font-size: 10.5px; opacity: .85; margin-top: 2px; text-shadow: 0 1px 3px rgba(0,0,0,.7); }
+  .photo .name .credit a { color: inherit; }
+
+  /* baseline: on a phone the website link grows 8px of touch padding above
+     its text, and top-aligned it sat a line lower than the address beside it */
+  .meta { padding: 12px 18px 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; font-size: 12px; color: var(--ink-2); }
+  .meta a { color: var(--accent); text-decoration: none; font-weight: 550; }
+
+  /* what the county did to this school: a merger, a disputed figure, a year
+     published from a different intake round */
+  .notes { padding: 10px 18px 0; display: grid; gap: 5px; }
+  .notes p {
+    font-size: 11.5px; line-height: 1.45; color: var(--ink-2);
+    border-left: 2px solid var(--line); padding: 1px 0 1px 9px;
+  }
+  .round.stale { background: transparent; color: var(--ink-2); border: 1px dashed var(--ink-3); }
+  /* At Ekstra stor on a 360px phone «2 programområder» ran 12px past the sheet
+     (30px with a programme's name in the first cell) and the whole sheet
+     scrolled sideways. Breaking the labels was the wrong cure: hyphenation
+     fills lines greedily and split «programområ-der» on 180 sheets at normal
+     size. So no word breaks. The first cell, the one with the long label,
+     starts at its narrowest and grows back to its natural width as room
+     allows; the figures keep theirs; and when even that does not fit, the last
+     cell moves to a second row, as large text does on a phone. */
+  .hero { display: flex; flex-wrap: wrap; gap: 10px 26px;
+          padding: 14px 18px 12px; border-bottom: 1px solid var(--line); }
+  .hero .cell { flex: none; }
+  .hero .cell:first-child { flex: 1 1 auto; width: min-content; max-width: max-content; }
+  .hero .cell .v { font-size: 26px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .hero .cell .v.up { color: var(--good); } .hero .cell .v.dn { color: var(--ink-2); }
+  .hero .cell .l { font-size: 10.5px; color: var(--ink-3); margin-top: 1px; }
+  /* A mean over the few programmes that filled up reads like a busy school
+     even when most of it took everyone who applied. Wherever a mean is
+     printed, this says so. */
+  .mixwarn {
+    display: flex; gap: 7px; align-items: baseline;
+    margin: 10px 18px 0; padding: 7px 10px 7px 9px; border-radius: 9px;
+    background: var(--warn-soft); border-left: 2px solid var(--warn);
+    font-size: 11.5px; line-height: 1.45; color: var(--ink-2);
+  }
+  .mixwarn .sign { color: var(--warn); font-size: 12px; flex: none; }
+  .mixwarn b { color: var(--ink); font-weight: 650; }
+  .tip .warn { color: var(--warn); }
+
+  /* chart card */
+  .chart-card { margin: 14px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-solid); }
+  .chart-head { display: flex; align-items: center; gap: 8px; padding: 10px 12px 0; flex-wrap: wrap; }
+  .tabs { display: flex; background: var(--accent-soft); border-radius: 999px; padding: 2px; min-width: 0; }
+  /* A segmented control that wraps into two rows stops reading as one control,
+     so when the strip is short of room the two long labels give it back
+     instead: they shrink and break at a syllable with a hyphen
+     («Utdannings-program»). «Alle» keeps its width; shrunk in proportion it
+     would have split mid-word. */
+  .tabs button { border: 1px solid transparent; background: none; padding: 4px 11px;
+                 font-size: 12px; font-weight: 600;
+                 color: var(--ink-2); border-radius: 999px; cursor: pointer;
+                 min-width: 0; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word;
+                 /* hyphenation fills the line greedily, which at Stor gave
+                    «Utdanningspro-gram» and «Programom-råde»; five letters
+                    after the hyphen moves the break to the compound's seam */
+                 hyphenate-limit-chars: auto 4 5;
+                 -webkit-hyphenate-limit-before: 4; -webkit-hyphenate-limit-after: 5; }
+  .tabs button[data-mode="all"] { flex-shrink: 0; }
+  /* a literal black shadow is invisible on a dark ground, and it was the only
+     thing separating the selected tab from the strip behind it. The border is
+     the cue that survives both themes — which needs a transparent one reserved
+     on the unselected tabs, or setting border-color on `border: none` does
+     nothing and moves the text when it does. */
+  .tabs button.on { background: var(--surface-solid); color: var(--ink);
+                    border-color: var(--accent); box-shadow: var(--shadow); }
+  .chart-head select { flex: 1; min-width: 120px; padding: 4px 26px 4px 10px; font: inherit; font-size: 12px;
+                       border: 1px solid var(--line-strong); border-radius: 999px; background-color: var(--surface-solid); color: var(--ink); }
+  #chart-sub { font-size: 11px; color: var(--ink-3); padding: 6px 14px 0; }
+  #chart-wrap { position: relative; padding: 4px 6px 8px; }
+  #chart-tip {
+    position: absolute; pointer-events: none; display: none; z-index: 5;
+    background: var(--surface-solid); border: 1px solid var(--line); border-radius: 9px;
+    box-shadow: var(--shadow); padding: 6px 9px; font-size: 11.5px; white-space: nowrap;
+  }
+  #chart-tip .y { font-weight: 700; }
+  #chart-tip .r { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+
+  /* program list */
+  .cat-head {
+    display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left;
+    border: none; background: none; cursor: pointer;
+    padding: 12px 18px 5px; font-size: 11px; font-weight: 700; letter-spacing: .07em;
+    text-transform: uppercase; color: var(--ink-3);
+  }
+  .scope-chip {
+    /* wrap: at Ekstra stor on 320px «Vis alle utdanningsprogram» ran off the sheet */
+    display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 10px 18px 2px; padding: 6px 10px;
+    background: var(--accent-soft); border-radius: 9px; font-size: 11.5px; color: var(--ink-2);
+  }
+  .scope-chip span { font-weight: 650; color: var(--ink); }
+  .scope-chip button {
+    margin-left: auto; border: none; background: none; cursor: pointer;
+    /* the chip's own tint is the accent's, so the accent as text read 4.0:1 on it */
+    color: var(--accent-ink); font-size: 11.5px; font-weight: 600; padding: 0;
+  }
+  .cat-head .cnt { font-weight: 500; letter-spacing: 0; text-transform: none; }
+  .prow {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px; width: 100%; text-align: left;   /* wrap: at Ekstra stor the chance chip pushed the + off-screen */
+    padding: 7px 18px; border: none; background: none; cursor: pointer;
+  }
+  .prow.sel { background: var(--accent-soft); }
+  /* .sel is the programme the chart is plotting, and the tint alone was its
+     only marker: 1.13:1 across thirty rows told you nothing */
+  .prow { border-left: 3px solid transparent; }
+  .prow.sel { border-left-color: var(--accent); }
+  /* a group of one, with no heading of its own: the rule is where it begins */
+  .prow.solo { margin-top: 6px; border-top: 1px solid var(--line); }
+  /* 8em, not 0: from a zero basis the name gave up all the width to the chips
+     beside it and broke «Informasjonsteknologi og medieproduksjon» over 13 lines
+     27px wide on a 320px phone. Now the chips move to a line of their own first,
+     and the ones that do sit at the right, where the figures stand. */
+  .prow .nm { flex: 1 1 8em; min-width: 0; font-size: 13px; line-height: 1.3; }
+  /* the figure and its + wrap as one: alone, the + was stranded at the start
+     of a line of its own under «Ingen venteliste» on a 375px phone */
+  .prow .end { display: flex; align-items: center; gap: 10px; margin-left: auto; flex: none; }
+  /* the name is the row's button (the pick beside it is a button of its own,
+     which a button may not contain) */
+  .prow button.nm { border: none; background: none; padding: 0; margin: 0; text-align: left;
+                    color: inherit; font: inherit; font-size: 13px; line-height: 1.3; cursor: pointer; }
+  .prow button.nm:focus-visible { outline: none; }
+  .prow:has(button.nm:focus-visible) { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .prow .lv { font-size: 10.5px; font-weight: 600; color: var(--ink-3); border: 1px solid var(--line);
+              border-radius: 999px; padding: 1px 6px; flex: none; }
+  .fbadge { font-size: 10.5px; color: var(--ink-3); border: 1px dashed var(--line); border-radius: 999px;
+            padding: 1px 5px; margin-left: 7px; cursor: help; white-space: nowrap; }
+  .prow.muted .nm, .prow.muted .val { color: var(--ink-3); }
+  .prow .val { font-size: 13.5px; font-weight: 650; font-variant-numeric: tabular-nums; flex: none; width: 68px; text-align: right; }
+  .prow .val small { display: block; font-weight: 400; font-size: 10.5px; color: var(--ink-3); }
+  .prow .val .soft { color: var(--ink-2); font-weight: 500; font-size: 11.5px; }
+  /* A state label is a word, not a number: "Dokumentasjon" (85px), the English
+     "Documentation" (84px) and "Discontinued" (72px) do not fit the 68px number
+     column and, having nowhere to wrap, ran out under the pick button. A row
+     carrying one borrows the width from the name; the numbers keep the fixed
+     column so they stay in line. */
+  .prow .val:has(.soft) { width: auto; min-width: 68px; max-width: 92px; }
+  .prow .chw { display: flex; align-items: center; gap: 6px; flex: none; }
+  .prow .hist { font-size: 10.5px; color: var(--ink-3); white-space: nowrap; }
+  /* not a chip: this says why there is no percentage, so no pill around it */
+  .ch.none { background: none; border: none; padding: 0; color: var(--ink-3); font-weight: 500; }
+  #src-note { padding: 14px 18px 20px; font-size: 10.5px; color: var(--ink-3); line-height: 1.5; }
+  #src-note .lnk { background: none; border: 0; padding: 0; font: inherit; color: var(--accent);
+                   text-decoration: underline; cursor: pointer; }
+  #src-note .lnk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* the credit strip has no blur behind it, so it keeps the 85% it had before
+     --surface became glass: at 72% a tile label under its 10.5px text showed through */
+  .leaflet-control-attribution { background: color-mix(in srgb, var(--surface-solid) 85%, transparent) !important; color: var(--ink-3) !important; font-size: 10.5px !important; }
+  .leaflet-control-attribution a { color: var(--ink-2) !important; }
+  /* the map's own buttons are the panel's glass: one capsule for zoom, a round
+     one for locate. The buttons inside stay clear so the material shows */
+  .leaflet-bar {
+    background: var(--surface) !important; border: 1px solid var(--g-rim) !important; border-radius: 999px !important;
+    -webkit-backdrop-filter: blur(22px) saturate(1.8); backdrop-filter: blur(22px) saturate(1.8);
+    box-shadow: inset 0 1px 0 var(--g-sheen), var(--g-shadow) !important;
+  }
+  .leaflet-control-zoom a { background: transparent !important; color: var(--ink) !important; border-color: var(--line) !important; }
+  .leaflet-control-zoom a:first-child { border-radius: 999px 999px 0 0 !important; }
+  .leaflet-control-zoom a:last-child { border-radius: 0 0 999px 999px !important; }
+  /* a reader who has asked the system for more contrast, or for less
+     transparency, gets the chrome solid */
+  @media (prefers-contrast: more), (prefers-reduced-transparency: reduce) {
+    .glass, #toast, .leaflet-bar { background: var(--surface-solid) !important; -webkit-backdrop-filter: none; backdrop-filter: none; }
+    #panel::after { background: linear-gradient(to bottom, transparent, var(--surface-solid)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    /* this used to name #side alone, while the sheets still rose and faded,
+       the clusters still slid and the map still flew */
+    #side, #tip { transition: none; }
+    .modal, .sheet, .modal.closing, .modal.closing .sheet { animation: none; }
+    /* the overlay's box is styled by id, so a class alone would lose to it */
+    #searchov .ovbox, #searchov.closing .ovbox { animation: none; }
+    .leaflet-cluster-anim .leaflet-marker-icon, .leaflet-cluster-anim .leaflet-marker-shadow {
+      transition: none; }
+  }
+  /* ---------- phones ----------
+     A 300px floating card on a 375px screen buries the map and collides with
+     the utility window. On a phone the panel becomes a full-width header bar:
+     brand and utilities on one row, the two selects side by side underneath. */
+  @media (max-width: 560px) {
+    #panel {
+      /* 10px from the screen on every side, and 12px inside on every side: the
+         top used to sit 14px down and the card's own top inset was 11px */
+      top: 10px; left: 10px; right: 10px; width: auto; padding: 12px 12px 4px; border-radius: 22px;
+      /* 2:3, not halves: the programme names run to 140px («Alle
+         utdanningsprogram»), the county names stop at 81px («Trøndelag (31)»)
+         — only «Møre og Romsdal» pays with an ellipsis */
+      display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      gap: 8px; align-items: end;
+    }
+    /* folded, the halves are the summary and the points box: back to even */
+    body.panel-folded:not(.view-list) #panel { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    #panel .brand { grid-column: 1 / -1; }
+    #panel .viewrow { grid-column: 1 / -1; margin-bottom: 2px; }
+    #panel .brand h1 { font-size: 17px; }
+    /* the fade is pulled out to the card's edges by its padding; left at the
+       desktop 16px it overshot this padding, and 3px of overshoot were enough
+       to put a scrollbar on a panel with nothing to scroll. Here it is a grid
+       item on a row of its own, and a grid row cannot be shorter than nothing,
+       so the 8px row gap above it stays: the card's 4px bottom padding plus
+       that gap make the 12px, and the fade reaches back over both. */
+    #panel::after { grid-column: 1 / -1; height: 12px; margin: -8px -12px -4px; bottom: -4px; }
+    #cat-note { grid-column: 1 / -1; margin-top: 0; min-height: 0; }
+    #pts-field { grid-column: 1 / -1; margin-top: 4px; }
+    #pts-note { margin-top: 4px; }
+    #choices { grid-column: 1 / -1; margin-top: 8px; padding-top: 7px; }
+    /* one-county datasets hide the county select; let the other one spread */
+    #fylke-field[hidden] + .field { grid-column: 1 / -1; }
+    .field select { text-overflow: ellipsis; }
+    #cat-note:empty { display: none; }
+    #tagline { display: none; }            /* the panel hid 23 markers */
+    /* half a 320px card at Stor cut «UTDANNINGSPROGRAM» at the panel's edge */
+    .field label { font-size: 10.5px; letter-spacing: .04em; margin-bottom: 3px;
+                   hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
+    .field + .field { margin-top: 0; }
+    .field select { padding: 7px 8px; font-size: 12.5px; }
+    #panel select { background-position: right 9px center; padding-right: 26px; }
+
+    /* The legend runs the width of the screen, but its scale is only 170px of
+       that, so a wrapping row left the right half of the box empty and pushed
+       the two keys onto a line of their own. Two columns instead: the scale on
+       the left, the keys beside it, and the comparability warning — which a
+       phone reader never saw — across the bottom of the freed space. */
+    #legend {
+      /* clears the Leaflet attribution strip, which the taller box overlapped */
+      left: 10px; right: 10px; bottom: 16px; width: auto; padding: 8px 12px 7px;
+      display: grid; row-gap: 4px; column-gap: 12px; align-items: center;
+      grid-template-columns: minmax(140px, 1fr) minmax(0, max-content);
+    }
+    #legend .t { grid-column: 1 / -1; margin-bottom: 0; }
+    /* every cell is placed by hand: auto-flow reads the warning before the two
+       keys and would drop it between them */
+    #legend .bins { grid-area: 2 / 1 / 5 / 2; }
+    /* the keys take the width their text needs and the scale spreads across
+       whatever is left, so no phone width leaves a gutter between the two */
+    #legend .bin { flex: 1 1 0; min-width: 0; }
+    #legend .sw { width: 100%; }
+    /* the folded keys sit beside the scale; unfolded they stack in the same cell */
+    #legend .more { grid-area: 2 / 2 / 5 / 3; margin-top: 0; align-self: start; }
+    #legend .none { margin-top: 0; }
+    #legend .sizenote { display: none; }
+    #legend .sizenote.warn:not([hidden]) {
+      display: block; grid-area: 5 / 1 / 6 / -1; max-width: none;
+      margin-top: 2px; padding-top: 5px;
+    }
+    /* a 16px chip is a poor tap target; the tooltip is worth reaching */
+    .prow .lv { padding: 4px 7px; }
+    /* the history tag stacks under its chip: side by side it pushed the
+       figure and the pick button off a 375px row. And a name column that
+       could not break "Studiespesialisering," is what overflowed first, so
+       it may now break a word rather than the row. */
+    .prow .chw { flex-direction: column; align-items: flex-start; gap: 2px; }
+    /* anywhere alone broke "Studiespesialisering" as "Studiespesiali|sering",
+       with no hyphen to say a word was cut. hyphens: auto gives the browser
+       the Norwegian (or English) dictionary the lang attribute names, so the
+       break lands at a syllable and carries a hyphen; anywhere stays as the
+       last resort for a word no dictionary can split. */
+    .prow .nm { overflow-wrap: anywhere; hyphens: auto; -webkit-hyphens: auto; }
+    /* fingers, not cursors: everything worth pressing gets a real target */
+    .photo .close { width: 40px; height: 40px; font-size: 17px; }
+    .photo .close.bug { right: 62px; }
+    .meta a { display: inline-block; padding: 8px 0; }
+    .tabs button { padding: 8px 13px; font-size: 12.5px; }
+    .prow { padding-top: 11px; padding-bottom: 11px; }
+  }
+  /* ---------- short viewports (a phone held sideways) ----------
+     375px of height cannot stack a tall panel above a tall legend: the legend
+     rode up over the two selects and hid them completely. Drop the prose and
+     lay the filters out side by side. */
+  @media (max-height: 480px) {
+    #tagline { display: none; }
+    #panel { padding: 12px 12px 4px; border-radius: 22px; }   /* 4px + the grid's 8px row gap, as on a phone */
+    #panel::after { grid-column: 1 / -1; height: 12px; margin: -8px -12px -4px; bottom: -4px; }
+    #legend { padding: 7px 12px 6px; }
+    #legend .t { font-size: 10.5px; margin-bottom: 5px; }
+    /* matches the phone rule's specificity so it still wins when both apply */
+    #legend .sizenote, #legend .sizenote.warn:not([hidden]) { display: none; }
+  }
+  @media (max-height: 480px) and (min-width: 561px) {
+    #panel {
+      /* 5:7:6, not thirds: the programme names run to 140px, the county's
+         stop at 81px, and the points box wants 118px for its input and two
+         buttons */
+      width: 520px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr) minmax(0, 6fr);
+      gap: 8px; align-items: start;
+    }
+    /* 520px is multiplied by the text-size zoom: at Ekstra stor the card
+       painted 676px, scrolled a 667px-wide phone sideways and sat on the locate
+       button, and at Stor it covered locate at 568 and 640. The map controls
+       stand 55px in from the right; the card stops 8px short of them, its 14px
+       left inset zoomed with it. The list lays the card out in flow, clear of
+       the controls, and keeps its own width. */
+    body:not(.view-list) #panel { width: min(520px, 100vw - 77px); }
+    :root[data-font="lg"] body:not(.view-list) #panel { width: min(520px, (100vw - 63px) / 1.15 - 14px); }
+    :root[data-font="xl"] body:not(.view-list) #panel { width: min(520px, (100vw - 63px) / 1.3 - 14px); }
+    /* «Poengene dine (valgfritt)» takes two lines in a third of 520px, and the
+       note hangs under its input; bottom-aligned, the two selects sat 50px
+       below the points box. Every label reserves those two lines and rests on
+       its control, so the three controls share a top and the note hangs free. */
+    body:not(.view-list) #panel .field label { min-height: 2.4em; line-height: 1.2; display: flex; align-items: flex-end; }
+    #panel .field select { text-overflow: ellipsis; }
+    /* the points field sat 24px below the card's fold with no cue; three
+       fields on one row keep the card inside 231px */
+    #panel .brand, #panel #cat-note, #panel .viewrow, #panel #choices { grid-column: 1 / -1; }
+    #cat-note { margin-top: 0; min-height: 0; }
+    #cat-note:empty { display: none; }
+    .field + .field, #pts-field { margin-top: 0; }
+  }
+  /* ---------- the List view's control card ----------
+     Above the table the card is three rows, each filled edge to edge: the
+     title and scope line with the view switch, search, help and settings; the
+     three controls; the wishes. Each control takes the width it needs: the
+     points field its label's, the two selects the rest. As a three-column grid
+     the card left an empty column beside the wishes and a dead cell under the
+     points field, and the view switch stretched 330px for two words. .brand
+     dissolves so help and settings can close the first row. The card lies in
+     flow and never scrolls, so its scroll fade is free to be the break between
+     the first row and the controls. */
+  @media (min-width: 561px) {
+    body.lv-stack #panel { display: flex; flex-wrap: wrap; align-items: center; column-gap: 14px; row-gap: 0; }
+    body.lv-stack #panel .brand { display: contents; }
+    body.lv-stack #panel .brand .mark { margin-right: -5px; }     /* the brand's own 9px */
+    body.lv-stack #panel .brand .util { order: 1; margin-left: 0; }
+    /* The scope line shows whole or not at all. Its text is one unbreakable
+       piece after an empty one, so on a row too short for it the text drops to
+       a second line, which the one-line box clips away. */
+    body.lv-stack #panel #tagline { flex: 1 1 0; min-width: 0; height: 1.45em; overflow: hidden; margin: 0; }
+    body.lv-stack #panel #tagline::before { content: ''; display: inline-block; }
+    body.lv-stack #panel #tagline span { display: inline-block; white-space: nowrap; }
+    body.lv-stack #panel .viewrow { margin: 0 0 0 auto; }         /* right, even with no scope line */
+    body.lv-stack #panel #view-toggle button { min-width: 64px; }
+    body.lv-stack #panel::after {
+      display: block; content: ''; order: 2; flex: 0 0 100%; height: 12px;
+      margin: 0; position: static; background: none;
+    }
+    /* labels on one line and the fields top-aligned, so the three controls
+       share a line even when a typing error hangs a note under the points */
+    body.lv-stack #panel > .field { order: 3; margin: 0; align-self: flex-start; min-width: 0; }
+    body.lv-stack #panel .field label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    body.lv-stack #panel .field select { text-overflow: ellipsis; }
+    body.lv-stack #panel #fylke-field { flex: 1 1 140px; }
+    body.lv-stack #panel #fylke-field + .field { flex: 2 1 200px; }  /* programme names are the long ones */
+    body.lv-stack #panel #pts-field { flex: 0 0 auto; }
+    body.lv-stack #panel .ptsrow input { width: 72px; }
+    /* the error note wraps inside the field rather than widening it, which
+       would shift both selects while the reader types */
+    body.lv-stack #panel #pts-note { width: 0; min-width: 100%; }
+    body.lv-stack #panel #cat-note { order: 4; flex: 0 0 100%; margin-top: 6px; min-height: 0; }
+    body.lv-stack #panel #cat-note:empty { display: none; }
+    /* Across 1000px one wish per line put each ✕ half a screen from the name
+       it removes; the wishes flow into columns instead, in their order. */
+    /* one wish to a row, as everywhere else: laid out in columns, two or three
+       wishes shared a line and read as one */
+    body.lv-stack #panel #choices { order: 5; flex: 0 0 100%; min-width: 0; }
+  }
+  /* Where the three controls cannot share a row (the points label alone is
+     169px), the points field used to wrap to a row of its own and stop at its
+     label, with 270–420px empty beside it. It takes the whole row instead, as
+     on a phone. The text sizes zoom the card, so they reach this sooner. */
+  @media (min-width: 561px) and (max-width: 599px) {
+    body.lv-stack #panel #pts-field { flex: 1 1 100%; }
+  }
+  @media (min-width: 561px) and (max-width: 685px) {
+    :root[data-font="lg"] body.lv-stack #panel #pts-field { flex: 1 1 100%; }
+  }
+  @media (min-width: 561px) and (max-width: 771px) {
+    :root[data-font="xl"] body.lv-stack #panel #pts-field { flex: 1 1 100%; }
+  }
+  /* at Ekstra stor under 600px the first row is too short as well, and help
+     and settings fell under the title; the view switch takes a row of its own */
+  @media (min-width: 561px) and (max-width: 599px) {
+    :root[data-font="xl"] body.lv-stack #panel .brand .util { order: 0; margin-left: auto; }
+    :root[data-font="xl"] body.lv-stack #panel #tagline { display: none; }  /* it took the free space from that auto */
+    :root[data-font="xl"] body.lv-stack #panel .viewrow { flex: 1 1 100%; margin: 8px 0 0; }
+  }
+  /* sideways the card keeps the phone's 12px sides, and its 4px bottom counted
+     on the fade's 8px row gap; with the fade turned into the row break the
+     bottom was 5px */
+  @media (min-width: 561px) and (max-height: 480px) {
+    body.lv-stack #panel { padding-bottom: 12px; }
+  }
+
+  /* ---------- the folded phone panel ----------
+     On a phone the panel lay across 279 of 812px, a third of the map, with the
+     northern clusters under it. foldPanel() sets body.panel-folded once the
+     reader starts using the map: the selects, the notes and the wishes give way
+     to a button saying what the selects hold, and the points field stays beside
+     it, being the control a reader changes while looking at the map. Stacked,
+     the two still took 229px; side by side the card is 148px. The field's
+     label is only hidden from sight there: the legend below already says
+     «med 40,0 poeng». The rules exist only at the sizes where the panel lies
+     across the map, so turning to a wider screen shows the whole card again;
+     display: none also takes the folded controls out of the tab order. */
+  @media (max-width: 560px), (max-height: 480px) {
+    body.panel-folded:not(.view-list) #panel > .field:not(#pts-field),
+    body.panel-folded:not(.view-list) #panel #cat-note,
+    body.panel-folded:not(.view-list) #panel #choices { display: none; }
+    body.panel-folded:not(.view-list) #panel-sum { display: flex; grid-column: 1; align-self: start; }
+    body.panel-folded:not(.view-list) #panel #pts-field { grid-column: 2; margin-top: 0; align-self: start; }
+    body.panel-folded:not(.view-list) #panel #pts-label {
+      position: absolute; width: 1px; height: 1px; min-height: 0; margin: -1px; padding: 0;
+      overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  }
+  /* at Ekstra stor half the card leaves the points box under 40px, too
+     narrow for «40,0» beside the clear button; the two stack instead. Only on
+     a portrait phone: sideways this rule outranked the three columns below,
+     the folded card grew taller than the unfolded one and cut the points row. */
+  @media (max-width: 560px) {
+    :root[data-font="xl"] body.panel-folded:not(.view-list) #panel-sum,
+    :root[data-font="xl"] body.panel-folded:not(.view-list) #panel #pts-field { grid-column: 1 / -1; }
+  }
+  /* and on a 320px phone, where the box is 53px and clips the figure */
+  @media (max-width: 340px) {
+    body.panel-folded:not(.view-list) #panel-sum,
+    body.panel-folded:not(.view-list) #panel #pts-field { grid-column: 1 / -1; }
+  }
+  /* sideways the card is three columns: the button takes the selects' two */
+  @media (max-height: 480px) and (min-width: 561px) {
+    body.panel-folded:not(.view-list) #panel-sum { grid-column: 1 / 3; }
+    body.panel-folded:not(.view-list) #panel #pts-field { grid-column: 3; }
+  }
+  /* a phone held sideways is wider than 760px but no taller than 480: the
+     520px landscape card and the 480px sheet overlapped by up to 184px there,
+     with help, settings, search and the points field under the sheet. It gets
+     the phone's full sheet; phoneSheet() applies the same query. */
+  @media (max-width: 760px), (max-width: 1023px) and (max-height: 480px) {
+    #side.open { width: 100vw; }
+    /* 100vw here laid out 487px wide inside the text-size zoom and pushed the
+       sheet's left edge off the phone. 100% fixed that, but the sheet opens by
+       growing its width, and 100% re-wrapped every line on every frame of it:
+       a third of the way in, each chart tab stood 279px tall. The viewport
+       divided by the step's zoom paints exactly the sheet's final width and
+       holds still while the sheet's edge slides across it. */
+    #side > .scroll { min-width: 100vw; }
+    :root[data-font="lg"] #side > .scroll { min-width: calc(100vw / 1.15); }
+    :root[data-font="xl"] #side > .scroll { min-width: calc(100vw / 1.3); }
+    /* the list keeps its controls in the layout (see sheetFull) */
+    body.side-open:not(.view-list) #panel, body.side-open #legend { display: none; }
+    /* at Stor/Ekstra stor the tab strip outgrew the card and dragged the whole
+       sheet sideways ("45,6" read "5,6"); the labels now break onto a second
+       line inside their tabs, so the lines sit tighter and the touch height
+       comes from min-height rather than from padding around two lines */
+    :root[data-font="lg"] .tabs button, :root[data-font="xl"] .tabs button {
+      line-height: 1.2; padding-top: 6px; padding-bottom: 6px; min-height: 38px; }
+  }
+  /* Stor/Ekstra stor grow the control card to 363/411px, and at iPad widths the
+     docked panel painted over the calculator and Settings — the one way back
+     to a smaller text size. Up to 940px the enlarged card gets the phone
+     sheet instead; sideTrap() applies the same rule to the map's inert. */
+  @media (min-width: 761px) and (max-width: 1024px) {
+    :root[data-font="lg"] #side.open { width: 100vw; }
+    :root[data-font="lg"] #side > .scroll { min-width: calc(100vw / 1.15); }
+    :root[data-font="lg"] body.side-open:not(.view-list) #panel, :root[data-font="lg"] body.side-open #legend { display: none; }
+  }
+  @media (min-width: 761px) and (max-width: 1080px) {
+    :root[data-font="xl"] #side.open { width: 100vw; }
+    :root[data-font="xl"] #side > .scroll { min-width: calc(100vw / 1.3); }
+    :root[data-font="xl"] body.side-open:not(.view-list) #panel, :root[data-font="xl"] body.side-open #legend { display: none; }
+  }
+  /* The UA's [hidden] { display: none } loses to any author display rule
+     (.mixwarn's flex, .notes' grid, the calculator buttons before their
+     guards). Restate it with !important so hidden always means hidden, and
+     no future display: flex quietly resurrects an empty band. */
+  /* iOS Safari zooms the whole page in when a field it focuses sets text under
+     16px, and does not zoom back out on blur. #panel is absolutely positioned
+     and height-capped against the unzoomed viewport, so tapping the points
+     field left the reader zoomed in with the panel's right-hand column off the
+     screen. #ov-q was already set to 16px for exactly this reason; these four
+     were missed. Last in the sheet so it beats the phone-size rules above. */
+  @media (pointer: coarse) {
+    .ptsrow input, #contact input, #contact textarea { font-size: 16px; }
+    /* Touch targets, on touch devices only — the visible controls keep the size
+       the design gives them and grow an invisible ::after out to 44px, so
+       nothing on a mouse-driven screen loosens up. Each pays sideways only as
+       far as its own gap allows, or neighbours steal each other's taps. */
+    .prow .pick { position: relative; }
+    .prow .pick::after { content: ''; position: absolute; inset: -11px; }
+    #calc .grades button { position: relative; }
+    #calc .grades button::after { content: ''; position: absolute; inset: -7px -1px; }
+    #listview th button { padding-top: 15px; padding-bottom: 14px; }
+    .tabs button { padding-top: 11px; padding-bottom: 11px; }
+    .chart-head select { padding-top: 11px; padding-bottom: 11px; }
+    /* the list row needs nothing: the whole <tr> is the tap target and already
+       stands 49px tall, so padding here would only cost rows on screen */
+    .seg button { padding-top: 12px; padding-bottom: 12px; }
+    /* widen the gap first, then spend it: the reach can only be as generous as
+       the space between two icons, or each starts firing its neighbour */
+    .brand .util { gap: 14px; }
+    .brand .util .ico::after { inset: -9px -7px; }
+    .ptsrow button { position: relative; }
+    .ptsrow button::after { content: ''; position: absolute; inset: -5px; }
+    /* «Vis mer» and the scope chip's «Vis alle utdanningsprogram» are 14-16px
+       tall, the two text controls this list had missed; the programme heading
+       sits 8px under the chip, so that one reaches up rather than down */
+    .more > summary, .scope-chip button { position: relative; }
+    .more > summary::after { content: ''; position: absolute; inset: -14px 0; }
+    .scope-chip button::after { content: ''; position: absolute; inset: -15px 0 -7px; }
+    /* the photo credit is a 13px line: it reaches 8px up, stopping short of the
+       school name, and 14px down to where the website link's own reach starts */
+    .photo .name .credit a { position: relative; }
+    .photo .name .credit a::after { content: ''; position: absolute; inset: -8px 0 -14px; }
+    /* search sat in the utility pill and inherited its touch allowance; on the
+       toggle row it is a 34px control on a row that has width to spare */
+    .viewrow .ico { width: 44px; }
+    #choices .h button::after { inset: -15px -10px; }
+    /* Leaflet's own zoom and locate buttons stay 30px on touch; 40 is the floor */
+    .leaflet-touch .leaflet-bar a, .leaflet-touch .leaflet-bar button.locate { width: 40px; height: 40px; line-height: 40px; }
+    .boot-fail .cta { min-height: 40px; }
+    .field select, .ptsrow input { min-height: 40px; }
+    #ov-list .opt { min-height: 40px; }
+    .photo .close { width: 40px; height: 40px; }
+    .photo .close.bug { right: 62px; }
+  }
+  /* three Norwegian tab labels overflowed the chart card by 17px at 375px */
+  @media (max-width: 400px) {
+    .tabs button { padding-left: 8px; padding-right: 8px; }
+    /* and at 360px they still came 1px short, which since the labels learned
+       to hyphenate broke two of them onto a second line; the strip takes the
+       chart's own 6px inset instead of 12px */
+    .chart-head { padding-left: 6px; padding-right: 6px; }
+  }
+  /* forced colours strip author backgrounds: the ramp and key dots must keep
+     theirs or the map is coloured and its key is blank */
+  @media (forced-colors: active) {
+    #panel select, .chart-head select, #contact select { appearance: auto; -webkit-appearance: auto; }
+    #legend .sw, #legend svg, #legend .dot, .pk-cluster { forced-color-adjust: none; }
+    /* the pressed option was a fill, which forced colours strip: Kart/Liste,
+       the chart tabs, Settings and the grades all looked unpressed */
+    .seg button.on, #calc .grades button.on, .tabs button.on, #view-toggle button.on {
+      forced-color-adjust: none; background: Highlight; color: HighlightText; border-color: Highlight; }
+  }
+  [hidden] { display: none !important; }

@@ -35,14 +35,13 @@ whole thing — data semantics, model, validation, findings — also published a
 ## Run locally
 
 ```bash
-python3 -m http.server 8742 -d web
+npm install
+npm run dev
 ```
 
-Then open http://localhost:8742. No build step, no dependencies.
-
-Rebuilding the dataset from the source documents needs the county source
-documents, which ship under `sources/` (including the files released under
-freedom-of-information requests), and the Python environment in `.venv`:
+Opens on http://localhost:8123. `npm run build` writes the deployable site to
+`web/dist`; `npm test` runs the unit tests, `npm run e2e` the browser suite.
+To rebuild the dataset from the county source documents in `sources/`:
 
 ```bash
 .venv/bin/python3 tools/refresh.py
@@ -59,7 +58,7 @@ The same files are mirrored to a public bucket, with every file's SHA-256 in
 
 ## The dataset
 
-`web/data/schools.json` is what the app reads, and is published under the
+`web/public/data/schools.json` is what the app reads, and is published under the
 Norwegian Licence for Open Government Data
 ([NLOD 2.0](https://data.norge.no/nlod/no/2.0)); the code is MIT. The same
 data ships as SQLite and CSV in `data/` for anyone who would rather query it —
