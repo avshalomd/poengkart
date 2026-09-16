@@ -20,7 +20,7 @@ export default defineConfig({
   },
   projects: [
     { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1400, height: 900 } } },
-    { name: 'desktop-dark', use: { ...devices['Desktop Chrome'], viewport: { width: 1400, height: 900 }, colorScheme: 'dark' }, testMatch: /boot|school|settings/ },
+    { name: 'desktop-dark', use: { ...devices['Desktop Chrome'], viewport: { width: 1400, height: 900 }, colorScheme: 'dark' }, testMatch: /a11y|boot|school|settings/ },
     { name: 'mobile', use: { ...devices['Pixel 5'] }, testMatch: /mobile|boot|school|points/ },
   ],
 });

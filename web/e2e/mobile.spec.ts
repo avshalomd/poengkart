@@ -54,6 +54,37 @@ test('every control in the panel keeps its tap area', async ({ page }) => {
   }
 });
 
+test('the points field asks for the decimal keypad, and stays in sight when the keyboard opens', async ({ page }) => {
+  await boot(page);
+  // web/index.html: a points field that summoned the full QWERTY would be a
+  // phone bug of its own
+  await expect(page.locator('#my-points')).toHaveAttribute('inputmode', 'decimal');
+  await expect(page.locator('#pts-field')).toBeVisible();
+
+  const box = () => page.evaluate(() => {
+    const el = document.getElementById('panel');
+    const p = el.getBoundingClientRect(), f = document.getElementById('my-points').getBoundingClientRect();
+    return { scrollable: el.scrollHeight > el.clientHeight, inside: f.top >= p.top - 1 && f.bottom <= p.bottom + 1 };
+  });
+  await page.locator('#my-points').focus();
+  const vp = page.viewportSize()!;
+  // A software keyboard is not something Playwright can raise, but what it does
+  // to the page is take roughly half the height — which is the part commit
+  // 453b812 had to survive: the panel's cap shrinks, the field falls below it.
+  await page.setViewportSize({ width: vp.width, height: Math.round(vp.height / 2) });
+  await expect.poll(async () => (await box()).scrollable, { message: 'the shrunk panel scrolls' }).toBe(true);
+  await expect.poll(async () => (await box()).inside, { message: 'the focused field is in the panel' }).toBe(true);
+
+  // and the counter-case, so the assertion above cannot pass by accident:
+  // scrolled away the field really is out of view, and focus brings it back
+  // (panel's focusin → keepPanelFocusInView in web/src/app.js)
+  await page.evaluate(() => { document.getElementById('my-points')!.blur(); document.getElementById('panel')!.scrollTop = 0; });
+  expect((await box()).inside, 'scrolled to the top the field is out of view').toBe(false);
+  await page.locator('#my-points').focus();
+  await expect.poll(async () => (await box()).inside, { message: 'refocus scrolls it back' }).toBe(true);
+  await page.setViewportSize(vp);
+});
+
 test('the panel folds to one row once the reader uses the map', async ({ page }) => {
   await boot(page);
   const before = (await page.locator('#panel').boundingBox())!.height;

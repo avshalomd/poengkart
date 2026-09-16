@@ -59,11 +59,44 @@ test('a permalink pasted into an open tab switches the sheet to that school', as
   await expect(page.locator('#s-photo .name')).toContainText('Elvebakken');
 });
 
-test('Escape closes the sheet and leaves no tooltip on the map', async ({ page }) => {
+// #tip is hidden in the markup and nothing on a permalink load creates one, so
+// a bare "the tip is hidden" assertion is true before the test does anything.
+// Both tests below open a real tooltip first — bindTips() attaches to the level
+// chip on hover and to the row's name button on keyboard focus.
+const TIP = '#tip';
+
+test('Escape closes the sheet and takes an open tooltip with it', async ({ page, isMobile }) => {
+  test.skip(!!isMobile, 'hover is a pointer gesture; a touch tip is its own path, with a 4.5s timer');
   await boot(page);
   await openSchool(page, 'Akershus', 'Asker');
+  const lv = page.locator('#s-list .lv.tipped').first();
+  await expect(lv).toBeVisible();
+  await lv.hover();
+  await expect(page.locator(TIP)).toBeVisible();
+  await expect(page.locator(TIP)).toContainText('Vg1');
   await page.keyboard.press('Escape');
   await expect(page.locator('#side')).not.toHaveClass(/open/);
-  await expect(page.locator('#tip')).toBeHidden();
+  // the chip leaves the cursor as the sheet goes, so mouseleave clears the tip:
+  // nothing floats over the map afterwards
+  await expect(page.locator(TIP)).toBeHidden();
   await expect(page.locator('#map .leaflet-tooltip')).toHaveCount(0);
+});
+
+test('a keyboard reader’s first Escape closes the tooltip, the second the sheet', async ({ page, isMobile }) => {
+  test.skip(!!isMobile, 'no Tab order to walk on a phone');
+  await boot(page);
+  await openSchool(page, 'Akershus', 'Asker');
+  // Tab all the way in rather than calling focus(): the tip only opens on
+  // :focus-visible, which is the browser's own keyboard-modality judgement.
+  const onName = () => page.evaluate(() => !!document.activeElement?.matches('#s-list .prow button.nm'));
+  let reached = false;
+  for (let i = 0; i < 60 && !reached; i++) { await page.keyboard.press('Tab'); reached = await onName(); }
+  expect(reached, 'Tab reaches the programme row’s name button').toBe(true);
+  await expect(page.locator(TIP)).toBeVisible();
+  // app.js: the row's keydown hides the tip and stops the event, so the sheet stays
+  await page.keyboard.press('Escape');
+  await expect(page.locator(TIP)).toBeHidden();
+  await expect(page.locator('#side')).toHaveClass(/open/);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#side')).not.toHaveClass(/open/);
 });
