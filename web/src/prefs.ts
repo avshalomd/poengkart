@@ -7,9 +7,10 @@ import { setLang } from "./lang";
 import { drawMarkers, setLevels, setTiles } from "./map";
 import { listLayout, renderSide, sideTrap } from "./sidebar";
 import { S } from './state';
+import type { Prefs } from './types';
 
 /* ================= preferences: theme, text size, colours ================= */
-export const PREFS = { theme: 'auto', font: 'n', cvd: false };
+export const PREFS: Prefs = { theme: 'auto', font: 'n', cvd: false };
 export function loadPrefs() {
   try {
     const th = localStorage.getItem('pk-theme');
@@ -43,8 +44,8 @@ export function applyPrefs(rerender) {
   }
 }
 export function renderSettings() {
-  document.getElementById('settings-h').textContent = t('settingsLabel');
-  document.getElementById('settings-x').setAttribute('aria-label', t('close'));
+  document.getElementById('settings-h')!.textContent = t('settingsLabel');
+  document.getElementById('settings-x')!.setAttribute('aria-label', t('close'));
   const SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"' +
     ' stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/>' +
     '<path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>';
@@ -56,7 +57,7 @@ export function renderSettings() {
     `<button type="button" data-k="${key}" data-v="${v}" class="${cur === v ? 'on' : ''}"` +
     ` aria-pressed="${cur === v}"${label ? ` aria-label="${esc(label)}" title="${esc(label)}"` : ''}>${html}</button>`)
     .join('') + `</div>`;
-  document.getElementById('settings-body').innerHTML =
+  document.getElementById('settings-body')!.innerHTML =
     `<div class="row"><div class="t">${esc(t('levelsSumLabel'))}</div>` +
     seg('levels', [['1', 'Vg1'], ['all', esc(t('levelsChipAll'))]], S.allLevels ? 'all' : '1', t('levelsSumLabel')) +
     `<div class="hint">${esc(t('setLevelsHint'))}</div></div>` +
@@ -70,7 +71,7 @@ export function renderSettings() {
     `<div class="row"><div class="t">${esc(t('setColors'))}</div>` +
     seg('cvd', [['0', esc(t('setColorsStd'))], ['1', esc(t('setColorsCvd'))]], PREFS.cvd ? '1' : '0', t('setColors')) + `</div>` +
     `<div class="note">${esc(t('setNote'))}</div>`;
-  document.getElementById('settings-body').querySelectorAll('.seg button').forEach((b: any) => {
+  document.getElementById('settings-body')!.querySelectorAll('.seg button').forEach((b: any) => {
     b.onclick = () => {
       const k = b.dataset.k, v = b.dataset.v;
       if (k === 'lang') setLang(v);            // re-renders this sheet

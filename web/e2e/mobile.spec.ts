@@ -62,8 +62,8 @@ test('the points field asks for the decimal keypad, and stays in sight when the 
 
   const box = () => page.evaluate(() => {
     const el = document.getElementById('panel');
-    const p = el.getBoundingClientRect(), f = document.getElementById('my-points').getBoundingClientRect();
-    return { scrollable: el.scrollHeight > el.clientHeight, inside: f.top >= p.top - 1 && f.bottom <= p.bottom + 1 };
+    const p = el!.getBoundingClientRect(), f = document.getElementById('my-points')!.getBoundingClientRect();
+    return { scrollable: el!.scrollHeight > el!.clientHeight, inside: f.top >= p.top - 1 && f.bottom <= p.bottom + 1 };
   });
   await page.locator('#my-points').focus();
   const vp = page.viewportSize()!;

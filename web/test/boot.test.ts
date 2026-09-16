@@ -58,7 +58,7 @@ describe('boot', () => {
     const elvebakken = DATA.schools.find((s: any) => /^Elvebakken/.test(s.name))!;
     location.hash = `#s=${elvebakken.fylke}/${encodeURIComponent(elvebakken.name)}`;
     window.dispatchEvent(new Event('hashchange'));
-    expect(S.current.name).toBe(elvebakken.name);
+    expect(S.current!.name).toBe(elvebakken.name);
     expect(document.getElementById('side')!.classList.contains('open')).toBe(true);
 
     // the back gesture closes what is on screen
@@ -81,7 +81,7 @@ describe('boot', () => {
     q.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
     expect(S.ovAct).toBe(-1);
     q.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
-    expect(S.current.name).toBe('Asker');
+    expect(S.current!.name).toBe('Asker');
     expect(isSheetOpen(document.getElementById('searchov'))).toBe(false);
 
     // a floating tooltip does not outlive the reader's attention
@@ -99,7 +99,7 @@ describe('boot', () => {
     vi.stubGlobal('fetch', network());
     initAll();
     await main();
-    expect(S.DATA.schools.length).toBe(DATA.schools.length);
+    expect(S.DATA!.schools.length).toBe(DATA.schools.length);
     expect(S.MODEL).toBeTruthy();
     expect(S.DATA_STAMP).toContain('2026');
     expect(S.map).toBeTruthy();
@@ -149,7 +149,7 @@ describe('boot', () => {
     await main();
     expect(S.mapFylke).toBe('Akershus');
     expect(S.mapCat).toBe('ST');
-    expect(S.current.name).toBe('Asker');
+    expect(S.current!.name).toBe('Asker');
     expect(document.getElementById('side')!.classList.contains('open')).toBe(true);
     expect(document.querySelector('#s-photo .name')!.textContent).toContain('Asker');
   });

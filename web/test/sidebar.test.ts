@@ -65,7 +65,7 @@ describe('the school sheet', () => {
     // Leaflet tiles, which are <img> too
     expect(document.querySelector('#s-photo > img')).toBeTruthy();
     expect(document.querySelector('#s-photo .credit')).toBeTruthy();
-    const noPhoto = S.DATA.schools.find((x: any) => !x.photo && x.lat);
+    const noPhoto = S.DATA!.schools.find((x: any) => !x.photo && x.lat);
     expect(noPhoto).toBeTruthy();
     openSide(noPhoto);
     expect(document.querySelector('#s-photo > img')).toBeNull();

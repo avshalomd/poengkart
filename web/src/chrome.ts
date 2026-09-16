@@ -1,3 +1,4 @@
+import type L from 'leaflet';
 import { bucketColor, chanceMode, renderPointsField } from "./chance";
 import { BIN_EDGES, BINS, cssVar, esc, fmt, isVg1, levelScope, MISSING_COUNTIES, shownPrograms } from "./helpers";
 import { CATS, t } from "./i18n";
@@ -11,24 +12,24 @@ import { bindTitleTips } from "./tips";
 export function renderPanel() {
   renderControls();
   // in a span: the List view shows the line whole or not at all
-  document.getElementById('tagline').replaceChildren(Object.assign(document.createElement('span'), {
-    textContent: t('tagline', S.DATA.schools.length, S.DATA.counties.length,
-                   S.DATA.years[0], S.DATA.years[S.DATA.years.length - 1]) }));
-  document.getElementById('cat-label').textContent = t('catLabel');
-  document.getElementById('view-map').textContent = t('viewMap');
-  document.getElementById('view-list').textContent = t('viewList');
-  document.getElementById('view-toggle').setAttribute('aria-label', t('viewLabel'));
+  document.getElementById('tagline')!.replaceChildren(Object.assign(document.createElement('span'), {
+    textContent: t('tagline', S.DATA!.schools.length, S.DATA!.counties.length,
+                   S.DATA!.years[0], S.DATA!.years[S.DATA!.years.length - 1]) }));
+  document.getElementById('cat-label')!.textContent = t('catLabel');
+  document.getElementById('view-map')!.textContent = t('viewMap');
+  document.getElementById('view-list')!.textContent = t('viewList');
+  document.getElementById('view-toggle')!.setAttribute('aria-label', t('viewLabel'));
   const co = document.getElementById('calc-open');
-  co.title = t('calcOpen');
-  co.setAttribute('aria-label', t('calcOpen'));
-  const counties = (S.DATA.counties || []).filter(c => c.schools);
+  co!.title = t('calcOpen');
+  co!.setAttribute('aria-label', t('calcOpen'));
+  const counties = (S.DATA!.counties || []).filter(c => c.schools);
   const ff = document.getElementById('fylke-field');
-  ff.hidden = counties.length < 2;               // pointless with a single county
-  document.getElementById('fylke-label').textContent = t('fylkeLabel');
+  ff!.hidden = counties.length < 2;               // pointless with a single county
+  document.getElementById('fylke-label')!.textContent = t('fylkeLabel');
   const fsel: any = document.getElementById('map-fylke');
   fsel.innerHTML = `<option value="all">${t('allFylker')}</option>` +
     counties.map(c => {
-      const n = S.DATA.schools.filter(s => s.fylke === c.fylke && s.lat).length;
+      const n = S.DATA!.schools.filter(s => s.fylke === c.fylke && s.lat).length;
       return `<option value="${esc(c.fylke)}">${esc(c.fylke)} (${n})</option>`;
     }).join('');
   // the counties without figures are listed, greyed and unselectable, so a
@@ -37,7 +38,7 @@ export function renderPanel() {
     MISSING_COUNTIES.map(f => `<option disabled>${esc(f)}</option>`).join('') + '</optgroup>';
   fsel.value = S.mapFylke;
   const present = new Set();
-  S.DATA.schools.filter(s => S.mapFylke === 'all' || s.fylke === S.mapFylke)
+  S.DATA!.schools.filter(s => S.mapFylke === 'all' || s.fylke === S.mapFylke)
     .forEach(s => levelScope(s.programs).forEach(p => present.add(p.category)));
   const sel: any = document.getElementById('map-cat');
   sel.innerHTML = `<option value="all">${t('allCats')}</option>` +
@@ -49,8 +50,8 @@ export function renderPanel() {
 }
 export function renderCatNote() {
   const el = document.getElementById('cat-note');
-  el.textContent = S.mapCat === 'all' ? '' :
-    t('catNote', S.DATA.schools.filter(s =>
+  el!.textContent = S.mapCat === 'all' ? '' :
+    t('catNote', S.DATA!.schools.filter(s =>
       (S.mapFylke === 'all' || s.fylke === S.mapFylke)
       && shownPrograms(s).some(p => p.category === S.mapCat)).length);
 }
@@ -67,7 +68,7 @@ export function liftMapControls() {
   // bottom margin never counted the legend's own bottom offset, so the credit
   // links ended 4–9px under the legend on a phone.
   const lr = document.getElementById('legend')?.getBoundingClientRect();
-  const lift = innerWidth <= 560 && h ? innerHeight - lr.top + 8 : 0;
+  const lift = innerWidth <= 560 && h ? innerHeight - lr!.top + 8 : 0;
   document.documentElement.style.setProperty('--ctrl-lift', lift + 'px');
   // The panel's height cap used to reserve a flat 150px for the legend, but the
   // legend is 200px tall in the default national view — it carries the
@@ -79,9 +80,9 @@ export function liftMapControls() {
   // Painted lengths, not the stylesheet's: at Ekstra stor the panel's 14px top
   // and the legend's 22px offset are both drawn a third larger, and the
   // unzoomed figures left the panel 1px from the legend instead of 12.
-  const pEl = document.getElementById('panel'), pr = pEl.getBoundingClientRect();
-  const panelTop = pr.height ? pr.top : parseFloat(getComputedStyle(pEl).top) || 14;
-  let gap = h ? innerHeight - lr.top + 12 + panelTop : 46 + panelTop;
+  const pEl = document.getElementById('panel'), pr = pEl!.getBoundingClientRect();
+  const panelTop = pr.height ? pr.top : parseFloat(getComputedStyle(pEl!).top) || 14;
+  let gap = h ? innerHeight - lr!.top + 12 + panelTop : 46 + panelTop;
   // On a phone the panel spans the whole width, so the map's bottom-right
   // controls have only the strip between the panel and the legend to stand in.
   // Reserve that strip as well: with the ten wishes vigo allows, the choices
@@ -100,7 +101,7 @@ export function liftMapControls() {
   // multiplied by the zoom before it is painted, so `calc(100dvh - gap)` gave a
   // panel a third too tall at the largest text step. Divide the budget by the
   // zoom; at z = 1 this is exactly the old `gap`.
-  const z = parseFloat(getComputedStyle(document.getElementById('panel')).zoom) || 1;
+  const z = parseFloat(getComputedStyle(document.getElementById('panel')!).zoom) || 1;
   document.documentElement.style.setProperty(
     '--panel-reserve', Math.round(innerHeight - (innerHeight - gap) / z) + 'px');
   placeToast();   // the legend it steers around may have moved or grown
@@ -111,7 +112,7 @@ export function legendZoomHint() {
   const el = document.getElementById('legend-zoom');
   if (!el) return;
   const fg = S.markerLayer && S.markerLayer._featureGroup;
-  const clustered = !!fg && fg.getLayers().some(l => typeof l.getChildCount === 'function');
+  const clustered = !!fg && (fg.getLayers() as L.MarkerCluster[]).some(l => typeof l.getChildCount === 'function');
   el.textContent = t('legendZoomHint');
   const was = el.hidden;
   el.hidden = !(chanceMode() && clustered);
@@ -136,7 +137,7 @@ export function levelChip() {
 export function renderLegend() {
   const rounds = [...new Set(visibleSchools().map(s => s.round).filter(Boolean))];
   const anyUnknown = visibleSchools().some(s => !s.round);
-  document.getElementById('legend-title').innerHTML =
+  document.getElementById('legend-title')!.innerHTML =
     (chanceMode() ? esc(t('legendChance', fmt(S.myPoints), forecastYears(visibleSchools())))
       : S.mapCat === 'all' ? t('legendAll') : t('legendCat', S.mapCat)) +
     (rounds.length === 1 && !anyUnknown
@@ -145,28 +146,28 @@ export function renderLegend() {
       ? ` <span class="round unknown" title="${esc(t('roundUnknownTitle'))}">${t('roundUnknown')}</span>` : '') +
     levelChip();
   const mix = document.getElementById('legend-mixed');
-  mix.hidden = !(rounds.length > 1 || (rounds.length && anyUnknown));
+  mix!.hidden = !(rounds.length > 1 || (rounds.length && anyUnknown));
   legendZoomHint();
-  mix.textContent = t('mixedRounds');
-  document.getElementById('legend-more-t').textContent = t('moreLabel');
-  document.getElementById('legend-less-t').textContent = t('lessLabel');
+  mix!.textContent = t('mixedRounds');
+  document.getElementById('legend-more-t')!.textContent = t('moreLabel');
+  document.getElementById('legend-less-t')!.textContent = t('lessLabel');
   if (chanceMode()) {
-    document.getElementById('legend-bins').innerHTML = ['likely', 'possible', 'unlikely'].map(b =>
+    document.getElementById('legend-bins')!.innerHTML = ['likely', 'possible', 'unlikely'].map(b =>
       `<div class="bin"><span class="sw" style="background:${bucketColor(b)}"></span><span class="bl">${t('bandLabel', b)}</span></div>`).join('');
-    document.getElementById('legend-size').textContent = t('legendChanceSize');
-    document.getElementById('legend-none').textContent = t('legendNoForecast');
+    document.getElementById('legend-size')!.textContent = t('legendChanceSize');
+    document.getElementById('legend-none')!.textContent = t('legendNoForecast');
   } else {
-    document.getElementById('legend-bins').innerHTML = BINS.map((b, i) =>
+    document.getElementById('legend-bins')!.innerHTML = BINS.map((b, i) =>
       `<div class="bin"><span class="sw" style="background:${cssVar(b.css)}"></span><span class="bl">${BIN_EDGES[i]}</span></div>`).join('');
-    document.getElementById('legend-size').textContent = t('legendSize');
-    document.getElementById('legend-none').textContent = t('legendNone');
+    document.getElementById('legend-size')!.textContent = t('legendSize');
+    document.getElementById('legend-none')!.textContent = t('legendNone');
   }
   // "no waitlist" and "filled without points" are not dot states once the
   // dots show chances
-  document.getElementById('legend-open').parentElement.hidden = chanceMode();
-  document.getElementById('legend-open').textContent = t('legendOpen');
-  document.getElementById('legend-zero').parentElement.hidden = chanceMode();
-  document.getElementById('legend-zero').textContent = t('noPoints');
+  document.getElementById('legend-open')!.parentElement!.hidden = chanceMode();
+  document.getElementById('legend-open')!.textContent = t('legendOpen');
+  document.getElementById('legend-zero')!.parentElement!.hidden = chanceMode();
+  document.getElementById('legend-zero')!.textContent = t('noPoints');
   // the intake-round chip in the title advertises an explanation with a dotted
   // underline and `cursor: help`, and every other surface that does so is bound
   // for touch; the legend was the one that never was, so on a phone the single
@@ -178,5 +179,5 @@ export function renderLegend() {
 export function initChrome() {
   // the legend's height feeds the panel's reserve and the control lift, so an
   // unfolded legend has to be measured again
-  document.getElementById('legend-more').addEventListener('toggle', liftMapControls);
+  document.getElementById('legend-more')!.addEventListener('toggle', liftMapControls);
 }

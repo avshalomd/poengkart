@@ -74,7 +74,7 @@ describe('finding a school', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
     search('asker');
     pickOv(0);
-    expect(S.current.name).toBe('Asker');
+    expect(S.current!.name).toBe('Asker');
     expect(document.getElementById('side')!.classList.contains('open')).toBe(true);
     search('møre');
     pickOv(0);

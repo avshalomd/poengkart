@@ -9,6 +9,7 @@ import { drawMarkers, markerOf, prefersStill, setLens, tileUrl } from "./map";
 import { renderList } from "./programs";
 import { S } from './state';
 import { bindTitleTips } from "./tips";
+import type { County } from './types';
 
 /* ================= sidebar ================= */
 // The open school is a place someone will want to send to someone else, so it
@@ -22,7 +23,7 @@ import { bindTitleTips } from "./tips";
 // short and every #s= link already in the wild still parses.
 export const schoolPart = s => 's=' + encodeURIComponent(s.fylke) + '/' + encodeURIComponent(s.name);
 export function buildHash(s) {
-  const parts = [];
+  const parts: string[] = [];
   if (s) parts.push(schoolPart(s));
   if (S.mapFylke !== 'all') parts.push('f=' + encodeURIComponent(S.mapFylke));
   if (S.mapCat !== 'all') parts.push('c=' + encodeURIComponent(S.mapCat));
@@ -63,7 +64,7 @@ export function schoolFromUrl() {
   if (!m) return null;
   try {
     const fy = decodeURIComponent(m[1]), name = decodeURIComponent(m[2]);
-    const inFylke = S.DATA.schools.filter(x => x.fylke === fy);
+    const inFylke = S.DATA!.schools.filter(x => x.fylke === fy);
     // a pasted link may carry stray spaces or decomposed å/ø from another app
     const key = name.trim().normalize('NFC').toLowerCase();
     // Buskerud and Akershus carry the county's own short school name ("Kongsberg");
@@ -101,10 +102,10 @@ export function applyUrlFilters(boot?) {
     if (p.f) fy = decodeURIComponent(p.f);
     if (p.c) cat = decodeURIComponent(p.c);
   } catch (e) { return false; }
-  if (!S.DATA.schools.some(s => s.fylke === fy)) fy = 'all';        // a county we do not carry
+  if (!S.DATA!.schools.some(s => s.fylke === fy)) fy = 'all';        // a county we do not carry
   if (cat !== 'all' && !CATS[cat]) cat = 'all';
   // a lens with nothing at Vg1 (påbygging) is a link to the later years
-  if (cat !== 'all' && !lv && !S.DATA.schools.some(s => (fy === 'all' || s.fylke === fy)
+  if (cat !== 'all' && !lv && !S.DATA!.schools.some(s => (fy === 'all' || s.fylke === fy)
         && s.programs.some(q => isVg1(q) && q.category === cat))) lv = true;
   if (fy === S.mapFylke && cat === S.mapCat && lv === S.allLevels) return false;
   S.mapFylke = fy; S.mapCat = cat; S.allLevels = lv;
@@ -140,7 +141,7 @@ export const phoneSheet = () => {
 // 400px sheet, and the docked panel's 346px on top of a 760px column
 export const LIST_LAYOUT = { n: [1068, 1582], lg: [1168, 1734], xl: [1268, 1905] };
 export function listLayout() {
-  const [split, wide] = LIST_LAYOUT[document.documentElement.dataset.font] || LIST_LAYOUT.n;
+  const [split, wide] = LIST_LAYOUT[document.documentElement.dataset.font as string] || LIST_LAYOUT.n;
   const lv = S.view !== 'list' ? '' : innerWidth >= wide ? 'wide' : innerWidth >= split ? 'split' : 'thin';
   const c = document.body.classList;
   // Wide scrolls #listview and the stacked layouts scroll #app, so crossing
@@ -149,14 +150,14 @@ export function listLayout() {
   // focused a row 4,600px away. The first row on screen stays where it was.
   const was = c.contains('lv-wide') ? 'wide' : c.contains('lv-stack') ? 'stack' : '';
   const now = lv === 'wide' ? 'wide' : lv ? 'stack' : '';
-  let anchor = null, anchorTop = 0;
+  let anchor: Element | null | undefined = null, anchorTop = 0;
   if (was && now && was !== now) {
     anchor = [...document.querySelectorAll('#listview tbody tr')].find(r => r.getBoundingClientRect().bottom > 0);
     if (anchor) anchorTop = anchor.getBoundingClientRect().top;
   }
   for (const k of ['wide', 'split', 'thin']) c.toggle('lv-' + k, lv === k);
   c.toggle('lv-stack', lv === 'split' || lv === 'thin');
-  if (anchor) document.getElementById(now === 'wide' ? 'listview' : 'app').scrollTop += anchor.getBoundingClientRect().top - anchorTop;
+  if (anchor) document.getElementById(now === 'wide' ? 'listview' : 'app')!.scrollTop += anchor.getBoundingClientRect().top - anchorTop;
   return lv;
 }
 export const sheetFull = () => phoneSheet() || (S.view === 'list' && listLayout() === 'thin');
@@ -167,7 +168,7 @@ export function sideTrap(on) {
   // Where it covers the list, the list and its controls stay laid out, so
   // closing finds the list scrolled where it was; they only leave the Tab order.
   const covered = on && S.view === 'list' && sheetFull();
-  for (const id of ['listview', 'panel']) document.getElementById(id).toggleAttribute('inert', covered);
+  for (const id of ['listview', 'panel']) document.getElementById(id)!.toggleAttribute('inert', covered);
 }
 // Opening a school the current filter excludes used to leave the panel and the
 // map disagreeing: full detail on the right, no marker anywhere — and for a
@@ -207,14 +208,14 @@ export function buildMiniMap(s) {
   // deferred redraw left tiles on a fifth of the box; redraw on every resize
   if (S.miniMapRO) S.miniMapRO.disconnect();
   S.miniMapRO = new ResizeObserver(() => S.miniMap && S.miniMap.invalidateSize());
-  S.miniMapRO.observe(document.getElementById('s-minimap'));
+  S.miniMapRO.observe(document.getElementById('s-minimap')!);
 }
 export function openSide(s) {
   const ae = document.activeElement;
   S.sideOpener = ae && document.getElementById('map')?.contains(ae) ? ae : null;
   // opened from a wish or from search: closing goes back there, not to the
   // county select above them (a marker and a list row have their own way back)
-  if (!document.getElementById('side').classList.contains('open')) {
+  if (!document.getElementById('side')!.classList.contains('open')) {
     S.sideReturn = ae?.closest?.('#choices .who') ? { who: ae.getAttribute('aria-label') }
       : ae?.closest?.('#searchov') ? { id: 'searchov-btn' } : null;
   }
@@ -222,8 +223,8 @@ export function openSide(s) {
   S.current = s;
   S.chart.prog = null;                     // the lens itself is global
   const side = document.getElementById('side');
-  side.removeAttribute('inert');
-  side.classList.add('open');
+  side!.removeAttribute('inert');
+  side!.classList.add('open');
   renderSide();
   document.body.classList.add('side-open');
   sideTrap(true);
@@ -248,15 +249,15 @@ export function openSide(s) {
   if (S.view === 'map' && s.lat && S.map && !phoneSheet()) {
     clearTimeout((openSide as any).pan);
     const reveal = () => {
-      const mc = S.map.getContainer();
+      const mc = S.map!.getContainer();
       if (S.current !== s || !mc.clientWidth) return;
-      S.map.invalidateSize({ pan: false });
-      const mr = mc.getBoundingClientRect(), pr = document.getElementById('panel').getBoundingClientRect();
+      S.map!.invalidateSize({ pan: false });
+      const mr = mc.getBoundingClientRect(), pr = document.getElementById('panel')!.getBoundingClientRect();
       let left = pr.width && pr.right > mr.left ? Math.round(pr.right - mr.left) + 24 : 24;
       if (left + 64 > mc.clientWidth) left = 24;     // no strip beside the panel to aim for
-      S.map.panInside([s.lat, s.lon], { paddingTopLeft: [left, 24], paddingBottomRight: [24, 24], animate: !prefersStill() });
+      S.map!.panInside([s.lat, s.lon], { paddingTopLeft: [left, 24], paddingBottomRight: [24, 24], animate: !prefersStill() });
     };
-    (openSide as any).pan = setTimeout(() => (S.map._flyToFrame ? S.map.once('moveend', reveal) : reveal()), prefersStill() ? 0 : 260);
+    (openSide as any).pan = setTimeout(() => (S.map!._flyToFrame ? S.map!.once('moveend', reveal) : reveal()), prefersStill() ? 0 : 260);
   }
 }
 export function clearScope() {
@@ -280,20 +281,20 @@ export function closeSide(fromHistory?) {
     history.back();                        // popstate closes it, once
     return;
   }
-  side.classList.remove('open');
+  side!.classList.remove('open');
   document.body.classList.remove('side-open');
   sideTrap(false);
   S.current = null;      // or the next county switch writes the closed school back into the URL
   setUrlSchool(null);
   liftMapControls();                       // the legend is visible again
-  side.setAttribute('inert', '');          // keep 17 hidden controls out of Tab
+  side!.setAttribute('inert', '');          // keep 17 hidden controls out of Tab
   const opener: any = openedName
     ? mapKeyed().find(e => (e.getAttribute('aria-label') || '').startsWith(openedName + '.')) || null
     : null;
   if (opener) { mapKeyed().forEach(e => { e.setAttribute('tabindex', '-1'); e.dataset.pkRove = '1'; }); opener.setAttribute('tabindex', '0'); opener.dataset.pkRove = '0'; }
   S.sideOpener = null;
   const ret = S.sideReturn && (S.sideReturn.id ? document.getElementById(S.sideReturn.id)
-    : [...document.querySelectorAll('#choices .who')].find(b => b.getAttribute('aria-label') === S.sideReturn.who));
+    : [...document.querySelectorAll('#choices .who')].find(b => b.getAttribute('aria-label') === S.sideReturn!.who));
   S.sideReturn = null;
   // From the list, focus goes back to the school's own row. The county select
   // at the top of the card scrolled a list read halfway down back up to it.
@@ -308,7 +309,7 @@ export function closeSide(fromHistory?) {
   // A row that a rotation or a text size moved off screen is scrolled to; one
   // still in view keeps the list exactly where it was.
   const rr = row && row.getBoundingClientRect();
-  (row || opener || fallback)?.focus({ preventScroll: S.view === 'list' && (!row || (rr.top >= 0 && rr.bottom <= innerHeight)) });
+  (row || opener || fallback)?.focus({ preventScroll: S.view === 'list' && (!row || (rr!.top >= 0 && rr!.bottom <= innerHeight)) });
   // A click or a tap focuses the marker too, so a sheet opened that way hands
   // focus back like any other, and Leaflet opens a tooltip on every focus: the
   // school's tooltip was left floating over the map after the ✕. Only a return
@@ -327,7 +328,7 @@ export const photoSrc = u => (/\/bv\.ashx\//.test(u) && location.protocol === 'h
 export function renderSide() {
   // current outlives closeSide, so a language or theme change would otherwise
   // rebuild the whole panel — minimap included — inside a zero-width box
-  if (!S.current || !document.getElementById('side').classList.contains('open')) return;
+  if (!S.current || !document.getElementById('side')!.classList.contains('open')) return;
   const s = S.current;
   // photo header
   const ph = document.getElementById('s-photo');
@@ -345,7 +346,7 @@ export function renderSide() {
         : esc(creditText)) + '</div>'
     : '';
   const pos = s.photo_position ? ` style="--photo-pos:${esc(s.photo_position)}"` : '';
-  ph.innerHTML = (s.photo ? `<img src="${esc(photoSrc(s.photo))}" data-full="${esc(s.photo)}"`
+  ph!.innerHTML = (s.photo ? `<img src="${esc(photoSrc(s.photo))}" data-full="${esc(s.photo)}"`
                           + ` alt="" loading="lazy"${pos}>`
                           : `<div id="s-minimap"></div>`) +
     `<div class="veil"></div>` +
@@ -354,15 +355,15 @@ export function renderSide() {
     `<div class="name"><h2>${esc(s.name)}</h2>${credit}</div>`;
   // an optimiser that is not there, or a county URL that has expired since the
   // last build, should not leave a broken image in the header
-  const pimg = ph.querySelector('img');
+  const pimg = ph!.querySelector('img');
   if (pimg) {
     pimg.onerror = () => {
       if (!pimg.isConnected) return;                       // the panel has moved on
       if (pimg.dataset.full && pimg.src !== pimg.dataset.full) { pimg.src = pimg.dataset.full; return; }
       // both the proxy and the county URL are gone (St.Hallvard, Os): the header
       // used to keep a broken-image glyph and a credit for a photo that is not there
-      pimg.onerror = null; pimg.remove(); ph.querySelector('.credit')?.remove();
-      if (s.lat && !ph.querySelector('#s-minimap')) { ph.insertAdjacentHTML('afterbegin', '<div id="s-minimap"></div>'); buildMiniMap(s); }
+      pimg.onerror = null; pimg.remove(); ph!.querySelector('.credit')?.remove();
+      if (s.lat && !ph!.querySelector('#s-minimap')) { ph!.insertAdjacentHTML('afterbegin', '<div id="s-minimap"></div>'); buildMiniMap(s); }
     };
   }
   // no freely licensed photo exists for this school: show where it actually is
@@ -370,7 +371,7 @@ export function renderSide() {
   if (S.miniMapRO) { S.miniMapRO.disconnect(); S.miniMapRO = null; }
   if (!s.photo && s.lat) buildMiniMap(s);
   // meta links
-  const meta = [];
+  const meta: string[] = [];
   if (s.url) meta.push(`<a href="${esc(s.url.startsWith('http') ? s.url : 'https://' + s.url)}" target="_blank" rel="noopener">${t('website')} ↗</a>`);
   if (web(s.wiki_url)) meta.push(`<a href="${esc(s.wiki_url)}" target="_blank" rel="noopener">${t('wiki')} ↗</a>`);
   if (s.address) meta.push(`<span>${esc(s.address)}</span>`);
@@ -384,16 +385,16 @@ export function renderSide() {
     meta.push(`<span class="round stale" title="${esc(t('staleTitle'))}">`
             + `${t('staleChip', newest)}</span>`);
   }
-  document.getElementById('s-meta').innerHTML = meta.join('');
+  document.getElementById('s-meta')!.innerHTML = meta.join('');
   // the county's own history of this school, where it is not one school's own
-  const notes = [];
+  const notes: string[] = [];
   if (s.merged_from && s.merged_year) {
     notes.push(t('mergedNote', s.merged_from.join(t('listAnd')), s.merged_year, s.merged_from.length));
   }
   if (s.uncertain_years && s.uncertain_years.length) {
     notes.push(t('uncertainNote', s.uncertain_years.join(', ')));
   }
-  const cy = (S.DATA.counties || []).find(c => c.fylke === s.fylke) || {};
+  const cy: Partial<County> = (S.DATA!.counties || []).find(c => c.fylke === s.fylke) || {};
   const odd = Object.entries(cy.round_years || {})
     .filter(([y]) => s.programs.some(p => y in p.values));
   for (const [y, r] of odd) notes.push(t('roundYearNote', y, r));
@@ -402,15 +403,15 @@ export function renderSide() {
     notes.push(t('openRuleNote'));
   }
   const noteBox = document.getElementById('s-notes');
-  noteBox.innerHTML = notes.map(n => `<p>${esc(n)}</p>`).join('');
-  noteBox.hidden = !notes.length;
+  noteBox!.innerHTML = notes.map(n => `<p>${esc(n)}</p>`).join('');
+  noteBox!.hidden = !notes.length;
   // One statistic everywhere: the dot on the map, this figure and the blue
   // line are all the mean of the same cells, and the change is the last step
   // of that line — so a reader can check the subtraction and it comes out.
   // What a mean cannot say on its own is how much of the school never had a
   // waitlist, so that is spelled out underneath instead of hidden in it.
   const lensCat = S.mapCat !== 'all' ? S.mapCat : null;
-  const cells = [];
+  const cells: { v: string | number; l: string; cls?: string; ti?: string }[] = [];
   const base = shownPrograms(s);
   const scopePrograms = lensCat ? base.filter(p => p.category === lensCat) : base;
   const step = meanStep(scopePrograms);
@@ -420,8 +421,8 @@ export function renderSide() {
     cells.push({ v: fmt(mean), l: `${t('heroTypical')} · ${scopeLabel} ${latest}` });
     if (meanPrev !== null) {
       const d = step.d;
-      cells.push({ v: (d > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
-                   cls: d > 0 ? 'up' : d < 0 ? 'dn' : '', ti: t('heroDeltaBasis') });
+      cells.push({ v: (d! > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
+                   cls: d! > 0 ? 'up' : d! < 0 ? 'dn' : '', ti: t('heroDeltaBasis') });
     }
   } else if (!scopePrograms.length) {
     // the lens names a programme this school does not offer: say that, rather
@@ -442,17 +443,17 @@ export function renderSide() {
   cells.push({ v: visibleIn(scopePrograms), l: t('heroProgs', visibleIn(scopePrograms)) });
   const mix = openMix(scopePrograms, latest);
   const mixBox = document.getElementById('s-mix');
-  mixBox.hidden = !(mix.mostly && mean !== null);
-  if (!mixBox.hidden) {
-    mixBox.innerHTML = `<span class="sign" aria-hidden="true">⚠</span><span>` +
+  mixBox!.hidden = !(mix.mostly && mean !== null);
+  if (!mixBox!.hidden) {
+    mixBox!.innerHTML = `<span class="sign" aria-hidden="true">⚠</span><span>` +
       esc(t('mostlyOpenNote', mix.open, mix.total, latest,
              scopePrograms.map(p => p.values[latest]).filter(isPoints).length)) + `</span>`;
   }
-  document.getElementById('s-hero').innerHTML =
+  document.getElementById('s-hero')!.innerHTML =
     cells.map(c => `<div class="cell"${c.ti ? ` title="${esc(c.ti)}"` : ''}>` +
                    `<div class="v ${c.cls || ''}">${c.v}</div><div class="l">${capFirst(c.l)}</div></div>`).join('');
   renderChance(s, lensCat);
-  document.getElementById('src-note').innerHTML = esc(t('srcNote')) +
+  document.getElementById('src-note')!.innerHTML = esc(t('srcNote')) +
     ` <button class="lnk" onclick="contactOpener = this; openContact('tall')">${esc(t('srcNoteLink'))}</button>`;
   renderChartCard();
   renderList();
@@ -478,22 +479,22 @@ export function renderChance(s, lensCat) {
     // but hiding the box outright meant the whole-school case was the one
     // absence the panel never explained. A reader who never hovered the dot
     // would not learn the feature existed here at all.
-    box.hidden = false;
-    box.innerHTML = `<div>${esc(t('tipNoForecast'))}</div>`;
+    box!.hidden = false;
+    box!.innerHTML = `<div>${esc(t('tipNoForecast'))}</div>`;
     return;
   }
-  box.hidden = false;
+  box!.hidden = false;
   const adj = e.alpha === undefined ? ''
     : `<div class="adj tipped" title="${esc(t('adjTitle'))}">`
       + `${esc(t('adjLine', (round1(e.alpha) > 0 ? '+' : '') + fmt(e.alpha), fmt(e.alpha_se)))}</div>`;
   if (!chanceMode()) {
-    box.className = 'chance prompt';
-    box.innerHTML = `<div>${esc(t('chancePrompt', e.year))}</div>` + (adj ? chanceMore(adj) : '');
+    box!.className = 'chance prompt';
+    box!.innerHTML = `<div>${esc(t('chancePrompt', e.year))}</div>` + (adj ? chanceMore(adj) : '');
     return;
   }
-  box.className = 'chance';
+  box!.className = 'chance';
   const ch = schoolChance(s, lensCat || 'all', S.myPoints);
-  if (!ch) { box.innerHTML = `<div>${esc(t('chanceNoneInScope'))}</div>` + (adj ? chanceMore(adj) : ''); return; }
+  if (!ch) { box!.innerHTML = `<div>${esc(t('chanceNoneInScope'))}</div>` + (adj ? chanceMore(adj) : ''); return; }
   const noPred = Math.max(0, ch.total - ch.n);
   const head = ch.likely ? t('chanceHeadL', fmt(S.myPoints), ch.likely, ch.n, noPred, ch.total)
              : ch.possible ? t('chanceHeadR', fmt(S.myPoints), ch.possible, ch.n, noPred, ch.total)
@@ -502,11 +503,11 @@ export function renderChance(s, lensCat) {
     .map(b => `<span class="b-${b}" style="width:${100 * ch[b] / ch.n}%"></span>`).join('');
   // the spread range the footnote quotes: history buckets times the level
   // multipliers (model.json meta), i.e. the narrowest and widest s deployed
-  const sf: any[] = Object.values((S.MODEL.meta || {}).sigma_forecast || {});
-  const sm: any[] = Object.values((S.MODEL.meta || {}).sigma_level_multiplier || {});
+  const sf: any[] = Object.values((S.MODEL!.meta || {}).sigma_forecast || {});
+  const sm: any[] = Object.values((S.MODEL!.meta || {}).sigma_level_multiplier || {});
   const mlo = sm.length ? Math.min(...sm) : 1, mhi = sm.length ? Math.max(...sm) : 1;
   const lo = sf.length ? Math.round(Math.min(...sf) * mlo) : 5, hi = sf.length ? Math.round(Math.max(...sf) * mhi) : 8;
-  const cov = S.MODEL.meta && S.MODEL.meta.backtest_eval_years && S.MODEL.meta.backtest_eval_years.coverage80;
+  const cov = S.MODEL!.meta && S.MODEL!.meta.backtest_eval_years && S.MODEL!.meta.backtest_eval_years.coverage80;
   // where the county publishes round 1: what the final round does, if measured
   let fin = '';
   const fb = finalRoundBridge(s);
@@ -521,7 +522,7 @@ export function renderChance(s, lensCat) {
   }
   // what the county's publication cannot tell the reader about this chance
   if (!s.round) fin += `<div>${esc(t('chanceRoundUnknown'))}</div>`;
-  box.innerHTML = `<div class="h">${esc(head)}</div><div class="bar">${bar}</div>` + chanceMore(
+  box!.innerHTML = `<div class="h">${esc(head)}</div><div class="bar">${bar}</div>` + chanceMore(
     `<div>${esc(t('chanceCounts', ch.likely, ch.possible, ch.unlikely))}</div>` +
     `<div>${esc(t('chanceSub', ch.year, e.round, lo, hi))}` +
     (s.catchment ? ' ' + esc(t('chanceCatchment')) : '') +

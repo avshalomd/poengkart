@@ -66,7 +66,7 @@ describe('the wish list', () => {
 
   it('with points entered every wish carries its chance and the list carries the summary', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
-    const pool = withCat('ST').filter(({ s, p }: any) => S.MODEL.schools[`${s.fylke}|${s.name}`]?.programs);
+    const pool = withCat('ST').filter(({ s, p }: any) => S.MODEL!.schools[`${s.fylke}|${s.name}`]?.programs);
     for (const { s, p } of pool.slice(0, 3)) toggleChoice(s, p);
     onPoints('45');
     expect(S.myPoints).toBe(45);

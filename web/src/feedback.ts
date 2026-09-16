@@ -40,10 +40,10 @@ export function bugContext(school, from) {
     cvd: PREFS.cvd ? 'on' : 'off',
     viewport: `${innerWidth}×${innerHeight} @${devicePixelRatio}`,
     ua: navigator.userAgent,
-    data: `${S.DATA.schools.length} skoler, ${S.DATA.years[0]}–${S.DATA.years[S.DATA.years.length - 1]}`
+    data: `${S.DATA!.schools.length} skoler, ${S.DATA!.years[0]}–${S.DATA!.years[S.DATA!.years.length - 1]}`
           + (S.DATA_STAMP ? `, ${S.DATA_STAMP}` : ''),
   };
-  if (!school && document.getElementById('side').classList.contains('open')) school = S.current;
+  if (!school && document.getElementById('side')!.classList.contains('open')) school = S.current;
   if (school) {
     ctx.school = `${school.name} (${school.fylke})`;
     ctx.chart = chartMode() + (S.chart.prog ? `: ${S.chart.prog}` : '');
@@ -81,7 +81,7 @@ export function openBug(school, el) {
 export function contactField(name) {
   const key = { school: 'contactSchool', program: 'contactProgram', year: 'contactYear',
                 photo: 'contactPhoto', fylke: 'contactFylke' }[name];
-  const open = document.getElementById('side').classList.contains('open');
+  const open = document.getElementById('side')!.classList.contains('open');
   // Changing the kind of report rebuilds these fields, and both "wrong figure"
   // and "wrong photo" ask for a school: a hand-typed name used to be replaced
   // by the map's selection on the way past.
@@ -91,7 +91,7 @@ export function contactField(name) {
     : name === 'fylke' && S.mapFylke !== 'all' ? S.mapFylke : '';
   const type = name === 'photo' ? 'url' : name === 'year' ? 'number' : 'text';
   const extra = name === 'year'
-    ? ` min="${S.DATA.years[0]}" max="${S.DATA.years[S.DATA.years.length - 1]}"` : '';
+    ? ` min="${S.DATA!.years[0]}" max="${S.DATA!.years[S.DATA!.years.length - 1]}"` : '';
   return `<label for="c-${name}">${esc(t(key))}</label>
     <input id="c-${name}" data-f="${name}" type="${type}"${extra}
            autocomplete="off" value="${esc(value)}">`;
@@ -101,12 +101,12 @@ export function renderContactFields() {
   const kind = (document.getElementById('c-kind') as any).value;
   // the kind picked by hand in the form takes its snapshot here, like a button would
   if (kind === 'feil' && !S.bugCtx) S.bugCtx = bugContext(null, 'form');
-  document.getElementById('c-extra').innerHTML =
+  document.getElementById('c-extra')!.innerHTML =
     FIELDS[kind].map(contactField).join('') + (kind === 'feil' ? renderContactCtx() : '');
   const hint = t('contactHints')[kind];
   const el = document.getElementById('c-hint');
-  el.textContent = hint || '';
-  el.hidden = !hint;
+  el!.textContent = hint || '';
+  el!.hidden = !hint;
 }
 
 // The sent state lives here so that a language switch can redraw it. Going
@@ -114,7 +114,7 @@ export function renderContactFields() {
 // sheet, and the sender would reasonably conclude nothing had been sent.
 export function renderContactDone() {
   const body = document.getElementById('contact-body');
-  body.innerHTML = `<div class="done">
+  body!.innerHTML = `<div class="done">
          <svg viewBox="0 0 24 24" fill="none" stroke="var(--good)" stroke-width="2.4"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
            <path d="m4.5 12.5 5 5 10-11"/>
@@ -126,17 +126,17 @@ export function renderContactDone() {
 }
 
 export function renderContact() {
-  document.getElementById('contact-h').textContent = t('contactTitle');
-  document.getElementById('contact-x').setAttribute('aria-label', t('close'));
+  document.getElementById('contact-h')!.textContent = t('contactTitle');
+  document.getElementById('contact-x')!.setAttribute('aria-label', t('close'));
   const body = document.getElementById('contact-body');
-  if (body.dataset.done) { renderContactDone(); return; }
+  if (body!.dataset.done) { renderContactDone(); return; }
   // ...and a switch mid-form should not empty the boxes either
   const keep = {};
-  body.querySelectorAll('input, select, textarea').forEach((el: any) => {
+  body!.querySelectorAll('input, select, textarea').forEach((el: any) => {
     if (el.id) keep[el.id] = el.value;
   });
   const kinds = t('contactKinds');
-  body.innerHTML = `
+  body!.innerHTML = `
     <p class="lede">${esc(t('contactLede'))}</p>
     <form id="c-form" novalidate>
       <p class="hint">${esc(t('contactRequired'))}</p>
@@ -158,13 +158,13 @@ export function renderContact() {
       <button class="cta" id="c-send" type="submit">${esc(t('contactSend'))}</button>
     </form>`;
   if (keep['c-kind']) (document.getElementById('c-kind') as any).value = keep['c-kind'];
-  document.getElementById('c-kind').onchange = renderContactFields;
+  document.getElementById('c-kind')!.onchange = renderContactFields;
   renderContactFields();
   Object.entries(keep).forEach(([id, v]) => {
     const el: any = document.getElementById(id);
     if (el && v) el.value = v;
   });
-  document.getElementById('c-form').addEventListener('submit', sendContact);
+  document.getElementById('c-form')!.addEventListener('submit', sendContact);
 }
 
 export async function sendContact(ev) {
@@ -172,12 +172,12 @@ export async function sendContact(ev) {
   const err = document.getElementById('c-err');
   const btn: any = document.getElementById('c-send');
   const msg: any = document.getElementById('c-msg');
-  err.hidden = true;
+  err!.hidden = true;
   // three characters is what the relay accepts; anything shorter came back as a
   // bare "could not send", which reads like a fault in the site
   if (msg.value.trim().replace(/\s+/g, ' ').length < 3) {
-    err.textContent = t('contactNeedMsg');
-    err.hidden = false;
+    err!.textContent = t('contactNeedMsg');
+    err!.hidden = false;
     msg.focus();
     return;
   }
@@ -185,15 +185,15 @@ export async function sendContact(ev) {
   // a figure or a photo cannot be acted on without it
   const school: any = document.getElementById('c-school');
   if (school && !school.value.trim()) {
-    err.textContent = t('contactNeedSchool');
-    err.hidden = false;
+    err!.textContent = t('contactNeedSchool');
+    err!.hidden = false;
     school.focus();
     return;
   }
   const mail: any = document.getElementById('c-email');
   if (mail.value.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value.trim())) {
-    err.textContent = t('contactBadMail');
-    err.hidden = false;
+    err!.textContent = t('contactBadMail');
+    err!.hidden = false;
     mail.focus();
     return;
   }
@@ -220,11 +220,11 @@ export async function sendContact(ev) {
     // address ever reaches the browser (a mailto: fallback used to, and a
     // drained provider quota turned it into an address discloser).
     if (data.ok === false) throw new Error('relay');
-    document.getElementById('contact-body').dataset.done = 'sent';
+    document.getElementById('contact-body')!.dataset.done = 'sent';
     renderContactDone();
   } catch (e) {
-    err.textContent = t('contactFail');
-    err.hidden = false;
+    err!.textContent = t('contactFail');
+    err!.hidden = false;
     btn.disabled = false;
     btn.textContent = t('contactSend');
   }
@@ -236,13 +236,13 @@ export function switchToContact() {
   // A swap, not a dismissal, so it skips the exit animation: the two sheets
   // share a backdrop and a history entry, and fading one out while the other
   // arrives would show both at once behind a doubled scrim.
-  document.getElementById('intro').hidden = true;   // deliberately instant
+  document.getElementById('intro')!.hidden = true;   // deliberately instant
   try { localStorage.setItem(INTRO_SEEN, '1'); } catch (e) {}
   openContact();
 }
 export function openContact(kind?) {
   const body = document.getElementById('contact-body');
-  delete body.dataset.done;
+  delete body!.dataset.done;
   renderContact();
   if (kind) { (document.getElementById('c-kind') as any).value = kind; renderContactFields(); }
   showSheet('contact');

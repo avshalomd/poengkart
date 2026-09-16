@@ -7,6 +7,7 @@ import { renderList } from "./programs";
 import { openSide, renderSide } from "./sidebar";
 import { S } from './state';
 import { bindTitleTips } from "./tips";
+import type { Band, Program, School } from './types';
 
 /* ================= chance of a place =================
    tools/model.py forecasts, per programme, for the county's next publication
@@ -34,7 +35,7 @@ export function errCdf(z) {
   return Math.min(0.995, Math.max(0.005, ZQ_GRID[i - 1] + f * (ZQ_GRID[i] - ZQ_GRID[i - 1])));
 }
 export const chanceOf = (pr, x) => (1 - pr.pi) + pr.pi * errCdf((x - pr.m) / pr.s);
-export const bucketOf = c => c >= BANDS.likely ? 'likely' : c >= BANDS.possible ? 'possible' : 'unlikely';
+export const bucketOf = (c): Band => c >= BANDS.likely ? 'likely' : c >= BANDS.possible ? 'possible' : 'unlikely';
 export const bucketColor = b => cssVar(b === 'likely' ? '--good' : b === 'possible' ? '--dot-possible' : '--dot-unlikely');
 export const pct = c => Math.round(c * 100);
 // Norwegian puts a space before the unit sign, English does not. Every T
@@ -73,7 +74,8 @@ export function schoolChance(s, cat, x) {
   const base = shownPrograms(s);
   const pp = partitionPrograms(cat === 'all' ? base : base.filter(p => p.category === cat));
   const scope = [...pp.regular, ...pp.orphans];
-  const out = { n: 0, total: scope.length, likely: 0, possible: 0, unlikely: 0, best: -1, bestProg: null, year: null, progs: [] };
+  const out = { n: 0, total: scope.length, likely: 0, possible: 0, unlikely: 0, best: -1,
+                bestProg: null as Program | null, year: null as number | null, progs: [] as Program[] };
   for (const p of scope) {
     const pr = predFor(s, p);
     if (!pr) continue;
@@ -135,7 +137,7 @@ export function pickNote(msg) {
   // Centred on the window it lay across the edge of a school sheet beside the
   // map, and over the legend's corner. Centre it on the free part instead, and
   // clear the legend beside it, or above it where the strip is too narrow.
-  const sd = document.getElementById('side').getBoundingClientRect();
+  const sd = document.getElementById('side')!.getBoundingClientRect();
   const right = document.body.classList.contains('side-open') && sd.width > 0 && sd.left > 0 ? innerWidth - sd.left + 16 : 16;
   const lg = document.getElementById('legend')?.getBoundingClientRect();
   const nearLegend = lg && lg.height && lg.top < innerHeight - 70;
@@ -144,7 +146,7 @@ export function pickNote(msg) {
   if (nearLegend && innerWidth - right - (lg.right + 12) >= 280) el.style.left = Math.round(lg.right + 12) + 'px';
   else if (nearLegend) el.style.bottom = Math.round(innerHeight - lg.top + 12) + 'px';
   el.classList.add('show');
-  clearTimeout(S.pickNoteTimer);
+  clearTimeout(S.pickNoteTimer as ReturnType<typeof setTimeout>);
   S.pickNoteTimer = setTimeout(() => el.classList.remove('show'), 4500);
 }
 export function toggleChoice(s, p) {
@@ -156,7 +158,7 @@ export function toggleChoice(s, p) {
     // vigo's own limits, so the list can only hold an application that could
     // actually be submitted: ten ranked wishes, and a Vg1 application names
     // at most three different utdanningsprogram
-    const items = S.choices.map(resolveChoice).filter(Boolean);
+    const items = S.choices.map(resolveChoice).filter(Boolean) as Wish[];
     const refuse = key => {
       S.choicesNote = t(key);
       renderChoices();
@@ -196,6 +198,8 @@ export function refocus(...cands) {
     if (shown(el)) { el.focus({ preventScroll: true }); return; }
   }
 }
+/** A wish that still resolves against the dataset: the school and the row. */
+export type Wish = { s: School; p: Program };
 export function resolveChoice(c) {
   if (!okChoice(c) || !S.DATA) return null;
   const s = S.DATA.schools.find(x => x.fylke === c.f && x.name === c.s);
@@ -229,8 +233,8 @@ export function renderChoices() {
     S.choices = kept;
     try { localStorage.setItem('pk-choices', JSON.stringify(S.choices)); } catch (e) {}
   }
-  const items = S.choices.map(resolveChoice).filter(Boolean);
-  box.hidden = !items.length;
+  const items = S.choices.map(resolveChoice).filter(Boolean) as Wish[];
+  box!.hidden = !items.length;
   if (!items.length) return;
   let rows = '', L = 0, R = 0, U = 0, n = 0, pNone = 1;
   items.forEach(({ s, p }, i) => {
@@ -265,15 +269,15 @@ export function renderChoices() {
   } else if (!chanceMode()) {
     sum = `<div class="sum">${esc(t('choicesNoPts'))}</div>`;
   }
-  box.innerHTML = `<div class="h"><span>${esc(t('choicesHead', items.length))}</span>` +
+  box!.innerHTML = `<div class="h"><span>${esc(t('choicesHead', items.length))}</span>` +
     `<button id="choices-clear">${esc(t('choicesClear'))}</button></div>` +
     `<div class="list">${rows}</div>` +
     (S.choicesNote ? `<div class="vnote">⚠ ${esc(S.choicesNote)}</div>` : '') + sum;
-  box.querySelectorAll('.who').forEach((b: any) => b.onclick = () => {
+  box!.querySelectorAll('.who').forEach((b: any) => b.onclick = () => {
     const { s } = items[+b.dataset.i]; openSide(s);
     if (s.lat && S.map && S.view === 'map') S.map.setView([s.lat, s.lon], Math.max(S.map.getZoom(), 11));
   });
-  box.querySelectorAll('.rm').forEach((b: any) => b.onclick = () => {
+  box!.querySelectorAll('.rm').forEach((b: any) => b.onclick = () => {
     const i = +b.dataset.i, { s, p } = items[i];
     toggleChoice(s, p);
     // the redraw removed the pressed ✕: the next one takes its place, then the
@@ -286,16 +290,16 @@ export function renderChoices() {
   // rather than pop a system dialog, and forget the question after a few
   // seconds so a stray tap cannot arm it and a later one confirm it.
   const clr = document.getElementById('choices-clear');
-  clr.onclick = () => {
-    if (!clr.dataset.armed) {
-      clr.dataset.armed = '1';
-      clr.textContent = t('choicesClearSure');
-      clr.classList.add('arm');
+  clr!.onclick = () => {
+    if (!clr!.dataset.armed) {
+      clr!.dataset.armed = '1';
+      clr!.textContent = t('choicesClearSure');
+      clr!.classList.add('arm');
       clearTimeout((renderChoices as any).armTimer);
       (renderChoices as any).armTimer = setTimeout(() => {
-        delete clr.dataset.armed;
-        clr.textContent = t('choicesClear');
-        clr.classList.remove('arm');
+        delete clr!.dataset.armed;
+        clr!.textContent = t('choicesClear');
+        clr!.classList.remove('arm');
       }, 4000);
       return;
     }
@@ -334,9 +338,9 @@ export function onPoints(v) {
 }
 export function renderPointsField() {
   const f = document.getElementById('pts-field');
-  f.hidden = !S.MODEL;
+  f!.hidden = !S.MODEL;
   if (!S.MODEL) return;
-  document.getElementById('pts-label').textContent = t('ptsLabel');
+  document.getElementById('pts-label')!.textContent = t('ptsLabel');
   const inp: any = document.getElementById('my-points');
   inp.placeholder = t('ptsPh');
   // a language toggle changes the decimal separator the field shows, so a
@@ -350,15 +354,15 @@ export function renderPointsField() {
   // an unusable value must stay removable: hiding the clear button whenever
   // there is no figure left the reader typing over their own mistake
   const x = document.getElementById('pts-clear');
-  x.hidden = inp.value === '';
-  x.setAttribute('aria-label', t('ptsClear'));
+  x!.hidden = inp.value === '';
+  x!.setAttribute('aria-label', t('ptsClear'));
   const note = document.getElementById('pts-note');
-  note.classList.toggle('bad', bad);
+  note!.classList.toggle('bad', bad);
   // Only a typing error has a note. A colour key used to follow a valid figure:
   // on the map the legend already is that key, and in the list each Chance
   // cell names its own band in words («0 av 3 sannsynlig»).
-  note.hidden = !bad;
-  note.textContent = bad ? t('ptsBad') : '';
+  note!.hidden = !bad;
+  note!.textContent = bad ? t('ptsBad') : '';
 }
 
 export function initChance() {

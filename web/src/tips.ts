@@ -8,22 +8,22 @@ import { t } from "./i18n";
    the chip sits inside. */
 export function showTip(el, html) {
   const tip = document.getElementById('tip');
-  tip.hidden = false;
-  tip.innerHTML = html;
+  tip!.hidden = false;
+  tip!.innerHTML = html;
   const r = el.getBoundingClientRect();
-  const w = tip.offsetWidth, h = tip.offsetHeight;
+  const w = tip!.offsetWidth, h = tip!.offsetHeight;
   let x = Math.max(8, Math.min(r.left + r.width / 2 - w / 2, innerWidth - w - 8));
   let y = r.top - h - 8;
   if (y < 8) y = r.bottom + 8;                 // flip below rather than clip
-  tip.style.left = x + 'px';
-  tip.style.top = y + 'px';
-  tip.classList.add('on');
+  tip!.style.left = x + 'px';
+  tip!.style.top = y + 'px';
+  tip!.classList.add('on');
 }
 
 export function hideTip() {
   const tip = document.getElementById('tip');
-  tip.classList.remove('on');
-  tip.hidden = true;
+  tip!.classList.remove('on');
+  tip!.hidden = true;
 }
 
 export function bindTips(root) {

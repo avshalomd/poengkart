@@ -9,7 +9,7 @@ import { S } from './state';
 export function renderOvList() {
   const box = document.getElementById('ov-list');
   const q: any = document.getElementById('ov-q');
-  box.innerHTML = !q.value.trim() ? ''
+  box!.innerHTML = !q.value.trim() ? ''
     : S.ovHits.length
     ? S.ovHits.map((s, i) =>
         s.county
@@ -22,7 +22,7 @@ export function renderOvList() {
   q.setAttribute('aria-expanded', String(!!q.value.trim()));
   if (S.ovAct >= 0) q.setAttribute('aria-activedescendant', 'ov-opt-' + S.ovAct);
   else q.removeAttribute('aria-activedescendant');
-  box.querySelectorAll('.opt').forEach((el: any, i) => {
+  box!.querySelectorAll('.opt').forEach((el: any, i) => {
     // mousedown wins the race against blur; the click binding is for assistive
     // tech, whose activation dispatches click only — pickOv self-guards, so a
     // mouse firing both is one pick
@@ -50,8 +50,8 @@ export function pickOv(i) {
     return;
   }
   if (s.lat && S.view === 'map') {
-    const z = Math.max(S.map.getZoom(), 11);
-    prefersStill() ? S.map.setView([s.lat, s.lon], z) : S.map.flyTo([s.lat, s.lon], z);
+    const z = Math.max(S.map!.getZoom(), 11);
+    prefersStill() ? S.map!.setView([s.lat, s.lon!], z) : S.map!.flyTo([s.lat, s.lon!], z);
   }
   openSide(s);
 }
@@ -60,8 +60,8 @@ export function openSearchOv() {
   q.value = ''; S.ovHits = []; S.ovAct = -1;
   q.placeholder = t('searchPh');
   q.setAttribute('aria-label', t('searchLabel'));
-  document.getElementById('ov-box').setAttribute('aria-label', t('searchLabel'));
-  document.getElementById('ov-list').setAttribute('aria-label', t('searchLabel'));
+  document.getElementById('ov-box')!.setAttribute('aria-label', t('searchLabel'));
+  document.getElementById('ov-list')!.setAttribute('aria-label', t('searchLabel'));
   renderOvList();
   showSheet('searchov');
   setModalTrap();

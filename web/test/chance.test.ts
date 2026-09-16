@@ -25,7 +25,7 @@ describe('chance of a place', () => {
     expect(p).toBeTruthy();
     const pred = predFor(s, p);
     expect(pred).toMatchObject({ m: expect.any(Number), s: expect.any(Number), pi: expect.any(Number) });
-    expect(pred.pi).toBeGreaterThanOrEqual(0); expect(pred.pi).toBeLessThanOrEqual(1);
+    expect(pred!.pi).toBeGreaterThanOrEqual(0); expect(pred!.pi).toBeLessThanOrEqual(1);
   });
 
   it('chanceOf rises with points, is bounded, and is 1 − π far below the threshold', () => {
@@ -37,7 +37,7 @@ describe('chance of a place', () => {
     // errCdf clamps at 0.005/0.995 rather than 0/1 (see the test above), so
     // chanceOf's extremes sit within pi * 0.005 of (1 - pi) and 1, not on them.
     const at = (x: number) => chanceOf(pred, x);
-    expect(at(-1000)).toBeCloseTo(1 - pred.pi, 2);
+    expect(at(-1000)).toBeCloseTo(1 - pred!.pi, 2);
     expect(at(1000)).toBeCloseTo(1, 2);
     let prev = 0;
     for (let x = 0; x <= 60; x += 1) { const v = at(x); expect(v).toBeGreaterThanOrEqual(prev - 1e-12); expect(v).toBeLessThanOrEqual(1); prev = v; }

@@ -34,15 +34,15 @@ export function renderControls() {
   for (const [id, key] of [['bug-btn', 'bugLabel'], ['help-btn', 'helpLabel'],
                            ['settings-btn', 'settingsLabel'], ['searchov-btn', 'searchLabel']]) {
     const el = document.getElementById(id);
-    el.title = t(key);
-    el.setAttribute('aria-label', t(key));
+    el!.title = t(key);
+    el!.setAttribute('aria-label', t(key));
   }
   // these two were written into the markup in English and so stayed English
-  document.getElementById('side').setAttribute('aria-label', t('sideLabel'));
+  document.getElementById('side')!.setAttribute('aria-label', t('sideLabel'));
 }
 
 export function renderIntro() {
-  document.getElementById('intro-h').textContent = t('introTitle');
+  document.getElementById('intro-h')!.textContent = t('introTitle');
   const [avg, pts] = t('introCalc');
   const keys = t('introKeys');
   const dot = (r, fill, extra = '') =>
@@ -64,9 +64,9 @@ export function renderIntro() {
         </div>` : ''}
       </div>
     </div>`).join('');
-  document.getElementById('intro-body').innerHTML =
-    `<p class="lede">${esc(t('introLede'))} ${esc(t('introScope', S.DATA.schools.length, S.DATA.counties.length,
-      S.DATA.years[0], S.DATA.years[S.DATA.years.length - 1]))}</p>${steps}` +
+  document.getElementById('intro-body')!.innerHTML =
+    `<p class="lede">${esc(t('introLede'))} ${esc(t('introScope', S.DATA!.schools.length, S.DATA!.counties.length,
+      S.DATA!.years[0], S.DATA!.years[S.DATA!.years.length - 1]))}</p>${steps}` +
     `<p class="caveat">${esc(t('introCaveat'))} `
       + `<a href="data/schools.json">${esc(t('introData'))}</a></p>` +
     `<p class="caveat">${esc(t('introPrivacy'))}</p>` +
@@ -75,7 +75,7 @@ export function renderIntro() {
       `<span class="who">${esc(t('introCredit'))}</span></p>` +
     `<button class="cta" onclick="closeIntro()">${esc(t('introCta'))}</button>` +
     `<button class="cta ghost" onclick="switchToContact()">${esc(t('contactLabel'))}</button>`;
-  document.getElementById('intro-x').setAttribute('aria-label', t('close'));
+  document.getElementById('intro-x')!.setAttribute('aria-label', t('close'));
 }
 
 // A sheet that covers the page has to take the page out of the tab order with

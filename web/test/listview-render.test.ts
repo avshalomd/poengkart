@@ -109,7 +109,7 @@ describe('the list view', () => {
     const first = rows()[0] as any;
     const name = first.querySelector('.sc a').textContent;
     first.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-    expect(S.current.name).toBe(name);
+    expect(S.current!.name).toBe(name);
     expect(document.getElementById('side')!.classList.contains('open')).toBe(true);
   });
 });

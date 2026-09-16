@@ -27,24 +27,24 @@ export function toast(msg, ms = 4000) {
 // between the legend and the map buttons, then just above the legend. Lengths
 // are divided by the toast's text-size zoom, which multiplies them when painted.
 export function placeToast() {
-  const el = document.getElementById('toast'), s = el.style;
+  const el = document.getElementById('toast'), s = el!.style;
   s.left = s.right = s.bottom = s.width = s.margin = s.transform = '';
-  if (el.hidden) return;
+  if (el!.hidden) return;
   // a school sheet standing beside the map or list is not free space: centred
   // on the window, the location steps lay half over the school's chart
-  const sd = document.getElementById('side').getBoundingClientRect();
+  const sd = document.getElementById('side')!.getBoundingClientRect();
   const beside = document.body.classList.contains('side-open') && sd.width > 0 && sd.left > 0;
   const lg = document.getElementById('legend')?.getBoundingClientRect();
   if (!beside && !lg?.height) return;
   const bars = [...document.querySelectorAll('.leaflet-bottom.leaflet-right .leaflet-bar')].map(b => b.getBoundingClientRect());
-  const avoid = [lg, document.getElementById('panel').getBoundingClientRect(), ...bars, ...(beside ? [sd] : [])]
+  const avoid = [lg, document.getElementById('panel')!.getBoundingClientRect(), ...bars, ...(beside ? [sd] : [])]
     .filter(a => a && a.height);
   const clear = () => {
-    const r = el.getBoundingClientRect();
-    return !avoid.some(a => r.right > a.left && r.left < a.right && r.bottom > a.top && r.top < a.bottom);
+    const r = el!.getBoundingClientRect();
+    return !avoid.some(a => r.right > a!.left && r.left < a!.right && r.bottom > a!.top && r.top < a!.bottom);
   };
   if (clear()) return;
-  const z = parseFloat(getComputedStyle(el).zoom) || 1, px = v => Math.round(v / z) + 'px';
+  const z = parseFloat(getComputedStyle(el!).zoom) || 1, px = v => Math.round(v / z) + 'px';
   if (beside) {
     Object.assign(s, { left: px(10), right: px(innerWidth - sd.left + 10), width: 'fit-content', margin: '0 auto', transform: 'none' });
     if (clear() || !lg?.height) return;
@@ -53,13 +53,13 @@ export function placeToast() {
     return;
   }
   const barsLeft = Math.min(innerWidth, ...bars.map(b => b.left));
-  if (barsLeft - lg.right - 20 >= 280) {
-    Object.assign(s, { left: px(lg.right + 10), right: px(innerWidth - barsLeft + 10),
-                       bottom: px(innerHeight - lg.bottom), width: 'fit-content', margin: '0 auto', transform: 'none' });
+  if (barsLeft - lg!.right - 20 >= 280) {
+    Object.assign(s, { left: px(lg!.right + 10), right: px(innerWidth - barsLeft + 10),
+                       bottom: px(innerHeight - lg!.bottom), width: 'fit-content', margin: '0 auto', transform: 'none' });
     if (clear()) return;
     s.left = s.right = s.width = s.margin = s.transform = '';
   }
-  s.bottom = px(innerHeight - lg.top + 10);
+  s.bottom = px(innerHeight - lg!.top + 10);
   if (!clear()) s.bottom = '';
 }
 // Where this browser keeps the switch for location, so a blocked request can
@@ -70,7 +70,7 @@ export function locHelpKind() {
   const ua = navigator.userAgent;
   const ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
   if (ios) {
-    const app = { CriOS: 'Chrome', FxiOS: 'Firefox', EdgiOS: 'Edge' }[(ua.match(/CriOS|FxiOS|EdgiOS/) || [])[0]];
+    const app = { CriOS: 'Chrome', FxiOS: 'Firefox', EdgiOS: 'Edge' }[(ua.match(/CriOS|FxiOS|EdgiOS/) || [])[0] as string];
     return app ? ['iosApp', app] : ['iosSafari'];
   }
   if (/Android/.test(ua)) return /Firefox\//.test(ua) ? ['other'] : ['android'];
@@ -95,7 +95,7 @@ export function addLocateControl() {
       return div;
     }
   });
-  new C({ position: 'bottomright' }).addTo(S.map);
+  new C({ position: 'bottomright' }).addTo(S.map!);
   updateLocateAria();
 }
 // Leaflet's own zoom buttons are titled in English; keep them in the app's language
@@ -113,8 +113,8 @@ export function updateLocateAria() {
 export function locate() {
   if (S.locBusy) return;                  // one fix in flight at a time
   if (S.locLayer) {                       // second press clears the marker again
-    S.map.removeLayer(S.locLayer); S.locLayer = null;
-    S.locBtnEl.classList.remove('on');
+    S.map!.removeLayer(S.locLayer); S.locLayer = null;
+    S.locBtnEl!.classList.remove('on');
     updateLocateAria();
     return;
   }
@@ -127,11 +127,11 @@ export function locate() {
                      weight: 1, fillOpacity: .08 }),
       L.circleMarker(ll, { radius: 6, color: '#fff', weight: 2,
                            fillColor: cssVar('--accent'), fillOpacity: 1 })
-    ]).addTo(S.map);
-    S.locBtnEl.classList.add('on');
+    ]).addTo(S.map!);
+    S.locBtnEl!.classList.add('on');
     updateLocateAria();
-    const z = Math.max(S.map.getZoom(), 10);
-    prefersStill() ? S.map.setView(ll, z) : S.map.flyTo(ll, z);
+    const z = Math.max(S.map!.getZoom(), 10);
+    prefersStill() ? S.map!.setView(ll, z) : S.map!.flyTo(ll, z);
   }, err => {
     S.locBusy = false;
     if (err && err.code === 1) toast(t('locDenied') + ' ' + t('locHow', ...locHelpKind()), 12000);

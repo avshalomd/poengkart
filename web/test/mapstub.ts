@@ -24,6 +24,6 @@ export function stubMap(): any {
       .map(k => [k, document.createElement('div')])),
     latLngToContainerPoint: () => ({ x: 0, y: 0 }), containerPointToLatLng: () => ({ lat: 0, lng: 0 }),
   };
-  S.map = map;
+  S.map = map as any;   // only what the render functions call between two frames
   return map;
 }

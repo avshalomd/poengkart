@@ -21,10 +21,10 @@ export function setLang(l) {
   updateZoomAria(); updateLocateAria(); updateMapLabels();
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
   if (S.current) renderSide();
-  if (!document.getElementById('intro').hidden) renderIntro();
-  if (!document.getElementById('contact').hidden) renderContact();
-  if (!document.getElementById('settings').hidden) renderSettings();
-  if (!document.getElementById('calc').hidden) renderCalc();
+  if (!document.getElementById('intro')!.hidden) renderIntro();
+  if (!document.getElementById('contact')!.hidden) renderContact();
+  if (!document.getElementById('settings')!.hidden) renderSettings();
+  if (!document.getElementById('calc')!.hidden) renderCalc();
 }
 
 export function initLang() {

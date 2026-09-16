@@ -91,15 +91,15 @@ describe('the toast and the locate button', () => {
     });
     addLocateControl();
     expect(S.locBtnEl).toBeTruthy();
-    expect(S.locBtnEl.getAttribute('aria-label')).toBe(t('locBtn'));
-    expect(S.locBtnEl.getAttribute('aria-pressed')).toBe('false');
-    S.locBtnEl.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    expect(S.locBtnEl!.getAttribute('aria-label')).toBe(t('locBtn'));
+    expect(S.locBtnEl!.getAttribute('aria-pressed')).toBe('false');
+    S.locBtnEl!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     expect(S.locLayer).toBeTruthy();
-    expect(S.locBtnEl.classList.contains('on')).toBe(true);
-    expect(S.locBtnEl.getAttribute('aria-pressed')).toBe('true');
+    expect(S.locBtnEl!.classList.contains('on')).toBe(true);
+    expect(S.locBtnEl!.getAttribute('aria-pressed')).toBe('true');
     locate();                                   // the second press clears it again
     expect(S.locLayer).toBeNull();
-    expect(S.locBtnEl.classList.contains('on')).toBe(false);
+    expect(S.locBtnEl!.classList.contains('on')).toBe(false);
   });
 
   it('a refused fix says how to allow it, and any other failure says it failed', () => {

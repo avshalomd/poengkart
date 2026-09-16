@@ -12,9 +12,10 @@ import { initListview } from '../src/listview';
 import { PREFS } from '../src/prefs';
 import { renderPanel } from '../src/chrome';
 import { t, CATS } from '../src/i18n';
+import type L from 'leaflet';
 import { S } from '../src/state';
 
-const markers = () => S.markerLayer.getLayers();
+const markers = () => S.markerLayer!.getLayers() as L.CircleMarker[];
 const onMap = () => visibleSchools().filter((s: any) => s.lat);
 
 describe('the map layer', () => {
@@ -63,7 +64,7 @@ describe('the map layer', () => {
     for (const b of ['likely', 'possible', 'unlikely', 'none']) {
       expect(mix[b]).toBe(kids.filter((m: any) => (m.options.pkBucket || 'none') === b).length);
     }
-    const icon = (S.markerLayer.options as any).iconCreateFunction(cluster);
+    const icon = (S.markerLayer!.options as any).iconCreateFunction(cluster);
     expect(icon.options.html).toContain(`>${kids.length}<`);
     expect(icon.options.html).toContain('data-mix="' + [mix.likely, mix.possible, mix.unlikely, mix.none].join(','));
   });
@@ -146,11 +147,11 @@ describe('the map layer', () => {
     expect(tileUrl()).toContain('dark_all');
     setTiles();
     expect(S.tileLayer).toBeTruthy();
-    expect(S.tileLayer._url).toBe(tileUrl());
+    expect((S.tileLayer as any)._url).toBe(tileUrl());
     const old = S.tileLayer;
     setTiles();                                          // the old layer comes off first
     expect(S.tileLayer).not.toBe(old);
-    expect(S.tileLayer._url).toBe(tileUrl());
+    expect((S.tileLayer as any)._url).toBe(tileUrl());
     PREFS.theme = 'auto';
     // happy-dom answers every media query it does not model with "no": nothing
     // here asks for still motion, so the animated flights stay on
@@ -163,7 +164,7 @@ describe('the map layer', () => {
     drawMarkers();
     for (const m of markers()) {
       const s = (m.options as any).pkSchool;
-      const html = m.getTooltip()._content;
+      const html = (m.getTooltip() as any)._content;
       expect(html).toContain(s.name);
       expect(html).toContain(t('tipHint'));
     }
@@ -171,7 +172,7 @@ describe('the map layer', () => {
     S.mapCat = 'ST';
     drawMarkers();
     for (const m of markers()) {
-      expect(m.getTooltip()._content).toContain(CATS.ST[S.lang]);
+      expect((m.getTooltip() as any)._content).toContain(CATS.ST[S.lang]);
     }
   });
 });

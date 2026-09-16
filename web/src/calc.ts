@@ -36,8 +36,8 @@ export function calcMean() {
   return vs.length ? vs.reduce((a, b) => a + b, 0) / vs.length : null;
 }
 export function renderCalc() {
-  document.getElementById('calc-h').textContent = t('calcTitle');
-  document.getElementById('calc-x').setAttribute('aria-label', t('close'));
+  document.getElementById('calc-h')!.textContent = t('calcTitle');
+  document.getElementById('calc-x')!.setAttribute('aria-label', t('close'));
   const row = (f, exam) => {
     const cur = S.calcGrades[f];
     return `<div class="subj${exam ? ' exam' : ''}"><span class="n">${esc(f)}</span>` +
@@ -52,7 +52,7 @@ export function renderCalc() {
   const mean = calcMean();
   const fmtN = v => v.toFixed(2).replace('.', S.lang === 'no' ? ',' : '.');
   const fmtP = v => v.toFixed(1).replace('.', S.lang === 'no' ? ',' : '.');
-  document.getElementById('calc-body').innerHTML =
+  document.getElementById('calc-body')!.innerHTML =
     `<p class="lede">${esc(t('calcLede'))}</p>` +
     CALC_SUBJECTS.map(f => row(f, false)).join('') +
     CALC_EXAMS.map(f => row(f, true)).join('') +
@@ -63,7 +63,7 @@ export function renderCalc() {
     `<button class="cta" id="calc-use" ${mean === null ? 'disabled' : ''}>${esc(t('calcUse'))}</button>` +
     ` <button class="cta ghost" id="calc-reset" ${Object.keys(S.calcGrades).length ? '' : 'hidden'}>${esc(t('calcReset'))}</button>` +
     `<p class="note">${esc(t('calcNote'))}</p>`;
-  document.getElementById('calc-body').querySelectorAll('.grades button').forEach((b: any) => {
+  document.getElementById('calc-body')!.querySelectorAll('.grades button').forEach((b: any) => {
     b.onclick = () => {
       const f = b.dataset.f, g = b.dataset.g;
       if (!g) delete S.calcGrades[f];

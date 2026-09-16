@@ -43,7 +43,7 @@ describe('the feedback form', () => {
     expect(ctx.program).toBe('all');
     expect(ctx.points).toBe('');
     expect(ctx.levels).toBe('Vg1');
-    expect(ctx.data).toContain(`${S.DATA.schools.length} skoler`);
+    expect(ctx.data).toContain(`${S.DATA!.schools.length} skoler`);
     // every key it sends has a Norwegian label for the e-mail
     expect(Object.keys(ctx).every(k => CTX_LABELS[k])).toBe(true);
   });
@@ -84,7 +84,7 @@ describe('the feedback form', () => {
     expect(S.bugCtx).toBeTruthy();
     expect(document.querySelector('#c-extra details.ctx summary')!.textContent).toBe(t('contactCtx'));
     expect(document.querySelectorAll('#c-extra details.ctx li').length).toBe(
-      Object.entries(S.bugCtx).filter(([, v]: any) => v !== '' && !(Array.isArray(v) && !v.length)).length);
+      Object.entries(S.bugCtx!).filter(([, v]: any) => v !== '' && !(Array.isArray(v) && !v.length)).length);
   });
 
   it('a report about a figure starts on the school that is open', () => {
@@ -107,7 +107,7 @@ describe('the feedback form', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
     const btn = document.getElementById('bug-btn');
     openBug(null, btn);
-    expect(S.bugCtx.from).toBe('header');
+    expect(S.bugCtx!.from).toBe('header');
     expect(S.contactOpener).toBe(btn);
     expect((document.getElementById('c-kind') as HTMLSelectElement).value).toBe('feil');
     expect(renderContactCtx()).toContain(CTX_LABELS.view);

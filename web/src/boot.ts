@@ -24,17 +24,19 @@ export function updateMapLabels() {
   const mc = S.map.getContainer();
   mc.setAttribute('role', 'region');
   mc.setAttribute('aria-label', t('viewMap'));
-  const ac = S.map.attributionControl;
+  // _pkPrefix is ours: Leaflet's own prefix, kept so that a language switch
+  // rewrites the original rather than its own last rewrite
+  const ac = S.map.attributionControl as L.Control.Attribution & { _pkPrefix?: string | boolean };
   if (!ac) return;
   if (ac._pkPrefix === undefined) ac._pkPrefix = ac.options.prefix;
   if (typeof ac._pkPrefix === 'string') ac.setPrefix(ac._pkPrefix.replace(/title="[^"]*"/, `title="${esc(t('leafletTitle'))}"`));
 }
-export function framePad() {
+export function framePad(): L.FitBoundsOptions {
   // The panel and legend float over the map, so fit the country into what is
   // actually visible. Each pad is capped: on a phone held sideways the panel
   // is over half the width, and paying that in full squeezed Norway into the
   // right-hand third and dropped the zoom a whole step.
-  const box = id => document.getElementById(id).getBoundingClientRect();
+  const box = id => document.getElementById(id)!.getBoundingClientRect();
   const p = box('panel'), l = box('legend');
   const cap = (v, max) => Math.max(12, Math.min(Math.round(v), Math.round(max)));
   // On a short screen every pixel of height counts, and the legend sits
@@ -59,7 +61,7 @@ export function bootFailed(subKey) {
   // #panel lives inside #app now — the innerHTML below removes it, so nothing
   // here may assume it exists afterwards
   document.getElementById('legend')?.setAttribute('hidden', '');
-  document.getElementById('app').innerHTML =
+  document.getElementById('app')!.innerHTML =
     `<div class="boot-fail"><p class="big">${esc(t('bootFail'))}</p>
      <p>${esc(t(subKey))}</p>
      <button class="cta" onclick="location.reload()">${esc(t('bootRetry'))}</button></div>`;
@@ -85,7 +87,7 @@ export async function main() {
   // the app is exactly what it was
   // a megabyte of data on a slow link is a blank card for many seconds:
   // say so, in the failure screen's own place
-  document.getElementById('map').insertAdjacentHTML('beforeend',
+  document.getElementById('map')!.insertAdjacentHTML('beforeend',
     `<div class="boot-fail boot-pending" aria-live="polite"><p class="big">${esc(t('bootLoading'))}</p></div>`);
   const modelReq = fetch('/data/model.json').catch(() => null);
   try {
@@ -118,24 +120,24 @@ export async function main() {
   // while the tab is not being painted, so a national map could sit there
   // showing one county. Fit first, synchronously, and treat the deferred pass
   // purely as a correction for a pane that was still laying out.
-  const pts = S.DATA.schools.filter(s => s.lat).map(s => [s.lat, s.lon]);
+  const pts = S.DATA!.schools.filter(s => s.lat).map(s => [s.lat, s.lon] as L.LatLngTuple);
   S.HOME = L.latLngBounds(pts).pad(0.06);
   document.querySelector('#map .boot-pending')?.remove();
   S.map = L.map('map', { zoomControl: false, zoomSnap: 0.25,
     // the app's transitions already stop under reduced motion; Leaflet's zoom,
     // fade and fling are its own options
-    ...(prefersStill() ? { zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false, inertia: false } : {}) }).fitBounds(S.HOME, framePad() as any);
+    ...(prefersStill() ? { zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false, inertia: false } : {}) }).fitBounds(S.HOME, framePad());
   L.control.zoom({ position: 'bottomright' }).addTo(S.map);
   updateZoomAria(); updateMapLabels();
   addLocateControl();
   S.map.on('zoomend moveend', () => { S.labelMarkers(); legendZoomHint(); });
   setTiles();
   let touched = false;
-  ['mousedown', 'wheel', 'touchstart'].forEach(ev => S.map.getContainer()
+  ['mousedown', 'wheel', 'touchstart'].forEach(ev => S.map!.getContainer()
     .addEventListener(ev, () => { touched = true; }, { once: true, passive: true }));
   // the panel folds on every return to the map, not the first only: a reader
   // who unfolded it to change a select is done with it once they pan again
-  ['mousedown', 'wheel', 'touchstart'].forEach(ev => S.map.getContainer()
+  ['mousedown', 'wheel', 'touchstart'].forEach(ev => S.map!.getContainer()
     .addEventListener(ev, () => foldPanel(true), { passive: true }));
   // A map framed against a 0×0 container sticks at max zoom over empty terrain
   // with no markers, and nothing about the page looks broken enough to explain
@@ -148,9 +150,9 @@ export async function main() {
   function ensureFramed() {
     if (framed || touched) return true;
     if (S.view === 'list') { S.refitPending = true; return true; }   // reframed on the way back
-    if (!S.map.getContainer().clientWidth) return false;            // still nothing to frame
-    S.map.invalidateSize();
-    S.map.fitBounds(S.HOME, { ...framePad(), animate: false });
+    if (!S.map!.getContainer().clientWidth) return false;            // still nothing to frame
+    S.map!.invalidateSize();
+    S.map!.fitBounds(S.HOME!, { ...framePad(), animate: false });
     framed = true;
     return true;
   }
@@ -165,8 +167,8 @@ export async function main() {
   // panel's cap stayed 59px short until the next points edit.
   let lastW = innerWidth;
   if (window.ResizeObserver) new ResizeObserver(() => {
-    if (S.map.getContainer().clientWidth) {
-      S.map.invalidateSize({ pan: innerWidth !== lastW });
+    if (S.map!.getContainer().clientWidth) {
+      S.map!.invalidateSize({ pan: innerWidth !== lastW });
       lastW = innerWidth;
       if (S.view === 'map') liftMapControls();
     }
@@ -177,13 +179,13 @@ export async function main() {
     setTiles(); drawMarkers(); renderLegend(); renderCatNote(); renderPointsField();
     if (S.current) renderSide();
     // the guide draws its sample dots in the theme's colours
-    if (!document.getElementById('intro').hidden) {
-      const inside = document.getElementById('intro-body').contains(document.activeElement);
+    if (!document.getElementById('intro')!.hidden) {
+      const inside = document.getElementById('intro-body')!.contains(document.activeElement);
       renderIntro();
-      if (inside) document.getElementById('intro-h').focus();
+      if (inside) document.getElementById('intro-h')!.focus();
     }
   });
-  document.getElementById('side').setAttribute('inert', '');
+  document.getElementById('side')!.setAttribute('inert', '');
   const ovq: any = document.getElementById('ov-q');
   ovq.addEventListener('input', () => {
     S.ovAct = -1; S.ovHits = runSearch(ovq.value) || []; renderOvList();
@@ -207,14 +209,14 @@ export async function main() {
   const panelEl = document.getElementById('panel');
   const keepPanelFocusInView = () => {
     const el = document.activeElement;
-    if (el && el !== panelEl && panelEl.contains(el)) el.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    if (el && el !== panelEl && panelEl!.contains(el)) el.scrollIntoView({ block: 'nearest', inline: 'nearest' });
   };
-  panelEl.addEventListener('focusin', () => requestAnimationFrame(keepPanelFocusInView));
+  panelEl!.addEventListener('focusin', () => requestAnimationFrame(keepPanelFocusInView));
   let reframe;
   addEventListener('resize', () => {
     clearTimeout(reframe);
     reframe = setTimeout(() => {
-      S.map.invalidateSize(); liftMapControls(); keepPanelFocusInView();
+      S.map!.invalidateSize(); liftMapControls(); keepPanelFocusInView();
       sideTrap(document.body.classList.contains('side-open'));   // a rotation crosses the breakpoint
     }, 200);
   });
@@ -235,7 +237,7 @@ export async function main() {
     applyUrlFilters();                    // a pasted link carries its selection too
     const s = schoolFromUrl();
     if (s && s !== S.current) {
-      if (s.lat && S.view === 'map') S.map.setView([s.lat, s.lon], Math.max(S.map.getZoom(), 11));
+      if (s.lat && S.view === 'map') S.map!.setView([s.lat, s.lon], Math.max(S.map!.getZoom(), 11));
       openSide(s);
     } else if (!s && hashParts().s) toast(t('linkNotFound', unresolvedLinkName()));
   });
@@ -243,7 +245,7 @@ export async function main() {
     // a back-gesture closes what is actually on screen: an open sheet first —
     // and re-pushes the side panel's entry the pop just consumed, so the next
     // back still closes the panel instead of leaving the page
-    const sideOpen = document.getElementById('side').classList.contains('open');
+    const sideOpen = document.getElementById('side')!.classList.contains('open');
     if (S.sideClosing) {
       // the ✕'s own back() landing: close, never treat it as a gesture on a
       // sheet — and keep the filters the reader set while it was open. The
@@ -257,10 +259,10 @@ export async function main() {
     }
     if (anySheetOpen()) {
       // same priority order as the Escape handler, so the two agree
-      if (!document.getElementById('contact').hidden) closeContact(true);
-      else if (!document.getElementById('intro').hidden) closeIntro(true);
-      else if (!document.getElementById('settings').hidden) closeSettings(true);
-      else if (!document.getElementById('calc').hidden) closeCalc(true);
+      if (!document.getElementById('contact')!.hidden) closeContact(true);
+      else if (!document.getElementById('intro')!.hidden) closeIntro(true);
+      else if (!document.getElementById('settings')!.hidden) closeSettings(true);
+      else if (!document.getElementById('calc')!.hidden) closeCalc(true);
       else closeSearchOv(true);
       // the entry landed on is the pre-open one: a scope changed in the
       // settings sheet (the Trinn choice) is written into it, not re-read
@@ -289,12 +291,12 @@ export async function main() {
   });
   document.addEventListener('keydown', ev => {
     if (ev.key !== 'Escape') return;
-    if (!document.getElementById('contact').hidden) { closeContact(); return; }
-    if (!document.getElementById('intro').hidden) { closeIntro(); return; }
-    if (!document.getElementById('settings').hidden) { closeSettings(); return; }
-    if (!document.getElementById('calc').hidden) { closeCalc(); return; }
-    if (!document.getElementById('searchov').hidden) { closeSearchOv(); return; }
-    if (document.getElementById('side').classList.contains('open')) closeSide();
+    if (!document.getElementById('contact')!.hidden) { closeContact(); return; }
+    if (!document.getElementById('intro')!.hidden) { closeIntro(); return; }
+    if (!document.getElementById('settings')!.hidden) { closeSettings(); return; }
+    if (!document.getElementById('calc')!.hidden) { closeCalc(); return; }
+    if (!document.getElementById('searchov')!.hidden) { closeSearchOv(); return; }
+    if (document.getElementById('side')!.classList.contains('open')) closeSide();
   });
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
   // a shared link carries the selection it was taken under, so read the filters
@@ -306,11 +308,11 @@ export async function main() {
   // the query into the hash once, then let the fragment machinery own it.
   if (location.search && !location.hash) {
     const q = new URLSearchParams(location.search);
-    const parts = [];
+    const parts: string[] = [];
     if (q.get('s')) parts.push('s=' + q.get('s'));
-    if (q.get('f')) parts.push('f=' + encodeURIComponent(q.get('f')));
-    if (q.get('c')) parts.push('c=' + encodeURIComponent(q.get('c')));
-    if (q.get('l')) parts.push('l=' + encodeURIComponent(q.get('l')));
+    if (q.get('f')) parts.push('f=' + encodeURIComponent(q.get('f')!));
+    if (q.get('c')) parts.push('c=' + encodeURIComponent(q.get('c')!));
+    if (q.get('l')) parts.push('l=' + encodeURIComponent(q.get('l')!));
     if (parts.length) {
       try { history.replaceState(history.state, '', location.pathname + '#' + parts.join('&')); } catch (e) {}
     }
@@ -320,7 +322,7 @@ export async function main() {
   try { if (localStorage.getItem('pk-view') === 'list') storedView = 'list'; } catch (e) {}
   setView(storedView);
   if (framedByUrl && S.view === 'map') {
-    const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon]);
+    const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon] as L.LatLngTuple);
     if (pts.length) { touched = true; S.map.fitBounds(L.latLngBounds(pts).pad(0.08), { ...framePad(), animate: false }); }
   }
   const linked = schoolFromUrl();

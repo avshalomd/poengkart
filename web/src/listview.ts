@@ -15,11 +15,11 @@ export function setView(v) {
   if (v === 'list' && !S.DATA) return;     // the toggle is live before the fetch lands
   S.view = v;
   document.body.classList.toggle('view-list', v === 'list');
-  document.getElementById('listview').hidden = v !== 'list';
+  document.getElementById('listview')!.hidden = v !== 'list';
   for (const [id, name] of [['view-map', 'map'], ['view-list', 'list']]) {
     const b = document.getElementById(id);
-    b.classList.toggle('on', S.view === name);
-    b.setAttribute('aria-pressed', String(S.view === name));
+    b!.classList.toggle('on', S.view === name);
+    b!.setAttribute('aria-pressed', String(S.view === name));
   }
   try { localStorage.setItem('pk-view', v); } catch (e) {}
   listLayout();
@@ -31,7 +31,7 @@ export function setView(v) {
     liftMapControls();
     if (S.refitPending) {
       S.refitPending = false;
-      const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon]);
+      const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon] as L.LatLngTuple);
       if (pts.length) S.map.fitBounds(L.latLngBounds(pts).pad(0.08), { ...framePad(), animate: false });
     }
   }
@@ -95,7 +95,7 @@ export function renderListView() {
     if (nil(va) && nil(vb)) return a.s.name.localeCompare(b.s.name, 'no');
     if (nil(va)) return 1;
     if (nil(vb)) return -1;
-    return (va - vb) * S.listSort.dir || a.s.name.localeCompare(b.s.name, 'no');
+    return (va! - vb!) * S.listSort.dir || a.s.name.localeCompare(b.s.name, 'no');
   });
   // The glyph is always in the markup, invisible on the columns that are not
   // sorted. Rendering it only on the active one added ~10px to that header's
@@ -136,7 +136,7 @@ export function renderListView() {
   const chanceCell = r => !r.sc ? `<span class="none-v">—</span>`
     : `<span class="k" style="background:${bucketColor(bucketOf(r.sc.best))}"></span>` +
       esc(t('listChanceCell', r.sc.likely, r.sc.n));
-  host.innerHTML =
+  host!.innerHTML =
     `<div class="card"><div class="lhead">` +
     `<span class="t" id="list-title">${esc(catLabel)} · ${esc(fyLabel)}</span>` +
     `<span class="n">${esc(t('listCount', rows.length))}</span></div>` +
@@ -160,7 +160,7 @@ export function renderListView() {
     `</tbody></table></div>` +
     (allF && rows.length ? `<div class="foot">${esc(t('listRounds'))}</div>` : '') +
     `</div>`;
-  host.querySelectorAll('tbody tr').forEach((tr: any) => {
+  host!.querySelectorAll('tbody tr').forEach((tr: any) => {
     tr.onclick = ev => {
       if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button === 1) return;  // new tab stays a new tab
       ev.preventDefault();
@@ -169,8 +169,8 @@ export function renderListView() {
   });
   bindTitleTips(host);
   // a title reaches a pointer only; the keyboard gets the same help on focus
-  host.querySelectorAll('th button[aria-describedby]').forEach(b => {
-    const d = document.getElementById(b.getAttribute('aria-describedby'));
+  host!.querySelectorAll('th button[aria-describedby]').forEach(b => {
+    const d = document.getElementById(b.getAttribute('aria-describedby')!);
     b.addEventListener('focus', () => { if (d && b.matches(':focus-visible')) showTip(b, esc(d.textContent)); });
     b.addEventListener('blur', hideTip);
   });

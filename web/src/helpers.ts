@@ -32,7 +32,7 @@ export function openMix(programs, year) {
            mostly: cells.length > 0 && open > cells.length / 2 };
 }
 export const fmtNum = v => typeof v === 'number' ? round1(v).toFixed(1).replace('.', ',') : v;
-export const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+export const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]!));
 
 // One utdanningsprogram lens for the whole app: the map dropdown, the chart
 // tabs and the list headers all read and write mapCat. The only panel-local
@@ -92,8 +92,8 @@ export const visibleCount = s => visibleIn(shownPrograms(s));
 export function countyNewest(f) {
   if (!S._newestByFylke) {
     S._newestByFylke = {};
-    S.DATA.schools.forEach(s => s.programs.forEach(p => Object.keys(p.values).forEach(y => {
-      S._newestByFylke[s.fylke] = Math.max(S._newestByFylke[s.fylke] || 0, +y);
+    S.DATA!.schools.forEach(s => s.programs.forEach(p => Object.keys(p.values).forEach(y => {
+      S._newestByFylke![s.fylke] = Math.max(S._newestByFylke![s.fylke] || 0, +y);
     })));
   }
   return S._newestByFylke[f] || 0;
@@ -121,7 +121,7 @@ export function shownPrograms(s) {
 }
 // the newest year in the dataset, or the one before it: anything older is a
 // school the counties have stopped publishing
-export const staleBefore = () => +S.DATA.years[S.DATA.years.length - 1] - 1;
+export const staleBefore = () => +S.DATA!.years[S.DATA!.years.length - 1] - 1;
 // counties whose "ingen venteliste" is the county's own rule rather than an
 // observed queue state (openRuleNote; tools/extractors/mro.py)
 export const OPEN_RULE = new Set(['Møre og Romsdal']);
@@ -173,7 +173,7 @@ export function schoolPressure(s, cat) {
            mostlyOpen: openN > total / 2,
            share: (nums.length + zeroN) / total };
 }
-export const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(b => v < b.max).css);
+export const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(b => v < b.max)!.css);
 // what a filled-without-points state says: the mix when some programmes had
 // no waiting list, the plain state otherwise
 export const zeroLabel = (zeroN, openN) => openN ? t('zeroMix', zeroN, openN) : t('noPoints');

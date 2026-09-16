@@ -8,6 +8,7 @@ import { renderListView } from "./listview";
 import { PREFS } from "./prefs";
 import { closeSide, mapKeyed, openSide, renderSide, syncUrl } from "./sidebar";
 import { S } from './state';
+import type { School } from './types';
 
 /* ================= map ================= */
 
@@ -26,12 +27,12 @@ export function aimTip(m, html, wrapTo = 0) {
   wrap(te);
   const w = te.offsetWidth, h = te.offsetHeight, W = S.map.getSize().x, H = S.map.getSize().y;
   const pt = S.map.latLngToContainerPoint(m.getLatLng());
-  const mr = S.map.getContainer().getBoundingClientRect(), pr = document.getElementById('panel').getBoundingClientRect();
+  const mr = S.map.getContainer().getBoundingClientRect(), pr = document.getElementById('panel')!.getBoundingClientRect();
   const pn = S.view === 'map' && pr.width ? { l: pr.left - mr.left, t: pr.top - mr.top, r: pr.right - mr.left, b: pr.bottom - mr.top } : null;
   const span = (a0, a1, b0, b1) => Math.max(0, Math.min(a1, b1) - Math.max(a0, b0));
   const lost = (x, y) => w * h - span(x, x + w, 0, W) * span(y, y + h, 0, H)
     + (pn ? span(x, x + w, pn.l, pn.r) * span(y, y + h, pn.t, pn.b) : 0);
-  const cands = [];
+  const cands: { dir: string; dx: number; lost: number }[] = [];
   for (const dir of ['top', 'bottom']) {
     const y = dir === 'top' ? pt.y - 16 - h : pt.y + 16, x0 = pt.x - w / 2;
     const lo = pn && span(y, y + h, pn.t, pn.b) ? pn.r + 8 : 8, hi = W - 8 - w;
@@ -47,16 +48,16 @@ export function aimTip(m, html, wrapTo = 0) {
   // tooltip met a 449px strip between the panel and the sheet and lost 33px
   // whichever way it went. Wrap it to the strip and aim again.
   const free = Math.floor(W - 8 - Math.max(8, pn ? pn.r + 8 : 8));
-  if (pick.lost > 0 && !wrapTo && free >= 200 && free < w) return aimTip(m, html, free);
-  if (m._pkAim !== pick.dir + pick.dx) {
+  if (pick!.lost > 0 && !wrapTo && free >= 200 && free < w) return aimTip(m, html, free);
+  if (m._pkAim !== pick!.dir + pick!.dx) {
     const was = m._pkAim;
-    m._pkAim = pick.dir + pick.dx;
-    if (was !== undefined || pick.dir !== 'top' || pick.dx) m.unbindTooltip().bindTooltip(html, tipOpts(pick.dir, pick.dx)).openTooltip();
+    m._pkAim = pick!.dir + pick!.dx;
+    if (was !== undefined || pick!.dir !== 'top' || pick!.dx) m.unbindTooltip().bindTooltip(html, tipOpts(pick!.dir, pick!.dx)).openTooltip();
   }
   const el = m.getTooltip().getElement();
   if (!el) return;
   wrap(el);
-  el.style.setProperty('--ax', -pick.dx + 'px');
+  el.style.setProperty('--ax', -pick!.dx + 'px');
   m.getTooltip().update();
 }
 
@@ -65,8 +66,8 @@ export function aimTip(m, html, wrapTo = 0) {
 // documentation, fortrinnsrett or discontinued.
 export function lensNoFigure(s) {
   const scope = levelScope(s.programs).filter(p => p.category === S.mapCat);
-  const yr = [...new Set(scope.flatMap(p => Object.keys(p.values)))].sort().pop()
-    || S.DATA.years[S.DATA.years.length - 1];
+  const yr = ([...new Set(scope.flatMap(p => Object.keys(p.values)))].sort().pop()
+    || S.DATA!.years[S.DATA!.years.length - 1]) as string | number;
   const cells = scope.filter(p => yr in p.values).map(p => p.values[yr]);
   const all = set => cells.length && cells.every(v => set.includes(v));
   if (cells.includes('D') && all(['D', 'F', 'U'])) return `${t('docAdm').toLowerCase()} (${yr})`;
@@ -88,11 +89,11 @@ export const CARTO_KEY = 'cb1_2bsv_1_23dae695a38f70885d3b4f7b';
 export const tileUrl = () =>
   `https://{s}.basemaps.cartocdn.com/${isDark() ? 'dark_all' : 'rastertiles/voyager'}/{z}/{x}/{y}{r}.png?key=${CARTO_KEY}`;
 export function setTiles() {
-  if (S.tileLayer) S.map.removeLayer(S.tileLayer);
+  if (S.tileLayer) S.map!.removeLayer(S.tileLayer);
   S.tileLayer = L.tileLayer(tileUrl(), {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd', maxZoom: 19,
-  }).addTo(S.map);
+  }).addTo(S.map!);
 }
 
 // A cluster's schools counted by the rule that colours their dots: the bucket
@@ -105,8 +106,8 @@ export function clusterMix(cluster) {
 }
 export function drawMarkers() {
   if (S.view === 'list') { renderListView(); return; }   // the map is display:none
-  if (S.markerLayer) S.map.removeLayer(S.markerLayer);
-  const drawn = [];
+  if (S.markerLayer) S.map!.removeLayer(S.markerLayer);
+  const drawn: [L.CircleMarker, School, string, string][] = [];
   // 190 schools overlap badly at national zoom — nearly half had no reachable
   // pixel before clustering
   S.markerLayer = L.markerClusterGroup({
@@ -130,7 +131,7 @@ export function drawMarkers() {
         className: '', iconSize: [size, size],
       });
     },
-  }).addTo(S.map);
+  }).addTo(S.map!);
   for (const s of visibleSchools()) {
     if (!s.lat) continue;
     const st8 = schoolPressure(s, S.mapCat);
@@ -172,7 +173,7 @@ export function drawMarkers() {
         line = t('tipStale', st8.year);
       } else {
         const sy: any = yearSpan(s);
-        line = t('tipNoData', sy ? sy.split('–').pop() : S.DATA.years[S.DATA.years.length - 1]);
+        line = t('tipNoData', sy ? sy.split('–').pop() : S.DATA!.years[S.DATA!.years.length - 1]);
       }
     } else {
       line = st8.kind === 'points'
@@ -200,7 +201,7 @@ export function drawMarkers() {
   // again each time clustering hands a marker a new element.
   S.labelMarkers = () => {
     for (const [m, s, line, html] of drawn) {
-      const el = m.getElement();
+      const el = m.getElement() as SVGElement | undefined;
       if (!el || el.dataset.pkKeyed) continue;
       el.dataset.pkKeyed = '1';                   // keyboard access (WCAG 2.1.1)
       markerOf.set(el, m);
@@ -221,8 +222,8 @@ export function drawMarkers() {
   // gives it no name and no key handling, so a screen reader met "2, button"
   // and Enter did nothing. Mirror what a click does.
   const labelClusters = () => {
-    const fg = S.markerLayer._featureGroup;
-    for (const l of (fg ? fg.getLayers() : [])) {
+    const fg = S.markerLayer!._featureGroup;
+    for (const l of (fg ? fg.getLayers() as L.MarkerCluster[] : [])) {
       const el = l._icon;
       if (!el || typeof l.getChildCount !== 'function' || el.dataset.pkKeyed) continue;
       el.dataset.pkKeyed = '1';
@@ -231,7 +232,7 @@ export function drawMarkers() {
         if (ev.key !== 'Enter' && ev.key !== ' ') return;
         ev.preventDefault();
         S.mapFocusPending = Date.now();    // the zoom removes this element; see below
-        if (l._bounds && S.map.getBoundsZoom(l._bounds) > S.map.getZoom()) l.zoomToBounds({ padding: [30, 30] });
+        if (l._bounds && S.map!.getBoundsZoom(l._bounds) > S.map!.getZoom()) l.zoomToBounds({ padding: [30, 30] });
         else l.spiderfy();
       });
     }
@@ -255,7 +256,7 @@ export function drawMarkers() {
     if (S.mapFocusPending && Date.now() - S.mapFocusPending < 3000
         && (!document.activeElement || document.activeElement === document.body)) {
       S.mapFocusPending = 0;
-      (mapKeyed().find(e => e.dataset.pkRove === '0') || S.map.getContainer()).focus({ preventScroll: true });
+      (mapKeyed().find(e => e.dataset.pkRove === '0') || S.map!.getContainer()).focus({ preventScroll: true });
     }
   };
   S.markerLayer.on('animationend', () => { S.labelMarkers(); legendZoomHint(); });
@@ -266,7 +267,7 @@ export function onMapFylke(v) {
   S.mapFylke = v;
   // a county may not offer the selected category at all; widen rather than
   // leave a blank control over an empty map
-  if (S.mapCat !== 'all' && !S.DATA.schools.some(s =>
+  if (S.mapCat !== 'all' && !S.DATA!.schools.some(s =>
       (v === 'all' || s.fylke === v) && shownPrograms(s).some(p => p.category === S.mapCat))) {
     S.mapCat = 'all';
   }
@@ -279,12 +280,12 @@ export function onMapFylke(v) {
   // "Invalid LatLng object: (NaN, NaN)", taking the whole handler with it — the
   // list view is only the most obvious way to have no map on screen; a hidden
   // tab or a pane still laying out is another.
-  if (S.view === 'list' || !S.map.getContainer().clientWidth) { S.refitPending = true; return; }
-  const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon]);
+  if (S.view === 'list' || !S.map!.getContainer().clientWidth) { S.refitPending = true; return; }
+  const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon] as L.LatLngTuple);
   if (pts.length) {
     const box = L.latLngBounds(pts).pad(0.08);
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) S.map.fitBounds(box, framePad());
-    else S.map.flyToBounds(box, { ...framePad(), duration: .6 });
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) S.map!.fitBounds(box, framePad());
+    else S.map!.flyToBounds(box, { ...framePad(), duration: .6 });
   }
 }
 
@@ -292,7 +293,7 @@ export function onMapFylke(v) {
 // row, a lens took in 58 schools whose sheets then said «tilbys ikke her», the
 // lens's rows there being history the list hides (shownPrograms).
 export function visibleSchools() {
-  return S.DATA.schools.filter(s =>
+  return S.DATA!.schools.filter(s =>
     (S.mapFylke === 'all' || s.fylke === S.mapFylke) &&
     (S.mapCat === 'all' || shownPrograms(s).some(p => p.category === S.mapCat)));
 }
@@ -325,7 +326,7 @@ export function setLevels(v) {
   syncUrl(true);
 }
 // the scope has nothing to say where the county publishes Vg1 only
-export const laterPublished = () => S.DATA.schools.some(s => (S.mapFylke === 'all' || s.fylke === S.mapFylke)
+export const laterPublished = () => S.DATA!.schools.some(s => (S.mapFylke === 'all' || s.fylke === S.mapFylke)
                                                     && s.programs.some(p => !isVg1(p)));
 
 // The folded panel's button (see the CSS for why it folds). Drawn: the county
@@ -333,14 +334,14 @@ export const laterPublished = () => S.DATA.schools.some(s => (S.mapFylke === 'al
 // so a screen reader hears what it would have heard on the selects.
 export function renderPanelSum() {
   if (!S.DATA) return;
-  const parts = [];
-  if (!document.getElementById('fylke-field').hidden)
+  const parts: [string, string][] = [];
+  if (!document.getElementById('fylke-field')!.hidden)
     parts.push([t('fylkeLabel'), S.mapFylke === 'all' ? t('allFylker') : S.mapFylke]);
   parts.push([t('catLabel'), S.mapCat === 'all' ? t('allCats') : CATS[S.mapCat][S.lang]]);
   // the scope only when it is not the default: the folded line has to say
   // what the checkbox it hides is set to
   if (S.allLevels && laterPublished()) parts.push([t('levelsSumLabel'), t('levelsChipAll')]);
-  document.getElementById('panel-sum-t').innerHTML = parts.map(([l, v], i) =>
+  document.getElementById('panel-sum-t')!.innerHTML = parts.map(([l, v], i) =>
     `<span class="ln"><span class="vh">${i ? ', ' : ''}${esc(l)}: </span>${esc(v)}</span>`).join('');
 }
 export const panelFolds = () => S.view === 'map' && matchMedia('(max-width: 560px), (max-height: 480px)').matches;
@@ -355,7 +356,7 @@ export function unfoldPanel(ev) {
   // the pressed line is gone; from the keyboard, land on the first select it
   // uncovered. A tap moves nothing: focusing a select on iOS opens its picker.
   if (ev && ev.detail === 0) {
-    document.getElementById(document.getElementById('fylke-field').hidden ? 'map-cat' : 'map-fylke').focus();
+    document.getElementById(document.getElementById('fylke-field')!.hidden ? 'map-cat' : 'map-fylke')!.focus();
   }
 }
 

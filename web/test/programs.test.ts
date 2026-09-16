@@ -105,7 +105,7 @@ describe('programme rows', () => {
 
   it('with points entered each row carries the chance chip for that programme', () => {
     loadFixtures(); initHelpers(); stubMap();
-    const s = DATA.schools.find((x: any) => S.MODEL.schools[`${x.fylke}|${x.name}`]?.programs);
+    const s = DATA.schools.find((x: any) => S.MODEL!.schools[`${x.fylke}|${x.name}`]?.programs);
     S.myPoints = 45;
     openSide(s);
     const chips = document.querySelectorAll('#s-list .prow .ch');
