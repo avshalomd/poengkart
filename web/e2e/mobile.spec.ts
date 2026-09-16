@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { boot, openSchool, touchTarget, F1 } from './helpers';
+import { boot, openSchool, touchTarget } from './helpers';
 
 test.skip(({ isMobile }) => !isMobile, 'phone only');
 
@@ -20,7 +20,6 @@ test('nothing scrolls sideways, and the school sheet fits the screen', async ({ 
 });
 
 test('the settings, the calculator and the help sheet fit the screen', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   const vp = page.viewportSize()!;
   for (const [btn, sheet] of [['#settings-btn', '#settings'], ['#calc-open', '#calc'], ['#help-btn', '#intro']] as const) {
@@ -77,7 +76,7 @@ test('the points field asks for the decimal keypad, and stays in sight when the 
 
   // and the counter-case, so the assertion above cannot pass by accident:
   // scrolled away the field really is out of view, and focus brings it back
-  // (panel's focusin → keepPanelFocusInView in web/src/app.js)
+  // (panel's focusin → keepPanelFocusInView in web/src/boot.ts)
   await page.evaluate(() => { document.getElementById('my-points')!.blur(); document.getElementById('panel')!.scrollTop = 0; });
   expect((await box()).inside, 'scrolled to the top the field is out of view').toBe(false);
   await page.locator('#my-points').focus();

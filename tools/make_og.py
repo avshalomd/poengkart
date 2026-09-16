@@ -37,7 +37,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WEB = os.path.join(HERE, '..', 'web', 'dist')
-INDEX = os.path.join(HERE, '..', 'web', 'src', 'app.js')
+INDEX = os.path.join(HERE, '..', 'web', 'src', 'map.ts')
 DATA = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
 CACHE = os.path.join(HERE, '.cache')
 PANEL_FALLBACK = os.path.join(HERE, 'og-panel.png')
@@ -99,7 +99,7 @@ def carto_key():
     """
     m = re.search(r"const CARTO_KEY = '([^']+)'", open(INDEX, encoding='utf-8').read())
     if not m:
-        raise SystemExit('CARTO_KEY not found in web/src/app.js')
+        raise SystemExit('CARTO_KEY not found in web/src/map.ts')
     return m.group(1)
 
 

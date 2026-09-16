@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { boot, schoolsOnMap, F1 } from './helpers';
+import { boot, schoolsOnMap } from './helpers';
 
 test('the county select narrows the map and writes the permalink', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   const before = await schoolsOnMap(page);
   // the option's label carries the school count («Oslo (25)»); its value is the
@@ -14,7 +13,6 @@ test('the county select narrows the map and writes the permalink', async ({ page
 });
 
 test('the utdanningsprogram select explains itself in the note', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   const options = await page.locator('#map-cat option').allTextContents();
   expect(options.length).toBeGreaterThan(2);
@@ -37,7 +35,6 @@ test('a filter permalink restores both selects on load', async ({ page }) => {
 });
 
 test('picking the two selects writes that permalink back', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   await page.selectOption('#map-fylke', 'Oslo');
   await page.selectOption('#map-cat', { index: 1 });

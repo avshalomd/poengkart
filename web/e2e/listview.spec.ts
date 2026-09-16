@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { boot, F1 } from './helpers';
+import { boot } from './helpers';
 
 test('Kart ⇄ Liste shows a sortable table of the visible schools and remembers the view', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   await page.click('#view-list');
   await expect(page.locator('#listview')).toBeVisible();
@@ -20,7 +19,6 @@ test('Kart ⇄ Liste shows a sortable table of the visible schools and remembers
 });
 
 test('a row opens the school beside the table', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   await page.click('#view-list');
   await page.locator('#listview tbody tr').first().click();
@@ -28,7 +26,7 @@ test('a row opens the school beside the table', async ({ page }) => {
   await expect(page.locator('#s-photo .name h2')).not.toBeEmpty();
 });
 
-// listLayout() reads LIST_LAYOUT = { n: [1068, 1582], … } (web/src/app.js) and
+// listLayout() reads LIST_LAYOUT = { n: [1068, 1582], … } (web/src/sidebar.ts) and
 // puts one of three classes on <body>. The widths below sit either side of both
 // numbers, so a regression to the 1240px split that commit 0621b00 fixed fails
 // here — 1400 alone would pass under either threshold.
@@ -40,7 +38,6 @@ const LAYOUTS = [
 ] as const;
 
 test('the list keeps three layouts, at the 1068 and 1582 thresholds', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   await page.click('#view-list');
   await page.locator('#listview tbody tr').first().click();

@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { boot, F1 } from './helpers';
+import { boot } from './helpers';
 
 test('the grade calculator turns grades into points and hands them to the points field', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   await page.click('#calc-open');
   await expect(page.locator('#calc')).toBeVisible();
@@ -24,7 +23,6 @@ test('the grade calculator turns grades into points and hands them to the points
 });
 
 test('the grades are remembered, and Tøm clears them', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   await page.click('#calc-open');
   await page.locator('#calc-body .subj').first().locator('button[data-g="4"]').click();

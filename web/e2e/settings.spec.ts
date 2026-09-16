@@ -1,12 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { boot, F1 } from './helpers';
+import { boot } from './helpers';
 
 // renderSettings() draws every choice as a pill: <button data-k="<setting>"
 // data-v="<value>" aria-pressed>. There is no <select> and no data-lang.
 const pill = (k: string, v: string) => `#settings-body .seg button[data-k="${k}"][data-v="${v}"]`;
 
 test('language, theme, text size and the colour-blind palette switch and persist', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   await page.click('#settings-btn');
   await expect(page.locator('#settings')).toBeVisible();
@@ -28,7 +27,6 @@ test('language, theme, text size and the colour-blind palette switch and persist
 });
 
 test('the chosen pill is the pressed one, and Escape closes the sheet', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   await page.click('#settings-btn');
   await expect(page.locator(pill('levels', '1'))).toHaveAttribute('aria-pressed', 'true');
@@ -38,7 +36,6 @@ test('the chosen pill is the pressed one, and Escape closes the sheet', async ({
 });
 
 test('Trinn: Vg2 and Vg3 rows appear only when the setting says so', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page, '#s=Vestland/F%C3%B8rde%20vidareg%C3%A5ande%20skule');
   const rows = page.locator('#s-list .prow');
   const vg1Only = await rows.count();

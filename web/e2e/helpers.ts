@@ -1,29 +1,7 @@
 import { expect, type Page } from '@playwright/test';
 
-/** Why a test in this directory says `test.fixme(true, F1)`.
- *
- *  web/index.html drives most of the app from inline attributes —
- *  onclick="setView('list')", onchange="onMapFylke(this.value)",
- *  oninput="onPoints(this.value)", onclick="openSettings()" — and renderSide()
- *  and renderListView() write more of them into the HTML they generate
- *  (onclick="closeSide()", onclick="sortList('value')").
- *
- *  Since task 1 the page's script is reached as `await import('./app.js')` from
- *  web/src/main.ts, so web/src/app.js is an ES module: its top-level
- *  declarations are module-scoped and never reach `window`. Every inline
- *  attribute above throws `ReferenceError: <name> is not defined` when it fires,
- *  and the control does nothing. What still works is whatever is wired with
- *  addEventListener or assigned from JavaScript: boot, the permalink and
- *  hashchange path, popstate, Escape, the map markers, the programme rows, the
- *  wishes list and the search overlay.
- *
- *  Every test marked with it was written against, and verified green on, a build
- *  with those globals restored. Delete the fixme line when they come back;
- *  nothing else in the spec needs to change. */
-export const F1 = 'F1: app.js is an ES module, so index.html’s inline on*= handlers do not resolve';
-
 /** The localStorage keys the app reads at boot — INTRO_SEEN and HINT_KEY in
- *  web/src/app.js (region intro / help), HINT_TRIES is 3. */
+ *  web/src/intro.ts, HINT_TRIES is 3. */
 export const INTRO_SEEN = 'pk-intro-v1';
 export const HINT_KEY = 'pk-help-hint';
 
@@ -52,7 +30,7 @@ export async function boot(page: Page, hash = ''): Promise<void> {
 
 /** Open a school through its permalink and wait for the sheet to show it.
  *  Writing the whole fragment is what a pasted link does, so it also drops any
- *  `f=` / `c=` the reader had set — see applyUrlFilters() in web/src/app.js. */
+ *  `f=` / `c=` the reader had set — see applyUrlFilters() in web/src/sidebar.ts. */
 export async function openSchool(page: Page, fylke: string, name: string): Promise<void> {
   await page.evaluate(([f, n]) => { location.hash = `#s=${encodeURIComponent(f)}/${encodeURIComponent(n)}`; }, [fylke, name]);
   await expect(page.locator('#side')).toHaveClass(/open/);
@@ -92,7 +70,7 @@ export function touchTarget(page: Page, selector: string): Promise<{ h: number; 
 
 /** Fill `pk-choices` with `n` wishes taken from one school, in the storage shape
  *  the app writes: {f: county, s: school, k: `${programme}|${level}|${nth}`}
- *  (progKeyMap in web/src/app.js). Returns the school's name. */
+ *  (progKeyMap in web/src/chance.ts). Returns the school's name. */
 export async function seedWishes(page: Page, fylke: string, school: string, n: number): Promise<string> {
   return page.evaluate(async ([f, s, count]) => {
     const data = await (await fetch('/data/schools.json')).json();

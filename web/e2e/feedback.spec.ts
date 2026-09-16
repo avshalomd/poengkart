@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { boot, openSchool, F1 } from './helpers';
+import { boot, openSchool } from './helpers';
 
 test('the bug button sends the view, the filters and the school on screen, never a picture', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   // the county is set AFTER the school: a permalink rewrites the whole fragment,
   // so opening one drops the `f=` a reader had chosen (applyUrlFilters)
@@ -43,7 +42,6 @@ test('the bug button sends the view, the filters and the school on screen, never
 });
 
 test('the sheet’s own bug button reports the school it sits on', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   await openSchool(page, 'Akershus', 'Asker');
   let body: any = null;
@@ -58,7 +56,6 @@ test('the sheet’s own bug button reports the school it sits on', async ({ page
 });
 
 test('an empty message is refused before anything is posted', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   let posted = false;
   await page.route('**/api/feedback', async r => { posted = true; await r.fulfill({ json: { ok: true } }); });

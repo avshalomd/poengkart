@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { boot, openSchool, watchErrors, expectNoConsoleErrors, F1 } from './helpers';
+import { boot, openSchool, watchErrors, expectNoConsoleErrors } from './helpers';
 
 test('a permalink opens the school with photo, hero figure, chart and programme rows', async ({ page }) => {
   const errors = watchErrors(page);
@@ -29,7 +29,6 @@ test('the browser back button closes the sheet and leaves the address clean', as
 
 test('the ✕ closes the sheet and keeps a filter changed while it was open', async ({ page, isMobile }) => {
   test.skip(!!isMobile, 'on a phone the sheet covers the panel, so the county select cannot be reached');
-  test.fixme(true, F1);
   await boot(page);
   // a county that still contains the open school: onMapFylke closes the sheet
   // outright for one that does not (`current` no longer in visibleSchools)
@@ -44,7 +43,6 @@ test('the ✕ closes the sheet and keeps a filter changed while it was open', as
 
 test('a county that excludes the open school closes the sheet with it', async ({ page, isMobile }) => {
   test.skip(!!isMobile, 'on a phone the sheet covers the panel, so the county select cannot be reached');
-  test.fixme(true, F1);
   await boot(page);
   await openSchool(page, 'Akershus', 'Asker');
   await page.selectOption('#map-fylke', 'Oslo');
@@ -93,7 +91,7 @@ test('a keyboard reader’s first Escape closes the tooltip, the second the shee
   for (let i = 0; i < 60 && !reached; i++) { await page.keyboard.press('Tab'); reached = await onName(); }
   expect(reached, 'Tab reaches the programme row’s name button').toBe(true);
   await expect(page.locator(TIP)).toBeVisible();
-  // app.js: the row's keydown hides the tip and stops the event, so the sheet stays
+  // programs.ts: the row's keydown hides the tip and stops the event, so the sheet stays
   await page.keyboard.press('Escape');
   await expect(page.locator(TIP)).toBeHidden();
   await expect(page.locator('#side')).toHaveClass(/open/);

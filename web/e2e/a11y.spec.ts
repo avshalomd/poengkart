@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { boot, openSchool, F1 } from './helpers';
+import { boot, openSchool } from './helpers';
 
 const serious = (r: { violations: { impact?: string | null; id: string; nodes: unknown[] }[] }) =>
   r.violations.filter(v => v.impact === 'serious' || v.impact === 'critical').map(v => `${v.id} ×${v.nodes.length}`);
@@ -17,7 +17,6 @@ test('no serious axe violations with a school open', async ({ page }) => {
 });
 
 test('no serious axe violations in the list view', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   await page.click('#view-list');
   await expect(page.locator('#listview')).toBeVisible();

@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { boot, openSchool, F1 } from './helpers';
+import { boot, openSchool } from './helpers';
 
 test('entering points switches the legend to chance bands and colours the sheet', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   await page.fill('#my-points', '45');
   // the legend's bins are the band thresholds, not their names: the words
@@ -15,7 +14,6 @@ test('entering points switches the legend to chance bands and colours the sheet'
 });
 
 test('points persist across a reload and clear with the ✕', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   await page.fill('#my-points', '45');
   await expect(page.locator('#pts-clear')).toBeVisible();
@@ -30,7 +28,6 @@ test('points persist across a reload and clear with the ✕', async ({ page }) =
 });
 
 test('an impossible score is refused and the map keeps its threshold colours', async ({ page }) => {
-  test.fixme(true, F1);
   await boot(page);
   await page.fill('#my-points', '999');
   await expect(page.locator('#pts-note')).toHaveText('Skriv et tall mellom 0 og 70 – for eksempel 42,5.');
