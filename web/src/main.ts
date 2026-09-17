@@ -2,11 +2,10 @@
 // leaflet.markercluster is a plain script that reads that global rather than
 // importing anything. So Leaflet has to have run first: this import is here
 // for that order alone, and every module that uses L imports it for itself.
+// Their stylesheets, and the app's own, are imported by layouts/Base.astro so
+// the page ships them in the <head> rather than waiting for this script.
 import 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster';
-import 'leaflet.markercluster/dist/MarkerCluster.css';
-import './styles/app.css';
 import { initI18n } from './i18n'; import { initHelpers } from './helpers'; import { initChance } from './chance';
 import { initMap } from './map'; import { initChrome } from './chrome'; import { initSidebar } from './sidebar';
 import { initChart } from './chart'; import { initPrograms } from './programs'; import { initFeedback } from './feedback';

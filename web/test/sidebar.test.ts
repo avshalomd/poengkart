@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { loadFixtures, asker, forde } from './fixtures';
 import { stubMap } from './mapstub';
-import { openSide, closeSide, renderSide, renderChance, buildHash, listLayout, phoneSheet, sheetFull, widenFor, applyUrlFilters, capFirst, photoSrc } from '../src/sidebar';
+import { openSide, closeSide, renderSide, renderChance, listLayout, phoneSheet, sheetFull, widenFor, applyUrlFilters } from '../src/sidebar';
+import { buildUrl } from '../src/router';
 import { schoolChance } from '../src/chance';
-import { meanStep } from '../src/listview';
-import { shownPrograms, visibleIn, fmt } from '../src/helpers';
+import { capFirst, meanStep, photoSrc, schoolTitle, shownPrograms, visibleIn, fmt } from '../src/helpers';
 import { initHelpers } from '../src/helpers';
 import { initListview } from '../src/listview';
 import { t } from '../src/i18n';
@@ -34,6 +34,16 @@ describe('the school sheet', () => {
     loadFixtures(); initHelpers(); stubMap(); openSide(asker()); closeSide(true);
     expect(document.getElementById('side')!.classList.contains('open')).toBe(false);
     expect(S.current).toBeNull();
+  });
+  // the first open pushes the address itself and never reaches setUrlSchool,
+  // so the tab title has to be written on that branch too
+  it('puts the open school in the tab title, and the app’s own title back', () => {
+    loadFixtures(); initHelpers(); stubMap();
+    history.replaceState(null, '', '/');          // no pkSide: openSide pushes
+    openSide(asker());
+    expect(document.title).toBe(schoolTitle(asker()));
+    closeSide(true);
+    expect(document.title).toBe(t('pageTitle'));
   });
   it('the chance block asks for points when there are none and counts the programmes in reach when there are', () => {
     loadFixtures(); initHelpers(); stubMap(); openSide(asker());
@@ -89,24 +99,31 @@ describe('the school sheet', () => {
   });
   it('applyUrlFilters puts the county and programme named in the address on the controls', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
-    location.hash = '#f=Oslo&c=ST';
+    history.replaceState(null, '', '/?f=Oslo&c=ST');
     expect(applyUrlFilters(true)).toBe(true);
     expect(S.mapFylke).toBe('Oslo');
     expect(S.mapCat).toBe('ST');
     expect((document.getElementById('map-fylke') as HTMLSelectElement).value).toBe('Oslo');
     expect((document.getElementById('map-cat') as HTMLSelectElement).value).toBe('ST');
     expect(applyUrlFilters()).toBe(false);       // the second pass has nothing to move
-    location.hash = '';
+    history.replaceState(null, '', '/');
   });
-  it('buildHash carries the school, the county and the programme it was taken under', () => {
+  // queryParts() has already decoded the query, so a value carrying a literal
+  // «%» used to be handed to decodeURIComponent a second time, throw a URIError
+  // inside the try, and silently drop every filter in the address.
+  it('a stray percent in one filter does not drop the others', () => {
+    loadFixtures(); initHelpers(); initListview(); stubMap();
+    history.replaceState(null, '', '/?f=100%25&c=ST');
+    expect(applyUrlFilters(true)).toBe(true);
+    expect(S.mapCat).toBe('ST');
+    expect(S.mapFylke).toBe('all');              // «100%» is no county we carry
+    history.replaceState(null, '', '/');
+  });
+  it('buildUrl carries the school, the county and the programme it was taken under', () => {
     loadFixtures(); initHelpers();
-    expect(buildHash(null)).not.toContain('#');
-    S.mapFylke = 'Oslo'; S.mapCat = 'ST'; S.allLevels = true;
-    const h = buildHash(asker());
-    expect(h).toContain('s=Akershus/Asker');
-    expect(h).toContain('f=Oslo');
-    expect(h).toContain('c=ST');
-    expect(h).toContain('l=all');
+    expect(buildUrl(null)).toBe('/');
+    S.mapFylke = 'Akershus'; S.mapCat = 'ST';
+    expect(buildUrl(asker())).toBe('/akershus/asker?f=Akershus&c=ST');
   });
   it('listLayout is the map view’s empty string and one of the three list layouts', () => {
     loadFixtures(); initHelpers();

@@ -1,43 +1,39 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { loadFixtures, asker, school } from './fixtures';
-import { buildHash, hashParts, schoolFromUrl } from '../src/sidebar';
+import { adoptLegacyUrl, buildUrl, queryParts, schoolFromUrl } from '../src/router';
 import { S } from '../src/state';
 
 describe('permalinks', () => {
-  it('a school hash round-trips through buildHash and hashParts', () => {
-    // buildHash(s) takes the school explicitly (it does not read S.current);
-    // hashParts() takes no argument and reads location.hash instead — set
-    // that, rather than passing buildHash's return value in.
-    loadFixtures();
-    const h = buildHash(asker());
-    expect(h).toContain('s=');
-    location.hash = h;
-    expect(hashParts().s).toBe('Akershus/Asker');
+  beforeEach(() => { loadFixtures(); history.replaceState(null, '', '/'); });
+
+  it('a school round-trips through buildUrl: the path names it, the query carries the filters', () => {
+    // buildUrl(s) takes the school explicitly (it does not read S.current);
+    // the filters it appends come from S, so set those rather than passing
+    // them in.
+    expect(buildUrl(asker())).toBe('/akershus/asker');
+    S.mapFylke = 'Akershus'; S.mapCat = 'ST';
+    const u = buildUrl(asker());
+    expect(u).toBe('/akershus/asker?f=Akershus&c=ST');
+    expect(queryParts(u.slice(u.indexOf('?')))).toEqual({ f: 'Akershus', c: 'ST' });
   });
+
   it('schoolFromUrl resolves a plain register name, and is falsy when nothing matches', () => {
-    loadFixtures();
-    location.hash = '#s=Akershus/Asker'; expect(schoolFromUrl()?.name).toBe('Asker');
-    location.hash = '#s=Akershus/Finnes%20ikke'; expect(schoolFromUrl()).toBeFalsy();
+    history.replaceState(null, '', '/akershus/asker'); expect(schoolFromUrl()?.name).toBe('Asker');
+    history.replaceState(null, '', '/akershus/finnes-ikke'); expect(schoolFromUrl()).toBeFalsy();
   });
-  it('schoolFromUrl decodes a percent-encoded space in the school name', () => {
+
+  it('a legacy link with a percent-encoded space is adopted onto the school’s path', () => {
     // A genuine positive encoding case: a real school whose name has a space,
-    // built the way encodeURIComponent (and so buildHash/schoolPart) encodes
-    // it, and resolved back — unlike the %20 "not found" case above, this one
-    // would fail if decodeURIComponent were missing or broken.
-    loadFixtures();
+    // built the way encodeURIComponent (and so the old schoolPart) encoded it,
+    // and resolved back — unlike a "not found" %20 case, this one would fail
+    // if decodeURIComponent were missing or broken.
     const s = school('Roald Amundsen');
     expect(s.fylke).toBe('Akershus');
-    const h = `#s=${s.fylke}/${encodeURIComponent(s.name)}`;
+    const h = `/#s=${s.fylke}/${encodeURIComponent(s.name)}`;
     expect(h).toContain('%20');
-    location.hash = h;
+    history.replaceState(null, '', h);
+    expect(adoptLegacyUrl()).toBe('');
+    expect(location.pathname).toBe('/akershus/roald-amundsen');
     expect(schoolFromUrl()?.name).toBe('Roald Amundsen');
   });
-  it.todo(
-    'schoolFromUrl should tolerate an encoded "/" in #s=Fylke%2FSkole — ' +
-    'today it does not: schoolFromUrl splits p.s on a literal "/" BEFORE ' +
-    'decoding (const m = /^([^/]+)\\/(.+)$/.exec(p.s) in src/sidebar.ts), so ' +
-    'a fully-encoded slash never matches and the function returns null. ' +
-    'buildHash never emits %2F (schoolPart joins the two encoded halves with ' +
-    'a literal "/"), so this only bites a hand-built or third-party link.'
-  );
 });

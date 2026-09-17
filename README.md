@@ -22,8 +22,9 @@ year; [docs/model.md](docs/model.md) explains it and the
 write-up. Press + on a programme to build your list of wishes (*ønsker*, the
 ten a vigo application allows), or use the calculator if you do not know your
 points. Search finds any school (⌘K or `/`), Kart ⇄ Liste swaps the map for a
-sortable table, every open school is a shareable link (`#s=Fylke/Skolenavn`),
-and settings hold language, theme, text size, the Vg2–Vg3 rows and a
+sortable table, every open school has its own shareable page
+(`/akershus/asker`; old `#s=Fylke/Skolenavn` links still open), and settings
+hold language, theme, text size, the Vg2–Vg3 rows and a
 colour-blind palette. The bug button sends the view you had open with your
 report, never a picture.
 
@@ -35,8 +36,11 @@ npm run dev
 ```
 
 Opens on http://localhost:8123. `npm run build` writes the deployable site to
-`web/dist`. To rebuild the dataset from the county source documents in
-`sources/`:
+`web/dist`. Every school has its own page (`/akershus/asker`), prerendered at
+build time from `web/public/data/schools.json`, with its own share card
+under `/og/` and an entry in `/sitemap.xml`; links of the old
+`#s=Fylke/Skole` form still open. To rebuild the dataset from the county
+source documents in `sources/`:
 
 ```bash
 .venv/bin/python3 tools/refresh.py
@@ -48,13 +52,17 @@ chromium-headless-shell`); without it the last capture in `tools/og-panel.png`
 is reused. A missing `sources/` is restored from the public mirror with
 `tools/sources_r2.py fetch`, verified against `sources/manifest.json`.
 
-`npm test` runs the unit tests (Vitest, coverage thresholds 80 % for
-statements, functions and lines, 65 % for branches), `npm run e2e` the browser
-suite (Playwright: boot, permalinks, filters, points, wishes, the list,
-settings, the calculator, the bug button, a phone, axe, and the figure
-invariants), and `.venv/bin/python3 -m pytest` the dataset checks. GitHub
-Actions runs all three, plus the build, on every push to `main` and on every
-pull request.
+`npm test` runs the unit tests (Vitest, two projects: happy-dom and node —
+the node project runs the prerender, sitemap and share-card modules with no
+DOM at all; coverage thresholds 80 % for statements, functions and lines,
+65 % for branches), `npm run e2e` the browser suite (Playwright: boot,
+permalinks, filters, points, wishes, the list, settings, the calculator, the
+bug button, routes, a phone, axe, and the figure invariants), and
+`.venv/bin/python3 -m pytest` the dataset checks. `npm run typecheck` runs
+`tsc --noEmit`; there is no `astro check` (the project pins TypeScript 7,
+which `@astrojs/check` does not support), so the build is the check for
+`.astro` files and endpoints. GitHub Actions runs all four, plus the build,
+on every push to `main` and on every pull request.
 
 ## The data
 

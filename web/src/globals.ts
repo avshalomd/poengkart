@@ -21,6 +21,7 @@
 import { S } from './state';
 import * as i18n from './i18n'; import * as helpers from './helpers'; import * as chance from './chance';
 import * as map from './map'; import * as chrome from './chrome'; import * as sidebar from './sidebar';
+import * as router from './router';
 import * as chart from './chart'; import * as programs from './programs'; import * as feedback from './feedback';
 import * as tips from './tips'; import * as intro from './intro'; import * as prefs from './prefs';
 import * as search from './search'; import * as searchov from './searchov'; import * as locate from './locate';
@@ -41,7 +42,7 @@ const documentNamed = (w: any, k: string) => {
 
 export function exposeGlobals(): void {
   const w = window as any;
-  const mods = [i18n, helpers, chance, map, chrome, sidebar, chart, programs, feedback, tips, intro, prefs, search, searchov, locate, listview, calc, lang, boot];
+  const mods = [i18n, helpers, chance, map, chrome, sidebar, router, chart, programs, feedback, tips, intro, prefs, search, searchov, locate, listview, calc, lang, boot];
   // The app's own names win over whatever the platform happens to call the
   // same thing: an inline handler that says openSide() means this openSide.
   for (const m of mods) for (const [k, v] of Object.entries(m)) if (!/^init[A-Z]/.test(k)) w[k] = v;

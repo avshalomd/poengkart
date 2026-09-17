@@ -3,7 +3,7 @@ import { DATA, MODEL } from './fixtures';
 import { main, framePad, bootFailed, updateMapLabels, initBoot } from '../src/boot';
 import { isSheetOpen } from '../src/intro';
 import { showTip } from '../src/tips';
-import { initHelpers } from '../src/helpers';
+import { initHelpers, schoolPath } from '../src/helpers';
 import { initChance } from '../src/chance';
 import { initMap } from '../src/map';
 import { initChrome } from '../src/chrome';
@@ -34,14 +34,13 @@ describe('boot', () => {
     S.DATA = null; S.MODEL = null; S.markerLayer = null; S.tileLayer = null;
     S.current = null; S.myPoints = null; S.lang = 'no'; S.mapCat = 'all'; S.mapFylke = 'all';
     S.allLevels = false; S.showOld = false; S.choices = []; S.view = 'map'; S._newestByFylke = null;
-    location.hash = '';
-    history.replaceState(null, '', location.pathname);
+    history.replaceState(null, '', '/');
   });
   afterEach(() => { vi.unstubAllGlobals(); });
 
   /* First, so that exactly one set of the listeners main() installs is live:
      every call adds another, and a second copy would answer these events too. */
-  it('wires the page up: a pasted link, the search shortcut and the back gesture', async () => {
+  it('wires the page up: forward navigation, the search shortcut and the back gesture', async () => {
     vi.stubGlobal('fetch', network());
     initAll(); initBoot();
     await main();
@@ -54,10 +53,11 @@ describe('boot', () => {
     expect(S.refitPending).toBe(true);
     S.view = 'map'; S.refitPending = false;
 
-    // a link pasted into the open tab is a hashchange, and only ever that
+    // a history entry naming another school is forward navigation, not a
+    // back-gesture: the sheet follows the address rather than closing
     const elvebakken = DATA.schools.find((s: any) => /^Elvebakken/.test(s.name))!;
-    location.hash = `#s=${elvebakken.fylke}/${encodeURIComponent(elvebakken.name)}`;
-    window.dispatchEvent(new Event('hashchange'));
+    history.pushState(null, '', schoolPath(elvebakken));
+    window.dispatchEvent(new PopStateEvent('popstate'));
     expect(S.current!.name).toBe(elvebakken.name);
     expect(document.getElementById('side')!.classList.contains('open')).toBe(true);
 
@@ -142,8 +142,19 @@ describe('boot', () => {
     expect(localStorage.getItem('pk-points')).toBeNull();
   });
 
+  it('a link from before stage 3 lands on the school’s own path', async () => {
+    history.replaceState(null, '', '/#s=Akershus/Asker');
+    vi.stubGlobal('fetch', network());
+    initAll();
+    await main();
+    expect(location.pathname).toBe('/akershus/asker');
+    expect(location.search + location.hash).toBe('');
+    expect(S.current!.name).toBe('Asker');
+    expect(document.getElementById('side')!.classList.contains('open')).toBe(true);
+  });
+
   it('a deep link opens the school it names, with the county and lens it was taken under', async () => {
-    location.hash = '#s=Akershus/Asker&f=Akershus&c=ST';
+    history.replaceState(null, '', '/#s=Akershus/Asker&f=Akershus&c=ST');
     vi.stubGlobal('fetch', network());
     initAll();
     await main();
@@ -152,26 +163,29 @@ describe('boot', () => {
     expect(S.current!.name).toBe('Asker');
     expect(document.getElementById('side')!.classList.contains('open')).toBe(true);
     expect(document.querySelector('#s-photo .name')!.textContent).toContain('Asker');
+    expect(location.pathname + location.search).toBe('/akershus/asker?f=Akershus&c=ST');
   });
 
   it('a link to a school that does not exist says so instead of opening nothing', async () => {
-    location.hash = '#s=Akershus/Finnes%20ikke';
+    history.replaceState(null, '', '/#s=Akershus/Finnes%20ikke');
     vi.stubGlobal('fetch', network());
     initAll();
     await main();
     expect(S.current).toBeNull();
     expect(document.getElementById('toast')!.hidden).toBe(false);
+    expect(location.pathname).toBe('/');
   });
 
-  it('a query-string link is adopted into the fragment once', async () => {
-    history.replaceState(null, '', location.pathname + '?f=Oslo&c=ST');
+  it('a legacy fragment link is adopted into the query string once', async () => {
+    history.replaceState(null, '', '/#f=Oslo&c=ST');
     vi.stubGlobal('fetch', network());
     initAll();
     await main();
-    expect(location.hash).toContain('f=Oslo');
-    expect(location.hash).toContain('c=ST');
+    expect(location.search).toContain('f=Oslo');
+    expect(location.search).toContain('c=ST');
+    expect(location.hash).toBe('');
     expect(S.mapFylke).toBe('Oslo');
-    history.replaceState(null, '', location.pathname);
+    history.replaceState(null, '', '/');
   });
 
   it('a dataset that cannot be fetched leaves an explanation and a way to retry', async () => {

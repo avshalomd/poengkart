@@ -3,8 +3,8 @@ import { boot, openSchool } from './helpers';
 
 test('the bug button sends the view, the filters and the school on screen, never a picture', async ({ page }) => {
   await boot(page);
-  // the county is set AFTER the school: a permalink rewrites the whole fragment,
-  // so opening one drops the `f=` a reader had chosen (applyUrlFilters)
+  // the county is set AFTER the school: a permalink is a page load, so opening
+  // one drops the `f=` a reader had chosen (applyUrlFilters)
   await openSchool(page, 'Oslo', 'Elvebakken videregående skole');
   await page.selectOption('#map-fylke', 'Oslo');
   await expect(page.locator('#side')).toHaveClass(/open/);
@@ -32,7 +32,7 @@ test('the bug button sends the view, the filters and the school on screen, never
     levels: 'Vg1',
     lang: 'no',
   });
-  expect(body.context.link).toContain('Elvebakken');
+  expect(body.context.link).toContain('/oslo/elvebakken-videregaende-skole');
   expect(Array.isArray(body.context.rows)).toBe(true);
   expect(body.context.rows.length).toBeGreaterThan(0);
   expect(body.context.hero).toContain('Snitt');

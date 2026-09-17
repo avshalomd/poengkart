@@ -36,7 +36,7 @@ test('the chosen pill is the pressed one, and Escape closes the sheet', async ({
 });
 
 test('Trinn: Vg2 and Vg3 rows appear only when the setting says so', async ({ page }) => {
-  await boot(page, '#s=Vestland/F%C3%B8rde%20vidareg%C3%A5ande%20skule');
+  await boot(page, '/vestland/forde-vidaregaande-skule');
   const rows = page.locator('#s-list .prow');
   const vg1Only = await rows.count();
   expect(vg1Only).toBeGreaterThan(0);

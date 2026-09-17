@@ -14,11 +14,11 @@ import 'leaflet.markercluster';
 // http://localhost:3000/index.html instead of a file:// path. Node's own
 // url/path modules sidestep that.
 const here = path.dirname(fileURLToPath(import.meta.url));
-const html = readFileSync(path.join(here, '../index.html'), 'utf8');
-const body = html.slice(html.indexOf('<body>') + 6, html.lastIndexOf('</body>'));
+const body = readFileSync(path.join(here, '../src/shell.html'), 'utf8');
 // applyPrefs() paints the two <meta name="theme-color"> of the real head, so
-// they come along with the body.
-const metas = (html.match(/<meta name="theme-color"[^>]*>/g) || []).join('\n');
+// they come along with the body; the head now lives in the layout.
+const layout = readFileSync(path.join(here, '../src/layouts/Base.astro'), 'utf8');
+const metas = (layout.match(/<meta name="theme-color"[^>]*>/g) || []).join('\n');
 
 beforeEach(() => {
   // Every open* defers a focus, every sheet defers its exit and the boot

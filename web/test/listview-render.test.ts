@@ -4,7 +4,7 @@ import { stubMap } from './mapstub';
 import { setView, renderListView, sortList, initListview, deltaFor } from '../src/listview';
 import { visibleSchools } from '../src/map';
 import { initHelpers, schoolPressure, fmt, round1 } from '../src/helpers';
-import { schoolHash } from '../src/sidebar';
+import { schoolUrl } from '../src/router';
 import { t } from '../src/i18n';
 import { S } from '../src/state';
 
@@ -42,13 +42,13 @@ describe('the list view', () => {
     expect(document.getElementById('list-title')!.textContent).toBe(`${t('allCats')} · Oslo`);
   });
 
-  it('every value cell is the school’s own pressure figure, and its link is the school’s hash', () => {
+  it('every value cell is the school’s own pressure figure, and its link is the school’s path', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
     setView('list');
     const first = rows()[0];
     const name = first.querySelector('.sc a')!.textContent;
     const s = visibleSchools().find((x: any) => x.name === name)!;
-    expect(first.querySelector('.sc a')!.getAttribute('href')).toBe(schoolHash(s));
+    expect(first.querySelector('.sc a')!.getAttribute('href')).toBe(schoolUrl(s));
     const pr: any = schoolPressure(s, S.mapCat);
     const cell = first.querySelector('td.num')!.textContent;
     if (pr.kind === 'points') expect(cell).toBe(fmt(pr.v));

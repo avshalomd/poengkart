@@ -94,7 +94,7 @@ describe('the map layer', () => {
     expect(S.mapFylke).toBe('Oslo');
     expect(S.current).toBeNull();                       // Asker is not in Oslo any more
     expect(markers().length).toBe(onMap().length);
-    expect(location.hash).toContain('f=Oslo');
+    expect(location.search).toContain('f=Oslo');
     expect(S.refitPending).toBe(true);                  // nothing to fit while the map is 0×0
     // a county that does not run the chosen lens widens rather than empty the map
     const missing = Object.keys(CATS).find(c => !DATA.schools.some((s: any) =>
@@ -104,7 +104,7 @@ describe('the map layer', () => {
     onMapFylke('Oslo');
     expect(S.mapCat).toBe('all');
     onMapFylke('all');
-    location.hash = '';
+    history.replaceState(null, '', '/');
   });
 
   it('the lens and the level scope are one switch each, and both redraw', () => {
@@ -122,7 +122,7 @@ describe('the map layer', () => {
     expect(markers().length).toBe(onMap().length);
     setLevels(false);
     expect(localStorage.getItem('pk-alllevels')).toBe('0');
-    location.hash = '';
+    history.replaceState(null, '', '/');
   });
 
   it('the folded panel is a phone’s affordance, and unfolding puts the selects back', () => {

@@ -3,7 +3,7 @@ import { boot, openSchool, watchErrors, expectNoConsoleErrors } from './helpers'
 
 test('a permalink opens the school with photo, hero figure, chart and programme rows', async ({ page }) => {
   const errors = watchErrors(page);
-  await boot(page, '#s=Akershus/Asker');
+  await boot(page, '/akershus/asker');
   await expect(page.locator('#side')).toHaveClass(/open/);
   await expect(page.locator('#s-photo .name')).toContainText('Asker');
   await expect(page.locator('#s-hero')).toContainText(/\d/);
@@ -14,8 +14,8 @@ test('a permalink opens the school with photo, hero figure, chart and programme 
 });
 
 test('an unknown permalink shows the not-found toast and leaves the map', async ({ page }) => {
-  await boot(page, '#s=Akershus/Finnes%20ikke');
-  await expect(page.locator('#toast')).toContainText('Fant ikke «Finnes ikke» i kartet.');
+  await boot(page, '/akershus/finnes-ikke');
+  await expect(page.locator('#toast')).toContainText('Fant ikke «finnes ikke» i kartet.');
   await expect(page.locator('#side')).not.toHaveClass(/open/);
 });
 
@@ -24,7 +24,7 @@ test('the browser back button closes the sheet and leaves the address clean', as
   await openSchool(page, 'Akershus', 'Asker');
   await page.goBack();
   await expect(page.locator('#side')).not.toHaveClass(/open/);
-  expect(page.url()).not.toContain('#s=');
+  expect(new URL(page.url()).pathname).toBe('/');
 });
 
 test('the ✕ closes the sheet and keeps a filter changed while it was open', async ({ page, isMobile }) => {
@@ -38,7 +38,7 @@ test('the ✕ closes the sheet and keeps a filter changed while it was open', as
   await page.locator('#s-photo button.close:not(.bug)').click();
   await expect(page.locator('#side')).not.toHaveClass(/open/);
   await expect(page.locator('#map-fylke')).toHaveValue('Oslo');
-  expect(decodeURIComponent(page.url())).toContain('#f=Oslo');
+  expect(decodeURIComponent(page.url())).toContain('?f=Oslo');
 });
 
 test('a county that excludes the open school closes the sheet with it', async ({ page, isMobile }) => {
@@ -47,10 +47,10 @@ test('a county that excludes the open school closes the sheet with it', async ({
   await openSchool(page, 'Akershus', 'Asker');
   await page.selectOption('#map-fylke', 'Oslo');
   await expect(page.locator('#side')).not.toHaveClass(/open/);
-  expect(decodeURIComponent(page.url())).not.toContain('s=Akershus');
+  expect(new URL(page.url()).pathname).toBe('/');
 });
 
-test('a permalink pasted into an open tab switches the sheet to that school', async ({ page }) => {
+test('loading another school path switches the sheet to that school', async ({ page }) => {
   await boot(page);
   await openSchool(page, 'Akershus', 'Asker');
   await openSchool(page, 'Oslo', 'Elvebakken videregående skole');

@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { loadFixtures } from './fixtures';
-import { sortList, deltaFor, meanStep, initListview } from '../src/listview';
+import { sortList, deltaFor, initListview } from '../src/listview';
+import { meanStep } from '../src/helpers';
 import { S } from '../src/state';
 
 describe('list view', () => {

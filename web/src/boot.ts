@@ -12,7 +12,8 @@ import { drawMarkers, foldPanel, prefersStill, setTiles, visibleSchools } from "
 import { applyPrefs, closeSettings, loadPrefs, PREFS } from "./prefs";
 import { runSearch } from "./search";
 import { closeSearchOv, openSearchOv, pickOv, renderOvList } from "./searchov";
-import { applyUrlFilters, closeSide, hashParts, openSide, renderSide, schoolFromUrl, sideTrap, syncUrl, unresolvedLinkName } from "./sidebar";
+import { adoptLegacyUrl, pathSegments, schoolFromUrl, syncUrl, unresolvedFromPath } from "./router";
+import { applyUrlFilters, closeSide, openSide, renderSide, sideTrap } from "./sidebar";
 import { S } from './state';
 import { hideTip } from "./tips";
 
@@ -60,6 +61,9 @@ export function bootFailed(subKey) {
   try { window.va && window.va('event', { name: 'boot-failed', data: { msg: String(subKey).slice(0, 120) } }); } catch (_) {}
   // #panel lives inside #app now — the innerHTML below removes it, so nothing
   // here may assume it exists afterwards
+  // #side is inside #app too: a school page that fails to boot loses the sheet
+  // it was prerendered with, so the tab may not keep claiming that school
+  document.title = t('pageTitle');
   document.getElementById('legend')?.setAttribute('hidden', '');
   document.getElementById('app')!.innerHTML =
     `<div class="boot-fail"><p class="big">${esc(t('bootFail'))}</p>
@@ -81,7 +85,12 @@ export async function main() {
   // reader who had chosen English got an English page inside a document still
   // declaring itself Norwegian — wrong to a screen reader and to a translator.
   document.documentElement.lang = S.lang === 'no' ? 'no' : 'en';
-  document.title = t('pageTitle');
+  // A school's page arrives titled after the school, and the sheet it carries
+  // stays open: overwriting that title here took the school out of the tab the
+  // moment the script booted. The home title is this page's only when the
+  // address names no school; a school path is titled by openSide below, and a
+  // path no school answers to falls back after the data has been read.
+  if (!pathSegments()) document.title = t('pageTitle');
   // both requests leave together (and were already preloaded from <head>);
   // the forecast is optional: without it the points field stays hidden and
   // the app is exactly what it was
@@ -224,23 +233,6 @@ export async function main() {
     // a floating tooltip should not outlive the reader's attention
     if (!(ev.target as any).closest('[title], .ch, .lv, #tip')) hideTip();
   }, { passive: true });
-  // a deep link pasted into an ALREADY-OPEN tab is a same-document
-  // navigation: no reload, only hashchange. Our own writes never fire it
-  // (replaceState and pushState are silent), so this only ever reacts to
-  // the address bar.
-  addEventListener('hashchange', () => {
-    // the ✕'s back() also fires hashchange; its popstate closes the sheet and
-    // writes the filters in memory into the entry, so reading the entry's
-    // old hash here would undo them (order-independent: popstate first is
-    // a no-op read, hashchange first is skipped)
-    if (S.sideClosing) return;
-    applyUrlFilters();                    // a pasted link carries its selection too
-    const s = schoolFromUrl();
-    if (s && s !== S.current) {
-      if (s.lat && S.view === 'map') S.map!.setView([s.lat, s.lon], Math.max(S.map!.getZoom(), 11));
-      openSide(s);
-    } else if (!s && hashParts().s) toast(t('linkNotFound', unresolvedLinkName()));
-  });
   addEventListener('popstate', () => {
     // a back-gesture closes what is actually on screen: an open sheet first —
     // and re-pushes the side panel's entry the pop just consumed, so the next
@@ -266,17 +258,16 @@ export async function main() {
       else closeSearchOv(true);
       // the entry landed on is the pre-open one: a scope changed in the
       // settings sheet (the Trinn choice) is written into it, not re-read
-      // from it — the hashchange behind this pop then finds nothing to move
+      // from it
       syncUrl();
       if (sideOpen && !(history.state || {}).pkSide) {
         try { history.pushState({ pkSide: 1 }, ''); } catch (e) {}
       }
       return;
     }
-    // Chrome fires popstate for same-document hash navigations too, and
-    // BEFORE hashchange — so a deep link pasted over an open panel arrives
-    // here first. A hash naming a different school is forward navigation,
-    // not a back-gesture.
+    // An entry naming a different school is forward navigation, not a
+    // back-gesture: the address bar never gets to claim a school the sheet
+    // is not showing.
     const target = schoolFromUrl();
     // the entry may differ only in its filters — stepping back over a county
     // change has no school to open or close, but still has to move the controls
@@ -301,22 +292,10 @@ export async function main() {
   renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
   // a shared link carries the selection it was taken under, so read the filters
   // before the first frame rather than snapping the reader back to Hele landet
-  // A deep link can also arrive as ?f=&c=&s= query parameters. The canonical
-  // form is the fragment, but a fragment does not survive the wild: Gmail
-  // wraps every link in a redirect that drops it, so the county links we mail
-  // to the very officials who provided the data opened the plain map. Adopt
-  // the query into the hash once, then let the fragment machinery own it.
-  if (location.search && !location.hash) {
-    const q = new URLSearchParams(location.search);
-    const parts: string[] = [];
-    if (q.get('s')) parts.push('s=' + q.get('s'));
-    if (q.get('f')) parts.push('f=' + encodeURIComponent(q.get('f')!));
-    if (q.get('c')) parts.push('c=' + encodeURIComponent(q.get('c')!));
-    if (q.get('l')) parts.push('l=' + encodeURIComponent(q.get('l')!));
-    if (parts.length) {
-      try { history.replaceState(history.state, '', location.pathname + '#' + parts.join('&')); } catch (e) {}
-    }
-  }
+  // A link from before stage 3 carries the school in the fragment (#s=) or, in
+  // the mailed county links, in the query (?s=). Both become the path form
+  // here, in place, so the filters and the school are read from one shape.
+  const unresolved = adoptLegacyUrl();
   const framedByUrl = applyUrlFilters(true);
   let storedView = 'map';
   try { if (localStorage.getItem('pk-view') === 'list') storedView = 'list'; } catch (e) {}
@@ -326,7 +305,8 @@ export async function main() {
     if (pts.length) { touched = true; S.map.fitBounds(L.latLngBounds(pts).pad(0.08), { ...framePad(), animate: false }); }
   }
   const linked = schoolFromUrl();
-  if (!linked && hashParts().s) toast(t('linkNotFound', unresolvedLinkName()));
+  if (!linked && unresolved) toast(t('linkNotFound', unresolved));
+  else if (!linked && document.body.dataset.notfound) toast(t('linkNotFound', unresolvedFromPath()));
   if (linked) {
     if (linked.lat) {
       touched = true;                  // the deferred HOME refit must not undo this
@@ -334,6 +314,9 @@ export async function main() {
     }
     openSide(linked);
   }
+  // an address no school answers to keeps the 404 page's prerendered title,
+  // which is the home one — but in Norwegian, whatever the reader chose
+  if (!S.current) document.title = t('pageTitle');
   performance.mark('pk:boot-done');
   let seen = true;
   try { seen = !!localStorage.getItem(INTRO_SEEN); } catch (e) {}

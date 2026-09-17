@@ -30,12 +30,16 @@ import os
 import re
 import socketserver
 import subprocess
+import sys
 import threading
 import urllib.request
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)     # tools/ on the path, for slug.py beside this file
+from slug import slug        # noqa: E402
+
 WEB = os.path.join(HERE, '..', 'web', 'dist')
 INDEX = os.path.join(HERE, '..', 'web', 'src', 'map.ts')
 DATA = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
@@ -173,6 +177,17 @@ class _Quiet(http.server.SimpleHTTPRequestHandler):
     def log_message(self, *a):
         pass
 
+    def translate_path(self, path):
+        """Clean URLs, as vercel.json turns them on in production: the school
+        page is built as akershus/asker.html and served at /akershus/asker.
+        The app reads the school off the address, so it has to be the real
+        address — with the .html on it the path names no school and the sheet
+        never opens."""
+        full = super().translate_path(path)
+        if not os.path.exists(full) and os.path.isfile(full + '.html'):
+            return full + '.html'
+        return full
+
 
 def serve_web():
     """Serve web/ on a free port, so the panel is photographed from the build
@@ -206,7 +221,7 @@ def capture_panel(css_h):
                 localStorage.removeItem('pk-points');
             """)
             page = ctx.new_page()
-            url = f'{base}#s={urllib.request.quote(fylke)}/{urllib.request.quote(name)}'
+            url = f'{base}{slug(fylke)}/{slug(name)}'
             page.goto(url, wait_until='networkidle')
             page.reload(wait_until='networkidle')
             page.wait_for_selector('#side .chart-card', timeout=30000)

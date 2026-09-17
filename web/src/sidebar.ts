@@ -2,106 +2,30 @@ import L from 'leaflet';
 import { bucketOf, chanceFinal, chanceMode, finalRoundBridge, predFor, schoolChance } from "./chance";
 import { renderChartCard } from "./chart";
 import { liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
-import { BUG_ICON, OPEN_RULE, X_ICON, cssVar, esc, fmt, isPoints, isVg1, openMix, round1, shownPrograms, staleBefore, visibleIn, zeroLabel } from "./helpers";
+import { cssVar, esc, fmt, isVg1, round1, shownPrograms } from "./helpers";
 import { CATS, t } from "./i18n";
-import { meanStep } from "./listview";
 import { drawMarkers, markerOf, prefersStill, setLens, tileUrl } from "./map";
 import { renderList } from "./programs";
+import { docTitle, queryParts, schoolUrl, setUrlSchool, syncUrl } from './router';
 import { S } from './state';
+import { heroHtml, metaHtml, notesHtml, photoHtml, srcNoteHtml } from "./templates";
 import { bindTitleTips } from "./tips";
-import type { County } from './types';
 
 /* ================= sidebar ================= */
-// The open school is a place someone will want to send to someone else, so it
-// lives in the URL fragment: #s=Fylke/Skolenavn. replaceState edits the
-// address without firing popstate, so the back-gesture machinery below never
-// sees these writes.
-// The county and programme filters used to live nowhere: a reload dropped you
-// back to the whole country, and a link you sent carried the school but not the
-// selection you were looking at it under. They join the school in the fragment
-// as `&f=` and `&c=`, omitted when they are "all" so the common link stays
-// short and every #s= link already in the wild still parses.
-export const schoolPart = s => 's=' + encodeURIComponent(s.fylke) + '/' + encodeURIComponent(s.name);
-export function buildHash(s) {
-  const parts: string[] = [];
-  if (s) parts.push(schoolPart(s));
-  if (S.mapFylke !== 'all') parts.push('f=' + encodeURIComponent(S.mapFylke));
-  if (S.mapCat !== 'all') parts.push('c=' + encodeURIComponent(S.mapCat));
-  if (S.allLevels) parts.push('l=all');
-  return parts.length ? '#' + parts.join('&') : location.pathname + location.search;
-}
-export const schoolHash = s => buildHash(s);
-export function hashParts() {
-  const out: any = {};
-  (location.hash || '').replace(/^#/, '').split('&').forEach(kv => {
-    const i = kv.indexOf('=');
-    if (i > 0) out[kv.slice(0, i)] = kv.slice(i + 1);
-  });
-  return out;
-}
-export function setUrlSchool(s) {
-  try { history.replaceState(history.state, '', buildHash(s)); } catch (e) {}
-}
-// A filter change is a place you can come back to, so it gets its own history
-// entry rather than editing the current one.
-export function syncUrl(push?) {
-  try {
-    const h = buildHash(S.current);
-    if (h === (location.hash || location.pathname + location.search)) return;
-    // An open sheet is ONE history entry (see openSide). A filter changed
-    // while it is open rewrites that entry: pushed, it sat on top of the
-    // sheet's, so the ✕'s back() landed on the sheet's own entry, re-read
-    // its filters and turned the Vg2+ switch (or a county change) back off.
-    const st = history.state || {};
-    if (push && !st.pkSide && !st.pkSheet) history.pushState(history.state, '', h);
-    else history.replaceState(history.state, '', h);
-  } catch (e) {}
-}
-export function schoolFromUrl() {
-  const p = hashParts();
-  if (!p.s) return null;
-  const m = /^([^/]+)\/(.+)$/.exec(p.s);
-  if (!m) return null;
-  try {
-    const fy = decodeURIComponent(m[1]), name = decodeURIComponent(m[2]);
-    const inFylke = S.DATA!.schools.filter(x => x.fylke === fy);
-    // a pasted link may carry stray spaces or decomposed å/ø from another app
-    const key = name.trim().normalize('NFC').toLowerCase();
-    // Buskerud and Akershus carry the county's own short school name ("Kongsberg");
-    // the national register's full name ("Kongsberg videregående skole") is on
-    // nsr_name, and that is the form people paste from elsewhere. Accept both.
-    // The school's own `name` wins outright, the alias is only a fallback:
-    // a county's short name can never be shadowed by another school's
-    // nsr_name. Links the app writes are unaffected; buildHash still uses name.
-    return inFylke.find(x => x.name.toLowerCase() === key)
-        // nsr_name also holds the geocoder's provenance sentinels "(manual)" and
-        // "(stedsnavn)"; those are not names and must not open a school
-        || inFylke.find(x => { const a = x.nsr_name || ''; return a && a[0] !== '(' && a.toLowerCase() === key; })
-        // a link shared before a merger names the old school; it lives on as
-        // merged_from of the school that absorbed it
-        || inFylke.find(x => (x.merged_from || []).some(a => a.toLowerCase() === key))
-        || null;
-  } catch (e) { return null; }
-}
-// The name a #s= link asked for, when no school answers to it.
-export function unresolvedLinkName() {
-  const p = hashParts();
-  const m = p.s && /^([^/]+)\/(.+)$/.exec(p.s);
-  try { return m ? decodeURIComponent(m[2]).trim() : ''; } catch (e) { return p.s; }
-}
 // Put the filters named in the address back on the controls. Used at boot and
 // on every history traversal, so Back steps through filter changes too.
 export function applyUrlFilters(boot?) {
-  const p = hashParts();
+  const p = queryParts();
   let fy = 'all', cat = 'all';
   // the level scope rides as `l=all` when it is not the Vg1 default. A link
   // without it leaves a reader's own saved choice alone on a fresh load, while
   // Back over a toggle steps the scope back to Vg1 like any other filter.
   let lv = 'l' in p ? p.l === 'all' : boot ? S.allLevels : false;
-  try {
-    if (p.f) fy = decodeURIComponent(p.f);
-    if (p.c) cat = decodeURIComponent(p.c);
-  } catch (e) { return false; }
+  // queryParts() reads the address through URLSearchParams, so these are
+  // already decoded; decoding a second time threw a URIError on any value
+  // carrying a literal «%» and dropped every filter in the address with it.
+  if (p.f) fy = p.f;
+  if (p.c) cat = p.c;
   if (!S.DATA!.schools.some(s => s.fylke === fy)) fy = 'all';        // a county we do not carry
   if (cat !== 'all' && !CATS[cat]) cat = 'all';
   // a lens with nothing at Vg1 (påbygging) is a link to the later years
@@ -238,7 +162,8 @@ export function openSide(s) {
   // of closing: school D's close resurrected school A, closing took two
   // presses, and the address kept naming a school nothing was showing.
   if (!(history.state || {}).pkSide) {
-    try { history.pushState({ pkSide: 1 }, '', schoolHash(s)); } catch (e) {}
+    document.title = docTitle(s);        // the branch that does not go through setUrlSchool
+    try { history.pushState({ pkSide: 1 }, '', schoolUrl(s)); } catch (e) {}
   } else {
     setUrlSchool(s);
   }
@@ -299,7 +224,7 @@ export function closeSide(fromHistory?) {
   // From the list, focus goes back to the school's own row. The county select
   // at the top of the card scrolled a list read halfway down back up to it.
   const row = S.view === 'list' && closed
-    ? [...document.querySelectorAll('#listview td.sc a')].find(a => a.getAttribute('href') === schoolHash(closed))
+    ? [...document.querySelectorAll('#listview td.sc a')].find(a => a.getAttribute('href') === schoolUrl(closed))
     : null;
   // Otherwise the first of these on screen: with a phone's panel folded both
   // selects are hidden, and focus() on a hidden one left focus on <body>.
@@ -317,14 +242,6 @@ export function closeSide(fromHistory?) {
   if (opener && !opener.matches(':focus-visible')) markerOf.get(opener)?.closeTooltip();
 }
 
-// Rogaland's image handler serves nothing but the original: a width in the
-// path 404s and one in the query is ignored. Those few go through the host's
-// image optimiser instead; every other photo already asks its own server for a
-// display-sized rendition when the dataset is built.
-export const photoSrc = u => (/\/bv\.ashx\//.test(u) && location.protocol === 'https:'
-                       && !/^(localhost|127\.)/.test(location.hostname))
-  ? `/_vercel/image?url=${encodeURIComponent(u)}&w=960&q=75` : u;
-
 export function renderSide() {
   // current outlives closeSide, so a language or theme change would otherwise
   // rebuild the whole panel — minimap included — inside a zero-width box
@@ -332,27 +249,7 @@ export function renderSide() {
   const s = S.current;
   // photo header
   const ph = document.getElementById('s-photo');
-  // the pipeline stores the credit with a Norwegian "Foto:" prefix; the label
-  // is UI text and follows the language, the credited name does not
-  const creditText = t('photoCredit', (s.photo_credit
-    || (s.photo_source === 'commons' ? 'Wikimedia Commons' : 'Wikipedia')).replace(/^\s*(foto|photo)\s*:\s*/i, ''));
-  // esc() protects the attribute but not the scheme, and every one of these
-  // comes from a scrape rather than from us
-  const web = u => (/^https?:\/\//i.test(u || '') ? u : '');
-  const creditHref = web(s.photo_page) || web(s.wiki_url) || '';
-  const credit = s.photo
-    ? `<div class="credit">` + (creditHref
-        ? `<a href="${esc(creditHref)}" target="_blank" rel="noopener">${esc(creditText)}</a>`
-        : esc(creditText)) + '</div>'
-    : '';
-  const pos = s.photo_position ? ` style="--photo-pos:${esc(s.photo_position)}"` : '';
-  ph!.innerHTML = (s.photo ? `<img src="${esc(photoSrc(s.photo))}" data-full="${esc(s.photo)}"`
-                          + ` alt="" loading="lazy"${pos}>`
-                          : `<div id="s-minimap"></div>`) +
-    `<div class="veil"></div>` +
-    `<button class="close bug" onclick="openBug(current, this)" aria-label="${esc(t('bugSchoolLabel'))}">${BUG_ICON}</button>` +
-    `<button class="close" onclick="closeSide()" aria-label="${esc(t('closeAria'))}">${X_ICON}</button>` +
-    `<div class="name"><h2>${esc(s.name)}</h2>${credit}</div>`;
+  ph!.innerHTML = photoHtml(s);
   // an optimiser that is not there, or a county URL that has expired since the
   // last build, should not leave a broken image in the header
   const pimg = ph!.querySelector('img');
@@ -370,91 +267,19 @@ export function renderSide() {
   if (S.miniMap) { S.miniMap.remove(); S.miniMap = null; }
   if (S.miniMapRO) { S.miniMapRO.disconnect(); S.miniMapRO = null; }
   if (!s.photo && s.lat) buildMiniMap(s);
-  // meta links
-  const meta: string[] = [];
-  if (s.url) meta.push(`<a href="${esc(s.url.startsWith('http') ? s.url : 'https://' + s.url)}" target="_blank" rel="noopener">${t('website')} ↗</a>`);
-  if (web(s.wiki_url)) meta.push(`<a href="${esc(s.wiki_url)}" target="_blank" rel="noopener">${t('wiki')} ↗</a>`);
-  if (s.address) meta.push(`<span>${esc(s.address)}</span>`);
-  if (s.fylke) meta.push(`<span>${esc(s.fylke)}</span>`);
-  meta.push(s.round
-    ? `<span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', s.round)}</span>`
-    : `<span class="round unknown" title="${esc(t('roundUnknownTitle'))}">${t('roundUnknown')}</span>`);
-  // the map shows this school as "no data"; say why, where the history is
-  const newest = [...new Set(s.programs.flatMap(p => Object.keys(p.values)))].sort().pop();
-  if (newest && +newest < staleBefore()) {
-    meta.push(`<span class="round stale" title="${esc(t('staleTitle'))}">`
-            + `${t('staleChip', newest)}</span>`);
-  }
-  document.getElementById('s-meta')!.innerHTML = meta.join('');
-  // the county's own history of this school, where it is not one school's own
-  const notes: string[] = [];
-  if (s.merged_from && s.merged_year) {
-    notes.push(t('mergedNote', s.merged_from.join(t('listAnd')), s.merged_year, s.merged_from.length));
-  }
-  if (s.uncertain_years && s.uncertain_years.length) {
-    notes.push(t('uncertainNote', s.uncertain_years.join(', ')));
-  }
-  const cy: Partial<County> = (S.DATA!.counties || []).find(c => c.fylke === s.fylke) || {};
-  const odd = Object.entries(cy.round_years || {})
-    .filter(([y]) => s.programs.some(p => y in p.values));
-  for (const [y, r] of odd) notes.push(t('roundYearNote', y, r));
-  // where "ingen venteliste" is the county's own rule, say so beside the rows
-  if (OPEN_RULE.has(s.fylke) && s.programs.some(p => Object.values(p.values).includes('open'))) {
-    notes.push(t('openRuleNote'));
-  }
+  document.getElementById('s-meta')!.innerHTML = metaHtml(s);
+  const notes = notesHtml(s);
   const noteBox = document.getElementById('s-notes');
-  noteBox!.innerHTML = notes.map(n => `<p>${esc(n)}</p>`).join('');
-  noteBox!.hidden = !notes.length;
-  // One statistic everywhere: the dot on the map, this figure and the blue
-  // line are all the mean of the same cells, and the change is the last step
-  // of that line — so a reader can check the subtraction and it comes out.
-  // What a mean cannot say on its own is how much of the school never had a
-  // waitlist, so that is spelled out underneath instead of hidden in it.
+  noteBox!.innerHTML = notes;
+  noteBox!.hidden = !notes;
   const lensCat = S.mapCat !== 'all' ? S.mapCat : null;
-  const cells: { v: string | number; l: string; cls?: string; ti?: string }[] = [];
-  const base = shownPrograms(s);
-  const scopePrograms = lensCat ? base.filter(p => p.category === lensCat) : base;
-  const step = meanStep(scopePrograms);
-  const { latest, prev, mean, meanPrev }: any = step;
-  const scopeLabel = lensCat ? CATS[lensCat][S.lang] : t('heroTypicalAll');
-  if (mean !== null) {
-    cells.push({ v: fmt(mean), l: `${t('heroTypical')} · ${scopeLabel} ${latest}` });
-    if (meanPrev !== null) {
-      const d = step.d;
-      cells.push({ v: (d! > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
-                   cls: d! > 0 ? 'up' : d! < 0 ? 'dn' : '', ti: t('heroDeltaBasis') });
-    }
-  } else if (!scopePrograms.length) {
-    // the lens names a programme this school does not offer: say that, rather
-    // than let the no-cells fallback claim "everyone admitted"
-    cells.push({ v: '\u2013', l: `${scopeLabel} \u00b7 ${t('notOffered')}` });
-  } else {
-    const last = scopePrograms.map(p => p.values[latest]).filter(v => v !== undefined);
-    // a 0 outranks "ingen venteliste": see schoolPressure
-    const zeroN = last.filter(v => v === 0).length, openN = last.filter(v => v === 'open').length;
-    const label = zeroN ? zeroLabel(zeroN, openN)
-                : openN ? t('allIn')
-                : last.includes('D') ? t('docAdm')
-                : last.includes('F') ? t('priority')
-                : last.length && last.every(v => v === 'U') ? t('gone')
-                : t('allIn');
-    cells.push({ v: label, l: `${scopeLabel} ${latest || ''}`.trim() });
-  }
-  cells.push({ v: visibleIn(scopePrograms), l: t('heroProgs', visibleIn(scopePrograms)) });
-  const mix = openMix(scopePrograms, latest);
+  const { hero, mix } = heroHtml(s, lensCat);
   const mixBox = document.getElementById('s-mix');
-  mixBox!.hidden = !(mix.mostly && mean !== null);
-  if (!mixBox!.hidden) {
-    mixBox!.innerHTML = `<span class="sign" aria-hidden="true">⚠</span><span>` +
-      esc(t('mostlyOpenNote', mix.open, mix.total, latest,
-             scopePrograms.map(p => p.values[latest]).filter(isPoints).length)) + `</span>`;
-  }
-  document.getElementById('s-hero')!.innerHTML =
-    cells.map(c => `<div class="cell"${c.ti ? ` title="${esc(c.ti)}"` : ''}>` +
-                   `<div class="v ${c.cls || ''}">${c.v}</div><div class="l">${capFirst(c.l)}</div></div>`).join('');
+  mixBox!.innerHTML = mix;
+  mixBox!.hidden = !mix;
+  document.getElementById('s-hero')!.innerHTML = hero;
   renderChance(s, lensCat);
-  document.getElementById('src-note')!.innerHTML = esc(t('srcNote')) +
-    ` <button class="lnk" onclick="contactOpener = this; openContact('tall')">${esc(t('srcNoteLink'))}</button>`;
+  document.getElementById('src-note')!.innerHTML = srcNoteHtml();
   renderChartCard();
   renderList();
   ['s-meta', 's-hero', 's-chance', 's-notes'].forEach(id =>
@@ -467,9 +292,6 @@ export function renderSide() {
 export const chanceMore = inner =>
   `<details class="more"${S.chanceMoreOpen ? ' open' : ''} ontoggle="chanceMoreOpen = this.open">` +
   `<summary><span class="mt">${esc(t('moreLabel'))}</span><span class="lt">${esc(t('lessLabel'))}</span></summary>${inner}</details>`;
-// every hero label starts with a capital, including the ones that open with
-// «alle programområder»
-export function capFirst(x) { return x.charAt(0).toUpperCase() + x.slice(1); }
 export function renderChance(s, lensCat) {
   const box = document.getElementById('s-chance');
   const e = S.MODEL && S.MODEL.schools && S.MODEL.schools[`${s.fylke}|${s.name}`];

@@ -1,5 +1,25 @@
 import { t } from "./i18n";
 import { S } from './state';
+import type { Program, School } from './types';
+
+// A school's address on the site: /<fylke>/<skole>, ASCII only, so it survives
+// every messaging app and every keyboard. æ ø å are the three letters people
+// would type; everything else with a diacritic loses it, and every run of
+// anything that is not a letter or a digit is one hyphen. tools/slug.py is the
+// Python twin (make_og.py opens the school page by this address); the fixture
+// table in web/test/slug.test.ts and tools/tests/test_slug.py keeps them equal.
+export function slug(text: string): string {
+  return text.normalize('NFC').toLowerCase()
+    .replace(/æ/g, 'ae').replace(/ø/g, 'o').replace(/å/g, 'a')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+export const schoolPath = (s: { fylke: string; name: string }) => '/' + slug(s.fylke) + '/' + slug(s.name);
+// A school's page is titled after the school, in the tab and in a bookmark —
+// the build writes this into <title> (prerender.ts) and the app keeps it there
+// for as long as the sheet is open (router.ts, lang.ts). Norwegian in both
+// languages: it is the site's name and the county's own word for the figures.
+export const schoolTitle = (s: School) => `${s.name} – poenggrenser | Poengkart`;
 
 /* ================= state & helpers ================= */
 export const BINS = [
@@ -21,6 +41,39 @@ export const round1 = v => { const h = Math.round(v * 100), sg = h < 0 ? -1 : 1;
 // are not, and neither is 0,0 — see the note in schoolPressure().
 export const isPoints = v => typeof v === 'number' && v > 0;
 export const meanOf = vals => vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+// year-over-year, like-for-like: only programmes with a number in BOTH
+// years enter the comparison — a school whose basket changed between years
+// used to show a delta with the wrong sign (Hvam: −2,4 shown, +11,6 real)
+// The step between the last two points of the average line: the hero's
+// "endring fra <år>" and the list's ENDRING are this one number. The list used
+// to compare like-for-like programmes instead, and beside an identical snitt
+// the two disagreed on 109 schools and flipped sign on 30.
+export function meanStep(progs) {
+  const meanAt = year => meanOf(progs.map(p => p.values[year]).filter(isPoints));
+  const yrs = [...new Set(progs.flatMap(p => Object.keys(p.values)))].sort();
+  const latest = yrs[yrs.length - 1];
+  // the previous year the line actually plots, not merely the previous year
+  // the school appears in — otherwise the change is a step off the chart
+  const plotted = yrs.filter(y => meanAt(y) !== null);
+  const prev = plotted[plotted.length - 2];
+  const mean = latest === undefined ? null : meanAt(latest);
+  const meanPrev = prev === undefined ? null : meanAt(prev);
+  return { latest, prev, mean, meanPrev, d: mean !== null && meanPrev !== null ? round1(mean - meanPrev) : null };
+}
+// The whole line meanStep takes its last step of: the same mean, the same
+// cells, computed for every year that has one. A year no programme put a
+// number in is not a point on the line — it is a gap, and plotting it as a
+// zero would draw a cliff the school never had. Unrounded, as meanStep's own
+// mean and meanPrev are, so the card's line ends exactly on the sheet's figure.
+export function yearMeans(progs: Program[]): [string, number][] {
+  const yrs = [...new Set(progs.flatMap(p => Object.keys(p.values)))].sort();
+  const out: [string, number][] = [];
+  for (const y of yrs) {
+    const m = meanOf(progs.map(p => p.values[y]).filter(isPoints));
+    if (m !== null) out.push([y, m]);
+  }
+  return out;
+}
 // What share of a scope had no waitlist at all in one year. F, U and D are
 // not places anyone competed for, so they are outside the question; a 0,0
 // filled up, so it counts as filled rather than as everyone getting in.
@@ -33,6 +86,18 @@ export function openMix(programs, year) {
 }
 export const fmtNum = v => typeof v === 'number' ? round1(v).toFixed(1).replace('.', ',') : v;
 export const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]!));
+// every hero label starts with a capital, including the ones that open with
+// «alle programområder»
+export function capFirst(x) { return x.charAt(0).toUpperCase() + x.slice(1); }
+// Rogaland's image handler serves nothing but the original: a width in the
+// path 404s and one in the query is ignored. Those few go through the host's
+// image optimiser instead; every other photo already asks its own server for a
+// display-sized rendition when the dataset is built. At build time there is no
+// location: the page is being built for the production host, which has it.
+const optimiserHere = () => typeof location === 'undefined'
+  || (location.protocol === 'https:' && !/^(localhost|127\.)/.test(location.hostname));
+export const photoSrc = u => (/\/bv\.ashx\//.test(u) && optimiserHere())
+  ? `/_vercel/image?url=${encodeURIComponent(u)}&w=960&q=75` : u;
 
 // One utdanningsprogram lens for the whole app: the map dropdown, the chart
 // tabs and the list headers all read and write mapCat. The only panel-local

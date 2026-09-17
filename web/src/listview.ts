@@ -2,10 +2,11 @@ import L from 'leaflet';
 import { framePad } from "./boot";
 import { bucketColor, bucketOf, chanceMode, schoolChance } from "./chance";
 import { forecastYears, liftMapControls } from "./chrome";
-import { BINS, colorFor, esc, fmt, isPoints, meanOf, round1, schoolPressure, shownPrograms, zeroLabel } from "./helpers";
+import { BINS, colorFor, esc, fmt, meanStep, round1, schoolPressure, shownPrograms, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
 import { drawMarkers, visibleSchools } from "./map";
-import { listLayout, openSide, schoolHash, sideTrap } from "./sidebar";
+import { schoolUrl } from './router';
+import { listLayout, openSide, sideTrap } from "./sidebar";
 import { S } from './state';
 import { bindTitleTips, hideTip, showTip } from "./tips";
 
@@ -35,25 +36,6 @@ export function setView(v) {
       if (pts.length) S.map.fitBounds(L.latLngBounds(pts).pad(0.08), { ...framePad(), animate: false });
     }
   }
-}
-// year-over-year, like-for-like: only programmes with a number in BOTH
-// years enter the comparison — a school whose basket changed between years
-// used to show a delta with the wrong sign (Hvam: −2,4 shown, +11,6 real)
-// The step between the last two points of the average line: the hero's
-// "endring fra <år>" and the list's ENDRING are this one number. The list used
-// to compare like-for-like programmes instead, and beside an identical snitt
-// the two disagreed on 109 schools and flipped sign on 30.
-export function meanStep(progs) {
-  const meanAt = year => meanOf(progs.map(p => p.values[year]).filter(isPoints));
-  const yrs = [...new Set(progs.flatMap(p => Object.keys(p.values)))].sort();
-  const latest = yrs[yrs.length - 1];
-  // the previous year the line actually plots, not merely the previous year
-  // the school appears in — otherwise the change is a step off the chart
-  const plotted = yrs.filter(y => meanAt(y) !== null);
-  const prev = plotted[plotted.length - 2];
-  const mean = latest === undefined ? null : meanAt(latest);
-  const meanPrev = prev === undefined ? null : meanAt(prev);
-  return { latest, prev, mean, meanPrev, d: mean !== null && meanPrev !== null ? round1(mean - meanPrev) : null };
 }
 export function deltaFor(s, cat, yr) {
   const base = shownPrograms(s);
@@ -151,7 +133,7 @@ export function renderListView() {
     `</tr></thead><tbody>` +
     rows.map((r, i) =>
       `<tr data-i="${i}">` +
-      `<td class="sc"><a href="${schoolHash(r.s)}" aria-label="${esc(t('listRowAria', r.s.name))}">${esc(r.s.name)}</a></td>` +
+      `<td class="sc"><a href="${schoolUrl(r.s)}" aria-label="${esc(t('listRowAria', r.s.name))}">${esc(r.s.name)}</a></td>` +
       (allF ? `<td class="fy">${esc(r.s.fylke)}</td>` : '') +
       `<td class="num">${chip(r)}</td>` +
       `<td class="num dl">${deltaCell(r)}</td>` +

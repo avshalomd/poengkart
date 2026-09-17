@@ -11,7 +11,9 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "noEmit": true,
-    "types": ["vite/client", "node"]
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "types": ["vite/client", "astro/client", "node"]
   },
-  "include": ["web/src", "web/test", "web/e2e", "vite.config.ts", "playwright.config.ts"]
+  "include": ["web/src", "web/test", "web/e2e", "vitest.config.ts", "playwright.config.ts"]
 }
