@@ -171,6 +171,29 @@ weight. The CSS split out of that same file compresses to 17.39 kB gzip per
 the build's own report (`vite build`'s `computing gzip size` step), separate
 from the JS number above.
 
+## After stage 3 — 17 September 2026
+
+Astro prerenders one page per school plus a share card and a sitemap at
+build time; the questions here are build cost and whether the client bundle
+Vite produces changed, not runtime — see the sections above for that.
+
+A clean `npm run build` (Task 5's measurement, confirmed on a re-run) takes
+**5.6 s** wall clock and writes:
+
+| what | count / size |
+|---|---|
+| files under `web/dist` (`find web/dist -type f \| wc -l`) | 460 |
+| HTML pages | 219 built by Astro (220 `.html` files on disk, `404.html` included) |
+| share cards under `web/dist/og` | 217 PNGs, 8.7 MB total, ~35 KB each |
+| `web/dist/akershus/asker.html` (`wc -c`) | 19,825 bytes |
+| `web/dist/index.html` (`wc -c`) | 16,840 bytes |
+
+The client bundle did not change: `web/dist/assets/*.css` is byte-identical
+to the 2026-09-17 Vite-build section above (69,718 bytes, same content
+hash), and the bundled script grew by 262 bytes (316,478 → 316,740 bytes,
+96,004 gzip vs 95,815) — the router that adopts old `#s=`/`?s=` links at
+boot, the only client-side change stage 3 made.
+
 ## Standing budget
 
 - No user-facing operation above 15 ms median on a desktop-class machine.

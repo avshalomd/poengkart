@@ -8,6 +8,8 @@ permissions:
 concurrency:
   group: test-${{ github.ref }}
   cancel-in-progress: true
+env:
+  ASTRO_TELEMETRY_DISABLED: "1"
 jobs:
   web:
     runs-on: ubuntu-latest

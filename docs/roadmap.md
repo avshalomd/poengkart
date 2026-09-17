@@ -274,11 +274,22 @@ TypeScript modules with one state object (`web/src/state.ts`), the style is
 in GitHub Actions on every push, and the figure invariants are a CI test.
 Behaviour is unchanged by design. Still to do from the same plan:
 
-- **Stage 3 — Astro shell, a prerendered page per school, the state store as
-  the only source of truth, real paths instead of `#s=`.** Gains SEO for
-  "skole + poenggrense" searches and per-school share cards; the History API
-  takes over the back-button handling. Start it when the launch push needs
-  search traffic. 4–6 sessions plus a full QA pass.
+- **Stage 3 — Astro shell, a prerendered page per school, real paths instead
+  of `#s=`.** Landed 17 September 2026: real paths, prerendered pages, share
+  cards, sitemap; hash links adopted at boot.
+  - Search Console: submit `https://poengkart-no.vercel.app/sitemap.xml` and
+    watch the school pages get indexed (the owner's account; nothing in the
+    repo can do it).
+  - The school photo on a prerendered page keeps `loading="lazy"` because the
+    template is the client's; an eager hint on the page's own photo would be
+    a template split — measure LCP on a school page first.
+  - Preview deployments cannot render `/_vercel/image` — the card and the
+    sheet fall back to the county's own URL there, as before.
+  - Parked: satori 0.33.4 pins fflate 0.7.3, which carries a moderate npm
+    advisory (GHSA-px8p-9vwx-vf98, an infinite loop in `unzipSync` on a
+    malformed archive); it runs at build time only, on the two checked-in
+    TTFs, and `npm audit fix --force` would downgrade satori. Left for the
+    owner to decide.
 - **Stage 4 — MapLibre GL** when CARTO names a date for the raster retirement.
 - **Pipeline: the long table as the primary artefact.** `build_dataset.py`
   writes `schools.json` directly; inverting that (cells first, `schools.json`
