@@ -99,6 +99,8 @@ export const T = {
   zoomOut:   { no: 'Zoom ut', en: 'Zoom out' },
   viewMap:  { no: 'Kart', en: 'Map' },
   viewList: { no: 'Liste', en: 'List' },
+  noMapWebGL: { no: 'Kartet trenger WebGL, som denne nettleseren ikke har. Skolene vises som liste.',
+                en: 'The map needs WebGL, which this browser does not have. Schools are shown as a list.' },
   listCount: { no: n => `${n} ${n === 1 ? 'skole' : 'skoler'} · siste publiserte år per skole`,
                en: n => `${n} ${n === 1 ? 'school' : 'schools'} · each school's latest published year` },
   listColSchool: { no: 'Skole', en: 'School' },

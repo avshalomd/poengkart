@@ -284,6 +284,14 @@ export async function main() {
   const framedByUrl = applyUrlFilters(true);
   let storedView = 'map';
   try { if (localStorage.getItem('pk-view') === 'list') storedView = 'list'; } catch (e) {}
+  if (!S.map) {
+    // no WebGL2: the list is the only view; say so once and keep the toggle honest
+    storedView = 'list';
+    document.body.classList.add('no-map');
+    const b = document.getElementById('view-map') as HTMLButtonElement;
+    b.disabled = true; b.title = t('noMapWebGL'); b.setAttribute('aria-description', t('noMapWebGL'));
+    toast(t('noMapWebGL'), 8000);
+  }
   setView(storedView);
   if (framedByUrl && S.view === 'map' && S.map && fitVisible(false)) touched = true;
   const linked = schoolFromUrl();

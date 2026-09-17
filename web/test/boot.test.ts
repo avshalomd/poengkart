@@ -209,6 +209,23 @@ describe('boot', () => {
     expect(localStorage.getItem('pk-help-hint')).toBe('1');
   });
 
+  it('without WebGL the app opens as a list, says why, and keeps the map toggle out of reach', async () => {
+    vi.restoreAllMocks();                                // happy-dom: getContext('webgl2') is null
+    vi.stubGlobal('fetch', network());
+    localStorage.setItem('pk-view', 'map');
+    initAll();
+    await main();
+    expect(S.map).toBeNull();
+    expect(S.view).toBe('list');
+    expect(document.body.classList.contains('no-map')).toBe(true);
+    const b = document.getElementById('view-map') as HTMLButtonElement;
+    expect(b.disabled).toBe(true);
+    expect(b.title).toBe(t('noMapWebGL'));
+    vi.advanceTimersByTime(50);
+    expect(document.getElementById('toast')!.textContent).toBe(t('noMapWebGL'));
+    expect(document.getElementById('listview')!.hidden).toBe(false);
+  });
+
   it('bootFailed and framePad stand on their own', () => {
     S.DATA = DATA;
     // framePad measures #panel, and the failure screen below removes it: the

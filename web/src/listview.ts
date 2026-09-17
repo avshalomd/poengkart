@@ -11,6 +11,7 @@ import { bindTitleTips, hideTip, showTip } from "./tips";
 /* ================= list view ================= */
 export function setView(v) {
   if (v !== 'map' && v !== 'list') return;
+  if (v === 'map' && !S.map && S.DATA) return;  // the map view cannot be entered without a map
   if (v === 'list' && !S.DATA) return;     // the toggle is live before the fetch lands
   S.view = v;
   document.body.classList.toggle('view-list', v === 'list');
