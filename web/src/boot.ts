@@ -312,7 +312,7 @@ export async function main() {
       touched = true;                  // the deferred HOME refit must not undo this
       S.map.setView([linked.lat, linked.lon], 11, { animate: false });
     }
-    openSide(linked);
+    openSide(linked, true);              // the page the reader arrived on, not one they opened
   }
   // an address no school answers to keeps the 404 page's prerendered title,
   // which is the home one — but in Norwegian, whatever the reader chose

@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { loadFixtures, asker, forde } from './fixtures';
 import { stubMap } from './mapstub';
 import { openSide, closeSide, renderSide, renderChance, listLayout, phoneSheet, sheetFull, widenFor, applyUrlFilters } from '../src/sidebar';
@@ -44,6 +44,40 @@ describe('the school sheet', () => {
     expect(document.title).toBe(schoolTitle(asker()));
     closeSide(true);
     expect(document.title).toBe(t('pageTitle'));
+  });
+  // A school the address named at boot is the page the reader arrived on: it
+  // pushes nothing over the landing entry (one Back leaves, as from any page),
+  // its ✕ closes in place, and focus stays where a page load leaves it.
+  it('a school opened at boot keeps the landing entry, closes in place and leaves focus alone', () => {
+    loadFixtures(); initHelpers(); stubMap();
+    history.replaceState(null, '', '/akershus/asker');
+    const pushes = vi.spyOn(history, 'pushState');
+    const backs = vi.spyOn(history, 'back');
+    openSide(asker(), true);
+    expect(pushes).not.toHaveBeenCalled();
+    expect(history.state).toMatchObject({ pkSide: 1, pkLanding: 1 });
+    expect(document.title).toBe(schoolTitle(asker()));
+    vi.advanceTimersByTime(100);                   // past the deferred focus a reader's open makes
+    expect(document.activeElement).toBe(document.body);
+    closeSide();                                   // the ✕: no history.back(), the sheet just closes
+    expect(backs).not.toHaveBeenCalled();
+    expect(document.getElementById('side')!.classList.contains('open')).toBe(false);
+    expect(location.pathname).toBe('/');
+    expect(history.state).toBeNull();               // the flags are gone: the next open pushes again
+    expect(document.title).toBe(t('pageTitle'));
+    pushes.mockRestore(); backs.mockRestore();
+  });
+  // a school opened by the reader still gets its own entry and moves focus in
+  it('a school opened inside the app pushes its entry and focuses the close button', () => {
+    loadFixtures(); initHelpers(); stubMap();
+    history.replaceState(null, '', '/');
+    const pushes = vi.spyOn(history, 'pushState');
+    openSide(asker());
+    expect(pushes).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(100);
+    expect(document.activeElement).toBe(document.querySelector('#s-photo .close'));
+    pushes.mockRestore();
+    closeSide(true);
   });
   it('the chance block asks for points when there are none and counts the programmes in reach when there are', () => {
     loadFixtures(); initHelpers(); stubMap(); openSide(asker());

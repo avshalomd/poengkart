@@ -277,9 +277,11 @@ Behaviour is unchanged by design. Still to do from the same plan:
 - **Stage 3 — Astro shell, a prerendered page per school, real paths instead
   of `#s=`.** Landed 17 September 2026: real paths, prerendered pages, share
   cards, sitemap; hash links adopted at boot.
-  - Search Console: submit `https://poengkart-no.vercel.app/sitemap.xml` and
-    watch the school pages get indexed (the owner's account; nothing in the
-    repo can do it).
+  - Search Console: the URL-prefix property `https://poengkart-no.vercel.app/`
+    is verified by the `google-site-verification` tag in
+    `web/src/layouts/Base.astro` (17 September 2026; removing the tag
+    un-verifies it). Submit `/sitemap.xml` there and watch the school pages
+    get indexed (the owner's account).
   - The school photo on a prerendered page keeps `loading="lazy"` because the
     template is the client's; an eager hint on the page's own photo would be
     a template split — measure LCP on a school page first.
