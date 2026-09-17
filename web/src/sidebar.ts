@@ -2,9 +2,8 @@ import L from 'leaflet';
 import { bucketOf, chanceFinal, chanceMode, finalRoundBridge, predFor, schoolChance } from "./chance";
 import { renderChartCard } from "./chart";
 import { liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
-import { BUG_ICON, OPEN_RULE, X_ICON, cssVar, esc, fmt, isPoints, isVg1, openMix, round1, shownPrograms, staleBefore, visibleIn, zeroLabel } from "./helpers";
+import { BUG_ICON, OPEN_RULE, X_ICON, capFirst, cssVar, esc, fmt, isPoints, isVg1, meanStep, openMix, photoSrc, round1, shownPrograms, staleBefore, visibleIn, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
-import { meanStep } from "./listview";
 import { drawMarkers, markerOf, prefersStill, setLens, tileUrl } from "./map";
 import { renderList } from "./programs";
 import { queryParts, schoolUrl, setUrlSchool, syncUrl } from './router';
@@ -241,14 +240,6 @@ export function closeSide(fromHistory?) {
   if (opener && !opener.matches(':focus-visible')) markerOf.get(opener)?.closeTooltip();
 }
 
-// Rogaland's image handler serves nothing but the original: a width in the
-// path 404s and one in the query is ignored. Those few go through the host's
-// image optimiser instead; every other photo already asks its own server for a
-// display-sized rendition when the dataset is built.
-export const photoSrc = u => (/\/bv\.ashx\//.test(u) && location.protocol === 'https:'
-                       && !/^(localhost|127\.)/.test(location.hostname))
-  ? `/_vercel/image?url=${encodeURIComponent(u)}&w=960&q=75` : u;
-
 export function renderSide() {
   // current outlives closeSide, so a language or theme change would otherwise
   // rebuild the whole panel — minimap included — inside a zero-width box
@@ -391,9 +382,6 @@ export function renderSide() {
 export const chanceMore = inner =>
   `<details class="more"${S.chanceMoreOpen ? ' open' : ''} ontoggle="chanceMoreOpen = this.open">` +
   `<summary><span class="mt">${esc(t('moreLabel'))}</span><span class="lt">${esc(t('lessLabel'))}</span></summary>${inner}</details>`;
-// every hero label starts with a capital, including the ones that open with
-// «alle programområder»
-export function capFirst(x) { return x.charAt(0).toUpperCase() + x.slice(1); }
 export function renderChance(s, lensCat) {
   const box = document.getElementById('s-chance');
   const e = S.MODEL && S.MODEL.schools && S.MODEL.schools[`${s.fylke}|${s.name}`];

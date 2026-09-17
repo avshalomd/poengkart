@@ -1,11 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { loadFixtures, asker, forde } from './fixtures';
 import { stubMap } from './mapstub';
-import { openSide, closeSide, renderSide, renderChance, listLayout, phoneSheet, sheetFull, widenFor, applyUrlFilters, capFirst, photoSrc } from '../src/sidebar';
+import { openSide, closeSide, renderSide, renderChance, listLayout, phoneSheet, sheetFull, widenFor, applyUrlFilters } from '../src/sidebar';
 import { buildUrl } from '../src/router';
 import { schoolChance } from '../src/chance';
-import { meanStep } from '../src/listview';
-import { shownPrograms, visibleIn, fmt } from '../src/helpers';
+import { capFirst, meanStep, photoSrc, shownPrograms, visibleIn, fmt } from '../src/helpers';
 import { initHelpers } from '../src/helpers';
 import { initListview } from '../src/listview';
 import { t } from '../src/i18n';
