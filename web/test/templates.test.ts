@@ -67,7 +67,7 @@ describe('the sheet renders what the templates say', () => {
 });
 
 describe('a county held out of the model', () => {
-  it('says on every Telemark school that its figures are not comparable and it has no forecast', () => {
+  it('says on every Telemark school that its figures are not comparable', () => {
     loadFixtures();
     const html = notesHtml({ name: 'Skien videregående skole', fylke: 'Telemark', programs: [] } as any);
     expect(html).toContain(esc(t('heldOutNote', 'Telemark')));

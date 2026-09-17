@@ -101,8 +101,9 @@ case number), «Laveste inntakspoeng – siste 3 år», one sheet per school
 year (2024/25–2026/27), one row per (school, Vg1 programme) with the
 inntaksregion, the county's school number, the vigo programområdekode, the
 number of places («Plasser») and «Laveste karakterpoeng», the lowest grade
-points among those admitted — the county's own «lavest inntatt», read here
-as the poenggrense. Every offered programme carries a number, down to
+points among those admitted — the county's own «lavest inntatt», which is
+not read here as a poenggrense: without a fill state the figure may be a
+real cutoff or a programme where everyone got in. Every offered programme carries a number, down to
 10,0; the file has no marker for «everyone got in», so the dataset has no
 fill state for Telemark. «Laveste totalpoeng» (2026/27 only) is another
 applicant's ordering points, in most rows karakterpoeng + 300, and is not

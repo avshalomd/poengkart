@@ -102,3 +102,5 @@ These never reach a family raw; the report and the code use them in English.
 **Forecast**: the model's expected poenggrense and spread for the next inntak. _Avoid_: prediction, estimate.
 **Fill probability**: the probability that a programområde forms a queue at all (has a poenggrense rather than ingen venteliste). _Avoid_: pi, p_fill, queue probability (outside code).
 **Backtest**: forecasting each past year from the years before it; the source of every accuracy claim. _Avoid_: validation, held-out (as a noun).
+**Held-out county**: a county whose figures the app publishes but which stays outside every fit, the backtest and the technical report's numbers, because its source carries no fill state. _Avoid_: excluded county, blind county.
+**Satellite fit**: the fit that forecasts a held-out county's schools from its own cells alone, off the finished model's intercept and programme effects; never scored. _Avoid_: side model, local model.

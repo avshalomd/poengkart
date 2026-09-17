@@ -324,7 +324,7 @@ does not say. Cell columns use the tokens of Table 1.
 | Buskerud | 2024–2025 | — | 153 | 131 | 17 | 0 | 0 | 5 | 0 | Vg1 | county web page |
 | Innlandet | 2020–2026 | 2. | 2,511 | 1,194 | 1,240 | 55 | 0 | 12 | 10 | Vg1–Vg2 | vilbli PDFs; 2020–2022 released on request |
 | Møre og Romsdal | 2012–2026 | 2. | 1,790 | 1,228 | 562 | 0 | 0 | 0 | 0 | Vg1 | extract behind the county's Power BI dashboard, sent on request; figures under 25 shown as ingen venteliste by the dashboard's own rule |
-| Oslo | 2017–2026 | 1. | 833 | 667 | 95 | 0 | 0 | 71 | 0 | Vg1 | yearly PDFs; 2026 as a web page |
+| Oslo | 2015, 2017–2026 | 1. | 833 | 667 | 95 | 0 | 0 | 71 | 0 | Vg1 | yearly PDFs, 2015 from a school's own site; 2026 as a web page |
 | Rogaland | 2018–2026 | 2. | 3,810 | 1,732 | 1,364 | 0 | 545 | 82 | 87 | Vg1–Vg4 | rolling multi-year PDFs via vilbli; one Wayback edition |
 | Trøndelag | 2025 | — | 174 | 72 | 102 | 0 | 0 | 0 | 0 | Vg1 | five regional PDFs via vilbli |
 | Vestland | 2017–2026 | 1. | 3,098 | 2,891 | 197 | 10 | 0 | 0 | 0 | Vg1–Vg4 | county PDFs; 2017–2019 from the predecessor counties' tables |
@@ -380,16 +380,16 @@ among "those admitted". Those numbers
 are not poenggrenser in the sense of every other county in Table 1b, and
 fitting them beside the others would put figures of a different kind into
 the level model and the held-out scores. The county's cells therefore enter
-no fit, no walk-forward fold and no number in this report. The application
+none of the fits this report evaluates, no walk-forward fold and no
+number in this report. The application
 still publishes its figures, with a note saying what they are, and still
 forecasts its schools: once the model of Section 5 is fitted, its
 intercept and its utdanningsprogram and programme-area effects are held
 fixed as an offset, and only the county's own school, series and
 county-year effects are estimated, on its own cells, with the fitted
 model's variance components (a *satellite* fit; `Satellite` in
-`tools/model.py`). Its fill probability is pinned at 1, as in Section 4.4's
-fill-blind mechanism, so a reader's chance there rests on the threshold
-alone. Nothing of that fit reaches the panel, the backtest or the
+`tools/model.py`). Its fill probability is pinned at 1, as for any source that carries no
+fill state, so a reader's chance there rests on the threshold alone. Nothing of that fit reaches the panel, the backtest or the
 evaluation, so those forecasts carry no measured coverage and the
 application says so on every one of the county's schools. The county joins
 the panel here when it states, per programme and year, whether everyone was
@@ -681,7 +681,7 @@ published number), by history stratum. RMSE and MAE in points (↓ better);
 bias is mean forecast minus outcome; ±3 is the share of forecasts within
 three points (higher better); best per row in bold. Persistence is
 undefined for 0-year series, and the programme–county mean is defined for
-only 57 of the 167 0-year cells (the model's RMSE on those 54 is 8.83).
+only 57 of the 167 0-year cells (the model's RMSE on those 57 is 8.83).
 EWMA is exponential smoothing of the series' own past figures with
 α = 0.4 (Muth, 1960); with one observed year it is persistence.
 
@@ -1141,7 +1141,7 @@ cluster bootstrap uses a fixed seed. The whole pipeline runs in minutes on a
 laptop. `tools/test_docs.py` pins every number in this report and in
 `docs/model.md` to the shipped model file, so a refresh that moves a figure
 fails the build until the text is updated; validation further comprises 116
-parser regression checks and 14,279 model invariants. The dataset is
+parser regression checks and 14,281 model invariants. The dataset is
 released under the Norwegian Licence for Open Government Data (NLOD 2.0)
 and the code under the MIT licence.
 

@@ -445,8 +445,10 @@ export const T = {
   tipBest:    { no: (p, prog) => `Best sjanse: ${p} % · ${prog}`, en: (p, prog) => `Best chance: ${p}% · ${prog}` },
   tipNoForecast: { no: 'Ingen prognose for denne skolen', en: 'No forecast for this school' },
   // a county outside the model (HELD_OUT): the tooltip and the chance block say why
-  heldOutForecast: { no: f => `Ingen prognose: tallene fra ${f} kan ikke sammenlignes med andre fylker`,
-                     en: f => `No forecast: the figures from ${f} cannot be compared with other counties` },
+  // the satellite fit forecasts every live programme area in a held-out county,
+  // so this is the rare case: a school or programme area it could not reach
+  heldOutForecast: { no: f => `Ingen prognose her. Tallene fra ${f} kan ikke sammenlignes med andre fylker`,
+                     en: f => `No forecast here. The figures from ${f} cannot be compared with other counties` },
   chancePrompt: {
     no: y => `Skriv inn poengene dine i poengfeltet over kartet, så viser lista under sjansen din for plass per programområde ved inntaket ${y}.`,
     en: y => `Enter your points in the points field over the map, and the list below shows your chance of a place per programme area at the ${y} intake.`,
@@ -485,8 +487,9 @@ export const T = {
   chanceUntested: { no: f => `Prognosen bygger bare på tallene fra ${f} og er ikke testet mot tidligere inntak, slik prognosene i de andre fylkene er.`,
                     en: f => `The forecast is built on ${f}'s own figures alone and is not tested against earlier intakes the way the other counties' forecasts are.` },
   chTitle: {
-    // pf may be null: a county pinned at π = 1 by rule (none today; the
-    // mechanism is FILL_BLIND in tools/model.py) has no fill figure to show
+    // pf may be null: a county whose source has no fill state has its π pinned
+    // at 1 and no fill figure to show (Telemark today; HELD_OUT in helpers.ts,
+    // passed as null by templates.ts)
     no: (p, y, m, sd, pf, h) => `Sjanse for plass i ${y} med poengene dine: ${p} %. Forventet grense ca. ${m} ± ${sd}${pf == null ? '' : `; sannsynlighet for at det blir venteliste: ${pf} %`}. Bygger på ${h} år med tall for dette programområdet.`,
     en: (p, y, m, sd, pf, h) => `Chance of a place in ${y} with your points: ${p}%. Expected threshold about ${m} ± ${sd}${pf == null ? '' : `; probability of a waiting list at all: ${pf}%`}. Built on ${h} ${h === 1 ? 'year' : 'years'} of figures for this programme area.`,
   },

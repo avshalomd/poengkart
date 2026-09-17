@@ -193,8 +193,10 @@ export const OPEN_RULE = new Set(['Møre og Romsdal']);
 // counties published here but held out of the model: their source has no
 // fill state (a number for every offered programme, also where everyone got
 // in), so the figures are not comparable with other counties' poenggrenser
-// and model.json has no entry for their schools (heldOutNote; HELD_OUT in
-// tools/model.py, which tools/test_model.py checks this mirror against)
+// and no fill share may be read off them. Their schools are still forecast,
+// by the satellite fit on the county's own cells (heldOutNote, chanceUntested;
+// HELD_OUT in tools/model.py, which tools/test_model.py checks this mirror
+// against)
 export const HELD_OUT = new Set(['Telemark']);
 // counties that do not publish poenggrenser (docs/data-notes.md)
 export const MISSING_COUNTIES = ['Agder', 'Finnmark', 'Nordland', 'Troms', 'Vestfold', 'Østfold'];

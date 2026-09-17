@@ -125,6 +125,19 @@ def num(s):
     return float(s.replace(',', '.').rstrip('.'))
 
 
+def year_span(years):
+    """'2015, 2017–2026' — the way Table 1b writes a county's year coverage."""
+    ys = sorted(years)
+    runs, a, b = [], ys[0], ys[0]
+    for y in ys[1:]:
+        if y == b + 1:
+            b = y
+        else:
+            runs.append((a, b)); a = b = y
+    runs.append((a, b))
+    return ', '.join(str(x) if x == y else f'{x}–{y}' for x, y in runs)
+
+
 def check(doc, name, pattern, expected, text, tol):
     global checked
     checked += 1
@@ -183,12 +196,21 @@ year_row = {y: [len(e), (sum(x * x for x in e) / len(e)) ** 0.5, sum(abs(x) for 
 # 2026) are published in the app but are not part of the report's panel
 HELD_OUT = set(META.get('held_out') or [])
 DATA = json.loads((ROOT / 'web/public/data/schools.json').read_text())
+# the held-out counties' own figures, for the few sentences of Section 4.4 that
+# describe them (they are the only place in the report those numbers appear)
+_HELD_VALS = [v for s in DATA['schools'] if s['fylke'] in HELD_OUT
+              for p in s['programs'] for v in p['values'].values()
+              if isinstance(v, (int, float)) and not isinstance(v, bool)]
+N_HELD_CELLS = sum(META.get('held_out_cells', {}).values())
+HELD_MIN = min(_HELD_VALS) if _HELD_VALS else 0
 DATA['schools'] = [s for s in DATA['schools'] if s['fylke'] not in HELD_OUT]
 N_SCHOOLS = len(DATA['schools'])
 N_ROWS = n_cells = n_competed = n_series_num = n_series_one = N_GREP = N_SERIES_U = 0
 BY_FYLKE = {}
+YEARS = {}
 for s in DATA['schools']:
     c = BY_FYLKE.setdefault(s['fylke'], {'cells': 0, 'num': 0, 'open': 0, 'zero': 0, 'F': 0, 'D': 0, 'U': 0})
+    YEARS.setdefault(s['fylke'], set()).update(int(y) for p in s['programs'] for y in p['values'])
     for p in s['programs']:
         N_ROWS += 1
         N_GREP += bool(p.get('grep'))
@@ -399,6 +421,14 @@ check(doc, 'grep rows', r'([\d,]+) of ([\d,]+) rows carry a register code', [N_G
 for fylke, c in sorted(BY_FYLKE.items()):
     check(doc, f'table 1b {fylke}', rf'\| {fylke} \| [^|]* \| [^|]* \| ([\d,]+) \| ([\d,]+) \| ([\d,]+) \| (\d+) \| (\d+) \| (\d+) \| (\d+) \|',
           [c['cells'], c['num'], c['open'], c['zero'], c['F'], c['D'], c['U']], flat, N)
+    # the Years cell is prose, not a number: Oslo's 2015 table was missing from
+    # it from v1.8 until the QA sweep of 17 Sept 2026, because nothing read it
+    checked += 1
+    _m = re.search(rf'\| {fylke} \| ([^|]*) \|', flat)
+    _want = year_span(YEARS[fylke])
+    if not _m or _m.group(1).strip() != _want:
+        failures.append(f'{doc}: table 1b {fylke}: years column says '
+                        f'{_m.group(1).strip() if _m else "nothing"}, the panel holds {_want}')
 check(doc, '5.2 cells', r'fitted on the ([\d,]+) cells with a numeric threshold; the fill component on the ([\d,]+) cells that competed on points',
       [META['n_level'], META['n_fill']], flat, N)
 check(doc, 'sigma prose', r'forecast ([\d.]+) points loose; four observed years buy the spread down to ([\d.]+)\.', [sig_by['0'], sig_by['4+']], flat, D1)
@@ -411,8 +441,9 @@ check(doc, 'fill mid bins', r'\((\d+)% observed in the 50–60% bin, (\d+)% in t
       [fill_5060, 100 * rel(rel_fill, '60-70')['observed'], 100 * rel(rel_fill, '70-80')['observed']], flat, PCT)
 check(doc, 'bootstrap design', r'school×year \((\d+) clusters, ([\d,]+) resamples\)', [ev['ci']['n_clusters'], ev['ci']['replicates']], flat, N)
 check(doc, 'table 4 caption', r'2025–2026 \(([\d,]+) cells with a published number\)', [ev['level_all']['n']], flat, N)
-check(doc, 'table 4 caption 0-year', r"only (\d+) of the (\d+) 0-year cells \(the model's RMSE on those \d+ is ([\d.]+)\)",
-      [lvl['0']['n_prog_mean'], lvl['0']['n'], lvl['0']['rmse_model_on_prog_mean_cells']], flat, [N, N, D2])
+check(doc, 'table 4 caption 0-year', r"only (\d+) of the (\d+) 0-year cells \(the model's RMSE on those (\d+) is ([\d.]+)\)",
+      [lvl['0']['n_prog_mean'], lvl['0']['n'], lvl['0']['n_prog_mean'], lvl['0']['rmse_model_on_prog_mean_cells']],
+      flat, [N, N, N, D2])
 for h, label in (('0', '0 years'), ('1', '1 year'), ('2-3', '2–3 years'), ('4+', r'4\+ years')):
     r = lvl[h]
     B = r'\*{0,2}'
@@ -559,6 +590,12 @@ check(doc, 'forecast count', r'shipped model carries ([\d,]+) programme forecast
 check(doc, 'discontinued series', r'\(discontinued; (\d+) series\)', [N_SERIES_U], flat, N)
 check(doc, 'held-out forecasts', r'a separate fit on its own figures supplies (\d+) forecasts for its (\d+) schools',
       [N_HELD_FORECASTS, N_HELD_SCHOOLS], flat, N)
+check(doc, 'held-out panel (4.4)', r'\(Vg1, 2024–2026, eleven schools, ([\d,]+) cells\)', [N_HELD_CELLS], flat, N)
+check(doc, 'held-out lowest figure (4.4)', r'the lowest grade points among those admitted, down to ([\d.]+)',
+      [HELD_MIN], flat, D1)
+# Appendix D quotes Table 4's own 1-year RMSE as the "after" of the v1.10
+# experiment; a refit moves the table and would leave the history behind
+check(doc, 'version history 1-year rmse', r'series with one year of history rose from ([\d.]+)', [lvl['1']['rmse']], flat, D2)
 check(doc, 'zero-history forecasts exported', r'Those (\d+) forecasts are in the exported files', [N_FORECASTS_H0], flat, N)
 check(doc, 'short test window', r'Two held-out years \(([\d,]+) cells with a number, ([\d,]+) that competed\)', [ev['level_all']['n'], ev['fill']['n']], flat, N)
 for y in sorted(year_row):
@@ -570,6 +607,22 @@ for r in rel_fill:
     obs, n, tol = reliability_row(r)
     check(doc, f'table C1 {r["bin"]}', rf'\| {lo}–{hi}% \| ([\d.]+)% \| ([\d,]+) \|', [obs, n], appendix_c, [tol, N])
 check(doc, 'validation counts', r'comprises (\d+) parser regression checks and ([\d,]+) model invariants', [N_PARSE, N_MODEL], flat, N)
+# the tag the reproducibility statement names must hold the code this report
+# describes. report-v1.11 was cut one commit before the satellite fit it
+# documents, so a reader checking the tag out got a different model (17 Sept
+# 2026). Skipped where the tag is absent: CI checks out without tags.
+_tag = re.search(r'the version this report describes is tagged `([^`]+)`', flat)
+checked += 1
+if not _tag:
+    failures.append(f'{doc}: reproducibility statement: no tag named')
+elif subprocess.run(['git', 'rev-parse', '--verify', '--quiet', _tag.group(1) + '^{commit}'],
+                    cwd=ROOT, capture_output=True).returncode == 0:
+    tagged = subprocess.run(['git', 'show', f'{_tag.group(1)}:tools/model.py'],
+                            cwd=ROOT, capture_output=True, text=True).stdout
+    for symbol in sorted(set(re.findall(r'`(\w+)` in `tools/model\.py`', flat))):
+        if f'class {symbol}' not in tagged and f'def {symbol}' not in tagged:
+            failures.append(f'{doc}: reproducibility statement: {_tag.group(1)} has no {symbol} '
+                            f'in tools/model.py, but this report describes one')
 checked += 1
 if f"from the build of {META['built']}" not in flat:
     failures.append(f'{doc}: reproducibility statement: the build date is not {META["built"]}')

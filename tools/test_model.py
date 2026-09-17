@@ -222,7 +222,15 @@ for f in sorted(HELD):
           all(pr['pi'] == 1.0 for e in ents for pr in (e.get('programs') or {}).values()))
     check(f'{f}: held out, so no school effect ranked against the panel',
           not any('alpha' in e or 'alpha_rank' in e for e in ents))
+    # the pi check above is vacuously true over an empty satellite, so say out
+    # loud that the satellite fit still forecasts the county it was written for
+    check(f'{f}: held out, and still forecast by the satellite fit',
+          all(e.get('programs') for e in ents),
+          f"{sum(len(e.get('programs') or {}) for e in ents)} forecasts over {len(ents)} schools")
 _bt_path = os.path.join(HERE, '..', 'data', 'model-backtest.csv')
+# a missing file is a failure, not a skip: the check that no held-out cell is
+# scored must not pass by the backtest simply not being there
+check('the walk-forward backtest was written', os.path.exists(_bt_path), _bt_path)
 if os.path.exists(_bt_path):
     import csv
     _bt_f = {r['fylke'] for r in csv.DictReader(open(_bt_path))}

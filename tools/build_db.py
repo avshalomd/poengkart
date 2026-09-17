@@ -120,6 +120,9 @@ def main():
         spread REAL NOT NULL,
         p_fill REAL NOT NULL,
         history_years INTEGER NOT NULL,
+        -- 1 where the county is held out of the model: the forecast comes from a
+        -- satellite fit on its own cells and was never scored in the backtest
+        held_out INTEGER NOT NULL DEFAULT 0,
         PRIMARY KEY (fylke, school, program, occurrence),
         FOREIGN KEY (fylke, school) REFERENCES schools(fylke, name)
       );
@@ -167,10 +170,11 @@ def main():
             if pr:
                 fc.append((s.get('fylke'), s['name'], p['program'], occ, p.get('level'),
                            p['category'], ment['year'], ment.get('round'),
-                           pr['m'], pr['s'], pr['pi'], pr['h']))
+                           pr['m'], pr['s'], pr['pi'], pr['h'],
+                           1 if ment.get('held_out') else 0))
     con.executemany('INSERT INTO samples VALUES (?,?,?,?,?,?,?,?,?,?,?,?)', rows)
     con.executemany('INSERT INTO alternate_rounds VALUES (?,?,?,?,?,?,?,?,?,?,?)', alt)
-    con.executemany('INSERT INTO forecasts VALUES (?,?,?,?,?,?,?,?,?,?,?,?)', fc)
+    con.executemany('INSERT INTO forecasts VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', fc)
     con.commit()
 
     with open(CSV, 'w', newline='') as f:
@@ -186,7 +190,7 @@ def main():
     with open(FCSV, 'w', newline='') as f:
         w = csv.writer(f)
         w.writerow(['fylke', 'school', 'program', 'occurrence', 'level', 'category', 'year',
-                    'round', 'expected', 'spread', 'p_fill', 'history_years'])
+                    'round', 'expected', 'spread', 'p_fill', 'history_years', 'held_out'])
         w.writerows(fc)
 
     n_schools = con.execute('SELECT COUNT(*) FROM schools').fetchone()[0]

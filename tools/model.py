@@ -160,8 +160,10 @@ def load_obs(data):
                                  partial=int((s['fylke'], y) in PARTIAL_YEARS),
                                  # the threshold IS the admitted mean: one applicant set it
                                  single=int(state == 'num' and mean is not None and abs(mean - float(v)) < 0.05)))
-            # the alternate-round pairs, for the round bridge
-            for alt, r_alt in (('values_r1', '1'), ('values_r3', '3')):
+            # the alternate-round pairs, for the round bridge — never a
+            # held-out county's: no cell of it may reach a number in the report
+            alts = () if s['fylke'] in HELD_OUT else (('values_r1', '1'), ('values_r3', '3'))
+            for alt, r_alt in alts:
                 for y, va in (p.get(alt) or {}).items():
                     vm = p['values'].get(y)
                     st = lambda v: 'num' if is_num(v) else 'zero' if v == 0 else 'open' if v == 'open' else None

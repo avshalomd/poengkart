@@ -6,7 +6,9 @@ never edited by hand. Data: [NLOD 2.0](https://data.norge.no/nlod/no/2.0)
 
 - `poengkart.db`: SQLite. `schools` (keyed by fylke + name), `samples` (one row
   per school × programområde × year: the poenggrense, or its state), `forecasts`
-  (the model's next-year forecast per series), `meta` (licence, source, build date).
+  (the model's next-year forecast per series; `held_out = 1` marks a county kept
+  out of the fitted model, whose forecast comes from a satellite fit on its own
+  cells and carries no measured accuracy), `meta` (licence, source, build date).
 - `samples.csv`: the `samples` table, plain header row.
 - `alternate-rounds.csv` (and the `alternate_rounds` table): the same cell as
   the county published it in its *other* intake round the same year — Akershus
