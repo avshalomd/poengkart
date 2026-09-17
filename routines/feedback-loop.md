@@ -23,6 +23,9 @@ you get there — which commands, in which order, with which tools — is yours 
 - **GitHub** through `gh` when present, else the GitHub MCP tools. **Vercel** through the
   `vercel` CLI; in the cloud every `vercel` call carries `--token "$VERCEL_TOKEN"`, and
   `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID` identify the project, so no `vercel link`.
+- A cloud clone starts bare: when `.venv` or `node_modules` is missing, create the venv
+  from `tools/requirements.txt` and run `npm ci` before anything that needs them; the
+  Playwright browser is pre-installed under `PLAYWRIGHT_BROWSERS_PATH`.
 - Environment variables are never printed. Scratch files go under `/tmp`, never into the
   repository. Never ask a question; a doubt is a `class:decision` item.
 
