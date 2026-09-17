@@ -55,10 +55,16 @@ test('the home page head is unchanged', async ({ request }) => {
   expect(html).not.toContain('class="side-open"');
 });
 
-test('the script takes over a prerendered sheet without changing it', async ({ page }) => {
+test('the script takes over a prerendered sheet without changing it', async ({ page, request }) => {
+  // the page as the server sends it, before any script — parsed by the same
+  // browser that will serialise the live DOM, so the two sides agree on quoting
+  const raw = await (await request.get('/akershus/asker')).text();
   await page.goto('/akershus/asker');
-  const before = await page.locator('#s-list').innerHTML();
   await page.waitForFunction(() => performance.getEntriesByName('pk:boot-done').length > 0);
-  expect(await page.locator('#s-list').innerHTML()).toBe(before);
+  const [prerendered, live] = await page.evaluate(html => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return [doc.getElementById('s-list')!.innerHTML, document.getElementById('s-list')!.innerHTML];
+  }, raw);
+  expect(live).toBe(prerendered);
   await expect(page.locator('#s-hero .cell').first()).toBeVisible();
 });

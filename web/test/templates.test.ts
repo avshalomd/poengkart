@@ -9,14 +9,13 @@ import { photoHtml, metaHtml, notesHtml, heroHtml, srcNoteHtml, listHtml } from 
 // The DOM the client renders must be the DOM the build prerendered: same
 // strings, so nothing moves when the script takes over a school page.
 const norm = (html: string) => { const d = document.createElement('div'); d.innerHTML = html; return d.innerHTML; };
-// …a container as the template left it. Two things the client does AFTER it
-// assigns the string, which no string can carry: Leaflet builds the location
-// map inside the empty #s-minimap, and bindTips() marks every level chip
-// .tipped. Undo exactly those two; any other difference is a drifted template.
+// …a container as the template left it. One thing the client does AFTER it
+// assigns the string that no string can carry: Leaflet builds the location map
+// inside the empty #s-minimap. Undo that one; any other difference is a
+// template that has drifted from what the sheet renders.
 const rendered = (id: string) => {
   const d = document.createElement('div');
   d.innerHTML = document.getElementById(id)!.innerHTML;
-  d.querySelectorAll('.lv').forEach(e => e.setAttribute('class', 'lv'));
   const mini = d.querySelector('#s-minimap');
   if (mini) { mini.innerHTML = ''; mini.removeAttribute('class'); mini.removeAttribute('style'); }
   return d.innerHTML;
@@ -52,6 +51,11 @@ describe('the sheet renders what the templates say', () => {
     expect(document.body.innerHTML).toBe(before);
     expect(a).toContain('<h2>Asker</h2>');
     expect(a).toContain('class="prow');
+  });
+  it('the level chip is marked .tipped in the string, not by the script', () => {
+    // bindTips() marks it on the same condition after the render; the build has
+    // no script, so the prerendered page must carry the mark itself
+    expect(listHtml(asker(), null)).toContain('class="lv tipped"');
   });
   it('the lens narrows the hero and the list the same way it does on screen', () => {
     const s = asker();

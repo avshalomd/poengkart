@@ -211,6 +211,10 @@ export function listHtml(s: School, scope: string | null): string {
       // description.
       const pick = orphan ? '' : `<button type="button" class="pick${on ? ' on' : ''}" data-idx="${idx}"` +
         ` aria-pressed="${on}" aria-label="${esc(t(on ? 'pickRemove' : 'pickAdd'))}" title="${esc(t(on ? 'pickRemove' : 'pickAdd'))}">${on ? '✓' : '+'}</button>`;
+      // the level's glossary entry: the row's description below, and the chip's
+      // own .tipped mark — written here on the very condition bindTips() marks
+      // it on, so a prerendered page is already the page the script takes over
+      // and no dotted underline appears at boot
       const lvl = t('levels')[p.level];
       const valTxt = orphan ? t('fortrinnTitle')
         : lv === 0 ? `${t('noPoints')} – ${t('noPointsTitle')}`
@@ -222,7 +226,7 @@ export function listHtml(s: School, scope: string | null): string {
         .filter(Boolean).map(x => String(x).trim().replace(/\.$/, '')).join('. ') + '.';
       html += `<div class="prow${sel}${orphan ? ' muted' : ''}${solo && rowsSoFar ? ' solo' : ''}" data-cat="${c}" data-idx="${idx}">` +
               `<button type="button" class="nm" aria-describedby="pd-${idx}"${p.official ? ` title="${esc(t('officialName', p.official))}"` : ''}>${esc(progName(p))}${badge}</button>` +
-              `${chip}<span class="lv">${esc(p.level)}</span><span class="end"><span class="val">${val}</span>${pick}</span>` +
+              `${chip}<span class="lv${lvl ? ' tipped' : ''}">${esc(p.level)}</span><span class="end"><span class="val">${val}</span>${pick}</span>` +
               `<span id="pd-${idx}" hidden>${esc(desc)}</span></div>`;
       rowsSoFar++;
     }
