@@ -28,10 +28,6 @@ list view (Kart ⇄ Liste toggle: the map's filters as a sortable table).
   Wikimedia Commons. Every accepted photo still passes the standing review:
   shows that school, no identifiable pupils (Borgund's only exterior has
   pupils in frame and stays out).
-- **Raster→vector basemap migration.** CARTO is retiring its raster
-  basemaps in favour of vector (MapLibre); no date yet and our key covers
-  both. When it becomes real: Leaflet + maplibre-gl-leaflet, or a move to
-  MapLibre GL proper.
 
 ## Added September 2026 (grilling session)
 
@@ -296,7 +292,16 @@ Behaviour is unchanged by design. Still to do from the same plan:
     malformed archive); it runs at build time only, on the two checked-in
     TTFs, and `npm audit fix --force` would downgrade satori. Left for the
     owner to decide.
-- **Stage 4 — MapLibre GL** when CARTO names a date for the raster retirement.
+- **Stage 4 — MapLibre GL.** Landed 17 September 2026: the base map is MapLibre GL 6.10
+  drawing CARTO's vector tiles (Voyager GL light, Dark Matter GL dark) from two
+  pinned styles under `web/public/map/` (`tools/vendor-map-styles.mjs`); MapLibre's
+  modules are served from `/maplibre/<v>/` (`tools/vendor-maplibre.mjs`, run
+  before every build); dots, clusters and the tooltip are HTML in one pane;
+  a browser without WebGL2 opens as a list. MapLibre's three modules are
+  296 KB gzipped (`tools/vendor-maplibre.mjs --check`, budget 320 KB);
+  supercluster (~3 KB) and MapLibre's CSS (~11 KB) ride in the app's own
+  bundles. Leaflet + markercluster were 52 KB gzipped. Spec and plan:
+  `.claude/plans/2026-09-17-stage-4-maplibre*.md`.
 - **Pipeline: the long table as the primary artefact.** `build_dataset.py`
   writes `schools.json` directly; inverting that (cells first, `schools.json`
   a view) makes a new county one extractor emitting typed cells. Deferred
@@ -315,8 +320,6 @@ Found by the rebuild's own QA and left alone (zero behaviour change was the rule
   the `it.todo`.)
 - Three phone controls are under the 44 px tap height: the map/list toggle
   buttons at 39 px and the search button at 41 px.
-- `web/public/images/` still holds Leaflet's own marker PNGs, unreferenced
-  now that Leaflet's CSS comes from npm; delete once confirmed unused.
 - The colour-key's first bin label "<30" is interpolated unescaped into
   innerHTML (`web/src/chrome.ts`); browsers render it, happy-dom drops it, so
   no unit test pins that label. Escape it.
