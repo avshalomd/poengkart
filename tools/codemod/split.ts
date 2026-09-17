@@ -12,6 +12,10 @@
  * cannot drift. Each statement also carries its own leading trivia and its
  * same-line trailing comment with it, so the authored comments land in the
  * module their code lands in.
+ *
+ * Ran once on 17 September 2026 (commit 641d174). web/src/app.js no longer
+ * exists, so `npm run codemod` now throws at the first read and writes
+ * nothing; the script stays as the record of how the split was made.
  */
 import { Project, Node, VariableDeclarationKind, type Statement } from 'ts-morph';
 import { writeFileSync, mkdirSync, unlinkSync } from 'node:fs';

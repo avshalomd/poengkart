@@ -7,6 +7,10 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     target: 'es2022',
+    // Published on purpose: the repository is public and the CARTO key is in
+    // the bundle either way, so the map hides nothing, and it makes a
+    // production stack trace readable in devtools. 1.2 MB, fetched only when
+    // devtools asks for it.
     sourcemap: true,
   },
   server: { port: 8123, strictPort: true },

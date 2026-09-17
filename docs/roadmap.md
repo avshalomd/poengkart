@@ -318,3 +318,18 @@ Found by the rebuild's own QA and left alone (zero behaviour change was the rule
   collides today.
 - `actions/checkout@v4`, `setup-node@v4`, `setup-python@v5` carry GitHub's
   Node 20 deprecation annotation; bump when convenient.
+
+Found by the final whole-branch review (17 September 2026) and left for later:
+
+- No screenshot baseline exists, although the plan's stage-1 verification
+  named one; the CSS was proved byte-identical instead. Before stage 3
+  rewrites the shell, record `toHaveScreenshot` baselines from the current,
+  known-good build at three viewports and both themes.
+- Geolocation (`web/src/locate.ts`, the map's locate control) is unit-tested
+  only; add a browser test with a stubbed `geolocation` before stage 3.
+- The unit and browser tests read the live `web/public/data/` and name
+  Asker, Førde and Elvebakken and a row count above 100; a refresh that
+  renames or drops one turns CI red without a behaviour change. Freeze a
+  small fixture for the tests that only need *a* school.
+- `pyproject.toml` and `tools/requirements.txt` carry the same eight pins and
+  CI installs from `requirements.txt`; make one of them the source.

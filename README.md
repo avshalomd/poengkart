@@ -49,20 +49,24 @@ Opens on http://localhost:8123. `npm run build` writes the deployable site to
 .venv/bin/python3 tools/refresh.py
 ```
 
-One step of that pipeline, the share card, photographs the app's own school
-panel and so wants a browser: `pip install playwright` and `playwright install
-chromium-headless-shell`. Without one the card still builds, reusing the last
-capture in `tools/og-panel.png`.
+One step of that pipeline, the share card, first runs `npm run build` — so the
+refresh needs Node and `npm install` done — then photographs the app's own
+school panel and so wants a browser: `pip install playwright` and `playwright
+install chromium-headless-shell`. Without one the card still builds, reusing
+the last capture in `tools/og-panel.png` and printing a warning rather than
+failing.
 
 The same files are mirrored to a public bucket, with every file's SHA-256 in
 `sources/manifest.json`; `tools/sources_r2.py fetch` restores a missing
 `sources/` from there and verifies each file against the manifest.
 
-`npm test` runs the unit tests (Vitest, coverage threshold 80%), `npm run e2e`
-the browser suite (Playwright: boot, permalinks, filters, points, wishes, the
-list, settings, the calculator, the bug button, a phone, axe, and the figure
+`npm test` runs the unit tests (Vitest, coverage thresholds 80 % for
+statements, functions and lines, 65 % for branches), `npm run e2e` the browser
+suite (Playwright: boot, permalinks, filters, points, wishes, the list,
+settings, the calculator, the bug button, a phone, axe, and the figure
 invariants), and `.venv/bin/python3 -m pytest` the dataset checks. GitHub
-Actions runs all three on every push.
+Actions runs all three, plus the build, on every push to `main` and on every
+pull request.
 
 ## The dataset
 

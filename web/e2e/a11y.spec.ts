@@ -2,6 +2,9 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { boot, openSchool } from './helpers';
 
+// CI fails only on serious and critical axe impacts. Moderate findings
+// (contrast at the margins, landmark nits) are triaged by the /qa skill, so a
+// green run here is "no serious violation", not "axe-clean".
 const serious = (r: { violations: { impact?: string | null; id: string; nodes: unknown[] }[] }) =>
   r.violations.filter(v => v.impact === 'serious' || v.impact === 'critical').map(v => `${v.id} ×${v.nodes.length}`);
 

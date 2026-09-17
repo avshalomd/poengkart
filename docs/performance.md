@@ -159,6 +159,9 @@ schools 12.7/16.5. Same shape as the 2026-08-24 baseline (every op under
 | `index-CSHk1ijY.js.map` | 1,170,478 |
 | `index-CC5cGhQ5.css` | 69,718 |
 
+The content hashes name the build measured on 17 September 2026; the next
+code edit renames them.
+
 `gzip -c web/dist/assets/index-*.js | wc -c` → **95,815 bytes** (93.6 KiB)
 compressed. Against the old single-file `web/index.html` on `main`
 (355,091 bytes, 346.8 KiB, raw — not a like-for-like compression
