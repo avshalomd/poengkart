@@ -25,6 +25,33 @@ test('an unknown school is a 404 that still boots the app and says so', async ({
   expect(await page.locator('meta[name="robots"]').getAttribute('content')).toBe('noindex');
 });
 
+// The tab title is part of the page a link opens, and a bookmark keeps it.
+// A school's page is titled after the school, and the prerendered title has to
+// survive the script's takeover; with no sheet open the title is the app's own.
+const HOME_TITLE = 'Poengkart – poenggrenser for videregående skole';
+
+test('the title follows the sheet', async ({ page }) => {
+  await boot(page, '/akershus/asker');
+  await expect(page).toHaveTitle('Asker – poenggrenser | Poengkart');
+  await page.locator('#s-photo button.close:not(.bug)').click();
+  await expect(page.locator('#side')).not.toHaveClass(/open/);
+  await expect(page).toHaveTitle(HOME_TITLE);
+  // a school opened inside the app, with a real click, is titled too
+  await page.click('#view-list');
+  await page.locator('#listview tbody tr').first().click();
+  await expect(page.locator('#side')).toHaveClass(/open/);
+  const name = await page.locator('#s-photo .name h2').textContent();
+  await expect(page).toHaveTitle(`${name} – poenggrenser | Poengkart`);
+  await page.goBack();
+  await expect(page.locator('#side')).not.toHaveClass(/open/);
+  await expect(page).toHaveTitle(HOME_TITLE);
+});
+
+test('a school path no school answers to ends on the home title', async ({ page }) => {
+  await boot(page, '/akershus/finnes-ikke');
+  await expect(page).toHaveTitle(HOME_TITLE);
+});
+
 test('the filters ride in the query string and the back button steps over them', async ({ page }) => {
   await boot(page, '/?f=Oslo');
   await expect(page.locator('#map-fylke')).toHaveValue('Oslo');

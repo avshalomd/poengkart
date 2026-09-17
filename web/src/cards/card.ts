@@ -16,7 +16,7 @@ import path from 'node:path';
 import regularTtf from './InstrumentSans-Regular.ttf?inline';
 import boldTtf from './InstrumentSans-Bold.ttf?inline';
 import { S } from '../state';
-import { capFirst, shownPrograms, yearMeans } from '../helpers';
+import { capFirst, meanStep, shownPrograms, yearMeans } from '../helpers';
 import { heroCells } from '../templates';
 import type { School } from '../types';
 
@@ -70,6 +70,8 @@ export function heroFigures(s: School): { value: string; label: string; delta: s
   const cells = heroCells(s, null);
   const first = cells[0], change = cells.length === 3 ? cells[1] : null;
   return {
+    // HeroCell.v is `string | number` — the count cell is the number — so this
+    // is the narrowing, not a no-op
     value: String(first.v),
     label: capFirst(first.l),
     delta: change ? `${change.v} · ${capFirst(change.l)}` : '',
@@ -78,9 +80,14 @@ export function heroFigures(s: School): { value: string; label: string; delta: s
 }
 
 export function cardTree(s: School): Node {
-  S.lang = 'no';
+  S.lang = 'no'; S.allLevels = false; S.showOld = false;   // the sheet's own scope (fillShell)
   const h = heroFigures(s);
-  const line = sparkline(yearMeans(shownPrograms(s)));
+  // The line may not outrun the figure. Seven schools have a label rather than
+  // a mean for their latest year and means in earlier ones: the line then ends
+  // years before the year the label names (Storsteigen: it climbs to 2025, the
+  // label says 2026), and a card has no axis to say so. No figure, no line.
+  const shown = shownPrograms(s);
+  const line = meanStep(shown).mean === null ? '' : sparkline(yearMeans(shown));
   const nameSize = s.name.length > 30 ? 48 : 60;
   // A figure is four characters. Where a school has no mean, the sheet's own
   // label stands in the figure's place and that is prose — «Ingen venteliste»,

@@ -2,9 +2,9 @@
    home page today, verbatim, the site origin every absolute URL uses, and the
    school's own sheet, written into the shell from the same templates the
    client renders with. */
-import { schoolPath } from './helpers';
+import { meanStep, schoolPath, schoolTitle, shownPrograms } from './helpers';
 import { S } from './state';
-import { heroHtml, listHtml, metaHtml, notesHtml, photoHtml, srcNoteHtml } from './templates';
+import { heroCells, heroHtml, listHtml, metaHtml, notesHtml, photoHtml, srcNoteHtml } from './templates';
 import type { Dataset, School } from './types';
 
 export const SITE = 'https://poengkart-no.vercel.app';
@@ -31,26 +31,50 @@ export const HOME_HEAD: HeadProps = {
   ogImageAlt: 'Kart over Norge med 217 videregående skoler som prikker, fargelagt etter poenggrense, og skolesiden for Elvebakken videregående skole med bilde, snittgrense og utvikling år for år.',
 };
 
+// The state the sheet's own functions read, as the client sets it up on a
+// fresh load: Norwegian, no lens, Vg1 scope, no history, no reader. Both
+// entries below set it, because [skole].astro evaluates schoolHead() and
+// fillShell() in one expression and neither may depend on the other's order.
+function prepareState(data: Dataset) {
+  S.DATA = data; S.lang = 'no';
+  S.mapCat = 'all'; S.mapFylke = 'all'; S.allLevels = false; S.showOld = false;
+  // no reader yet: no chips, no picks, no selected row. S.chart is the whole
+  // object because initHelpers() — the client's only writer of it — never runs
+  // in the build, and `S.chart.prog = null` would be a set on undefined.
+  S.myPoints = null; S.choices = []; S.chart = { prog: null };
+}
+
 // The head of a school's page: the school's name in the title and the share
 // title, the county and the span of years in the description, the canonical
 // address, and its own card — /og/<fylke>/<skole>.png, drawn at build time by
 // web/src/pages/og/[fylke]/[skole].png.ts from the same statistic the sheet
 // shows.
-export function schoolHead(s: School): HeadProps {
+export function schoolHead(s: School, data: Dataset): HeadProps {
+  prepareState(data);        // heroCells below reads the dataset, the language and the scope
   const years = [...new Set(s.programs.flatMap(p => Object.keys(p.values)))].sort();
-  const span = years.length ? ` (${years[0]}–${years[years.length - 1]})` : '';
   const latest = years[years.length - 1] || '';
+  // 32 schools have one published year, and «(2025–2025)» reads as a range
+  // that is not one
+  const span = !years.length ? '' : years.length > 1 ? ` (${years[0]}–${latest})` : ` (${latest})`;
   const path = schoolPath(s);
   const description = `Poenggrenser for ${s.name} i ${s.fylke}: hva som krevdes for å komme inn på hvert programområde, år for år${span}.`;
+  // 19 of the 217 cards show no snittgrense — their hero is the sheet's own
+  // label («Ingen venteliste», «Fullt – siste inntatte uten poeng»), and the
+  // card has no line either (cards/card.ts). The alt describes the card that
+  // exists, in the hero cell's own words rather than in new ones.
+  const first = heroCells(s, null)[0];
+  const ogImageAlt = meanStep(shownPrograms(s)).mean === null
+    ? `Poengkart-kort for ${s.name}: ${first.v} (${first.l}).`
+    : `Poengkart-kort for ${s.name}: snittgrense ${latest} og utvikling år for år.`;
   return {
-    title: `${s.name} – poenggrenser | Poengkart`,
+    title: schoolTitle(s),
     description,
     canonical: SITE + path,
     ogTitle: `${s.name} – hva krevdes for å komme inn?`,
     ogDescription: description,
     twitterDescription: description,
     ogImage: SITE + '/og' + path + '.png',
-    ogImageAlt: `Poengkart-kort for ${s.name}: snittgrense ${latest} og utvikling år for år.`,
+    ogImageAlt,
   };
 }
 
@@ -58,6 +82,14 @@ export function schoolHead(s: School): HeadProps {
 // aside itself. A replacement that finds no anchor throws: an edit to the
 // markup must not turn the prerender off silently.
 const ANCHORS: [string, (s: School) => string][] = [
+  // photoHtml() runs photoSrc() here, where there is no `location` at all, so
+  // optimiserHere() is true and the 40 county-hosted photos (the bv.ashx
+  // handler, which serves nothing but the original) are written into the page
+  // as /_vercel/image?url=… — byte-equal to what the client computes on
+  // production and on a Vercel preview deployment. Only the LOCAL preview
+  // server (astro dev / astro preview) has no image optimiser: there those 40
+  // photos are a broken image until boot re-renders the sheet with the
+  // county's own URL.
   ['<div class="photo" id="s-photo"></div>', s => `<div class="photo" id="s-photo">${photoHtml(s)}</div>`],
   ['<div class="meta" id="s-meta"></div>', s => `<div class="meta" id="s-meta">${metaHtml(s)}</div>`],
   ['<div class="notes" id="s-notes" hidden></div>', s => { const n = notesHtml(s); return n ? `<div class="notes" id="s-notes">${n}</div>` : '<div class="notes" id="s-notes" hidden></div>'; }],
@@ -71,12 +103,8 @@ const ANCHORS: [string, (s: School) => string][] = [
 // The shell with one school's sheet open in it, rendered the way the client
 // renders it on a fresh load: Norwegian, no lens, Vg1 scope, no history.
 export function fillShell(shell: string, school: School, data: Dataset): string {
-  S.DATA = data; S.lang = 'no'; S.current = school;
-  S.mapCat = 'all'; S.mapFylke = 'all'; S.allLevels = false; S.showOld = false;
-  // no reader yet: no chips, no picks, no selected row. S.chart is the whole
-  // object because initHelpers() — the client's only writer of it — never runs
-  // in the build, and `S.chart.prog = null` would be a set on undefined.
-  S.myPoints = null; S.choices = []; S.chart = { prog: null };
+  prepareState(data);
+  S.current = school;
   let out = shell;
   for (const [anchor, render] of ANCHORS) {
     if (!out.includes(anchor)) throw new Error(`prerender: anchor not found in shell.html: ${anchor}`);

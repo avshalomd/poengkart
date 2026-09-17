@@ -7,7 +7,8 @@
    pkSheet: an overlay sheet's entry) are unchanged — the sheets' close paths
    still history.back() onto them. */
 import { S } from './state';
-import { slug, schoolPath } from './helpers';
+import { slug, schoolPath, schoolTitle } from './helpers';
+import { t } from './i18n';
 import type { School } from './types';
 
 // the county's own short name wins outright; the register's full name and a
@@ -52,7 +53,14 @@ export function buildUrl(s: School | null): string {
   return (s ? schoolPath(s) : '/') + (qs ? '?' + qs : '');
 }
 export const schoolUrl = (s: School) => buildUrl(s);
+// The tab says what the sheet says: a school's own title while its sheet is
+// open — the very string the build prerendered into that page's <title> — and
+// the app's own title, in the reader's language, once nothing is open.
+// openSide's first push writes it too: that branch pushes the address itself
+// and never reaches setUrlSchool.
+export const docTitle = (s: School | null) => s ? schoolTitle(s) : t('pageTitle');
 export function setUrlSchool(s: School | null) {
+  document.title = docTitle(s);
   try { history.replaceState(history.state, '', buildUrl(s)); } catch (e) {}
 }
 // A filter change is a place you can come back to, so it gets its own history

@@ -50,7 +50,7 @@ test('a county that excludes the open school closes the sheet with it', async ({
   expect(new URL(page.url()).pathname).toBe('/');
 });
 
-test('a permalink pasted into an open tab switches the sheet to that school', async ({ page }) => {
+test('loading another school path switches the sheet to that school', async ({ page }) => {
   await boot(page);
   await openSchool(page, 'Akershus', 'Asker');
   await openSchool(page, 'Oslo', 'Elvebakken videregående skole');

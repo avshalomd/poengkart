@@ -283,8 +283,12 @@ Behaviour is unchanged by design. Still to do from the same plan:
   - The school photo on a prerendered page keeps `loading="lazy"` because the
     template is the client's; an eager hint on the page's own photo would be
     a template split — measure LCP on a school page first.
-  - Preview deployments cannot render `/_vercel/image` — the card and the
-    sheet fall back to the county's own URL there, as before.
+  - The LOCAL preview server (`astro dev`, `astro preview`) has no
+    `/_vercel/image`, so the 40 county-hosted (`bv.ashx`) photos written into
+    a prerendered sheet are a broken image there until boot re-renders the
+    sheet with the county's own URL. On production and on Vercel preview
+    deployments the optimiser answers, and the prerendered markup is
+    byte-equal to the client's. The share card never calls `photoSrc`.
   - Parked: satori 0.33.4 pins fflate 0.7.3, which carries a moderate npm
     advisory (GHSA-px8p-9vwx-vf98, an infinite loop in `unzipSync` on a
     malformed archive); it runs at build time only, on the two checked-in

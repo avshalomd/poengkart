@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { loadDataset } from '../../src/data';
 import { cardTree, renderCard } from '../../src/cards/card';
+import { meanStep, shownPrograms, yearMeans } from '../../src/helpers';
 import { S } from '../../src/state';
 
 describe('the share card', () => {
@@ -19,6 +20,17 @@ describe('the share card', () => {
     S.DATA = data;
     const text = JSON.stringify(cardTree(asker));
     expect(text).toContain('Asker'); expect(text).toContain('Akershus'); expect(text).toContain('poengkart-no.vercel.app');
+  });
+  // 7 schools have a label rather than a figure for their latest year but means
+  // in earlier ones. The line drawn from those means ends years before the year
+  // the label names, and the card has no axis to say so.
+  it('draws the line only where the figure is a number', () => {
+    S.DATA = data;
+    const s = data.schools.find(x => x.name === 'Storsteigen videregående skole' && x.fylke === 'Innlandet')!;
+    expect(meanStep(shownPrograms(s)).mean).toBeNull();
+    expect(yearMeans(shownPrograms(s)).length).toBeGreaterThan(1);   // a line could be drawn
+    expect(JSON.stringify(cardTree(s))).not.toContain('"img"');
+    expect(JSON.stringify(cardTree(asker))).toContain('"img"');
   });
   it('a school without a numeric mean shows the sheet\'s own label', () => {
     S.DATA = data;

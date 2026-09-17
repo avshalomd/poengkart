@@ -15,4 +15,4 @@ export function getStaticPaths() {
 const { school } = Astro.props as { school: School };
 const data = loadDataset();
 ---
-<Base {...schoolHead(school)} body={fillShell(shellSrc, school, data)} sideOpen />
+<Base {...schoolHead(school, data)} body={fillShell(shellSrc, school, data)} sideOpen />

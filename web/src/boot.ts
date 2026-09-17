@@ -12,7 +12,7 @@ import { drawMarkers, foldPanel, prefersStill, setTiles, visibleSchools } from "
 import { applyPrefs, closeSettings, loadPrefs, PREFS } from "./prefs";
 import { runSearch } from "./search";
 import { closeSearchOv, openSearchOv, pickOv, renderOvList } from "./searchov";
-import { adoptLegacyUrl, schoolFromUrl, syncUrl, unresolvedFromPath } from "./router";
+import { adoptLegacyUrl, pathSegments, schoolFromUrl, syncUrl, unresolvedFromPath } from "./router";
 import { applyUrlFilters, closeSide, openSide, renderSide, sideTrap } from "./sidebar";
 import { S } from './state';
 import { hideTip } from "./tips";
@@ -61,6 +61,9 @@ export function bootFailed(subKey) {
   try { window.va && window.va('event', { name: 'boot-failed', data: { msg: String(subKey).slice(0, 120) } }); } catch (_) {}
   // #panel lives inside #app now — the innerHTML below removes it, so nothing
   // here may assume it exists afterwards
+  // #side is inside #app too: a school page that fails to boot loses the sheet
+  // it was prerendered with, so the tab may not keep claiming that school
+  document.title = t('pageTitle');
   document.getElementById('legend')?.setAttribute('hidden', '');
   document.getElementById('app')!.innerHTML =
     `<div class="boot-fail"><p class="big">${esc(t('bootFail'))}</p>
@@ -82,7 +85,12 @@ export async function main() {
   // reader who had chosen English got an English page inside a document still
   // declaring itself Norwegian — wrong to a screen reader and to a translator.
   document.documentElement.lang = S.lang === 'no' ? 'no' : 'en';
-  document.title = t('pageTitle');
+  // A school's page arrives titled after the school, and the sheet it carries
+  // stays open: overwriting that title here took the school out of the tab the
+  // moment the script booted. The home title is this page's only when the
+  // address names no school; a school path is titled by openSide below, and a
+  // path no school answers to falls back after the data has been read.
+  if (!pathSegments()) document.title = t('pageTitle');
   // both requests leave together (and were already preloaded from <head>);
   // the forecast is optional: without it the points field stays hidden and
   // the app is exactly what it was
@@ -306,6 +314,9 @@ export async function main() {
     }
     openSide(linked);
   }
+  // an address no school answers to keeps the 404 page's prerendered title,
+  // which is the home one — but in Norwegian, whatever the reader chose
+  if (!S.current) document.title = t('pageTitle');
   performance.mark('pk:boot-done');
   let seen = true;
   try { seen = !!localStorage.getItem(INTRO_SEEN); } catch (e) {}

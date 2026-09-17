@@ -2,8 +2,10 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { S } from '../src/state';
 import { loadFixtures, DATA, asker, forde } from './fixtures';
 import { schoolByName, schoolBySlug, pathSegments, queryParts, schoolFromUrl, buildUrl,
-         adoptLegacyUrl, syncUrl, unresolvedFromPath } from '../src/router';
+         adoptLegacyUrl, setUrlSchool, syncUrl, unresolvedFromPath } from '../src/router';
 import { schoolHead } from '../src/prerender';
+import { schoolTitle, slug } from '../src/helpers';
+import { t } from '../src/i18n';
 
 beforeEach(() => {
   loadFixtures();
@@ -19,7 +21,7 @@ describe('resolving a school', () => {
   it('a merged-away name still resolves to its successor', () => {
     const merged = DATA.schools.find(s => s.merged_from?.length)!;
     expect(schoolByName(merged.fylke, merged.merged_from![0])).toBe(merged);
-    expect(schoolBySlug(slugOf(merged.fylke), slugOf(merged.merged_from![0]))).toBe(merged);
+    expect(schoolBySlug(slug(merged.fylke), slug(merged.merged_from![0]))).toBe(merged);
   });
 });
 
@@ -41,6 +43,13 @@ describe('the address', () => {
     expect(schoolFromUrl()).toBe(asker());
     history.replaceState(null, '', '/');
     expect(schoolFromUrl()).toBeNull();
+  });
+  it('setUrlSchool puts the open school in the tab title and takes it out again', () => {
+    setUrlSchool(asker());
+    expect(document.title).toBe('Asker – poenggrenser | Poengkart');
+    expect(document.title).toBe(schoolTitle(asker()));
+    setUrlSchool(null);
+    expect(document.title).toBe(t('pageTitle'));
   });
   it('syncUrl writes the current state', () => {
     S.current = asker(); S.mapCat = 'ST';
@@ -93,7 +102,7 @@ describe('legacy links', () => {
 
 describe('the school page head', () => {
   it('names the school in the title, the county in the description and the path in the canonical', () => {
-    const h = schoolHead(asker());
+    const h = schoolHead(asker(), DATA);
     expect(h.title).toBe('Asker – poenggrenser | Poengkart');
     expect(h.canonical).toBe('https://poengkart-no.vercel.app/akershus/asker');
     expect(h.description).toContain('Asker i Akershus');
@@ -101,4 +110,3 @@ describe('the school page head', () => {
   });
 });
 
-function slugOf(t: string) { return t.normalize('NFC').toLowerCase().replace(/æ/g, 'ae').replace(/ø/g, 'o').replace(/å/g, 'a').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }

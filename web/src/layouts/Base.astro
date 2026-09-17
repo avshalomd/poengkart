@@ -25,7 +25,8 @@ const { title, description, canonical, ogTitle, ogDescription, twitterDescriptio
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content={description}>
-<link rel="canonical" href={canonical}>
+{/* a page kept out of the index names no canonical: the 404 is not the home page */}
+{!noindex && <link rel="canonical" href={canonical}>}
 {noindex && <meta name="robots" content="noindex">}
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">

@@ -6,7 +6,7 @@ import { cssVar, esc, fmt, isVg1, round1, shownPrograms } from "./helpers";
 import { CATS, t } from "./i18n";
 import { drawMarkers, markerOf, prefersStill, setLens, tileUrl } from "./map";
 import { renderList } from "./programs";
-import { queryParts, schoolUrl, setUrlSchool, syncUrl } from './router';
+import { docTitle, queryParts, schoolUrl, setUrlSchool, syncUrl } from './router';
 import { S } from './state';
 import { heroHtml, metaHtml, notesHtml, photoHtml, srcNoteHtml } from "./templates";
 import { bindTitleTips } from "./tips";
@@ -21,10 +21,11 @@ export function applyUrlFilters(boot?) {
   // without it leaves a reader's own saved choice alone on a fresh load, while
   // Back over a toggle steps the scope back to Vg1 like any other filter.
   let lv = 'l' in p ? p.l === 'all' : boot ? S.allLevels : false;
-  try {
-    if (p.f) fy = decodeURIComponent(p.f);
-    if (p.c) cat = decodeURIComponent(p.c);
-  } catch (e) { return false; }
+  // queryParts() reads the address through URLSearchParams, so these are
+  // already decoded; decoding a second time threw a URIError on any value
+  // carrying a literal «%» and dropped every filter in the address with it.
+  if (p.f) fy = p.f;
+  if (p.c) cat = p.c;
   if (!S.DATA!.schools.some(s => s.fylke === fy)) fy = 'all';        // a county we do not carry
   if (cat !== 'all' && !CATS[cat]) cat = 'all';
   // a lens with nothing at Vg1 (påbygging) is a link to the later years
@@ -161,6 +162,7 @@ export function openSide(s) {
   // of closing: school D's close resurrected school A, closing took two
   // presses, and the address kept naming a school nothing was showing.
   if (!(history.state || {}).pkSide) {
+    document.title = docTitle(s);        // the branch that does not go through setUrlSchool
     try { history.pushState({ pkSide: 1 }, '', schoolUrl(s)); } catch (e) {}
   } else {
     setUrlSchool(s);

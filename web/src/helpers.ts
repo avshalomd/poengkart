@@ -1,6 +1,6 @@
 import { t } from "./i18n";
 import { S } from './state';
-import type { Program } from './types';
+import type { Program, School } from './types';
 
 // A school's address on the site: /<fylke>/<skole>, ASCII only, so it survives
 // every messaging app and every keyboard. æ ø å are the three letters people
@@ -15,6 +15,11 @@ export function slug(text: string): string {
     .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 export const schoolPath = (s: { fylke: string; name: string }) => '/' + slug(s.fylke) + '/' + slug(s.name);
+// A school's page is titled after the school, in the tab and in a bookmark —
+// the build writes this into <title> (prerender.ts) and the app keeps it there
+// for as long as the sheet is open (router.ts, lang.ts). Norwegian in both
+// languages: it is the site's name and the county's own word for the figures.
+export const schoolTitle = (s: School) => `${s.name} – poenggrenser | Poengkart`;
 
 /* ================= state & helpers ================= */
 export const BINS = [

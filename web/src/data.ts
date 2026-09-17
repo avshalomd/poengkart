@@ -6,6 +6,10 @@ import type { Dataset } from './types';
 // two megabytes of literal on every typecheck) and not a filesystem read
 // (Astro bundles this module into web/dist/.prerender, and a path anchored on
 // the module or on the working directory resolves somewhere else there).
+// Parsed once: the two page routes and the sitemap each ask for it, and every
+// school's page asks again inside getStaticPaths — two megabytes of JSON per
+// call otherwise.
+let dataset: Dataset | null = null;
 export function loadDataset(): Dataset {
-  return JSON.parse(raw);
+  return dataset ??= JSON.parse(raw);
 }
