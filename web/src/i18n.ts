@@ -120,6 +120,10 @@ export const T = {
   listRowAria: { no: s => `Åpne ${s}`, en: s => `Open ${s}` },
   listEmpty: { no: 'Ingen treff med disse filtrene.', en: 'No matches with these filters.' },
   viewLabel: { no: 'Visning', en: 'View' },
+  // the list sorts a held-out county's schools against everyone else's, and
+  // the note that explains its figures lives on the school sheet, not here
+  listHeldOut: { no: f => `${f} oppgir laveste poengsum blant de inntatte, ikke poenggrenser, så tallene derfra kan ikke sammenlignes med de andre.`,
+                 en: f => `${f} reports the lowest points among those admitted, not thresholds, so its figures cannot be compared with the rest.` },
   listRounds: { no: 'Fylkene publiserer tall fra ulike inntak, så tallene kan ikke sammenlignes direkte.',
                 en: 'Counties publish different intakes – figures are not directly comparable across counties.' },
   calcOpen:  { no: 'Regn ut fra karakterene dine', en: 'Work them out from your grades' },
@@ -260,6 +264,10 @@ export const T = {
   heroTypical:{ no: 'Snitt', en: 'Average' },
   heroTypicalAll: { no: 'alle programområder', en: 'all programme areas' },
   legendCat:  { no: c => `${CATS[c].no} · siste år`, en: c => `${CATS[c].en} · latest year` },
+  // a held-out county publishes no fill state, so its dots cannot carry the
+  // share the size legend describes: they take a dashed ring and this line
+  legendHeldOut: { no: f => `Stiplet ring: ${f} oppgir ikke om programområdene ble fylt opp`,
+                   en: f => `Dashed ring: ${f} does not report whether the programme areas filled up` },
   legendOpen: { no: 'Ingen venteliste – alle kvalifiserte søkere fikk plass', en: 'No waiting list – all qualified applicants got a place' },
   legendNone: { no: 'Ingen data', en: 'No data' },
   fortrinnTitle: {
@@ -379,6 +387,17 @@ export const T = {
                                                    : `${n} av ${tot} programområder i utdanningsprogrammet har hatt poenggrense i ${span} · snitt i blått`),
                   en: (n, tot, span) => (n === tot ? `${n} programme area${n === 1 ? ' has' : 's have'} had a threshold in this programme in ${span} · mean line in blue`
                                                    : `${n} of ${tot} programme areas in this programme ${n === 1 ? 'has' : 'have'} had a threshold in ${span} · mean line in blue`) },
+  // a held-out county's figures are not poenggrenser (its source never says
+  // whether a programme area filled up), so the caption says "tall", not
+  // "poenggrense" — the note above the chart explains why
+  chartSubAllHeld: { no: (n, tot, span) => (n === tot ? `${n} ${n === 1 ? 'programområde' : 'programområder'} har tall i ${span} · snittlinje i blått`
+                                                      : `${n} av ${tot} programområder har tall i ${span} · snittlinje i blått`),
+                     en: (n, tot, span) => (n === tot ? `${n} programme area${n === 1 ? ' has' : 's have'} figures in ${span} · mean line in blue`
+                                                      : `${n} of ${tot} programme areas have figures in ${span} · mean line in blue`) },
+  chartSubCatHeld: { no: (n, tot, span) => (n === tot ? `${n} ${n === 1 ? 'programområde' : 'programområder'} i utdanningsprogrammet har tall i ${span} · snitt i blått`
+                                                      : `${n} av ${tot} programområder i utdanningsprogrammet har tall i ${span} · snitt i blått`),
+                     en: (n, tot, span) => (n === tot ? `${n} programme area${n === 1 ? ' has' : 's have'} figures in this programme in ${span} · mean line in blue`
+                                                      : `${n} of ${tot} programme areas in this programme have figures in ${span} · mean line in blue`) },
   chartSubProg: { no: 'Ett programområde · hule punkter = ingen poenggrense', en: 'One programme area · hollow dots = no threshold' },
   chartNoPoints: { no: 'Ingen poenggrense å tegne for dette utvalget – alle som søkte, fikk plass, eller inntaket gikk på fortrinnsrett eller dokumentasjon.',
                    en: 'No threshold to plot for this selection – everyone who applied got a place, or admission went by priority right or documentation.' },
@@ -482,8 +501,16 @@ export const T = {
                      en: 'Applies to applicants resident in the school\'s intake area.' },
   chanceCal:  { no: c => `Testet mot 2025–26 traff 80 %-intervallet ${c} % av gangene.`,
                 en: c => `Tested against 2025–26, the 80% interval was right ${c}% of the time.` },
-  // a held-out county (HELD_OUT): forecast from its own figures, never scored
-  // against an intake the model had not seen, so no coverage can be quoted
+  // a held-out county (HELD_OUT) is forecast from its own figures, so it
+  // carries its own spread and its own measured coverage (meta.held_out_*):
+  // the panel's numbers are measured on cells of a different kind
+  chanceSubHeld: {
+    no: (y, r, s, f) => `Prognose for inntaket ${y}${r ? ` (${r}. inntak)` : ''}, regnet ut fra tallene fra ${f} alene. En pekepinn, ikke et løfte: prognosen bommer typisk med ±${s} poeng.`,
+    en: (y, r, s, f) => `Forecast for the ${y} intake${r ? ` (${ordEn(r)} intake)` : ''}, from ${f}'s own figures alone. A pointer, not a promise: the forecast is typically off by ±${s} points.`,
+  },
+  chanceTested: { no: (f, c, ys) => `Testet mot inntakene i ${ys} i ${f} traff 80 %-intervallet ${c} % av gangene.`,
+                  en: (f, c, ys) => `Tested against the ${ys} intakes in ${f}, the 80% interval was right ${c}% of the time.` },
+  // the fallback where the county's own years are too few to measure
   chanceUntested: { no: f => `Prognosen bygger bare på tallene fra ${f} og er ikke testet mot tidligere inntak, slik prognosene i de andre fylkene er.`,
                     en: f => `The forecast is built on ${f}'s own figures alone and is not tested against earlier intakes the way the other counties' forecasts are.` },
   chTitle: {

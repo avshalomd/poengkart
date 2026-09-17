@@ -1,5 +1,5 @@
 import { bucketColor, chanceMode, renderPointsField } from "./chance";
-import { BIN_EDGES, BINS, cssVar, esc, fmt, isVg1, levelScope, MISSING_COUNTIES, shownPrograms } from "./helpers";
+import { BIN_EDGES, BINS, cssVar, esc, fmt, HELD_OUT, isVg1, levelScope, MISSING_COUNTIES, shownPrograms } from "./helpers";
 import { CATS, t } from "./i18n";
 import { renderControls } from "./intro";
 import { placeToast } from "./locate";
@@ -164,6 +164,12 @@ export function renderLegend() {
   // dots show chances
   document.getElementById('legend-open')!.parentElement!.hidden = chanceMode();
   document.getElementById('legend-open')!.textContent = t('legendOpen');
+  // ...and neither is "how much filled up" a state a held-out county reports:
+  // its dots are dashed, and the line names the county on screen
+  const held = [...new Set(visibleSchools().filter(s => HELD_OUT.has(s.fylke)).map(s => s.fylke))];
+  const heldEl = document.getElementById('legend-held')!;
+  heldEl.parentElement!.hidden = chanceMode() || !held.length;
+  heldEl.textContent = held.length ? t('legendHeldOut', held.join(', ')) : '';
   document.getElementById('legend-zero')!.parentElement!.hidden = chanceMode();
   document.getElementById('legend-zero')!.textContent = t('noPoints');
   // the intake-round chip in the title advertises an explanation with a dotted

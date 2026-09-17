@@ -89,6 +89,7 @@ INLINE = [
     (r'w', '<var>w</var>'),
     (r'i', '<var>i</var>'),
     (r't', '<var>t</var>'),
+    (r'T', '<var>T</var>'),
     (r'x', '<var>x</var>'),
     (r'm', '<var>m</var>'),
     (r's', '<var>s</var>'),

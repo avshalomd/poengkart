@@ -1,4 +1,4 @@
-import { chartMode, fmt, isPoints, levelScope, meanOf, numericLatest, openMix, progName, shownPrograms, visibleIn } from "./helpers";
+import { chartMode, fmt, HELD_OUT, isPoints, levelScope, meanOf, numericLatest, openMix, progName, shownPrograms, visibleIn } from "./helpers";
 import { CATS, t } from "./i18n";
 import { setLens } from "./map";
 import { renderList } from "./programs";
@@ -109,10 +109,13 @@ export function drawChart() {
     ? shownPrograms(S.current).filter(p => p.category === S.mapCat) : shownPrograms(S.current);
   const scopeN = visibleIn(chartScope);
   const span = years.length > 1 ? `${years[0]}–${years[years.length - 1]}` : String(years[0]);
+  // a held-out county's numbers are not poenggrenser, and the note right above
+  // this caption says so: the caption must not assert one either
+  const held = HELD_OUT.has(S.current!.fylke);
   sub!.textContent = chartMode() === 'prog'
     ? `${S.chart.prog ? progName(S.chart.prog) + ' · ' : ''}${t('chartSubProg')}`
-    : chartMode() === 'cat' ? t('chartSubCat', series.length, scopeN, span)
-                            : t('chartSubAll', series.length, scopeN, span);
+    : chartMode() === 'cat' ? t(held ? 'chartSubCatHeld' : 'chartSubCat', series.length, scopeN, span)
+                            : t(held ? 'chartSubAllHeld' : 'chartSubAll', series.length, scopeN, span);
   if (chartMode() !== 'prog') {
     const cy = [...new Set(series.flatMap(p => Object.keys(p.values)))].sort().pop();
     const cm = openMix(chartScope, cy);

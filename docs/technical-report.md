@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · September 2026 · v1.11 (version history in Appendix D)
+Technical report · September 2026 · v1.12 (version history in Appendix D)
 Application: [poengkart-no.vercel.app](https://poengkart-no.vercel.app) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
@@ -390,8 +390,15 @@ county-year effects are estimated, on its own cells, with the fitted
 model's variance components (a *satellite* fit; `Satellite` in
 `tools/model.py`). Its fill probability is pinned at 1, as for any source that carries no
 fill state, so a reader's chance there rests on the threshold alone. Nothing of that fit reaches the panel, the backtest or the
-evaluation, so those forecasts carry no measured coverage and the
-application says so on every one of the county's schools. The county joins
+evaluation. What it is worth is measured on the county's own years
+instead, by the same walk: the panel fitted on the other counties' years
+before $T$, the satellite fitted on the county's years before $T$, its
+year $T$ predicted. Over 110 cells in 2025 and 2026 that gives an RMSE of
+7.80 points against 8.98 for persistence, and it is that number, not the
+panel's, that its forecasts carry as their spread — the panel's spread
+covered 70% of those outcomes where it claimed 80%, being measured on
+cells of a different kind. The application quotes the county's own
+measurement on every one of its schools. The county joins
 the panel here when it states, per programme and year, whether everyone was
 admitted.
 
@@ -983,7 +990,8 @@ available from the page as JSON and in the repository as CSV and SQLite.
 The shipped model carries 1,760 programme forecasts, of which 192 are for
 series with no observed year; for the held-out county of Section 4.4 a
 separate fit on its own figures supplies 55 forecasts for its 11 schools,
-evaluated nowhere in this report. Two things it deliberately does not forecast:
+scored nowhere in this report except against the county's own years in
+Section 4.4. Two things it deliberately does not forecast:
 a series whose newest cell is *utgått* (discontinued; 65 series) gets no
 forecast, whatever the year before said, and a series with no observed year
 is tagged "ingen historikk" (no history) — with "lite historikk" (little
@@ -1125,7 +1133,7 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.11`, and the numbers
+the version this report describes is tagged `report-v1.12`, and the numbers
 quoted here are from the build of 2026-09-17. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
@@ -1397,7 +1405,7 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   level model, sat outside the fill fit with its fill probability fixed at
   1, and was scored in the backtest; every pinned number was re-read from
   that build.
-- **v1.11** (this version). Telemark is taken out of the model and out of
+- **v1.11**. Telemark is taken out of the model and out of
   this report, and stays in the published dataset and the application
   (Section 4.4). Without a fill state its figures cannot tell a cutoff from
   a programme where everyone got in, and v1.10's fit showed what mixing
@@ -1408,3 +1416,14 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   counties of v1.9.1, and the refit reproduces that version's numbers. The
   county's schools keep a forecast in the application, from a satellite fit
   on its own figures that leaves the model untouched (Section 4.4).
+- **v1.12** (this version). The held-out county's forecasts stop borrowing
+  the panel's spread. A QA sweep measured what the borrowed number was
+  worth on that county: its 80% intervals covered 70% of the outcomes,
+  because the panel's spread is measured on cells of a different kind. The
+  satellite is now walked forward on the county's own years the way the
+  panel is walked forward on the panel's (Section 4.4), and its forecasts
+  carry that measurement — 7.8 points against the panel's 4.9 to 7.3 — with
+  the coverage quoted in the application. Nothing in the panel, the
+  backtest or any number of this report moves; this version also corrects
+  Table 1b's year span for Oslo, which had omitted the 2015 table since
+  v1.8.

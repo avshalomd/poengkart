@@ -29,6 +29,8 @@ N_FORECASTS = sum(len(v.get('programs') or {}) for v in _OWN)
 N_FORECASTS_H0 = sum(pr['h'] == 0 for v in _OWN for pr in (v.get('programs') or {}).values())
 N_HELD_FORECASTS = sum(len(v.get('programs') or {}) for v in MODEL['schools'].values() if v.get('held_out'))
 N_HELD_SCHOOLS = sum(1 for v in MODEL['schools'].values() if v.get('held_out'))
+# what the satellite fit is worth, measured on the held-out county's own years
+_hb = (META.get('held_out_backtest') or {}).get('Telemark')
 
 failures = []
 checked = 0
@@ -300,6 +302,15 @@ RAW[doc] = (ROOT / doc).read_text()
 flat = flatten(raw)
 check(doc, 'sigma table', r'\| 0 years \| ([\d.]+) \| \| 1 year \| ([\d.]+) \| \| 2–3 years \| ([\d.]+) \| \| 4\+ years \| ([\d.]+) \|',
       SIGMAS, flat, D1)
+# model.md quotes the same satellite measurement as section 4.4
+if _hb:
+    check(doc, 'satellite backtest (model.md)',
+          r'Over ([\d,]+) cells in 2025–2026 that is an RMSE of ([\d.]+) against ([\d.]+) for persistence',
+          [_hb['n'], _hb['rmse'], _hb['rmse_persistence']], flat, [N, D2, D2])
+    check(doc, 'satellite spread (model.md)',
+          r"every Telemark forecast carries ([\d.]+) as its spread — the model's own buckets, ([\d.]+) to ([\d.]+), covered (\d+)%",
+          [_hb['sigma'], min(META['sigma_forecast'].values()), max(META['sigma_forecast'].values()),
+           _hb['coverage80_panel_spread'] * 100], flat, [D1, D1, D1, PCT])
 MULT = META['sigma_level_multiplier']
 LS = META['halflife_search']['level_spread_experiment']
 SW = META['halflife_search']['single_weight_search']
@@ -593,6 +604,15 @@ check(doc, 'held-out forecasts', r'a separate fit on its own figures supplies (\
 check(doc, 'held-out panel (4.4)', r'\(Vg1, 2024–2026, eleven schools, ([\d,]+) cells\)', [N_HELD_CELLS], flat, N)
 check(doc, 'held-out lowest figure (4.4)', r'the lowest grade points among those admitted, down to ([\d.]+)',
       [HELD_MIN], flat, D1)
+# the satellite's own measurement (meta.held_out_backtest): the report quotes
+# it as the reason its forecasts stopped carrying the panel's spread
+if _hb:
+    check(doc, 'satellite backtest (4.4)',
+          r'Over ([\d,]+) cells in 2025 and 2026 that gives an RMSE of ([\d.]+) points against ([\d.]+) for persistence',
+          [_hb['n'], _hb['rmse'], _hb['rmse_persistence']], flat, [N, D2, D2])
+    check(doc, 'satellite borrowed coverage (4.4)',
+          r"panel's spread covered (\d+)% of those outcomes where it claimed 80%",
+          [_hb['coverage80_panel_spread'] * 100], flat, PCT)
 # Appendix D quotes Table 4's own 1-year RMSE as the "after" of the v1.10
 # experiment; a refit moves the table and would leave the history behind
 check(doc, 'version history 1-year rmse', r'series with one year of history rose from ([\d.]+)', [lvl['1']['rmse']], flat, D2)

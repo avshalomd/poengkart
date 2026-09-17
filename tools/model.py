@@ -610,6 +610,68 @@ def walk_forward(rows, bridge, halflife, newest_all, couple=False, fill_blind=No
     return preds, fit_sigmas
 
 
+def satellite_backtest(rows, held_rows, bridge, halflife, couple, single_w, sig):
+    """Walk the satellite forward on a held-out county's own years.
+
+    The county is outside the panel, so the walk-forward of the report never
+    scores it and its forecasts shipped with the panel's spread — a number
+    measured on other counties' cells. This repeats the same fold for the
+    county alone: fit the panel on the other counties' years < T, freeze it,
+    fit the satellite on the county's years < T, predict its year T. Nothing
+    here touches the shipped fits; the folds are thrown away and only the
+    error scale is kept, per county:
+
+      rmse      the spread the county's own forecasts should carry
+      cov_own   how often that spread's 80% interval would have covered
+      cov_panel how often the panel's borrowed spread did (the reason to stop)
+    """
+    out = {}
+    for f in sorted({r['fylke'] for r in held_rows}):
+        mine = [r for r in held_rows if r['fylke'] == f]
+        preds = []
+        for T in BACKTEST_YEARS:
+            train = [r for r in rows if r['year'] < T]
+            htrain = [r for r in mine if r['year'] < T]
+            test = [r for r in mine if r['year'] == T and r['state'] == 'num']
+            if not train or not test or not [r for r in htrain if r['state'] == 'num']:
+                continue
+            newest = collections.defaultdict(int)
+            for r in train:
+                newest[r['fylke']] = max(newest[r['fylke']], r['year'])
+            m = Model(train, bridge, halflife, newest, couple, None, single_w).fit()
+            st = Satellite(m, htrain, halflife).fit()
+            hist = collections.Counter(r['series'] for r in htrain if r['state'] == 'num')
+            for r in test:
+                mm, _ = st.predict(r, T)
+                preds.append(dict(T=T, series=r['series'], v=r['v'], m=mm, hist=hist.get(r['series'], 0)))
+            print(f'  satellite backtest {f} {T}: train {len(htrain)} test {len(test)}')
+        if not preds:
+            continue
+        e = np.array([p['v'] - p['m'] for p in preds])
+        rmse = float(np.sqrt(np.mean(e * e)))
+        panel = np.array([spread(sig, p['hist'], p['m']) for p in preds])
+        out[f] = dict(n=len(preds), years=sorted({p['T'] for p in preds}),
+                      rmse=round(rmse, 2), mae=round(float(np.mean(np.abs(e))), 2),
+                      bias=round(float(np.mean(e)), 2),
+                      rmse_persistence=None, sigma=round(rmse, 1),
+                      coverage80=round(float(np.mean(np.abs(e) <= 1.2816 * round(rmse, 1))), 3),
+                      coverage80_panel_spread=round(float(np.mean(np.abs(e) <= 1.2816 * panel)), 3))
+        # persistence on the same cells, so the number has something to beat
+        last = {}
+        for r in sorted(mine, key=lambda r: r['year']):
+            if r['state'] == 'num':
+                last[(r['series'], r['year'])] = r['v']
+        pe = [p['v'] - last[(p['series'], p['T'] - 1)] for p in preds
+              if (p['series'], p['T'] - 1) in last]
+        if pe:
+            out[f]['rmse_persistence'] = round(float(np.sqrt(np.mean(np.array(pe) ** 2))), 2)
+            out[f]['n_persistence'] = len(pe)
+        print(f'satellite backtest {f}: n {out[f]["n"]} rmse {out[f]["rmse"]} '
+              f'(persistence {out[f]["rmse_persistence"]}), coverage of the panel spread '
+              f'{out[f]["coverage80_panel_spread"]:.0%}, of its own {out[f]["coverage80"]:.0%}')
+    return out
+
+
 def _wrmse(w, e):
     return math.sqrt(float(np.sum(w * e * e) / np.sum(w)))
 
@@ -1094,10 +1156,17 @@ def main():
             sats[f] = Satellite(model, hr, halflife).fit()
             print(f'satellite fit {f}: {len(sats[f].rows)} cells, '
                   f'{len(sats[f].e["school"])} schools, newest {sats[f].newest}')
+    # ...and what that forecast is worth, measured on the county's own years.
+    # It shipped with the panel's spread for a day; the QA sweep of 17 Sept
+    # 2026 measured that borrowed number covering 69% where it claimed 80%
+    held_bt = ({} if quick or not sats else
+               satellite_backtest(rows, held_rows, bridge, halflife, couple, single_w, sig))
+    held_sigma = {f: v['sigma'] for f, v in held_bt.items()}
 
     meta = dict(built=time.strftime('%Y-%m-%d'), halflife=halflife, coupled=couple, fill_blind=sorted(FILL_BLIND),
                 held_out=sorted(HELD_OUT),
                 held_out_cells={f: len(st.rows) for f, st in sats.items()},
+                held_out_sigma=held_sigma, held_out_backtest=held_bt,
                 sigma_model=round(model.sigma, 3), sigma_floor=round(floor_sigma, 3),
                 sigma_forecast={str(HIST_BUCKETS[i]): round(v, 2) for i, v in sig['hist'].items()},
                 sigma_level_multiplier={b: round(v, 3) for b, v in sig['level'].items()},
@@ -1199,7 +1268,12 @@ def main():
                 # a county with no "ingen venteliste" state can only ever fill:
                 # its chance rests on the threshold alone
                 pi_out = 1.0 if s['fylke'] in FILL_BLIND else round(recal(pi, fc), 3)
-            progs[key] = dict(m=round(m, 1), s=round(spread(sig, h, m), 1), pi=pi_out, h=h)
+            # a satellite forecast carries the county's own measured error,
+            # never narrower than the panel's spread for that history
+            s_out = spread(sig, h, m)
+            if sat:
+                s_out = max(s_out, held_sigma.get(s['fylke'], 0.0))
+            progs[key] = dict(m=round(m, 1), s=round(s_out, 1), pi=pi_out, h=h)
         if progs:
             ent['programs'] = progs
         out_schools[sid] = ent

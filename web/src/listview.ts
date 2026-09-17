@@ -1,6 +1,6 @@
 import { bucketColor, bucketOf, chanceMode, schoolChance } from "./chance";
 import { forecastYears, liftMapControls } from "./chrome";
-import { BINS, colorFor, esc, fmt, meanStep, round1, schoolPressure, shownPrograms, zeroLabel } from "./helpers";
+import { BINS, colorFor, esc, fmt, HELD_OUT, meanStep, round1, schoolPressure, shownPrograms, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
 import { drawMarkers, fitVisible, resizeMap, visibleSchools } from "./map";
 import { schoolUrl } from './router';
@@ -136,6 +136,11 @@ export function renderListView() {
       `</tr>`).join('') +
     `</tbody></table></div>` +
     (allF && rows.length ? `<div class="foot">${esc(t('listRounds'))}</div>` : '') +
+    // the rows of a held-out county sort against the rest here, and its note
+    // lives on the school sheet: say it where the comparison happens
+    ((heldShown => heldShown.length
+      ? `<div class="foot">${esc(t('listHeldOut', heldShown.join(', ')))}</div>` : '')(
+        [...new Set(rows.filter(r => HELD_OUT.has(r.s.fylke)).map(r => r.s.fylke))])) +
     `</div>`;
   host!.querySelectorAll('tbody tr').forEach((tr: any) => {
     tr.onclick = ev => {

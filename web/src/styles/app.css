@@ -993,6 +993,7 @@
   #legend .none { display: flex; align-items: center; gap: 6px; margin-top: 7px; color: var(--ink-3); }
   #legend .none .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--context); flex: none; }
   #legend .none .dot.open-dot { background: var(--accent-soft); border: 1.5px dashed var(--accent); }
+  #legend .none .dot.held-dot { background: var(--seq-450); border: 1.5px dashed var(--ink-3); }
   /* the filled-without-points marker: the open ring with a solid 35% fill */
   #legend .none .dot.zero-dot { background: color-mix(in srgb, var(--accent) 35%, var(--surface-solid));
                                 border: 1.5px solid var(--accent); }

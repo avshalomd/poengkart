@@ -100,11 +100,16 @@ note is over the other eight counties.
 Its schools are still forecast, by a **satellite fit** (`Satellite`): with
 the model above finished, μ and the category and programme effects are held
 fixed as an offset, and only Telemark's own school, series and county×year
-effects are fitted, on Telemark's cells, with the model's own taus. The
-spread is the model's history bucket, and π is pinned at 1 because the
+effects are fitted, on Telemark's cells, with the model's own taus. π is pinned at 1 because the
 county has no fill state, so the chance rests on the threshold alone. The
-walk-forward never sees these cells, so the forecast has no measured
-coverage and the app says so on every Telemark school. The county rejoins
+walk-forward never sees these cells, so the spread is measured on
+Telemark's own years instead (`satellite_backtest`): fit the panel on the
+other counties' years before T and the satellite on Telemark's, predict
+Telemark's year T. Over 110 cells in 2025–2026 that is an RMSE of 7.80
+against 8.98 for persistence, and every Telemark forecast carries 7.8 as
+its spread — the model's own buckets, 4.9 to 7.3, covered 70% of those
+outcomes where they claimed 80%. The app quotes that measurement on every
+Telemark school. The county rejoins
 the model when it states, per programme and year, whether everyone was
 admitted.
 

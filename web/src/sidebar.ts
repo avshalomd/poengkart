@@ -332,6 +332,15 @@ export function renderChance(s, lensCat) {
   const mlo = sm.length ? Math.min(...sm) : 1, mhi = sm.length ? Math.max(...sm) : 1;
   const lo = sf.length ? Math.round(Math.min(...sf) * mlo) : 5, hi = sf.length ? Math.round(Math.max(...sf) * mhi) : 8;
   const cov = S.MODEL!.meta && S.MODEL!.meta.backtest_eval_years && S.MODEL!.meta.backtest_eval_years.coverage80;
+  // a held-out county carries its own measured spread and its own coverage
+  // (meta.held_out_sigma / held_out_backtest, satellite_backtest in
+  // tools/model.py): the panel's ±3 to ±8 was measured on other counties'
+  // cells, and covered 70% of this county's outcomes, not 80%
+  const meta: any = S.MODEL!.meta || {};
+  const heldS = e.held_out ? Math.round((meta.held_out_sigma || {})[s.fylke] || 0) : 0;
+  const hb = e.held_out ? (meta.held_out_backtest || {})[s.fylke] : null;
+  const hbYears = hb && hb.years && hb.years.length
+    ? (hb.years.length > 1 ? `${hb.years[0]}–${hb.years[hb.years.length - 1]}` : String(hb.years[0])) : '';
   // where the county publishes round 1: what the final round does, if measured
   let fin = '';
   const fb = finalRoundBridge(s);
@@ -348,10 +357,12 @@ export function renderChance(s, lensCat) {
   if (!s.round) fin += `<div>${esc(t('chanceRoundUnknown'))}</div>`;
   box!.innerHTML = `<div class="h">${esc(head)}</div><div class="bar">${bar}</div>` + chanceMore(
     `<div>${esc(t('chanceCounts', ch.likely, ch.possible, ch.unlikely))}</div>` +
-    `<div>${esc(t('chanceSub', ch.year, e.round, lo, hi))}` +
+    `<div>${esc(heldS ? t('chanceSubHeld', ch.year, e.round, heldS, s.fylke) : t('chanceSub', ch.year, e.round, lo, hi))}` +
     (s.catchment ? ' ' + esc(t('chanceCatchment')) : '') +
-    (e.held_out ? ' ' + esc(t('chanceUntested', s.fylke))
-     : cov != null ? ' ' + esc(t('chanceCal', Math.round(cov * 100))) : '') + `</div>` + fin + adj);
+    (e.held_out
+      ? ' ' + esc(hb && hbYears ? t('chanceTested', s.fylke, Math.round(hb.coverage80 * 100), hbYears)
+                                : t('chanceUntested', s.fylke))
+      : cov != null ? ' ' + esc(t('chanceCal', Math.round(cov * 100))) : '') + `</div>` + fin + adj);
 }
 
 export function initSidebar() {

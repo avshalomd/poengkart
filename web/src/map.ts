@@ -459,8 +459,15 @@ export function drawMarkers() {
             color: cssVar('--surface-solid'), fillColor: bucketColor(bucketOf(ch.best)), fillOpacity: 0.96 }
         : { radius: 7.5, weight: 2, color: cssVar('--surface-solid'), fillColor: cssVar('--context'), fillOpacity: 0.9 })
       : st8.kind === 'points'
-      ? { radius: 7 + 5 * (st8.share ?? 0.5), weight: 2.5,
-          color: cssVar('--surface-solid'), fillColor: colorFor(v), fillOpacity: 0.96 }
+      // share is null where the county publishes no fill state (HELD_OUT): the
+      // size legend would otherwise read the fallback as "half filled up", the
+      // size 25 dots draw at today. A dashed ring says the share is unknown,
+      // and renderLegend() adds the line that names the county
+      ? (st8.share == null
+        ? { radius: 8.5, weight: 2, dashed: true,
+            color: cssVar('--surface-solid'), fillColor: colorFor(v), fillOpacity: 0.96 }
+        : { radius: 7 + 5 * st8.share, weight: 2.5,
+            color: cssVar('--surface-solid'), fillColor: colorFor(v), fillOpacity: 0.96 })
       : st8.kind === 'open'
       ? { radius: 8, weight: 2, color: cssVar('--accent'), dashed: true, fillColor: cssVar('--accent'), fillOpacity: 0.14 }
       // filled, but the last admitted had no points: the open ring, solid
