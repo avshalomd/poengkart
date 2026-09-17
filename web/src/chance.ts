@@ -4,7 +4,7 @@ import { bucketOf, chanceMode, chanceOf, okChoice, pct, pctS, predFor, progKeyMa
 import { cssVar, esc, fmt, progName, X_ICON } from "./helpers";
 import { t } from "./i18n";
 import { toast } from "./locate";
-import { drawMarkers } from "./map";
+import { drawMarkers, mapZoom, viewSchool } from "./map";
 import { renderList } from "./programs";
 import { openSide, renderSide } from "./sidebar";
 import { S } from './state';
@@ -165,7 +165,7 @@ export function renderChoices() {
     (S.choicesNote ? `<div class="vnote">⚠ ${esc(S.choicesNote)}</div>` : '') + sum;
   box!.querySelectorAll('.who').forEach((b: any) => b.onclick = () => {
     const { s } = items[+b.dataset.i]; openSide(s);
-    if (s.lat && S.map && S.view === 'map') S.map.setView([s.lat, s.lon], Math.max(S.map.getZoom(), 11));
+    if (s.lat && S.map && S.view === 'map') viewSchool(s, Math.max(mapZoom(), 10));
   });
   box!.querySelectorAll('.rm').forEach((b: any) => b.onclick = () => {
     const i = +b.dataset.i, { s, p } = items[i];

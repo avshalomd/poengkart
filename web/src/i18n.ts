@@ -318,7 +318,6 @@ export const T = {
   roundYearNote: { no: (y, r) => `${y}-tallene er fra ${r}. inntak, ikke samme inntak som de andre årene – flere kom inn, så grensene ligger lavere.`,
                    en: (y, r) => `The ${y} figures are from the ${ordEn(r)} intake, not the same intake as the other years – more applicants were admitted, so the thresholds sit lower.` },
   closeAria:  { no: 'Lukk skoledetaljer', en: 'Close school details' },
-  leafletTitle: { no: 'Et JavaScript-bibliotek for interaktive kart', en: 'A JavaScript library for interactive maps' },
   // x: the cluster's mix when points are entered, so the label says what the ring shows
   clusterAria: { no: (n, x) => `${n} skoler i dette området.` + (x ? ` Best sjanse: ${x.likely} sannsynlig · ${x.possible} mulig · ${x.unlikely} lite sannsynlig${x.none ? ` · ${x.none} uten prognose` : ''}.` : '') + ' Trykk for å zoome inn.',
                  en: (n, x) => `${n} schools in this area.` + (x ? ` Best chance: ${x.likely} likely · ${x.possible} possible · ${x.unlikely} unlikely${x.none ? ` · ${x.none} without a forecast` : ''}.` : '') + ' Press to zoom in.' },

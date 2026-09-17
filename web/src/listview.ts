@@ -1,10 +1,8 @@
-import L from 'leaflet';
-import { framePad } from "./boot";
 import { bucketColor, bucketOf, chanceMode, schoolChance } from "./chance";
 import { forecastYears, liftMapControls } from "./chrome";
 import { BINS, colorFor, esc, fmt, meanStep, round1, schoolPressure, shownPrograms, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
-import { drawMarkers, visibleSchools } from "./map";
+import { drawMarkers, fitVisible, resizeMap, visibleSchools } from "./map";
 import { schoolUrl } from './router';
 import { listLayout, openSide, sideTrap } from "./sidebar";
 import { S } from './state';
@@ -28,13 +26,9 @@ export function setView(v) {
   if (v === 'list') renderListView();
   else if (S.map) {
     drawMarkers();                       // list mode skipped every marker rebuild
-    S.map.invalidateSize();
+    resizeMap();
     liftMapControls();
-    if (S.refitPending) {
-      S.refitPending = false;
-      const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon] as L.LatLngTuple);
-      if (pts.length) S.map.fitBounds(L.latLngBounds(pts).pad(0.08), { ...framePad(), animate: false });
-    }
+    if (S.refitPending) { S.refitPending = false; fitVisible(false); }
   }
 }
 export function deltaFor(s, cat, yr) {

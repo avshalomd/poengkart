@@ -22,7 +22,7 @@ const ownBefore: Record<string, PropertyDescriptor | undefined> = {
 };
 
 describe('the toast and the locate button', () => {
-  beforeEach(() => { S.locLayer = null; S.locBtnEl = null; S.locBusy = false; });
+  beforeEach(() => { S.loc = null; S.locBtnEl = null; S.locBusy = false; });
   afterEach(() => {
     for (const [k, d] of Object.entries(ownBefore)) {
       delete (navigator as any)[k];
@@ -94,11 +94,13 @@ describe('the toast and the locate button', () => {
     expect(S.locBtnEl!.getAttribute('aria-label')).toBe(t('locBtn'));
     expect(S.locBtnEl!.getAttribute('aria-pressed')).toBe('false');
     S.locBtnEl!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-    expect(S.locLayer).toBeTruthy();
+    expect(S.loc).toEqual({ lat: 59.9, lon: 10.75, acc: 25 });
+    expect(document.querySelector('#map .pk-loc')).toBeTruthy();
     expect(S.locBtnEl!.classList.contains('on')).toBe(true);
     expect(S.locBtnEl!.getAttribute('aria-pressed')).toBe('true');
     locate();                                   // the second press clears it again
-    expect(S.locLayer).toBeNull();
+    expect(S.loc).toBeNull();
+    expect(document.querySelector('#map .pk-loc')).toBeNull();
     expect(S.locBtnEl!.classList.contains('on')).toBe(false);
   });
 
@@ -124,19 +126,19 @@ describe('the toast and the locate button', () => {
     locate();
     expect(S.locBusy).toBe(true);
     locate();                                            // refused while one is in flight
-    expect(S.locLayer).toBeNull();
+    expect(S.loc).toBeNull();
     S.locBusy = false;
     S.locBtnEl = null;
     expect(updateLocateAria()).toBeUndefined();          // a no-op, not a crash
   });
 
-  it('Leaflet’s own zoom buttons are titled in the app’s language', () => {
+  it('the map’s own zoom buttons are titled in the app’s language', () => {
     loadFixtures(); initHelpers();
     const bar = document.createElement('div');
-    bar.innerHTML = '<a class="leaflet-control-zoom-in"></a><a class="leaflet-control-zoom-out"></a>';
+    bar.innerHTML = '<button class="pk-zoom-in"></button><button class="pk-zoom-out"></button>';
     document.getElementById('map')!.appendChild(bar);
     updateZoomAria();
-    expect(document.querySelector('.leaflet-control-zoom-in')!.getAttribute('aria-label')).toBe(t('zoomIn'));
-    expect((document.querySelector('.leaflet-control-zoom-out') as any).title).toBe(t('zoomOut'));
+    expect(document.querySelector('.pk-zoom-in')!.getAttribute('aria-label')).toBe(t('zoomIn'));
+    expect((document.querySelector('.pk-zoom-out') as any).title).toBe(t('zoomOut'));
   });
 });

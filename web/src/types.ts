@@ -180,22 +180,6 @@ export interface SideReturn { id?: string; who?: string | null }
 export type BugContext = Record<string, string | string[]>;
 
 
-/* Two Leaflet internals the app reads. They are not in @types/leaflet because
-   they are not API, but the code has always read them, and naming them here
-   keeps the two reading sites free of `as any`:
-   `_featureGroup` is the layer the cluster plugin keeps its cluster icons in
-   (chrome.legendZoomHint, map.drawMarkers), `_icon` is a marker's own element
-   before Leaflet hands it out (map.drawMarkers labels the clusters through
-   it), `_bounds` is the cluster's own extent (map.drawMarkers asks whether
-   zooming to it would move), and `_flyToFrame` is the handle of a flight in
-   progress (sidebar.openSide waits for it to land). */
-declare module 'leaflet' {
-  interface MarkerClusterGroup { _featureGroup?: FeatureGroup }
-  interface Map { _flyToFrame?: number }
-  interface Marker { _icon?: HTMLElement }
-  interface MarkerCluster { _bounds?: LatLngBounds }
-}
-
 declare global {
   interface Window {
     /* `va` is Vercel Analytics: the page loads it from /_vercel/insights, so it

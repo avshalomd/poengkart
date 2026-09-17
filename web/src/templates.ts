@@ -3,7 +3,7 @@
    build (pages/[fylke]/[skole].astro through prerender.ts) writes the same
    strings into the page, so a school's page carries the school before any
    script runs and nothing moves when the script takes over. This module must
-   stay importable without a DOM: state, helpers, i18n, types — and no Leaflet. */
+   stay importable without a DOM: state, helpers, i18n, types — and no map engine. */
 import { S } from './state';
 import { t, CATS } from './i18n';
 import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE,

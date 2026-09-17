@@ -2,9 +2,9 @@ import { describe, it, expect } from 'vitest';
 import { loadFixtures, DATA, asker } from './fixtures';
 import { stubMap } from './mapstub';
 import {
-  drawMarkers, visibleSchools, setLens, setLevels, onMapFylke, lensNoFigure, clusterMix,
-  tileUrl, setTiles, isDark, prefersStill, laterPublished, panelFolds, foldPanel, unfoldPanel,
-  renderPanelSum, initMap,
+  drawMarkers, renderClusters, visibleSchools, setLens, setLevels, onMapFylke, lensNoFigure, clusterMix, anyClusters,
+  styleUrl, setMapStyle, isDark, prefersStill, laterPublished, panelFolds, foldPanel, unfoldPanel,
+  renderPanelSum, initMap, createMap, aimTip, hideMapTip, byEl, buildMiniMap, dropMiniMap, hasWebGL, boundsOf, padBounds,
 } from '../src/map';
 import { openSide } from '../src/sidebar';
 import { initHelpers, shownPrograms, levelScope, schoolPressure } from '../src/helpers';
@@ -12,65 +12,111 @@ import { initListview } from '../src/listview';
 import { PREFS } from '../src/prefs';
 import { renderPanel } from '../src/chrome';
 import { t, CATS } from '../src/i18n';
-import type L from 'leaflet';
 import { S } from '../src/state';
 
-const markers = () => S.markerLayer!.getLayers() as L.CircleMarker[];
+const dots = () => [...document.querySelectorAll('#map .pk-dot')] as HTMLElement[];
+const clusters = () => [...document.querySelectorAll('#map .pk-cluster')] as HTMLElement[];
 const onMap = () => visibleSchools().filter((s: any) => s.lat);
+// the stub's viewport is the whole country at zoom 5: every visible school is on screen
+const shown = () => clusters().reduce((n, c) => n + Number(c.textContent), 0) + dots().length;
+// the app's own map, built through the mocked engine: the listeners createMap
+// registers (a move folds a fan-out back in) are live on the stub
+const setup = () => { loadFixtures(); initHelpers(); initListview(); initMap(); createMap(); };
 
 describe('the map layer', () => {
-  it('draws one dot per school on screen, and the filters decide which', () => {
-    loadFixtures(); initHelpers(); initListview(); initMap(); stubMap();
+  it('shows every school the filters leave — as a dot or inside a cluster', () => {
+    setup();
     drawMarkers();
-    expect(markers().length).toBe(onMap().length);
+    expect(shown()).toBe(onMap().length);
+    expect(clusters().length).toBeGreaterThan(0);          // 190 schools at national zoom cluster
+    expect(anyClusters()).toBe(true);                      // what the legend's zoom hint reads
     S.mapFylke = 'Oslo';
     drawMarkers();
-    expect(markers().length).toBe(onMap().length);
+    expect(shown()).toBe(onMap().length);
     expect(onMap().every((s: any) => s.fylke === 'Oslo')).toBe(true);
     S.mapCat = 'ST';
     drawMarkers();
-    expect(markers().length).toBe(onMap().length);
+    expect(shown()).toBe(onMap().length);
     expect(visibleSchools().every((s: any) => shownPrograms(s).some((p: any) => p.category === 'ST'))).toBe(true);
   });
 
-  it('a dot’s size and colour come from the school’s own pressure figure', () => {
-    loadFixtures(); initHelpers(); initListview(); initMap(); stubMap();
+  it('zoomed in, every school is its own dot, sized and coloured by its own pressure figure', () => {
+    setup();
     S.mapFylke = 'Oslo';
+    S.map!.jumpTo({ center: [10.75, 59.91], zoom: 11 });
     drawMarkers();
-    for (const m of markers()) {
-      const s = (m.options as any).pkSchool;
-      const pr: any = schoolPressure(s, 'all');
+    expect(clusters().length).toBe(0);
+    expect(anyClusters()).toBe(false);
+    expect(dots().length).toBe(onMap().length);
+    for (const el of dots()) {
+      const rec = byEl.get(el)!, pr: any = schoolPressure(rec.s, 'all');
+      const radius = Number(el.dataset.pkRadius);
       // the share that filled up drives the radius; everything else is a fixed size
-      if (pr.kind === 'points') expect(m.options.radius).toBeCloseTo(7 + 5 * (pr.share ?? 0.5), 10);
-      else expect([7.5, 8]).toContain(m.options.radius);
-      expect((m.options as any).pkBucket).toBe('none');       // no points entered
-      expect(m.getTooltip()).toBeTruthy();
+      if (pr.kind === 'points') expect(radius).toBeCloseTo(7 + 5 * (pr.share ?? 0.5), 10);
+      else expect([7.5, 8]).toContain(radius);
+      // the box is the circle plus its stroke, which used to straddle the radius
+      expect(parseFloat(el.style.width)).toBeGreaterThanOrEqual(2 * radius + 2);
+      expect(el.dataset.pkBucket).toBe('none');            // no points entered
+      expect(el.getAttribute('role')).toBe('button');
+      expect(el.getAttribute('aria-label')).toContain(rec.s.name);
     }
   });
 
   it('with points entered every dot answers “can I get in”, and the cluster ring counts the same buckets', () => {
-    loadFixtures(); initHelpers(); initListview(); initMap(); stubMap();
+    setup();
     S.myPoints = 45;
     drawMarkers();
-    const buckets = markers().map((m: any) => m.options.pkBucket);
-    expect(buckets.length).toBe(onMap().length);
-    expect(buckets.every((b: string) => ['likely', 'possible', 'unlikely', 'none'].includes(b))).toBe(true);
-    expect(buckets.some((b: string) => b !== 'none')).toBe(true);
-    // the cluster's mix is those same buckets, counted
-    const kids = markers().slice(0, 12);
-    const cluster: any = { getChildCount: () => kids.length, getAllChildMarkers: () => kids };
-    const mix = clusterMix(cluster);
-    expect(mix.likely + mix.possible + mix.unlikely + mix.none).toBe(kids.length);
-    for (const b of ['likely', 'possible', 'unlikely', 'none']) {
-      expect(mix[b]).toBe(kids.filter((m: any) => (m.options.pkBucket || 'none') === b).length);
+    for (const c of clusters()) {
+      const mix = c.dataset.mix!.split(',').map(Number);
+      expect(mix.reduce((a, b) => a + b, 0)).toBe(Number(c.textContent));
+      expect(c.classList.contains('mix')).toBe(true);
+      expect(c.style.getPropertyValue('--u')).toMatch(/%$/);
     }
-    const icon = (S.markerLayer!.options as any).iconCreateFunction(cluster);
-    expect(icon.options.html).toContain(`>${kids.length}<`);
-    expect(icon.options.html).toContain('data-mix="' + [mix.likely, mix.possible, mix.unlikely, mix.none].join(','));
+    // clusterMix reads the reduced properties supercluster summed
+    expect(clusterMix({ properties: { likely: 2, possible: 1, unlikely: 0, none: 3 } })).toEqual({ likely: 2, possible: 1, unlikely: 0, none: 3 });
+    S.map!.jumpTo({ center: [10.75, 59.91], zoom: 11 });
+    renderClusters();
+    const bs = dots().map(el => el.dataset.pkBucket);
+    expect(bs.every(b => ['likely', 'possible', 'unlikely', 'none'].includes(b!))).toBe(true);
+    expect(bs.some(b => b !== 'none')).toBe(true);
+  });
+
+  it('a cluster no zoom can split fans its schools out, and the next move folds them back', () => {
+    setup();
+    // an isolated school (none other within ~17 km north–south / ~17 km east–west
+    // at 60°N), with a second school moved onto its coordinates for this test
+    const all = DATA.schools.filter((s: any) => s.lat);
+    const far = (p: any, q: any) => Math.abs(p.lat - q.lat) > 0.15 || Math.abs(p.lon - q.lon) > 0.3;
+    const a = all.find((s: any) => all.every((o: any) => o === s || far(s, o)));
+    expect(a, 'no isolated school in the fixture').toBeTruthy();
+    const b = all.find((s: any) => s !== a)!;
+    const keep = [b.lat, b.lon];
+    b.lat = a.lat; b.lon = a.lon;
+    S.map!.jumpTo({ center: [a.lon, a.lat], zoom: 9 });     // the last zoom that clusters
+    drawMarkers();
+    // the pair sits at the stub's centre pixel (700, 450); supercluster's own
+    // mean of two identical points lands a float's width off it
+    const at = (el: HTMLElement) => (el.style.transform.match(/translate\((-?[\d.]+)px,\s*(-?[\d.]+)px\)$/) || []).slice(1).map(Number);
+    const pair = clusters().find(c => { const [x, y] = at(c); return Math.abs(x - 700) < 1 && Math.abs(y - 450) < 1; });
+    expect(pair).toBeTruthy();
+    expect(pair!.textContent).toBe('2');
+    pair!.click();
+    expect(pair!.hidden).toBe(true);
+    const spread = dots().filter(el => [a, b].includes(byEl.get(el)!.s));
+    expect(spread.length).toBe(2);
+    expect(spread[0].style.transform).not.toBe(spread[1].style.transform);   // fanned apart
+    S.map!.fire('movestart');
+    expect(pair!.hidden).toBe(false);
+    expect(dots().filter(el => [a, b].includes(byEl.get(el)!.s)).length).toBe(0);
+    // any other cluster at this zoom splits by zooming in, to the zoom where its dots separate
+    const other = clusters().find(c => c !== pair)!;
+    other.click();
+    expect(S.map!.getZoom()).toBe(10);
+    b.lat = keep[0]; b.lon = keep[1];
   });
 
   it('under a lens with no figure the dot says which state it is, not a bare dash', () => {
-    loadFixtures(); initHelpers(); initListview(); initMap(); stubMap();
+    setup();
     S.mapCat = 'ST';
     const s = DATA.schools.find((x: any) => {
       const scope = levelScope(x.programs).filter((p: any) => p.category === 'ST');
@@ -88,12 +134,12 @@ describe('the map layer', () => {
   });
 
   it('picking a county redraws everything and remembers it in the address', () => {
-    loadFixtures(); initHelpers(); initListview(); initMap(); stubMap();
+    setup();
     openSide(asker());
     onMapFylke('Oslo');
     expect(S.mapFylke).toBe('Oslo');
     expect(S.current).toBeNull();                       // Asker is not in Oslo any more
-    expect(markers().length).toBe(onMap().length);
+    expect(shown()).toBe(onMap().length);
     expect(location.search).toContain('f=Oslo');
     expect(S.refitPending).toBe(true);                  // nothing to fit while the map is 0×0
     // a county that does not run the chosen lens widens rather than empty the map
@@ -108,7 +154,7 @@ describe('the map layer', () => {
   });
 
   it('the lens and the level scope are one switch each, and both redraw', () => {
-    loadFixtures(); initHelpers(); initListview(); initMap(); stubMap();
+    setup();
     renderPanel();                                      // setLens writes into the select the panel fills
     setLens('ST');
     expect(S.mapCat).toBe('ST');
@@ -119,14 +165,14 @@ describe('the map layer', () => {
     setLevels(true);
     expect(S.allLevels).toBe(true);
     expect(localStorage.getItem('pk-alllevels')).toBe('1');
-    expect(markers().length).toBe(onMap().length);
+    expect(shown()).toBe(onMap().length);
     setLevels(false);
     expect(localStorage.getItem('pk-alllevels')).toBe('0');
     history.replaceState(null, '', '/');
   });
 
   it('the folded panel is a phone’s affordance, and unfolding puts the selects back', () => {
-    loadFixtures(); initHelpers(); initListview(); initMap(); stubMap();
+    setup();
     expect(panelFolds()).toBe(false);                   // happy-dom's window is 1024×768
     foldPanel(true);
     expect(document.body.classList.contains('panel-folded')).toBe(false);   // refused off a phone
@@ -137,21 +183,16 @@ describe('the map layer', () => {
     expect(document.getElementById('panel-sum-t')!.textContent).toContain(t('allCats'));
   });
 
-  it('the basemap follows the theme', () => {
+  it('the basemap follows the theme, on the map and the minimap alike', () => {
     loadFixtures(); initHelpers(); initMap(); stubMap();
     PREFS.theme = 'light';
     expect(isDark()).toBe(false);
-    expect(tileUrl()).toContain('rastertiles/voyager');
+    expect(styleUrl()).toBe('/map/voyager.json');
     PREFS.theme = 'dark';
     expect(isDark()).toBe(true);
-    expect(tileUrl()).toContain('dark_all');
-    setTiles();
-    expect(S.tileLayer).toBeTruthy();
-    expect((S.tileLayer as any)._url).toBe(tileUrl());
-    const old = S.tileLayer;
-    setTiles();                                          // the old layer comes off first
-    expect(S.tileLayer).not.toBe(old);
-    expect((S.tileLayer as any)._url).toBe(tileUrl());
+    expect(styleUrl()).toBe('/map/dark-matter.json');
+    setMapStyle();
+    expect(S.map!.getStyle()).toBe('/map/dark-matter.json');
     PREFS.theme = 'auto';
     // happy-dom answers every media query it does not model with "no": nothing
     // here asks for still motion, so the animated flights stay on
@@ -159,20 +200,44 @@ describe('the map layer', () => {
   });
 
   it('every dot’s tooltip names the school, its figure and how many programme areas it has', () => {
-    loadFixtures(); initHelpers(); initListview(); initMap(); stubMap();
+    setup();
     S.mapFylke = 'Rogaland';
+    S.map!.jumpTo({ center: [5.73, 58.97], zoom: 11 });
     drawMarkers();
-    for (const m of markers()) {
-      const s = (m.options as any).pkSchool;
-      const html = (m.getTooltip() as any)._content;
-      expect(html).toContain(s.name);
-      expect(html).toContain(t('tipHint'));
+    const tip = () => document.querySelector('#map .pk-tip') as HTMLElement;
+    for (const el of dots()) {
+      const rec = byEl.get(el)!;
+      aimTip(rec);
+      expect(tip().hidden).toBe(false);
+      expect(tip().innerHTML).toContain(rec.s.name);
+      expect(tip().innerHTML).toContain(t('tipHint'));
+      expect(tip().className).toMatch(/pk-tip-(top|bottom|left|right)/);
     }
+    hideMapTip(dots()[0]);                              // another dot's tip: left alone
+    expect(tip().hidden).toBe(false);
+    hideMapTip();
+    expect(tip().hidden).toBe(true);
     // and under a lens it leads with the utdanningsprogram
     S.mapCat = 'ST';
     drawMarkers();
-    for (const m of markers()) {
-      expect((m.getTooltip() as any)._content).toContain(CATS.ST[S.lang]);
-    }
+    for (const el of dots()) expect(byEl.get(el)!.html).toContain(CATS.ST[S.lang]);
+  });
+
+  it('bounds come from [lat, lon] pairs and pad by a share of their span', () => {
+    const b = boundsOf([[60, 10], [62, 12]]);
+    expect([b.getWest(), b.getSouth(), b.getEast(), b.getNorth()]).toEqual([10, 60, 12, 62]);
+    const p = padBounds(b, 0.5);
+    expect([p.getWest(), p.getSouth(), p.getEast(), p.getNorth()]).toEqual([9, 59, 13, 63]);
+  });
+
+  it('the minimap is a second, still map with a dot at its centre — or nothing without WebGL', () => {
+    loadFixtures(); initHelpers(); initMap(); stubMap();
+    document.body.insertAdjacentHTML('beforeend', '<div id="s-photo"><div id="s-minimap"></div></div>');
+    expect(hasWebGL()).toBe(false);                     // happy-dom draws nothing
+    buildMiniMap(asker());
+    expect(document.getElementById('s-minimap')!.classList.contains('off')).toBe(true);
+    expect(S.miniMap).toBeNull();
+    dropMiniMap();
+    document.getElementById('s-photo')!.remove();
   });
 });

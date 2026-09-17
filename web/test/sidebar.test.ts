@@ -105,8 +105,8 @@ describe('the school sheet', () => {
     const withPhoto = asker();
     expect(withPhoto.photo).toBeTruthy();
     openSide(withPhoto);
-    // the header's own <img>, as a direct child: the minimap below draws real
-    // Leaflet tiles, which are <img> too
+    // the header's own <img>, as a direct child: the minimap below sits in
+    // #s-photo too, and draws a map of its own inside itself
     expect(document.querySelector('#s-photo > img')).toBeTruthy();
     expect(document.querySelector('#s-photo .credit')).toBeTruthy();
     const noPhoto = S.DATA!.schools.find((x: any) => !x.photo && x.lat);

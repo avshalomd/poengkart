@@ -1,7 +1,6 @@
-import L from 'leaflet';
-import { cssVar } from "./helpers";
+import type { IControl } from 'maplibre-gl';
 import { t } from "./i18n";
-import { prefersStill } from "./map";
+import { hideLocation, mapZoom, prefersStill, showLocation } from "./map";
 import { S } from './state';
 
 /* ================= geolocation ================= */
@@ -36,7 +35,7 @@ export function placeToast() {
   const beside = document.body.classList.contains('side-open') && sd.width > 0 && sd.left > 0;
   const lg = document.getElementById('legend')?.getBoundingClientRect();
   if (!beside && !lg?.height) return;
-  const bars = [...document.querySelectorAll('.leaflet-bottom.leaflet-right .leaflet-bar')].map(b => b.getBoundingClientRect());
+  const bars = [...document.querySelectorAll('.maplibregl-ctrl-bottom-right .maplibregl-ctrl-group')].map(b => b.getBoundingClientRect());
   const avoid = [lg, document.getElementById('panel')!.getBoundingClientRect(), ...bars, ...(beside ? [sd] : [])]
     .filter(a => a && a.height);
   const clear = () => {
@@ -80,40 +79,43 @@ export function locHelpKind() {
   return ['other'];
 }
 export function addLocateControl() {
-  if (!('geolocation' in navigator)) return;
-  const C = L.Control.extend({
+  if (!('geolocation' in navigator) || !S.map) return;
+  const ctrl: IControl = {
     onAdd() {
-      const div = L.DomUtil.create('div', 'leaflet-bar');
-      const b = L.DomUtil.create('button', 'locate', div);
-      b.type = 'button';
+      const div = document.createElement('div');
+      div.className = 'maplibregl-ctrl maplibregl-ctrl-group';
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'locate';
       b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"' +
         ' stroke-width="2" stroke-linecap="round" aria-hidden="true">' +
         '<circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/>' +
         '<path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>';
       S.locBtnEl = b;
-      L.DomEvent.on(b, 'click', ev => { L.DomEvent.stop(ev); locate(); });
+      b.addEventListener('click', ev => { ev.stopPropagation(); locate(); });
+      div.appendChild(b);
       return div;
-    }
-  });
-  new C({ position: 'bottomright' }).addTo(S.map!);
+    },
+    onRemove() {},
+  };
+  S.map.addControl(ctrl, 'bottom-right');
   updateLocateAria();
 }
-// Leaflet's own zoom buttons are titled in English; keep them in the app's language
+// the map's own zoom buttons carry no name of their own; keep them in the app's language
 export function updateZoomAria() {
-  [['.leaflet-control-zoom-in', 'zoomIn'], ['.leaflet-control-zoom-out', 'zoomOut']].forEach(([sel, key]) => {
-    document.querySelectorAll(sel).forEach((a: any) => { a.title = t(key); a.setAttribute('aria-label', t(key)); });
+  [['.pk-zoom-in', 'zoomIn'], ['.pk-zoom-out', 'zoomOut']].forEach(([sel, key]) => {
+    document.querySelectorAll(sel).forEach((b: any) => { b.title = t(key); b.setAttribute('aria-label', t(key)); });
   });
 }
 export function updateLocateAria() {
   if (!S.locBtnEl) return;
   S.locBtnEl.title = t('locBtn');
   S.locBtnEl.setAttribute('aria-label', t('locBtn'));
-  S.locBtnEl.setAttribute('aria-pressed', String(!!S.locLayer));
+  S.locBtnEl.setAttribute('aria-pressed', String(!!S.loc));
 }
 export function locate() {
   if (S.locBusy) return;                  // one fix in flight at a time
-  if (S.locLayer) {                       // second press clears the marker again
-    S.map!.removeLayer(S.locLayer); S.locLayer = null;
+  if (S.loc) {                            // second press clears the marker again
+    hideLocation();
     S.locBtnEl!.classList.remove('on');
     updateLocateAria();
     return;
@@ -121,17 +123,11 @@ export function locate() {
   S.locBusy = true;
   navigator.geolocation.getCurrentPosition(pos => {
     S.locBusy = false;
-    const ll: any = [pos.coords.latitude, pos.coords.longitude];
-    S.locLayer = L.layerGroup([
-      L.circle(ll, { radius: pos.coords.accuracy || 0, color: cssVar('--accent'),
-                     weight: 1, fillOpacity: .08 }),
-      L.circleMarker(ll, { radius: 6, color: '#fff', weight: 2,
-                           fillColor: cssVar('--accent'), fillOpacity: 1 })
-    ]).addTo(S.map!);
+    showLocation(pos.coords.latitude, pos.coords.longitude, pos.coords.accuracy || 0);
     S.locBtnEl!.classList.add('on');
     updateLocateAria();
-    const z = Math.max(S.map!.getZoom(), 10);
-    prefersStill() ? S.map!.setView(ll, z) : S.map!.flyTo(ll, z);
+    const to = { center: [pos.coords.longitude, pos.coords.latitude] as [number, number], zoom: Math.max(mapZoom(), 9) };
+    prefersStill() ? S.map!.jumpTo(to) : S.map!.flyTo(to);
   }, err => {
     S.locBusy = false;
     if (err && err.code === 1) toast(t('locDenied') + ' ' + t('locHow', ...locHelpKind()), 12000);

@@ -146,10 +146,10 @@
   button { font: inherit; color: inherit; }
   #app { display: flex; height: 100%; }
   /* isolate: the panel now comes before the map in the document (Tab order),
-     and Leaflet's controls share its z-index 1000, so without their own
-     stacking context they would paint over the panel instead of under it */
+     and the map's controls share its z-index, so without their own stacking
+     context they would paint over the panel instead of under it */
   #map { flex: 1; min-width: 0; background: var(--page); isolation: isolate; }
-  .leaflet-container { font: inherit; }
+  .maplibregl-map { font: inherit; }
 
   /* Glass is for the chrome floating over the map (panel, legend, map buttons,
      toast), never for content: the school sheet and the modals stay solid.
@@ -342,7 +342,7 @@
     flex: 1; min-width: 0; overflow-y: auto; background: var(--page);
   }
   body.view-list #map, body.view-list #legend { display: none; }
-  body.view-list .leaflet-bottom { display: none; }
+  body.view-list .maplibregl-control-container { display: none; }
   #listview .card {
     background: var(--surface-solid); border: 1px solid var(--line); border-radius: 16px;
     /* 16px sides, the control card's own: the two share one column, so the
@@ -520,15 +520,15 @@
   :root[data-font="xl"] body.lv-thin #side > .scroll { min-width: calc(100vw / 1.3); }
   /* on narrow screens the legend covers the bottom-right map controls;
      --ctrl-lift (set from the legend's measured height) moves them above it */
-  .leaflet-bottom.leaflet-right { margin-bottom: var(--ctrl-lift, 0px); }
+  .maplibregl-ctrl-bottom-right { margin-bottom: var(--ctrl-lift, 0px); }
   /* ---------- locate control + toast ---------- */
-  .leaflet-bar button.locate {
+  .maplibregl-ctrl-group button.locate {
     width: 30px; height: 30px; display: grid; place-items: center;
     border: none; background: transparent; color: var(--ink-2); cursor: pointer;
     border-radius: 50%;
   }
-  .leaflet-bar button.locate.on { color: var(--accent); }
-  .leaflet-bar button.locate svg { width: 16px; height: 16px; }
+  .maplibregl-ctrl-group button.locate.on { color: var(--accent); }
+  .maplibregl-ctrl-group button.locate svg { width: 16px; height: 16px; }
   #toast {
     position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 3000;
     background: var(--surface); color: var(--ink); border: 1px solid var(--g-rim);
@@ -859,8 +859,8 @@
   /* Tab scrolls the next control flush with its scroller's edge, and the ring
      outside it was cut off there: a table row's link lost 4px of it */
   a, button, input, select, summary, [tabindex] { scroll-margin: 8px; }
-  .seg button:focus-visible, #listview th button:focus-visible,
-  .leaflet-container:focus-visible { outline-offset: -2px; }
+  .seg button:focus-visible, #listview th button:focus-visible { outline-offset: -2px; }
+  .maplibregl-canvas:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
   /* ---------- hover ----------
      A touch device has no pointer to hover with, but it still matches a bare
@@ -875,7 +875,7 @@
   #listview th button:hover .ar.on { opacity: 1; }
   #listview tbody tr:hover { background: var(--accent-soft); }
   #listview .sc a:hover { text-decoration: underline; }
-  .leaflet-bar button.locate:hover { color: var(--accent); }
+  .maplibregl-ctrl-group button.locate:hover { color: var(--accent); }
   .prow .pick:hover { border-color: var(--accent); color: var(--accent); }
   #choices .row .rm:hover { background: var(--accent-soft); color: var(--accent); }
   #s-list .oldnote:hover, #s-list .lvnote:hover { color: var(--ink-2); }
@@ -895,7 +895,7 @@
      Vis mer, the sheet's close and the zoom buttons */
   .seg button:not(.on):hover, .tabs button:not(.on):hover,
   #choices .h button:not(.arm):hover { color: var(--accent); }
-  .leaflet-control-zoom a:hover { color: var(--accent) !important; }
+  .maplibregl-ctrl-group button.pk-zoom:hover { color: var(--accent); }
   /* Vis mer is accent text already, and the brighter accent would drop 11px
      text under 4.5:1 on the chance box's tint: it underlines instead */
   .more > summary:hover .mt, .more > summary:hover .lt { text-decoration: underline; text-underline-offset: 2px; }
@@ -916,14 +916,14 @@
   .ico, .seg button, .modal .x, .modal .cta, .ptsrow button, .prow .pick,
   #choices .row .rm, #choices .h button, #calc .grades button, .tabs button,
   .more > summary, .scope-chip button, #listview th button,
-  .leaflet-bar button.locate {
+  .maplibregl-ctrl-group button.locate {
     transition: transform .1s ease-out;
   }
   .ico:active, .seg button:active, .modal .x:active, .modal .cta:active,
   .ptsrow button:active, .prow .pick:active, #choices .row .rm:active,
   #choices .h button:active, #calc .grades button:active, .tabs button:active,
   .more > summary:active, .scope-chip button:active, #listview th button:active,
-  .leaflet-bar button.locate:active {
+  .maplibregl-ctrl-group button.locate:active {
     transform: scale(.96);
   }
   /* rows and full-width targets: tint, not scale */
@@ -942,12 +942,12 @@
     .ico, .seg button, .modal .x, .modal .cta, .ptsrow button, .prow .pick,
     #choices .row .rm, #choices .h button, #calc .grades button, .tabs button,
     .more > summary, .scope-chip button, #listview th button,
-    .leaflet-bar button.locate { transition: none; }
+    .maplibregl-ctrl-group button.locate { transition: none; }
     .ico:active, .seg button:active, .modal .x:active, .modal .cta:active,
     .ptsrow button:active, .prow .pick:active, #choices .row .rm:active,
     #choices .h button:active, #calc .grades button:active, .tabs button:active,
     .more > summary:active, .scope-chip button:active, #listview th button:active,
-    .leaflet-bar button.locate:active {
+    .maplibregl-ctrl-group button.locate:active {
       transform: none; background: color-mix(in srgb, var(--accent) 18%, transparent);
     }
   }
@@ -1009,21 +1009,32 @@
   }
 
   /* ---------- map marker & tooltip ---------- */
-  .leaflet-interactive:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .pk-dot:focus-visible, .pk-cluster:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   /* a click, a tap and a sheet closed with the mouse all focus the dot too, and
      the browser then drew its own square ring round it; only the keyboard gets one */
-  .leaflet-interactive:focus:not(:focus-visible) { outline: none; }
-  .leaflet-tooltip.tip {
+  .pk-dot:focus:not(:focus-visible), .pk-cluster:focus:not(:focus-visible) { outline: none; }
+
+  /* ---------- the pane over the canvas (map.ts) ---------- */
+  .pk-pane { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+  .pk-pane > * { position: absolute; left: 0; top: 0; pointer-events: auto; will-change: transform; }
+  .pk-dot { border-radius: 50%; box-sizing: border-box; cursor: pointer; }
+  .pk-loc { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; pointer-events: none; }
+  .pk-loc-ring { border-radius: 50%; border: 1px solid var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); pointer-events: none; }
+  .pk-minidot { position: absolute; left: 50%; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%;
+                background: var(--accent); border: 3px solid #fff; pointer-events: none; }
+
+  .pk-tip {
     background: var(--surface-solid); color: var(--ink); border: 1px solid var(--line);
     border-radius: 12px; box-shadow: var(--shadow); padding: 9px 12px;
+    position: absolute; left: 0; top: 0; pointer-events: none; z-index: 3; white-space: nowrap;
   }
-  .leaflet-tooltip-top.tip::before { border-top-color: var(--surface-solid); }
-  .leaflet-tooltip-bottom.tip::before { border-bottom-color: var(--surface-solid); }
-  /* a tooltip slid sideways to clear the panel or the map's edge keeps its
-     arrow on the school (aimTip sets --ax) */
-  .leaflet-tooltip-top.tip::before, .leaflet-tooltip-bottom.tip::before { left: calc(50% + var(--ax, 0px)); }
-  .leaflet-tooltip-left.tip::before { border-left-color: var(--surface-solid); }
-  .leaflet-tooltip-right.tip::before { border-right-color: var(--surface-solid); }
+  /* the tooltip's arrow: aimTip picks the side and slides the box sideways
+     to clear the panel or the map's edge, keeping the arrow on the school (--ax) */
+  .pk-tip::before { content: ''; position: absolute; border: 6px solid transparent; }
+  .pk-tip-top::before { top: 100%; left: calc(50% + var(--ax, 0px)); margin-left: -6px; border-top-color: var(--surface-solid); }
+  .pk-tip-bottom::before { bottom: 100%; left: calc(50% + var(--ax, 0px)); margin-left: -6px; border-bottom-color: var(--surface-solid); }
+  .pk-tip-left::before { left: 100%; top: 50%; margin-top: -6px; border-left-color: var(--surface-solid); }
+  .pk-tip-right::before { right: 100%; top: 50%; margin-top: -6px; border-right-color: var(--surface-solid); }
   .tip .n { font-weight: 650; font-size: 13px; letter-spacing: -.01em; }
   .tip .v { font-size: 12px; color: var(--ink-2); margin-top: 2px; font-variant-numeric: tabular-nums; }
   .tip .h { font-size: 10.5px; color: var(--ink-3); margin-top: 4px; }
@@ -1044,7 +1055,7 @@
      sannsynlig, then grey for no forecast. It takes exactly the 4px the plain
      halo had, so no cluster grows. The grey is --ink-3, not the dots' pale
      --context: that one stood 1.0-1.9:1 on the tiles, too faint for a 4px arc. */
-  .pk-cluster.mix { position: relative; box-shadow: 0 2px 8px rgba(0,0,0,.35); }
+  .pk-cluster.mix { box-shadow: 0 2px 8px rgba(0,0,0,.35); }
   .pk-cluster.mix::before {
     content: ''; position: absolute; inset: -6px; border-radius: 50%;
     background: conic-gradient(var(--good) 0 var(--l), var(--dot-possible) 0 var(--p),
@@ -1052,7 +1063,6 @@
     -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4.5px), #000 calc(100% - 3.5px));
             mask: radial-gradient(farthest-side, transparent calc(100% - 4.5px), #000 calc(100% - 3.5px));
   }
-  .leaflet-cluster-anim .leaflet-marker-icon { transition: transform .2s ease; }
 
   /* ---------- sidebar ---------- */
   #side {
@@ -1076,9 +1086,10 @@
   /* fallback ground is fixed dark blues so the white name reads in both themes */
   .photo { position: relative; height: 168px; background: linear-gradient(135deg, #2a6cbf, #0d366b); }
   .photo #s-minimap { position: absolute; inset: 0; z-index: 0; }
-  /* #s-minimap IS the Leaflet container, so the descendant form never matched
-     and Leaflet's #ddd filled the dark theme's header until the tiles came */
-  .photo #s-minimap.leaflet-container { background: var(--page); }
+  /* #s-minimap IS the map's own container, so the descendant form never matched
+     and the engine's #ddd filled the dark theme's header until the tiles came;
+     `off` is the same box without WebGL, with no map in it at all */
+  .photo #s-minimap.maplibregl-map, .photo #s-minimap.off { background: var(--page); }
   .photo img { width: 100%; height: 100%; object-fit: cover;
                object-position: var(--photo-pos, center); display: block; }
   .photo .veil { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(10,14,18,.62)); }
@@ -1243,22 +1254,25 @@
 
   /* the credit strip has no blur behind it, so it keeps the 85% it had before
      --surface became glass: at 72% a tile label under its 10.5px text showed through */
-  .leaflet-control-attribution { background: color-mix(in srgb, var(--surface-solid) 85%, transparent) !important; color: var(--ink-3) !important; font-size: 10.5px !important; }
-  .leaflet-control-attribution a { color: var(--ink-2) !important; }
+  .maplibregl-ctrl-attrib { background: color-mix(in srgb, var(--surface-solid) 85%, transparent) !important; color: var(--ink-3) !important; font-size: 10.5px !important; }
+  .maplibregl-ctrl-attrib a { color: var(--ink-2) !important; }
   /* the map's own buttons are the panel's glass: one capsule for zoom, a round
      one for locate. The buttons inside stay clear so the material shows */
-  .leaflet-bar {
+  .maplibregl-ctrl-group {
     background: var(--surface) !important; border: 1px solid var(--g-rim) !important; border-radius: 999px !important;
     -webkit-backdrop-filter: blur(22px) saturate(1.8); backdrop-filter: blur(22px) saturate(1.8);
     box-shadow: inset 0 1px 0 var(--g-sheen), var(--g-shadow) !important;
   }
-  .leaflet-control-zoom a { background: transparent !important; color: var(--ink) !important; border-color: var(--line) !important; }
-  .leaflet-control-zoom a:first-child { border-radius: 999px 999px 0 0 !important; }
-  .leaflet-control-zoom a:last-child { border-radius: 0 0 999px 999px !important; }
+  .maplibregl-ctrl-group button.pk-zoom {
+    display: block; width: 30px; height: 30px; background: transparent !important; color: var(--ink) !important;
+    border: 0; border-bottom: 1px solid var(--line); font: 600 18px/1 var(--font, inherit); cursor: pointer;
+  }
+  .pk-zoom-in { border-radius: 999px 999px 0 0 !important; }
+  .pk-zoom-out { border-radius: 0 0 999px 999px !important; border-bottom: 0; }
   /* a reader who has asked the system for more contrast, or for less
      transparency, gets the chrome solid */
   @media (prefers-contrast: more), (prefers-reduced-transparency: reduce) {
-    .glass, #toast, .leaflet-bar { background: var(--surface-solid) !important; -webkit-backdrop-filter: none; backdrop-filter: none; }
+    .glass, #toast, .maplibregl-ctrl-group { background: var(--surface-solid) !important; -webkit-backdrop-filter: none; backdrop-filter: none; }
     #panel::after { background: linear-gradient(to bottom, transparent, var(--surface-solid)); }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -1268,8 +1282,6 @@
     .modal, .sheet, .modal.closing, .modal.closing .sheet { animation: none; }
     /* the overlay's box is styled by id, so a class alone would lose to it */
     #searchov .ovbox, #searchov.closing .ovbox { animation: none; }
-    .leaflet-cluster-anim .leaflet-marker-icon, .leaflet-cluster-anim .leaflet-marker-shadow {
-      transition: none; }
   }
   /* ---------- phones ----------
      A 300px floating card on a 375px screen buries the map and collides with
@@ -1320,7 +1332,7 @@
        the left, the keys beside it, and the comparability warning — which a
        phone reader never saw — across the bottom of the freed space. */
     #legend {
-      /* clears the Leaflet attribution strip, which the taller box overlapped */
+      /* clears the map's attribution strip, which the taller box overlapped */
       left: 10px; right: 10px; bottom: 16px; width: auto; padding: 8px 12px 7px;
       display: grid; row-gap: 4px; column-gap: 12px; align-items: center;
       grid-template-columns: minmax(140px, 1fr) minmax(0, max-content);
@@ -1601,8 +1613,8 @@
        toggle row it is a 34px control on a row that has width to spare */
     .viewrow .ico { width: 44px; }
     #choices .h button::after { inset: -15px -10px; }
-    /* Leaflet's own zoom and locate buttons stay 30px on touch; 40 is the floor */
-    .leaflet-touch .leaflet-bar a, .leaflet-touch .leaflet-bar button.locate { width: 40px; height: 40px; line-height: 40px; }
+    /* the map's zoom and locate buttons are 30px; 40 is the floor on a phone */
+    .maplibregl-ctrl-group button.pk-zoom, .maplibregl-ctrl-group button.locate { width: 40px; height: 40px; line-height: 40px; }
     .boot-fail .cta { min-height: 40px; }
     .field select, .ptsrow input { min-height: 40px; }
     #ov-list .opt { min-height: 40px; }

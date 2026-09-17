@@ -1,9 +1,10 @@
 import { esc } from "./helpers";
 import { t } from "./i18n";
 import { hideSheet, openSheetHistory, setModalTrap, showSheet } from "./intro";
-import { onMapFylke, prefersStill } from "./map";
+import { mapZoom, onMapFylke, viewSchool } from "./map";
 import { openSide } from "./sidebar";
 import { S } from './state';
+import type { School } from './types';
 
 /* ================= search overlay (design C trial) ================= */
 export function renderOvList() {
@@ -49,10 +50,8 @@ export function pickOv(i) {
     onMapFylke(s.county);
     return;
   }
-  if (s.lat && S.view === 'map') {
-    const z = Math.max(S.map!.getZoom(), 11);
-    prefersStill() ? S.map!.setView([s.lat, s.lon!], z) : S.map!.flyTo([s.lat, s.lon!], z);
-  }
+  // a hit is a school row: everything but the county row above them
+  if (s.lat && S.view === 'map' && S.map) viewSchool(s as School, Math.max(mapZoom(), 10));
   openSide(s);
 }
 export function openSearchOv() {

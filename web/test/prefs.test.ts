@@ -68,7 +68,7 @@ describe('preferences', () => {
     PREFS.theme = 'dark';
     applyPrefs(true);
     expect(document.getElementById('legend-bins')!.children.length).toBeGreaterThan(0);
-    expect(S.tileLayer).toBeTruthy();
+    expect(S.map!.getStyle()).toBe('/map/dark-matter.json');
   });
 
   it('the settings sheet shows the choice in force on every row', () => {
