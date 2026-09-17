@@ -1,11 +1,10 @@
-// Leaflet's module body ends with `window.L = exports`, and
-// leaflet.markercluster is a plain script that reads that global rather than
-// importing anything. So Leaflet has to have run first: this import is here
-// for that order alone, and every module that uses L imports it for itself.
-// Their stylesheets, and the app's own, are imported by layouts/Base.astro so
-// the page ships them in the <head> rather than waiting for this script.
-import 'leaflet';
-import 'leaflet.markercluster';
+// MapLibre's worker is served from our origin next to the module it imports
+// (tools/vendor-maplibre.mjs); the version is the one the build vendored.
+// The engine's stylesheet, and the app's own, are imported by
+// layouts/Base.astro so the page ships them in the <head> rather than waiting
+// for this script.
+import { setWorkerUrl } from 'maplibre-gl';
+setWorkerUrl(`/maplibre/${__MAPLIBRE_VER__}/maplibre-gl-worker.mjs`);
 import { initI18n } from './i18n'; import { initHelpers } from './helpers'; import { initChance } from './chance';
 import { initMap } from './map'; import { initChrome } from './chrome'; import { initSidebar } from './sidebar';
 import { initChart } from './chart'; import { initPrograms } from './programs'; import { initFeedback } from './feedback';

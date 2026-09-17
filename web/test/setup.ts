@@ -1,12 +1,44 @@
+// astro.config.mjs defines this global from the version the build vendored;
+// vitest does not run that config, and main.ts reads it at import time.
+(globalThis as any).__MAPLIBRE_VER__ = '0.0.0-test';
+
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, beforeEach, vi } from 'vitest';
-// src/main.ts is the app's only importer of leaflet.markercluster and it patches
-// L in place, so every test file needs the plugin loaded after Leaflet itself:
-// it is a plain script that reads the `L` global Leaflet's module body sets.
-import 'leaflet';
-import 'leaflet.markercluster';
+
+// The map is MapLibre GL (WebGL2), which no DOM emulation can run. The mock
+// hands map.ts the stub below wherever it constructs a map; LngLatBounds is
+// pure arithmetic, so the real one is fine — but it lives in the same module,
+// so a tiny one is defined here.
+vi.mock('maplibre-gl', async () => {
+  const { stubMap, takeThrow } = await import('./mapstub');
+  class LngLatBounds {
+    _sw: [number, number]; _ne: [number, number];
+    constructor(sw: [number, number], ne: [number, number]) { this._sw = [...sw]; this._ne = [...ne]; }
+    extend(p: [number, number]) {
+      this._sw = [Math.min(this._sw[0], p[0]), Math.min(this._sw[1], p[1])];
+      this._ne = [Math.max(this._ne[0], p[0]), Math.max(this._ne[1], p[1])];
+      return this;
+    }
+    getWest() { return this._sw[0]; } getSouth() { return this._sw[1]; }
+    getEast() { return this._ne[0]; } getNorth() { return this._ne[1]; }
+    toArray() { return [this._sw, this._ne]; }
+  }
+  // a still map (the minimap) is not the app's map: it leaves S.map alone.
+  // setStyle records the style the map was built with, as getStyle reports it;
+  // _opts keeps the rest of them, for a test that asks what the map was asked for.
+  class Map {
+    constructor(opts: any) {
+      const boom = takeThrow();
+      if (boom) throw new Error(boom);
+      const m = stubMap(opts.container, opts.interactive === false).setStyle(opts.style);
+      m._opts = opts;
+      return m;
+    }
+  }
+  return { Map, LngLatBounds, setWorkerUrl: () => {}, default: { Map, LngLatBounds } };
+});
 
 // happy-dom replaces the global URL with its own, which resolves a relative
 // URL against the environment's window.location rather than the base passed

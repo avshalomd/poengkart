@@ -10,7 +10,7 @@ const serious = (r: { violations: { impact?: string | null; id: string; nodes: u
 
 test('no serious axe violations on the map view', async ({ page }) => {
   await boot(page);
-  expect(serious(await new AxeBuilder({ page }).exclude('#map .leaflet-tile-pane').analyze())).toEqual([]);
+  expect(serious(await new AxeBuilder({ page }).exclude('#map canvas').analyze())).toEqual([]);
 });
 
 test('no serious axe violations with a school open', async ({ page }) => {

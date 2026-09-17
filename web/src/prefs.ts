@@ -4,7 +4,7 @@ import { esc } from "./helpers";
 import { t } from "./i18n";
 import { hideSheet, openSheetHistory, setModalTrap, showSheet } from "./intro";
 import { setLang } from "./lang";
-import { drawMarkers, setLevels, setTiles } from "./map";
+import { drawMarkers, setLevels, setMapStyle } from "./map";
 import { listLayout, renderSide, sideTrap } from "./sidebar";
 import { S } from './state';
 import type { Prefs } from './types';
@@ -37,7 +37,7 @@ export function applyPrefs(rerender) {
     else localStorage.removeItem('pk-cvd');
   } catch (e) {}
   if (rerender && S.map) {
-    setTiles(); drawMarkers(); renderLegend(); renderCatNote(); renderPointsField();
+    setMapStyle(); drawMarkers(); renderLegend(); renderCatNote(); renderPointsField();
     if (S.current) renderSide();
     listLayout();                                               // a text size moves the breakpoints
     sideTrap(document.body.classList.contains('side-open'));

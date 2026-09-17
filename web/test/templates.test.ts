@@ -10,7 +10,7 @@ import { photoHtml, metaHtml, notesHtml, heroHtml, srcNoteHtml, listHtml } from 
 // strings, so nothing moves when the script takes over a school page.
 const norm = (html: string) => { const d = document.createElement('div'); d.innerHTML = html; return d.innerHTML; };
 // …a container as the template left it. One thing the client does AFTER it
-// assigns the string that no string can carry: Leaflet builds the location map
+// assigns the string that no string can carry: MapLibre builds the location map
 // inside the empty #s-minimap. Undo that one; any other difference is a
 // template that has drifted from what the sheet renders.
 const rendered = (id: string) => {

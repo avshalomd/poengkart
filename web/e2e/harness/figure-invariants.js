@@ -244,39 +244,51 @@
     showOld = wasOld;
     choices = saved; try { localStorage.setItem('pk-choices', JSON.stringify(choices)); } catch (e) {}
     renderChoices();
-    // I16 — a map cluster's ring is the mix of the dots it holds: its counts are
-    //       the best-chance buckets of its schools (the dots' own colour rule,
-    //       recomputed here from schoolChance), they add up to the number printed
-    //       on it, the ring's segments are those shares, and its spoken label
-    //       carries the same counts. With points off there is no ring.
+    // I16 — a map cluster's ring is the mix of the dots it holds: the counts in
+    //       the ring add up to the number printed on it, its segments are those
+    //       shares, and its spoken label carries the same counts; and the rings
+    //       and the loose dots together account for every school on the map,
+    //       bucket by bucket, by the dots' own colour rule (recomputed here from
+    //       schoolChance). With points off there is no ring.
+    //       The ring's counts are supercluster's own sums now, and a cluster's
+    //       schools are no longer reachable from its element the way
+    //       markercluster's getAllChildMarkers() made them: the totals over the
+    //       whole map stand in for the per-cluster count, which is why the view
+    //       is framed on the whole dataset first — every school has to be on it.
     {
       const wasView = view;
       if (view !== 'map') setView('map');
-      mapCat = 'all'; myPoints = 40; drawMarkers();
-      const fg = markerLayer._featureGroup;
-      const clusters = (fg ? fg.getLayers() : []).filter(l => typeof l.getChildCount === 'function' && l._icon);
+      mapCat = 'all'; myPoints = 40;
+      fitHome(false);                           // nothing clustered off the edge
+      drawMarkers();
+      const KEYS = ['likely', 'possible', 'unlikely', 'none'];
+      const zero = () => ({ likely: 0, possible: 0, unlikely: 0, none: 0 });
+      const clusters = [...document.querySelectorAll('#map .pk-cluster:not([hidden])')];
       say('I16', clusters.length > 0, 'no clusters on screen to check');
-      for (const cl of clusters) {
-        const el = cl._icon.querySelector('.pk-cluster'), n = cl.getChildCount();
-        const want = { likely: 0, possible: 0, unlikely: 0, none: 0 };
-        for (const m of cl.getAllChildMarkers()) {
-          const c = schoolChance(m.options.pkSchool, 'all', myPoints);
-          want[c ? bucketOf(c.best) : 'none']++;
-        }
-        const got = (el.dataset.mix || '').split(',').map(Number);
-        say('I16', got.length === 4 && got[0] === want.likely && got[1] === want.possible
-                   && got[2] === want.unlikely && got[3] === want.none
-                   && got.reduce((a, b) => a + b, 0) === n && Number(el.textContent) === n,
-            `cluster of ${n}: ring ${el.dataset.mix}, dots ${JSON.stringify(want)}`);
+      const got = zero();
+      let held = 0;
+      for (const el of clusters) {
+        const n = Number(el.textContent), ring = (el.dataset.mix || '').split(',').map(Number);
+        const mix = zero(); KEYS.forEach((k, i) => { mix[k] = ring[i]; });
+        say('I16', ring.length === 4 && ring.every(v => v >= 0)
+                   && ring.reduce((a, b) => a + b, 0) === n,
+            `cluster of ${n}: ring ${el.dataset.mix} does not add up to the number on it`);
         const at = k => `${(100 * k / n).toFixed(2)}%`, css = k => el.style.getPropertyValue(k);
-        say('I16', css('--l') === at(want.likely) && css('--p') === at(want.likely + want.possible)
-                   && css('--u') === at(want.likely + want.possible + want.unlikely),
-            `cluster of ${n}: segments ${css('--l')} ${css('--p')} ${css('--u')} vs ${JSON.stringify(want)}`);
-        say('I16', cl._icon.getAttribute('aria-label') === t('clusterAria', n, want),
-            `cluster of ${n}: label "${cl._icon.getAttribute('aria-label')}"`);
+        say('I16', css('--l') === at(mix.likely) && css('--p') === at(mix.likely + mix.possible)
+                   && css('--u') === at(mix.likely + mix.possible + mix.unlikely),
+            `cluster of ${n}: segments ${css('--l')} ${css('--p')} ${css('--u')} vs ${el.dataset.mix}`);
+        say('I16', el.getAttribute('aria-label') === t('clusterAria', n, mix),
+            `cluster of ${n}: label "${el.getAttribute('aria-label')}"`);
+        KEYS.forEach(k => { got[k] += mix[k] || 0; });
+        held += n;
       }
+      for (const d of document.querySelectorAll('#map .pk-dot')) { got[d.dataset.pkBucket]++; held++; }
+      const want = zero(), on = visibleSchools().filter(s => s.lat);
+      for (const s of on) { const c = schoolChance(s, 'all', myPoints); want[c ? bucketOf(c.best) : 'none']++; }
+      say('I16', held === on.length && KEYS.every(k => got[k] === want[k]),
+          `map holds ${held} of ${on.length} schools, rings+dots ${JSON.stringify(got)}, dots' own rule ${JSON.stringify(want)}`);
       myPoints = null; drawMarkers();
-      say('I16', !document.querySelector('.pk-cluster.mix, .pk-cluster[data-mix]'), 'ring drawn with points off');
+      say('I16', !document.querySelector('#map .pk-cluster.mix, #map .pk-cluster[data-mix]'), 'ring drawn with points off');
       if (wasView !== 'map') setView(wasView);
     }
     // I11 — with points off, nothing of the forecast layer leaks into the list

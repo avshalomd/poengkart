@@ -1,10 +1,9 @@
-import type L from 'leaflet';
 import { bucketColor, chanceMode, renderPointsField } from "./chance";
 import { BIN_EDGES, BINS, cssVar, esc, fmt, isVg1, levelScope, MISSING_COUNTIES, shownPrograms } from "./helpers";
 import { CATS, t } from "./i18n";
 import { renderControls } from "./intro";
 import { placeToast } from "./locate";
-import { renderPanelSum, visibleSchools } from "./map";
+import { anyClusters, renderPanelSum, visibleSchools } from "./map";
 import { S } from './state';
 import { bindTitleTips } from "./tips";
 
@@ -88,7 +87,7 @@ export function liftMapControls() {
   // Reserve that strip as well: with the ten wishes vigo allows, the choices
   // list grew the panel down over the locate and zoom buttons and they stopped
   // taking taps. The panel scrolls inside itself, so nothing is lost by it.
-  const ctrls = document.querySelector('.leaflet-bottom.leaflet-right');
+  const ctrls = document.querySelector('.maplibregl-ctrl-bottom-right');
   if (innerWidth <= 560 && ctrls) {
     const cr = ctrls.getBoundingClientRect();
     // From the lift set above, not from the column's top: the margin that lifts
@@ -111,8 +110,7 @@ export function liftMapControls() {
 export function legendZoomHint() {
   const el = document.getElementById('legend-zoom');
   if (!el) return;
-  const fg = S.markerLayer && S.markerLayer._featureGroup;
-  const clustered = !!fg && (fg.getLayers() as L.MarkerCluster[]).some(l => typeof l.getChildCount === 'function');
+  const clustered = anyClusters();
   el.textContent = t('legendZoomHint');
   const was = el.hidden;
   el.hidden = !(chanceMode() && clustered);

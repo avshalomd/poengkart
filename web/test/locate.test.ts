@@ -22,7 +22,7 @@ const ownBefore: Record<string, PropertyDescriptor | undefined> = {
 };
 
 describe('the toast and the locate button', () => {
-  beforeEach(() => { S.locLayer = null; S.locBtnEl = null; S.locBusy = false; });
+  beforeEach(() => { S.loc = null; S.locBtnEl = null; S.locBusy = false; });
   afterEach(() => {
     for (const [k, d] of Object.entries(ownBefore)) {
       delete (navigator as any)[k];
@@ -47,6 +47,25 @@ describe('the toast and the locate button', () => {
     vi.advanceTimersByTime(30);
     el.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     expect(el.hidden).toBe(true);
+  });
+
+  it('a second toast queues behind one already showing, and a duplicate is not queued twice', () => {
+    loadFixtures(); initHelpers();
+    const el = document.getElementById('toast')!;
+    toast('Første', 1000);
+    toast('Andre', 500);
+    toast('Andre', 500);        // a duplicate of the one already waiting is not queued again
+    vi.advanceTimersByTime(30);
+    expect(el.textContent).toBe('Første');
+    vi.advanceTimersByTime(969);              // 999ms: just short of the first's own duration
+    expect(el.hidden).toBe(false);
+    expect(el.textContent).toBe('Første');
+    vi.advanceTimersByTime(1);                // 1000ms: the first hides, the second takes over
+    expect(el.hidden).toBe(false);
+    vi.advanceTimersByTime(30);
+    expect(el.textContent).toBe('Andre');
+    vi.advanceTimersByTime(500);              // the de-duplicated second's own duration
+    expect(el.hidden).toBe(true);             // nothing else queued behind it
   });
 
   it('placeToast keeps the notice out of the legend’s way and does nothing when hidden', () => {
@@ -94,11 +113,13 @@ describe('the toast and the locate button', () => {
     expect(S.locBtnEl!.getAttribute('aria-label')).toBe(t('locBtn'));
     expect(S.locBtnEl!.getAttribute('aria-pressed')).toBe('false');
     S.locBtnEl!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-    expect(S.locLayer).toBeTruthy();
+    expect(S.loc).toEqual({ lat: 59.9, lon: 10.75, acc: 25 });
+    expect(document.querySelector('#map .pk-loc')).toBeTruthy();
     expect(S.locBtnEl!.classList.contains('on')).toBe(true);
     expect(S.locBtnEl!.getAttribute('aria-pressed')).toBe('true');
     locate();                                   // the second press clears it again
-    expect(S.locLayer).toBeNull();
+    expect(S.loc).toBeNull();
+    expect(document.querySelector('#map .pk-loc')).toBeNull();
     expect(S.locBtnEl!.classList.contains('on')).toBe(false);
   });
 
@@ -113,6 +134,11 @@ describe('the toast and the locate button', () => {
     expect(S.locBusy).toBe(false);
     geolocation({ getCurrentPosition: (_ok: any, bad: any) => bad({ code: 2 }) });
     locate();
+    // the denied notice is still showing (12s): the failure notice queues
+    // behind it rather than cutting it off early (toast()'s own queue, locate.ts)
+    vi.advanceTimersByTime(30);
+    expect(document.getElementById('toast')!.textContent).toContain(t('locDenied'));
+    vi.advanceTimersByTime(12000 - 30);
     vi.advanceTimersByTime(30);
     expect(document.getElementById('toast')!.textContent).toBe(t('locFail'));
   });
@@ -124,19 +150,19 @@ describe('the toast and the locate button', () => {
     locate();
     expect(S.locBusy).toBe(true);
     locate();                                            // refused while one is in flight
-    expect(S.locLayer).toBeNull();
+    expect(S.loc).toBeNull();
     S.locBusy = false;
     S.locBtnEl = null;
     expect(updateLocateAria()).toBeUndefined();          // a no-op, not a crash
   });
 
-  it('Leaflet’s own zoom buttons are titled in the app’s language', () => {
+  it('the map’s own zoom buttons are titled in the app’s language', () => {
     loadFixtures(); initHelpers();
     const bar = document.createElement('div');
-    bar.innerHTML = '<a class="leaflet-control-zoom-in"></a><a class="leaflet-control-zoom-out"></a>';
+    bar.innerHTML = '<button class="pk-zoom-in"></button><button class="pk-zoom-out"></button>';
     document.getElementById('map')!.appendChild(bar);
     updateZoomAria();
-    expect(document.querySelector('.leaflet-control-zoom-in')!.getAttribute('aria-label')).toBe(t('zoomIn'));
-    expect((document.querySelector('.leaflet-control-zoom-out') as any).title).toBe(t('zoomOut'));
+    expect(document.querySelector('.pk-zoom-in')!.getAttribute('aria-label')).toBe(t('zoomIn'));
+    expect((document.querySelector('.pk-zoom-out') as any).title).toBe(t('zoomOut'));
   });
 });

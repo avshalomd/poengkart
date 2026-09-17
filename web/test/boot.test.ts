@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { DATA, MODEL } from './fixtures';
+import { mapThrowsOnce } from './mapstub';
 import { main, framePad, bootFailed, updateMapLabels, initBoot } from '../src/boot';
 import { isSheetOpen } from '../src/intro';
 import { showTip } from '../src/tips';
@@ -13,6 +14,7 @@ import { initIntro } from '../src/intro';
 import { initTips } from '../src/tips';
 import { t } from '../src/i18n';
 import { S } from '../src/state';
+import { unresolvedFromPath } from '../src/router';
 
 /* The whole app, booted against the fixture files in place of the network.
    Everything below is the state a first frame leaves behind. */
@@ -29,14 +31,18 @@ function initAll() {
 
 describe('boot', () => {
   beforeEach(() => {
+    // the WebGL2 probe answers false in happy-dom, and main() builds no map
+    // without it: hand it a context — one that answers getExtension, as the
+    // probe hands the context back through it — freshly for every test here
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({ getExtension: () => null } as any);
     // main() leaves six deferred reframes behind (ensureFramed); setup.ts's fake
     // timers park them instead of letting them fire into the next test's document
-    S.DATA = null; S.MODEL = null; S.markerLayer = null; S.tileLayer = null;
+    S.DATA = null; S.MODEL = null; S.map = null; S.miniMap = null; S.loc = null; S.webgl = null;
     S.current = null; S.myPoints = null; S.lang = 'no'; S.mapCat = 'all'; S.mapFylke = 'all';
     S.allLevels = false; S.showOld = false; S.choices = []; S.view = 'map'; S._newestByFylke = null;
     history.replaceState(null, '', '/');
   });
-  afterEach(() => { vi.unstubAllGlobals(); });
+  afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
   /* First, so that exactly one set of the listeners main() installs is live:
      every call adds another, and a second copy would answer these events too. */
@@ -104,13 +110,13 @@ describe('boot', () => {
     expect(S.DATA_STAMP).toContain('2026');
     expect(S.map).toBeTruthy();
     expect(S.HOME).toBeTruthy();
-    expect(S.tileLayer).toBeTruthy();
+    expect(S.map!.getStyle()).toMatch(/^\/map\/(voyager|dark-matter)\.json$/);
     // the loading card is gone and the chrome is painted
     expect(document.querySelector('#map .boot-pending')).toBeNull();
     expect(document.getElementById('tagline')!.textContent).toContain(String(DATA.schools.length));
     expect(document.getElementById('legend-bins')!.children.length).toBeGreaterThan(0);
-    expect(document.getElementById('map')!.classList.contains('leaflet-container')).toBe(true);
-    expect(document.getElementById('map')!.getAttribute('aria-label')).toBe(t('viewMap'));
+    expect(document.getElementById('map')!.classList.contains('maplibregl-map')).toBe(true);
+    expect(document.querySelector('#map canvas')!.getAttribute('aria-label')).toBe(t('viewMap'));
     expect(document.getElementById('side')!.hasAttribute('inert')).toBe(true);
   });
 
@@ -205,13 +211,70 @@ describe('boot', () => {
     expect(localStorage.getItem('pk-help-hint')).toBe('1');
   });
 
+  it('without WebGL the app opens as a list, says why, and keeps the map toggle out of reach', async () => {
+    vi.restoreAllMocks();                                // happy-dom: getContext('webgl2') is null
+    vi.stubGlobal('fetch', network());
+    localStorage.setItem('pk-view', 'map');
+    initAll();
+    await main();
+    expect(S.map).toBeNull();
+    expect(S.view).toBe('list');
+    expect(document.body.classList.contains('no-map')).toBe(true);
+    const b = document.getElementById('view-map') as HTMLButtonElement;
+    expect(b.disabled).toBe(true);
+    expect(b.title).toBe(t('noMapWebGL'));
+    vi.advanceTimersByTime(50);
+    expect(document.getElementById('toast')!.textContent).toBe(t('noMapWebGL'));
+    expect(document.getElementById('listview')!.hidden).toBe(false);
+  });
+
+  it('without WebGL and a 404 path, the WebGL notice shows first and the not-found notice follows once it hides', async () => {
+    vi.restoreAllMocks();                                // happy-dom: getContext('webgl2') is null
+    vi.stubGlobal('fetch', network());
+    document.body.dataset.notfound = '1';
+    try {
+      initAll();
+      await main();
+      vi.advanceTimersByTime(30);
+      expect(document.getElementById('toast')!.textContent).toBe(t('noMapWebGL'));
+      // the WebGL notice's own 8s, then the queued not-found notice's own reveal
+      vi.advanceTimersByTime(8000);
+      vi.advanceTimersByTime(30);
+      expect(document.getElementById('toast')!.textContent).toBe(t('linkNotFound', unresolvedFromPath()));
+    } finally {
+      delete document.body.dataset.notfound;    // setup.ts only replaces #app's innerHTML, not body's own attributes
+    }
+  });
+
+  it('a map the engine cannot build leaves the reader the list, not the boot-failure screen', async () => {
+    // the probe (beforeEach) says WebGL2 is there, and MapLibre's constructor
+    // throws all the same. Unguarded, main() rejected and the reader got the
+    // boot-failure screen instead of the list the spec gives a browser with no
+    // map — the same list the no-WebGL path above lands on.
+    mapThrowsOnce();
+    const err = vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.stubGlobal('fetch', network());
+    localStorage.setItem('pk-view', 'map');
+    initAll();
+    await main();
+    expect(S.map).toBeNull();
+    expect(S.view).toBe('list');
+    expect(document.body.classList.contains('no-map')).toBe(true);
+    expect((document.getElementById('view-map') as HTMLButtonElement).disabled).toBe(true);
+    expect(document.querySelector('#app .boot-fail')).toBeNull();
+    vi.advanceTimersByTime(50);
+    expect(document.getElementById('toast')!.textContent).toBe(t('noMapWebGL'));
+    expect(document.getElementById('listview')!.hidden).toBe(false);
+    expect(err).toHaveBeenCalled();                    // and the reason is in the console
+  });
+
   it('bootFailed and framePad stand on their own', () => {
     S.DATA = DATA;
     // framePad measures #panel, and the failure screen below removes it: the
     // order here is the order the app itself can only take
-    const pad: any = framePad();
-    expect(pad.paddingTopLeft.length).toBe(2);
-    expect(pad.paddingBottomRight.every((n: number) => n >= 12)).toBe(true);
+    const pad = framePad();
+    expect(Object.keys(pad).sort()).toEqual(['bottom', 'left', 'right', 'top']);
+    expect(Object.values(pad).every(n => n >= 12)).toBe(true);
     bootFailed('bootFailSub');
     expect(document.querySelector('#app .boot-fail')).toBeTruthy();
     expect(document.querySelector('#app .boot-fail p:last-of-type')!.textContent).toBe(t('bootFailSub'));

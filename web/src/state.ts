@@ -1,6 +1,6 @@
 /* The app's mutable state: every former top-level let of web/index.html,
    under its original name, so a reader of the old file finds it here. */
-import type L from 'leaflet';
+import type { LngLatBounds, Map as GLMap } from 'maplibre-gl';
 import type {
   BugContext, ChartState, Choice, Dataset, Lang, ListSort, Model, School, SearchHit, SideReturn, View,
 } from './types';
@@ -8,13 +8,13 @@ import type {
 export const S = {
   lang: 'no' as Lang,
   DATA: null as Dataset | null,
-  map: null as L.Map | null,
-  markerLayer: null as L.MarkerClusterGroup | null,
+  map: null as GLMap | null,
+  webgl: null as boolean | null,   // the WebGL2 probe's answer (map.ts hasWebGL), null until it runs
   MODEL: null as Model | null,   // data/model.json — forecasts; optional
   myPoints: null as number | null,   // the reader's own points, or null
   showOld: false,   // show programme areas with no figures lately
   allLevels: false,   // show Vg2 and up as well; Vg1 alone is the default (levelScope)
-  HOME: null as L.LatLngBounds | null,   // bounds of the whole dataset, the map's home view
+  HOME: null as LngLatBounds | null,   // bounds of the whole dataset, the map's home view
   mapCat: 'all' as string,
   mapFylke: 'all' as string,
   current: null as School | null,   // selected school
@@ -30,8 +30,7 @@ export const S = {
   ptsBad: false,
   labelMarkers: undefined as unknown as () => void,   // set by initMap(), then by every drawMarkers()
   mapFocusPending: 0,   // when Enter zoomed into a cluster, for the focus to follow
-  tileLayer: null as L.TileLayer | null,
-  miniMap: null as L.Map | null,
+  miniMap: null as GLMap | null,
   miniMapRO: null as ResizeObserver | null,
   sideOpener: null as Element | null,   // the marker or cluster that opened the panel, for Escape to return to
   sideReturn: null as SideReturn | null,   // a wish or the search button, for closing to return to
@@ -45,7 +44,7 @@ export const S = {
   searchIx: null as { s: School; f: string }[] | null,
   ovAct: -1,
   ovHits: [] as SearchHit[],
-  locLayer: null as L.LayerGroup | null,
+  loc: null as { lat: number; lon: number; acc: number } | null,   // the reader's position, while shown
   locBtnEl: null as HTMLElement | null,
   locBusy: false,
   view: 'map' as View,

@@ -1,10 +1,10 @@
-import L from 'leaflet';
 import { bucketOf, chanceFinal, chanceMode, finalRoundBridge, predFor, schoolChance } from "./chance";
 import { renderChartCard } from "./chart";
 import { liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
-import { cssVar, esc, fmt, isVg1, round1, shownPrograms } from "./helpers";
+import { esc, fmt, isVg1, round1, shownPrograms } from "./helpers";
 import { CATS, t } from "./i18n";
-import { drawMarkers, markerOf, prefersStill, setLens, tileUrl } from "./map";
+import { buildMiniMap, dropMiniMap, drawMarkers, hideMapTip, onceSettled, panSchoolInside, prefersStill,
+         resizeMap, setLens } from "./map";
 import { renderList } from "./programs";
 import { docTitle, queryParts, schoolUrl, setUrlSchool, syncUrl } from './router';
 import { S } from './state';
@@ -45,8 +45,8 @@ export function applyUrlFilters(boot?) {
 }
 // On a phone the school sheet covers the screen, and the CSS that hides the
 // panel, legend and controls behind it does not touch #map — whose markers each
-// carry tabindex="0" and role="button", and whose Leaflet container is itself
-// focusable. So Tab and a VoiceOver swipe walked straight through the sheet
+// carry tabindex="0" and role="button", and whose canvas MapLibre keys as
+// focusable too. So Tab and a VoiceOver swipe walked straight through the sheet
 // into a hundred invisible markers underneath. The four modal sheets already
 // avoid this via setModalTrap(); the most-used surface in the app did not.
 // where #side is the full-width sheet: phones, and iPad widths at Stor/Ekstra
@@ -114,26 +114,11 @@ export function widenFor(s) {
   drawMarkers(); renderLegend(); renderCatNote(); syncUrl();
   return true;
 }
-// the location map in the photo header: a school with no photo, or a photo
-// whose upstream URL has since died
-// every marker and cluster the keyboard can reach, in DOM order
-export const mapKeyed = () => [...document.querySelectorAll('#map [role="button"][data-pk-keyed]')] as any[];
-export function buildMiniMap(s) {
-  S.miniMap = L.map('s-minimap', {
-    zoomControl: false, attributionControl: false, dragging: false,
-    scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false,
-    keyboard: false, touchZoom: false, tap: false,
-  } as any).setView([s.lat, s.lon], 16);
-  L.tileLayer(tileUrl(), { detectRetina: true }).addTo(S.miniMap);
-  L.circleMarker([s.lat, s.lon], {
-    radius: 9, weight: 3, color: '#fff', fillColor: cssVar('--accent'), fillOpacity: 1,
-  }).addTo(S.miniMap);
-  // the phone sheet is still sliding in when the map is built, so a single
-  // deferred redraw left tiles on a fifth of the box; redraw on every resize
-  if (S.miniMapRO) S.miniMapRO.disconnect();
-  S.miniMapRO = new ResizeObserver(() => S.miniMap && S.miniMap.invalidateSize());
-  S.miniMapRO.observe(document.getElementById('s-minimap')!);
-}
+// every marker and cluster the keyboard can reach, in DOM order. A fanned-out
+// cluster is hidden, and `[hidden]` is display:none here: it cannot hold focus
+// or a tab stop, so it is not one of them until it comes back.
+export const mapKeyed = () => [...document.querySelectorAll('#map [role="button"][data-pk-keyed]')]
+  .filter(e => !(e as HTMLElement).hidden) as any[];
 // `landing`: the school the address named at boot — the page the reader
 // arrived on, not one they opened.
 export function openSide(s, landing?: boolean) {
@@ -188,13 +173,13 @@ export function openSide(s, landing?: boolean) {
     const reveal = () => {
       const mc = S.map!.getContainer();
       if (S.current !== s || !mc.clientWidth) return;
-      S.map!.invalidateSize({ pan: false });
+      resizeMap();
       const mr = mc.getBoundingClientRect(), pr = document.getElementById('panel')!.getBoundingClientRect();
       let left = pr.width && pr.right > mr.left ? Math.round(pr.right - mr.left) + 24 : 24;
       if (left + 64 > mc.clientWidth) left = 24;     // no strip beside the panel to aim for
-      S.map!.panInside([s.lat, s.lon], { paddingTopLeft: [left, 24], paddingBottomRight: [24, 24], animate: !prefersStill() });
+      panSchoolInside(s, left);
     };
-    (openSide as any).pan = setTimeout(() => (S.map!._flyToFrame ? S.map!.once('moveend', reveal) : reveal()), prefersStill() ? 0 : 260);
+    (openSide as any).pan = setTimeout(() => onceSettled(reveal), prefersStill() ? 0 : 260);
   }
 }
 export function clearScope() {
@@ -254,10 +239,10 @@ export function closeSide(fromHistory?) {
   const rr = row && row.getBoundingClientRect();
   (row || opener || fallback)?.focus({ preventScroll: S.view === 'list' && (!row || (rr!.top >= 0 && rr!.bottom <= innerHeight)) });
   // A click or a tap focuses the marker too, so a sheet opened that way hands
-  // focus back like any other, and Leaflet opens a tooltip on every focus: the
+  // focus back like any other, and a focused dot opens its tooltip: the
   // school's tooltip was left floating over the map after the ✕. Only a return
   // the keyboard can see keeps it.
-  if (opener && !opener.matches(':focus-visible')) markerOf.get(opener)?.closeTooltip();
+  if (opener && !opener.matches(':focus-visible')) hideMapTip(opener);
 }
 
 export function renderSide() {
@@ -282,8 +267,7 @@ export function renderSide() {
     };
   }
   // no freely licensed photo exists for this school: show where it actually is
-  if (S.miniMap) { S.miniMap.remove(); S.miniMap = null; }
-  if (S.miniMapRO) { S.miniMapRO.disconnect(); S.miniMapRO = null; }
+  dropMiniMap();
   if (!s.photo && s.lat) buildMiniMap(s);
   document.getElementById('s-meta')!.innerHTML = metaHtml(s);
   const notes = notesHtml(s);
@@ -371,15 +355,24 @@ export function renderChance(s, lensCat) {
 
 export function initSidebar() {
   addEventListener('resize', listLayout);   // not debounced: a stale class is a broken layout
+  // Capture, not bubble: MapLibre's own keyboard handler listens on the canvas
+  // container the dots hang inside, and it pans 100px on an arrow key whatever
+  // the event's target. Both handlers ran — focus walked to the next dot while
+  // the map eased under it, folding a fan-out back in (movestart) and
+  // re-rendering the clusters (moveend) around the dot that had just taken
+  // focus. A capture listener on the document runs first, and stopping the
+  // event there keeps the walk to the markers. (Leaflet's handler acted only
+  // while its container itself held focus, so this never arose.)
   document.addEventListener('keydown', ev => {
     const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1, Home: 0, End: 0 };
     if (!(ev.key in keys)) return;
     const els = mapKeyed(), i = els.indexOf(document.activeElement);
     if (i < 0) return;
     ev.preventDefault();
+    ev.stopPropagation();
     const j = ev.key === 'Home' ? 0 : ev.key === 'End' ? els.length - 1 : (i + keys[ev.key] + els.length) % els.length;
     els[i].setAttribute('tabindex', '-1'); els[i].dataset.pkRove = '1';
     els[j].setAttribute('tabindex', '0'); els[j].dataset.pkRove = '0';
     els[j].focus();
-  });
+  }, { capture: true });
 }

@@ -77,7 +77,7 @@ test('Escape closes the sheet and takes an open tooltip with it', async ({ page,
   // the chip leaves the cursor as the sheet goes, so mouseleave clears the tip:
   // nothing floats over the map afterwards
   await expect(page.locator(TIP)).toBeHidden();
-  await expect(page.locator('#map .leaflet-tooltip')).toHaveCount(0);
+  await expect(page.locator('#map .pk-tip')).toBeHidden();
 });
 
 test('a keyboard reader’s first Escape closes the tooltip, the second the sheet', async ({ page, isMobile }) => {

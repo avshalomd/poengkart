@@ -42,15 +42,14 @@ export async function openSchool(page: Page, fylke: string, name: string): Promi
 }
 
 /** Every school the map is showing: a cluster counts for the schools inside it
- *  (its label is that number), an unclustered school is one SVG circleMarker in
- *  the overlay pane. Counting only the marker pane would call a zoom-in that
- *  dissolves the clusters a loss of every school on screen. */
+ *  (its label is that number), an unclustered school is one `.pk-dot`. Counting
+ *  only the clusters would call a zoom-in that dissolves them a loss of every
+ *  school on screen. */
 export function schoolsOnMap(page: Page): Promise<number> {
   return page.evaluate(() => {
     let n = 0;
-    document.querySelectorAll('#map .leaflet-marker-pane .pk-cluster')
-      .forEach(c => { n += Number(c.textContent) || 0; });
-    return n + document.querySelectorAll('#map .leaflet-overlay-pane path').length;
+    document.querySelectorAll('#map .pk-cluster:not([hidden])').forEach(c => { n += Number(c.textContent) || 0; });
+    return n + document.querySelectorAll('#map .pk-dot').length;
   });
 }
 

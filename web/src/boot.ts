@@ -1,14 +1,14 @@
-import L from 'leaflet';
 import { closeCalc, loadCalc } from "./calc";
 import { parsePoints, renderChoices, renderPointsField } from "./chance";
-import { legendZoomHint, liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
+import { liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
 import { closeContact } from "./feedback";
 import { esc } from "./helpers";
 import { t } from "./i18n";
 import { anySheetOpen, closeIntro, hintHelp, INTRO_SEEN, openSheetHistory, renderIntro } from "./intro";
 import { setView } from "./listview";
 import { addLocateControl, toast, updateZoomAria } from "./locate";
-import { drawMarkers, foldPanel, prefersStill, setTiles, visibleSchools } from "./map";
+import { boundsOf, createMap, drawMarkers, fitHome, fitVisible, foldPanel, hasWebGL, padBounds,
+         resizeMap, setMapStyle, viewSchool } from "./map";
 import { applyPrefs, closeSettings, loadPrefs, PREFS } from "./prefs";
 import { runSearch } from "./search";
 import { closeSearchOv, openSearchOv, pickOv, renderOvList } from "./searchov";
@@ -18,21 +18,14 @@ import { S } from './state';
 import { hideTip } from "./tips";
 
 /* ================= boot ================= */
-// The map's container had no name, and Leaflet's own credit link says "A
-// JavaScript library for interactive maps" in English on the Norwegian page.
+// The map's canvas is the region a screen reader lands in. MapLibre gives it
+// role="region" and a tabindex of its own and names it from the map's `locale`
+// at the first paint, so a language switch is this one attribute.
 export function updateMapLabels() {
   if (!S.map) return;
-  const mc = S.map.getContainer();
-  mc.setAttribute('role', 'region');
-  mc.setAttribute('aria-label', t('viewMap'));
-  // _pkPrefix is ours: Leaflet's own prefix, kept so that a language switch
-  // rewrites the original rather than its own last rewrite
-  const ac = S.map.attributionControl as L.Control.Attribution & { _pkPrefix?: string | boolean };
-  if (!ac) return;
-  if (ac._pkPrefix === undefined) ac._pkPrefix = ac.options.prefix;
-  if (typeof ac._pkPrefix === 'string') ac.setPrefix(ac._pkPrefix.replace(/title="[^"]*"/, `title="${esc(t('leafletTitle'))}"`));
+  S.map.getCanvas().setAttribute('aria-label', t('viewMap'));
 }
-export function framePad(): L.FitBoundsOptions {
+export function framePad(): { top: number; left: number; bottom: number; right: number } {
   // The panel and legend float over the map, so fit the country into what is
   // actually visible. Each pad is capped: on a phone held sideways the panel
   // is over half the width, and paying that in full squeezed Norway into the
@@ -45,12 +38,8 @@ export function framePad(): L.FitBoundsOptions {
   // rather than shrink the whole of Norway to avoid a corner.
   const bottom = innerHeight <= 480 ? 12
     : cap(innerHeight - l.top + 12, innerHeight * 0.3);
-  if (innerWidth <= 560) {
-    return { paddingTopLeft: [12, cap(p.height + 22, innerHeight * 0.34)],
-             paddingBottomRight: [12, bottom] };
-  }
-  return { paddingTopLeft: [cap(p.right + 12, innerWidth * 0.32), 12],
-           paddingBottomRight: [12, bottom] };
+  if (innerWidth <= 560) return { left: 12, top: cap(p.height + 22, innerHeight * 0.34), right: 12, bottom };
+  return { left: cap(p.right + 12, innerWidth * 0.32), top: 12, right: 12, bottom };
 }
 
 // Without the dataset — or with one the map cannot be built from — every
@@ -129,25 +118,36 @@ export async function main() {
   // while the tab is not being painted, so a national map could sit there
   // showing one county. Fit first, synchronously, and treat the deferred pass
   // purely as a correction for a pane that was still laying out.
-  const pts = S.DATA!.schools.filter(s => s.lat).map(s => [s.lat, s.lon] as L.LatLngTuple);
-  S.HOME = L.latLngBounds(pts).pad(0.06);
+  const pts = S.DATA!.schools.filter(s => s.lat).map(s => [s.lat, s.lon] as [number, number]);
+  S.HOME = padBounds(boundsOf(pts), 0.06);
   document.querySelector('#map .boot-pending')?.remove();
-  S.map = L.map('map', { zoomControl: false, zoomSnap: 0.25,
-    // the app's transitions already stop under reduced motion; Leaflet's zoom,
-    // fade and fling are its own options
-    ...(prefersStill() ? { zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false, inertia: false } : {}) }).fitBounds(S.HOME, framePad());
-  L.control.zoom({ position: 'bottomright' }).addTo(S.map);
-  updateZoomAria(); updateMapLabels();
-  addLocateControl();
-  S.map.on('zoomend moveend', () => { S.labelMarkers(); legendZoomHint(); });
-  setTiles();
+  if (hasWebGL()) {
+    // The probe says the browser can make a WebGL2 context; the map asks for
+    // one of its own, and MapLibre throws (GPUInitializationError) from the
+    // constructor when that one fails — a driver blocklist, a lost context, a
+    // machine already at its handful of live contexts. Unguarded that rejected
+    // main() and the reader got the boot-failure screen instead of the list the
+    // spec gives a browser with no map (decision 1). The `!S.map` branch below
+    // does the rest: list view, a disabled toggle and the notice.
+    try {
+      createMap();
+      updateMapLabels();
+      addLocateControl();
+      updateZoomAria();
+    } catch (e) {
+      console.error('map:', e);
+      S.map = null;
+    }
+  }
   let touched = false;
-  ['mousedown', 'wheel', 'touchstart'].forEach(ev => S.map!.getContainer()
-    .addEventListener(ev, () => { touched = true; }, { once: true, passive: true }));
-  // the panel folds on every return to the map, not the first only: a reader
-  // who unfolded it to change a select is done with it once they pan again
-  ['mousedown', 'wheel', 'touchstart'].forEach(ev => S.map!.getContainer()
-    .addEventListener(ev, () => foldPanel(true), { passive: true }));
+  if (S.map) {
+    ['mousedown', 'wheel', 'touchstart'].forEach(ev => S.map!.getContainer()
+      .addEventListener(ev, () => { touched = true; }, { once: true, passive: true }));
+    // the panel folds on every return to the map, not the first only: a reader
+    // who unfolded it to change a select is done with it once they pan again
+    ['mousedown', 'wheel', 'touchstart'].forEach(ev => S.map!.getContainer()
+      .addEventListener(ev, () => foldPanel(true), { passive: true }));
+  }
   // A map framed against a 0×0 container sticks at max zoom over empty terrain
   // with no markers, and nothing about the page looks broken enough to explain
   // it. A container is 0×0 at boot for many unrelated reasons — a background
@@ -157,35 +157,32 @@ export async function main() {
   // frame is honest, and give up once the reader has moved the map themselves.
   let framed = false;
   function ensureFramed() {
-    if (framed || touched) return true;
+    if (framed || touched || !S.map) return true;
     if (S.view === 'list') { S.refitPending = true; return true; }   // reframed on the way back
-    if (!S.map!.getContainer().clientWidth) return false;            // still nothing to frame
-    S.map!.invalidateSize();
-    S.map!.fitBounds(S.HOME!, { ...framePad(), animate: false });
+    if (!S.map.getContainer().clientWidth) return false;             // still nothing to frame
+    resizeMap();
+    fitHome(false);
     framed = true;
     return true;
   }
   [0, 150, 400, 900, 2000, 4000].forEach(ms => setTimeout(ensureFramed, ms));
   document.addEventListener('visibilitychange', () => { if (!document.hidden) ensureFramed(); });
-  // Leaflet re-measures on a window resize only. A container that changes size
-  // on its own (the school sheet opening beside the map, the panel docking)
-  // left the map drawing to its old width: a click landed on the wrong school
-  // and the right edge stayed blank. Pan to keep the centre only when the
-  // window itself changed. The controls are measured again here too: closing
-  // a phone's full-screen sheet measured them against a 0px map, and the
-  // panel's cap stayed 59px short until the next points edit.
-  let lastW = innerWidth;
-  if (window.ResizeObserver) new ResizeObserver(() => {
+  // The engine re-measures on a window resize only. A container that changes
+  // size on its own (the school sheet opening beside the map, the panel
+  // docking) left the map drawing to its old width: a click landed on the
+  // wrong school and the right edge stayed blank. The controls are measured
+  // again here too: closing a phone's full-screen sheet measured them against
+  // a 0px map, and the panel's cap stayed 59px short until the next points edit.
+  if (S.map && window.ResizeObserver) new ResizeObserver(() => {
     if (S.map!.getContainer().clientWidth) {
-      S.map!.invalidateSize({ pan: innerWidth !== lastW });
-      lastW = innerWidth;
+      resizeMap();
       if (S.view === 'map') liftMapControls();
     }
     ensureFramed();
   }).observe(S.map.getContainer());
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
     if (PREFS.theme !== 'auto') return;    // a pinned theme does not follow the OS
-    setTiles(); drawMarkers(); renderLegend(); renderCatNote(); renderPointsField();
+    setMapStyle(); drawMarkers(); renderLegend(); renderCatNote(); renderPointsField();
     if (S.current) renderSide();
     // the guide draws its sample dots in the theme's colours
     if (!document.getElementById('intro')!.hidden) {
@@ -225,7 +222,7 @@ export async function main() {
   addEventListener('resize', () => {
     clearTimeout(reframe);
     reframe = setTimeout(() => {
-      S.map!.invalidateSize(); liftMapControls(); keepPanelFocusInView();
+      resizeMap(); liftMapControls(); keepPanelFocusInView();
       sideTrap(document.body.classList.contains('side-open'));   // a rotation crosses the breakpoint
     }, 200);
   });
@@ -299,18 +296,23 @@ export async function main() {
   const framedByUrl = applyUrlFilters(true);
   let storedView = 'map';
   try { if (localStorage.getItem('pk-view') === 'list') storedView = 'list'; } catch (e) {}
-  setView(storedView);
-  if (framedByUrl && S.view === 'map') {
-    const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon] as L.LatLngTuple);
-    if (pts.length) { touched = true; S.map.fitBounds(L.latLngBounds(pts).pad(0.08), { ...framePad(), animate: false }); }
+  if (!S.map) {
+    // no WebGL2: the list is the only view; say so once and keep the toggle honest
+    storedView = 'list';
+    document.body.classList.add('no-map');
+    const b = document.getElementById('view-map') as HTMLButtonElement;
+    b.disabled = true; b.title = t('noMapWebGL'); b.setAttribute('aria-description', t('noMapWebGL'));
+    toast(t('noMapWebGL'), 8000);
   }
+  setView(storedView);
+  if (framedByUrl && S.view === 'map' && S.map && fitVisible(false)) touched = true;
   const linked = schoolFromUrl();
   if (!linked && unresolved) toast(t('linkNotFound', unresolved));
   else if (!linked && document.body.dataset.notfound) toast(t('linkNotFound', unresolvedFromPath()));
   if (linked) {
-    if (linked.lat) {
+    if (linked.lat && S.map) {
       touched = true;                  // the deferred HOME refit must not undo this
-      S.map.setView([linked.lat, linked.lon], 11, { animate: false });
+      viewSchool(linked, 10, false);
     }
     openSide(linked, true);              // the page the reader arrived on, not one they opened
   }
