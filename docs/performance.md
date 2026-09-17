@@ -106,6 +106,68 @@ honest statement of the win is structural, and it scales with the connection:
 same-session comparison showed every op within its baseline noise band, and
 the full figure-invariant suite (I1–I13) is green on the deployed build.
 
+## After the Vite build — 2026-09-17, preview build, warm load
+
+`web/index.html`'s inline script became nineteen TypeScript modules, bundled
+by Vite into one script and one stylesheet. Measured with the perf harness
+(`.claude/skills/qa/perf-harness.js`, unchanged — `exposeGlobals()` in
+`web/src/globals.ts` still puts every function and state field on `window`)
+pasted into `npm run build` + `npm run preview` (port 4173, localhost),
+loaded twice, second (warm) load kept. Not the production edge — see the
+2026-08-24 sections for that — so absolute milliseconds are not compared
+across the two; the question here is whether the module split and the
+bundler kept the 2026-08-24 optimizations' structure.
+
+The waterfall is still parallel, now with one script and one stylesheet
+instead of the old inline script plus two deferred vendor files:
+
+| resource | start (ms) | end (ms) |
+|---|---|---|
+| `assets/index-CC5cGhQ5.css` | 7 | 13 |
+| `assets/index-CSHk1ijY.js` | 7 | 13 |
+| `data/model.json` | 7 | 14 |
+| `data/schools.json` | 7 | 18 |
+
+All four start within the same millisecond of navigation, and the harness's
+own double-fetch check is empty (`doubleFetch: []`): one request per JSON,
+no re-fetch when the app's own `fetch()` runs against the preloaded
+response. **The preloads still leave with the first bytes.** Vite keeps the
+`<link rel="preload" as="fetch" crossorigin>` pair for both JSONs in
+`web/dist/index.html`'s `<head>` (lines 44–45), ahead of the bundled
+`<script type="module">` and `<link rel="stylesheet">` (lines 62–63) that
+replaced the old vendor `<script defer>` tags — same contract as the
+2026-08-24 optimization, carried through the rebuild unchanged.
+
+`performance.mark` timeline this load: `pk:data` 30 ms, `pk:model` 32 ms (2 ms
+apart — still parallel, not the old serial 24 ms gap), `pk:boot-done` 118 ms
+(`domInteractive` 12 ms, `load` 19 ms — the ~100 ms from `load` to
+`pk:boot-done` is marker-draw and first render, not asset loading).
+
+**Ops, same session** (median/p90 ms, for reference only — not a
+cross-session comparison, see Methodology): drawMarkers 5.9/7.0 · with lens
+3.5/4.3 · in chance mode 6.3/8.9 · openSide (heaviest) 0.5/1.3 · renderSide
+0.4/0.5 · renderList 0.1/0.2 · renderChartCard 0.1/0.2 · setLens round-trip
+6.2/13 · onPoints on 7.6/11.5 · off 7.2/8.4 · setLang 8.4/11.3 · JSON.parse
+schools 12.7/16.5. Same shape as the 2026-08-24 baseline (every op under
+15 ms median); no operation code changed in the rebuild.
+
+**Bundle size** (`ls -l web/dist/assets`):
+
+| file | bytes |
+|---|---|
+| `index-CSHk1ijY.js` | 316,478 |
+| `index-CSHk1ijY.js.map` | 1,170,478 |
+| `index-CC5cGhQ5.css` | 69,718 |
+
+`gzip -c web/dist/assets/index-*.js | wc -c` → **95,815 bytes** (93.6 KiB)
+compressed. Against the old single-file `web/index.html` on `main`
+(355,091 bytes, 346.8 KiB, raw — not a like-for-like compression
+comparison, since that figure was never gzipped as one unit): the app's
+entire script, gzipped, is now about a quarter of the old page's raw
+weight. The CSS split out of that same file compresses to 17.39 kB gzip per
+the build's own report (`vite build`'s `computing gzip size` step), separate
+from the JS number above.
+
 ## Standing budget
 
 - No user-facing operation above 15 ms median on a desktop-class machine.

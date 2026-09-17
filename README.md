@@ -58,6 +58,12 @@ The same files are mirrored to a public bucket, with every file's SHA-256 in
 `sources/manifest.json`; `tools/sources_r2.py fetch` restores a missing
 `sources/` from there and verifies each file against the manifest.
 
+`npm test` runs the unit tests (Vitest, coverage threshold 80%), `npm run e2e`
+the browser suite (Playwright: boot, permalinks, filters, points, wishes, the
+list, settings, the calculator, the bug button, a phone, axe, and the figure
+invariants), and `.venv/bin/python3 -m pytest` the dataset checks. GitHub
+Actions runs all three on every push.
+
 ## The dataset
 
 `web/public/data/schools.json` is what the app reads, and is published under the
