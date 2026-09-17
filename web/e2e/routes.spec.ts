@@ -68,3 +68,11 @@ test('the script takes over a prerendered sheet without changing it', async ({ p
   expect(live).toBe(prerendered);
   await expect(page.locator('#s-hero .cell').first()).toBeVisible();
 });
+
+test('the sitemap names every school', async ({ request }) => {
+  const res = await request.get('/sitemap.xml');
+  expect(res.status()).toBe(200);
+  const xml = await res.text();
+  expect((xml.match(/<loc>/g) || []).length).toBeGreaterThan(200);
+  expect(xml).toContain('<loc>https://poengkart-no.vercel.app/akershus/asker</loc>');
+});
