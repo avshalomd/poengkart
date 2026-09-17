@@ -172,14 +172,22 @@ for s in DATA['schools']:
         if p['values'][newest_cell] == 'U':
             check(f'no forecast for discontinued {s["name"]} · {p["program"]}', key not in progs)
 # 2. every county's fill probability is fitted, none pinned at 1 across the
-# board. Møre og Romsdal was pinned from 2 to 5 Sept 2026, while its extract
-# had no "ingen venteliste" state; since then the county's own dashboard rule
-# (a figure under 25 is shown as "alle kom inn, eller under 25") supplies one
+# board — except the counties the model declares fill-blind (meta.fill_blind:
+# a source with no "ingen venteliste" state, pinned at π = 1 by construction).
+# Møre og Romsdal was pinned from 2 to 5 Sept 2026, while its extract had no
+# such state; since then the county's own dashboard rule (a figure under 25
+# is shown as "alle kom inn, eller under 25") supplies one. Telemark's
+# workbook has none, so it is pinned since 17 Sept 2026
+BLIND = set(META.get('fill_blind') or [])
 for f in sorted({sid.split('|')[0] for sid in SCHOOLS}):
     pis = [pr['pi'] for sid, ent in SCHOOLS.items() if sid.startswith(f + '|')
            for pr in (ent.get('programs') or {}).values()]
-    check(f'{f}: fill probability is fitted, not pinned at 1', any(p < 1.0 for p in pis),
-          f'{len(pis)} forecasts, min π {min(pis) if pis else None}')
+    if f in BLIND:
+        check(f'{f}: fill-blind, so every fill probability is pinned at 1', all(p == 1.0 for p in pis),
+              f'{len(pis)} forecasts, min π {min(pis) if pis else None}')
+    else:
+        check(f'{f}: fill probability is fitted, not pinned at 1', any(p < 1.0 for p in pis),
+              f'{len(pis)} forecasts, min π {min(pis) if pis else None}')
 # 3. band keys use the glossary (CONTEXT.md: likely / possible / unlikely)
 check('chance bands named likely/possible/unlikely', set(META['chance_bands']) == {'likely', 'possible'}, str(META['chance_bands']))
 # 4a. ...but a county whose only fitted years are partial still uses them:

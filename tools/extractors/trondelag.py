@@ -41,13 +41,7 @@ CODE_RE = re.compile(r'^[A-ZÆØÅ]{5}\d[A-Z0-9-]{4}$')
 
 # county-level variants that are not in Udir's national Grep registry; names
 # taken from the PDFs' own (wrapped) column labels
-EXTRA_CODES = {
-    'MDMDD1--1-': 'Musikk, dans og drama, musikk',
-    'MDMDD1--4-': 'Musikk, dans og drama, dans',
-    'MDMDD1--6-': 'Musikk, dans og drama, drama',
-    'HSHSF1N---': 'Helse- og oppvekstfag, SK 3 år',
-    'STUSP1--EP': 'Studiespesialisering, entreprenørskap',
-}
+EXTRA_CODES = common.VIGO_VARIANT_CODES     # shared with Telemark; see tools/common.py
 SCHOOLNR_RE = re.compile(r'^(\d{5})(.*)$')
 # the county's own PDFs misspell these
 SCHOOL_FIXES = {

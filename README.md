@@ -7,10 +7,10 @@
 Admission thresholds (*poenggrenser*) for Norwegian upper secondary schools,
 on a map and as a ranked list. A threshold is the points of the last applicant
 who got a place (grade average × 10): what it took to get in, not what the
-school requires. 217 schools in the eight counties that publish the figures,
-2012–2026, in Norwegian and English.
+school requires. 228 schools in the nine counties that publish the figures
+or released them on request, 2012–2026, in Norwegian and English.
 
-![The map: 217 schools, clustered and coloured by admission threshold](docs/map.png)
+![The map: 228 schools, clustered and coloured by admission threshold](docs/map.png)
 
 ![A school: photo, your chance of a place at the next intake, the trend, and every programme with its own figure](docs/school.png)
 
@@ -84,8 +84,8 @@ Each (school, programme, year) cell is one of:
 | `D` | admission by documentation (IB, elite sport); no threshold |
 | `U` | discontinued that year |
 
-Agder, Finnmark, Nordland, Telemark, Troms, Vestfold and Østfold do not
-publish thresholds; the county select lists them as *(ingen data)*.
+Agder, Finnmark, Nordland, Troms, Vestfold and Østfold do not publish
+thresholds; the county select lists them as *(ingen data)*.
 
 | County | Format | Years | Inntak |
 |---|---|---|---|
@@ -95,6 +95,7 @@ publish thresholds; the county select lists them as *(ingen data)*.
 | Møre og Romsdal | Excel extract from the county's Power BI dashboard, released on request | 2012–2026 | 2. |
 | [Oslo](https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/) | HTML + PDF, oldest years via school-site PDFs | 2015, 2017–2026 | 1. |
 | [Rogaland](https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6) | PDF | 2018–2026 | 2. |
+| Telemark | Excel extract released on request: the lowest points of the admitted for every programme, no fill state | 2024–2026 | not stated |
 | [Trøndelag](https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6) | PDF, per intake region | 2025 | not stated |
 | [Vestland](https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/) | PDF | 2020–2026 | 1. and 3. |
 | ↳ Hordaland, pre-merger | PDF: press releases via the Wayback Machine (1.), the county's full table (3.) | 2017–2019 | 1. and 3. |

@@ -6,7 +6,7 @@
    stay importable without a DOM: state, helpers, i18n, types — and no map engine. */
 import { S } from './state';
 import { t, CATS } from './i18n';
-import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE,
+import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE, FILL_BLIND,
          partitionPrograms, numericLatest, progId, progName, levelScope, isRecent, isVg1, isPoints, meanStep, BUG_ICON, X_ICON } from './helpers';
 import { bucketOf, chanceFinal, chanceMode, chanceOf, finalRoundBridge, isChosen, modelEntry, pct, pctS, predFor } from './forecast';
 import type { School, County } from './types';
@@ -72,6 +72,8 @@ export function notesHtml(s: School): string {
   if (OPEN_RULE.has(s.fylke) && s.programs.some(p => Object.values(p.values).includes('open'))) {
     notes.push(t('openRuleNote'));
   }
+  // where the county has no fill state at all, say so on every school
+  if (FILL_BLIND.has(s.fylke)) notes.push(t('noFillStateNote'));
   return notes.map(n => `<p>${esc(n)}</p>`).join('');
 }
 // the hero figure and the mix warning under it describe one scope: the rows

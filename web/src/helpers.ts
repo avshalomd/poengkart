@@ -190,8 +190,12 @@ export const staleBefore = () => +S.DATA!.years[S.DATA!.years.length - 1] - 1;
 // counties whose "ingen venteliste" is the county's own rule rather than an
 // observed queue state (openRuleNote; tools/extractors/mro.py)
 export const OPEN_RULE = new Set(['Møre og Romsdal']);
+// counties whose source has no fill state at all — a number for every offered
+// programme, so «ingen venteliste» cannot occur (noFillStateNote; FILL_BLIND
+// in tools/model.py fixes their fill probability at 1)
+export const FILL_BLIND = new Set(['Telemark']);
 // counties that do not publish poenggrenser (docs/data-notes.md)
-export const MISSING_COUNTIES = ['Agder', 'Finnmark', 'Nordland', 'Telemark', 'Troms', 'Vestfold', 'Østfold'];
+export const MISSING_COUNTIES = ['Agder', 'Finnmark', 'Nordland', 'Troms', 'Vestfold', 'Østfold'];
 export function schoolPressure(s, cat) {
   // Demand, judged in the newest dataset year only. Two honest signals:
   //   mean threshold of the programmes that filled up    -> how hard, typically

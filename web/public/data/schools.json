@@ -65,6 +65,18 @@
    "schools": 25
   },
   {
+   "code": "40",
+   "fylke": "Telemark",
+   "round": null,
+   "rights": "ungdomsrett",
+   "round_note": "the county's extract does not state which inntak the figures are from (asked 17.09.2026)",
+   "free_choice": false,
+   "levels": "Vg1",
+   "source": "https://telemarkfylke.no/no/aktuelt/yrkesfag-topper-sokerlista-i-telemark/",
+   "note": "workbook sent on request, received 17.09.2026: «Laveste karakterpoeng», the lowest grade points among the admitted, for every offered programme; no fill state, no intake round stated",
+   "schools": 11
+  },
+  {
    "code": "50",
    "fylke": "Trøndelag",
    "round": null,
@@ -6880,7 +6892,14 @@
    "address": "Lenagata 20, 2850, LENA",
    "nsr_name": "Lena-Valle videregående skole avd Valle",
    "lat": 60.67723,
-   "lon": 10.81207
+   "lon": 10.81207,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Valle_VGS_1.jpg/960px-Valle_VGS_1.jpg",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Valle_VGS_1.jpg",
+   "photo_credit": "Foto: Mokleven (CC BY-SA 3.0)",
+   "photo_license": "CC BY-SA 3.0",
+   "wiki_url": "https://no.wikipedia.org/wiki/Valle_videreg%C3%A5ende_skole_(%C3%98stre_Toten)",
+   "wiki_extract": "Valle videregående skole er en yrkesfaglig videregående skole på Lena i Østre Toten kommune, som spesialiserer sitt tilbud innen naturbruk. Fra 1. oktober 2014 ble skolen lagt under felles administrasjon med Lena videregående skole. Rektor ved Lena vgs ble rektor for begge skolene.",
+   "photo_source": "reviewed"
   },
   {
    "name": "Lillehammer videreg skole, avd Nord",
@@ -29700,6 +29719,882 @@
    "nsr_name": "Ølen vidaregåande skule",
    "lat": 59.60671,
    "lon": 5.81603
+  },
+  {
+   "name": "Bamble videregående skole",
+   "fylke": "Telemark",
+   "fylkesnummer": "40",
+   "round": null,
+   "programs": [
+    {
+     "program": "Elektro og datateknologi",
+     "program_en": "Electrical Engineering and Computer Technology",
+     "level": "Vg1",
+     "category": "EL",
+     "values": {
+      "2024": 40.9,
+      "2025": 41.5,
+      "2026": 36.0
+     },
+     "grep": "ELELE1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 30.0,
+      "2025": 26.0,
+      "2026": 24.3
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg1",
+     "category": "SR",
+     "values": {
+      "2024": 33.8,
+      "2025": 16.3,
+      "2026": 16.3
+     },
+     "grep": "SRSSR1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 27.1,
+      "2025": 16.0,
+      "2026": 26.3
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 28.8,
+      "2025": 30.0,
+      "2026": 29.8
+     },
+     "grep": "TPTIP1----"
+    }
+   ],
+   "inntaksregion": "Grenland",
+   "catchment": true,
+   "orgnr": "974568098",
+   "url": "telemarkfylke.no/no/skoler/bamble-vgs/",
+   "address": "Sundbykåsa 29, 3961, STATHELLE",
+   "nsr_name": "Bamble videregående skole",
+   "lat": 59.02761,
+   "lon": 9.70321,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Bamble_videreg%C3%A5ende_skole_02.jpg/960px-Bamble_videreg%C3%A5ende_skole_02.jpg",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Bamble_videreg%C3%A5ende_skole_02.jpg",
+   "photo_credit": "Foto: Far min (CC BY-SA 4.0)",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_source": "reviewed"
+  },
+  {
+   "name": "Bø vidaregåande skule",
+   "fylke": "Telemark",
+   "fylkesnummer": "40",
+   "round": null,
+   "programs": [
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg1",
+     "category": "ID",
+     "values": {
+      "2024": 34.7,
+      "2025": 38.8,
+      "2026": 26.0
+     },
+     "grep": "IDRET1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 29.1,
+      "2025": 33.5,
+      "2026": 22.5
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Studiespesialisering, toppidrett",
+     "program_en": "Specialization in General Studies, elite sport",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 37.5,
+      "2025": 35.4,
+      "2026": 36.7
+     },
+     "grep": "STUSP1--T-"
+    }
+   ],
+   "inntaksregion": "Midt-Øst Telemark",
+   "catchment": true,
+   "orgnr": "974567997",
+   "url": "telemarkfylke.no/no/skoler/bo-vgs/",
+   "address": "Gymnasbakken 23, 3802, BØ I TELEMARK",
+   "nsr_name": "Bø vidaregåande skule",
+   "lat": 59.41713,
+   "lon": 9.06299
+  },
+  {
+   "name": "Hjalmar Johansen videregående skole",
+   "fylke": "Telemark",
+   "fylkesnummer": "40",
+   "round": null,
+   "programs": [
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg1",
+     "category": "ID",
+     "values": {
+      "2024": 35.3,
+      "2025": 23.3,
+      "2026": 36.2
+     },
+     "grep": "IDRET1----"
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "program_en": "Media and Communication",
+     "level": "Vg1",
+     "category": "MK",
+     "values": {
+      "2024": 18.3,
+      "2025": 19.3,
+      "2026": 13.1
+     },
+     "grep": "MEMOK1----"
+    },
+    {
+     "program": "Restaurant- og matfag",
+     "program_en": "Restaurant and Food Processing",
+     "level": "Vg1",
+     "category": "RM",
+     "values": {
+      "2024": 18.0,
+      "2025": 11.3,
+      "2026": 20.0
+     },
+     "grep": "RMRMF1----"
+    }
+   ],
+   "inntaksregion": "Grenland",
+   "catchment": true,
+   "orgnr": "974568071",
+   "url": "telemarkfylke.no/no/skoler/hjalmarjohansen-vgs/",
+   "address": "Moflatvegen 38, 3733, SKIEN",
+   "nsr_name": "Hjalmar Johansen videregående skole",
+   "lat": 59.18583,
+   "lon": 9.5966,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Hjalmar_Johansen_videreg%C3%A5ende_skole_-_Klosterskogen.jpg/960px-Hjalmar_Johansen_videreg%C3%A5ende_skole_-_Klosterskogen.jpg",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Hjalmar_Johansen_videreg%C3%A5ende_skole_-_Klosterskogen.jpg",
+   "photo_credit": "Foto: Bitjungle (CC BY-SA 3.0)",
+   "photo_license": "CC BY-SA 3.0",
+   "photo_source": "reviewed"
+  },
+  {
+   "name": "Kragerø videregående skole",
+   "fylke": "Telemark",
+   "fylkesnummer": "40",
+   "round": null,
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "program_en": "Building and Construction",
+     "level": "Vg1",
+     "category": "BA",
+     "values": {
+      "2024": 23.1,
+      "2025": 27.3,
+      "2026": 32.4
+     },
+     "grep": "BABAT1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 25.0,
+      "2025": 19.1,
+      "2026": 20.0
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg1",
+     "category": "ID",
+     "values": {
+      "2024": 31.0,
+      "2025": 21.7,
+      "2026": 22.3
+     },
+     "grep": "IDRET1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 30.0,
+      "2025": 28.7,
+      "2026": 24.8
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 32.6,
+      "2025": 25.5,
+      "2026": 26.3
+     },
+     "grep": "TPTIP1----"
+    }
+   ],
+   "inntaksregion": "Vestmar",
+   "catchment": true,
+   "orgnr": "974568004",
+   "url": "telemarkfylke.no/no/skoler/kragero-vgs/",
+   "address": "Frydenborgveien 9-11, 3772, KRAGERØ",
+   "nsr_name": "(manual)",
+   "lat": 58.87144,
+   "lon": 9.39281
+  },
+  {
+   "name": "Nome videregående skole",
+   "fylke": "Telemark",
+   "fylkesnummer": "40",
+   "round": null,
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "program_en": "Building and Construction",
+     "level": "Vg1",
+     "category": "BA",
+     "values": {
+      "2024": 13.8,
+      "2025": 20.0,
+      "2026": 13.7
+     },
+     "grep": "BABAT1----"
+    },
+    {
+     "program": "Elektro og datateknologi",
+     "program_en": "Electrical Engineering and Computer Technology",
+     "level": "Vg1",
+     "category": "EL",
+     "values": {
+      "2024": 26.3,
+      "2025": 19.0,
+      "2026": 20.0
+     },
+     "grep": "ELELE1----"
+    },
+    {
+     "program": "Frisør, blomster, interiør og eksponeringsdesign",
+     "program_en": "Hairdresser, Floral, Interior and Exposure Design",
+     "level": "Vg1",
+     "category": "FD",
+     "values": {
+      "2024": 30.0,
+      "2025": 16.7,
+      "2026": 29.4
+     },
+     "grep": "FDFBI1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 26.9,
+      "2025": 32.1,
+      "2026": 17.5
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Naturbruk",
+     "program_en": "Agriculture, Fishing and Forestry",
+     "level": "Vg1",
+     "category": "NA",
+     "values": {
+      "2024": 21.1,
+      "2025": 16.3,
+      "2026": 19.8
+     },
+     "grep": "NANAB1----"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 13.5,
+      "2025": 26.3,
+      "2026": 24.0
+     },
+     "grep": "TPTIP1----"
+    }
+   ],
+   "inntaksregion": "Midt-Øst Telemark",
+   "catchment": true,
+   "orgnr": "974568187",
+   "url": "telemarkfylke.no/no/skoler/nome-vgs/",
+   "address": "Søvevegen 12, 3830, ULEFOSS",
+   "nsr_name": "Nome videregående skole avd Søve",
+   "lat": 59.27896,
+   "lon": 9.28405,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/S%C3%B8veVgs.jpg/960px-S%C3%B8veVgs.jpg",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:S%C3%B8veVgs.jpg",
+   "photo_credit": "Foto: Peter Fiskerstrand (CC BY-SA 4.0)",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_source": "reviewed"
+  },
+  {
+   "name": "Notodden videregående skole",
+   "fylke": "Telemark",
+   "fylkesnummer": "40",
+   "round": null,
+   "programs": [
+    {
+     "program": "Elektro og datateknologi",
+     "program_en": "Electrical Engineering and Computer Technology",
+     "level": "Vg1",
+     "category": "EL",
+     "values": {
+      "2024": 30.6,
+      "2025": 34.3,
+      "2026": 42.2
+     },
+     "grep": "ELELE1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 23.4,
+      "2025": 20.0,
+      "2026": 14.6
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg1",
+     "category": "SR",
+     "values": {
+      "2024": 18.7,
+      "2025": 26.0,
+      "2026": 24.4
+     },
+     "grep": "SRSSR1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 27.3,
+      "2025": 31.3,
+      "2026": 27.6
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Studiespesialisering, toppidrett",
+     "program_en": "Specialization in General Studies, elite sport",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 29.6,
+      "2025": 13.3,
+      "2026": 15.0
+     },
+     "grep": "STUSP1--T-"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 13.3,
+      "2025": 28.8,
+      "2026": 33.8
+     },
+     "grep": "TPTIP1----"
+    }
+   ],
+   "inntaksregion": "Midt-Øst Telemark",
+   "catchment": true,
+   "orgnr": "974568012",
+   "url": "telemarkfylke.no/no/skoler/notodden-vgs/",
+   "address": "Heddalsvegen 4, 3674, NOTODDEN",
+   "nsr_name": "Notodden videregående skole",
+   "lat": 59.5553,
+   "lon": 9.25771,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/NotoddenVgs.jpg/960px-NotoddenVgs.jpg",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:NotoddenVgs.jpg",
+   "photo_credit": "Foto: Peter Fiskerstrand (CC BY-SA 4.0)",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_source": "reviewed"
+  },
+  {
+   "name": "Porsgrunn videregående skole",
+   "fylke": "Telemark",
+   "fylkesnummer": "40",
+   "round": null,
+   "programs": [
+    {
+     "program": "Frisør, blomster, interiør og eksponeringsdesign",
+     "program_en": "Hairdresser, Floral, Interior and Exposure Design",
+     "level": "Vg1",
+     "category": "FD",
+     "values": {
+      "2024": 22.9,
+      "2025": 16.3,
+      "2026": 19.4
+     },
+     "grep": "FDFBI1----"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg1",
+     "category": "ID",
+     "values": {
+      "2024": 16.5,
+      "2025": 24.7,
+      "2026": 25.6
+     },
+     "grep": "IDRET1----"
+    },
+    {
+     "program": "Informasjonsteknologi og medieproduksjon",
+     "program_en": "Information Technology and Media Production",
+     "level": "Vg1",
+     "category": "IM",
+     "values": {
+      "2024": 24.6,
+      "2025": 10.7,
+      "2026": 27.9
+     },
+     "grep": "IMIKM1----"
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "program_en": "Art, Design and Architecture",
+     "level": "Vg1",
+     "category": "KD",
+     "values": {
+      "2024": 23.5,
+      "2025": 38.8,
+      "2026": 30.7
+     },
+     "grep": "KDKDA1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 28.1,
+      "2025": 21.0,
+      "2026": 22.9
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Studiespesialisering, forberedende IB",
+     "program_en": "Specialization in General Studies, pre-IB",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 30.7,
+      "2025": 19.4,
+      "2026": 42.0
+     },
+     "grep": "STUSP1Z---"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 34.7,
+      "2025": 33.1,
+      "2026": 36.0
+     },
+     "grep": "TPTIP1----"
+    }
+   ],
+   "inntaksregion": "Grenland",
+   "catchment": true,
+   "orgnr": "974568020",
+   "url": "telemarkfylke.no/no/skoler/porsgrunn-vgs/",
+   "address": "Kjølnes ring 58, 3918, PORSGRUNN",
+   "nsr_name": "Porsgrunn videregående skole",
+   "lat": 59.13845,
+   "lon": 9.66904
+  },
+  {
+   "name": "Rjukan videregående skole",
+   "fylke": "Telemark",
+   "fylkesnummer": "40",
+   "round": null,
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "program_en": "Building and Construction",
+     "level": "Vg1",
+     "category": "BA",
+     "values": {
+      "2024": 27.6,
+      "2025": 22.7,
+      "2026": 29.4
+     },
+     "grep": "BABAT1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 22.1,
+      "2025": 19.0,
+      "2026": 31.4
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 26.8,
+      "2025": 28.4,
+      "2026": 30.0
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Studiespesialisering, natur og miljø, LAL",
+     "program_en": "Specialization in General Studies (natur og miljø), national programme",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 34.7,
+      "2025": 45.5,
+      "2026": 52.5
+     },
+     "grep": "STUSP1L-X-"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 26.3,
+      "2025": 28.2,
+      "2026": 32.9
+     },
+     "grep": "TPTIP1----"
+    }
+   ],
+   "inntaksregion": "Øst-Telemark/Tinn",
+   "catchment": true,
+   "orgnr": "874568082",
+   "url": "telemarkfylke.no/no/skoler/rjukan-vgs/",
+   "address": "Såheimsveien 22, 3660, RJUKAN",
+   "nsr_name": "Rjukan videregående skole",
+   "lat": 59.87794,
+   "lon": 8.58048,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rjukan-vgs-2016-1.jpg/960px-Rjukan-vgs-2016-1.jpg",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Rjukan-vgs-2016-1.jpg",
+   "photo_credit": "Foto: Ojtveito (CC BY-SA 4.0)",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_source": "reviewed"
+  },
+  {
+   "name": "Skien videregående skole",
+   "fylke": "Telemark",
+   "fylkesnummer": "40",
+   "round": null,
+   "programs": [
+    {
+     "program": "Musikk, dans og drama, dans",
+     "program_en": "Music, Dance and Drama — dance",
+     "level": "Vg1",
+     "category": "MD",
+     "values": {
+      "2024": 35.7,
+      "2025": 24.7,
+      "2026": 34.7
+     },
+     "grep": "MDMDD1--4-"
+    },
+    {
+     "program": "Musikk, dans og drama, drama",
+     "program_en": "Music, Dance and Drama — drama",
+     "level": "Vg1",
+     "category": "MD",
+     "values": {
+      "2024": 22.5,
+      "2025": 32.4,
+      "2026": 36.3
+     },
+     "grep": "MDMDD1--6-"
+    },
+    {
+     "program": "Musikk, dans og drama, musikk",
+     "program_en": "Music, Dance and Drama — music",
+     "level": "Vg1",
+     "category": "MD",
+     "values": {
+      "2024": 24.7,
+      "2025": 44.4,
+      "2026": 35.6
+     },
+     "grep": "MDMDD1--1-"
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg1",
+     "category": "SR",
+     "values": {
+      "2024": 22.3,
+      "2025": 24.7,
+      "2026": 12.8
+     },
+     "grep": "SRSSR1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 24.4,
+      "2025": 29.1,
+      "2026": 17.6
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Studiespesialisering, IT",
+     "program_en": "Specialization in General Studies (IT)",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 34.7
+     },
+     "grep": "STUSP1--IT"
+    },
+    {
+     "program": "Studiespesialisering, forskerlinje",
+     "program_en": "Specialization in General Studies, research track",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 37.8,
+      "2025": 21.0,
+      "2026": 45.0
+     },
+     "grep": "STUSP1--Q-"
+    }
+   ],
+   "inntaksregion": "Grenland",
+   "catchment": true,
+   "orgnr": "974568039",
+   "url": "telemarkfylke.no/no/skoler/skien-vgs/",
+   "address": "Hollenderigata 5, 3732, SKIEN",
+   "nsr_name": "Skien videregående skole",
+   "lat": 59.19934,
+   "lon": 9.61431,
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Skien_Videreg%C3%A5ende.jpg/960px-Skien_Videreg%C3%A5ende.jpg",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Skien_Videreg%C3%A5ende.jpg",
+   "photo_credit": "Foto: Orf3us (CC BY-SA 4.0)",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_source": "reviewed"
+  },
+  {
+   "name": "Skogmo videregående skole",
+   "fylke": "Telemark",
+   "fylkesnummer": "40",
+   "round": null,
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "program_en": "Building and Construction",
+     "level": "Vg1",
+     "category": "BA",
+     "values": {
+      "2024": 15.0,
+      "2025": 13.8,
+      "2026": 14.0
+     },
+     "grep": "BABAT1----"
+    },
+    {
+     "program": "Elektro og datateknologi",
+     "program_en": "Electrical Engineering and Computer Technology",
+     "level": "Vg1",
+     "category": "EL",
+     "values": {
+      "2024": 36.7,
+      "2025": 35.9,
+      "2026": 32.4
+     },
+     "grep": "ELELE1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 10.0,
+      "2025": 24.3,
+      "2026": 15.8
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag, SK 3 år",
+     "program_en": "Healthcare, Childhood and Youth Development, 3-year academic track",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 34.7,
+      "2025": 41.3,
+      "2026": 36.9
+     },
+     "grep": "HSHSF1N---"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 32.7,
+      "2025": 35.9,
+      "2026": 25.0
+     },
+     "grep": "TPTIP1----"
+    }
+   ],
+   "inntaksregion": "Grenland",
+   "catchment": true,
+   "orgnr": "974568152",
+   "url": "telemarkfylke.no/no/skoler/skogmo-vgs/",
+   "address": "Kjørbekkdalen 11, 3735, SKIEN",
+   "nsr_name": "Skogmo videregående skole",
+   "lat": 59.17342,
+   "lon": 9.62081
+  },
+  {
+   "name": "Vest-Telemark vidaregåande skule",
+   "fylke": "Telemark",
+   "fylkesnummer": "40",
+   "round": null,
+   "programs": [
+    {
+     "program": "Elektro og datateknologi",
+     "program_en": "Electrical Engineering and Computer Technology",
+     "level": "Vg1",
+     "category": "EL",
+     "values": {
+      "2024": 38.2,
+      "2025": 25.0,
+      "2026": 31.3
+     },
+     "grep": "ELELE1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 29.7,
+      "2025": 10.0,
+      "2026": 29.3
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 34.1,
+      "2025": 33.1,
+      "2026": 25.9
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 27.6,
+      "2025": 32.0,
+      "2026": 24.0
+     },
+     "grep": "TPTIP1----"
+    }
+   ],
+   "inntaksregion": "Vest-Telemark",
+   "catchment": true,
+   "orgnr": "974568055",
+   "url": "telemarkfylke.no/no/skoler/vest-telemark-vgs/",
+   "address": "Storvegen 195, 3880, DALEN",
+   "nsr_name": "Vest-Telemark vidaregåande skule",
+   "lat": 59.44661,
+   "lon": 7.98769
   },
   {
    "name": "Byåsen videregående skole",

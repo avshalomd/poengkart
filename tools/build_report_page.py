@@ -314,7 +314,7 @@ page = f"""<!DOCTYPE html>
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Map of Norway with 217 upper-secondary schools as dots coloured by admission threshold, and one school’s panel with its photo and trend.">
+<meta property="og:image:alt" content="Map of Norway with 228 upper-secondary schools as dots coloured by admission threshold, and one school’s panel with its photo and trend.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc_attr(title)}">
 <meta name="twitter:description" content="{esc_attr(og_description)}">

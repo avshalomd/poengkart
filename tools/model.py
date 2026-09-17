@@ -85,9 +85,11 @@ OUT = os.path.join(HERE, '..', 'web', 'public', 'data', 'model.json')
 # so its chance rests on the threshold alone. It trains the level model like
 # any other. Møre og Romsdal sat here from 2 to 5 September 2026, until the
 # county's own dashboard rule supplied a fill state (tools/extractors/mro.py:
-# a figure under 25 is published as "ingen venteliste"). Nobody is here now;
-# the mechanism stays for the next county that arrives without a marker.
-FILL_BLIND = set()
+# a figure under 25 is published as "ingen venteliste"). Telemark arrived on
+# 17 September 2026 with a number for every offered programme and no rule:
+# it sits here until the county supplies the state (admitted counts beside
+# «Plasser», asked 17.09.2026).
+FILL_BLIND = {'Telemark'}
 # Counties whose "ingen venteliste" is a published rule rather than an
 # observed queue state — a proxy label. What the proxy is worth is measured
 # on every refit (meta.halflife_search.proxy_label_experiment): the fit and
@@ -1015,7 +1017,7 @@ def main():
     print('forecast spread by history bucket:', {HIST_BUCKETS[i]: round(v, 2) for i, v in sig['hist'].items()},
           'level multiplier:', {b: round(v, 2) for b, v in sig['level'].items()})
 
-    meta = dict(built=time.strftime('%Y-%m-%d'), halflife=halflife, coupled=couple,
+    meta = dict(built=time.strftime('%Y-%m-%d'), halflife=halflife, coupled=couple, fill_blind=sorted(FILL_BLIND),
                 sigma_model=round(model.sigma, 3), sigma_floor=round(floor_sigma, 3),
                 sigma_forecast={str(HIST_BUCKETS[i]): round(v, 2) for i, v in sig['hist'].items()},
                 sigma_level_multiplier={b: round(v, 3) for b, v in sig['level'].items()},

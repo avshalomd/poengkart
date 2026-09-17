@@ -126,7 +126,7 @@ export interface ModelMeta {
 }
 
 /** Keyed "Fylke|Skolenavn". alpha and programs are absent for the schools the
-    fit had too little to say about (9 and 8 of 217 in the current build). */
+    fit had too little to say about (9 and 8 of 228 in the build of 17 September 2026). */
 export interface ModelSchool {
   year: number;
   round: string | null;

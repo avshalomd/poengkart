@@ -4,6 +4,7 @@ import { loadFixtures, DATA, asker, forde } from './fixtures';
 import { stubMap } from './mapstub';
 import { initHelpers } from '../src/helpers';
 import { openSide } from '../src/sidebar';
+import { t } from '../src/i18n';
 import { photoHtml, metaHtml, notesHtml, heroHtml, srcNoteHtml, listHtml } from '../src/templates';
 
 // The DOM the client renders must be the DOM the build prerendered: same
@@ -62,5 +63,15 @@ describe('the sheet renders what the templates say', () => {
     S.mapCat = 'ST'; openSide(s);
     expect(rendered('s-hero')).toBe(norm(heroHtml(s, 'ST').hero));
     expect(rendered('s-list')).toBe(norm(listHtml(s, 'ST')));
+  });
+});
+
+describe('a county without a fill state', () => {
+  it('says on every Telemark school that the figure cannot show a waiting list', () => {
+    loadFixtures();
+    const html = notesHtml({ name: 'Skien videregående skole', fylke: 'Telemark', programs: [] } as any);
+    expect(html).toContain(t('noFillStateNote'));
+    const other = notesHtml({ name: 'Asker', fylke: 'Akershus', programs: [] } as any);
+    expect(other).not.toContain(t('noFillStateNote'));
   });
 });

@@ -222,6 +222,23 @@ PROGRAM_ALIASES = {
     'it og medieproduksjon, sk 3 år': 'Informasjonsteknologi og medieproduksjon, SK 3 år',
 }
 
+# vigo's county-local variants of a Grep code (positions 7-10), which Udir's
+# register does not list, with the county's own wording. Trøndelag prints them
+# as column keys, Telemark as «Programområdekode (grlsoker)». An unknown code
+# must warn in the extractor, never fall through to the base programme.
+VIGO_VARIANT_CODES = {
+    'MDMDD1--1-': 'Musikk, dans og drama, musikk',
+    'MDMDD1--4-': 'Musikk, dans og drama, dans',
+    'MDMDD1--6-': 'Musikk, dans og drama, drama',
+    'HSHSF1N---': 'Helse- og oppvekstfag, SK 3 år',
+    'STUSP1--EP': 'Studiespesialisering, entreprenørskap',
+    'STUSP1--IT': 'Studiespesialisering, IT',
+    'STUSP1--Q-': 'Studiespesialisering, forskerlinje',
+    'STUSP1--T-': 'Studiespesialisering, toppidrett',
+    'STUSP1L-X-': 'Studiespesialisering, natur og miljø, LAL',     # the county's label, verbatim; LAL unexplained
+    'STUSP1Z---': 'Studiespesialisering, forberedende IB',
+}
+
 
 class Label(str):
     """A programme name that remembers the spellings it was read under.

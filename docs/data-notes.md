@@ -4,7 +4,7 @@ Detail that would crowd the README: which counties publish at all, why the
 history is so uneven between them, how the documents are turned into a dataset,
 and what was considered and deliberately left unbuilt.
 
-## Only 8 of Norway's 15 counties publish thresholds
+## Only 9 of Norway's 15 counties publish thresholds, or release them on request
 
 Agder, Nordland and Østfold say on the record that they choose not to.
 Vestfold, Troms and Finnmark publish aggregate intake statistics only —
@@ -28,11 +28,18 @@ admitted mean (Gjennomkar), published as `admitted_mean` in `samples.csv`;
 where it equals the threshold, one applicant set the figure — 14 cells,
 flagged for the model, whose backtest kept them at full weight.
 
-Telemark runs an intake and publishes the thresholds nowhere, neither on its
-own site nor on vilbli (the "Telemark appears in vilbli's county block" lead
-was an artifact: every vilbli county page serves the same global attachment
-list, and all four articles in it belong to counties already covered). The
-county was asked for the figures on 1 September 2026.
+Telemark publishes the thresholds nowhere, on its own site or on vilbli, but
+answered the request of 1 September 2026 on 17 September with a workbook:
+«Laveste karakterpoeng», the lowest grade points among those admitted, for
+every Vg1 programme at its eleven schools, 2024/25–2026/27, with the
+inntaksregion and the number of places. Every offered programme carries a
+number, down to 10,0, and there is no marker for «everyone got in», so the
+dataset has no fill state for Telemark and the model fixes its fill
+probability at 1 (`FILL_BLIND`); the app says so on every Telemark school.
+The intake round is not stated; the county was asked on 17 September,
+together with what «Laveste totalpoeng» (2026/27 only, mostly karakterpoeng
++ 300) means, whether older years and Vg2–Vg3 exist, and for admitted
+counts beside the places, which would give the fill state.
 
 ## Why the depth is so uneven
 

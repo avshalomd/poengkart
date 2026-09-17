@@ -30,6 +30,9 @@ MANUAL = {
     # entirely. Kartverket places its registered address, Movegen 30 (the Mo
     # campus), here.
     ('46', 'mo og øyrane vidaregåande skule'): (61.43390, 5.98465),
+    # NSR spells the street "Frydenborgveien 9-11" and carries lat 0.0; the
+    # matrikkel has Frydensborgveien 11, 3772 Kragerø, which is this point.
+    ('40', 'kragerø videregående skole'): (58.87144, 9.39281),
     # Møre og Romsdal's two closed campuses are gone from NSR, and the merged
     # Ålesund vgs's NSR address is the Fagerlia site — which would stack its
     # dot exactly on Fagerlia's historical one. Kartverket still names the
@@ -68,6 +71,11 @@ MANUAL_IDENTITY = {
     # main record's Fagerlia-campus street
     ('15', 'ålesund videregående skole'):
         {'address': 'Sjømannsvegen 47, 6008, ÅLESUND'},
+    # a manual pin skips the register match, so the register's own identity
+    # is restated here (NSR 974568004; its address spelling kept as printed)
+    ('40', 'kragerø videregående skole'):
+        {'address': 'Frydenborgveien 9-11, 3772, KRAGERØ', 'url': 'telemarkfylke.no/no/skoler/kragero-vgs/',
+         'orgnr': '974568004'},
     # the campuses' figures end in 2022 and the parent's Otta address is not
     # theirs; say where they stood and nothing more
     # their own register units (closed 2025), no website of their own

@@ -56,7 +56,7 @@ Every (school, programområde, year) cell is exactly one of these. Internal toke
 See above.
 
 **Ingen venteliste** (no waiting list; token `open`):
-Every qualified applicant was admitted; this is not a poenggrense of zero. In Møre og Romsdal the state is the county's own dashboard rule — a Vg1 figure under 25 is shown as `*`, «alle kom inn, eller at laveste karakter var under 25» — applied in `tools/extractors/mro.py`; a proxy for the observed state, until the county links capacity data (see `docs/data-notes.md`).
+Every qualified applicant was admitted; this is not a poenggrense of zero. In Møre og Romsdal the state is the county's own dashboard rule — a Vg1 figure under 25 is shown as `*`, «alle kom inn, eller at laveste karakter var under 25» — applied in `tools/extractors/mro.py`; a proxy for the observed state, until the county links capacity data (see `docs/data-notes.md`). Telemark's extract has no such state: it gives the lowest points among the admitted for every offered programme, so no Telemark cell is ever `open`.
 _Avoid_: uten venteliste, open, ledig, alle inntatt
 
 **Gjennomkar** (mean points of the admitted; `means` in `schools.json`, `admitted_mean` in `samples.csv`):

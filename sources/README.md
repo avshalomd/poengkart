@@ -93,6 +93,23 @@ the only print of a cell.
 `poenggrenser-rogaland-2022-2024-wayback.pdf` is an edition that had already
 been overwritten, recovered through the Wayback Machine.
 
+## telemark
+
+`laveste-inntakspoeng-vg1-2024-2026.xlsx` was never published: the county
+sent it by e-mail on request (asked 01.09.2026, received 17.09.2026; no
+case number), «Laveste inntakspoeng – siste 3 år», one sheet per school
+year (2024/25–2026/27), one row per (school, Vg1 programme) with the
+inntaksregion, the county's school number, the vigo programområdekode, the
+number of places («Plasser») and «Laveste karakterpoeng», the lowest grade
+points among those admitted — the county's own «lavest inntatt», read here
+as the poenggrense. Every offered programme carries a number, down to
+10,0; the file has no marker for «everyone got in», so the dataset has no
+fill state for Telemark. «Laveste totalpoeng» (2026/27 only) is another
+applicant's ordering points, in most rows karakterpoeng + 300, and is not
+read until the county has explained it. The intake round is not stated;
+both were asked on 17.09.2026. Document metadata was stripped as for
+every file here.
+
 ## trondelag
 
 `trondelag_2025-26_<region>.pdf`, one per inntaksregion (Fosen,

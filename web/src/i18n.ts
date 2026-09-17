@@ -412,8 +412,8 @@ export const T = {
   wiki:       { no: 'Wikipedia', en: 'Wikipedia' },
   srcNoteLink: { no: 'Meld fra via tilbakemelding', en: 'Report an error via feedback' },
   srcNote: {
-    no: 'Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaket varierer mellom fylkene og er merket på hver skole. Uoffisiell tjeneste, laget av Abshalom Dayan. Tallene er lest maskinelt fra fylkenes publikasjoner og kan inneholde feil.',
-    en: 'Sources: the county authorities of Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Trøndelag and Vestland, the City of Oslo and vilbli.no (thresholds), NSR/Udir (schools), Kartverket (geocoding), Wikimedia Commons and school websites (photos). The intake differs by county and is labelled on every school. Unofficial service, built by Abshalom Dayan. The figures are read by machine from the county publications and may contain errors.',
+    no: 'Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Telemark, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaket varierer mellom fylkene og er merket på hver skole. Uoffisiell tjeneste, laget av Abshalom Dayan. Tallene er lest maskinelt fra fylkenes publikasjoner og kan inneholde feil.',
+    en: 'Sources: the county authorities of Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Telemark, Trøndelag and Vestland, the City of Oslo and vilbli.no (thresholds), NSR/Udir (schools), Kartverket (geocoding), Wikimedia Commons and school websites (photos). The intake differs by county and is labelled on every school. Unofficial service, built by Abshalom Dayan. The figures are read by machine from the county publications and may contain errors.',
   },
   noMatch:    { no: 'Ingen treff', en: 'No matches' },
   prioBadge:  { no: 'fortrinnsrett', en: 'priority right' },
@@ -531,6 +531,11 @@ export const T = {
   // venteliste" is the county's own reading, not an observed queue state
   openRuleNote: { no: 'Møre og Romsdal viser «ingen venteliste» der alle kom inn eller poenggrensen var under 25 poeng – fylkets egen regel. Hvilken av de to, sier ikke fylket.',
                   en: 'Møre og Romsdal shows “no waiting list” where everyone got in or the threshold was below 25 points – the county\'s own rule. Which of the two, the county does not say.' },
+  // Telemark's extract gives the lowest points among the admitted for every
+  // offered programme, also where everyone got in; there is no fill state
+  // (tools/extractors/telemark.py, FILL_BLIND in tools/model.py)
+  noFillStateNote: { no: 'Telemark oppgir laveste poengsum blant de inntatte for hvert programområde, også der alle søkerne fikk plass. Tallet sier derfor ikke om det var venteliste.',
+                     en: 'Telemark gives the lowest points among those admitted to each programme area, also where every applicant got a place. The figure therefore does not say whether there was a waiting list.' },
   finalRoundUnknown: {
     no: 'Fylket publiserer bare 1. inntak. Flere kommer inn i senere inntak, men det finnes ikke tall for hvor mange.',
     en: 'The county publishes the 1st intake only. More get in at later intakes, but there are no figures for how many.',

@@ -22,13 +22,13 @@ export interface HeadProps {
 
 export const HOME_HEAD: HeadProps = {
   title: 'Poengkart – poenggrenser for videregående skole',
-  description: 'Se poenggrensene for 217 videregående skoler i åtte fylker, 2012–2026. Hva krevdes for å komme inn i fjor, og hvordan har grensene endret seg? Kart, trender og tall per programområde.',
+  description: 'Se poenggrensene for 228 videregående skoler i ni fylker, 2012–2026. Hva krevdes for å komme inn i fjor, og hvordan har grensene endret seg? Kart, trender og tall per programområde.',
   canonical: SITE + '/',
   ogTitle: 'Poengkart – hva krevdes for å komme inn?',
-  ogDescription: 'Poenggrensene for 217 videregående skoler i åtte fylker, 2012–2026, på kart. Se hva som krevdes for å få plass, og hvordan grensene har endret seg.',
-  twitterDescription: 'Poenggrensene for 217 videregående skoler i åtte fylker, 2012–2026, på kart.',
+  ogDescription: 'Poenggrensene for 228 videregående skoler i ni fylker, 2012–2026, på kart. Se hva som krevdes for å få plass, og hvordan grensene har endret seg.',
+  twitterDescription: 'Poenggrensene for 228 videregående skoler i ni fylker, 2012–2026, på kart.',
   ogImage: SITE + '/og.png',
-  ogImageAlt: 'Kart over Norge med 217 videregående skoler som prikker, fargelagt etter poenggrense, og skolesiden for Elvebakken videregående skole med bilde, snittgrense og utvikling år for år.',
+  ogImageAlt: 'Kart over Norge med 228 videregående skoler som prikker, fargelagt etter poenggrense, og skolesiden for Elvebakken videregående skole med bilde, snittgrense og utvikling år for år.',
 };
 
 // The state the sheet's own functions read, as the client sets it up on a
@@ -58,7 +58,7 @@ export function schoolHead(s: School, data: Dataset): HeadProps {
   const span = !years.length ? '' : years.length > 1 ? ` (${years[0]}–${latest})` : ` (${latest})`;
   const path = schoolPath(s);
   const description = `Poenggrenser for ${s.name} i ${s.fylke}: hva som krevdes for å komme inn på hvert programområde, år for år${span}.`;
-  // 19 of the 217 cards show no snittgrense — their hero is the sheet's own
+  // 19 of the 217 cards (before Telemark) show no snittgrense — their hero is the sheet's own
   // label («Ingen venteliste», «Fullt – siste inntatte uten poeng»), and the
   // card has no line either (cards/card.ts). The alt describes the card that
   // exists, in the hero cell's own words rather than in new ones.

@@ -41,7 +41,7 @@ sys.path.insert(0, HERE)     # tools/ on the path, for slug.py beside this file
 from slug import slug        # noqa: E402
 
 WEB = os.path.join(HERE, '..', 'web', 'dist')
-INDEX = os.path.join(HERE, '..', 'web', 'src', 'map.ts')
+STYLE = os.path.join(HERE, '..', 'web', 'public', 'map', 'dark-matter.json')
 DATA = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
 CACHE = os.path.join(HERE, '.cache')
 PANEL_FALLBACK = os.path.join(HERE, 'og-panel.png')
@@ -96,14 +96,16 @@ def font(size, weight='regular'):
 
 # ------------------------------------------------------------------ tiles
 def carto_key():
-    """The app's own CARTO key, read from the page so there is one copy of it.
+    """The app's own CARTO key, read from the pinned map style so there is one copy of it.
 
+    Since the map became MapLibre GL (stage 4) the key rides in every tile
+    template of web/public/map/*.json, written by tools/vendor-map-styles.mjs.
     Without a key the tiles come back stamped API KEY REQUIRED across the
     diagonal — which is exactly what the shared card showed until 4 Sept 2026.
     """
-    m = re.search(r"const CARTO_KEY = '([^']+)'", open(INDEX, encoding='utf-8').read())
+    m = re.search(r"[?&]key=([A-Za-z0-9_-]+)", open(STYLE, encoding='utf-8').read())
     if not m:
-        raise SystemExit('CARTO_KEY not found in web/src/map.ts')
+        raise SystemExit('CARTO key not found in web/public/map/dark-matter.json')
     return m.group(1)
 
 

@@ -157,6 +157,11 @@
    "sha256": "3897687a7b9f6c0174f4caab98f511d19ac9779f3d5621dde8e42f0a41f47792",
    "provenance": "Rogaland fylkeskommune via vilbli.no/rogaland (2. inntak); the 2024-2026 edition, fetched 08.09.2026 (file dated 07.09.2026)."
   },
+  "telemark/laveste-inntakspoeng-vg1-2024-2026.xlsx": {
+   "size": 22947,
+   "sha256": "37a7c7380f857c136fcbdaa91a89ef2909cc325095e694e51ff6983a45df4250",
+   "provenance": "Telemark fylkeskommune, Kompetanse og integrering: workbook «Laveste inntakspoeng – siste 3 år», Vg1, released by e-mail on request, asked 01.09.2026, received 17.09.2026 (intake round not stated, asked 17.09.2026; 2024/25-2026/27)."
+  },
   "trondelag/trondelag_2025-26_fosen.pdf": {
    "size": 122775,
    "sha256": "6b71eaa90ab6c5e9a6c1956fe0760450435fbbd319e4bc79eb6ae9a3842be41e",

@@ -15,11 +15,14 @@ list view (Kart ⇄ Liste toggle: the map's filters as a sortable table).
 - **Mix-adjusted toggle.** Colour the map by the α_s school effect instead
   of the raw mean. The number is computed and documented in the report;
   surfacing it in the UI shows the data-science depth where visitors see it.
-- **Better photo coverage.** 196/217 schools (90%) have a reviewed photo
-  after the data-hole sweep of 5 September 2026 (which fixed the Møre og
-  Romsdal site URLs and found 15 more, 10 of them in that county). The 21
-  gaps are where nothing usable exists online: Innlandet 8 (school sites
-  expose 234×63 header strips), Møre og Romsdal 7, Akershus 3 (one
+- **Better photo coverage.** 203/228 schools (89%) have a reviewed photo
+  after the Telemark round of 17 September 2026 (six of its eleven schools
+  found on Commons; Bø, Kragerø, Porsgrunn, Skogmo and Vest-Telemark have
+  none) and the data-hole sweep of 5 September 2026 (which fixed the Møre og
+  Romsdal site URLs and found 15 more, 10 of them in that county). The 25
+  gaps are where nothing usable exists online: Innlandet 7 (school sites
+  expose 234×63 header strips), Møre og Romsdal 7, Telemark 5 (the county
+  CMS serves only news-article images, mostly pupils), Akershus 3 (one
   boilerplate hero shared across schools, rejected as template art),
   Rogaland, Trøndelag and Vestland one each. The automatic tiers are
   exhausted; what remains is manual work per school: municipal image
@@ -107,9 +110,19 @@ person:
   longer trend lines at the cost of the register's own names.
 - **2026/27 not yet published:** Trøndelag (December, by their PDF dates),
   Buskerud (a new page slug will appear), Akershus's own page (November).
-  Recheck monthly; the seven counties outside the dataset are unchanged.
+  Recheck monthly; the six counties outside the dataset are unchanged.
   *Rechecked 10 Sept 2026: all ten unchanged. Telemark's intake news of
   9 July 2026 gives per-school head-counts only, no thresholds.*
+- **Telemark (thread «Poenggrenser i Telemark», answered 17 Sept 2026 with
+  the Vg1 workbook, ingested the same day):** asked back the same day for
+  which inntak the figures are from, what «Laveste totalpoeng» is (mostly
+  karakterpoeng + 300), older years and Vg2–Vg3, and admitted counts beside
+  «Plasser». When admitted counts arrive, Telemark leaves `FILL_BLIND` the
+  way Møre og Romsdal did.
+- **Carry capacity.** Telemark publishes «Plasser» per programme and year;
+  no other county does. Carry it as `places` beside `means` once a second
+  county has it or the fill model can use it (with admitted counts it is
+  the observed fill state).
 
 ## Found 8 September 2026 (licence change)
 

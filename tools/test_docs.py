@@ -227,7 +227,7 @@ GAP_TOP = max(GAP, key=lambda b: abs(GAP[b]))                                   
 # the raw (pre-Platt) fill probability is not in meta; its top bin comes from
 # the backtest file, calibration years and held-out years separately
 _bt = list(csv.DictReader(open(ROOT / 'data/model-backtest.csv')))
-FILL_BLIND = set()      # counties pinned at π = 1 and outside every fill score (none since 5 Sept 2026)
+FILL_BLIND = {'Telemark'}   # counties pinned at π = 1 and outside every fill score (Telemark since 17 Sept 2026)
 
 
 def raw_top(years):
@@ -483,6 +483,7 @@ check(doc, 'ewma intervals', r'by less — (-[\d.]+) points \[(-[\d.]+), ([-+][\
 check(doc, 'ewma one year', r'smoothing is persistence, and the model beats it by ([\d.]+) points', [lvl['1']['rmse_ewma'] - lvl['1']['rmse']], flat, D2)
 check(doc, 'limitations coverage range', r'Table 4b, from (\d+)% to (\d+)%', [lo_f['coverage80'] * 100, hi_f['coverage80'] * 100], flat, PCT)
 check(doc, 'cold start Buskerud', r"Buskerud's intervals cover (\d+)% instead of 80%", [cov_f['Buskerud']['coverage80'] * 100], flat, PCT)
+check(doc, 'cold start Telemark', r"instead of 80%, Telemark's (\d+)%", [cov_f['Telemark']['coverage80'] * 100], flat, PCT)
 check(doc, 'chance brier all', r'over all ([\d,]+) score–cell pairs \(([\d,]+) cells\),[^:]*: Brier score \*\*([\d.]+)\*\* \[([\d.]+), ([\d.]+)\]',
       [ch['n_pairs'], ch['n_cells'], ch['brier']] + CI['chance: brier'], flat, [N, N, D3, D3, D3])
 check(doc, 'chance brier common', r"([\d,]+) of those pairs; on that common subset the model scores \*\*([\d.]+)\*\* against the step rule's \*\*([\d.]+)\*\* \(difference \[(-[\d.]+), (-[\d.]+)\]\) and the probabilistic persistence forecast's \*\*([\d.]+)\*\* \(difference (-[\d.]+) \[(-[\d.]+), (-[\d.]+)\]\)",
@@ -552,7 +553,7 @@ check(doc, 'zero-history forecasts exported', r'Those (\d+) forecasts are in the
 check(doc, 'short test window', r'Two held-out years \(([\d,]+) cells with a number, ([\d,]+) that competed\)', [ev['level_all']['n'], ev['fill']['n']], flat, N)
 for y in sorted(year_row):
     check(doc, f'table B1 {y}', rf'\| {y} \| ([\d,]+) \| ([\d.]+) \| ([\d.]+) \|', year_row[y], flat, [N, D2, D2])
-check(doc, 'table C1 caption', r"\(([\d,]+) cells that competed on points, all eight counties, Møre og Romsdal's (\d+) proxy-labelled cells included; base rate ([\d.]+)\)\. Held-out Brier ([\d.]+) against ([\d.]+) for the base-rate forecaster",
+check(doc, 'table C1 caption', r"\(([\d,]+) cells that competed on points, the eight counties with a fill state, Møre og Romsdal's (\d+) proxy-labelled cells included, Telemark excluded; base rate ([\d.]+)\)\. Held-out Brier ([\d.]+) against ([\d.]+) for the base-rate forecaster",
       [ev['fill']['n'], px['n_proxy'], ev['fill']['base_rate'], ev['fill']['brier'], ev['fill']['brier_base_rate']], appendix_c, [N, N, D3, D3, D3])
 for r in rel_fill:
     lo, hi = r['bin'].split('-')
