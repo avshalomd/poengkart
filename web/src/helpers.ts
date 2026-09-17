@@ -10,7 +10,7 @@ import { S } from './state';
 export function slug(text: string): string {
   return text.normalize('NFC').toLowerCase()
     .replace(/æ/g, 'ae').replace(/ø/g, 'o').replace(/å/g, 'a')
-    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 export const schoolPath = (s: { fylke: string; name: string }) => '/' + slug(s.fylke) + '/' + slug(s.name);
