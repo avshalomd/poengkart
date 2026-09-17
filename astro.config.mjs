@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import { VERSION as MAPLIBRE_VER } from './tools/vendor-maplibre.mjs';
 
 // The site is static HTML plus one client script. Astro owns the build so a
 // page per school can be prerendered from the dataset; it adds no runtime.
@@ -20,5 +21,18 @@ export default defineConfig({
   // CARTO key is in the bundle either way, so the map hides nothing, and it
   // makes a production stack trace readable in devtools. It is fetched only
   // when devtools asks for it.
-  vite: { build: { target: 'es2022', sourcemap: true } },
+  vite: {
+    build: {
+      target: 'es2022', sourcemap: true,
+      // MapLibre is not bundled: the page imports /maplibre/<v>/maplibre-gl.mjs,
+      // which imports its sibling shared module, and the worker (setWorkerUrl in
+      // web/src/main.ts) imports that same URL — one download, served from the
+      // HTTP cache the second time. tools/vendor-maplibre.mjs puts the files there.
+      rollupOptions: {
+        external: ['maplibre-gl'],
+        output: { paths: { 'maplibre-gl': `/maplibre/${MAPLIBRE_VER}/maplibre-gl.mjs` } },
+      },
+    },
+    define: { __MAPLIBRE_VER__: JSON.stringify(MAPLIBRE_VER) },
+  },
 });

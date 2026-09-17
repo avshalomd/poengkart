@@ -202,6 +202,8 @@ declare global {
        may or may not be there, and the two call sites already guard on that. */
     va?: (...a: any[]) => void;
   }
+  /* the maplibre-gl version the build vendored under /maplibre/<v>/ (astro.config.mjs `define`) */
+  const __MAPLIBRE_VER__: string;
 }
 
 export {};
