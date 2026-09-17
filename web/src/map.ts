@@ -6,7 +6,8 @@ import { colorFor, cssVar, esc, fmt, isVg1, levelScope, progName, schoolPressure
 import { CATS, t } from "./i18n";
 import { renderListView } from "./listview";
 import { PREFS } from "./prefs";
-import { closeSide, mapKeyed, openSide, renderSide, syncUrl } from "./sidebar";
+import { syncUrl } from './router';
+import { closeSide, mapKeyed, openSide, renderSide } from "./sidebar";
 import { S } from './state';
 import type { School } from './types';
 

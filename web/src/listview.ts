@@ -5,7 +5,8 @@ import { forecastYears, liftMapControls } from "./chrome";
 import { BINS, colorFor, esc, fmt, isPoints, meanOf, round1, schoolPressure, shownPrograms, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
 import { drawMarkers, visibleSchools } from "./map";
-import { listLayout, openSide, schoolHash, sideTrap } from "./sidebar";
+import { schoolUrl } from './router';
+import { listLayout, openSide, sideTrap } from "./sidebar";
 import { S } from './state';
 import { bindTitleTips, hideTip, showTip } from "./tips";
 
@@ -151,7 +152,7 @@ export function renderListView() {
     `</tr></thead><tbody>` +
     rows.map((r, i) =>
       `<tr data-i="${i}">` +
-      `<td class="sc"><a href="${schoolHash(r.s)}" aria-label="${esc(t('listRowAria', r.s.name))}">${esc(r.s.name)}</a></td>` +
+      `<td class="sc"><a href="${schoolUrl(r.s)}" aria-label="${esc(t('listRowAria', r.s.name))}">${esc(r.s.name)}</a></td>` +
       (allF ? `<td class="fy">${esc(r.s.fylke)}</td>` : '') +
       `<td class="num">${chip(r)}</td>` +
       `<td class="num dl">${deltaCell(r)}</td>` +

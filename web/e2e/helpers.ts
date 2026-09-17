@@ -1,4 +1,5 @@
 import { expect, type Page } from '@playwright/test';
+import { schoolPath } from '../src/helpers';
 
 /** The localStorage keys the app reads at boot — INTRO_SEEN and HINT_KEY in
  *  web/src/intro.ts, HINT_TRIES is 3. */
@@ -19,20 +20,22 @@ export function watchErrors(page: Page): () => string[] {
 }
 
 /** Load the app and wait for the boot mark. `intro` seen so the (?) hint does not steal focus. */
-export async function boot(page: Page, hash = ''): Promise<void> {
+export async function boot(page: Page, path = '/'): Promise<void> {
   await page.addInitScript(([seen, hint]) => {
     localStorage.setItem(seen, '1');
     localStorage.setItem(hint, '9');
   }, [INTRO_SEEN, HINT_KEY]);
-  await page.goto('/' + hash);
+  await page.goto(path);
   await page.waitForFunction(() => performance.getEntriesByName('pk:boot-done').length > 0);
 }
 
-/** Open a school through its permalink and wait for the sheet to show it.
- *  Writing the whole fragment is what a pasted link does, so it also drops any
- *  `f=` / `c=` the reader had set — see applyUrlFilters() in web/src/sidebar.ts. */
+/** Open a school the way a pasted link does now: a page load of its path.
+ *  localStorage survives the load, so the prefs a test set beforehand stay.
+ *  A page load also drops any `f=` / `c=` the reader had set, exactly as a
+ *  pasted link does — see applyUrlFilters() in web/src/sidebar.ts. */
 export async function openSchool(page: Page, fylke: string, name: string): Promise<void> {
-  await page.evaluate(([f, n]) => { location.hash = `#s=${encodeURIComponent(f)}/${encodeURIComponent(n)}`; }, [fylke, name]);
+  await page.goto(schoolPath({ fylke, name }));
+  await page.waitForFunction(() => performance.getEntriesByName('pk:boot-done').length > 0);
   await expect(page.locator('#side')).toHaveClass(/open/);
   await expect(page.locator('#s-photo .name h2')).toHaveText(name);
   await expect(page.locator('#side .chart-card')).toBeVisible();

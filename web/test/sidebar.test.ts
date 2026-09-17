@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { loadFixtures, asker, forde } from './fixtures';
 import { stubMap } from './mapstub';
-import { openSide, closeSide, renderSide, renderChance, buildHash, listLayout, phoneSheet, sheetFull, widenFor, applyUrlFilters, capFirst, photoSrc } from '../src/sidebar';
+import { openSide, closeSide, renderSide, renderChance, listLayout, phoneSheet, sheetFull, widenFor, applyUrlFilters, capFirst, photoSrc } from '../src/sidebar';
+import { buildUrl } from '../src/router';
 import { schoolChance } from '../src/chance';
 import { meanStep } from '../src/listview';
 import { shownPrograms, visibleIn, fmt } from '../src/helpers';
@@ -89,24 +90,20 @@ describe('the school sheet', () => {
   });
   it('applyUrlFilters puts the county and programme named in the address on the controls', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
-    location.hash = '#f=Oslo&c=ST';
+    history.replaceState(null, '', '/?f=Oslo&c=ST');
     expect(applyUrlFilters(true)).toBe(true);
     expect(S.mapFylke).toBe('Oslo');
     expect(S.mapCat).toBe('ST');
     expect((document.getElementById('map-fylke') as HTMLSelectElement).value).toBe('Oslo');
     expect((document.getElementById('map-cat') as HTMLSelectElement).value).toBe('ST');
     expect(applyUrlFilters()).toBe(false);       // the second pass has nothing to move
-    location.hash = '';
+    history.replaceState(null, '', '/');
   });
-  it('buildHash carries the school, the county and the programme it was taken under', () => {
+  it('buildUrl carries the school, the county and the programme it was taken under', () => {
     loadFixtures(); initHelpers();
-    expect(buildHash(null)).not.toContain('#');
-    S.mapFylke = 'Oslo'; S.mapCat = 'ST'; S.allLevels = true;
-    const h = buildHash(asker());
-    expect(h).toContain('s=Akershus/Asker');
-    expect(h).toContain('f=Oslo');
-    expect(h).toContain('c=ST');
-    expect(h).toContain('l=all');
+    expect(buildUrl(null)).toBe('/');
+    S.mapFylke = 'Akershus'; S.mapCat = 'ST';
+    expect(buildUrl(asker())).toBe('/akershus/asker?f=Akershus&c=ST');
   });
   it('listLayout is the map view’s empty string and one of the three list layouts', () => {
     loadFixtures(); initHelpers();

@@ -1,6 +1,20 @@
 import { t } from "./i18n";
 import { S } from './state';
 
+// A school's address on the site: /<fylke>/<skole>, ASCII only, so it survives
+// every messaging app and every keyboard. æ ø å are the three letters people
+// would type; everything else with a diacritic loses it, and every run of
+// anything that is not a letter or a digit is one hyphen. tools/slug.py is the
+// Python twin (make_og.py opens the school page by this address); the fixture
+// table in web/test/slug.test.ts and tools/tests/test_slug.py keeps them equal.
+export function slug(text: string): string {
+  return text.normalize('NFC').toLowerCase()
+    .replace(/æ/g, 'ae').replace(/ø/g, 'o').replace(/å/g, 'a')
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+export const schoolPath = (s: { fylke: string; name: string }) => '/' + slug(s.fylke) + '/' + slug(s.name);
+
 /* ================= state & helpers ================= */
 export const BINS = [
   { max: 30, css: '--seq-250' }, { max: 34, css: '--seq-350' }, { max: 38, css: '--seq-450' },

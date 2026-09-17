@@ -7,92 +7,16 @@ import { CATS, t } from "./i18n";
 import { meanStep } from "./listview";
 import { drawMarkers, markerOf, prefersStill, setLens, tileUrl } from "./map";
 import { renderList } from "./programs";
+import { queryParts, schoolUrl, setUrlSchool, syncUrl } from './router';
 import { S } from './state';
 import { bindTitleTips } from "./tips";
 import type { County } from './types';
 
 /* ================= sidebar ================= */
-// The open school is a place someone will want to send to someone else, so it
-// lives in the URL fragment: #s=Fylke/Skolenavn. replaceState edits the
-// address without firing popstate, so the back-gesture machinery below never
-// sees these writes.
-// The county and programme filters used to live nowhere: a reload dropped you
-// back to the whole country, and a link you sent carried the school but not the
-// selection you were looking at it under. They join the school in the fragment
-// as `&f=` and `&c=`, omitted when they are "all" so the common link stays
-// short and every #s= link already in the wild still parses.
-export const schoolPart = s => 's=' + encodeURIComponent(s.fylke) + '/' + encodeURIComponent(s.name);
-export function buildHash(s) {
-  const parts: string[] = [];
-  if (s) parts.push(schoolPart(s));
-  if (S.mapFylke !== 'all') parts.push('f=' + encodeURIComponent(S.mapFylke));
-  if (S.mapCat !== 'all') parts.push('c=' + encodeURIComponent(S.mapCat));
-  if (S.allLevels) parts.push('l=all');
-  return parts.length ? '#' + parts.join('&') : location.pathname + location.search;
-}
-export const schoolHash = s => buildHash(s);
-export function hashParts() {
-  const out: any = {};
-  (location.hash || '').replace(/^#/, '').split('&').forEach(kv => {
-    const i = kv.indexOf('=');
-    if (i > 0) out[kv.slice(0, i)] = kv.slice(i + 1);
-  });
-  return out;
-}
-export function setUrlSchool(s) {
-  try { history.replaceState(history.state, '', buildHash(s)); } catch (e) {}
-}
-// A filter change is a place you can come back to, so it gets its own history
-// entry rather than editing the current one.
-export function syncUrl(push?) {
-  try {
-    const h = buildHash(S.current);
-    if (h === (location.hash || location.pathname + location.search)) return;
-    // An open sheet is ONE history entry (see openSide). A filter changed
-    // while it is open rewrites that entry: pushed, it sat on top of the
-    // sheet's, so the ✕'s back() landed on the sheet's own entry, re-read
-    // its filters and turned the Vg2+ switch (or a county change) back off.
-    const st = history.state || {};
-    if (push && !st.pkSide && !st.pkSheet) history.pushState(history.state, '', h);
-    else history.replaceState(history.state, '', h);
-  } catch (e) {}
-}
-export function schoolFromUrl() {
-  const p = hashParts();
-  if (!p.s) return null;
-  const m = /^([^/]+)\/(.+)$/.exec(p.s);
-  if (!m) return null;
-  try {
-    const fy = decodeURIComponent(m[1]), name = decodeURIComponent(m[2]);
-    const inFylke = S.DATA!.schools.filter(x => x.fylke === fy);
-    // a pasted link may carry stray spaces or decomposed å/ø from another app
-    const key = name.trim().normalize('NFC').toLowerCase();
-    // Buskerud and Akershus carry the county's own short school name ("Kongsberg");
-    // the national register's full name ("Kongsberg videregående skole") is on
-    // nsr_name, and that is the form people paste from elsewhere. Accept both.
-    // The school's own `name` wins outright, the alias is only a fallback:
-    // a county's short name can never be shadowed by another school's
-    // nsr_name. Links the app writes are unaffected; buildHash still uses name.
-    return inFylke.find(x => x.name.toLowerCase() === key)
-        // nsr_name also holds the geocoder's provenance sentinels "(manual)" and
-        // "(stedsnavn)"; those are not names and must not open a school
-        || inFylke.find(x => { const a = x.nsr_name || ''; return a && a[0] !== '(' && a.toLowerCase() === key; })
-        // a link shared before a merger names the old school; it lives on as
-        // merged_from of the school that absorbed it
-        || inFylke.find(x => (x.merged_from || []).some(a => a.toLowerCase() === key))
-        || null;
-  } catch (e) { return null; }
-}
-// The name a #s= link asked for, when no school answers to it.
-export function unresolvedLinkName() {
-  const p = hashParts();
-  const m = p.s && /^([^/]+)\/(.+)$/.exec(p.s);
-  try { return m ? decodeURIComponent(m[2]).trim() : ''; } catch (e) { return p.s; }
-}
 // Put the filters named in the address back on the controls. Used at boot and
 // on every history traversal, so Back steps through filter changes too.
 export function applyUrlFilters(boot?) {
-  const p = hashParts();
+  const p = queryParts();
   let fy = 'all', cat = 'all';
   // the level scope rides as `l=all` when it is not the Vg1 default. A link
   // without it leaves a reader's own saved choice alone on a fresh load, while
@@ -238,7 +162,7 @@ export function openSide(s) {
   // of closing: school D's close resurrected school A, closing took two
   // presses, and the address kept naming a school nothing was showing.
   if (!(history.state || {}).pkSide) {
-    try { history.pushState({ pkSide: 1 }, '', schoolHash(s)); } catch (e) {}
+    try { history.pushState({ pkSide: 1 }, '', schoolUrl(s)); } catch (e) {}
   } else {
     setUrlSchool(s);
   }
@@ -299,7 +223,7 @@ export function closeSide(fromHistory?) {
   // From the list, focus goes back to the school's own row. The county select
   // at the top of the card scrolled a list read halfway down back up to it.
   const row = S.view === 'list' && closed
-    ? [...document.querySelectorAll('#listview td.sc a')].find(a => a.getAttribute('href') === schoolHash(closed))
+    ? [...document.querySelectorAll('#listview td.sc a')].find(a => a.getAttribute('href') === schoolUrl(closed))
     : null;
   // Otherwise the first of these on screen: with a phone's panel folded both
   // selects are hidden, and focus() on a hidden one left focus on <body>.
