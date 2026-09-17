@@ -119,7 +119,10 @@ person:
   karakterpoeng + 300), older years and Vg2–Vg3, and admitted counts beside
   «Plasser». Held out of the model and the report the same day
   (`HELD_OUT`), because without a fill state its figures are not
-  comparable. Telemark rejoins both when the county says, per programme and
+  comparable. Followed up the same day (Marianne Follaug is away until
+  5 Oct 2026): which rows of the workbook filled and in which everyone who
+  applied got a place, and whether «Laveste totalpoeng» exists for 2024/25
+  and 2025/26. Telemark rejoins both when the county says, per programme and
   year, whether everyone was admitted.
 - **Carry capacity.** Telemark publishes «Plasser» per programme and year;
   no other county does. Carry it as `places` beside `means` once a second
