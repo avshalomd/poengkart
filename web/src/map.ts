@@ -72,6 +72,11 @@ export function createMap() {
     // MapLibre itself turns every flight into a jump under reduced motion
     // (respectPrefersReducedMotion); the tile fade is the one thing it keeps
     fadeDuration: prefersStill() ? 0 : 300,
+    // …and the fling after a drag is the other: the inertia handler is not a
+    // flight, so the preference never reaches it. maxSpeed 0 clamps the drag
+    // velocity to nothing, so the map stops where the finger does — Leaflet's
+    // `inertia: false`. The other inertia options keep their defaults.
+    dragPan: prefersStill() ? { maxSpeed: 0 } : true,
   });
   S.map.addControl(zoomControl(), 'bottom-right');
   S.map.on('move', positionPane);

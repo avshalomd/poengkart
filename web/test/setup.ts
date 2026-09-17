@@ -26,8 +26,15 @@ vi.mock('maplibre-gl', async () => {
     toArray() { return [this._sw, this._ne]; }
   }
   // a still map (the minimap) is not the app's map: it leaves S.map alone.
-  // setStyle records the style the map was built with, as getStyle reports it.
-  class Map { constructor(opts: any) { return stubMap(opts.container, opts.interactive === false).setStyle(opts.style); } }
+  // setStyle records the style the map was built with, as getStyle reports it;
+  // _opts keeps the rest of them, for a test that asks what the map was asked for.
+  class Map {
+    constructor(opts: any) {
+      const m = stubMap(opts.container, opts.interactive === false).setStyle(opts.style);
+      m._opts = opts;
+      return m;
+    }
+  }
   return { Map, LngLatBounds, setWorkerUrl: () => {}, default: { Map, LngLatBounds } };
 });
 

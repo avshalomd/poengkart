@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { loadFixtures, DATA, asker } from './fixtures';
 import { stubMap } from './mapstub';
 import {
@@ -197,6 +197,16 @@ describe('the map layer', () => {
     // happy-dom answers every media query it does not model with "no": nothing
     // here asks for still motion, so the animated flights stay on
     expect(prefersStill()).toBe(false);
+    createMap();
+    expect((S.map as any)._opts.dragPan).toBe(true);
+    // A reader who does ask for it: MapLibre turns its own flights into jumps
+    // (respectPrefersReducedMotion), but the fling after a drag is not a
+    // flight, so createMap clamps that velocity to nothing itself.
+    vi.spyOn(window, 'matchMedia').mockImplementation(((q: string) => ({ matches: /reduced-motion/.test(q) })) as any);
+    expect(prefersStill()).toBe(true);
+    createMap();
+    expect((S.map as any)._opts.dragPan).toEqual({ maxSpeed: 0 });
+    vi.restoreAllMocks();
   });
 
   it('every dot’s tooltip names the school, its figure and how many programme areas it has', () => {
