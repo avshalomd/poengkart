@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { DATA, MODEL } from './fixtures';
+import { mapThrowsOnce } from './mapstub';
 import { main, framePad, bootFailed, updateMapLabels, initBoot } from '../src/boot';
 import { isSheetOpen } from '../src/intro';
 import { showTip } from '../src/tips';
@@ -243,6 +244,28 @@ describe('boot', () => {
     } finally {
       delete document.body.dataset.notfound;    // setup.ts only replaces #app's innerHTML, not body's own attributes
     }
+  });
+
+  it('a map the engine cannot build leaves the reader the list, not the boot-failure screen', async () => {
+    // the probe (beforeEach) says WebGL2 is there, and MapLibre's constructor
+    // throws all the same. Unguarded, main() rejected and the reader got the
+    // boot-failure screen instead of the list the spec gives a browser with no
+    // map — the same list the no-WebGL path above lands on.
+    mapThrowsOnce();
+    const err = vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.stubGlobal('fetch', network());
+    localStorage.setItem('pk-view', 'map');
+    initAll();
+    await main();
+    expect(S.map).toBeNull();
+    expect(S.view).toBe('list');
+    expect(document.body.classList.contains('no-map')).toBe(true);
+    expect((document.getElementById('view-map') as HTMLButtonElement).disabled).toBe(true);
+    expect(document.querySelector('#app .boot-fail')).toBeNull();
+    vi.advanceTimersByTime(50);
+    expect(document.getElementById('toast')!.textContent).toBe(t('noMapWebGL'));
+    expect(document.getElementById('listview')!.hidden).toBe(false);
+    expect(err).toHaveBeenCalled();                    // and the reason is in the console
   });
 
   it('bootFailed and framePad stand on their own', () => {

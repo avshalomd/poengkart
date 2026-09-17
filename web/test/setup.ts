@@ -12,7 +12,7 @@ import { afterEach, beforeEach, vi } from 'vitest';
 // pure arithmetic, so the real one is fine — but it lives in the same module,
 // so a tiny one is defined here.
 vi.mock('maplibre-gl', async () => {
-  const { stubMap } = await import('./mapstub');
+  const { stubMap, takeThrow } = await import('./mapstub');
   class LngLatBounds {
     _sw: [number, number]; _ne: [number, number];
     constructor(sw: [number, number], ne: [number, number]) { this._sw = [...sw]; this._ne = [...ne]; }
@@ -30,6 +30,8 @@ vi.mock('maplibre-gl', async () => {
   // _opts keeps the rest of them, for a test that asks what the map was asked for.
   class Map {
     constructor(opts: any) {
+      const boom = takeThrow();
+      if (boom) throw new Error(boom);
       const m = stubMap(opts.container, opts.interactive === false).setStyle(opts.style);
       m._opts = opts;
       return m;

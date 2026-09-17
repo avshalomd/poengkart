@@ -6,6 +6,12 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
 import '../styles/app.css';
 import shellSrc from '../shell.html?raw';
+// the version the build vendored into web/public/maplibre/<version>/, the same
+// one astro.config.mjs rewrites the app's `maplibre-gl` import to. It comes
+// from that config's `define`, not from an import of tools/vendor-maplibre.mjs:
+// bundled into the prerender entry, that module would look for node_modules
+// beside itself, under web/dist/.prerender/, and find nothing.
+const MAPLIBRE_VER = __MAPLIBRE_VER__;
 import type { HeadProps } from '../prerender';
 
 interface Props extends HeadProps {
@@ -71,6 +77,12 @@ const { title, description, canonical, ogTitle, ogDescription, twitterDescriptio
      before the script arrives. -->
 <link rel="preload" href="/data/schools.json" as="fetch" crossorigin>
 <link rel="preload" href="/data/model.json" as="fetch" crossorigin>
+<!-- and the engine itself: Astro preloads the chunks it bundled, but not an
+     external one. The app chunk imports the first module, which imports the
+     second, so without these the two are a serial chain begun only once the
+     app's script has parsed. -->
+<link rel="modulepreload" href={`/maplibre/${MAPLIBRE_VER}/maplibre-gl.mjs`}>
+<link rel="modulepreload" href={`/maplibre/${MAPLIBRE_VER}/maplibre-gl-shared.mjs`}>
 <!-- cookieless page counts; a no-op until Web Analytics is enabled on the Vercel project -->
 <script is:inline defer src="/_vercel/insights/script.js"></script>
 <script is:inline>

@@ -1,5 +1,14 @@
 import { S } from '../src/state';
 
+/** MapLibre's own constructor throws (GPUInitializationError) when the context
+ *  it asks for fails even though the WebGL2 probe succeeded — a driver
+ *  blocklist, a lost context, a machine already at its handful of live ones.
+ *  `mapThrowsOnce()` arms that for the next `new Map(...)` (setup.ts's mock
+ *  reads it through takeThrow); every map after it is built as usual. */
+let throwOnce: string | null = null;
+export function mapThrowsOnce(message = 'GPUInitializationError') { throwOnce = message; }
+export function takeThrow() { const m = throwOnce; throwOnce = null; return m; }
+
 /** The MapLibre surface map.ts calls between two frames, with a real Mercator
  *  projection at a fixed zoom so bounds and bbox maths are honest. `container`
  *  may be an element or an id; the map lands on S.map unless `mini` is set. */

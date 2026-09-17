@@ -122,10 +122,22 @@ export async function main() {
   S.HOME = padBounds(boundsOf(pts), 0.06);
   document.querySelector('#map .boot-pending')?.remove();
   if (hasWebGL()) {
-    createMap();
-    updateMapLabels();
-    addLocateControl();
-    updateZoomAria();
+    // The probe says the browser can make a WebGL2 context; the map asks for
+    // one of its own, and MapLibre throws (GPUInitializationError) from the
+    // constructor when that one fails — a driver blocklist, a lost context, a
+    // machine already at its handful of live contexts. Unguarded that rejected
+    // main() and the reader got the boot-failure screen instead of the list the
+    // spec gives a browser with no map (decision 1). The `!S.map` branch below
+    // does the rest: list view, a disabled toggle and the notice.
+    try {
+      createMap();
+      updateMapLabels();
+      addLocateControl();
+      updateZoomAria();
+    } catch (e) {
+      console.error('map:', e);
+      S.map = null;
+    }
   }
   let touched = false;
   if (S.map) {
