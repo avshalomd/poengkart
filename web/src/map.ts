@@ -239,14 +239,20 @@ function spider(f) {
     els.push(rec.el);
   });
   const cel = clusterEls.get(id);
+  // The cluster is about to be display:none, and a hidden element holds
+  // neither focus nor a tab stop: hand both to the first school of the fan-out
+  // before it goes, rather than let the browser drop focus on <body> and the
+  // map lose its only tab stop. (labelMarkers then roves from the focused one.)
+  const held = !!cel && document.activeElement === cel;
   if (cel) cel.hidden = true;
   spread = { id, els };
   positionPane();
+  if (held) els[0]?.focus({ preventScroll: true });
   S.labelMarkers();
 }
 function unspider() {
   if (!spread) return;
-  for (const el of spread.els) { el.remove(); placed = placed.filter(p => p.el !== el); }
+  for (const el of spread.els) { hideMapTip(el); el.remove(); placed = placed.filter(p => p.el !== el); }
   const cel = clusterEls.get(spread.id);
   if (cel) cel.hidden = false;
   spread = null;
@@ -279,7 +285,10 @@ export function renderClusters() {
     if (!el.isConnected) pn.appendChild(el);
     next.push({ el, lngLat: f.geometry.coordinates as [number, number], dx: 0, dy: 0 });
   }
-  for (const p of placed) if (!keep.has(p.el)) p.el.remove();
+  // Removing an element fires neither mouseleave nor blur, so a dot that
+  // clusters away under the pointer left its tooltip floating over empty map
+  // (Leaflet closed a marker's tooltip when the marker left the map).
+  for (const p of placed) if (!keep.has(p.el)) { hideMapTip(p.el); p.el.remove(); }
   placed = next;
   positionPane();
   S.labelMarkers();

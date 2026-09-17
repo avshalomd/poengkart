@@ -6,7 +6,7 @@ import {
   styleUrl, setMapStyle, isDark, prefersStill, laterPublished, panelFolds, foldPanel, unfoldPanel,
   renderPanelSum, initMap, createMap, aimTip, hideMapTip, byEl, buildMiniMap, dropMiniMap, hasWebGL, boundsOf, padBounds,
 } from '../src/map';
-import { openSide } from '../src/sidebar';
+import { mapKeyed, openSide } from '../src/sidebar';
 import { initHelpers, shownPrograms, levelScope, schoolPressure } from '../src/helpers';
 import { initListview } from '../src/listview';
 import { PREFS } from '../src/prefs';
@@ -100,13 +100,20 @@ describe('the map layer', () => {
     const pair = clusters().find(c => { const [x, y] = at(c); return Math.abs(x - 700) < 1 && Math.abs(y - 450) < 1; });
     expect(pair).toBeTruthy();
     expect(pair!.textContent).toBe('2');
+    pair!.focus();
     pair!.click();
     expect(pair!.hidden).toBe(true);
     const spread = dots().filter(el => [a, b].includes(byEl.get(el)!.s));
     expect(spread.length).toBe(2);
     expect(spread[0].style.transform).not.toBe(spread[1].style.transform);   // fanned apart
+    // the cluster that held focus is display:none now: the fan-out takes both
+    // the focus and the map's one tab stop, rather than dropping them on <body>
+    expect(spread).toContain(document.activeElement as HTMLElement);
+    expect(mapKeyed()).not.toContain(pair);
+    expect(mapKeyed().filter((e: HTMLElement) => e.dataset.pkRove === '0')).toEqual([document.activeElement]);
     S.map!.fire('movestart');
     expect(pair!.hidden).toBe(false);
+    expect(mapKeyed()).toContain(pair);
     expect(dots().filter(el => [a, b].includes(byEl.get(el)!.s)).length).toBe(0);
     // any other cluster at this zoom splits by zooming in, to the zoom where its dots separate
     const other = clusters().find(c => c !== pair)!;
@@ -231,6 +238,22 @@ describe('the map layer', () => {
     S.mapCat = 'ST';
     drawMarkers();
     for (const el of dots()) expect(byEl.get(el)!.html).toContain(CATS.ST[S.lang]);
+  });
+
+  it('a dot that clusters away under the pointer takes its tooltip with it', () => {
+    setup();
+    S.mapFylke = 'Rogaland';
+    S.map!.jumpTo({ center: [5.73, 58.97], zoom: 11 });
+    drawMarkers();
+    const el = dots()[0], tip = () => document.querySelector('#map .pk-tip') as HTMLElement;
+    aimTip(byEl.get(el)!);
+    expect(tip().hidden).toBe(false);
+    // zooming out clusters it away. Removing an element fires no mouseleave
+    // and no blur, so nothing else can tell the tooltip its dot has gone
+    S.map!.jumpTo({ center: [5.73, 58.97], zoom: 6 });
+    S.map!.fire('moveend');                             // what createMap listens for
+    expect(el.isConnected).toBe(false);
+    expect(tip().hidden).toBe(true);
   });
 
   it('bounds come from [lat, lon] pairs and pad by a share of their span', () => {

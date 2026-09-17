@@ -114,8 +114,11 @@ export function widenFor(s) {
   drawMarkers(); renderLegend(); renderCatNote(); syncUrl();
   return true;
 }
-// every marker and cluster the keyboard can reach, in DOM order
-export const mapKeyed = () => [...document.querySelectorAll('#map [role="button"][data-pk-keyed]')] as any[];
+// every marker and cluster the keyboard can reach, in DOM order. A fanned-out
+// cluster is hidden, and `[hidden]` is display:none here: it cannot hold focus
+// or a tab stop, so it is not one of them until it comes back.
+export const mapKeyed = () => [...document.querySelectorAll('#map [role="button"][data-pk-keyed]')]
+  .filter(e => !(e as HTMLElement).hidden) as any[];
 // `landing`: the school the address named at boot — the page the reader
 // arrived on, not one they opened.
 export function openSide(s, landing?: boolean) {

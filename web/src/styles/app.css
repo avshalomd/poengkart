@@ -1263,12 +1263,19 @@
     -webkit-backdrop-filter: blur(22px) saturate(1.8); backdrop-filter: blur(22px) saturate(1.8);
     box-shadow: inset 0 1px 0 var(--g-sheen), var(--g-shadow) !important;
   }
+  /* the sub-properties, not the `font` shorthand: a CSS-wide keyword like
+     inherit cannot appear inside a shorthand, so one undefined custom property
+     in it would throw the whole declaration away and leave the glyphs at 14px */
   .maplibregl-ctrl-group button.pk-zoom {
     display: block; width: 30px; height: 30px; background: transparent !important; color: var(--ink) !important;
-    border: 0; border-bottom: 1px solid var(--line); font: 600 18px/1 var(--font, inherit); cursor: pointer;
+    border: 0; border-bottom: 1px solid var(--line); cursor: pointer;
+    font-weight: 600; font-size: 18px; line-height: 1;
   }
   .pk-zoom-in { border-radius: 999px 999px 0 0 !important; }
-  .pk-zoom-out { border-radius: 0 0 999px 999px !important; border-bottom: 0; }
+  .pk-zoom-out { border-radius: 0 0 999px 999px !important; }
+  /* the capsule's own bottom edge is the border: the last button draws none.
+     Qualified, or it loses to the rule above and the hairline stays */
+  .maplibregl-ctrl-group button.pk-zoom-out { border-bottom: 0; }
   /* a reader who has asked the system for more contrast, or for less
      transparency, gets the chrome solid */
   @media (prefers-contrast: more), (prefers-reduced-transparency: reduce) {
