@@ -292,7 +292,7 @@ Behaviour is unchanged by design. Still to do from the same plan:
     malformed archive); it runs at build time only, on the two checked-in
     TTFs, and `npm audit fix --force` would downgrade satori. Left for the
     owner to decide.
-- **Stage 4 — MapLibre GL.** Landed 17 September 2026: the base map is MapLibre GL 6.10
+- **Stage 4 — MapLibre GL.** Landed 17 September 2026 (PR #5): the base map is MapLibre GL 6.10
   drawing CARTO's vector tiles (Voyager GL light, Dark Matter GL dark) from two
   pinned styles under `web/public/map/` (`tools/vendor-map-styles.mjs`); MapLibre's
   modules are served from `/maplibre/<v>/` (`tools/vendor-maplibre.mjs`, run
