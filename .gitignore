@@ -26,6 +26,7 @@ docs/private/
 .playwright-mcp/
 
 web/dist/
+.astro/
 coverage/
 playwright-report/
 test-results/

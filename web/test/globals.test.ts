@@ -13,17 +13,18 @@ const srcDir = path.join(here, '../src');
 
 // A ReservedWord ("if", "for", …) can be the leading token of a guarded call
 // — `onclick="if (event.target === this) closeContact()"` appears five times
-// in index.html, once per sheet's backdrop — but it is not an Identifier and
+// in shell.html, once per sheet's backdrop — but it is not an Identifier and
 // nothing needs it to be a window global; the same helper it guards is pinned
 // separately wherever that sheet's own close button calls it unconditionally.
 const KEYWORDS = new Set(['if', 'else', 'for', 'while', 'do', 'switch', 'return']);
 
-// Every file an inline `on*="…"` handler can appear in: the page itself, and
-// every module, since boot.ts, feedback.ts, intro.ts, listview.ts and
-// sidebar.ts all write the same kind of attribute into HTML they generate.
+// Every file an inline `on*="…"` handler can appear in: the shell partial and
+// the layout, and every module, since boot.ts, feedback.ts, intro.ts,
+// listview.ts and sidebar.ts all write the same kind of attribute into HTML
+// they generate.
 function sourceFiles(): string[] {
   const srcTs = readdirSync(srcDir).filter(f => f.endsWith('.ts')).map(f => path.join(srcDir, f));
-  return [path.join(here, '../index.html'), ...srcTs];
+  return [path.join(here, '../src/shell.html'), path.join(here, '../src/layouts/Base.astro'), ...srcTs];
 }
 
 // The contract: every leading identifier of every statement inside every

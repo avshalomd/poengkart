@@ -4,6 +4,7 @@
   "type": "module",
   "engines": { "node": ">=22.12" },
   "dependencies": {
+    "astro": "7.3.3",
     "leaflet": "1.9.4",
     "leaflet.markercluster": "1.5.3"
   },
@@ -22,9 +23,9 @@
     "vitest": "5.0.1"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
     "typecheck": "tsc --noEmit",
     "e2e": "playwright test",
     "e2e:ui": "playwright test --ui",

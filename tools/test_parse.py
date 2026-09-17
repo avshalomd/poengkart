@@ -157,7 +157,7 @@ except Exception:   # no git, or first build: the coverage floor still holds
     check('no school lost its coordinates or link since the last commit (skipped)', True)
 
 # Forecasts are keyed by series — lower-case programme name, level, occurrence,
-# counted the way web/index.html and test_model.py count them — so a renamed
+# counted the way web/src/helpers.ts and test_model.py count them — so a renamed
 # programme must be refitted, never left pointing at a name that is gone
 _MODEL_P = os.path.join(HERE, '..', 'web', 'public', 'data', 'model.json')
 if os.path.exists(_MODEL_P):
@@ -427,9 +427,13 @@ check('Møre og Romsdal school links use the bare domain', not mro_www, str(mro_
 # and by link previews, not rendered from the data, so they rot silently when a
 # county or a year is added. Assert that *every* copy of each number is right,
 # not merely that a right one exists somewhere.
-html = open(os.path.join(HERE, '..', 'web', 'index.html'), encoding='utf-8').read()
-head = (html[:html.index('</head>')]
-        + html[html.index('<noscript>'):html.index('</noscript>')])
+# the head copy lives in HOME_HEAD (web/src/prerender.ts) since stage 3, the
+# noscript fallback in the shell partial; the school pages' own heads are
+# templated from the data and need no such check
+_pre = open(os.path.join(HERE, '..', 'web', 'src', 'prerender.ts'), encoding='utf-8').read()
+_shell = open(os.path.join(HERE, '..', 'web', 'src', 'shell.html'), encoding='utf-8').read()
+head = (_pre[_pre.index('HOME_HEAD'):_pre.index('};', _pre.index('HOME_HEAD'))]
+        + _shell[_shell.index('<noscript>'):_shell.index('</noscript>')])
 n_schools, y0, y1 = len(DATA['schools']), DATA['years'][0], DATA['years'][-1]
 NORSK = {5: 'fem', 6: 'seks', 7: 'sju', 8: 'åtte', 9: 'ni', 10: 'ti'}
 n_fylker = NORSK.get(len(DATA['counties']), str(len(DATA['counties'])))

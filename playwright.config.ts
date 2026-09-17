@@ -13,7 +13,11 @@ export default defineConfig({
     locale: 'nb-NO',
   },
   webServer: {
-    command: 'npm run build && npm run preview',
+    // --ignore-lock keeps `astro preview` in the foreground: it otherwise
+    // daemonizes when it detects a coding agent running it, and Playwright
+    // takes the parent's exit for a server that died. Playwright owns this
+    // server's lifetime anyway, so the lock file it skips is of no use here.
+    command: 'npm run build && npm run preview -- --ignore-lock',
     url: 'http://localhost:4173',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
