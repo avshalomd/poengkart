@@ -549,7 +549,9 @@ export function drawMarkers() {
     if (S.mapFocusPending && Date.now() - S.mapFocusPending < 3000
         && (!document.activeElement || document.activeElement === document.body)) {
       S.mapFocusPending = 0;
-      (mapKeyed().find(e => e.dataset.pkRove === '0') || S.map!.getContainer()).focus({ preventScroll: true });
+      // the canvas, not the container: MapLibre keys the canvas, and a focus()
+      // on the unfocusable container would drop focus back to <body>
+      (mapKeyed().find(e => e.dataset.pkRove === '0') || S.map!.getCanvas()).focus({ preventScroll: true });
     }
   };
   renderClusters();
