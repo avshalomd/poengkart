@@ -49,6 +49,25 @@ describe('the toast and the locate button', () => {
     expect(el.hidden).toBe(true);
   });
 
+  it('a second toast queues behind one already showing, and a duplicate is not queued twice', () => {
+    loadFixtures(); initHelpers();
+    const el = document.getElementById('toast')!;
+    toast('Første', 1000);
+    toast('Andre', 500);
+    toast('Andre', 500);        // a duplicate of the one already waiting is not queued again
+    vi.advanceTimersByTime(30);
+    expect(el.textContent).toBe('Første');
+    vi.advanceTimersByTime(969);              // 999ms: just short of the first's own duration
+    expect(el.hidden).toBe(false);
+    expect(el.textContent).toBe('Første');
+    vi.advanceTimersByTime(1);                // 1000ms: the first hides, the second takes over
+    expect(el.hidden).toBe(false);
+    vi.advanceTimersByTime(30);
+    expect(el.textContent).toBe('Andre');
+    vi.advanceTimersByTime(500);              // the de-duplicated second's own duration
+    expect(el.hidden).toBe(true);             // nothing else queued behind it
+  });
+
   it('placeToast keeps the notice out of the legend’s way and does nothing when hidden', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
     renderLegend();
@@ -115,6 +134,11 @@ describe('the toast and the locate button', () => {
     expect(S.locBusy).toBe(false);
     geolocation({ getCurrentPosition: (_ok: any, bad: any) => bad({ code: 2 }) });
     locate();
+    // the denied notice is still showing (12s): the failure notice queues
+    // behind it rather than cutting it off early (toast()'s own queue, locate.ts)
+    vi.advanceTimersByTime(30);
+    expect(document.getElementById('toast')!.textContent).toContain(t('locDenied'));
+    vi.advanceTimersByTime(12000 - 30);
     vi.advanceTimersByTime(30);
     expect(document.getElementById('toast')!.textContent).toBe(t('locFail'));
   });

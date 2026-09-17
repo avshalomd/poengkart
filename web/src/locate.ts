@@ -7,17 +7,51 @@ import { S } from './state';
 // the position is used for one map move and a marker; it never leaves the page
 // ms: how long it stays. Steps to follow need longer than a one-line notice,
 // and a tap puts any toast away early.
-export function toast(msg, ms = 4000) {
+//
+// #toast is one shared element, and two notices can genuinely both be true at
+// once — no WebGL2 *and* a dead link, say, both decided in the same tick of
+// main(). A second call used to stomp the first: its own 30ms text-set landed
+// on top, and its own hide timer replaced the first's, so the first notice
+// was never read and the second ran short. A small queue instead: a call
+// made while one is showing (or already waiting its turn) waits until that
+// one has hidden, then gets its own reveal and its own full duration. A text
+// already showing or already queued is not queued a second time.
+let toastCurrent: { msg: any; ms: number } | null = null;
+let toastQueue: { msg: any; ms: number }[] = [];
+let toastRevealTimer: any, toastHideTimer: any;
+let toastElRef: Element | null = null;    // the #toast node the state above belongs to
+
+function showToast(item: { msg: any; ms: number }) {
   const el: any = document.getElementById('toast');
-  if (!el._tap) {
-    el._tap = true;
-    el.addEventListener('click', () => { clearTimeout((toast as any)._t); el.hidden = true; });
-  }
+  toastCurrent = item;
   // reveal first: text set inside a hidden live region is not announced
   el.textContent = ''; el.hidden = false;
-  setTimeout(() => { el.textContent = msg; placeToast(); }, 30);
-  clearTimeout((toast as any)._t);
-  (toast as any)._t = setTimeout(() => { el.hidden = true; }, ms);
+  toastRevealTimer = setTimeout(() => { el.textContent = item.msg; placeToast(); }, 30);
+  toastHideTimer = setTimeout(dismissToast, item.ms);
+}
+function dismissToast() {
+  clearTimeout(toastRevealTimer); clearTimeout(toastHideTimer);
+  const el = document.getElementById('toast');
+  if (el) el.hidden = true;
+  toastCurrent = null;
+  const next = toastQueue.shift();
+  if (next) showToast(next);
+}
+export function toast(msg, ms = 4000) {
+  const el: any = document.getElementById('toast');
+  // a fresh #toast (a page's single one, in practice) starts with no history:
+  // guards against a stale queue if the element were ever replaced outright
+  if (el !== toastElRef) {
+    clearTimeout(toastRevealTimer); clearTimeout(toastHideTimer);
+    toastCurrent = null; toastQueue = []; toastElRef = el;
+  }
+  if (!el._tap) {
+    el._tap = true;
+    el.addEventListener('click', dismissToast);
+  }
+  if (toastCurrent?.msg === msg || toastQueue.some(q => q.msg === msg)) return;
+  if (toastCurrent) { toastQueue.push({ msg, ms }); return; }
+  showToast({ msg, ms });
 }
 // The CSS spot (centred at the foot of the map, or beside the controls on a
 // phone) is kept while it is clear. It was not whenever the legend stands

@@ -13,6 +13,7 @@ import { initIntro } from '../src/intro';
 import { initTips } from '../src/tips';
 import { t } from '../src/i18n';
 import { S } from '../src/state';
+import { unresolvedFromPath } from '../src/router';
 
 /* The whole app, booted against the fixture files in place of the network.
    Everything below is the state a first frame leaves behind. */
@@ -224,6 +225,24 @@ describe('boot', () => {
     vi.advanceTimersByTime(50);
     expect(document.getElementById('toast')!.textContent).toBe(t('noMapWebGL'));
     expect(document.getElementById('listview')!.hidden).toBe(false);
+  });
+
+  it('without WebGL and a 404 path, the WebGL notice shows first and the not-found notice follows once it hides', async () => {
+    vi.restoreAllMocks();                                // happy-dom: getContext('webgl2') is null
+    vi.stubGlobal('fetch', network());
+    document.body.dataset.notfound = '1';
+    try {
+      initAll();
+      await main();
+      vi.advanceTimersByTime(30);
+      expect(document.getElementById('toast')!.textContent).toBe(t('noMapWebGL'));
+      // the WebGL notice's own 8s, then the queued not-found notice's own reveal
+      vi.advanceTimersByTime(8000);
+      vi.advanceTimersByTime(30);
+      expect(document.getElementById('toast')!.textContent).toBe(t('linkNotFound', unresolvedFromPath()));
+    } finally {
+      delete document.body.dataset.notfound;    // setup.ts only replaces #app's innerHTML, not body's own attributes
+    }
   });
 
   it('bootFailed and framePad stand on their own', () => {
