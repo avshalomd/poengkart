@@ -43,6 +43,16 @@ Every comment you write starts with one fixed line, `routine · <step> · <run i
 prose in English, then a short `key: value` block, so a person can read it and a script can
 parse it. The run id is `YYYYMMDD-HHMM` at start.
 
+Language. The owner reads Plane and cannot read Norwegian. Everything you write in Plane is
+in English: titles, descriptions, facts, comments, the run log. A Norwegian mail is never
+filed untranslated: quote the original, then give its full English translation right
+after it. A Norwegian reply draft is always paired with its English version, English
+first. An item from an earlier run that breaks this rule (a Norwegian title, a quote with
+no translation) is repaired when you meet it: give it an English title, keep the original
+subject in the description, and add one comment `routine · translate · <run id>` holding
+the English translation of its Norwegian parts; an item that already has such a comment
+is compliant. Label names are codes and stay as they are.
+
 ## 0 Start
 
 A modified tracked file in the checkout means someone is mid-work: end with the one-line
@@ -65,12 +75,16 @@ For each remaining thread:
 - Look the thread up first: `workitem list` in POENG with `external_source` `gmail` and
   `external_id` the thread id. Found: only messages whose id is not yet on the item (in its
   description or a `routine · mail` comment) are added, each as a comment
-  `routine · mail · <run id>` quoting the sender, date, message id and body. Not found:
-  create one item with `external_source` `gmail`, `external_id` the thread id.
-- The item: title = the mail's subject; description = the mail body, then a `Kilde:`
-  (source) line with the thread id and every message id filed, then for form submissions
-  the fields the relay sent (Skole, Programområde, År, Fylke, Lenke til bilde, Svaradresse,
-  Side, Språk) as a «Fakta» (facts) block, and the `Fra:` (from) address for ordinary mail.
+  `routine · mail · <run id>` quoting the sender, date, message id and body, followed by
+  the body's English translation when it is Norwegian. Not found: create one item with
+  `external_source` `gmail`, `external_id` the thread id.
+- The item: title = a one-line English summary of the mail; description = the original
+  message quoted, its full English translation, then a `Source:` line with the original
+  subject, the thread id and every message id filed, then for form submissions the fields
+  the relay sent as a Facts block with English keys (School, Programme, Year, County,
+  Photo link, Reply address, Page, Language; the relay's own labels are Skole,
+  Programområde, År, Fylke, Lenke til bilde, Svaradresse, Side, Språk), and the `From:`
+  address for ordinary mail.
 - Origin: subject prefix `[Poengkart]` is the in-app form; its subject words map to the
   type label — «Feil i tallene» `tall`, «Feil eller manglende bilde» `bilde`, «Skole mangler
   eller feil sted» `skole`, «Feil i appen» `feil` (this one is `src:bug`, the rest
@@ -103,8 +117,8 @@ reasoning and the block
 ```
 class: auto | decision | info
 type: tall | bilde | skole | feil | funksjon | annet
-fylke: <county or ->
-skole: <school or ->
+county: <county or ->
+school: <school or ->
 source-check: agrees-with-sender | agrees-with-app | not-on-hand | n/a
 recommendation: <one sentence, class decision only>
 ```
@@ -163,13 +177,14 @@ merged item to Needs decision.
 ## 4 Close — every person who wrote in has a reply draft waiting for the owner
 
 For each item that reached Done or Needs decision this run and has a sender: `src:app` and
-`src:bug` items are answered at the `Svaradresse:` fact and only that (no fact, no draft);
-`src:mail` items at the `Fra:` address. Never draft to `onboarding@resend.dev`; test
-submissions and noise get no draft. The reply is in Norwegian, in the official vocabulary
-of `CONTEXT.md`, signed Abshalom Dayan, created with `create_draft` as a reply on the
-thread (`replyToMessageId` the message id from `Kilde:`, subject `Re: <the subject>`). The
-item gets the comment `routine · close · <run id>` with the draft id and the English
-translation.
+`src:bug` items are answered at the Reply address fact (the form's Svaradresse) and only
+that (no fact, no draft); `src:mail` items at the `From:` address. Never draft to
+`onboarding@resend.dev`; test submissions and noise get no draft. The reply is in
+Norwegian, in the official vocabulary of `CONTEXT.md`, signed Abshalom Dayan, created with
+`create_draft` as a reply on the thread (`replyToMessageId` the message id from the
+`Source:` line, subject `Re: <the original subject>`). The item gets the comment
+`routine · close · <run id>` with the draft id, then the full English version of the
+reply, then the Norwegian text exactly as drafted.
 
 Then one comment on the run-log item, `routine · run · <run id>`, with the block
 
@@ -193,5 +208,6 @@ or `quiet run` when nothing was seeded and nothing was in Todo.
 No mail sent, labelled, trashed, forwarded or replied to; only the four Gmail tools named
 above. No Plane item deleted or archived. No change to `tools/model.py` or the fit. No hand
 edit of a generated file. No merge or deploy in Mode report-only. No second deploy in a
-run. No push to `main`. No item picked up that is not in Inbox or Todo. No question to the
-owner: a doubt is a `class:decision` comment.
+run. No push to `main`. No item picked up that is not in Inbox or Todo. No Norwegian in
+Plane without its English translation beside it. No question to the owner: a doubt is a
+`class:decision` comment.

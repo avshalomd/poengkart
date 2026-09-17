@@ -133,6 +133,9 @@ Questions this can answer later, from the API alone:
 ## Guardrails
 
 - No email is ever sent by the routine.
+- Plane is written in English only: the owner cannot read Norwegian. A
+  Norwegian mail is quoted with its full English translation after it; a
+  Norwegian reply draft is paired with its English version, English first.
 - No change to `tools/model.py` or the fit.
 - Generated files (`web/public/data/*`, `data/*`) are never edited by
   hand; the pipeline is fixed and re-run.
