@@ -31,3 +31,7 @@ coverage/
 playwright-report/
 test-results/
 web/public/maplibre/
+
+# superpowers plugin artifacts (plans, specs, SDD ledgers) stay local
+docs/superpowers/
+.superpowers/
