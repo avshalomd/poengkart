@@ -22,8 +22,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 MODEL = json.loads((ROOT / 'web/public/data/model.json').read_text())
 META = MODEL['meta']
-N_FORECASTS = sum(len(v.get('programs') or {}) for v in MODEL['schools'].values())
-N_FORECASTS_H0 = sum(pr['h'] == 0 for v in MODEL['schools'].values() for pr in (v.get('programs') or {}).values())
+# a held-out county's forecasts come from the satellite fit off the finished
+# model (meta.held_out), so they are counted apart from the model's own
+_OWN = [v for v in MODEL['schools'].values() if not v.get('held_out')]
+N_FORECASTS = sum(len(v.get('programs') or {}) for v in _OWN)
+N_FORECASTS_H0 = sum(pr['h'] == 0 for v in _OWN for pr in (v.get('programs') or {}).values())
+N_HELD_FORECASTS = sum(len(v.get('programs') or {}) for v in MODEL['schools'].values() if v.get('held_out'))
+N_HELD_SCHOOLS = sum(1 for v in MODEL['schools'].values() if v.get('held_out'))
 
 failures = []
 checked = 0
@@ -552,6 +557,8 @@ check(doc, 'school means ranks', r'schools move ([\d.]+) places on average and a
 check(doc, 'outliers', rf'> 3\$: (\d+) of ([\d,]+), (\d+) of them in {OZ_TOP}', [oz['n'], oz['n_level'], oz['by_fylke'][OZ_TOP]], flat, N)
 check(doc, 'forecast count', r'shipped model carries ([\d,]+) programme forecasts, of which (\d+) are for series with no observed year', [N_FORECASTS, N_FORECASTS_H0], flat, N)
 check(doc, 'discontinued series', r'\(discontinued; (\d+) series\)', [N_SERIES_U], flat, N)
+check(doc, 'held-out forecasts', r'a separate fit on its own figures supplies (\d+) forecasts for its (\d+) schools',
+      [N_HELD_FORECASTS, N_HELD_SCHOOLS], flat, N)
 check(doc, 'zero-history forecasts exported', r'Those (\d+) forecasts are in the exported files', [N_FORECASTS_H0], flat, N)
 check(doc, 'short test window', r'Two held-out years \(([\d,]+) cells with a number, ([\d,]+) that competed\)', [ev['level_all']['n'], ev['fill']['n']], flat, N)
 for y in sorted(year_row):

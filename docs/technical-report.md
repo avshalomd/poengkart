@@ -379,10 +379,21 @@ applicants admitted with fortrinnsrett or after individual assessment are
 among "those admitted". Those numbers
 are not poenggrenser in the sense of every other county in Table 1b, and
 fitting them beside the others would put figures of a different kind into
-the level model and the held-out scores. The application publishes the
-county's figures with a note to that effect and gives its schools no
-forecast; the county joins the panel here when it states, per programme and
-year, whether everyone was admitted.
+the level model and the held-out scores. The county's cells therefore enter
+no fit, no walk-forward fold and no number in this report. The application
+still publishes its figures, with a note saying what they are, and still
+forecasts its schools: once the model of Section 5 is fitted, its
+intercept and its utdanningsprogram and programme-area effects are held
+fixed as an offset, and only the county's own school, series and
+county-year effects are estimated, on its own cells, with the fitted
+model's variance components (a *satellite* fit; `Satellite` in
+`tools/model.py`). Its fill probability is pinned at 1, as in Section 4.4's
+fill-blind mechanism, so a reader's chance there rests on the threshold
+alone. Nothing of that fit reaches the panel, the backtest or the
+evaluation, so those forecasts carry no measured coverage and the
+application says so on every one of the county's schools. The county joins
+the panel here when it states, per programme and year, whether everyone was
+admitted.
 
 The non-publishing counties either state that they choose not to publish
 (Agder, Nordland, Østfold) or publish aggregate statistics without
@@ -970,7 +981,9 @@ otherwise. The interface is bilingual (Norwegian/English), phrased in the
 official Udir/vigo vocabulary throughout, and the compiled dataset is
 available from the page as JSON and in the repository as CSV and SQLite.
 The shipped model carries 1,760 programme forecasts, of which 192 are for
-series with no observed year. Two things it deliberately does not forecast:
+series with no observed year; for the held-out county of Section 4.4 a
+separate fit on its own figures supplies 55 forecasts for its 11 schools,
+evaluated nowhere in this report. Two things it deliberately does not forecast:
 a series whose newest cell is *utgått* (discontinued; 65 series) gets no
 forecast, whatever the year before said, and a series with no observed year
 is tagged "ingen historikk" (no history) — with "lite historikk" (little
@@ -1128,7 +1141,7 @@ cluster bootstrap uses a fixed seed. The whole pipeline runs in minutes on a
 laptop. `tools/test_docs.py` pins every number in this report and in
 `docs/model.md` to the shipped model file, so a refresh that moves a figure
 fails the build until the text is updated; validation further comprises 116
-parser regression checks and 13,892 model invariants. The dataset is
+parser regression checks and 14,279 model invariants. The dataset is
 released under the Norwegian Licence for Open Government Data (NLOD 2.0)
 and the code under the MIT licence.
 
@@ -1392,4 +1405,6 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   to 6.20 points, the county's intervals covered 70%, and the county-year
   term's share of the variance between school means rose from 9% to 17%.
   The model, the panel and every quoted number are back to the eight
-  counties of v1.9.1, and the refit reproduces that version's numbers.
+  counties of v1.9.1, and the refit reproduces that version's numbers. The
+  county's schools keep a forecast in the application, from a satellite fit
+  on its own figures that leaves the model untouched (Section 4.4).

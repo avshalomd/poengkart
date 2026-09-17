@@ -480,6 +480,10 @@ export const T = {
                      en: 'Applies to applicants resident in the school\'s intake area.' },
   chanceCal:  { no: c => `Testet mot 2025–26 traff 80 %-intervallet ${c} % av gangene.`,
                 en: c => `Tested against 2025–26, the 80% interval was right ${c}% of the time.` },
+  // a held-out county (HELD_OUT): forecast from its own figures, never scored
+  // against an intake the model had not seen, so no coverage can be quoted
+  chanceUntested: { no: f => `Prognosen bygger bare på tallene fra ${f} og er ikke testet mot tidligere inntak, slik prognosene i de andre fylkene er.`,
+                    en: f => `The forecast is built on ${f}'s own figures alone and is not tested against earlier intakes the way the other counties' forecasts are.` },
   chTitle: {
     // pf may be null: a county pinned at π = 1 by rule (none today; the
     // mechanism is FILL_BLIND in tools/model.py) has no fill figure to show
@@ -540,8 +544,8 @@ export const T = {
   // Telemark's extract gives the lowest points among the admitted for every
   // offered programme and no fill state, so the county is published but held
   // out of the model (tools/extractors/telemark.py, HELD_OUT in tools/model.py)
-  heldOutNote: { no: f => `${f} oppgir laveste poengsum blant de inntatte for hvert programområde, men ikke om alle søkerne fikk plass. Tallene kan derfor ikke sammenlignes med poenggrensene i andre fylker, og skolen har ingen prognose.`,
-                 en: f => `${f} gives the lowest points among those admitted to each programme area, but not whether every applicant got a place. The figures therefore cannot be compared with thresholds in other counties, and the school has no forecast.` },
+  heldOutNote: { no: f => `${f} oppgir laveste poengsum blant de inntatte for hvert programområde, men ikke om alle søkerne fikk plass. Tallene kan derfor ikke sammenlignes med poenggrensene i andre fylker, og prognosen her bygger bare på fylkets egne tall.`,
+                 en: f => `${f} gives the lowest points among those admitted to each programme area, but not whether every applicant got a place. The figures therefore cannot be compared with thresholds in other counties, and the forecast here is built on the county's own figures alone.` },
   finalRoundUnknown: {
     no: 'Fylket publiserer bare 1. inntak. Flere kommer inn i senere inntak, men det finnes ikke tall for hvor mange.',
     en: 'The county publishes the 1st intake only. More get in at later intakes, but there are no figures for how many.',

@@ -350,7 +350,8 @@ export function renderChance(s, lensCat) {
     `<div>${esc(t('chanceCounts', ch.likely, ch.possible, ch.unlikely))}</div>` +
     `<div>${esc(t('chanceSub', ch.year, e.round, lo, hi))}` +
     (s.catchment ? ' ' + esc(t('chanceCatchment')) : '') +
-    (cov != null ? ' ' + esc(t('chanceCal', Math.round(cov * 100))) : '') + `</div>` + fin + adj);
+    (e.held_out ? ' ' + esc(t('chanceUntested', s.fylke))
+     : cov != null ? ' ' + esc(t('chanceCal', Math.round(cov * 100))) : '') + `</div>` + fin + adj);
 }
 
 export function initSidebar() {

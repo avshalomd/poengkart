@@ -17,9 +17,10 @@ Semantics, and what the file does NOT say:
   here. Every offered programme carries one, down to 10,0; the file has no
   marker for «everyone got in», so the dataset has no fill state for
   Telemark, the figures are not comparable with other counties'
-  poenggrenser, and tools/model.py holds the county out of the model
-  altogether (HELD_OUT) until the county says, per programme and year,
-  whether everyone was admitted (asked 17.09.2026).
+  poenggrenser, and tools/model.py holds the county out of every fit and
+  score (HELD_OUT; its schools are forecast by the satellite fit on its own
+  cells) until the county says, per programme and year, whether everyone
+  was admitted (asked 17.09.2026).
 - «Laveste totalpoeng» (2026/27 only, '-' before) is not read. In 33 of 55
   rows it is karakterpoeng + 300; elsewhere the offset is 0, 200, 400 or a
   fraction, so it is another applicant's ordering points with a regional

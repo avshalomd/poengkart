@@ -88,16 +88,25 @@ market event; Vestland 2023 was that year until its 1. inntak file was
 recovered (5 September 2026), and no county-year currently needs it.
 
 **Counties outside the model.** Telemark is in the dataset and the app but
-not in either fit, the backtest or the forecasts (`HELD_OUT` in
+in neither fit, neither backtest nor any score (`HELD_OUT` in
 `tools/model.py`, `meta.held_out`). Its workbook gives the lowest points
 among those admitted for every offered programme, also where everyone got
 in, so its numbers are not poenggrenser in the other counties' sense and
 there is no fill state to read. A fit that included it (report v1.10,
 17 September 2026) lost 0.5 points of RMSE on one-year series and doubled
 the county-year share of the between-school variance. Every figure in this
-note is over the other eight counties. The app gives Telemark schools no
-forecast and says why; the county rejoins when it states, per programme and
-year, whether everyone was admitted.
+note is over the other eight counties.
+
+Its schools are still forecast, by a **satellite fit** (`Satellite`): with
+the model above finished, μ and the category and programme effects are held
+fixed as an offset, and only Telemark's own school, series and county×year
+effects are fitted, on Telemark's cells, with the model's own taus. The
+spread is the model's history bucket, and π is pinned at 1 because the
+county has no fill state, so the chance rests on the threshold alone. The
+walk-forward never sees these cells, so the forecast has no measured
+coverage and the app says so on every Telemark school. The county rejoins
+the model when it states, per programme and year, whether everyone was
+admitted.
 
 ## Spread, and why it is not the model's own
 

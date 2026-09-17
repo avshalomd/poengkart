@@ -134,6 +134,10 @@ export interface ModelSchool {
   alpha_se?: number;
   alpha_n?: number;
   alpha_rank?: number;
+  /** a county the model holds out (meta.held_out): these forecasts come from
+      the county's own figures alone, off the finished fit, and are never
+      scored (Satellite in tools/model.py) */
+  held_out?: boolean;
   /** programme key (chance.ts progKeyMap) → its forecast */
   programs?: Record<string, Forecast>;
 }

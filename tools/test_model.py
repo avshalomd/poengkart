@@ -80,12 +80,11 @@ for s in DATA['schools']:
     for p in s['programs']:
         for y in p['values']:
             newest[s['fylke']] = max(newest.get(s['fylke'], 0), int(y))
-# counties published but held out of the model (meta.held_out) get nothing
+# counties held out of the fits (meta.held_out) are forecast from their own
+# figures by the satellite fit, so their live programmes are covered too
 HELD = set(META.get('held_out') or [])
 missing, n_pred, n_live = [], 0, 0
 for s in DATA['schools']:
-    if s['fylke'] in HELD:
-        continue
     ent = SCHOOLS.get(f"{s['fylke']}|{s['name']}", {})
     occ = {}
     for p in s['programs']:
@@ -183,7 +182,9 @@ for s in DATA['schools']:
 # is shown as "alle kom inn, eller under 25") supplies one. The list is empty
 # since then; Telemark, which has no such state either, is held out of the
 # model altogether instead (check 5)
-BLIND = set(META.get('fill_blind') or [])
+# a held-out county is pinned too: the satellite fit has no fill state to
+# read, so its π is 1 by construction (check 5)
+BLIND = set(META.get('fill_blind') or []) | set(META.get('held_out') or [])
 for f in sorted({sid.split('|')[0] for sid in SCHOOLS}):
     pis = [pr['pi'] for sid, ent in SCHOOLS.items() if sid.startswith(f + '|')
            for pr in (ent.get('programs') or {}).values()]
@@ -205,15 +206,22 @@ check('partial county-years listed in meta',
       str(META.get('partial_years')))
 
 # 5. a held-out county (meta.held_out: published, not comparable, outside the
-# model) has no forecast, no school effect and no backtest cell, and the app's
-# mirror of the list agrees, or its schools would show a chance the model
-# never computed or lose the note that says why they have none
+# fits and every score) is forecast by the satellite fit off the finished
+# model: its entries say so, its fill probability is pinned at 1 because the
+# source has no fill state, it has no mix-adjusted school effect to rank
+# against the other counties, and no cell of it reaches the backtest. The
+# app's mirror of the list must agree, or its schools lose the note that
+# says where their forecast comes from
 import re
-check('Telemark is held out of the model (decision of 17 Sept 2026)', 'Telemark' in HELD, str(sorted(HELD)))
+check('Telemark is held out of the fits (decision of 17 Sept 2026)', 'Telemark' in HELD, str(sorted(HELD)))
 for f in sorted(HELD):
-    check(f'{f}: held out, so no school entry in model.json',
-          not any(sid.startswith(f + '|') for sid in SCHOOLS))
-    check(f'{f}: held out, so no target year', f not in META.get('target_year', {}))
+    ents = [e for sid, e in SCHOOLS.items() if sid.startswith(f + '|')]
+    check(f'{f}: held out, and every entry says so', ents and all(e.get('held_out') for e in ents),
+          f'{len(ents)} entries')
+    check(f'{f}: held out, so the forecast never claims a waiting list',
+          all(pr['pi'] == 1.0 for e in ents for pr in (e.get('programs') or {}).values()))
+    check(f'{f}: held out, so no school effect ranked against the panel',
+          not any('alpha' in e or 'alpha_rank' in e for e in ents))
 _bt_path = os.path.join(HERE, '..', 'data', 'model-backtest.csv')
 if os.path.exists(_bt_path):
     import csv

@@ -194,7 +194,10 @@ export function listHtml(s: School, scope: string | null): string {
         const pr = predFor(s, p);
         if (pr) {
           const ch = chanceOf(pr, S.myPoints);
-          let tip = t('chTitle', pct(ch), pr.year, fmt(pr.m), fmt(pr.s), pct(pr.pi), pr.h);
+          // a held-out county's fill probability is pinned at 1 by construction
+          // (its source has no fill state), so the row never claims a queue
+          let tip = t('chTitle', pct(ch), pr.year, fmt(pr.m), fmt(pr.s),
+                      HELD_OUT.has(s.fylke) ? null : pct(pr.pi), pr.h);
           const fb = finalRoundBridge(s);
           if (fb) tip += ' ' + t('finalRoundChip', fb.to_round, pct(chanceFinal(pr, S.myPoints, p.category, fb)));
           chip = `<span class="ch b-${bucketOf(ch)}" data-tip="${esc(tip)}">${pctS(ch)}</span>`;

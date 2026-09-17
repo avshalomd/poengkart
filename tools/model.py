@@ -88,9 +88,9 @@ OUT = os.path.join(HERE, '..', 'web', 'public', 'data', 'model.json')
 # a figure under 25 is published as "ingen venteliste"). Empty since then;
 # Telemark sat here for a day before it was held out entirely (HELD_OUT).
 FILL_BLIND = set()
-# Counties published in the app but kept out of the model altogether: no
-# level fit, no fill fit, no backtest, no forecast, and outside the technical
-# report's numbers. Telemark (17 September 2026) gives the lowest points
+# Counties published in the app but kept out of the fits, the backtest, every
+# score and the technical report's numbers. Their schools are still forecast,
+# from their own figures alone and off the finished fit (class Satellite). Telemark (17 September 2026) gives the lowest points
 # among the admitted for every offered programme, also where everyone got
 # in (and, the 2026/27 totals suggest, pupils admitted outside the points
 # ranking): its low figures are not poenggrenser, cannot be told apart from
@@ -135,10 +135,8 @@ def load_obs(data):
     """Flatten schools.json into one row per (series, year) that competed on points."""
     cy = {c['fylke']: c for c in data['counties']}
     newest = collections.defaultdict(int)
-    rows, pairs = [], []
+    rows, pairs, held = [], [], []
     for si, s in enumerate(data['schools']):
-        if s['fylke'] in HELD_OUT:
-            continue
         occ_seen = {}
         for p in s['programs']:
             k = p['program'].lower()
@@ -155,7 +153,7 @@ def load_obs(data):
                 if state is None:
                     continue
                 rnd = (cy[s['fylke']].get('round_years') or {}).get(str(y)) or cy[s['fylke']].get('round')
-                rows.append(dict(school=sid, fylke=s['fylke'], series=f'{sid}|{key}',
+                (held if s['fylke'] in HELD_OUT else rows).append(dict(school=sid, fylke=s['fylke'], series=f'{sid}|{key}',
                                  prog=f'{k}|{p["level"]}', cat=p['category'], year=y,
                                  state=state, v=float(v) if state == 'num' else None,
                                  round=rnd, r3=int(rnd == '3' and cy[s['fylke']].get('round') != '3'),
@@ -176,7 +174,7 @@ def load_obs(data):
                                       main_round=main_round, alt_round=r_alt,
                                       vm=float(vm) if st(vm) == 'num' else None, main_state=st(vm),
                                       va=float(va) if st(va) == 'num' else None, alt_state=st(va)))
-    return rows, pairs, dict(newest)
+    return rows, pairs, held, dict(newest)
 
 
 # ----------------------------------------------------------------- round bridge
@@ -457,6 +455,64 @@ class Model:
         n = np.bincount(f['ix'], minlength=len(f['levels']))
         return {lv: dict(alpha=float(el['school'][lv]), se=float(se[i]), n=int(n[i]))
                 for i, lv in enumerate(f['levels'])}
+
+
+class Satellite:
+    """A held-out county's own forecast, with the shipped model frozen.
+
+    A county in HELD_OUT publishes figures that are not comparable with the
+    panel's poenggrenser, so its cells never enter the fits the technical
+    report describes, the backtest or any score. Its schools are still on the
+    map, and a family there asks the same question. So the shipped model's
+    intercept and its category and programme effects are carried over as a
+    fixed offset, and only the county's own school, series and county-year
+    effects are fitted, on its own cells, with the shipped model's variance
+    components. Nothing here can move another county's forecast: the base fit
+    is already finished, and the satellite writes into no part of it.
+
+    The forecast spread is the shipped model's, by history bucket, and the
+    fill probability is pinned at 1 (the county has no fill state), so the
+    chance rests on the threshold alone — as it did for Møre og Romsdal
+    under FILL_BLIND. The walk-forward never sees these cells, so this
+    forecast carries no measured coverage; the app says so, and the report
+    does not quote it.
+    """
+
+    def __init__(self, base, rows, halflife):
+        self.base, self.halflife = base, halflife
+        self.rows = [r for r in rows if r['state'] == 'num']
+        self.fylke = self.rows[0]['fylke'] if self.rows else None
+        self.newest = max((r['year'] for r in self.rows), default=0)
+        self.hist = collections.Counter(r['series'] for r in self.rows)
+
+    def fit(self):
+        el, _ = self.base._effects_cached()
+        tau = {f['name']: f['tau'] for f in self.base.dl.factors if f['kind'] != 'fixed'}
+        rows = self.rows
+        # everything the panel already knows about this row, held fixed
+        self.offset = lambda r: (el['mu'].get(0, 0.0) + el['cat'].get(r['cat'], 0.0)
+                                 + el['prog'].get(r['prog'], 0.0))
+        d = Design(len(rows))
+        d.add('school', [r['school'] for r in rows], 'ridge', tau['school'])
+        d.add('series', [r['series'] for r in rows], 'ridge', tau['series'])
+        d.add('cy', [(r['fylke'], r['year']) for r in rows], 'rw', tau['cy'])
+        self.d = d.build()
+        w = (np.ones(len(rows)) if self.halflife is None else
+             np.array([0.5 ** ((self.newest - r['year']) / self.halflife) for r in rows]))
+        # iters=1: the panel's variance components shrink the county's own
+        # effects, rather than three years of its cells re-estimating them
+        self.b, _ = fit_gaussian(self.d, np.array([r['v'] for r in rows]), w,
+                                 np.array([self.offset(r) for r in rows]), iters=1)
+        self.e = {f['name']: self.d.coef(self.b, f['name']) for f in self.d.factors}
+        return self
+
+    def predict(self, r, year):
+        """(m, pi) for one of the county's series in `year`; pi is pinned."""
+        cyk = [(f, y) for (f, y) in self.e['cy'] if f == r['fylke'] and y <= year]
+        m = (self.offset(r) + self.e['school'].get(r['school'], 0.0)
+             + self.e['series'].get(r['series'], 0.0)
+             + (self.e['cy'][max(cyk, key=lambda k: k[1])] if cyk else 0.0))
+        return m, 1.0
 
 
 def hist_bucket(h):
@@ -886,7 +942,7 @@ def main():
     quick = '--quick' in sys.argv
     t0 = time.time()
     data = json.load(open(SRC))
-    rows, pairs, newest = load_obs(data)
+    rows, pairs, held_rows, newest = load_obs(data)
     print(f'{len(rows)} cells competed on points ({sum(r["state"] == "num" for r in rows)} numeric, '
           f'{sum(r["state"] == "open" for r in rows)} open, {sum(r["state"] == "zero" for r in rows)} zero); '
           f'{len(pairs)} alternate-round pairs')
@@ -1028,8 +1084,18 @@ def main():
     print('forecast spread by history bucket:', {HIST_BUCKETS[i]: round(v, 2) for i, v in sig['hist'].items()},
           'level multiplier:', {b: round(v, 2) for b, v in sig['level'].items()})
 
+    # ---- the held-out counties' own forecasts, off the finished fit
+    sats = {}
+    for f in sorted(HELD_OUT):
+        hr = [r for r in held_rows if r['fylke'] == f]
+        if hr:
+            sats[f] = Satellite(model, hr, halflife).fit()
+            print(f'satellite fit {f}: {len(sats[f].rows)} cells, '
+                  f'{len(sats[f].e["school"])} schools, newest {sats[f].newest}')
+
     meta = dict(built=time.strftime('%Y-%m-%d'), halflife=halflife, coupled=couple, fill_blind=sorted(FILL_BLIND),
                 held_out=sorted(HELD_OUT),
+                held_out_cells={f: len(st.rows) for f, st in sats.items()},
                 sigma_model=round(model.sigma, 3), sigma_floor=round(floor_sigma, 3),
                 sigma_forecast={str(HIST_BUCKETS[i]): round(v, 2) for i, v in sig['hist'].items()},
                 sigma_level_multiplier={b: round(v, 3) for b, v in sig['level'].items()},
@@ -1084,18 +1150,22 @@ def main():
     se = model.school_effects()
     hist = collections.Counter(r['series'] for r in rows if r['state'] == 'num')
     last_year = {}
-    for r in rows:
+    for r in rows + held_rows:
         last_year[r['series']] = max(last_year.get(r['series'], 0), r['year'])
     out_schools = {}
     ranks = sorted(se.items(), key=lambda kv: -kv[1]['alpha'])
     rank_of = {k: i + 1 for i, (k, _) in enumerate(ranks)}
     cy = {c['fylke']: c for c in data['counties']}
+    held_by_series = {r['series']: r for r in held_rows}
     for s in data['schools']:
-        if s['fylke'] in HELD_OUT:
-            continue                # no entry at all: the app says why (HELD_OUT)
         sid = f'{s["fylke"]}|{s["name"]}'
         T = newest[s['fylke']] + 1
         ent = dict(year=T, round=cy[s['fylke']].get('round'))
+        # a held-out county is forecast from its own figures alone, and the
+        # entry says so: the app labels the forecast, the report skips it
+        sat = sats.get(s['fylke'])
+        if sat:
+            ent['held_out'] = True
         if sid in se:
             ent.update(alpha=round(se[sid]['alpha'], 2), alpha_se=round(se[sid]['se'], 2),
                        alpha_n=se[sid]['n'], alpha_rank=rank_of[sid])
@@ -1115,11 +1185,18 @@ def main():
             # has nothing to forecast, whatever the year before said
             if p['values'][max(p['values'], key=int)] == 'U':
                 continue
-            m, pi = model.predict(sid, s['fylke'], f'{k}|{p["level"]}', p['category'], series, T)
-            h = hist.get(series, 0)
-            # a county with no "ingen venteliste" state can only ever fill:
-            # its chance rests on the threshold alone
-            pi_out = 1.0 if s['fylke'] in FILL_BLIND else round(recal(pi, fc), 3)
+            if sat:
+                r = held_by_series.get(series)
+                if r is None:
+                    continue
+                m, pi_out = sat.predict(r, T)
+                h = sat.hist.get(series, 0)
+            else:
+                m, pi = model.predict(sid, s['fylke'], f'{k}|{p["level"]}', p['category'], series, T)
+                h = hist.get(series, 0)
+                # a county with no "ingen venteliste" state can only ever fill:
+                # its chance rests on the threshold alone
+                pi_out = 1.0 if s['fylke'] in FILL_BLIND else round(recal(pi, fc), 3)
             progs[key] = dict(m=round(m, 1), s=round(spread(sig, h, m), 1), pi=pi_out, h=h)
         if progs:
             ent['programs'] = progs
