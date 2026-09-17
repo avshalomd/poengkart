@@ -1,7 +1,7 @@
 import { bucketOf, chanceFinal, chanceMode, finalRoundBridge, predFor, schoolChance } from "./chance";
 import { renderChartCard } from "./chart";
 import { liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
-import { esc, fmt, isVg1, round1, shownPrograms } from "./helpers";
+import { esc, fmt, HELD_OUT, isVg1, round1, shownPrograms } from "./helpers";
 import { CATS, t } from "./i18n";
 import { buildMiniMap, dropMiniMap, drawMarkers, hideMapTip, onceSettled, panSchoolInside, prefersStill,
          resizeMap, setLens } from "./map";
@@ -304,7 +304,7 @@ export function renderChance(s, lensCat) {
     // absence the panel never explained. A reader who never hovered the dot
     // would not learn the feature existed here at all.
     box!.hidden = false;
-    box!.innerHTML = `<div>${esc(t('tipNoForecast'))}</div>`;
+    box!.innerHTML = `<div>${esc(HELD_OUT.has(s.fylke) ? t('heldOutForecast', s.fylke) + '.' : t('tipNoForecast'))}</div>`;
     return;
   }
   box!.hidden = false;

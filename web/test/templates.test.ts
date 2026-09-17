@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { S } from '../src/state';
 import { loadFixtures, DATA, asker, forde } from './fixtures';
 import { stubMap } from './mapstub';
-import { initHelpers } from '../src/helpers';
+import { esc, initHelpers, schoolPressure } from '../src/helpers';
 import { openSide } from '../src/sidebar';
 import { t } from '../src/i18n';
 import { photoHtml, metaHtml, notesHtml, heroHtml, srcNoteHtml, listHtml } from '../src/templates';
@@ -66,12 +66,26 @@ describe('the sheet renders what the templates say', () => {
   });
 });
 
-describe('a county without a fill state', () => {
-  it('says on every Telemark school that the figure cannot show a waiting list', () => {
+describe('a county held out of the model', () => {
+  it('says on every Telemark school that its figures are not comparable and it has no forecast', () => {
     loadFixtures();
     const html = notesHtml({ name: 'Skien videregående skole', fylke: 'Telemark', programs: [] } as any);
-    expect(html).toContain(t('noFillStateNote'));
+    expect(html).toContain(esc(t('heldOutNote', 'Telemark')));
     const other = notesHtml({ name: 'Asker', fylke: 'Akershus', programs: [] } as any);
-    expect(other).not.toContain(t('noFillStateNote'));
+    expect(other).not.toContain('ikke sammenlignes');
+    expect(other).not.toContain('cannot be compared');
+  });
+  it('never claims how many Telemark programmes filled: no filled count, no size from it', () => {
+    loadFixtures();
+    const yr = DATA.years[DATA.years.length - 1];
+    const progs = [{ program: 'Elektro', level: 'Vg1', category: 'EL', values: { [yr]: 12.8 } },
+                   { program: 'Helse', level: 'Vg1', category: 'HO', values: { [yr]: 38.1 } }];
+    const tm: any = schoolPressure({ name: 'Skien', fylke: 'Telemark', programs: progs } as any, 'all');
+    expect(tm.kind).toBe('points');
+    expect(tm.filled).toBeNull();
+    expect(tm.share).toBeNull();
+    const ak: any = schoolPressure({ name: 'Asker', fylke: 'Akershus', programs: progs } as any, 'all');
+    expect(ak.filled).toBe(2);
+    expect(ak.share).toBe(1);
   });
 });

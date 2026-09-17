@@ -249,6 +249,9 @@ export const T = {
                 en: 'Marker size shows what share of the programme areas filled up' },
   tipMedian:  { no: (v, n, tot) => `Snitt <b>${v}</b> poeng · ${n} av ${tot} programområde${tot === 1 ? '' : 'r'} ble fylt opp`,
                 en: (v, n, tot) => `Average <b>${v}</b> points · ${n} of ${tot} programme area${tot === 1 ? '' : 's'} filled up` },
+  // the same line where the county does not say which programmes filled (HELD_OUT)
+  tipMeanOnly: { no: (v, tot) => `Snitt <b>${v}</b> poeng · ${tot} programområde${tot === 1 ? '' : 'r'}`,
+                 en: (v, tot) => `Average <b>${v}</b> points · ${tot} programme area${tot === 1 ? '' : 's'}` },
   tipMostlyOpen: { no: 'Men de fleste programområdene hadde ingen venteliste',
                    en: 'But most programme areas had no waiting list' },
   mostlyOpenShort: { no: 'de fleste hadde ingen venteliste', en: 'most had no waiting list' },
@@ -441,6 +444,9 @@ export const T = {
                 en: (x, L, R, U, n, y) => `With ${x} points in ${y}: <b>${L}</b> likely · ${R} possible · ${U} unlikely (${n} programme area${n === 1 ? '' : 's'})` },
   tipBest:    { no: (p, prog) => `Best sjanse: ${p} % · ${prog}`, en: (p, prog) => `Best chance: ${p}% · ${prog}` },
   tipNoForecast: { no: 'Ingen prognose for denne skolen', en: 'No forecast for this school' },
+  // a county outside the model (HELD_OUT): the tooltip and the chance block say why
+  heldOutForecast: { no: f => `Ingen prognose: tallene fra ${f} kan ikke sammenlignes med andre fylker`,
+                     en: f => `No forecast: the figures from ${f} cannot be compared with other counties` },
   chancePrompt: {
     no: y => `Skriv inn poengene dine i poengfeltet over kartet, så viser lista under sjansen din for plass per programområde ved inntaket ${y}.`,
     en: y => `Enter your points in the points field over the map, and the list below shows your chance of a place per programme area at the ${y} intake.`,
@@ -532,10 +538,10 @@ export const T = {
   openRuleNote: { no: 'Møre og Romsdal viser «ingen venteliste» der alle kom inn eller poenggrensen var under 25 poeng – fylkets egen regel. Hvilken av de to, sier ikke fylket.',
                   en: 'Møre og Romsdal shows “no waiting list” where everyone got in or the threshold was below 25 points – the county\'s own rule. Which of the two, the county does not say.' },
   // Telemark's extract gives the lowest points among the admitted for every
-  // offered programme, also where everyone got in; there is no fill state
-  // (tools/extractors/telemark.py, FILL_BLIND in tools/model.py)
-  noFillStateNote: { no: 'Telemark oppgir laveste poengsum blant de inntatte for hvert programområde, også der alle søkerne fikk plass. Tallet sier derfor ikke om det var venteliste.',
-                     en: 'Telemark gives the lowest points among those admitted to each programme area, also where every applicant got a place. The figure therefore does not say whether there was a waiting list.' },
+  // offered programme and no fill state, so the county is published but held
+  // out of the model (tools/extractors/telemark.py, HELD_OUT in tools/model.py)
+  heldOutNote: { no: f => `${f} oppgir laveste poengsum blant de inntatte for hvert programområde, men ikke om alle søkerne fikk plass. Tallene kan derfor ikke sammenlignes med poenggrensene i andre fylker, og skolen har ingen prognose.`,
+                 en: f => `${f} gives the lowest points among those admitted to each programme area, but not whether every applicant got a place. The figures therefore cannot be compared with thresholds in other counties, and the school has no forecast.` },
   finalRoundUnknown: {
     no: 'Fylket publiserer bare 1. inntak. Flere kommer inn i senere inntak, men det finnes ikke tall for hvor mange.',
     en: 'The county publishes the 1st intake only. More get in at later intakes, but there are no figures for how many.',

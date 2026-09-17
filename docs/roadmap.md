@@ -117,8 +117,10 @@ person:
   the Vg1 workbook, ingested the same day):** asked back the same day for
   which inntak the figures are from, what «Laveste totalpoeng» is (mostly
   karakterpoeng + 300), older years and Vg2–Vg3, and admitted counts beside
-  «Plasser». When admitted counts arrive, Telemark leaves `FILL_BLIND` the
-  way Møre og Romsdal did.
+  «Plasser». Held out of the model and the report the same day
+  (`HELD_OUT`), because without a fill state its figures are not
+  comparable. Telemark rejoins both when the county says, per programme and
+  year, whether everyone was admitted.
 - **Carry capacity.** Telemark publishes «Plasser» per programme and year;
   no other county does. Carry it as `places` beside `means` once a second
   county has it or the fill model can use it (with admitted counts it is

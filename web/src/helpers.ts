@@ -190,10 +190,12 @@ export const staleBefore = () => +S.DATA!.years[S.DATA!.years.length - 1] - 1;
 // counties whose "ingen venteliste" is the county's own rule rather than an
 // observed queue state (openRuleNote; tools/extractors/mro.py)
 export const OPEN_RULE = new Set(['Møre og Romsdal']);
-// counties whose source has no fill state at all — a number for every offered
-// programme, so «ingen venteliste» cannot occur (noFillStateNote; FILL_BLIND
-// in tools/model.py fixes their fill probability at 1)
-export const FILL_BLIND = new Set(['Telemark']);
+// counties published here but held out of the model: their source has no
+// fill state (a number for every offered programme, also where everyone got
+// in), so the figures are not comparable with other counties' poenggrenser
+// and model.json has no entry for their schools (heldOutNote; HELD_OUT in
+// tools/model.py, which tools/test_model.py checks this mirror against)
+export const HELD_OUT = new Set(['Telemark']);
 // counties that do not publish poenggrenser (docs/data-notes.md)
 export const MISSING_COUNTIES = ['Agder', 'Finnmark', 'Nordland', 'Troms', 'Vestfold', 'Østfold'];
 export function schoolPressure(s, cat) {
@@ -237,10 +239,13 @@ export function schoolPressure(s, cat) {
     const v = p.values[yr];
     if (typeof v === 'number' && v > top) { top = v; topProg = p; }
   }
+  // a held-out county prints a number whether or not the programme filled,
+  // so neither the filled count nor the dot size can claim one (HELD_OUT)
+  const blind = HELD_OUT.has(s.fylke);
   return { kind: 'points', v: meanOf(nums), top, topProg, year: yr,
-           filled: nums.length + zeroN, total, openN,
+           filled: blind ? null : nums.length + zeroN, total, openN,
            mostlyOpen: openN > total / 2,
-           share: (nums.length + zeroN) / total };
+           share: blind ? null : (nums.length + zeroN) / total };
 }
 export const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(b => v < b.max)!.css);
 // what a filled-without-points state says: the mix when some programmes had

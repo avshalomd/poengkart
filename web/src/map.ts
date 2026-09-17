@@ -4,7 +4,7 @@ import Supercluster from 'supercluster';
 import { framePad } from "./boot";
 import { bucketColor, bucketOf, chanceMode, pct, schoolChance } from "./chance";
 import { legendZoomHint, renderCatNote, renderLegend, renderPanel } from "./chrome";
-import { colorFor, cssVar, esc, fmt, isVg1, levelScope, progName, schoolPressure, shownPrograms, visibleCount, yearSpan, zeroLabel } from "./helpers";
+import { colorFor, cssVar, esc, fmt, HELD_OUT, isVg1, levelScope, progName, schoolPressure, shownPrograms, visibleCount, yearSpan, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
 import { renderListView } from "./listview";
 import { PREFS } from "./prefs";
@@ -482,10 +482,10 @@ export function drawMarkers() {
       line = (S.mapCat === 'all' ? '' : `${CATS[S.mapCat][S.lang]}: `) + (ch
         ? t('tipChance', fmt(S.myPoints), ch.likely, ch.possible, ch.unlikely, ch.n, ch.year)
           + `<br>${t('tipBest', pct(ch.best), esc(progName(ch.bestProg)))}`
-        : t('tipNoForecast'));
+        : HELD_OUT.has(s.fylke) ? t('heldOutForecast', s.fylke) : t('tipNoForecast'));
     } else if (S.mapCat === 'all') {
       if (st8.kind === 'points') {
-        line = t('tipMedian', fmt(st8.v), st8.filled, st8.total) +
+        line = (st8.filled == null ? t('tipMeanOnly', fmt(st8.v), st8.total) : t('tipMedian', fmt(st8.v), st8.filled, st8.total)) +
                (st8.mostlyOpen ? `<br><span class="warn">⚠ ${t('tipMostlyOpen')}</span>` : '') +
                `<br>${t('tipTop')} ${fmt(st8.top)} · ${esc(progName(st8.topProg))}`;
       } else if (st8.kind === 'open') {
@@ -500,7 +500,7 @@ export function drawMarkers() {
       }
     } else {
       line = st8.kind === 'points'
-             ? `${CATS[S.mapCat][S.lang]}: ` + t('tipMedian', fmt(st8.v), st8.filled, st8.total)
+             ? `${CATS[S.mapCat][S.lang]}: ` + (st8.filled == null ? t('tipMeanOnly', fmt(st8.v), st8.total) : t('tipMedian', fmt(st8.v), st8.filled, st8.total))
                + (st8.mostlyOpen ? `<br><span class="warn">⚠ ${t('tipMostlyOpen')}</span>` : '')
            : st8.kind === 'open' ? `${CATS[S.mapCat][S.lang]}: ${t('allIn').toLowerCase()} (${st8.year})`
            : st8.kind === 'zero' ? `${CATS[S.mapCat][S.lang]}: ${zeroLabel(st8.zeroN, st8.openN).toLowerCase()} (${st8.year})`

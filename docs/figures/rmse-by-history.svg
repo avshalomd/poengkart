@@ -14,28 +14,28 @@
 <text x='56' y='80.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>10</text>
 <line x1='64' y1='24.0' x2='604' y2='24.0' stroke='#e6e9ee'/>
 <text x='56' y='28.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>12</text>
-<rect x='73.5' y='112.1' width='26' height='223.9' fill='#2b6cb8'/>
-<text x='86.5' y='106.1' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>8.6</text>
+<rect x='73.5' y='111.6' width='26' height='224.4' fill='#2b6cb8'/>
+<text x='86.5' y='105.6' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>8.6</text>
 <rect x='163.5' y='70.3' width='26' height='265.7' fill='#8a8f98'/>
 <text x='176.5' y='64.3' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>10.2</text>
 <text x='131.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>0 years</text>
-<rect x='208.5' y='174.8' width='26' height='161.2' fill='#2b6cb8'/>
-<text x='221.5' y='168.8' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.2</text>
-<rect x='238.5' y='144.6' width='26' height='191.4' fill='#b0672e'/>
-<text x='251.5' y='138.6' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.4</text>
-<rect x='268.5' y='144.6' width='26' height='191.4' fill='#7a8f3a'/>
-<text x='281.5' y='138.6' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.4</text>
-<rect x='298.5' y='155.3' width='26' height='180.7' fill='#8a8f98'/>
-<text x='311.5' y='149.3' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.0</text>
+<rect x='208.5' y='187.0' width='26' height='149.0' fill='#2b6cb8'/>
+<text x='221.5' y='181.0' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.7</text>
+<rect x='238.5' y='155.8' width='26' height='180.2' fill='#b0672e'/>
+<text x='251.5' y='149.8' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.9</text>
+<rect x='268.5' y='155.8' width='26' height='180.2' fill='#7a8f3a'/>
+<text x='281.5' y='149.8' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.9</text>
+<rect x='298.5' y='164.1' width='26' height='171.9' fill='#8a8f98'/>
+<text x='311.5' y='158.1' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.6</text>
 <text x='266.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>1 year</text>
-<rect x='343.5' y='182.6' width='26' height='153.4' fill='#2b6cb8'/>
-<text x='356.5' y='176.6' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.9</text>
-<rect x='373.5' y='158.2' width='26' height='177.8' fill='#b0672e'/>
-<text x='386.5' y='152.2' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.8</text>
-<rect x='403.5' y='178.7' width='26' height='157.3' fill='#7a8f3a'/>
-<text x='416.5' y='172.7' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.0</text>
-<rect x='433.5' y='167.3' width='26' height='168.7' fill='#8a8f98'/>
-<text x='446.5' y='161.3' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.5</text>
+<rect x='343.5' y='188.1' width='26' height='147.9' fill='#2b6cb8'/>
+<text x='356.5' y='182.1' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.7</text>
+<rect x='373.5' y='166.2' width='26' height='169.8' fill='#b0672e'/>
+<text x='386.5' y='160.2' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.5</text>
+<rect x='403.5' y='182.1' width='26' height='153.9' fill='#7a8f3a'/>
+<text x='416.5' y='176.1' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.9</text>
+<rect x='433.5' y='169.3' width='26' height='166.7' fill='#8a8f98'/>
+<text x='446.5' y='163.3' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.4</text>
 <text x='401.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>2–3 years</text>
 <rect x='478.5' y='204.2' width='26' height='131.8' fill='#2b6cb8'/>
 <text x='491.5' y='198.2' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.1</text>

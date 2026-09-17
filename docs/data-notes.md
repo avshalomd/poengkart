@@ -34,8 +34,11 @@ answered the request of 1 September 2026 on 17 September with a workbook:
 every Vg1 programme at its eleven schools, 2024/25–2026/27, with the
 inntaksregion and the number of places. Every offered programme carries a
 number, down to 10,0, and there is no marker for «everyone got in», so the
-dataset has no fill state for Telemark and the model fixes its fill
-probability at 1 (`FILL_BLIND`); the app says so on every Telemark school.
+dataset has no fill state for Telemark. A low figure may be a cutoff or a
+programme where everyone got in, so the figures are not comparable with the
+other counties' poenggrenser: the county is published but held out of the
+model and the technical report (`HELD_OUT` in `tools/model.py`), its schools
+have no forecast, and the app says why on every Telemark school.
 The intake round is not stated; the county was asked on 17 September,
 together with what «Laveste totalpoeng» (2026/27 only, mostly karakterpoeng
 + 300) means, whether older years and Vg2–Vg3 exist, and for admitted

@@ -80,8 +80,12 @@ for s in DATA['schools']:
     for p in s['programs']:
         for y in p['values']:
             newest[s['fylke']] = max(newest.get(s['fylke'], 0), int(y))
+# counties published but held out of the model (meta.held_out) get nothing
+HELD = set(META.get('held_out') or [])
 missing, n_pred, n_live = [], 0, 0
 for s in DATA['schools']:
+    if s['fylke'] in HELD:
+        continue
     ent = SCHOOLS.get(f"{s['fylke']}|{s['name']}", {})
     occ = {}
     for p in s['programs']:
@@ -176,8 +180,9 @@ for s in DATA['schools']:
 # a source with no "ingen venteliste" state, pinned at π = 1 by construction).
 # Møre og Romsdal was pinned from 2 to 5 Sept 2026, while its extract had no
 # such state; since then the county's own dashboard rule (a figure under 25
-# is shown as "alle kom inn, eller under 25") supplies one. Telemark's
-# workbook has none, so it is pinned since 17 Sept 2026
+# is shown as "alle kom inn, eller under 25") supplies one. The list is empty
+# since then; Telemark, which has no such state either, is held out of the
+# model altogether instead (check 5)
 BLIND = set(META.get('fill_blind') or [])
 for f in sorted({sid.split('|')[0] for sid in SCHOOLS}):
     pis = [pr['pi'] for sid, ent in SCHOOLS.items() if sid.startswith(f + '|')
@@ -198,6 +203,26 @@ check('long-history forecast spread has not regressed (partial-year starvation)'
 check('partial county-years listed in meta',
       META.get('partial_years') == [['Vestland', 2017], ['Vestland', 2018], ['Vestland', 2019], ['Vestland', 2020]],
       str(META.get('partial_years')))
+
+# 5. a held-out county (meta.held_out: published, not comparable, outside the
+# model) has no forecast, no school effect and no backtest cell, and the app's
+# mirror of the list agrees, or its schools would show a chance the model
+# never computed or lose the note that says why they have none
+import re
+check('Telemark is held out of the model (decision of 17 Sept 2026)', 'Telemark' in HELD, str(sorted(HELD)))
+for f in sorted(HELD):
+    check(f'{f}: held out, so no school entry in model.json',
+          not any(sid.startswith(f + '|') for sid in SCHOOLS))
+    check(f'{f}: held out, so no target year', f not in META.get('target_year', {}))
+_bt_path = os.path.join(HERE, '..', 'data', 'model-backtest.csv')
+if os.path.exists(_bt_path):
+    import csv
+    _bt_f = {r['fylke'] for r in csv.DictReader(open(_bt_path))}
+    check('no held-out county in the walk-forward backtest', not (_bt_f & HELD), str(_bt_f & HELD))
+_ts = open(os.path.join(HERE, '..', 'web', 'src', 'helpers.ts')).read()
+_m = re.search(r"export const HELD_OUT = new Set\(\[([^\]]*)\]\)", _ts)
+check('web/src/helpers.ts HELD_OUT mirrors meta.held_out',
+      bool(_m) and set(re.findall(r"'([^']+)'", _m.group(1))) == HELD, _m.group(0) if _m else 'HELD_OUT not found')
 
 ev_ = META['backtest_eval_years']
 check('EWMA baseline reported on every stratum with history',
