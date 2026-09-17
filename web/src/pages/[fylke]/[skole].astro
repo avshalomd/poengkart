@@ -1,16 +1,18 @@
 ---
-// One prerendered page per school. The client script opens the sheet from
-// the path exactly as it opens it from a marker; Task 3 prerenders the sheet
-// itself so the page carries the school before any script runs.
+// One prerendered page per school: the sheet is written into the shell from
+// the same templates the client renders with, so the page carries the school
+// before any script runs and nothing moves when the script takes over.
 import Base from '../../layouts/Base.astro';
 import { loadDataset } from '../../data';
 import { slug } from '../../helpers';
-import { schoolHead } from '../../prerender';
+import { fillShell, schoolHead } from '../../prerender';
+import shellSrc from '../../shell.html?raw';
 import type { School } from '../../types';
 
 export function getStaticPaths() {
   return loadDataset().schools.map(s => ({ params: { fylke: slug(s.fylke), skole: slug(s.name) }, props: { school: s } }));
 }
 const { school } = Astro.props as { school: School };
+const data = loadDataset();
 ---
-<Base {...schoolHead(school)} />
+<Base {...schoolHead(school)} body={fillShell(shellSrc, school, data)} sideOpen />

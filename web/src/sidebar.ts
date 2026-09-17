@@ -2,14 +2,14 @@ import L from 'leaflet';
 import { bucketOf, chanceFinal, chanceMode, finalRoundBridge, predFor, schoolChance } from "./chance";
 import { renderChartCard } from "./chart";
 import { liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
-import { BUG_ICON, OPEN_RULE, X_ICON, capFirst, cssVar, esc, fmt, isPoints, isVg1, meanStep, openMix, photoSrc, round1, shownPrograms, staleBefore, visibleIn, zeroLabel } from "./helpers";
+import { cssVar, esc, fmt, isVg1, round1, shownPrograms } from "./helpers";
 import { CATS, t } from "./i18n";
 import { drawMarkers, markerOf, prefersStill, setLens, tileUrl } from "./map";
 import { renderList } from "./programs";
 import { queryParts, schoolUrl, setUrlSchool, syncUrl } from './router';
 import { S } from './state';
+import { heroHtml, metaHtml, notesHtml, photoHtml, srcNoteHtml } from "./templates";
 import { bindTitleTips } from "./tips";
-import type { County } from './types';
 
 /* ================= sidebar ================= */
 // Put the filters named in the address back on the controls. Used at boot and
@@ -247,27 +247,7 @@ export function renderSide() {
   const s = S.current;
   // photo header
   const ph = document.getElementById('s-photo');
-  // the pipeline stores the credit with a Norwegian "Foto:" prefix; the label
-  // is UI text and follows the language, the credited name does not
-  const creditText = t('photoCredit', (s.photo_credit
-    || (s.photo_source === 'commons' ? 'Wikimedia Commons' : 'Wikipedia')).replace(/^\s*(foto|photo)\s*:\s*/i, ''));
-  // esc() protects the attribute but not the scheme, and every one of these
-  // comes from a scrape rather than from us
-  const web = u => (/^https?:\/\//i.test(u || '') ? u : '');
-  const creditHref = web(s.photo_page) || web(s.wiki_url) || '';
-  const credit = s.photo
-    ? `<div class="credit">` + (creditHref
-        ? `<a href="${esc(creditHref)}" target="_blank" rel="noopener">${esc(creditText)}</a>`
-        : esc(creditText)) + '</div>'
-    : '';
-  const pos = s.photo_position ? ` style="--photo-pos:${esc(s.photo_position)}"` : '';
-  ph!.innerHTML = (s.photo ? `<img src="${esc(photoSrc(s.photo))}" data-full="${esc(s.photo)}"`
-                          + ` alt="" loading="lazy"${pos}>`
-                          : `<div id="s-minimap"></div>`) +
-    `<div class="veil"></div>` +
-    `<button class="close bug" onclick="openBug(current, this)" aria-label="${esc(t('bugSchoolLabel'))}">${BUG_ICON}</button>` +
-    `<button class="close" onclick="closeSide()" aria-label="${esc(t('closeAria'))}">${X_ICON}</button>` +
-    `<div class="name"><h2>${esc(s.name)}</h2>${credit}</div>`;
+  ph!.innerHTML = photoHtml(s);
   // an optimiser that is not there, or a county URL that has expired since the
   // last build, should not leave a broken image in the header
   const pimg = ph!.querySelector('img');
@@ -285,91 +265,19 @@ export function renderSide() {
   if (S.miniMap) { S.miniMap.remove(); S.miniMap = null; }
   if (S.miniMapRO) { S.miniMapRO.disconnect(); S.miniMapRO = null; }
   if (!s.photo && s.lat) buildMiniMap(s);
-  // meta links
-  const meta: string[] = [];
-  if (s.url) meta.push(`<a href="${esc(s.url.startsWith('http') ? s.url : 'https://' + s.url)}" target="_blank" rel="noopener">${t('website')} ↗</a>`);
-  if (web(s.wiki_url)) meta.push(`<a href="${esc(s.wiki_url)}" target="_blank" rel="noopener">${t('wiki')} ↗</a>`);
-  if (s.address) meta.push(`<span>${esc(s.address)}</span>`);
-  if (s.fylke) meta.push(`<span>${esc(s.fylke)}</span>`);
-  meta.push(s.round
-    ? `<span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', s.round)}</span>`
-    : `<span class="round unknown" title="${esc(t('roundUnknownTitle'))}">${t('roundUnknown')}</span>`);
-  // the map shows this school as "no data"; say why, where the history is
-  const newest = [...new Set(s.programs.flatMap(p => Object.keys(p.values)))].sort().pop();
-  if (newest && +newest < staleBefore()) {
-    meta.push(`<span class="round stale" title="${esc(t('staleTitle'))}">`
-            + `${t('staleChip', newest)}</span>`);
-  }
-  document.getElementById('s-meta')!.innerHTML = meta.join('');
-  // the county's own history of this school, where it is not one school's own
-  const notes: string[] = [];
-  if (s.merged_from && s.merged_year) {
-    notes.push(t('mergedNote', s.merged_from.join(t('listAnd')), s.merged_year, s.merged_from.length));
-  }
-  if (s.uncertain_years && s.uncertain_years.length) {
-    notes.push(t('uncertainNote', s.uncertain_years.join(', ')));
-  }
-  const cy: Partial<County> = (S.DATA!.counties || []).find(c => c.fylke === s.fylke) || {};
-  const odd = Object.entries(cy.round_years || {})
-    .filter(([y]) => s.programs.some(p => y in p.values));
-  for (const [y, r] of odd) notes.push(t('roundYearNote', y, r));
-  // where "ingen venteliste" is the county's own rule, say so beside the rows
-  if (OPEN_RULE.has(s.fylke) && s.programs.some(p => Object.values(p.values).includes('open'))) {
-    notes.push(t('openRuleNote'));
-  }
+  document.getElementById('s-meta')!.innerHTML = metaHtml(s);
+  const notes = notesHtml(s);
   const noteBox = document.getElementById('s-notes');
-  noteBox!.innerHTML = notes.map(n => `<p>${esc(n)}</p>`).join('');
-  noteBox!.hidden = !notes.length;
-  // One statistic everywhere: the dot on the map, this figure and the blue
-  // line are all the mean of the same cells, and the change is the last step
-  // of that line — so a reader can check the subtraction and it comes out.
-  // What a mean cannot say on its own is how much of the school never had a
-  // waitlist, so that is spelled out underneath instead of hidden in it.
+  noteBox!.innerHTML = notes;
+  noteBox!.hidden = !notes;
   const lensCat = S.mapCat !== 'all' ? S.mapCat : null;
-  const cells: { v: string | number; l: string; cls?: string; ti?: string }[] = [];
-  const base = shownPrograms(s);
-  const scopePrograms = lensCat ? base.filter(p => p.category === lensCat) : base;
-  const step = meanStep(scopePrograms);
-  const { latest, prev, mean, meanPrev }: any = step;
-  const scopeLabel = lensCat ? CATS[lensCat][S.lang] : t('heroTypicalAll');
-  if (mean !== null) {
-    cells.push({ v: fmt(mean), l: `${t('heroTypical')} · ${scopeLabel} ${latest}` });
-    if (meanPrev !== null) {
-      const d = step.d;
-      cells.push({ v: (d! > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
-                   cls: d! > 0 ? 'up' : d! < 0 ? 'dn' : '', ti: t('heroDeltaBasis') });
-    }
-  } else if (!scopePrograms.length) {
-    // the lens names a programme this school does not offer: say that, rather
-    // than let the no-cells fallback claim "everyone admitted"
-    cells.push({ v: '\u2013', l: `${scopeLabel} \u00b7 ${t('notOffered')}` });
-  } else {
-    const last = scopePrograms.map(p => p.values[latest]).filter(v => v !== undefined);
-    // a 0 outranks "ingen venteliste": see schoolPressure
-    const zeroN = last.filter(v => v === 0).length, openN = last.filter(v => v === 'open').length;
-    const label = zeroN ? zeroLabel(zeroN, openN)
-                : openN ? t('allIn')
-                : last.includes('D') ? t('docAdm')
-                : last.includes('F') ? t('priority')
-                : last.length && last.every(v => v === 'U') ? t('gone')
-                : t('allIn');
-    cells.push({ v: label, l: `${scopeLabel} ${latest || ''}`.trim() });
-  }
-  cells.push({ v: visibleIn(scopePrograms), l: t('heroProgs', visibleIn(scopePrograms)) });
-  const mix = openMix(scopePrograms, latest);
+  const { hero, mix } = heroHtml(s, lensCat);
   const mixBox = document.getElementById('s-mix');
-  mixBox!.hidden = !(mix.mostly && mean !== null);
-  if (!mixBox!.hidden) {
-    mixBox!.innerHTML = `<span class="sign" aria-hidden="true">⚠</span><span>` +
-      esc(t('mostlyOpenNote', mix.open, mix.total, latest,
-             scopePrograms.map(p => p.values[latest]).filter(isPoints).length)) + `</span>`;
-  }
-  document.getElementById('s-hero')!.innerHTML =
-    cells.map(c => `<div class="cell"${c.ti ? ` title="${esc(c.ti)}"` : ''}>` +
-                   `<div class="v ${c.cls || ''}">${c.v}</div><div class="l">${capFirst(c.l)}</div></div>`).join('');
+  mixBox!.innerHTML = mix;
+  mixBox!.hidden = !mix;
+  document.getElementById('s-hero')!.innerHTML = hero;
   renderChance(s, lensCat);
-  document.getElementById('src-note')!.innerHTML = esc(t('srcNote')) +
-    ` <button class="lnk" onclick="contactOpener = this; openContact('tall')">${esc(t('srcNoteLink'))}</button>`;
+  document.getElementById('src-note')!.innerHTML = srcNoteHtml();
   renderChartCard();
   renderList();
   ['s-meta', 's-hero', 's-chance', 's-notes'].forEach(id =>
