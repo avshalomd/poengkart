@@ -33,7 +33,7 @@ origin on it. The source decides nothing after that.
 | In-app feedback form | The relay behind the form (`api/feedback.js`) mails it; the mail seeder files it with the type the sender chose. | `src:app` |
 | Bug report from the app | The same form with type «Feil i appen» (error in the app) and the page snapshot attached. | `src:bug` |
 | Mail | The mail seeder runs first in every run: replies to the outreach mails, anything mentioning Poengkart. One item per thread. | `src:mail` |
-| The owner, through Claude Code | Said in any session; Claude files it over the Plane MCP or `tools/plane.py`. The Plane UI works too but is not the expected path. | `src:you` |
+| The owner, through Claude Code | Said in any session; Claude files it over the Plane MCP. The Plane UI works too but is not the expected path. | `src:you` |
 | A routine | The weekly source watch or a QA sweep files what it finds. | `src:routine` |
 
 The form's types map onto the type labels one to one: `tall` («Feil i
@@ -145,8 +145,8 @@ Questions this can answer later, from the API alone:
 ## Plane
 
 Workspace `poengkart`, project POENG. Set up on 17 September 2026 through
-the REST API; `tools/plane.py` will re-assert this on every run so a
-deleted label or state comes back.
+the REST API; the routine re-creates a missing state or label under the
+same name, and never invents a new one.
 
 States, in order: Inbox (group backlog, the default for new items; Plane
 reserves the name Triage for its Intake feature),
@@ -159,16 +159,18 @@ Labels: `src:app`, `src:bug`, `src:mail`, `src:you`, `src:routine`;
 `type:skole`, `type:feil`, `type:funksjon`, `type:annet`; `fylke:<name>`
 for all fifteen counties; `log` for the run-log item.
 
-Access. Unattended: the REST API at `https://api.plane.so/api/v1/` with
-`PLANE_API_KEY` and `PLANE_WORKSPACE_SLUG` from the environment (the cloud)
-or `.env.local` (locally), header `X-API-Key`. The API sits behind
-Cloudflare, which answers Python's default user agent with 403 error 1010,
-so the adapter sends its own. Gmail: the Gmail connector the Claude account
-already has, signed into the feedback mailbox, limited in the routine to
-`search_threads`, `get_thread`, `get_message` and `create_draft`; no
-credential for the mailbox exists in the repository or the environment.
-Interactive: Plane's hosted MCP server, added at user scope in Claude Code
-with OAuth; it acts as the owner and respects his project role.
+Access. Plane: the official hosted Plane MCP server, declared once in
+`.mcp.json` at the repository root (`https://mcp.plane.so/http/api-key/mcp`,
+the access-token endpoint) with `PLANE_API_KEY` and `PLANE_WORKSPACE_SLUG`
+expanded from the environment: the cloud environment's variables, or
+`.env.local` exported into a local session. The same declaration serves the
+cloud routine and a local session, so there is no adapter of our own; the
+session works with the server's `workitem`, `workitem_comment`, `state` and
+`label` tools directly, and `external_source`/`external_id` on a work item
+carry the dedupe. Gmail: the Gmail connector the Claude account already has,
+signed into the feedback mailbox, limited in the routine to `search_threads`,
+`get_thread`, `get_message` and `create_draft`; no credential for the
+mailbox exists in the repository or the environment.
 
 ## Runtime and rollout
 
@@ -177,10 +179,12 @@ A Claude Code cloud routine runs `routines/feedback-loop.md` twice a day,
 environment as the weekly source watch. The environment carries every tool
 the routine needs: Python with `tools/requirements.txt`, Node with
 Playwright's Chromium, the `vercel` CLI, the Gmail connector with four
-tools, and the variables named under Access plus `VERCEL_TOKEN`,
-`VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`. Pull requests are opened and merged
-with the GitHub tools the cloud session already has. The same file runs
-locally as `/feedback-loop`.
+tools, `mcp.plane.so` among the allowed domains (a server declared in
+`.mcp.json` talks to its host from the session, unlike a connector), and
+the variables named under Access plus `VERCEL_TOKEN`, `VERCEL_ORG_ID`,
+`VERCEL_PROJECT_ID`. Pull requests are opened and merged with the GitHub
+tools the cloud session already has. The same file runs locally as
+`/feedback-loop`.
 
 Week 0 is report-only: Seed, Triage and Close run, Work stops at the open
 PR. From week 1 or 2 the Mode line flips to ship, and merge and deploy
@@ -188,17 +192,14 @@ switch on for `class:auto`.
 
 ## What gets built
 
-- `tools/plane.py`: a thin REST adapter with a dry-run flag. Ensures the
-  states and labels, finds an item by external id, creates, comments,
-  moves state, sets labels and priority, lists a state. Used by the
-  routine and callable from a shell; prints JSON.
-- `tools/feedback_mail.py`: no Gmail access of its own. `query` prints the
-  search the routine hands to the connector; `file` turns one thread, as
-  the connector returned it, into an Inbox item or into comments for
-  messages the item does not know yet.
-- `routines/feedback-loop.md`: the run, step by step, with the exact
-  commands and connector calls, the comment formats, the source check, the
-  limits, the deploy checks and the red-step rules. Committed, so the
+- `.mcp.json`: the Plane MCP server, with the key and workspace slug as
+  environment references. No code of our own sits between the session and
+  Plane; what the routine must record is written as rules, not as a script.
+- `routines/feedback-loop.md`: what a run must achieve, step by step —
+  the mail query and the noise rule, the dedupe by thread id, the class
+  table and the source check, the comment formats, the limits, the deploy
+  checks, the reply-address rule and the Never list. How the session gets
+  there (which commands, which tool calls) is left to it. Committed, so the
   cloud clone reads the same text. `.claude/skills/feedback-loop/SKILL.md`
   points at it for `/feedback-loop`.
 - The cloud routine «Poengkart — feedback loop», twice daily, whose prompt
