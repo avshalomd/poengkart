@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadDataset } from '../../src/data';
-import { fillShell, schoolHead } from '../../src/prerender';
+import { SITE, fillShell, schoolHead } from '../../src/prerender';
 import { esc, slug, schoolPath } from '../../src/helpers';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -30,5 +30,7 @@ describe('the build, with no DOM', () => {
     const s = loadDataset().schools[0];
     expect(schoolHead(s).canonical.endsWith(schoolPath(s))).toBe(true);
     expect(schoolPath(s)).toBe('/' + slug(s.fylke) + '/' + slug(s.name));
+    // the share card is the school's own, at the school's own address
+    expect(schoolHead(s).ogImage).toBe(SITE + '/og' + schoolPath(s) + '.png');
   });
 });

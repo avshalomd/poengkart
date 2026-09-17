@@ -1,5 +1,6 @@
 import { t } from "./i18n";
 import { S } from './state';
+import type { Program } from './types';
 
 // A school's address on the site: /<fylke>/<skole>, ASCII only, so it survives
 // every messaging app and every keyboard. æ ø å are the three letters people
@@ -53,6 +54,20 @@ export function meanStep(progs) {
   const mean = latest === undefined ? null : meanAt(latest);
   const meanPrev = prev === undefined ? null : meanAt(prev);
   return { latest, prev, mean, meanPrev, d: mean !== null && meanPrev !== null ? round1(mean - meanPrev) : null };
+}
+// The whole line meanStep takes its last step of: the same mean, the same
+// cells, computed for every year that has one. A year no programme put a
+// number in is not a point on the line — it is a gap, and plotting it as a
+// zero would draw a cliff the school never had. Unrounded, as meanStep's own
+// mean and meanPrev are, so the card's line ends exactly on the sheet's figure.
+export function yearMeans(progs: Program[]): [string, number][] {
+  const yrs = [...new Set(progs.flatMap(p => Object.keys(p.values)))].sort();
+  const out: [string, number][] = [];
+  for (const y of yrs) {
+    const m = meanOf(progs.map(p => p.values[y]).filter(isPoints));
+    if (m !== null) out.push([y, m]);
+  }
+  return out;
 }
 // What share of a scope had no waitlist at all in one year. F, U and D are
 // not places anyone competed for, so they are outside the question; a 0,0

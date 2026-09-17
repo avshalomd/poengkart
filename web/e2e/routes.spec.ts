@@ -69,6 +69,15 @@ test('the script takes over a prerendered sheet without changing it', async ({ p
   await expect(page.locator('#s-hero .cell').first()).toBeVisible();
 });
 
+test('every school page points at its own card, and the card is a PNG', async ({ request }) => {
+  const html = await (await request.get('/akershus/asker')).text();
+  expect(html).toMatch(/<meta property="og:image" content="https:\/\/poengkart-no\.vercel\.app\/og\/akershus\/asker\.png">/);
+  const res = await request.get('/og/akershus/asker.png');
+  expect(res.status()).toBe(200);
+  expect(res.headers()['content-type']).toContain('image/png');
+  expect((await res.body()).length).toBeGreaterThan(10_000);
+});
+
 test('the sitemap names every school', async ({ request }) => {
   const res = await request.get('/sitemap.xml');
   expect(res.status()).toBe(200);

@@ -33,7 +33,9 @@ export const HOME_HEAD: HeadProps = {
 
 // The head of a school's page: the school's name in the title and the share
 // title, the county and the span of years in the description, the canonical
-// address, and (Task 5) its own card.
+// address, and its own card — /og/<fylke>/<skole>.png, drawn at build time by
+// web/src/pages/og/[fylke]/[skole].png.ts from the same statistic the sheet
+// shows.
 export function schoolHead(s: School): HeadProps {
   const years = [...new Set(s.programs.flatMap(p => Object.keys(p.values)))].sort();
   const span = years.length ? ` (${years[0]}–${years[years.length - 1]})` : '';
@@ -47,7 +49,7 @@ export function schoolHead(s: School): HeadProps {
     ogTitle: `${s.name} – hva krevdes for å komme inn?`,
     ogDescription: description,
     twitterDescription: description,
-    ogImage: SITE + '/og.png',
+    ogImage: SITE + '/og' + path + '.png',
     ogImageAlt: `Poengkart-kort for ${s.name}: snittgrense ${latest} og utvikling år for år.`,
   };
 }

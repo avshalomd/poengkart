@@ -34,8 +34,10 @@ const { title, description, canonical, ogTitle, ogDescription, twitterDescriptio
 <meta name="theme-color" content="#2a78d6" data-c="#2a78d6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0e1116" data-c="#0e1116" media="(prefers-color-scheme: dark)">
 
-<!-- link previews in messaging apps and social; og.png is built by
-     tools/make_og.py from the live dataset, so it never goes stale -->
+<!-- link previews in messaging apps and social. The home page's og.png is
+     built by tools/make_og.py from the live dataset; a school page names its
+     own card, drawn at build time by web/src/pages/og/[fylke]/[skole].png.ts.
+     Either way the picture is made from the data, so it never goes stale. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Poengkart">
 <meta property="og:locale" content="nb_NO">
