@@ -134,7 +134,9 @@ export function buildMiniMap(s) {
   S.miniMapRO = new ResizeObserver(() => S.miniMap && S.miniMap.invalidateSize());
   S.miniMapRO.observe(document.getElementById('s-minimap')!);
 }
-export function openSide(s) {
+// `landing`: the school the address named at boot — the page the reader
+// arrived on, not one they opened.
+export function openSide(s, landing?: boolean) {
   const ae = document.activeElement;
   S.sideOpener = ae && document.getElementById('map')?.contains(ae) ? ae : null;
   // opened from a wish or from search: closing goes back there, not to the
@@ -161,13 +163,23 @@ export function openSide(s) {
   // is a history.back() — landed on "#s=first school" and reopened it instead
   // of closing: school D's close resurrected school A, closing took two
   // presses, and the address kept naming a school nothing was showing.
-  if (!(history.state || {}).pkSide) {
+  // A school the address named at boot is the page itself: nothing is pushed
+  // over the landing entry, so one Back leaves the site as it does from any
+  // page (it used to take two — the first only closed the sheet), and the
+  // entry is flagged so the ✕ closes in place instead of backing out of it.
+  if (landing) {
+    document.title = docTitle(s);
+    try { history.replaceState({ pkSide: 1, pkLanding: 1 }, '', schoolUrl(s)); } catch (e) {}
+  } else if (!(history.state || {}).pkSide) {
     document.title = docTitle(s);        // the branch that does not go through setUrlSchool
     try { history.pushState({ pkSide: 1 }, '', schoolUrl(s)); } catch (e) {}
   } else {
     setUrlSchool(s);
   }
-  setTimeout(() => (document.querySelector('#s-photo .close') as any)?.focus(), 60);
+  // Focus follows a sheet the reader opened. A page that arrives with its
+  // sheet open keeps focus where every page load leaves it — at the top, so
+  // the first Tab and a screen reader start from the document's beginning.
+  if (!landing) setTimeout(() => (document.querySelector('#s-photo .close') as any)?.focus(), 60);
   // Beside the map the sheet takes 480px of it, and a school clicked in that
   // part vanished under its own sheet. Bring it into the strip left between the
   // panel and the sheet once the sheet is in (and after any flight has landed).
@@ -196,7 +208,10 @@ export function closeSide(fromHistory?) {
   const openedName = S.sideOpener && S.current ? S.current.name : null;
   const closed = S.current;
   const side = document.getElementById('side');
-  if (!fromHistory && (history.state || {}).pkSide) {
+  const st = history.state || {};
+  // the landing entry's own sheet (pkLanding) has no entry under it to back
+  // onto: it closes in place, below
+  if (!fromHistory && st.pkSide && !st.pkLanding) {
     // The entry below is usually school-less, but a tab BOOTED from a deep
     // link sits on the pasted "#s=..." itself — and landing there used to
     // reopen that school, so the ✕ resurrected the first school instead of
@@ -210,6 +225,9 @@ export function closeSide(fromHistory?) {
   document.body.classList.remove('side-open');
   sideTrap(false);
   S.current = null;      // or the next county switch writes the closed school back into the URL
+  // the landing entry's flags come off with its sheet: the next open pushes
+  // its own entry again, and its ✕ backs onto this one
+  if (st.pkLanding) { try { history.replaceState(null, '', location.href); } catch (e) {} }
   setUrlSchool(null);
   liftMapControls();                       // the legend is visible again
   side!.setAttribute('inert', '');          // keep 17 hidden controls out of Tab

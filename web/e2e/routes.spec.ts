@@ -47,6 +47,34 @@ test('the title follows the sheet', async ({ page }) => {
   await expect(page).toHaveTitle(HOME_TITLE);
 });
 
+// The page a link opens is the page the reader arrived on: one Back leaves it,
+// as from any other page; the ✕ closes the sheet in place; and focus stays
+// where a page load leaves it instead of jumping to the close button.
+test('a school page opened directly is one history entry, and its ✕ closes in place', async ({ page }) => {
+  await page.goto('/robots.txt');                  // the page before, whatever it was
+  await boot(page, '/akershus/asker');
+  await expect(page.locator('#side')).toHaveClass(/open/);
+  await page.waitForTimeout(200);
+  expect(await page.evaluate(() => document.activeElement === document.body)).toBe(true);
+  await page.goBack();
+  expect(new URL(page.url()).pathname).toBe('/robots.txt');
+  await page.goForward();
+  await page.waitForFunction(() => performance.getEntriesByName('pk:boot-done').length > 0);
+  await page.locator('#s-photo button.close:not(.bug)').click();
+  await expect(page.locator('#side')).not.toHaveClass(/open/);
+  expect(new URL(page.url()).pathname).toBe('/');
+  await expect(page).toHaveTitle(HOME_TITLE);
+  // a school opened inside the app still gets its own entry, and Back closes it
+  await page.click('#view-list');
+  await page.locator('#listview tbody tr').first().click();
+  await expect(page.locator('#side')).toHaveClass(/open/);
+  await page.waitForTimeout(200);
+  expect(await page.evaluate(() => document.activeElement?.matches('#s-photo .close') ?? false)).toBe(true);
+  await page.goBack();
+  await expect(page.locator('#side')).not.toHaveClass(/open/);
+  expect(new URL(page.url()).pathname).toBe('/');
+});
+
 test('a school path no school answers to ends on the home title', async ({ page }) => {
   await boot(page, '/akershus/finnes-ikke');
   await expect(page).toHaveTitle(HOME_TITLE);
@@ -80,6 +108,9 @@ test('the home page head is unchanged', async ({ request }) => {
   expect(html).toMatch(/<title>Poengkart – poenggrenser for videregående skole<\/title>/);
   expect(html).toMatch(/<link rel="canonical" href="https:\/\/poengkart-no\.vercel\.app\/">/);
   expect(html).not.toContain('class="side-open"');
+  // the Search Console property is verified by this tag; a page without it
+  // un-verifies the property
+  expect(html).toContain('<meta name="google-site-verification" content="nstWEgPKGkzQDB8692StPPh6C1gsEGfjoOXMiDN6lJo">');
 });
 
 test('the script takes over a prerendered sheet without changing it', async ({ page, request }) => {
