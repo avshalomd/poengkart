@@ -355,15 +355,24 @@ export function renderChance(s, lensCat) {
 
 export function initSidebar() {
   addEventListener('resize', listLayout);   // not debounced: a stale class is a broken layout
+  // Capture, not bubble: MapLibre's own keyboard handler listens on the canvas
+  // container the dots hang inside, and it pans 100px on an arrow key whatever
+  // the event's target. Both handlers ran — focus walked to the next dot while
+  // the map eased under it, folding a fan-out back in (movestart) and
+  // re-rendering the clusters (moveend) around the dot that had just taken
+  // focus. A capture listener on the document runs first, and stopping the
+  // event there keeps the walk to the markers. (Leaflet's handler acted only
+  // while its container itself held focus, so this never arose.)
   document.addEventListener('keydown', ev => {
     const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1, Home: 0, End: 0 };
     if (!(ev.key in keys)) return;
     const els = mapKeyed(), i = els.indexOf(document.activeElement);
     if (i < 0) return;
     ev.preventDefault();
+    ev.stopPropagation();
     const j = ev.key === 'Home' ? 0 : ev.key === 'End' ? els.length - 1 : (i + keys[ev.key] + els.length) % els.length;
     els[i].setAttribute('tabindex', '-1'); els[i].dataset.pkRove = '1';
     els[j].setAttribute('tabindex', '0'); els[j].dataset.pkRove = '0';
     els[j].focus();
-  });
+  }, { capture: true });
 }

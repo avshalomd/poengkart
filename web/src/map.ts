@@ -47,6 +47,7 @@ export function setMapStyle() {
 // in boot, searchov and locate are one lower than the app used before stage 4.
 const CLUSTER_MAX_ZOOM = 9;   // clusters up to here; from zoom 10 every school is its own dot
 const MAX_ZOOM = 18;
+const MIN_ZOOM = -1;          // Leaflet's 0
 
 // [lat, lon] pairs, as the data gives them
 export function boundsOf(pts: [number, number][]) {
@@ -63,7 +64,9 @@ const visiblePts = () => visibleSchools().filter(s => s.lat).map(s => [s.lat, s.
 export function createMap() {
   const container = document.getElementById('map')!;
   S.map = new GLMap({
-    container, style: styleUrl(), maxZoom: MAX_ZOOM,
+    // minZoom −1 is Leaflet's 0: MapLibre's own default is −2, a whole zoom
+    // further out than the app ever showed (the world twice over on one screen)
+    container, style: styleUrl(), maxZoom: MAX_ZOOM, minZoom: MIN_ZOOM,
     attributionControl: { compact: false },
     bounds: S.HOME!, fitBoundsOptions: { padding: framePad() },
     // the canvas is a region a screen reader lands in: name it in the app's
@@ -169,6 +172,16 @@ function getPane() {
   tip.className = 'pk-tip tip pk-tip-top';
   tip.hidden = true;
   pane.appendChild(tip);
+  // The pane hangs inside the canvas container, and MapLibre's KeyboardHandler
+  // listens for keydown on exactly that element, whatever the event's target:
+  // + and − on a focused dot or cluster zoomed the map underneath, and the zoom
+  // then re-rendered the dot the reader was standing on. Leaflet's keyboard
+  // handler only acted while its container itself held focus. Enter, Space and
+  // Escape are the dot's own and travel on. (The arrow keys are stopped where
+  // they are handled, in the sidebar's capture listener.)
+  pane.addEventListener('keydown', ev => {
+    if (['+', '-', '=', '_'].includes(ev.key)) ev.stopPropagation();
+  });
   S.map!.getCanvasContainer().appendChild(pane);
   return pane;
 }
@@ -210,20 +223,17 @@ function clusterEl(f) {
   clusterOf.set(el, f);
   return el;
 }
-// Click or Enter on a cluster: zoom to where it splits; the schools of a
-// cluster no zoom separates (one coordinate) fan out round the point instead.
-// supercluster never reports an expansion zoom above maxZoom + 1, so the
-// leaves themselves say which of the two this is.
+// Click or Enter on a cluster: zoom to where it splits. A cluster no zoom
+// splits — supercluster answers maxZoom + 1, the zoom at which clustering is
+// off altogether — fans its schools out round the point instead. That is
+// markercluster's own rule (_zoomOrSpiderfy): spiderfy the cluster that
+// survives to the last clustered zoom, whether its schools share a coordinate
+// or merely sit inside the 44px radius wherever the map can go.
 function expandCluster(f) {
   const id = f.properties.cluster_id;
-  const leaves = index!.getLeaves(id, Infinity);
-  const [lng0, lat0] = leaves[0].geometry.coordinates as [number, number];
-  const apart = leaves.some(l => {
-    const [lng, lat] = l.geometry.coordinates as [number, number];
-    return Math.abs(lng - lng0) > 1e-9 || Math.abs(lat - lat0) > 1e-9;
-  });
-  if (apart) { S.map!.easeTo({ center: f.geometry.coordinates, zoom: index!.getClusterExpansionZoom(id) }); return; }
-  spider(f);
+  const zx = index!.getClusterExpansionZoom(id);
+  if (zx > CLUSTER_MAX_ZOOM) spider(f);
+  else S.map!.easeTo({ center: f.geometry.coordinates, zoom: zx });
 }
 function spider(f) {
   unspider();
@@ -296,12 +306,20 @@ export function renderClusters() {
 }
 
 /* ---------- tooltip ---------- */
+// Where the dot actually is: its coordinate, plus the offset a fan-out gave
+// it. Aimed at the coordinate alone, the tooltip of a fanned-out school stood
+// 26-58px away from the dot the reader was pointing at, over the cluster's
+// centre — arrow and all.
+function pointOf(rec: Rec) {
+  const p = S.map!.project(rec.lngLat), o = placed.find(q => q.el === rec.el);
+  return o ? { x: p.x + o.dx, y: p.y + o.dy } : p;
+}
 // A tooltip reads 180-480px wide, and at a fixed 'top' it slid under the panel
 // for a school near the panel's edge (at 1280px the whole of Bergen's west
 // side) or past the map's edge. Try each side, slide top and bottom sideways,
 // and keep the placement that hides the least of it.
 function placeTip(rec: Rec) {
-  const pt = S.map!.project(rec.lngLat), w = tip!.offsetWidth, h = tip!.offsetHeight;
+  const pt = pointOf(rec), w = tip!.offsetWidth, h = tip!.offsetHeight;
   const { dir, dx } = tipAt;
   const x = dir === 'right' ? pt.x + 16 : dir === 'left' ? pt.x - 16 - w : pt.x - w / 2 + dx;
   const y = dir === 'top' ? pt.y - 16 - h : dir === 'bottom' ? pt.y + 16 : pt.y - h / 2;
@@ -314,7 +332,7 @@ export function aimTip(rec: Rec, wrapTo = 0) {
   wrap(tip);
   const c = S.map.getContainer();
   const w = tip.offsetWidth, h = tip.offsetHeight, W = c.clientWidth, H = c.clientHeight;
-  const pt = S.map.project(rec.lngLat);
+  const pt = pointOf(rec);
   const mr = c.getBoundingClientRect(), pr = document.getElementById('panel')!.getBoundingClientRect();
   const pn = S.view === 'map' && pr.width ? { l: pr.left - mr.left, t: pr.top - mr.top, r: pr.right - mr.left, b: pr.bottom - mr.top } : null;
   const span = (a0, a1, b0, b1) => Math.max(0, Math.min(a1, b1) - Math.max(a0, b0));
@@ -390,6 +408,9 @@ export function buildMiniMap(s: School) {
   S.miniMap = new GLMap({
     container: c, style: styleUrl(), center: [s.lon, s.lat], zoom: 15,
     interactive: false, attributionControl: false, fadeDuration: 0,
+    // its canvas is named too, or the sheet's location map answered a screen
+    // reader in English («Map») where the rest of the page speaks Norwegian
+    locale: { 'Map.Title': t('viewMap') },
   });
   const dot = document.createElement('div');
   dot.className = 'pk-minidot';          // centred by CSS: the map keeps its centre on resize

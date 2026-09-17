@@ -6,7 +6,7 @@ import {
   styleUrl, setMapStyle, isDark, prefersStill, laterPublished, panelFolds, foldPanel, unfoldPanel,
   renderPanelSum, initMap, createMap, aimTip, hideMapTip, byEl, buildMiniMap, dropMiniMap, hasWebGL, boundsOf, padBounds,
 } from '../src/map';
-import { mapKeyed, openSide } from '../src/sidebar';
+import { closeSide, initSidebar, mapKeyed, openSide } from '../src/sidebar';
 import { initHelpers, shownPrograms, levelScope, schoolPressure } from '../src/helpers';
 import { initListview } from '../src/listview';
 import { PREFS } from '../src/prefs';
@@ -111,14 +111,45 @@ describe('the map layer', () => {
     expect(spread).toContain(document.activeElement as HTMLElement);
     expect(mapKeyed()).not.toContain(pair);
     expect(mapKeyed().filter((e: HTMLElement) => e.dataset.pkRove === '0')).toEqual([document.activeElement]);
+    // the tooltip follows the dot out of the fan rather than staying over the
+    // coordinate the two schools share: they sit at the map's centre pixel,
+    // 2 × (18 + 4 × 2) px apart, and their tooltips stand exactly that far apart
+    const tipEl = () => document.querySelector('#map .pk-tip') as HTMLElement;
+    const tipAt = (el: HTMLElement) => { aimTip(byEl.get(el)!); return at(tipEl()); };
+    const [tx0, ty0] = tipAt(spread[0]), [tx1, ty1] = tipAt(spread[1]);
+    expect(tx0).toBe(tx1);
+    expect(ty1 - ty0).toBe(52);
+    hideMapTip();
     S.map!.fire('movestart');
     expect(pair!.hidden).toBe(false);
     expect(mapKeyed()).toContain(pair);
     expect(dots().filter(el => [a, b].includes(byEl.get(el)!.s)).length).toBe(0);
-    // any other cluster at this zoom splits by zooming in, to the zoom where its dots separate
+    // A cluster whose schools sit at different coordinates fans out too, once
+    // no zoom can split it: at zoom 9 that is every cluster on the map, since
+    // clustering stops at 10 (markercluster's own _zoomOrSpiderfy rule).
     const other = clusters().find(c => c !== pair)!;
+    const before = new Set(dots());
     other.click();
-    expect(S.map!.getZoom()).toBe(10);
+    expect(S.map!.getZoom()).toBe(9);                  // it fanned out; nothing eased
+    expect(other.hidden).toBe(true);
+    const fanned = dots().filter(el => !before.has(el));
+    expect(fanned.length).toBe(Number(other.textContent));
+    expect(new Set(fanned.map(el => el.style.transform)).size).toBe(fanned.length);
+    S.map!.fire('movestart');
+    // Where a zoom does split a cluster, the click still zooms: from zoom 7 the
+    // map eases to the zoom supercluster says that cluster breaks at, never
+    // past the 10 where every school is its own dot.
+    S.map!.jumpTo({ center: [10.75, 59.91], zoom: 7 });
+    drawMarkers();
+    const zooms = clusters().map(c => {
+      c.click();
+      const z = S.map!.getZoom();
+      S.map!.fire('movestart');                        // folds a fan-out back in
+      S.map!.jumpTo({ center: [10.75, 59.91], zoom: 7 });
+      return z;
+    });
+    expect(zooms.some(z => z > 7)).toBe(true);
+    expect(zooms.every(z => z === 7 || (z > 7 && z <= 10))).toBe(true);
     b.lat = keep[0]; b.lon = keep[1];
   });
 
@@ -206,6 +237,9 @@ describe('the map layer', () => {
     expect(prefersStill()).toBe(false);
     createMap();
     expect((S.map as any)._opts.dragPan).toBe(true);
+    // Leaflet stopped at its zoom 0, which is MapLibre's −1; MapLibre's own
+    // default is −2, a whole zoom further out than the app ever showed
+    expect((S.map as any)._opts.minZoom).toBe(-1);
     // A reader who does ask for it: MapLibre turns its own flights into jumps
     // (respectPrefersReducedMotion), but the fling after a drag is not a
     // flight, so createMap clamps that velocity to nothing itself.
@@ -263,6 +297,40 @@ describe('the map layer', () => {
     expect([p.getWest(), p.getSouth(), p.getEast(), p.getNorth()]).toEqual([9, 59, 13, 63]);
   });
 
+  it('the keys that walk the markers never reach the map underneath', () => {
+    setup();
+    initSidebar();                                      // the roving arrow-key handler
+    S.mapFylke = 'Oslo';
+    S.map!.jumpTo({ center: [10.75, 59.91], zoom: 11 });
+    drawMarkers();
+    // MapLibre's own keyboard handler listens for keydown on the canvas
+    // container the pane hangs inside, whatever the event's target: an arrow
+    // key panned the map 100px while focus walked to the next dot (folding any
+    // fan-out and re-rendering the clusters under it), and + zoomed it.
+    const heard: string[] = [];
+    S.map!.getCanvasContainer().addEventListener('keydown', (ev: any) => heard.push(ev.key));
+    const els = mapKeyed();
+    expect(els.length).toBeGreaterThan(1);
+    els[0].focus();
+    const press = (key: string) => (document.activeElement as HTMLElement)
+      .dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true }));
+    press('x');                                         // a key nobody handles still bubbles
+    expect(heard).toEqual(['x']);
+    heard.length = 0;
+    press('ArrowRight');
+    expect(document.activeElement).toBe(els[1]);        // focus moved, as it always did
+    expect(heard).toEqual([]);                          // and the map heard nothing
+    const z = S.map!.getZoom();
+    press('+');
+    expect(heard).toEqual([]);
+    expect(S.map!.getZoom()).toBe(z);
+    expect(document.activeElement).toBe(els[1]);
+    // Enter still belongs to the dot: it opens the school's sheet
+    press('Enter');
+    expect(S.current).toBe(byEl.get(els[1])!.s);
+    closeSide(true);
+  });
+
   it('the minimap is a second, still map with a dot at its centre — or nothing without WebGL', () => {
     loadFixtures(); initHelpers(); initMap(); stubMap();
     document.body.insertAdjacentHTML('beforeend', '<div id="s-photo"><div id="s-minimap"></div></div>');
@@ -270,6 +338,13 @@ describe('the map layer', () => {
     buildMiniMap(asker());
     expect(document.getElementById('s-minimap')!.classList.contains('off')).toBe(true);
     expect(S.miniMap).toBeNull();
+    // and where a browser can draw it, its canvas is named in the app's own
+    // language: MapLibre's default name for that region is the English «Map»
+    S.webgl = null;
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({ getExtension: () => null } as any);
+    buildMiniMap(asker());
+    expect((S.miniMap as any)._opts.locale['Map.Title']).toBe(t('viewMap'));
+    vi.restoreAllMocks();
     dropMiniMap();
     document.getElementById('s-photo')!.remove();
   });
