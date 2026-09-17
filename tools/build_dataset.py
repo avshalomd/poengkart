@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build web/data/schools.json from every county extractor.
+"""Build web/public/data/schools.json from every county extractor.
 
     .venv/bin/python3 tools/build_dataset.py [county ...]
 
@@ -21,7 +21,7 @@ import taxonomy                                  # noqa: E402
 import extractors                                # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, '..', 'web', 'data', 'schools.json')
+OUT = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
 DRIFT = os.path.join(HERE, '..', 'data', 'source-drift.json')
 # lat/lon are deliberately NOT carried over: a wrong coordinate from an older
 # run would survive forever (an early geocode put Askøy in Vesterålen).

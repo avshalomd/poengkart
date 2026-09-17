@@ -1,4 +1,4 @@
-"""SVG figures for docs/technical-report.md, drawn from web/data/model.json.
+"""SVG figures for docs/technical-report.md, drawn from web/public/data/model.json.
 
 Run after tools/model.py so the figures always show the shipped model's own
 numbers. No plotting library: the figures are simple enough to emit directly,
@@ -9,7 +9,7 @@ import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-META = json.loads((ROOT / 'web/data/model.json').read_text())['meta']
+META = json.loads((ROOT / 'web/public/data/model.json').read_text())['meta']
 OUT = ROOT / 'docs/figures'
 
 BLUE = '#2b6cb8'

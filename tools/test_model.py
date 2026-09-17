@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Invariants on the forecast in web/data/model.json.
+"""Invariants on the forecast in web/public/data/model.json.
 
     .venv/bin/python3 tools/test_model.py
 
@@ -16,8 +16,8 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DATA = json.load(open(os.path.join(HERE, '..', 'web', 'data', 'schools.json')))
-MODEL = json.load(open(os.path.join(HERE, '..', 'web', 'data', 'model.json')))
+DATA = json.load(open(os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')))
+MODEL = json.load(open(os.path.join(HERE, '..', 'web', 'public', 'data', 'model.json')))
 META, SCHOOLS = MODEL['meta'], MODEL['schools']
 
 fails, checks = [], 0

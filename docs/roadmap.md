@@ -265,3 +265,71 @@ two selects. Two data-science items follow from it:
   cells, keep the winner: the procedure that chose the single-applicant
   weight. If Vg1-only wins clearly, the follow-up is a school|level effect,
   not dropping the data.
+
+## Rebuild, 16 September 2026
+
+Stages 1–2 of the rebuild plan landed: `web/index.html`'s script is nineteen
+TypeScript modules with one state object (`web/src/state.ts`), the style is
+`web/src/styles/app.css`, Vite builds `web/dist`, Vitest and Playwright run
+in GitHub Actions on every push, and the figure invariants are a CI test.
+Behaviour is unchanged by design. Still to do from the same plan:
+
+- **Stage 3 — Astro shell, a prerendered page per school, the state store as
+  the only source of truth, real paths instead of `#s=`.** Gains SEO for
+  "skole + poenggrense" searches and per-school share cards; the History API
+  takes over the back-button handling. Start it when the launch push needs
+  search traffic. 4–6 sessions plus a full QA pass.
+- **Stage 4 — MapLibre GL** when CARTO names a date for the raster retirement.
+- **Pipeline: the long table as the primary artefact.** `build_dataset.py`
+  writes `schools.json` directly; inverting that (cells first, `schools.json`
+  a view) makes a new county one extractor emitting typed cells. Deferred
+  from stages 1–2 because it changes the generator of every figure.
+- **Python 3.12 for the local venv.** CI already runs the tests on 3.12; the
+  venv stays on 3.9 until the next refit, because a new interpreter and
+  numpy build move the fit within its resolution (see test_docs tolerance).
+- **`as any` backlog:** the count per module is in the commit "The data
+  contract and the state are typed".
+
+Found by the rebuild's own QA and left alone (zero behaviour change was the rule):
+
+- `schoolFromUrl` cannot resolve a hash whose whole `Fylke/Skole` segment is
+  percent-encoded (`#s=Akershus%2FAsker`); the app never writes that form,
+  only hand-built or third-party links hit it. (`web/test/url.test.ts` holds
+  the `it.todo`.)
+- Three phone controls are under the 44 px tap height: the map/list toggle
+  buttons at 39 px and the search button at 41 px.
+- `web/public/images/` still holds Leaflet's own marker PNGs, unreferenced
+  now that Leaflet's CSS comes from npm; delete once confirmed unused.
+- The colour-key's first bin label "<30" is interpolated unescaped into
+  innerHTML (`web/src/chrome.ts`); browsers render it, happy-dom drops it, so
+  no unit test pins that label. Escape it.
+- The threshold bins' last `max` is 99, not Infinity (`web/src/helpers.ts`);
+  the colour lookup relies on no poenggrense reaching 99. Make the last bin
+  open-ended so the code carries its own guarantee.
+- 336 non-null assertions (`!`) under `web/src/` after strict mode; a typed
+  `el(id)` helper that throws once at the seam would retire most of them (a
+  behaviour change, hence deferred).
+- `S.chart`, `S.listSort` and `S.labelMarkers` are typed non-null while their
+  value is set by the module inits before boot; a boot path that renders
+  earlier would bite there.
+- `exposeGlobals()` assigns every export to `window` unguarded in
+  strict-mode module code; an export named like a read-only Window accessor
+  (`origin`, `length`, `top`, `closed`) would throw and stop boot. None
+  collides today.
+- `actions/checkout@v4`, `setup-node@v4`, `setup-python@v5` carry GitHub's
+  Node 20 deprecation annotation; bump when convenient.
+
+Found by the final whole-branch review (17 September 2026) and left for later:
+
+- No screenshot baseline exists, although the plan's stage-1 verification
+  named one; the CSS was proved byte-identical instead. Before stage 3
+  rewrites the shell, record `toHaveScreenshot` baselines from the current,
+  known-good build at three viewports and both themes.
+- Geolocation (`web/src/locate.ts`, the map's locate control) is unit-tested
+  only; add a browser test with a stubbed `geolocation` before stage 3.
+- The unit and browser tests read the live `web/public/data/` and name
+  Asker, Førde and Elvebakken and a row count above 100; a refresh that
+  renames or drops one turns CI red without a behaviour change. Freeze a
+  small fixture for the tests that only need *a* school.
+- `pyproject.toml` and `tools/requirements.txt` carry the same eight pins and
+  CI installs from `requirements.txt`; make one of them the source.

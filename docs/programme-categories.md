@@ -32,7 +32,7 @@ ELAVI3----   EL = Elektro og datateknologi, avionics, third year
 ```
 
 So resolving a county's label to any Grep code answers the category question,
-and the category keys in `web/data/schools.json` are the register's own codes:
+and the category keys in `web/public/data/schools.json` are the register's own codes:
 `ST`, `ID`, `MD`, `KD`, `MK`, `BA`, `EL`, `FD`, `HS`, `DT`, `IM`, `NA`, `RM`,
 `SR`, `TP`, plus `PB` for påbygging.
 
@@ -101,7 +101,7 @@ to disambiguate the aliases whose code differs by year.
    with a category but no code are the International Baccalaureate rows,
    which are real but live outside Grep.
 
-The resolved code is not discarded: every row in `web/data/schools.json`
+The resolved code is not discarded: every row in `web/public/data/schools.json`
 carries it as `grep` (2 084 of 2 090 rows), and where the register's official
 Bokmål title spells the programme differently from the county's label the
 title is stored as `official` (375 rows). That is the identity a row shares

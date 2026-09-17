@@ -1,0 +1,351 @@
+import L from 'leaflet';
+import { closeCalc, loadCalc } from "./calc";
+import { parsePoints, renderChoices, renderPointsField } from "./chance";
+import { legendZoomHint, liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
+import { closeContact } from "./feedback";
+import { esc } from "./helpers";
+import { t } from "./i18n";
+import { anySheetOpen, closeIntro, hintHelp, INTRO_SEEN, openSheetHistory, renderIntro } from "./intro";
+import { setView } from "./listview";
+import { addLocateControl, toast, updateZoomAria } from "./locate";
+import { drawMarkers, foldPanel, prefersStill, setTiles, visibleSchools } from "./map";
+import { applyPrefs, closeSettings, loadPrefs, PREFS } from "./prefs";
+import { runSearch } from "./search";
+import { closeSearchOv, openSearchOv, pickOv, renderOvList } from "./searchov";
+import { applyUrlFilters, closeSide, hashParts, openSide, renderSide, schoolFromUrl, sideTrap, syncUrl, unresolvedLinkName } from "./sidebar";
+import { S } from './state';
+import { hideTip } from "./tips";
+
+/* ================= boot ================= */
+// The map's container had no name, and Leaflet's own credit link says "A
+// JavaScript library for interactive maps" in English on the Norwegian page.
+export function updateMapLabels() {
+  if (!S.map) return;
+  const mc = S.map.getContainer();
+  mc.setAttribute('role', 'region');
+  mc.setAttribute('aria-label', t('viewMap'));
+  // _pkPrefix is ours: Leaflet's own prefix, kept so that a language switch
+  // rewrites the original rather than its own last rewrite
+  const ac = S.map.attributionControl as L.Control.Attribution & { _pkPrefix?: string | boolean };
+  if (!ac) return;
+  if (ac._pkPrefix === undefined) ac._pkPrefix = ac.options.prefix;
+  if (typeof ac._pkPrefix === 'string') ac.setPrefix(ac._pkPrefix.replace(/title="[^"]*"/, `title="${esc(t('leafletTitle'))}"`));
+}
+export function framePad(): L.FitBoundsOptions {
+  // The panel and legend float over the map, so fit the country into what is
+  // actually visible. Each pad is capped: on a phone held sideways the panel
+  // is over half the width, and paying that in full squeezed Norway into the
+  // right-hand third and dropped the zoom a whole step.
+  const box = id => document.getElementById(id)!.getBoundingClientRect();
+  const p = box('panel'), l = box('legend');
+  const cap = (v, max) => Math.max(12, Math.min(Math.round(v), Math.round(max)));
+  // On a short screen every pixel of height counts, and the legend sits
+  // bottom-left while the country sits centre-right — let the map run under it
+  // rather than shrink the whole of Norway to avoid a corner.
+  const bottom = innerHeight <= 480 ? 12
+    : cap(innerHeight - l.top + 12, innerHeight * 0.3);
+  if (innerWidth <= 560) {
+    return { paddingTopLeft: [12, cap(p.height + 22, innerHeight * 0.34)],
+             paddingBottomRight: [12, bottom] };
+  }
+  return { paddingTopLeft: [cap(p.right + 12, innerWidth * 0.32), 12],
+           paddingBottomRight: [12, bottom] };
+}
+
+// Without the dataset — or with one the map cannot be built from — every
+// render is a no-op and the page settles into empty chrome over a grey
+// rectangle with nothing to explain it. A build that shipped 195 schools and
+// no coordinates did exactly that, in silence.
+export function bootFailed(subKey) {
+  try { window.va && window.va('event', { name: 'boot-failed', data: { msg: String(subKey).slice(0, 120) } }); } catch (_) {}
+  // #panel lives inside #app now — the innerHTML below removes it, so nothing
+  // here may assume it exists afterwards
+  document.getElementById('legend')?.setAttribute('hidden', '');
+  document.getElementById('app')!.innerHTML =
+    `<div class="boot-fail"><p class="big">${esc(t('bootFail'))}</p>
+     <p>${esc(t(subKey))}</p>
+     <button class="cta" onclick="location.reload()">${esc(t('bootRetry'))}</button></div>`;
+}
+
+export async function main() {
+  loadPrefs();
+  applyPrefs(false);
+  loadCalc();
+  try {
+    const l = localStorage.getItem('pk-lang');
+    if (l === 'no' || l === 'en') S.lang = l;   // anything else is not a language
+  } catch (e) {}
+  try { S.showOld = localStorage.getItem('pk-showold') === '1'; } catch (e) {}
+  try { S.allLevels = localStorage.getItem('pk-alllevels') === '1'; } catch (e) {}
+  // setLang() does this on every switch, but a fresh load never called it, so a
+  // reader who had chosen English got an English page inside a document still
+  // declaring itself Norwegian — wrong to a screen reader and to a translator.
+  document.documentElement.lang = S.lang === 'no' ? 'no' : 'en';
+  document.title = t('pageTitle');
+  // both requests leave together (and were already preloaded from <head>);
+  // the forecast is optional: without it the points field stays hidden and
+  // the app is exactly what it was
+  // a megabyte of data on a slow link is a blank card for many seconds:
+  // say so, in the failure screen's own place
+  document.getElementById('map')!.insertAdjacentHTML('beforeend',
+    `<div class="boot-fail boot-pending" aria-live="polite"><p class="big">${esc(t('bootLoading'))}</p></div>`);
+  const modelReq = fetch('/data/model.json').catch(() => null);
+  try {
+    const r = await fetch('/data/schools.json');
+    if (!r.ok) throw new Error(String(r.status));
+    S.DATA = await r.json();
+    try { S.DATA_STAMP = r.headers.get('last-modified') || ''; } catch (e) {}
+    performance.mark('pk:data');
+  } catch (e) {
+    return bootFailed('bootFailSub');
+  }
+  try {
+    const rm = await modelReq;
+    if (rm && rm.ok) S.MODEL = await rm.json();
+    performance.mark('pk:model');
+  } catch (e) {}
+  try {
+    // through the same validator as the field: a stored 999 used to colour the
+    // whole map on a score nobody can have
+    const sp = parsePoints(localStorage.getItem('pk-points'));
+    if (S.MODEL && sp.pts !== null) {
+      S.myPoints = sp.pts;
+      (document.getElementById('my-points') as any).value = String(sp.pts).replace('.', S.lang === 'no' ? ',' : '.');
+    } else if (sp.pts === null) {
+      try { localStorage.removeItem('pk-points'); } catch (e) {}
+    }
+  } catch (e) {}
+  // Open on the whole dataset. This used to open on a hard-coded Rogaland view
+  // and correct itself inside a requestAnimationFrame — but rAF does not fire
+  // while the tab is not being painted, so a national map could sit there
+  // showing one county. Fit first, synchronously, and treat the deferred pass
+  // purely as a correction for a pane that was still laying out.
+  const pts = S.DATA!.schools.filter(s => s.lat).map(s => [s.lat, s.lon] as L.LatLngTuple);
+  S.HOME = L.latLngBounds(pts).pad(0.06);
+  document.querySelector('#map .boot-pending')?.remove();
+  S.map = L.map('map', { zoomControl: false, zoomSnap: 0.25,
+    // the app's transitions already stop under reduced motion; Leaflet's zoom,
+    // fade and fling are its own options
+    ...(prefersStill() ? { zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false, inertia: false } : {}) }).fitBounds(S.HOME, framePad());
+  L.control.zoom({ position: 'bottomright' }).addTo(S.map);
+  updateZoomAria(); updateMapLabels();
+  addLocateControl();
+  S.map.on('zoomend moveend', () => { S.labelMarkers(); legendZoomHint(); });
+  setTiles();
+  let touched = false;
+  ['mousedown', 'wheel', 'touchstart'].forEach(ev => S.map!.getContainer()
+    .addEventListener(ev, () => { touched = true; }, { once: true, passive: true }));
+  // the panel folds on every return to the map, not the first only: a reader
+  // who unfolded it to change a select is done with it once they pan again
+  ['mousedown', 'wheel', 'touchstart'].forEach(ev => S.map!.getContainer()
+    .addEventListener(ev, () => foldPanel(true), { passive: true }));
+  // A map framed against a 0×0 container sticks at max zoom over empty terrain
+  // with no markers, and nothing about the page looks broken enough to explain
+  // it. A container is 0×0 at boot for many unrelated reasons — a background
+  // tab, a hidden iframe later revealed, a webview attached after load, a
+  // restored session, a prerender — and each announces itself differently, or
+  // not at all. So do not wait to be told: keep checking, cheaply, until the
+  // frame is honest, and give up once the reader has moved the map themselves.
+  let framed = false;
+  function ensureFramed() {
+    if (framed || touched) return true;
+    if (S.view === 'list') { S.refitPending = true; return true; }   // reframed on the way back
+    if (!S.map!.getContainer().clientWidth) return false;            // still nothing to frame
+    S.map!.invalidateSize();
+    S.map!.fitBounds(S.HOME!, { ...framePad(), animate: false });
+    framed = true;
+    return true;
+  }
+  [0, 150, 400, 900, 2000, 4000].forEach(ms => setTimeout(ensureFramed, ms));
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) ensureFramed(); });
+  // Leaflet re-measures on a window resize only. A container that changes size
+  // on its own (the school sheet opening beside the map, the panel docking)
+  // left the map drawing to its old width: a click landed on the wrong school
+  // and the right edge stayed blank. Pan to keep the centre only when the
+  // window itself changed. The controls are measured again here too: closing
+  // a phone's full-screen sheet measured them against a 0px map, and the
+  // panel's cap stayed 59px short until the next points edit.
+  let lastW = innerWidth;
+  if (window.ResizeObserver) new ResizeObserver(() => {
+    if (S.map!.getContainer().clientWidth) {
+      S.map!.invalidateSize({ pan: innerWidth !== lastW });
+      lastW = innerWidth;
+      if (S.view === 'map') liftMapControls();
+    }
+    ensureFramed();
+  }).observe(S.map.getContainer());
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (PREFS.theme !== 'auto') return;    // a pinned theme does not follow the OS
+    setTiles(); drawMarkers(); renderLegend(); renderCatNote(); renderPointsField();
+    if (S.current) renderSide();
+    // the guide draws its sample dots in the theme's colours
+    if (!document.getElementById('intro')!.hidden) {
+      const inside = document.getElementById('intro-body')!.contains(document.activeElement);
+      renderIntro();
+      if (inside) document.getElementById('intro-h')!.focus();
+    }
+  });
+  document.getElementById('side')!.setAttribute('inert', '');
+  const ovq: any = document.getElementById('ov-q');
+  ovq.addEventListener('input', () => {
+    S.ovAct = -1; S.ovHits = runSearch(ovq.value) || []; renderOvList();
+  });
+  ovq.addEventListener('keydown', ev => {
+    if (ev.key === 'ArrowDown') { ev.preventDefault(); S.ovAct = Math.min(S.ovAct + 1, S.ovHits.length - 1); renderOvList(); }
+    else if (ev.key === 'ArrowUp') { ev.preventDefault(); S.ovAct = Math.max(S.ovAct - 1, -1); renderOvList(); }
+    else if (ev.key === 'Enter') { ev.preventDefault(); pickOv(S.ovAct >= 0 ? S.ovAct : 0); }
+  });
+  document.addEventListener('keydown', ev => {
+    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '');
+    if (((ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === 'k') || (ev.key === '/' && !typing)) {
+      ev.preventDefault();
+      if (!anySheetOpen()) openSearchOv();   // never stack two aria-modal sheets
+    }
+  });
+  // A phone keyboard takes half the screen. The panel's height cap shrinks with
+  // the viewport while the legend and map controls keep their reserve, so an
+  // iPhone showed a 99px card with the points field being typed into below it,
+  // out of sight. Whatever has focus in the panel is scrolled into its view.
+  const panelEl = document.getElementById('panel');
+  const keepPanelFocusInView = () => {
+    const el = document.activeElement;
+    if (el && el !== panelEl && panelEl!.contains(el)) el.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  };
+  panelEl!.addEventListener('focusin', () => requestAnimationFrame(keepPanelFocusInView));
+  let reframe;
+  addEventListener('resize', () => {
+    clearTimeout(reframe);
+    reframe = setTimeout(() => {
+      S.map!.invalidateSize(); liftMapControls(); keepPanelFocusInView();
+      sideTrap(document.body.classList.contains('side-open'));   // a rotation crosses the breakpoint
+    }, 200);
+  });
+  document.addEventListener('touchstart', ev => {
+    // a floating tooltip should not outlive the reader's attention
+    if (!(ev.target as any).closest('[title], .ch, .lv, #tip')) hideTip();
+  }, { passive: true });
+  // a deep link pasted into an ALREADY-OPEN tab is a same-document
+  // navigation: no reload, only hashchange. Our own writes never fire it
+  // (replaceState and pushState are silent), so this only ever reacts to
+  // the address bar.
+  addEventListener('hashchange', () => {
+    // the ✕'s back() also fires hashchange; its popstate closes the sheet and
+    // writes the filters in memory into the entry, so reading the entry's
+    // old hash here would undo them (order-independent: popstate first is
+    // a no-op read, hashchange first is skipped)
+    if (S.sideClosing) return;
+    applyUrlFilters();                    // a pasted link carries its selection too
+    const s = schoolFromUrl();
+    if (s && s !== S.current) {
+      if (s.lat && S.view === 'map') S.map!.setView([s.lat, s.lon], Math.max(S.map!.getZoom(), 11));
+      openSide(s);
+    } else if (!s && hashParts().s) toast(t('linkNotFound', unresolvedLinkName()));
+  });
+  addEventListener('popstate', () => {
+    // a back-gesture closes what is actually on screen: an open sheet first —
+    // and re-pushes the side panel's entry the pop just consumed, so the next
+    // back still closes the panel instead of leaving the page
+    const sideOpen = document.getElementById('side')!.classList.contains('open');
+    if (S.sideClosing) {
+      // the ✕'s own back() landing: close, never treat it as a gesture on a
+      // sheet — and keep the filters the reader set while it was open. The
+      // entry underneath is the pre-open one; re-reading its filters undid a
+      // Vg2+ or county change made from the sheet. closeSide writes the
+      // current filters into that entry instead.
+      S.sideClosing = false;
+      if (sideOpen) closeSide(true); else syncUrl();
+      if (S.sheetPushPending) { S.sheetPushPending = false; openSheetHistory(); }
+      return;
+    }
+    if (anySheetOpen()) {
+      // same priority order as the Escape handler, so the two agree
+      if (!document.getElementById('contact')!.hidden) closeContact(true);
+      else if (!document.getElementById('intro')!.hidden) closeIntro(true);
+      else if (!document.getElementById('settings')!.hidden) closeSettings(true);
+      else if (!document.getElementById('calc')!.hidden) closeCalc(true);
+      else closeSearchOv(true);
+      // the entry landed on is the pre-open one: a scope changed in the
+      // settings sheet (the Trinn choice) is written into it, not re-read
+      // from it — the hashchange behind this pop then finds nothing to move
+      syncUrl();
+      if (sideOpen && !(history.state || {}).pkSide) {
+        try { history.pushState({ pkSide: 1 }, ''); } catch (e) {}
+      }
+      return;
+    }
+    // Chrome fires popstate for same-document hash navigations too, and
+    // BEFORE hashchange — so a deep link pasted over an open panel arrives
+    // here first. A hash naming a different school is forward navigation,
+    // not a back-gesture.
+    const target = schoolFromUrl();
+    // the entry may differ only in its filters — stepping back over a county
+    // change has no school to open or close, but still has to move the controls
+    const filtersMoved = applyUrlFilters();
+    if (target && target !== S.current) { openSide(target); return; }
+    if (!target && sideOpen) { closeSide(true); return; }
+    if (filtersMoved) return;
+    if (sideOpen) { closeSide(true); return; }
+    // forward-navigation onto a school entry reopens it, so the address bar
+    // never claims a school that is not showing
+    if (target) openSide(target);
+  });
+  document.addEventListener('keydown', ev => {
+    if (ev.key !== 'Escape') return;
+    if (!document.getElementById('contact')!.hidden) { closeContact(); return; }
+    if (!document.getElementById('intro')!.hidden) { closeIntro(); return; }
+    if (!document.getElementById('settings')!.hidden) { closeSettings(); return; }
+    if (!document.getElementById('calc')!.hidden) { closeCalc(); return; }
+    if (!document.getElementById('searchov')!.hidden) { closeSearchOv(); return; }
+    if (document.getElementById('side')!.classList.contains('open')) closeSide();
+  });
+  renderPanel(); renderLegend(); renderCatNote(); drawMarkers(); renderChoices();
+  // a shared link carries the selection it was taken under, so read the filters
+  // before the first frame rather than snapping the reader back to Hele landet
+  // A deep link can also arrive as ?f=&c=&s= query parameters. The canonical
+  // form is the fragment, but a fragment does not survive the wild: Gmail
+  // wraps every link in a redirect that drops it, so the county links we mail
+  // to the very officials who provided the data opened the plain map. Adopt
+  // the query into the hash once, then let the fragment machinery own it.
+  if (location.search && !location.hash) {
+    const q = new URLSearchParams(location.search);
+    const parts: string[] = [];
+    if (q.get('s')) parts.push('s=' + q.get('s'));
+    if (q.get('f')) parts.push('f=' + encodeURIComponent(q.get('f')!));
+    if (q.get('c')) parts.push('c=' + encodeURIComponent(q.get('c')!));
+    if (q.get('l')) parts.push('l=' + encodeURIComponent(q.get('l')!));
+    if (parts.length) {
+      try { history.replaceState(history.state, '', location.pathname + '#' + parts.join('&')); } catch (e) {}
+    }
+  }
+  const framedByUrl = applyUrlFilters(true);
+  let storedView = 'map';
+  try { if (localStorage.getItem('pk-view') === 'list') storedView = 'list'; } catch (e) {}
+  setView(storedView);
+  if (framedByUrl && S.view === 'map') {
+    const pts = visibleSchools().filter(s => s.lat).map(s => [s.lat, s.lon] as L.LatLngTuple);
+    if (pts.length) { touched = true; S.map.fitBounds(L.latLngBounds(pts).pad(0.08), { ...framePad(), animate: false }); }
+  }
+  const linked = schoolFromUrl();
+  if (!linked && hashParts().s) toast(t('linkNotFound', unresolvedLinkName()));
+  if (linked) {
+    if (linked.lat) {
+      touched = true;                  // the deferred HOME refit must not undo this
+      S.map.setView([linked.lat, linked.lon], 11, { animate: false });
+    }
+    openSide(linked);
+  }
+  performance.mark('pk:boot-done');
+  let seen = true;
+  try { seen = !!localStorage.getItem(INTRO_SEEN); } catch (e) {}
+  // Not a modal on arrival. A reader who lands on a map they have not looked at
+  // yet treats a full-screen panel as an obstacle, and closes it unread — which
+  // is exactly what the first person to try this did. Mark the door instead and
+  // let them reach it when the map has raised a question worth answering.
+  if (!seen) hintHelp();
+}
+export const boot = () => main().catch(e => { console.error(e); bootFailed('bootFailApp'); });
+
+export function initBoot() {
+  // a broken deploy should show up in the analytics before a parent writes in
+  window.addEventListener('error', e => { try { window.va && window.va('event', { name: 'js-error', data: { msg: String(e.message).slice(0, 120) } }); } catch (_) {} });
+}

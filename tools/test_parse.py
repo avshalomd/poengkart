@@ -12,7 +12,7 @@ import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DATA = json.load(open(os.path.join(HERE, '..', 'web', 'data', 'schools.json')))
+DATA = json.load(open(os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')))
 # Rogaland-specific assertions are scoped to Rogaland so they keep meaning as
 # other counties are added; national invariants are checked over everything.
 ROGALAND = [s for s in DATA['schools'] if s.get('fylke', 'Rogaland') == 'Rogaland']
@@ -140,7 +140,7 @@ check('no duplicate (county, school)',
 # twice, and a school with no current figure is the first thing a user sees
 import subprocess
 try:
-    prev = json.loads(subprocess.run(['git', 'show', 'HEAD:web/data/schools.json'],
+    prev = json.loads(subprocess.run(['git', 'show', 'HEAD:web/public/data/schools.json'],
                                      capture_output=True, text=True, check=True, cwd=HERE).stdout)
     had = {(s['fylke'], s['name']) for s in prev['schools'] if s.get('photo')}
     have = {(s['fylke'], s['name']) for s in DATA['schools'] if s.get('photo')}
@@ -159,7 +159,7 @@ except Exception:   # no git, or first build: the coverage floor still holds
 # Forecasts are keyed by series — lower-case programme name, level, occurrence,
 # counted the way web/index.html and test_model.py count them — so a renamed
 # programme must be refitted, never left pointing at a name that is gone
-_MODEL_P = os.path.join(HERE, '..', 'web', 'data', 'model.json')
+_MODEL_P = os.path.join(HERE, '..', 'web', 'public', 'data', 'model.json')
 if os.path.exists(_MODEL_P):
     _series = {}
     for s in DATA['schools']:
@@ -462,7 +462,7 @@ check('the county count in the README matches the dataset',
       f'found {r_counties}, dataset has {n_c}')
 
 check('the share card has been built',
-      os.path.exists(os.path.join(HERE, '..', 'web', 'og.png')))
+      os.path.exists(os.path.join(HERE, '..', 'web', 'public', 'og.png')))
 
 # --- taxonomy: the categories are Udir's, not ours ----------------------
 # Each of these encodes a defect the keyword classifier had, or an invariant

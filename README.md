@@ -1,5 +1,7 @@
 # Poengkart
 
+[![test](https://github.com/avshalomd/poengkart/actions/workflows/test.yml/badge.svg)](https://github.com/avshalomd/poengkart/actions/workflows/test.yml)
+
 **https://poengkart-no.vercel.app**
 
 Admission thresholds (*poenggrenser*) for Norwegian upper secondary schools,
@@ -28,25 +30,35 @@ report, never a picture.
 ## Run locally
 
 ```bash
-python3 -m http.server 8742 -d web
+npm install
+npm run dev
 ```
 
-No build step, no dependencies. To rebuild the dataset from the county source
-documents in `sources/`:
+Opens on http://localhost:8123. `npm run build` writes the deployable site to
+`web/dist`. To rebuild the dataset from the county source documents in
+`sources/`:
 
 ```bash
 .venv/bin/python3 tools/refresh.py
 ```
 
-The share card in that pipeline photographs the app and needs Playwright
-(`pip install playwright && playwright install chromium-headless-shell`);
-without it the last capture in `tools/og-panel.png` is reused. A missing
-`sources/` is restored from the public mirror with `tools/sources_r2.py
-fetch`, verified against `sources/manifest.json`.
+The share card in that pipeline first runs `npm run build`, then photographs
+the app and so needs Playwright (`pip install playwright && playwright install
+chromium-headless-shell`); without it the last capture in `tools/og-panel.png`
+is reused. A missing `sources/` is restored from the public mirror with
+`tools/sources_r2.py fetch`, verified against `sources/manifest.json`.
+
+`npm test` runs the unit tests (Vitest, coverage thresholds 80 % for
+statements, functions and lines, 65 % for branches), `npm run e2e` the browser
+suite (Playwright: boot, permalinks, filters, points, wishes, the list,
+settings, the calculator, the bug button, a phone, axe, and the figure
+invariants), and `.venv/bin/python3 -m pytest` the dataset checks. GitHub
+Actions runs all three, plus the build, on every push to `main` and on every
+pull request.
 
 ## The data
 
-`web/data/schools.json` is what the app reads. `data/` has the same as SQLite
+`web/public/data/schools.json` is what the app reads. `data/` has the same as SQLite
 and CSV: `samples` is every cell with its county, inntak and Grep code,
 `forecasts` the model's expected threshold, spread and fill probability per
 programme, and `model-backtest.csv` every walk-forward forecast behind the

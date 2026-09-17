@@ -11,7 +11,7 @@ import os
 from PIL import Image, ImageDraw
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-WEB = os.path.join(HERE, '..', 'web')
+WEB = os.path.join(HERE, '..', 'web', 'public')
 BLUE = (42, 120, 214, 255)          # --accent
 WHITE = (255, 255, 255, 255)
 SS = 8                              # supersample factor

@@ -2,7 +2,7 @@
 
 These checks pin every meta-derived number quoted in docs/model.md and
 docs/technical-report.md to the shipped
-web/data/model.json, so a refit can no longer leave the prose describing a
+web/public/data/model.json, so a refit can no longer leave the prose describing a
 model that is not the one deployed. Comparisons carry a tolerance of half a
 unit in the last displayed digit, so a value that sits exactly on a rounding
 boundary (3.45 shown as 3.4 or 3.5) never fails on the coin flip. Numbers the
@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-MODEL = json.loads((ROOT / 'web/data/model.json').read_text())
+MODEL = json.loads((ROOT / 'web/public/data/model.json').read_text())
 META = MODEL['meta']
 N_FORECASTS = sum(len(v.get('programs') or {}) for v in MODEL['schools'].values())
 N_FORECASTS_H0 = sum(pr['h'] == 0 for v in MODEL['schools'].values() for pr in (v.get('programs') or {}).values())
@@ -174,7 +174,7 @@ year_row = {y: [len(e), (sum(x * x for x in e) / len(e)) ** 0.5, sum(abs(x) for 
             for y, e in by_year.items()}
 
 # panel counts come from schools.json, the dataset the model was fitted on
-DATA = json.loads((ROOT / 'web/data/schools.json').read_text())
+DATA = json.loads((ROOT / 'web/public/data/schools.json').read_text())
 N_SCHOOLS = len(DATA['schools'])
 N_ROWS = n_cells = n_competed = n_series_num = n_series_one = N_GREP = N_SERIES_U = 0
 BY_FYLKE = {}

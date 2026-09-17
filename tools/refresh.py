@@ -20,14 +20,14 @@ PY = VENV if os.path.exists(VENV) else sys.executable
 
 STEPS = [
     ('sources_manifest.py', 'sources/manifest.json: hash every source document (provenance kept)'),
-    ('build_dataset.py', 'parse every county into web/data/schools.json'),
+    ('build_dataset.py', 'parse every county into web/public/data/schools.json'),
     ('geocode.py', 'NSR → Kartverket address → Kartverket place names'),
     ('photos.py', 'curated photo and identity overrides'),
-    ('model.py', 'the forecast: fit, walk-forward backtest, web/data/model.json'),
+    ('model.py', 'the forecast: fit, walk-forward backtest, web/public/data/model.json'),
     ('build_db.py', 'SQLite + CSV, including the forecasts'),
     ('make_og.py', 'the social share card: the map from the data, the school panel photographed from web/'),
     ('report_figures.py', 'the technical report’s figures, from model.json'),
-    ('build_report_page.py', 'docs/technical-report.md → web/report.html'),
+    ('build_report_page.py', 'docs/technical-report.md → web/public/report.html'),
     ('test_parse.py', 'regression checks on the dataset'),
     ('test_model.py', 'invariants on the forecast'),
     ('test_docs.py', 'the documentation quotes the shipped model'),

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build an indexed SQLite database (and tidy CSV) from web/data/schools.json.
+"""Build an indexed SQLite database (and tidy CSV) from web/public/data/schools.json.
 
 Schema:
   schools(fylke, name, fylkesnummer, round, catchment, lat, lon, orgnr, url,
@@ -29,7 +29,7 @@ Schema:
   forecasts(fylke, school, program, occurrence, level, category, year, round,
             expected REAL, spread REAL, p_fill REAL, history_years)
             -- tools/model.py's forecast for the county's next publication year,
-               from web/data/model.json when it exists
+               from web/public/data/model.json when it exists
   meta(key PK, value)   -- licence, source repository, build date
 
 Outputs: data/poengkart.db, data/samples.csv, data/alternate-rounds.csv,
@@ -44,8 +44,8 @@ import sqlite3
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, '..', 'web', 'data', 'schools.json')
-MODEL = os.path.join(HERE, '..', 'web', 'data', 'model.json')
+SRC = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
+MODEL = os.path.join(HERE, '..', 'web', 'public', 'data', 'model.json')
 OUT_DIR = os.path.join(HERE, '..', 'data')
 DB = os.path.join(OUT_DIR, 'poengkart.db')
 CSV = os.path.join(OUT_DIR, 'samples.csv')

@@ -39,7 +39,7 @@ import urllib.request
 from bs4 import BeautifulSoup
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DATA = os.path.join(HERE, '..', 'web', 'data', 'schools.json')
+DATA = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
 STAGE = os.environ.get('PHOTO_STAGE', '/private/tmp/claude-501/'
                        '-Users-avshalom-projects/b6cc5fd7-b026-44c5-803f-f7c99fea7cf5/'
                        'scratchpad/photohunt')

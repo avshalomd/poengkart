@@ -33,7 +33,7 @@ def owner(fylke):
 def full_name(school_name):
     """Counties publish short names ("Bjertnes"); a credit line should carry
     the school's registered name."""
-    for s in json.load(open(os.path.join(HERE, '..', 'web', 'data',
+    for s in json.load(open(os.path.join(HERE, '..', 'web', 'public', 'data',
                                          'schools.json')))['schools']:
         if s['name'] == school_name:
             nsr = s.get('nsr_name') or ''

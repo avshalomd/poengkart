@@ -1,4 +1,4 @@
-"""Render docs/technical-report.md as web/report.html.
+"""Render docs/technical-report.md as web/public/report.html.
 
 A deliberately small converter for this one document: headings, paragraphs,
 lists, tables, emphasis, links, images (inlined as SVG), and the report's own
@@ -13,7 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 MD = (ROOT / 'docs/technical-report.md').read_text()
-OUT = ROOT / 'web/report.html'
+OUT = ROOT / 'web/public/report.html'
 FIGDIR = ROOT / 'docs/figures'
 
 # ---------------------------------------------------------------- maths
@@ -34,7 +34,7 @@ DISPLAY = {
     '5': None,   # filled in below from model.json
 }
 
-_FC = json.loads((ROOT / 'web/data/model.json').read_text())['meta']['fill_calibration']
+_FC = json.loads((ROOT / 'web/public/data/model.json').read_text())['meta']['fill_calibration']
 _sgn = lambda v: ('&minus;' if v < 0 else '') + ('%.3f' % abs(v))
 DISPLAY['5'] = ("logit&#8201;<var>&pi;</var>&prime; = %s + %s&#8201;logit&#8201;<var>&pi;</var>"
                 % (_sgn(_FC['a']), _sgn(_FC['b'])))

@@ -28,7 +28,7 @@ import urllib.parse
 import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DATA = os.path.join(HERE, '..', 'web', 'data', 'schools.json')
+DATA = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
 AUTO = os.path.join(HERE, 'photos-auto.json')
 REJECTED = os.path.join(HERE, 'photos-rejected.json')
 
@@ -286,7 +286,7 @@ def shrink_url(url):
     # segment (k...) that the CMS rotates, after which the rendition 404s
     # (Dalane and Strømmen, Sept 2026), and an unsigned width is refused. The
     # unsigned original is stable, and bv.ashx photos reach readers through
-    # Vercel's optimizer at 960 px (photoSrc in web/index.html), so publish it.
+    # Vercel's optimizer at 960 px (photoSrc in web/src/sidebar.ts), so publish it.
     if '/bv.ashx/' in url:
         return re.sub(r'(/i[0-9a-f-]{36})(?:/[whqk][0-9a-f]+)+(?=/[^/]+$)', r'\1', url)
     p = urllib.parse.urlparse(url)
