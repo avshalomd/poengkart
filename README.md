@@ -17,7 +17,8 @@ or released them on request, 2012–2026, in Norwegian and English.
 Type in your points and every school and programme is coloured by your chance
 of a place at the next intake: green likely, amber possible, red unlikely. The
 chance comes from a model fitted on the whole history and backtested year by
-year; [docs/model.md](docs/model.md) explains it and the
+year (Telemark's schools from a separate fit on the county's own figures);
+[docs/model.md](docs/model.md) explains it and the
 [technical report](https://poengkart-no.vercel.app/report) is the full
 write-up. Press + on a programme to build your list of wishes (*ønsker*, the
 ten a vigo application allows), or use the calculator if you do not know your
@@ -35,8 +36,8 @@ npm install
 npm run dev
 ```
 
-Opens on http://localhost:8123. `npm run build` writes the deployable site to
-`web/dist`. Every school has its own page (`/akershus/asker`), prerendered at
+Opens on http://localhost:8123, or on `$PORT` when it is set. `npm run build`
+writes the deployable site to `web/dist`. Every school has its own page (`/akershus/asker`), prerendered at
 build time from `web/public/data/schools.json`, with its own share card
 under `/og/` and an entry in `/sitemap.xml`; links of the old
 `#s=Fylke/Skole` form still open. To rebuild the dataset from the county
@@ -69,8 +70,8 @@ on every push to `main` and on every pull request.
 `web/public/data/schools.json` is what the app reads. `data/` has the same as SQLite
 and CSV: `samples` is every cell with its county, inntak and Grep code,
 `forecasts` the model's expected threshold, spread and fill probability per
-programme, and `model-backtest.csv` every walk-forward forecast behind the
-accuracy claims. The data is published under
+programme (`held_out` marks Telemark's, which the backtest never scores), and
+`model-backtest.csv` every walk-forward forecast behind the accuracy claims. The data is published under
 [NLOD 2.0](https://data.norge.no/nlod/no/2.0); the code is MIT.
 
 Each (school, programme, year) cell is one of:
@@ -95,7 +96,7 @@ thresholds; the county select lists them as *(ingen data)*.
 | Møre og Romsdal | Excel extract from the county's Power BI dashboard, released on request | 2012–2026 | 2. |
 | [Oslo](https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/) | HTML + PDF, oldest years via school-site PDFs | 2015, 2017–2026 | 1. |
 | [Rogaland](https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6) | PDF | 2018–2026 | 2. |
-| Telemark | Excel extract released on request: the lowest points of the admitted for every programme, no fill state, so not comparable: outside the model and forecast from its own figures alone | 2024–2026 | not stated |
+| Telemark | Excel extract released on request: the lowest points of the admitted for every programme, no fill state, so not comparable: outside the model, forecast from its own figures alone with the error measured on its own years | 2024–2026 | not stated |
 | [Trøndelag](https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6) | PDF, per intake region | 2025 | not stated |
 | [Vestland](https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/) | PDF | 2020–2026 | 1. and 3. |
 | ↳ Hordaland, pre-merger | PDF: press releases via the Wayback Machine (1.), the county's full table (3.) | 2017–2019 | 1. and 3. |
