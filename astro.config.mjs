@@ -16,7 +16,9 @@ export default defineConfig({
     inlineStylesheets: 'never' // the CSP allows inline styles, but nothing should depend on it
   },
   devToolbar: { enabled: false },
-  server: ({ command }) => ({ port: command === 'dev' ? 8123 : 4173 }),
+  // PORT wins when a launcher assigns one (another worktree's dev server may
+  // already hold 8123); the fixed ports stay the default for a bare `npm run dev`
+  server: ({ command }) => ({ port: Number(process.env.PORT) || (command === 'dev' ? 8123 : 4173) }),
   // The source map is published on purpose: the repository is public and the
   // CARTO key is in the bundle either way, so the map hides nothing, and it
   // makes a production stack trace readable in devtools. It is fetched only
