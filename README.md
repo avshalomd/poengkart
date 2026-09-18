@@ -10,7 +10,7 @@ who got a place (grade average × 10): what it took to get in, not what the
 school requires. 228 schools in the nine counties that publish the figures
 or released them on request, 2012–2026, in Norwegian and English.
 
-![The map: 228 schools, clustered and coloured by admission threshold](docs/map.png)
+![The map of southwest Norway with Bryne vidaregåande skule open: its photo, figures, trend and every Vg1 programme](docs/map.png)
 
 ![A school: photo, your chance of a place at the next intake, the trend, and every programme with its own figure](docs/school.png)
 
