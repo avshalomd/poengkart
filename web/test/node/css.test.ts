@@ -45,6 +45,29 @@ describe('app.css', () => {
     }
   });
 
+  it('keeps the hover block to hover states alone', () => {
+    // `@media (hover: hover) and (pointer: fine)` is where every :hover rule in
+    // the app lives, so a rule that lands there by accident simply never reaches
+    // a phone. Three did: the bug button on a school's photo took its place,
+    // its grid centring and its icon size from inside the block, so on every
+    // touch screen the icon fell back to the UA's 28px in a 40px circle and sat
+    // 2px above its middle. Anything that is not a hover state belongs outside.
+    const open = css.indexOf('@media (hover: hover) and (pointer: fine) {');
+    expect(open, 'the hover block is gone — has it been renamed?').toBeGreaterThan(-1);
+    let depth = 0, i = css.indexOf('{', open), end = i;
+    for (; end < css.length; end++) {
+      if (css[end] === '{') depth++;
+      else if (css[end] === '}' && --depth === 0) break;
+    }
+    // comments carry commas and braces of their own; strip them before parsing
+    const block = css.slice(i + 1, end).replace(/\/\*[\s\S]*?\*\//g, '');
+    const stray: string[] = [];
+    for (const m of block.matchAll(/([^{}]+)\{[^}]*\}/g))
+      for (const sel of m[1].split(',').map(x => x.trim()).filter(Boolean))
+        if (!sel.includes(':hover')) stray.push(sel);
+    expect(stray, 'these reach a mouse but never a phone').toEqual([]);
+  });
+
   it('gives the map’s own buttons the accent focus ring, not the engine’s blue glow', () => {
     // maplibre-gl.css sets `outline: none` on `.maplibregl-ctrl-group button`
     // (0,1,1), which beats the app's bare `:focus-visible` (0,1,0), and paints
