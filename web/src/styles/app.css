@@ -985,7 +985,12 @@
      the card above it, and its scale used 126px of the 308 */
   #legend { position: absolute; bottom: 22px; left: 14px; z-index: 1000; width: 316px; padding: 11px 16px 10px; font-size: 11px; color: var(--ink-2); }
   #legend .t { font-weight: 600; color: var(--ink); font-size: 11.5px; margin-bottom: 7px; letter-spacing: .01em; }
-  #legend .bins { display: flex; align-items: center; gap: 0; }
+  /* flex-start, not center: the swatches are one continuous colour ramp and
+     have to sit on one line. Centring aligned each .bin on its own middle
+     instead, so a bin whose label wrapped to two lines lifted its swatch half
+     a line above its neighbours — on a phone with «Vis mer» open the three
+     middle labels wrap and the ramp came apart into stairs (POENG-25). */
+  #legend .bins { display: flex; align-items: flex-start; gap: 0; }
   /* the keys share the legend's width: at 10.5px «≥ 70 %» and «35–70 %» need
      35px between their centres just to touch, and five keys across 284px give
      each 57px */
