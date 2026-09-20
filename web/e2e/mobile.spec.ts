@@ -93,3 +93,29 @@ test('the panel folds to one row once the reader uses the map', async ({ page })
   // the folded line says what the two selects it hides are set to
   await expect(page.locator('#panel-sum')).toContainText('Hele landet');
 });
+
+/* The legend's five swatches are one continuous colour ramp, so they have to
+ * sit on one line whatever the labels beneath them do.
+ *
+ * `#legend .bins { align-items: center }` aligned every .bin on its own middle
+ * instead. Folded that is invisible, because all five labels are one line; open
+ * it is not. On a phone the legend is a two-column grid whose second column is
+ * `minmax(0, max-content)`, so unfolding «Vis mer» lets the keys claim their
+ * content width and starves the scale to its 140px floor — «30–34», «34–38»
+ * and «38–42» then wrap onto a second line, those three bins grow taller, and
+ * centring lifts their swatches 6,5px above «< 30» and «42+». A reader wrote in
+ * to say the legend "looks broken (like stairs)", which is exactly what that is.
+ *
+ * The state this measures is the starved one, where the labels wrap; if a later
+ * change gives the scale enough width that they stop wrapping, this passes for
+ * a different reason, and the rule it guards still has to hold.
+ */
+test('the legend’s colour ramp stays on one line with «Vis mer» open', async ({ page }) => {
+  await boot(page);
+  await page.click('#legend-more > summary');
+  await expect(page.locator('#legend-more')).toHaveJSProperty('open', true);
+  const tops = await page.locator('#legend .bin .sw').evaluateAll(els =>
+    els.map(e => e.getBoundingClientRect().top));
+  expect(tops, 'five bins in the default national view').toHaveLength(5);
+  expect(Math.max(...tops) - Math.min(...tops), 'the swatches share a top edge').toBeLessThanOrEqual(0.5);
+});
