@@ -68,10 +68,10 @@ export function renderIntro() {
     `<p class="lede">${esc(t('introLede'))} ${esc(t('introScope', S.DATA!.schools.length, S.DATA!.counties.length,
       S.DATA!.years[0], S.DATA!.years[S.DATA!.years.length - 1]))}</p>${steps}` +
     `<p class="caveat">${esc(t('introCaveat'))} `
-      + `<a href="data/schools.json">${esc(t('introData'))}</a></p>` +
+      + `<a href="/data/schools.json">${esc(t('introData'))}</a></p>` +
     `<p class="caveat">${esc(t('introPrivacy'))}</p>` +
     `<p class="colophon">${t('introRepo', REPO_LINK)} ` +
-      `${t('introReport', `<a href="report">${esc(t('introReportLink'))}</a>`)}` +
+      `${t('introReport', `<a href="/report">${esc(t('introReportLink'))}</a>`)}` +
       `<span class="who">${esc(t('introCredit'))}</span></p>` +
     `<button class="cta" onclick="closeIntro()">${esc(t('introCta'))}</button>` +
     `<button class="cta ghost" onclick="switchToContact()">${esc(t('contactLabel'))}</button>`;

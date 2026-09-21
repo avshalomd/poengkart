@@ -32,7 +32,9 @@ export function schoolBySlug(fylkeSlug: string, nameSlug: string): School | null
   return pick(inFylke, x => slug(x) === nameSlug);
 }
 export function pathSegments(pathname = location.pathname): [string, string] | null {
-  const m = /^\/([^/]+)\/([^/]+)$/.exec(pathname);
+  // Vercel's cleanUrls serves /fylke/skole/ too: the page arrived with its sheet
+  // pre-drawn, the app found no school in the address, and the ✕ did nothing
+  const m = /^\/([^/]+)\/([^/]+)\/?$/.exec(pathname);
   return m ? [m[1], m[2]] : null;
 }
 export function queryParts(search = location.search): Record<string, string> {

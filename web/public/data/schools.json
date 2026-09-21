@@ -6889,17 +6889,17 @@
    "catchment": true,
    "orgnr": "974597403",
    "url": "www.lena-valle.vgs.no",
+   "wiki_url": "https://no.wikipedia.org/wiki/Valle_videreg%C3%A5ende_skole_(%C3%98stre_Toten)",
+   "wiki_extract": "Valle videregående skole er en yrkesfaglig videregående skole på Lena i Østre Toten kommune, som spesialiserer sitt tilbud innen naturbruk. Fra 1. oktober 2014 ble skolen lagt under felles administrasjon med Lena videregående skole. Rektor ved Lena vgs ble rektor for begge skolene.",
    "address": "Lenagata 20, 2850, LENA",
-   "nsr_name": "Lena-Valle videregående skole avd Valle",
-   "lat": 60.67723,
-   "lon": 10.81207,
    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Valle_VGS_1.jpg/960px-Valle_VGS_1.jpg",
+   "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Valle_VGS_1.jpg",
    "photo_credit": "Foto: Mokleven (CC BY-SA 3.0)",
    "photo_license": "CC BY-SA 3.0",
-   "wiki_url": "https://no.wikipedia.org/wiki/Valle_videreg%C3%A5ende_skole_(%C3%98stre_Toten)",
-   "wiki_extract": "Valle videregående skole er en yrkesfaglig videregående skole på Lena i Østre Toten kommune, som spesialiserer sitt tilbud innen naturbruk. Fra 1. oktober 2014 ble skolen lagt under felles administrasjon med Lena videregående skole. Rektor ved Lena vgs ble rektor for begge skolene.",
-   "photo_source": "reviewed"
+   "nsr_name": "Lena-Valle videregående skole avd Valle",
+   "lat": 60.67723,
+   "lon": 10.81207
   },
   {
    "name": "Lillehammer videreg skole, avd Nord",
@@ -11524,7 +11524,8 @@
       "2022": 43.9,
       "2023": 36.2,
       "2024": 46.3,
-      "2025": 44.4
+      "2025": 44.4,
+      "2026": 41.9
      },
      "grep": "IDRET1----"
     },
@@ -29792,14 +29793,14 @@
    "orgnr": "974568098",
    "url": "telemarkfylke.no/no/skoler/bamble-vgs/",
    "address": "Sundbykåsa 29, 3961, STATHELLE",
-   "nsr_name": "Bamble videregående skole",
-   "lat": 59.02761,
-   "lon": 9.70321,
    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Bamble_videreg%C3%A5ende_skole_02.jpg/960px-Bamble_videreg%C3%A5ende_skole_02.jpg",
+   "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Bamble_videreg%C3%A5ende_skole_02.jpg",
    "photo_credit": "Foto: Far min (CC BY-SA 4.0)",
    "photo_license": "CC BY-SA 4.0",
-   "photo_source": "reviewed"
+   "nsr_name": "Bamble videregående skole",
+   "lat": 59.02761,
+   "lon": 9.70321
   },
   {
    "name": "Bø vidaregåande skule",
@@ -29901,14 +29902,14 @@
    "orgnr": "974568071",
    "url": "telemarkfylke.no/no/skoler/hjalmarjohansen-vgs/",
    "address": "Moflatvegen 38, 3733, SKIEN",
-   "nsr_name": "Hjalmar Johansen videregående skole",
-   "lat": 59.18583,
-   "lon": 9.5966,
    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Hjalmar_Johansen_videreg%C3%A5ende_skole_-_Klosterskogen.jpg/960px-Hjalmar_Johansen_videreg%C3%A5ende_skole_-_Klosterskogen.jpg",
+   "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Hjalmar_Johansen_videreg%C3%A5ende_skole_-_Klosterskogen.jpg",
    "photo_credit": "Foto: Bitjungle (CC BY-SA 3.0)",
    "photo_license": "CC BY-SA 3.0",
-   "photo_source": "reviewed"
+   "nsr_name": "Hjalmar Johansen videregående skole",
+   "lat": 59.18583,
+   "lon": 9.5966
   },
   {
    "name": "Kragerø videregående skole",
@@ -30070,14 +30071,14 @@
    "orgnr": "974568187",
    "url": "telemarkfylke.no/no/skoler/nome-vgs/",
    "address": "Søvevegen 12, 3830, ULEFOSS",
-   "nsr_name": "Nome videregående skole avd Søve",
-   "lat": 59.27896,
-   "lon": 9.28405,
    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/S%C3%B8veVgs.jpg/960px-S%C3%B8veVgs.jpg",
+   "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:S%C3%B8veVgs.jpg",
    "photo_credit": "Foto: Peter Fiskerstrand (CC BY-SA 4.0)",
    "photo_license": "CC BY-SA 4.0",
-   "photo_source": "reviewed"
+   "nsr_name": "Nome videregående skole avd Søve",
+   "lat": 59.27896,
+   "lon": 9.28405
   },
   {
    "name": "Notodden videregående skole",
@@ -30163,14 +30164,14 @@
    "orgnr": "974568012",
    "url": "telemarkfylke.no/no/skoler/notodden-vgs/",
    "address": "Heddalsvegen 4, 3674, NOTODDEN",
-   "nsr_name": "Notodden videregående skole",
-   "lat": 59.5553,
-   "lon": 9.25771,
    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/NotoddenVgs.jpg/960px-NotoddenVgs.jpg",
+   "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:NotoddenVgs.jpg",
    "photo_credit": "Foto: Peter Fiskerstrand (CC BY-SA 4.0)",
    "photo_license": "CC BY-SA 4.0",
-   "photo_source": "reviewed"
+   "nsr_name": "Notodden videregående skole",
+   "lat": 59.5553,
+   "lon": 9.25771
   },
   {
    "name": "Porsgrunn videregående skole",
@@ -30344,14 +30345,14 @@
    "orgnr": "874568082",
    "url": "telemarkfylke.no/no/skoler/rjukan-vgs/",
    "address": "Såheimsveien 22, 3660, RJUKAN",
-   "nsr_name": "Rjukan videregående skole",
-   "lat": 59.87794,
-   "lon": 8.58048,
    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rjukan-vgs-2016-1.jpg/960px-Rjukan-vgs-2016-1.jpg",
+   "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Rjukan-vgs-2016-1.jpg",
    "photo_credit": "Foto: Ojtveito (CC BY-SA 4.0)",
    "photo_license": "CC BY-SA 4.0",
-   "photo_source": "reviewed"
+   "nsr_name": "Rjukan videregående skole",
+   "lat": 59.87794,
+   "lon": 8.58048
   },
   {
    "name": "Skien videregående skole",
@@ -30447,14 +30448,14 @@
    "orgnr": "974568039",
    "url": "telemarkfylke.no/no/skoler/skien-vgs/",
    "address": "Hollenderigata 5, 3732, SKIEN",
-   "nsr_name": "Skien videregående skole",
-   "lat": 59.19934,
-   "lon": 9.61431,
    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Skien_Videreg%C3%A5ende.jpg/960px-Skien_Videreg%C3%A5ende.jpg",
+   "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Skien_Videreg%C3%A5ende.jpg",
    "photo_credit": "Foto: Orf3us (CC BY-SA 4.0)",
    "photo_license": "CC BY-SA 4.0",
-   "photo_source": "reviewed"
+   "nsr_name": "Skien videregående skole",
+   "lat": 59.19934,
+   "lon": 9.61431
   },
   {
    "name": "Skogmo videregående skole",

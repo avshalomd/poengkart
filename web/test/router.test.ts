@@ -28,6 +28,8 @@ describe('resolving a school', () => {
 describe('the address', () => {
   it('pathSegments reads /a/b and nothing else', () => {
     expect(pathSegments('/akershus/asker')).toEqual(['akershus', 'asker']);
+    // Vercel serves the slash form too; unread, it left a pre-drawn sheet no ✕ could close
+    expect(pathSegments('/akershus/asker/')).toEqual(['akershus', 'asker']);
     expect(pathSegments('/')).toBeNull(); expect(pathSegments('/report')).toBeNull(); expect(pathSegments('/a/b/c')).toBeNull();
   });
   it('queryParts decodes', () => expect(queryParts('?f=M%C3%B8re%20og%20Romsdal&c=ST&l=all')).toEqual({ f: 'Møre og Romsdal', c: 'ST', l: 'all' }));

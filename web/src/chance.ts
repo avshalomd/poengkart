@@ -102,7 +102,7 @@ export function resolveChoice(c) {
   // keeps in aliases, and re-key the wish to it.
   if (!p) {
     // a joined series can also settle on one level of a «Vg2/Vg3» row
-    const [name, level] = c.k.split('|'), lv = q => q.level === level || level.split('/').includes(q.level);
+    const [name, level = ''] = c.k.split('|'), lv = q => q.level === level || level.split('/').includes(q.level);
     p = s.programs.find(q => lv(q) && q.program.toLowerCase() === name)
       || s.programs.find(q => lv(q) && (q.aliases || []).includes(name));
     if (p) c.k = km.get(p);

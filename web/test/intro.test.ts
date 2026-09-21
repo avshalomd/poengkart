@@ -22,7 +22,9 @@ describe('the help sheet', () => {
     // the colour key draws one dot per t('introKeys') entry, plus the
     // "no points" swatch renderIntro adds from t('noPointsShort')
     expect(body.querySelectorAll('.keyrow .key').length).toBe(t('introKeys').length + 1);
-    expect(body.querySelector('a[href="data/schools.json"]')).toBeTruthy();
+    // root-absolute: on /oslo/ullern-videregaende-skole a relative link asked for /oslo/data/… (404)
+    expect(body.querySelector('a[href="/data/schools.json"]')).toBeTruthy();
+    expect(body.querySelector('a[href="/report"]')).toBeTruthy();
     expect(document.getElementById('intro-x')!.getAttribute('aria-label')).toBe(t('close'));
   });
 

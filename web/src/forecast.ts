@@ -33,8 +33,15 @@ export function errCdf(z) {
   return Math.min(0.995, Math.max(0.005, ZQ_GRID[i - 1] + f * (ZQ_GRID[i] - ZQ_GRID[i - 1])));
 }
 export const chanceOf = (pr, x) => (1 - pr.pi) + pr.pi * errCdf((x - pr.m) / pr.s);
-export const bucketOf = (c): Band => c >= BANDS.likely ? 'likely' : c >= BANDS.possible ? 'possible' : 'unlikely';
 export const pct = c => Math.round(c * 100);
+// The band is the band of the figure printed, not of the decimals behind it:
+// 0,348 printed «35 %» on an «unlikely» chip, beside a legend whose «possible»
+// band starts at 35 % and a headline that counted it as unlikely (14 rows
+// nationwide at 25,0 points). What the reader can check wins.
+export const bucketOf = (c): Band => {
+  const r = pct(c) / 100;
+  return r >= BANDS.likely ? 'likely' : r >= BANDS.possible ? 'possible' : 'unlikely';
+};
 // Norwegian puts a space before the unit sign, English does not. Every T
 // string already splits on this; the chips printed "99 %" in both languages,
 // beside a legend that said "≥ 70%".

@@ -3,7 +3,7 @@ import { renderChartCard } from "./chart";
 import { liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
 import { esc, fmt, HELD_OUT, isVg1, round1, shownPrograms } from "./helpers";
 import { CATS, t } from "./i18n";
-import { buildMiniMap, dropMiniMap, drawMarkers, hideMapTip, onceSettled, panSchoolInside, prefersStill,
+import { buildMiniMap, dropMiniMap, drawMarkers, fitVisible, hideMapTip, onceSettled, panSchoolInside, prefersStill,
          resizeMap, setLens } from "./map";
 import { renderList } from "./programs";
 import { docTitle, queryParts, schoolUrl, setUrlSchool, syncUrl } from './router';
@@ -32,6 +32,7 @@ export function applyUrlFilters(boot?) {
   if (cat !== 'all' && !lv && !S.DATA!.schools.some(s => (fy === 'all' || s.fylke === fy)
         && s.programs.some(q => isVg1(q) && q.category === cat))) lv = true;
   if (fy === S.mapFylke && cat === S.mapCat && lv === S.allLevels) return false;
+  const fyMoved = fy !== S.mapFylke;
   S.mapFylke = fy; S.mapCat = cat; S.allLevels = lv;
   const fs: any = document.getElementById('map-fylke'), cs: any = document.getElementById('map-cat');
   if (fs) fs.value = fy;
@@ -41,6 +42,13 @@ export function applyUrlFilters(boot?) {
   // an open sheet lists what the scope lists: stepping Back over a toggle
   // left it showing the rows the address no longer names
   if (S.current) renderSide();
+  // Back over a county change moved the select and the dots but not the frame:
+  // the map stood on Rogaland with «Oslo (25)» selected and nothing in view.
+  // Boot frames on its own, once the view is known.
+  if (!boot && fyMoved) {
+    if (S.view === 'list' || !S.map || !S.map.getContainer().clientWidth) S.refitPending = true;
+    else fitVisible(!prefersStill());
+  }
   return true;
 }
 // On a phone the school sheet covers the screen, and the CSS that hides the
@@ -164,7 +172,7 @@ export function openSide(s, landing?: boolean) {
   // Focus follows a sheet the reader opened. A page that arrives with its
   // sheet open keeps focus where every page load leaves it — at the top, so
   // the first Tab and a screen reader start from the document's beginning.
-  if (!landing) setTimeout(() => (document.querySelector('#s-photo .close') as any)?.focus(), 60);
+  if (!landing) setTimeout(() => (document.querySelector('#s-photo .close:not(.bug)') as any)?.focus(), 60);
   // Beside the map the sheet takes 480px of it, and a school clicked in that
   // part vanished under its own sheet. Bring it into the strip left between the
   // panel and the sheet once the sheet is in (and after any flight has landed).

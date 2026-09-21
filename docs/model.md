@@ -12,7 +12,7 @@ when a programme filled, and when it exists it is one point on the points
 scale. A family with 42 points is not asking "what was the threshold" but
 "will I get in" — and the honest answer to that is a probability, because the
 same programme at the same school moves by a standard deviation of 6.3 points
-from one year to the next (5 428 consecutive-year pairs; only half of all
+from one year to the next (5 429 consecutive-year pairs; only half of all
 moves are within ±3).
 
 So the app forecasts, per programme, for the county's next publication year:
@@ -35,11 +35,11 @@ programme with a single year of data borrows its level from the hundreds of
 similar ones around it instead of being trusted on its own —428 of the 1 965
 series have exactly one year.
 
-**Level** (on the 8 248 cells that carry a number):
+**Level** (on the 8 249 cells that carry a number):
 
     y = μ + school + category + programme|level + series + county×year + round offset + ε
 
-**Fill** (on the 11 984 cells that competed on points — number, 0,0 or "no waitlist".
+**Fill** (on the 11 985 cells that competed on points — number, 0,0 or "no waitlist".
 In Møre og Romsdal "no waitlist" is the county's own dashboard rule, a Vg1
 figure under 25 — see `docs/data-notes.md` — so its labels are a proxy, and
 the backtest measures what they are worth, below):
@@ -57,7 +57,7 @@ publishes beside every figure) is one applicant's score; the backtest chose
 its level-fit weight among {1, ½, ¼, 0} and kept 1 — 14 cells cannot move
 it.
 
-Fitted variance components (points): school 3.2, programme 3.3, series 2.7,
+Fitted variance components (points): school 3.2, programme 3.4, series 2.7,
 county×year innovations 0.9, residual 4.6. On the logit scale for fill: school
 1.0, programme 1.2, series 1.6
 
@@ -153,14 +153,14 @@ no earlier year can teach a forecast what that does, and the final fit handles
 it with the fixed offset; grading the model on an event it is told about would
 flatter nothing and mislead the calibration.
 
-**Level, held-out 2025–26** (2 187 cells that got a number):
+**Level, held-out 2025–26** (2 188 cells that got a number):
 
 | history | n | model RMSE | "last year's figure" RMSE | programme-county mean RMSE | within ±3 |
 |---|---|---|---|---|---|
 | 0 years | 167 | 8.6 | — | 10.2 | 29% |
 | 1 year | 259 | 5.7 | 6.9 | 6.6 | 49% |
 | 2–3 years | 406 | 5.7 | 6.5 | 6.4 | 44% |
-| 4+ years | 1355 | 5.1 | 6.2 | 6.0 | 50% |
+| 4+ years | 1356 | 5.1 | 6.2 | 6.0 | 50% |
 
 Exponential smoothing of the series' own figures (α = 0.4; Muth, 1960) is a
 stronger baseline than either: RMSE 5.9 with two or three years of history
@@ -188,15 +188,15 @@ scores 0.147 against 0.186 for its base rate
 | predicted | observed | n |
 |---|---|---|
 | 0–10% | 4.6% | 1553 |
-| 10–20% | 14.9% | 1 837 |
-| 20–30% | 27% | 1 536 |
+| 10–20% | 14.9% | 1 840 |
+| 20–30% | 27% | 1 537 |
 | 30–40% | 38% | 1 366 |
 | 40–50% | 45% | 1 171 |
-| 50–60% | 60% | 1 297 |
+| 50–60% | 60% | 1 298 |
 | 60–70% | 72% | 1 357 |
 | 70–80% | 82% | 1 375 |
-| 80–90% | 89% | 1 785 |
-| 90–100% | 98.9% | 12 035 |
+| 80–90% | 89% | 1 786 |
+| 90–100% | 98.9% | 12 037 |
 
 Brier 0.090, against 0.156 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
@@ -249,7 +249,7 @@ the county level is the largest single term after the school's own.
 ## The model as a detector
 
 The 25 cells the fitted model finds least plausible are listed in
-`meta.outliers` (|z| ≥ 3: 82 of 8 248 cells, 39 of them in Vestland, the
+`meta.outliers` (|z| ≥ 3: 82 of 8 249 cells, 39 of them in Vestland, the
 county with the most cells). Five of the top twenty-five are Vestland 2022 — clustering of that kind has meant a parser
 problem before, so
 three of them, the largest included, were checked against the county's own PDF

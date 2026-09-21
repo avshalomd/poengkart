@@ -180,6 +180,8 @@ def extract():
         with pdfplumber.open(os.path.join(SRC, fname)) as pdf:
             school, level, cols = None, 'Vg1', None
             group_rows, last_row = [], None
+            # rows printed before their school's name (see the Nivå branch below)
+            pending, group_niva = [], False
             for page in pdf.pages:
                 words = page.extract_words()
                 header = {}
@@ -222,11 +224,25 @@ def extract():
                         continue
                     if name_toks:
                         school = common.squash(' '.join(common.norm(w['text']) for w in name_toks))
-                        group_rows = []
+                        group_rows, pending = pending, []
+                        for r in group_rows:
+                            r['school'] = school
+                        group_niva = bool(group_rows)
                     if niva_toks:
                         d = common.norm(niva_toks[0]['text'])
                         if d in ('1', '2', '3', '4'):
+                            # A page break can fall between a school's first row
+                            # and its name: the 2024–2026 table ends page 18 on
+                            # «1 Idrettsfag 46,3 44,4 41,9» and prints «Øvrebyen
+                            # videregående skole» at the top of page 19. A Nivå
+                            # «1» with no name, in a group that already carries a
+                            # Nivå, opens the next school; read under the one
+                            # above, the row collided with Hadeland's own
+                            # Idrettsfag and Øvrebyen lost its 2026 figure.
+                            if d == '1' and not name_toks and group_niva:
+                                school, group_rows = None, []
                             level = f'Vg{d}'
+                            group_niva = True
                     # A programme name can wrap too, and its second line
                     # carries nothing else: no school, no level, no values.
                     # Dropping it published the row under a truncated name
@@ -243,7 +259,7 @@ def extract():
                         continue
                     program = common.canon_program(' '.join(
                         common.norm(w['text']) for w in prog_toks))
-                    if not school or not program or not val_toks:
+                    if (not school and not group_niva) or not program or not val_toks:
                         continue
                     # group value words by their nearest year column
                     buckets = {}
@@ -262,7 +278,7 @@ def extract():
                                'values': values, 'county': META['fylke'],
                                'round': META['round']}
                         rows.append(row)
-                        group_rows.append(row)
+                        (group_rows if school else pending).append(row)
                         last_row = row
         # the first row of a group is emitted before the school name's
         # continuation line is seen, so "Nord-Østerdal" and "Nord-Østerdal
@@ -272,6 +288,9 @@ def extract():
         # prefix of a branch campus's. Folding those merged Raufoss vgs into
         # "Raufoss vgs avd Dokka" and published the parent's own thresholds
         # under its branch — 13 series of the wrong school.
+        for r in [r for r in rows if not r['school']]:
+            warn.append(f'{META["fylke"]}: {fname}: «{r["program"]}» {r["level"]} has no school name, dropped')
+        rows = [r for r in rows if r['school']]
         COMPLETE = ('skole', 'skule', 'gymnas', 'katedralskole')
         names = {r['school'] for r in rows}
         fold = {}

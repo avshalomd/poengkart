@@ -125,6 +125,14 @@
         say('I9', counts.likely === ch.likely && counts.possible === ch.possible && counts.unlikely === ch.unlikely,
             `${s.name}: chips ${JSON.stringify(counts)} vs ${ch.likely}/${ch.possible}/${ch.unlikely}`);
       } else say('I9', chips.length === 0, `${s.name}: chips without forecasts`);
+      // I18 — a chip's band is the band of the figure it prints: read from the
+      //       DOM against the legend's edges, since «35 %» was once drawn,
+      //       counted and headlined as «under 35 %» (0,348 banded before rounding)
+      chips.forEach(c => {
+        const n = parseInt(c.textContent), cls = [...c.classList].find(k => k.startsWith('b-')).slice(2);
+        const band = n >= Math.round(BANDS.likely * 100) ? 'likely' : n >= Math.round(BANDS.possible * 100) ? 'possible' : 'unlikely';
+        say('I18', cls === band, `${s.name}: chip "${c.textContent}" is drawn ${cls}`);
+      });
       // I10 — the chance block agrees with the chips
       const box = document.getElementById('s-chance');
       say('I10', !box.hidden, `${s.name}: chance block hidden with a forecast present`);

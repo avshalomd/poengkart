@@ -87,6 +87,9 @@ const { title, description, canonical, ogTitle, ogDescription, twitterDescriptio
 <script is:inline defer src="/_vercel/insights/script.js"></script>
 <script is:inline>
 /* saved display preferences, applied before first paint so nothing flashes */
+/* and the mark that scripts run at all: without it the controls are dead
+   glass, and app.css takes them out of the noscript notice's way */
+document.documentElement.dataset.js = '1';
 try {
   var _d = document.documentElement, _v;
   if ((_v = localStorage.getItem('pk-theme')) === 'light' || _v === 'dark') {

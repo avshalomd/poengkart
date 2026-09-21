@@ -47,6 +47,9 @@ describe('chance of a place', () => {
     expect(bucketOf(0.95)).toBe('likely'); expect(bucketOf(0.70)).toBe('likely');
     expect(bucketOf(0.69)).toBe('possible'); expect(bucketOf(0.35)).toBe('possible');
     expect(bucketOf(0.34)).toBe('unlikely'); expect(bucketOf(0)).toBe('unlikely');
+    // a chip that prints «35 %» or «70 %» sits in the band the legend gives that figure
+    expect(bucketOf(0.34805)).toBe('possible'); expect(bucketOf(0.3449)).toBe('unlikely');
+    expect(bucketOf(0.6951)).toBe('likely'); expect(bucketOf(0.6949)).toBe('possible');
   });
 
   it('schoolChance aggregates the scope’s chances, counts summing to n', () => {

@@ -327,6 +327,16 @@ check('Oslo 2022 lands on the right series',
       bool(blindern) and blindern[0]['values'].get('2022') == 44.6,
       str(blindern[0]['values'] if blindern else None))
 
+# Innlandet 2024–2026: page 18 ends on «1 Idrettsfag 46,3 44,4 41,9» and the school's
+# name, Øvrebyen, is printed at the top of page 19. The row was read under the school
+# above it (Hadeland), collided with that school's own Idrettsfag, and Øvrebyen's most
+# competitive programme had no 2026 figure (QA 21 Sept 2026).
+_idr = {n.split()[0]: v for n, p, y, v in ccells('Innlandet')
+        if p['program'] == 'Idrettsfag' and p['level'] == 'Vg1' and y == '2026'}
+check('a row printed before its school name across a page break goes to that school',
+      _idr.get('Øvrebyen') == 41.9 and _idr.get('Hadeland') == 49.1,
+      f"Øvrebyen {_idr.get('Øvrebyen')}, Hadeland {_idr.get('Hadeland')}")
+
 # Innlandet: "Intervju" was dropped instead of being read as documentation
 check('Innlandet keeps interview-admitted programmes',
       any(v == 'D' for _, _, _, v in ccells('Innlandet')))

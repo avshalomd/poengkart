@@ -75,7 +75,9 @@ describe('the school sheet', () => {
     openSide(asker());
     expect(pushes).toHaveBeenCalledTimes(1);
     vi.advanceTimersByTime(100);
-    expect(document.activeElement).toBe(document.querySelector('#s-photo .close'));
+    // Lukk, not «Meld feil på denne skolen»: the bug button precedes it and shares the class
+    expect(document.activeElement).toBe(document.querySelector('#s-photo .close:not(.bug)'));
+    expect(document.activeElement!.getAttribute('onclick')).toBe('closeSide()');
     pushes.mockRestore();
     closeSide(true);
   });

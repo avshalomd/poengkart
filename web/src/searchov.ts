@@ -44,11 +44,25 @@ export function pickOv(i) {
   // panel below is reachable while the last frames of the fade play out.
   hideSheet('searchov');
   setModalTrap();
+  // The overlay left in place, so its history entry is still the current one,
+  // flagged pkSheet with no sheet open: syncUrl() then rewrote every later
+  // filter change into it instead of giving each an entry, and after a school
+  // was opened and closed it cost a Back that did nothing. Hand the entry on.
+  const held = !!(history.state || {}).pkSheet;
   if (s.county) {                          // the county row: filter, as the select would
     const sel: any = document.getElementById('map-fylke');
     if (sel) sel.value = s.county;
-    onMapFylke(s.county);
+    onMapFylke(s.county);                  // writes the county into the overlay's entry
+    if (held) try { history.replaceState(null, '', location.href); } catch (e) {}
+    const b = document.getElementById('searchov-btn');
+    (b && b.offsetParent ? b : document.getElementById('panel'))?.focus();
     return;
+  }
+  if (held) {
+    // no school underneath: the entry becomes the school's own, so the ✕ backs
+    // out to where the search began. Over an open school it is only unflagged.
+    const over = document.getElementById('side')!.classList.contains('open');
+    try { history.replaceState(over ? null : { pkSide: 1 }, '', location.href); } catch (e) {}
   }
   // a hit is a school row: everything but the county row above them
   if (s.lat && S.view === 'map' && S.map) viewSchool(s as School, Math.max(mapZoom(), 10));
@@ -61,6 +75,7 @@ export function openSearchOv() {
   q.setAttribute('aria-label', t('searchLabel'));
   document.getElementById('ov-box')!.setAttribute('aria-label', t('searchLabel'));
   document.getElementById('ov-list')!.setAttribute('aria-label', t('searchLabel'));
+  document.getElementById('ov-x')!.setAttribute('aria-label', t('close'));
   renderOvList();
   showSheet('searchov');
   setModalTrap();
