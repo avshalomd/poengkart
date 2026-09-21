@@ -18,8 +18,12 @@ Four steps, one record.
 
 Plane is the record. The routine reads only Plane and writes only Plane,
 plus a PR and a deploy when it ships and a Gmail draft when someone wrote
-in. Nothing about the loop is kept anywhere else: no local state file, no
-log line that is not also a comment on an item. Where an item came from
+in. The work items and their path across the board are the log: every
+step is a comment on the item it concerns, and every move between states
+carries its reason on that item. Nothing about the loop is kept anywhere
+else: no local state file, and no run-log or summary item in Plane (one
+existed until 21 September 2026 and was retired as a misreading of «Plane
+is the log»). Where an item came from
 never changes its path, and is preserved on every item because origin is
 the first thing to slice on when the loop is tuned later.
 
@@ -71,18 +75,28 @@ under `sources/` before it can be `class:auto`. If the document agrees
 with the sender it is a defect; if it agrees with the app, or is not on
 hand, the item is `class:decision` with both figures quoted.
 
-The owner approves a decision by moving the item to Todo. A comment on it
-is read as instructions for the fix; «PR only» stops the routine at the
-open PR. Nothing reaches the roadmap until the owner says so.
+The owner decides by answering on the item; he does not have to move it.
+A go («Implement it») is the go for the whole cycle: the routine plans,
+fixes, tests, opens the PR, merges, deploys and QAs the live site without
+stopping or coming back to ask, whatever the Mode line says. It stops
+early only where he says so in the same comment («implement it, but wait
+with the pull request», «PR only»). An answer that settles the item with
+no code (a draft «sent» or «dropped») closes it; a no cancels it. Moving
+an item to Todo by hand still works and means the same go. Nothing reaches
+the roadmap until the owner says so.
 
 Every comment the routine writes starts with one fixed line,
 `routine · <step> · <run id>`, then prose, then a short `key: value`
-block. Readable by a person, parsable by a script.
+block. Readable by a person, parsable by a script. A comment that goes
+with a state change says where the item came from, where it went and why
+(`moved: <from> → <to>`); no item changes state silently.
 
 ## 3 Work
 
-Every item in Todo takes the same steps. It makes no difference whether
-the routine put it there or the owner did.
+Every item in Todo, and every Needs decision item the owner has said go
+on, takes the same steps. The only difference is the Mode line, which
+holds `class:auto` items at the open PR during week 0 and never holds an
+item the owner approved.
 
 1. A git worktree on a branch named after the item (`feedback/POENG-<n>`).
 2. The fix, in the pipeline or the page, never in a generated file. If
@@ -93,7 +107,8 @@ the routine put it there or the owner did.
 4. A pull request whose title carries the item id and whose body links
    back to it.
 5. Merge to `main`, `vercel deploy --prod --yes`, the post-deploy checks on
-   the live site (the routine file lists them).
+   the live site (the routine file lists them), and a look at the change
+   itself where a reader meets it, phone width included.
 6. Each step is a comment on the item, with the link it produced.
 
 Limits: at most three items per run, one deploy per run. A red step stops
@@ -109,9 +124,13 @@ routine writes a reply draft in Gmail, in Norwegian, and puts the English
 beside it in a comment on the item. The routine never sends mail; every
 draft is the owner's to send or drop.
 
-Each run ends with one comment on the standing item «Feedback loop · run
-log»: items seeded by source, how they were classed, what shipped, what
-went red, and how long the run took.
+The person who wrote in is never a participant of the work item: not a
+Plane member, guest, subscriber, mention or Cc. Nothing automatic reaches
+them. They hear back only through a reply the owner sends from his own
+mailbox, when there is something worth telling them.
+
+A run as a whole leaves nothing in Plane. Its one-line result is the
+session's final message; what happened to each item is on that item.
 
 ## What Plane records
 
@@ -132,7 +151,10 @@ Questions this can answer later, from the API alone:
 
 ## Guardrails
 
-- No email is ever sent by the routine.
+- No email is ever sent by the routine, and no sender is ever attached
+  to a work item in a way that would make Plane or GitHub mail them.
+- No run-log, journal or summary item in Plane; no state change without
+  its reason on the item.
 - Plane is written in English only: the owner cannot read Norwegian. A
   Norwegian mail is quoted with its full English translation after it; a
   Norwegian reply draft is paired with its English version, English first.
@@ -160,7 +182,7 @@ ideas; the routine never reads it.
 Labels: `src:app`, `src:bug`, `src:mail`, `src:you`, `src:routine`;
 `class:auto`, `class:decision`, `class:info`; `type:tall`, `type:bilde`,
 `type:skole`, `type:feil`, `type:funksjon`, `type:annet`; `fylke:<name>`
-for all fifteen counties; `log` for the run-log item.
+for all fifteen counties.
 
 Access. Plane: the official hosted Plane MCP server, declared once in
 `.mcp.json` at the repository root (`https://mcp.plane.so/http/api-key/mcp`,
@@ -189,9 +211,10 @@ the variables named under Access plus `VERCEL_TOKEN`, `VERCEL_ORG_ID`,
 tools the cloud session already has. The same file runs locally as
 `/feedback-loop`.
 
-Week 0 is report-only: Seed, Triage and Close run, Work stops at the open
-PR. From week 1 or 2 the Mode line flips to ship, and merge and deploy
-switch on for `class:auto`.
+Week 0 is report-only for `class:auto`: Seed, Triage and Close run, and
+Work on those items stops at the open PR. From week 1 or 2 the Mode line
+flips to ship, and merge and deploy switch on for `class:auto`. Items the
+owner said go on ship from day one.
 
 ## What gets built
 
