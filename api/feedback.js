@@ -62,9 +62,10 @@ function dayFull() {
 // text/plain body is a "simple" request, so no browser asks permission first.
 // Any page in the world could have its visitors send mail here, one per
 // visitor, past a per-IP limit that never sees the same address twice.
-// The production name, and the team's own deployments (…-ad-6b15). The pattern
-// used to take any poengkart-<x>.vercel.app, a name anyone can register.
-const SELF = /^https:\/\/poengkart-(no|([a-z0-9-]+-)?ad-6b15)\.vercel\.app$/;
+// The site's three names (poengkart, poengkart-no, poengkart-ad-6b15) and the
+// team's own deployments (…-ad-6b15). The pattern used to take any
+// poengkart-<x>.vercel.app, a name anyone can register.
+const SELF = /^https:\/\/poengkart(-no|-([a-z0-9-]+-)?ad-6b15)?\.vercel\.app$/;
 const LOCAL = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 
 function limited(ip) {

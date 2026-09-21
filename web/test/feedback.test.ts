@@ -28,12 +28,12 @@ const submit = () => sendContact({ preventDefault() {} } as any);
 describe('the relay', () => {
   it('takes mail from this site and its own deployments, not from any poengkart-<x>.vercel.app', () => {
     const SELF = new RegExp(relay.match(/const SELF = \/(.+)\/;/)![1]);
-    for (const ok of ['https://poengkart-no.vercel.app', 'https://poengkart-ad-6b15.vercel.app',
+    for (const ok of ['https://poengkart.vercel.app', 'https://poengkart-no.vercel.app', 'https://poengkart-ad-6b15.vercel.app',
       'https://poengkart-k3j2h1g-ad-6b15.vercel.app', 'https://poengkart-git-side-branch-ad-6b15.vercel.app']) {
       expect(SELF.test(ok), ok).toBe(true);
     }
-    for (const bad of ['https://poengkart-evil.vercel.app', 'https://poengkart.vercel.app',
-      'https://poengkart-no.vercel.app.evil.com', 'http://poengkart-no.vercel.app']) {
+    for (const bad of ['https://poengkart-evil.vercel.app', 'https://poengkart-nox.vercel.app',
+      'https://poengkart.vercel.app.evil.com', 'http://poengkart.vercel.app']) {
       expect(SELF.test(bad), bad).toBe(false);
     }
   });
