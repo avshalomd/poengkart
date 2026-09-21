@@ -69,7 +69,7 @@ unreachable at any point: end with `<service> unreachable, run ended` and change
 else; a failure that belongs to no item is reported in that final message and nowhere in
 Plane. The next run repeats the work, because every step below is idempotent.
 
-## 1 Seed — every relevant mail thread is one Inbox item
+## 1 Seed — every relevant mail thread reaches Inbox
 
 Search the mailbox for the last 30 days with
 `(subject:"[Poengkart]" OR poengkart) -in:sent -in:draft -in:chats newer_than:30d`, minus the
@@ -85,7 +85,10 @@ For each remaining thread:
   description or a `routine · mail` comment) are added, each as a comment
   `routine · mail · <run id>` quoting the sender, date, message id and body, followed by
   the body's English translation when it is Norwegian. Not found: create one item with
-  `external_source` `gmail`, `external_id` the thread id.
+  `external_source` `gmail`, `external_id` the thread id. The thread is only the intake
+  and the dedupe key; step 2 splits it when it holds more than one issue. A new message
+  that raises a new issue on a thread already filed is commented as above and then
+  becomes its own Inbox item, the same way a split does.
 - The item: title = a one-line English summary of the mail; description = the original
   message quoted, its full English translation, then a `Source:` line with the original
   subject, the thread id and every message id filed, then for form submissions the fields
@@ -104,8 +107,29 @@ Count created, commented and skipped for the final message.
 ## 2 Triage — every Inbox item leaves Inbox with a reason on it
 
 Take at most ten Inbox items, oldest first; the rest wait for the next run. Read each in
-full (fetch the mail again with `get_message` if the description was cut). Decide the
-class with this table and nothing else:
+full (fetch the mail again with `get_message` if the description was cut).
+
+One item is one issue. An item moves across the board as a unit — one class, one state,
+one pull request, one Done — so two issues on one item means the fixed one waits for the
+undecided one. Before classing, count the issues: a thread of two form submissions, one
+mail that reports a wrong figure and asks for a feature, a sentence with two separate
+faults in it, are each more than one. Split by issue, never by message, thread or sender,
+whatever the source of the item:
+
+- The original item keeps its `external_id` and is narrowed to the first issue: a title
+  that names only that issue, and at the top of the description a line `Issue 1 of <n>`
+  linking its siblings. Its quotes, translation, `Source:` line and Facts stay whole.
+- Each further issue is a new Inbox item with the same `src:` label, `external_source`
+  `gmail` and `external_id` `<thread id>#2`, `#3`, … (look that pair up first, so a re-run
+  creates nothing twice), a title naming that issue only, and a description that opens
+  with `Issue <k> of <n>` and the sibling links, then quotes the part of the message that
+  concerns it, its English translation, and the same `Source:` line, Facts and `From:` as
+  the original, so the origin can be traced from every item.
+- Both sides get the comment `routine · split · <run id>`: what the issues are, which item
+  holds which, and why they are separate.
+
+Every item that results is triaged on its own, in this run, and counts towards the ten.
+Decide each one's class with this table and nothing else:
 
 | class | what qualifies | goes to |
 |---|---|---|
@@ -205,7 +229,11 @@ red in the same way: say exactly what is missing on each merged item, and Needs 
 
 ## 4 Close — every person who wrote in has a reply draft waiting for the owner
 
-For each item that reached Done or Needs decision this run and has a sender: `src:app` and
+For each item that reached Done or Needs decision this run and has a sender, with one reply
+per thread, not per item: when a thread was split, a single draft answers everything the
+sender raised, it is recorded on the item that keeps the thread's `external_id`, and each
+sibling's close comment points to it; the draft rule below then holds only that item in
+Needs decision, and the siblings go where their own class sends them. `src:app` and
 `src:bug` items are answered at the Reply address fact (the form's Svaradresse) and only
 that (no fact, no draft); `src:mail` items at the `From:` address. Never draft to
 `onboarding@resend.dev`; test submissions and noise get no draft. The reply is in the
@@ -244,7 +272,8 @@ edit of a generated file. No merge or deploy of a `class:auto` item in Mode repo
 stopping short of production on an item the owner said go on, unless he named the stop. No
 second deploy in a run. No push to `main`. No item picked up that is not in Inbox or Todo,
 or in Needs decision with the owner's answer as its latest comment. No run-log, journal or
-summary item in Plane, and no state change without its reason on the item. No sender made a
+summary item in Plane, and no state change without its reason on the item. No item
+holding more than one issue. No sender made a
 participant of a work item or mailed by anything but the owner's own reply. No Norwegian in
 Plane without its English translation beside it. No Norwegian reply to a sender who wrote in
 English. No item closed as Done while a draft of its reply is still unsent. No question to

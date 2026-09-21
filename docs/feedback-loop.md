@@ -32,11 +32,19 @@ the first thing to slice on when the loop is tuned later.
 Every source ends up as the same thing: one work item in Inbox with its
 origin on it. The source decides nothing after that.
 
+One item is one issue. A thread, a mail or a form submission is only how
+an issue arrived; when it carries more than one (a layout fault and a
+feature request in the same thread, as POENG-25 did), triage splits it
+into one item per issue before classing, each with the same origin and
+source line and a link to its siblings. An item moves across the board as
+a unit, so a bundled item leaves its fixed half waiting on its undecided
+half.
+
 | Source | How it gets in | Origin label |
 |---|---|---|
 | In-app feedback form | The relay behind the form (`api/feedback.js`) mails it; the mail seeder files it with the type the sender chose. | `src:app` |
 | Bug report from the app | The same form with type «Feil i appen» (error in the app) and the page snapshot attached. | `src:bug` |
-| Mail | The mail seeder runs first in every run: replies to the outreach mails, anything mentioning Poengkart. One item per thread. | `src:mail` |
+| Mail | The mail seeder runs first in every run: replies to the outreach mails, anything mentioning Poengkart. One intake per thread; triage splits it by issue. | `src:mail` |
 | The owner, through Claude Code | Said in any session; Claude files it over the Plane MCP. The Plane UI works too but is not the expected path. | `src:you` |
 | A routine | The weekly source watch or a QA sweep files what it finds. | `src:routine` |
 
@@ -155,6 +163,7 @@ Questions this can answer later, from the API alone:
   to a work item in a way that would make Plane or GitHub mail them.
 - No run-log, journal or summary item in Plane; no state change without
   its reason on the item.
+- No item holding more than one issue.
 - Plane is written in English only: the owner cannot read Norwegian. A
   Norwegian mail is quoted with its full English translation after it; a
   Norwegian reply draft is paired with its English version, English first.
