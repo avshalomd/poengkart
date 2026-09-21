@@ -89,3 +89,19 @@ describe('a county held out of the model', () => {
     expect(ak.share).toBe(1);
   });
 });
+
+describe('the programme list in English', () => {
+  it('groups the rows exactly as the Norwegian sheet does: a lone row named after its programme stands without a heading', () => {
+    loadFixtures(); initHelpers();
+    const heads = (html: string) => (html.match(/class="cat-head"/g) || []).length;
+    let solo = 0;
+    for (const s of DATA.schools) {
+      S.lang = 'no'; const no = listHtml(s, null);
+      S.lang = 'en'; const en = listHtml(s, null);
+      expect(heads(en), s.name).toBe(heads(no));
+      if (!heads(no)) solo++;
+    }
+    S.lang = 'no';
+    expect(solo).toBeGreaterThan(0);        // the case exists in the dataset
+  });
+});

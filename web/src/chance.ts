@@ -8,7 +8,7 @@ import { drawMarkers, mapZoom, viewSchool } from "./map";
 import { renderList } from "./programs";
 import { openSide, renderSide } from "./sidebar";
 import { S } from './state';
-import { bindTitleTips } from "./tips";
+import { bindTitleTips, say } from "./tips";
 import type { Program, School } from './types';
 
 export const bucketColor = b => cssVar(b === 'likely' ? '--good' : b === 'possible' ? '--dot-possible' : '--dot-unlikely');
@@ -59,7 +59,7 @@ export function toggleChoice(s, p) {
         const n = note.getBoundingClientRect(), c = card.getBoundingClientRect();
         return n.top >= c.top && n.bottom <= c.bottom + 1;
       })();
-      if (!onScreen) pickNote(S.choicesNote);
+      if (!onScreen) pickNote(S.choicesNote); else say(S.choicesNote!);
     };
     if (items.length >= 10) { refuse('vigoMaxWishes'); return; }
     if (p.level === 'Vg1') {

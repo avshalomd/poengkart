@@ -189,11 +189,51 @@ def cluster_lines(words, tol=2.0):
     return [sorted(l, key=lambda w: w['x0']) for l in lines]
 
 
-def level_bands(page, words):
+def _band_rects(page):
+    return [r for r in page.rects
+            if (r['x1'] - r['x0']) > 300 and (r['bottom'] - r['top']) > 8]
+
+
+def _fill(r):
+    c = r.get('non_stroking_color')
+    return tuple(round(x, 2) for x in c) if isinstance(c, (list, tuple)) and len(c) >= 3 else None
+
+
+def band_colours(pdf):
+    """The table fills each level's band in its own colour, the same on every
+    page. Learnt from the bands that carry a marker, so a band printed without
+    one can still be named: Sola's Vg2 block in the 2024–2026 edition has no
+    «Vg2» beside it, and its rows (Flyfag, Realfag, Dronefag …) fell back to
+    the name guess, «Vg2/Vg3», splitting three series in two."""
+    votes = {}
+    for page in pdf.pages:
+        words = page.extract_words()
+        for top, bottom, lvl, col in _marked_bands(page, words):
+            if col is not None:
+                votes.setdefault(col, {}).setdefault(lvl, 0)
+                votes[col][lvl] += 1
+    # a colour names a level only when it never names another
+    return {col: next(iter(v)) for col, v in votes.items() if len(v) == 1}
+
+
+def _marked_bands(page, words):
+    cands = _band_rects(page)
+    marks = [(w, norm(w['text'])) for w in words
+             if LEVEL_RE.match(norm(w['text'])) and w['x0'] < 130]
+    out = []
+    for w, lvl in marks:
+        cy = (w['top'] + w['bottom']) / 2
+        inside = [r for r in cands if r['top'] - 1 <= cy <= r['bottom'] + 1]
+        if inside:
+            r = min(inside, key=lambda r: r['bottom'] - r['top'])
+            out.append((r['top'], r['bottom'], lvl, _fill(r)))
+    return out
+
+
+def level_bands(page, words, colours=None):
     """Vg-level groups come from the table's own rect bands; the level marker
     word inside a band names it. Returns [(top, bottom, 'Vg1'), ...]."""
-    cands = [r for r in page.rects
-             if (r['x1'] - r['x0']) > 300 and (r['bottom'] - r['top']) > 8]
+    cands = _band_rects(page)
     marks = [(w, norm(w['text'])) for w in words
              if LEVEL_RE.match(norm(w['text'])) and w['x0'] < 130]
     bands = []
@@ -205,6 +245,11 @@ def level_bands(page, words):
             bands.append((r['top'], r['bottom'], lvl))
         else:
             bands.append((w['top'] - 6, w['bottom'] + 6, lvl))
+    # the marked bands first, then every other band by its colour
+    for r in cands:
+        lvl = (colours or {}).get(_fill(r))
+        if lvl and _fill(r) not in ((1, 1, 1), (1.0, 1.0, 1.0)):
+            bands.append((r['top'], r['bottom'], lvl))
     return bands
 
 
@@ -235,11 +280,12 @@ def parse_pdf(path, warn):
     rows = []
     with pdfplumber.open(path) as pdf:
         modal = modal_headers(pdf)
+        colours = band_colours(pdf)
         school, year_cols = None, None      # carry across pages (continuations)
         for pi, page in enumerate(pdf.pages):
             words = page.extract_words()
             lines = cluster_lines(words)
-            bands = level_bands(page, words)
+            bands = level_bands(page, words, colours)
             for line in lines:
                 texts = [norm(w['text']) for w in line]
                 joined = squash(' '.join(texts))

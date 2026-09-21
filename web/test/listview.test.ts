@@ -40,4 +40,29 @@ describe('list view', () => {
     const desc = [...document.querySelectorAll('#listview tbody tr .sc a')].map(a => a.textContent);
     expect(desc).toEqual([...asc].reverse());
   });
+
+  it('Sjanse sorts by what its cell shows: the dot’s band, then «L av n», then n', () => {
+    loadFixtures();
+    initListview();
+    S.myPoints = 40;
+    S.listSort = { key: 'value', dir: -1 };
+    sortList('chance');                    // a new column opens descending
+    // read the order back off the rendered cells alone; the test page has no
+    // stylesheet, so the three band colours are given to it here
+    const bands = ['rgb(1, 1, 1)', 'rgb(2, 2, 2)', 'rgb(3, 3, 3)'];
+    ['--dot-unlikely', '--dot-possible', '--good'].forEach((v, i) => document.documentElement.style.setProperty(v, bands[i]));
+    sortList('name'); sortList('chance');
+    const cells = [...document.querySelectorAll('#listview tbody .ch-cell')]
+      .filter(c => c.querySelector('.k'))
+      .map(c => {
+        const [l, n] = c.textContent!.match(/\d+/g)!.map(Number);
+        const bg = (c.querySelector('.k') as HTMLElement).getAttribute('style')!;
+        return [bands.findIndex(b => bg.includes(b)), l / n, n];
+      });
+    expect(cells.length).toBeGreaterThan(50);
+    const cmp = (a: number[], b: number[]) => { const i = a.findIndex((x, j) => x !== b[j]); return i < 0 ? 0 : a[i] - b[i]; };
+    for (let i = 1; i < cells.length; i++) expect(cmp(cells[i - 1], cells[i]), `row ${i}`).toBeGreaterThanOrEqual(0);
+    S.myPoints = null;
+    ['--dot-unlikely', '--dot-possible', '--good'].forEach(v => document.documentElement.style.removeProperty(v));
+  });
 });

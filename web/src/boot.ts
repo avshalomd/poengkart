@@ -87,21 +87,28 @@ export async function main() {
   // say so, in the failure screen's own place
   document.getElementById('map')!.insertAdjacentHTML('beforeend',
     `<div class="boot-fail boot-pending" aria-live="polite"><p class="big">${esc(t('bootLoading'))}</p></div>`);
-  const modelReq = fetch('/data/model.json').catch(() => null);
+  // A connection that opens and then says nothing never rejects, and «Laster
+  // kartet …» stood for as long as the tab did: no Retry for the dataset, and
+  // a stalled forecast held up a map that needs none. Each request gets a
+  // clock that covers the body as well; 110 kB takes 18 s on a 2G link.
+  const timed = <T>(url: string, ms: number, read: (r: Response) => Promise<T>) => {
+    const c = new AbortController(), timer = setTimeout(() => c.abort(), ms);
+    return fetch(url, { signal: c.signal }).then(read).finally(() => clearTimeout(timer));
+  };
+  const modelReq = timed('/data/model.json', 20000, async r => r.ok ? await r.json() : null).catch(() => null);
   try {
-    const r = await fetch('/data/schools.json');
-    if (!r.ok) throw new Error(String(r.status));
-    S.DATA = await r.json();
-    try { S.DATA_STAMP = r.headers.get('last-modified') || ''; } catch (e) {}
+    await timed('/data/schools.json', 45000, async r => {
+      if (!r.ok) throw new Error(String(r.status));
+      S.DATA = await r.json();
+      try { S.DATA_STAMP = r.headers.get('last-modified') || ''; } catch (e) {}
+    });
     performance.mark('pk:data');
   } catch (e) {
     return bootFailed('bootFailSub');
   }
-  try {
-    const rm = await modelReq;
-    if (rm && rm.ok) S.MODEL = await rm.json();
-    performance.mark('pk:model');
-  } catch (e) {}
+  const model = await modelReq;
+  if (model) S.MODEL = model;
+  performance.mark('pk:model');
   try {
     // through the same validator as the field: a stored 999 used to colour the
     // whole map on a score nobody can have

@@ -86,13 +86,34 @@ def _columns(words):
             'extra': extra}
 
 
+def _without_strays(page):
+    """The 2023/24 1. inntak file carries clipped glyphs in its text layer that
+    the printed page does not show: a lone «å» three points above the baseline,
+    inside the first word of two programme names. Read with the line, it made
+    «Båarne- og ungdomsarbeiderfag, SK» of Olsvikåsen's row and an unknown
+    «Håelsearbeiderfag» of Arna's, which was then dropped. A glyph is a stray
+    when it stands alone on its own baseline and overlaps a glyph of the line
+    just below it."""
+    chars = page.chars
+    stray = set()
+    for c in chars:
+        alone = not any(d is not c and abs(d['top'] - c['top']) < 0.5 and abs(d['x0'] - c['x0']) < 12
+                        for d in chars)
+        if alone and any(1.5 < d['top'] - c['top'] < 5 and d['x0'] < c['x1'] and c['x0'] < d['x1']
+                         for d in chars):
+            stray.add((c['x0'], c['top']))
+    if not stray:
+        return page
+    return page.filter(lambda o: o.get('object_type') != 'char' or (o['x0'], o['top']) not in stray)
+
+
 def _parse(path, warn):
     """-> {(school, program, level): value}"""
     found, level = {}, 'Vg1'
     with pdfplumber.open(path) as pdf:
         pages_parsed, cols = 0, None
         for page in pdf.pages:
-            words = page.extract_words()
+            words = _without_strays(page).extract_words()
             # the header is printed only on the first page of each Vg block;
             # carry the last-seen geometry forward or 2/3 of every file is lost
             cols = _columns(words) or cols

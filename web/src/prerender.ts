@@ -2,7 +2,7 @@
    home page today, verbatim, the site origin every absolute URL uses, and the
    school's own sheet, written into the shell from the same templates the
    client renders with. */
-import { meanStep, schoolPath, schoolTitle, shownPrograms } from './helpers';
+import { HOME_OG_TITLE, meanStep, schoolOgTitle, schoolPath, schoolTitle, shownPrograms } from './helpers';
 import { S } from './state';
 import { heroCells, heroHtml, listHtml, metaHtml, notesHtml, photoHtml, srcNoteHtml } from './templates';
 import type { Dataset, School } from './types';
@@ -24,7 +24,7 @@ export const HOME_HEAD: HeadProps = {
   title: 'Poengkart – poenggrenser for videregående skole',
   description: 'Se poenggrensene for 228 videregående skoler i ni fylker, 2012–2026. Hva krevdes for å komme inn i fjor, og hvordan har grensene endret seg? Kart, trender og tall per programområde.',
   canonical: SITE + '/',
-  ogTitle: 'Poengkart – hva krevdes for å komme inn?',
+  ogTitle: HOME_OG_TITLE,
   ogDescription: 'Poenggrensene for 228 videregående skoler i ni fylker, 2012–2026, på kart. Se hva som krevdes for å få plass, og hvordan grensene har endret seg.',
   twitterDescription: 'Poenggrensene for 228 videregående skoler i ni fylker, 2012–2026, på kart.',
   ogImage: SITE + '/og.png',
@@ -70,7 +70,7 @@ export function schoolHead(s: School, data: Dataset): HeadProps {
     title: schoolTitle(s),
     description,
     canonical: SITE + path,
-    ogTitle: `${s.name} – hva krevdes for å komme inn?`,
+    ogTitle: schoolOgTitle(s),
     ogDescription: description,
     twitterDescription: description,
     ogImage: SITE + '/og' + path + '.png',

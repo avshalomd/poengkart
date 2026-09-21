@@ -23,6 +23,28 @@ describe('the school chart', () => {
     expect(document.getElementById('chart-cat')!.hidden).toBe(true);
   });
 
+  it('the figures behind the line reach a keyboard and a screen reader: a table of every year, and arrow keys on the chart', () => {
+    loadFixtures(); initHelpers(); initListview(); stubMap();
+    const s = DATA.schools.find((x: any) => years(x).length > 5);
+    openSide(s);
+    const own = years(s), all = DATA.years.map(String);
+    const win = all.filter(y => y >= own[0] && y <= own[own.length - 1]);
+    const rows = [...document.querySelectorAll('#chart-data tbody tr')];
+    expect(rows.map(r => r.querySelector('th')!.textContent)).toEqual(win);
+    const host = document.getElementById('chart-svg')!, tip = document.getElementById('chart-tip')!;
+    expect(host.tabIndex).toBe(0);
+    const key = (k: string) => host.dispatchEvent(new KeyboardEvent('keydown', { key: k, bubbles: true, cancelable: true }));
+    key('ArrowLeft');                       // from rest: the newest year
+    expect(tip.style.display).toBe('block');
+    expect(tip.querySelector('.y')!.textContent).toBe(win[win.length - 1]);
+    // the tip and the table say the same sentence
+    expect(tip.querySelector('.r')!.textContent).toBe(rows[rows.length - 1].querySelector('td')!.textContent);
+    key('Home');
+    expect(tip.querySelector('.y')!.textContent).toBe(win[0]);
+    key('Escape');
+    expect(tip.style.display).toBe('none');
+  });
+
   it('draws the mean line over the school’s own years, one x label per year', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
     const s = DATA.schools.find((x: any) => years(x).length > 5);

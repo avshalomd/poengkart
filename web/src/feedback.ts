@@ -40,7 +40,7 @@ export function bugContext(school, from) {
     cvd: PREFS.cvd ? 'on' : 'off',
     viewport: `${innerWidth}×${innerHeight} @${devicePixelRatio}`,
     ua: navigator.userAgent,
-    data: `${S.DATA!.schools.length} skoler, ${S.DATA!.years[0]}–${S.DATA!.years[S.DATA!.years.length - 1]}`
+    data: `${S.DATA!.schools.length} ${S.lang === 'no' ? 'skoler' : 'schools'}, ${S.DATA!.years[0]}–${S.DATA!.years[S.DATA!.years.length - 1]}`
           + (S.DATA_STAMP ? `, ${S.DATA_STAMP}` : ''),
   };
   if (!school && document.getElementById('side')!.classList.contains('open')) school = S.current;
@@ -57,16 +57,23 @@ export function bugContext(school, from) {
   }
   return ctx;
 }
-export const CTX_LABELS = {
-  from: 'Fra', link: 'Lenke', view: 'Visning', fylke: 'Fylke', program: 'Utdanningsprogram',
-  points: 'Poeng', levels: 'Trinn', history: 'Historikk', choices: 'Ønsker', lang: 'Språk',
-  font: 'Tekststørrelse', theme: 'Fargetema', cvd: 'Fargeblindvennlig', viewport: 'Vindu',
-  ua: 'Nettleser', data: 'Data', school: 'Skole', chart: 'Graf', hero: 'Nøkkeltall', rows: 'Rader',
+// what the reader is shown under «Dette sendes med» follows their language; the
+// English sheet listed these in Norwegian
+export const CTX_LABELS: Record<string, { no: string; en: string }> = {
+  from: { no: 'Fra', en: 'From' }, link: { no: 'Lenke', en: 'Link' }, view: { no: 'Visning', en: 'View' },
+  fylke: { no: 'Fylke', en: 'County' }, program: { no: 'Utdanningsprogram', en: 'Education programme' },
+  points: { no: 'Poeng', en: 'Points' }, levels: { no: 'Trinn', en: 'Levels' },
+  history: { no: 'Historikk', en: 'History' }, choices: { no: 'Ønsker', en: 'Wishes' },
+  lang: { no: 'Språk', en: 'Language' }, font: { no: 'Tekststørrelse', en: 'Text size' },
+  theme: { no: 'Fargetema', en: 'Theme' }, cvd: { no: 'Fargeblindvennlig', en: 'Colour-blind friendly' },
+  viewport: { no: 'Vindu', en: 'Window' }, ua: { no: 'Nettleser', en: 'Browser' }, data: { no: 'Data', en: 'Data' },
+  school: { no: 'Skole', en: 'School' }, chart: { no: 'Graf', en: 'Chart' },
+  hero: { no: 'Nøkkeltall', en: 'Key figures' }, rows: { no: 'Rader', en: 'Rows' },
 };
 export function renderContactCtx() {
   if (!S.bugCtx) return '';
   const items = Object.entries(S.bugCtx).filter(([, v]) => v !== '' && !(Array.isArray(v) && !v.length))
-    .map(([k, v]) => `<li><b>${esc(CTX_LABELS[k] || k)}:</b> ${esc(Array.isArray(v) ? v.join(' | ') : v)}</li>`);
+    .map(([k, v]) => `<li><b>${esc(CTX_LABELS[k]?.[S.lang] || k)}:</b> ${esc(Array.isArray(v) ? v.join(' | ') : v)}</li>`);
   return `<details class="ctx"><summary>${esc(t('contactCtx'))}</summary>` +
          `<p class="hint">${esc(t('contactCtxHint'))}</p><ul>${items.join('')}</ul></details>`;
 }

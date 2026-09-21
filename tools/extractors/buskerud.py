@@ -22,6 +22,10 @@ import common  # noqa: E402
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, '..', '..', 'sources', 'buskerud')
 
+# one queue inside a shared cell: a figure, an optional «(+ tilleggspoeng)», the
+# queue's own name, the footnote asterisks
+QUEUE = re.compile(r'(\d{1,2},\d)\s*(?:\(\+ tilleggspoeng\)\s*)?([^\d*][^*]*?)\s*\**')
+
 META = {
     'code': '33', 'fylke': 'Buskerud', 'round': None, 'rights': 'ungdomsrett',
     'free_choice': False, 'levels': 'Vg1',
@@ -60,6 +64,21 @@ def extract():
                     if i >= len(head) or not head[i]:
                         continue
                     raw = common.squash(td.get_text(' ', strip=True))
+                    # One cell, several queues: «51,3 fotball / 46,5 håndball /
+                    # 35,7 bandy/hopp/turn / 39,8 langrenn/svømming***» is four
+                    # admissions, and «35,0 (+ tilleggspoeng) musikk / 39,2 … dans
+                    # / 41,1 … drama**» three. Reading the cell as one number kept
+                    # the first, so Drammen's toppidrett stood at the football
+                    # figure, the highest of four. Each queue is its own row, named
+                    # as the other counties name theirs («…, musikk», «…, dans»).
+                    queues = [QUEUE.fullmatch(part) for part in raw.split(' / ')]
+                    if len(queues) > 1 and all(queues):
+                        for m in queues:
+                            rows.append({'school': school, 'program': f'{head[i]}, {m.group(2)}',
+                                         'level': common.guess_level(head[i], 'Vg1'),
+                                         'values': {year: float(m.group(1).replace(',', '.'))},
+                                         'county': META['fylke'], 'round': META['round']})
+                        continue
                     # 2024-25 suppressed some thresholds entirely, leaving only
                     # the marker: admission there mixes skill/interview + grades
                     v = ('D' if raw in ('*', '**', '***')

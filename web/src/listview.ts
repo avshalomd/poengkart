@@ -37,6 +37,7 @@ export function deltaFor(s, cat, yr) {
   const st = meanStep(cat === 'all' ? base : base.filter(p => p.category === cat));
   return st.latest === yr ? st.d : null;
 }
+const BAND_RANK = { likely: 2, possible: 1, unlikely: 0 };
 export function sortList(key) {
   const fromHeader = !!document.activeElement?.closest?.('#listview th');
   S.listSort = S.listSort.key === key
@@ -72,6 +73,15 @@ export function renderListView() {
     if (nil(va) && nil(vb)) return a.s.name.localeCompare(b.s.name, 'no');
     if (nil(va)) return 1;
     if (nil(vb)) return -1;
+    // Sjanse sorts by what its cell shows — the dot's band, then «L av n», then
+    // n — so the order can be checked from the rows. It used to sort on the best
+    // single chance, which the cell does not print: at 40 points most of those
+    // are 0,99-something, and «4 av 4», «6 av 8», «2 av 2» came out shuffled.
+    if (k === 'chance') {
+      const key = r => [BAND_RANK[bucketOf(r.sc.best)], r.sc.likely / r.sc.n, r.sc.n];
+      const ka = key(a), kb = key(b), i = ka.findIndex((x, j) => x !== kb[j]);
+      return i < 0 ? a.s.name.localeCompare(b.s.name, 'no') : (ka[i] - kb[i]) * S.listSort.dir;
+    }
     return (va! - vb!) * S.listSort.dir || a.s.name.localeCompare(b.s.name, 'no');
   });
   // The glyph is always in the markup, invisible on the columns that are not

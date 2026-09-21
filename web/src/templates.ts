@@ -162,7 +162,10 @@ export function listHtml(s: School, scope: string | null): string {
     // twice, a heading over itself («STUDIESPESIALISERING 1» above
     // «Studiespesialisering»). That row stands alone; a rule sets it off from
     // the group above, whose last row it otherwise seemed to be.
-    const solo = list.length === 1 && progName(list[0]).toLowerCase() === CATS[c][S.lang].toLowerCase();
+    // Compared in Norwegian whatever the language: the English row carries Udir's
+    // title and the English heading the app's short form, so they never matched
+    // and the English sheet set «Sports 1» over «Sports and Physical Education».
+    const solo = list.length === 1 && list[0].program.toLowerCase() === CATS[c].no.toLowerCase();
     if (!solo) html += `<button class="cat-head" data-cat="${c}" aria-pressed="${S.mapCat === c}"><span>${CATS[c][S.lang]}</span><span class="cnt">${list.length}</span></button>`;
     for (const p of list) {
       // headline value: newest non-priority cell (F is a quota fact, not a value)

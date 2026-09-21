@@ -41,7 +41,7 @@ export const S = {
   bugCtx: null as BugContext | null,   // the snapshot, taken when a bug button was pressed
   DATA_STAMP: '',   // schools.json's Last-Modified, when the server sends one
   sheetPushPending: false,   // openSheetHistory() called while closeSide's back() is in flight
-  searchIx: null as { s: School; f: string }[] | null,
+  searchIx: null as { s: School; f: string; n: string; w: string[] }[] | null,
   ovAct: -1,
   ovHits: [] as SearchHit[],
   loc: null as { lat: number; lon: number; acc: number } | null,   // the reader's position, while shown

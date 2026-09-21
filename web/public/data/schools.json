@@ -3326,12 +3326,42 @@
      "grep": "IDRET1----"
     },
     {
-     "program": "Idrettsfag, toppidrett",
-     "program_en": "Sports and Physical Education, elite sport",
+     "program": "Idrettsfag, toppidrett, bandy/hopp/turn",
+     "program_en": "Sports and Physical Education, elite sport (bandy/hopp/turn)",
+     "level": "Vg1",
+     "category": "ID",
+     "values": {
+      "2025": 35.7
+     },
+     "grep": "IDRET1----"
+    },
+    {
+     "program": "Idrettsfag, toppidrett, fotball",
+     "program_en": "Sports and Physical Education, elite sport (fotball)",
      "level": "Vg1",
      "category": "ID",
      "values": {
       "2025": 51.3
+     },
+     "grep": "IDRET1----"
+    },
+    {
+     "program": "Idrettsfag, toppidrett, håndball",
+     "program_en": "Sports and Physical Education, elite sport (håndball)",
+     "level": "Vg1",
+     "category": "ID",
+     "values": {
+      "2025": 46.5
+     },
+     "grep": "IDRET1----"
+    },
+    {
+     "program": "Idrettsfag, toppidrett, langrenn/svømming",
+     "program_en": "Sports and Physical Education, elite sport (langrenn/svømming)",
+     "level": "Vg1",
+     "category": "ID",
+     "values": {
+      "2025": 39.8
      },
      "grep": "IDRET1----"
     },
@@ -4144,7 +4174,36 @@
      "level": "Vg1",
      "category": "MD",
      "values": {
-      "2024": "D",
+      "2024": "D"
+     },
+     "grep": "MDMDD1----"
+    },
+    {
+     "program": "Musikk, dans og drama, dans",
+     "program_en": "Music, Dance and Drama — dance",
+     "level": "Vg1",
+     "category": "MD",
+     "values": {
+      "2025": 39.2
+     },
+     "grep": "MDMDD1----"
+    },
+    {
+     "program": "Musikk, dans og drama, drama",
+     "program_en": "Music, Dance and Drama — drama",
+     "level": "Vg1",
+     "category": "MD",
+     "values": {
+      "2025": 41.1
+     },
+     "grep": "MDMDD1----"
+    },
+    {
+     "program": "Musikk, dans og drama, musikk",
+     "program_en": "Music, Dance and Drama — music",
+     "level": "Vg1",
+     "category": "MD",
+     "values": {
       "2025": 35.0
      },
      "grep": "MDMDD1----"
@@ -21108,31 +21167,6 @@
      "grep": "BATMF2----"
     },
     {
-     "program": "Realfag",
-     "program_en": "Natural Science and Mathematics Studies",
-     "level": "Vg2/Vg3",
-     "category": "ST",
-     "values": {
-      "2019": "F",
-      "2020": "F",
-      "2021": "F"
-     },
-     "grep": "STREA2----"
-    },
-    {
-     "program": "Språk, samfunn og økonomi",
-     "program_en": "Languages, Social Sciences and Economics Studies",
-     "level": "Vg2/Vg3",
-     "category": "ST",
-     "values": {
-      "2019": "F",
-      "2020": "F",
-      "2021": "F"
-     },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
-    },
-    {
      "program": "Idrettsfag",
      "program_en": "Sports and Physical Education",
      "level": "Vg3",
@@ -25760,17 +25794,6 @@
      "grep": "BATMF2----"
     },
     {
-     "program": "Påbygg yrkeskompetanse PBPBY4P1",
-     "program_en": "Supplementary Year for General University Admission, after vocational qualification (PBPBY4P1)",
-     "level": "Vg2/Vg3",
-     "category": "PB",
-     "values": {
-      "2023": "open"
-     },
-     "grep": "PBPBY3----",
-     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram"
-    },
-    {
      "program": "Idrettsfag",
      "program_en": "Sports and Physical Education",
      "level": "Vg3",
@@ -25852,6 +25875,17 @@
       "2024": "open",
       "2025": "open",
       "2026": "open"
+     },
+     "grep": "PBPBY3----",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram"
+    },
+    {
+     "program": "Påbygg yrkeskompetanse PBPBY4P1",
+     "program_en": "Supplementary Year for General University Admission, after vocational qualification (PBPBY4P1)",
+     "level": "Vg4",
+     "category": "PB",
+     "values": {
+      "2023": "open"
      },
      "grep": "PBPBY3----",
      "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram"
@@ -26269,6 +26303,30 @@
      "grep": "ELDEL2----"
     },
     {
+     "program": "Dronefag",
+     "program_en": "Drone Technology",
+     "level": "Vg2",
+     "category": "EL",
+     "values": {
+      "2023": 42.5,
+      "2024": 25.0,
+      "2025": 25.7,
+      "2026": 25.7
+     },
+     "grep": "ELDRF2----"
+    },
+    {
+     "program": "Elenergi og ekom",
+     "program_en": "Electrical Energy and Electronic Communications",
+     "level": "Vg2",
+     "category": "EL",
+     "values": {
+      "2025": 40.0,
+      "2026": 35.7
+     },
+     "grep": "ELELE2----"
+    },
+    {
      "program": "Flyfag, Landslinje",
      "program_en": "Aeronautics, national programme",
      "level": "Vg2",
@@ -26279,7 +26337,10 @@
       "2020": 42.2,
       "2021": 47.1,
       "2022": 47.1,
-      "2023": 47.1
+      "2023": 47.1,
+      "2024": 48.9,
+      "2025": 50.0,
+      "2026": 50.0
      },
      "grep": "ELFLY2----"
     },
@@ -26294,7 +26355,10 @@
       "2020": "open",
       "2021": "open",
       "2022": "open",
-      "2023": "open"
+      "2023": "open",
+      "2024": "open",
+      "2025": "open",
+      "2026": "open"
      },
      "grep": "IDIDR2----"
     },
@@ -26327,7 +26391,10 @@
       "2020": 30.0,
       "2021": 37.8,
       "2022": 21.3,
-      "2023": "open"
+      "2023": "open",
+      "2024": "open",
+      "2025": "open",
+      "2026": 22.0
      },
      "grep": "STREA2----"
     },
@@ -26342,67 +26409,6 @@
       "2020": 25.0,
       "2021": 29.0,
       "2022": 31.3,
-      "2023": 35.6
-     },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
-    },
-    {
-     "program": "Dronefag",
-     "program_en": "Drone Technology",
-     "level": "Vg2/Vg3",
-     "category": "EL",
-     "values": {
-      "2023": 42.5,
-      "2024": 25.0,
-      "2025": 25.7,
-      "2026": 25.7
-     },
-     "grep": "ELDRF2----"
-    },
-    {
-     "program": "Elenergi og ekom",
-     "program_en": "Electrical Energy and Electronic Communications",
-     "level": "Vg2/Vg3",
-     "category": "EL",
-     "values": {
-      "2025": 40.0,
-      "2026": 35.7
-     },
-     "grep": "ELELE2----"
-    },
-    {
-     "program": "Flyfag, Landslinje",
-     "program_en": "Aeronautics, national programme",
-     "level": "Vg2/Vg3",
-     "category": "EL",
-     "values": {
-      "2023": 47.1,
-      "2024": 48.9,
-      "2025": 50.0,
-      "2026": 50.0
-     },
-     "grep": "ELFLY2----"
-    },
-    {
-     "program": "Realfag",
-     "program_en": "Natural Science and Mathematics Studies",
-     "level": "Vg2/Vg3",
-     "category": "ST",
-     "values": {
-      "2023": "open",
-      "2024": "open",
-      "2025": "open",
-      "2026": 22.0
-     },
-     "grep": "STREA2----"
-    },
-    {
-     "program": "Språk, samfunn og økonomi",
-     "program_en": "Languages, Social Sciences and Economics Studies",
-     "level": "Vg2/Vg3",
-     "category": "ST",
-     "values": {
       "2023": 35.6,
       "2024": 20.0,
       "2025": "open",
@@ -29598,31 +29604,6 @@
      "grep": "BATMF2----"
     },
     {
-     "program": "Realfag",
-     "program_en": "Natural Science and Mathematics Studies",
-     "level": "Vg2/Vg3",
-     "category": "ST",
-     "values": {
-      "2023": "F",
-      "2024": "F",
-      "2025": "F"
-     },
-     "grep": "STREA2----"
-    },
-    {
-     "program": "Språk, samfunn og økonomi",
-     "program_en": "Languages, Social Sciences and Economics Studies",
-     "level": "Vg2/Vg3",
-     "category": "ST",
-     "values": {
-      "2023": "F",
-      "2024": "F",
-      "2025": "F"
-     },
-     "grep": "STSSA2----",
-     "official": "Språk, samfunnsfag og økonomi vg2"
-    },
-    {
      "program": "Idrettsfag",
      "program_en": "Sports and Physical Education",
      "level": "Vg3",
@@ -29633,7 +29614,10 @@
       "2020": "F",
       "2021": "F",
       "2022": "F",
-      "2023": "F"
+      "2023": "F",
+      "2024": "F",
+      "2025": "F",
+      "2026": "F"
      },
      "grep": "IDIDR3----"
     },
@@ -33408,6 +33392,7 @@
      "values": {
       "2021": 26.7,
       "2022": 26.3,
+      "2023": 31.3,
       "2024": 22.5,
       "2025": 23.3,
       "2026": "open"
@@ -33418,6 +33403,7 @@
       "2018": "open",
       "2019": "open",
       "2022": "open",
+      "2023": "open",
       "2024": "open",
       "2025": "open",
       "2026": "open"
@@ -40417,15 +40403,14 @@
      }
     },
     {
-     "program": "Båarne- og ungdomsarbeiderfag, SK",
+     "program": "Barne- og ungdomsarbeiderfag, SK",
      "program_en": "Child Care and Youth Work, academic track",
      "level": "Vg2",
      "category": "HS",
      "values": {
       "2023": 43.8
      },
-     "grep": "HSBUA2----",
-     "official": "Barne- og ungdomsarbeiderfag"
+     "grep": "HSBUA2----"
     },
     {
      "program": "Helsearbeiderfag",

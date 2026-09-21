@@ -6,6 +6,7 @@ import { bucketColor, bucketOf, chanceMode, pct, schoolChance } from "./chance";
 import { legendZoomHint, renderCatNote, renderLegend, renderPanel } from "./chrome";
 import { colorFor, cssVar, esc, fmt, HELD_OUT, isVg1, levelScope, progName, schoolPressure, shownPrograms, visibleCount, yearSpan, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
+import { say } from "./tips";
 import { renderListView } from "./listview";
 import { PREFS } from "./prefs";
 import { syncUrl } from './router';
@@ -612,6 +613,7 @@ export function onMapFylke(v) {
   if (S.current && !visibleSchools().includes(S.current)) closeSide(true);
   drawMarkers(); renderPanel(); renderLegend(); renderCatNote(); renderSide();
   syncUrl(true);
+  sayScope();
   // A 0×0 container has nothing to frame — the list view is only the most
   // obvious way to have no map on screen; a hidden tab or a pane still laying
   // out is another. And without WebGL there is no map at all.
@@ -638,7 +640,10 @@ export function setLens(v) {
   renderSide();
   syncUrl(true);
 }
-export function onMapCat(v) { setLens(v); }
+// the count a sighted reader gets from the note, the list's head or the map
+const sayScope = () => say(S.mapCat === 'all' ? t('scopeCount', visibleSchools().length)
+                                              : t('catNote', visibleSchools().length));
+export function onMapCat(v) { setLens(v); sayScope(); }
 // The level scope (levelScope). Everything that counts the shown set follows,
 // as it does for the history toggle; a lens with nothing left at Vg1
 // (påbygging) is relaxed rather than left pointing at an empty map, and a

@@ -32,6 +32,19 @@ describe('finding a school', () => {
     expect(runSearch('zzzzzz')).toEqual([]);
   });
 
+  it('finds a school by its register name, in either written form, whatever the word order', () => {
+    loadFixtures(); initHelpers();
+    const first = (q: string) => (runSearch(q)!.find((h: any) => h.name) as any)?.name;
+    // Akershus publishes «Asker»; the register, and every parent, says the full name
+    expect(first('Asker videregående skole')).toBe('Asker');
+    expect(first('asker vgs')).toBe('Asker');
+    expect(first('videregående asker')).toBe('Asker');
+    // Bokmål typed for a Nynorsk name
+    const nn = S.DATA!.schools.find(x => / vidaregåande skule$/.test(x.name))!;
+    expect(first(nn.name.replace('vidaregåande skule', 'videregående skole'))).toBe(nn.name);
+    expect(runSearch('asker zzz')!.filter((h: any) => h.name)).toEqual([]);
+  });
+
   it('a county name answers with one county row above the schools', () => {
     loadFixtures(); initHelpers();
     const hits = runSearch('oslo')!;

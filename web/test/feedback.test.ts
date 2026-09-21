@@ -25,6 +25,20 @@ const CTX_KEYS = (relay.match(/const CTX = \[([\s\S]*?)\];/)![1].match(/\['(\w+)
 
 const submit = () => sendContact({ preventDefault() {} } as any);
 
+describe('the relay', () => {
+  it('takes mail from this site and its own deployments, not from any poengkart-<x>.vercel.app', () => {
+    const SELF = new RegExp(relay.match(/const SELF = \/(.+)\/;/)![1]);
+    for (const ok of ['https://poengkart-no.vercel.app', 'https://poengkart-ad-6b15.vercel.app',
+      'https://poengkart-k3j2h1g-ad-6b15.vercel.app', 'https://poengkart-git-side-branch-ad-6b15.vercel.app']) {
+      expect(SELF.test(ok), ok).toBe(true);
+    }
+    for (const bad of ['https://poengkart-evil.vercel.app', 'https://poengkart.vercel.app',
+      'https://poengkart-no.vercel.app.evil.com', 'http://poengkart-no.vercel.app']) {
+      expect(SELF.test(bad), bad).toBe(false);
+    }
+  });
+});
+
 describe('the feedback form', () => {
   beforeEach(() => { S.bugCtx = null; S.contactOpener = null; S.current = null; });
   afterEach(() => { vi.unstubAllGlobals(); });
@@ -110,7 +124,7 @@ describe('the feedback form', () => {
     expect(S.bugCtx!.from).toBe('header');
     expect(S.contactOpener).toBe(btn);
     expect((document.getElementById('c-kind') as HTMLSelectElement).value).toBe('feil');
-    expect(renderContactCtx()).toContain(CTX_LABELS.view);
+    expect(renderContactCtx()).toContain(CTX_LABELS.view[S.lang]);
     closeContact(true);
     expect(S.bugCtx).toBeNull();
   });

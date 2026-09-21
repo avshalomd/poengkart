@@ -1,4 +1,4 @@
-import { chartMode, fmt, HELD_OUT, isPoints, levelScope, meanOf, numericLatest, openMix, progName, shownPrograms, visibleIn } from "./helpers";
+import { chartMode, esc, fmt, HELD_OUT, isPoints, levelScope, meanOf, numericLatest, openMix, progName, shownPrograms, visibleIn } from "./helpers";
 import { CATS, t } from "./i18n";
 import { setLens } from "./map";
 import { renderList } from "./programs";
@@ -65,6 +65,10 @@ export function drawChart() {
   const series = seriesFor(chartMode(), S.mapCat, S.chart.prog);
   document.getElementById('chart-tip')!.style.display = 'none';  // stale on redraw
   const svgHost = document.getElementById('chart-svg');
+  const dataEl = document.getElementById('chart-data');
+  if (dataEl) dataEl.innerHTML = '';
+  svgHost!.onkeydown = null;
+  svgHost!.tabIndex = -1;               // nothing to step through until a line is drawn
   if (years.length < 2) {
     document.getElementById('chart-sub')!.textContent =
       t('oneYearOnly', years[0] || '');
@@ -185,25 +189,31 @@ export function drawChart() {
   // numbers behind the school's headline chart could not be reached at all —
   // against this file's own rule that touch gets whatever hover gets. One
   // reader takes a clientX/clientY from either kind of event.
+  // one sentence per year, for the tooltip, the keyboard and the table alike
+  const bodyAt = yr => {
+    if (S.chart.prog) {
+      const v = S.chart.prog.values[yr];
+      return v === undefined ? '–'
+        : isPoints(v) ? `${fmt(v)} ${t('pts')}`
+        : v === 0 ? t('noPoints')
+        : v === 'open' ? t('allIn') : v === 'F' ? t('priority')
+        : v === 'D' ? t('docAdm') : t('gone');
+    }
+    return mid[yr] != null ? `${t('midLabel')} ${fmt(mid[yr])} · ${cnt[yr]} ${t('series', cnt[yr])}` : '–';
+  };
+  let at = -1;                          // the year the crosshair stands on
   const readAt = ev => {
     const r = svgEl!.getBoundingClientRect();
     const sx = (ev.clientX - r.left) * W / r.width;
     let bi = 0, bd = 1e9;
     years.forEach((yr, i) => { const d = Math.abs(x(i) - sx); if (d < bd) { bd = d; bi = i; } });
+    show(bi, ev);
+  };
+  const show = (bi, ev) => {
     const yr = years[bi];
+    at = bi;
     xh.setAttribute('x1', x(bi)); xh.setAttribute('x2', x(bi)); xh.setAttribute('visibility', 'visible');
-    let body;
-    if (S.chart.prog) {
-      const v = S.chart.prog.values[yr];
-      body = v === undefined ? '–'
-        : isPoints(v) ? `${fmt(v)} ${t('pts')}`
-        : v === 0 ? t('noPoints')
-        : v === 'open' ? t('allIn') : v === 'F' ? t('priority')
-        : v === 'D' ? t('docAdm') : t('gone');
-    } else {
-      body = mid[yr] != null ? `${t('midLabel')} ${fmt(mid[yr])} · ${cnt[yr]} ${t('series', cnt[yr])}` : '–';
-    }
-    tip!.innerHTML = `<span class="y">${yr}</span> <span class="r">${body}</span>`;
+    tip!.innerHTML = `<span class="y">${yr}</span> <span class="r">${bodyAt(yr)}</span>`;
     tip!.style.display = 'block';
     // In the wrap's own lengths: at Stor and Ekstra stor the sheet is zoomed, so
     // a viewport offset written as style.left was drawn 15-30% further right.
@@ -216,7 +226,27 @@ export function drawChart() {
     tip!.style.left = px + 'px';
     tip!.style.top = ((ev.clientY - wrap.top) / z - 34) + 'px';
   };
-  const clear = () => { tip!.style.display = 'none'; xh.setAttribute('visibility', 'hidden'); };
+  const clear = () => { tip!.style.display = 'none'; xh.setAttribute('visibility', 'hidden'); at = -1; };
+  // The keyboard walks the same crosshair: ← → a year at a time, Home and End
+  // to the ends, Escape to put it away. The host is rebuilt on every redraw,
+  // so the handler is assigned, not added.
+  const [colYear, colFig] = t('chartDataCols');
+  document.getElementById('chart-keys')!.textContent = t('chartKeys');
+  if (dataEl) dataEl.innerHTML = `<caption>${esc(t('chartData'))}</caption>` +
+    `<thead><tr><th scope="col">${esc(colYear)}</th><th scope="col">${esc(colFig)}</th></tr></thead><tbody>` +
+    years.map(yr => `<tr><th scope="row">${yr}</th><td>${esc(bodyAt(yr))}</td></tr>`).join('') + `</tbody>`;
+  svgHost!.tabIndex = 0;
+  svgHost!.onkeydown = ev => {
+    if (ev.key === 'Escape' && at >= 0) { clear(); ev.stopPropagation(); return; }
+    const to = ev.key === 'ArrowRight' ? Math.min(years.length - 1, at + 1)
+      : ev.key === 'ArrowLeft' ? (at < 0 ? years.length - 1 : Math.max(0, at - 1))
+      : ev.key === 'Home' ? 0 : ev.key === 'End' ? years.length - 1 : -1;
+    if (to < 0) return;
+    ev.preventDefault();
+    const r = svgEl!.getBoundingClientRect();
+    show(to, { clientX: r.left + x(to) * r.width / W, clientY: r.top + r.height * .45 });
+  };
+  svgHost!.onblur = clear;
   svgEl!.addEventListener('mousemove', readAt);
   svgEl!.addEventListener('mouseleave', clear);
   // preventDefault keeps the drag from scrolling the panel while a finger is

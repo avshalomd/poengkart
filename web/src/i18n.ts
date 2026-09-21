@@ -109,7 +109,10 @@ export const T = {
   listColValTip: { no: 'Snittgrense, siste publiserte år',
                    en: 'Average threshold, latest published year' },
   listColDelta:  { no: 'Endring', en: 'Change' },
-  listColDeltaTip: { no: 'Endring fra året før', en: 'Change from the prior year' },
+  // «året før» was untrue for a school that skipped a year: the step is from
+  // the previous year it published, the same one the sheet names
+  listColDeltaTip: { no: 'Endring fra forrige publiserte år',
+                     en: 'Change from the previous published year' },
   listColChance: { no: 'Sjanse', en: 'Chance' },
   // ys: the intake years the rows forecast, «2026 eller 2027» over the whole country
   listColChanceTip: { no: (x, ys) => `Sjanse for plass med ${x} poeng ved inntaket ${ys}`,
@@ -247,6 +250,7 @@ export const T = {
                 en: 'The map mixes counties with different intakes – those numbers are not directly comparable.' },
   catLabel:   { no: 'Utdanningsprogram', en: 'Education programme' },
   allCats:    { no: 'Alle utdanningsprogram', en: 'All education programmes' },
+  scopeCount: { no: n => `${n} ${n === 1 ? 'skole' : 'skoler'}`, en: n => `${n} ${n === 1 ? 'school' : 'schools'}` },
   catNote:    { no: n => `${n} ${n === 1 ? 'skole' : 'skoler'} tilbyr dette`, en: n => `${n} ${n === 1 ? 'school offers' : 'schools offer'} this` },
   legendAll:  { no: 'Snittgrense (siste år)', en: 'Average threshold (latest year)' },
   legendSize: { no: 'Størrelsen viser hvor stor andel av programområdene som ble fylt opp',
@@ -428,6 +432,9 @@ export const T = {
                    en: 'A vigo application has room for ten wishes – your list is full.' },
   vigoMaxProgs: { no: 'Til Vg1 kan du søke på inntil tre ulike utdanningsprogram.',
                   en: 'For Vg1 you can apply to at most three different education programmes.' },
+  chartKeys:  { no: 'Bruk piltastene for å se tallene år for år.', en: 'Use the arrow keys to read the figures year by year.' },
+  chartData:  { no: 'Tall år for år', en: 'Figures year by year' },
+  chartDataCols: { no: ['År', 'Tall'], en: ['Year', 'Figure'] },
   midLabel:   { no: 'snitt', en: 'avg' },
   series:     { no: n => n === 1 ? 'programområde' : 'programområder', en: n => n === 1 ? 'programme area' : 'programme areas' },
   website:    { no: 'Nettside', en: 'Website' },

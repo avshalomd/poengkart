@@ -6,7 +6,7 @@ import { CATS, t } from "./i18n";
 import { buildMiniMap, dropMiniMap, drawMarkers, fitVisible, hideMapTip, onceSettled, panSchoolInside, prefersStill,
          resizeMap, setLens } from "./map";
 import { renderList } from "./programs";
-import { docTitle, queryParts, schoolUrl, setUrlSchool, syncUrl } from './router';
+import { queryParts, schoolUrl, setDocHead, setUrlSchool, syncUrl } from './router';
 import { S } from './state';
 import { heroHtml, metaHtml, notesHtml, photoHtml, srcNoteHtml } from "./templates";
 import { bindTitleTips } from "./tips";
@@ -161,10 +161,10 @@ export function openSide(s, landing?: boolean) {
   // page (it used to take two — the first only closed the sheet), and the
   // entry is flagged so the ✕ closes in place instead of backing out of it.
   if (landing) {
-    document.title = docTitle(s);
+    setDocHead(s);
     try { history.replaceState({ pkSide: 1, pkLanding: 1 }, '', schoolUrl(s)); } catch (e) {}
   } else if (!(history.state || {}).pkSide) {
-    document.title = docTitle(s);        // the branch that does not go through setUrlSchool
+    setDocHead(s);                       // the branch that does not go through setUrlSchool
     try { history.pushState({ pkSide: 1 }, '', schoolUrl(s)); } catch (e) {}
   } else {
     setUrlSchool(s);

@@ -127,7 +127,11 @@
         <div id="chart-sub"></div>
         <div id="chart-wrap">
           <div id="chart-tip"></div>
-          <div id="chart-svg" role="img" aria-labelledby="chart-sub"></div>
+          <!-- the figures behind the line reached a mouse or a finger only:
+               the arrow keys step through the years, and the table says them -->
+          <div id="chart-svg" role="img" aria-labelledby="chart-sub" aria-describedby="chart-keys" tabindex="0"></div>
+          <span id="chart-keys" hidden></span>
+          <table id="chart-data" class="vh"></table>
         </div>
       </div>
       <div id="s-list"></div>
@@ -223,5 +227,7 @@
 </div>
 
 <div id="toast" hidden role="status"></div>
+<!-- what a filter did, for a reader who cannot see the map redraw (say()) -->
+<div id="sr-status" class="vh" role="status"></div>
 
 

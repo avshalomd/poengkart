@@ -1,6 +1,18 @@
 import { esc } from "./helpers";
 import { t } from "./i18n";
 
+// A filter redraws the map, the note under the select and the list's count, and
+// none of it was said: a screen-reader user chose «Idrettsfag» and heard the
+// select's new value, nothing of the 76 schools it left. One polite region,
+// written after the redraw; the text is cleared first so the same sentence
+// twice (two counties with 25 schools) is still read twice.
+export function say(msg: string) {
+  const el = document.getElementById('sr-status');
+  if (!el) return;
+  el.textContent = '';
+  setTimeout(() => { el.textContent = msg; }, 50);
+}
+
 /* ================= tooltips =================
    "Vg1" is second nature inside the school system and opaque outside it, which
    covers most of the people this map is for. Hover explains it on a pointer;

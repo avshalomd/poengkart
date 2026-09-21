@@ -7,7 +7,7 @@
    pkSheet: an overlay sheet's entry) are unchanged — the sheets' close paths
    still history.back() onto them. */
 import { S } from './state';
-import { slug, schoolPath, schoolTitle } from './helpers';
+import { HOME_OG_TITLE, slug, schoolOgTitle, schoolPath, schoolTitle } from './helpers';
 import { t } from './i18n';
 import type { School } from './types';
 
@@ -61,8 +61,21 @@ export const schoolUrl = (s: School) => buildUrl(s);
 // openSide's first push writes it too: that branch pushes the address itself
 // and never reaches setUrlSchool.
 export const docTitle = (s: School | null) => s ? schoolTitle(s) : t('pageTitle');
-export function setUrlSchool(s: School | null) {
+// Chrome on Android shares the canonical, not the address bar, and the head was
+// written once by the build: a school opened from the map went out as the home
+// page, and a school's page closed to the map kept naming the school. The
+// 404 page names no canonical and keeps none.
+export function setDocHead(s: School | null) {
   document.title = docTitle(s);
+  const link = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  if (!link) return;
+  const url = new URL(s ? schoolPath(s) : '/', link.href).href;
+  link.href = url;
+  document.querySelector('meta[property="og:url"]')?.setAttribute('content', url);
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content', s ? schoolOgTitle(s) : HOME_OG_TITLE);
+}
+export function setUrlSchool(s: School | null) {
+  setDocHead(s);
   try { history.replaceState(history.state, '', buildUrl(s)); } catch (e) {}
 }
 // A filter change is a place you can come back to, so it gets its own history

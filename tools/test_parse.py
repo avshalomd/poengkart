@@ -337,6 +337,29 @@ check('a row printed before its school name across a page break goes to that sch
       _idr.get('Øvrebyen') == 41.9 and _idr.get('Hadeland') == 49.1,
       f"Øvrebyen {_idr.get('Øvrebyen')}, Hadeland {_idr.get('Hadeland')}")
 
+# QA 21 Sept 2026, second round. Buskerud prints several queues in one cell
+# («51,3 fotball / 46,5 håndball / …»): one row per queue, not the first figure.
+_bus = {(n, p['program']): v for n, p, y, v in ccells('Buskerud') if y == '2025'}
+check('a Buskerud cell holding several queues becomes one row per queue',
+      _bus.get(('Drammen', 'Idrettsfag, toppidrett, håndball')) == 46.5
+      and _bus.get(('Drammen', 'Idrettsfag, toppidrett, fotball')) == 51.3
+      and _bus.get(('St.Hallvard', 'Musikk, dans og drama, drama')) == 41.1
+      and ('Drammen', 'Idrettsfag, toppidrett') not in _bus,
+      str({k: v for k, v in _bus.items() if 'topp' in k[1] or 'drama' in k[1].lower()}))
+# Rogaland 2024–2026 prints Sola's Vg2 band without its «Vg2» marker: the band's
+# colour names it, or its rows fall back to the name guess and split their series
+_guessed = sorted({(n, p['program']) for n, p, y, v in ccells('Rogaland')
+                   if p['level'] == 'Vg2/Vg3' and not p['program'].startswith('Vg 4')})
+check('no Rogaland row sits at a guessed «Vg2/Vg3» level', not _guessed, str(_guessed[:6]))
+check('Sola Dronefag is a Vg2 series',
+      any(p['level'] == 'Vg2' and y == '2026' for n, p, y, v in ccells('Rogaland')
+          if n.startswith('Sola') and p['program'] == 'Dronefag'))
+# Vestland 2023/24 1. inntak: clipped «å» glyphs in the text layer, inside two names
+check('a stray glyph in the text layer does not reach a programme name',
+      not any('Båarne' in p['program'] for n, p, y, v in ccells('Vestland'))
+      and any(v == 31.3 for n, p, y, v in ccells('Vestland')
+              if n.startswith('Arna') and p['program'] == 'Helsearbeiderfag' and p['level'] == 'Vg2' and y == '2023'))
+
 # Innlandet: "Intervju" was dropped instead of being read as documentation
 check('Innlandet keeps interview-admitted programmes',
       any(v == 'D' for _, _, _, v in ccells('Innlandet')))

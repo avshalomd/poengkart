@@ -96,6 +96,12 @@ export function liftMapControls() {
     // the locate and zoom buttons. 12 gap + the panel's own top.
     if (cr.height) gap = Math.max(gap, lift + cr.height + 12 + panelTop);
   }
+  // A phone's keyboard takes half the window and the reserve stays 267px: at
+  // 320×568 the card was capped to 21px around the very field being typed in.
+  // Below the height where card, controls and legend all fit, the card keeps
+  // 180px (the folded card with its note) and lies over the controls until the
+  // keyboard goes; the resize that follows measures again.
+  gap = Math.min(gap, Math.max(panelTop + 8, innerHeight - 180));
   // The panel spends that reserve inside its own `zoom`, where a px length is
   // multiplied by the zoom before it is painted, so `calc(100dvh - gap)` gave a
   // panel a third too tall at the largest text step. Divide the budget by the

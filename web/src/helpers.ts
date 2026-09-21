@@ -20,6 +20,9 @@ export const schoolPath = (s: { fylke: string; name: string }) => '/' + slug(s.f
 // for as long as the sheet is open (router.ts, lang.ts). Norwegian in both
 // languages: it is the site's name and the county's own word for the figures.
 export const schoolTitle = (s: School) => `${s.name} – poenggrenser | Poengkart`;
+// the share card's title, prerendered and kept in step as sheets open and close
+export const HOME_OG_TITLE = 'Poengkart – hva krevdes for å komme inn?';
+export const schoolOgTitle = (s: School) => `${s.name} – hva krevdes for å komme inn?`;
 
 /* ================= state & helpers ================= */
 export const BINS = [

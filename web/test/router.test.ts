@@ -53,6 +53,23 @@ describe('the address', () => {
     setUrlSchool(null);
     expect(document.title).toBe(t('pageTitle'));
   });
+  it('the share head follows the sheet: canonical, og:url and og:title name the open school, then the home page', () => {
+    document.head.insertAdjacentHTML('beforeend',
+      '<link rel="canonical" href="https://poengkart-no.vercel.app/">' +
+      '<meta property="og:url" content="https://poengkart-no.vercel.app/">' +
+      '<meta property="og:title" content="Poengkart – hva krevdes for å komme inn?">');
+    const head = () => [document.querySelector<HTMLLinkElement>('link[rel="canonical"]')!.href,
+      document.querySelector('meta[property="og:url"]')!.getAttribute('content'),
+      document.querySelector('meta[property="og:title"]')!.getAttribute('content')];
+    S.mapCat = 'ST';                       // a filter is not part of the canonical
+    setUrlSchool(asker());
+    const h = schoolHead(asker(), DATA);
+    expect(head()).toEqual([h.canonical, h.canonical, h.ogTitle]);
+    setUrlSchool(null);
+    expect(head()).toEqual(['https://poengkart-no.vercel.app/', 'https://poengkart-no.vercel.app/',
+      'Poengkart – hva krevdes for å komme inn?']);
+    document.head.querySelectorAll('link[rel="canonical"], meta[property^="og:"]').forEach(e => e.remove());
+  });
   it('syncUrl writes the current state', () => {
     S.current = asker(); S.mapCat = 'ST';
     syncUrl();

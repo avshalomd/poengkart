@@ -461,6 +461,14 @@
     #listview table.has-chance:not(.by-delta) .col-delta,
     #listview table.has-chance:not(.by-delta) td.dl { display: none; }
   }
+  /* On a 320px phone the three columns left still wanted 289px of the card's
+     266: «videregående», the «Snitt» header and «sannsynlig» are each one
+     unbreakable word. The cells close up and the table takes 8px of the
+     card's padding on each side. */
+  @media (max-width: 340px) {
+    #listview .tblwrap { margin-inline: -8px; }
+    #listview td, #listview th button { padding-left: 4px; padding-right: 4px; }
+  }
   /* What is left can still overflow — a long school name, a wide chance phrase —
      and an overlay scrollbar is invisible at rest, so nothing said the table
      moved sideways at all. These shadows appear only on the side that has more
@@ -1460,6 +1468,12 @@
     #cat-note { margin-top: 0; min-height: 0; }
     #cat-note:empty { display: none; }
     .field + .field, #pts-field { margin-top: 0; }
+    /* the note stands between the programme select and the points field in
+       the markup; spanning the grid there it ended the fields' row after two,
+       and choosing a programme sent the points field to a row of its own, 24px
+       under the card's fold again. It follows the three fields instead. */
+    body:not(.view-list) #panel #cat-note { order: 1; }
+    body:not(.view-list) #panel #choices { order: 2; }
   }
   /* ---------- the List view's control card ----------
      Above the table the card is three rows, each filled edge to edge: the
