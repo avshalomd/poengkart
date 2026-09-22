@@ -268,7 +268,7 @@ export function renderSide() {
     pimg.onerror = () => {
       if (!pimg.isConnected) return;                       // the panel has moved on
       if (pimg.dataset.full && pimg.src !== pimg.dataset.full) { pimg.src = pimg.dataset.full; return; }
-      // both the proxy and the county URL are gone (St.Hallvard, Os): the header
+      // both the proxy and the county URL are gone (St. Hallvard, Os): the header
       // used to keep a broken-image glyph and a credit for a photo that is not there
       pimg.onerror = null; pimg.remove(); ph!.querySelector('.credit')?.remove();
       if (s.lat && !ph!.querySelector('#s-minimap')) { ph!.insertAdjacentHTML('afterbegin', '<div id="s-minimap"></div>'); buildMiniMap(s); }

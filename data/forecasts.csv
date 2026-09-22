@@ -210,11 +210,11 @@ Buskerud,Ringerike,"Idrettsfag, toppidrett",0,Vg1,ID,2026,,40.8,5.8,0.858,1,0
 Buskerud,Ringerike,"Musikk, dans og drama",0,Vg1,MD,2026,,19.7,6.8,0.813,1,0
 Buskerud,Ringerike,"Salg, service og reiseliv",0,Vg1,SR,2026,,31.3,5.6,0.902,2,0
 Buskerud,Ringerike,Studiespesialisering,0,Vg1,ST,2026,,36.0,6.1,0.64,1,0
-Buskerud,St.Hallvard,Idrettsfag,0,Vg1,ID,2026,,41.1,5.4,0.949,2,0
-Buskerud,St.Hallvard,"Musikk, dans og drama, dans",0,Vg1,MD,2026,,38.4,6.1,0.918,1,0
-Buskerud,St.Hallvard,"Musikk, dans og drama, drama",0,Vg1,MD,2026,,39.0,6.1,0.906,1,0
-Buskerud,St.Hallvard,"Musikk, dans og drama, musikk",0,Vg1,MD,2026,,36.4,6.1,0.926,1,0
-Buskerud,St.Hallvard,Studiespesialisering,0,Vg1,ST,2026,,37.7,5.6,0.903,2,0
+Buskerud,St. Hallvard,Idrettsfag,0,Vg1,ID,2026,,41.1,5.4,0.949,2,0
+Buskerud,St. Hallvard,"Musikk, dans og drama, dans",0,Vg1,MD,2026,,38.4,6.1,0.918,1,0
+Buskerud,St. Hallvard,"Musikk, dans og drama, drama",0,Vg1,MD,2026,,39.0,6.1,0.906,1,0
+Buskerud,St. Hallvard,"Musikk, dans og drama, musikk",0,Vg1,MD,2026,,36.4,6.1,0.926,1,0
+Buskerud,St. Hallvard,Studiespesialisering,0,Vg1,ST,2026,,37.7,5.6,0.903,2,0
 Buskerud,Ål,Bygg- og anleggsteknikk,0,Vg1,BA,2026,,24.1,6.8,0.64,1,0
 Buskerud,Ål,Elektro og datateknologi,0,Vg1,EL,2026,,29.6,5.6,0.893,2,0
 Buskerud,Ål,Helse- og oppvekstfag,0,Vg1,HS,2026,,28.3,5.6,0.798,2,0
@@ -1003,14 +1003,14 @@ Rogaland,Sola videregående skole,Idrettsfag,1,Vg2,ID,2027,2,29.0,7.3,0.259,0,0
 Rogaland,Sola videregående skole,Industriteknologi,0,Vg2,TP,2027,2,29.0,4.9,0.71,6,0
 Rogaland,Sola videregående skole,Realfag,0,Vg2,ST,2027,2,28.6,4.9,0.598,5,0
 Rogaland,Sola videregående skole,"Språk, samfunn og økonomi",0,Vg2,ST,2027,2,27.2,4.9,0.732,7,0
-Rogaland,St.Olav videregående skole,Studiespesialisering,0,Vg1,ST,2027,2,42.4,4.7,0.865,8,0
-Rogaland,St.Olav videregående skole,Realfag,0,Vg2,ST,2027,2,39.0,4.9,0.903,9,0
-Rogaland,St.Olav videregående skole,"Språk, samfunn og økonomi",0,Vg2,ST,2027,2,39.4,4.9,0.918,9,0
-Rogaland,St.Svithun videregående skole,Idrettsfag,0,Vg1,ID,2027,2,43.0,4.7,0.942,9,0
-Rogaland,St.Svithun videregående skole,Studiespesialisering,0,Vg1,ST,2027,2,42.2,4.7,0.907,9,0
-Rogaland,St.Svithun videregående skole,Idrettsfag,1,Vg2,ID,2027,2,34.2,4.9,0.733,6,0
-Rogaland,St.Svithun videregående skole,Realfag,0,Vg2,ST,2027,2,38.8,4.9,0.764,7,0
-Rogaland,St.Svithun videregående skole,"Språk, samfunn og økonomi",0,Vg2,ST,2027,2,34.3,4.9,0.878,8,0
+Rogaland,St. Olav videregående skole,Studiespesialisering,0,Vg1,ST,2027,2,42.4,4.7,0.865,8,0
+Rogaland,St. Olav videregående skole,Realfag,0,Vg2,ST,2027,2,39.0,4.9,0.903,9,0
+Rogaland,St. Olav videregående skole,"Språk, samfunn og økonomi",0,Vg2,ST,2027,2,39.4,4.9,0.918,9,0
+Rogaland,St. Svithun videregående skole,Idrettsfag,0,Vg1,ID,2027,2,43.0,4.7,0.942,9,0
+Rogaland,St. Svithun videregående skole,Studiespesialisering,0,Vg1,ST,2027,2,42.2,4.7,0.907,9,0
+Rogaland,St. Svithun videregående skole,Idrettsfag,1,Vg2,ID,2027,2,34.2,4.9,0.733,6,0
+Rogaland,St. Svithun videregående skole,Realfag,0,Vg2,ST,2027,2,38.8,4.9,0.764,7,0
+Rogaland,St. Svithun videregående skole,"Språk, samfunn og økonomi",0,Vg2,ST,2027,2,34.3,4.9,0.878,8,0
 Rogaland,Stavanger Katedralskole,Dans,0,Vg1,MD,2027,2,41.3,4.7,0.888,9,0
 Rogaland,Stavanger Katedralskole,Drama,0,Vg1,MD,2027,2,37.9,4.9,0.792,8,0
 Rogaland,Stavanger Katedralskole,Musikk,0,Vg1,MD,2027,2,45.6,3.1,0.853,8,0

@@ -167,7 +167,7 @@ def main():
     for mod in mods:
         for sname, years in (mod.META.get('uncertain') or {}).items():
             for s in out['schools']:
-                if s['name'] == sname and s['fylke'] == mod.META['fylke']:
+                if s['name'] == common.school_name(sname) and s['fylke'] == mod.META['fylke']:
                     s['uncertain_years'] = years
 
     # ...and any year two publications disagree about by close to a whole grade
@@ -208,9 +208,13 @@ def main():
             c['round_years'] = odd
 
     if os.path.exists(OUT):                      # keep enrichment across re-runs
-        old = {(s.get('fylke'), s['name']): s for s in json.load(open(OUT))['schools']}
+        # keyed by the published spelling, so a school respelled by
+        # common.school_name() keeps its photo, links and register name
+        old = {(s.get('fylke'), common.school_name(s['name'])): s
+               for s in json.load(open(OUT))['schools']}
         for s in out['schools']:
-            prev = old.get((s['fylke'], s['name'])) or old.get((None, s['name'])) or {}
+            prev = (old.get((s['fylke'], s['name']))
+                    or old.get((None, common.school_name(s['name']))) or {})
             for k in KEEP:
                 if k in prev:
                     s[k] = prev[k]

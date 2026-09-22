@@ -209,12 +209,12 @@ After the items, only if a PR merged, and at most once per run: on the merged `m
 `vercel deploy --prod --yes`, then these checks, each of which must hold:
 
 ```
-curl -sI https://poengkart-no.vercel.app | head -2                                        # HTTP/2 200
-curl -s https://poengkart-no.vercel.app/data/schools.json | head -c 60                     # JSON, not HTML
-curl -sI https://poengkart-no.vercel.app/akershus/asker | head -1                          # 200
-curl -sI https://poengkart-no.vercel.app/sitemap.xml | head -1                             # 200
-curl -sI https://poengkart-no.vercel.app/og/akershus/asker.png | grep -iE '^(HTTP|content-type)'   # 200, image/png
-curl -s -o /dev/null -w '%{http_code}\n' https://poengkart-no.vercel.app/akershus/finnes-ikke      # 404
+curl -sI https://poengkart.vercel.app | head -2                                        # HTTP/2 200
+curl -s https://poengkart.vercel.app/data/schools.json | head -c 60                     # JSON, not HTML
+curl -sI https://poengkart.vercel.app/akershus/asker | head -1                          # 200
+curl -sI https://poengkart.vercel.app/sitemap.xml | head -1                             # 200
+curl -sI https://poengkart.vercel.app/og/akershus/asker.png | grep -iE '^(HTTP|content-type)'   # 200, image/png
+curl -s -o /dev/null -w '%{http_code}\n' https://poengkart.vercel.app/akershus/finnes-ikke      # 404
 vercel ls                                                                                  # a fresh Production row
 ```
 

@@ -1,7 +1,7 @@
 export { BANDS, ZQ_GRID, errCdf, chanceOf, bucketOf, pct, pctS, chanceMode, modelEntry, predFor, schoolChance, finalRoundBridge, chanceFinal, okChoice, progKeyMap, isChosen } from './forecast';
 import { renderLegend } from "./chrome";
 import { bucketOf, chanceMode, chanceOf, okChoice, pct, pctS, predFor, progKeyMap } from "./forecast";
-import { cssVar, esc, fmt, progName, X_ICON } from "./helpers";
+import { cssVar, esc, fmt, progName, slug, X_ICON } from "./helpers";
 import { t } from "./i18n";
 import { toast } from "./locate";
 import { drawMarkers, mapZoom, viewSchool } from "./map";
@@ -92,7 +92,13 @@ export function refocus(...cands) {
 export type Wish = { s: School; p: Program };
 export function resolveChoice(c) {
   if (!okChoice(c) || !S.DATA) return null;
-  const s = S.DATA.schools.find(x => x.fylke === c.f && x.name === c.s);
+  // A school respelled without moving its address («St.Olav» became «St. Olav»,
+  // 22 Sept 2026) is the same school: find it by its slug and re-key the wish.
+  let s = S.DATA.schools.find(x => x.fylke === c.f && x.name === c.s);
+  if (!s) {
+    s = S.DATA.schools.find(x => x.fylke === c.f && slug(x.name) === slug(c.s));
+    if (s) c.s = s.name;
+  }
   if (!s) return null;
   const km = progKeyMap(s);
   let p = s.programs.find(q => km.get(q) === c.k);

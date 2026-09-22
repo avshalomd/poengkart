@@ -27,6 +27,8 @@ import time
 import urllib.parse
 import urllib.request
 
+import common
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
 AUTO = os.path.join(HERE, 'photos-auto.json')
@@ -37,7 +39,7 @@ REJECTED = os.path.join(HERE, 'photos-rejected.json')
 # position: CSS object-position when the subject is not centred
 OVERRIDES = {
     # --- wrong school entirely (name collision with another county) -------
-    'St.Olav videregående skole': {
+    'St. Olav videregående skole': {
         'wiki_url': 'https://no.wikipedia.org/wiki/St._Olav_videreg%C3%A5ende_skole_(Stavanger)',
         'wiki_extract': ('St. Olav videregående skole er en videregående skole i '
                          'Stavanger, og er den største videregående skolen i '
@@ -144,7 +146,7 @@ OVERRIDES = {
         'credit': 'Foto: Skeisvang vgs / Rogaland fylkeskommune',
         'license': '© Rogaland fylkeskommune',
     },
-    'St.Svithun videregående skole': {
+    'St. Svithun videregående skole': {
         # the full frame has identifiable pupils along the bottom; the header
         # crop shows only the top third, so anchor it there and never centre it
         'photo': ('https://www.svithun.vgs.no/handlers/bv.ashx/'
@@ -342,7 +344,9 @@ def load_auto():
     # checks the list when it proposes candidates, which is too early to help
     # anything already accepted, so the list is enforced here as well — where
     # it decides what actually gets published.
-    return {name: {k: v for k, v in e.items() if k != 'source'}
+    # keyed by the spelling the entry was accepted under; common.school_name()
+    # may have respelled the school since («St.Hallvard» → «St. Hallvard»)
+    return {common.school_name(name): {k: v for k, v in e.items() if k != 'source'}
             for name, e in raw.items() if e.get('photo') not in REJECTED_URLS}
 
 

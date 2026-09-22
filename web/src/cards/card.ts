@@ -109,7 +109,7 @@ export function cardTree(s: School): Node {
       ]),
       ...(line ? [el('img', { width: 480, height: 200, flexShrink: 0 }, undefined, { src: line, width: 480, height: 200 })] : []),
     ]),
-    el('div', { display: 'flex', fontSize: 22, color: MUTED, marginTop: 28 }, 'poengkart-no.vercel.app'),
+    el('div', { display: 'flex', fontSize: 22, color: MUTED, marginTop: 28 }, 'poengkart.vercel.app'),
   ]);
 }
 

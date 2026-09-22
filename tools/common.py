@@ -32,6 +32,17 @@ def squash(s):
     return re.sub(r'\s+', ' ', norm(s)).strip()
 
 
+def school_name(name):
+    """The name we publish for a school the source prints.
+
+    Buskerud and Rogaland print «St.Hallvard», «St.Olav», «St.Svithun»; the
+    schools, the counties' own prose and the register write the abbreviation
+    with a space («St. Olav vgs»), as Norwegian does. The slug is the same
+    either way, so no address moves.
+    """
+    return re.sub(r'\bSt\.(?=[A-ZÆØÅ])', 'St. ', squash(name))
+
+
 # --- cell semantics -----------------------------------------------------
 # every spelling seen across counties, including the counties' own typos
 OPEN_TOKENS = ('ingen vente', 'ingen ventelis', 'ledige', 'alle søkere', 'alle sokere',
@@ -384,6 +395,7 @@ def merge_rows(rows_newest_first):
     for source, rows in rows_newest_first:
         occ_seen = {}
         for r in rows:
+            r['school'] = school_name(r['school'])
             printed = r['program']
             r['program'] = series_name(printed, r['level'])
             former = ({printed.lower(), *r.get('was', ()), *getattr(printed, 'was', ())}

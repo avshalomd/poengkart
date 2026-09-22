@@ -304,14 +304,14 @@ page = f"""<!DOCTYPE html>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="canonical" href="https://poengkart-no.vercel.app/report">
+<link rel="canonical" href="https://poengkart.vercel.app/report">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Poengkart">
 <meta property="og:locale" content="en_GB">
-<meta property="og:url" content="https://poengkart-no.vercel.app/report">
+<meta property="og:url" content="https://poengkart.vercel.app/report">
 <meta property="og:title" content="{esc_attr(title)}">
 <meta property="og:description" content="{esc_attr(og_description)}">
-<meta property="og:image" content="https://poengkart-no.vercel.app/og.png">
+<meta property="og:image" content="https://poengkart.vercel.app/og.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -319,7 +319,7 @@ page = f"""<!DOCTYPE html>
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc_attr(title)}">
 <meta name="twitter:description" content="{esc_attr(og_description)}">
-<meta name="twitter:image" content="https://poengkart-no.vercel.app/og.png">
+<meta name="twitter:image" content="https://poengkart.vercel.app/og.png">
 <!-- cookieless page counts; a no-op until Web Analytics is enabled on the Vercel project -->
 <script defer src="/_vercel/insights/script.js"></script>
 <style>{CSS}</style>

@@ -142,6 +142,11 @@ import subprocess
 try:
     prev = json.loads(subprocess.run(['git', 'show', 'HEAD:web/public/data/schools.json'],
                                      capture_output=True, text=True, check=True, cwd=HERE).stdout)
+    # the baseline in today's spelling: a school respelled by
+    # common.school_name() is the same school, and must keep what it had
+    from common import school_name
+    for s in prev['schools']:
+        s['name'] = school_name(s['name'])
     had = {(s['fylke'], s['name']) for s in prev['schools'] if s.get('photo')}
     have = {(s['fylke'], s['name']) for s in DATA['schools'] if s.get('photo')}
     lost = sorted(had - have)
@@ -208,16 +213,16 @@ check('the schools with no poenggrense in their newest year are the 16 known one
       f'new: {sorted(without - NO_NEWEST_FIGURE)} gone: {sorted(NO_NEWEST_FIGURE - without)}')
 
 # --- QA D2: two tables on one page were merged under one school --------
-check('St.Olav does not carry Sola flyfag', not progs('St.Olav', 'flyfag'))
-check('St.Olav does not carry Sola avionikk', not progs('St.Olav', 'avionik'))
+check('St. Olav does not carry Sola flyfag', not progs('St. Olav', 'flyfag'))
+check('St. Olav does not carry Sola avionikk', not progs('St. Olav', 'avionik'))
 check('Katedralskole does not carry Offshore brønnteknikk',
       not progs('Katedralskole', 'brønnteknikk'))
 check('Sola keeps its own flyfag', bool(progs('Sola videregående', 'flyfag')))
 check('Offshore keeps brønnteknikk', bool(progs('Offshore', 'brønnteknikk')))
-check('St.Olav studiespes 2019 = 39.4', value('St.Olav', 'Studiespesialisering', 2019) == 39.4,
-      str(value('St.Olav', 'Studiespesialisering', 2019)))
-check('St.Olav studiespes 2020 = 43.0', value('St.Olav', 'Studiespesialisering', 2020) == 43.0,
-      str(value('St.Olav', 'Studiespesialisering', 2020)))
+check('St. Olav studiespes 2019 = 39.4', value('St. Olav', 'Studiespesialisering', 2019) == 39.4,
+      str(value('St. Olav', 'Studiespesialisering', 2019)))
+check('St. Olav studiespes 2020 = 43.0', value('St. Olav', 'Studiespesialisering', 2020) == 43.0,
+      str(value('St. Olav', 'Studiespesialisering', 2020)))
 check('Sola idrettsfag 2019 = 34.7',
       value('Sola videregående', 'Idrettsfag', 2019, 'Vg1') == 34.7,
       str(value('Sola videregående', 'Idrettsfag', 2019, 'Vg1')))
@@ -343,7 +348,7 @@ _bus = {(n, p['program']): v for n, p, y, v in ccells('Buskerud') if y == '2025'
 check('a Buskerud cell holding several queues becomes one row per queue',
       _bus.get(('Drammen', 'Idrettsfag, toppidrett, håndball')) == 46.5
       and _bus.get(('Drammen', 'Idrettsfag, toppidrett, fotball')) == 51.3
-      and _bus.get(('St.Hallvard', 'Musikk, dans og drama, drama')) == 41.1
+      and _bus.get(('St. Hallvard', 'Musikk, dans og drama, drama')) == 41.1
       and ('Drammen', 'Idrettsfag, toppidrett') not in _bus,
       str({k: v for k, v in _bus.items() if 'topp' in k[1] or 'drama' in k[1].lower()}))
 # Rogaland 2024–2026 prints Sola's Vg2 band without its «Vg2» marker: the band's
@@ -651,6 +656,16 @@ _unpublished = sorted(
     and _photos.OVERRIDES.get(s['name'], {}).get('photo', 1) is not None)
 check('every reviewed harvest photo is published (run tools/photos.py after build_dataset)',
       not _unpublished, str(_unpublished[:4]))
+
+# --- «St.Olav» as the sources print it (22 Sept 2026) ---------------------
+# Buskerud and Rogaland glue the abbreviation to the name; the schools and the
+# register write «St. Olav». The respelling must not cost a school its photo.
+_st = {s['name']: s for s in DATA['schools'] if s['name'].startswith('St')}
+check('«St.» is followed by a space in every school name, and the three keep their photos',
+      not [n for n in _st if re.match(r'St\.\S', n)]
+      and all(_st.get(n, {}).get('photo') for n in
+              ('St. Hallvard', 'St. Olav videregående skole', 'St. Svithun videregående skole')),
+      str(sorted(_st)))
 
 # --- the SQLite export: identity and licence (2 Sept 2026 review) --------
 # school identity everywhere else is (fylke, name); the DB keyed on the name

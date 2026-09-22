@@ -122,6 +122,21 @@ describe('the wish list', () => {
     expect(S.choices).toEqual([{ f: s.fylke, s: s.name, k: key }]);
   });
 
+  it('a wish saved under a school’s former spelling follows the school to its new one', () => {
+    loadFixtures(); initHelpers(); initListview(); stubMap();
+    // «St.Olav» became «St. Olav» on 22 Sept 2026; the address did not move
+    const s = DATA.schools.find((x: any) => x.fylke === 'Rogaland' && x.name.startsWith('St. Olav'))!;
+    const p = shownPrograms(s)[0], k = progKeyMap(s).get(p);
+    const old = { f: s.fylke, s: s.name.replace('St. ', 'St.'), k };
+    expect(resolveChoice(old)!.s).toBe(s);
+    expect(old.s).toBe(s.name);                              // re-keyed in place
+    S.choices = [{ ...old, s: s.name.replace('St. ', 'St.') }];
+    renderChoices();
+    expect(S.choices).toEqual([{ f: s.fylke, s: s.name, k }]);
+    // a different school in the same county is not a respelling
+    expect(resolveChoice({ f: s.fylke, s: 'St. Olavs', k })).toBeNull();
+  });
+
   it('initChance keeps only well-formed wishes out of storage', () => {
     localStorage.setItem('pk-choices', JSON.stringify([{ f: 'Oslo', s: 'Blindern', k: 'a|Vg1|0' }, null, 42, {}]));
     initChance();
