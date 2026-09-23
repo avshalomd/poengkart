@@ -3,7 +3,11 @@ __pycache__/
 .DS_Store
 node_modules/
 .vercel
-.claude/
+.claude/*
+# …except the Norwegian checker, which the routine needs in a bare clone
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/norsk/
 .venv
 
 # font cache for the share card (downloaded at build time)
