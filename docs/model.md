@@ -32,10 +32,10 @@ empirical distribution of the backtest's own forecast errors (see *Spread*).
 
 Two fits, one structure. Every effect is a random effect, so a school or
 programme with a single year of data borrows its level from the hundreds of
-similar ones around it instead of being trusted on its own —425 of the 1 961
+similar ones around it instead of being trusted on its own —424 of the 1 960
 series have exactly one year.
 
-**Level** (on the 8 257 cells that carry a number):
+**Level** (on the 8 256 cells that carry a number):
 
     y = μ + school + category + programme|level + series + county×year + round offset + ε
 
@@ -153,11 +153,11 @@ no earlier year can teach a forecast what that does, and the final fit handles
 it with the fixed offset; grading the model on an event it is told about would
 flatter nothing and mislead the calibration.
 
-**Level, held-out 2025–26** (2 194 cells that got a number):
+**Level, held-out 2025–26** (2 193 cells that got a number):
 
 | history | n | model RMSE | "last year's figure" RMSE | programme-county mean RMSE | within ±3 |
 |---|---|---|---|---|---|
-| 0 years | 171 | 8.5 | — | 10.1 | 30% |
+| 0 years | 170 | 8.2 | — | 9.4 | 31% |
 | 1 year | 259 | 5.7 | 6.9 | 6.6 | 49% |
 | 2–3 years | 402 | 5.7 | 6.6 | 6.4 | 44% |
 | 4+ years | 1362 | 5.1 | 6.2 | 6.0 | 50% |
@@ -249,7 +249,7 @@ the county level is the largest single term after the school's own.
 ## The model as a detector
 
 The 25 cells the fitted model finds least plausible are listed in
-`meta.outliers` (|z| ≥ 3: 82 of 8 257 cells, 39 of them in Vestland, the
+`meta.outliers` (|z| ≥ 3: 81 of 8 256 cells, 39 of them in Vestland, the
 county with the most cells). Five of the top twenty-five are Vestland 2022 — clustering of that kind has meant a parser
 problem before, so
 three of them, the largest included, were checked against the county's own PDF

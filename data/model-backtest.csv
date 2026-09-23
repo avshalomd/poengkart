@@ -9109,7 +9109,7 @@ year,fylke,school,program,level,category,state,actual,forecast,p_fill,p_fill_raw
 2026,Rogaland,Bergeland videregående skole,"helsearbeiderfag, sk 3 år",Vg2,HS,open,,33.98,0.696,0.754,2,26.3,35.3
 2026,Rogaland,Bergeland videregående skole,helseservicefag,Vg2,HS,num,26.3,28.35,0.859,0.942,8,26.3,26.27
 2026,Rogaland,Bergeland videregående skole,"kunst, design og arkitektur",Vg2,KD,open,,28.72,0.312,0.162,1,24.3,24.3
-2026,Rogaland,Bergeland videregående skole,medier og kommunikasjon,Vg2,MK,num,3.0,30.33,0.207,0.07,0,,
+2026,Rogaland,Bergeland videregående skole,medier og kommunikasjon,Vg2,MK,open,,30.33,0.207,0.07,0,,
 2026,Rogaland,Bergeland videregående skole,apotekteknikk,Vg3,HS,num,28.9,27.34,0.516,0.455,3,27.5,25.59
 2026,Rogaland,Bergeland videregående skole,helsesekretær,Vg3,HS,num,36.3,32.3,0.541,0.497,4,40.0,33.84
 2026,Rogaland,Bergeland videregående skole,tannhelsesekretær,Vg3,HS,num,25.6,27.64,0.516,0.455,3,27.8,27.66

@@ -97,6 +97,12 @@ and every other page's text is unchanged.
 `poenggrenser-rogaland-2022-2024-wayback.pdf` is an edition that had already
 been overwritten, recovered through the Wayback Machine; it is the only
 print of eight 2024 cells, and it is read like the others (since 23.09.2026).
+One printed cell is corrected in the extractor rather than read as printed:
+the 2024–2026 edition gives Bergeland's Vg2 Medier og kommunikasjon «3,0» for
+2026, and the county answered a query on 23.09.2026 that it should read
+«ingen venteliste» (there were free places). The answer came by e-mail from
+the county's intake section; `COUNTY_CORRECTIONS` in
+`tools/extractors/rogaland.py` quotes it.
 
 ## telemark
 

@@ -121,16 +121,18 @@ SUB8 = {
     ('Buskerud', 'Kongsberg', 'Musikk, dans og drama', 'Vg1', '2025', 4.0),
     ('Oslo', 'Etterstad videregående skole', 'Restaurant- og matfag', 'Vg1', '2026', 6.0),
     ('Oslo', 'Etterstad videregående skole', 'Teknikk og industriell produksjon', 'Vg1', '2019', 5.6),
-    # the 2024-2026 edition prints "3,0" in the 2026 column (p1, Vg2 block);
-    # 2024 and 2025 are "Ingen venteliste", so no neighbour suggests a dropped
-    # digit. Kept as the county's own figure (8 Sept 2026); worth a query.
-    ('Rogaland', 'Bergeland videregående skole', 'Medier og kommunikasjon', 'Vg2', '2026', 3.0),
 }
 sub8 = {(s['fylke'], s['name'], p['program'], p['level'], y, v) for s in DATA['schools']
         for p in s['programs'] for y, v in p['values'].items()
         if isinstance(v, (int, float)) and 0 < v < 8}
 check('every poenggrense below 8 has been looked at (allowlist)', sub8 == SUB8,
       f'new: {sorted(sub8 - SUB8)} gone: {sorted(SUB8 - sub8)}')
+# Rogaland's 2024-2026 edition prints «3,0» here (p1, Vg2 block), below the
+# lowest possible score; the county confirmed on 23 Sept 2026 that there were
+# free places (POENG-34), and the extractor's COUNTY_CORRECTIONS applies it
+_berg = value('Bergeland', 'Medier og kommunikasjon', 2026, 'Vg2')
+check('Bergeland Vg2 Medier og kommunikasjon 2026 is «ingen venteliste», as the county corrected it',
+      _berg == 'open', str(_berg))
 nat_uncat = sorted({f'{s}: {p["program"]}' for s, p, _, _ in nat_cells if p['category'] == 'annet'})
 check('every programme categorised nationally', not nat_uncat, str(nat_uncat[:5]))
 check('no duplicate (county, school)',
