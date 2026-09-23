@@ -156,6 +156,9 @@ ALIASES = {
     'kulde varmepumpe vent teknologi': 'ELKVV2----',
     'helse og sosialfag': 'HSHSF1----',
     'helse oppvekst ambulanse': 'HSHSF1----',
+    # a fuzzy hit alone, which the comma-prefix walk does not try: Jåttå's
+    # «Barne- og ungdomsarbeider, toppidrett» (2024) went unresolved
+    'barne og ungdomsarbeider': 'HSBUA2----',
     'service og sikkerhet og admin': 'SRSSH2----',
     'elektro og datatekn autom': 'ELELE1----',
     'håndverk design og produktutv søm th': 'DTDTH1----',

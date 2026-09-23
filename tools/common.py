@@ -519,7 +519,10 @@ def _record_drift(drift, rec, y, v, source, county, school, program, level):
              'ignored': v, 'ignored_from': source}
     if full is not None:
         entry['reason'] = 'dropped digit'
-    drift.append(entry)
+    # an edition that prints a school twice (Sola under its own heading and on
+    # the landslinje page) disagrees twice in the same way: log it once
+    if entry not in drift:
+        drift.append(entry)
 
 
 def validate(schools, min_value=MIN_PLAUSIBLE):

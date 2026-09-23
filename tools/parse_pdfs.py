@@ -43,8 +43,10 @@ DRIFT = os.path.join(HERE, '..', 'data', 'source-drift.json')
 
 # newest first: on overlapping (school, program, level, year) the newest wins
 FILES = [
+    'poenggrenser-rogaland-2024-2026-official-rev2.pdf',
     'poenggrenser-rogaland-2024-2026-official.pdf',
     'poenggrenser-rogaland-2023-2025-official.pdf',
+    'poenggrenser-rogaland-2022-2024-wayback.pdf',
     'poenggrenser-rogaland-2023-2024.pdf',
     'poenggrenser-rogaland-2022-2023.pdf',
     'poenggrenser-rogaland-2021-2022.pdf',
@@ -92,6 +94,8 @@ PROGRAM_ALIASES = {
     'teknologi og industrifag': 'Teknologi- og industrifag',
     'barne- og ungdomsarbeiderfag': 'Barne- og ungdomsarbeider',
     'helsearbeider': 'Helsearbeiderfag',
+    'eletro og datateknologi': 'Elektro og datateknologi',     # Jåttå's typo, 2019-2026
+    'språk, samfunnsfag og økonomi, toppidrett': 'Språk, samfunn og økonomi, toppidrett',
 }
 
 # value vocabulary (incl. the county's own typos) — anything else in a value
@@ -199,6 +203,22 @@ def _fill(r):
     return tuple(round(x, 2) for x in c) if isinstance(c, (list, tuple)) and len(c) >= 3 else None
 
 
+def page_words(page):
+    """The page's words, with a level label printed as two words joined up:
+    Dalane's påbygg band reads «Vg 4», and split in two it was neither a
+    level marker nor part of the name, so the row fell to the name guess."""
+    words = page.extract_words()
+    out = []
+    for w in words:
+        prev = out[-1] if out else None
+        if (prev and prev['text'] == 'Vg' and re.fullmatch(r'\d', w['text'])
+                and abs(w['top'] - prev['top']) < 2 and 0 <= w['x0'] - prev['x1'] < 8):
+            out[-1] = {**prev, 'text': 'Vg' + w['text'], 'x1': w['x1']}
+            continue
+        out.append(w)
+    return out
+
+
 def band_colours(pdf):
     """The table fills each level's band in its own colour, the same on every
     page. Learnt from the bands that carry a marker, so a band printed without
@@ -207,7 +227,7 @@ def band_colours(pdf):
     the name guess, «Vg2/Vg3», splitting three series in two."""
     votes = {}
     for page in pdf.pages:
-        words = page.extract_words()
+        words = page_words(page)
         for top, bottom, lvl, col in _marked_bands(page, words):
             if col is not None:
                 votes.setdefault(col, {}).setdefault(lvl, 0)
@@ -283,7 +303,7 @@ def parse_pdf(path, warn):
         colours = band_colours(pdf)
         school, year_cols = None, None      # carry across pages (continuations)
         for pi, page in enumerate(pdf.pages):
-            words = page.extract_words()
+            words = page_words(page)
             lines = cluster_lines(words)
             bands = level_bands(page, words, colours)
             for line in lines:

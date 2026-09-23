@@ -354,11 +354,35 @@ check('a Buskerud cell holding several queues becomes one row per queue',
 # Rogaland 2024–2026 prints Sola's Vg2 band without its «Vg2» marker: the band's
 # colour names it, or its rows fall back to the name guess and split their series
 _guessed = sorted({(n, p['program']) for n, p, y, v in ccells('Rogaland')
-                   if p['level'] == 'Vg2/Vg3' and not p['program'].startswith('Vg 4')})
+                   if p['level'] == 'Vg2/Vg3'})
 check('no Rogaland row sits at a guessed «Vg2/Vg3» level', not _guessed, str(_guessed[:6]))
 check('Sola Dronefag is a Vg2 series',
       any(p['level'] == 'Vg2' and y == '2026' for n, p, y, v in ccells('Rogaland')
           if n.startswith('Sola') and p['program'] == 'Dronefag'))
+# Rogaland data-truth pass, 23 Sept 2026 (.claude/qa/2026-09-23-rogaland-data-truth.md)
+_rog = {(n, p['program'], p['level'], y): v for n, p, y, v in ccells('Rogaland')}
+# Dalane prints its påbygg band's label as two words, «Vg 4»
+check('Dalane\'s «Vg 4» påbygg row is a Vg4 series, without the label in its name',
+      _rog.get(('Dalane videregående skole', 'Påbygg gen studiekom e/yrkeskomp (PBPBY4YK)', 'Vg4', '2026')) == 33.3
+      and not any(p['program'].startswith('Vg ') for n, p, y, v in ccells('Rogaland')))
+# the county reissued the 2024-2026 edition on 21 Sept 2026 with one more figure
+check('the reissued 2024-2026 edition wins: Øksnevad Naturbruk dyrekunnskap 2026 = 37,1',
+      _rog.get(('Øksnevad vidaregåande skole', 'Naturbruk dyrekunnskap SK 3 år', 'Vg1', '2026')) == 37.1)
+check('Jåttå\'s «Eletro» typo is published as Elektro og datateknologi',
+      not any('Eletro' in p['program'] for n, p, y, v in ccells('Rogaland'))
+      and _rog.get(('Jåttå videregående skole', 'Elektro og datateknologi', 'Vg1', '2026')) == 43.1)
+check('St. Svithun\'s SSØ toppidrett is one Vg2 series across both spellings',
+      not any('samfunnsfag' in p['program'] for n, p, y, v in ccells('Rogaland'))
+      and _rog.get(('St. Svithun videregående skole', 'Språk, samfunn og økonomi, toppidrett', 'Vg2', '2026')) == 'D')
+# the edition recovered through the Wayback Machine is the only print of these
+check('the wayback 2022-2024 edition is read: its 2024-only cells are in',
+      _rog.get(('Haugaland videregående skole', 'Bygg og anleggsteknikk, toppidrett', 'Vg1', '2024')) == 21.2
+      and _rog.get(('Jåttå videregående skole', 'Barne- og ungdomsarbeider, toppidrett', 'Vg2', '2024')) == 24.4
+      and _rog.get(('Sauda vidaregåande skule', 'Industriteknologi, YSK', 'Vg2', '2024')) == 47.1,
+      str({k: v for k, v in _rog.items() if k[3] == '2024' and ('toppidrett' in k[1] and k[0].startswith('Haugaland') or 'YSK' in k[1])}))
+_drift = json.load(open(os.path.join(HERE, '..', 'data', 'source-drift.json')))
+check('the drift log holds each disagreement once',
+      len({json.dumps(d, sort_keys=True) for d in _drift}) == len(_drift))
 # Vestland 2023/24 1. inntak: clipped «å» glyphs in the text layer, inside two names
 check('a stray glyph in the text layer does not reach a programme name',
       not any('Båarne' in p['program'] for n, p, y, v in ccells('Vestland'))

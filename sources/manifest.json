@@ -152,6 +152,11 @@
    "sha256": "1ac998ed876b2a48214a7d85d1f164b032844e864bbf42f4992ce301c831a143",
    "provenance": "Rogaland fylkeskommune via vilbli.no/rogaland (2. inntak); the 2022-2024 edition from the Wayback Machine."
   },
+  "rogaland/poenggrenser-rogaland-2024-2026-official-rev2.pdf": {
+   "size": 802019,
+   "sha256": "fdae55e4a23126623bb763b20b9f1dc7a46abed8c33f6c5d53a0a5f30483010e",
+   "provenance": "Rogaland fylkeskommune via vilbli.no/rogaland (2. inntak); the 2024-2026 edition as reissued at the same attachment id, fetched 23.09.2026 (file dated 21.09.2026). Adds one 2026 figure (Øksnevad, Vg1 Naturbruk dyrekunnskap SK 3 år, 37,1); every other page's text is unchanged. Author metadata stripped."
+  },
   "rogaland/poenggrenser-rogaland-2024-2026-official.pdf": {
    "size": 486780,
    "sha256": "3897687a7b9f6c0174f4caab98f511d19ac9779f3d5621dde8e42f0a41f47792",

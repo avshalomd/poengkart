@@ -90,8 +90,13 @@ The 2024–2026 edition (`Poenggrenser 2024-2026.pdf` on vilbli, dated
 07.09.2026, fetched 08.09.2026) replaced the 2023–2025 file at the same
 attachment id; both are kept because a superseded edition can still hold
 the only print of a cell.
+`poenggrenser-rogaland-2024-2026-official-rev2.pdf` is the same edition as
+the county reissued it at that id (dated 21.09.2026, fetched 23.09.2026): it
+adds one 2026 figure, Øksnevad's Vg1 Naturbruk dyrekunnskap SK 3 år, 37,1,
+and every other page's text is unchanged.
 `poenggrenser-rogaland-2022-2024-wayback.pdf` is an edition that had already
-been overwritten, recovered through the Wayback Machine.
+been overwritten, recovered through the Wayback Machine; it is the only
+print of eight 2024 cells, and it is read like the others (since 23.09.2026).
 
 ## telemark
 

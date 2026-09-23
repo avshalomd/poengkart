@@ -1,6 +1,17 @@
 [
  {
   "county": "Rogaland",
+  "school": "Dalane videregående skole",
+  "program": "Automatisering",
+  "level": "Vg2",
+  "year": 2024,
+  "kept": 28.1,
+  "kept_from": "poenggrenser-rogaland-2024-2026-official-rev2.pdf",
+  "ignored": 27.1,
+  "ignored_from": "poenggrenser-rogaland-2022-2024-wayback.pdf"
+ },
+ {
+  "county": "Rogaland",
   "school": "Vardafjell videregående skole",
   "program": "International Baccalaureate, IB",
   "level": "Vg2",
@@ -17,7 +28,7 @@
   "level": "Vg2",
   "year": 2022,
   "kept": "D",
-  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "kept_from": "poenggrenser-rogaland-2022-2024-wayback.pdf",
   "ignored": "open",
   "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
  },
@@ -28,7 +39,7 @@
   "level": "Vg3",
   "year": 2022,
   "kept": "F",
-  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "kept_from": "poenggrenser-rogaland-2022-2024-wayback.pdf",
   "ignored": "open",
   "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
  },
@@ -39,7 +50,7 @@
   "level": "Vg3",
   "year": 2022,
   "kept": "open",
-  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "kept_from": "poenggrenser-rogaland-2022-2024-wayback.pdf",
   "ignored": "F",
   "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
  },
@@ -50,7 +61,7 @@
   "level": "Vg1",
   "year": 2022,
   "kept": 24.3,
-  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
+  "kept_from": "poenggrenser-rogaland-2022-2024-wayback.pdf",
   "ignored": 44.7,
   "ignored_from": "poenggrenser-rogaland-2022-2023.pdf"
  },
@@ -105,50 +116,6 @@
   "level": "Vg2",
   "year": 2021,
   "kept": "D",
-  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
-  "ignored": "open",
-  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
- },
- {
-  "county": "Rogaland",
-  "school": "Sola videregående skole",
-  "program": "Avionikerfaget Landslinje",
-  "level": "Vg3",
-  "year": 2020,
-  "kept": "F",
-  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
-  "ignored": "open",
-  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
- },
- {
-  "county": "Rogaland",
-  "school": "Sola videregående skole",
-  "program": "Avionikerfaget Landslinje",
-  "level": "Vg3",
-  "year": 2021,
-  "kept": "F",
-  "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
-  "ignored": "open",
-  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
- },
- {
-  "county": "Rogaland",
-  "school": "Sola videregående skole",
-  "program": "Flyfag, Landslinje",
-  "level": "Vg3",
-  "year": 2020,
-  "kept": "F",
-  "kept_from": "poenggrenser-rogaland-2022-2023.pdf",
-  "ignored": "open",
-  "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
- },
- {
-  "county": "Rogaland",
-  "school": "Sola videregående skole",
-  "program": "Flyfag, Landslinje",
-  "level": "Vg3",
-  "year": 2021,
-  "kept": "F",
   "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
   "ignored": "open",
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"

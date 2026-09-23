@@ -12,7 +12,7 @@ when a programme filled, and when it exists it is one point on the points
 scale. A family with 42 points is not asking "what was the threshold" but
 "will I get in" — and the honest answer to that is a probability, because the
 same programme at the same school moves by a standard deviation of 6.3 points
-from one year to the next (5 431 consecutive-year pairs; only half of all
+from one year to the next (5 433 consecutive-year pairs; only half of all
 moves are within ±3).
 
 So the app forecasts, per programme, for the county's next publication year:
@@ -32,14 +32,14 @@ empirical distribution of the backtest's own forecast errors (see *Spread*).
 
 Two fits, one structure. Every effect is a random effect, so a school or
 programme with a single year of data borrows its level from the hundreds of
-similar ones around it instead of being trusted on its own —432 of the 1 967
+similar ones around it instead of being trusted on its own —433 of the 1 969
 series have exactly one year.
 
-**Level** (on the 8 253 cells that carry a number):
+**Level** (on the 8 257 cells that carry a number):
 
     y = μ + school + category + programme|level + series + county×year + round offset + ε
 
-**Fill** (on the 11 991 cells that competed on points — number, 0,0 or "no waitlist".
+**Fill** (on the 12 000 cells that competed on points — number, 0,0 or "no waitlist".
 In Møre og Romsdal "no waitlist" is the county's own dashboard rule, a Vg1
 figure under 25 — see `docs/data-notes.md` — so its labels are a proxy, and
 the backtest measures what they are worth, below):
@@ -67,9 +67,9 @@ plug-in of the level model's school effect into the fill model, with the
 backtest as judge on every refit. Earlier builds rejected it (0.406 coupled
 against 0.403 independent); with the Innlandet 2020–2022 backfill the
 verdict flipped, and on the current panel it reads 0.444 coupled against
-0.451, so the shipped hurdle is coupled (`meta.coupled`). This is exactly the day the flag was kept for,
+0.450, so the shipped hurdle is coupled (`meta.coupled`). This is exactly the day the flag was kept for,
 though the margin is inside its own noise: a cluster bootstrap over
-school×year puts the difference at [−0.011, −0.003], and on the held-out
+school×year puts the difference at [−0.009, −0.003], and on the held-out
 years the two variants score the same fill Brier.
 
 **What each cell means to the model.** A number > 0 is an observation of the
@@ -107,7 +107,7 @@ Telemark's own years instead (`satellite_backtest`): fit the panel on the
 other counties' years before T and the satellite on Telemark's, predict
 Telemark's year T. Over 110 cells in 2025–2026 that is an RMSE of 7.80
 against 8.98 for persistence, and every Telemark forecast carries 7.8 as
-its spread — the model's own buckets, 4.9 to 7.2, covered 70% of those
+its spread — the model's own buckets, 4.9 to 7.3, covered 70% of those
 outcomes where they claimed 80%. The app quotes that measurement on every
 Telemark school. The county rejoins
 the model when it states, per programme and year, whether everyone was
@@ -126,7 +126,7 @@ held-out years cannot narrow their own intervals:
 
 | history | s |
 |---|---|
-| 0 years | 7.2 |
+| 0 years | 7.3 |
 | 1 year | 6.0 |
 | 2–3 years | 5.6 |
 | 4+ years | 4.9 |
@@ -153,14 +153,14 @@ no earlier year can teach a forecast what that does, and the final fit handles
 it with the fixed offset; grading the model on an event it is told about would
 flatter nothing and mislead the calibration.
 
-**Level, held-out 2025–26** (2 193 cells that got a number):
+**Level, held-out 2025–26** (2 194 cells that got a number):
 
 | history | n | model RMSE | "last year's figure" RMSE | programme-county mean RMSE | within ±3 |
 |---|---|---|---|---|---|
 | 0 years | 171 | 8.5 | — | 10.1 | 30% |
 | 1 year | 259 | 5.7 | 6.9 | 6.6 | 49% |
 | 2–3 years | 402 | 5.7 | 6.6 | 6.4 | 44% |
-| 4+ years | 1361 | 5.1 | 6.2 | 6.0 | 50% |
+| 4+ years | 1362 | 5.1 | 6.2 | 6.0 | 50% |
 
 Exponential smoothing of the series' own figures (α = 0.4; Muth, 1960) is a
 stronger baseline than either: RMSE 5.9 with two or three years of history
@@ -173,11 +173,11 @@ The 80% interval (m ± 1.2816 s) contained the published figure 81% of the time.
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.97 filled 0.89 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = 0.170 + 0.587 logit π). Scored on all eight counties, Møre og
+(logit π′ = 0.170 + 0.586 logit π). Scored on all eight counties, Møre og
 Romsdal's proxy labels included: held-out Brier 0.157 against 0.208 for the
 base rate. Held out of the fill fit instead, with its fill probability
 fixed at 1 as it was until 5 September 2026, the other seven counties'
-held-out Brier goes from 0.158 to 0.159 and the Platt slope from 0.587 to
+held-out Brier goes from 0.158 to 0.159 and the Platt slope from 0.586 to
 0.538; on the county's own 223 held-out cells the proxy-labelled hurdle
 scores 0.147 against 0.186 for its base rate
 (`meta.halflife_search.proxy_label_experiment`).
@@ -187,16 +187,16 @@ scores 0.147 against 0.186 for its base rate
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 4.6% | 1553 |
-| 10–20% | 14.8% | 1 851 |
-| 20–30% | 27% | 1 542 |
-| 30–40% | 38% | 1 360 |
-| 40–50% | 45% | 1 178 |
-| 50–60% | 60% | 1 298 |
-| 60–70% | 71% | 1 368 |
-| 70–80% | 83% | 1 370 |
-| 80–90% | 89% | 1 797 |
-| 90–100% | 98.9% | 12 059 |
+| 0–10% | 4.5% | 1551 |
+| 10–20% | 14.7% | 1 844 |
+| 20–30% | 27% | 1 538 |
+| 30–40% | 38% | 1 372 |
+| 40–50% | 45% | 1 181 |
+| 50–60% | 60% | 1 295 |
+| 60–70% | 71% | 1 370 |
+| 70–80% | 82% | 1 374 |
+| 80–90% | 89% | 1 793 |
+| 90–100% | 98.9% | 12 066 |
 
 Brier 0.090, against 0.156 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
@@ -206,7 +206,7 @@ on the forecast: that scores 0.095, so most of the gain over the bare rule
 is the uncertainty treatment, and the model's own point forecast is worth
 the last 0.006 of it.
 Below 70% the forecast is within 6.0 points of the outcome in every bin,
-optimistic by at most 1.1 points in the three lowest — a 15% chance was
+optimistic by at most 1.3 points in the three lowest — a 15% chance was
 really 15% — which the app's bands absorb (both are "unlikely"); from 70%
 up it is cautious — a stated 75% came true 83% of the time, the largest gap
 in any bin. The walk-forward forecasts themselves are in `data/model-backtest.csv`.
@@ -249,7 +249,7 @@ the county level is the largest single term after the school's own.
 ## The model as a detector
 
 The 25 cells the fitted model finds least plausible are listed in
-`meta.outliers` (|z| ≥ 3: 82 of 8 253 cells, 39 of them in Vestland, the
+`meta.outliers` (|z| ≥ 3: 82 of 8 257 cells, 39 of them in Vestland, the
 county with the most cells). Five of the top twenty-five are Vestland 2022 — clustering of that kind has meant a parser
 problem before, so
 three of them, the largest included, were checked against the county's own PDF
