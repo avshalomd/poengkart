@@ -388,6 +388,14 @@ _pb4 = [(s['fylke'], s['name'], p['program'], p.get('grep'), p.get('official'))
 check('every Vg4 påbygg row carries PBPBY4YK-- and no Vg3 official name',
       _pb4 and all(g == 'PBPBY4YK--' and not (o or '').startswith('Vg3') for *_, g, o in _pb4),
       str([r for r in _pb4 if r[3] != 'PBPBY4YK--' or (r[4] or '').startswith('Vg3')][:3]))
+# so is a row whose name says it follows a trade, whatever level the county
+# printed: Vestland puts «… etter yrkeskompetanse» at 3 in two editions of three
+_pbyk = [(s['fylke'], s['name'], p['level'], p.get('grep'), p.get('official'))
+         for s in DATA['schools'] for p in s['programs']
+         if p.get('category') == 'PB' and 'yrkeskomp' in p['program'].lower()]
+check('every påbygg row named after yrkeskompetanse carries PBPBY4YK-- and no Vg3 official name',
+      len(_pbyk) >= 30 and all(g == 'PBPBY4YK--' and not (o or '').startswith('Vg3') for *_, g, o in _pbyk),
+      str([r for r in _pbyk if r[3] != 'PBPBY4YK--' or (r[4] or '').startswith('Vg3')][:3]))
 _drift = json.load(open(os.path.join(HERE, '..', 'data', 'source-drift.json')))
 check('the drift log holds each disagreement once',
       len({json.dumps(d, sort_keys=True) for d in _drift}) == len(_drift))

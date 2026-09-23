@@ -85,7 +85,10 @@ to disambiguate the aliases whose code differs by year.
    title, and there is only one thing they can mean. The level picks the
    code: Vg3 is Grep's `PBPBY3----`; Vg4, the year after a vocational
    qualification, is vigo's `PBPBY4YK--`, which Grep does not list
-   (`VIGO_TITLES` in `tools/taxonomy.py` holds its title).
+   (`VIGO_TITLES` in `tools/taxonomy.py` holds its title). A name that
+   says *yrkeskompetanse* takes the Vg4 code whatever level the county
+   printed beside it; Vestland prints that year at level 3 in two
+   editions of three.
 2. **Normalise** — case, punctuation, the `Vg1`, and the suffixes counties bolt
    on: `SK 3 år`, `YSK 4 år`, `landslinje`, `LAL`. None of these change which
    programme a row is.

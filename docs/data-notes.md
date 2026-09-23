@@ -128,7 +128,7 @@ hand, until the county says what it should be: Rogaland's 2026 figure for
 Bergeland's Vg2 Medier og kommunikasjon reads 3,0, below the lowest possible
 score of 10.
 
-`tools/test_parse.py` runs 129 regression checks over the result; every one of
+`tools/test_parse.py` runs 130 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built
@@ -192,7 +192,11 @@ qualification is offered as `PBPBY4YK--`, which Grep does not list (it
 has only `PBPBY4----` «Fag for studiekompetanse», the code the vitnemål
 records); its `official` is Udir's own name for the year, «Vg4 påbygging
 til generell studiekompetanse». Until 23 September
-2026 those rows carried the Vg3 code and a «Vg3 påbygging» title.
+2026 those rows carried the Vg3 code and a «Vg3 påbygging» title. The name
+decides as well as the level: Vestland prints its «Påbygg gen studiekomp
+etter yrkeskompetanse» at level 3 in 2021/22 and 2023/24 and at level 4 in
+2022/23, so those rows keep the level the county printed but carry the Vg4
+code.
 
 ## The forecast
 

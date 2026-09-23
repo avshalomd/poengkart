@@ -221,6 +221,9 @@ GREP_TITLES, INDEX = _load()
 # «… etter yrkeskompetanse» is the counties' wording, and the app labels
 # this title «Udir». Until 23 Sept 2026 every påbygg row carried PBPBY3----,
 # so a Vg4 row's official name read «Vg3 påbygging …» beside its Vg4 chip.
+# The name decides as well as the level: Vestland prints its «Påbygg gen
+# studiekomp etter yrkeskompetanse» at level 3 in 2021/22 and 2023/24 and at
+# level 4 in 2022/23, and it is the year after a trade either way.
 VIGO_TITLES = {
     'PBPBY4YK--': {'nob': 'Vg4 påbygging til generell studiekompetanse'},
 }
@@ -268,7 +271,8 @@ def resolve(program, level=None):
     """
     n = _norm(program)
     if 'påbygg' in n or 'pabygg' in n:
-        return 'PB', 'PBPBY4YK--' if level == 'Vg4' else 'PBPBY3----', 'keyword'
+        after_yk = level == 'Vg4' or 'yrkeskomp' in n
+        return 'PB', 'PBPBY4YK--' if after_yk else 'PBPBY3----', 'keyword'
     for cand in (n, _strip_noise(n)):
         if cand in ALIASES:
             return (*_alias(ALIASES[cand], level), 'alias')
@@ -519,7 +523,7 @@ _KEY_CAT = {**{k: _alias(v, None)[0] for k, v in ALIASES.items()},
 
 def _name_spellings(cat, code):
     out = []
-    t = GREP_TITLES.get(code) or {}
+    t = GREP_TITLES.get(code) or VIGO_TITLES.get(code) or {}
     for title in (t.get('nob'), t.get('nno')):
         if title:
             out.append(_norm(title).split())
@@ -585,7 +589,7 @@ def english_program(program):
     # a tail that only repeats the programme's own name adds nothing: the
     # register title's words ("Studieforberedende naturbruk", whose area is
     # Naturbruk) or its English ("Naturbruk med heste- og dyrefag")
-    own = set(_norm((GREP_TITLES.get(code) or {}).get('nob') or '').split())
+    own = set(_norm((GREP_TITLES.get(code) or VIGO_TITLES.get(code) or {}).get('nob') or '').split())
     out, seen = base, {base.lower()}
     for _, text, is_english in items:
         if text.lower() in seen or (not is_english and own

@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · September 2026 · v1.13 (version history in Appendix D)
+Technical report · September 2026 · v1.14 (version history in Appendix D)
 Application: [poengkart.vercel.app](https://poengkart.vercel.app) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
@@ -259,7 +259,7 @@ disagreement near a full grade point flags the school-year as uncertain,
 and the application says so in words. A bare integer below 8 in a cell is
 read as a fragment of a course code rather than a threshold, but a printed
 decimal below 8 is always a threshold — no course code carries a decimal
-separator, and the counties do print figures like 4,0. A suite of 129
+separator, and the counties do print figures like 4,0. A suite of 130
 regression checks locks known failure modes: shifted year columns,
 implausible values, unmatched schools, county-specific quirks, and the
 decimal rule itself.
@@ -1135,7 +1135,7 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.13`, and the numbers
+the version this report describes is tagged `report-v1.14`, and the numbers
 quoted here are from the build of 2026-09-23. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
@@ -1150,7 +1150,7 @@ the model and the report rebuild offline. The fit is deterministic; the
 cluster bootstrap uses a fixed seed. The whole pipeline runs in minutes on a
 laptop. `tools/test_docs.py` pins every number in this report and in
 `docs/model.md` to the shipped model file, so a refresh that moves a figure
-fails the build until the text is updated; validation further comprises 129
+fails the build until the text is updated; validation further comprises 130
 parser regression checks and 14,323 model invariants. The dataset is
 released under the Norwegian Licence for Open Government Data (NLOD 2.0)
 and the code under the MIT licence.
@@ -1429,7 +1429,7 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   backtest or any number of this report moves; this version also corrects
   Table 1b's year span for Oslo, which had omitted the 2015 table since
   v1.8.
-- **v1.13** (this version). Rogaland's figures are checked cell by cell
+- **v1.13**. Rogaland's figures are checked cell by cell
   against the county's own PDFs before the application is introduced to the
   county's lower secondary schools. Every published cell matched its
   source; the pipeline around them had six defects. The county reissued
@@ -1442,3 +1442,8 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   code for that year instead of the Vg3 one (Section 4.2). Every pinned
   number is re-read from this build; no rate or error moves by more than
   its last digit, and no conclusion changes.
+- **v1.14** (this version). Vestland prints its *påbygging* after a
+  vocational qualification at level 3 in two editions of three; those ten
+  rows now carry vigo's Vg4 code as well, decided by the programme's name
+  rather than the printed level, and one parser check guards it. Nothing
+  in the panel, the backtest or any number of this report moves.
