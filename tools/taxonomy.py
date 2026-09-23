@@ -211,6 +211,18 @@ def _load():
 
 GREP_TITLES, INDEX = _load()
 
+# Codes vigo offers that Grep does not publish. Vg4 påbygg is one: Grep has
+# only PBPBY4---- «Fag for studiekompetanse», the code a vitnemål records the
+# year under (Udir, føring av vitnemål, 4.4), while vigo and vilbli offer it as
+# PBPBY4YK-- (Udir's registreringshåndbok, «Påbygg etter fag- og
+# yrkesopplæring») under the title below, and the counties print that code
+# beside the row (Dalane «(PBPBY4YK)», Bryne «(pbpby4yk)»). Until 23 Sept 2026
+# every påbygg row carried PBPBY3----, so a Vg4 row's official name read
+# «Vg3 påbygging …» beside its Vg4 chip.
+VIGO_TITLES = {
+    'PBPBY4YK--': {'nob': 'Påbygging til generell studiekompetanse etter yrkeskompetanse'},
+}
+
 
 def _pick(codes, level=None):
     """A name can match a live code and a discontinued one — Transport og
@@ -254,7 +266,7 @@ def resolve(program, level=None):
     """
     n = _norm(program)
     if 'påbygg' in n or 'pabygg' in n:
-        return 'PB', 'PBPBY3----', 'keyword'
+        return 'PB', 'PBPBY4YK--' if level == 'Vg4' else 'PBPBY3----', 'keyword'
     for cand in (n, _strip_noise(n)):
         if cand in ALIASES:
             return (*_alias(ALIASES[cand], level), 'alias')
@@ -300,7 +312,7 @@ def grep_info(program, level=None):
     _, code, _ = resolve(program, level)
     if not code:
         return None, None
-    return code, (GREP_TITLES.get(code) or {}).get('nob')
+    return code, (GREP_TITLES.get(code) or VIGO_TITLES.get(code) or {}).get('nob')
 
 
 def covers(label, title):

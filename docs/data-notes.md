@@ -49,7 +49,9 @@ counts beside the places, which would give the fill state.
 ## Why the depth is so uneven
 
 Rogaland's PDFs are rolling tables that reprint the previous three or four
-years, so six documents cover nine years. Everyone else publishes one year
+years, so six editions cover nine years; a reissue of the newest edition and
+an older one recovered through the Wayback Machine each hold figures no other
+copy prints, and all eight documents are read. Everyone else publishes one year
 per document and overwrites the page, and the archive crawler mostly did not
 catch the older versions.
 
@@ -120,9 +122,13 @@ NSR, Kartverket's address API and Kartverket's place-name register in turn.
 Where two sources disagree about a cell, the newest wins and the disagreement
 is recorded in `data/source-drift.json` rather than hidden. Any year two
 publications disagree about by close to a whole grade point is flagged on the
-school as `uncertain_years`, and the app says so in words.
+school as `uncertain_years`, and the app says so in words. A figure that is
+printed but cannot be right is published as printed, never corrected by
+hand, until the county says what it should be: Rogaland's 2026 figure for
+Bergeland's Vg2 Medier og kommunikasjon reads 3,0, below the lowest possible
+score of 10.
 
-`tools/test_parse.py` runs 128 regression checks over the result; every one of
+`tools/test_parse.py` runs 129 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built
@@ -180,7 +186,12 @@ replace it: one code can hold several separate intake queues). But every row
 also carries the register's answer to *what programme area this is*: `grep` is
 the Grep code the label resolves to, and `official` is the register's Bokmål
 title where the county spells it differently. Only the six International
-Baccalaureate rows have no code — IB is real but lives outside Grep.
+Baccalaureate rows have no code — IB is real but lives outside Grep. One code
+is vigo's rather than Grep's: the Vg4 year of påbygging after a vocational
+qualification is offered as `PBPBY4YK--`, «Påbygging til generell
+studiekompetanse etter yrkeskompetanse», and Grep lists only `PBPBY4----`
+«Fag for studiekompetanse», the code the vitnemål records. Until 23 September
+2026 those rows carried the Vg3 code and a «Vg3 påbygging» title.
 
 ## The forecast
 

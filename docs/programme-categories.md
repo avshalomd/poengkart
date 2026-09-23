@@ -82,7 +82,10 @@ to disambiguate the aliases whose code differs by year.
 
 1. **Påbygging** is recognised by keyword. Its county spellings ("Påbygg. gen.
    studiekomp. etter yrkeskomp") share almost nothing with the register's own
-   title, and there is only one thing they can mean.
+   title, and there is only one thing they can mean. The level picks the
+   code: Vg3 is Grep's `PBPBY3----`; Vg4, the year after a vocational
+   qualification, is vigo's `PBPBY4YK--`, which Grep does not list
+   (`VIGO_TITLES` in `tools/taxonomy.py` holds its title).
 2. **Normalise** — case, punctuation, the `Vg1`, and the suffixes counties bolt
    on: `SK 3 år`, `YSK 4 år`, `landslinje`, `LAL`. None of these change which
    programme a row is.

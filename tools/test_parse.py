@@ -380,6 +380,14 @@ check('the wayback 2022-2024 edition is read: its 2024-only cells are in',
       and _rog.get(('Jåttå videregående skole', 'Barne- og ungdomsarbeider, toppidrett', 'Vg2', '2024')) == 24.4
       and _rog.get(('Sauda vidaregåande skule', 'Industriteknologi, YSK', 'Vg2', '2024')) == 47.1,
       str({k: v for k, v in _rog.items() if k[3] == '2024' and ('toppidrett' in k[1] and k[0].startswith('Haugaland') or 'YSK' in k[1])}))
+# a Vg4 påbygg row is vigo's PBPBY4YK--, not the Vg3 code, and its official
+# name no longer says «Vg3 påbygging» beside a Vg4 chip
+_pb4 = [(s['fylke'], s['name'], p['program'], p.get('grep'), p.get('official'))
+        for s in DATA['schools'] for p in s['programs']
+        if p.get('category') == 'PB' and p['level'] == 'Vg4']
+check('every Vg4 påbygg row carries PBPBY4YK-- and no Vg3 official name',
+      _pb4 and all(g == 'PBPBY4YK--' and not (o or '').startswith('Vg3') for *_, g, o in _pb4),
+      str([r for r in _pb4 if r[3] != 'PBPBY4YK--' or (r[4] or '').startswith('Vg3')][:3]))
 _drift = json.load(open(os.path.join(HERE, '..', 'data', 'source-drift.json')))
 check('the drift log holds each disagreement once',
       len({json.dumps(d, sort_keys=True) for d in _drift}) == len(_drift))

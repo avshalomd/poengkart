@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · September 2026 · v1.12 (version history in Appendix D)
+Technical report · September 2026 · v1.13 (version history in Appendix D)
 Application: [poengkart.vercel.app](https://poengkart.vercel.app) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
@@ -259,7 +259,7 @@ disagreement near a full grade point flags the school-year as uncertain,
 and the application says so in words. A bare integer below 8 in a cell is
 read as a fragment of a course code rather than a threshold, but a printed
 decimal below 8 is always a threshold — no course code carries a decimal
-separator, and the counties do print figures like 4,0. A suite of 128
+separator, and the counties do print figures like 4,0. A suite of 129
 regression checks locks known failure modes: shifted year columns,
 implausible values, unmatched schools, county-specific quirks, and the
 decimal rule itself.
@@ -269,7 +269,9 @@ decimal rule itself.
 Programme labels vary in spelling across counties and across years within a
 county. Every row is resolved against Grep: 2,310 of 2,316 rows carry a
 register code (the remaining six are International Baccalaureate, outside
-the register). The classification into utdanningsprogram is therefore the
+the register). One code is vigo's rather than Grep's: the Vg4 year of
+*påbygging* after a vocational qualification is offered as `PBPBY4YK--`,
+which Grep does not list. The classification into utdanningsprogram is therefore the
 state's own, not ours — an earlier keyword classifier misfiled
 *gartnernæring* (horticulture) under restaurant and food processing because
 the substring "ernæring" (nutrition) matched. County intake groups are finer
@@ -1133,7 +1135,7 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.12`, and the numbers
+the version this report describes is tagged `report-v1.13`, and the numbers
 quoted here are from the build of 2026-09-23. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
@@ -1148,7 +1150,7 @@ the model and the report rebuild offline. The fit is deterministic; the
 cluster bootstrap uses a fixed seed. The whole pipeline runs in minutes on a
 laptop. `tools/test_docs.py` pins every number in this report and in
 `docs/model.md` to the shipped model file, so a refresh that moves a figure
-fails the build until the text is updated; validation further comprises 128
+fails the build until the text is updated; validation further comprises 129
 parser regression checks and 14,323 model invariants. The dataset is
 released under the Norwegian Licence for Open Government Data (NLOD 2.0)
 and the code under the MIT licence.
@@ -1416,7 +1418,7 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   counties of v1.9.1, and the refit reproduces that version's numbers. The
   county's schools keep a forecast in the application, from a satellite fit
   on its own figures that leaves the model untouched (Section 4.4).
-- **v1.12** (this version). The held-out county's forecasts stop borrowing
+- **v1.12**. The held-out county's forecasts stop borrowing
   the panel's spread. A QA sweep measured what the borrowed number was
   worth on that county: its 80% intervals covered 70% of the outcomes,
   because the panel's spread is measured on cells of a different kind. The
@@ -1427,3 +1429,16 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   backtest or any number of this report moves; this version also corrects
   Table 1b's year span for Oslo, which had omitted the 2015 table since
   v1.8.
+- **v1.13** (this version). Rogaland's figures are checked cell by cell
+  against the county's own PDFs before the application is introduced to the
+  county's lower secondary schools. Every published cell matched its
+  source; the pipeline around them had six defects. The county reissued
+  its 2024–2026 edition on 21 September 2026 with one more 2026 figure; an
+  edition recovered through the Wayback Machine, kept under `sources/`
+  but never read, is read now and is the only print of eight 2024 cells;
+  a level label printed as two words («Vg 4») and two programmes printed
+  under two spellings are read as one. Rogaland goes from 3,801 to 3,808
+  cells. The Vg4 *påbygging* rows of Rogaland and Vestland carry vigo's
+  code for that year instead of the Vg3 one (Section 4.2). Every pinned
+  number is re-read from this build; no rate or error moves by more than
+  its last digit, and no conclusion changes.
