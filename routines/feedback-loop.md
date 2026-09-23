@@ -27,6 +27,10 @@ which tools — is yours to decide.
 - **GitHub** through `gh` when present, else the GitHub MCP tools. **Vercel** through the
   `vercel` CLI; in the cloud every `vercel` call carries `--token "$VERCEL_TOKEN"`, and
   `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID` identify the project, so no `vercel link`.
+- **The web** through `curl`, or a web-fetch tool where the session has one: the county
+  sites, vilbli.no, the Wayback Machine, the live site. The environment's network policy
+  decides which hosts answer. A host it refuses is a fact for the item (the host, and what
+  you wanted from it), never a reason to end the run.
 - A cloud clone starts bare: when `.venv` or `node_modules` is missing, create the venv
   from `tools/requirements.txt` and run `npm ci` before anything that needs them; the
   Playwright browser is pre-installed under `PLAYWRIGHT_BROWSERS_PATH`.
@@ -143,8 +147,21 @@ counties that publish have one), find the school and programme, and compare with
 figure in `web/public/data/schools.json`. Document agrees with the sender: auto. Document
 agrees with the app, or is not on hand: decision, both figures quoted.
 
+Look before you ask. An item is classed on what you found, not only on what it says. Before
+the triage comment, do the legwork the item invites. Open every page, document or
+publication it names or points to: a link in the mail, the county page a sender says will
+change, the school's page on the live site. Compare what you find with `sources/` and
+`web/public/data/schools.json`, and say what is new, what differs and what it would let
+Poengkart do. When a county page holds a newer publication than `sources/`, save it under
+`/tmp`, not into the repository. Report what it would add: years, rounds, levels, schools,
+and the figures that would change. Where an extractor under `tools/extractors/` already
+reads that layout, run it on the saved copy to count. The file enters `sources/` only on
+the owner's go. A decision item hands the owner findings and a recommendation built on
+them, never an errand the routine could have run itself. The same goes for any item this
+run touches in steps 3 and 4.
+
 On the item: the comment `routine · triage · <run id>` with two to five sentences of
-reasoning and the block
+reasoning, what you looked at and what it showed, and the block
 
 ```
 class: auto | decision | info
@@ -153,6 +170,7 @@ county: <county or ->
 school: <school or ->
 source-check: agrees-with-sender | agrees-with-app | not-on-hand | n/a
 recommendation: <one sentence, class decision only>
+looked-at: <each URL or file opened, with what it showed, or ->
 moved: Inbox → <state>
 ```
 
@@ -177,6 +195,12 @@ First read Needs decision. An item there whose latest comment does not start wit
   code: Done, with a comment saying what settled it. A no: Cancelled, with his reason quoted.
 - An answer you cannot act on without guessing: a `routine · triage` comment saying what is
   unclear and what you would do by default; the item stays where it is.
+
+Some Needs decision items have no answer yet and wait on something outside Poengkart: a
+page to be republished, a file a county promised, a reply. Look at that thing again on
+every run. When it has changed, comment `routine · watch · <run id>` with what changed,
+what it now makes possible and the recommendation this leads to; the item stays where it
+is. When nothing has changed, write nothing.
 
 Then take at most three items, oldest first, counting the owner's goes above, Todo items
 carrying `class:auto`, and Todo items the owner moved there himself. For an owner item the
