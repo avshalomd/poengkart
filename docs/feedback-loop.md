@@ -83,6 +83,15 @@ under `sources/` before it can be `class:auto`. If the document agrees
 with the sender it is a defect; if it agrees with the app, or is not on
 hand, the item is `class:decision` with both figures quoted.
 
+Before it picks an exit, the routine does the legwork the item invites.
+It opens the pages and publications the item names or points to, and
+compares them with what Poengkart holds. What it found goes on the item,
+so a decision rests on findings rather than on an errand for the owner:
+«Akershus will publish its overview on afk.no» comes with what afk.no
+shows today and what a new edition would add. An item waiting on
+something outside, such as a page to be republished, is looked at again
+on every run and commented on only when something changed.
+
 The owner decides by answering on the item; he does not have to move it.
 A go («Implement it») is the go for the whole cycle: the routine plans,
 fixes, tests, opens the PR, merges, deploys and QAs the live site without
