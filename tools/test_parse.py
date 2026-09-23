@@ -394,8 +394,18 @@ _pbyk = [(s['fylke'], s['name'], p['level'], p.get('grep'), p.get('official'))
          for s in DATA['schools'] for p in s['programs']
          if p.get('category') == 'PB' and 'yrkeskomp' in p['program'].lower()]
 check('every påbygg row named after yrkeskompetanse carries PBPBY4YK-- and no Vg3 official name',
-      len(_pbyk) >= 30 and all(g == 'PBPBY4YK--' and not (o or '').startswith('Vg3') for *_, g, o in _pbyk),
+      len(_pbyk) >= 25 and all(g == 'PBPBY4YK--' and not (o or '').startswith('Vg3') for *_, g, o in _pbyk),
       str([r for r in _pbyk if r[3] != 'PBPBY4YK--' or (r[4] or '').startswith('Vg3')][:3]))
+# Vestland prints that year at level 4 in 2022/23 only; it is one series at
+# Vg3, the level of the county's current table (POENG-37), so Dale's 2022
+# figure sits in the same row as its 2021, 2023 and 2026
+_vl_yk = {(s['name'], p['level']): p['values'] for s in DATA['schools'] if s['fylke'] == 'Vestland'
+          for p in s['programs'] if 'yrkeskomp' in p['program'].lower()}
+check('Vestland påbygg after a trade is one series at Vg3',
+      not any(lv == 'Vg4' for _, lv in _vl_yk)
+      and _vl_yk.get(('Dale vidaregåande skule', 'Vg3'), {}).get('2022') == 44.3
+      and _vl_yk.get(('Dale vidaregåande skule', 'Vg3'), {}).get('2021') == 41.1,
+      str({k: v for k, v in _vl_yk.items() if k[0].startswith('Dale')}))
 _drift = json.load(open(os.path.join(HERE, '..', 'data', 'source-drift.json')))
 check('the drift log holds each disagreement once',
       len({json.dumps(d, sort_keys=True) for d in _drift}) == len(_drift))

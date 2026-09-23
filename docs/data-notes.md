@@ -128,7 +128,7 @@ hand, until the county says what it should be: Rogaland's 2026 figure for
 Bergeland's Vg2 Medier og kommunikasjon reads 3,0, below the lowest possible
 score of 10.
 
-`tools/test_parse.py` runs 130 regression checks over the result; every one of
+`tools/test_parse.py` runs 131 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built
@@ -195,8 +195,9 @@ til generell studiekompetanse». Until 23 September
 2026 those rows carried the Vg3 code and a «Vg3 påbygging» title. The name
 decides as well as the level: Vestland prints its «Påbygg gen studiekomp
 etter yrkeskompetanse» at level 3 in 2021/22 and 2023/24 and at level 4 in
-2022/23, so those rows keep the level the county printed but carry the Vg4
-code.
+2022/23. Those rows carry the Vg4 code, and since 23 September 2026 they
+are one series at Vg3, the level of the county's current table, rather than
+a Vg3 row and a Vg4 row holding one year.
 
 ## The forecast
 

@@ -12,7 +12,7 @@ when a programme filled, and when it exists it is one point on the points
 scale. A family with 42 points is not asking "what was the threshold" but
 "will I get in" — and the honest answer to that is a probability, because the
 same programme at the same school moves by a standard deviation of 6.3 points
-from one year to the next (5 433 consecutive-year pairs; only half of all
+from one year to the next (5 449 consecutive-year pairs; only half of all
 moves are within ±3).
 
 So the app forecasts, per programme, for the county's next publication year:
@@ -32,7 +32,7 @@ empirical distribution of the backtest's own forecast errors (see *Spread*).
 
 Two fits, one structure. Every effect is a random effect, so a school or
 programme with a single year of data borrows its level from the hundreds of
-similar ones around it instead of being trusted on its own —433 of the 1 969
+similar ones around it instead of being trusted on its own —425 of the 1 961
 series have exactly one year.
 
 **Level** (on the 8 257 cells that carry a number):
@@ -136,7 +136,7 @@ queue cannot outgrow its applicants' scores, so high forecasts miss by less:
 ×1.14 below 25 points, ×1.01 from 25 to 40, ×0.97 from 40 to 45, ×0.64 at 45 and above (fitted on
 the calibration years, constrained to fall with the level;
 `meta.sigma_level_multiplier`). On the held-out years it moved the top
-band's 80% coverage from 97.0% to 80.3% and the bottom band's from 67.4% to
+band's 80% coverage from 95.5% to 79.1% and the bottom band's from 67.4% to
 74.4%, and nothing else.
 
 F, the error distribution, is likewise the empirical distribution of those
@@ -173,11 +173,11 @@ The 80% interval (m ± 1.2816 s) contained the published figure 81% of the time.
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.97 filled 0.89 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = 0.170 + 0.586 logit π). Scored on all eight counties, Møre og
+(logit π′ = 0.170 + 0.587 logit π). Scored on all eight counties, Møre og
 Romsdal's proxy labels included: held-out Brier 0.157 against 0.208 for the
 base rate. Held out of the fill fit instead, with its fill probability
 fixed at 1 as it was until 5 September 2026, the other seven counties'
-held-out Brier goes from 0.158 to 0.159 and the Platt slope from 0.586 to
+held-out Brier goes from 0.158 to 0.159 and the Platt slope from 0.587 to
 0.538; on the county's own 223 held-out cells the proxy-labelled hurdle
 scores 0.147 against 0.186 for its base rate
 (`meta.halflife_search.proxy_label_experiment`).
@@ -187,16 +187,16 @@ scores 0.147 against 0.186 for its base rate
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 4.5% | 1551 |
-| 10–20% | 14.7% | 1 844 |
-| 20–30% | 27% | 1 538 |
-| 30–40% | 38% | 1 372 |
-| 40–50% | 45% | 1 181 |
-| 50–60% | 60% | 1 295 |
-| 60–70% | 71% | 1 370 |
-| 70–80% | 82% | 1 374 |
-| 80–90% | 89% | 1 793 |
-| 90–100% | 98.9% | 12 066 |
+| 0–10% | 4.5% | 1550 |
+| 10–20% | 14.8% | 1 846 |
+| 20–30% | 27% | 1 530 |
+| 30–40% | 38% | 1 376 |
+| 40–50% | 45% | 1 184 |
+| 50–60% | 60% | 1 290 |
+| 60–70% | 71% | 1 371 |
+| 70–80% | 83% | 1 371 |
+| 80–90% | 89% | 1 786 |
+| 90–100% | 98.9% | 12 080 |
 
 Brier 0.090, against 0.156 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
@@ -205,7 +205,7 @@ distribution and fill probability on the last published figure instead of
 on the forecast: that scores 0.095, so most of the gain over the bare rule
 is the uncertainty treatment, and the model's own point forecast is worth
 the last 0.006 of it.
-Below 70% the forecast is within 6.0 points of the outcome in every bin,
+Below 70% the forecast is within 6.1 points of the outcome in every bin,
 optimistic by at most 1.3 points in the three lowest — a 15% chance was
 really 15% — which the app's bands absorb (both are "unlikely"); from 70%
 up it is cautious — a stated 75% came true 83% of the time, the largest gap
@@ -220,7 +220,7 @@ later round does:
 | | pairs with a queue in both | later − earlier | of the queues present in the earlier round, gone by the later |
 |---|---|---|---|
 | Akershus, 1. → 2. inntak | 101 | −3.4 (sd 3.1) | 16% of 124 |
-| Vestland, 1. → 3. inntak | 1431 | −3.0 (sd 3.9) | 37% of 2 268 |
+| Vestland, 1. → 3. inntak | 1436 | −3.0 (sd 3.9) | 37% of 2 276 |
 
 The drop is conditional on the queue surviving; the right-hand column is the
 rest of the story. It differs by programme: in Vestland, studiespesialisering
@@ -239,7 +239,7 @@ Decomposing the raw mean that the map colours by, over the 181 schools whose
 of the variance between schools, the programme mix 25%, the county's level
 that year (which inntak it publishes, and its market) 9%, and the series
 interactions 9%. Ranked within their own county by α instead of by raw
-mean, schools move 3.1 places on average and at most 25 — a good part of a
+mean, schools move 3.1 places on average and at most 26 — a good part of a
 raw mean is what the school teaches and when its county publishes, not how
 hard it is to get into. The panel prints α with an approximate standard
 error; it is a measure of demand, not of quality, and the app says so.

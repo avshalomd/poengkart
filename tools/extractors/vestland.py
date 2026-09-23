@@ -107,6 +107,9 @@ def _without_strays(page):
     return page.filter(lambda o: o.get('object_type') != 'char' or (o['x0'], o['top']) not in stray)
 
 
+AFTER_TRADE = 'Påbygging til generell studiekompetanse etter yrkeskompetanse'
+
+
 def _parse(path, warn):
     """-> {(school, program, level): value}"""
     found, level = {}, 'Vg1'
@@ -170,6 +173,12 @@ def _parse(path, warn):
                 program = common.canon_program(' '.join(common.norm(w['text']) for w in ptoks))
                 if not school or not program:
                     continue
+                # påbygg after a trade is printed at level 3 in 2021/22 and
+                # 2023/24, under the Vg3 heading in 2026/27, and at level 4 in
+                # 2022/23 alone; one series, at the level of the county's
+                # current table (owner's decision, 23 Sept 2026, POENG-37)
+                if row_level == 'Vg4' and program == AFTER_TRADE:
+                    row_level = 'Vg3'
                 v = val
                 found[(school, program, row_level)] = v
         if not pages_parsed:

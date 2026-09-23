@@ -34995,6 +34995,7 @@
      "category": "PB",
      "values": {
       "2021": 41.1,
+      "2022": 44.3,
       "2023": 40.0,
       "2026": "open"
      },
@@ -35005,22 +35006,10 @@
       "påbygg gen studiekomp etter yrkeskompetanse"
      ],
      "values_r3": {
+      "2022": 28.8,
       "2023": "open",
       "2026": "open"
      }
-    },
-    {
-     "program": "Påbygging til generell studiekompetanse etter yrkeskompetanse",
-     "program_en": "Supplementary Year for General University Admission, after vocational qualification",
-     "level": "Vg4",
-     "category": "PB",
-     "values": {
-      "2022": 44.3
-     },
-     "grep": "PBPBY4YK--",
-     "aliases": [
-      "påbygg gen studiekomp e/yrkeskomp"
-     ]
     }
    ],
    "catchment": true,
@@ -35411,6 +35400,7 @@
      "category": "PB",
      "values": {
       "2021": 44.4,
+      "2022": 47.5,
       "2023": 43.8,
       "2026": 38.6
      },
@@ -35421,22 +35411,10 @@
       "påbygg gen studiekomp etter yrkeskompetanse"
      ],
      "values_r3": {
+      "2022": 43.8,
       "2023": "open",
       "2026": 35.0
      }
-    },
-    {
-     "program": "Påbygging til generell studiekompetanse etter yrkeskompetanse",
-     "program_en": "Supplementary Year for General University Admission, after vocational qualification",
-     "level": "Vg4",
-     "category": "PB",
-     "values": {
-      "2022": 47.5
-     },
-     "grep": "PBPBY4YK--",
-     "aliases": [
-      "påbygg gen studiekomp e/yrkeskomp"
-     ]
     }
    ],
    "catchment": true,
@@ -35831,6 +35809,7 @@
      "category": "PB",
      "values": {
       "2021": 38.9,
+      "2022": 35.0,
       "2023": 33.6,
       "2026": 30.0
      },
@@ -35845,22 +35824,10 @@
       "2017": "open",
       "2018": "open",
       "2019": "open",
+      "2022": "open",
       "2023": "open",
       "2026": "open"
      }
-    },
-    {
-     "program": "Påbygging til generell studiekompetanse etter yrkeskompetanse",
-     "program_en": "Supplementary Year for General University Admission, after vocational qualification",
-     "level": "Vg4",
-     "category": "PB",
-     "values": {
-      "2022": 35.0
-     },
-     "grep": "PBPBY4YK--",
-     "aliases": [
-      "påbygg gen studiekomp e/yrkeskomp"
-     ]
     }
    ],
    "catchment": true,
@@ -36296,6 +36263,7 @@
      "category": "PB",
      "values": {
       "2021": 41.1,
+      "2022": 44.4,
       "2023": 42.5,
       "2026": "open"
      },
@@ -36306,22 +36274,10 @@
       "påbygg gen studiekomp etter yrkeskompetanse"
      ],
      "values_r3": {
+      "2022": 35.0,
       "2023": 37.5,
       "2026": "open"
      }
-    },
-    {
-     "program": "Påbygging til generell studiekompetanse etter yrkeskompetanse",
-     "program_en": "Supplementary Year for General University Admission, after vocational qualification",
-     "level": "Vg4",
-     "category": "PB",
-     "values": {
-      "2022": 44.4
-     },
-     "grep": "PBPBY4YK--",
-     "aliases": [
-      "påbygg gen studiekomp e/yrkeskomp"
-     ]
     }
    ],
    "catchment": true,
@@ -37523,6 +37479,7 @@
      "category": "PB",
      "values": {
       "2021": 45.6,
+      "2022": 50.0,
       "2023": 44.3,
       "2026": 35.0
      },
@@ -37552,19 +37509,6 @@
      "values_r3": {
       "2026": "open"
      }
-    },
-    {
-     "program": "Påbygging til generell studiekompetanse etter yrkeskompetanse",
-     "program_en": "Supplementary Year for General University Admission, after vocational qualification",
-     "level": "Vg4",
-     "category": "PB",
-     "values": {
-      "2022": 50.0
-     },
-     "grep": "PBPBY4YK--",
-     "aliases": [
-      "påbygg gen studiekomp e/yrkeskomp"
-     ]
     }
    ],
    "merged_from": [
@@ -37806,7 +37750,7 @@
     {
      "program": "Påbygging til generell studiekompetanse etter yrkeskompetanse",
      "program_en": "Supplementary Year for General University Admission, after vocational qualification",
-     "level": "Vg4",
+     "level": "Vg3",
      "category": "PB",
      "values": {
       "2022": 35.0
@@ -37814,7 +37758,10 @@
      "grep": "PBPBY4YK--",
      "aliases": [
       "påbygg gen studiekomp e/yrkeskomp"
-     ]
+     ],
+     "values_r3": {
+      "2022": "open"
+     }
     }
    ],
    "catchment": true,
@@ -42001,6 +41948,7 @@
      "category": "PB",
      "values": {
       "2021": 40.0,
+      "2022": 42.5,
       "2023": 37.5,
       "2026": 41.3
      },
@@ -42015,22 +41963,10 @@
       "2017": 26.0,
       "2018": "open",
       "2019": 31.3,
+      "2022": 31.1,
       "2023": "open",
       "2026": 32.5
      }
-    },
-    {
-     "program": "Påbygging til generell studiekompetanse etter yrkeskompetanse",
-     "program_en": "Supplementary Year for General University Admission, after vocational qualification",
-     "level": "Vg4",
-     "category": "PB",
-     "values": {
-      "2022": 42.5
-     },
-     "grep": "PBPBY4YK--",
-     "aliases": [
-      "påbygg gen studiekomp e/yrkeskomp"
-     ]
     }
    ],
    "catchment": true,
@@ -45684,6 +45620,7 @@
      "category": "PB",
      "values": {
       "2021": 35.0,
+      "2022": 29.4,
       "2023": 32.5,
       "2026": "open"
      },
@@ -45694,22 +45631,10 @@
       "påbygg gen studiekomp etter yrkeskompetanse"
      ],
      "values_r3": {
+      "2022": "open",
       "2023": "open",
       "2026": "open"
      }
-    },
-    {
-     "program": "Påbygging til generell studiekompetanse etter yrkeskompetanse",
-     "program_en": "Supplementary Year for General University Admission, after vocational qualification",
-     "level": "Vg4",
-     "category": "PB",
-     "values": {
-      "2022": 29.4
-     },
-     "grep": "PBPBY4YK--",
-     "aliases": [
-      "påbygg gen studiekomp e/yrkeskomp"
-     ]
     }
    ],
    "catchment": true,
@@ -46898,6 +46823,7 @@
      "category": "PB",
      "values": {
       "2021": 46.7,
+      "2022": 50.0,
       "2023": 48.6,
       "2026": 50.0
      },
@@ -46912,6 +46838,7 @@
       "2017": 41.0,
       "2018": 41.1,
       "2019": 26.7,
+      "2022": 47.1,
       "2023": 46.3,
       "2026": 47.5
      }
@@ -46940,19 +46867,6 @@
       "2025": "open",
       "2026": "open"
      }
-    },
-    {
-     "program": "Påbygging til generell studiekompetanse etter yrkeskompetanse",
-     "program_en": "Supplementary Year for General University Admission, after vocational qualification",
-     "level": "Vg4",
-     "category": "PB",
-     "values": {
-      "2022": 50.0
-     },
-     "grep": "PBPBY4YK--",
-     "aliases": [
-      "påbygg gen studiekomp e/yrkeskomp"
-     ]
     }
    ],
    "catchment": true,
