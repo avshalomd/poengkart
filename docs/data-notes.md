@@ -188,9 +188,10 @@ the Grep code the label resolves to, and `official` is the register's Bokmål
 title where the county spells it differently. Only the six International
 Baccalaureate rows have no code — IB is real but lives outside Grep. One code
 is vigo's rather than Grep's: the Vg4 year of påbygging after a vocational
-qualification is offered as `PBPBY4YK--`, «Påbygging til generell
-studiekompetanse etter yrkeskompetanse», and Grep lists only `PBPBY4----`
-«Fag for studiekompetanse», the code the vitnemål records. Until 23 September
+qualification is offered as `PBPBY4YK--`, which Grep does not list (it
+has only `PBPBY4----` «Fag for studiekompetanse», the code the vitnemål
+records); its `official` is Udir's own name for the year, «Vg4 påbygging
+til generell studiekompetanse». Until 23 September
 2026 those rows carried the Vg3 code and a «Vg3 påbygging» title.
 
 ## The forecast
