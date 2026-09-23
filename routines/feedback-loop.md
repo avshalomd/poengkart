@@ -243,8 +243,9 @@ Abshalom Dayan, created with `create_draft` as a reply on the thread (`replyToMe
 message id from the `Source:` line, subject `Re: <the original subject>`). It answers what
 the sender actually asked and nothing else: the page, school, programme area and figures the
 relay attaches are context for the item, never facts to reflect back at a sender who did not
-raise them. A Norwegian draft runs through `python3 ~/.claude/skills/norsk/check.py` and
-leaves no ERROR behind. The item gets the comment `routine · close · <run id>` with the
+raise them. A Norwegian draft is written with the `norsk` skill (`.claude/skills/norsk/`),
+runs through `python3 .claude/skills/norsk/check.py` from the repository root (with
+`--subject`) and leaves no ERROR behind; every WARN is fixed or knowingly kept. The item gets the comment `routine · close · <run id>` with the
 draft id, then the reply exactly as drafted, and, when that text is Norwegian, its full
 English version first.
 
