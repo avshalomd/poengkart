@@ -4,6 +4,7 @@ import { BINS, colorFor, esc, fmt, HELD_OUT, meanStep, round1, schoolPressure, s
 import { CATS, t } from "./i18n";
 import { drawMarkers, fitVisible, resizeMap, visibleSchools } from "./map";
 import { schoolUrl } from './router';
+import { EASE, play, still } from "./motion";
 import { listLayout, openSide, sideTrap } from "./sidebar";
 import { S } from './state';
 import { bindTitleTips, hideTip, showTip } from "./tips";
@@ -13,9 +14,15 @@ export function setView(v) {
   if (v !== 'map' && v !== 'list') return;
   if (v === 'map' && !S.map && S.DATA) return;  // the map view cannot be entered without a map
   if (v === 'list' && !S.DATA) return;     // the toggle is live before the fetch lands
+  const moved = viewShown && S.view !== v;
   S.view = v;
+  // the view the app opens in is not a switch: the pill starts where it is
+  const over = document.querySelector('#view-toggle .over') as HTMLElement;
+  if (!viewShown && over) over.style.transition = 'none';
   document.body.classList.toggle('view-list', v === 'list');
   document.getElementById('listview')!.hidden = v !== 'list';
+  if (!viewShown && over) { void over.offsetWidth; over.style.transition = ''; }
+  viewShown = true;
   for (const [id, name] of [['view-map', 'map'], ['view-list', 'list']]) {
     const b = document.getElementById(id);
     b!.classList.toggle('on', S.view === name);
@@ -31,6 +38,19 @@ export function setView(v) {
     liftMapControls();
     if (S.refitPending) { S.refitPending = false; fitVisible(false); }
   }
+  if (moved) pushView(v);
+}
+// The view comes in from the side the pill went to — the list from the right,
+// the map from the left — 10% of the way, as it fades in. With less motion
+// asked for it only fades.
+let viewShown = false, viewAnim: Animation[] = [];
+function pushView(v) {
+  viewAnim.forEach(a => a.cancel());
+  const el = document.getElementById(v === 'list' ? 'listview' : 'map');
+  const x = still() ? [] : [
+    play(el, [{ transform: `translateX(${v === 'list' ? 10 : -10}%)` }, { transform: 'none' }], { duration: 260, easing: EASE.out })];
+  viewAnim = [...x, play(el, [{ opacity: 0 }, { opacity: 1 }], { duration: still() ? 200 : 220, easing: still() ? 'ease' : EASE.out })]
+    .filter(Boolean) as Animation[];
 }
 export function deltaFor(s, cat, yr) {
   const base = shownPrograms(s);

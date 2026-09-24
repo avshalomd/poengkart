@@ -4,8 +4,9 @@ import { bucketOf, chanceMode, chanceOf, okChoice, pct, pctS, predFor, progKeyMa
 import { cssVar, esc, fmt, progName, slug, X_ICON } from "./helpers";
 import { t } from "./i18n";
 import { toast } from "./locate";
-import { drawMarkers, mapZoom, viewSchool } from "./map";
-import { renderList } from "./programs";
+import { mapZoom, recolourMap, viewSchool } from "./map";
+import { EASE, easeOut, play, still } from "./motion";
+import { syncPicks } from "./programs";
 import { openSide, renderSide } from "./sidebar";
 import { S } from './state';
 import { bindTitleTips, say } from "./tips";
@@ -43,7 +44,7 @@ export function toggleChoice(s, p) {
   const k = progKeyMap(s).get(p);
   const i = S.choices.findIndex(c => c.f === s.fylke && c.s === s.name && c.k === k);
   S.choicesNote = null;
-  if (i >= 0) S.choices.splice(i, 1);
+  if (i >= 0) { S.choices.splice(i, 1); choiceMove = { added: false }; }
   else {
     // vigo's own limits, so the list can only hold an application that could
     // actually be submitted: ten ranked wishes, and a Vg1 application names
@@ -67,10 +68,11 @@ export function toggleChoice(s, p) {
       if (!cats.has(p.category) && cats.size >= 3) { refuse('vigoMaxProgs'); return; }
     }
     S.choices.push({ f: s.fylke, s: s.name, k });
+    choiceMove = { added: true };
   }
   try { localStorage.setItem('pk-choices', JSON.stringify(S.choices)); } catch (e) {}
   renderChoices();
-  if (S.current) renderList();
+  syncPicks();
 }
 // A redraw that replaces the focused control drops focus to <body>, and a
 // keyboard or screen-reader user loses their place. Put it on the first of the
@@ -115,9 +117,81 @@ export function resolveChoice(c) {
   }
   return p ? { s, p } : null;
 }
+// What the last toggle did, for the redraw it causes to show: a wish added
+// opens its row at the foot of the list, and on any toggle the band bar
+// re-divides from where it stood and the totals crossfade.
+let choiceMove: { added: boolean } | null = null;
+type ChoicesWas = { segs: Record<string, { x: number; w: number }>; head: Element | null; sum: Element | null };
+function choicesWas(box: HTMLElement): ChoicesWas {
+  const bar = box.querySelector('.bar'), segs = {};
+  if (bar) {
+    const b = bar.getBoundingClientRect();
+    bar.querySelectorAll('span').forEach(sp => { const r = sp.getBoundingClientRect(); segs[sp.className] = { x: r.left - b.left, w: r.width }; });
+  }
+  return { segs, head: box.querySelector('.h > span')?.cloneNode(true) as Element || null,
+           sum: box.querySelector('.sum')?.cloneNode(true) as Element || null };
+}
+function showChoiceMove(box: HTMLElement, added: boolean, was: ChoicesWas | null) {
+  const calm = still(), fade = (el, ms = 200) => play(el, [{ opacity: 0 }, { opacity: 1 }], { duration: ms, easing: 'ease' });
+  if (!was) {                              // the list itself has just appeared
+    if (calm) fade(box);
+    else play(box, [{ opacity: 0, transform: 'translateY(-4px)' }, { opacity: 1, transform: 'none' }], { duration: 220, easing: EASE.out });
+    return;
+  }
+  const row = added ? box.querySelector('.list .row:last-child') as HTMLElement : null;
+  if (row && calm) fade(row);
+  else if (row) {
+    const cs = getComputedStyle(row);
+    row.style.overflow = 'hidden';
+    const open = play(row, [{ height: '0px', paddingTop: '0px', paddingBottom: '0px' },
+      { height: row.offsetHeight + 'px', paddingTop: cs.paddingTop, paddingBottom: cs.paddingBottom }], { duration: 240, easing: EASE.out });
+    if (open) open.finished.catch(() => {}).then(() => { row.style.overflow = ''; }); else row.style.overflow = '';
+    play(row, [{ opacity: 0, transform: 'translateY(-4px)' }, { opacity: 1, transform: 'none' }],
+      { duration: 220, delay: 60, easing: EASE.out, fill: 'backwards' });
+  }
+  const lag = added ? 120 : 0, bar = box.querySelector('.bar');
+  if (bar && !Object.keys(was.segs).length) fade(bar);
+  else if (bar && !calm) {
+    const b = bar.getBoundingClientRect();
+    bar.querySelectorAll('span').forEach(sp => {
+      const o = was.segs[sp.className], r = sp.getBoundingClientRect(), x = r.left - b.left;
+      if (!o || !r.width || (o.x === x && o.w === r.width)) return;
+      play(sp, [{ transform: `translateX(${o.x - x}px) scaleX(${o.w / r.width})` }, { transform: 'none' }],
+        { duration: 320, delay: lag, easing: EASE.io, fill: 'backwards' });
+    });
+  }
+  // The old line stays over the new one, blurring out as the new one
+  // sharpens. The copy is a sibling in a class of its own (.h-was, .sum-was),
+  // placed just before the line so it stands where the line stands and moves
+  // with it as the new row opens: nothing that reads .h or .sum can find it.
+  const cross = (now: Element | null, old: Element | null, at: Element | null, kind: string) => {
+    if (!now || !old || !at || now.textContent === old.textContent) return;
+    if (calm) { play(now, [{ opacity: 0 }, { opacity: 1 }], { duration: 150, easing: 'ease' }); return; }
+    const ghost = document.createElement('div');
+    ghost.className = `${kind}-was xf-old`;
+    ghost.setAttribute('aria-hidden', 'true');
+    ghost.append(...(kind === 'sum' ? [...old.childNodes] : [old]));
+    at.before(ghost);
+    // a margin collapses into the one above it for the line, not for the copy
+    const dy = now.getBoundingClientRect().top - ghost.getBoundingClientRect().top;
+    if (dy) ghost.style.marginTop = `${parseFloat(getComputedStyle(ghost).marginTop) + dy}px`;
+    const out = play(ghost, [{ opacity: 1, filter: 'blur(0px)' }, { opacity: 0, filter: 'blur(2px)' }],
+      { duration: 180, delay: lag, easing: EASE.out, fill: 'both' });
+    if (out) out.finished.catch(() => {}).then(() => ghost.remove()); else ghost.remove();
+    play(now, [{ opacity: 0, filter: 'blur(2px)' }, { opacity: 1, filter: 'blur(0px)' }],
+      { duration: 220, delay: lag + 40, easing: EASE.out, fill: 'backwards' });
+  };
+  cross(box.querySelector('.h > span'), was.head, box.querySelector('.h'), 'h');
+  cross(box.querySelector('.sum'), was.sum, box.querySelector('.sum'), 'sum');
+}
 export function renderChoices() {
   const box = document.getElementById('choices');
   if (!S.DATA) return;
+  // a toggle's motion, measured from the list as it stands; none when the
+  // list is not on screen (a phone's sheet covers it)
+  const move = choiceMove;
+  choiceMove = null;
+  const was = move && !box!.hidden && box!.getClientRects().length ? choicesWas(box!) : null;
   // a school or programme the dataset has since dropped or renamed leaves an
   // entry that can never render again; prune it rather than carry it forever.
   // A re-keyed wish is saved under its new key, and two spellings joined into
@@ -169,6 +243,7 @@ export function renderChoices() {
     `<button id="choices-clear">${esc(t('choicesClear'))}</button></div>` +
     `<div class="list">${rows}</div>` +
     (S.choicesNote ? `<div class="vnote">⚠ ${esc(S.choicesNote)}</div>` : '') + sum;
+  if (move && box!.getClientRects().length) showChoiceMove(box!, move.added, was);
   box!.querySelectorAll('.who').forEach((b: any) => b.onclick = () => {
     const { s } = items[+b.dataset.i]; openSide(s);
     if (s.lat && S.map && S.view === 'map') viewSchool(s, Math.max(mapZoom(), 10));
@@ -203,7 +278,7 @@ export function renderChoices() {
     S.choices = [];
     try { localStorage.removeItem('pk-choices'); } catch (e) {}
     renderChoices();
-    if (S.current) renderList();
+    syncPicks();
     refocus('#my-points', '#map-cat', '#panel-sum', '#panel');
     toast(t('choicesCleared'));
   };
@@ -219,7 +294,25 @@ export function parsePoints(v) {
   const n = Math.round(parseFloat(txt.replace(',', '.')) * 10) / 10;
   return n >= 0 && n <= 70 ? { pts: n, bad: false } : { pts: null, bad: true };
 }
+// A figure set in one go (the ✕, the calculator) is drawn at once.
 export function onPoints(v) {
+  setPoints(v);
+  commitPoints();
+}
+// Typed, the field answers each keystroke and the map, the list and the sheet
+// follow once the typing pauses for 250ms: «45» typed is then one recolour of
+// the map, not two, and «42,» on the way to «42,5» leaves the map as it is
+// until the next keystroke or until the field is left (flushPoints, on change).
+let ptsTimer: ReturnType<typeof setTimeout> | undefined, ptsPending = false;
+export function onPointsInput(v) {
+  const r = setPoints(v);
+  ptsPending = true;
+  if (r.pts === null && !r.bad && String(v).trim() !== '') return;
+  ptsTimer = setTimeout(commitPoints, 250);
+}
+export function flushPoints() { if (ptsPending) commitPoints(); }
+function setPoints(v) {
+  clearTimeout(ptsTimer);
   const inp: any = document.getElementById('my-points');
   const r = parsePoints(v);
   S.myPoints = r.pts;
@@ -229,8 +322,42 @@ export function onPoints(v) {
     if (S.myPoints === null) localStorage.removeItem('pk-points');
     else localStorage.setItem('pk-points', String(S.myPoints));
   } catch (e) {}
-  renderPointsField(); renderChoices(); drawMarkers(); renderLegend();
-  if (S.current) renderSide();
+  renderPointsField();
+  return r;
+}
+function commitPoints() {
+  clearTimeout(ptsTimer);
+  ptsPending = false;
+  const chipsWere = !!document.querySelector('#s-list .ch:not(.none)');
+  renderChoices(); recolourMap(); renderLegend();
+  if (S.current) { renderSide(); if (!chipsWere) countUpChips(); }
+}
+// The first chips an open sheet shows count up from 0 to their figure, 50ms
+// apart, taking the colour of each band as they pass 35 and 70 %: the scale
+// taught once, on the rows the reader is looking at. A later edit changes
+// them without counting. The chip ends on exactly the text it was drawn with.
+function countUpChips() {
+  const bottom = document.querySelector('#side > .scroll')!.getBoundingClientRect().bottom;
+  const chips = [...document.querySelectorAll('#s-list .ch:not(.none)')]
+    .filter(c => c.getClientRects().length && c.getBoundingClientRect().top < bottom).slice(0, 10) as HTMLElement[];
+  chips.forEach((c, i) => {
+    if (still()) { play(c, [{ opacity: 0 }, { opacity: 1 }], { duration: 200, easing: 'ease' }); return; }
+    play(c, [{ opacity: 0, transform: 'scale(.9)' }, { opacity: 1, transform: 'none' }],
+      { duration: 200, delay: i * 50, easing: EASE.out, fill: 'backwards' });
+    const text = c.textContent || '', m = text.match(/^(\d+)(\s?%)$/), band = c.className;
+    if (!m) return;
+    const to = +m[1], t0 = performance.now() + i * 50;
+    c.style.minWidth = c.offsetWidth + 'px';            // the row does not twitch as a digit is added
+    const show = (n: number) => { c.textContent = n + m[2]; c.className = band.replace(/\bb-\w+/, 'b-' + bucketOf(n / 100)); };
+    show(0);
+    const tick = (now: number) => {
+      if (!c.isConnected) return;
+      const p = Math.min(1, Math.max(0, (now - t0) / 560));
+      if (p < 1) { show(Math.round(to * easeOut(p))); requestAnimationFrame(tick); return; }
+      c.textContent = text; c.className = band; c.style.minWidth = '';
+    };
+    requestAnimationFrame(tick);
+  });
 }
 export function renderPointsField() {
   const f = document.getElementById('pts-field');

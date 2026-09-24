@@ -8,6 +8,7 @@ import { buildMiniMap, dropMiniMap, drawMarkers, fitVisible, hideMapTip, onceSet
 import { renderList } from "./programs";
 import { queryParts, schoolUrl, setDocHead, setUrlSchool, syncUrl } from './router';
 import { S } from './state';
+import { EASE, play, still } from "./motion";
 import { heroHtml, metaHtml, notesHtml, photoHtml, srcNoteHtml } from "./templates";
 import { bindTitleTips } from "./tips";
 
@@ -87,8 +88,14 @@ export function listLayout() {
     anchor = [...document.querySelectorAll('#listview tbody tr')].find(r => r.getBoundingClientRect().bottom > 0);
     if (anchor) anchorTop = anchor.getBoundingClientRect().top;
   }
+  // A change of layout moves the sheet between docked and covering in one
+  // step: its width and slide would otherwise animate from one layout's
+  // values to the other's, and a closed sheet squeezed the map as it left.
+  const snap = !c.contains('lv-' + (lv || 'none')) && (lv || was);
+  if (snap) c.add('snap');
   for (const k of ['wide', 'split', 'thin']) c.toggle('lv-' + k, lv === k);
   c.toggle('lv-stack', lv === 'split' || lv === 'thin');
+  if (snap) { void document.body.offsetWidth; c.remove('snap'); }
   if (anchor) document.getElementById(now === 'wide' ? 'listview' : 'app')!.scrollTop += anchor.getBoundingClientRect().top - anchorTop;
   return lv;
 }
@@ -139,12 +146,14 @@ export function openSide(s, landing?: boolean) {
       : ae?.closest?.('#searchov') ? { id: 'searchov-btn' } : null;
   }
   widenFor(s);
+  const side = document.getElementById('side');
+  const fresh = !side!.classList.contains('open'), same = !fresh && S.current === s;
   S.current = s;
   S.chart.prog = null;                     // the lens itself is global
-  const side = document.getElementById('side');
   side!.removeAttribute('inert');
   side!.classList.add('open');
   renderSide();
+  if (!landing && !same) settleSheet(fresh);
   document.body.classList.add('side-open');
   sideTrap(true);
   // On a phone the details fill the screen, and the system back gesture is how
@@ -187,8 +196,34 @@ export function openSide(s, landing?: boolean) {
       if (left + 64 > mc.clientWidth) left = 24;     // no strip beside the panel to aim for
       panSchoolInside(s, left);
     };
-    (openSide as any).pan = setTimeout(() => onceSettled(reveal), prefersStill() ? 0 : 260);
+    (openSide as any).pan = setTimeout(() => onceSettled(reveal), prefersStill() ? 0 : 290);   // the sheet's 280ms
   }
+}
+// What the sheet shows arrives just behind the sheet: the photo settles from a
+// slight zoom as the sheet lands, and the figures and the first rows rise into
+// place one after another. A school opened in a sheet already open only rises;
+// the page a link landed on does neither.
+let settling: Animation[] = [];
+function settleSheet(fresh: boolean) {
+  settling.forEach(a => a.cancel());
+  settling = [];
+  if (still()) return;
+  const ph = document.getElementById('s-photo')!, media = ph.querySelector('img, #s-minimap');
+  if (fresh && media) {
+    ph.style.overflow = 'hidden';          // the zoomed photo must not spill onto the name's lines below
+    const a = play(media, [{ transform: 'scale(1.08)' }, { transform: 'none' }], { duration: 560, easing: EASE.out });
+    if (a) { settling.push(a); a.finished.catch(() => {}).then(() => { ph.style.overflow = ''; }); }
+    else ph.style.overflow = '';
+  }
+  const bottom = document.querySelector('#side > .scroll')!.getBoundingClientRect().bottom;
+  [...document.querySelectorAll('#s-meta, #s-notes, #s-hero, #s-chance, #s-mix, #side .chart-card, #s-list .cat-head, #s-list .prow')]
+    .filter(e => !(e as HTMLElement).hidden && e.getClientRects().length && e.getBoundingClientRect().top < bottom)
+    .slice(0, 10)
+    .forEach((e, i) => {
+      const a = play(e, [{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }],
+        { duration: 240, delay: fresh ? 110 + i * 45 : i * 30, easing: EASE.out, fill: 'backwards' });
+      if (a) settling.push(a);
+    });
 }
 export function clearScope() {
   S.chart.prog = null;

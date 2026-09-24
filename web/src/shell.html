@@ -61,6 +61,9 @@
     <div class="seg" id="view-toggle" role="group">
       <button id="view-map" type="button" onclick="setView('map')" aria-pressed="true"></button>
       <button id="view-list" type="button" onclick="setView('list')" aria-pressed="false"></button>
+      <!-- the pressed half is this accent copy of the labels, clipped to it:
+           the clip slides, so the colour changes exactly where the pill is -->
+      <span class="over" aria-hidden="true"><span></span><span></span></span>
     </div>
     <button class="ico" id="searchov-btn" onclick="openSearchOv()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -90,7 +93,7 @@
     <label id="pts-label" for="my-points"></label>
     <div class="ptsrow">
       <input id="my-points" type="text" inputmode="decimal" autocomplete="off" spellcheck="false"
-             maxlength="5" oninput="onPoints(this.value)">
+             maxlength="5" oninput="onPointsInput(this.value)" onchange="flushPoints()">
       <button id="pts-clear" type="button" onclick="onPoints(''); refocus('#my-points')" hidden><svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       <button id="calc-open" type="button" onclick="openCalc()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

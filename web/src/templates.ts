@@ -139,6 +139,13 @@ export function srcNoteHtml(): string {
   return esc(t('srcNote')) +
     ` <button class="lnk" onclick="contactOpener = this; openContact('tall')">${esc(t('srcNoteLink'))}</button>`;
 }
+// The pick's face: a fill, a + and a ✓, all present in both states. .on
+// spreads the fill from the centre and turns the + into the ✓, as transitions,
+// so the button changes where it stands and a second press turns it back
+// mid-way (syncPicks updates it in place rather than redrawing the list).
+export const PICK_FACE = '<span class="fill" aria-hidden="true"></span>' +
+  '<svg class="ip" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>' +
+  '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 export function listHtml(s: School, scope: string | null): string {
   const base = shownPrograms(s);
   const inScope = base.filter(p => !scope || p.category === scope);
@@ -219,7 +226,7 @@ export function listHtml(s: School, scope: string | null): string {
       // button beside it, and what the chips and the figure say is the name's
       // description.
       const pick = orphan ? '' : `<button type="button" class="pick${on ? ' on' : ''}" data-idx="${idx}"` +
-        ` aria-pressed="${on}" aria-label="${esc(t(on ? 'pickRemove' : 'pickAdd'))}" title="${esc(t(on ? 'pickRemove' : 'pickAdd'))}">${on ? '✓' : '+'}</button>`;
+        ` aria-pressed="${on}" aria-label="${esc(t(on ? 'pickRemove' : 'pickAdd'))}" title="${esc(t(on ? 'pickRemove' : 'pickAdd'))}">${PICK_FACE}</button>`;
       // the level's glossary entry: the row's description below, and the chip's
       // own .tipped mark — written here on the very condition bindTips() marks
       // it on, so a prerendered page is already the page the script takes over

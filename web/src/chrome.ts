@@ -17,6 +17,8 @@ export function renderPanel() {
   document.getElementById('cat-label')!.textContent = t('catLabel');
   document.getElementById('view-map')!.textContent = t('viewMap');
   document.getElementById('view-list')!.textContent = t('viewList');
+  const over = document.querySelectorAll('#view-toggle .over span');
+  over[0].textContent = t('viewMap'); over[1].textContent = t('viewList');
   document.getElementById('view-toggle')!.setAttribute('aria-label', t('viewLabel'));
   const co = document.getElementById('calc-open');
   co!.title = t('calcOpen');

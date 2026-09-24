@@ -7,6 +7,10 @@ import { boot, openSchool } from './helpers';
 // green run here is "no serious violation", not "axe-clean".
 const serious = (r: { violations: { impact?: string | null; id: string; nodes: unknown[] }[] }) =>
   r.violations.filter(v => v.impact === 'serious' || v.impact === 'critical').map(v => `${v.id} ×${v.nodes.length}`);
+// Contrast is measured on the page at rest: a view fading in or a sheet's rows
+// rising are, for those 300ms, lighter than they will be.
+const settled = (page: import('@playwright/test').Page) =>
+  page.waitForFunction(() => document.getAnimations().every(a => a.playState !== 'running'));
 
 test('no serious axe violations on the map view', async ({ page }) => {
   await boot(page);
@@ -16,6 +20,7 @@ test('no serious axe violations on the map view', async ({ page }) => {
 test('no serious axe violations with a school open', async ({ page }) => {
   await boot(page);
   await openSchool(page, 'Akershus', 'Asker');
+  await settled(page);
   expect(serious(await new AxeBuilder({ page }).exclude('#map').analyze())).toEqual([]);
 });
 
@@ -23,5 +28,6 @@ test('no serious axe violations in the list view', async ({ page }) => {
   await boot(page);
   await page.click('#view-list');
   await expect(page.locator('#listview')).toBeVisible();
+  await settled(page);
   expect(serious(await new AxeBuilder({ page }).exclude('#map').analyze())).toEqual([]);
 });

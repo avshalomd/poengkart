@@ -6,6 +6,7 @@ import { bucketColor, bucketOf, chanceMode, pct, schoolChance } from "./chance";
 import { legendZoomHint, renderCatNote, renderLegend, renderPanel } from "./chrome";
 import { colorFor, cssVar, esc, fmt, HELD_OUT, isVg1, levelScope, progName, schoolPressure, shownPrograms, visibleCount, yearSpan, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
+import { EASE, play } from "./motion";
 import { say } from "./tips";
 import { renderListView } from "./listview";
 import { PREFS } from "./prefs";
@@ -438,6 +439,46 @@ export function lensNoFigure(s) {
 }
 
 /* ---------- the dots ---------- */
+// Points arriving or changing recolour the map as a wave from the points
+// field outwards: each dot on screen goes from its old colour and size to its
+// new ones with a small swell, later the further it is from the field (up to
+// 380ms), so the reader sees their figure reach the map. Clusters swell with
+// their neighbours, and a chance ring fades in. With less motion asked for,
+// every dot crossfades in place at once.
+export function recolourMap() {
+  if (S.view === 'list' || !S.map || !pane) { drawMarkers(); return; }
+  const before = new Map<School, { bg: string; bc: string; w: number }>();
+  for (const [s, r] of recs) if (r.el.isConnected) before.set(s, { bg: r.el.style.backgroundColor, bc: r.el.style.borderColor, w: parseFloat(r.el.style.width) });
+  const ringed = !!pane.querySelector('.pk-cluster.mix');
+  drawMarkers();
+  const calm = prefersStill(), m = S.map.getContainer().getBoundingClientRect();
+  const f = document.getElementById('my-points')!.getBoundingClientRect();
+  const [ox, oy] = f.width ? [f.left + f.width / 2, f.top + f.height / 2] : [m.left, m.top];
+  const jobs: { el: HTMLElement; d: number; old?: { bg: string; bc: string; w: number } }[] = [];
+  const onScreen = (el: HTMLElement) => {
+    if (!el.isConnected || el.hidden) return null;
+    const b = el.getBoundingClientRect();
+    return b.right < m.left || b.left > m.right || b.bottom < m.top || b.top > m.bottom ? null
+      : Math.hypot(b.left + b.width / 2 - ox, b.top + b.height / 2 - oy);
+  };
+  for (const [s, r] of recs) {
+    const old = before.get(s), d = onScreen(r.el);
+    if (d === null || !old || (old.bg === r.el.style.backgroundColor && old.w === parseFloat(r.el.style.width))) continue;
+    jobs.push({ el: r.el, d, old });
+  }
+  for (const el of clusterEls.values()) { const d = onScreen(el); if (d !== null) jobs.push({ el, d }); }
+  const far = Math.max(1, ...jobs.map(j => j.d));
+  for (const { el, d, old } of jobs) {
+    const delay = calm ? 0 : d / far * 380;
+    if (old) play(el, [{ backgroundColor: old.bg, borderColor: old.bc }, { backgroundColor: el.style.backgroundColor, borderColor: el.style.borderColor }],
+      { duration: calm ? 200 : 260, delay, easing: calm ? 'ease' : EASE.out, fill: 'backwards' });
+    else if (!ringed && el.classList.contains('mix'))
+      play(el, [{ opacity: 0 }, { opacity: 1 }], { duration: calm ? 200 : 260, delay, easing: calm ? 'ease' : EASE.out, fill: 'backwards', pseudoElement: '::before' });
+    // the individual scale property: the transform is the dot's position
+    if (!calm) play(el, [{ scale: old ? old.w / parseFloat(el.style.width) : 1 }, { scale: old ? 1.3 : 1.12, offset: .35 }, { scale: 1 }],
+      { duration: 320, delay, easing: EASE.out, fill: 'backwards' });
+  }
+}
 export function drawMarkers() {
   if (S.view === 'list') { renderListView(); return; }   // the map is display:none
   if (!S.map) return;

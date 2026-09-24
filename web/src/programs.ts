@@ -1,4 +1,4 @@
-import { refocus, toggleChoice } from "./chance";
+import { isChosen, refocus, toggleChoice } from "./chance";
 import { renderChartCard } from "./chart";
 import { renderCatNote, renderLegend } from "./chrome";
 import { esc } from "./helpers";
@@ -7,10 +7,27 @@ import { renderListView } from "./listview";
 import { drawMarkers, setLens, setLevels } from "./map";
 import { clearScope, renderSide, widenFor } from "./sidebar";
 import { S } from './state';
+import { play, POP, still } from "./motion";
 import { listHtml } from "./templates";
 import { bindTips, hideTip, showTip } from "./tips";
 
 /* ================= program list ================= */
+// A wish added or removed changes one thing in the sheet, its pick: set it
+// where it stands, so its transitions run and focus never leaves it. Turning
+// on, it answers with a small spring.
+export function syncPicks() {
+  const s = S.current;
+  if (!s) return;
+  document.querySelectorAll('#s-list .pick').forEach((b: any) => {
+    const on = isChosen(s, s.programs[+b.dataset.idx]);
+    if (b.classList.contains('on') === on) return;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', String(on));
+    b.setAttribute('aria-label', t(on ? 'pickRemove' : 'pickAdd'));
+    b.title = t(on ? 'pickRemove' : 'pickAdd');
+    if (on && !still()) play(b, [{ transform: 'scale(.86)' }, { transform: 'none' }], POP);
+  });
+}
 export function renderList() {
   // One scope for the whole app: the utdanningsprogram lens. Selecting a
   // programme-area row narrows the chart but never the list or the map.
