@@ -1391,11 +1391,12 @@
     /* the overlay's box is styled by id, so a class alone would lose to it */
     #searchov .ovbox, #searchov.closing .ovbox { animation: none; }
     #view-toggle .over { transition: none; }
-    /* the pick keeps its crossfade and loses the turn, the blur and the spread */
-    #s-list .prow .pick { transition: border-color 150ms ease; }
-    .prow .pick .fill { clip-path: none; opacity: 0; transition: opacity 150ms ease; }
+    /* the pick keeps its crossfade and loses the turn, the blur and the spread
+       (!important outranks the .01ms every transition gets above) */
+    #s-list .prow .pick { transition: border-color 150ms ease !important; }
+    .prow .pick .fill { clip-path: none; opacity: 0; transition: opacity 150ms ease !important; }
     .prow .pick.on .fill { opacity: 1; }
-    .prow .pick svg, .prow .pick .ic, .prow .pick.on .ip { transform: none; filter: none; transition: opacity 150ms ease; }
+    .prow .pick svg, .prow .pick .ic, .prow .pick.on .ip { transform: none; filter: none; transition: opacity 150ms ease !important; }
   }
   /* ---------- phones ----------
      A 300px floating card on a 375px screen buries the map and collides with
@@ -1684,16 +1685,17 @@
     :root[data-font="lg"] .tabs button, :root[data-font="xl"] .tabs button {
       line-height: 1.2; padding-top: 6px; padding-bottom: 6px; min-height: 38px; }
   }
-  /* with less motion asked for, the covering sheet fades where it stands */
+  /* with less motion asked for, the covering sheet fades where it stands
+     (!important outranks the .01ms every transition gets under reduced motion) */
   @media (prefers-reduced-motion: reduce) and (max-width: 760px),
          (prefers-reduced-motion: reduce) and (max-width: 1023px) and (max-height: 480px) {
-    #side { transform: none; opacity: 0; transition: opacity 200ms ease, visibility 0s 200ms; }
-    #side.open { opacity: 1; transition: opacity 200ms ease, visibility 0s; }
+    #side { transform: none; opacity: 0; transition: opacity 200ms ease, visibility 0s 200ms !important; }
+    #side.open { opacity: 1; transition: opacity 200ms ease, visibility 0s !important; }
   }
   @media (prefers-reduced-motion: reduce) {
     body.lv-stack #side, body.lv-stack #side.open { transform: none; }
-    body.lv-stack #side { opacity: 0; transition: opacity 200ms ease, visibility 0s 200ms; }
-    body.lv-stack #side.open { opacity: 1; transition: opacity 200ms ease, visibility 0s; }
+    body.lv-stack #side { opacity: 0; transition: opacity 200ms ease, visibility 0s 200ms !important; }
+    body.lv-stack #side.open { opacity: 1; transition: opacity 200ms ease, visibility 0s !important; }
   }
   /* Stor/Ekstra stor grow the control card to 363/411px, and at iPad widths the
      docked panel painted over the calculator and Settings — the one way back
