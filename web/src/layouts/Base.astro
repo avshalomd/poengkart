@@ -33,10 +33,10 @@ const { title, description, canonical, ogTitle, ogDescription, twitterDescriptio
 {/* a page kept out of the index names no canonical: the 404 is not the home page */}
 {!noindex && <link rel="canonical" href={canonical}>}
 {noindex && <meta name="robots" content="noindex">}
-<!-- Google Search Console: the URL-prefix property https://poengkart-no.vercel.app/
-     is verified by this tag on the home page (17 Sept 2026). Removing it
-     un-verifies the property. Since 22 Sept 2026 the canonical names
-     https://poengkart.vercel.app/, which needs a property of its own. -->
+<!-- Google Search Console: the URL-prefix properties https://poengkart-no.vercel.app/
+     (17 Sept 2026) and https://poengkart.vercel.app/ (22 Sept 2026, the
+     canonical) are both verified by this tag on the home page. Removing it
+     un-verifies both. -->
 <meta name="google-site-verification" content="nstWEgPKGkzQDB8692StPPh6C1gsEGfjoOXMiDN6lJo">
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">

@@ -298,11 +298,11 @@ Behaviour is unchanged by design. Still to do from the same plan:
     un-verifies it). `/sitemap.xml` was submitted the same day; watch the
     school pages get indexed under Indexing → Pages (the owner's account).
   - 22 September 2026: `SITE` is `https://poengkart.vercel.app`, the address
-    readers are given, so canonical, og:url and the sitemap name it. The
-    owner adds a URL-prefix property for it in Search Console and submits
-    `/sitemap.xml` there; the `poengkart-no` property then reports its pages
-    as alternates of the new canonical. If Search Console issues a new
-    verification token, its tag goes beside the existing one in `Base.astro`.
+    readers are given, so canonical, og:url and the sitemap name it. Its
+    URL-prefix property was added the same day and verified by the same tag
+    (one token covers both hosts); `/sitemap.xml` was submitted there and
+    read with 230 pages. The `poengkart-no` property now reports its pages as
+    alternates of the new canonical.
   - The school photo on a prerendered page keeps `loading="lazy"` because the
     template is the client's; an eager hint on the page's own photo would be
     a template split — measure LCP on a school page first.
