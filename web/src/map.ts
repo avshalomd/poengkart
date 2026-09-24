@@ -85,7 +85,7 @@ export function createMap() {
   });
   S.map.addControl(zoomControl(), 'bottom-right');
   S.map.on('move', positionPane);
-  S.map.on('movestart', () => { unspider(); });
+  S.map.on('movestart', () => { unspider(); endWave(); });
   S.map.on('moveend', () => { renderClusters(); });
   S.map.on('zoom', () => { if (S.loc) sizeLocRing(); });
   // a blocked tile host is a blank map with the dots still on it, as before;
@@ -443,8 +443,12 @@ export function lensNoFigure(s) {
 // field outwards: each dot on screen goes from its old colour and size to its
 // new ones with a small swell, later the further it is from the field (up to
 // 380ms), so the reader sees their figure reach the map. Clusters swell with
-// their neighbours, and a chance ring fades in. With less motion asked for,
-// every dot crossfades in place at once.
+// their neighbours, and a chance ring fades in. A figure corrected within
+// 1.5s of a wave (a pause while typing «44») only crossfades, all dots at
+// once, and so does every recolour with less motion asked for.
+let waveAt = -Infinity, wave: Animation[] = [];
+// the swell holds the dot's transform, so a map that moves ends it at once
+export const endWave = () => { wave.forEach(a => a.finish()); wave = []; };
 export function recolourMap() {
   if (S.view === 'list' || !S.map || !pane) { drawMarkers(); return; }
   const before = new Map<School, { bg: string; bc: string; w: number }>();
@@ -467,16 +471,25 @@ export function recolourMap() {
     jobs.push({ el: r.el, d, old });
   }
   for (const el of clusterEls.values()) { const d = onScreen(el); if (d !== null) jobs.push({ el, d }); }
+  const now = performance.now(), full = !calm && now - waveAt > 1500;
+  if (full) waveAt = now;
   const far = Math.max(1, ...jobs.map(j => j.d));
+  const fade = { duration: full ? 260 : 200, easing: full ? EASE.out : 'ease', fill: 'backwards' as FillMode };
+  endWave();
   for (const { el, d, old } of jobs) {
-    const delay = calm ? 0 : d / far * 380;
-    if (old) play(el, [{ backgroundColor: old.bg, borderColor: old.bc }, { backgroundColor: el.style.backgroundColor, borderColor: el.style.borderColor }],
-      { duration: calm ? 200 : 260, delay, easing: calm ? 'ease' : EASE.out, fill: 'backwards' });
-    else if (!ringed && el.classList.contains('mix'))
-      play(el, [{ opacity: 0 }, { opacity: 1 }], { duration: calm ? 200 : 260, delay, easing: calm ? 'ease' : EASE.out, fill: 'backwards', pseudoElement: '::before' });
-    // the individual scale property: the transform is the dot's position
-    if (!calm) play(el, [{ scale: old ? old.w / parseFloat(el.style.width) : 1 }, { scale: old ? 1.3 : 1.12, offset: .35 }, { scale: 1 }],
-      { duration: 320, delay, easing: EASE.out, fill: 'backwards' });
+    const delay = full ? d / far * 380 : 0;
+    const a = [old
+      ? play(el, [{ backgroundColor: old.bg, borderColor: old.bc }, { backgroundColor: el.style.backgroundColor, borderColor: el.style.borderColor }], { ...fade, delay })
+      : !ringed && el.classList.contains('mix')
+      ? play(el, [{ opacity: 0 }, { opacity: 1 }], { ...fade, delay, pseudoElement: '::before' }) : null];
+    // The swell rides at the end of the dot's own transform, which is its
+    // position: the individual scale property would compose outside it and
+    // scale the position too, flinging every dot away from the pane's corner.
+    const at = el.style.transform, k = old ? old.w / parseFloat(el.style.width) : 1;
+    if (full) a.push(play(el, [{ transform: `${at} scale(${k})` }, { transform: `${at} scale(${old ? 1.3 : 1.12})`, offset: .35 }, { transform: at }],
+      { duration: 320, delay, easing: EASE.out, fill: 'backwards' }));
+    else if (!calm && k !== 1) a.push(play(el, [{ transform: `${at} scale(${k})` }, { transform: at }], { ...fade }));
+    wave.push(...a.filter(Boolean) as Animation[]);
   }
 }
 export function drawMarkers() {
