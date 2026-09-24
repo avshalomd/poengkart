@@ -45,8 +45,8 @@ describe('the wish list', () => {
     expect(S.choicesNote).toBeNull();
     toggleChoice(pool[10].s, pool[10].p);
     expect(S.choices.length).toBe(10);                       // refused
-    expect(S.choicesNote).toBe(t('vigoMaxWishes'));
-    expect(document.querySelector('#choices .vnote')!.textContent).toContain(S.choicesNote);
+    expect(S.choicesNote).toBe('vigoMaxWishes');
+    expect(document.querySelector('#choices .vnote')!.textContent).toContain(t('vigoMaxWishes'));
     expect(document.querySelectorAll('#choices .list .row').length).toBe(10);
   });
 
@@ -58,10 +58,22 @@ describe('the wish list', () => {
     expect(S.choices.length).toBe(3);
     toggleChoice(cats[3].s, cats[3].p);
     expect(S.choices.length).toBe(3);
-    expect(S.choicesNote).toBe(t('vigoMaxProgs'));
+    expect(S.choicesNote).toBe('vigoMaxProgs');
     // the refusal also appears where the tap happened, for a phone whose
     // choices box is behind the open sheet
-    expect(document.getElementById('pick-note')!.textContent).toContain(S.choicesNote);
+    expect(document.getElementById('pick-note')!.textContent).toContain(t('vigoMaxProgs'));
+  });
+
+  it('the refusal note follows a language switch', () => {
+    loadFixtures(); initHelpers(); initListview(); stubMap();
+    const cats = ['ST', 'HS', 'EL', 'BA'].map(c => withCat(c)[0]);
+    const was = S.lang;
+    S.lang = 'no';
+    for (const { s, p } of cats) toggleChoice(s, p);
+    expect(document.querySelector('#choices .vnote')!.textContent).toContain(t('vigoMaxProgs'));
+    S.lang = 'en'; renderChoices();
+    expect(document.querySelector('#choices .vnote')!.textContent).toContain('at most three different education programmes');
+    S.lang = was;
   });
 
   it('with points entered every wish carries its chance and the list carries the summary', () => {

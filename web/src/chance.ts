@@ -51,7 +51,7 @@ export function toggleChoice(s, p) {
     // at most three different utdanningsprogram
     const items = S.choices.map(resolveChoice).filter(Boolean) as Wish[];
     const refuse = key => {
-      S.choicesNote = t(key);
+      S.choicesNote = key;
       renderChoices();
       // the note is rendered inside #choices; on a desktop that card scrolls,
       // and the note landed 200px below its fold with nothing else happening
@@ -60,7 +60,7 @@ export function toggleChoice(s, p) {
         const n = note.getBoundingClientRect(), c = card.getBoundingClientRect();
         return n.top >= c.top && n.bottom <= c.bottom + 1;
       })();
-      if (!onScreen) pickNote(S.choicesNote); else say(S.choicesNote!);
+      if (!onScreen) pickNote(t(key)); else say(t(key));
     };
     if (items.length >= 10) { refuse('vigoMaxWishes'); return; }
     if (p.level === 'Vg1') {
@@ -242,7 +242,7 @@ export function renderChoices() {
   box!.innerHTML = `<div class="h"><span>${esc(t('choicesHead', items.length))}</span>` +
     `<button id="choices-clear">${esc(t('choicesClear'))}</button></div>` +
     `<div class="list">${rows}</div>` +
-    (S.choicesNote ? `<div class="vnote">⚠ ${esc(S.choicesNote)}</div>` : '') + sum;
+    (S.choicesNote ? `<div class="vnote">⚠ ${esc(t(S.choicesNote))}</div>` : '') + sum;
   if (move && box!.getClientRects().length) showChoiceMove(box!, move.added, was);
   box!.querySelectorAll('.who').forEach((b: any) => b.onclick = () => {
     const { s } = items[+b.dataset.i]; openSide(s);

@@ -25,7 +25,7 @@ export const S = {
   chart: undefined as unknown as ChartState,
   _newestByFylke: null as Record<string, number> | null,
   choices: [] as Choice[],
-  choicesNote: null as string | null,   // why the last add was refused; rendered once
+  choicesNote: null as string | null,   // the i18n key of why the last add was refused; translated at render, so a language switch follows
   pickNoteTimer: null as ReturnType<typeof setTimeout> | null,
   ptsBad: false,
   labelMarkers: undefined as unknown as () => void,   // set by initMap(), then by every drawMarkers()
