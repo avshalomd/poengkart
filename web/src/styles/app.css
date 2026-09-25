@@ -1758,6 +1758,10 @@
     /* search sat in the utility pill and inherited its touch allowance; on the
        toggle row it is a 34px control on a row that has width to spare */
     .viewrow .ico { width: 44px; }
+    /* the row stands 39-41px on a phone; the Kart/Liste halves and search reach
+       up and down to 44, never sideways into each other. The focus ring's own
+       ::after (inset 0) outranks this one while it shows. */
+    #view-toggle button::after, .viewrow .ico::after { content: ''; position: absolute; inset: -3px 0; }
     #choices .h button::after { inset: -15px -10px; }
     /* the map's zoom and locate buttons are 30px; 40 is the floor on a phone */
     .maplibregl-ctrl-group button.pk-zoom, .maplibregl-ctrl-group button.locate { width: 40px; height: 40px; line-height: 40px; }

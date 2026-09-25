@@ -343,14 +343,6 @@ Found by the rebuild's own QA and left alone (zero behaviour change was the rule
   percent-encoded (`#s=Akershus%2FAsker`); the app never writes that form,
   only hand-built or third-party links hit it. (`web/test/url.test.ts` holds
   the `it.todo`.)
-- Three phone controls are under the 44 px tap height: the map/list toggle
-  buttons at 39 px and the search button at 41 px.
-- The colour-key's first bin label "<30" is interpolated unescaped into
-  innerHTML (`web/src/chrome.ts`); browsers render it, happy-dom drops it, so
-  no unit test pins that label. Escape it.
-- The threshold bins' last `max` is 99, not Infinity (`web/src/helpers.ts`);
-  the colour lookup relies on no poenggrense reaching 99. Make the last bin
-  open-ended so the code carries its own guarantee.
 - 336 non-null assertions (`!`) under `web/src/` after strict mode; a typed
   `el(id)` helper that throws once at the seam would retire most of them (a
   behaviour change, hence deferred).

@@ -54,8 +54,8 @@ describe('panel and legend', () => {
     loadFixtures(); initHelpers(); stubMap(); renderLegend();
     const bins = document.getElementById('legend-bins')!;
     expect(bins.children.length).toBe(BIN_EDGES.length);
-    // BIN_EDGES[0] is "<30", and happy-dom's parser drops a text node that
-    // opens with "<" where a browser prints it; the other four read back
+    // BIN_EDGES[0] is "<30": escaped, it reads back as text, not as a tag
+    expect(bins.textContent).toContain(BIN_EDGES[0]);
     expect(bins.textContent).toContain(BIN_EDGES[1]);
     expect(bins.textContent).toContain(BIN_EDGES[BIN_EDGES.length - 1]);
     expect(document.getElementById('legend-title')!.textContent).toContain(t('legendAll'));
