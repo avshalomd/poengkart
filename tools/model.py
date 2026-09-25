@@ -123,6 +123,7 @@ HIST_BUCKETS = [(0, 0), (1, 1), (2, 3), (4, 99)]  # years of history a series ha
 EWMA_ALPHA = 0.4                                  # the exponential-smoothing baseline (Muth, 1960)
 SINGLE_WEIGHTS = [1.0, 0.5, 0.25, 0.0]            # level-fit weight of a threshold one applicant set; backtest picks
 LEVEL_SPREAD = True                               # spread conditioned on the forecast level as well as on history
+LEVEL_GROUP_SPREAD = True                         # ...and scaled per level group (Vg1, Vg2+) to its own 80% coverage
 CHANCE_GRID = [20, 25, 30, 35, 40, 45, 50, 55]   # applicant points for reliability
 # the app's default scope is Vg1 (roadmap, 14 Sept 2026): the backtest scores
 # Vg1 and Vg2 and up apart as well as pooled
@@ -562,15 +563,17 @@ def band_of(m):
     return f'{lo}-{hi}' if hi < 99 else f'{lo}+'
 
 
-def spread(sig, h, m):
+def spread(sig, h, m, lg=None):
     """Forecast spread s for a series with h years of history forecast at m:
     the history bucket's walk-forward RMSE (floored, calibrate_sigma) times
-    the level multiplier of the band m falls in (1 where not conditioned)."""
-    return sig['hist'][hist_bucket(h)] * (sig['level'].get(band_of(m), 1.0) if sig.get('level') else 1.0)
+    the level multiplier of the band m falls in, times the multiplier of the
+    series' level group lg (each 1 where not conditioned)."""
+    return (sig['hist'][hist_bucket(h)] * (sig['level'].get(band_of(m), 1.0) if sig.get('level') else 1.0)
+            * (sig.get('group') or {}).get(lg, 1.0))
 
 
 def error_quantiles(preds, sig):
-    z = [(p['v'] - p['m']) / spread(sig, p['hist'], p['m'])
+    z = [(p['v'] - p['m']) / spread(sig, p['hist'], p['m'], p.get('lg'))
          for p in preds if p['state'] == 'num' and p['T'] in CALIB_YEARS]
     return [round(float(q), 3) for q in np.quantile(z, ZQ_GRID)]
 
@@ -651,13 +654,14 @@ def satellite_backtest(rows, held_rows, bridge, halflife, couple, single_w, sig)
             hist = collections.Counter(r['series'] for r in htrain if r['state'] == 'num')
             for r in test:
                 mm, _ = st.predict(r, T)
-                preds.append(dict(T=T, series=r['series'], v=r['v'], m=mm, hist=hist.get(r['series'], 0)))
+                preds.append(dict(T=T, series=r['series'], v=r['v'], m=mm, hist=hist.get(r['series'], 0),
+                                  lg=level_group(r['prog'])))
             print(f'  satellite backtest {f} {T}: train {len(htrain)} test {len(test)}')
         if not preds:
             continue
         e = np.array([p['v'] - p['m'] for p in preds])
         rmse = float(np.sqrt(np.mean(e * e)))
-        panel = np.array([spread(sig, p['hist'], p['m']) for p in preds])
+        panel = np.array([spread(sig, p['hist'], p['m'], p['lg']) for p in preds])
         out[f] = dict(n=len(preds), years=sorted({p['T'] for p in preds}),
                       rmse=round(rmse, 2), mae=round(float(np.mean(np.abs(e))), 2),
                       bias=round(float(np.mean(e)), 2),
@@ -713,7 +717,7 @@ def summarise(preds, sig, zq=None, boot=0):
     school-years for the headline comparisons."""
     out, ci = {}, {}
     num = [p for p in preds if p['state'] == 'num']
-    S = lambda p: spread(sig, p['hist'], p['m'])
+    S = lambda p: spread(sig, p['hist'], p['m'], p.get('lg'))
     cl = lambda g: [(p['school'], p['T']) for p in g]
     arr = lambda g, f: np.array([f(p) for p in g], dtype=float)
     # level forecast error, model vs baselines, by bucket
@@ -937,7 +941,7 @@ def recal(pi, fc):
     return float(expit(fc['a'] + fc['b'] * lp))
 
 
-def calibrate_sigma(preds, floor_sigma, level=LEVEL_SPREAD):
+def calibrate_sigma(preds, floor_sigma, level=LEVEL_SPREAD, group=LEVEL_GROUP_SPREAD):
     """Spread of forecast errors from the calibration years: a history-bucket
     RMSE times a forecast-band multiplier, fitted by two rounds of
     backfitting (each factor is the RMSE of the errors standardised by the
@@ -976,7 +980,21 @@ def calibrate_sigma(preds, floor_sigma, level=LEVEL_SPREAD):
         # the range a spread can plausibly be rescaled by
         for b, v in zip(bands, _pava_decreasing(msz, n)):
             mult[b] = float(np.clip(np.sqrt(v), 0.5, 1.5))
-    return dict(hist=sig, level=mult if level else {}, floor=floor_sigma)
+    out = dict(hist=sig, level=mult if level else {}, floor=floor_sigma)
+    if group:
+        # the history and band factors are pooled over levels, and the
+        # backtest found them too wide for Vg1 and too narrow for Vg2 and up
+        # (report v1.17, Table 4c). Each level group's factor is the one that
+        # makes its own calibration-year 80% band cover 80%: a quantile, not
+        # an RMSE, because the errors are heavier-tailed than a bell curve and
+        # the band is what the application draws
+        lg = np.array([p.get('lg') for p in g])
+        out['group'] = {}
+        for grp in LEVEL_GROUPS:
+            z = np.array([abs(p['v'] - p['m']) / spread(out, p['hist'], p['m']) for p in g if p.get('lg') == grp])
+            if len(z) >= 30 and (lg == grp).sum():
+                out['group'][grp] = float(np.clip(np.quantile(z, 0.8) / 1.2816, 0.5, 1.5))
+    return out
 
 
 def _pava_decreasing(vals, wts):
@@ -1181,7 +1199,8 @@ def main():
     sig = (calibrate_sigma(preds_best, floor_sigma) if preds_best
            else dict(hist={i: model.sigma * 1.25 for i in range(len(HIST_BUCKETS))}, level={}, floor=model.sigma))
     print('forecast spread by history bucket:', {HIST_BUCKETS[i]: round(v, 2) for i, v in sig['hist'].items()},
-          'level multiplier:', {b: round(v, 2) for b, v in sig['level'].items()})
+          'level multiplier:', {b: round(v, 2) for b, v in sig['level'].items()},
+          'level-group multiplier:', {g: round(v, 3) for g, v in (sig.get('group') or {}).items()})
 
     # ---- the held-out counties' own forecasts, off the finished fit
     sats = {}
@@ -1205,6 +1224,7 @@ def main():
                 sigma_model=round(model.sigma, 3), sigma_floor=round(floor_sigma, 3),
                 sigma_forecast={str(HIST_BUCKETS[i]): round(v, 2) for i, v in sig['hist'].items()},
                 sigma_level_multiplier={b: round(v, 3) for b, v in sig['level'].items()},
+                sigma_group_multiplier={g: round(v, 3) for g, v in (sig.get('group') or {}).items()},
                 forecast_bands=FORECAST_BANDS, single_weight=single_w, n_single=n_single, ewma_alpha=EWMA_ALPHA,
                 hist_buckets=HIST_BUCKETS, n_level=model.n_level, n_fill=model.n_fill,
                 taus={f['name']: round(f['tau'], 3) for f in model.dl.factors if f['kind'] != 'fixed'},
@@ -1235,6 +1255,16 @@ def main():
                               coverage80_by_forecast={b['band']: b['coverage80'] for b in e['coverage80_by_forecast']})
         hl_search['level_spread_experiment'] = dict(history_only=pick(ev_h), with_level=pick(meta['backtest_eval_years']))
         print('level-conditioned spread, held-out:', hl_search['level_spread_experiment'])
+        # ---- and what the per-level-group factor buys, on the held-out years:
+        # the same forecasts with the spread pooled over Vg1 and Vg2 and up
+        sig_p = calibrate_sigma(preds_best, floor_sigma, group=False)
+        ev_p = summarise([p for p in preds_best if p['T'] in EVAL_YEARS], sig_p, error_quantiles(preds_best, sig_p))
+        pick_g = lambda e: dict(coverage80=e['coverage80'], interval_width80=e['interval_width80'],
+                                chance_brier=e['chance']['brier'],
+                                by_level={b['level']: dict(coverage80=b['coverage80'], interval_width80=b['interval_width80'],
+                                                           chance_brier=b['chance_brier']) for b in e['by_level']})
+        hl_search['level_group_spread_experiment'] = dict(pooled=pick_g(ev_p), per_group=pick_g(meta['backtest_eval_years']))
+        print('per-level-group spread, held-out:', hl_search['level_group_spread_experiment'])
         # ---- pooled fit versus a Vg1-only fit, judged on Vg1 cells. The
         # school effect and the county×year walk are shared across levels, and
         # Vg2 and up is about half the numeric evidence where it is published:
@@ -1343,7 +1373,7 @@ def main():
                 pi_out = 1.0 if s['fylke'] in FILL_BLIND else round(recal(pi, fc), 3)
             # a satellite forecast carries the county's own measured error,
             # never narrower than the panel's spread for that history
-            s_out = spread(sig, h, m)
+            s_out = spread(sig, h, m, level_group(f'{k}|{p["level"]}'))
             if sat:
                 s_out = max(s_out, held_sigma.get(s['fylke'], 0.0))
             progs[key] = dict(m=round(m, 1), s=round(s_out, 1), pi=pi_out, h=h)

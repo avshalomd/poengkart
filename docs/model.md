@@ -69,7 +69,7 @@ against 0.403 independent); with the Innlandet 2020–2022 backfill the
 verdict flipped, and on the current panel it reads 0.444 coupled against
 0.450, so the shipped hurdle is coupled (`meta.coupled`). This is exactly the day the flag was kept for,
 though the margin is inside its own noise: a cluster bootstrap over
-school×year puts the difference at [−0.009, −0.003], and on the held-out
+school×year puts the difference at [−0.010, −0.003], and on the held-out
 years the two variants score the same fill Brier.
 
 **What each cell means to the model.** A number > 0 is an observation of the
@@ -107,7 +107,7 @@ Telemark's own years instead (`satellite_backtest`): fit the panel on the
 other counties' years before T and the satellite on Telemark's, predict
 Telemark's year T. Over 110 cells in 2025–2026 that is an RMSE of 7.80
 against 8.98 for persistence, and every Telemark forecast carries 7.8 as
-its spread — the model's own buckets, 4.9 to 7.3, covered 70% of those
+its spread — the model's own buckets, 4.9 to 7.3, covered 61% of those
 outcomes where they claimed 80%. The app quotes that measurement on every
 Telemark school. The county rejoins
 the model when it states, per programme and year, whether everyone was
@@ -133,11 +133,16 @@ held-out years cannot narrow their own intervals:
 
 That history component is then scaled by the band the forecast falls in — a
 queue cannot outgrow its applicants' scores, so high forecasts miss by less:
-×1.14 below 25 points, ×1.01 from 25 to 40, ×0.97 from 40 to 45, ×0.64 at 45 and above (fitted on
+×1.14 below 25 points, ×1.01 from 25 to 40, ×0.96 from 40 to 45, ×0.64 at 45 and above (fitted on
 the calibration years, constrained to fall with the level;
 `meta.sigma_level_multiplier`). On the held-out years it moved the top
-band's 80% coverage from 95.5% to 79.1% and the bottom band's from 67.4% to
-74.4%, and nothing else.
+band's 80% coverage from 92.5% to 79.1% and the bottom band's from 65.1% to
+72.1%, and nothing else.
+
+Last, a factor per level group, fitted so each group's 80% band covers 80%
+of its own calibration-year errors (`meta.sigma_group_multiplier`): ×0.881
+for Vg1 and ×1.077 for Vg2 and up. Without it the pooled spread covered
+84.6% of held-out Vg1 outcomes and 75.4% of the rest.
 
 F, the error distribution, is likewise the empirical distribution of those
 standardised errors (41 quantiles in `meta.error_quantiles`) rather than a
@@ -168,7 +173,7 @@ and 5.2 with four or more, against the model's 5.7 and 5.1 — most of the
 model's margin over "last year's figure" on long series is smoothing, not
 pooling.
 
-The 80% interval (m ± 1.2816 s) contained the published figure 81% of the time.
+The 80% interval (m ± 1.2816 s) contained the published figure 80% of the time.
 
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.97 filled 0.89 of the time in the held-out years. So π is passed
@@ -178,7 +183,7 @@ Romsdal's proxy labels included: held-out Brier 0.157 against 0.208 for the
 base rate. Held out of the fill fit instead, with its fill probability
 fixed at 1 as it was until 5 September 2026, the other seven counties'
 held-out Brier goes from 0.158 to 0.159 and the Platt slope from 0.587 to
-0.538; on the county's own 223 held-out cells the proxy-labelled hurdle
+0.537; on the county's own 223 held-out cells the proxy-labelled hurdle
 scores 0.147 against 0.186 for its base rate
 (`meta.halflife_search.proxy_label_experiment`).
 
@@ -187,16 +192,16 @@ scores 0.147 against 0.186 for its base rate
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 4.5% | 1550 |
-| 10–20% | 14.8% | 1 846 |
-| 20–30% | 27% | 1 530 |
-| 30–40% | 38% | 1 376 |
-| 40–50% | 45% | 1 184 |
-| 50–60% | 60% | 1 290 |
-| 60–70% | 71% | 1 371 |
-| 70–80% | 83% | 1 371 |
-| 80–90% | 89% | 1 786 |
-| 90–100% | 98.9% | 12 080 |
+| 0–10% | 4.5% | 1553 |
+| 10–20% | 14.7% | 1 899 |
+| 20–30% | 27% | 1 524 |
+| 30–40% | 38% | 1 352 |
+| 40–50% | 47% | 1 202 |
+| 50–60% | 59% | 1 258 |
+| 60–70% | 70% | 1 310 |
+| 70–80% | 83% | 1 439 |
+| 80–90% | 88% | 1 713 |
+| 90–100% | 98.9% | 12 134 |
 
 Brier 0.090, against 0.156 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
@@ -205,7 +210,7 @@ distribution and fill probability on the last published figure instead of
 on the forecast: that scores 0.095, so most of the gain over the bare rule
 is the uncertainty treatment, and the model's own point forecast is worth
 the last 0.006 of it.
-Below 70% the forecast is within 6.1 points of the outcome in every bin,
+Below 70% the forecast is within 5.0 points of the outcome in every bin,
 optimistic by at most 1.3 points in the three lowest — a 15% chance was
 really 15% — which the app's bands absorb (both are "unlikely"); from 70%
 up it is cautious — a stated 75% came true 83% of the time, the largest gap

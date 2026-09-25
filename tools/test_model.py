@@ -55,6 +55,9 @@ def chance(pr, x):
 
 # ---- structure ------------------------------------------------------------
 check('meta has the backtest the app quotes', 'backtest_eval_years' in META and 'coverage80' in META['backtest_eval_years'])
+check('the spread carries a factor per level group, within its clip',
+      sorted((META.get('sigma_group_multiplier') or {})) == ['Vg1', 'Vg2+']
+      and all(0.5 <= v <= 1.5 for v in META['sigma_group_multiplier'].values()), str(META.get('sigma_group_multiplier')))
 check('the backtest scores Vg1 and Vg2 and up apart, and their cells add up to the pooled count',
       [b['level'] for b in META['backtest_eval_years'].get('by_level', [])] == ['Vg1', 'Vg2+']
       and sum(b['n'] for b in META['backtest_eval_years']['by_level']) == META['backtest_eval_years']['level_all']['n'])

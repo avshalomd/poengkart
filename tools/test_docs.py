@@ -300,6 +300,10 @@ doc = 'docs/model.md'
 raw = norm((ROOT / doc).read_text())
 RAW[doc] = (ROOT / doc).read_text()
 flat = flatten(raw)
+_g0 = META['halflife_search']['level_group_spread_experiment']['pooled']['by_level']
+check(doc, 'group factor', r'\(`meta\.sigma_group_multiplier`\): ×([\d.]+) for Vg1 and ×([\d.]+) for Vg2 and up\. Without it the pooled spread covered ([\d.]+)% of held-out Vg1 outcomes and ([\d.]+)% of the rest',
+      [META['sigma_group_multiplier']['Vg1'], META['sigma_group_multiplier']['Vg2+'],
+       _g0['Vg1']['coverage80'] * 100, _g0['Vg2+']['coverage80'] * 100], flat, [D3, D3, D2 * 10, D2 * 10])
 check(doc, 'sigma table', r'\| 0 years \| ([\d.]+) \| \| 1 year \| ([\d.]+) \| \| 2–3 years \| ([\d.]+) \| \| 4\+ years \| ([\d.]+) \|',
       SIGMAS, flat, D1)
 # model.md quotes the same satellite measurement as section 4.4
@@ -634,8 +638,25 @@ check(doc, 'by level rmse', r'\(RMSE ([\d.]+) \[([\d.]+), ([\d.]+)\] against ([\
       [V1['rmse']] + V1['ci']['rmse'] + [V2['rmse']] + V2['ci']['rmse'], flat, D2)
 check(doc, 'by level coverage', r'covered \*\*([\d.]+)%\*\* \[([\d.]+), ([\d.]+)\] of Vg1 outcomes and ([\d.]+)% \[([\d.]+), ([\d.]+)\] of the rest',
       pct2([V1['coverage80']] + V1['ci']['coverage80'] + [V2['coverage80']] + V2['ci']['coverage80']), flat, D2 * 10)
-check(doc, 'by level calibration years', r'holds on the calibration years \(([\d.]+)% and ([\d.]+)%\)',
+check(doc, 'by level calibration years', r'on the calibration years \(([\d.]+)% and ([\d.]+)% there by',
       pct2([BLC['Vg1']['coverage80'], BLC['Vg2+']['coverage80']]), flat, D2 * 10)
+# ---- v1.18: the per-level-group factor of the spread
+GS = META['halflife_search']['level_group_spread_experiment']
+G0, G1 = GS['pooled']['by_level'], GS['per_group']['by_level']
+check(doc, 'group factor values', r'It is ×([\d.]+) for Vg1 and ×([\d.]+) for Vg2 and up',
+      [META['sigma_group_multiplier']['Vg1'], META['sigma_group_multiplier']['Vg2+']], flat, D3)
+check(doc, 'group spread before', r'held-out coverage ([\d.]+)% and ([\d.]+)%, the same split',
+      pct2([G0['Vg1']['coverage80'], G0['Vg2+']['coverage80']]), flat, D2 * 10)
+check(doc, 'group spread vg1 width', r'the Vg1 band is ([\d.]+) points wide instead of ([\d.]+)',
+      [G1['Vg1']['interval_width80'], G0['Vg1']['interval_width80']], flat, D1)
+check(doc, '7.5 group spread', r'moves held-out coverage from ([\d.]+)% to ([\d.]+)% on Vg1 and from ([\d.]+)% to ([\d.]+)% on Vg2 and up, and the Vg1 band from ([\d.]+) to ([\d.]+) points',
+      pct2([G0['Vg1']['coverage80'], G1['Vg1']['coverage80'], G0['Vg2+']['coverage80'], G1['Vg2+']['coverage80']])
+      + [G0['Vg1']['interval_width80'], G1['Vg1']['interval_width80']], flat, [D2 * 10] * 4 + [D1, D1])
+check(doc, '7.5 group spread brier', r'Brier score goes from ([\d.]+) to ([\d.]+), because the empirical',
+      [GS['pooled']['chance_brier'], GS['per_group']['chance_brier']], flat, 0.00005001)
+check(doc, 'appendix D group spread', r'interval goes from ([\d.]+)% to ([\d.]+)% on Vg1 and from ([\d.]+)% to ([\d.]+)% on Vg2 and up, and ([\d.]+)% to ([\d.]+)% overall',
+      pct2([G0['Vg1']['coverage80'], G1['Vg1']['coverage80'], G0['Vg2+']['coverage80'], G1['Vg2+']['coverage80'],
+            GS['pooled']['coverage80'], GS['per_group']['coverage80']]), flat, D2 * 10)
 for lab, r in (('Vg1', V1), ('Vg2 and up', V2)):
     check(doc, f'table 4c {lab}', rf'\| {lab} \| ([\d,]+) \| ([\d.]+) \| ([\d.]+)% \| ([\d.]+) \| ([\d.]+) \| ([\d.]+) \(([\d.]+)\) \|',
           [r['n'], r['rmse'], r['coverage80'] * 100, r['interval_width80'], r['chance_brier'], r['fill_brier'], r['fill_brier_base_rate']],
