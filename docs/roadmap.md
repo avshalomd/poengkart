@@ -271,6 +271,11 @@ two selects. Two data-science items follow from it:
   separately, the report should quote the Vg1 figures beside the pooled
   ones, and the app's spread footnote should use the Vg1 figures if they
   differ.
+  *Done 25 Sept 2026 (report v1.17, Table 4c): held out, Vg1 RMSE 5.37
+  and coverage80 84.6% against 5.87 and 75.4% for Vg2+; the app quotes the
+  Vg1 coverage in the default scope. The pooled spread is too wide for Vg1
+  and too narrow for Vg2+ on the calibration years as well: conditioning
+  the spread on level is the next candidate.*
 - **Experiment: pooled fit versus Vg1-only fit, judged on Vg1 cells.** The
   model separates levels through programme|level, but the school effect and
   the county×year walk are shared across levels, and Vg2+ is about half the
@@ -280,6 +285,9 @@ two selects. Two data-science items follow from it:
   cells, keep the winner: the procedure that chose the single-applicant
   weight. If Vg1-only wins clearly, the follow-up is a school|level effect,
   not dropping the data.
+  *Done 25 Sept 2026 (report v1.17, §7.5): pooled wins on the calibration
+  years (Vg1 RMSE 5.49 vs 5.53, Vg1-only minus pooled [+0.004, +0.068]) and
+  ties held out (5.37 vs 5.35); pooled kept, no school|level effect needed.*
 
 ## Rebuild, 16 September 2026
 

@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · September 2026 · v1.16 (version history in Appendix D)
+Technical report · September 2026 · v1.17 (version history in Appendix D)
 Application: [poengkart.vercel.app](https://poengkart.vercel.app) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
@@ -27,7 +27,8 @@ walk-forward with 2025–2026 held out, the model beats persistence,
 exponential-smoothing and group-mean baselines on RMSE in every history
 stratum where they are defined (5.08 vs 6.15 and 5.24 points on series with
 four or more observed years; cluster-bootstrap intervals exclude zero), nominal 80% intervals cover
-80.9% [78.9, 82.7] of outcomes, and the admission probability is calibrated
+80.9% [78.9, 82.7] of outcomes (84.6% on Vg1, the
+application's default level, and 75.4% on Vg2 and up), and the admission probability is calibrated
 to within 7.3 points in every decile and beats both a deterministic and a
 probabilistic persistence rule (Brier 0.090 vs 0.156 and 0.095). Paired
 within-year publications identify an intake-round effect of −3.2 to −3.4
@@ -781,6 +782,27 @@ top. Across counties, coverage runs from 73% in Buskerud to 90% in
 Oslo; Møre og Romsdal, forecast from proxy-labelled cells, sits at
 81%.
 
+The pooled figure is two different ones averaged. The application shows
+Vg1 by default, and Vg2 and up are four in ten of the held-out numeric
+cells; Table 4c scores the two apart. Vg1 forecasts are more accurate
+(RMSE 5.37 [4.99, 5.72] against 5.87 [5.54, 6.24] for Vg2 and up) and
+their intervals are too wide: the nominal 80% interval covered **84.6%**
+[82.5, 86.7] of Vg1 outcomes and 75.4% [72.4, 78.3] of the rest. The same
+split holds on the calibration years (84.7% and 76.2%), so it is not the
+held-out window's noise: the spread of Section 6.1 is fitted on the pooled
+errors, and the level is a stratum it does not condition on. The
+application quotes the Vg1 coverage beside the Vg1 view and the pooled one
+when Vg2 and up are shown.
+
+**Table 4c:** Held-out scores by level. Intervals are the cluster bootstrap
+of Section 7.1; fill Brier against the level's own base rate.
+
+| Level | n | RMSE | 80% coverage | Mean width | Chance Brier | Fill Brier (base) |
+|---|---|---|---|---|---|---|
+| Vg1 | 1,311 | 5.37 | 84.6% | 13.7 | 0.090 | 0.152 (0.182) |
+| Vg2 and up | 882 | 5.87 | 75.4% | 13.4 | 0.093 | 0.163 (0.232) |
+| All | 2,193 | 5.58 | 80.9% | 13.6 | 0.091 | 0.157 (0.208) |
+
 **Table 4b:** Held-out coverage of the nominal 80% interval, by forecast
 level and by county. RMSE and mean $s$ in points.
 
@@ -897,6 +919,19 @@ calibration-year folds:
   choice is a prior, not an estimate; the pipeline keeps the flag, the
   search and the full weight, and reports the verdict rather than the
   intuition.
+- **Pooled fit versus a Vg1-only fit.** The school effect and the county
+  walk are shared across levels, and Vg2 and up are about half the numeric
+  evidence in the three counties that publish them. Refitting the whole
+  walk-forward on Vg1 cells alone, with its own spread and fill
+  recalibration, and scoring both on the same Vg1 cells: the
+  calibration-year RMSE is 5.49 pooled against 5.53 Vg1-only (Vg1-only
+  minus pooled [+0.004, +0.068]), and on the held-out years 5.37 against
+  5.35 ([−0.053, +0.020]). The other levels help the Vg1 forecast a little
+  and never hurt it, so the pooled fit is kept and no school-by-level
+  effect is called for. The Vg1-only fit's intervals are narrower (its own
+  spread is calibrated on Vg1 errors) and cover 84.4% held out against the
+  pooled fit's 84.6%: the over-wide Vg1 interval of Table 4c belongs to
+  the spread, not to the pooling.
 
 
 ## 8. Findings about the publication practice
@@ -1135,7 +1170,7 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.16`, and the numbers
+the version this report describes is tagged `report-v1.17`, and the numbers
 quoted here are from the build of 2026-09-23. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
@@ -1151,7 +1186,7 @@ cluster bootstrap uses a fixed seed. The whole pipeline runs in minutes on a
 laptop. `tools/test_docs.py` pins every number in this report and in
 `docs/model.md` to the shipped model file, so a refresh that moves a figure
 fails the build until the text is updated; validation further comprises 132
-parser regression checks and 14,323 model invariants. The dataset is
+parser regression checks and 14,324 model invariants. The dataset is
 released under the Norwegian Licence for Open Government Data (NLOD 2.0)
 and the code under the MIT licence.
 
@@ -1454,7 +1489,7 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   is re-read from this build. The fit moves by hundredths of a point; the
   smallest calibration band (45 points and above, 67 held-out cells) moves
   most, from 80.3% to 79.1% coverage, and no conclusion changes.
-- **v1.16** (this version). Rogaland printed 3,0 for one 2026 cell,
+- **v1.16**. Rogaland printed 3,0 for one 2026 cell,
   Bergeland's Vg2 Medier og kommunikasjon, below the lowest possible score;
   the county answered on 23 September 2026 that there were free places, and
   the cell now reads «ingen venteliste» through a correction recorded in the
@@ -1463,3 +1498,10 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   the zero-history row of Table 4 moves most: RMSE from 8.49 to 8.25 and
   the programme–county mean's from 10.14 to 9.36. Overall RMSE goes from
   5.60 to 5.58, and no conclusion changes.
+- **v1.17** (this version). The backtest scores Vg1 and Vg2 and up apart
+  (Table 4c) and adjudicates a Vg1-only fit against the pooled one
+  (Section 7.5); the pooled fit wins on the calibration years and is
+  kept. Vg1 intervals over-cover (84.6%) and the other levels' under-cover
+  (75.4%). Table 4c and the ablation were measured on a refit whose headline
+  scores match the build of 2026-09-23 to the displayed digit; no other
+  number of this report moves.

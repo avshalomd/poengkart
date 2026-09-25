@@ -626,6 +626,36 @@ for r in rel_fill:
     lo, hi = r['bin'].split('-')
     obs, n, tol = reliability_row(r)
     check(doc, f'table C1 {r["bin"]}', rf'\| {lo}–{hi}% \| ([\d.]+)% \| ([\d,]+) \|', [obs, n], appendix_c, [tol, N])
+# ---- v1.17: Vg1 and Vg2 and up scored apart, and the Vg1-only fit
+BL = {b['level']: b for b in ev['by_level']}
+BLC = {b['level']: b for b in META['backtest_calibration_years']['by_level']}
+V1, V2 = BL['Vg1'], BL['Vg2+']
+check(doc, 'by level rmse', r'\(RMSE ([\d.]+) \[([\d.]+), ([\d.]+)\] against ([\d.]+) \[([\d.]+), ([\d.]+)\] for Vg2 and up\)',
+      [V1['rmse']] + V1['ci']['rmse'] + [V2['rmse']] + V2['ci']['rmse'], flat, D2)
+check(doc, 'by level coverage', r'covered \*\*([\d.]+)%\*\* \[([\d.]+), ([\d.]+)\] of Vg1 outcomes and ([\d.]+)% \[([\d.]+), ([\d.]+)\] of the rest',
+      pct2([V1['coverage80']] + V1['ci']['coverage80'] + [V2['coverage80']] + V2['ci']['coverage80']), flat, D2 * 10)
+check(doc, 'by level calibration years', r'holds on the calibration years \(([\d.]+)% and ([\d.]+)%\)',
+      pct2([BLC['Vg1']['coverage80'], BLC['Vg2+']['coverage80']]), flat, D2 * 10)
+for lab, r in (('Vg1', V1), ('Vg2 and up', V2)):
+    check(doc, f'table 4c {lab}', rf'\| {lab} \| ([\d,]+) \| ([\d.]+) \| ([\d.]+)% \| ([\d.]+) \| ([\d.]+) \| ([\d.]+) \(([\d.]+)\) \|',
+          [r['n'], r['rmse'], r['coverage80'] * 100, r['interval_width80'], r['chance_brier'], r['fill_brier'], r['fill_brier_base_rate']],
+          flat, [N, D2, D2 * 10, D1, D3, D3, D3])
+check(doc, 'table 4c all', r'\| All \| ([\d,]+) \| ([\d.]+) \| ([\d.]+)% \| ([\d.]+) \| ([\d.]+) \| ([\d.]+) \(([\d.]+)\) \|',
+      [ev['level_all']['n'], ev['level_all']['rmse'], ev['coverage80'] * 100, ev['interval_width80'], ch['brier'],
+       ev['fill']['brier'], ev['fill']['brier_base_rate']], flat, [N, D2, D2 * 10, D1, D3, D3, D3])
+check(doc, 'abstract by level', r'\(([\d.]+)% on Vg1, the application\'s default level, and ([\d.]+)% on Vg2 and up\)',
+      pct2([V1['coverage80'], V2['coverage80']]), flat, D2 * 10)
+VX = META['halflife_search']['vg1_only_experiment']
+VC, VE = VX['calibration_years'], VX['eval_years']
+check(doc, 'vg1-only calibration', r'calibration-year RMSE is ([\d.]+) pooled against ([\d.]+) Vg1-only \(Vg1-only minus pooled \[([-+][\d.]+), ([-+][\d.]+)\]\)',
+      [VC['pooled']['rmse'], VC['vg1_only']['rmse']] + VC['ci_vg1_only_minus_pooled_rmse'], flat, [D2, D2, D3, D3])
+check(doc, 'vg1-only held out', r'on the held-out years ([\d.]+) against ([\d.]+) \(\[(-[\d.]+), ([-+][\d.]+)\]\)',
+      [VE['pooled']['rmse'], VE['vg1_only']['rmse']] + VE['ci_vg1_only_minus_pooled_rmse'], flat, [D2, D2, D3, D3])
+check(doc, 'vg1-only coverage', r'cover ([\d.]+)% held out against the pooled fit\'s ([\d.]+)%',
+      pct2([VE['vg1_only']['coverage80'], VE['pooled']['coverage80']]), flat, D2 * 10)
+checked += 1
+if (VX['winner'] == 'pooled') != ('the pooled fit is kept' in flat):
+    failures.append(f'{doc}: vg1-only verdict: the backtest chose {VX["winner"]}, the prose says otherwise')
 check(doc, 'validation counts', r'comprises (\d+) parser regression checks and ([\d,]+) model invariants', [N_PARSE, N_MODEL], flat, N)
 # the tag the reproducibility statement names must hold the code this report
 # describes. report-v1.11 was cut one commit before the satellite fit it

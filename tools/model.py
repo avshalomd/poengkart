@@ -124,6 +124,14 @@ EWMA_ALPHA = 0.4                                  # the exponential-smoothing ba
 SINGLE_WEIGHTS = [1.0, 0.5, 0.25, 0.0]            # level-fit weight of a threshold one applicant set; backtest picks
 LEVEL_SPREAD = True                               # spread conditioned on the forecast level as well as on history
 CHANCE_GRID = [20, 25, 30, 35, 40, 45, 50, 55]   # applicant points for reliability
+# the app's default scope is Vg1 (roadmap, 14 Sept 2026): the backtest scores
+# Vg1 and Vg2 and up apart as well as pooled
+LEVEL_GROUPS = ['Vg1', 'Vg2+']
+
+
+def level_group(prog):
+    """'Vg1' or 'Vg2+' for a `prog` key ('programme|level')."""
+    return 'Vg1' if prog.rsplit('|', 1)[1] == 'Vg1' else 'Vg2+'
 
 
 # ----------------------------------------------------------------- observations
@@ -605,7 +613,7 @@ def walk_forward(rows, bridge, halflife, newest_all, couple=False, fill_blind=No
             preds.append(dict(T=T, series=r['series'], state=r['state'], v=r['v'], m=mm, pi=pi,
                               hist=hist.get(r['series'], 0), last=last.get(r['series']), ew=ew.get(r['series']),
                               pm=pm.get((r['fylke'], r['prog'])), cat=r['cat'], fylke=r['fylke'],
-                              school=r['school']))
+                              school=r['school'], lg=level_group(r['prog'])))
         print(f'  backtest {T}: train {len(train)} test {len(test)}  sigma {m.sigma:.2f}')
     return preds, fit_sigmas
 
@@ -850,6 +858,33 @@ def summarise(preds, sig, zq=None, boot=0):
         out['chance']['brier_persistence_prob'] = round(float(np.mean(cell_prob[hl])), 4)
         out['chance']['brier_model_common'] = round(float(np.mean(cell_m[hl])), 4)
         out['chance']['n_last_year_rule'] = int(hl.sum() * len(CHANCE_GRID))
+    # the same headline scores for each level group: Vg1 is what the app shows
+    # by default, and the pooled numbers are half Vg2 and up
+    by_level = []
+    for lg in LEVEL_GROUPS:
+        ix = np.array([p['lg'] == lg for p in preds])
+        g = [p for p in preds if p['lg'] == lg]
+        gn = [p for p in g if p['state'] == 'num']
+        if not gn:
+            continue
+        eg = arr(gn, lambda p: p['v'] - p['m'])
+        cg = (np.abs(eg / arr(gn, S)) <= 1.2816) * 1.0
+        gf = [p for p in g if p['fylke'] not in FILL_BLIND]
+        yf, pf = arr(gf, lambda p: float(p['state'] != 'open')), arr(gf, lambda p: p['pi'])
+        row = dict(level=lg, n=len(gn), n_cells=len(g),
+                   rmse=round(float(np.sqrt(np.mean(eg ** 2))), 2), mae=round(float(np.mean(np.abs(eg))), 2),
+                   bias=round(float(np.mean(eg)), 2), within3=round(float(np.mean(np.abs(eg) <= 3)), 3),
+                   coverage80=round(float(np.mean(cg)), 3),
+                   interval_width80=round(float(np.mean(arr(gn, lambda p: 2 * 1.2816 * S(p)))), 1),
+                   chance_brier=round(float(np.mean(cell_m[ix])), 4),
+                   fill_n=len(gf), fill_brier=round(float(np.mean((yf - pf) ** 2)), 4),
+                   fill_brier_base_rate=round(float(np.mean((yf - yf.mean()) ** 2)), 4))
+        if boot:
+            row['ci'] = dict(rmse=cluster_bootstrap(cl(gn), {'r': lambda w: _wrmse(w, eg)}, boot)['r'],
+                             coverage80=cluster_bootstrap(cl(gn), {'c': lambda w: _wmean(w, cg)}, boot)['c'],
+                             chance_brier=cluster_bootstrap(cl(g), {'b': lambda w: _wmean(w, cell_m[ix])}, boot)['b'])
+        by_level.append(row)
+    out['by_level'] = by_level
     if boot:
         ci['chance: brier'] = cluster_bootstrap(cl(preds), {'b': lambda w: _wmean(w, cell_m)}, boot)['b']
         if has_last.any():
@@ -1200,6 +1235,44 @@ def main():
                               coverage80_by_forecast={b['band']: b['coverage80'] for b in e['coverage80_by_forecast']})
         hl_search['level_spread_experiment'] = dict(history_only=pick(ev_h), with_level=pick(meta['backtest_eval_years']))
         print('level-conditioned spread, held-out:', hl_search['level_spread_experiment'])
+        # ---- pooled fit versus a Vg1-only fit, judged on Vg1 cells. The
+        # school effect and the county×year walk are shared across levels, and
+        # Vg2 and up is about half the numeric evidence where it is published:
+        # does it help the Vg1 forecast or pull it? The Vg1-only walk-forward
+        # gets its own spread and fill recalibration, so each side is scored
+        # as it would be deployed; decided on the calibration-year RMSE, like
+        # the half-life and the single-applicant weight
+        print('Vg1-only fit:')
+        rows_v1 = [r for r in rows if level_group(r['prog']) == 'Vg1']
+        preds_v1, sigmas_v1 = walk_forward(rows_v1, bridge, halflife, newest, couple=couple, single_w=single_w)
+        sig_v1 = calibrate_sigma(preds_v1, sigmas_v1[min(EVAL_YEARS)])
+        fc_v1 = calibrate_fill(preds_v1)
+        for p in preds_v1:
+            p['pi_raw'], p['pi'] = p['pi'], (1.0 if p['fylke'] in FILL_BLIND else recal(p['pi'], fc_v1))
+        zq_v1 = error_quantiles(preds_v1, sig_v1)
+        pooled_v1 = [p for p in preds_best if p['lg'] == 'Vg1']
+        def score(preds, sg, zq_, years):
+            e = summarise([p for p in preds if p['T'] in years], sg, zq_)
+            return dict(n=e['level_all']['n'], rmse=e['level_all']['rmse'], mae=e['level_all']['mae'],
+                        bias=e['level_all']['bias'], coverage80=e['coverage80'],
+                        interval_width80=e['interval_width80'], chance_brier=e['chance']['brier'],
+                        fill_brier=e['fill']['brier'])
+        vx = {}
+        for name, years in (('calibration_years', CALIB_YEARS), ('eval_years', EVAL_YEARS)):
+            g = paired(pooled_v1, preds_v1, years)
+            ea = np.array([a['v'] - a['m'] for a, _ in g]); eb = np.array([b['v'] - b['m'] for _, b in g])
+            vx[name] = dict(pooled=score(pooled_v1, sig, zq, years), vg1_only=score(preds_v1, sig_v1, zq_v1, years),
+                            n_paired=len(g),
+                            ci_vg1_only_minus_pooled_rmse=cluster_bootstrap(
+                                [(b['school'], b['T']) for _, b in g], {'d': lambda w: _wrmse(w, eb) - _wrmse(w, ea)})['d'])
+        vx['winner'] = ('vg1_only' if vx['calibration_years']['vg1_only']['rmse'] < vx['calibration_years']['pooled']['rmse']
+                        else 'pooled')
+        vx['sigma_forecast_vg1_only'] = {str(HIST_BUCKETS[i]): round(v, 2) for i, v in sig_v1['hist'].items()}
+        hl_search['vg1_only_experiment'] = vx
+        for name in ('calibration_years', 'eval_years'):
+            print(f'  {name}: pooled {vx[name]["pooled"]}\n  {"":{len(name)}}  vg1-only {vx[name]["vg1_only"]}; '
+                  f'vg1-only minus pooled RMSE 95% CI {vx[name]["ci_vg1_only_minus_pooled_rmse"]}')
+        print(f'  winner on the calibration years: {vx["winner"]}')
         meta['halflife_search'] = hl_search
         # every walk-forward forecast, for anyone who wants to check the claims
         import csv
@@ -1314,6 +1387,8 @@ def main():
               f'fill Brier {ev["fill"]["brier"]} vs base {ev["fill"]["brier_base_rate"]} '
               f'(n {ev["fill"]["n"]}, {ev["fill"]["n_excluded"]} fill-blind cells excluded)')
         print('    probabilistic persistence Brier', ev['chance'].get('brier_persistence_prob'))
+        for b in ev['by_level']:
+            print('    by level', b)
         print('    coverage by forecast band:', [(b['band'], b['coverage80']) for b in ev['coverage80_by_forecast']])
         for k, v in ev.get('ci', {}).get('intervals', {}).items():
             print(f'    CI {k}: {v}')
