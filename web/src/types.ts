@@ -121,7 +121,12 @@ export interface ModelMeta {
   round_bridge?: Record<string, RoundBridge>;
   sigma_forecast?: Record<string, number>;
   sigma_level_multiplier?: Record<string, number>;
-  backtest_eval_years?: { coverage80?: number; [k: string]: unknown };
+  backtest_eval_years?: {
+    coverage80?: number;
+    /** the same scores for Vg1 and for Vg2 and up (tools/model.py, LEVEL_GROUPS) */
+    by_level?: { level: string; n: number; coverage80: number; rmse: number; [k: string]: unknown }[];
+    [k: string]: unknown;
+  };
   [k: string]: unknown;
 }
 

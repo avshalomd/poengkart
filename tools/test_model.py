@@ -55,6 +55,9 @@ def chance(pr, x):
 
 # ---- structure ------------------------------------------------------------
 check('meta has the backtest the app quotes', 'backtest_eval_years' in META and 'coverage80' in META['backtest_eval_years'])
+check('the backtest scores Vg1 and Vg2 and up apart, and their cells add up to the pooled count',
+      [b['level'] for b in META['backtest_eval_years'].get('by_level', [])] == ['Vg1', 'Vg2+']
+      and sum(b['n'] for b in META['backtest_eval_years']['by_level']) == META['backtest_eval_years']['level_all']['n'])
 check('error quantiles are 41 non-decreasing values',
       ZQ and len(ZQ) == 41 and all(ZQ[i] <= ZQ[i + 1] for i in range(40)))
 check('error quantiles are centred near zero', ZQ and abs(ZQ[20]) < 1.0, str(ZQ[20] if ZQ else None))

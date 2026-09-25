@@ -374,7 +374,12 @@ export function renderChance(s, lensCat) {
   const sm: any[] = Object.values((S.MODEL!.meta || {}).sigma_level_multiplier || {});
   const mlo = sm.length ? Math.min(...sm) : 1, mhi = sm.length ? Math.max(...sm) : 1;
   const lo = sf.length ? Math.round(Math.min(...sf) * mlo) : 5, hi = sf.length ? Math.round(Math.max(...sf) * mhi) : 8;
-  const cov = S.MODEL!.meta && S.MODEL!.meta.backtest_eval_years && S.MODEL!.meta.backtest_eval_years.coverage80;
+  // the coverage of the scope the reader is looking at: Vg1 by default, where
+  // the backtest scores it apart (meta.backtest_eval_years.by_level), the
+  // pooled figure once Vg2 and up are shown
+  const ev = S.MODEL!.meta && S.MODEL!.meta.backtest_eval_years;
+  const vg1 = ev && ev.by_level && ev.by_level.find(b => b.level === 'Vg1');
+  const cov = !S.allLevels && vg1 ? vg1.coverage80 : ev && ev.coverage80;
   // a held-out county carries its own measured spread and its own coverage
   // (meta.held_out_sigma / held_out_backtest, satellite_backtest in
   // tools/model.py): the panel's ±3 to ±8 was measured on other counties'
