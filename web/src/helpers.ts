@@ -27,7 +27,7 @@ export const schoolOgTitle = (s: School) => `${s.name} – hva krevdes for å ko
 /* ================= state & helpers ================= */
 export const BINS = [
   { max: 30, css: '--seq-250' }, { max: 34, css: '--seq-350' }, { max: 38, css: '--seq-450' },
-  { max: 42, css: '--seq-550' }, { max: 99, css: '--seq-700' },
+  { max: 42, css: '--seq-550' }, { max: Infinity, css: '--seq-700' },
 ];
 export const BIN_EDGES = ['<30', '30–34', '34–38', '38–42', '42+'];
 export const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();

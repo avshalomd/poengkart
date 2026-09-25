@@ -34,13 +34,11 @@ test('the settings, the calculator and the help sheet fit the screen', async ({ 
 });
 
 // The tap area, not the painted box: the `@media (pointer: coarse)` block grows
-// an invisible ::after out of the small icon buttons. Three of these reach the
-// 44px the rest of the app is held to; the view toggle (39) and the search
-// button (41) do not — see the report's Findings, this pins today's geometry so
-// that nothing shrinks further unnoticed.
+// an invisible ::after out of the small icon buttons, every one to the 44px
+// the rest of the app is held to.
 const TOUCH_HEIGHT: Record<string, number> = {
   '#bug-btn': 44, '#help-btn': 44, '#settings-btn': 44, '#calc-open': 44,
-  '#searchov-btn': 41, '#view-map': 39, '#view-list': 39,
+  '#searchov-btn': 44, '#view-map': 44, '#view-list': 44,
 };
 
 test('every control in the panel keeps its tap area', async ({ page }) => {
