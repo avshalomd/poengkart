@@ -372,7 +372,12 @@ export function renderChance(s, lensCat) {
   // multipliers (model.json meta), i.e. the narrowest and widest s deployed
   const sf: any[] = Object.values((S.MODEL!.meta || {}).sigma_forecast || {});
   const sm: any[] = Object.values((S.MODEL!.meta || {}).sigma_level_multiplier || {});
-  const mlo = sm.length ? Math.min(...sm) : 1, mhi = sm.length ? Math.max(...sm) : 1;
+  // ...and the level group's factor (sigma_group_multiplier): Vg1's alone in
+  // the default scope, the range over both once Vg2 and up are shown
+  const sg: Record<string, number> = (S.MODEL!.meta || {}).sigma_group_multiplier || {};
+  const gs: number[] = S.allLevels ? Object.values(sg) : (sg.Vg1 != null ? [sg.Vg1] : []);
+  const mlo = (sm.length ? Math.min(...sm) : 1) * (gs.length ? Math.min(...gs) : 1);
+  const mhi = (sm.length ? Math.max(...sm) : 1) * (gs.length ? Math.max(...gs) : 1);
   const lo = sf.length ? Math.round(Math.min(...sf) * mlo) : 5, hi = sf.length ? Math.round(Math.max(...sf) * mhi) : 8;
   // the coverage of the scope the reader is looking at: Vg1 by default, where
   // the backtest scores it apart (meta.backtest_eval_years.by_level), the

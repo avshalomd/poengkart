@@ -276,6 +276,12 @@ two selects. Two data-science items follow from it:
   Vg1 coverage in the default scope. The pooled spread is too wide for Vg1
   and too narrow for Vg2+ on the calibration years as well: conditioning
   the spread on level is the next candidate.*
+  *Done 25 Sept 2026 (report v1.18): each level group carries its own
+  spread factor (×0.881 Vg1, ×1.077 Vg2+), fitted to 80% coverage on the
+  calibration years; held out, Vg1 covers 80.5% and Vg2+ 78.5%, the Vg1
+  band narrows from 13.7 to 12.1 points, chance Brier unchanged. First
+  build made in the Linux cloud container (from the pinned
+  `tools/requirements.txt`); every pinned number re-read.*
 - **Experiment: pooled fit versus Vg1-only fit, judged on Vg1 cells.** The
   model separates levels through programme|level, but the school effect and
   the county×year walk are shared across levels, and Vg2+ is about half the
