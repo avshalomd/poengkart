@@ -164,7 +164,7 @@ export function renderLegend() {
     document.getElementById('legend-none')!.textContent = t('legendNoForecast');
   } else {
     document.getElementById('legend-bins')!.innerHTML = BINS.map((b, i) =>
-      `<div class="bin"><span class="sw" style="background:${cssVar(b.css)}"></span><span class="bl">${BIN_EDGES[i]}</span></div>`).join('');
+      `<div class="bin"><span class="sw" style="background:${cssVar(b.css)}"></span><span class="bl">${esc(BIN_EDGES[i])}</span></div>`).join('');
     document.getElementById('legend-size')!.textContent = t('legendSize');
     document.getElementById('legend-none')!.textContent = t('legendNone');
   }
