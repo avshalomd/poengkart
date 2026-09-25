@@ -7,9 +7,11 @@ import { S } from '../src/state';
 // against import.meta.url the way Node's does, so read fixture files via
 // node:path/node:url instead of `new URL(p, import.meta.url)`.
 const here = path.dirname(fileURLToPath(import.meta.url));
+// The dataset is a frozen slice (web/test/data, from tools/make_test_fixture.py),
+// not the live web/public/data: a refresh must not change what the tests see.
 const read = (p: string) => JSON.parse(readFileSync(path.join(here, p), 'utf8'));
-export const DATA = read('../public/data/schools.json');
-export const MODEL = read('../public/data/model.json');
+export const DATA = read('data/schools.json');
+export const MODEL = read('data/model.json');
 
 export function loadFixtures(): void {
   S.DATA = DATA; S.MODEL = MODEL; S.lang = 'no'; S.myPoints = null; S.mapCat = 'all'; S.mapFylke = 'all'; S.allLevels = false; S.showOld = false;
