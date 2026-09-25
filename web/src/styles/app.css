@@ -1089,7 +1089,9 @@
   /* ---------- the pane over the canvas (map.ts) ---------- */
   .pk-pane { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
   .pk-pane > * { position: absolute; left: 0; top: 0; pointer-events: auto; will-change: transform; }
-  .pk-dot { border-radius: 50%; box-sizing: border-box; cursor: pointer; }
+  .pk-dot { cursor: pointer; }
+  /* the -was classes are a marker's fading copy after a recolour (recolourMap) */
+  :is(.pk-dot, .pk-dot-was) { border-radius: 50%; box-sizing: border-box; }
   .pk-loc { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; pointer-events: none; }
   .pk-loc-ring { border-radius: 50%; border: 1px solid var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); pointer-events: none; }
   .pk-minidot { position: absolute; left: 50%; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%;
@@ -1112,17 +1114,17 @@
   .tip .h { font-size: 10.5px; color: var(--ink-3); margin-top: 4px; }
 
   /* ---------- marker clusters ---------- */
-  .pk-cluster {
+  /* a cluster is a button: the pointer says so, as it did on Leaflet's
+     .leaflet-interactive and as .pk-dot still does */
+  .pk-cluster { cursor: pointer; }
+  :is(.pk-cluster, .pk-cluster-was) {
     display: flex; align-items: center; justify-content: center;
-    /* a cluster is a button: the pointer says so, as it did on Leaflet's
-       .leaflet-interactive and as .pk-dot still does */
-    cursor: pointer;
     border-radius: 999px; font-weight: 700; font-size: 12px; color: var(--on-accent);
     background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft),
                 0 2px 8px rgba(0,0,0,.35);
     border: 2px solid var(--surface-solid);
   }
-  .pk-cluster.big { font-size: 13.5px; }
+  :is(.pk-cluster, .pk-cluster-was).big { font-size: 13.5px; }
   /* With points entered a cluster showed only a count, and «Zoom inn for å se
      sjansen» was the whole answer until the map was zoomed to street level. The
      halo now carries the mix of the schools inside it, in the dots' own colours
@@ -1130,8 +1132,8 @@
      sannsynlig, then grey for no forecast. It takes exactly the 4px the plain
      halo had, so no cluster grows. The grey is --ink-3, not the dots' pale
      --context: that one stood 1.0-1.9:1 on the tiles, too faint for a 4px arc. */
-  .pk-cluster.mix { box-shadow: 0 2px 8px rgba(0,0,0,.35); }
-  .pk-cluster.mix::before {
+  :is(.pk-cluster, .pk-cluster-was).mix { box-shadow: 0 2px 8px rgba(0,0,0,.35); }
+  :is(.pk-cluster, .pk-cluster-was).mix::before {
     content: ''; position: absolute; inset: -6px; border-radius: 50%;
     background: conic-gradient(var(--good) 0 var(--l), var(--dot-possible) 0 var(--p),
                                var(--dot-unlikely) 0 var(--u), var(--ink-3) 0);
@@ -1777,7 +1779,7 @@
      theirs or the map is coloured and its key is blank */
   @media (forced-colors: active) {
     #panel select, .chart-head select, #contact select { appearance: auto; -webkit-appearance: auto; }
-    #legend .sw, #legend svg, #legend .dot, .pk-cluster { forced-color-adjust: none; }
+    #legend .sw, #legend svg, #legend .dot, .pk-cluster, .pk-cluster-was { forced-color-adjust: none; }
     /* the pressed option was a fill, which forced colours strip: Kart/Liste,
        the chart tabs, Settings and the grades all looked unpressed */
     .seg button.on, #calc .grades button.on, .tabs button.on, #view-toggle button.on {

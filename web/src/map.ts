@@ -443,22 +443,31 @@ export function lensNoFigure(s) {
 // field outwards: each dot on screen goes from its old colour and size to its
 // new ones with a small swell, later the further it is from the field (up to
 // 380ms), so the reader sees their figure reach the map. Clusters swell with
-// their neighbours, and a chance ring fades in. A figure corrected within
-// 1.5s of a wave (a pause while typing «44») only crossfades, all dots at
-// once, and so does every recolour with less motion asked for.
+// their neighbours. A figure corrected within 1.5s of a wave (a pause while
+// typing «44») only crossfades, all dots at once, and so does every recolour
+// with less motion asked for.
+//
+// What cannot be interpolated — a cluster's halo becoming its chance ring or a
+// ring changing its mix, a dashed dot turning solid — keeps its old element on
+// top and fades it out when the wave reaches it. Swapped at once, the rings
+// changed up to 640ms before the dots beside them, and a cluster between its
+// halo and its ring had neither for a moment: the map blinked.
 let waveAt = -Infinity, wave: Animation[] = [];
 // the swell holds the dot's transform, so a map that moves ends it at once
 export const endWave = () => { wave.forEach(a => a.finish()); wave = []; };
+const clusterLook = (el: HTMLElement) => el.classList.contains('mix') ? el.dataset.mix : 'plain';
 export function recolourMap() {
   if (S.view === 'list' || !S.map || !pane) { drawMarkers(); return; }
-  const before = new Map<School, { bg: string; bc: string; w: number }>();
-  for (const [s, r] of recs) if (r.el.isConnected) before.set(s, { bg: r.el.style.backgroundColor, bc: r.el.style.borderColor, w: parseFloat(r.el.style.width) });
-  const ringed = !!pane.querySelector('.pk-cluster.mix');
+  endWave();
+  const before = new Map<School, { el: HTMLElement; bg: string; bc: string; bs: string; w: number }>();
+  for (const [s, r] of recs) if (r.el.isConnected) before.set(s, { el: r.el, bg: r.el.style.backgroundColor, bc: r.el.style.borderColor, bs: r.el.style.borderStyle, w: parseFloat(r.el.style.width) });
+  const wasCluster = new Map<string, HTMLElement>();
+  for (const el of clusterEls.values()) if (el.isConnected) wasCluster.set(el.style.transform, el);
   drawMarkers();
   const calm = prefersStill(), m = S.map.getContainer().getBoundingClientRect();
   const f = document.getElementById('my-points')!.getBoundingClientRect();
   const [ox, oy] = f.width ? [f.left + f.width / 2, f.top + f.height / 2] : [m.left, m.top];
-  const jobs: { el: HTMLElement; d: number; old?: { bg: string; bc: string; w: number } }[] = [];
+  const jobs: { el: HTMLElement; d: number; old?: { bg: string; bc: string; w: number }; ghost?: HTMLElement }[] = [];
   const onScreen = (el: HTMLElement) => {
     if (!el.isConnected || el.hidden) return null;
     const b = el.getBoundingClientRect();
@@ -467,21 +476,42 @@ export function recolourMap() {
   };
   for (const [s, r] of recs) {
     const old = before.get(s), d = onScreen(r.el);
-    if (d === null || !old || (old.bg === r.el.style.backgroundColor && old.w === parseFloat(r.el.style.width))) continue;
-    jobs.push({ el: r.el, d, old });
+    if (d === null || !old || (old.bg === r.el.style.backgroundColor && old.w === parseFloat(r.el.style.width) && old.bs === r.el.style.borderStyle)) continue;
+    jobs.push({ el: r.el, d, old, ghost: old.bs !== r.el.style.borderStyle ? old.el : undefined });
   }
-  for (const el of clusterEls.values()) { const d = onScreen(el); if (d !== null) jobs.push({ el, d }); }
+  for (const el of clusterEls.values()) {
+    const d = onScreen(el), was = wasCluster.get(el.style.transform);
+    if (d !== null) jobs.push({ el, d, ghost: was && clusterLook(was) !== clusterLook(el) ? was : undefined });
+  }
   const now = performance.now(), full = !calm && now - waveAt > 1500;
   if (full) waveAt = now;
   const far = Math.max(1, ...jobs.map(j => j.d));
   const fade = { duration: full ? 260 : 200, easing: full ? EASE.out : 'ease', fill: 'backwards' as FillMode };
-  endWave();
-  for (const { el, d, old } of jobs) {
+  for (const { el, d, old, ghost } of jobs) {
     const delay = full ? d / far * 380 : 0;
-    const a = [old
-      ? play(el, [{ backgroundColor: old.bg, borderColor: old.bc }, { backgroundColor: el.style.backgroundColor, borderColor: el.style.borderColor }], { ...fade, delay })
-      : !ringed && el.classList.contains('mix')
-      ? play(el, [{ opacity: 0 }, { opacity: 1 }], { ...fade, delay, pseudoElement: '::before' }) : null];
+    const a: (Animation | null)[] = [];
+    if (ghost) {
+      // The old marker, back where it stood above the new one and out of every
+      // reader's way: a class of its own (pk-dot-was, pk-cluster-was), so
+      // nothing that counts markers finds it.
+      const wasLook = clusterLook(ghost);
+      ghost.className = ghost.className.replace(/\bpk-(dot|cluster)\b/, 'pk-$1-was');
+      ghost.setAttribute('aria-hidden', 'true');
+      ghost.removeAttribute('tabindex'); ghost.removeAttribute('role');
+      ghost.style.pointerEvents = 'none';
+      el.after(ghost);
+      const out = play(ghost, [{ opacity: 1 }, { opacity: 0 }], { ...fade, delay, fill: 'both' });
+      if (out) { out.finished.then(() => ghost.remove(), () => ghost.remove()); a.push(out); } else ghost.remove();
+      // A dot's faint dashed fill would show the new one through it before the
+      // wave arrives, so the new dot comes in as the old one goes. A cluster's
+      // body is the same on both and stays; only a ring replacing the halo,
+      // which the halo cannot hide, waits for the wave.
+      if (el.classList.contains('pk-dot')) a.push(play(el, [{ opacity: 0 }, { opacity: 1 }], { ...fade, delay }));
+      else if (wasLook === 'plain' && el.classList.contains('mix'))
+        a.push(play(el, [{ opacity: 0 }, { opacity: 1 }], { ...fade, delay, pseudoElement: '::before' }));
+    } else if (old) {
+      a.push(play(el, [{ backgroundColor: old.bg, borderColor: old.bc }, { backgroundColor: el.style.backgroundColor, borderColor: el.style.borderColor }], { ...fade, delay }));
+    }
     // The swell rides at the end of the dot's own transform, which is its
     // position: the individual scale property would compose outside it and
     // scale the position too, flinging every dot away from the pane's corner.
