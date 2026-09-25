@@ -1,11 +1,14 @@
-# Python packages the tools under tools/ import; the cloud environment's setup
-# script installs this file, GitHub Actions installs its own list.
-beautifulsoup4>=4.12
-lxml>=5
-numpy>=1.26
-openpyxl>=3.1
-pdfplumber>=0.11
-pillow>=10
-pypdf>=4
-scipy>=1.11
-pytest>=8.3
+# The Python side's one dependency list: what the tools under tools/ import,
+# plus pytest. CI and the cloud environment's setup script install this file;
+# pyproject.toml deliberately lists none. Pinned exactly so a new upstream
+# release cannot change CI on its own. numpy 2.0 and scipy 1.13 are the last
+# lines that still support Python 3.9, which the local venv runs.
+beautifulsoup4==4.15.0
+lxml==6.1.2
+numpy==2.0.2
+openpyxl==3.1.5
+pdfplumber==0.11.8
+pillow==11.3.0
+pypdf==6.16.1
+scipy==1.13.1
+pytest==8.3.5
