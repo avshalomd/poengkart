@@ -15,7 +15,7 @@ describe('the build, with no DOM', () => {
   it('imports the templates and fills the shell for every school', () => {
     expect(typeof window).toBe('undefined');
     const data = loadDataset();
-    expect(data.schools.length).toBeGreaterThan(200);
+    expect(data.schools.length).toBeGreaterThan(50);        // the frozen slice in web/test/data, not an empty file
     for (const s of data.schools) {
       const html = fillShell(shell, s, data);
       expect(html).toContain('<aside id="side" class="open">');
