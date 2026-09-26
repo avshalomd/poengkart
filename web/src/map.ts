@@ -3,6 +3,7 @@ import type { IControl } from 'maplibre-gl';
 import Supercluster from 'supercluster';
 import { framePad } from "./boot";
 import { bucketColor, bucketOf, chanceMode, pct, schoolChance } from "./chance";
+import { CLUSTER_LIST, openClusterOv } from "./clusterov";
 import { legendZoomHint, renderCatNote, renderLegend, renderPanel } from "./chrome";
 import { colorFor, cssVar, esc, fmt, HELD_OUT, isVg1, levelScope, progName, schoolPressure, shownPrograms, visibleCount, yearSpan, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
@@ -220,10 +221,39 @@ function clusterEl(f) {
     el.style.setProperty('--u', at(x.likely + x.possible + x.unlikely));
   }
   el.textContent = String(n);
-  el.addEventListener('click', () => expandCluster(f));
+  const pl = clusterPlace(f);
+  if (pl) el.dataset.place = pl.label;
+  el.addEventListener('click', () => tapCluster(f, el));
   el.addEventListener('dblclick', ev => ev.stopPropagation());
   clusterOf.set(el, f);
   return el;
+}
+const clusterSchools = (f): School[] => index!.getLeaves(f.properties.cluster_id, Infinity).map(l => l.properties.school);
+// The name under a cluster: its schools' kommune when they share one, or the
+// kommune of two in three of them with «m.fl.»; none for a mixed bag, where
+// any one name would mislead. The count stays the element's own text.
+function clusterPlace(f): { name: string; label: string; all: boolean } | null {
+  const ss = clusterSchools(f), by = new Map<string, number>();
+  for (const s of ss) if (s.kommune) by.set(s.kommune, (by.get(s.kommune) || 0) + 1);
+  const [name, k] = [...by].sort((a, b) => b[1] - a[1])[0] || [];
+  if (!name || 3 * k! < 2 * ss.length) return null;
+  const all = k === ss.length;
+  return { name, all, label: all ? name : t('clusterMore', name) };
+}
+// A tap on a small cluster lists its schools (clusterov.ts); the sheet's
+// «Vis på kartet» and a tap on a large one do what a tap always did.
+function tapCluster(f, el: HTMLElement, key?: boolean) {
+  const ss = clusterSchools(f);
+  if (ss.length > CLUSTER_LIST) {
+    if (key) S.mapFocusPending = Date.now();    // the zoom removes this element; see labelMarkers
+    expandCluster(f);
+    return;
+  }
+  const pl = clusterPlace(f);
+  openClusterOv(ss, pl && pl.all ? pl.name : null, () => {
+    if (key) S.mapFocusPending = Date.now();
+    expandCluster(f);
+  }, el);
 }
 // Click or Enter on a cluster: zoom to where it splits. A cluster no zoom
 // splits — supercluster answers maxZoom + 1, the zoom at which clustering is
@@ -649,12 +679,12 @@ export function drawMarkers() {
       el.dataset.pkKeyed = '1';
       el.setAttribute('tabindex', '0');
       el.setAttribute('role', 'button');
-      el.setAttribute('aria-label', t('clusterAria', f.properties.point_count, chanceMode() ? clusterMix(f) : null));
+      el.setAttribute('aria-label', t('clusterAria', f.properties.point_count, chanceMode() ? clusterMix(f) : null,
+        clusterPlace(f)?.label || null, f.properties.point_count <= CLUSTER_LIST));
       el.addEventListener('keydown', ev => {
         if (ev.key !== 'Enter' && ev.key !== ' ') return;
         ev.preventDefault();
-        S.mapFocusPending = Date.now();    // the zoom removes this element; see below
-        expandCluster(f);
+        tapCluster(f, el, true);
       });
     }
   };

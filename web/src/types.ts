@@ -49,6 +49,10 @@ export interface School {
   url?: string;
   address?: string;
   inntaksregion?: string;
+  /** the kommune the school stands in, and the post town of its address
+      (tools/places.py); every school has both in the current build */
+  kommune?: string;
+  sted?: string;
   photo?: string;
   photo_source?: string;
   photo_page?: string;
@@ -176,10 +180,18 @@ export interface ChartState { prog: Program | null }
 /** The List view's sort: which column, and which way. */
 export interface ListSort { key: string; dir: number }
 
-/** A row in the search overlay: one of the school hits, or the single county
-    row above them — renderOvList reads `county` first and the school's own
-    fields otherwise. */
-export interface SearchHit extends Partial<School> { county?: string }
+/** A kommune or post town that has a school, at the middle of its schools
+    (places.ts), or the reader's own position. */
+export interface Place { name: string; kind: 'kommune' | 'sted' | 'me'; lat: number; lon: number;
+                         n?: number; fylke?: string | null; f?: string }
+
+/** A row in the search overlay: one of the school hits, the single county
+    row above them, or a place to sort by distance from — renderOvList reads
+    `county` and `place` first and the school's own fields otherwise. */
+export interface SearchHit extends Partial<School> { county?: string; place?: Place }
+
+/** The List view's two row kinds: a school each, or a programme area each. */
+export type ListMode = 'schools' | 'areas';
 
 /** Where closeSide() sends focus back to: a control by id, or the wish whose
     aria-label names it. */

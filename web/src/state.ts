@@ -2,7 +2,7 @@
    under its original name, so a reader of the old file finds it here. */
 import type { LngLatBounds, Map as GLMap } from 'maplibre-gl';
 import type {
-  BugContext, ChartState, Choice, Dataset, Lang, ListSort, Model, School, SearchHit, SideReturn, View,
+  BugContext, ChartState, Choice, Dataset, Lang, ListMode, ListSort, Model, Place, School, SearchHit, SideReturn, View,
 } from './types';
 
 export const S = {
@@ -41,7 +41,7 @@ export const S = {
   bugCtx: null as BugContext | null,   // the snapshot, taken when a bug button was pressed
   DATA_STAMP: '',   // schools.json's Last-Modified, when the server sends one
   sheetPushPending: false,   // openSheetHistory() called while closeSide's back() is in flight
-  searchIx: null as { s: School; f: string; n: string; w: string[] }[] | null,
+  searchIx: null as { s: School; f: string; n: string; w: string[]; p: string[] }[] | null,
   ovAct: -1,
   ovHits: [] as SearchHit[],
   loc: null as { lat: number; lon: number; acc: number } | null,   // the reader's position, while shown
@@ -49,6 +49,9 @@ export const S = {
   locBusy: false,
   view: 'map' as View,
   listSort: undefined as unknown as ListSort,   // set by initListview()
+  listMode: 'schools' as ListMode,   // one row per school, or per programme area
+  near: null as Place | null,   // the place the list measures distance from (places.ts)
+  placeIx: null as Place[] | null,
   refitPending: false,   // a county switch made while the map was hidden
   calcGrades: {} as Record<string, number>,
 };

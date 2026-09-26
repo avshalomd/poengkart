@@ -11,7 +11,8 @@ import { boundsOf, createMap, drawMarkers, fitHome, fitVisible, foldPanel, hasWe
          resizeMap, setMapStyle, viewSchool } from "./map";
 import { applyPrefs, closeSettings, loadPrefs, PREFS } from "./prefs";
 import { runSearch } from "./search";
-import { closeSearchOv, openSearchOv, pickOv, renderOvList } from "./searchov";
+import { closeClusterOv } from "./clusterov";
+import { closeSearchOv, openSearchOv, pickOv, renderOvList, searchMode } from "./searchov";
 import { adoptLegacyUrl, pathSegments, schoolFromUrl, syncUrl, unresolvedFromPath } from "./router";
 import { applyUrlFilters, closeSide, openSide, renderSide, sideTrap } from "./sidebar";
 import { S } from './state';
@@ -201,7 +202,7 @@ export async function main() {
   document.getElementById('side')!.setAttribute('inert', '');
   const ovq: any = document.getElementById('ov-q');
   ovq.addEventListener('input', () => {
-    S.ovAct = -1; S.ovHits = runSearch(ovq.value) || []; renderOvList();
+    S.ovAct = -1; S.ovHits = runSearch(ovq.value, searchMode()) || []; renderOvList();
   });
   ovq.addEventListener('keydown', ev => {
     if (ev.key === 'ArrowDown') { ev.preventDefault(); S.ovAct = Math.min(S.ovAct + 1, S.ovHits.length - 1); renderOvList(); }
@@ -259,6 +260,7 @@ export async function main() {
       else if (!document.getElementById('intro')!.hidden) closeIntro(true);
       else if (!document.getElementById('settings')!.hidden) closeSettings(true);
       else if (!document.getElementById('calc')!.hidden) closeCalc(true);
+      else if (!document.getElementById('clusterov')!.hidden) closeClusterOv(true);
       else closeSearchOv(true);
       // the entry landed on is the pre-open one: a scope changed in the
       // settings sheet (the Trinn choice) is written into it, not re-read
@@ -290,6 +292,7 @@ export async function main() {
     if (!document.getElementById('intro')!.hidden) { closeIntro(); return; }
     if (!document.getElementById('settings')!.hidden) { closeSettings(); return; }
     if (!document.getElementById('calc')!.hidden) { closeCalc(); return; }
+    if (!document.getElementById('clusterov')!.hidden) { closeClusterOv(); return; }
     if (!document.getElementById('searchov')!.hidden) { closeSearchOv(); return; }
     if (document.getElementById('side')!.classList.contains('open')) closeSide();
   });

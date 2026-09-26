@@ -49,7 +49,10 @@ describe('finding a school', () => {
     loadFixtures(); initHelpers();
     const hits = runSearch('oslo')!;
     expect(hits[0].county).toBe('Oslo');
-    expect(hits.slice(1).every((h: any) => h.name && !h.county)).toBe(true);
+    // then the schools, with the kommune of the same name among them as a
+    // place to sort the list by distance from
+    expect(hits.slice(1).every((h: any) => !h.county && (h.name || h.place))).toBe(true);
+    expect(hits.filter((h: any) => h.place).map((h: any) => h.place.name)).toEqual(['Oslo']);
     // "Møre" answered "Ingen treff" before the county row: no school is called it
     const more = runSearch('møre')!;
     expect(more.length).toBe(1);
@@ -62,7 +65,8 @@ describe('finding a school', () => {
     const opts = document.querySelectorAll('#ov-list .opt');
     expect(opts.length).toBe(S.ovHits.length);
     expect(opts[0].querySelector('span')!.textContent).toBe('Asker');
-    expect(opts[0].querySelector('.fy')!.textContent).toBe('Akershus');
+    // where the school stands, then its county
+    expect(opts[0].querySelector('.fy')!.textContent).toBe('Asker · Akershus');
     expect(q().getAttribute('aria-expanded')).toBe('true');
     // the active option is the one the arrow keys have landed on
     search('ås');
@@ -72,6 +76,19 @@ describe('finding a school', () => {
     expect(q().getAttribute('aria-activedescendant')).toBe('ov-opt-1');
     S.ovAct = -1; renderOvList();
     expect(q().hasAttribute('aria-activedescendant')).toBe(false);
+  });
+
+  it('a kommune or post town finds the schools in it', () => {
+    loadFixtures(); initHelpers();
+    // «Bærum» is no school's name: its schools answer by their kommune
+    const hits = runSearch('bærum')!.filter((h: any) => h.name);
+    expect(hits.length).toBeGreaterThan(0);
+    expect(hits.every((h: any) => h.kommune === 'Bærum')).toBe(true);
+    // the places mode lists places only, and a school never
+    const pl = runSearch('bær', 'places')!;
+    expect(pl.length).toBeGreaterThan(0);
+    expect(pl.every((h: any) => h.place && !h.name)).toBe(true);
+    expect(pl[0].place!.name).toBe('Bærum');
   });
 
   it('a query with no hits says so, and an empty box lists nothing', () => {

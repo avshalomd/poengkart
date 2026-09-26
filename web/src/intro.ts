@@ -81,7 +81,7 @@ export function renderIntro() {
 // A sheet that covers the page has to take the page out of the tab order with
 // it: tabbing off the end of the feedback form used to land on the county
 // select behind the backdrop, where nothing was visible to act on.
-export const SHEET_IDS = ['contact', 'intro', 'settings', 'calc', 'searchov'];
+export const SHEET_IDS = ['contact', 'intro', 'settings', 'calc', 'searchov', 'clusterov'];
 /* A sheet on its way out is still on screen but is no longer the thing you
    are talking to: it takes no clicks (CSS), holds no focus and traps no Tab.
    Everything below therefore asks "open" rather than "visible". */
@@ -113,7 +113,7 @@ export function showSheet(id) {
 }
 // inert keeps focus inside an open sheet, but past its last control the browser
 // parks focus on <body> for one press before coming back; wrap it instead
-export const SHEETS = ['searchov', 'settings', 'intro', 'calc', 'contact'];
+export const SHEETS = ['searchov', 'clusterov', 'settings', 'intro', 'calc', 'contact'];
 export function setModalTrap() {
   const open = anySheetOpen();
   ['app', 'legend'].forEach(id => document.getElementById(id)?.toggleAttribute('inert', open));
