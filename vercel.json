@@ -30,25 +30,25 @@
   },
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "poengkart.vercel.app"
         }
       ],
-      "destination": "https://poengkart.no/:path*",
+      "destination": "https://poengkart.no/$1",
       "permanent": true
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "poengkart-no.vercel.app"
         }
       ],
-      "destination": "https://poengkart.no/:path*",
+      "destination": "https://poengkart.no/$1",
       "permanent": true
     }
   ],
