@@ -336,8 +336,9 @@ Behaviour is unchanged by design. Still to do from the same plan:
   - 26 September 2026: the site moved to `https://poengkart.no` (Gigahost DNS,
     an A record on the apex and a CNAME on `www`, both pointing at Vercel).
     Canonical, sitemap, robots, the share cards, the report and the feedback
-    relay's allowed origins name it. Both `vercel.app` names answer with a
-    308 to the same path on it (`redirects` in `vercel.json`). `www` is
+    relay's allowed origins name it. The three `vercel.app` names
+    (`poengkart`, `poengkart-no`, `poengkart-ad-6b15`) answer with a 308 to
+    the same path on it (`redirects` in `vercel.json`). `www` is
     redirected by the Vercel project's domain setting instead: the apex must
     stay the domain that serves, because a `vercel.json` rule sending `www`
     to the apex next to a domain setting sending the apex to `www` would
