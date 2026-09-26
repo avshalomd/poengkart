@@ -11,9 +11,9 @@ describe('sitemap.xml', () => {
     const n = loadDataset().schools.length;
     expect(locs.length).toBe(n + 2);
     expect(new Set(locs).size).toBe(locs.length);
-    expect(locs[0]).toBe('https://poengkart.vercel.app/');
-    expect(locs[1]).toBe('https://poengkart.vercel.app/report');
-    expect(locs).toContain('https://poengkart.vercel.app/akershus/asker');
+    expect(locs[0]).toBe('https://poengkart.no/');
+    expect(locs[1]).toBe('https://poengkart.no/report');
+    expect(locs).toContain('https://poengkart.no/akershus/asker');
     expect(xml).not.toContain('<lastmod>');
     expect(xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>')).toBe(true);
   });

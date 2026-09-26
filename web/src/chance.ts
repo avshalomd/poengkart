@@ -132,7 +132,7 @@ export function choicesText(): string {
   });
   if (pts && n) lines.push('', anyChanceText(1 - pNone) + (n < items.length ? ' ' + t('choicesPartial', n, items.length) : ''));
   const d = new Date(), dd = `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${d.getFullYear()}`;
-  lines.push('', t('copyFoot', location.host || 'poengkart.vercel.app', dd));
+  lines.push('', t('copyFoot', location.host || 'poengkart.no', dd));
   return lines.join('\n');
 }
 export async function copyChoices() {

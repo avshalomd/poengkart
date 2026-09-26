@@ -201,7 +201,10 @@ Owner's own tasks:
   custom domain (for example `kilder.poengkart.no`) to the R2 bucket
   `poengkart-sources` and change `bucket_url` in `sources/manifest.json`,
   the one place the r2.dev address lives.
-  *Deferred: owner's own task, timed with the autumn refresh.*
+  *Domain done 26 Sept 2026: `poengkart.no` registered at Gigahost and live
+  (see the Search Console notes under the rebuild). The CARTO key turned out
+  not to be domain-bound: a tile request with Origin `https://poengkart.no`,
+  or any other origin, gets 200. The R2 custom domain is still open.*
 
 Agreed product changes:
 - Lookup leads; chance is an opt-in layer with its own one-line explanation
@@ -330,6 +333,18 @@ Behaviour is unchanged by design. Still to do from the same plan:
     (one token covers both hosts); `/sitemap.xml` was submitted there and
     read with 230 pages. The `poengkart-no` property now reports its pages as
     alternates of the new canonical.
+  - 26 September 2026: the site moved to `https://poengkart.no` (Gigahost DNS,
+    an A record on the apex and a CNAME on `www`, both pointing at Vercel).
+    Canonical, sitemap, robots, the share cards, the report and the feedback
+    relay's allowed origins name it. Both `vercel.app` names answer with a
+    308 to the same path on it (`redirects` in `vercel.json`). `www` is
+    redirected by the Vercel project's domain setting instead: the apex must
+    stay the domain that serves, because a `vercel.json` rule sending `www`
+    to the apex next to a domain setting sending the apex to `www` would
+    loop. Search Console still needs a `https://poengkart.no/` property (the
+    same tag verifies it), its sitemap, and Change of Address from the
+    `poengkart.vercel.app` property. Keep the redirects for at least 180
+    days.
   - The school photo on a prerendered page keeps `loading="lazy"` because the
     template is the client's; an eager hint on the page's own photo would be
     a template split — measure LCP on a school page first.

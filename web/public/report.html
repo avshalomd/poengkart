@@ -9,14 +9,14 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="canonical" href="https://poengkart.vercel.app/report">
+<link rel="canonical" href="https://poengkart.no/report">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Poengkart">
 <meta property="og:locale" content="en_GB">
-<meta property="og:url" content="https://poengkart.vercel.app/report">
+<meta property="og:url" content="https://poengkart.no/report">
 <meta property="og:title" content="Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake">
 <meta property="og:description" content="Technical report on Poengkart: an open dataset of Norwegian upper-secondary admission thresholds and a calibrated forecast of the next intake. Technical report · September 2026 · v1.20">
-<meta property="og:image" content="https://poengkart.vercel.app/og.png">
+<meta property="og:image" content="https://poengkart.no/og.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,7 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake">
 <meta name="twitter:description" content="Technical report on Poengkart: an open dataset of Norwegian upper-secondary admission thresholds and a calibrated forecast of the next intake. Technical report · September 2026 · v1.20">
-<meta name="twitter:image" content="https://poengkart.vercel.app/og.png">
+<meta name="twitter:image" content="https://poengkart.no/og.png">
 <!-- cookieless page counts; a no-op until Web Analytics is enabled on the Vercel project -->
 <script defer src="/_vercel/insights/script.js"></script>
 <style>
@@ -91,7 +91,7 @@ code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
 <div class="page">
 <nav class="topbar"><a href="./">&larr; poengkart</a></nav>
 <h1>Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake</h1>
-<p class='byline'><strong>Abshalom Dayan</strong><br>Technical report · September 2026 · v1.20 (version history in Appendix D)<br>Application: <a href="https://poengkart.vercel.app">poengkart.vercel.app</a> · Code and data: <a href="https://github.com/avshalomd/poengkart">github.com/avshalomd/poengkart</a></p>
+<p class='byline'><strong>Abshalom Dayan</strong><br>Technical report · September 2026 · v1.20 (version history in Appendix D)<br>Application: <a href="https://poengkart.no">poengkart.no</a> · Code and data: <a href="https://github.com/avshalomd/poengkart">github.com/avshalomd/poengkart</a></p>
 <h2 id='abstract'>Abstract</h2>
 <div class='abstract'><p>Admission to Norwegian upper-secondary school is a centralised, points-based intake with about 80,000 first-year applicants a year, yet its most decision-relevant statistic — the admission threshold (<em>poenggrense</em>), the points of the last applicant admitted to each programme at each school — is published today by only eight of fifteen counties, mostly as PDF tables, with inconsistent structure, retention, and semantics. We assemble every edition we could retrieve, older years from newspaper and archive copies where the county's own file is lost, into an open, register-normalised panel: 227 schools, 2,459 programme rows, 15,101 observations, 2012–2026, keyed to Norway's national programme register (Grep). On this censored panel we forecast the next intake as the probability of admission given the applicant's points, using a hurdle model: a hierarchical logistic model for whether a programme fills, and a hierarchical Gaussian model with a random-walk county–year level for where the threshold lands if it does. Spread is estimated from walk-forward errors rather than from the fit, the error distribution is empirical, and fill probabilities are Platt-recalibrated. Evaluated walk-forward with 2025–2026 held out, the model beats persistence, exponential-smoothing and group-mean baselines on RMSE in every history stratum where they are defined (5.14 vs 6.19 and 5.31 points on series with four or more observed years; cluster-bootstrap intervals exclude zero), nominal 80% intervals cover 80.6% [78.8, 82.3] of outcomes (81.5% on Vg1, the application's default level, and 79.3% on Vg2 and up), and the admission probability is calibrated to within 8.4 points in every decile and beats both a deterministic and a probabilistic persistence rule (Brier 0.089 vs 0.157 and 0.094). Paired within-year publications identify an intake-round effect of −3.2 to −3.4 points that makes cross-county comparison of raw thresholds misleading. Code and data: https://github.com/avshalomd/poengkart.</p></div>
 <h2 id='1-introduction'>1. Introduction</h2>

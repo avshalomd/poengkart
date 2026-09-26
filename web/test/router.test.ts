@@ -55,8 +55,8 @@ describe('the address', () => {
   });
   it('the share head follows the sheet: canonical, og:url and og:title name the open school, then the home page', () => {
     document.head.insertAdjacentHTML('beforeend',
-      '<link rel="canonical" href="https://poengkart.vercel.app/">' +
-      '<meta property="og:url" content="https://poengkart.vercel.app/">' +
+      '<link rel="canonical" href="https://poengkart.no/">' +
+      '<meta property="og:url" content="https://poengkart.no/">' +
       '<meta property="og:title" content="Poengkart – hva krevdes for å komme inn?">');
     const head = () => [document.querySelector<HTMLLinkElement>('link[rel="canonical"]')!.href,
       document.querySelector('meta[property="og:url"]')!.getAttribute('content'),
@@ -66,7 +66,7 @@ describe('the address', () => {
     const h = schoolHead(asker(), DATA);
     expect(head()).toEqual([h.canonical, h.canonical, h.ogTitle]);
     setUrlSchool(null);
-    expect(head()).toEqual(['https://poengkart.vercel.app/', 'https://poengkart.vercel.app/',
+    expect(head()).toEqual(['https://poengkart.no/', 'https://poengkart.no/',
       'Poengkart – hva krevdes for å komme inn?']);
     document.head.querySelectorAll('link[rel="canonical"], meta[property^="og:"]').forEach(e => e.remove());
   });
@@ -123,7 +123,7 @@ describe('the school page head', () => {
   it('names the school in the title, the county in the description and the path in the canonical', () => {
     const h = schoolHead(asker(), DATA);
     expect(h.title).toBe('Asker – poenggrenser | Poengkart');
-    expect(h.canonical).toBe('https://poengkart.vercel.app/akershus/asker');
+    expect(h.canonical).toBe('https://poengkart.no/akershus/asker');
     expect(h.description).toContain('Asker i Akershus');
     expect(h.description).toMatch(/\(\d{4}–\d{4}\)\.$/);
   });

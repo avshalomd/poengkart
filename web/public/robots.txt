@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://poengkart.vercel.app/sitemap.xml
+Sitemap: https://poengkart.no/sitemap.xml

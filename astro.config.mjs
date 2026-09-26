@@ -4,7 +4,7 @@ import { VERSION as MAPLIBRE_VER } from './tools/vendor-maplibre.mjs';
 // The site is static HTML plus one client script. Astro owns the build so a
 // page per school can be prerendered from the dataset; it adds no runtime.
 export default defineConfig({
-  site: 'https://poengkart.vercel.app',
+  site: 'https://poengkart.no',
   srcDir: './web/src',
   publicDir: './web/public',
   outDir: './web/dist',

@@ -2,7 +2,7 @@
 
 **Abshalom Dayan**
 Technical report · September 2026 · v1.20 (version history in Appendix D)
-Application: [poengkart.vercel.app](https://poengkart.vercel.app) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
+Application: [poengkart.no](https://poengkart.no) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
 

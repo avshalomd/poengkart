@@ -95,7 +95,7 @@ test('a school page carries the school before any script runs', async ({ request
   expect(res.status()).toBe(200);
   const html = await res.text();
   expect(html).toMatch(/<title>Asker – poenggrenser \| Poengkart<\/title>/);
-  expect(html).toMatch(/<link rel="canonical" href="https:\/\/poengkart\.vercel\.app\/akershus\/asker">/);
+  expect(html).toMatch(/<link rel="canonical" href="https:\/\/poengkart\.no\/akershus\/asker">/);
   expect(html).toMatch(/<meta property="og:title" content="Asker – hva krevdes for å komme inn\?">/);
   expect(html).toContain('<aside id="side" class="open">');
   expect(html).toContain('<h2>Asker</h2>');
@@ -106,7 +106,7 @@ test('a school page carries the school before any script runs', async ({ request
 test('the home page head is unchanged', async ({ request }) => {
   const html = await (await request.get('/')).text();
   expect(html).toMatch(/<title>Poengkart – poenggrenser for videregående skole<\/title>/);
-  expect(html).toMatch(/<link rel="canonical" href="https:\/\/poengkart\.vercel\.app\/">/);
+  expect(html).toMatch(/<link rel="canonical" href="https:\/\/poengkart\.no\/">/);
   expect(html).not.toContain('class="side-open"');
   // the Search Console property is verified by this tag; a page without it
   // un-verifies the property
@@ -129,7 +129,7 @@ test('the script takes over a prerendered sheet without changing it', async ({ p
 
 test('every school page points at its own card, and the card is a PNG', async ({ request }) => {
   const html = await (await request.get('/akershus/asker')).text();
-  expect(html).toMatch(/<meta property="og:image" content="https:\/\/poengkart\.vercel\.app\/og\/akershus\/asker\.png">/);
+  expect(html).toMatch(/<meta property="og:image" content="https:\/\/poengkart\.no\/og\/akershus\/asker\.png">/);
   const res = await request.get('/og/akershus/asker.png');
   expect(res.status()).toBe(200);
   expect(res.headers()['content-type']).toContain('image/png');
@@ -141,5 +141,5 @@ test('the sitemap names every school', async ({ request }) => {
   expect(res.status()).toBe(200);
   const xml = await res.text();
   expect((xml.match(/<loc>/g) || []).length).toBeGreaterThan(200);
-  expect(xml).toContain('<loc>https://poengkart.vercel.app/akershus/asker</loc>');
+  expect(xml).toContain('<loc>https://poengkart.no/akershus/asker</loc>');
 });

@@ -7,7 +7,7 @@ import { S } from './state';
 import { heroCells, heroHtml, listHtml, metaHtml, notesHtml, photoHtml, srcNoteHtml } from './templates';
 import type { Dataset, School } from './types';
 
-export const SITE = 'https://poengkart.vercel.app';
+export const SITE = 'https://poengkart.no';
 
 export interface HeadProps {
   title: string;
