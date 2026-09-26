@@ -33,13 +33,15 @@ const { title, description, canonical, ogTitle, ogDescription, twitterDescriptio
 {/* a page kept out of the index names no canonical: the 404 is not the home page */}
 {!noindex && <link rel="canonical" href={canonical}>}
 {noindex && <meta name="robots" content="noindex">}
-<!-- Google Search Console: the URL-prefix properties https://poengkart-no.vercel.app/
-     (17 Sept 2026) and https://poengkart.vercel.app/ (22 Sept 2026) are both
-     verified by this tag on the home page, and it verifies a property for
-     https://poengkart.no/, the canonical since the move, the same way. The
-     old properties must stay verified for Search Console's Change of
-     Address, so the tag stays. Removing it un-verifies all of them. -->
+<!-- Google Search Console issues one token per URL-prefix property. The first
+     tag verifies https://poengkart-no.vercel.app/ (17 Sept 2026) and
+     https://poengkart.vercel.app/ (22 Sept 2026); Google rejected it for
+     https://poengkart.no/ ("a meta tag for a different site"), which the
+     second tag verifies (26 Sept 2026). The old properties must stay
+     verified for Search Console's Change of Address, so both tags stay.
+     Removing either un-verifies its properties. -->
 <meta name="google-site-verification" content="nstWEgPKGkzQDB8692StPPh6C1gsEGfjoOXMiDN6lJo">
+<meta name="google-site-verification" content="riDcCax_USdJFe_zaK7j3XA_xw37t8B3XPz2pALleTI">
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">

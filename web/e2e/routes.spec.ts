@@ -108,9 +108,10 @@ test('the home page head is unchanged', async ({ request }) => {
   expect(html).toMatch(/<title>Poengkart – poenggrenser for videregående skole<\/title>/);
   expect(html).toMatch(/<link rel="canonical" href="https:\/\/poengkart\.no\/">/);
   expect(html).not.toContain('class="side-open"');
-  // the Search Console property is verified by this tag; a page without it
-  // un-verifies the property
+  // the Search Console properties are verified by these tags, one token per
+  // property; a page without one un-verifies its property
   expect(html).toContain('<meta name="google-site-verification" content="nstWEgPKGkzQDB8692StPPh6C1gsEGfjoOXMiDN6lJo">');
+  expect(html).toContain('<meta name="google-site-verification" content="riDcCax_USdJFe_zaK7j3XA_xw37t8B3XPz2pALleTI">');
 });
 
 test('the script takes over a prerendered sheet without changing it', async ({ page, request }) => {
