@@ -176,7 +176,9 @@ export interface Prefs {
 export interface Choice { f: string; s: string; k: string }
 
 /** Which programme-area row the school panel's chart is showing. */
-export interface ChartState { prog: Program | null }
+/** The school sheet's own state. `cat` is the utdanningsprogram the sheet's
+    tabs and headings chose, or null while it follows the map's filter. */
+export interface ChartState { prog: Program | null; cat: string | null }
 
 /** The List view's sort: which column, and which way. */
 export interface ListSort { key: string; dir: number }

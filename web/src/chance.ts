@@ -1,7 +1,7 @@
 export { BANDS, ZQ_GRID, errCdf, chanceOf, bucketOf, pct, pctS, chanceMode, modelEntry, predFor, schoolChance, finalRoundBridge, chanceFinal, okChoice, progKeyMap, isChosen } from './forecast';
 import { renderLegend } from "./chrome";
 import { bucketOf, chanceMode, chanceOf, okChoice, pct, pctS, predFor, progKeyMap } from "./forecast";
-import { cssVar, esc, fmt, progName, slug, X_ICON } from "./helpers";
+import { cssVar, esc, fmt, progName, round1, slug, X_ICON } from "./helpers";
 import { t } from "./i18n";
 import { toast } from "./locate";
 import { mapZoom, recolourMap, viewSchool } from "./map";
@@ -292,6 +292,10 @@ export function parsePoints(v) {
   const txt = String(v == null ? '' : v).trim();
   if (!PTS_OK.test(txt)) return { pts: null, bad: !PTS_TYPING.test(txt) };
   const n = Math.round(parseFloat(txt.replace(',', '.')) * 10) / 10;
+  // Nobody has fewer than 10 points (a straight-1 average), so a figure from
+  // 1 to 6 is a grade average typed where points go: taken as points it
+  // painted every school red. It is held back and offered ×10 instead.
+  if (n >= 1 && n <= 6) return { pts: null, bad: false, avg: n };
   return n >= 0 && n <= 70 ? { pts: n, bad: false } : { pts: null, bad: true };
 }
 // A figure set in one go (the ✕, the calculator) is drawn at once.
@@ -305,19 +309,23 @@ export function onPoints(v) {
 // until the next keystroke or until the field is left (flushPoints, on change).
 let ptsTimer: ReturnType<typeof setTimeout> | undefined, ptsPending = false;
 export function onPointsInput(v) {
-  const r = setPoints(v);
-  ptsPending = true;
-  if (r.pts === null && !r.bad && String(v).trim() !== '') return;
+  ptsPending = true;                   // before the render: no average hint mid-keystroke
+  const r: any = setPoints(v);
+  if (r.pts === null && !r.bad && !r.avg && String(v).trim() !== '') return;
   ptsTimer = setTimeout(commitPoints, 250);
 }
 export function flushPoints() { if (ptsPending) commitPoints(); }
 function setPoints(v) {
   clearTimeout(ptsTimer);
-  const inp: any = document.getElementById('my-points');
   const r = parsePoints(v);
   S.myPoints = r.pts;
   S.ptsBad = r.bad;
-  if (v === '') inp.value = '';
+  S.ptsAvg = (r as any).avg ?? null;
+  // either field may have been typed in; a cleared figure clears both
+  if (v === '') for (const id of ['my-points', 's-points']) {
+    const inp: any = document.getElementById(id);
+    if (inp) inp.value = '';
+  }
   try {
     if (S.myPoints === null) localStorage.removeItem('pk-points');
     else localStorage.setItem('pk-points', String(S.myPoints));
@@ -329,6 +337,7 @@ function commitPoints() {
   clearTimeout(ptsTimer);
   ptsPending = false;
   const chipsWere = !!document.querySelector('#s-list .ch:not(.none)');
+  renderPointsField();                 // the average hint waits for the pause
   renderChoices(); recolourMap(); renderLegend();
   if (S.current) { renderSide(); if (!chipsWere) countUpChips(); }
 }
@@ -368,7 +377,9 @@ export function renderPointsField() {
   inp.placeholder = t('ptsPh');
   // a language toggle changes the decimal separator the field shows, so a
   // stored value is reprinted in the new convention (never while typing)
-  if (S.myPoints !== null && document.activeElement !== inp) inp.value = fmt(S.myPoints);
+  const mi: any = document.getElementById('s-points');
+  if (mi && document.activeElement === mi) inp.value = mi.value;     // typed in the sheet's copy
+  else if (S.myPoints !== null && document.activeElement !== inp) inp.value = fmt(S.myPoints);
   const bad = S.ptsBad && inp.value.trim() !== '';
   inp.classList.toggle('on', S.myPoints !== null);
   inp.classList.toggle('bad', bad);
@@ -381,11 +392,42 @@ export function renderPointsField() {
   x!.setAttribute('aria-label', t('ptsClear'));
   const note = document.getElementById('pts-note');
   note!.classList.toggle('bad', bad);
+  // an average is offered as points once the typing pauses, never mid-keystroke
+  // («4» on the way to «45»)
+  const avg = S.ptsAvg !== null && !ptsPending && inp.value.trim() !== '' ? S.ptsAvg : null;
+  const avgNote = (el: HTMLElement, fixId: string, field: string) => {
+    const p = fmt(round1(avg! * 10));
+    el.hidden = false;
+    el.innerHTML = `${esc(t('ptsAvg', fmt(avg!), p))} <button type="button" class="lnk" id="${fixId}">${esc(t('ptsAvgFix', p))}</button>`;
+    (document.getElementById(fixId) as HTMLElement).onclick = () => { onPoints(String(round1(avg! * 10))); refocus(field); };
+  };
   // Only a typing error has a note. A colour key used to follow a valid figure:
   // on the map the legend already is that key, and in the list each Chance
   // cell names its own band in words («0 av 3 sannsynlig»).
-  note!.hidden = !bad;
-  note!.textContent = bad ? t('ptsBad') : '';
+  if (avg !== null) avgNote(note!, 'pts-avg-fix', '#my-points');
+  else {
+    note!.hidden = !bad;
+    note!.textContent = bad ? t('ptsBad') : '';
+  }
+  // the sheet's copy of the field: shown only where the sheet covers the
+  // panel (body.sheet-full, sideTrap), and it follows the panel's field
+  const mf = document.getElementById('s-pts');
+  if (!mf || !mi) return;
+  mf.hidden = false;
+  document.getElementById('s-pts-label')!.textContent = t('ptsLabel');
+  mi.placeholder = t('ptsPh');
+  if (document.activeElement !== mi) mi.value = inp.value;
+  mi.classList.toggle('on', S.myPoints !== null);
+  mi.classList.toggle('bad', bad);
+  mi.setAttribute('aria-invalid', bad ? 'true' : 'false');
+  mi.setAttribute('aria-describedby', 's-pts-note');
+  const mn = document.getElementById('s-pts-note')!;
+  mn.classList.toggle('bad', bad);
+  if (avg !== null) avgNote(mn, 's-pts-avg-fix', '#s-points');
+  else {
+    mn.hidden = !bad;
+    mn.textContent = bad ? t('ptsBad') : '';
+  }
 }
 
 export function initChance() {

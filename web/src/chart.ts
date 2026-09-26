@@ -1,7 +1,7 @@
-import { chartMode, esc, fmt, HELD_OUT, isPoints, levelScope, meanOf, numericLatest, openMix, progName, shownPrograms, visibleIn } from "./helpers";
+import { chartMode, esc, sheetLens, fmt, HELD_OUT, isPoints, levelScope, meanOf, numericLatest, openMix, progName, shownPrograms, visibleIn } from "./helpers";
 import { CATS, t } from "./i18n";
-import { setLens } from "./map";
 import { renderList } from "./programs";
+import { setSheetLens } from "./sidebar";
 import { S } from './state';
 
 /* ================= chart (3 resolution levels) ================= */
@@ -24,15 +24,17 @@ export function renderChartCard() {
     b.onclick = () => {
       if (b.dataset.mode === 'all') {
         S.chart.prog = null;
-        setLens('all');
+        setSheetLens('all');
       } else if (b.dataset.mode === 'cat') {
         S.chart.prog = null;
         // from the programmes the hero and the list count, not the unfiltered set:
         // Elvebakken's default landed on a programme its own hero called "tilbys ikke her"
         const present = [...new Set(shownPrograms(S.current).map(p => p.category))];
-        setLens(S.mapCat !== 'all' && present.includes(S.mapCat) ? S.mapCat : present[0]);
+        const lens = sheetLens();
+        setSheetLens(lens !== 'all' && present.includes(lens) ? lens
+          : present.includes(S.mapCat) ? S.mapCat : present[0]);
       } else {
-        const pool = levelScope(S.current!.programs).filter(p => S.mapCat === 'all' || p.category === S.mapCat);
+        const pool = levelScope(S.current!.programs).filter(p => sheetLens() === 'all' || p.category === sheetLens());
         S.chart.prog = pool.find(p => numericLatest(p.values)) || pool[0] || null;
         renderChartCard(); renderList();
       }
@@ -42,12 +44,12 @@ export function renderChartCard() {
   const cs: any = document.getElementById('chart-cat');
   if (chartMode() === 'cat') {
     const present = [...new Set(levelScope(S.current!.programs).map(p => p.category))];
-    if (!present.includes(S.mapCat)) present.push(S.mapCat);   // lens the school lacks
+    if (!present.includes(sheetLens())) present.push(sheetLens());   // lens the school lacks
     cs.hidden = false;
     cs.setAttribute('aria-label', t('tabCat'));   // a <select> has no placeholder to fall back on
     cs.innerHTML = present.map((c: any) => `<option value="${c}">${CATS[c][S.lang]}</option>`).join('');
-    cs.value = S.mapCat;
-    cs.onchange = () => setLens(cs.value);
+    cs.value = sheetLens();
+    cs.onchange = () => setSheetLens(cs.value);
   } else cs.hidden = true;
   drawChart();
 }
@@ -62,7 +64,7 @@ export function drawChart() {
     : own;
   const W = 444, H = 190, ML = 30, MR = 12, MT = 16, MB = 22;
   const iw = W - ML - MR, ih = H - MT - MB;
-  const series = seriesFor(chartMode(), S.mapCat, S.chart.prog);
+  const series = seriesFor(chartMode(), sheetLens(), S.chart.prog);
   document.getElementById('chart-tip')!.style.display = 'none';  // stale on redraw
   const svgHost = document.getElementById('chart-svg');
   const dataEl = document.getElementById('chart-data');
@@ -84,8 +86,9 @@ export function drawChart() {
   if (!series.length) {
     // a lens the school does not run at all is "tilbys ikke her", as the hero says,
     // not "everyone who applied got in"
-    const offered = S.mapCat === 'all' || shownPrograms(S.current).some(p => p.category === S.mapCat);
-    document.getElementById('chart-sub')!.textContent = offered ? t('chartNoPoints') : `${CATS[S.mapCat][S.lang]} · ${t('notOffered')}`;
+    const lens = sheetLens();
+    const offered = lens === 'all' || shownPrograms(S.current).some(p => p.category === lens);
+    document.getElementById('chart-sub')!.textContent = offered ? t('chartNoPoints') : `${CATS[lens][S.lang]} · ${t('notOffered')}`;
     svgHost!.innerHTML = '';
     return;
   }
@@ -110,7 +113,7 @@ export function drawChart() {
   // plot, so printing it bare put a smaller number under the hero's larger one
   // with nothing to say the two were counting different things.
   const chartScope = chartMode() === 'cat'
-    ? shownPrograms(S.current).filter(p => p.category === S.mapCat) : shownPrograms(S.current);
+    ? shownPrograms(S.current).filter(p => p.category === sheetLens()) : shownPrograms(S.current);
   const scopeN = visibleIn(chartScope);
   const span = years.length > 1 ? `${years[0]}–${years[years.length - 1]}` : String(years[0]);
   // a held-out county's numbers are not poenggrenser, and the note right above

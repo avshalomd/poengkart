@@ -716,6 +716,7 @@ export function visibleSchools() {
 
 export function setLens(v) {
   S.mapCat = v;
+  S.chart.cat = null;                  // an open sheet follows the filter it was opened on
   (document.getElementById('map-cat') as any).value = v;
   // a selected row survives any lens that still contains it
   if (S.chart.prog && v !== 'all' && S.chart.prog.category !== v) S.chart.prog = null;

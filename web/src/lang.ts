@@ -30,5 +30,7 @@ export function setLang(l) {
   if (!document.getElementById('calc')!.hidden) renderCalc();
 }
 
+export function toggleLang() { setLang(S.lang === 'no' ? 'en' : 'no'); }
+
 export function initLang() {
 }
