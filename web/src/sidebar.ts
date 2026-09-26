@@ -1,10 +1,10 @@
 import { bucketOf, chanceFinal, chanceMode, finalRoundBridge, predFor, schoolChance } from "./chance";
 import { renderChartCard } from "./chart";
 import { liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
-import { esc, fmt, HELD_OUT, isVg1, round1, shownPrograms } from "./helpers";
+import { esc, fmt, HELD_OUT, isVg1, round1, sheetLens, shownPrograms } from "./helpers";
 import { CATS, t } from "./i18n";
 import { buildMiniMap, dropMiniMap, drawMarkers, fitVisible, hideMapTip, onceSettled, panSchoolInside, prefersStill,
-         resizeMap, setLens } from "./map";
+         resizeMap } from "./map";
 import { renderList } from "./programs";
 import { queryParts, schoolUrl, setDocHead, setUrlSchool, syncUrl } from './router';
 import { S } from './state';
@@ -104,6 +104,8 @@ export function sideTrap(on) {
   const m = document.getElementById('map');
   if (!m) return;
   m.toggleAttribute('inert', on && phoneSheet());            // where the sheet covers the map
+  // where it covers the panel too, the sheet shows its own points field (#s-pts)
+  document.body.classList.toggle('sheet-full', on && sheetFull());
   // Where it covers the list, the list and its controls stay laid out, so
   // closing finds the list scrolled where it was; they only leave the Tab order.
   const covered = on && S.view === 'list' && sheetFull();
@@ -149,7 +151,8 @@ export function openSide(s, landing?: boolean) {
   const side = document.getElementById('side');
   const fresh = !side!.classList.contains('open'), same = !fresh && S.current === s;
   S.current = s;
-  S.chart.prog = null;                     // the lens itself is global
+  S.chart.prog = null;
+  S.chart.cat = null;                      // a school opens on the map's filter
   side!.removeAttribute('inert');
   side!.classList.add('open');
   renderSide();
@@ -227,7 +230,14 @@ function settleSheet(fresh: boolean) {
 }
 export function clearScope() {
   S.chart.prog = null;
-  setLens('all');
+  setSheetLens('all');
+}
+// the sheet's tabs, its category select and its headings: the sheet changes,
+// the map's filter, the markers and the address stay as the reader set them
+export function setSheetLens(v) {
+  S.chart.cat = v === S.mapCat ? null : v;     // back on the map's filter: follow it again
+  if (S.chart.prog && v !== 'all' && S.chart.prog.category !== v) S.chart.prog = null;
+  renderSide();
 }
 
 export function closeSide(fromHistory?) {
@@ -317,7 +327,7 @@ export function renderSide() {
   const noteBox = document.getElementById('s-notes');
   noteBox!.innerHTML = notes;
   noteBox!.hidden = !notes;
-  const lensCat = S.mapCat !== 'all' ? S.mapCat : null;
+  const lensCat = sheetLens() !== 'all' ? sheetLens() : null;
   const { hero, mix } = heroHtml(s, lensCat);
   const mixBox = document.getElementById('s-mix');
   mixBox!.innerHTML = mix;
@@ -329,6 +339,7 @@ export function renderSide() {
   renderList();
   ['s-meta', 's-hero', 's-chance', 's-notes'].forEach(id =>
     bindTitleTips(document.getElementById(id)));
+  stickHead();
 }
 
 // The forecast block: with points set, how many of the school's programmes
@@ -376,8 +387,10 @@ export function renderChance(s, lensCat) {
   // the default scope, the range over both once Vg2 and up are shown
   const sg: Record<string, number> = (S.MODEL!.meta || {}).sigma_group_multiplier || {};
   const gs: number[] = S.allLevels ? Object.values(sg) : (sg.Vg1 != null ? [sg.Vg1] : []);
-  const mlo = (sm.length ? Math.min(...sm) : 1) * (gs.length ? Math.min(...gs) : 1);
-  const mhi = (sm.length ? Math.max(...sm) : 1) * (gs.length ? Math.max(...gs) : 1);
+  // ...and the jump factor (sigma_jump_multiplier): wider after an unusual step
+  const sj: number[] = Object.values((S.MODEL!.meta || {}).sigma_jump_multiplier || {});
+  const mlo = (sm.length ? Math.min(...sm) : 1) * (gs.length ? Math.min(...gs) : 1) * (sj.length ? Math.min(...sj) : 1);
+  const mhi = (sm.length ? Math.max(...sm) : 1) * (gs.length ? Math.max(...gs) : 1) * (sj.length ? Math.max(...sj) : 1);
   const lo = sf.length ? Math.round(Math.min(...sf) * mlo) : 5, hi = sf.length ? Math.round(Math.max(...sf) * mhi) : 8;
   // the coverage of the scope the reader is looking at: Vg1 by default, where
   // the backtest scores it apart (meta.backtest_eval_years.by_level), the
@@ -418,8 +431,19 @@ export function renderChance(s, lensCat) {
       : cov != null ? ' ' + esc(t('chanceCal', Math.round(cov * 100))) : '') + `</div>` + fin + adj);
 }
 
+// The photo's strip has reached the top of the sheet (.photo's sticky top in
+// app.css): the name shortens to one line beside the ✕. Measured in rects, as
+// the text-size zoom scales the sheet and its scrollTop differently.
+export function stickHead() {
+  const sc = document.querySelector('#side > .scroll'), ph = document.getElementById('s-photo');
+  const bar = ph?.querySelector('.bar');
+  if (!sc || !ph || !bar) return;
+  const bottom = ph.getBoundingClientRect().bottom - sc.getBoundingClientRect().top;
+  ph.classList.toggle('stuck', bottom <= bar.getBoundingClientRect().height + 1);
+}
 export function initSidebar() {
   addEventListener('resize', listLayout);   // not debounced: a stale class is a broken layout
+  document.querySelector('#side > .scroll')?.addEventListener('scroll', stickHead, { passive: true });
   // Capture, not bubble: MapLibre's own keyboard handler listens on the canvas
   // container the dots hang inside, and it pans 100px on an arrow key whatever
   // the event's target. Both handlers ran — focus walked to the next dot while

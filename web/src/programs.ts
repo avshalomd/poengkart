@@ -1,11 +1,11 @@
 import { isChosen, refocus, toggleChoice } from "./chance";
 import { renderChartCard } from "./chart";
 import { renderCatNote, renderLegend } from "./chrome";
-import { esc, progName } from "./helpers";
+import { esc, progName, sheetLens } from "./helpers";
 import { t } from "./i18n";
 import { renderListView } from "./listview";
-import { drawMarkers, setLens, setLevels } from "./map";
-import { clearScope, renderSide, widenFor } from "./sidebar";
+import { drawMarkers, setLevels } from "./map";
+import { clearScope, renderSide, setSheetLens, widenFor } from "./sidebar";
 import { S } from './state';
 import { play, POP, still } from "./motion";
 import { listHtml } from "./templates";
@@ -33,11 +33,11 @@ export function syncPicks() {
   });
 }
 export function renderList() {
-  // One scope for the whole app: the utdanningsprogram lens. Selecting a
+  // The sheet's utdanningsprogram lens (sheetLens). Selecting a
   // programme-area row narrows the chart but never the list or the map.
   // (The programme-area filter box was removed 2 Sept 2026 — the longest list
   // is 41 rows, short enough to scroll — so the lens is the only filter left.)
-  const scope = S.mapCat !== 'all' ? S.mapCat : null;
+  const scope = sheetLens() !== 'all' ? sheetLens() : null;
   const el = document.getElementById('s-list');
   el!.innerHTML = listHtml(S.current!, scope);
   el!.querySelector('.lvnote')?.addEventListener('click', () => {
@@ -64,7 +64,7 @@ export function renderList() {
   });
   el!.querySelectorAll('.cat-head[data-cat]').forEach((b: any) => b.onclick = () => {
     const cat = b.dataset.cat;
-    S.chart.prog = null; setLens(cat);
+    S.chart.prog = null; setSheetLens(cat);
     refocus(`#s-list .cat-head[data-cat="${cat}"]`, '#s-list .scope-all', '#s-list .prow button.nm');
   });
   // the whole row still selects, as it did as one button; its name carries the focus

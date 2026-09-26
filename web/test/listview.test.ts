@@ -41,7 +41,7 @@ describe('list view', () => {
     expect(desc).toEqual([...asc].reverse());
   });
 
-  it('Sjanse sorts by what its cell shows: the dot’s band, then «L av n», then n', () => {
+  it('Sjanse sorts by what its cell shows: the band, then the best percentage, then n', () => {
     loadFixtures();
     initListview();
     S.myPoints = 40;
@@ -55,9 +55,10 @@ describe('list view', () => {
     const cells = [...document.querySelectorAll('#listview tbody .ch-cell')]
       .filter(c => c.querySelector('.k'))
       .map(c => {
-        const [l, n] = c.textContent!.match(/\d+/g)!.map(Number);
+        // «Mulig · 62 %» or «Mulig · 62 %, best av 3»
+        const [p, n = 1] = c.textContent!.match(/\d+/g)!.map(Number);
         const bg = (c.querySelector('.k') as HTMLElement).getAttribute('style')!;
-        return [bands.findIndex(b => bg.includes(b)), l / n, n];
+        return [bands.findIndex(b => bg.includes(b)), p, n];
       });
     expect(cells.length).toBeGreaterThan(50);
     const cmp = (a: number[], b: number[]) => { const i = a.findIndex((x, j) => x !== b[j]); return i < 0 ? 0 : a[i] - b[i]; };

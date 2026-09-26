@@ -107,7 +107,7 @@ Telemark's own years instead (`satellite_backtest`): fit the panel on the
 other counties' years before T and the satellite on Telemark's, predict
 Telemark's year T. Over 110 cells in 2025–2026 that is an RMSE of 7.80
 against 8.98 for persistence, and every Telemark forecast carries 7.8 as
-its spread — the model's own buckets, 4.9 to 7.3, covered 61% of those
+its spread — the model's own buckets, 4.9 to 7.3, covered 64% of those
 outcomes where they claimed 80%. The app quotes that measurement on every
 Telemark school. The county rejoins
 the model when it states, per programme and year, whether everyone was
@@ -136,13 +136,21 @@ queue cannot outgrow its applicants' scores, so high forecasts miss by less:
 ×1.14 below 25 points, ×1.01 from 25 to 40, ×0.96 from 40 to 45, ×0.64 at 45 and above (fitted on
 the calibration years, constrained to fall with the level;
 `meta.sigma_level_multiplier`). On the held-out years it moved the top
-band's 80% coverage from 92.5% to 79.1% and the bottom band's from 65.1% to
-72.1%, and nothing else.
+band's 80% coverage from 92.5% to 79.1% and the bottom band's from 67.4% to
+74.4%, and nothing else.
 
 Last, a factor per level group, fitted so each group's 80% band covers 80%
 of its own calibration-year errors (`meta.sigma_group_multiplier`): ×0.881
 for Vg1 and ×1.077 for Vg2 and up. Without it the pooled spread covered
-84.6% of held-out Vg1 outcomes and 75.4% of the rest.
+84.1% of held-out Vg1 outcomes and 75.4% of the rest.
+
+And a factor for a series whose two newest figures are more than 8 points
+apart (`meta.jump_points`), fitted the same way on the cells after such a
+step and on the rest (`meta.sigma_jump_multiplier`): ×1.242 after a jump
+and ×0.974 otherwise. Without it the spread covered 73.3% of held-out
+outcomes after a jump and 80.8% of the rest; with it, 82.5% and 79.7%. The
+app flags such a step as «Uvanlig endring» (the forecast's `j`, the step
+in points).
 
 F, the error distribution, is likewise the empirical distribution of those
 standardised errors (41 quantiles in `meta.error_quantiles`) rather than a
@@ -173,6 +181,17 @@ and 5.2 with four or more, against the model's 5.7 and 5.1 — most of the
 model's margin over "last year's figure" on long series is smoothing, not
 pooling.
 
+**Steadily rising series.** Where a Vg1 series never fell over its
+newest three or four figures and the forecast sits 4 or more points below
+the last one, the backtest has been there 64 times: the published figure
+came in below the last one 81.2% of the time, the model's RMSE was
+6.21 against 7.91 for persistence and 6.18 for the EWMA, and it
+under-forecast by 1.25 points on average (95% CI [−0.34, 2.68]). So the
+drop mostly comes, a little smaller than forecast. A trend term (the
+error regressed on the forecast's gap below the last figure, slope
+0.085 fitted on 2020–2024) takes the held-out Vg1 RMSE from 4.644 to
+4.598: not enough to add one (`meta.halflife_search.rising_series_check`).
+
 The 80% interval (m ± 1.2816 s) contained the published figure 80% of the time.
 
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
@@ -192,26 +211,26 @@ scores 0.147 against 0.186 for its base rate
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 4.5% | 1553 |
-| 10–20% | 14.7% | 1 899 |
-| 20–30% | 27% | 1 524 |
-| 30–40% | 38% | 1 352 |
-| 40–50% | 47% | 1 202 |
-| 50–60% | 59% | 1 258 |
-| 60–70% | 70% | 1 310 |
-| 70–80% | 83% | 1 439 |
-| 80–90% | 88% | 1 713 |
-| 90–100% | 98.9% | 12 134 |
+| 0–10% | 4.3% | 1541 |
+| 10–20% | 14.8% | 1 896 |
+| 20–30% | 27% | 1 495 |
+| 30–40% | 38% | 1 370 |
+| 40–50% | 47% | 1 205 |
+| 50–60% | 59% | 1 269 |
+| 60–70% | 70% | 1 340 |
+| 70–80% | 83% | 1 457 |
+| 80–90% | 88% | 1 753 |
+| 90–100% | 99.0% | 12 058 |
 
 Brier 0.090, against 0.156 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
 Brier is 0.091). The fairer comparison centres the same spread, error
 distribution and fill probability on the last published figure instead of
-on the forecast: that scores 0.095, so most of the gain over the bare rule
+on the forecast: that scores 0.094, so most of the gain over the bare rule
 is the uncertainty treatment, and the model's own point forecast is worth
 the last 0.006 of it.
-Below 70% the forecast is within 5.0 points of the outcome in every bin,
-optimistic by at most 1.3 points in the three lowest — a 15% chance was
+Below 70% the forecast is within 4.7 points of the outcome in every bin,
+optimistic by at most 1.5 points in the three lowest — a 15% chance was
 really 15% — which the app's bands absorb (both are "unlikely"); from 70%
 up it is cautious — a stated 75% came true 83% of the time, the largest gap
 in any bin. The walk-forward forecasts themselves are in `data/model-backtest.csv`.

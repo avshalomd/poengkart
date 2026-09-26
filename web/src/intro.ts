@@ -37,6 +37,14 @@ export function renderControls() {
     el!.title = t(key);
     el!.setAttribute('aria-label', t(key));
   }
+  // the switch names the other language, in that language
+  const lb = document.getElementById('lang-btn');
+  if (lb) {
+    lb.textContent = S.lang === 'no' ? 'EN' : 'NO';
+    lb.title = t('langSwitch');
+    lb.setAttribute('aria-label', t('langSwitch'));
+    lb.setAttribute('lang', S.lang === 'no' ? 'en' : 'no');
+  }
   // these two were written into the markup in English and so stayed English
   document.getElementById('side')!.setAttribute('aria-label', t('sideLabel'));
 }
@@ -67,6 +75,11 @@ export function renderIntro() {
   document.getElementById('intro-body')!.innerHTML =
     `<p class="lede">${esc(t('introLede'))} ${esc(t('introScope', S.DATA!.schools.length, S.DATA!.counties.length,
       S.DATA!.years[0], S.DATA!.years[S.DATA!.years.length - 1]))}</p>${steps}` +
+    // the terms the sheets use without stopping to define them, and the one
+    // thing a parent asks next: what do we actually do
+    `<h3 class="words-h">${esc(t('introWordsH'))}</h3><dl class="words">` +
+      t('introWords').map(([w, d]) => `<dt>${esc(w)}</dt><dd>${esc(d)}</dd>`).join('') + `</dl>` +
+    `<h3 class="words-h">${esc(t('introApplyH'))}</h3><p class="apply">${esc(t('introApply'))}</p>` +
     `<p class="caveat">${esc(t('introCaveat'))} `
       + `<a href="/data/schools.json">${esc(t('introData'))}</a></p>` +
     `<p class="caveat">${esc(t('introPrivacy'))}</p>` +

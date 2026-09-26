@@ -29,6 +29,12 @@ describe('figures', () => {
 });
 
 describe('points field', () => {
+  it('parsePoints holds back a grade average typed as points', () => {
+    expect(parsePoints('4,5')).toEqual({ pts: null, bad: false, avg: 4.5 });
+    expect(parsePoints('6')).toEqual({ pts: null, bad: false, avg: 6 });
+    expect(parsePoints('10').pts).toBe(10);
+    expect(parsePoints('0').pts).toBe(0);
+  });
   it('parsePoints reads comma and point, refuses the impossible', () => {
     expect(parsePoints('45,1').pts).toBe(45.1); expect(parsePoints('45.1').pts).toBe(45.1);
     expect(parsePoints('999').pts).toBeNull(); expect(parsePoints('').pts).toBeNull(); expect(parsePoints('abc').pts).toBeNull();

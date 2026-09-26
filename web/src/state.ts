@@ -28,6 +28,7 @@ export const S = {
   choicesNote: null as string | null,   // the i18n key of why the last add was refused; translated at render, so a language switch follows
   pickNoteTimer: null as ReturnType<typeof setTimeout> | null,
   ptsBad: false,
+  ptsAvg: null as number | null,
   labelMarkers: undefined as unknown as () => void,   // set by initMap(), then by every drawMarkers()
   mapFocusPending: 0,   // when Enter zoomed into a cluster, for the focus to follow
   miniMap: null as GLMap | null,

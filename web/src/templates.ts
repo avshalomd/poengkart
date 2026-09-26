@@ -8,7 +8,7 @@ import { S } from './state';
 import { t, CATS } from './i18n';
 import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE, HELD_OUT,
          partitionPrograms, numericLatest, progId, progName, levelScope, isRecent, isVg1, isPoints, meanStep, BUG_ICON, X_ICON } from './helpers';
-import { bucketOf, chanceFinal, chanceMode, chanceOf, finalRoundBridge, isChosen, modelEntry, pct, pctS, predFor } from './forecast';
+import { bucketOf, chanceFinal, chanceMode, chanceOf, finalRoundBridge, isChosen, modelEntry, newestForecastYear, pct, pctS, predFor } from './forecast';
 import type { School, County } from './types';
 
 export interface HeroCell { v: string | number; l: string; cls?: string; ti?: string }
@@ -29,12 +29,19 @@ export function photoHtml(s: School): string {
         : esc(creditText)) + '</div>'
     : '';
   const pos = s.photo_position ? ` style="--photo-pos:${esc(s.photo_position)}"` : '';
-  return (s.photo ? `<img src="${esc(photoSrc(s.photo))}" data-full="${esc(s.photo)}"`
+  // The ✕ and the report button ride a bar that stays at the top of the sheet
+  // while the photo scrolls up under it; the photo's last strip, with the
+  // name, stays too (.photo in app.css). On the photo itself, the ✕ scrolled
+  // away with it, and on a phone that left no way out of a long sheet but the
+  // Back gesture.
+  return `<div class="bar">` +
+    `<button class="close bug" onclick="openBug(current, this)" aria-label="${esc(t('bugSchoolLabel'))}">${BUG_ICON}</button>` +
+    `<button class="close" onclick="closeSide()" aria-label="${esc(t('closeAria'))}">${X_ICON}</button>` +
+    `</div>` +
+    (s.photo ? `<img src="${esc(photoSrc(s.photo))}" data-full="${esc(s.photo)}"`
                  + ` alt="" loading="lazy"${pos}>`
                  : `<div id="s-minimap"></div>`) +
     `<div class="veil"></div>` +
-    `<button class="close bug" onclick="openBug(current, this)" aria-label="${esc(t('bugSchoolLabel'))}">${BUG_ICON}</button>` +
-    `<button class="close" onclick="closeSide()" aria-label="${esc(t('closeAria'))}">${X_ICON}</button>` +
     `<div class="name"><h2>${esc(s.name)}</h2>${credit}</div>`;
 }
 // meta links
@@ -96,7 +103,12 @@ export function heroCells(s: School, lensCat: string | null): HeroCell[] {
   const { latest, prev, mean, meanPrev }: any = step;
   const scopeLabel = lensCat ? CATS[lensCat][S.lang] : t('heroTypicalAll');
   if (mean !== null) {
-    cells.push({ v: fmt(mean), l: `${t('heroTypical')} · ${scopeLabel} ${latest}` });
+    // One cell is that programme area's poenggrense; several are averaged, and
+    // the average named with its range: «44,1» over Katedralskolen's ST read as
+    // the line to beat, when plain ST needed 47,5 and IB 40,6.
+    const nums = scopePrograms.map(p => p.values[latest]).filter(isPoints);
+    const lbl = nums.length > 1 ? t('heroMeanOf', fmt(Math.min(...nums)), fmt(Math.max(...nums))) : t('heroTypical');
+    cells.push({ v: fmt(mean), l: `${lbl} · ${scopeLabel} ${latest}` });
     if (meanPrev !== null) {
       const d = step.d;
       cells.push({ v: (d! > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
@@ -173,7 +185,7 @@ export function listHtml(s: School, scope: string | null): string {
     // title and the English heading the app's short form, so they never matched
     // and the English sheet set «Sports 1» over «Sports and Physical Education».
     const solo = list.length === 1 && list[0].program.toLowerCase() === CATS[c].no.toLowerCase();
-    if (!solo) html += `<button class="cat-head" data-cat="${c}" aria-pressed="${S.mapCat === c}"><span>${CATS[c][S.lang]}</span><span class="cnt">${list.length}</span></button>`;
+    if (!solo) html += `<button class="cat-head" data-cat="${c}" aria-pressed="${scope === c}"><span>${CATS[c][S.lang]}</span><span class="cnt">${list.length}</span></button>`;
     for (const p of list) {
       // headline value: newest non-priority cell (F is a quota fact, not a value)
       let latestYear: string | null = null, lv;
@@ -192,6 +204,16 @@ export function listHtml(s: School, scope: string | null): string {
         : lv === 'open' ? `<span class="soft">${t('allIn')}</span>`
         : lv === 'D' ? `<span class="soft" data-tip="${esc(t('docAdm'))} – ${esc(t('docTitle'))}">${t('docAdmShort')}</span>`
         : `<span class="soft">${t('gone')}</span>`;
+      // an unusual newest step (the model's j): the two newest figures, named
+      let jump = '', jumpTxt = '';
+      const je = typeof lv === 'number' ? modelEntry(s, p) : null;
+      if (je && je.j != null) {
+        const ny = ys.filter(y => typeof p.values[y] === 'number' && p.values[y] > 0).slice(-2);
+        if (ny.length === 2) {
+          jumpTxt = t('jumpTitle', fmt(p.values[ny[0]]), ny[0], fmt(p.values[ny[1]]), ny[1], fmt(Math.abs(je.j)));
+          jump = `<span class="jump" data-tip="${esc(jumpTxt)}">${t('jumpFlag')} ⓘ</span>`;
+        }
+      }
       const key = progId(p);
       let badge = '';
       if (!orphan && (prioNames.has(key) || hasF) && !badged.has(key)) {
@@ -199,7 +221,7 @@ export function listHtml(s: School, scope: string | null): string {
         badge = `<span class="fbadge" title="${esc(t('fortrinnTitle'))}">${t('prioBadge')}</span>`;
       }
       const sel = S.chart.prog === p ? ' sel' : '';
-      let chip = '', chipTxt = '';
+      let chip = '', chipTxt = '', fc = '';
       if (chanceMode() && !orphan) {
         const pr = predFor(s, p);
         if (pr) {
@@ -214,6 +236,15 @@ export function listHtml(s: School, scope: string | null): string {
           chipTxt = tip + (pr.h === 1 ? ` (${t('lowHist')})` : '');
           // one observed year is a thin basis: say so next to the figure
           if (pr.h === 1) chip = `<span class="chw">${chip}<span class="hist">${t('lowHist')}</span></span>`;
+          // The percentage is measured against this forecast, not against the
+          // figure at the row's end: printed only in the chip's tip, 11 of 12
+          // first-time readers (26 Sept 2026 walkthroughs) saw «sannsynlig»
+          // beside a higher poenggrense and stopped trusting the chance. The
+          // share with no waiting list is what lifts a row whose expected
+          // threshold is above the reader's points; say it where it matters.
+          const free = HELD_OUT.has(s.fylke) ? 0 : Math.round((1 - pr.pi) * 100);
+          fc = `<span class="fc">${esc(t('fcLine', pr.year, fmt(pr.m), fmt(pr.s), +pr.year < newestForecastYear())
+                 + (free >= 10 ? t('fcOpen', free) : ''))}</span>`;
         } else if ((modelEntry(s, p) || {}).h === 0) {
           chip = `<span class="ch none" data-tip="${esc(t('noHistTitle'))}">${t('noHist')}</span>`;
           chipTxt = t('noHistTitle');
@@ -238,12 +269,12 @@ export function listHtml(s: School, scope: string | null): string {
         : lv === 'open' ? t('allIn')
         : lv === 'D' ? `${t('docAdm')} – ${t('docTitle')}`
         : t('gone');
-      const desc = [chipTxt, lvl ? `${p.level}: ${lvl[1]}` : p.level, valTxt]
+      const desc = [chipTxt, lvl ? `${p.level}: ${lvl[1]}` : p.level, valTxt, jumpTxt]
         .filter(Boolean).map(x => String(x).trim().replace(/\.$/, '')).join('. ') + '.';
       html += `<div class="prow${sel}${orphan ? ' muted' : ''}${solo && rowsSoFar ? ' solo' : ''}" data-cat="${c}" data-idx="${idx}">` +
               `<button type="button" class="nm" aria-describedby="pd-${idx}"${p.official ? ` title="${esc(t('officialName', p.official))}"` : ''}>${esc(progName(p))}${badge}</button>` +
-              `${chip}<span class="lv${lvl ? ' tipped' : ''}">${esc(p.level)}</span><span class="end"><span class="val">${val}</span>${pick}</span>` +
-              `<span id="pd-${idx}" hidden>${esc(desc)}</span></div>`;
+              `${chip}<span class="lv${lvl ? ' tipped' : ''}">${esc(p.level)}</span><span class="end">${jump}<span class="val">${val}</span>${pick}</span>` +
+              fc + `<span id="pd-${idx}" hidden>${esc(desc)}</span></div>`;
       rowsSoFar++;
     }
   }

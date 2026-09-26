@@ -53,6 +53,15 @@ describe('the sheet renders what the templates say', () => {
     expect(a).toContain('<h2>Asker</h2>');
     expect(a).toContain('class="prow');
   });
+  it('a row after an unusual step says so, with both figures, and only that row', () => {
+    // Randaberg's Vg1 TIF went 30,0 → 11,3 as Rogaland printed it; the model
+    // widened that forecast and carries the step as j
+    const s = DATA.schools.find(x => x.name === 'Randaberg videregående skole')!;
+    const html = listHtml(s, null);
+    expect(html.match(/class="jump"/g)).toHaveLength(1);
+    expect(html).toContain(esc(t('jumpTitle', '30,0', '2025', '11,3', '2026', '18,7')));
+    expect(listHtml(asker(), null)).not.toContain('class="jump"');
+  });
   it('the level chip is marked .tipped in the string, not by the script', () => {
     // bindTips() marks it on the same condition after the render; the build has
     // no script, so the prerendered page must carry the mark itself
@@ -103,5 +112,24 @@ describe('the programme list in English', () => {
     }
     S.lang = 'no';
     expect(solo).toBeGreaterThan(0);        // the case exists in the dataset
+  });
+});
+
+describe('the chance explains itself', () => {
+  it('every chance chip has the forecast it is measured against beside it', () => {
+    S.myPoints = 43;
+    const s = asker();
+    const html = listHtml(s, null);
+    const d = document.createElement('div'); d.innerHTML = html;
+    const rows = [...d.querySelectorAll('.prow')].filter(r => r.querySelector('.ch:not(.none)'));
+    expect(rows.length).toBeGreaterThan(0);
+    for (const r of rows) expect(r.querySelector('.fc')!.textContent).toMatch(/^Forventet poenggrense \d{4}.*: ca\. \d+,\d ± \d+,\d/);
+    S.myPoints = null;
+  });
+  it('the hero names one programme area’s figure a poenggrense, several an average with its range', () => {
+    const s = asker();
+    const { hero } = heroHtml(s, null);
+    expect(hero).toMatch(/Snitt av grensene \d+,\d–\d+,\d|Poenggrense/);
+    expect(hero).not.toMatch(/>Snitt ·/);
   });
 });
