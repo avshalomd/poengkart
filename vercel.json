@@ -28,6 +28,41 @@
       }
     ]
   },
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "poengkart.vercel.app"
+        }
+      ],
+      "destination": "https://poengkart.no/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "poengkart-no.vercel.app"
+        }
+      ],
+      "destination": "https://poengkart.no/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.poengkart.no"
+        }
+      ],
+      "destination": "https://poengkart.no/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

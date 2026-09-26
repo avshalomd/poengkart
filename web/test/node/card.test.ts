@@ -19,7 +19,7 @@ describe('the share card', () => {
   it('names the school, the county and the hero figure', () => {
     S.DATA = data;
     const text = JSON.stringify(cardTree(asker));
-    expect(text).toContain('Asker'); expect(text).toContain('Akershus'); expect(text).toContain('poengkart.vercel.app');
+    expect(text).toContain('Asker'); expect(text).toContain('Akershus'); expect(text).toContain('poengkart.no');
   });
   // 7 schools have a label rather than a figure for their latest year but means
   // in earlier ones. The line drawn from those means ends years before the year

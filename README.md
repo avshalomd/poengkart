@@ -2,7 +2,7 @@
 
 [![test](https://github.com/avshalomd/poengkart/actions/workflows/test.yml/badge.svg)](https://github.com/avshalomd/poengkart/actions/workflows/test.yml)
 
-**https://poengkart.vercel.app**
+**https://poengkart.no**
 
 Admission thresholds (*poenggrenser*) for Norwegian upper secondary schools,
 on a map and as a ranked list. A threshold is the points of the last applicant
@@ -19,7 +19,7 @@ of a place at the next intake: green likely, amber possible, red unlikely. The
 chance comes from a model fitted on the whole history and backtested year by
 year (Telemark's schools from a separate fit on the county's own figures);
 [docs/model.md](docs/model.md) explains it and the
-[technical report](https://poengkart.vercel.app/report) is the full
+[technical report](https://poengkart.no/report) is the full
 write-up. Press + on a programme to build your list of wishes (*ønsker*, the
 ten a vigo application allows), or use the calculator if you do not know your
 points. Search finds any school (⌘K or `/`), Kart ⇄ Liste swaps the map for a

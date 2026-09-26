@@ -357,7 +357,7 @@ def main():
         d.rectangle([x + i * lw, ly, x + (i + 1) * lw - 2, ly + 12], fill=c)
         d.text((x + i * lw, ly + 20), EDGES[i], font=font(15), fill=INK3)
 
-    d.text((x, 545), 'poengkart.vercel.app', font=font(20, 'bold'), fill=INK2)
+    d.text((x, 545), 'poengkart.no', font=font(20, 'bold'), fill=INK2)
 
     out = os.path.join(HERE, '..', 'web', 'public', 'og.png')
     card.convert('RGB').save(out, optimize=True)

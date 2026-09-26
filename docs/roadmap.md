@@ -330,6 +330,14 @@ Behaviour is unchanged by design. Still to do from the same plan:
     (one token covers both hosts); `/sitemap.xml` was submitted there and
     read with 230 pages. The `poengkart-no` property now reports its pages as
     alternates of the new canonical.
+  - 26 September 2026: the move to `https://poengkart.no` is prepared (canonical,
+    sitemap, robots, share cards, the feedback relay's allowed origins, and
+    308 redirects from both `vercel.app` names and `www` in `vercel.json`).
+    Merge only once poengkart.no answers with this site: the redirects would
+    otherwise send every visitor to a dead address. After the deploy: verify a
+    `https://poengkart.no/` property (the same tag does it), submit its
+    sitemap, and run Change of Address from the `poengkart.vercel.app`
+    property; keep the redirects for at least 180 days.
   - The school photo on a prerendered page keeps `loading="lazy"` because the
     template is the client's; an eager hint on the page's own photo would be
     a template split — measure LCP on a school page first.

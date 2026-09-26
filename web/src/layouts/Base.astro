@@ -34,9 +34,11 @@ const { title, description, canonical, ogTitle, ogDescription, twitterDescriptio
 {!noindex && <link rel="canonical" href={canonical}>}
 {noindex && <meta name="robots" content="noindex">}
 <!-- Google Search Console: the URL-prefix properties https://poengkart-no.vercel.app/
-     (17 Sept 2026) and https://poengkart.vercel.app/ (22 Sept 2026, the
-     canonical) are both verified by this tag on the home page. Removing it
-     un-verifies both. -->
+     (17 Sept 2026) and https://poengkart.vercel.app/ (22 Sept 2026) are both
+     verified by this tag on the home page, and it verifies a property for
+     https://poengkart.no/, the canonical since the move, the same way. The
+     old properties must stay verified for Search Console's Change of
+     Address, so the tag stays. Removing it un-verifies all of them. -->
 <meta name="google-site-verification" content="nstWEgPKGkzQDB8692StPPh6C1gsEGfjoOXMiDN6lJo">
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">

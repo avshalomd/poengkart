@@ -235,12 +235,13 @@ After the items, only if a PR merged, and at most once per run: on the merged `m
 `vercel deploy --prod --yes`, then these checks, each of which must hold:
 
 ```
-curl -sI https://poengkart.vercel.app | head -2                                        # HTTP/2 200
-curl -s https://poengkart.vercel.app/data/schools.json | head -c 60                     # JSON, not HTML
-curl -sI https://poengkart.vercel.app/akershus/asker | head -1                          # 200
-curl -sI https://poengkart.vercel.app/sitemap.xml | head -1                             # 200
-curl -sI https://poengkart.vercel.app/og/akershus/asker.png | grep -iE '^(HTTP|content-type)'   # 200, image/png
-curl -s -o /dev/null -w '%{http_code}\n' https://poengkart.vercel.app/akershus/finnes-ikke      # 404
+curl -sI https://poengkart.no | head -2                                       # HTTP/2 200
+curl -s https://poengkart.no/data/schools.json | head -c 60                    # JSON, not HTML
+curl -sI https://poengkart.no/akershus/asker | head -1                         # 200
+curl -sI https://poengkart.no/sitemap.xml | head -1                            # 200
+curl -sI https://poengkart.no/og/akershus/asker.png | grep -iE '^(HTTP|content-type)'   # 200, image/png
+curl -s -o /dev/null -w '%{http_code}\n' https://poengkart.no/akershus/finnes-ikke     # 404
+curl -sI https://poengkart.vercel.app/akershus/asker | grep -iE '^(HTTP|location)'     # 308, location: https://poengkart.no/akershus/asker
 vercel ls                                                                                  # a fresh Production row
 ```
 
