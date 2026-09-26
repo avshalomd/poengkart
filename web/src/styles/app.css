@@ -226,6 +226,10 @@
   .ptsrow input.on { border-color: var(--accent); }
   .ptsrow input.bad { border-color: var(--danger); }
   #pts-note.bad { color: var(--danger); }
+  #legend-title .lg-chips { display: block; margin-top: 3px; }
+  #pts-note .lnk { background: none; border: 0; padding: 0; font: inherit; font-weight: 600; color: var(--accent);
+                   text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+  #pts-note .lnk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   /* grid, not the UA's inline flow: ✕ escaped it through .xi's `margin: auto`
      but the calculator's icon is a bare <svg>, which sits on the text baseline
      and drew 1,5px above the middle of its own circle */
@@ -261,6 +265,7 @@
                 padding: 4.5px 0; border-bottom: 1px solid var(--line); }
   #calc .subj .n { font-size: 12.5px; color: var(--ink); min-width: 0; }
   #calc .subj.exam .n { font-style: italic; }
+  #calc .exam-h { font-size: 11.5px; font-weight: 600; color: var(--ink-3); margin: 12px 0 2px; }
   #calc .grades { display: flex; gap: 3px; flex: none; }
   #calc .grades button {
     width: 26px; height: 26px; border: 1px solid var(--line-strong); border-radius: 999px;
@@ -782,6 +787,11 @@
   #intro .keyrow { display: flex; gap: 16px; margin: 10px 0 2px; flex-wrap: wrap; }
   #intro .key { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--ink-3); }
   #intro .key .swatch { flex: none; }
+  #intro .words-h { font-size: 13.5px; font-weight: 650; margin: 18px 0 6px; }
+  #intro .words { margin: 0; display: grid; gap: 7px; }
+  #intro .words dt { font-size: 12.5px; font-weight: 650; color: var(--ink); }
+  #intro .words dd { margin: 0; font-size: 12.5px; line-height: 1.5; color: var(--ink-2); }
+  #intro .apply { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
   #intro .caveat a { color: var(--accent); }
   #intro .caveat {
     font-size: 11.5px; line-height: 1.5; color: var(--ink-3);
@@ -807,6 +817,7 @@
     color: var(--ink-2); cursor: pointer;
   }
   .ico svg { width: 15px; height: 15px; }
+  .ico.lang { font-size: 11px; font-weight: 700; letter-spacing: .03em; }
   /* the close and remove cross: the icon set's own stroke, not a ✕ glyph whose
      ink changed with the font */
   .xi { display: block; width: 1em; height: 1em; margin: auto; fill: none;
@@ -1323,6 +1334,9 @@
                     color: inherit; font: inherit; font-size: 13px; line-height: 1.3; cursor: pointer; }
   .prow button.nm:focus-visible { outline: none; }
   .prow:has(button.nm:focus-visible) { outline: 2px solid var(--accent); outline-offset: -2px; }
+  /* the forecast a row's chance is measured against, on a line of its own */
+  .prow .fc { flex-basis: 100%; font-size: 11px; line-height: 1.35; color: var(--ink-3);
+              font-variant-numeric: tabular-nums; margin-top: -5px; }
   .prow .lv { font-size: 10.5px; font-weight: 600; color: var(--ink-3); border: 1px solid var(--line);
               border-radius: 999px; padding: 1px 6px; flex: none; }
   .fbadge { font-size: 10.5px; color: var(--ink-3); border: 1px dashed var(--line); border-radius: 999px;
