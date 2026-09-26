@@ -176,8 +176,13 @@
     const sumTxt = (document.querySelector('#choices .sum') || {}).textContent || '';
     say('I12', sumTxt.includes(`${want.likely} `) && sumTxt.includes(`${want.possible} `) && sumTxt.includes(`${want.unlikely} `),
         `sum "${sumTxt}" vs ${JSON.stringify(want)}`);
-    const any = pct(1 - cs.reduce((a, c) => a * (1 - c), 1));
-    say('I12', sumTxt.includes(`${any} %`) || sumTxt.includes(`${any}%`), `at-least-one ${any} not in "${sumTxt}"`);
+    // past CHANCE_CAP the line says «over 95 %» rather than a figure the
+    // dependence between wishes cannot back
+    const anyC = 1 - cs.reduce((a, c) => a * (1 - c), 1);
+    const any = anyC > CHANCE_CAP ? pct(CHANCE_CAP) : pct(anyC);
+    say('I12', (sumTxt.includes(`${any} %`) || sumTxt.includes(`${any}%`))
+               && (anyC > CHANCE_CAP) === sumTxt.includes(t('choicesAnyOver', any)),
+        `at-least-one ${any} not in "${sumTxt}"`);
     openSide(picks[0][0]);
     say('I12', document.querySelectorAll('#s-list .pick.on').length >= 1, 'picked row not marked in the list');
     // I13 — the list refuses what vigo would refuse: an 11th wish, or a 4th
@@ -285,7 +290,9 @@
         say('I16', css('--l') === at(mix.likely) && css('--p') === at(mix.likely + mix.possible)
                    && css('--u') === at(mix.likely + mix.possible + mix.unlikely),
             `cluster of ${n}: segments ${css('--l')} ${css('--p')} ${css('--u')} vs ${el.dataset.mix}`);
-        say('I16', el.getAttribute('aria-label') === t('clusterAria', n, mix),
+        // the label names the kommune the element prints under it, and says
+        // whether a tap lists the schools (up to CLUSTER_LIST) or zooms
+        say('I16', el.getAttribute('aria-label') === t('clusterAria', n, mix, el.dataset.place || null, n <= CLUSTER_LIST),
             `cluster of ${n}: label "${el.getAttribute('aria-label')}"`);
         KEYS.forEach(k => { got[k] += mix[k] || 0; });
         held += n;

@@ -1,0 +1,910 @@
+{
+ "816031982": {
+  "kommune": "Voss",
+  "kommunenr": "4621"
+ },
+ "874557102": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ },
+ "874557552": {
+  "kommune": "Bjørnafjorden",
+  "kommunenr": "4624"
+ },
+ "874558052": {
+  "kommune": "Heim",
+  "kommunenr": "5055"
+ },
+ "874558362": {
+  "kommune": "Melhus",
+  "kommunenr": "5028"
+ },
+ "874560782": {
+  "kommune": "Steinkjer",
+  "kommunenr": "5006"
+ },
+ "874568082": {
+  "kommune": "Tinn",
+  "kommunenr": "4026"
+ },
+ "874571032": {
+  "kommune": "Årdal",
+  "kommunenr": "4643"
+ },
+ "874571172": {
+  "kommune": "Stad",
+  "kommunenr": "4649"
+ },
+ "874576492": {
+  "kommune": "Volda",
+  "kommunenr": "1577"
+ },
+ "874587702": {
+  "kommune": "Bærum",
+  "kommunenr": "3201"
+ },
+ "874587842": {
+  "kommune": "Lillestrøm",
+  "kommunenr": "3205"
+ },
+ "874590932": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "874597252": {
+  "kommune": "Lillehammer",
+  "kommunenr": "3405"
+ },
+ "874605972": {
+  "kommune": "Drammen",
+  "kommunenr": "3301"
+ },
+ "874624632": {
+  "kommune": "Sauda",
+  "kommunenr": "1135"
+ },
+ "899178092": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "912001008": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "912001709": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "912703312": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "913385632": {
+  "kommune": "Time",
+  "kommunenr": "1121"
+ },
+ "916031858": {
+  "kommune": "Voss",
+  "kommunenr": "4621"
+ },
+ "916178360": {
+  "kommune": "Dovre",
+  "kommunenr": "3431"
+ },
+ "917527067": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "919938331": {
+  "kommune": "Stavanger",
+  "kommunenr": "1103"
+ },
+ "925607797": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "926694022": {
+  "kommune": "Trondheim",
+  "kommunenr": "5001"
+ },
+ "929188829": {
+  "kommune": "Indre Fosen",
+  "kommunenr": "5054"
+ },
+ "934187733": {
+  "kommune": "Orkland",
+  "kommunenr": "5059"
+ },
+ "936729916": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "970963847": {
+  "kommune": "Tynset",
+  "kommunenr": "3427"
+ },
+ "974556995": {
+  "kommune": "Bjørnafjorden",
+  "kommunenr": "4624"
+ },
+ "974557029": {
+  "kommune": "Stord",
+  "kommunenr": "4614"
+ },
+ "974557045": {
+  "kommune": "Kvam",
+  "kommunenr": "4622"
+ },
+ "974557061": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ },
+ "974557096": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ },
+ "974557126": {
+  "kommune": "Bømlo",
+  "kommunenr": "4613"
+ },
+ "974557134": {
+  "kommune": "Vindafjord",
+  "kommunenr": "1160"
+ },
+ "974557142": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ },
+ "974557150": {
+  "kommune": "Osterøy",
+  "kommunenr": "4630"
+ },
+ "974557282": {
+  "kommune": "Kvinnherad",
+  "kommunenr": "4617"
+ },
+ "974557290": {
+  "kommune": "Ullensvang",
+  "kommunenr": "4618"
+ },
+ "974557304": {
+  "kommune": "Bømlo",
+  "kommunenr": "4613"
+ },
+ "974557320": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ },
+ "974557339": {
+  "kommune": "Alver",
+  "kommunenr": "4631"
+ },
+ "974557355": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ },
+ "974557444": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ },
+ "974557479": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ },
+ "974557487": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ },
+ "974557509": {
+  "kommune": "Austrheim",
+  "kommunenr": "4632"
+ },
+ "974557533": {
+  "kommune": "Askøy",
+  "kommunenr": "4627"
+ },
+ "974557568": {
+  "kommune": "Øygarden",
+  "kommunenr": "4626"
+ },
+ "974557576": {
+  "kommune": "Bjørnafjorden",
+  "kommunenr": "4624"
+ },
+ "974557584": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ },
+ "974557592": {
+  "kommune": "Austevoll",
+  "kommunenr": "4625"
+ },
+ "974557630": {
+  "kommune": "Fitjar",
+  "kommunenr": "4615"
+ },
+ "974557703": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ },
+ "974557908": {
+  "kommune": "Trondheim",
+  "kommunenr": "5001"
+ },
+ "974557975": {
+  "kommune": "Ørland",
+  "kommunenr": "5057"
+ },
+ "974557983": {
+  "kommune": "Midtre Gauldal",
+  "kommunenr": "5027"
+ },
+ "974557991": {
+  "kommune": "Trondheim",
+  "kommunenr": "5001"
+ },
+ "974558009": {
+  "kommune": "Frøya",
+  "kommunenr": "5014"
+ },
+ "974558033": {
+  "kommune": "Åfjord",
+  "kommunenr": "5058"
+ },
+ "974558041": {
+  "kommune": "Oppdal",
+  "kommunenr": "5021"
+ },
+ "974558068": {
+  "kommune": "Selbu",
+  "kommunenr": "5032"
+ },
+ "974558076": {
+  "kommune": "Trondheim",
+  "kommunenr": "5001"
+ },
+ "974558130": {
+  "kommune": "Røros",
+  "kommunenr": "5025"
+ },
+ "974558378": {
+  "kommune": "Malvik",
+  "kommunenr": "5031"
+ },
+ "974558386": {
+  "kommune": "Trondheim",
+  "kommunenr": "5001"
+ },
+ "974560690": {
+  "kommune": "Steinkjer",
+  "kommunenr": "5006"
+ },
+ "974560704": {
+  "kommune": "Levanger",
+  "kommunenr": "5037"
+ },
+ "974560712": {
+  "kommune": "Namsos",
+  "kommunenr": "5007"
+ },
+ "974560720": {
+  "kommune": "Stjørdal",
+  "kommunenr": "5035"
+ },
+ "974560739": {
+  "kommune": "Nærøysund",
+  "kommunenr": "5060"
+ },
+ "974560747": {
+  "kommune": "Verdal",
+  "kommunenr": "5038"
+ },
+ "974560763": {
+  "kommune": "Meråker",
+  "kommunenr": "5034"
+ },
+ "974560771": {
+  "kommune": "Grong",
+  "kommunenr": "5045"
+ },
+ "974560798": {
+  "kommune": "Inderøy",
+  "kommunenr": "5053"
+ },
+ "974567997": {
+  "kommune": "Midt-Telemark",
+  "kommunenr": "4020"
+ },
+ "974568004": {
+  "kommune": "Kragerø",
+  "kommunenr": "4014"
+ },
+ "974568012": {
+  "kommune": "Notodden",
+  "kommunenr": "4005"
+ },
+ "974568020": {
+  "kommune": "Porsgrunn",
+  "kommunenr": "4001"
+ },
+ "974568039": {
+  "kommune": "Skien",
+  "kommunenr": "4003"
+ },
+ "974568055": {
+  "kommune": "Tokke",
+  "kommunenr": "4034"
+ },
+ "974568071": {
+  "kommune": "Skien",
+  "kommunenr": "4003"
+ },
+ "974568098": {
+  "kommune": "Bamble",
+  "kommunenr": "4012"
+ },
+ "974568152": {
+  "kommune": "Skien",
+  "kommunenr": "4003"
+ },
+ "974568187": {
+  "kommune": "Nome",
+  "kommunenr": "4018"
+ },
+ "974571056": {
+  "kommune": "Sogndal",
+  "kommunenr": "4640"
+ },
+ "974571080": {
+  "kommune": "Høyanger",
+  "kommunenr": "4638"
+ },
+ "974571110": {
+  "kommune": "Sunnfjord",
+  "kommunenr": "4647"
+ },
+ "974571137": {
+  "kommune": "Fjaler",
+  "kommunenr": "4646"
+ },
+ "974571145": {
+  "kommune": "Kinn",
+  "kommunenr": "4602"
+ },
+ "974571153": {
+  "kommune": "Stryn",
+  "kommunenr": "4651"
+ },
+ "974571161": {
+  "kommune": "Gloppen",
+  "kommunenr": "4650"
+ },
+ "974571188": {
+  "kommune": "Kinn",
+  "kommunenr": "4602"
+ },
+ "974571897": {
+  "kommune": "Ringsaker",
+  "kommunenr": "3411"
+ },
+ "974571900": {
+  "kommune": "Elverum",
+  "kommunenr": "3420"
+ },
+ "974571919": {
+  "kommune": "Hamar",
+  "kommunenr": "3403"
+ },
+ "974571935": {
+  "kommune": "Hamar",
+  "kommunenr": "3403"
+ },
+ "974571943": {
+  "kommune": "Kongsvinger",
+  "kommunenr": "3401"
+ },
+ "974571978": {
+  "kommune": "Kongsvinger",
+  "kommunenr": "3401"
+ },
+ "974571986": {
+  "kommune": "Våler",
+  "kommunenr": "3419"
+ },
+ "974572028": {
+  "kommune": "Trysil",
+  "kommunenr": "3421"
+ },
+ "974572052": {
+  "kommune": "Alvdal",
+  "kommunenr": "3428"
+ },
+ "974572060": {
+  "kommune": "Stange",
+  "kommunenr": "3413"
+ },
+ "974572079": {
+  "kommune": "Stange",
+  "kommunenr": "3413"
+ },
+ "974572117": {
+  "kommune": "Sør-Odal",
+  "kommunenr": "3415"
+ },
+ "974576422": {
+  "kommune": "Molde",
+  "kommunenr": "1506"
+ },
+ "974576430": {
+  "kommune": "Ulstein",
+  "kommunenr": "1516"
+ },
+ "974576449": {
+  "kommune": "Vestnes",
+  "kommunenr": "1535"
+ },
+ "974576473": {
+  "kommune": "Kristiansund",
+  "kommunenr": "1505"
+ },
+ "974576481": {
+  "kommune": "Herøy",
+  "kommunenr": "1515"
+ },
+ "974576503": {
+  "kommune": "Ålesund",
+  "kommunenr": "1508"
+ },
+ "974576546": {
+  "kommune": "Molde",
+  "kommunenr": "1506"
+ },
+ "974576554": {
+  "kommune": "Ålesund",
+  "kommunenr": "1508"
+ },
+ "974576562": {
+  "kommune": "Rauma",
+  "kommunenr": "1539"
+ },
+ "974576570": {
+  "kommune": "Sunndal",
+  "kommunenr": "1563"
+ },
+ "974576589": {
+  "kommune": "Kristiansund",
+  "kommunenr": "1505"
+ },
+ "974576597": {
+  "kommune": "Ørsta",
+  "kommunenr": "1520"
+ },
+ "974576651": {
+  "kommune": "Surnadal",
+  "kommunenr": "1566"
+ },
+ "974576686": {
+  "kommune": "Stranda",
+  "kommunenr": "1525"
+ },
+ "974576694": {
+  "kommune": "Sykkylven",
+  "kommunenr": "1528"
+ },
+ "974576708": {
+  "kommune": "Hustadvika",
+  "kommunenr": "1579"
+ },
+ "974576716": {
+  "kommune": "Haram",
+  "kommunenr": "1580"
+ },
+ "974577011": {
+  "kommune": "Vanylven",
+  "kommunenr": "1511"
+ },
+ "974577267": {
+  "kommune": "Ålesund",
+  "kommunenr": "1508"
+ },
+ "974587564": {
+  "kommune": "Ås",
+  "kommunenr": "3218"
+ },
+ "974587572": {
+  "kommune": "Nesodden",
+  "kommunenr": "3212"
+ },
+ "974587580": {
+  "kommune": "Nordre Follo",
+  "kommunenr": "3207"
+ },
+ "974587599": {
+  "kommune": "Asker",
+  "kommunenr": "3203"
+ },
+ "974587602": {
+  "kommune": "Aurskog-Høland",
+  "kommunenr": "3226"
+ },
+ "974587610": {
+  "kommune": "Lørenskog",
+  "kommunenr": "3222"
+ },
+ "974587629": {
+  "kommune": "Lillestrøm",
+  "kommunenr": "3205"
+ },
+ "974587637": {
+  "kommune": "Nittedal",
+  "kommunenr": "3232"
+ },
+ "974587645": {
+  "kommune": "Ullensaker",
+  "kommunenr": "3209"
+ },
+ "974587653": {
+  "kommune": "Nes",
+  "kommunenr": "3228"
+ },
+ "974587661": {
+  "kommune": "Eidsvoll",
+  "kommunenr": "3240"
+ },
+ "974587696": {
+  "kommune": "Nordre Follo",
+  "kommunenr": "3207"
+ },
+ "974587718": {
+  "kommune": "Bærum",
+  "kommunenr": "3201"
+ },
+ "974587726": {
+  "kommune": "Bærum",
+  "kommunenr": "3201"
+ },
+ "974587734": {
+  "kommune": "Bærum",
+  "kommunenr": "3201"
+ },
+ "974587742": {
+  "kommune": "Asker",
+  "kommunenr": "3203"
+ },
+ "974587750": {
+  "kommune": "Lillestrøm",
+  "kommunenr": "3205"
+ },
+ "974587769": {
+  "kommune": "Rælingen",
+  "kommunenr": "3224"
+ },
+ "974587777": {
+  "kommune": "Aurskog-Høland",
+  "kommunenr": "3226"
+ },
+ "974587807": {
+  "kommune": "Nes",
+  "kommunenr": "3228"
+ },
+ "974587815": {
+  "kommune": "Vestby",
+  "kommunenr": "3216"
+ },
+ "974587823": {
+  "kommune": "Bærum",
+  "kommunenr": "3201"
+ },
+ "974587831": {
+  "kommune": "Asker",
+  "kommunenr": "3203"
+ },
+ "974587858": {
+  "kommune": "Lillestrøm",
+  "kommunenr": "3205"
+ },
+ "974587866": {
+  "kommune": "Bærum",
+  "kommunenr": "3201"
+ },
+ "974587882": {
+  "kommune": "Nordre Follo",
+  "kommunenr": "3207"
+ },
+ "974587890": {
+  "kommune": "Bærum",
+  "kommunenr": "3201"
+ },
+ "974590867": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "974590883": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "974590891": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "974590905": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "974590913": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "974590948": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "974590956": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "974590964": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "974590972": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "974590999": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "974591006": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "974591022": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "974591065": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "974597195": {
+  "kommune": "Gausdal",
+  "kommunenr": "3441"
+ },
+ "974597209": {
+  "kommune": "Sel",
+  "kommunenr": "3437"
+ },
+ "974597217": {
+  "kommune": "Lom",
+  "kommunenr": "3434"
+ },
+ "974597233": {
+  "kommune": "Nord-Fron",
+  "kommunenr": "3436"
+ },
+ "974597241": {
+  "kommune": "Lillehammer",
+  "kommunenr": "3405"
+ },
+ "974597284": {
+  "kommune": "Gjøvik",
+  "kommunenr": "3407"
+ },
+ "974597330": {
+  "kommune": "Vestre Toten",
+  "kommunenr": "3443"
+ },
+ "974597373": {
+  "kommune": "Nordre Land",
+  "kommunenr": "3448"
+ },
+ "974597381": {
+  "kommune": "Nord-Aurdal",
+  "kommunenr": "3451"
+ },
+ "974597403": {
+  "kommune": "Østre Toten",
+  "kommunenr": "3442"
+ },
+ "974605910": {
+  "kommune": "Ål",
+  "kommunenr": "3328"
+ },
+ "974605929": {
+  "kommune": "Ringerike",
+  "kommunenr": "3305"
+ },
+ "974605937": {
+  "kommune": "Drammen",
+  "kommunenr": "3301"
+ },
+ "974605953": {
+  "kommune": "Asker",
+  "kommunenr": "3203"
+ },
+ "974605961": {
+  "kommune": "Lier",
+  "kommunenr": "3312"
+ },
+ "974605988": {
+  "kommune": "Øvre Eiker",
+  "kommunenr": "3314"
+ },
+ "974605996": {
+  "kommune": "Kongsberg",
+  "kommunenr": "3303"
+ },
+ "974606135": {
+  "kommune": "Lier",
+  "kommunenr": "3312"
+ },
+ "974606194": {
+  "kommune": "Gol",
+  "kommunenr": "3324"
+ },
+ "974606208": {
+  "kommune": "Ringerike",
+  "kommunenr": "3305"
+ },
+ "974606216": {
+  "kommune": "Modum",
+  "kommunenr": "3316"
+ },
+ "974606232": {
+  "kommune": "Nore og Uvdal",
+  "kommunenr": "3338"
+ },
+ "974624362": {
+  "kommune": "Haugesund",
+  "kommunenr": "1106"
+ },
+ "974624370": {
+  "kommune": "Stavanger",
+  "kommunenr": "1103"
+ },
+ "974624389": {
+  "kommune": "Karmøy",
+  "kommunenr": "1149"
+ },
+ "974624397": {
+  "kommune": "Sandnes",
+  "kommunenr": "1108"
+ },
+ "974624400": {
+  "kommune": "Stavanger",
+  "kommunenr": "1103"
+ },
+ "974624419": {
+  "kommune": "Strand",
+  "kommunenr": "1130"
+ },
+ "974624427": {
+  "kommune": "Stavanger",
+  "kommunenr": "1103"
+ },
+ "974624435": {
+  "kommune": "Haugesund",
+  "kommunenr": "1106"
+ },
+ "974624443": {
+  "kommune": "Stavanger",
+  "kommunenr": "1103"
+ },
+ "974624451": {
+  "kommune": "Klepp",
+  "kommunenr": "1120"
+ },
+ "974624478": {
+  "kommune": "Eigersund",
+  "kommunenr": "1101"
+ },
+ "974624486": {
+  "kommune": "Haugesund",
+  "kommunenr": "1106"
+ },
+ "974624494": {
+  "kommune": "Karmøy",
+  "kommunenr": "1149"
+ },
+ "974624516": {
+  "kommune": "Sandnes",
+  "kommunenr": "1108"
+ },
+ "974624532": {
+  "kommune": "Stavanger",
+  "kommunenr": "1103"
+ },
+ "974624591": {
+  "kommune": "Haugesund",
+  "kommunenr": "1106"
+ },
+ "974624648": {
+  "kommune": "Stavanger",
+  "kommunenr": "1103"
+ },
+ "974624664": {
+  "kommune": "Randaberg",
+  "kommunenr": "1127"
+ },
+ "974624672": {
+  "kommune": "Sola",
+  "kommunenr": "1124"
+ },
+ "974745607": {
+  "kommune": "Tingvoll",
+  "kommunenr": "1560"
+ },
+ "984477112": {
+  "kommune": "Trondheim",
+  "kommunenr": "5001"
+ },
+ "988084948": {
+  "kommune": "Nannestad",
+  "kommunenr": "3238"
+ },
+ "988835064": {
+  "kommune": "Bærum",
+  "kommunenr": "3201"
+ },
+ "988843709": {
+  "kommune": "Frogn",
+  "kommunenr": "3214"
+ },
+ "989630008": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ },
+ "990183449": {
+  "kommune": "Stavanger",
+  "kommunenr": "1103"
+ },
+ "990574898": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "991815325": {
+  "kommune": "Lørenskog",
+  "kommunenr": "3222"
+ },
+ "993527084": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ },
+ "994507508": {
+  "kommune": "Sandnes",
+  "kommunenr": "1108"
+ },
+ "995415372": {
+  "kommune": "Trondheim",
+  "kommunenr": "5001"
+ },
+ "995821664": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "996216454": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "996772772": {
+  "kommune": "Trondheim",
+  "kommunenr": "5001"
+ },
+ "996772810": {
+  "kommune": "Trondheim",
+  "kommunenr": "5001"
+ },
+ "998513448": {
+  "kommune": "Gran",
+  "kommunenr": "3446"
+ },
+ "999173926": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
+ "999546560": {
+  "kommune": "Bergen",
+  "kommunenr": "4601"
+ }
+}

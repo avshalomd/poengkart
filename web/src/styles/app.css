@@ -348,6 +348,7 @@
   }
   #ov-list .opt .fy { font-size: 12px; color: var(--ink-3); flex: none; }
   #ov-list .opt.county { color: var(--accent-ink); font-weight: 600; }
+  #ov-list .opt.place { color: var(--accent-ink); }
   #ov-list .opt.act { background: var(--accent-soft); }
   /* .act is the result Enter will open — a state, so it needs 3:1 of its own
      rather than a 1.13:1 tint. It also has to differ from :hover: they shared
@@ -427,16 +428,16 @@
      and 22 «Møre og Romsdal» rows went to two lines: the row just clicked slid
      up to 45px from under the pointer. The wrapping belongs to the long names. */
   body.lv-split #listview .fy, body.lv-wide #listview .fy { white-space: nowrap; }
-  #listview .chip {
+  :is(#listview, #clusterov) .chip {
     display: inline-block; min-width: 44px; text-align: center; padding: 2px 9px;
     border-radius: 999px; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums;
   }
-  #listview .chip.b0, #listview .chip.b1 { color: var(--chip-ink); }
-  #listview .chip.b2 { color: var(--chip-b2-ink); }
-  #listview .chip.open { border: 1px dashed var(--accent); color: var(--ink-2);
+  :is(#listview, #clusterov) .chip.b0, :is(#listview, #clusterov) .chip.b1 { color: var(--chip-ink); }
+  :is(#listview, #clusterov) .chip.b2 { color: var(--chip-b2-ink); }
+  :is(#listview, #clusterov) .chip.open { border: 1px dashed var(--accent); color: var(--ink-2);
                          font-weight: 400; font-size: 12px; background: none; }
   /* filled with no figure to print: the map's solid zero dot, in words */
-  #listview .chip.zero { background: color-mix(in srgb, var(--accent) 35%, var(--surface-solid));
+  :is(#listview, #clusterov) .chip.zero { background: color-mix(in srgb, var(--accent) 35%, var(--surface-solid));
                          border: 1px solid var(--accent); color: var(--ink-2);
                          font-weight: 400; font-size: 12px; }
   /* a rising threshold is not good news for the reader: no valence colours,
@@ -459,6 +460,30 @@
   @media (max-width: 715px) { :root[data-font="lg"] #listview .ch-cell { white-space: normal; } }
   @media (max-width: 806px) { :root[data-font="xl"] #listview .ch-cell { white-space: normal; } }
   #listview .foot { padding: 10px 2px 0; font-size: 11.5px; color: var(--ink-3); line-height: 1.5; }
+  #listview .foot.top { padding: 0 2px 8px; }
+  /* the row kind and the place to measure from, under the title */
+  #listview .lctl { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin-bottom: 8px; }
+  #listview .lmode button { padding: 5px 12px; font-size: 12px; }
+  #listview .nearwrap { display: inline-flex; align-items: center; gap: 2px; min-width: 0; }
+  #listview .near { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--line-strong);
+    border-radius: 999px; background: none; color: var(--ink-2); font: inherit; font-size: 12px; font-weight: 600;
+    padding: 5px 11px 5px 9px; cursor: pointer; min-width: 0; }
+  #listview .near span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #listview .near svg { width: 14px; height: 14px; flex: none; }
+  #listview .near.on { border-color: var(--accent); color: var(--accent-ink); background: var(--accent-soft); }
+  #listview .near:focus-visible, #listview .near-x:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  #listview .near-x { width: 26px; height: 26px; border: none; background: none; color: var(--ink-3); border-radius: 999px;
+    display: grid; place-items: center; padding: 0; cursor: pointer; position: relative; }
+  #listview .near-x::after { content: ''; position: absolute; inset: -9px -4px; }
+  /* the place under the name: shown where the Sted and Avstand columns are not */
+  #listview .sc .pl, #listview .sc .pa { display: block; font-weight: 400; font-size: 11.5px; color: var(--ink-2); line-height: 1.35; margin-top: 1px; }
+  #listview .sc .pl { display: none; color: var(--ink-3); }
+  #listview .sc .gr { display: none; }
+  #listview .pc { color: var(--ink-2); }
+  body.lv-split #listview .pc, body.lv-wide #listview .pc { white-space: nowrap; }
+  #listview td.dist, #listview td.fc { color: var(--ink-2); white-space: nowrap; }
+  #listview td.pk { width: 1px; padding-left: 4px; }
+  #listview td.ch-cell .ch { cursor: default; }
   /* On a 375px phone the five columns want 471px inside a 313px window, and the
      two that fell off the right were Endring and Sjanse — the chance figure
      being the whole reason to look. The county is the one column a reader can
@@ -467,6 +492,13 @@
      brings it straight back with no re-render. */
   @media (max-width: 560px) {
     #listview .col-fylke, #listview td.fy { display: none; }
+    /* the place and the distance move under the name, where they cost no width */
+    #listview :is(.col-place, td.pc, .col-dist, td.dist) { display: none; }
+    #listview .sc .pl { display: block; }
+    /* the forecast is on the school's own sheet, and the threshold moves under
+       the name: the chance is what the row is for */
+    #listview table.areas.has-chance :is(.col-fc, td.fc, .col-value, td.cut) { display: none; }
+    #listview table.areas.has-chance .sc .gr { display: inline; }
     /* every millimetre bought back here is one the reader does not have to drag */
     #listview td, #listview th button { padding-left: 6px; padding-right: 6px; }
     #listview .chip { min-width: 38px; padding: 2px 6px; }
@@ -478,9 +510,13 @@
      the card, page and a scrollbar's 71px). */
   @media (min-width: 561px) and (max-width: 636px) {
     :root[data-font="lg"] #listview .col-fylke, :root[data-font="lg"] #listview td.fy { display: none; }
+    :root[data-font="lg"] #listview :is(.col-place, td.pc, .col-dist, td.dist) { display: none; }
+    :root[data-font="lg"] #listview .sc .pl { display: block; }
   }
   @media (min-width: 561px) and (max-width: 717px) {
     :root[data-font="xl"] #listview .col-fylke, :root[data-font="xl"] #listview td.fy { display: none; }
+    :root[data-font="xl"] #listview :is(.col-place, td.pc, .col-dist, td.dist) { display: none; }
+    :root[data-font="xl"] #listview .sc .pl { display: block; }
   }
   /* and under 600px at Ekstra stor it was still 25px too wide: the phone's
      tighter cells */
@@ -631,30 +667,32 @@
   .more > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
   .more > *:not(summary) { margin-top: 5px; }
   .chance.prompt { background: transparent; border-left-color: var(--line); color: var(--ink-3); }
-  /* my choices: a pick toggle on every programme row, a list in the panel */
-  .prow .pick {
+  /* my choices: a pick toggle on every programme row (the sheet's, and the
+     List view's programme-area rows), a list in the panel */
+  :is(.prow, #listview) .pick {
     flex: none; width: 22px; height: 22px; border-radius: 999px; display: grid; place-items: center;
     border: 1px solid var(--line); color: var(--ink-3); font-size: 14px; line-height: 1;
     background: var(--surface-solid); cursor: pointer; padding: 0; font-family: inherit;
   }
   /* a 1px border change is not a focus indicator; match the rest of the app */
-  .prow .pick:focus-visible { border-color: var(--accent); color: var(--accent);
+  :is(.prow, #listview) .pick:focus-visible { border-color: var(--accent); color: var(--accent);
     outline: 2px solid var(--accent); outline-offset: 2px; }
-  .prow .pick.on { border-color: var(--accent); }
+  :is(.prow, #listview) .pick.on { border-color: var(--accent); }
   /* + to ✓ (PICK_FACE): the fill spreads from the centre in 220ms while the +
      turns a quarter and blurs away and the ✓ sharpens in its place, 180ms */
   /* #s-list: the press rule below names .prow .pick for its transform alone */
   #s-list .prow .pick { position: relative; transition: border-color 180ms var(--ease-out), transform .1s ease-out; }
-  .prow .pick > * { grid-area: 1 / 1; }
-  .prow .pick .fill { position: absolute; inset: 0; border-radius: inherit; background: var(--accent);
+  :is(.prow, #listview) .pick > * { grid-area: 1 / 1; }
+  #listview .pick { position: relative; transition: border-color 180ms var(--ease-out), transform .1s ease-out; }
+  :is(.prow, #listview) .pick .fill { position: absolute; inset: 0; border-radius: inherit; background: var(--accent);
     clip-path: circle(0% at 50% 50%); transition: clip-path 220ms var(--ease-out); }
-  .prow .pick.on .fill { clip-path: circle(75% at 50% 50%); }
-  .prow .pick svg { position: relative; width: 12px; height: 12px; fill: none; stroke: currentColor;
+  :is(.prow, #listview) .pick.on .fill { clip-path: circle(75% at 50% 50%); }
+  :is(.prow, #listview) .pick svg { position: relative; width: 12px; height: 12px; fill: none; stroke: currentColor;
     stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;
     transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out), filter 180ms var(--ease-out); }
-  .prow .pick .ic { color: var(--on-accent); opacity: 0; transform: scale(.6); filter: blur(2px); }
-  .prow .pick.on .ip { opacity: 0; transform: rotate(90deg); filter: blur(2px); }
-  .prow .pick.on .ic { opacity: 1; transform: none; filter: none; }
+  :is(.prow, #listview) .pick .ic { color: var(--on-accent); opacity: 0; transform: scale(.6); filter: blur(2px); }
+  :is(.prow, #listview) .pick.on .ip { opacity: 0; transform: rotate(90deg); filter: blur(2px); }
+  :is(.prow, #listview) .pick.on .ic { opacity: 1; transform: none; filter: none; }
   #choices { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 9px; position: relative; }
   /* the line a toggle replaced, fading out over its successor (showChoiceMove) */
   #choices .xf-old { position: absolute; pointer-events: none; }
@@ -682,6 +720,18 @@
   #choices .row .who:focus-visible .sc { color: var(--accent); }
   #choices .row .sc, #choices .row .pr { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
   #choices .row .sc { font-size: 12px; font-weight: 600; }
+  /* the rank a vigo application gives each wish, and the arrows that change it */
+  #choices .row .rk { flex: none; min-width: 14px; font-size: 11px; font-weight: 600; color: var(--ink-3);
+                      font-variant-numeric: tabular-nums; align-self: baseline; }
+  #choices .row .mvs { flex: none; display: inline-flex; gap: 2px; }
+  #choices .row .mv { width: 22px; height: 22px; border: none; border-radius: 999px; background: none; padding: 0;
+                      color: var(--ink-3); cursor: pointer; display: grid; place-items: center; position: relative; }
+  #choices .row .mv svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2;
+                          stroke-linecap: round; stroke-linejoin: round; }
+  #choices .row .mv[disabled] { visibility: hidden; }
+  #choices .row .mv:hover { color: var(--ink); background: var(--accent-soft); }
+  #choices .row .mv:focus-visible, #choices .row .rm:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  #choices .h .acts { display: inline-flex; gap: 12px; }
   #choices .row .pr { font-size: 11px; color: var(--ink-2); }
   /* padding: 0 and a grid: the UA's own `1px 6px` left the 13px cross a
      content box of 10, which it overflowed rightwards — 1,5px off the circle */
@@ -1157,6 +1207,30 @@
             mask: radial-gradient(farthest-side, transparent calc(100% - 4.5px), #000 calc(100% - 3.5px));
   }
 
+  /* the kommune under a cluster (map.ts clusterPlace), in the tiles' own
+     label manner: dark ink on a pale halo, never a box over the map */
+  .pk-cluster[data-place]::after {
+    content: attr(data-place); position: absolute; top: calc(100% + 6px); left: 50%;
+    transform: translateX(-50%); white-space: nowrap; pointer-events: none;
+    font-size: 11.5px; font-weight: 650; color: var(--ink);
+    text-shadow: 0 0 2px var(--surface-solid), 0 0 3px var(--surface-solid), 0 0 5px var(--surface-solid);
+  }
+
+  /* ---------- a cluster's schools (clusterov.ts) ---------- */
+  #clusterov .clist { display: flex; flex-direction: column; margin-top: 6px; max-height: min(52dvh, 420px); overflow-y: auto; }
+  #clusterov .crow {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left;
+    padding: 9px 10px; border: none; border-bottom: 1px solid var(--line); background: none;
+    font: inherit; color: var(--ink); cursor: pointer; border-radius: 8px;
+  }
+  #clusterov .crow:last-child { border-bottom: none; }
+  #clusterov .crow:hover, #clusterov .crow:focus-visible { background: var(--accent-soft); }
+  #clusterov .crow:focus-visible { outline-offset: -2px; }
+  #clusterov .crow .w { display: flex; flex-direction: column; min-width: 0; }
+  #clusterov .crow .n { font-size: 14px; font-weight: 600; }
+  #clusterov .crow .p { font-size: 12px; color: var(--ink-3); }
+  #clusterov .crow .chip, #clusterov .crow .ch { flex: none; }
+
   /* ---------- sidebar ---------- */
   /* Beside the map the sheet opens by its width, so the map and its buttons
      give way at its edge; where it covers the screen (phones, the stacked
@@ -1429,8 +1503,8 @@
     /* the pick keeps its crossfade and loses the turn, the blur and the spread
        (!important outranks the .01ms every transition gets above) */
     #s-list .prow .pick { transition: border-color 150ms ease !important; }
-    .prow .pick .fill { clip-path: none; opacity: 0; transition: opacity 150ms ease !important; }
-    .prow .pick.on .fill { opacity: 1; }
+    :is(.prow, #listview) .pick .fill { clip-path: none; opacity: 0; transition: opacity 150ms ease !important; }
+    :is(.prow, #listview) .pick.on .fill { opacity: 1; }
     .prow .pick svg, .prow .pick .ic, .prow .pick.on .ip { transform: none; filter: none; transition: opacity 150ms ease !important; }
   }
   /* ---------- phones ----------
@@ -1763,8 +1837,9 @@
        the design gives them and grow an invisible ::after out to 44px, so
        nothing on a mouse-driven screen loosens up. Each pays sideways only as
        far as its own gap allows, or neighbours steal each other's taps. */
-    .prow .pick { position: relative; }
-    .prow .pick::after { content: ''; position: absolute; inset: -11px; }
+    :is(.prow, #listview) .pick { position: relative; }
+    :is(.prow, #listview) .pick::after { content: ''; position: absolute; inset: -11px; }
+    #choices .row .mv::after { content: ''; position: absolute; inset: -11px -1px; }
     #calc .grades button { position: relative; }
     #calc .grades button::after { content: ''; position: absolute; inset: -7px -1px; }
     #listview th button { padding-top: 15px; padding-bottom: 14px; }

@@ -1,7 +1,7 @@
 import { isChosen, refocus, toggleChoice } from "./chance";
 import { renderChartCard } from "./chart";
 import { renderCatNote, renderLegend } from "./chrome";
-import { esc, sheetLens } from "./helpers";
+import { esc, progName, sheetLens } from "./helpers";
 import { t } from "./i18n";
 import { renderListView } from "./listview";
 import { drawMarkers, setLevels } from "./map";
@@ -16,16 +16,20 @@ import { bindTips, hideTip, showTip } from "./tips";
 // where it stands, so its transitions run and focus never leaves it. Turning
 // on, it answers with a small spring.
 export function syncPicks() {
-  const s = S.current;
-  if (!s) return;
-  document.querySelectorAll('#s-list .pick').forEach((b: any) => {
-    const on = isChosen(s, s.programs[+b.dataset.idx]);
+  const set = (b: any, on: boolean, name?: string) => {
     if (b.classList.contains('on') === on) return;
     b.classList.toggle('on', on);
     b.setAttribute('aria-pressed', String(on));
-    b.setAttribute('aria-label', t(on ? 'pickRemove' : 'pickAdd'));
+    b.setAttribute('aria-label', t(on ? 'pickRemove' : 'pickAdd') + (name ? ` – ${name}` : ''));
     b.title = t(on ? 'pickRemove' : 'pickAdd');
     if (on && !still()) play(b, [{ transform: 'scale(.86)' }, { transform: 'none' }], POP);
+  };
+  const s = S.current;
+  if (s) document.querySelectorAll('#s-list .pick').forEach((b: any) => set(b, isChosen(s, s.programs[+b.dataset.idx])));
+  // the List view's programme-area rows carry the same toggle
+  if (S.DATA) document.querySelectorAll('#listview .pick').forEach((b: any) => {
+    const x = S.DATA!.schools[+b.dataset.si], p = x && x.programs[+b.dataset.idx];
+    if (p) set(b, isChosen(x, p), `${progName(p)}, ${x.name}`);
   });
 }
 export function renderList() {

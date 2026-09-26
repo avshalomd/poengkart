@@ -1,6 +1,9 @@
 export { BANDS, ZQ_GRID, errCdf, chanceOf, bucketOf, pct, pctS, chanceMode, modelEntry, predFor, schoolChance, finalRoundBridge, chanceFinal, okChoice, progKeyMap, isChosen } from './forecast';
 import { renderLegend } from "./chrome";
 import { bucketOf, chanceMode, chanceOf, okChoice, pct, pctS, predFor, progKeyMap } from "./forecast";
+
+const UP_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>';
+const DOWN_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
 import { cssVar, esc, fmt, progName, round1, slug, X_ICON } from "./helpers";
 import { t } from "./i18n";
 import { toast } from "./locate";
@@ -12,6 +15,18 @@ import { S } from './state';
 import { bindTitleTips, say } from "./tips";
 import type { Program, School } from './types';
 
+/* A programme area that has never had a waiting list («Ingen venteliste» in
+   every published year) has no poenggrense to forecast from, so the model
+   gives it none. It is still the safest wish there is: everyone who applied
+   got in. It counts as near-certain rather than as unknown, at this figure,
+   which is the most the combined line will print (CHANCE_CAP). */
+export const OPEN_CHANCE = 0.95;
+export const CHANCE_CAP = 0.95;
+export function openOnly(p: Program) {
+  const ys = Object.keys(p.values).sort();
+  const cells = ys.map(y => p.values[y]).filter(v => v !== 'F');
+  return cells.length > 0 && cells[cells.length - 1] === 'open' && !cells.some(v => typeof v === 'number');
+}
 export const bucketColor = b => cssVar(b === 'likely' ? '--good' : b === 'possible' ? '--dot-possible' : '--dot-unlikely');
 export function pickNote(msg) {
   // the .vnote in the choices box says the same thing, but on a phone that
@@ -70,9 +85,68 @@ export function toggleChoice(s, p) {
     S.choices.push({ f: s.fylke, s: s.name, k });
     choiceMove = { added: true };
   }
-  try { localStorage.setItem('pk-choices', JSON.stringify(S.choices)); } catch (e) {}
+  saveChoices();
   renderChoices();
   syncPicks();
+}
+const saveChoices = () => { try { localStorage.setItem('pk-choices', JSON.stringify(S.choices)); } catch (e) {} };
+// A vigo application is ranked: the first wish is the one you get if you can.
+// A wish moves one place up or down; the list is redrawn and focus stays on
+// the arrow that was pressed, or its twin once the wish reaches an end.
+export function moveChoice(i: number, by: number) {
+  const j = i + by;
+  if (j < 0 || j >= S.choices.length) return;
+  [S.choices[i], S.choices[j]] = [S.choices[j], S.choices[i]];
+  S.choicesNote = null;
+  saveChoices();
+  renderChoices();
+  const btn = (d: string) => document.querySelector(`#choices .mv[data-i="${j}"][data-d="${d}"]:not([disabled])`);
+  refocus(btn(by < 0 ? 'up' : 'dn'), btn(by < 0 ? 'dn' : 'up'), '#choices-copy');
+}
+/** One wish's chance at the reader's points, as the list prints it: a
+    forecast's figure, near-certain for an area that never had a waiting list,
+    or null where there is nothing to go on. */
+export function wishChance(s: School, p: Program): { c: number; open: boolean } | null {
+  const pr = predFor(s, p);
+  if (pr) return { c: chanceOf(pr, S.myPoints), open: false };
+  return openOnly(p) ? { c: OPEN_CHANCE, open: true } : null;
+}
+// «over 95 %» past the cap: two areas at one school, or two schools in one
+// town, are not independent draws, so a figure like «ca. 100 %» claims more
+// than the arithmetic behind it knows
+export const anyChanceText = (c: number) => c > CHANCE_CAP ? t('choicesAnyOver', pct(CHANCE_CAP)) : t('choicesAny', pct(c));
+/** The list as plain text, to paste into a message or a planning note. */
+export function choicesText(): string {
+  const items = S.choices.map(resolveChoice).filter(Boolean) as Wish[];
+  const pts = chanceMode();
+  const lines = [pts ? t('copyHeadPts', fmt(S.myPoints)) : t('copyHead')];
+  let pNone = 1, n = 0;
+  items.forEach(({ s, p }, i) => {
+    let tail = '';
+    if (pts) {
+      const w = wishChance(s, p);
+      if (w) { n++; pNone *= 1 - w.c; }
+      tail = !w ? t('choicesNoPred') : w.open ? t('listOpen') : `${pctS(w.c)} (${t('band_' + bucketOf(w.c))})`;
+    }
+    lines.push(`${i + 1}. ${s.name} – ${progName(p)} (${p.level})${tail ? ': ' + tail : ''}`);
+  });
+  if (pts && n) lines.push('', anyChanceText(1 - pNone) + (n < items.length ? ' ' + t('choicesPartial', n, items.length) : ''));
+  const d = new Date(), dd = `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${d.getFullYear()}`;
+  lines.push('', t('copyFoot', location.host || 'poengkart.vercel.app', dd));
+  return lines.join('\n');
+}
+export async function copyChoices() {
+  const txt = choicesText();
+  let ok = false;
+  try { await navigator.clipboard.writeText(txt); ok = true; } catch (e) {
+    // no clipboard API (an http page, an old browser): the textarea way
+    const ta = document.createElement('textarea');
+    ta.value = txt; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { ok = document.execCommand('copy'); } catch (e2) {}
+    ta.remove();
+  }
+  toast(t(ok ? 'choicesCopied' : 'choicesCopyFail'));
 }
 // A redraw that replaces the focused control drops focus to <body>, and a
 // keyboard or screen-reader user loses their place. Put it on the first of the
@@ -210,22 +284,26 @@ export function renderChoices() {
   items.forEach(({ s, p }, i) => {
     let chip = '';
     if (chanceMode()) {
-      const pr = predFor(s, p);
-      if (pr) {
-        const c = chanceOf(pr, S.myPoints), b = bucketOf(c);
+      const w = wishChance(s, p);
+      if (w) {
+        const b = bucketOf(w.c);
         n++; if (b === 'likely') L++; else if (b === 'possible') R++; else U++;
-        pNone *= 1 - c;
-        chip = `<span class="ch b-${b}">${pctS(c)}</span>`;
+        pNone *= 1 - w.c;
+        chip = w.open ? `<span class="ch b-likely" title="${esc(t('openNearTitle'))}">${esc(t('listOpen'))}</span>`
+          : `<span class="ch b-${b}">${pctS(w.c)}</span>`;
       } else chip = `<span class="ch" style="--b:var(--ink-3)">${esc(t('choicesNoPred'))}</span>`;
     }
     // each row names its own school and programme: "Remove from my choices",
     // repeated identically down a list, tells a screen reader nothing
     const what = `${progName(p)} · ${p.level}`;
-    rows += `<div class="row">` +
+    const mv = (d, glyph, off) => `<button class="mv" data-i="${i}" data-d="${d}"${off ? ' disabled' : ''}` +
+      ` aria-label="${esc(t(d === 'up' ? 'choicesUpOne' : 'choicesDownOne', s.name, what, i + 1))}">${glyph}</button>`;
+    rows += `<div class="row"><span class="rk" aria-hidden="true">${i + 1}.</span>` +
       `<button class="who" data-i="${i}" title="${esc(t('choicesOpen'))}"` +
         ` aria-label="${esc(t('choicesOpenOne', s.name, what))}">` +
         `<span class="sc">${esc(s.name)}</span><span class="pr">${esc(what)}</span></button>` +
-      chip + `<button class="rm" data-i="${i}"` +
+      chip + `<span class="mvs">${mv('up', UP_ICON, i === 0)}${mv('dn', DOWN_ICON, i === items.length - 1)}</span>` +
+      `<button class="rm" data-i="${i}"` +
         ` aria-label="${esc(t('choicesRemoveOne', s.name, what))}">${X_ICON}</button></div>`;
   });
   let sum = '';
@@ -233,14 +311,15 @@ export function renderChoices() {
     const bar = [['likely', L], ['possible', R], ['unlikely', U]]
       .map(([b, k]: any) => `<span class="b-${b}" style="width:${100 * k / n}%"></span>`).join('');
     sum = `<div class="bar">${bar}</div><div class="sum"><b>${esc(t('choicesSum', L, R, U))}</b>` +
-      ` · <span class="tipped" title="${esc(t('choicesAnyTitle'))}">${esc(t('choicesAny', pct(1 - pNone)))}</span>` +
+      ` · <span class="tipped" title="${esc(t('choicesAnyTitle'))}">${esc(anyChanceText(1 - pNone))}</span>` +
       (n < items.length ? `<span class="part">${esc(t('choicesPartial', n, items.length))}</span>` : '') +
       (L ? '' : `<span class="nudge">⚠ ${esc(t('choicesNudge'))}</span>`) + `</div>`;
   } else if (!chanceMode()) {
     sum = `<div class="sum">${esc(t('choicesNoPts'))}</div>`;
   }
   box!.innerHTML = `<div class="h"><span>${esc(t('choicesHead', items.length))}</span>` +
-    `<button id="choices-clear">${esc(t('choicesClear'))}</button></div>` +
+    `<span class="acts"><button id="choices-copy" type="button">${esc(t('choicesCopy'))}</button>` +
+    `<button id="choices-clear">${esc(t('choicesClear'))}</button></span></div>` +
     `<div class="list">${rows}</div>` +
     (S.choicesNote ? `<div class="vnote">⚠ ${esc(t(S.choicesNote))}</div>` : '') + sum;
   if (move && box!.getClientRects().length) showChoiceMove(box!, move.added, was);
@@ -248,6 +327,8 @@ export function renderChoices() {
     const { s } = items[+b.dataset.i]; openSide(s);
     if (s.lat && S.map && S.view === 'map') viewSchool(s, Math.max(mapZoom(), 10));
   });
+  box!.querySelectorAll('.mv').forEach((b: any) => b.onclick = () => moveChoice(+b.dataset.i, b.dataset.d === 'up' ? -1 : 1));
+  document.getElementById('choices-copy')!.onclick = () => { copyChoices(); };
   box!.querySelectorAll('.rm').forEach((b: any) => b.onclick = () => {
     const i = +b.dataset.i, { s, p } = items[i];
     toggleChoice(s, p);

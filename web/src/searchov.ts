@@ -1,26 +1,36 @@
 import { esc } from "./helpers";
+import { runSearch } from "./search";
 import { t } from "./i18n";
 import { hideSheet, openSheetHistory, setModalTrap, showSheet } from "./intro";
+import { setNear } from "./listview";
 import { mapZoom, onMapFylke, viewSchool } from "./map";
 import { openSide } from "./sidebar";
 import { S } from './state';
 import type { School } from './types';
 
+// 'places' when the list's «Nær …» button opened the overlay: it then offers
+// places only, and the reader's own position before anything is typed
+let ovMode: 'all' | 'places' = 'all';
+export const searchMode = () => ovMode;
+
 /* ================= search overlay (design C trial) ================= */
 export function renderOvList() {
   const box = document.getElementById('ov-list');
   const q: any = document.getElementById('ov-q');
-  box!.innerHTML = !q.value.trim() ? ''
+  const opt = (i, cls, inner) => `<div class="opt${cls}${i === S.ovAct ? ' act' : ''}" id="ov-opt-${i}" role="option"` +
+    ` aria-selected="${i === S.ovAct}">${inner}</div>`;
+  const listed = !!q.value.trim() || (ovMode === 'places' && S.ovHits.length > 0);
+  box!.innerHTML = !listed ? ''
     : S.ovHits.length
     ? S.ovHits.map((s, i) =>
-        s.county
-        ? `<div class="opt county${i === S.ovAct ? ' act' : ''}" id="ov-opt-${i}" role="option"` +
-          ` aria-selected="${i === S.ovAct}"><span>${esc(t('searchCounty', s.county))}</span></div>`
-        : `<div class="opt${i === S.ovAct ? ' act' : ''}" id="ov-opt-${i}" role="option"` +
-        ` aria-selected="${i === S.ovAct}"><span>${esc(s.name)}</span>` +
-        `<span class="fy">${esc(s.fylke)}</span></div>`).join('')
-    : `<div class="none" role="option" aria-disabled="true">${esc(t('noMatch'))}</div>`;
-  q.setAttribute('aria-expanded', String(!!q.value.trim()));
+        s.county ? opt(i, ' county', `<span>${esc(t('searchCounty', s.county))}</span>`)
+        : s.place ? opt(i, ' place', s.place.kind === 'me' ? `<span>${esc(t('nearMe'))}</span>`
+            : `<span>${esc(t('nearPlace', s.place.name))}</span>` +
+              `<span class="fy">${esc(t('nearSchools', s.place.n))}${s.place.fylke ? ` · ${esc(s.place.fylke)}` : ''}</span>`)
+        : opt(i, '', `<span>${esc(s.name)}</span>` +
+          `<span class="fy">${esc([s.kommune, s.fylke].filter((x, j, a) => x && a.indexOf(x) === j).join(' · '))}</span>`)).join('')
+    : `<div class="none" role="option" aria-disabled="true">${esc(t(ovMode === 'places' ? 'nearNone' : 'noMatch'))}</div>`;
+  q.setAttribute('aria-expanded', String(listed));
   if (S.ovAct >= 0) q.setAttribute('aria-activedescendant', 'ov-opt-' + S.ovAct);
   else q.removeAttribute('aria-activedescendant');
   box!.querySelectorAll('.opt').forEach((el: any, i) => {
@@ -49,6 +59,13 @@ export function pickOv(i) {
   // filter change into it instead of giving each an entry, and after a school
   // was opened and closed it cost a Back that did nothing. Hand the entry on.
   const held = !!(history.state || {}).pkSheet;
+  if (s.place) {                           // a place row: measure the list from there
+    if (held) try { history.replaceState(null, '', location.href); } catch (e) {}
+    setNear(s.place);
+    const b = document.getElementById(S.view === 'list' ? 'list-near' : 'searchov-btn');
+    (b && b.offsetParent ? b : document.getElementById('panel'))?.focus();
+    return;
+  }
   if (s.county) {                          // the county row: filter, as the select would
     const sel: any = document.getElementById('map-fylke');
     if (sel) sel.value = s.county;
@@ -68,13 +85,16 @@ export function pickOv(i) {
   if (s.lat && S.view === 'map' && S.map) viewSchool(s as School, Math.max(mapZoom(), 10));
   openSide(s);
 }
-export function openSearchOv() {
+export function openSearchOv(mode?: 'all' | 'places') {
+  ovMode = mode === 'places' ? 'places' : 'all';
   const q: any = document.getElementById('ov-q');
-  q.value = ''; S.ovHits = []; S.ovAct = -1;
-  q.placeholder = t('searchPh');
-  q.setAttribute('aria-label', t('searchLabel'));
-  document.getElementById('ov-box')!.setAttribute('aria-label', t('searchLabel'));
-  document.getElementById('ov-list')!.setAttribute('aria-label', t('searchLabel'));
+  q.value = ''; S.ovAct = -1;
+  S.ovHits = ovMode === 'places' ? runSearch('', 'places') || [] : [];
+  const label = t(ovMode === 'places' ? 'nearLabel' : 'searchLabel');
+  q.placeholder = t(ovMode === 'places' ? 'nearPh' : 'searchPh');
+  q.setAttribute('aria-label', label);
+  document.getElementById('ov-box')!.setAttribute('aria-label', label);
+  document.getElementById('ov-list')!.setAttribute('aria-label', label);
   document.getElementById('ov-x')!.setAttribute('aria-label', t('close'));
   renderOvList();
   showSheet('searchov');
@@ -86,7 +106,7 @@ export function closeSearchOv(fromHistory?) {
   if (!fromHistory && (history.state || {}).pkSheet) { history.back(); return; }
   hideSheet('searchov');
   setModalTrap();
-  const b = document.getElementById('searchov-btn');
+  const b = document.getElementById(ovMode === 'places' ? 'list-near' : 'searchov-btn');
   (b && b.offsetParent ? b : document.getElementById('panel'))?.focus();
 }
 
