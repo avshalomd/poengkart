@@ -101,7 +101,7 @@ describe('the school sheet', () => {
   it('renders in English when asked', () => {
     loadFixtures(); initHelpers(); stubMap(); S.lang = 'en'; openSide(asker());
     expect(document.getElementById('side')!.textContent).toMatch(/programme|Programme|admitted|threshold/i);
-    expect(document.getElementById('s-hero')!.textContent).toContain('Average');
+    expect(document.getElementById('s-hero')!.textContent).toMatch(/Average of thresholds|Threshold/);
   });
   it('a school with no photo gets the location map instead, and the credit only with a photo', () => {
     loadFixtures(); initHelpers(); stubMap();

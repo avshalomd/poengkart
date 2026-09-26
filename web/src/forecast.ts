@@ -47,6 +47,17 @@ export const bucketOf = (c): Band => {
 // beside a legend that said "≥ 70%".
 export const pctS = c => S.lang === 'no' ? `${pct(c)} %` : `${pct(c)}%`;
 export const chanceMode = () => S.myPoints !== null && !!S.MODEL;
+// The intake most schools are forecast for. Buskerud and Trøndelag have not
+// published 2026 yet, so theirs is forecast for 2026 — an intake already held
+// — and the row says so rather than let it pass for next year's.
+let newestFor: unknown = null, newestYear = 0;
+export function newestForecastYear() {
+  if (newestFor !== S.MODEL) {
+    newestFor = S.MODEL;
+    newestYear = Math.max(0, ...Object.values<any>(S.MODEL?.schools || {}).map(e => +e.year || 0));
+  }
+  return newestYear;
+}
 // the model's raw entry for one programme row, or null; keys match tools/model.py
 export function modelEntry(s, p) {
   const e = S.MODEL && S.MODEL.schools && S.MODEL.schools[`${s.fylke}|${s.name}`];
