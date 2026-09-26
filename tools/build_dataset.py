@@ -28,7 +28,7 @@ DRIFT = os.path.join(HERE, '..', 'data', 'source-drift.json')
 # tools/geocode.py re-derives them from its cache on every run.
 KEEP = ('orgnr', 'url', 'wiki_url', 'wiki_extract', 'address',
         'photo', 'photo_source', 'photo_page', 'photo_credit', 'photo_license',
-        'photo_position', 'photo_note', 'nsr_name')
+        'photo_position', 'photo_note', 'nsr_name', 'kommune', 'sted')
 
 
 CACHE_DIR = os.path.join(HERE, '.cache')

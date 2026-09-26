@@ -134,7 +134,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Asker videregående skole",
    "lat": 59.83157,
-   "lon": 10.43764
+   "lon": 10.43764,
+   "kommune": "Asker",
+   "sted": "Asker"
   },
   {
    "name": "Bjertnes",
@@ -233,7 +235,9 @@
    "photo_position": "50% 85%",
    "nsr_name": "Bjertnes videregående skole",
    "lat": 60.04901,
-   "lon": 10.88019
+   "lon": 10.88019,
+   "kommune": "Nittedal",
+   "sted": "Nittedal"
   },
   {
    "name": "Bjørkelangen",
@@ -363,7 +367,9 @@
    "photo_license": "© Akershus fylkeskommune",
    "nsr_name": "Bjørkelangen videregående skole",
    "lat": 59.88374,
-   "lon": 11.55888
+   "lon": 11.55888,
+   "kommune": "Aurskog-Høland",
+   "sted": "Bjørkelangen"
   },
   {
    "name": "Bleiker",
@@ -508,7 +514,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Bleiker videregående skole",
    "lat": 59.82688,
-   "lon": 10.4456
+   "lon": 10.4456,
+   "kommune": "Asker",
+   "sted": "Asker"
   },
   {
    "name": "Drømtorp",
@@ -593,7 +601,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Drømtorp videregående skole",
    "lat": 59.716,
-   "lon": 10.86716
+   "lon": 10.86716,
+   "kommune": "Nordre Follo",
+   "sted": "Ski"
   },
   {
    "name": "Dønski",
@@ -690,7 +700,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Dønski videregående skole",
    "lat": 59.90678,
-   "lon": 10.50662
+   "lon": 10.50662,
+   "kommune": "Bærum",
+   "sted": "Gjettum"
   },
   {
    "name": "Eidsvoll",
@@ -803,7 +815,9 @@
    "photo_license": "CC BY 2.5",
    "nsr_name": "Eidsvoll videregående skole",
    "lat": 60.33711,
-   "lon": 11.26311
+   "lon": 11.26311,
+   "kommune": "Eidsvoll",
+   "sted": "Eidsvoll"
   },
   {
    "name": "Eikeli",
@@ -855,7 +869,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Eikeli videregående skole",
    "lat": 59.93618,
-   "lon": 10.60164
+   "lon": 10.60164,
+   "kommune": "Bærum",
+   "sted": "Hosle"
   },
   {
    "name": "Frogn",
@@ -935,7 +951,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Frogn videregående skole",
    "lat": 59.6924,
-   "lon": 10.6606
+   "lon": 10.6606,
+   "kommune": "Frogn",
+   "sted": "Drøbak"
   },
   {
    "name": "Hvam",
@@ -1034,7 +1052,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Hvam videregående skole",
    "lat": 60.10428,
-   "lon": 11.37544
+   "lon": 11.37544,
+   "kommune": "Nes",
+   "sted": "Hvam"
   },
   {
    "name": "Jessheim",
@@ -1146,7 +1166,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Jessheim videregående skole",
    "lat": 60.14608,
-   "lon": 11.16245
+   "lon": 11.16245,
+   "kommune": "Ullensaker",
+   "sted": "Jessheim"
   },
   {
    "name": "Kjelle",
@@ -1199,7 +1221,9 @@
    "photo_license": "© Akershus fylkeskommune",
    "nsr_name": "Kjelle videregående skole",
    "lat": 59.88791,
-   "lon": 11.57869
+   "lon": 11.57869,
+   "kommune": "Aurskog-Høland",
+   "sted": "Bjørkelangen"
   },
   {
    "name": "Lillestrøm",
@@ -1279,7 +1303,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Lillestrøm videregående skole",
    "lat": 59.96041,
-   "lon": 11.04719
+   "lon": 11.04719,
+   "kommune": "Lillestrøm",
+   "sted": "Lillestrøm"
   },
   {
    "name": "Lørenskog",
@@ -1389,7 +1415,9 @@
    "address": "Sykehusveien 11, 1474, LØRENSKOG",
    "nsr_name": "Lørenskog videregående skole",
    "lat": 59.93214,
-   "lon": 10.98476
+   "lon": 10.98476,
+   "kommune": "Lørenskog",
+   "sted": "Lørenskog"
   },
   {
    "name": "Mailand",
@@ -1484,7 +1512,9 @@
    "photo_license": "CC BY 2.5",
    "nsr_name": "Mailand videregående skole",
    "lat": 59.92947,
-   "lon": 10.96006
+   "lon": 10.96006,
+   "kommune": "Lørenskog",
+   "sted": "Lørenskog"
   },
   {
    "name": "Nadderud",
@@ -1536,7 +1566,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Nadderud videregående skole",
    "lat": 59.91578,
-   "lon": 10.57338
+   "lon": 10.57338,
+   "kommune": "Bærum",
+   "sted": "Bekkestua"
   },
   {
    "name": "Nannestad",
@@ -1666,7 +1698,9 @@
    "photo_license": "Public domain",
    "nsr_name": "Nannestad videregående skole",
    "lat": 60.21991,
-   "lon": 11.02028
+   "lon": 11.02028,
+   "kommune": "Nannestad",
+   "sted": "Nannestad"
   },
   {
    "name": "Nes",
@@ -1759,7 +1793,9 @@
    "address": "Kjuushagen 3, 2150, ÅRNES",
    "nsr_name": "Nes videregående skole",
    "lat": 60.12494,
-   "lon": 11.47996
+   "lon": 11.47996,
+   "kommune": "Nes",
+   "sted": "Årnes"
   },
   {
    "name": "Nesbru",
@@ -1829,7 +1865,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Nesbru videregående skole",
    "lat": 59.86708,
-   "lon": 10.4851
+   "lon": 10.4851,
+   "kommune": "Asker",
+   "sted": "Billingstad"
   },
   {
    "name": "Nesodden",
@@ -1912,7 +1950,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Nesodden videregående skole",
    "lat": 59.83965,
-   "lon": 10.67788
+   "lon": 10.67788,
+   "kommune": "Nesodden",
+   "sted": "Nesodden"
   },
   {
    "name": "Roald Amundsen",
@@ -1964,7 +2004,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Roald Amundsen videregående skole",
    "lat": 59.79449,
-   "lon": 10.81262
+   "lon": 10.81262,
+   "kommune": "Nordre Follo",
+   "sted": "Sofiemyr"
   },
   {
    "name": "Rosenvilde",
@@ -2079,7 +2121,9 @@
    "photo_license": "CC BY 2.5",
    "nsr_name": "Rosenvilde videregående skole",
    "lat": 59.90988,
-   "lon": 10.5086
+   "lon": 10.5086,
+   "kommune": "Bærum",
+   "sted": "Kolsås"
   },
   {
    "name": "Rud",
@@ -2225,7 +2269,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Rud videregående skole",
    "lat": 59.90809,
-   "lon": 10.50041
+   "lon": 10.50041,
+   "kommune": "Bærum",
+   "sted": "Rud"
   },
   {
    "name": "Rælingen",
@@ -2320,7 +2366,9 @@
    "photo_license": "© Akershus fylkeskommune",
    "nsr_name": "Rælingen videregående skole",
    "lat": 59.92624,
-   "lon": 11.06529
+   "lon": 11.06529,
+   "kommune": "Rælingen",
+   "sted": "Fjerdingby"
   },
   {
    "name": "Røyken",
@@ -2470,7 +2518,9 @@
    "photo_license": "© Akershus fylkeskommune",
    "nsr_name": "Røyken videregående skole",
    "lat": 59.73779,
-   "lon": 10.39968
+   "lon": 10.39968,
+   "kommune": "Asker",
+   "sted": "Røyken"
   },
   {
    "name": "Sandvika",
@@ -2537,7 +2587,9 @@
    "photo_license": "CC BY 3.0",
    "nsr_name": "Sandvika videregående skole",
    "lat": 59.8928,
-   "lon": 10.51761
+   "lon": 10.51761,
+   "kommune": "Bærum",
+   "sted": "Sandvika"
   },
   {
    "name": "Skedsmo",
@@ -2633,7 +2685,9 @@
    "photo_license": "© Akershus fylkeskommune",
    "nsr_name": "Skedsmo videregående skole",
    "lat": 59.96542,
-   "lon": 11.04034
+   "lon": 11.04034,
+   "kommune": "Lillestrøm",
+   "sted": "Lillestrøm"
   },
   {
    "name": "Ski",
@@ -2698,7 +2752,9 @@
    "photo_license": "© Akershus fylkeskommune",
    "nsr_name": "Ski videregående skole",
    "lat": 59.71777,
-   "lon": 10.84896
+   "lon": 10.84896,
+   "kommune": "Nordre Follo",
+   "sted": "Ski"
   },
   {
    "name": "Stabekk",
@@ -2748,7 +2804,9 @@
    "photo_license": "CC0",
    "nsr_name": "Stabekk videregående skole",
    "lat": 59.90972,
-   "lon": 10.61572
+   "lon": 10.61572,
+   "kommune": "Bærum",
+   "sted": "Stabekk"
   },
   {
    "name": "Strømmen",
@@ -2813,7 +2871,9 @@
    "photo_license": "© Akershus fylkeskommune",
    "nsr_name": "Strømmen videregående skole",
    "lat": 59.95448,
-   "lon": 11.01473
+   "lon": 11.01473,
+   "kommune": "Lillestrøm",
+   "sted": "Strømmen"
   },
   {
    "name": "Sørumsand",
@@ -2908,7 +2968,9 @@
    "photo_position": "top",
    "nsr_name": "Sørumsand videregående skole",
    "lat": 59.988,
-   "lon": 11.23899
+   "lon": 11.23899,
+   "kommune": "Lillestrøm",
+   "sted": "Sørumsand"
   },
   {
    "name": "Valler",
@@ -2945,7 +3007,9 @@
    "photo_license": "CC0",
    "nsr_name": "Valler videregående skole",
    "lat": 59.90128,
-   "lon": 10.52695
+   "lon": 10.52695,
+   "kommune": "Bærum",
+   "sted": "Sandvika"
   },
   {
    "name": "Vestby",
@@ -3038,7 +3102,9 @@
    "address": "Noreveien 2, 1540, VESTBY",
    "nsr_name": "Vestby videregående skole",
    "lat": 59.60693,
-   "lon": 10.75801
+   "lon": 10.75801,
+   "kommune": "Vestby",
+   "sted": "Vestby"
   },
   {
    "name": "Ås",
@@ -3182,7 +3248,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Ås videregående skole",
    "lat": 59.66369,
-   "lon": 10.79723
+   "lon": 10.79723,
+   "kommune": "Ås",
+   "sted": "Ås"
   },
   {
    "name": "Buskerud",
@@ -3307,7 +3375,9 @@
    "photo_license": "© Buskerud fylkeskommune",
    "nsr_name": "Buskerud videregående skole",
    "lat": 59.89492,
-   "lon": 9.93128
+   "lon": 9.93128,
+   "kommune": "Modum",
+   "sted": "Åmot"
   },
   {
    "name": "Drammen",
@@ -3449,7 +3519,9 @@
    "photo_license": "© Buskerud fylkeskommune",
    "nsr_name": "Drammen videregående skole",
    "lat": 59.73728,
-   "lon": 10.19823
+   "lon": 10.19823,
+   "kommune": "Drammen",
+   "sted": "Drammen"
   },
   {
    "name": "Eiker",
@@ -3502,7 +3574,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Eiker videregående skole",
    "lat": 59.77318,
-   "lon": 9.90388
+   "lon": 9.90388,
+   "kommune": "Øvre Eiker",
+   "sted": "Hokksund"
   },
   {
    "name": "Gol",
@@ -3555,7 +3629,9 @@
    "photo_license": "© Buskerud fylkeskommune",
    "nsr_name": "Gol vidaregåande skule",
    "lat": 60.70275,
-   "lon": 8.94376
+   "lon": 8.94376,
+   "kommune": "Gol",
+   "sted": "Gol"
   },
   {
    "name": "Hønefoss",
@@ -3693,7 +3769,9 @@
    "photo_license": "© Buskerud fylkeskommune",
    "nsr_name": "Hønefoss videregående skole",
    "lat": 60.15682,
-   "lon": 10.25552
+   "lon": 10.25552,
+   "kommune": "Ringerike",
+   "sted": "Hønefoss"
   },
   {
    "name": "Kongsberg",
@@ -3851,7 +3929,9 @@
    "photo_license": "© Buskerud fylkeskommune",
    "nsr_name": "Kongsberg videregående skole",
    "lat": 59.66946,
-   "lon": 9.64767
+   "lon": 9.64767,
+   "kommune": "Kongsberg",
+   "sted": "Kongsberg"
   },
   {
    "name": "Lier",
@@ -3983,7 +4063,9 @@
    "photo_license": "© Buskerud fylkeskommune",
    "nsr_name": "Lier videregående skole",
    "lat": 59.75729,
-   "lon": 10.24522
+   "lon": 10.24522,
+   "kommune": "Lier",
+   "sted": "Lier"
   },
   {
    "name": "Numedal",
@@ -4075,7 +4157,9 @@
    "photo_license": "© Buskerud fylkeskommune",
    "nsr_name": "Numedal videregående skole",
    "lat": 60.16916,
-   "lon": 9.00761
+   "lon": 9.00761,
+   "kommune": "Nore og Uvdal",
+   "sted": "Nore"
   },
   {
    "name": "Ringerike",
@@ -4149,7 +4233,9 @@
    "photo_license": "© Buskerud fylkeskommune",
    "nsr_name": "Ringerike videregående skole",
    "lat": 60.16425,
-   "lon": 10.25895
+   "lon": 10.25895,
+   "kommune": "Ringerike",
+   "sted": "Hønefoss"
   },
   {
    "name": "St. Hallvard",
@@ -4231,7 +4317,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "St Hallvard videregående skole",
    "lat": 59.76067,
-   "lon": 10.23804
+   "lon": 10.23804,
+   "kommune": "Lier",
+   "sted": "Lier"
   },
   {
    "name": "Ål",
@@ -4312,7 +4400,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Ål vidaregåande skole avd Ål",
    "lat": 60.62909,
-   "lon": 8.54795
+   "lon": 8.54795,
+   "kommune": "Ål",
+   "sted": "Ål"
   },
   {
    "name": "Åssiden",
@@ -4428,7 +4518,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Åssiden videregående skole",
    "lat": 59.75709,
-   "lon": 10.12074
+   "lon": 10.12074,
+   "kommune": "Drammen",
+   "sted": "Drammen"
   },
   {
    "name": "Elverum videregående skole",
@@ -4856,7 +4948,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Elverum videregående skole",
    "lat": 60.87703,
-   "lon": 11.56338
+   "lon": 11.56338,
+   "kommune": "Elverum",
+   "sted": "Elverum"
   },
   {
    "name": "Gausdal videregående skole",
@@ -5021,7 +5115,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Gausdal videregående skole",
    "lat": 61.22477,
-   "lon": 10.21311
+   "lon": 10.21311,
+   "kommune": "Gausdal",
+   "sted": "Østre Gausdal"
   },
   {
    "name": "Gjøvik videregående skole",
@@ -5581,7 +5677,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Gjøvik videregående skole",
    "lat": 60.80272,
-   "lon": 10.67843
+   "lon": 10.67843,
+   "kommune": "Gjøvik",
+   "sted": "Gjøvik"
   },
   {
    "name": "Hadeland videregående skole",
@@ -6074,7 +6172,9 @@
    "address": "Skolelia 3, 2750, GRAN",
    "nsr_name": "Hadeland videregående skole",
    "lat": 60.35526,
-   "lon": 10.5768
+   "lon": 10.5768,
+   "kommune": "Gran",
+   "sted": "Gran"
   },
   {
    "name": "Hamar katedralskole",
@@ -6532,7 +6632,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Hamar katedralskole",
    "lat": 60.80586,
-   "lon": 11.05426
+   "lon": 11.05426,
+   "kommune": "Hamar",
+   "sted": "Hamar"
   },
   {
    "name": "Jønsberg videregående skole",
@@ -6616,7 +6718,9 @@
    "photo_license": "© Innlandet fylkeskommune",
    "nsr_name": "Jønsberg videregående skole",
    "lat": 60.75142,
-   "lon": 11.20791
+   "lon": 11.20791,
+   "kommune": "Stange",
+   "sted": "Stange"
   },
   {
    "name": "Lena-Valle videregående skole",
@@ -6958,7 +7062,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Lena-Valle videregående skole avd Valle",
    "lat": 60.67723,
-   "lon": 10.81207
+   "lon": 10.81207,
+   "kommune": "Østre Toten",
+   "sted": "Lena"
   },
   {
    "name": "Lillehammer videreg skole, avd Nord",
@@ -7288,7 +7394,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Lillehammer videregående skole avd Nord",
    "lat": 61.1336,
-   "lon": 10.44511
+   "lon": 10.44511,
+   "kommune": "Lillehammer",
+   "sted": "Lillehammer"
   },
   {
    "name": "Lillehammer videreg skole, avd Sør",
@@ -7538,7 +7646,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Lillehammer videregående skole avd Sør",
    "lat": 61.11225,
-   "lon": 10.46977
+   "lon": 10.46977,
+   "kommune": "Lillehammer",
+   "sted": "Lillehammer"
   },
   {
    "name": "Nord-Gudbrandsdal vgs, avd. Dombås",
@@ -7592,7 +7702,9 @@
    "address": "2660 Dombås",
    "nsr_name": "(manual)",
    "lat": 62.07554,
-   "lon": 9.12785
+   "lon": 9.12785,
+   "kommune": "Dovre",
+   "sted": "Dombås"
   },
   {
    "name": "Nord-Gudbrandsdal vgs, avd. Lom",
@@ -7679,7 +7791,9 @@
    "address": "2686 Lom",
    "nsr_name": "(manual)",
    "lat": 61.84065,
-   "lon": 8.56306
+   "lon": 8.56306,
+   "kommune": "Lom",
+   "sted": "Lom"
   },
   {
    "name": "Nord-Gudbrandsdal vgs, avd. Otta",
@@ -7927,7 +8041,9 @@
    "photo_license": "© Innlandet fylkeskommune",
    "nsr_name": "Nord-Gudbrandsdal vidaregåande skule",
    "lat": 61.77895,
-   "lon": 9.5422
+   "lon": 9.5422,
+   "kommune": "Sel",
+   "sted": "Otta"
   },
   {
    "name": "Nord-Østerdal videregående skole",
@@ -8290,7 +8406,9 @@
    "address": "Fedraheimveien 1, 2500, TYNSET",
    "nsr_name": "Nord-Østerdal videregående skole",
    "lat": 62.27007,
-   "lon": 10.77185
+   "lon": 10.77185,
+   "kommune": "Tynset",
+   "sted": "Tynset"
   },
   {
    "name": "Raufoss videregående skole",
@@ -8567,7 +8685,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Raufoss videregående skole",
    "lat": 60.71397,
-   "lon": 10.6045
+   "lon": 10.6045,
+   "kommune": "Vestre Toten",
+   "sted": "Raufoss"
   },
   {
    "name": "Raufoss videregående skole avd Dokka",
@@ -8748,7 +8868,9 @@
    "address": "Nedre Smebyveg 3, 2870, DOKKA",
    "nsr_name": "Raufoss videregående skole avd Dokka",
    "lat": 60.83884,
-   "lon": 10.08038
+   "lon": 10.08038,
+   "kommune": "Nordre Land",
+   "sted": "Dokka"
   },
   {
    "name": "Ringsaker videregående skole",
@@ -9181,7 +9303,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Ringsaker videregående skole",
    "lat": 60.89159,
-   "lon": 10.93882
+   "lon": 10.93882,
+   "kommune": "Ringsaker",
+   "sted": "Brumunddal"
   },
   {
    "name": "Sentrum videregående skole",
@@ -9679,7 +9803,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Sentrum videregående skole",
    "lat": 60.19053,
-   "lon": 12.00186
+   "lon": 12.00186,
+   "kommune": "Kongsvinger",
+   "sted": "Kongsvinger"
   },
   {
    "name": "Skarnes videregående skole",
@@ -9831,7 +9957,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Sentrum videregående skole avd Skarnes",
    "lat": 60.25842,
-   "lon": 11.66594
+   "lon": 11.66594,
+   "kommune": "Sør-Odal",
+   "sted": "Skarnes"
   },
   {
    "name": "Solør videregående skole",
@@ -10140,7 +10268,9 @@
    "address": "Nordhagamoen 220, 2435, BRASKEREIDFOSS",
    "nsr_name": "Solør videregående skole",
    "lat": 60.71085,
-   "lon": 11.80244
+   "lon": 11.80244,
+   "kommune": "Våler",
+   "sted": "Braskereidfoss"
   },
   {
    "name": "Stange videregående skole",
@@ -10411,7 +10541,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Stange videregående skole",
    "lat": 60.71572,
-   "lon": 11.20137
+   "lon": 11.20137,
+   "kommune": "Stange",
+   "sted": "Stange"
   },
   {
    "name": "Storhamar videregående skole",
@@ -10649,7 +10781,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Storhamar videregående skole",
    "lat": 60.79774,
-   "lon": 11.03982
+   "lon": 11.03982,
+   "kommune": "Hamar",
+   "sted": "Hamar"
   },
   {
    "name": "Storsteigen videregående skole",
@@ -10741,7 +10875,9 @@
    "photo_license": "Public domain",
    "nsr_name": "Storsteigen videregående skole",
    "lat": 62.1107,
-   "lon": 10.62505
+   "lon": 10.62505,
+   "kommune": "Alvdal",
+   "sted": "Alvdal"
   },
   {
    "name": "Trysil videregående skole",
@@ -10938,7 +11074,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Trysil videregående skole",
    "lat": 61.31077,
-   "lon": 12.25586
+   "lon": 12.25586,
+   "kommune": "Trysil",
+   "sted": "Trysil"
   },
   {
    "name": "Valdres vidaregåande skule",
@@ -11237,7 +11375,9 @@
    "address": "Yrkesskulevegen 20, 2920, LEIRA I VALDRES",
    "nsr_name": "Valdres vidaregåande skule",
    "lat": 60.96856,
-   "lon": 9.30756
+   "lon": 9.30756,
+   "kommune": "Nord-Aurdal",
+   "sted": "Leira i Valdres"
   },
   {
    "name": "Vinstra vidaregåande skule",
@@ -11564,7 +11704,9 @@
    "photo_license": "CC0",
    "nsr_name": "Vinstra vidaregåande skule",
    "lat": 61.59814,
-   "lon": 9.73426
+   "lon": 9.73426,
+   "kommune": "Nord-Fron",
+   "sted": "Vinstra"
   },
   {
    "name": "Øvrebyen videregående skole",
@@ -11693,7 +11835,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Øvrebyen videregående skole",
    "lat": 60.19498,
-   "lon": 12.00839
+   "lon": 12.00839,
+   "kommune": "Kongsvinger",
+   "sted": "Kongsvinger"
   },
   {
    "name": "Atlanten videregående skole",
@@ -11883,7 +12027,9 @@
    "photo_license": "© Møre og Romsdal fylkeskommune",
    "nsr_name": "Atlanten videregående skole",
    "lat": 63.12675,
-   "lon": 7.7372
+   "lon": 7.7372,
+   "kommune": "Kristiansund",
+   "sted": "Kristiansund"
   },
   {
    "name": "Borgund vidaregåande skole",
@@ -12201,7 +12347,9 @@
    "address": "Yrkesskolevegen 20, 6011, ÅLESUND",
    "nsr_name": "Borgund vidaregåande skole",
    "lat": 62.46816,
-   "lon": 6.37262
+   "lon": 6.37262,
+   "kommune": "Ålesund",
+   "sted": "Ålesund"
   },
   {
    "name": "Fagerlia videregående skole",
@@ -12519,7 +12667,9 @@
    "address": "Gangstøvikvegen 27, 6009, ÅLESUND",
    "nsr_name": "(manual)",
    "lat": 62.4741,
-   "lon": 6.2279
+   "lon": 6.2279,
+   "sted": "Ålesund",
+   "kommune": "Ålesund"
   },
   {
    "name": "Gjermundnes vidaregåande skule",
@@ -12620,7 +12770,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Gjermundnes vidaregåande skule",
    "lat": 62.62324,
-   "lon": 7.16585
+   "lon": 7.16585,
+   "kommune": "Vestnes",
+   "sted": "Vikebukt"
   },
   {
    "name": "Haram vidaregåande skule",
@@ -12929,7 +13081,9 @@
    "photo_license": "© Møre og Romsdal fylkeskommune",
    "nsr_name": "Haram vidaregåande skule",
    "lat": 62.59509,
-   "lon": 6.44068
+   "lon": 6.44068,
+   "kommune": "Haram",
+   "sted": "Brattvåg"
   },
   {
    "name": "Herøy vidaregåande skule",
@@ -13146,7 +13300,9 @@
    "address": "Lisjebøvegen 4, 6091, FOSNAVÅG",
    "nsr_name": "Herøy vidaregåande skule",
    "lat": 62.33453,
-   "lon": 5.63821
+   "lon": 5.63821,
+   "kommune": "Herøy",
+   "sted": "Fosnavåg"
   },
   {
    "name": "Herøy vidaregåande skule, avd. Vanylven",
@@ -13234,7 +13390,9 @@
    "address": "6140 Syvde",
    "nsr_name": "(manual)",
    "lat": 62.08897,
-   "lon": 5.73953
+   "lon": 5.73953,
+   "kommune": "Vanylven",
+   "sted": "Syvde"
   },
   {
    "name": "Hustadvika vidaregåande skole",
@@ -13570,7 +13728,9 @@
    "photo_license": "© Møre og Romsdal fylkeskommune",
    "nsr_name": "Hustadvika vidaregåande skole",
    "lat": 62.85479,
-   "lon": 7.15436
+   "lon": 7.15436,
+   "kommune": "Hustadvika",
+   "sted": "Elnesvågen"
   },
   {
    "name": "Kristiansund videregående skole",
@@ -14085,7 +14245,9 @@
    "address": "Sankthanshaugen 2, 6514, KRISTIANSUND N",
    "nsr_name": "Kristiansund videregående skole",
    "lat": 63.11959,
-   "lon": 7.71943
+   "lon": 7.71943,
+   "kommune": "Kristiansund",
+   "sted": "Kristiansund"
   },
   {
    "name": "Molde videregående skole",
@@ -14360,7 +14522,9 @@
    "photo_license": "© Møre og Romsdal fylkeskommune",
    "nsr_name": "Molde videregående skole",
    "lat": 62.73967,
-   "lon": 7.16433
+   "lon": 7.16433,
+   "kommune": "Molde",
+   "sted": "Molde"
   },
   {
    "name": "Rauma videregående skole",
@@ -14605,7 +14769,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Rauma videregående skole",
    "lat": 62.56393,
-   "lon": 7.68267
+   "lon": 7.68267,
+   "kommune": "Rauma",
+   "sted": "Åndalsnes"
   },
   {
    "name": "Romsdal videregående skole",
@@ -15240,7 +15406,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Romsdal videregående skole",
    "lat": 62.74438,
-   "lon": 7.1913
+   "lon": 7.1913,
+   "kommune": "Molde",
+   "sted": "Molde"
   },
   {
    "name": "Spjelkavik videregående skole",
@@ -15373,7 +15541,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Spjelkavik videregående skole",
    "lat": 62.46099,
-   "lon": 6.37479
+   "lon": 6.37479,
+   "kommune": "Ålesund",
+   "sted": "Ålesund"
   },
   {
    "name": "Stranda vidaregåande skule",
@@ -15584,7 +15754,9 @@
    "photo_license": "© Møre og Romsdal fylkeskommune",
    "nsr_name": "Stranda vidaregåande skule",
    "lat": 62.306,
-   "lon": 6.91389
+   "lon": 6.91389,
+   "kommune": "Stranda",
+   "sted": "Stranda"
   },
   {
    "name": "Sunndal vidaregåande skole",
@@ -15799,7 +15971,9 @@
    "address": "Skoleveien 14, 6600, SUNNDALSØRA",
    "nsr_name": "Sunndal vidaregåande skole",
    "lat": 62.66917,
-   "lon": 8.59046
+   "lon": 8.59046,
+   "kommune": "Sunndal",
+   "sted": "Sunndalsøra"
   },
   {
    "name": "Surnadal vidaregåande skule",
@@ -16019,7 +16193,9 @@
    "photo_license": "© Møre og Romsdal fylkeskommune",
    "nsr_name": "Surnadal vidaregåande skule",
    "lat": 62.9825,
-   "lon": 8.71859
+   "lon": 8.71859,
+   "kommune": "Surnadal",
+   "sted": "Surnadal"
   },
   {
    "name": "Sykkylven vidaregåande skule",
@@ -16234,7 +16410,9 @@
    "photo_license": "© Møre og Romsdal fylkeskommune",
    "nsr_name": "Sykkylven vidaregåande skule",
    "lat": 62.39371,
-   "lon": 6.58931
+   "lon": 6.58931,
+   "kommune": "Sykkylven",
+   "sted": "Sykkylven"
   },
   {
    "name": "Tingvoll vidaregåande skole",
@@ -16450,7 +16628,9 @@
    "photo_license": "© Møre og Romsdal fylkeskommune",
    "nsr_name": "Tingvoll vidaregåande skole",
    "lat": 62.915,
-   "lon": 8.1945
+   "lon": 8.1945,
+   "kommune": "Tingvoll",
+   "sted": "Tingvoll"
   },
   {
    "name": "Ulstein vidaregåande skule",
@@ -16718,7 +16898,9 @@
    "photo_license": "© Møre og Romsdal fylkeskommune",
    "nsr_name": "Ulstein vidaregåande skule",
    "lat": 62.34024,
-   "lon": 5.88288
+   "lon": 5.88288,
+   "kommune": "Ulstein",
+   "sted": "Ulsteinvik"
   },
   {
    "name": "Volda vidaregåande skule",
@@ -16910,7 +17092,9 @@
    "photo_license": "© Møre og Romsdal fylkeskommune",
    "nsr_name": "Volda vidaregåande skule",
    "lat": 62.15003,
-   "lon": 6.07265
+   "lon": 6.07265,
+   "kommune": "Volda",
+   "sted": "Volda"
   },
   {
    "name": "Ålesund videregående skole",
@@ -17397,7 +17581,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "(manual)",
    "lat": 62.46859,
-   "lon": 6.18485
+   "lon": 6.18485,
+   "kommune": "Ålesund",
+   "sted": "Ålesund"
   },
   {
    "name": "Ørsta vidaregåande skule",
@@ -17643,7 +17829,9 @@
    "address": "Holmegata 14, 6153, ØRSTA",
    "nsr_name": "Ørsta vidaregåande skule",
    "lat": 62.19599,
-   "lon": 6.12998
+   "lon": 6.12998,
+   "kommune": "Ørsta",
+   "sted": "Ørsta"
   },
   {
    "name": "Bjerke videregående skole",
@@ -17747,7 +17935,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Bjerke videregående skole",
    "lat": 59.94104,
-   "lon": 10.83648
+   "lon": 10.83648,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Bjørnholt videregående skole",
@@ -17877,7 +18067,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Bjørnholt videregående skole",
    "lat": 59.83445,
-   "lon": 10.83558
+   "lon": 10.83558,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Blindern videregående skole",
@@ -17946,7 +18138,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Blindern videregående skole",
    "lat": 59.95015,
-   "lon": 10.7293
+   "lon": 10.7293,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Edvard Munch videregående skole",
@@ -18146,7 +18340,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Edvard Munch videregående skole",
    "lat": 59.91863,
-   "lon": 10.74356
+   "lon": 10.74356,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Elvebakken videregående skole",
@@ -18381,7 +18577,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Elvebakken videregående skole",
    "lat": 59.919,
-   "lon": 10.75292
+   "lon": 10.75292,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Etterstad videregående skole",
@@ -18516,7 +18714,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Etterstad videregående skole",
    "lat": 59.90968,
-   "lon": 10.79645
+   "lon": 10.79645,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Foss videregående skole",
@@ -18587,7 +18787,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Foss videregående skole",
    "lat": 59.92704,
-   "lon": 10.75544
+   "lon": 10.75544,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Fyrstikkalleen skole",
@@ -18676,7 +18878,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Fyrstikkalleen skole",
    "lat": 59.91526,
-   "lon": 10.79432
+   "lon": 10.79432,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Hartvig Nissens skole",
@@ -18748,7 +18952,9 @@
    "photo_position": "top",
    "nsr_name": "Hartvig Nissens skole",
    "lat": 59.91819,
-   "lon": 10.71582
+   "lon": 10.71582,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Hellerud videregående skole",
@@ -18833,7 +19039,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Hellerud videregående skole",
    "lat": 59.91439,
-   "lon": 10.84019
+   "lon": 10.84019,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Hersleb videregående skole",
@@ -18929,7 +19137,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Hersleb videregående skole",
    "lat": 59.91813,
-   "lon": 10.76403
+   "lon": 10.76403,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Holtet videregående skole",
@@ -18981,7 +19191,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Holtet videregående skole",
    "lat": 59.88545,
-   "lon": 10.78564
+   "lon": 10.78564,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Kongshavn videregående skole",
@@ -19029,7 +19241,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Kongshavn videregående skole",
    "lat": 59.89738,
-   "lon": 10.75824
+   "lon": 10.75824,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Kuben videregående skole",
@@ -19340,7 +19554,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Kuben videregående skole",
    "lat": 59.92733560429587,
-   "lon": 10.81630669531877
+   "lon": 10.81630669531877,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Lambertseter videregående skole",
@@ -19408,7 +19624,9 @@
    "photo_license": "CC BY-SA 2.5",
    "nsr_name": "Lambertseter videregående skole",
    "lat": 59.87888,
-   "lon": 10.81041
+   "lon": 10.81041,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Mølla videregående skole",
@@ -19447,7 +19665,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Mølla videregående skole",
    "lat": 59.91819,
-   "lon": 10.75041
+   "lon": 10.75041,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Nydalen videregående skole",
@@ -19568,7 +19788,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Nydalen videregående skole",
    "lat": 59.95057,
-   "lon": 10.76286
+   "lon": 10.76286,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Oslo Handelsgymnasium",
@@ -19654,7 +19876,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Oslo Handelsgymnasium",
    "lat": 59.91399,
-   "lon": 10.7206
+   "lon": 10.7206,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Oslo katedralskole",
@@ -19702,7 +19926,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Oslo katedralskole",
    "lat": 59.92115,
-   "lon": 10.7416
+   "lon": 10.7416,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Persbråten videregående skole",
@@ -19791,7 +20017,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Persbråten videregående skole",
    "lat": 59.94535,
-   "lon": 10.65787
+   "lon": 10.65787,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Stovner videregående skole",
@@ -19933,7 +20161,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Stovner videregående skole",
    "lat": 59.96051,
-   "lon": 10.92677
+   "lon": 10.92677,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Ullern videregående skole",
@@ -20072,7 +20302,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Ullern videregående skole",
    "lat": 59.93113,
-   "lon": 10.66345
+   "lon": 10.66345,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Ulsrud videregående skole",
@@ -20199,7 +20431,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Ulsrud videregående skole",
    "lat": 59.88579,
-   "lon": 10.85067
+   "lon": 10.85067,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Valle Hovin videregående skole",
@@ -20267,7 +20501,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Valle Hovin videregående skole",
    "lat": 59.91872,
-   "lon": 10.80622
+   "lon": 10.80622,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Vika videregående skole",
@@ -20301,7 +20537,9 @@
    "photo_license": "© Oslo kommune / Utdanningsetaten",
    "nsr_name": "Vika videregående skole",
    "lat": 59.91304,
-   "lon": 10.72413
+   "lon": 10.72413,
+   "kommune": "Oslo",
+   "sted": "Oslo"
   },
   {
    "name": "Bergeland videregående skole",
@@ -20667,7 +20905,9 @@
    "photo_license": "CC0",
    "nsr_name": "Bergeland videregående skole",
    "lat": 58.96731,
-   "lon": 5.73724
+   "lon": 5.73724,
+   "kommune": "Stavanger",
+   "sted": "Stavanger"
   },
   {
    "name": "Bryne vidaregåande skule",
@@ -21291,7 +21531,9 @@
    "photo_license": "© Rogaland fylkeskommune",
    "nsr_name": "Bryne vidaregåande skule",
    "lat": 58.73236,
-   "lon": 5.65021
+   "lon": 5.65021,
+   "kommune": "Time",
+   "sted": "Bryne"
   },
   {
    "name": "Dalane videregående skole",
@@ -21795,7 +22037,9 @@
    "photo_license": "© Rogaland fylkeskommune",
    "nsr_name": "Dalane videregående skole",
    "lat": 58.4648,
-   "lon": 6.01065
+   "lon": 6.01065,
+   "kommune": "Eigersund",
+   "sted": "Egersund"
   },
   {
    "name": "Gand videregående skole",
@@ -22324,7 +22568,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Gand videregående skole",
    "lat": 58.84701666871939,
-   "lon": 5.736557331238955
+   "lon": 5.736557331238955,
+   "kommune": "Sandnes",
+   "sted": "Sandnes"
   },
   {
    "name": "Godalen videregående skole",
@@ -22892,7 +23138,9 @@
    "photo_license": "© Rogaland fylkeskommune",
    "nsr_name": "Godalen videregående skole",
    "lat": 58.95377,
-   "lon": 5.75185
+   "lon": 5.75185,
+   "kommune": "Stavanger",
+   "sted": "Stavanger"
   },
   {
    "name": "Haugaland videregående skole",
@@ -23479,7 +23727,9 @@
    "photo_license": "CC0",
    "nsr_name": "Haugaland videregående skole",
    "lat": 59.40954,
-   "lon": 5.29116
+   "lon": 5.29116,
+   "kommune": "Haugesund",
+   "sted": "Haugesund"
   },
   {
    "name": "Hetland videregående skole",
@@ -23644,7 +23894,9 @@
    "photo_license": "© Rogaland fylkeskommune",
    "nsr_name": "Hetland videregående skole",
    "lat": 58.9343,
-   "lon": 5.7373
+   "lon": 5.7373,
+   "kommune": "Stavanger",
+   "sted": "Stavanger"
   },
   {
    "name": "Jåttå videregående skole",
@@ -24219,7 +24471,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Jåttå videregående skole",
    "lat": 58.91357,
-   "lon": 5.72784
+   "lon": 5.72784,
+   "kommune": "Stavanger",
+   "sted": "Stavanger"
   },
   {
    "name": "Karmsund videregående skole",
@@ -24638,7 +24892,9 @@
    "photo_license": "© Rogaland fylkeskommune",
    "nsr_name": "Karmsund videregående skole",
    "lat": 59.40075,
-   "lon": 5.2832
+   "lon": 5.2832,
+   "kommune": "Haugesund",
+   "sted": "Haugesund"
   },
   {
    "name": "Kopervik videregående skole",
@@ -24892,7 +25148,9 @@
    "photo_license": "CC0",
    "nsr_name": "Kopervik videregående skole",
    "lat": 59.28048,
-   "lon": 5.28347
+   "lon": 5.28347,
+   "kommune": "Karmøy",
+   "sted": "Kopervik"
   },
   {
    "name": "Randaberg videregående skole",
@@ -25261,7 +25519,9 @@
    "photo_license": "© Rogaland fylkeskommune",
    "nsr_name": "Randaberg videregående skole",
    "lat": 58.99688,
-   "lon": 5.65469
+   "lon": 5.65469,
+   "kommune": "Randaberg",
+   "sted": "Randaberg"
   },
   {
    "name": "Sandnes videregående skole",
@@ -25427,7 +25687,9 @@
    "photo_license": "CC BY 3.0",
    "nsr_name": "Sandnes videregående skole",
    "lat": 58.85731,
-   "lon": 5.72539
+   "lon": 5.72539,
+   "kommune": "Sandnes",
+   "sted": "Sandnes"
   },
   {
    "name": "Sauda vidaregåande skule",
@@ -25926,7 +26188,9 @@
    "photo_license": "© Rogaland fylkeskommune",
    "nsr_name": "Sauda vidaregåande skule",
    "lat": 59.65353,
-   "lon": 6.35914
+   "lon": 6.35914,
+   "kommune": "Sauda",
+   "sted": "Sauda"
   },
   {
    "name": "Skeisvang videregående skole",
@@ -26199,7 +26463,9 @@
    "photo_license": "© Rogaland fylkeskommune",
    "nsr_name": "Skeisvang videregående skole",
    "lat": 59.42292,
-   "lon": 5.27116
+   "lon": 5.27116,
+   "kommune": "Haugesund",
+   "sted": "Haugesund"
   },
   {
    "name": "Sola videregående skole",
@@ -26574,7 +26840,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Sola videregående skole",
    "lat": 58.89365,
-   "lon": 5.66574
+   "lon": 5.66574,
+   "kommune": "Sola",
+   "sted": "Sola"
   },
   {
    "name": "St. Olav videregående skole",
@@ -26721,7 +26989,9 @@
    "photo_license": "© Rogaland fylkeskommune (illustrasjon)",
    "nsr_name": "St. Olav videregående skole",
    "lat": 58.96711,
-   "lon": 5.72504
+   "lon": 5.72504,
+   "kommune": "Stavanger",
+   "sted": "Stavanger"
   },
   {
    "name": "St. Svithun videregående skole",
@@ -26979,7 +27249,9 @@
    "photo_position": "top",
    "nsr_name": "St Svithun videregående skole",
    "lat": 58.95606,
-   "lon": 5.6961
+   "lon": 5.6961,
+   "kommune": "Stavanger",
+   "sted": "Stavanger"
   },
   {
    "name": "Stavanger Katedralskole",
@@ -27254,7 +27526,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Stavanger katedralskole",
    "lat": 58.96914,
-   "lon": 5.73314
+   "lon": 5.73314,
+   "kommune": "Stavanger",
+   "sted": "Stavanger"
   },
   {
    "name": "Stavanger Offshore Tekniske skole",
@@ -27350,7 +27624,9 @@
    "photo_position": "top",
    "nsr_name": "(manual)",
    "lat": 58.9271,
-   "lon": 5.7052
+   "lon": 5.7052,
+   "kommune": "Stavanger",
+   "sted": "Stavanger"
   },
   {
    "name": "Strand videregående skole",
@@ -27854,7 +28130,9 @@
    "photo_license": "© Rogaland fylkeskommune",
    "nsr_name": "Strand videregående skole",
    "lat": 59.0634,
-   "lon": 5.92138
+   "lon": 5.92138,
+   "kommune": "Strand",
+   "sted": "Tau"
   },
   {
    "name": "Vardafjell videregående skole",
@@ -28072,7 +28350,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Vardafjell videregående skole",
    "lat": 59.41164,
-   "lon": 5.29024
+   "lon": 5.29024,
+   "kommune": "Haugesund",
+   "sted": "Haugesund"
   },
   {
    "name": "Vågen videregående skole",
@@ -28552,7 +28832,9 @@
    "photo_license": "CC0",
    "nsr_name": "Vågen videregående skole",
    "lat": 58.85072,
-   "lon": 5.74094
+   "lon": 5.74094,
+   "kommune": "Sandnes",
+   "sted": "Sandnes"
   },
   {
    "name": "Åkrehamn vidaregåande skole",
@@ -28924,7 +29206,9 @@
    "photo_license": "© Rogaland fylkeskommune",
    "nsr_name": "Åkrehamn vidaregåande skole",
    "lat": 59.25665,
-   "lon": 5.19802
+   "lon": 5.19802,
+   "kommune": "Karmøy",
+   "sted": "Åkrehamn"
   },
   {
    "name": "Øksnevad vidaregåande skole",
@@ -29242,7 +29526,9 @@
    "photo_license": "© Rogaland fylkeskommune",
    "nsr_name": "(manual)",
    "lat": 58.80082,
-   "lon": 5.67142
+   "lon": 5.67142,
+   "kommune": "Klepp",
+   "sted": "Klepp"
   },
   {
    "name": "Ølen vidaregåande skule",
@@ -29719,7 +30005,9 @@
    "photo_note": "no exterior photograph found anywhere (site, Wayback, Commons, Flickr)",
    "nsr_name": "Ølen vidaregåande skule",
    "lat": 59.60671,
-   "lon": 5.81603
+   "lon": 5.81603,
+   "kommune": "Vindafjord",
+   "sted": "Ølen"
   },
   {
    "name": "Bamble videregående skole",
@@ -29800,7 +30088,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Bamble videregående skole",
    "lat": 59.02761,
-   "lon": 9.70321
+   "lon": 9.70321,
+   "kommune": "Bamble",
+   "sted": "Stathelle"
   },
   {
    "name": "Bø vidaregåande skule",
@@ -29852,7 +30142,9 @@
    "address": "Gymnasbakken 23, 3802, BØ I TELEMARK",
    "nsr_name": "Bø vidaregåande skule",
    "lat": 59.41713,
-   "lon": 9.06299
+   "lon": 9.06299,
+   "kommune": "Midt-Telemark",
+   "sted": "Bø i Telemark"
   },
   {
    "name": "Hjalmar Johansen videregående skole",
@@ -29909,7 +30201,9 @@
    "photo_license": "CC BY-SA 3.0",
    "nsr_name": "Hjalmar Johansen videregående skole",
    "lat": 59.18583,
-   "lon": 9.5966
+   "lon": 9.5966,
+   "kommune": "Skien",
+   "sted": "Skien"
   },
   {
    "name": "Kragerø videregående skole",
@@ -29985,7 +30279,9 @@
    "address": "Frydenborgveien 9-11, 3772, KRAGERØ",
    "nsr_name": "(manual)",
    "lat": 58.87144,
-   "lon": 9.39281
+   "lon": 9.39281,
+   "kommune": "Kragerø",
+   "sted": "Kragerø"
   },
   {
    "name": "Nome videregående skole",
@@ -30078,7 +30374,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Nome videregående skole avd Søve",
    "lat": 59.27896,
-   "lon": 9.28405
+   "lon": 9.28405,
+   "kommune": "Nome",
+   "sted": "Ulefoss"
   },
   {
    "name": "Notodden videregående skole",
@@ -30171,7 +30469,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Notodden videregående skole",
    "lat": 59.5553,
-   "lon": 9.25771
+   "lon": 9.25771,
+   "kommune": "Notodden",
+   "sted": "Notodden"
   },
   {
    "name": "Porsgrunn videregående skole",
@@ -30271,7 +30571,9 @@
    "address": "Kjølnes ring 58, 3918, PORSGRUNN",
    "nsr_name": "Porsgrunn videregående skole",
    "lat": 59.13845,
-   "lon": 9.66904
+   "lon": 9.66904,
+   "kommune": "Porsgrunn",
+   "sted": "Porsgrunn"
   },
   {
    "name": "Rjukan videregående skole",
@@ -30352,7 +30654,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Rjukan videregående skole",
    "lat": 59.87794,
-   "lon": 8.58048
+   "lon": 8.58048,
+   "kommune": "Tinn",
+   "sted": "Rjukan"
   },
   {
    "name": "Skien videregående skole",
@@ -30455,7 +30759,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Skien videregående skole",
    "lat": 59.19934,
-   "lon": 9.61431
+   "lon": 9.61431,
+   "kommune": "Skien",
+   "sted": "Skien"
   },
   {
    "name": "Skogmo videregående skole",
@@ -30531,7 +30837,9 @@
    "address": "Kjørbekkdalen 11, 3735, SKIEN",
    "nsr_name": "Skogmo videregående skole",
    "lat": 59.17342,
-   "lon": 9.62081
+   "lon": 9.62081,
+   "kommune": "Skien",
+   "sted": "Skien"
   },
   {
    "name": "Vest-Telemark vidaregåande skule",
@@ -30595,7 +30903,9 @@
    "address": "Storvegen 195, 3880, DALEN",
    "nsr_name": "Vest-Telemark vidaregåande skule",
    "lat": 59.44661,
-   "lon": 7.98769
+   "lon": 7.98769,
+   "kommune": "Tokke",
+   "sted": "Dalen"
   },
   {
    "name": "Byåsen videregående skole",
@@ -30666,7 +30976,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Byåsen videregående skole",
    "lat": 63.39538,
-   "lon": 10.36376
+   "lon": 10.36376,
+   "kommune": "Trondheim",
+   "sted": "Trondheim"
   },
   {
    "name": "Charlottenlund videregående skole",
@@ -30777,7 +31089,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Charlottenlund videregående skole",
    "lat": 63.42022,
-   "lon": 10.48645
+   "lon": 10.48645,
+   "kommune": "Trondheim",
+   "sted": "Charlottenlund"
   },
   {
    "name": "Cissi Klein videregående skole",
@@ -30848,7 +31162,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Cissi Klein videregående skole",
    "lat": 63.43646,
-   "lon": 10.4606
+   "lon": 10.4606,
+   "kommune": "Trondheim",
+   "sted": "Trondheim"
   },
   {
    "name": "Fosen videregående skole",
@@ -30939,7 +31255,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Fosen videregående skole",
    "lat": 63.76568,
-   "lon": 9.81942
+   "lon": 9.81942,
+   "kommune": "Ørland",
+   "sted": "Bjugn"
   },
   {
    "name": "Gauldal videregående skole",
@@ -31000,7 +31318,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Gauldal videregående skole",
    "lat": 63.03613,
-   "lon": 10.28741
+   "lon": 10.28741,
+   "kommune": "Midtre Gauldal",
+   "sted": "Støren"
   },
   {
    "name": "Grong videregående skole",
@@ -31071,7 +31391,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Grong videregående skole",
    "lat": 64.46179,
-   "lon": 12.31375
+   "lon": 12.31375,
+   "kommune": "Grong",
+   "sted": "Grong"
   },
   {
    "name": "Guri Kunna videregående skole",
@@ -31162,7 +31484,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Guri Kunna videregående skole",
    "lat": 63.73064,
-   "lon": 8.83039
+   "lon": 8.83039,
+   "kommune": "Frøya",
+   "sted": "Sistranda"
   },
   {
    "name": "Heimdal videregående skole",
@@ -31233,7 +31557,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Heimdal videregående skole",
    "lat": 63.36494,
-   "lon": 10.35222
+   "lon": 10.35222,
+   "kommune": "Trondheim",
+   "sted": "Saupstad"
   },
   {
    "name": "Inderøy videregående skole",
@@ -31294,7 +31620,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Inderøy videregående skole",
    "lat": 63.87729,
-   "lon": 11.28629
+   "lon": 11.28629,
+   "kommune": "Inderøy",
+   "sted": "Inderøy"
   },
   {
    "name": "Johan Bojer videregående skole",
@@ -31375,7 +31703,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Johan Bojer videregående skole",
    "lat": 63.55291,
-   "lon": 10.22129
+   "lon": 10.22129,
+   "kommune": "Indre Fosen",
+   "sted": "Vanvikan"
   },
   {
    "name": "Kyrksæterøra videregående skole",
@@ -31436,7 +31766,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Kyrksæterøra videregående skole",
    "lat": 63.29125,
-   "lon": 9.08064
+   "lon": 9.08064,
+   "kommune": "Heim",
+   "sted": "Kyrksæterøra"
   },
   {
    "name": "Levanger videregående skole",
@@ -31537,7 +31869,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Levanger videregående skole",
    "lat": 63.74289,
-   "lon": 11.28725
+   "lon": 11.28725,
+   "kommune": "Levanger",
+   "sted": "Levanger"
   },
   {
    "name": "Malvik videregående skole",
@@ -31598,7 +31932,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Malvik videregående skole",
    "lat": 63.43669,
-   "lon": 10.6287
+   "lon": 10.6287,
+   "kommune": "Malvik",
+   "sted": "Vikhammer"
   },
   {
    "name": "Melhus videregående skole",
@@ -31689,7 +32025,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Melhus videregående skole",
    "lat": 63.28501,
-   "lon": 10.26359
+   "lon": 10.26359,
+   "kommune": "Melhus",
+   "sted": "Melhus"
   },
   {
    "name": "Meråker videregående skole",
@@ -31730,7 +32068,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Meråker videregående skole",
    "lat": 63.41412,
-   "lon": 11.73105
+   "lon": 11.73105,
+   "kommune": "Meråker",
+   "sted": "Meråker"
   },
   {
    "name": "Mære landbruksskole",
@@ -31761,7 +32101,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Mære landbruksskole",
    "lat": 63.93661,
-   "lon": 11.39006
+   "lon": 11.39006,
+   "kommune": "Steinkjer",
+   "sted": "Sparbu"
   },
   {
    "name": "Olav Duun videregående skole",
@@ -31872,7 +32214,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Olav Duun videregående skole",
    "lat": 64.47201,
-   "lon": 11.54161
+   "lon": 11.54161,
+   "kommune": "Namsos",
+   "sted": "Namsos"
   },
   {
    "name": "Ole Vig videregående skole",
@@ -32003,7 +32347,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Ole Vig videregående skole",
    "lat": 63.4733,
-   "lon": 10.932
+   "lon": 10.932,
+   "kommune": "Stjørdal",
+   "sted": "Stjørdal"
   },
   {
    "name": "Oppdal videregående skole",
@@ -32079,7 +32425,9 @@
    "address": "Skulsvingen 10, 7340, OPPDAL",
    "nsr_name": "Oppdal videregående skole",
    "lat": 62.59729,
-   "lon": 9.67611
+   "lon": 9.67611,
+   "kommune": "Oppdal",
+   "sted": "Oppdal"
   },
   {
    "name": "Orkland videregående skole",
@@ -32180,7 +32528,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Orkland videregående skole",
    "lat": 63.28257,
-   "lon": 9.84445
+   "lon": 9.84445,
+   "kommune": "Orkland",
+   "sted": "Orkanger"
   },
   {
    "name": "Røros videregående skole",
@@ -32251,7 +32601,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Røros videregående skole",
    "lat": 62.57687,
-   "lon": 11.36926
+   "lon": 11.36926,
+   "kommune": "Røros",
+   "sted": "Røros"
   },
   {
    "name": "Selbu videregående skole",
@@ -32312,7 +32664,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Selbu videregående skole",
    "lat": 63.22922,
-   "lon": 11.0348
+   "lon": 11.0348,
+   "kommune": "Selbu",
+   "sted": "Selbu"
   },
   {
    "name": "Skjetlein videregående skole",
@@ -32363,7 +32717,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Skjetlein videregående skole",
    "lat": 63.34099,
-   "lon": 10.30219
+   "lon": 10.30219,
+   "kommune": "Trondheim",
+   "sted": "Leinstrand"
   },
   {
    "name": "Steinkjer videregående skole",
@@ -32474,7 +32830,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Steinkjer videregående skole",
    "lat": 64.02004,
-   "lon": 11.5156
+   "lon": 11.5156,
+   "kommune": "Steinkjer",
+   "sted": "Steinkjer"
   },
   {
    "name": "Strinda videregående skole",
@@ -32555,7 +32913,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Strinda videregående skole",
    "lat": 63.42052,
-   "lon": 10.42726
+   "lon": 10.42726,
+   "kommune": "Trondheim",
+   "sted": "Trondheim"
   },
   {
    "name": "Thora Storm videregående skole",
@@ -32636,7 +32996,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Thora Storm videregående skole",
    "lat": 63.42784,
-   "lon": 10.38827
+   "lon": 10.38827,
+   "kommune": "Trondheim",
+   "sted": "Trondheim"
   },
   {
    "name": "Tiller videregående skole",
@@ -32697,7 +33059,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Tiller videregående skole",
    "lat": 63.35765,
-   "lon": 10.38046
+   "lon": 10.38046,
+   "kommune": "Trondheim",
+   "sted": "Tiller"
   },
   {
    "name": "Trondheim katedralskole",
@@ -32748,7 +33112,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Trondheim katedralskole",
    "lat": 63.42865,
-   "lon": 10.39568
+   "lon": 10.39568,
+   "kommune": "Trondheim",
+   "sted": "Trondheim"
   },
   {
    "name": "Verdal videregående skole",
@@ -32839,7 +33205,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Verdal videregående skole",
    "lat": 63.79658,
-   "lon": 11.50183
+   "lon": 11.50183,
+   "kommune": "Verdal",
+   "sted": "Verdal"
   },
   {
    "name": "Ytre Namdal videregående skole",
@@ -32920,7 +33288,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Ytre Namdal videregående skole",
    "lat": 64.86961,
-   "lon": 11.23346
+   "lon": 11.23346,
+   "kommune": "Nærøysund",
+   "sted": "Rørvik"
   },
   {
    "name": "Åfjord videregående skole",
@@ -32981,7 +33351,9 @@
    "photo_license": "© Trøndelag fylkeskommune",
    "nsr_name": "Åfjord videregående skole",
    "lat": 63.96519,
-   "lon": 10.22163
+   "lon": 10.22163,
+   "kommune": "Åfjord",
+   "sted": "Åfjord"
   },
   {
    "name": "Amalie Skram videregående skole",
@@ -33242,7 +33614,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Amalie Skram videregående skole",
    "lat": 60.38566,
-   "lon": 5.33808
+   "lon": 5.33808,
+   "kommune": "Bergen",
+   "sted": "Bergen"
   },
   {
    "name": "Arna vidaregåande skule",
@@ -33490,7 +33864,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Arna vidaregåande skule",
    "lat": 60.44256,
-   "lon": 5.46022
+   "lon": 5.46022,
+   "kommune": "Bergen",
+   "sted": "Indre Arna"
   },
   {
    "name": "Askøy videregående skole",
@@ -33841,7 +34217,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Askøy videregående skole",
    "lat": 60.41634461437971,
-   "lon": 5.221043574193361
+   "lon": 5.221043574193361,
+   "kommune": "Askøy",
+   "sted": "Kleppestø"
   },
   {
    "name": "Austevoll vidaregåande skule",
@@ -34038,7 +34416,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Austevoll vidaregåande skule",
    "lat": 60.08635,
-   "lon": 5.26328
+   "lon": 5.26328,
+   "kommune": "Austevoll",
+   "sted": "Storebø"
   },
   {
    "name": "Austrheim vidaregåande skule",
@@ -34401,7 +34781,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Austrheim vidaregåande skule",
    "lat": 60.78852,
-   "lon": 4.93731
+   "lon": 4.93731,
+   "kommune": "Austrheim",
+   "sted": "Austrheim"
   },
   {
    "name": "Bergen katedralskole",
@@ -34464,7 +34846,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Bergen katedralskole",
    "lat": 60.3934,
-   "lon": 5.33084
+   "lon": 5.33084,
+   "kommune": "Bergen",
+   "sted": "Bergen"
   },
   {
    "name": "Bømlo vidaregåande skule",
@@ -34806,7 +35190,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Bømlo vidaregåande skule",
    "lat": 59.79298,
-   "lon": 5.18866
+   "lon": 5.18866,
+   "kommune": "Bømlo",
+   "sted": "Bremnes"
   },
   {
    "name": "Dale vidaregåande skule",
@@ -35023,7 +35409,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Dale vidaregåande skule",
    "lat": 61.3567,
-   "lon": 5.39802
+   "lon": 5.39802,
+   "kommune": "Fjaler",
+   "sted": "Dale i Sunnfjord"
   },
   {
    "name": "Eid vidaregåande skule",
@@ -35428,7 +35816,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Eid vidaregåande skule",
    "lat": 61.91355,
-   "lon": 5.98325
+   "lon": 5.98325,
+   "kommune": "Stad",
+   "sted": "Nordfjordeid"
   },
   {
    "name": "Firda vidaregåande skule",
@@ -35587,7 +35977,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Firda vidaregåande skule",
    "lat": 61.77388,
-   "lon": 6.22051
+   "lon": 6.22051,
+   "kommune": "Gloppen",
+   "sted": "Sandane"
   },
   {
    "name": "Fitjar vidaregåande skule",
@@ -35841,7 +36233,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Fitjar vidaregåande skule",
    "lat": 59.9203,
-   "lon": 5.32093
+   "lon": 5.32093,
+   "kommune": "Fitjar",
+   "sted": "Fitjar"
   },
   {
    "name": "Flora vidaregåande skule",
@@ -36291,7 +36685,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Flora vidaregåande skule",
    "lat": 61.59389,
-   "lon": 5.04355
+   "lon": 5.04355,
+   "kommune": "Kinn",
+   "sted": "Florø"
   },
   {
    "name": "Fusa vidaregåande skule",
@@ -36581,7 +36977,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Fusa vidaregåande skule",
    "lat": 60.23897,
-   "lon": 5.74873
+   "lon": 5.74873,
+   "kommune": "Bjørnafjorden",
+   "sted": "Eikelandsosen"
   },
   {
    "name": "Fyllingsdalen videregående skole",
@@ -36772,7 +37170,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Fyllingsdalen videregående skole",
    "lat": 60.34743,
-   "lon": 5.28765
+   "lon": 5.28765,
+   "kommune": "Bergen",
+   "sted": "Fyllingsdalen"
   },
   {
    "name": "Førde vidaregåande skule",
@@ -37527,7 +37927,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Førde vidaregåande skule",
    "lat": 61.45628,
-   "lon": 5.85221
+   "lon": 5.85221,
+   "kommune": "Sunnfjord",
+   "sted": "Førde"
   },
   {
    "name": "Høyanger vidaregåande skule",
@@ -37775,7 +38177,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Høyanger vidaregåande skule",
    "lat": 61.22295,
-   "lon": 6.07972
+   "lon": 6.07972,
+   "kommune": "Høyanger",
+   "sted": "Høyanger"
   },
   {
    "name": "Knarvik vidaregåande skule",
@@ -38193,7 +38597,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Knarvik vidaregåande skule",
    "lat": 60.55032,
-   "lon": 5.28227
+   "lon": 5.28227,
+   "kommune": "Alver",
+   "sted": "Isdalstø"
   },
   {
    "name": "Kvam vidaregåande skule",
@@ -38413,7 +38819,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Kvam vidaregåande skule",
    "lat": 60.37083,
-   "lon": 6.14469
+   "lon": 6.14469,
+   "kommune": "Kvam",
+   "sted": "Norheimsund"
   },
   {
    "name": "Kvinnherad vidaregåande skule",
@@ -38767,7 +39175,9 @@
    "photo_license": "CC BY 3.0",
    "nsr_name": "Kvinnherad vidaregåande skule",
    "lat": 59.85059,
-   "lon": 5.74276
+   "lon": 5.74276,
+   "kommune": "Kvinnherad",
+   "sted": "Husnes"
   },
   {
    "name": "Laksevåg og Bergen Maritime videregående skole",
@@ -39138,7 +39548,9 @@
    "address": "Odd Frantzens plass 6, 5008, BERGEN",
    "nsr_name": "Laksevåg og Bergen Maritime videregående skole",
    "lat": 60.38542,
-   "lon": 5.33362
+   "lon": 5.33362,
+   "kommune": "Bergen",
+   "sted": "Bergen"
   },
   {
    "name": "Langhaugen videregående skole",
@@ -39248,7 +39660,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Langhaugen videregående skole",
    "lat": 60.36253,
-   "lon": 5.36216
+   "lon": 5.36216,
+   "kommune": "Bergen",
+   "sted": "Bergen"
   },
   {
    "name": "Måløy vidaregåande skule",
@@ -39641,7 +40055,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Måløy vidaregåande skule",
    "lat": 61.91866,
-   "lon": 5.17102
+   "lon": 5.17102,
+   "kommune": "Kinn",
+   "sted": "Deknepollen"
   },
   {
    "name": "Nordahl Grieg videregående skole",
@@ -39878,7 +40294,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Nordahl Grieg videregående skole",
    "lat": 60.29918,
-   "lon": 5.32452
+   "lon": 5.32452,
+   "kommune": "Bergen",
+   "sted": "Rådal"
   },
   {
    "name": "Odda vidaregåande skule",
@@ -40206,7 +40624,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Odda vidaregåande skule",
    "lat": 60.0564,
-   "lon": 6.54637
+   "lon": 6.54637,
+   "kommune": "Ullensvang",
+   "sted": "Odda"
   },
   {
    "name": "Olsvikåsen videregående skole",
@@ -40414,7 +40834,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Olsvikåsen videregående skole",
    "lat": 60.3783,
-   "lon": 5.22135
+   "lon": 5.22135,
+   "kommune": "Bergen",
+   "sted": "Olsvik"
   },
   {
    "name": "Os gymnas",
@@ -40462,7 +40884,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Os gymnas",
    "lat": 60.19509,
-   "lon": 5.45895
+   "lon": 5.45895,
+   "kommune": "Bjørnafjorden",
+   "sted": "Os"
   },
   {
    "name": "Os vidaregåande skule",
@@ -40973,7 +41397,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Os vidaregåande skule",
    "lat": 60.19641,
-   "lon": 5.44271
+   "lon": 5.44271,
+   "kommune": "Bjørnafjorden",
+   "sted": "Os"
   },
   {
    "name": "Osterøy vidaregåande skule",
@@ -41195,7 +41621,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Osterøy vidaregåande skule",
    "lat": 60.52241096130478,
-   "lon": 5.511059761047363
+   "lon": 5.511059761047363,
+   "kommune": "Osterøy",
+   "sted": "Lonevåg"
   },
   {
    "name": "Rubbestadnes vidaregåande skule",
@@ -41337,7 +41765,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Bømlo vidaregåande skule avd Rubbestadneset",
    "lat": 59.81544538654396,
-   "lon": 5.270383003724226
+   "lon": 5.270383003724226,
+   "kommune": "Bømlo",
+   "sted": "Rubbestadneset"
   },
   {
    "name": "Sandsli videregående skole",
@@ -41510,7 +41940,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Sandsli videregående skole",
    "lat": 60.29155,
-   "lon": 5.27893
+   "lon": 5.27893,
+   "kommune": "Bergen",
+   "sted": "Sandsli"
   },
   {
    "name": "Slåtthaug videregående skole",
@@ -41980,7 +42412,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Slåtthaug videregående skole",
    "lat": 60.30955,
-   "lon": 5.35763
+   "lon": 5.35763,
+   "kommune": "Bergen",
+   "sted": "Nesttun"
   },
   {
    "name": "Sogndal vidaregåande skule",
@@ -42575,7 +43009,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Sogndal vidaregåande skule",
    "lat": 61.23192,
-   "lon": 7.08502
+   "lon": 7.08502,
+   "kommune": "Sogndal",
+   "sted": "Sogndal"
   },
   {
    "name": "Sotra vidaregåande skule",
@@ -43194,7 +43630,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Sotra vidaregåande skule",
    "lat": 60.35192,
-   "lon": 5.109
+   "lon": 5.109,
+   "kommune": "Øygarden",
+   "sted": "Straume"
   },
   {
    "name": "Stend vidaregåande skule",
@@ -43576,7 +44014,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Stend vidaregåande skule",
    "lat": 60.27235,
-   "lon": 5.33048
+   "lon": 5.33048,
+   "kommune": "Bergen",
+   "sted": "Fana"
   },
   {
    "name": "Stord vidaregåande skule",
@@ -44110,7 +44550,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Stord vidaregåande skule",
    "lat": 59.77658,
-   "lon": 5.4924
+   "lon": 5.4924,
+   "kommune": "Stord",
+   "sted": "Stord"
   },
   {
    "name": "Stryn vidaregåande skule",
@@ -44374,7 +44816,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Stryn vidaregåande skule",
    "lat": 61.90342,
-   "lon": 6.7142
+   "lon": 6.7142,
+   "kommune": "Stryn",
+   "sted": "Stryn"
   },
   {
    "name": "Tertnes vidaregåande skule",
@@ -44425,7 +44869,9 @@
    "photo_position": "top",
    "nsr_name": "Tertnes vidaregåande skule",
    "lat": 60.45505,
-   "lon": 5.31261
+   "lon": 5.31261,
+   "kommune": "Bergen",
+   "sted": "Tertnes"
   },
   {
    "name": "Voss gymnas",
@@ -44820,7 +45266,9 @@
    "photo_license": "CC BY-SA 4.0",
    "nsr_name": "Voss gymnas",
    "lat": 60.62695,
-   "lon": 6.42605
+   "lon": 6.42605,
+   "kommune": "Voss",
+   "sted": "Voss"
   },
   {
    "name": "Voss vidaregåande skule",
@@ -45377,7 +45825,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Voss vidaregåande skule",
    "lat": 60.65025,
-   "lon": 6.43715
+   "lon": 6.43715,
+   "kommune": "Voss",
+   "sted": "Skulestadmo"
   },
   {
    "name": "Årdal vidaregåande skule",
@@ -45648,7 +46098,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Årdal vidaregåande skule",
    "lat": 61.30843,
-   "lon": 7.80015
+   "lon": 7.80015,
+   "kommune": "Årdal",
+   "sted": "Øvre Årdal"
   },
   {
    "name": "Årstad videregående skole",
@@ -46250,7 +46702,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Årstad videregående skole",
    "lat": 60.37493,
-   "lon": 5.34041
+   "lon": 5.34041,
+   "kommune": "Bergen",
+   "sted": "Bergen"
   },
   {
    "name": "Åsane vidaregåande skule",
@@ -46880,7 +47334,9 @@
    "photo_license": "© Vestland fylkeskommune",
    "nsr_name": "Åsane vidaregåande skule",
    "lat": 60.46771,
-   "lon": 5.32159
+   "lon": 5.32159,
+   "kommune": "Bergen",
+   "sted": "Ulset"
   }
  ],
  "years": [

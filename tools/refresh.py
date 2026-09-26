@@ -22,6 +22,7 @@ STEPS = [
     ('sources_manifest.py', 'sources/manifest.json: hash every source document (provenance kept)'),
     ('build_dataset.py', 'parse every county into web/public/data/schools.json'),
     ('geocode.py', 'NSR → Kartverket address → Kartverket place names'),
+    ('places.py', 'kommune (NSR, then Brønnøysund; cached) and post town per school'),
     ('photos.py', 'curated photo and identity overrides'),
     ('model.py', 'the forecast: fit, walk-forward backtest, web/public/data/model.json'),
     ('build_db.py', 'SQLite + CSV, including the forecasts'),
