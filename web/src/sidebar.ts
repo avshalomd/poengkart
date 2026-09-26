@@ -376,8 +376,10 @@ export function renderChance(s, lensCat) {
   // the default scope, the range over both once Vg2 and up are shown
   const sg: Record<string, number> = (S.MODEL!.meta || {}).sigma_group_multiplier || {};
   const gs: number[] = S.allLevels ? Object.values(sg) : (sg.Vg1 != null ? [sg.Vg1] : []);
-  const mlo = (sm.length ? Math.min(...sm) : 1) * (gs.length ? Math.min(...gs) : 1);
-  const mhi = (sm.length ? Math.max(...sm) : 1) * (gs.length ? Math.max(...gs) : 1);
+  // ...and the jump factor (sigma_jump_multiplier): wider after an unusual step
+  const sj: number[] = Object.values((S.MODEL!.meta || {}).sigma_jump_multiplier || {});
+  const mlo = (sm.length ? Math.min(...sm) : 1) * (gs.length ? Math.min(...gs) : 1) * (sj.length ? Math.min(...sj) : 1);
+  const mhi = (sm.length ? Math.max(...sm) : 1) * (gs.length ? Math.max(...gs) : 1) * (sj.length ? Math.max(...sj) : 1);
   const lo = sf.length ? Math.round(Math.min(...sf) * mlo) : 5, hi = sf.length ? Math.round(Math.max(...sf) * mhi) : 8;
   // the coverage of the scope the reader is looking at: Vg1 by default, where
   // the backtest scores it apart (meta.backtest_eval_years.by_level), the

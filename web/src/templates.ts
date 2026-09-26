@@ -192,6 +192,16 @@ export function listHtml(s: School, scope: string | null): string {
         : lv === 'open' ? `<span class="soft">${t('allIn')}</span>`
         : lv === 'D' ? `<span class="soft" data-tip="${esc(t('docAdm'))} – ${esc(t('docTitle'))}">${t('docAdmShort')}</span>`
         : `<span class="soft">${t('gone')}</span>`;
+      // an unusual newest step (the model's j): the two newest figures, named
+      let jump = '', jumpTxt = '';
+      const je = typeof lv === 'number' ? modelEntry(s, p) : null;
+      if (je && je.j != null) {
+        const ny = ys.filter(y => typeof p.values[y] === 'number' && p.values[y] > 0).slice(-2);
+        if (ny.length === 2) {
+          jumpTxt = t('jumpTitle', fmt(p.values[ny[0]]), ny[0], fmt(p.values[ny[1]]), ny[1], fmt(Math.abs(je.j)));
+          jump = `<span class="jump" data-tip="${esc(jumpTxt)}">${t('jumpFlag')} ⓘ</span>`;
+        }
+      }
       const key = progId(p);
       let badge = '';
       if (!orphan && (prioNames.has(key) || hasF) && !badged.has(key)) {
@@ -238,11 +248,11 @@ export function listHtml(s: School, scope: string | null): string {
         : lv === 'open' ? t('allIn')
         : lv === 'D' ? `${t('docAdm')} – ${t('docTitle')}`
         : t('gone');
-      const desc = [chipTxt, lvl ? `${p.level}: ${lvl[1]}` : p.level, valTxt]
+      const desc = [chipTxt, lvl ? `${p.level}: ${lvl[1]}` : p.level, valTxt, jumpTxt]
         .filter(Boolean).map(x => String(x).trim().replace(/\.$/, '')).join('. ') + '.';
       html += `<div class="prow${sel}${orphan ? ' muted' : ''}${solo && rowsSoFar ? ' solo' : ''}" data-cat="${c}" data-idx="${idx}">` +
               `<button type="button" class="nm" aria-describedby="pd-${idx}"${p.official ? ` title="${esc(t('officialName', p.official))}"` : ''}>${esc(progName(p))}${badge}</button>` +
-              `${chip}<span class="lv${lvl ? ' tipped' : ''}">${esc(p.level)}</span><span class="end"><span class="val">${val}</span>${pick}</span>` +
+              `${chip}<span class="lv${lvl ? ' tipped' : ''}">${esc(p.level)}</span><span class="end">${jump}<span class="val">${val}</span>${pick}</span>` +
               `<span id="pd-${idx}" hidden>${esc(desc)}</span></div>`;
       rowsSoFar++;
     }
