@@ -1,11 +1,12 @@
 import { describe, it, expect, vi } from 'vitest';
-import { loadFixtures, asker, forde } from './fixtures';
+import { loadFixtures, asker, forde, DATA } from './fixtures';
 import { stubMap } from './mapstub';
 import { openSide, closeSide, renderSide, renderChance, listLayout, phoneSheet, sheetFull, widenFor, applyUrlFilters } from '../src/sidebar';
 import { buildUrl } from '../src/router';
-import { schoolChance } from '../src/chance';
+import { schoolChance, onPointsInput, flushPoints, renderPointsField } from '../src/chance';
+import { setLens } from '../src/map';
 import { capFirst, meanStep, photoSrc, schoolTitle, shownPrograms, visibleIn, fmt } from '../src/helpers';
-import { initHelpers } from '../src/helpers';
+import { initHelpers, chartMode, sheetLens } from '../src/helpers';
 import { initListview } from '../src/listview';
 import { t } from '../src/i18n';
 import { S } from '../src/state';
@@ -179,5 +180,69 @@ describe('the school sheet', () => {
   it('capFirst and photoSrc are the small shapes the header depends on', () => {
     expect(capFirst('alle programområder')).toBe('Alle programområder');
     expect(photoSrc('https://x.example/p.jpg')).toBe('https://x.example/p.jpg');
+  });
+});
+
+describe('the sheet keeps its own controls', () => {
+  // several utdanningsprogram, one of them with more than one row (and so a heading)
+  const multiCat = () => DATA.schools.find((x: any) => {
+    const by: any = {};
+    shownPrograms(x).forEach((p: any) => (by[p.category] = (by[p.category] || 0) + 1));
+    return Object.keys(by).length > 2 && Object.values(by).some((n: any) => n > 1);
+  });
+  it('its tabs, its headings and «Vis alle» change the sheet, never the map’s programme filter', () => {
+    loadFixtures(); initHelpers(); initListview(); stubMap();
+    const s = multiCat();
+    const cat = shownPrograms(s)[0].category;
+    setLens(cat);
+    openSide(s);
+    expect(chartMode()).toBe('cat');
+    (document.querySelector('#tabs button[data-mode="all"]') as HTMLElement).click();
+    expect(S.mapCat).toBe(cat);
+    expect(chartMode()).toBe('all');
+    expect(document.querySelectorAll('#s-list .prow').length).toBe(visibleIn(shownPrograms(s)));
+    // a heading narrows the sheet alone
+    const head = document.querySelector('#s-list .cat-head[data-cat]') as HTMLElement;
+    const picked = head.dataset.cat;
+    head.click();
+    expect(S.mapCat).toBe(cat);
+    expect(sheetLens()).toBe(picked);
+    (document.querySelector('#s-list .scope-all') as HTMLElement).click();
+    expect(S.mapCat).toBe(cat);
+    expect(sheetLens()).toBe('all');
+    // the map's own filter still reaches an open sheet, and the next school
+    // opens on it again
+    setLens('all');
+    expect(sheetLens()).toBe('all');
+    setLens(cat);
+    expect(sheetLens()).toBe(cat);
+  });
+  it('where the sheet covers the panel, it carries a points field that writes the same figure', () => {
+    loadFixtures(); initHelpers(); initListview(); stubMap();
+    S.view = 'list';
+    listLayout();                                  // happy-dom's 1024px: the thin list, which the sheet covers
+    renderPointsField();
+    openSide(forde());
+    expect(document.body.classList.contains('sheet-full')).toBe(true);
+    const mi = document.getElementById('s-points') as HTMLInputElement;
+    expect(document.getElementById('s-pts')!.hidden).toBe(false);
+    mi.focus();
+    mi.value = '38,5';
+    onPointsInput(mi.value);
+    flushPoints();
+    expect(S.myPoints).toBe(38.5);
+    expect((document.getElementById('my-points') as HTMLInputElement).value).toBe('38,5');
+    expect(document.getElementById('s-points')).toBe(mi);    // not redrawn under the reader's finger
+    expect(document.getElementById('s-chance')!.textContent).toContain(fmt(38.5));
+    closeSide(true);
+    expect(document.body.classList.contains('sheet-full')).toBe(false);
+    S.view = 'map'; listLayout();
+  });
+  it('the ✕ and the report button sit in the bar that stays at the top of the sheet', () => {
+    loadFixtures(); initHelpers(); stubMap();
+    openSide(asker());
+    const bar = document.querySelector('#s-photo > .bar')!;
+    expect(bar.querySelector('button.close:not(.bug)')).toBeTruthy();
+    expect(bar.querySelector('button.close.bug')).toBeTruthy();
   });
 });

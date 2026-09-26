@@ -29,12 +29,19 @@ export function photoHtml(s: School): string {
         : esc(creditText)) + '</div>'
     : '';
   const pos = s.photo_position ? ` style="--photo-pos:${esc(s.photo_position)}"` : '';
-  return (s.photo ? `<img src="${esc(photoSrc(s.photo))}" data-full="${esc(s.photo)}"`
+  // The ✕ and the report button ride a bar that stays at the top of the sheet
+  // while the photo scrolls up under it; the photo's last strip, with the
+  // name, stays too (.photo in app.css). On the photo itself, the ✕ scrolled
+  // away with it, and on a phone that left no way out of a long sheet but the
+  // Back gesture.
+  return `<div class="bar">` +
+    `<button class="close bug" onclick="openBug(current, this)" aria-label="${esc(t('bugSchoolLabel'))}">${BUG_ICON}</button>` +
+    `<button class="close" onclick="closeSide()" aria-label="${esc(t('closeAria'))}">${X_ICON}</button>` +
+    `</div>` +
+    (s.photo ? `<img src="${esc(photoSrc(s.photo))}" data-full="${esc(s.photo)}"`
                  + ` alt="" loading="lazy"${pos}>`
                  : `<div id="s-minimap"></div>`) +
     `<div class="veil"></div>` +
-    `<button class="close bug" onclick="openBug(current, this)" aria-label="${esc(t('bugSchoolLabel'))}">${BUG_ICON}</button>` +
-    `<button class="close" onclick="closeSide()" aria-label="${esc(t('closeAria'))}">${X_ICON}</button>` +
     `<div class="name"><h2>${esc(s.name)}</h2>${credit}</div>`;
 }
 // meta links
@@ -173,7 +180,7 @@ export function listHtml(s: School, scope: string | null): string {
     // title and the English heading the app's short form, so they never matched
     // and the English sheet set «Sports 1» over «Sports and Physical Education».
     const solo = list.length === 1 && list[0].program.toLowerCase() === CATS[c].no.toLowerCase();
-    if (!solo) html += `<button class="cat-head" data-cat="${c}" aria-pressed="${S.mapCat === c}"><span>${CATS[c][S.lang]}</span><span class="cnt">${list.length}</span></button>`;
+    if (!solo) html += `<button class="cat-head" data-cat="${c}" aria-pressed="${scope === c}"><span>${CATS[c][S.lang]}</span><span class="cnt">${list.length}</span></button>`;
     for (const p of list) {
       // headline value: newest non-priority cell (F is a quota fact, not a value)
       let latestYear: string | null = null, lv;

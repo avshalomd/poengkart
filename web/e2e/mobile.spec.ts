@@ -117,3 +117,24 @@ test('the legend’s colour ramp stays on one line with «Vis mer» open', async
   expect(tops, 'five bins in the default national view').toHaveLength(5);
   expect(Math.max(...tops) - Math.min(...tops), 'the swatches share a top edge').toBeLessThanOrEqual(0.5);
 });
+
+// Visitors on a phone lost the ✕ once they scrolled a long sheet: it sat on
+// the photo and left with it. It now rides a bar at the top of the sheet.
+// And the sheet covers the panel here, so it carries its own points field.
+test('a scrolled sheet keeps its ✕ on screen, and its own points field moves the chance', async ({ page }) => {
+  await boot(page);
+  await openSchool(page, 'Vestland', 'Førde vidaregåande skule');
+  await page.locator('#side > .scroll').evaluate(e => e.scrollTo(0, e.scrollHeight));
+  await expect(page.locator('#s-photo')).toHaveClass(/stuck/);
+  const x = page.locator('#s-photo button.close:not(.bug)');
+  const box = await x.boundingBox();
+  expect(box!.y).toBeGreaterThanOrEqual(0);
+  expect(box!.y + box!.height).toBeLessThanOrEqual(80);
+  await page.locator('#side > .scroll').evaluate(e => e.scrollTo(0, 0));
+  await page.locator('#s-points').fill('41');
+  await expect(page.locator('#s-chance .h')).toContainText('41,0');
+  await page.locator('#side > .scroll').evaluate(e => e.scrollTo(0, e.scrollHeight));
+  await x.click();
+  await expect(page.locator('#side')).not.toHaveClass(/open/);
+  await expect(page.locator('#my-points')).toHaveValue('41');
+});
