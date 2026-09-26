@@ -8,7 +8,7 @@ import { S } from './state';
 import { t, CATS } from './i18n';
 import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE, HELD_OUT,
          partitionPrograms, numericLatest, progId, progName, levelScope, isRecent, isVg1, isPoints, meanStep, BUG_ICON, X_ICON } from './helpers';
-import { bucketOf, chanceFinal, chanceMode, chanceOf, finalRoundBridge, isChosen, modelEntry, pct, pctS, predFor } from './forecast';
+import { bucketOf, chanceFinal, chanceMode, chanceOf, finalRoundBridge, isChosen, modelEntry, newestForecastYear, pct, pctS, predFor } from './forecast';
 import type { School, County } from './types';
 
 export interface HeroCell { v: string | number; l: string; cls?: string; ti?: string }
@@ -96,7 +96,12 @@ export function heroCells(s: School, lensCat: string | null): HeroCell[] {
   const { latest, prev, mean, meanPrev }: any = step;
   const scopeLabel = lensCat ? CATS[lensCat][S.lang] : t('heroTypicalAll');
   if (mean !== null) {
-    cells.push({ v: fmt(mean), l: `${t('heroTypical')} · ${scopeLabel} ${latest}` });
+    // One cell is that programme area's poenggrense; several are averaged, and
+    // the average named with its range: «44,1» over Katedralskolen's ST read as
+    // the line to beat, when plain ST needed 47,5 and IB 40,6.
+    const nums = scopePrograms.map(p => p.values[latest]).filter(isPoints);
+    const lbl = nums.length > 1 ? t('heroMeanOf', fmt(Math.min(...nums)), fmt(Math.max(...nums))) : t('heroTypical');
+    cells.push({ v: fmt(mean), l: `${lbl} · ${scopeLabel} ${latest}` });
     if (meanPrev !== null) {
       const d = step.d;
       cells.push({ v: (d! > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
@@ -199,7 +204,7 @@ export function listHtml(s: School, scope: string | null): string {
         badge = `<span class="fbadge" title="${esc(t('fortrinnTitle'))}">${t('prioBadge')}</span>`;
       }
       const sel = S.chart.prog === p ? ' sel' : '';
-      let chip = '', chipTxt = '';
+      let chip = '', chipTxt = '', fc = '';
       if (chanceMode() && !orphan) {
         const pr = predFor(s, p);
         if (pr) {
@@ -214,6 +219,15 @@ export function listHtml(s: School, scope: string | null): string {
           chipTxt = tip + (pr.h === 1 ? ` (${t('lowHist')})` : '');
           // one observed year is a thin basis: say so next to the figure
           if (pr.h === 1) chip = `<span class="chw">${chip}<span class="hist">${t('lowHist')}</span></span>`;
+          // The percentage is measured against this forecast, not against the
+          // figure at the row's end: printed only in the chip's tip, 11 of 12
+          // first-time readers (26 Sept 2026 walkthroughs) saw «sannsynlig»
+          // beside a higher poenggrense and stopped trusting the chance. The
+          // share with no waiting list is what lifts a row whose expected
+          // threshold is above the reader's points; say it where it matters.
+          const free = HELD_OUT.has(s.fylke) ? 0 : Math.round((1 - pr.pi) * 100);
+          fc = `<span class="fc">${esc(t('fcLine', pr.year, fmt(pr.m), fmt(pr.s), +pr.year < newestForecastYear())
+                 + (free >= 10 ? t('fcOpen', free) : ''))}</span>`;
         } else if ((modelEntry(s, p) || {}).h === 0) {
           chip = `<span class="ch none" data-tip="${esc(t('noHistTitle'))}">${t('noHist')}</span>`;
           chipTxt = t('noHistTitle');
@@ -243,7 +257,7 @@ export function listHtml(s: School, scope: string | null): string {
       html += `<div class="prow${sel}${orphan ? ' muted' : ''}${solo && rowsSoFar ? ' solo' : ''}" data-cat="${c}" data-idx="${idx}">` +
               `<button type="button" class="nm" aria-describedby="pd-${idx}"${p.official ? ` title="${esc(t('officialName', p.official))}"` : ''}>${esc(progName(p))}${badge}</button>` +
               `${chip}<span class="lv${lvl ? ' tipped' : ''}">${esc(p.level)}</span><span class="end"><span class="val">${val}</span>${pick}</span>` +
-              `<span id="pd-${idx}" hidden>${esc(desc)}</span></div>`;
+              fc + `<span id="pd-${idx}" hidden>${esc(desc)}</span></div>`;
       rowsSoFar++;
     }
   }

@@ -1,7 +1,7 @@
 export { BANDS, ZQ_GRID, errCdf, chanceOf, bucketOf, pct, pctS, chanceMode, modelEntry, predFor, schoolChance, finalRoundBridge, chanceFinal, okChoice, progKeyMap, isChosen } from './forecast';
 import { renderLegend } from "./chrome";
 import { bucketOf, chanceMode, chanceOf, okChoice, pct, pctS, predFor, progKeyMap } from "./forecast";
-import { cssVar, esc, fmt, progName, slug, X_ICON } from "./helpers";
+import { cssVar, esc, fmt, progName, round1, slug, X_ICON } from "./helpers";
 import { t } from "./i18n";
 import { toast } from "./locate";
 import { mapZoom, recolourMap, viewSchool } from "./map";
@@ -292,6 +292,10 @@ export function parsePoints(v) {
   const txt = String(v == null ? '' : v).trim();
   if (!PTS_OK.test(txt)) return { pts: null, bad: !PTS_TYPING.test(txt) };
   const n = Math.round(parseFloat(txt.replace(',', '.')) * 10) / 10;
+  // Nobody has fewer than 10 points (a straight-1 average), so a figure from
+  // 1 to 6 is a grade average typed where points go: taken as points it
+  // painted every school red. It is held back and offered ×10 instead.
+  if (n >= 1 && n <= 6) return { pts: null, bad: false, avg: n };
   return n >= 0 && n <= 70 ? { pts: n, bad: false } : { pts: null, bad: true };
 }
 // A figure set in one go (the ✕, the calculator) is drawn at once.
@@ -305,9 +309,9 @@ export function onPoints(v) {
 // until the next keystroke or until the field is left (flushPoints, on change).
 let ptsTimer: ReturnType<typeof setTimeout> | undefined, ptsPending = false;
 export function onPointsInput(v) {
-  const r = setPoints(v);
-  ptsPending = true;
-  if (r.pts === null && !r.bad && String(v).trim() !== '') return;
+  ptsPending = true;                   // before the render: no average hint mid-keystroke
+  const r: any = setPoints(v);
+  if (r.pts === null && !r.bad && !r.avg && String(v).trim() !== '') return;
   ptsTimer = setTimeout(commitPoints, 250);
 }
 export function flushPoints() { if (ptsPending) commitPoints(); }
@@ -317,6 +321,7 @@ function setPoints(v) {
   const r = parsePoints(v);
   S.myPoints = r.pts;
   S.ptsBad = r.bad;
+  S.ptsAvg = (r as any).avg ?? null;
   if (v === '') inp.value = '';
   try {
     if (S.myPoints === null) localStorage.removeItem('pk-points');
@@ -329,6 +334,7 @@ function commitPoints() {
   clearTimeout(ptsTimer);
   ptsPending = false;
   const chipsWere = !!document.querySelector('#s-list .ch:not(.none)');
+  renderPointsField();                 // the average hint waits for the pause
   renderChoices(); recolourMap(); renderLegend();
   if (S.current) { renderSide(); if (!chipsWere) countUpChips(); }
 }
@@ -381,6 +387,16 @@ export function renderPointsField() {
   x!.setAttribute('aria-label', t('ptsClear'));
   const note = document.getElementById('pts-note');
   note!.classList.toggle('bad', bad);
+  // an average is offered as points once the typing pauses, never mid-keystroke
+  // («4» on the way to «45»)
+  const avg = S.ptsAvg !== null && !ptsPending && inp.value.trim() !== '' ? S.ptsAvg : null;
+  if (avg !== null) {
+    const p = fmt(round1(avg * 10));
+    note!.hidden = false;
+    note!.innerHTML = `${esc(t('ptsAvg', fmt(avg), p))} <button type="button" class="lnk" id="pts-avg-fix">${esc(t('ptsAvgFix', p))}</button>`;
+    (document.getElementById('pts-avg-fix') as HTMLElement).onclick = () => { onPoints(String(round1(avg * 10))); refocus('#my-points'); };
+    return;
+  }
   // Only a typing error has a note. A colour key used to follow a valid figure:
   // on the map the legend already is that key, and in the list each Chance
   // cell names its own band in words («0 av 3 sannsynlig»).

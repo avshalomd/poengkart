@@ -32,6 +32,19 @@ list view (Kart ⇄ Liste toggle: the map's filters as a sortable table).
   shows that school, no identifiable pupils (Borgund's only exterior has
   pupils in frame and stays out).
 
+## Added 26 September 2026 (visitor walkthroughs)
+
+- **Saved plans (profiles), parked by the owner.** A saved plan is a named
+  set of points plus a wish list, e.g. one student's «Rogaland» and «Oslo»
+  plans. It is not a per-student record. Twelve simulated first-time visitors
+  (report: https://claude.ai/artifact/9kK9aT8z1r4SSfAvTPbKgE) showed why:
+  with one points field and one list, a rådgiver who types the next
+  student's points silently recalculates the previous student's list. If it
+  is built, it stays in the visitor's browser (localStorage): no accounts,
+  no server, no names asked for, because many users are minors. Sharing is
+  a copied text or a self-contained link. The owner wants to think about it
+  before it is scheduled.
+
 ## Added September 2026 (grilling session)
 
 - **Source documents mirrored to object storage.** Done 3 September 2026:

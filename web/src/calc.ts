@@ -55,6 +55,9 @@ export function renderCalc() {
   document.getElementById('calc-body')!.innerHTML =
     `<p class="lede">${esc(t('calcLede'))}</p>` +
     CALC_SUBJECTS.map(f => row(f, false)).join('') +
+    // a 10. trinn pupil in the autumn has no exam yet, and two unnamed exam
+    // rows with nothing to say so read as blanks to be filled
+    `<p class="exam-h">${esc(t('calcExamHead'))}</p>` +
     CALC_EXAMS.map(f => row(f, true)).join('') +
     `<div class="sum">` +
     `<span><span class="v">${mean === null ? t('calcEmpty') : fmtN(mean)}</span> <span class="l">${esc(t('calcSnitt'))}</span></span>` +

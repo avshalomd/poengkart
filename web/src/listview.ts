@@ -1,4 +1,4 @@
-import { bucketColor, bucketOf, chanceMode, schoolChance } from "./chance";
+import { bucketColor, bucketOf, chanceMode, pct, pctS, schoolChance } from "./chance";
 import { forecastYears, liftMapControls } from "./chrome";
 import { BINS, colorFor, esc, fmt, HELD_OUT, meanStep, round1, schoolPressure, shownPrograms, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
@@ -93,12 +93,12 @@ export function renderListView() {
     if (nil(va) && nil(vb)) return a.s.name.localeCompare(b.s.name, 'no');
     if (nil(va)) return 1;
     if (nil(vb)) return -1;
-    // Sjanse sorts by what its cell shows — the dot's band, then «L av n», then
-    // n — so the order can be checked from the rows. It used to sort on the best
-    // single chance, which the cell does not print: at 40 points most of those
-    // are 0,99-something, and «4 av 4», «6 av 8», «2 av 2» came out shuffled.
+    // Sjanse sorts by what its cell shows — the band, then the best area's
+    // percentage as printed, then how many areas — so the order can be checked
+    // from the rows. The cell used to print «L av n sannsynlig», which read a
+    // 62 % school as hopeless beside a 25 % one (both «0 av 1»).
     if (k === 'chance') {
-      const key = r => [BAND_RANK[bucketOf(r.sc.best)], r.sc.likely / r.sc.n, r.sc.n];
+      const key = r => [BAND_RANK[bucketOf(r.sc.best)], pct(r.sc.best), r.sc.n];
       const ka = key(a), kb = key(b), i = ka.findIndex((x, j) => x !== kb[j]);
       return i < 0 ? a.s.name.localeCompare(b.s.name, 'no') : (ka[i] - kb[i]) * S.listSort.dir;
     }
@@ -125,7 +125,7 @@ export function renderListView() {
   const catLabel = S.mapCat === 'all' ? t('allCats') : (CATS[S.mapCat] || {})[S.lang] || S.mapCat;
   const fyLabel = allF ? t('allFylker') : S.mapFylke;
   const chip = r => {
-    if (r.pr.kind === 'open') return `<span class="chip open">${esc(t('listOpen'))}</span>`;
+    if (r.pr.kind === 'open') return `<span class="chip open" title="${esc(t('listOpenTitle'))}">${esc(t('listOpen'))}</span>`;
     if (r.pr.kind === 'zero') return `<span class="chip zero" title="${esc(r.pr.openN ? zeroLabel(r.pr.zeroN, r.pr.openN) : `${t('noPoints')} – ${t('noPointsTitle')}`)}">${esc(t('noPointsShort'))}</span>`;
     if (r.v === null) {
       const tip = r.pr.kind === 'stale' ? ` title="${esc(t('tipStale', r.pr.year))}"` : '';
@@ -142,7 +142,7 @@ export function renderListView() {
   };
   const chanceCell = r => !r.sc ? `<span class="none-v">—</span>`
     : `<span class="k" style="background:${bucketColor(bucketOf(r.sc.best))}"></span>` +
-      esc(t('listChanceCell', r.sc.likely, r.sc.n));
+      esc(t('listChanceCell', bucketOf(r.sc.best), pctS(r.sc.best), r.sc.n));
   host!.innerHTML =
     `<div class="card"><div class="lhead">` +
     `<span class="t" id="list-title">${esc(catLabel)} · ${esc(fyLabel)}</span>` +

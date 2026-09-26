@@ -105,3 +105,22 @@ describe('the programme list in English', () => {
     expect(solo).toBeGreaterThan(0);        // the case exists in the dataset
   });
 });
+
+describe('the chance explains itself', () => {
+  it('every chance chip has the forecast it is measured against beside it', () => {
+    S.myPoints = 43;
+    const s = asker();
+    const html = listHtml(s, null);
+    const d = document.createElement('div'); d.innerHTML = html;
+    const rows = [...d.querySelectorAll('.prow')].filter(r => r.querySelector('.ch:not(.none)'));
+    expect(rows.length).toBeGreaterThan(0);
+    for (const r of rows) expect(r.querySelector('.fc')!.textContent).toMatch(/^Forventet poenggrense \d{4}.*: ca\. \d+,\d ± \d+,\d/);
+    S.myPoints = null;
+  });
+  it('the hero names one programme area’s figure a poenggrense, several an average with its range', () => {
+    const s = asker();
+    const { hero } = heroHtml(s, null);
+    expect(hero).toMatch(/Snitt av grensene \d+,\d–\d+,\d|Poenggrense/);
+    expect(hero).not.toMatch(/>Snitt ·/);
+  });
+});

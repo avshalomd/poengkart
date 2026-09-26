@@ -146,11 +146,14 @@ export function renderLegend() {
   document.getElementById('legend-title')!.innerHTML =
     (chanceMode() ? esc(t('legendChance', fmt(S.myPoints), forecastYears(visibleSchools())))
       : S.mapCat === 'all' ? t('legendAll') : t('legendCat', S.mapCat)) +
+    // the chips on a line of their own: run on after the title, «… · beste
+    // programområde inntak ikke oppgitt» read as one phrase nobody could parse
+    `<span class="lg-chips">` +
     (rounds.length === 1 && !anyUnknown
       ? ` <span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', rounds[0])}</span>`
       : !rounds.length && anyUnknown
       ? ` <span class="round unknown" title="${esc(t('roundUnknownTitle'))}">${t('roundUnknown')}</span>` : '') +
-    levelChip();
+    levelChip() + `</span>`;
   const mix = document.getElementById('legend-mixed');
   mix!.hidden = !(rounds.length > 1 || (rounds.length && anyUnknown));
   legendZoomHint();
