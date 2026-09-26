@@ -204,6 +204,35 @@ export function shownPrograms(s) {
 // the newest year in the dataset, or the one before it: anything older is a
 // school the counties have stopped publishing
 export const staleBefore = () => +S.DATA!.years[S.DATA!.years.length - 1] - 1;
+/* A school whose newest figure, at any level, is older than that has stopped
+   publishing: a school since closed or merged, or every school of a county that
+   no longer publishes poenggrenser (Agder, Nordland). Hidden by default
+   wherever a family browses (the map, the List, search, the county menu) and
+   brought back by a setting; its own page still opens from a link or a wish.
+   Measured against the dataset's newest year, not the clock: in January the
+   counties have not published the new year yet, and nothing has gone stale. */
+const newestOf = new WeakMap<School, number>();
+export function schoolNewest(s: School) {
+  let n = newestOf.get(s);
+  if (n === undefined) {
+    n = 0;
+    for (const p of s.programs) for (const y in p.values) n = Math.max(n, +y);
+    newestOf.set(s, n);
+  }
+  return n;
+}
+export const isCurrentSchool = (s: School) => schoolNewest(s) >= staleBefore();
+export const shownSchools = (): School[] => S.showStale ? S.DATA!.schools : S.DATA!.schools.filter(isCurrentSchool);
+// the counties with at least one school shown, in the dataset's order
+export function shownCounties() {
+  const f = new Set(shownSchools().map(s => s.fylke));
+  return (S.DATA!.counties || []).filter(c => f.has(c.fylke));
+}
+// the counties every one of whose schools stopped publishing: the settings
+// line names them, and the county menu lists them greyed while hidden
+export const staleCounties = () => (S.DATA!.counties || [])
+  .filter(c => { const ss = S.DATA!.schools.filter(s => s.fylke === c.fylke); return ss.length && !ss.some(isCurrentSchool); })
+  .map(c => c.fylke);
 // counties whose "ingen venteliste" is the county's own rule rather than an
 // observed queue state (openRuleNote; tools/extractors/mro.py)
 export const OPEN_RULE = new Set(['Møre og Romsdal']);

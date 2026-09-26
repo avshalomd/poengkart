@@ -14,7 +14,7 @@ export const DATA = read('data/schools.json');
 export const MODEL = read('data/model.json');
 
 export function loadFixtures(): void {
-  S.DATA = DATA; S.MODEL = MODEL; S.lang = 'no'; S.myPoints = null; S.mapCat = 'all'; S.mapFylke = 'all'; S.allLevels = false; S.showOld = false;
+  S.DATA = DATA; S.MODEL = MODEL; S.lang = 'no'; S.myPoints = null; S.mapCat = 'all'; S.mapFylke = 'all'; S.allLevels = false; S.showOld = false; S.showStale = false;
   S._newestByFylke = null;
 }
 export const school = (name: string) => DATA.schools.find((s: any) => s.name === name)!;

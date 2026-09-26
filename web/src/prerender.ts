@@ -37,7 +37,7 @@ export const HOME_HEAD: HeadProps = {
 // fillShell() in one expression and neither may depend on the other's order.
 function prepareState(data: Dataset) {
   S.DATA = data; S.lang = 'no';
-  S.mapCat = 'all'; S.mapFylke = 'all'; S.allLevels = false; S.showOld = false;
+  S.mapCat = 'all'; S.mapFylke = 'all'; S.allLevels = false; S.showOld = false; S.showStale = false;
   // no reader yet: no chips, no picks, no selected row. S.chart is the whole
   // object because initHelpers() — the client's only writer of it — never runs
   // in the build, and `S.chart.prog = null` would be a set on undefined.

@@ -1,10 +1,10 @@
 import { renderPointsField } from "./chance";
 import { renderCatNote, renderLegend } from "./chrome";
-import { esc } from "./helpers";
+import { esc, isCurrentSchool, staleBefore, staleCounties } from "./helpers";
 import { t } from "./i18n";
 import { hideSheet, openSheetHistory, setModalTrap, showSheet } from "./intro";
 import { setLang } from "./lang";
-import { drawMarkers, setLevels, setMapStyle } from "./map";
+import { drawMarkers, setLevels, setMapStyle, setStale } from "./map";
 import { listLayout, renderSide, sideTrap } from "./sidebar";
 import { S } from './state';
 import type { Prefs } from './types';
@@ -57,10 +57,16 @@ export function renderSettings() {
     `<button type="button" data-k="${key}" data-v="${v}" class="${cur === v ? 'on' : ''}"` +
     ` aria-pressed="${cur === v}"${label ? ` aria-label="${esc(label)}" title="${esc(label)}"` : ''}>${html}</button>`)
     .join('') + `</div>`;
+  const stale = S.DATA ? S.DATA.schools.filter(s => !isCurrentSchool(s)).length : 0;
+  const goneF = S.DATA ? staleCounties() : [];
+  const goneTxt = goneF.length < 2 ? goneF.join('') : goneF.slice(0, -1).join(', ') + t('listAnd') + goneF[goneF.length - 1];
   document.getElementById('settings-body')!.innerHTML =
     `<div class="row"><div class="t">${esc(t('levelsSumLabel'))}</div>` +
     seg('levels', [['1', 'Vg1'], ['all', esc(t('levelsChipAll'))]], S.allLevels ? 'all' : '1', t('levelsSumLabel')) +
     `<div class="hint">${esc(t('setLevelsHint'))}</div></div>` +
+    (stale ? `<div class="row"><div class="t">${esc(t('setStale'))}</div>` +
+      seg('stale', [['0', esc(t('setStaleHide'))], ['1', esc(t('setStaleShow'))]], S.showStale ? '1' : '0', t('setStale')) +
+      `<div class="hint">${esc(t('setStaleHint', stale, staleBefore(), goneTxt))}</div></div>` : '') +
     `<div class="row"><div class="t">${esc(t('langLabel'))}</div>` +
     seg('lang', [['no', 'NO'], ['en', 'EN']], S.lang, t('langLabel')) + `</div>` +
     `<div class="row"><div class="t">${esc(t('setTheme'))}</div>` +
@@ -76,6 +82,7 @@ export function renderSettings() {
       const k = b.dataset.k, v = b.dataset.v;
       if (k === 'lang') setLang(v);            // re-renders this sheet
       else if (k === 'levels') { setLevels(v === 'all'); renderSettings(); }
+      else if (k === 'stale') { setStale(v === '1'); renderSettings(); }
       else {
         if (k === 'cvd') PREFS.cvd = v === '1';
         else PREFS[k] = v;

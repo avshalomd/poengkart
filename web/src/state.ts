@@ -13,6 +13,7 @@ export const S = {
   MODEL: null as Model | null,   // data/model.json — forecasts; optional
   myPoints: null as number | null,   // the reader's own points, or null
   showOld: false,   // show programme areas with no figures lately
+  showStale: false,   // show schools with no figures lately (helpers.ts shownSchools)
   allLevels: false,   // show Vg2 and up as well; Vg1 alone is the default (levelScope)
   HOME: null as LngLatBounds | null,   // bounds of the whole dataset, the map's home view
   mapCat: 'all' as string,
