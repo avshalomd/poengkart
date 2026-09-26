@@ -11,6 +11,12 @@ skole"). The county's own legend defines the one symbol used:
 
 Thresholds apply to applicants resident in the region: "Poengsummen som vises i
 tabellen er laveste inntatt søker som har tilhørighet i regionen."
+
+The round is the county's own word: its intake FAQ calls these tables
+«laveste poengsum ved 2. inntaket til vg1», and the 2024/25 Trondheim table,
+an image PDF read from a hand transcription
+(`trondelag_2024-25_trondheim_2inntak.transcribed.csv`), says «Laveste
+poengsum ved 2. inntaket» in its title.
 """
 import json
 import os
@@ -27,8 +33,7 @@ SRC = os.path.join(HERE, '..', '..', 'sources', 'trondelag')
 GREP = os.path.join(HERE, '..', 'grep-programomraader.json')
 
 META = {
-    'code': '50', 'fylke': 'Trøndelag', 'round': None, 'rights': 'ungdomsrett',
-    'round_note': 'the PDFs do not state which intake round the figures are from',
+    'code': '50', 'fylke': 'Trøndelag', 'round': '2', 'rights': 'ungdomsrett',
     'free_choice': False,          # 5 inntaksregioner
     'levels': 'Vg1',
     'source': 'https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6',
@@ -60,6 +65,27 @@ def _grep():
         return {}
 
 
+def _transcribed(path, warn):
+    """The image-only 2024/25 Trondheim table, as typed from the page: the
+    column label as printed, with the (often cut-off) Grep code in brackets."""
+    meta, cells = common.read_transcription(path)
+    rows = []
+    for c in cells:
+        label = re.sub(r'\s*\[.*\]$', '', c['program'])
+        raw = common.squash(c['printed'])
+        v = 'open' if raw == '*' else common.classify_cell(raw, min_value=0, loose=True)
+        if v is None:
+            warn.append(f'{os.path.basename(path)}: unread cell {c["school"]} {label} {raw!r}')
+            continue
+        program = common.canon_program(label)
+        school = SCHOOL_FIXES.get(c['school'], c['school'])
+        rows.append({'school': school, 'program': program,
+                     'level': common.guess_level(str(program), 'Vg1'),
+                     'values': {c['year']: v}, 'region': meta.get('region'),
+                     'county': META['fylke'], 'round': common.stated_round(meta)})
+    return rows
+
+
 def extract():
     warn, out = [], []
     if not os.path.isdir(SRC):
@@ -67,8 +93,13 @@ def extract():
     grep = _grep()
     if not grep:
         warn.append('Grep registry missing — run tools/fetch_grep.py')
-    for fname in sorted(os.listdir(SRC), reverse=True):
-        if not fname.endswith('.pdf'):
+    names = set(os.listdir(SRC))
+    for fname in sorted(names, reverse=True):
+        if fname.endswith('.transcribed.csv'):
+            out.append((fname, _transcribed(os.path.join(SRC, fname), warn)))
+            continue
+        # an image PDF is read from its transcription, never parsed
+        if not fname.endswith('.pdf') or fname[:-4] + '.transcribed.csv' in names:
             continue
         m = re.search(r'(20\d\d)-\d\d_(.+)\.pdf', fname)
         if not m:

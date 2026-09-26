@@ -7,11 +7,10 @@ import { t } from "./i18n";
 import { anySheetOpen, closeIntro, hintHelp, INTRO_SEEN, openSheetHistory, renderIntro } from "./intro";
 import { setView } from "./listview";
 import { addLocateControl, toast, updateZoomAria } from "./locate";
-import { boundsOf, createMap, drawMarkers, fitHome, fitVisible, foldPanel, hasWebGL, padBounds,
+import { createMap, drawMarkers, fitHome, fitVisible, foldPanel, hasWebGL, homeBounds,
          resizeMap, setMapStyle, viewSchool } from "./map";
 import { applyPrefs, closeSettings, loadPrefs, PREFS } from "./prefs";
 import { runSearch } from "./search";
-import { closeClusterOv } from "./clusterov";
 import { closeSearchOv, openSearchOv, pickOv, renderOvList, searchMode } from "./searchov";
 import { adoptLegacyUrl, pathSegments, schoolFromUrl, syncUrl, unresolvedFromPath } from "./router";
 import { applyUrlFilters, closeSide, openSide, renderSide, sideTrap } from "./sidebar";
@@ -70,6 +69,7 @@ export async function main() {
     if (l === 'no' || l === 'en') S.lang = l;   // anything else is not a language
   } catch (e) {}
   try { S.showOld = localStorage.getItem('pk-showold') === '1'; } catch (e) {}
+  try { S.showStale = localStorage.getItem('pk-showstale') === '1'; } catch (e) {}
   try { S.allLevels = localStorage.getItem('pk-alllevels') === '1'; } catch (e) {}
   // setLang() does this on every switch, but a fresh load never called it, so a
   // reader who had chosen English got an English page inside a document still
@@ -126,8 +126,7 @@ export async function main() {
   // while the tab is not being painted, so a national map could sit there
   // showing one county. Fit first, synchronously, and treat the deferred pass
   // purely as a correction for a pane that was still laying out.
-  const pts = S.DATA!.schools.filter(s => s.lat).map(s => [s.lat, s.lon] as [number, number]);
-  S.HOME = padBounds(boundsOf(pts), 0.06);
+  S.HOME = homeBounds();
   document.querySelector('#map .boot-pending')?.remove();
   if (hasWebGL()) {
     // The probe says the browser can make a WebGL2 context; the map asks for
@@ -260,7 +259,6 @@ export async function main() {
       else if (!document.getElementById('intro')!.hidden) closeIntro(true);
       else if (!document.getElementById('settings')!.hidden) closeSettings(true);
       else if (!document.getElementById('calc')!.hidden) closeCalc(true);
-      else if (!document.getElementById('clusterov')!.hidden) closeClusterOv(true);
       else closeSearchOv(true);
       // the entry landed on is the pre-open one: a scope changed in the
       // settings sheet (the Trinn choice) is written into it, not re-read
@@ -292,7 +290,6 @@ export async function main() {
     if (!document.getElementById('intro')!.hidden) { closeIntro(); return; }
     if (!document.getElementById('settings')!.hidden) { closeSettings(); return; }
     if (!document.getElementById('calc')!.hidden) { closeCalc(); return; }
-    if (!document.getElementById('clusterov')!.hidden) { closeClusterOv(); return; }
     if (!document.getElementById('searchov')!.hidden) { closeSearchOv(); return; }
     if (document.getElementById('side')!.classList.contains('open')) closeSide();
   });

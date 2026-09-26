@@ -7,8 +7,9 @@
 Admission thresholds (*poenggrenser*) for Norwegian upper secondary schools,
 on a map and as a ranked list. A threshold is the points of the last applicant
 who got a place (grade average × 10): what it took to get in, not what the
-school requires. 228 schools in the nine counties that publish the figures
-or released them on request, 2012–2026, in Norwegian and English.
+school requires. 278 schools in the eleven counties that publish the figures,
+released them on request or once printed them, 2012–2026, in Norwegian and
+English.
 
 ![The map of southern and central Norway with Bryne vidaregåande skule open: its photo, figures, trend and every programme](docs/map.png)
 
@@ -17,7 +18,8 @@ or released them on request, 2012–2026, in Norwegian and English.
 Type in your points and every school and programme is coloured by your chance
 of a place at the next intake: green likely, amber possible, red unlikely. The
 chance comes from a model fitted on the whole history and backtested year by
-year (Telemark's schools from a separate fit on the county's own figures);
+year (Telemark's schools from a separate fit on the county's own figures;
+Agder and Nordland, whose figures stop in 2021, carry no forecast);
 [docs/model.md](docs/model.md) explains it and the
 [technical report](https://poengkart.no/report) is the full
 write-up. Press + on a programme to build your list of wishes (*ønsker*, the
@@ -85,21 +87,30 @@ Each (school, programme, year) cell is one of:
 | `D` | admission by documentation (IB, elite sport); no threshold |
 | `U` | discontinued that year |
 
-Agder, Finnmark, Nordland, Troms, Vestfold and Østfold do not publish
-thresholds; the county select lists them as *(ingen data)*.
+Finnmark, Troms, Vestfold and Østfold do not publish thresholds; the county
+select lists them as *(ingen data)*. Agder and Nordland do not publish them
+either, but once printed them, so their schools carry that history and no
+forecast.
+
+Where a county's own document is lost, older years are read from a copy
+printed elsewhere (a newspaper fact box, a thesis appendix, docplayer.me's
+text of the county's PDF) and the app says so beside those years;
+[sources/README.md](sources/README.md) lists every copy and what it states.
 
 | County | Format | Years | Inntak |
 |---|---|---|---|
-| [Akershus](https://afk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/poenggrenser.222835.aspx) | HTML tables; 2024 and 2026 as Excel, released under an FOI request | 2024–2026 | 1. and 2. (FOI years: 2. only) |
-| [Buskerud](https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/) | HTML matrix | 2024–2025 | not stated |
-| [Innlandet](https://www.vilbli.no/nb/innlandet/a/poengsum-og-karakterer-6) | PDF matrix; 2020–2022 released under an FOI request | 2020–2026 | 2. |
+| Agder | counsellor-meeting slides from the intake office (2020–2021; Aust-Agder 2016–2017, selected offers); history only | 2016–2017, 2020–2021 | not stated |
+| [Akershus](https://afk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/poenggrenser.222835.aspx) | HTML tables; 2024 and 2026 as Excel, released under an FOI request; 2012–2015 Vg1 studiespesialisering (2015 from a newspaper copy) | 2012–2015, 2024–2026 | 1. and 2. (FOI years: 2. only; 2012–2015: 1.) |
+| [Buskerud](https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/) | HTML matrix; 2012–2014 from the county's statistics booklets (scanned tables, transcribed) | 2012–2014, 2024–2025 | 2012–2014: 1.; later: not stated |
+| [Innlandet](https://www.vilbli.no/nb/innlandet/a/poengsum-og-karakterer-6) | PDF matrix; 2020–2022 released under an FOI request; 2012–2018 Hedmark's rolling tables (docplayer text) | 2012–2018, 2020–2026 | 2. |
 | Møre og Romsdal | Excel extract from the county's Power BI dashboard, released on request | 2012–2026 | 2. |
-| [Oslo](https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/) | HTML + PDF, oldest years via school-site PDFs | 2015, 2017–2026 | 1. |
-| [Rogaland](https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6) | PDF | 2018–2026 | 2. |
+| Nordland | the county's statistics books (2013–2015 on an 800-point scale; 2019–2021 the lowest admitted, no fill state); history only | 2013–2015, 2019–2021 | 2013–2015: 2.; 2019–2021: not stated |
+| [Oslo](https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/) | HTML + PDF, oldest years via school-site and Wayback PDFs; 2012, 2013 and 2016 from copies (a thesis, two newspapers) | 2012–2026 | 1. |
+| [Rogaland](https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6) | PDF; 2015 from the county's school portal (Wayback), 2012 from a newspaper copy | 2012, 2015, 2018–2026 | 2. (2012: 1.; 2015: not stated) |
 | Telemark | Excel extract released on request: the lowest points of the admitted for every programme, no fill state, so not comparable: outside the model, forecast from its own figures alone with the error measured on its own years | 2024–2026 | not stated |
-| [Trøndelag](https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6) | PDF, per intake region | 2025 | not stated |
+| [Trøndelag](https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6) | PDF, per intake region; 2024 Trondheim only (image PDF, transcribed) | 2024–2025 | 2. |
 | [Vestland](https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/) | PDF | 2020–2026 | 1. and 3. |
-| ↳ Hordaland, pre-merger | PDF: press releases via the Wayback Machine (1.), the county's full table (3.) | 2017–2019 | 1. and 3. |
+| ↳ Hordaland, pre-merger | PDF: press releases via the Wayback Machine (1.), the county's full table (3.); 2014–2015 from newspaper copies | 2014–2019 | 1. and 3. |
 | ↳ Sogn og Fjordane, pre-merger | PDF | 2018–2019 | 1. |
 
 Schools come from the national register ([NSR](https://data-nsr.udir.no/)),

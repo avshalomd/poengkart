@@ -155,6 +155,10 @@ ALIASES = {
     'kulde varmepumpe vent tekn': 'ELKVV2----',
     'kulde varmepumpe vent teknologi': 'ELKVV2----',
     'helse og sosialfag': 'HSHSF1----',
+    # the earlier name of TPPIN2 (the code's own letters), today
+    # Industriteknologi; Hedmark prints it to 2018
+    'produksjon og industriteknikk': 'TPPIN2----',
+    'produksjons og industriteknikk': 'TPPIN2----',
     'helse oppvekst ambulanse': 'HSHSF1----',
     # a fuzzy hit alone, which the comma-prefix walk does not try: Jåttå's
     # «Barne- og ungdomsarbeider, toppidrett» (2024) went unresolved
@@ -425,6 +429,7 @@ QUALIFIERS = [
     (r'\binternasjonalisering\b', 'internationalisation'), (r'\bskiskyting\b', 'biathlon'),
     (r'\bdagtid\b', 'daytime'), (r'\bkveld\b', 'evening'), (r'\bnett\b', 'online'),
     (r'\bfolkemusikk\b', 'folk music'), (r'\bjazz\b', 'jazz'), (r'\balpin\b', 'alpine skiing'),
+    (r'\blangrenn\b', 'cross-country skiing'),
     (r'\bbusiness\b', 'business'), (r'\bscience\b', 'science'),
     (r'\bambulanse(?:fag)?\b', 'ambulance'),
     (r'\bhelsearbeid(?:er)?(?:fag)?\b', 'health work'),

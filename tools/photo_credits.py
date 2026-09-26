@@ -37,7 +37,8 @@ def api(params):
 def main():
     auto = json.load(open(AUTO))
     todo = [(k, v) for k, v in auto.items()
-            if 'upload.wikimedia.org' in (v.get('photo') or '')
+            # Commons hands out thumbnails from thumb.wikimedia.org as well
+            if re.search(r'//(upload|thumb)\.wikimedia\.org/', v.get('photo') or '')
             and not (v.get('credit') or '').startswith('Foto:')]
     print(f'{len(todo)} Wikimedia photos without a named photographer')
     fixed = 0
@@ -57,6 +58,11 @@ def main():
         ex = info.get('extmetadata') or {}
         artist = re.sub(r'<[^>]+>', '', (ex.get('Artist') or {}).get('value', '')).strip()
         artist = re.sub(r'\s+', ' ', artist)
+        # Commons' fallback when the page names no author: "No machine-readable
+        # author provided. <uploader> assumed (based on copyright claims)."
+        m = re.match(r'No machine-readable author provided\. (.+?) assumed\b', artist)
+        if m:
+            artist = m.group(1)
         lic = (ex.get('LicenseShortName') or {}).get('value', '')
         if artist:
             e['credit'] = f"Foto: {artist}{' (' + lic + ')' if lic else ''}"

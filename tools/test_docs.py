@@ -205,7 +205,18 @@ _HELD_VALS = [v for s in DATA['schools'] if s['fylke'] in HELD_OUT
               if isinstance(v, (int, float)) and not isinstance(v, bool)]
 N_HELD_CELLS = sum(META.get('held_out_cells', {}).values())
 HELD_MIN = min(_HELD_VALS) if _HELD_VALS else 0
-DATA['schools'] = [s for s in DATA['schools'] if s['fylke'] not in HELD_OUT]
+# the counties with history only (meta.history_only_counties: Agder and
+# Nordland, figures up to 2021) are in no fit either; Section 4.4 describes
+# them with their own counts
+HISTORY = set(META.get('history_only_counties') or [])
+HIST_CELLS = {f: sum(len(p['values']) for s in DATA['schools'] if s['fylke'] == f
+                     for p in s['programs']) for f in sorted(HISTORY)}
+HIST_SCHOOLS = {f: sum(1 for s in DATA['schools'] if s['fylke'] == f) for f in sorted(HISTORY)}
+# the panel's county-years that rest on a copy of the county's figures
+# (counties[].reprint_years), quoted among the limitations
+N_REPRINT_YEARS = sum(len(c.get('reprint_years') or []) for c in DATA['counties']
+                      if c['fylke'] not in HELD_OUT | HISTORY)
+DATA['schools'] = [s for s in DATA['schools'] if s['fylke'] not in HELD_OUT | HISTORY]
 N_SCHOOLS = len(DATA['schools'])
 N_ROWS = n_cells = n_competed = n_series_num = n_series_one = N_GREP = N_SERIES_U = 0
 BY_FYLKE = {}
@@ -618,6 +629,11 @@ check(doc, 'discontinued series', r'\(discontinued; (\d+) series\)', [N_SERIES_U
 check(doc, 'held-out forecasts', r'a separate fit on its own figures supplies (\d+) forecasts for its (\d+) schools',
       [N_HELD_FORECASTS, N_HELD_SCHOOLS], flat, N)
 check(doc, 'held-out panel (4.4)', r'\(Vg1, 2024–2026, eleven schools, ([\d,]+) cells\)', [N_HELD_CELLS], flat, N)
+if HISTORY:
+    check(doc, 'history-only counties (4.4)',
+          r'2016–2017 figures \((\d+) schools, ([\d,]+) cells in all\), and Nordland printed every programme area in its yearly statistics booklet in 2013–2015 and 2019–2021 \((\d+) schools, ([\d,]+) cells\)',
+          [HIST_SCHOOLS['Agder'], HIST_CELLS['Agder'], HIST_SCHOOLS['Nordland'], HIST_CELLS['Nordland']], flat, N)
+check(doc, 'copied county-years (10)', r'(\d+) county-years in the panel rest on a newspaper', [N_REPRINT_YEARS], flat, N)
 check(doc, 'held-out lowest figure (4.4)', r'the lowest grade points among those admitted, down to ([\d.]+)',
       [HELD_MIN], flat, D1)
 # the satellite's own measurement (meta.held_out_backtest): the report quotes

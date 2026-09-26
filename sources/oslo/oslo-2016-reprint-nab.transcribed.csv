@@ -1,0 +1,28 @@
+# document: Utdanningsetaten, «2016 Nedre poenggrense 1. inntak Vg1» (the original file is lost)
+# reprinted in: Nordre Aker Budstikke 06.07.2016, nab.no/…/s/5-143-141506, fact box «Nedre poenggrense for inntak til Vg1 - studiespesialisering, høsten 2016», «Kilde: Utdanningsetaten»
+# round: 1 (stated in the article: «Det viser første runde i inntaket til videregående skoler»)
+# tier: reprint: a newspaper's copy of the county's figures, not the county's own file
+# legend: «** (alle som hadde søkt på skolen kom inn)» (everyone who applied got in)
+# transcribed: lane D, 25 Sept 2026; three figures agree with Utdanningsnytt 15.07.2016
+# school: as printed (short names); the extractor maps them to register names
+school,program,level,year,printed
+Blindern,Studiespesialisering,Vg1,2016,"42,20"
+Edvard Munch,Studiespesialisering,Vg1,2016,"45,00"
+Elvebakken,Studiespesialisering,Vg1,2016,"49,60"
+Fyrstikkalleen,Studiespesialisering,Vg1,2016,"45,30"
+Foss,Studiespesialisering,Vg1,2016,"46,20"
+Hartvig Nissen,Studiespesialisering,Vg1,2016,"39,20"
+Hellerud,Studiespesialisering,Vg1,2016,**
+Hersleb,Studiespesialisering,Vg1,2016,**
+Kongshavn,Studiespesialisering,Vg1,2016,"35,60"
+Kuben,Studiespesialisering,Vg1,2016,"40,60"
+Lambertseter,Studiespesialisering,Vg1,2016,"44,70"
+Bjerke,Studiespesialisering,Vg1,2016,"36,60"
+Nydalen,Studiespesialisering,Vg1,2016,"49,40"
+Oslo Handelsgymnasium,Studiespesialisering,Vg1,2016,"40,00"
+Oslo Katedralskole,Studiespesialisering,Vg1,2016,"49,10"
+Persbråten,Studiespesialisering,Vg1,2016,"28,80"
+Stovner,Studiespesialisering,Vg1,2016,**
+Bjørnholt,Studiespesialisering,Vg1,2016,**
+Ullern,Studiespesialisering,Vg1,2016,"48,30"
+Ulsrud,Studiespesialisering,Vg1,2016,**

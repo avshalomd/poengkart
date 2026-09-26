@@ -80,7 +80,7 @@ export function heroFigures(s: School): { value: string; label: string; delta: s
 }
 
 export function cardTree(s: School): Node {
-  S.lang = 'no'; S.allLevels = false; S.showOld = false;   // the sheet's own scope (fillShell)
+  S.lang = 'no'; S.allLevels = false; S.showOld = false; S.showStale = false;   // the sheet's own scope (fillShell)
   const h = heroFigures(s);
   // The line may not outrun the figure. Seven schools have a label rather than
   // a mean for their latest year and means in earlier ones: the line then ends

@@ -1,5 +1,49 @@
 [
  {
+  "county": "Innlandet",
+  "school": "Hamar katedralskole",
+  "program": "Studiespesialisering",
+  "level": "Vg1",
+  "year": 2012,
+  "kept": 36.0,
+  "kept_from": "hedmark-poenggrense-2012-2016.transcript.txt",
+  "ignored": 37.0,
+  "ignored_from": "hedmark-poenggrense-2008-2012.transcript.txt"
+ },
+ {
+  "county": "Innlandet",
+  "school": "Hamar katedralskole",
+  "program": "Teknikk og industriell produksjon",
+  "level": "Vg1",
+  "year": 2012,
+  "kept": 13.0,
+  "kept_from": "hedmark-poenggrense-2012-2016.transcript.txt",
+  "ignored": 14.0,
+  "ignored_from": "hedmark-poenggrense-2008-2012.transcript.txt"
+ },
+ {
+  "county": "Innlandet",
+  "school": "Stange videregående skole",
+  "program": "Musikk, dans og drama, musikk",
+  "level": "Vg1",
+  "year": 2012,
+  "kept": "open",
+  "kept_from": "hedmark-poenggrense-2012-2016.transcript.txt",
+  "ignored": 47.0,
+  "ignored_from": "hedmark-poenggrense-2008-2012.transcript.txt"
+ },
+ {
+  "county": "Innlandet",
+  "school": "Solør videregående skole",
+  "program": "Anleggsteknikk, landslinje",
+  "level": "Vg2",
+  "year": 2012,
+  "kept": 17.0,
+  "kept_from": "hedmark-poenggrense-2012-2016.transcript.txt",
+  "ignored": 31.0,
+  "ignored_from": "hedmark-poenggrense-2008-2012.transcript.txt"
+ },
+ {
   "county": "Rogaland",
   "school": "Dalane videregående skole",
   "program": "Automatisering",

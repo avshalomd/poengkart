@@ -7,10 +7,40 @@ county's folder; `tools/parse_pdfs.py` reads `rogaland/`. Nothing here is
 edited by hand: a file is either the county's own document or an extract the
 county sent, its content untouched. Document metadata (author, last-modified-by
 and author e-mail fields, which named individual officials) has been stripped
-from every file here; nothing else.
+from the files the counties released on request; nothing else. A document the
+county published itself is kept byte for byte, metadata included, so its hash
+matches the copy still online or in the Wayback Machine.
+
+Where a county's own document is lost, its figures are read from a copy
+printed elsewhere: a newspaper fact box, a thesis appendix, docplayer.me's
+text of the county's PDF. Those copies are transcribed by hand into
+`*.transcribed.csv` (or kept as page text in `*.transcript.txt`); each
+file's `#` header names the document, where it was reprinted, the intake
+round as the source states it (quoted), the legend, and who transcribed and
+checked it. The extractors flag their rows as reprints, `build_dataset.py`
+records the years that rest on them (`reprint_years`), and the app says so
+beside those years. A round the copy does not state stays unstated.
 
 Public records of the fylkeskommuner, reproduced for reproducibility; data
 derived from them is published under NLOD 2.0.
+
+## agder
+
+Agder publishes no poenggrenser. Two counsellor-meeting decks from the county's
+intake office print them:
+`agder-2020-2021-radgiversamling-010921-evaluering-av-arets-inntak.pdf`
+(«Evaluering av årets inntak», rådgiversamling 1.9.2021, slides 14–18, 2020 and
+2021; the county's copy on agderfk.no now returns 404, so this is the Wayback
+capture of 03.03.2022) and
+`aust-agder-2016-2017-radgiversamling-081217-elevinntak.pdf` (Aust-Agder,
+«Elevinntak», rådgiversamling 8.12.2017, slide 8, 2016 and 2017, still served
+by agderfk.pameldingssystem.no). The 2016–17 figures are plain karakterpoeng.
+The 2020–21 figures carry the county's priority tier as a hundreds offset
+(800, 700, …): the extractor reads the value modulo 100 as the points and a
+remainder of 0 as «ingen venteliste», a rule deduced from the decks, not one
+the county states (`META['note']`). A cell printing two tiers («A/B», 35 cells,
+all 2020) is left out by default (`AGDER_TWO_TIER` in the extractor). Neither
+deck states the intake round.
 
 ## akershus
 
@@ -22,6 +52,10 @@ every year. `Karaktergrense 2024-2025.xlsx` and
 the county sent them by e-mail on request (asked 25.08.2026, received
 27.08.2026; no case number) as school × programme grids of the 2. inntak thresholds, same 34
 schools and cell legend as the HTML page.
+`akershus-2015-reprint-budstikka.transcribed.csv` is the county's 2015 Vg1
+studiespesialisering figures after 1. inntak for the Asker and Bærum schools,
+as Budstikka printed them on 23.02.2016 (fact box «Kilde: Akershus
+fylkeskommune»); the county published no table that year.
 
 ## buskerud
 
@@ -30,6 +64,13 @@ poenggrenser page for each year
 (<https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/>),
 one wide school × programme matrix, Vg1, no intake round stated; the page is
 overwritten in place, so each year's copy was saved when it was live.
+`buskerud-statistikkhefte-inntak-2012-2013.pdf`, `-2013-2014.pdf` and
+`-2014-2015.pdf` are the county's yearly «Statistikkhefte – inntak til
+videregående opplæring», whose chapter 4 prints the Vg1 nedre poenggrense for
+1. inntak («hovedinntaket» in the later two). The table is a scanned image, so
+it is read from `buskerud-<year>-1inntak.transcribed.csv`, transcribed twice
+independently and checked cell by cell. These are the only Buskerud years
+whose round the county states.
 
 ## innlandet
 
@@ -46,6 +87,14 @@ privately (`docs/private/`), not here.
 `innlandet-2026-sum-sokere-og-inntatte-per-skole.pdf` are the county's 2026
 applicant and admission counts, kept beside the thresholds for context; the
 extractor reads only the files it lists and ignores these.
+`hedmark-poenggrense-<first>-<last>.transcript.txt` (six editions, 2008–2012
+to 2014–2018) are Hedmark fylkeskommune's rolling five-year tables
+«Poenggrense ved inntak til videregående skoler i Hedmark», 2. inntak (stated:
+«den sist inntatte med ungdomsrett ved 2. inntaket»), Vg1 and Vg2. The PDFs are
+not online; each file is docplayer.me's page text of one edition. The county
+printed a grade average to one decimal, so a figure is ×10 in the dataset;
+«ledig» is «ingen venteliste» and «lagt ned» a discontinued programme. Figures
+before 2012 are read but left out of the dataset.
 
 ## mro
 
@@ -67,6 +116,25 @@ the county publishes; the county confirmed the reading on 03.09.2026 and
 may link capacity data during 2027, which would replace the rule with the
 observed state.
 
+## nordland
+
+Nordland publishes no poenggrenser today. Its yearly statistics books printed
+them: `nordland-statistikkhefte-2013-2014.pdf` and
+`nordland-statistikkhefte-2014-2015.pdf` (chapter 4, «Oversikt over nedre
+poenggrense … etter 2. gangs inntak», Vg1–Vg3, Wayback copies of the nfk.no
+files) and `nordland-statistikk-2021.pdf` («Videregående opplæring –
+Statistikk 2021», the lowest admission points for 2019, 2020 and 2021; the
+nfk.no file now answers 404, so this is its Wayback copy).
+`nordland-poenggrense-2015.transcript.txt` is the 2015 chapter as
+docplayer.me's page text (captured by the Wayback Machine in 2017); the
+county's own 2015 file is not online. The 2013–15 figures include the
+800-point county supplement («Fylkestillegget er 800 poeng») and are
+published as printed − 800, except landslinjer, which carry no supplement;
+«ALLE» is «ingen venteliste». 2013–15 are 2. inntak as stated; the 2021 book
+states no round. Its «0,0» cells have no legend and are published as 0
+(`NORDLAND_ZERO` in the extractor); «-» (fewer than five admitted) is left
+out.
+
 ## oslo
 
 `oslo-2017.pdf` through `oslo-2025.pdf` are the yearly poengtabeller
@@ -78,6 +146,13 @@ layout, which survives on a school's own site
 (<https://ris.osloskolen.no/siteassets/dokumenter-til-lenking/2015--nedre-poenggrense-1--inntak-vg11.pdf>);
 2016 has not been found. `oslo-2009-2inntak.pdf` is the one older edition
 recovered through the Wayback Machine.
+`oslo-2014.pdf` is the 2014/15 edition, recovered the same way.
+Three more years are read from copies: `oslo-2012-reprint-andresen2014.transcribed.csv`
+(the county's 2012 table as an image in a 2014 University of Oslo master's
+thesis, appendix 1A), `oslo-2013-reprint-aftenposten.transcribed.csv`
+(Aftenposten 03.07.2013, Vg1 studiespesialisering) and
+`oslo-2016-reprint-nab.transcribed.csv` (Nordre Aker Budstikke 06.07.2016,
+Vg1 studiespesialisering), all 1. inntak as stated.
 
 ## rogaland
 
@@ -104,6 +179,30 @@ the 2024–2026 edition gives Bergeland's Vg2 Medier og kommunikasjon «3,0» fo
 the county's intake section; `COUNTY_CORRECTIONS` in
 `tools/extractors/rogaland.py` quotes it.
 
+`31skoler-v3-2016-01-25-wayback.json` is the data file behind the county's
+«31 skoler» school portal as the Wayback Machine captured it on 25.01.2016:
+per school and programme, the lowest points admitted at the previous intake
+(2015), Vg1–Vg3. It states no intake round. A limit of 10 is the portal's
+«everyone got in»; a limit of 0 carries no figure and is skipped.
+`rogaland-2011-2012-reprint-aftenbladet.transcribed.csv` is the county's
+figures after 1. inntak 2011 and 2012 for Stavanger-area schools, as
+Stavanger Aftenblad printed them on 17.07.2012; 2011 is before the dataset's
+first year and is left out.
+
+`rogaland-2017-1inntak-rogfk-commoncrawl.html` is the county's own news
+article «Musikk, dans og drama krever toppkarakterer» (6 July 2017, updated
+12 July), as Common Crawl captured it on 20.07.2017 (CC-MAIN-2017-30; the
+WARC record is named in `manifest.json`), the HTTP body byte for byte. The
+county's site no longer serves it, and the Wayback Machine never captured it.
+It states the round: «1. fellesinntak til videregående skole for skoleåret
+2017/2018». Its table, «Eksempler på programområder med stort antall søkere
+og lange ventelister» (examples of programme areas with many applicants and
+long waiting lists), gives 57 figures, Vg1–Vg3, headed «Lavest poengsum for
+inntak» (lowest points admitted): a selection, not the county's table, so
+2017 is a partial year. The 2013 counterpart, «Programområder med lange
+ventelister 040713.pdf», is linked from the county's article of 4 July 2013
+but is held by neither the Wayback Machine nor Common Crawl.
+
 ## telemark
 
 `laveste-inntakspoeng-vg1-2024-2026.xlsx` was never published: the county
@@ -129,6 +228,10 @@ Innherred/Værnes, Namdal, Trøndelag sør, Trondheim), are the county's
 poenggrenser tables published through vilbli
 (<https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6>), Vg1,
 columns keyed by Grep code, no intake round stated.
+`trondelag_2024-25_trondheim_2inntak.pdf` is the 2024/25 table for the
+Trondheim region, published through vilbli, which does state its round
+(«ved 2. inntaket»); it is an image-only PDF, read from
+`trondelag_2024-25_trondheim_2inntak.transcribed.csv`.
 
 ## vestland
 
@@ -155,6 +258,14 @@ its cells sit beside the series as `values_r3`.
 `sogn-og-fjordane_2018-2019_1inntak_vg1.pdf` is Sogn og Fjordane
 fylkeskommune's 1. inntak Vg1 table for 2018/19 and 2019/20, from the same
 host (<https://www.vestlandfylke.no/globalassets/utdanning-og-karriere/elev/inntak/nedre-karaktergrense-vg1-tidlegare-sogn-og-fjordane.pdf>).
+`hordaland_2016_1inntak_bergen-st.pdf` is the 2016 press release in the same
+series as the 2018 and 2019 ones (Wayback capture of 07.08.2016 of
+hordaland.no/globalassets/for-hfk/pdf-til-nyheiter/nedrepoengrense-.pdf). It
+does not number its round; Utdanningsnytt 15.07.2016 prints two of its
+figures and states that they are «etter første inntak». The 2014 and 2015 figures come from
+newspaper copies of the county's lists: `hordaland-2014-reprint-bt.transcribed.csv`
+(Bergens Tidende 08.07.2014) and `hordaland-2015-reprint-ba.transcribed.csv`
+(Bergensavisen 07.07.2015), Vg1 studiespesialisering, 1. inntak.
 
 ## Mirror
 

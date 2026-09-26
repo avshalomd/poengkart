@@ -1,4 +1,4 @@
-import { chartMode, esc, sheetLens, fmt, HELD_OUT, isPoints, levelScope, meanOf, numericLatest, openMix, progName, shownPrograms, visibleIn } from "./helpers";
+import { chartMode, esc, sheetLens, fmt, HELD_OUT, isPoints, zeroIsFill, levelScope, meanOf, numericLatest, openMix, progName, shownPrograms, visibleIn } from "./helpers";
 import { CATS, t } from "./i18n";
 import { renderList } from "./programs";
 import { setSheetLens } from "./sidebar";
@@ -198,7 +198,7 @@ export function drawChart() {
       const v = S.chart.prog.values[yr];
       return v === undefined ? '–'
         : isPoints(v) ? `${fmt(v)} ${t('pts')}`
-        : v === 0 ? t('noPoints')
+        : v === 0 ? (zeroIsFill(S.current?.fylke, yr) ? t('noPoints') : `${fmt(0)} ${t('pts')}`)
         : v === 'open' ? t('allIn') : v === 'F' ? t('priority')
         : v === 'D' ? t('docAdm') : t('gone');
     }

@@ -4,7 +4,7 @@ import { stubMap } from './mapstub';
 import { renderPanel, renderLegend, renderCatNote, forecastYears, levelChip, legendZoomHint, liftMapControls } from '../src/chrome';
 import { renderPanelSum, visibleSchools, laterPublished } from '../src/map';
 import { renderControls } from '../src/intro';
-import { initHelpers, BIN_EDGES } from '../src/helpers';
+import { initHelpers, BIN_EDGES, shownSchools } from '../src/helpers';
 import { t } from '../src/i18n';
 import { S } from '../src/state';
 
@@ -12,7 +12,10 @@ describe('panel and legend', () => {
   it('the panel prints the dataset’s own scope and the county list with its school counts', () => {
     loadFixtures(); initHelpers(); stubMap(); renderControls(); renderPanel();
     const tag = document.getElementById('tagline')!.textContent!;
-    expect(tag).toContain(String(DATA.schools.length));
+    // the header counts what the map shows: the fixture's two schools with
+    // nothing since 2025 are hidden (shownSchools)
+    expect(tag).toContain(String(shownSchools().length));
+    expect(shownSchools().length).toBe(DATA.schools.length - 2);
     expect(tag).toContain(String(DATA.counties.length));
     const fsel = document.getElementById('map-fylke') as HTMLSelectElement;
     const oslo = [...fsel.options].find(o => o.value === 'Oslo')!;

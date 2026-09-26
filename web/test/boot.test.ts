@@ -4,7 +4,7 @@ import { mapThrowsOnce } from './mapstub';
 import { main, framePad, bootFailed, updateMapLabels, initBoot } from '../src/boot';
 import { isSheetOpen } from '../src/intro';
 import { showTip } from '../src/tips';
-import { initHelpers, schoolPath } from '../src/helpers';
+import { initHelpers, schoolPath, shownSchools } from '../src/helpers';
 import { initChance } from '../src/chance';
 import { initMap } from '../src/map';
 import { initChrome } from '../src/chrome';
@@ -113,7 +113,7 @@ describe('boot', () => {
     expect(S.map!.getStyle()).toMatch(/^\/map\/(voyager|dark-matter)\.json$/);
     // the loading card is gone and the chrome is painted
     expect(document.querySelector('#map .boot-pending')).toBeNull();
-    expect(document.getElementById('tagline')!.textContent).toContain(String(DATA.schools.length));
+    expect(document.getElementById('tagline')!.textContent).toContain(String(shownSchools().length));
     expect(document.getElementById('legend-bins')!.children.length).toBeGreaterThan(0);
     expect(document.getElementById('map')!.classList.contains('maplibregl-map')).toBe(true);
     expect(document.querySelector('#map canvas')!.getAttribute('aria-label')).toBe(t('viewMap'));

@@ -6,8 +6,8 @@
    stay importable without a DOM: state, helpers, i18n, types — and no map engine. */
 import { S } from './state';
 import { t, CATS } from './i18n';
-import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE, HELD_OUT,
-         partitionPrograms, numericLatest, progId, progName, levelScope, isRecent, isVg1, isPoints, meanStep, BUG_ICON, X_ICON } from './helpers';
+import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE, HELD_OUT, HISTORY_ONLY,
+         partitionPrograms, numericLatest, progId, progName, levelScope, isRecent, isVg1, isPoints, meanStep, zeroIsFill, BUG_ICON, X_ICON } from './helpers';
 import { bucketOf, chanceFinal, chanceMode, chanceOf, finalRoundBridge, isChosen, modelEntry, newestForecastYear, pct, pctS, predFor } from './forecast';
 import type { School, County } from './types';
 
@@ -62,19 +62,45 @@ export function metaHtml(s: School): string {
   }
   return meta.join('');
 }
+// 2012, 2013, 2014 and 2016 -> "2012–2014 og 2016": a run of three or more
+// years reads as a span
+const yearList = (ys: string[]): string => {
+  const runs: number[][] = [];
+  for (const y of ys.map(Number).sort((a, b) => a - b)) {
+    const last = runs[runs.length - 1];
+    if (last && y === last[last.length - 1] + 1) last.push(y); else runs.push([y]);
+  }
+  const parts = runs.flatMap(r => r.length > 2 ? [`${r[0]}–${r[r.length - 1]}`] : r.map(String));
+  return parts.length < 2 ? parts.join('') : parts.slice(0, -1).join(', ') + t('listAnd') + parts[parts.length - 1];
+};
 // the county's own history of this school, where it is not one school's own
 export function notesHtml(s: School): string {
   const notes: string[] = [];
   if (s.merged_from && s.merged_year) {
     notes.push(t('mergedNote', s.merged_from.join(t('listAnd')), s.merged_year, s.merged_from.length));
   }
+  for (const [f, ys] of Object.entries(s.former_county || {})) notes.push(t('formerCountyNote', yearList(ys), f));
   if (s.uncertain_years && s.uncertain_years.length) {
     notes.push(t('uncertainNote', s.uncertain_years.join(', ')));
   }
   const cy: Partial<County> = (S.DATA!.counties || []).find(c => c.fylke === s.fylke) || {};
-  const odd = Object.entries(cy.round_years || {})
-    .filter(([y]) => s.programs.some(p => y in p.values));
-  for (const [y, r] of odd) notes.push(t('roundYearNote', y, r));
+  const has = (y: string) => s.programs.some(p => y in p.values);
+  const byRound = new Map<string | null, string[]>();
+  for (const [y, r] of Object.entries(cy.round_years || {})) {
+    if (has(y)) byRound.set(r, [...(byRound.get(r) || []), y]);
+  }
+  for (const [r, ys] of byRound) notes.push(t('roundYearNote', yearList(ys), r, cy.round || null));
+  const reprinted = (cy.reprint_years || []).filter(has);
+  if (reprinted.length) notes.push(t('reprintNote', yearList(reprinted)));
+  const decoded = (cy.decoded_years || []).filter(has);
+  if (decoded.length) notes.push(t('decodedNote', yearList(decoded)));
+  const added = (cy.supplement_years || []).filter(has);
+  if (added.length) notes.push(t('supplementNote', yearList(added)));
+  const lowest = (cy.lowest_admitted_years || []).filter(has);
+  if (lowest.length) notes.push(t('lowestAdmittedNote', yearList(lowest)));
+  const renamed = new Map<string, string>();
+  for (const p of s.programs) for (const was of p.former_names || []) renamed.set(`${p.program}|${was}`, was);
+  for (const [k, was] of renamed) notes.push(t('formerNameNote', k.split('|')[0], was));
   // where "ingen venteliste" is the county's own rule, say so beside the rows
   if (OPEN_RULE.has(s.fylke) && s.programs.some(p => Object.values(p.values).includes('open'))) {
     notes.push(t('openRuleNote'));
@@ -82,6 +108,7 @@ export function notesHtml(s: School): string {
   // where the county's figures are not comparable and it is outside the
   // model, say so on every school
   if (HELD_OUT.has(s.fylke)) notes.push(t('heldOutNote', s.fylke));
+  if (HISTORY_ONLY.has(s.fylke)) notes.push(t('historyOnlyNote', s.fylke));
   return notes.map(n => `<p>${esc(n)}</p>`).join('');
 }
 // the hero figure and the mix warning under it describe one scope: the rows
@@ -122,7 +149,8 @@ export function heroCells(s: School, lensCat: string | null): HeroCell[] {
     const last = scopePrograms.map(p => p.values[latest]).filter(v => v !== undefined);
     // a 0 outranks "ingen venteliste": see schoolPressure
     const zeroN = last.filter(v => v === 0).length, openN = last.filter(v => v === 'open').length;
-    const label = zeroN ? zeroLabel(zeroN, openN)
+    const label = zeroN && !zeroIsFill(s.fylke, latest) ? fmt(0)
+                : zeroN ? zeroLabel(zeroN, openN)
                 : openN ? t('allIn')
                 : last.includes('D') ? t('docAdm')
                 : last.includes('F') ? t('priority')
@@ -199,7 +227,7 @@ export function listHtml(s: School, scope: string | null): string {
       const orphan = latestYear === null || p.values[ys[ys.length - 1]] === 'F';
       const hasF = ys.some(y => p.values[y] === 'F');
       const val = orphan ? `<span class="soft" data-tip="${esc(t('fortrinnTitle'))}">${t('priority')} ⓘ</span>`
-        : lv === 0 ? `<span class="soft" data-tip="${esc(t('noPoints'))} – ${esc(t('noPointsTitle'))}">${t('noPointsShort')} ⓘ</span>`
+        : lv === 0 && zeroIsFill(s.fylke, latestYear) ? `<span class="soft" data-tip="${esc(t('noPoints'))} – ${esc(t('noPointsTitle'))}">${t('noPointsShort')} ⓘ</span>`
         : typeof lv === 'number' ? `${fmt(lv)}<small>${latestYear}</small>`
         : lv === 'open' ? `<span class="soft">${t('allIn')}</span>`
         : lv === 'D' ? `<span class="soft" data-tip="${esc(t('docAdm'))} – ${esc(t('docTitle'))}">${t('docAdmShort')}</span>`
@@ -264,7 +292,7 @@ export function listHtml(s: School, scope: string | null): string {
       // and no dotted underline appears at boot
       const lvl = t('levels')[p.level];
       const valTxt = orphan ? t('fortrinnTitle')
-        : lv === 0 ? `${t('noPoints')} – ${t('noPointsTitle')}`
+        : lv === 0 && zeroIsFill(s.fylke, latestYear) ? `${t('noPoints')} – ${t('noPointsTitle')}`
         : typeof lv === 'number' ? `${fmt(lv)} (${latestYear})`
         : lv === 'open' ? t('allIn')
         : lv === 'D' ? `${t('docAdm')} – ${t('docTitle')}`

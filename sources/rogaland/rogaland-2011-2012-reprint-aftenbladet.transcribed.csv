@@ -1,0 +1,38 @@
+# document: Rogaland fylkeskommune's figures after the first intake 2011 and 2012, for a selection of Stavanger-area schools (the county's own list is not online)
+# reprinted in: Stavanger Aftenblad 17.07.2012, «Vanskeligere å komme inn», aftenbladet.no/lokalt/i/4mRbE
+# round: 1 (stated in the table caption: «etter førsteinntaket for høsten 2011 og 2012»)
+# tier: reprint: a newspaper's copy of the county's figures, not the county's own file
+# legend: «Poengsummen tilsvarer det laveste karaktersnittet som er tilbudt plass etter førsteinntaket» (the score is the lowest grade average offered a place after the first intake). The table also prints waiting-list counts, not transcribed here
+# transcribed: lane D, 25 Sept 2026; all 14 overlapping 2011 figures equal Rogalands Avis 05.07.2011
+# school: as printed (short names: «Stvgr. Katedral», «SOTS»); the extractor maps them to register names
+school,program,level,year,printed
+Stvgr. Katedral,Studiespesialisering,Vg1,2011,"40,6"
+Stvgr. Katedral,Studiespesialisering,Vg1,2012,"46,3"
+St. Olav,Studiespesialisering,Vg1,2011,"42,9"
+St. Olav,Studiespesialisering,Vg1,2012,"45,6"
+Hetland,Studiespesialisering,Vg1,2011,"40,6"
+Hetland,Studiespesialisering,Vg1,2012,"43,5"
+St. Svithun,Studiespesialisering,Vg1,2011,"41,3"
+St. Svithun,Studiespesialisering,Vg1,2012,"42,9"
+Sandnes,Studiespesialisering,Vg1,2011,"40,6"
+Sandnes,Studiespesialisering,Vg1,2012,"42,5"
+Vågen,Musikk,Vg1,2011,"42,4"
+Vågen,Musikk,Vg1,2012,"41,3"
+Hetland,Media og kommunikasjon,Vg1,2011,"40,0"
+Hetland,Media og kommunikasjon,Vg1,2012,"41,3"
+Randaberg,Media og kommunikasjon,Vg1,2011,"35,3"
+Randaberg,Media og kommunikasjon,Vg1,2012,"37,5"
+Bergeland,Media og kommunikasjon,Vg1,2011,"35,6"
+Bergeland,Media og kommunikasjon,Vg1,2012,36
+Stvgr. Katedral,Musikk,Vg1,2011,"42,4"
+Stvgr. Katedral,Musikk,Vg1,2012,"42,9"
+Gand,Elektro,Vg1,2011,"37,5"
+Gand,Elektro,Vg1,2012,"36,5"
+Randaberg,Elektro,Vg1,2011,"35,3"
+Randaberg,Elektro,Vg1,2012,"35,3"
+SOTS,Teknikk og industriell produksjon,Vg1,2011,"41,3"
+SOTS,Teknikk og industriell produksjon,Vg1,2012,"38,2"
+SOTS,Brønnteknikk,Vg2,2011,"45,7"
+SOTS,Brønnteknikk,Vg2,2012,"47,0"
+Sola,Flyfag,Vg2,2011,46
+Sola,Flyfag,Vg2,2012,"45,5"

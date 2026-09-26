@@ -18,13 +18,6 @@ const dots = () => [...document.querySelectorAll('#map .pk-dot')] as HTMLElement
 const clusters = () => [...document.querySelectorAll('#map .pk-cluster')] as HTMLElement[];
 const onMap = () => visibleSchools().filter((s: any) => s.lat);
 // the stub's viewport is the whole country at zoom 5: every visible school is on screen
-// a tap on a cluster of up to CLUSTER_LIST schools lists them first; «Vis på
-// kartet» there does what the tap did before (clusterov.ts)
-const expand = (c: HTMLElement) => {
-  c.click();
-  const z = document.getElementById('clusterov-zoom') as HTMLElement;
-  if (!document.getElementById('clusterov')!.hidden) z.click();
-};
 const shown = () => clusters().reduce((n, c) => n + Number(c.textContent), 0) + dots().length;
 // the app's own map, built through the mocked engine: the listeners createMap
 // registers (a move folds a fan-out back in) are live on the stub
@@ -109,12 +102,6 @@ describe('the map layer', () => {
     expect(pair!.textContent).toBe('2');
     pair!.focus();
     pair!.click();
-    // the pair's names first, in a sheet; its «Vis på kartet» fans them out
-    expect(document.getElementById('clusterov')!.hidden).toBe(false);
-    expect([...document.querySelectorAll('#clusterov .crow .n')].map(e => e.textContent).sort())
-      .toEqual([a.name, b.name].sort());
-    (document.getElementById('clusterov-zoom') as HTMLElement).click();
-    expect(document.getElementById('clusterov')!.classList.contains('closing') || document.getElementById('clusterov')!.hidden).toBe(true);
     expect(pair!.hidden).toBe(true);
     const spread = dots().filter(el => [a, b].includes(byEl.get(el)!.s));
     expect(spread.length).toBe(2);
@@ -142,7 +129,7 @@ describe('the map layer', () => {
     // clustering stops at 10 (markercluster's own _zoomOrSpiderfy rule).
     const other = clusters().find(c => c !== pair)!;
     const before = new Set(dots());
-    expand(other);
+    other.click();
     expect(S.map!.getZoom()).toBe(9);                  // it fanned out; nothing eased
     expect(other.hidden).toBe(true);
     const fanned = dots().filter(el => !before.has(el));
@@ -155,7 +142,7 @@ describe('the map layer', () => {
     S.map!.jumpTo({ center: [10.75, 59.91], zoom: 7 });
     drawMarkers();
     const zooms = clusters().map(c => {
-      expand(c);
+      c.click();
       const z = S.map!.getZoom();
       S.map!.fire('movestart');                        // folds a fan-out back in
       S.map!.jumpTo({ center: [10.75, 59.91], zoom: 7 });
@@ -166,7 +153,7 @@ describe('the map layer', () => {
     b.lat = keep[0]; b.lon = keep[1];
   });
 
-  it('names the kommune under a cluster whose schools share it, and a tap lists them', () => {
+  it('a cluster whose schools share a kommune names it in its label, never under the dot, and a tap still zooms in', () => {
     setup();
     S.mapFylke = 'Oslo';
     S.map!.jumpTo({ center: [10.75, 59.91], zoom: 7 });
@@ -176,15 +163,13 @@ describe('the map layer', () => {
     expect(c.dataset.place).toBe('Oslo');
     expect(c.textContent).toMatch(/^\d+$/);          // the count stays the element's own text
     const n = Number(c.textContent);
-    expect(n).toBeLessThanOrEqual(15);                 // small enough to list
-    expect(c.getAttribute('aria-label')).toContain('i Oslo');
+    expect(n).toBeGreaterThan(1);
+    expect(c.getAttribute('aria-label')).toBe(t('clusterAria', n, null, 'Oslo'));
+    // the tap does what it always did: zoom to where the cluster splits (the
+    // owner's QA, 26 Sep 2026, preferred this to a list of the schools)
     c.click();
-    expect(document.getElementById('clusterov-h')!.textContent).toBe(`${n} skoler i Oslo`);
-    const rows = [...document.querySelectorAll('#clusterov .crow')] as HTMLElement[];
-    expect(rows.length).toBe(n);
-    const name = rows[0].querySelector('.n')!.textContent;
-    rows[0].click();
-    expect(S.current?.name).toBe(name);
+    expect(S.map!.getZoom()).toBeGreaterThan(7);
+    expect(document.querySelector('#map ~ .modal:not([hidden]), .modal:not([hidden])')).toBe(null);
   });
 
   it('under a lens with no figure the dot says which state it is, not a bare dash', () => {

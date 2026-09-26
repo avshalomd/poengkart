@@ -146,6 +146,11 @@ def main():
             aliases = sorted(rec.get('aliases', set()) - {rec['program'].lower()})
             if aliases:
                 entry_p['aliases'] = aliases
+            # the register's older name for this very code, where the series
+            # carries figures published under it (common.REGISTER_RENAMES)
+            former = sorted({common.REGISTER_RENAMES[a] for a in aliases if a in common.REGISTER_RENAMES})
+            if former:
+                entry_p['former_names'] = former
             # values_r1/values_r3: the same cell from another intake round;
             # means: Gjennomkar, the mean points of those admitted (Møre og
             # Romsdal publishes it; no other county does)
@@ -158,6 +163,8 @@ def main():
         entry = {'name': name, 'fylke': county, 'fylkesnummer': meta.get('code'),
                  'round': meta.get('round'), 'programs': progs}
         entry.update(attrs.get((county, name), {}))
+        if entry.get('former_county'):             # {county: {years}} -> {county: [years]}
+            entry['former_county'] = {f: sorted(ys) for f, ys in sorted(entry['former_county'].items())}
         if meta.get('free_choice') is False:
             entry['catchment'] = True      # threshold applies to residents only
         out['schools'].append(entry)
@@ -193,19 +200,46 @@ def main():
     # of its series — Vestland's 2023 figures are from 3. inntak, where far more
     # applicants have been admitted — and a reader comparing 2022 to 2023 to
     # 2024 has no way to know. Record the exceptions against the county.
-    per_year = {}
-    for _, rows in all_rows:
+    # Judged on the cells the merge published, not on every source read: a
+    # newspaper reprint that an official table later superseded says nothing
+    # about the year a reader sees. A year whose published figures state no
+    # round at all, inside a county that states one (Rogaland's 2015 school
+    # portal), is an exception too, recorded as None.
+    src_kind = {}
+    for source, rows in all_rows:
         for r in rows:
-            if not r.get('round'):
-                continue
-            for y in r['values']:
-                (per_year.setdefault(r.get('county', ''), {})
-                         .setdefault(str(y), set()).add(r['round']))
+            src_kind.setdefault((r.get('county', ''), source), set()).add(
+                (r.get('round') or None, bool(r.get('reprint'))))
+    per_year = {}
+    for (county, _name), recs in schools.items():
+        for rec in recs.values():
+            for y, source in rec['sources'].items():
+                if int(y) < common.FIRST_YEAR:
+                    continue
+                per_year.setdefault(county, {}).setdefault(str(y), set()).update(
+                    src_kind.get((county, source), set()))
     for c in counties:
-        odd = {y: sorted(rs)[0] for y, rs in sorted(per_year.get(c['fylke'], {}).items())
-               if len(rs) == 1 and sorted(rs)[0] != c.get('round')}
+        years = per_year.get(c['fylke'], {})
+        odd, reprint = {}, []
+        for y, kinds in sorted(years.items()):
+            rounds = {k[0] for k in kinds}
+            if len(rounds) == 1:
+                (rnd,) = rounds
+                if rnd != (c.get('round') or None):
+                    odd[y] = rnd
+            else:
+                warnings.append(f'[{c["fylke"]}] {y}: the published figures mix intake '
+                                f'rounds {sorted(rounds, key=str)}; no round note written')
+            reprints = {k[1] for k in kinds}
+            if reprints == {True}:
+                reprint.append(y)
+            elif len(reprints) > 1:
+                warnings.append(f'[{c["fylke"]}] {y}: some published figures come from a '
+                                'reprint and some from the county; no reprint note written')
         if odd:
             c['round_years'] = odd
+        if reprint:
+            c['reprint_years'] = reprint
 
     if os.path.exists(OUT):                      # keep enrichment across re-runs
         # keyed by the published spelling, so a school respelled by

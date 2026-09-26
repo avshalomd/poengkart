@@ -22,13 +22,13 @@ export interface HeadProps {
 
 export const HOME_HEAD: HeadProps = {
   title: 'Poengkart – poenggrenser for videregående skole',
-  description: 'Se poenggrensene for 228 videregående skoler i ni fylker, 2012–2026. Hva krevdes for å komme inn i fjor, og hvordan har grensene endret seg? Kart, trender og tall per programområde.',
+  description: 'Se poenggrensene for 278 videregående skoler i elleve fylker, 2012–2026. Hva krevdes for å komme inn i fjor, og hvordan har grensene endret seg? Kart, trender og tall per programområde.',
   canonical: SITE + '/',
   ogTitle: HOME_OG_TITLE,
-  ogDescription: 'Poenggrensene for 228 videregående skoler i ni fylker, 2012–2026, på kart. Se hva som krevdes for å få plass, og hvordan grensene har endret seg.',
-  twitterDescription: 'Poenggrensene for 228 videregående skoler i ni fylker, 2012–2026, på kart.',
+  ogDescription: 'Poenggrensene for 278 videregående skoler i elleve fylker, 2012–2026, på kart. Se hva som krevdes for å få plass, og hvordan grensene har endret seg.',
+  twitterDescription: 'Poenggrensene for 278 videregående skoler i elleve fylker, 2012–2026, på kart.',
   ogImage: SITE + '/og.png',
-  ogImageAlt: 'Kart over Norge med 228 videregående skoler som prikker, fargelagt etter poenggrense, og skolesiden for Elvebakken videregående skole med bilde, snittgrense og utvikling år for år.',
+  ogImageAlt: 'Kart over Norge med 278 videregående skoler som prikker, fargelagt etter poenggrense, og skolesiden for Elvebakken videregående skole med bilde, snittgrense og utvikling år for år.',
 };
 
 // The state the sheet's own functions read, as the client sets it up on a
@@ -37,7 +37,7 @@ export const HOME_HEAD: HeadProps = {
 // fillShell() in one expression and neither may depend on the other's order.
 function prepareState(data: Dataset) {
   S.DATA = data; S.lang = 'no';
-  S.mapCat = 'all'; S.mapFylke = 'all'; S.allLevels = false; S.showOld = false;
+  S.mapCat = 'all'; S.mapFylke = 'all'; S.allLevels = false; S.showOld = false; S.showStale = false;
   // no reader yet: no chips, no picks, no selected row. S.chart is the whole
   // object because initHelpers() — the client's only writer of it — never runs
   // in the build, and `S.chart.prog = null` would be a set on undefined.

@@ -290,9 +290,8 @@
         say('I16', css('--l') === at(mix.likely) && css('--p') === at(mix.likely + mix.possible)
                    && css('--u') === at(mix.likely + mix.possible + mix.unlikely),
             `cluster of ${n}: segments ${css('--l')} ${css('--p')} ${css('--u')} vs ${el.dataset.mix}`);
-        // the label names the kommune the element prints under it, and says
-        // whether a tap lists the schools (up to CLUSTER_LIST) or zooms
-        say('I16', el.getAttribute('aria-label') === t('clusterAria', n, mix, el.dataset.place || null, n <= CLUSTER_LIST),
+        // the label names the kommune the element carries (data-place)
+        say('I16', el.getAttribute('aria-label') === t('clusterAria', n, mix, el.dataset.place || null),
             `cluster of ${n}: label "${el.getAttribute('aria-label')}"`);
         KEYS.forEach(k => { got[k] += mix[k] || 0; });
         held += n;

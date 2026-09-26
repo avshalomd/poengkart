@@ -72,6 +72,18 @@ import scipy.sparse as sp
 from scipy.optimize import minimize
 from scipy.special import ndtr, expit
 
+
+def year_round(county, year):
+    """The intake round of a county's published figures for one year.
+
+    `round_years` holds the exceptions to the county's round, and an exception
+    can be None (that year's figures state no round), so a missing key and a
+    None value mean different things.
+    """
+    ry = county.get('round_years') or {}
+    return ry[str(year)] if str(year) in ry else county.get('round')
+
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
 OUT = os.path.join(HERE, '..', 'web', 'public', 'data', 'model.json')
@@ -99,6 +111,16 @@ FILL_BLIND = set()
 # whether everyone was admitted (asked 17.09.2026). tools/test_docs.py reads
 # the list from meta.held_out; web/src/helpers.ts mirrors it.
 HELD_OUT = {'Telemark'}
+# Counties with figures only from years long past, and none published today:
+# Agder (2016-17, 2020-21, counsellor decks) and Nordland (2013-15, 2019-21,
+# the statistikkhefter). The app shows their history; the model neither
+# fits nor forecasts them. A forecast would be for the year after their
+# newest (2022), a forecast of the past, and their figures rest on this
+# project's reading of offsets the counties never explained (Agder's
+# priority tiers, Nordland's 800-point county supplement), which the pooled
+# fit should not lean on. tools/test_model.py and web/src/helpers.ts read
+# the list from meta.history_only_counties.
+HISTORY_ONLY = {'Agder', 'Nordland'}
 # Counties whose "ingen venteliste" is a published rule rather than an
 # observed queue state — a proxy label. What the proxy is worth is measured
 # on every refit (meta.halflife_search.proxy_label_experiment): the fit and
@@ -114,7 +136,22 @@ BOOT = 1000                                       # cluster-bootstrap replicates
 # no "ingen venteliste" cells. They stay in every school's
 # history and in the series/programme effects, but they do not set where the
 # county's random walk starts (decision of 2 Sept 2026, Q34).
-PARTIAL_YEARS = {('Vestland', 2017), ('Vestland', 2018), ('Vestland', 2019), ('Vestland', 2020)}
+# The older years of 26 Sept 2026 add more of the same kind, each a region or
+# a programme or two of today's county: Vestland 2014-16 (the same Bergen-area
+# releases), Akershus 2012-14 (Røyken alone, a Buskerud school then) and 2015
+# (Budstikka's Asker and Bærum studiespesialisering), Oslo 2013 and 2016 (two
+# newspapers' excerpts), Rogaland 2012 (Aftenbladet's excerpt), Rogaland 2017
+# (the county's own «examples» of programmes with long waiting lists) and
+# Trøndelag 2024 (the Trondheim region's table, one of five). Hedmark 2012-18 is not
+# among them: it is a whole county's table, every programme at both levels,
+# and all 14 of its schools carry on into Innlandet's own years.
+# tools/test_model.py fails on any county-year under a third of its county's
+# largest year that is missing here.
+PARTIAL_YEARS = {('Vestland', 2017), ('Vestland', 2018), ('Vestland', 2019), ('Vestland', 2020),
+                 ('Vestland', 2014), ('Vestland', 2015), ('Vestland', 2016),
+                 ('Akershus', 2012), ('Akershus', 2013), ('Akershus', 2014), ('Akershus', 2015),
+                 ('Oslo', 2013), ('Oslo', 2016), ('Rogaland', 2012), ('Rogaland', 2017),
+                 ('Trøndelag', 2024)}
 BACKTEST_YEARS = list(range(2020, 2027))
 CALIB_YEARS = {2020, 2021, 2022, 2023, 2024}    # tune the error spread here...
 EVAL_YEARS = {2025, 2026}                        # ...and report honesty here
@@ -148,6 +185,8 @@ def load_obs(data):
     newest = collections.defaultdict(int)
     rows, pairs, held = [], [], []
     for si, s in enumerate(data['schools']):
+        if s['fylke'] in HISTORY_ONLY:
+            continue
         occ_seen = {}
         for p in s['programs']:
             k = p['program'].lower()
@@ -163,7 +202,7 @@ def load_obs(data):
                 state = 'num' if is_num(v) else 'zero' if v == 0 else 'open' if v == 'open' else None
                 if state is None:
                     continue
-                rnd = (cy[s['fylke']].get('round_years') or {}).get(str(y)) or cy[s['fylke']].get('round')
+                rnd = year_round(cy[s['fylke']], y)
                 (held if s['fylke'] in HELD_OUT else rows).append(dict(school=sid, fylke=s['fylke'], series=f'{sid}|{key}',
                                  prog=f'{k}|{p["level"]}', cat=p['category'], year=y,
                                  state=state, v=float(v) if state == 'num' else None,
@@ -180,7 +219,7 @@ def load_obs(data):
                     st = lambda v: 'num' if is_num(v) else 'zero' if v == 0 else 'open' if v == 'open' else None
                     if st(vm) is None or st(va) is None:
                         continue
-                    main_round = (cy[s['fylke']].get('round_years') or {}).get(str(y)) or cy[s['fylke']].get('round')
+                    main_round = year_round(cy[s['fylke']], y)
                     if main_round == r_alt:
                         continue            # the same round twice says nothing
                     pairs.append(dict(fylke=s['fylke'], cat=p['category'], year=int(y),
@@ -404,8 +443,13 @@ class Model:
         d.add('prog', [r['prog'] for r in rows], 'ridge', 3.0)
         d.add('series', [r['series'] for r in rows], 'ridge', 3.0)
         # a partial county-year is one pooled level outside every walk: its
-        # rows still train the other effects without moving the county
-        d.add('cy', [('_partial', 0) if r['partial'] else (r['fylke'], r['year']) for r in rows], 'rw', 1.0)
+        # rows still train the other effects without moving the county. The
+        # pool is the county's own, so one county's excerpts never set the
+        # level another's are read against (one pool for all while Vestland
+        # was the only county with any)
+        # (a group of its own: the walk links levels that share a group)
+        d.add('cy', [(f'_partial:{r["fylke"]}', 0) if r['partial'] else (r['fylke'], r['year'])
+                     for r in rows], 'rw', 1.0)
         if hurdle:
             d.add('r3', [r['r3'] for r in rows], 'fixed')
             if alpha is not None:
@@ -444,7 +488,7 @@ class Model:
             ys = [yy for (ff, yy) in e['cy'] if ff == f and yy <= y]
             if ys:
                 return e['cy'][(f, max(ys))]
-            return e['cy'].get(('_partial', 0), 0.0) if pooled else 0.0
+            return e['cy'].get((f'_partial:{f}', 0), 0.0) if pooled else 0.0
         m = (g(el, 'mu', 0) + g(el, 'school', school) + g(el, 'cat', cat) + g(el, 'prog', prog)
              + g(el, 'series', series) + cy(el, fylke, year, pooled=True))
         eta = (g(eh, 'mu', 0) + g(eh, 'r3', 0) + g(eh, 'school', school) + g(eh, 'cat', cat)
@@ -1302,6 +1346,7 @@ def main():
 
     meta = dict(built=time.strftime('%Y-%m-%d'), halflife=halflife, coupled=couple, fill_blind=sorted(FILL_BLIND),
                 held_out=sorted(HELD_OUT),
+                history_only_counties=sorted(HISTORY_ONLY),
                 held_out_cells={f: len(st.rows) for f, st in sats.items()},
                 held_out_sigma=held_sigma, held_out_backtest=held_bt,
                 sigma_model=round(model.sigma, 3), sigma_floor=round(floor_sigma, 3),
@@ -1442,6 +1487,8 @@ def main():
         if r['state'] == 'num':
             past[r['series']].append((r['year'], r['v']))
     for s in data['schools']:
+        if s['fylke'] in HISTORY_ONLY:
+            continue
         sid = f'{s["fylke"]}|{s["name"]}'
         T = newest[s['fylke']] + 1
         ent = dict(year=T, round=cy[s['fylke']].get('round'))

@@ -84,6 +84,38 @@ describe('a county held out of the model', () => {
     expect(other).not.toContain('ikke sammenlignes');
     expect(other).not.toContain('cannot be compared');
   });
+  it('names the county that published a moved school’s years, Nordland’s supplement and a register renaming', () => {
+    loadFixtures();
+    S.DATA = { ...DATA, counties: [...DATA.counties, { fylke: 'Nordland', supplement_years: ['2013', '2014', '2015'] }] };
+    const hs = (values: any) => ({ program: 'Helse- og oppvekstfag', level: 'Vg1', category: 'HS', values, former_names: ['Helse- og sosialfag'] });
+    const royken: any = { name: 'Røyken', fylke: 'Akershus', former_county: { Buskerud: ['2012', '2013', '2014'] },
+                          programs: [hs({ 2012: 30.1, 2025: 38.2 })] };
+    const html = notesHtml(royken);
+    expect(html).toContain(esc(t('formerCountyNote', '2012–2014', 'Buskerud')));
+    expect(html).toContain(esc(t('formerNameNote', 'Helse- og oppvekstfag', 'Helse- og sosialfag')));
+    const bodo: any = { name: 'Bodø videregående skole', fylke: 'Nordland', programs: [{ ...hs({ 2013: 31.0, 2021: 33.4 }), former_names: undefined }] };
+    const nb = notesHtml(bodo);
+    expect(nb).toContain(esc(t('supplementNote', '2013')));
+    expect(nb).not.toContain(esc(t('formerNameNote', 'Helse- og oppvekstfag', 'Helse- og sosialfag')));
+    expect(notesHtml({ name: 'Asker', fylke: 'Akershus', programs: [] } as any)).not.toContain('fylkeskommune');
+    S.DATA = DATA;
+  });
+  it('a 0 in a lowest-admitted year is the figure 0,0, not «Fullt»; elsewhere it stays «Fullt»', () => {
+    loadFixtures(); initHelpers();
+    S.DATA = { ...DATA, counties: [...DATA.counties, { fylke: 'Nordland', lowest_admitted_years: ['2019', '2020', '2021'] }] };
+    const prog = (values: any) => [{ program: 'Restaurant- og matfag', level: 'Vg1', category: 'RM', values }];
+    const bodo: any = { name: 'Bodø videregående skole', fylke: 'Nordland', programs: prog({ 2020: 24.1, 2021: 0 }) };
+    const row = listHtml(bodo, null);
+    expect(row).toContain(`0,0<small>2021</small>`);
+    expect(row).not.toContain(t('noPointsShort'));
+    // all the scope has is that 0: the hero prints it, not «Fullt – siste inntatte uten poeng»
+    const only: any = { ...bodo, programs: prog({ 2021: 0 }) };
+    expect(heroHtml(only, null).hero).toContain('>0,0<');
+    expect(heroHtml(only, null).hero).not.toContain(t('noPoints'));
+    const asker0: any = { name: 'Asker', fylke: 'Akershus', programs: prog({ 2024: 30.2, 2025: 0 }) };
+    expect(listHtml(asker0, null)).toContain(t('noPointsShort'));
+    S.DATA = DATA;
+  });
   it('never claims how many Telemark programmes filled: no filled count, no size from it', () => {
     loadFixtures();
     const yr = DATA.years[DATA.years.length - 1];

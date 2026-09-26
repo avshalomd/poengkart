@@ -1,6 +1,6 @@
 import { bucketColor, bucketOf, chanceMode, chanceOf, isChosen, OPEN_CHANCE, openOnly, pct, pctS, predFor, schoolChance, toggleChoice } from "./chance";
 import { forecastYears, liftMapControls } from "./chrome";
-import { BINS, colorFor, esc, fmt, HELD_OUT, meanStep, partitionPrograms, progName, round1, schoolPressure, shownPrograms, X_ICON, zeroLabel } from "./helpers";
+import { BINS, colorFor, esc, fmt, HELD_OUT, meanStep, partitionPrograms, progName, round1, schoolPressure, shownPrograms, X_ICON, zeroIsFill, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
 import { locHelpKind, toast } from "./locate";
 import { drawMarkers, fitVisible, mapZoom, prefersStill, resizeMap, visibleSchools } from "./map";
@@ -223,10 +223,10 @@ export function renderListView() {
   const chip = r => {
     if (r.pr.kind === 'open') return `<span class="chip open" title="${esc(t('listOpenTitle'))}">${esc(t('listOpen'))}</span>`;
     if (r.pr.kind === 'zero') return `<span class="chip zero" title="${esc(r.pr.openN ? zeroLabel(r.pr.zeroN, r.pr.openN) : `${t('noPoints')} – ${t('noPointsTitle')}`)}">${esc(t('noPointsShort'))}</span>`;
-    if (r.v === null) {
-      const tip = r.pr.kind === 'stale' ? ` title="${esc(t('tipStale', r.pr.year))}"` : '';
-      return `<span class="none-v"${tip}>${esc(t('listNoData'))}</span>`;
-    }
+    // a school whose figures stop years back says when, in the cell: a bare
+    // «Ingen data» beside a sheet full of 2013–2021 figures reads as wrong,
+    // and a phone never shows a title
+    if (r.v === null) return `<span class="none-v">${esc(r.pr.kind === 'stale' ? t('tipStale', r.pr.year) : t('listNoData'))}</span>`;
     const band = BINS.findIndex(b => r.v < b.max);
     return `<span class="chip b${band}" style="background:${colorFor(r.v)}"` +
       ` title="${esc(r.pr.year)}">${esc(fmt(r.v))}</span>`;
@@ -234,14 +234,15 @@ export function renderListView() {
   // one programme area's newest published cell, as the sheet prints it
   const areaChip = r => {
     if (r.lv === 'open') return `<span class="chip open">${esc(t('listOpen'))}</span>`;
-    if (r.lv === 0) return `<span class="chip zero" title="${esc(t('noPoints'))} – ${esc(t('noPointsTitle'))}">${esc(t('noPointsShort'))}</span>`;
+    if (r.lv === 0 && zeroIsFill(r.s.fylke, r.yr)) return `<span class="chip zero" title="${esc(t('noPoints'))} – ${esc(t('noPointsTitle'))}">${esc(t('noPointsShort'))}</span>`;
     if (typeof r.lv !== 'number') return `<span class="none-v">${esc(r.lv === 'D' ? t('docAdmShort') : t('listNoData'))}</span>`;
     const band = BINS.findIndex(b => r.lv < b.max);
     return `<span class="chip b${band}" style="background:${colorFor(r.lv)}" title="${esc(r.yr)}">${esc(fmt(r.lv))}</span>`;
   };
   // the same figure in words, under the name where a phone has no room for its column
   const cutInline = r => r.lv === 'open' ? t('listOpen').toLowerCase()
-    : typeof r.lv === 'number' ? t('listCutInline', fmt(r.lv), r.yr) : r.lv === 0 ? t('noPointsShort') : t('listNoData').toLowerCase();
+    : r.lv === 0 && zeroIsFill(r.s.fylke, r.yr) ? t('noPointsShort')
+    : typeof r.lv === 'number' ? t('listCutInline', fmt(r.lv), r.yr) : t('listNoData').toLowerCase();
   const deltaCell = r => {
     if (r.delta === null) return `<span class="none-v">—</span>`;
     const d = round1(r.delta);           // sign, colour and text agree

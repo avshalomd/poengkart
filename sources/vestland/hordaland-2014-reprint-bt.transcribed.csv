@@ -1,0 +1,25 @@
+# document: Hordaland fylkeskommune, press release on the 1. inntaksomgang 2014 (not found online)
+# reprinted in: Bergens Tidende 08.07.2014, «Her er det vanskeligst å få plass», bt.no/nyheter/lokalt/i/ygQXA: «Her er inntaksgrensene for de videregående skolene i fylket på Vg1 studiespesialiserende løp», «ifølge en pressemelding fra fylkeskommunen»
+# round: 1 (stated in the article: «732 søkere med ungdomsrett står uten tilbud etter første opptaksrunde»)
+# tier: reprint: a newspaper's copy of the county's figures, not the county's own file
+# legend: «alle kom inn» (everyone got in). Fana gymnas, Fyllingsdalen and U. Pihl are printed on one line with one figure, 40,00, which is read as each school's figure
+# transcribed: lane D, 25 Sept 2026; Amalie Skram 48 and Knarvik 43,8 agree with Bergensavisen 2015 («i fjor») and Nordhordland 08.07.2014
+# school: as printed (short names); the extractor maps them to register names
+school,program,level,year,printed
+Amalie Skram vgs,Studiespesialisering,Vg1,2014,"48,00"
+Bergen katedralskole,Studiespesialisering,Vg1,2014,"47,50"
+Langhaugen vgs,Studiespesialisering,Vg1,2014,"44,40"
+Sotra vgs,Studiespesialisering,Vg1,2014,"44,10"
+Knarvik vgs,Studiespesialisering,Vg1,2014,"43,80"
+Nordahl Grieg vgs,Studiespesialisering,Vg1,2014,"43,50"
+Olsvikåsen vgs,Studiespesialisering,Vg1,2014,"42,50"
+Tertnes vgs,Studiespesialisering,Vg1,2014,"42,40"
+Garnes vgs,Studiespesialisering,Vg1,2014,"41,90"
+Sandsli vgs,Studiespesialisering,Vg1,2014,"41,20"
+Fana gymnas,Studiespesialisering,Vg1,2014,"40,00"
+Fyllingsdalen vgs,Studiespesialisering,Vg1,2014,"40,00"
+U. Pihl vgs,Studiespesialisering,Vg1,2014,"40,00"
+Laksevåg vgs,Studiespesialisering,Vg1,2014,"38,80"
+Askøy vgs,Studiespesialisering,Vg1,2014,"38,70"
+Osterøy vgs,Studiespesialisering,Vg1,2014,"31,80"
+Os gymnas,Studiespesialisering,Vg1,2014,alle kom inn

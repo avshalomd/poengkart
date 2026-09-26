@@ -36,7 +36,7 @@ const LABELS = {
 const CTX = [
   ['from', 'Fra'], ['link', 'Lenke'], ['view', 'Visning'], ['fylke', 'Fylke'],
   ['program', 'Utdanningsprogram'], ['points', 'Poeng'], ['levels', 'Trinn'],
-  ['history', 'Historikk'], ['choices', 'Ønsker'], ['lang', 'Språk'],
+  ['history', 'Historikk'], ['stale', 'Skoler uten nye tall'], ['choices', 'Ønsker'], ['lang', 'Språk'],
   ['font', 'Tekststørrelse'], ['theme', 'Fargetema'], ['cvd', 'Fargeblindvennlig'],
   ['viewport', 'Vindu'], ['ua', 'Nettleser'], ['data', 'Data'], ['school', 'Skole'],
   ['chart', 'Graf'], ['hero', 'Nøkkeltall'],

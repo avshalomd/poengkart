@@ -31,6 +31,17 @@ MANUAL = {
     ('15', 'herøy vidaregåande skule, avd. vanylven'): 'Vanylven',
     ('34', 'nord-gudbrandsdal vgs, avd. dombås'): 'Dovre',
     ('34', 'nord-gudbrandsdal vgs, avd. lom'): 'Lom',
+    # the older years' schools and campuses pinned by hand in geocode.py
+    # (26 Sept 2026), each read off Kartverket's kommuneinfo at its pin
+    ('34', 'midt-østerdal videregående skole'): 'Stor-Elvdal',
+    ('18', 'sortland videregående skole avd. bø'): 'Bø',
+    ('18', 'sortland videregående skole avd. lødingen'): 'Lødingen',
+    ('03', 'fagerborg videregående skole'): 'Oslo',
+    ('03', 'nordstrand videregående skole'): 'Oslo',
+    ('03', 'sogn videregående skole'): 'Oslo',
+    ('46', 'fana gymnas'): 'Bergen',
+    ('46', 'garnes vidaregåande skule'): 'Bergen',
+    ('46', 'u. pihl videregående skole'): 'Bergen',
 }
 
 SMALL = {'i', 'og', 'på'}

@@ -43,6 +43,16 @@ export const round1 = v => { const h = Math.round(v * 100), sg = h < 0 ? -1 : 1;
 // a cell that is a threshold someone could have missed. 'open', F, D and U
 // are not, and neither is 0,0 — see the note in schoolPressure().
 export const isPoints = v => typeof v === 'number' && v > 0;
+// A 0 reads «Fullt» (noPoints) where the county legends it: the programme
+// filled and applicants with 0,0 were still left waiting (Akershus, Vestland).
+// Where the county prints the lowest points among those admitted
+// (lowest_admitted_years: Nordland 2019–2021), a 0 says only that someone
+// with no points got in, which lowestAdmittedNote says may mean everyone did;
+// there it is the figure 0,0 and nothing more
+export const zeroIsFill = (fylke: string | undefined, yr: string | null | undefined): boolean => {
+  const cy = (S.DATA?.counties || []).find(c => c.fylke === fylke);
+  return !(yr && cy?.lowest_admitted_years?.includes(yr));
+};
 export const meanOf = vals => vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
 // year-over-year, like-for-like: only programmes with a number in BOTH
 // years enter the comparison — a school whose basket changed between years
@@ -194,6 +204,35 @@ export function shownPrograms(s) {
 // the newest year in the dataset, or the one before it: anything older is a
 // school the counties have stopped publishing
 export const staleBefore = () => +S.DATA!.years[S.DATA!.years.length - 1] - 1;
+/* A school whose newest figure, at any level, is older than that has stopped
+   publishing: a school since closed or merged, or every school of a county that
+   no longer publishes poenggrenser (Agder, Nordland). Hidden by default
+   wherever a family browses (the map, the List, search, the county menu) and
+   brought back by a setting; its own page still opens from a link or a wish.
+   Measured against the dataset's newest year, not the clock: in January the
+   counties have not published the new year yet, and nothing has gone stale. */
+const newestOf = new WeakMap<School, number>();
+export function schoolNewest(s: School) {
+  let n = newestOf.get(s);
+  if (n === undefined) {
+    n = 0;
+    for (const p of s.programs) for (const y in p.values) n = Math.max(n, +y);
+    newestOf.set(s, n);
+  }
+  return n;
+}
+export const isCurrentSchool = (s: School) => schoolNewest(s) >= staleBefore();
+export const shownSchools = (): School[] => S.showStale ? S.DATA!.schools : S.DATA!.schools.filter(isCurrentSchool);
+// the counties with at least one school shown, in the dataset's order
+export function shownCounties() {
+  const f = new Set(shownSchools().map(s => s.fylke));
+  return (S.DATA!.counties || []).filter(c => f.has(c.fylke));
+}
+// the counties every one of whose schools stopped publishing: the settings
+// line names them, and the county menu lists them greyed while hidden
+export const staleCounties = () => (S.DATA!.counties || [])
+  .filter(c => { const ss = S.DATA!.schools.filter(s => s.fylke === c.fylke); return ss.length && !ss.some(isCurrentSchool); })
+  .map(c => c.fylke);
 // counties whose "ingen venteliste" is the county's own rule rather than an
 // observed queue state (openRuleNote; tools/extractors/mro.py)
 export const OPEN_RULE = new Set(['Møre og Romsdal']);
@@ -205,8 +244,14 @@ export const OPEN_RULE = new Set(['Møre og Romsdal']);
 // HELD_OUT in tools/model.py, which tools/test_model.py checks this mirror
 // against)
 export const HELD_OUT = new Set(['Telemark']);
-// counties that do not publish poenggrenser (docs/data-notes.md)
-export const MISSING_COUNTIES = ['Agder', 'Finnmark', 'Nordland', 'Troms', 'Vestfold', 'Østfold'];
+// counties with figures only from years long past and none published today
+// (Agder, Nordland): their history is shown, but the model neither fits nor
+// forecasts them (historyOnlyNote; HISTORY_ONLY in tools/model.py, which
+// tools/test_model.py checks this mirror against)
+export const HISTORY_ONLY = new Set(['Agder', 'Nordland']);
+// counties that do not publish poenggrenser and have no figures here at all
+// (docs/data-notes.md)
+export const MISSING_COUNTIES = ['Finnmark', 'Troms', 'Vestfold', 'Østfold'];
 export function schoolPressure(s, cat) {
   // Demand, judged in the newest dataset year only. Two honest signals:
   //   mean threshold of the programmes that filled up    -> how hard, typically

@@ -1,5 +1,5 @@
 import { bucketColor, chanceMode, renderPointsField } from "./chance";
-import { BIN_EDGES, BINS, cssVar, esc, fmt, HELD_OUT, isVg1, levelScope, MISSING_COUNTIES, shownPrograms } from "./helpers";
+import { BIN_EDGES, BINS, cssVar, esc, fmt, HELD_OUT, isVg1, levelScope, MISSING_COUNTIES, shownCounties, shownPrograms, shownSchools, staleCounties } from "./helpers";
 import { CATS, t } from "./i18n";
 import { renderControls } from "./intro";
 import { placeToast } from "./locate";
@@ -11,8 +11,10 @@ import { bindTitleTips } from "./tips";
 export function renderPanel() {
   renderControls();
   // in a span: the List view shows the line whole or not at all
+  // the counts are of what the map shows: the schools that stopped publishing
+  // are left out until the setting brings them back (shownSchools)
   document.getElementById('tagline')!.replaceChildren(Object.assign(document.createElement('span'), {
-    textContent: t('tagline', S.DATA!.schools.length, S.DATA!.counties.length,
+    textContent: t('tagline', shownSchools().length, shownCounties().length,
                    S.DATA!.years[0], S.DATA!.years[S.DATA!.years.length - 1]) }));
   document.getElementById('cat-label')!.textContent = t('catLabel');
   document.getElementById('view-map')!.textContent = t('viewMap');
@@ -23,23 +25,28 @@ export function renderPanel() {
   const co = document.getElementById('calc-open');
   co!.title = t('calcOpen');
   co!.setAttribute('aria-label', t('calcOpen'));
-  const counties = (S.DATA!.counties || []).filter(c => c.schools);
+  const counties = shownCounties().filter(c => c.schools);
   const ff = document.getElementById('fylke-field');
   ff!.hidden = counties.length < 2;               // pointless with a single county
   document.getElementById('fylke-label')!.textContent = t('fylkeLabel');
   const fsel: any = document.getElementById('map-fylke');
   fsel.innerHTML = `<option value="all">${t('allFylker')}</option>` +
     counties.map(c => {
-      const n = S.DATA!.schools.filter(s => s.fylke === c.fylke && s.lat).length;
+      const n = shownSchools().filter(s => s.fylke === c.fylke && s.lat).length;
       return `<option value="${esc(c.fylke)}">${esc(c.fylke)} (${n})</option>`;
     }).join('');
   // the counties without figures are listed, greyed and unselectable, so a
-  // parent in Agder learns the map did not forget their school
+  // parent in Østfold learns the map did not forget their school
   fsel.innerHTML += `<optgroup label="${esc(t('fylkeNoData'))}">` +
     MISSING_COUNTIES.map(f => `<option disabled>${esc(f)}</option>`).join('') + '</optgroup>';
+  // and the counties that stopped publishing, while the setting hides them,
+  // so a parent in Agder learns where their county went
+  const gone = S.showStale ? [] : staleCounties();
+  if (gone.length) fsel.innerHTML += `<optgroup label="${esc(t('fylkeNoRecent'))}">` +
+    gone.map(f => `<option disabled>${esc(f)}</option>`).join('') + '</optgroup>';
   fsel.value = S.mapFylke;
   const present = new Set();
-  S.DATA!.schools.filter(s => S.mapFylke === 'all' || s.fylke === S.mapFylke)
+  shownSchools().filter(s => S.mapFylke === 'all' || s.fylke === S.mapFylke)
     .forEach(s => levelScope(s.programs).forEach(p => present.add(p.category)));
   const sel: any = document.getElementById('map-cat');
   sel.innerHTML = `<option value="all">${t('allCats')}</option>` +
@@ -52,7 +59,7 @@ export function renderPanel() {
 export function renderCatNote() {
   const el = document.getElementById('cat-note');
   el!.textContent = S.mapCat === 'all' ? '' :
-    t('catNote', S.DATA!.schools.filter(s =>
+    t('catNote', shownSchools().filter(s =>
       (S.mapFylke === 'all' || s.fylke === S.mapFylke)
       && shownPrograms(s).some(p => p.category === S.mapCat)).length);
 }

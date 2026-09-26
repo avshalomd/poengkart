@@ -1,4 +1,8 @@
 {
+ "812885162": {
+  "kommune": "Øksnes",
+  "kommunenr": "1868"
+ },
  "816031982": {
   "kommune": "Voss",
   "kommunenr": "4621"
@@ -35,6 +39,10 @@
   "kommune": "Stad",
   "kommunenr": "4649"
  },
+ "874573922": {
+  "kommune": "Tvedestrand",
+  "kommunenr": "4213"
+ },
  "874576492": {
   "kommune": "Volda",
   "kommunenr": "1577"
@@ -51,6 +59,14 @@
   "kommune": "Oslo",
   "kommunenr": "0301"
  },
+ "874595012": {
+  "kommune": "Farsund",
+  "kommunenr": "4206"
+ },
+ "874595152": {
+  "kommune": "Kristiansand",
+  "kommunenr": "4204"
+ },
  "874597252": {
   "kommune": "Lillehammer",
   "kommunenr": "3405"
@@ -58,6 +74,10 @@
  "874605972": {
   "kommune": "Drammen",
   "kommunenr": "3301"
+ },
+ "874621382": {
+  "kommune": "Alstahaug",
+  "kommunenr": "1820"
  },
  "874624632": {
   "kommune": "Sauda",
@@ -78,6 +98,14 @@
  "912703312": {
   "kommune": "Oslo",
   "kommunenr": "0301"
+ },
+ "912885070": {
+  "kommune": "Steigen",
+  "kommunenr": "1848"
+ },
+ "912885305": {
+  "kommune": "Aarborte",
+  "kommunenr": "1826"
  },
  "913385632": {
   "kommune": "Time",
@@ -122,6 +150,14 @@
  "970963847": {
   "kommune": "Tynset",
   "kommunenr": "3427"
+ },
+ "974041707": {
+  "kommune": "Narvik",
+  "kommunenr": "1806"
+ },
+ "974192020": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
  },
  "974556995": {
   "kommune": "Bjørnafjorden",
@@ -431,6 +467,34 @@
   "kommune": "Sør-Odal",
   "kommunenr": "3415"
  },
+ "974573806": {
+  "kommune": "Risør",
+  "kommunenr": "4201"
+ },
+ "974573814": {
+  "kommune": "Arendal",
+  "kommunenr": "4203"
+ },
+ "974573857": {
+  "kommune": "Lillesand",
+  "kommunenr": "4215"
+ },
+ "974573865": {
+  "kommune": "Tvedestrand",
+  "kommunenr": "4213"
+ },
+ "974573873": {
+  "kommune": "Arendal",
+  "kommunenr": "4203"
+ },
+ "974573881": {
+  "kommune": "Grimstad",
+  "kommunenr": "4202"
+ },
+ "974574047": {
+  "kommune": "Evje og Hornnes",
+  "kommunenr": "4219"
+ },
  "974576422": {
   "kommune": "Molde",
   "kommunenr": "1506"
@@ -651,6 +715,10 @@
   "kommune": "Oslo",
   "kommunenr": "0301"
  },
+ "974590980": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
  "974590999": {
   "kommune": "Oslo",
   "kommunenr": "0301"
@@ -663,9 +731,49 @@
   "kommune": "Oslo",
   "kommunenr": "0301"
  },
+ "974591049": {
+  "kommune": "Oslo",
+  "kommunenr": "0301"
+ },
  "974591065": {
   "kommune": "Oslo",
   "kommunenr": "0301"
+ },
+ "974594994": {
+  "kommune": "Kristiansand",
+  "kommunenr": "4204"
+ },
+ "974595001": {
+  "kommune": "Kristiansand",
+  "kommunenr": "4204"
+ },
+ "974595044": {
+  "kommune": "Vennesla",
+  "kommunenr": "4223"
+ },
+ "974595060": {
+  "kommune": "Sirdal",
+  "kommunenr": "4228"
+ },
+ "974595117": {
+  "kommune": "Kristiansand",
+  "kommunenr": "4204"
+ },
+ "974595125": {
+  "kommune": "Lindesnes",
+  "kommunenr": "4205"
+ },
+ "974595141": {
+  "kommune": "Flekkefjord",
+  "kommunenr": "4207"
+ },
+ "974595168": {
+  "kommune": "Lyngdal",
+  "kommunenr": "4225"
+ },
+ "974595184": {
+  "kommune": "Kristiansand",
+  "kommunenr": "4204"
  },
  "974597195": {
   "kommune": "Gausdal",
@@ -754,6 +862,62 @@
  "974606232": {
   "kommune": "Nore og Uvdal",
   "kommunenr": "3338"
+ },
+ "974621029": {
+  "kommune": "Andøy",
+  "kommunenr": "1871"
+ },
+ "974621037": {
+  "kommune": "Hadsel",
+  "kommunenr": "1866"
+ },
+ "974621053": {
+  "kommune": "Sortland",
+  "kommunenr": "1870"
+ },
+ "974621134": {
+  "kommune": "Vågan",
+  "kommunenr": "1865"
+ },
+ "974621169": {
+  "kommune": "Vestvågøy",
+  "kommunenr": "1860"
+ },
+ "974621193": {
+  "kommune": "Meløy",
+  "kommunenr": "1837"
+ },
+ "974621215": {
+  "kommune": "Bodø",
+  "kommunenr": "1804"
+ },
+ "974621223": {
+  "kommune": "Bodø",
+  "kommunenr": "1804"
+ },
+ "974621274": {
+  "kommune": "Saltdal",
+  "kommunenr": "1840"
+ },
+ "974621282": {
+  "kommune": "Hábmer",
+  "kommunenr": "1875"
+ },
+ "974621290": {
+  "kommune": "Fauske",
+  "kommunenr": "1841"
+ },
+ "974621304": {
+  "kommune": "Rana",
+  "kommunenr": "1833"
+ },
+ "974621355": {
+  "kommune": "Vefsn",
+  "kommunenr": "1824"
+ },
+ "974621401": {
+  "kommune": "Brønnøy",
+  "kommunenr": "1813"
  },
  "974624362": {
   "kommune": "Haugesund",

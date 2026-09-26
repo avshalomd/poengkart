@@ -1,3 +1,4 @@
+import { shownSchools } from './helpers';
 import { foldName } from './search';
 import { S } from './state';
 import type { Place, School } from './types';
@@ -28,7 +29,7 @@ export function places(): Place[] {
     e.lat += s.lat; e.lon += s.lon; e.n++; e.fylke.add(s.fylke);
     acc.set(key, e);
   };
-  for (const s of S.DATA!.schools) { add(s.kommune, 'kommune', s); if (s.sted !== s.kommune) add(s.sted, 'sted', s); }
+  for (const s of shownSchools()) { add(s.kommune, 'kommune', s); if (s.sted !== s.kommune) add(s.sted, 'sted', s); }
   S.placeIx = [...acc.values()].map(e => ({
     name: e.name, kind: e.kind, lat: e.lat / e.n, lon: e.lon / e.n, n: e.n,
     fylke: e.fylke.size === 1 ? [...e.fylke][0] : null, f: foldName(e.name),
@@ -66,6 +67,11 @@ export function saveNear() {
 export function initPlaces() {
   try {
     const n = JSON.parse(localStorage.getItem('pk-near') || 'null');
-    if (n && typeof n.name === 'string' && isFinite(n.lat) && isFinite(n.lon)) S.near = { name: n.name, lat: +n.lat, lon: +n.lon, kind: n.kind === 'sted' ? 'sted' : 'kommune' };
+    if (n && typeof n.name === 'string' && isFinite(n.lat) && isFinite(n.lon)) {
+      S.near = { name: n.name, lat: +n.lat, lon: +n.lon, kind: n.kind === 'sted' ? 'sted' : 'kommune' };
+      // the place was picked to «sorter etter avstand», as setNear() does; a
+      // reload kept the place and its chip but went back to the threshold order
+      S.listSort = { key: 'dist', dir: 1 };
+    }
   } catch (e) {}
 }

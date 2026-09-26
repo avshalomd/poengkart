@@ -6,6 +6,22 @@
   "credit": "Foto: Amalie Skram videregående skole / Vestland fylkeskommune",
   "license": "© Vestland fylkeskommune"
  },
+ "Andøy videregående skole": {
+  "photo": "https://andoy.vgs.no/handlers/bv.ashx/i7d94e4c1-c4a6-4096-80c4-661cf7e5b13a/w1200/q10925/kf7d260c2a400/dji_0863.jpg",
+  "source": "site",
+  "page": "https://www.andoy.vgs.no",
+  "credit": "Foto: Andøy videregående skole / Nordland fylkeskommune",
+  "license": "© Nordland fylkeskommune"
+ },
+ "Arendal videregående skole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/5/52/Arendal_Videreg%C3%A5ende_skole_-_Tyholmen.JPG",
+  "source": "wikipedia",
+  "page": "https://commons.wikimedia.org/wiki/File:Arendal_Videreg%C3%A5ende_skole_-_Tyholmen.JPG",
+  "credit": "Foto: KEN (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0",
+  "wiki_url": "https://no.wikipedia.org/wiki/Arendal_videreg%C3%A5ende_skole",
+  "wiki_extract": "Arendal videregående skole er en videregående skole i Agder som befinner seg i Arendal sentrum. Skolen dekker studieforberedende programområde og service og samferdsel på yrkesfaglig studieprogram. Skolen er autorisert som International Baccalaureate (IB)-skole, og tilbyr IB Diploma Programme som et internasjonalt alternativ for motiverte elever."
+ },
  "Arna vidaregåande skule": {
   "photo": "https://www.arna.vgs.no/SysSiteAssets/bilder-e-sport/imagewithfallbackandmagikands3.jpg?width=1600&quality=80",
   "source": "site",
@@ -54,6 +70,13 @@
   "page": "https://commons.wikimedia.org/wiki/File:Bamble_videreg%C3%A5ende_skole_02.jpg",
   "credit": "Foto: Far min (CC BY-SA 4.0)",
   "license": "CC BY-SA 4.0"
+ },
+ "Berg videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Berg_vgs.jpg/1280px-Berg_vgs.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Berg_vgs.jpg",
+  "credit": "Foto: Æøå (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
  },
  "Bergeland videregående skole": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Bergeland_videreg%C3%A5ende_skole.jpg/1280px-Bergeland_videreg%C3%A5ende_skole.jpg",
@@ -119,12 +142,26 @@
   "wiki_url": "https://no.wikipedia.org/wiki/Blindern_videreg%C3%A5ende_skole",
   "wiki_extract": "Blindern videregående skole er en offentlig videregående skole på Sogn i Oslo."
  },
+ "Borgund vidaregåande skole": {
+  "photo": "https://borgund.vgs.no/handlers/bv.ashx/i620bd3a8-5207-443c-be04-f54de85a9295/w1920/k3585c4b39fc6/dsc_0793.JPG",
+  "source": "site",
+  "page": "https://borgund.vgs.no/",
+  "credit": "Foto: Borgund vidaregåande skole / Møre og Romsdal fylkeskommune",
+  "license": "© Møre og Romsdal fylkeskommune"
+ },
  "Buskerud": {
   "photo": "https://bfk.no/handlers/bv.ashx/i9ffc5d7d-de9f-4d72-bf2f-24b24ac90077/w1200/q1285/k69ff020281d4/dsc_0100.JPG",
   "source": "site",
   "page": "https://bfk.no/buskerud-vgs",
   "credit": "Foto: Buskerud videregående skole / Buskerud fylkeskommune",
   "license": "© Buskerud fylkeskommune"
+ },
+ "Byremo videregående skole": {
+  "photo": "https://byremo.vgs.no/handlers/bv.ashx/e1/id6bff2d2-d05a-4146-8ad5-2d1a89441670/w600/h338/kec03359c6418/bvgs-6.jpg",
+  "source": "site",
+  "page": "https://www.byremo.vgs.no",
+  "credit": "Foto: Byremo videregående skole / Agder fylkeskommune",
+  "license": "© Agder fylkeskommune"
  },
  "Byåsen videregående skole": {
   "photo": "https://web.trondelagfylke.no/contentassets/a16053b6ca984c29a1e1ac3e5aee0dd1/bya_front_morgen.jpg?width=1600",
@@ -247,6 +284,13 @@
   "page": "https://etterstad.vgs.no",
   "credit": "Foto: Etterstad videregående skole / Oslo kommune / Utdanningsetaten",
   "license": "© Oslo kommune / Utdanningsetaten"
+ },
+ "Fagerborg videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Fagerborg_videreg%C3%A5ende_skole.jpg/1280px-Fagerborg_videreg%C3%A5ende_skole.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Fagerborg_videreg%C3%A5ende_skole.jpg",
+  "credit": "Foto: Bjørn Erik Pedersen (CC BY 2.5)",
+  "license": "CC BY 2.5"
  },
  "Firda vidaregåande skule": {
   "photo": "https://www.firda.vgs.no/contentassets/b6657d8958584f8bafbabf817a49babd/firda-ny-skuleplass-2022-3.jpg?width=1600&height=1440&quality=80",
@@ -562,11 +606,32 @@
   "license": "CC0",
   "page": "https://commons.wikimedia.org/wiki/File:Kopervik_videreg%C3%A5ende_skole,_september_2025.jpg"
  },
+ "Kragerø videregående skole": {
+  "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.telemarkfylke.no//link/a3f6a451d67f47eea12f05bca7fd8e40.aspx",
+  "source": "site",
+  "page": "https://telemarkfylke.no/no/skoler/kragero-vgs/",
+  "credit": "Foto: Kragerø videregående skole / Telemark fylkeskommune",
+  "license": "© Telemark fylkeskommune"
+ },
+ "Kristiansand katedralskole Gimle": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Kristiansand_katedralskole_Gimle.JPG/1280px-Kristiansand_katedralskole_Gimle.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Kristiansand_katedralskole_Gimle.JPG",
+  "credit": "Foto: Stylegar (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
+ },
  "Kuben videregående skole": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png/1280px-2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
   "source": "commons",
   "page": "https://commons.wikimedia.org/wiki/File:2022-04_P%C3%A5skeferie_p%C3%A5_Kuben.png",
   "credit": "Foto: QUB1 (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
+ "Kvadraturen videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Kvadraturen_skolesenter.jpg/1280px-Kvadraturen_skolesenter.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Kvadraturen_skolesenter.jpg",
+  "credit": "Foto: Havstad112 (CC BY-SA 4.0)",
   "license": "CC BY-SA 4.0"
  },
  "Kvam vidaregåande skule": {
@@ -648,6 +713,13 @@
   "credit": "Foto: Jan-Tore Egge (CC BY-SA 4.0)",
   "license": "CC BY-SA 4.0"
  },
+ "Lørenskog": {
+  "photo": "https://afk.no/handlers/bv.ashx/e1/i73384b96-8fcc-4e38-9322-8b59284095fb/w600/h338/k2d442ad09cd3/lorenskogvgs.jpg",
+  "source": "site",
+  "page": "https://afk.no/lorenskog-vgs",
+  "credit": "Foto: Lørenskog videregående skole / Akershus fylkeskommune",
+  "license": "© Akershus fylkeskommune"
+ },
  "Mailand": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/10-04-17_Mailand_videreg%C3%A5ende_skole.jpg/1280px-10-04-17_Mailand_videreg%C3%A5ende_skole.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
   "source": "wikipedia",
@@ -664,6 +736,20 @@
   "credit": "Foto: Malvik videregående skole / Trøndelag fylkeskommune",
   "license": "© Trøndelag fylkeskommune"
  },
+ "Mandal videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Mandal_videreg%C3%A5ende_skole%2C_2020.jpg/1280px-Mandal_videreg%C3%A5ende_skole%2C_2020.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Mandal_videreg%C3%A5ende_skole,_2020.jpg",
+  "credit": "Foto: Ssu (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
+ "Manglerud videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Manglerud_vgs.jpg/1280px-Manglerud_vgs.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Manglerud_vgs.jpg",
+  "credit": "Foto: Hans-Petter Fjeld (CC BY-SA 2.5)",
+  "license": "CC BY-SA 2.5"
+ },
  "Melhus videregående skole": {
   "photo": "https://web.trondelagfylke.no/contentassets/3985e78e3aac49b8842e91975d344593/front-red-4.jpg?width=1600",
   "source": "site",
@@ -677,6 +763,13 @@
   "page": "https://www.meraker.vgs.no/",
   "credit": "Foto: Meråker videregående skole / Trøndelag fylkeskommune",
   "license": "© Trøndelag fylkeskommune"
+ },
+ "Midt-Østerdal videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Midt-%C3%98sterdal_VGS_II.jpg/1280px-Midt-%C3%98sterdal_VGS_II.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Midt-%C3%98sterdal_VGS_II.jpg",
+  "credit": "Foto: Jan-Tore Egge (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
  },
  "Molde videregående skole": {
   "photo": "https://molde.vgs.no/handlers/bv.ashx/i1ea10848-ec97-4559-a079-2ca1fd487878/w1920/k7bde94d382e4/hovedinngang-sommer-roser.jpg",
@@ -724,6 +817,15 @@
   "wiki_url": "https://no.wikipedia.org/wiki/Nannestad_videreg%C3%A5ende_skole",
   "wiki_extract": "Nannestad videregående skole er en videregående skole som ligger i Teigebyen sentralt i Nannestad kommune, i nærheten av Oslo Lufthavn."
  },
+ "Narvik videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Solhaugen_videreg%C3%A5ende_skole01.jpg/1280px-Solhaugen_videreg%C3%A5ende_skole01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "wikipedia",
+  "page": "https://commons.wikimedia.org/wiki/File:Solhaugen_videreg%C3%A5ende_skole01.jpg",
+  "credit": "Foto: TorbjørnS (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0",
+  "wiki_url": "https://nn.wikipedia.org/wiki/Narvik_videreg%C3%A5ende_skole",
+  "wiki_extract": "Narvik videregående skole er ein offentleg videregåande skule i Narvik i Narvik kommune i Nordland. Skulen vart etablert i 2008 etter ei samanslåing av dei tre videregåande skulane Frydenlund, Oscarsborg og Solhaugen. Skulen har omtrent 900 elevar og 230 tilsette."
+ },
  "Nesbru": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Nesbru_videreg%C3%A5ende_skole_Asker_01.jpg/1280px-Nesbru_videreg%C3%A5ende_skole_Asker_01.jpg",
   "source": "wikipedia",
@@ -760,6 +862,13 @@
   "page": "https://www.nordahlgrieg.vgs.no/",
   "credit": "Foto: Nordahl Grieg videregående skole / Vestland fylkeskommune",
   "license": "© Vestland fylkeskommune"
+ },
+ "Nordstrand videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/NordstrandVidereg%C3%A5endeSkole.JPG/1280px-NordstrandVidereg%C3%A5endeSkole.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:NordstrandVidereg%C3%A5endeSkole.JPG",
+  "credit": "Foto: Kimsaka (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
  },
  "Notodden videregående skole": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/NotoddenVgs.jpg/1280px-NotoddenVgs.jpg",
@@ -893,6 +1002,13 @@
   "wiki_url": "https://no.wikipedia.org/wiki/Ringsaker_videreg%C3%A5ende_skole",
   "wiki_extract": "Ringsaker videregående skole holder til i Brumunddal, og er en av de videregående skolene i Innlandet fylkeskommune. Skolen har tilsammen om lag 800 elever og 140 ansatte."
  },
+ "Risør videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Ris%C3%B8rVGSskolebygg2.JPG/1280px-Ris%C3%B8rVGSskolebygg2.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Ris%C3%B8rVGSskolebygg2.JPG",
+  "credit": "Foto: Peulle (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
+ },
  "Rjukan videregående skole": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Rjukan-vgs-2016-1.jpg/1280px-Rjukan-vgs-2016-1.jpg",
   "source": "commons",
@@ -960,6 +1076,13 @@
   "credit": "Foto: Røyken videregående skole / Akershus fylkeskommune",
   "license": "© Akershus fylkeskommune"
  },
+ "Sam Eyde videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/Sam_Eyde_videreg%C3%A5ende_skole.jpg/1280px-Sam_Eyde_videreg%C3%A5ende_skole.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Sam_Eyde_videreg%C3%A5ende_skole.jpg",
+  "credit": "Foto: KEN (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
+ },
  "Sandnes videregående skole": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Sandnes_videreg%C3%A5ende_skole.jpg/960px-Sandnes_videreg%C3%A5ende_skole.jpg",
   "source": "commons",
@@ -968,6 +1091,13 @@
   "wiki_extract": "Sandnes videregående skole er en offentlig videregående skole i Sandnes. Per 1.1.2025 har skolen 1080 elever og ca. 110 ansatte. Skolen er en studiespesialiserende skole som også tilbyr idrettsfaglig utdanning som følge av at idrettslinjen ved Gand videregående skole i samme by ble flyttet over til Sandnes vgs i 2014.",
   "credit": "Foto: Jarvin (CC BY 3.0)",
   "license": "CC BY 3.0"
+ },
+ "Sandnessjøen videregående skole": {
+  "photo": "https://sandnessjoen.vgs.no/handlers/bv.ashx/e1/i6ecaedf0-3b79-49af-a039-81b58f4c4c48/w800/h450/q18780/kb0d092fd5f90/skolen-m-skilt-1motifisert.jpg",
+  "source": "site",
+  "page": "https://www.sandnessjoen.vgs.no",
+  "credit": "Foto: Sandnessjøen videregående skole / Nordland fylkeskommune",
+  "license": "© Nordland fylkeskommune"
  },
  "Sandsli videregående skole": {
   "photo": "https://www.sandsli.vgs.no/siteassets/fast-innhold-bilder/bilder-av-skolen-host-2014-019-17.jpeg?width=1600&quality=80",
@@ -1042,6 +1172,13 @@
   "page": "https://commons.wikimedia.org/wiki/File:Sl%C3%A5tthaug_videreg%C3%A5ende_skole.jpg",
   "credit": "Foto: Frode H. Korneliussen (CC BY-SA 4.0)",
   "license": "CC BY-SA 4.0"
+ },
+ "Sofienberg videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/2013-05_Sofienberg.jpg/1280px-2013-05_Sofienberg.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:2013-05_Sofienberg.jpg",
+  "credit": "Foto: Chell Hill (CC BY-SA 3.0)",
+  "license": "CC BY-SA 3.0"
  },
  "Sogndal vidaregåande skule": {
   "photo": "https://www.sogndal.vgs.no/contentassets/1792cd05730f469f97f47be25fbf8537/forsidebilete.jpg?width=1600&height=1440&quality=80",
@@ -1179,6 +1316,13 @@
   "credit": "Foto: Strømmen videregående skole / Akershus fylkeskommune",
   "license": "© Akershus fylkeskommune"
  },
+ "Sunndal vidaregåande skole": {
+  "photo": "https://sunndal.vgs.no/handlers/bv.ashx/e1/icaaed226-e33d-4dba-8186-145a037b7a7a/w600/q6198/k7ee20decad23/1642aff3c208-img_3701.jpg",
+  "source": "site",
+  "page": "https://sunndal.vgs.no/",
+  "credit": "Foto: Sunndal vidaregåande skole / Møre og Romsdal fylkeskommune",
+  "license": "© Møre og Romsdal fylkeskommune"
+ },
  "Surnadal vidaregåande skule": {
   "photo": "https://surnadal.vgs.no/handlers/bv.ashx/i05cdc488-2a35-4f28-bb4b-edea32358e26/w1920/q1773/k7d87085f79a8/surnadal-vgs1.jpg",
   "source": "site",
@@ -1244,6 +1388,13 @@
   "credit": "Foto: Chell Hill (CC BY-SA 4.0)",
   "license": "CC BY-SA 4.0"
  },
+ "Tvedestrand videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Tvedestrand_videreg%C3%A5ende_skole_-_Mj%C3%A5vann_01.jpg/1280px-Tvedestrand_videreg%C3%A5ende_skole_-_Mj%C3%A5vann_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Tvedestrand_videreg%C3%A5ende_skole_-_Mj%C3%A5vann_01.jpg",
+  "credit": "Foto: Maritta85 (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
+ },
  "Ullern videregående skole": {
   "photo": "https://ullern.vgs.no/siteassets/nyhetsbilder-2019-20/ullern-vgs.jpg",
   "source": "site",
@@ -1296,6 +1447,13 @@
   "page": "https://www.verdal.vgs.no/",
   "credit": "Foto: Verdal videregående skole / Trøndelag fylkeskommune",
   "license": "© Trøndelag fylkeskommune"
+ },
+ "Vest-Telemark vidaregåande skule": {
+  "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.telemarkfylke.no//link/e1e1a76fab9f49b8b7ddefa728261941.aspx",
+  "source": "site",
+  "page": "https://telemarkfylke.no/no/skoler/vest-telemark-vgs/",
+  "credit": "Foto: Vest-Telemark vidaregåande skule / Telemark fylkeskommune",
+  "license": "© Telemark fylkeskommune"
  },
  "Vika videregående skole": {
   "photo": "https://vika.vgs.no/siteassets/bilder-av-skolen/vika-vgs2.png?width=1600&quality=80",

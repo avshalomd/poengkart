@@ -118,6 +118,17 @@ export const T = {
   // own line is the other way in
   setLevelsHint: { no: 'Vg1 er året du søker på når du går på 10. trinn. Vg2 og Vg3 finnes bare der fylket publiserer dem.',
                    en: 'Vg1 is the year you apply for from lower secondary school. Vg2 and Vg3 exist only where the county publishes them.' },
+  // the schools that stopped publishing (helpers.ts shownSchools); f is the
+  // counties all of whose schools did, already joined
+  setStale:     { no: 'Skoler uten nye tall', en: 'Schools without recent figures' },
+  setStaleHide: { no: 'Skjul', en: 'Hide' },
+  setStaleShow: { no: 'Vis', en: 'Show' },
+  setStaleHint: {
+    no: (n, y, f) => `${n} skoler har ingen data fra ${y} eller senere` +
+      (f ? `, blant dem alle skolene i ${f}, fylker som ikke publiserer poenggrenser i dag.` : '.'),
+    en: (n, y, f) => `${n} schools have no figures from ${y} or later` +
+      (f ? `, among them every school in ${f}, counties that no longer publish thresholds.` : '.'),
+  },
   setNote: { no: 'Valgene lagres bare i denne nettleseren.',
              en: 'Choices are saved only in this browser.' },
   locBtn:    { no: 'Vis posisjonen min', en: 'Show my position' },
@@ -367,22 +378,39 @@ export const T = {
   introPrivacy: { no: 'Personvern: poengene dine lagres bare i nettleseren din. Posisjonen brukes én gang og sendes ikke videre. Besøk telles uten informasjonskapsler (Vercel Web Analytics).',
                   en: 'Privacy: your points are stored only in your browser. Your position is used once and never sent. Visits are counted without cookies (Vercel Web Analytics).' },
   fylkeNoData: { no: '(ingen data)', en: '(no data)' },
+  fylkeNoRecent: { no: '(uten nye tall)', en: '(no recent figures)' },
   listAnd:    { no: ' og ', en: ' and ' },
   mergedNote: { no: (from, y, n) => n === 1 ? `${from} gikk inn i denne skolen i ${y}. Tall før ${y} er fra den skolen.` : `${from} ble slått sammen til denne skolen i ${y}. Tall før ${y} er fra disse skolene.`,
                 en: (from, y, n) => n === 1 ? `${from} became part of this school in ${y}. Figures before ${y} come from that school.` : `${from} were merged into this school in ${y}. Figures before ${y} come from those schools.` },
+  formerCountyNote: { no: (ys, f) => `Tallene for ${ys} er fra ${f} fylkeskommune: skolen hørte til ${f} da.`,
+                      en: (ys, f) => `The figures for ${ys} are from ${f} county: the school belonged to ${f} then.` },
+  formerNameNote: { no: (now, was) => `${now} het tidligere ${was}, med samme kode i Udirs register. Tallene fra før navnebyttet står under det nye navnet.`,
+                    en: (now, was) => `${now} was earlier called ${was}, under the same code in Udir's register. Figures from before the renaming are shown under the new name.` },
   uncertainNote: { no: y => `Tallene for ${y} er usikre: to publikasjoner fra fylket oppgir ulike verdier.`,
                    en: y => `The figures for ${y} are uncertain: two county publications give different values.` },
-  roundYearNote: { no: (y, r) => `${y}-tallene er fra ${r}. inntak, ikke samme inntak som de andre årene – flere kom inn, så grensene ligger lavere.`,
-                   en: (y, r) => `The ${y} figures are from the ${ordEn(r)} intake, not the same intake as the other years – more applicants were admitted, so the thresholds sit lower.` },
+  // ys: the years, already listed; r: their round (null: not stated); R: the
+  // county's own round (null: not stated)
+  roundYearNote: { no: (ys, r, R) => !r ? `Fylket oppgir ikke hvilket inntak tallene for ${ys} er fra, så de kan ikke sammenlignes direkte med de andre årene.`
+                     : !R ? `Tallene for ${ys} er fra ${r}. inntak. For de andre årene oppgir ikke fylket inntaket, så årene kan ikke sammenlignes direkte.`
+                     : +r > +R ? `Tallene for ${ys} er fra ${r}. inntak, ikke samme inntak som de andre årene – flere kom inn, så grensene ligger lavere.`
+                     : `Tallene for ${ys} er fra ${r}. inntak, ikke samme inntak som de andre årene – færre hadde fått plass, så grensene ligger gjerne høyere.`,
+                   en: (ys, r, R) => !r ? `The county does not state which intake the figures for ${ys} are from, so they cannot be compared directly with the other years.`
+                     : !R ? `The figures for ${ys} are from the ${ordEn(r)} intake. For the other years the county does not state the intake, so the years cannot be compared directly.`
+                     : +r > +R ? `The figures for ${ys} are from the ${ordEn(r)} intake, not the same intake as the other years – more applicants were admitted, so the thresholds sit lower.`
+                     : `The figures for ${ys} are from the ${ordEn(r)} intake, not the same intake as the other years – fewer applicants had been admitted, so the thresholds tend to sit higher.` },
+  reprintNote: { no: ys => `Tallene for ${ys} er hentet fra en gjengivelse av fylkets tabell et annet sted (avis, masteroppgave eller dokumentarkiv), fordi fylkets eget dokument ikke lenger er å finne.`,
+                 en: ys => `The figures for ${ys} are taken from a copy of the county's table printed elsewhere (a newspaper, a thesis or a document archive), because the county's own document can no longer be found.` },
+  decodedNote: { no: ys => `Tallene for ${ys} er regnet ut av Poengkart: fylket skrev hvert tall med et tillegg i hele hundre, og tillegget er trukket fra. Fylket har ikke forklart tillegget.`,
+                 en: ys => `The figures for ${ys} were worked out by Poengkart: the county printed each figure with an addition in whole hundreds, and the addition has been subtracted. The county has not explained the addition.` },
+  supplementNote: { no: ys => `Fylket skrev tallene for ${ys} med fylkestillegget på 800 poeng lagt til. Poengkart har trukket det fra. Landslinjene hadde ikke tillegget.`,
+                    en: ys => `The county printed the figures for ${ys} with its county supplement of 800 points added, and Poengkart has subtracted it. The national programmes (landslinjer) carried no supplement.` },
+  lowestAdmittedNote: { no: ys => `Tallene for ${ys} er laveste poengsum blant de inntatte. Fylket oppgir ikke om alle søkerne fikk plass, så et lavt tall kan bety at alle kom inn.`,
+                        en: ys => `The figures for ${ys} are the lowest points among those admitted. The county does not say whether every applicant got a place, so a low figure may mean everyone got in.` },
   closeAria:  { no: 'Lukk skoledetaljer', en: 'Close school details' },
   // x: the cluster's mix when points are entered, so the label says what the ring shows
-  clusterAria: { no: (n, x, place, list) => `${n} skoler${place ? ` i ${place}` : ' i dette området'}.` + (x ? ` Best sjanse: ${x.likely} sannsynlig · ${x.possible} mulig · ${x.unlikely} lite sannsynlig${x.none ? ` · ${x.none} uten prognose` : ''}.` : '') + (list ? ' Trykk for å se skolene.' : ' Trykk for å zoome inn.'),
-                 en: (n, x, place, list) => `${n} schools${place ? ` in ${place}` : ' in this area'}.` + (x ? ` Best chance: ${x.likely} likely · ${x.possible} possible · ${x.unlikely} unlikely${x.none ? ` · ${x.none} without a forecast` : ''}.` : '') + (list ? ' Press to list the schools.' : ' Press to zoom in.') },
+  clusterAria: { no: (n, x, place) => `${n} skoler${place ? ` i ${place}` : ' i dette området'}.` + (x ? ` Best sjanse: ${x.likely} sannsynlig · ${x.possible} mulig · ${x.unlikely} lite sannsynlig${x.none ? ` · ${x.none} uten prognose` : ''}.` : '') + ' Trykk for å zoome inn.',
+                 en: (n, x, place) => `${n} schools${place ? ` in ${place}` : ' in this area'}.` + (x ? ` Best chance: ${x.likely} likely · ${x.possible} possible · ${x.unlikely} unlikely${x.none ? ` · ${x.none} without a forecast` : ''}.` : '') + ' Press to zoom in.' },
   clusterMore:   { no: k => `${k} m.fl.`, en: k => `${k} and more` },
-  clusterHead:   { no: n => `${n} skoler her`, en: n => `${n} schools here` },
-  clusterHeadIn: { no: (n, k) => `${n} skoler i ${k}`, en: (n, k) => `${n} schools in ${k}` },
-  clusterBest:   { no: 'Beste sjanse ved skolen med poengene dine', en: 'Best chance at this school with your points' },
-  clusterZoom:   { no: 'Vis på kartet', en: 'Show on the map' },
   markerAria: { no: (n, v) => `${n}. ${v}. Trykk for å se detaljer.`, en: (n, v) => `${n}. ${v}. Press to open details.` },
   gone:       { no: 'Utgått', en: 'Discontinued' },
   tipPrograms:{ no: (n, span) => `${n} programområde${n === 1 ? '' : 'r'} · ${span}`, en: (n, span) => `${n} programme area${n === 1 ? '' : 's'} · ${span}` },
@@ -486,8 +514,8 @@ export const T = {
   wiki:       { no: 'Wikipedia', en: 'Wikipedia' },
   srcNoteLink: { no: 'Meld fra via tilbakemelding', en: 'Report an error via feedback' },
   srcNote: {
-    no: 'Kilder: fylkeskommunene i Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Telemark, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaket varierer mellom fylkene og er merket på hver skole. Uoffisiell tjeneste, laget av Abshalom Dayan. Tallene er lest maskinelt fra fylkenes publikasjoner og kan inneholde feil.',
-    en: 'Sources: the county authorities of Akershus, Buskerud, Innlandet, Møre og Romsdal, Rogaland, Telemark, Trøndelag and Vestland, the City of Oslo and vilbli.no (thresholds), NSR/Udir (schools), Kartverket (geocoding), Wikimedia Commons and school websites (photos). The intake differs by county and is labelled on every school. Unofficial service, built by Abshalom Dayan. The figures are read by machine from the county publications and may contain errors.',
+    no: 'Kilder: fylkeskommunene i Agder, Akershus, Buskerud, Innlandet, Møre og Romsdal, Nordland, Rogaland, Telemark, Trøndelag og Vestland, Oslo kommune og vilbli.no (poenggrenser; for noen eldre år aviser og arkiver som gjenga fylkets tabell), NSR/Udir (skoler), Kartverket (geokoding), Wikimedia Commons og skolenes egne nettsider (bilder). Inntaket varierer mellom fylkene og er merket på hver skole. Uoffisiell tjeneste, laget av Abshalom Dayan. Tallene er lest maskinelt fra fylkenes publikasjoner, eller skrevet av for hånd der tabellen bare finnes som bilde eller kopi, og kan inneholde feil.',
+    en: 'Sources: the county authorities of Agder, Akershus, Buskerud, Innlandet, Møre og Romsdal, Nordland, Rogaland, Telemark, Trøndelag and Vestland, the City of Oslo and vilbli.no (thresholds; for some older years, newspapers and archives that reprinted the county’s table), NSR/Udir (schools), Kartverket (geocoding), Wikimedia Commons and school websites (photos). The intake differs by county and is labelled on every school. Unofficial service, built by Abshalom Dayan. The figures are read by machine from the county publications, or typed by hand where the table survives only as an image or a copy, and may contain errors.',
   },
   noMatch:    { no: 'Ingen treff', en: 'No matches' },
   prioBadge:  { no: 'fortrinnsrett', en: 'priority right' },
@@ -635,6 +663,9 @@ export const T = {
   // Telemark's extract gives the lowest points among the admitted for every
   // offered programme and no fill state, so the county is published but held
   // out of the model (tools/extractors/telemark.py, HELD_OUT in tools/model.py)
+  // a county whose figures stop years ago (HISTORY_ONLY in helpers.ts)
+  historyOnlyNote: { no: f => `${f} publiserer ikke poenggrenser i dag. Tallene her er de siste som er funnet, og Poengkart lager ingen prognose for skolene i fylket.`,
+                     en: f => `${f} does not publish thresholds today. The figures here are the latest found, and Poengkart makes no forecast for the county's schools.` },
   heldOutNote: { no: f => `${f} oppgir laveste poengsum blant de inntatte for hvert programområde, men ikke om alle søkerne fikk plass. Tallene kan derfor ikke sammenlignes med poenggrensene i andre fylker, og prognosen her bygger bare på fylkets egne tall.`,
                  en: f => `${f} gives the lowest points among those admitted to each programme area, but not whether every applicant got a place. The figures therefore cannot be compared with thresholds in other counties, and the forecast here is built on the county's own figures alone.` },
   finalRoundUnknown: {

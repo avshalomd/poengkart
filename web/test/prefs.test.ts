@@ -76,9 +76,10 @@ describe('preferences', () => {
     renderSettings();
     expect(document.getElementById('settings-h')!.textContent).toBe(t('settingsLabel'));
     const on = [...document.querySelectorAll('#settings-body .seg button.on')] as any[];
-    // one pressed button per row: levels, language, theme, text size, colours
-    expect(on.length).toBe(5);
-    expect(on.map(b => b.dataset.v)).toEqual(['1', 'no', 'auto', 'n', '0']);
+    // one pressed button per row: levels, schools without recent figures,
+    // language, theme, text size, colours
+    expect(on.length).toBe(6);
+    expect(on.map(b => b.dataset.v)).toEqual(['1', '0', 'no', 'auto', 'n', '0']);
     expect(on.every(b => b.getAttribute('aria-pressed') === 'true')).toBe(true);
   });
 

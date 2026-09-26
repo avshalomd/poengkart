@@ -1,0 +1,15 @@
+# document: Akershus fylkeskommune's figures after the first intake 2015 (no county table was published; see holes.json)
+# reprinted in: Budstikka 23.02.2016, «Her er det sekser-krav for å komme inn», fact box «Kilde: Akershus fylkeskommune»; the article quotes the county's section leader for intake
+# round: 1 (stated: «Asker videregående skole har nest høyest opptakskrav i traktene våre med 47,7 poeng som nedre grense ved førsteinntaket»)
+# tier: reprint: a newspaper's copy of the county's figures, not the county's own file
+# legend: Vg1 studiespesialisering, one figure per school, no symbols
+# transcribed: lane S, 25 Sept 2026; all 7 checked against the saved article (qa/2026-09-25-data-hunt/S/files/budstikka-2016-02-23-sekser-krav.html) on 26 Sept 2026
+# school: as printed (the county's own short names)
+school,program,level,year,printed
+Nadderud,Studiespesialisering,Vg1,2015,"50,6"
+Asker,Studiespesialisering,Vg1,2015,"47,7"
+Sandvika,Studiespesialisering,Vg1,2015,"46,5"
+Valler,Studiespesialisering,Vg1,2015,"45,9"
+Rosenvilde,Studiespesialisering,Vg1,2015,"45,3"
+Stabekk,Studiespesialisering,Vg1,2015,"42,5"
+Nesbru,Studiespesialisering,Vg1,2015,"41,4"

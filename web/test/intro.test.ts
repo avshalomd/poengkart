@@ -5,7 +5,7 @@ import {
   renderIntro, openIntro, closeIntro, hintHelp, clearHelpHint, HINT_KEY, HINT_TRIES, INTRO_SEEN,
   showSheet, hideSheet, isSheetOpen, anySheetOpen, setModalTrap, renderControls, SHEET_IDS,
 } from '../src/intro';
-import { initHelpers } from '../src/helpers';
+import { initHelpers, shownCounties, shownSchools } from '../src/helpers';
 import { t } from '../src/i18n';
 import { S } from '../src/state';
 
@@ -17,7 +17,7 @@ describe('the help sheet', () => {
     const body = document.getElementById('intro-body')!;
     expect(body.querySelectorAll('.step').length).toBe(t('introSteps').length);
     expect(body.querySelector('.lede')!.textContent)
-      .toContain(t('introScope', S.DATA!.schools.length, S.DATA!.counties.length,
+      .toContain(t('introScope', shownSchools().length, shownCounties().length,
                    S.DATA!.years[0], S.DATA!.years[S.DATA!.years.length - 1]));
     // the colour key draws one dot per t('introKeys') entry, plus the
     // "no points" swatch renderIntro adds from t('noPointsShort')
