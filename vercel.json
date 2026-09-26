@@ -50,6 +50,17 @@
       ],
       "destination": "https://poengkart.no/$1",
       "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "poengkart-ad-6b15.vercel.app"
+        }
+      ],
+      "destination": "https://poengkart.no/$1",
+      "permanent": true
     }
   ],
   "headers": [
