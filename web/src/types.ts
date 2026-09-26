@@ -97,7 +97,10 @@ export interface Dataset {
 /** One programme's forecast for the county's next publication year:
     m = expected threshold, s = its backtest error, pi = P(a queue forms),
     h = how many published years it was fitted on. */
-export interface Forecast { m: number; s: number; pi: number; h: number }
+/** j: the step between the series' two newest figures, present only when it
+    is larger than meta.jump_points (tools/model.py); its spread s already
+    carries meta.sigma_jump_multiplier */
+export interface Forecast { m: number; s: number; pi: number; h: number; j?: number }
 
 /** What the county's final round did to its published round, measured on the
     county's own pairs (meta.round_bridge). */
@@ -122,6 +125,8 @@ export interface ModelMeta {
   sigma_forecast?: Record<string, number>;
   sigma_level_multiplier?: Record<string, number>;
   sigma_group_multiplier?: Record<string, number>;
+  sigma_jump_multiplier?: Record<string, number>;
+  jump_points?: number;
   backtest_eval_years?: {
     coverage80?: number;
     /** the same scores for Vg1 and for Vg2 and up (tools/model.py, LEVEL_GROUPS) */

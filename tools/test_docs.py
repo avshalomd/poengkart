@@ -304,6 +304,18 @@ _g0 = META['halflife_search']['level_group_spread_experiment']['pooled']['by_lev
 check(doc, 'group factor', r'\(`meta\.sigma_group_multiplier`\): ×([\d.]+) for Vg1 and ×([\d.]+) for Vg2 and up\. Without it the pooled spread covered ([\d.]+)% of held-out Vg1 outcomes and ([\d.]+)% of the rest',
       [META['sigma_group_multiplier']['Vg1'], META['sigma_group_multiplier']['Vg2+'],
        _g0['Vg1']['coverage80'] * 100, _g0['Vg2+']['coverage80'] * 100], flat, [D3, D3, D2 * 10, D2 * 10])
+# ---- v1.19: the jump factor and the steadily-rising check
+_J = META['halflife_search']['jump_spread_experiment']
+_RS = META['halflife_search']['rising_series_check']
+check(doc, 'jump factor', r'\(`meta\.sigma_jump_multiplier`\): ×([\d.]+) after a jump and ×([\d.]+) otherwise\. Without it the spread covered ([\d.]+)% of held-out outcomes after a jump and ([\d.]+)% of the rest; with it, ([\d.]+)% and ([\d.]+)%',
+      [META['sigma_jump_multiplier']['jump'], META['sigma_jump_multiplier']['steady']]
+      + [100 * _J[a]['by_jump'][k]['coverage80'] for a in ('without', 'with_jump') for k in ('jump|all', 'steady|all')],
+      flat, [D3, D3] + [D2 * 10] * 4)
+check(doc, 'rising series', r'the backtest has been there (\d+) times: the published figure came in below the last one ([\d.]+)% of the time, the model\'s RMSE was ([\d.]+) against ([\d.]+) for persistence and ([\d.]+) for the EWMA, and it under-forecast by ([\d.]+) points on average \(95% CI \[([-\d.]+), ([-\d.]+)\]\)',
+      [_RS['flagged']['n'], 100 * _RS['flagged']['share_below_last'], _RS['flagged']['rmse'], _RS['flagged']['rmse_last_year'],
+       _RS['flagged']['rmse_ewma'], _RS['flagged']['bias']] + _RS['flagged']['ci_bias'], flat, [N, D2 * 10] + [D2] * 6)
+check(doc, 'trend term', r'slope ([\d.]+) fitted on 2020–2024\) takes the held-out Vg1 RMSE from ([\d.]+) to ([\d.]+)',
+      [_RS['trend_term']['beta'], _RS['trend_term']['rmse_eval'], _RS['trend_term']['rmse_eval_with']], flat, D3)
 check(doc, 'sigma table', r'\| 0 years \| ([\d.]+) \| \| 1 year \| ([\d.]+) \| \| 2–3 years \| ([\d.]+) \| \| 4\+ years \| ([\d.]+) \|',
       SIGMAS, flat, D1)
 # model.md quotes the same satellite measurement as section 4.4
@@ -657,6 +669,21 @@ check(doc, '7.5 group spread brier', r'Brier score goes from ([\d.]+) to ([\d.]+
 check(doc, 'appendix D group spread', r'interval goes from ([\d.]+)% to ([\d.]+)% on Vg1 and from ([\d.]+)% to ([\d.]+)% on Vg2 and up, and ([\d.]+)% to ([\d.]+)% overall',
       pct2([G0['Vg1']['coverage80'], G1['Vg1']['coverage80'], G0['Vg2+']['coverage80'], G1['Vg2+']['coverage80'],
             GS['pooled']['coverage80'], GS['per_group']['coverage80']]), flat, D2 * 10)
+_jc = lambda a, k: 100 * _J[a]['by_jump'][k]['coverage80']
+check(doc, '6.1 jump factor', r'without a factor of its own it covered ([\d.]+)% of held-out outcomes after such a step, and ([\d.]+)% of the rest\. .* ×([\d.]+) after a jump and ×([\d.]+) otherwise \(`meta\.sigma_jump_multiplier`\)\. Held out, the two cover ([\d.]+)% and ([\d.]+)%',
+      [_jc('without', 'jump|all'), _jc('without', 'steady|all'), META['sigma_jump_multiplier']['jump'],
+       META['sigma_jump_multiplier']['steady'], _jc('with_jump', 'jump|all'), _jc('with_jump', 'steady|all')],
+      flat, [D2 * 10] * 2 + [D3] * 2 + [D2 * 10] * 2)
+check(doc, '7.5 jump factor', r'moves held-out coverage after such a step from ([\d.]+)% to ([\d.]+)%, and on the rest from ([\d.]+)% to ([\d.]+)%; the admission probability\'s Brier score goes from ([\d.]+) to ([\d.]+)',
+      [_jc('without', 'jump|all'), _jc('with_jump', 'jump|all'), _jc('without', 'steady|all'), _jc('with_jump', 'steady|all'),
+       _J['without']['chance_brier'], _J['with_jump']['chance_brier']], flat, [D2 * 10] * 4 + [0.00005001] * 2)
+check(doc, '7.5 rising series', r'has made (\d+) such Vg1 forecasts .* came in below the last one ([\d.]+)% of the time; the model\'s RMSE there was ([\d.]+) against ([\d.]+) for persistence, and it under-forecast by ([\d.]+) points \[([-\d.]+), ([-\d.]+)\]',
+      [_RS['flagged']['n'], 100 * _RS['flagged']['share_below_last'], _RS['flagged']['rmse'], _RS['flagged']['rmse_last_year'],
+       _RS['flagged']['bias']] + _RS['flagged']['ci_bias'], flat, [N, D2 * 10] + [D2] * 5)
+check(doc, '7.5 trend term', r'with the slope \(([\d.]+)\) fitted on the calibration years, takes the held-out Vg1 RMSE from ([\d.]+) to ([\d.]+)',
+      [_RS['trend_term']['beta'], _RS['trend_term']['rmse_eval'], _RS['trend_term']['rmse_eval_with']], flat, D3)
+check(doc, 'appendix D jump factor', r'held-out coverage after such a step goes from ([\d.]+)% to ([\d.]+)%\. Section 7\.5',
+      [_jc('without', 'jump|all'), _jc('with_jump', 'jump|all')], flat, D2 * 10)
 for lab, r in (('Vg1', V1), ('Vg2 and up', V2)):
     check(doc, f'table 4c {lab}', rf'\| {lab} \| ([\d,]+) \| ([\d.]+) \| ([\d.]+)% \| ([\d.]+) \| ([\d.]+) \| ([\d.]+) \(([\d.]+)\) \|',
           [r['n'], r['rmse'], r['coverage80'] * 100, r['interval_width80'], r['chance_brier'], r['fill_brier'], r['fill_brier_base_rate']],

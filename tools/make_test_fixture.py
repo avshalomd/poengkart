@@ -29,6 +29,7 @@ NAMED = {
     ('Akershus', 'Ås'),
     ('Akershus', 'Roald Amundsen'),
     ('Oslo', 'Elvebakken videregående skole'),
+    ('Rogaland', 'Randaberg videregående skole'),   # a jump: TIF 30,0 → 11,3 (the forecast's j)
     ('Oslo', 'Bjørnholt videregående skole'),
     ('Oslo', 'Blindern videregående skole'),
     ('Buskerud', 'St. Hallvard'),

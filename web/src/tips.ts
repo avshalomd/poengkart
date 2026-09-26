@@ -52,7 +52,7 @@ export function bindTips(root) {
   // The row's chips carry data-tip rather than a title, and get the same touch
   // handling as the chance chip. Their text reaches a screen reader as the
   // name button's description: an aria-label on a plain span is not read.
-  root.querySelectorAll('.ch[data-tip], .soft[data-tip]').forEach(el => attach(el, esc(el.dataset.tip)));
+  root.querySelectorAll('.ch[data-tip], .soft[data-tip], .jump[data-tip]').forEach(el => attach(el, esc(el.dataset.tip)));
   bindTitleTips(root);
   root.querySelectorAll('.lv').forEach(el => {
     const key = el.textContent.trim();

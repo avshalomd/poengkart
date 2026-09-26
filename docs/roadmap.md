@@ -396,3 +396,28 @@ Found by the final whole-branch review (17 September 2026) and left for later:
   figure of theirs, so only a refresh that renames or drops one of the three
   turns them red. (The unit tests read the frozen slice in `web/test/data/`,
   written by `tools/make_test_fixture.py`.)
+
+## Model and data checks from the first-visitor walkthroughs (26 September 2026)
+
+- **Steadily rising Vg1 series forecast well below their last figure**
+  (Persbråten ST 48,1 → 40,9, Hartvig Nissen ST 50,3 → 43,7). Backtested
+  (`meta.halflife_search.rising_series_check`, report v1.19, Section 7.5):
+  the drop comes four times in five, a little smaller than forecast (bias
+  +1.25 points, CI spans zero); a trend term gains 0.05 RMSE held out. Not
+  added. *Open:* the forecast is right more often than it looks, so the fix
+  is showing the forecast next to the chance (the display items of the
+  walkthrough report), not the model.
+- **Unusual steps.** *Done (v1.19):* a newest step of more than 8 points
+  widens the spread (×1.242, held-out coverage after one from 73% to 83%)
+  and the programme row says «Uvanlig endring» with both figures. About one
+  forecast in seven carries it.
+- **Randaberg Vg1 TIF 2026 = 11,3** after 30,0: Rogaland printed it, on
+  page 11 of both the 7 and the 21 September 2026 editions. Only the county
+  can say whether it is a typo (inntak@rogfk.no). Dalane Vg1 HO 37,0 → 10,5
+  and Godalen Vg1 Elektro SK 3 år 24,0 → 42,4 are likewise as printed.
+- **Berg and Nordstrand (Oslo)** are not missing: both are closed (the
+  national school register marks them deleted in 2016 and 2014), and no
+  Oslo table since 2015 has a row for either.
+- **St. Svithun and Stavanger katedralskole both «+3,4 (± 0,9)»**: a
+  coincidence of rounding (school effects 3.36 ± 0.94 and 3.39 ± 0.87,
+  ranks 24 and 23), not shared data.

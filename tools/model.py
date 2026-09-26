@@ -124,6 +124,8 @@ EWMA_ALPHA = 0.4                                  # the exponential-smoothing ba
 SINGLE_WEIGHTS = [1.0, 0.5, 0.25, 0.0]            # level-fit weight of a threshold one applicant set; backtest picks
 LEVEL_SPREAD = True                               # spread conditioned on the forecast level as well as on history
 LEVEL_GROUP_SPREAD = True                         # ...and scaled per level group (Vg1, Vg2+) to its own 80% coverage
+JUMP_POINTS = 8.0                                 # a newest step larger than this is an unusual change (the app flags it)
+JUMP_SPREAD = True                                # ...and the spread after one is scaled to its own 80% coverage
 CHANCE_GRID = [20, 25, 30, 35, 40, 45, 50, 55]   # applicant points for reliability
 # the app's default scope is Vg1 (roadmap, 14 Sept 2026): the backtest scores
 # Vg1 and Vg2 and up apart as well as pooled
@@ -563,17 +565,35 @@ def band_of(m):
     return f'{lo}-{hi}' if hi < 99 else f'{lo}+'
 
 
-def spread(sig, h, m, lg=None):
+def spread(sig, h, m, lg=None, jump=None):
     """Forecast spread s for a series with h years of history forecast at m:
     the history bucket's walk-forward RMSE (floored, calibrate_sigma) times
     the level multiplier of the band m falls in, times the multiplier of the
-    series' level group lg (each 1 where not conditioned)."""
+    series' level group lg, times the jump factor when the series' newest
+    step was larger than JUMP_POINTS (each 1 where not conditioned)."""
     return (sig['hist'][hist_bucket(h)] * (sig['level'].get(band_of(m), 1.0) if sig.get('level') else 1.0)
-            * (sig.get('group') or {}).get(lg, 1.0))
+            * (sig.get('group') or {}).get(lg, 1.0)
+            * (sig.get('jump') or {}).get(jump_key(jump), 1.0))
+
+
+def newest_step(vals):
+    """The change between a series' two newest published figures: vals is its
+    [(year, points)] in year order. None with fewer than two."""
+    return vals[-1][1] - vals[-2][1] if len(vals) >= 2 else None
+
+
+def jump_key(jump):
+    """The key of sig['jump'] for a series: 'jump' after a newest step larger
+    than JUMP_POINTS, 'steady' otherwise, None when that is not known."""
+    return None if jump is None else 'jump' if jump else 'steady'
+
+
+def is_jump(step):
+    return step is not None and abs(step) > JUMP_POINTS
 
 
 def error_quantiles(preds, sig):
-    z = [(p['v'] - p['m']) / spread(sig, p['hist'], p['m'], p.get('lg'))
+    z = [(p['v'] - p['m']) / spread(sig, p['hist'], p['m'], p.get('lg'), p.get('jump'))
          for p in preds if p['state'] == 'num' and p['T'] in CALIB_YEARS]
     return [round(float(q), 3) for q in np.quantile(z, ZQ_GRID)]
 
@@ -600,10 +620,11 @@ def walk_forward(rows, bridge, halflife, newest_all, couple=False, fill_blind=No
         # two series-only baselines: last year's figure, and an exponentially
         # weighted mean of the series' own past figures (Muth, 1960) — the
         # smoothing that persistence and the programme mean are the ends of
-        last, ew = {}, {}
+        last, ew, past = {}, {}, collections.defaultdict(list)
         for r in sorted(train, key=lambda r: r['year']):
             if r['state'] == 'num':
                 last[r['series']] = r['v']
+                past[r['series']].append((r['year'], r['v']))
                 ew[r['series']] = (r['v'] if r['series'] not in ew
                                    else EWMA_ALPHA * r['v'] + (1 - EWMA_ALPHA) * ew[r['series']])
         pmean = collections.defaultdict(list)      # programme-county mean, baseline
@@ -616,7 +637,8 @@ def walk_forward(rows, bridge, halflife, newest_all, couple=False, fill_blind=No
             preds.append(dict(T=T, series=r['series'], state=r['state'], v=r['v'], m=mm, pi=pi,
                               hist=hist.get(r['series'], 0), last=last.get(r['series']), ew=ew.get(r['series']),
                               pm=pm.get((r['fylke'], r['prog'])), cat=r['cat'], fylke=r['fylke'],
-                              school=r['school'], lg=level_group(r['prog'])))
+                              school=r['school'], lg=level_group(r['prog']),
+                              past=list(past[r['series']]), jump=is_jump(newest_step(past[r['series']]))))
         print(f'  backtest {T}: train {len(train)} test {len(test)}  sigma {m.sigma:.2f}')
     return preds, fit_sigmas
 
@@ -652,16 +674,20 @@ def satellite_backtest(rows, held_rows, bridge, halflife, couple, single_w, sig)
             m = Model(train, bridge, halflife, newest, couple, None, single_w).fit()
             st = Satellite(m, htrain, halflife).fit()
             hist = collections.Counter(r['series'] for r in htrain if r['state'] == 'num')
+            past = collections.defaultdict(list)
+            for r in sorted(htrain, key=lambda r: r['year']):
+                if r['state'] == 'num':
+                    past[r['series']].append((r['year'], r['v']))
             for r in test:
                 mm, _ = st.predict(r, T)
                 preds.append(dict(T=T, series=r['series'], v=r['v'], m=mm, hist=hist.get(r['series'], 0),
-                                  lg=level_group(r['prog'])))
+                                  lg=level_group(r['prog']), jump=is_jump(newest_step(past[r['series']]))))
             print(f'  satellite backtest {f} {T}: train {len(htrain)} test {len(test)}')
         if not preds:
             continue
         e = np.array([p['v'] - p['m'] for p in preds])
         rmse = float(np.sqrt(np.mean(e * e)))
-        panel = np.array([spread(sig, p['hist'], p['m'], p['lg']) for p in preds])
+        panel = np.array([spread(sig, p['hist'], p['m'], p['lg'], p['jump']) for p in preds])
         out[f] = dict(n=len(preds), years=sorted({p['T'] for p in preds}),
                       rmse=round(rmse, 2), mae=round(float(np.mean(np.abs(e))), 2),
                       bias=round(float(np.mean(e)), 2),
@@ -717,7 +743,7 @@ def summarise(preds, sig, zq=None, boot=0):
     school-years for the headline comparisons."""
     out, ci = {}, {}
     num = [p for p in preds if p['state'] == 'num']
-    S = lambda p: spread(sig, p['hist'], p['m'], p.get('lg'))
+    S = lambda p: spread(sig, p['hist'], p['m'], p.get('lg'), p.get('jump'))
     cl = lambda g: [(p['school'], p['T']) for p in g]
     arr = lambda g, f: np.array([f(p) for p in g], dtype=float)
     # level forecast error, model vs baselines, by bucket
@@ -941,7 +967,7 @@ def recal(pi, fc):
     return float(expit(fc['a'] + fc['b'] * lp))
 
 
-def calibrate_sigma(preds, floor_sigma, level=LEVEL_SPREAD, group=LEVEL_GROUP_SPREAD):
+def calibrate_sigma(preds, floor_sigma, level=LEVEL_SPREAD, group=LEVEL_GROUP_SPREAD, jump=JUMP_SPREAD):
     """Spread of forecast errors from the calibration years: a history-bucket
     RMSE times a forecast-band multiplier, fitted by two rounds of
     backfitting (each factor is the RMSE of the errors standardised by the
@@ -994,6 +1020,62 @@ def calibrate_sigma(preds, floor_sigma, level=LEVEL_SPREAD, group=LEVEL_GROUP_SP
             z = np.array([abs(p['v'] - p['m']) / spread(out, p['hist'], p['m']) for p in g if p.get('lg') == grp])
             if len(z) >= 30 and (lg == grp).sum():
                 out['group'][grp] = float(np.clip(np.quantile(z, 0.8) / 1.2816, 0.5, 1.5))
+    if jump:
+        # a series whose newest step was larger than JUMP_POINTS misses by
+        # more: the walk-forward covered 67% of Vg1 outcomes after one where
+        # the band claimed 80% (the check of 26 Sept 2026). The same quantile
+        # rule as the level group's, once for the cells after a jump and once
+        # for the rest, so the pooled band keeps covering 80%
+        out['jump'] = {}
+        for k in ('steady', 'jump'):
+            z = np.array([abs(p['v'] - p['m']) / spread(out, p['hist'], p['m'], p.get('lg'))
+                          for p in g if jump_key(p.get('jump')) == k])
+            if len(z) >= 30:
+                out['jump'][k] = float(np.clip(np.quantile(z, 0.8) / 1.2816, 0.5, 1.5))
+    return out
+
+
+def rising_series_check(preds, sig):
+    """Does the forecast over-predict drops where a series has been climbing?
+
+    The first-visitor walkthroughs of 26 Sept 2026 stopped trusting the chance
+    on Vg1 areas that rose four years running and are forecast 4 or more
+    points below their last figure (Persbråten ST 48,1, forecast 40,9). The
+    walk-forward has made that forecast before: every Vg1 cell, any year,
+    with at least three earlier figures whose newest (up to four) never fell,
+    forecast at least 4 points under the newest. Scored against persistence
+    and the EWMA on the same cells, with the cluster bootstrap of the bias.
+    Then the question a trend term would answer: the model's error regressed
+    on the forecast's gap below the last figure, the slope fitted on the
+    calibration years and applied to the held-out years' Vg1 cells."""
+    def rising(p):
+        t = [v for _, v in p['past'][-4:]]
+        return len(t) >= 3 and all(b >= a for a, b in zip(t, t[1:]))
+    vg1 = [p for p in preds if p['state'] == 'num' and p['lg'] == 'Vg1' and len(p['past']) >= 3]
+    sub = [p for p in vg1 if rising(p) and p['m'] <= p['past'][-1][1] - 4]
+    out = {}
+    for name, g in (('flagged', sub), ('all_rising', [p for p in vg1 if rising(p)])):
+        e = np.array([p['v'] - p['m'] for p in g])
+        el = np.array([p['v'] - p['past'][-1][1] for p in g])
+        z = np.abs(e) / np.array([spread(sig, p['hist'], p['m'], p['lg'], p['jump']) for p in g])
+        ee = np.array([p['v'] - p['ew'] for p in g])
+        out[name] = dict(n=len(g), bias=round(float(e.mean()), 2), rmse=round(float(np.sqrt(np.mean(e * e))), 2),
+                         rmse_last_year=round(float(np.sqrt(np.mean(el * el))), 2),
+                         rmse_ewma=round(float(np.sqrt(np.mean(ee * ee))), 2),
+                         share_below_last=round(float(np.mean(el < 0)), 3),
+                         coverage80=round(float(np.mean(z <= 1.2816)), 3),
+                         ci_bias=cluster_bootstrap([(p['school'], p['T']) for p in g],
+                                                   {'d': lambda w: _wmean(w, e)})['d'])
+    gap = lambda p: p['past'][-1][1] - p['m']
+    cal = [p for p in vg1 if p['T'] in CALIB_YEARS]
+    x, y = np.array([gap(p) for p in cal]), np.array([p['v'] - p['m'] for p in cal])
+    beta = float(x @ y / (x @ x))
+    ev = [p for p in vg1 if p['T'] in EVAL_YEARS]
+    e0 = np.array([p['v'] - p['m'] for p in ev])
+    e1 = e0 - beta * np.array([gap(p) for p in ev])
+    out['trend_term'] = dict(beta=round(beta, 3), n_eval=len(ev),
+                             rmse_eval=round(float(np.sqrt(np.mean(e0 * e0))), 3),
+                             rmse_eval_with=round(float(np.sqrt(np.mean(e1 * e1))), 3))
     return out
 
 
@@ -1200,7 +1282,8 @@ def main():
            else dict(hist={i: model.sigma * 1.25 for i in range(len(HIST_BUCKETS))}, level={}, floor=model.sigma))
     print('forecast spread by history bucket:', {HIST_BUCKETS[i]: round(v, 2) for i, v in sig['hist'].items()},
           'level multiplier:', {b: round(v, 2) for b, v in sig['level'].items()},
-          'level-group multiplier:', {g: round(v, 3) for g, v in (sig.get('group') or {}).items()})
+          'level-group multiplier:', {g: round(v, 3) for g, v in (sig.get('group') or {}).items()},
+          'jump multiplier:', {k: round(v, 3) for k, v in (sig.get('jump') or {}).items()})
 
     # ---- the held-out counties' own forecasts, off the finished fit
     sats = {}
@@ -1225,6 +1308,8 @@ def main():
                 sigma_forecast={str(HIST_BUCKETS[i]): round(v, 2) for i, v in sig['hist'].items()},
                 sigma_level_multiplier={b: round(v, 3) for b, v in sig['level'].items()},
                 sigma_group_multiplier={g: round(v, 3) for g, v in (sig.get('group') or {}).items()},
+                sigma_jump_multiplier={k: round(v, 3) for k, v in (sig.get('jump') or {}).items()},
+                jump_points=JUMP_POINTS,
                 forecast_bands=FORECAST_BANDS, single_weight=single_w, n_single=n_single, ewma_alpha=EWMA_ALPHA,
                 hist_buckets=HIST_BUCKETS, n_level=model.n_level, n_fill=model.n_fill,
                 taus={f['name']: round(f['tau'], 3) for f in model.dl.factors if f['kind'] != 'fixed'},
@@ -1265,6 +1350,26 @@ def main():
                                                            chance_brier=b['chance_brier']) for b in e['by_level']})
         hl_search['level_group_spread_experiment'] = dict(pooled=pick_g(ev_p), per_group=pick_g(meta['backtest_eval_years']))
         print('per-level-group spread, held-out:', hl_search['level_group_spread_experiment'])
+        # ---- and what the jump factor buys, on the held-out years: the same
+        # forecasts without it, scored on all cells and on the two kinds apart
+        sig_j = calibrate_sigma(preds_best, floor_sigma, jump=False)
+        ev_j = summarise([p for p in preds_best if p['T'] in EVAL_YEARS], sig_j, error_quantiles(preds_best, sig_j))
+        def jump_cover(sg):
+            by = {}
+            for k in ('steady', 'jump'):
+                for lg in LEVEL_GROUPS + [None]:
+                    g = [p for p in preds_best if p['T'] in EVAL_YEARS and p['state'] == 'num'
+                         and jump_key(p['jump']) == k and lg in (None, p['lg'])]
+                    z = [abs(p['v'] - p['m']) / spread(sg, p['hist'], p['m'], p['lg'], p['jump']) for p in g]
+                    by[f'{k}|{lg or "all"}'] = dict(n=len(z), coverage80=round(float(np.mean(np.array(z) <= 1.2816)), 3))
+            return by
+        pick_j = lambda e, sg: dict(coverage80=e['coverage80'], interval_width80=e['interval_width80'],
+                                    chance_brier=e['chance']['brier'], by_jump=jump_cover(sg))
+        hl_search['jump_spread_experiment'] = dict(threshold=JUMP_POINTS, without=pick_j(ev_j, sig_j),
+                                                   with_jump=pick_j(meta['backtest_eval_years'], sig))
+        print('jump-conditioned spread, held-out:', hl_search['jump_spread_experiment'])
+        hl_search['rising_series_check'] = rising_series_check(preds_best, sig)
+        print('steadily rising series:', hl_search['rising_series_check'])
         # ---- pooled fit versus a Vg1-only fit, judged on Vg1 cells. The
         # school effect and the county×year walk are shared across levels, and
         # Vg2 and up is about half the numeric evidence where it is published:
@@ -1331,6 +1436,11 @@ def main():
     rank_of = {k: i + 1 for i, (k, _) in enumerate(ranks)}
     cy = {c['fylke']: c for c in data['counties']}
     held_by_series = {r['series']: r for r in held_rows}
+    # every series' published figures in year order, for its newest step
+    past = collections.defaultdict(list)
+    for r in sorted(rows + held_rows, key=lambda r: r['year']):
+        if r['state'] == 'num':
+            past[r['series']].append((r['year'], r['v']))
     for s in data['schools']:
         sid = f'{s["fylke"]}|{s["name"]}'
         T = newest[s['fylke']] + 1
@@ -1373,10 +1483,15 @@ def main():
                 pi_out = 1.0 if s['fylke'] in FILL_BLIND else round(recal(pi, fc), 3)
             # a satellite forecast carries the county's own measured error,
             # never narrower than the panel's spread for that history
-            s_out = spread(sig, h, m, level_group(f'{k}|{p["level"]}'))
+            step = newest_step(past[series])
+            s_out = spread(sig, h, m, level_group(f'{k}|{p["level"]}'), is_jump(step))
             if sat:
                 s_out = max(s_out, held_sigma.get(s['fylke'], 0.0))
             progs[key] = dict(m=round(m, 1), s=round(s_out, 1), pi=pi_out, h=h)
+            # the app flags the step ("Uvanlig endring") and says why the
+            # spread is wider: the change between the two newest figures
+            if is_jump(step):
+                progs[key]['j'] = round(step, 1)
         if progs:
             ent['programs'] = progs
         out_schools[sid] = ent

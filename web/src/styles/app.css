@@ -1371,6 +1371,7 @@
   .prow .val:has(.soft) { width: auto; min-width: 68px; max-width: 92px; }
   .prow .chw { display: flex; align-items: center; gap: 6px; flex: none; }
   .prow .hist { font-size: 10.5px; color: var(--ink-3); white-space: nowrap; }
+  .prow .jump { font-size: 10.5px; color: var(--warn); white-space: nowrap; margin-right: 6px; }
   /* not a chip: this says why there is no percentage, so no pill around it */
   .ch.none { background: none; border: none; padding: 0; color: var(--ink-3); font-weight: 500; }
   #src-note { padding: 14px 18px 20px; font-size: 10.5px; color: var(--ink-3); line-height: 1.5; }

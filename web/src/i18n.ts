@@ -327,6 +327,13 @@ export const T = {
   noHistTitle:{ no: 'Programområdet har aldri hatt en publisert poenggrense her, så det finnes ingen prognose å bygge på.',
                 en: 'This programme area has never had a published threshold here, so there is nothing to forecast from.' },
   lowHist:    { no: 'lite historikk', en: 'little history' },
+  // a newest step larger than meta.jump_points (the forecast's j): flagged on
+  // the row, and the forecast's spread is already wider for it
+  jumpFlag:   { no: 'Uvanlig endring', en: 'Unusual change' },
+  jumpTitle:  {
+    no: (a, ya, b, yb, d) => `Poenggrensen gikk fra ${a} i ${ya} til ${b} i ${yb}, en endring på ${d} poeng. Så store hopp er uvanlige. Sjekk kilden før du stoler på tallet. Prognosen regner derfor med større usikkerhet her.`,
+    en: (a, ya, b, yb, d) => `The threshold went from ${a} in ${ya} to ${b} in ${yb}, a change of ${d} points. Jumps that large are unusual. Check the source before you rely on the figure. The forecast allows for more uncertainty here.`,
+  },
   noPointsTitle: {
     no: 'Programområdet ble fylt opp, men den siste som kom inn hadde ingen poeng registrert. Alle søkere med poeng fikk plass.',
     en: 'The programme area filled up, but the last applicant admitted had no registered points. Everyone with points got a place.',

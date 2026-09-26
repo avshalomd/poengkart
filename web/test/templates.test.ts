@@ -53,6 +53,15 @@ describe('the sheet renders what the templates say', () => {
     expect(a).toContain('<h2>Asker</h2>');
     expect(a).toContain('class="prow');
   });
+  it('a row after an unusual step says so, with both figures, and only that row', () => {
+    // Randaberg's Vg1 TIF went 30,0 → 11,3 as Rogaland printed it; the model
+    // widened that forecast and carries the step as j
+    const s = DATA.schools.find(x => x.name === 'Randaberg videregående skole')!;
+    const html = listHtml(s, null);
+    expect(html.match(/class="jump"/g)).toHaveLength(1);
+    expect(html).toContain(esc(t('jumpTitle', '30,0', '2025', '11,3', '2026', '18,7')));
+    expect(listHtml(asker(), null)).not.toContain('class="jump"');
+  });
   it('the level chip is marked .tipped in the string, not by the script', () => {
     // bindTips() marks it on the same condition after the render; the build has
     // no script, so the prerendered page must carry the mark itself
