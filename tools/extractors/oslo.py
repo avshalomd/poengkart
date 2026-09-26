@@ -6,6 +6,12 @@ Municipal schools only. The page's own footnotes define the symbols:
       toppidrett] rangeres søkerne etter flere kriterier enn karakterer"  -> D
   **  "Alle/de aller fleste som hadde søkt på skolen kom inn."            -> open
   *** "Til IB rangeres søkerne etter flere kriterier enn karakterer."     -> D
+
+2012, 2013 and 2016 survive only as reprints of the county's table: a thesis
+appendix (2012, the full table) and newspaper fact boxes citing
+Utdanningsetaten (2013, 2016, Vg1 studiespesialisering only). They are read
+from hand transcriptions (`oslo-<year>-reprint-*.transcribed.csv`, see
+common.read_transcription), which state the round each reprint gives.
 """
 import os
 import re
@@ -38,14 +44,57 @@ SCHOOL_ALIASES = {
 }
 
 
+# the short names the 2012 table and the newspapers print
+SHORT_NAMES = {
+    'hartvig nissen': 'Hartvig Nissens skole',
+    'fyrstikkalléen': 'Fyrstikkalleen skole',
+    'fyrstikkalleen': 'Fyrstikkalleen skole',
+    'oslo katedral': 'Oslo katedralskole',
+    'oslo katedralskole': 'Oslo katedralskole',
+    'katta': 'Oslo katedralskole',
+}
+# the 2012 table's column heads, and the newspapers' plain «Studiespesialisering»,
+# which is the county table's «(uten formgivingsfag)» column
+REPRINT_COLUMNS = {
+    'stud.spes. (uten formgivingsfag)': 'Studiespesialisering (uten formgivingsfag)',
+    'stud.spes. m/formgiving': 'Studiespesialisering m/formgivingsfag',
+    'studiespesialisering': 'Studiespesialisering (uten formgivingsfag)',
+}
+
+
 def _school(name):
     n = common.squash(name)
+    n = SHORT_NAMES.get(n.lower(), n)
     n = SCHOOL_ALIASES.get(n.lower(), n)
     # the 2015 edition writes "Bjerke videregående" for the register's
     # "Bjerke videregående skole"; the register name is the school's identity
     if n.lower().endswith(' videregående'):
         n += ' skole'
+    if not re.search(r'skole|gymnas', n, re.I):
+        n += ' videregående skole'        # a reprint's short name
     return n
+
+
+def _reprint(path, warn):
+    meta, cells = common.read_transcription(path)
+    rnd = common.stated_round(meta)
+    reprint = (meta.get('tier') or '').lower().startswith('reprint')
+    rows = []
+    for c in cells:
+        col = common.squash(c['program'])
+        program = common.canon_program(REPRINT_COLUMNS.get(col.lower(), col))
+        raw = common.squash(c['printed'])
+        v = ('open' if raw.lower() in ('**', 'alle kom inn', 'all admitted')
+             else SYMBOLS.get(raw) or common.classify_cell(raw, min_value=0, loose=True))
+        if v is None:
+            warn.append(f'{os.path.basename(path)}: unread cell {c["school"]} {col} {raw!r}')
+            continue
+        rows.append({'school': _school(c['school']), 'program': program,
+                     'level': common.guess_level(str(program), c['level'] or 'Vg1'),
+                     'values': {c['year']: v}, 'county': META['fylke'], 'round': rnd})
+        if reprint:
+            rows[-1]['reprint'] = True
+    return rows
 
 
 VIGO_RE = re.compile(r'^\d{4}$')
@@ -163,6 +212,9 @@ def extract():
     if not os.path.isdir(SRC):
         return out, [f'{META["fylke"]}: no source directory']
     for fname in sorted(os.listdir(SRC), reverse=True):
+        if fname.endswith('.transcribed.csv'):
+            out.append((fname, _reprint(os.path.join(SRC, fname), warn)))
+            continue
         m = re.search(r'(20\d\d)', fname)
         if not m:
             warn.append(f'{fname}: cannot read year')

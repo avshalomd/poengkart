@@ -48,6 +48,29 @@ MANUAL = {
     # the Lom school and the Dombås tettsted
     ('34', 'nord-gudbrandsdal vgs, avd. dombås'): (62.07554, 9.12785),
     ('34', 'nord-gudbrandsdal vgs, avd. lom'): (61.84065, 8.56306),
+    # NSR lists only these Agder schools' campuses, so the substring match
+    # took whatever came first: "Arendal" matched Smi-Skolen i Arendal, and
+    # Eilert Sundt a branch 20 km from its Farsund main site. Each pin is the
+    # campus NSR itself places (Tyholmen; Farsund; Flekkefjord).
+    ('42', 'arendal videregående skole'): (58.45801, 8.76405),
+    ('42', 'eilert sundt videregående skole'): (58.09324, 6.80465),
+    ('42', 'flekkefjord videregående skole'): (58.3041, 6.66541),
+    # Sortland vgs's two closed campuses (Nordland 2013 only) are gone from
+    # NSR and Brønnøysund; as for Dombås above, the pin is the place
+    # register's point for the village they stood in (Lødingen; Vinje, the
+    # tettsted of Bø i Vesterålen)
+    ('18', 'sortland videregående skole avd. lødingen'): (68.41373, 15.99626),
+    ('18', 'sortland videregående skole avd. bø'): (68.61961, 14.44969),
+    # closed schools that only the historical years (2012-2016) bring back;
+    # NSR, the address register and the place register have none of them, so
+    # the pin is the school's own Wikipedia article's coordinate (no.wikipedia,
+    # 26.09.2026), and for Midt-Østerdal, which has none, the Koppang tettsted
+    ('03', 'manglerud videregående skole'): (59.89390, 10.82408),
+    ('03', 'sofienberg videregående skole'): (59.92203, 10.76975),
+    ('46', 'fana gymnas'): (60.33916, 5.34221),
+    ('46', 'garnes vidaregåande skule'): (60.44600, 5.46550),
+    ('46', 'u. pihl videregående skole'): (60.46771, 5.32159),
+    ('34', 'midt-østerdal videregående skole'): (61.57219, 11.04659),
 }
 
 # A MANUAL coordinate skips NSR matching entirely — but build_dataset carries
@@ -57,6 +80,26 @@ MANUAL = {
 # Fagerlia-campus street under a Volsdalsberga pin. Say what is true instead:
 # the pin's own identity, or nothing.
 MANUAL_IDENTITY = {
+    # the Agder campuses pinned above, with NSR's own identity for each
+    ('42', 'arendal videregående skole'):
+        {'address': 'Kirkebakken 8, 4836, ARENDAL', 'orgnr': '974573873',
+         'url': 'www.arendal.vgs.no'},
+    ('42', 'eilert sundt videregående skole'):
+        {'address': 'Skoleplassen 1, 4550, FARSUND', 'orgnr': '874595012',
+         'url': 'eilertsundt.vgs.no'},
+    ('42', 'flekkefjord videregående skole'):
+        {'address': 'Tunveien 50, 4405, FLEKKEFJORD', 'orgnr': '974595141',
+         'url': 'flekkefjord.vgs.no'},
+    ('18', 'sortland videregående skole avd. lødingen'):
+        {'address': '8410 Lødingen', 'url': None, 'orgnr': None},
+    ('18', 'sortland videregående skole avd. bø'):
+        {'address': '8470 Bø i Vesterålen', 'url': None, 'orgnr': None},
+    ('03', 'manglerud videregående skole'): {'address': None, 'url': None, 'orgnr': '974590980'},
+    ('03', 'sofienberg videregående skole'): {'address': None, 'url': None, 'orgnr': '974591049'},
+    ('46', 'fana gymnas'): {'address': None, 'url': None, 'orgnr': None},
+    ('46', 'garnes vidaregåande skule'): {'address': None, 'url': None, 'orgnr': None},
+    ('46', 'u. pihl videregående skole'): {'address': None, 'url': None, 'orgnr': None},
+    ('34', 'midt-østerdal videregående skole'): {'address': '2480 Koppang', 'url': None, 'orgnr': None},
     # the campus closed in 2019 and left every register; the inherited
     # identity belonged to the parent school in another kommune
     # its own (now deleted) register unit; no website of its own

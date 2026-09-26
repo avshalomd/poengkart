@@ -17,6 +17,7 @@ Cell values:  float | 'open' | 'F' | 'D' | 'U'
     U       programme discontinued that year
 """
 
+import os
 import re
 import unicodedata
 
@@ -91,6 +92,83 @@ def classify_cell(txt, min_value=MIN_PLAUSIBLE, loose=False):
             v = float(m.group(1).replace(',', '.'))
             return v if min_value <= v <= MAX_PLAUSIBLE else None
     return None
+
+
+def read_transcription(path):
+    """A table typed by hand from a page no parser can read: a scan, an image
+    PDF, or a reprint of the county's table (a thesis, a newspaper).
+
+    The file is the page as printed, never a reading of it: '# key: value'
+    lines carry the provenance (document, source, round as stated, legend,
+    who transcribed and checked it), then a CSV with the columns
+    school, program, level, year, printed; `printed` is exactly what the page
+    prints, decimal comma and symbols included. What a symbol means is the
+    extractor's business, so a later reading never needs a new transcription.
+    Returns (meta, rows)."""
+    import csv
+    meta, body = {}, []
+    with open(path, encoding='utf-8') as f:
+        for line in f:
+            if line.startswith('#'):
+                k, _, v = line[1:].strip().partition(':')
+                if v:
+                    meta.setdefault(k.strip(), []).append(v.strip())
+            elif line.strip():
+                body.append(line)
+    rows = list(csv.DictReader(body))
+    for r in rows:
+        r['year'] = int(r['year'])
+    return {k: ' '.join(v) for k, v in meta.items()}, rows
+
+
+def stated_round(meta):
+    """The round a transcription's header states ('1'/'2'/'3'), else None."""
+    first = (meta.get('round') or '').split()[:1]
+    return first[0] if first and first[0] in ('1', '2', '3') else None
+
+
+FIRST_YEAR = 2012      # the dataset's first year; older figures in a source are left out
+
+
+def transcription_rows(path, county, school=None, program=None, symbols=None,
+                       level=None, warn=None):
+    """A transcription -> merge rows, one per (school, programme, level), in
+    the round the file states (None where it states none). `school` and
+    `program` map the printed names; `symbols` maps a printed symbol to a
+    cell before classify_cell reads the rest. A row from a copy of the
+    county's table (a newspaper, a thesis) carries 'reprint', so the app can
+    say where the figure comes from."""
+    meta, cells = read_transcription(path)
+    rnd = stated_round(meta)
+    reprint = (meta.get('tier') or '').lower().startswith('reprint')
+    fname = os.path.basename(path)
+    rows = {}
+    for c in cells:
+        if c['year'] < FIRST_YEAR:
+            continue
+        raw = squash(c['printed'])
+        v = (symbols or {}).get(raw.lower())
+        if v is None:
+            v = classify_cell(raw, min_value=0)
+        if v is None:
+            if warn is not None:
+                warn.append(f'{fname}: {c["school"]} {c["program"]} {c["year"]}: '
+                            f'«{raw}» is not a figure, skipped')
+            continue
+        s = school(c['school']) if school else squash(c['school'])
+        if not s:
+            if warn is not None:
+                warn.append(f'{fname}: unknown school «{c["school"]}», skipped')
+            continue
+        p = canon_program(program(c['program']) if program else c['program'])
+        lv = level(c) if level else c['level']
+        row = rows.setdefault((s, str(p), lv), {
+            'school': s, 'program': p, 'level': lv, 'values': {},
+            'county': county, 'round': rnd})
+        if reprint:
+            row['reprint'] = True
+        row['values'][c['year']] = v
+    return list(rows.values())
 
 
 def dropped_digit(a, b):
@@ -342,6 +420,39 @@ SERIES_ALIASES = {
         'Elektro og data, automatisering og robotikk, SK 3 år',  # "NY": new that year
     ('påbygg etter yrkeskompetanse, dagtid(pbpby4yk)', 'Vg4'):
         'Påbygg etter yrkeskompetanse, dagtid',                  # the other 7 schools' spelling
+    # The older years (26 Sept 2026) print a programme under a second spelling
+    # beside a newer edition's: Rogaland's 2015 portal and its 2018-2021
+    # editions disagree on six. Each minority spelling joins the county's
+    # majority one, or the register's where the minority is a typo.
+    ('barne- og ungdomsarbeiderfag', 'Vg2'): 'Barne- og ungdomsarbeider',   # every other edition's
+    ('elektro', 'Vg1'): 'Elektrofag',                    # three schools, 2018-19 editions
+    ('ikt- servicefag', None): 'IKT-servicefag',
+    ('helse og oppvekst', 'Vg1'): 'Helse- og oppvekstfag',   # Sauda only
+    ('påbygg generell studiekompetanse', 'Vg3'): 'Påbygg til generell studiekompetanse',
+    ('klima, energi – og miljøteknikk', None): 'Klima, energi og miljøteknikk',
+    # Two older names for one register code. Grep's HSHSF1---- was «Helse- og
+    # sosialfag» until the 2013 renaming and is «Helse- og oppvekstfag» since,
+    # under the same code; «Produksjon- og industriteknikk» resolves to
+    # TPPIN2----, «Industriteknologi». Hedmark's own later editions reprint
+    # their 2012 column under the new names, with the same figure in all 11
+    # rows the 2008-2012 edition prints under the old ones, so the county
+    # counts them as one series as well. Not the Kunnskapsløftet-2020 case
+    # (PROGRAM_ALIASES above): there the register gave the new programme a new
+    # code, and the old name stays a series of its own.
+    ('helse- og sosialfag', 'Vg1'): 'Helse- og oppvekstfag',
+    ('produksjon- og industriteknikk', 'Vg2'): 'Industriteknologi',
+    # Oslo's tables to 2017 print plain Studiespesialisering as «(uten
+    # formgivingsfag)», beside the formgivingsfag variant, and from 2018 as
+    # plain «Studiespesialisering»; one programme (taxonomy.ALIASES), and its
+    # 2012-2017 years otherwise sat in a series of their own at 25 schools
+    ('studiespesialisering (uten formgivingsfag)', 'Vg1'): 'Studiespesialisering',
+}
+# The joins above that are a register renaming (one Grep code, two names), not
+# a respelling: the older figures of such a series carry the new name, so the
+# school's page names the old one beside it (formerNote)
+REGISTER_RENAMES = {
+    'helse- og sosialfag': 'Helse- og sosialfag',
+    'produksjon- og industriteknikk': 'Produksjon- og industriteknikk',
 }
 
 
@@ -409,6 +520,11 @@ def merge_rows(rows_newest_first):
                 (r.get('county', ''), r['school'].casefold()), r['school']))
             if r.get('region'):
                 attrs.setdefault(sid, {})['inntaksregion'] = r['region']
+            if r.get('former_county'):
+                # the years a school now in one county was published by the
+                # county it belonged to then (Røyken: Buskerud to 2019)
+                fc = attrs.setdefault(sid, {}).setdefault('former_county', {})
+                fc.setdefault(r['former_county'], set()).update(str(y) for y in r['values'])
             if r.get('merged_from'):
                 a = attrs.setdefault(sid, {})
                 a['merged_from'] = sorted(set(a.get('merged_from', [])) | {r['merged_from']})

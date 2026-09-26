@@ -54,11 +54,23 @@ describe('the list view', () => {
     if (pr.kind === 'points') expect(cell).toBe(fmt(pr.v));
     else if (pr.kind === 'open') expect(cell).toBe(t('listOpen'));
     else if (pr.kind === 'zero') expect(cell).toBe(t('noPointsShort'));
+    else if (pr.kind === 'stale') expect(cell).toBe(t('tipStale', pr.year));
     else expect(cell).toBe(t('listNoData'));
     // and the change column is the same meanStep the sheet's hero prints
     const d = pr.kind === 'points' ? deltaFor(s, S.mapCat, pr.year) : null;
     const delta = first.querySelector('td.dl')!.textContent;
     expect(delta).toBe(d === null ? '—' : `${round1(d) > 0 ? '+' : ''}${fmt(round1(d))}`);
+  });
+
+  it('a school whose figures stop years back says when, not just «Ingen data»', () => {
+    loadFixtures(); initHelpers(); initListview(); stubMap();
+    setView('list');
+    const stale = rows().map(tr => {
+      const s = visibleSchools().find((x: any) => x.name === tr.querySelector('.sc a')!.textContent)!;
+      return { tr, pr: schoolPressure(s, S.mapCat) as any };
+    }).filter(r => r.pr.kind === 'stale');
+    expect(stale.length).toBeGreaterThan(0);
+    for (const r of stale) expect(r.tr.querySelector('td.num')!.textContent).toBe(t('tipStale', r.pr.year));
   });
 
   it('the sort indicator follows S.listSort, and a second click flips it', () => {

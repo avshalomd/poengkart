@@ -34,7 +34,7 @@ export function renderPanel() {
       return `<option value="${esc(c.fylke)}">${esc(c.fylke)} (${n})</option>`;
     }).join('');
   // the counties without figures are listed, greyed and unselectable, so a
-  // parent in Agder learns the map did not forget their school
+  // parent in Østfold learns the map did not forget their school
   fsel.innerHTML += `<optgroup label="${esc(t('fylkeNoData'))}">` +
     MISSING_COUNTIES.map(f => `<option disabled>${esc(f)}</option>`).join('') + '</optgroup>';
   fsel.value = S.mapFylke;

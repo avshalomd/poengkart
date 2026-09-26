@@ -31,6 +31,9 @@ export interface Program {
   means?: Record<string, number>;
   /** former labels for the same series, so a stored wish can be re-keyed */
   aliases?: string[];
+  /** the register's older name for this series' code, where some of its
+      figures were published under it (Helse- og sosialfag to 2012) */
+  former_names?: string[];
   official?: string;
 }
 
@@ -64,6 +67,9 @@ export interface School {
   wiki_extract?: string;
   merged_from?: string[];
   merged_year?: number;
+  /** county → the years it published this school's figures, where that is
+      not the school's county today (Røyken: Buskerud 2012–2014) */
+  former_county?: Record<string, string[]>;
   uncertain_years?: number[];
   /** Not in the JSON: progKeyMap() caches each programme's wish key on the
       school object it built it from (chance.ts). */
@@ -85,9 +91,21 @@ export interface County {
   source_file?: string;
   note?: string;
   /** year → round, for the years whose figures come from another round than
-      the county's usual one (tools/build_dataset.py writes it only when the
-      county has such a year, and none does in the current build). */
-  round_years?: Record<string, string>;
+      the county's usual one; null where that year's figures state no round
+      (tools/build_dataset.py writes it only when the county has such a year). */
+  round_years?: Record<string, string | null>;
+  /** the years whose every published figure comes from a copy of the
+      county's table (a newspaper, a document archive), not its own file */
+  reprint_years?: string[];
+  /** the years whose figures were worked out from what the county printed
+      (Agder 2020-21: a hundreds offset subtracted), not read as printed */
+  decoded_years?: string[];
+  /** the years whose figures are the lowest points among the admitted, with
+      no marker for «everyone got in» (Nordland 2019-21) */
+  lowest_admitted_years?: string[];
+  /** the years printed with the county supplement added and published with it
+      subtracted (Nordland 2013-15: «Fylkestillegget er 800 poeng») */
+  supplement_years?: string[];
 }
 
 export interface Dataset {

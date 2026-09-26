@@ -86,6 +86,12 @@ def extract():
     if not os.path.isdir(SRC):
         return out, [f'{META["fylke"]}: no source directory']
     for fname in sorted(os.listdir(SRC), reverse=True):      # newest first
+        if fname.endswith('.transcribed.csv'):
+            # a newspaper's copy of the county's figures for a year the county
+            # published no table (2015, 1. inntak): the round is the file's own
+            out.append((fname, common.transcription_rows(
+                os.path.join(SRC, fname), META['fylke'], warn=warn)))
+            continue
         if not fname.endswith(('.html', '.xlsx')):
             continue
         year = _year(fname)

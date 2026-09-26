@@ -249,6 +249,27 @@ HORDALAND = {
     'hordaland_2019_1inntak_bergen-st.pdf': 2019,
     'hordaland_2018_1inntak_bergen-st.pdf': 2018,
 }
+# 2016: the county's own list in an older house style, no «i fjor» column
+# («Amalie Skram v.g.s. 49, 4 karakterpoeng»). It does not name its round;
+# the county's news item that links it does: «Det første av totalt tre
+# inntaksomgangar til dei vidaregåande skulane i Hordaland denne sommaren var
+# klart 7. juli» (hordaland.no, «Helse og oppvekst er vinnaren i Hordaland»,
+# 07.07.2016; Wayback 20160728161042), so 1. inntak.
+HORDALAND_2016 = 'hordaland_2016_1inntak_bergen-st.pdf'
+HORD16_RE = re.compile(r'^•\s*(?P<name>.+?)[\s-]+(?P<v>\d{2}\s?[.,]\s?\d|alle inntatt)', re.I)
+# 2014 and 2015 survive only as newspaper copies of the county's list
+# (sources/vestland/hordaland-201[45]-reprint-*.transcribed.csv), both 1. inntak
+REPRINT_NAMES = {
+    'bergen katedralskole': 'Bergen katedralskole',
+    'fana gymnas': 'Fana gymnas',
+    'garnes vgs': 'Garnes vidaregåande skule',
+    'garnes vidaregåande skule': 'Garnes vidaregåande skule',
+    'u. pihl vgs': 'U. Pihl videregående skole',
+    'u. pihl videregående skole': 'U. Pihl videregående skole',
+    'u.pihl vgs': 'U. Pihl videregående skole',
+    'laksevåg vgs': 'Laksevåg videregående skole',
+    'laksevåg videregående skole': 'Laksevåg videregående skole',
+}
 # the press releases use short forms; the register names are what we publish
 HORDALAND_NAMES = {
     'amalie skram vgs': 'Amalie Skram videregående skole',
@@ -277,9 +298,37 @@ HORD_RE = re.compile(
 
 def _hordaland_name(raw):
     n = common.squash(raw).rstrip(':').strip()
+    n = re.sub(r'\bv\.\s?g\.\s?s\.?$', 'vgs', n, flags=re.I)       # 2016: «v.g.s.»
     n = re.sub(r'\bvidereg[åa]ende skole$|\bvidareg[åa]ande skule$|\bvgs\.?$', 'vgs', n, flags=re.I)
     n = re.sub(r'\s+', ' ', n).strip().lower()
-    return HORDALAND_NAMES.get(n)
+    return HORDALAND_NAMES.get(n) or REPRINT_NAMES.get(n)
+
+
+# The 2016 release (hordaland.no, Wayback 07.08.2016) does not number its
+# round. Utdanningsnytt 15.07.2016 prints two of its figures (Amalie Skram
+# 49,4; Bergen katedralskole 45) and states it: «tallene viser nedre
+# poenggrense etter første inntak» (utdanningsnytt.no/karakterer/…/183053).
+def _hordaland_2016(path, warn):
+    with pdfplumber.open(path) as pdf:
+        text = '\n'.join((p.extract_text() or '') for p in pdf.pages)
+    rows = []
+    for line in text.split('\n'):
+        m = HORD16_RE.match(common.squash(line))
+        if not m:
+            continue
+        name = _hordaland_name(m.group('name').rstrip('-').strip())
+        if not name:
+            warn.append(f'{os.path.basename(path)}: unknown school {m.group("name")!r}')
+            continue
+        if name in HORDALAND_SKIP:
+            continue
+        v = common.classify_cell(re.sub(r'\s', '', m.group('v')).replace('.', ','), min_value=0) \
+            if m.group('v')[0].isdigit() else 'open'
+        rows.append({'school': name, 'program': 'Studiespesialisering', 'level': 'Vg1',
+                     'values': {2016: v}, 'county': META['fylke'], 'round': '1'})
+    if not rows:
+        warn.append(f'{os.path.basename(path)}: no rows parsed')
+    return rows
 
 
 # The county reorganised a school into a department of another and renamed it
@@ -508,7 +557,7 @@ def extract():
     warn, out = [], []
     if not os.path.isdir(SRC):
         return out, [f'{META["fylke"]}: no source directory']
-    named = set(HORDALAND) | {HORDALAND_FULL, SFJ_VG1}
+    named = set(HORDALAND) | {HORDALAND_FULL, SFJ_VG1, HORDALAND_2016}
     files = sorted((f for f in os.listdir(SRC)
                     if f.endswith('.pdf') and f not in named), reverse=True)
     by_year = {}
@@ -550,8 +599,16 @@ def extract():
         path = os.path.join(SRC, fname)
         if os.path.exists(path):
             out.append((fname, _hordaland(path, year, warn)))
-    for fname, read in ((SFJ_VG1, _sfj), (HORDALAND_FULL, _hordaland_full)):
+    for fname, read in ((SFJ_VG1, _sfj), (HORDALAND_FULL, _hordaland_full),
+                        (HORDALAND_2016, _hordaland_2016)):
         path = os.path.join(SRC, fname)
         if os.path.exists(path):
             out.append((fname, read(path, warn)))
+    for fname in sorted((f for f in os.listdir(SRC) if f.endswith('.transcribed.csv')),
+                        reverse=True):
+        rows = common.transcription_rows(
+            os.path.join(SRC, fname), META['fylke'], warn=warn,
+            school=lambda n: _hordaland_name(n) or warn.append(
+                f'{fname}: unknown school {n!r}'))
+        out.append((fname, [r for r in rows if r['school'] not in HORDALAND_SKIP]))
     return out, warn

@@ -1,0 +1,54 @@
+# document: Trøndelag fylkeskommune, «Fylkeskommunale videregående skoler i Trondheim kommune - Laveste poengsum ved 2. inntaket skoleåret 2024/2025. Søkere med ungdomsrett», published through vilbli (attachment 037606)
+# file: trondelag_2024-25_trondheim_2inntak.pdf (an image-only PDF, sha256 5cbab54e31c469325d5dfcd248e7f85dfda112a502791ac6354daf2eaabdba4a)
+# round: 2 (stated in the title: «ved 2. inntaket»)
+# region: Trondheim
+# tier: the county's own document, transcribed because it has no text layer
+# legend: «* Alle søkere fra Trøndelag med ungdomsrett som hadde søkt, kom inn» (every applicant from Trøndelag with the youth right who applied got in). The page also notes that Vg1 naturbruk and idrettsfag compete county-wide and that the MDD figures exclude skill-based admission.
+# transcribed: lane H, 25 Sept 2026; checked cell by cell (46/46) against a 260 dpi render by the orchestrator. `program` is the column label as printed with the Grep code printed beside it in brackets.
+school,program,level,year,printed
+Skjetlein videregående skole,Bygg- og anleggsteknikk [BABAT1-],Vg1,2024,"20,4"
+Skjetlein videregående skole,Naturbruk [NANAB1],Vg1,2024,*
+Skjetlein videregående skole,Teknologi- og industrifag [TPTIP1-],Vg1,2024,"30,7"
+Heimdal videregående skole,Elektro og datateknologi [ELELE1-],Vg1,2024,40
+Heimdal videregående skole,Helse- og oppvekstfag [HSHSF1-],Vg1,2024,"32,7"
+Heimdal videregående skole,Idrettsfag [IDRET1-],Vg1,2024,"41,3"
+Heimdal videregående skole,"Musikk, dans og drama,musikk [MDMDD1--]",Vg1,2024,"49,1"
+Heimdal videregående skole,Studiespesialisering [STUSP1-],Vg1,2024,43
+Tiller videregående skole,Bygg- og anleggsteknikk [BABAT1-],Vg1,2024,"25,3"
+Tiller videregående skole,Idrettsfag [IDRET1-],Vg1,2024,30
+Tiller videregående skole,IT og medieproduksjon [IMIKM1-],Vg1,2024,"33,2"
+Tiller videregående skole,Medier og kommunikasjon [MEMOK1],Vg1,2024,30
+Tiller videregående skole,"Salg, service og reiseliv [SRSSR1-]",Vg1,2024,32
+Tiller videregående skole,Studiespesialisering [STUSP1-],Vg1,2024,"20,7"
+Byåsen videregående skole,Helse- og oppvekstfag [HSHSF1-],Vg1,2024,*
+Byåsen videregående skole,Medier og kommunikasjon [MEMOK1],Vg1,2024,*
+Byåsen videregående skole,Restaurant- og matfag [RMRMF1],Vg1,2024,*
+Byåsen videregående skole,Studiespesialisering [STUSP1-],Vg1,2024,*
+Byåsen videregående skole,Teknologi- og industrifag [TPTIP1-],Vg1,2024,28
+Charlottenlund videregående skole,Bygg- og anleggsteknikk [BABAT1-],Vg1,2024,"27,1"
+Charlottenlund videregående skole,"Håndverk, design, produktutv. [DTDTH1]",Vg1,2024,"32,1"
+Charlottenlund videregående skole,"Frisør,blomst,int,eksp.design [FDFBI1-]",Vg1,2024,"32,5"
+Charlottenlund videregående skole,IT og medieproduksjon [IMIKM1-],Vg1,2024,36
+Charlottenlund videregående skole,"Kunst, design og arkitektur [KDKDA1]",Vg1,2024,"37,9"
+Charlottenlund videregående skole,Medier og kommunikasjon [MEMOK1],Vg1,2024,"35,6"
+Charlottenlund videregående skole,"Salg, service og reiseliv [SRSSR1-]",Vg1,2024,"35,3"
+Charlottenlund videregående skole,Studiespesialisering [STUSP1-],Vg1,2024,"34,7"
+Charlottenlund videregående skole,Teknologi- og industrifag [TPTIP1-],Vg1,2024,"27,7"
+Strinda videregående skole,Elektro og datateknologi [ELELE1-],Vg1,2024,"40,9"
+Strinda videregående skole,Helse- og oppvekstfag [HSHSF1-],Vg1,2024,"33,1"
+Strinda videregående skole,"Helse- og oppvekstfag,SK 3år [HSHSF1 (SK 3år column)]",Vg1,2024,42
+Strinda videregående skole,Idrettsfag [IDRET1-],Vg1,2024,"41,6"
+Strinda videregående skole,Restaurant- og matfag [RMRMF1],Vg1,2024,"26,5"
+Strinda videregående skole,Studiespesialisering [STUSP1-],Vg1,2024,"44,1"
+Thora Storm videregående skole,"Frisør,blomst,int,eksp.design [FDFBI1-]",Vg1,2024,"33,3"
+Thora Storm videregående skole,Helse- og oppvekstfag [HSHSF1-],Vg1,2024,"28,7"
+Thora Storm videregående skole,"Kunst, design og arkitektur [KDKDA1]",Vg1,2024,"48,8"
+Thora Storm videregående skole,"Salg, service og reiseliv [SRSSR1-]",Vg1,2024,"33,4"
+Thora Storm videregående skole,Studiespesialisering [STUSP1-],Vg1,2024,"49,1"
+Thora Storm videregående skole,"Studiespesialisering,entreprenørskap [STUSP1--E (header truncated)]",Vg1,2024,"54,4"
+Trondheim katedralskole,"Musikk, dans og drama,musikk [MDMDD1--]",Vg1,2024,"50,6"
+Trondheim katedralskole,Medier og kommunikasjon [MEMOK1],Vg1,2024,"29,4"
+Trondheim katedralskole,Studiespesialisering [STUSP1-],Vg1,2024,"36,3"
+Cissi Klein videregående skole,"Musikk, dans og drama,dans [MDMDD1 (dans column)]",Vg1,2024,"49,8"
+Cissi Klein videregående skole,"Musikk, dans og drama,drama [MDMDD1 (drama column)]",Vg1,2024,"41,3"
+Cissi Klein videregående skole,Studiespesialisering [STUSP1-],Vg1,2024,*

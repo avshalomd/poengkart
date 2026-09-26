@@ -138,6 +138,216 @@ INNSYN_FILES = {
 }
 
 
+# ---- Hedmark 2012-2018: «Poenggrense ved inntak til videregående skoler i
+# Hedmark», the county's yearly overview for counsellors, five intakes per
+# edition. The PDFs are gone; six editions survive as docplayer.me page text
+# (sources/innlandet/hedmark-poenggrense-<first>-<last>.transcript.txt, T2).
+# Their own legend: «Tallene i tabellene viser utregnet gjennomsnittskarakter
+# for den sist inntatte med ungdomsrett ved 2. inntaket … Ved ledige plasser
+# signaliseres ingen gjennomsnittskarakter» — so the round is stated (2, the
+# same as Innlandet's own tables), «ledig» is open, and a grade average to one
+# decimal is ×10 points (the press prints «45,6 poeng … 4,56 i
+# gjennomsnittskarakter» for the same scale). Blank cells are not in the text
+# at all, so a row with fewer than five figures does not say which years they
+# belong to; see _hedmark_spans. Vg3 rows are skipped: the legend says Vg3
+# carries no figure («Det oppgis ingen gjennomsnittskarakter for inntaket til
+# Vg3-nivået»), yet a few Påbygg rows print numbers anyway.
+HEDMARK_FIRST_YEAR = 2012          # the dataset's first year; the editions reach back to 2008
+HEDMARK_SCHOOLS = [
+    'Nord-Østerdal videregående skole', 'Storsteigen videregående skole',
+    'Elverum videregående skole', 'Midt-Østerdal videregående skole',
+    'Trysil videregående skole', 'Hamar katedralskole', 'Stange videregående skole',
+    'Ringsaker videregående skole', 'Jønsberg videregående skole',
+    'Storhamar videregående skole', 'Sentrum videregående skole',
+    'Øvrebyen videregående skole', 'Solør videregående skole',
+    'Skarnes videregående skole',
+]
+# a region heading runs straight into its first school's name
+_HEDMARK_HEAD = re.compile(
+    r'(?:Region \d+ ?(?:[-–] ?)?)?(?:(?:Nord-Østerdal|Sør-Østerdal|Hedmarken|Glåmdalen) )?('
+    + '|'.join(map(re.escape, HEDMARK_SCHOOLS)) + r')(?: \(avd\. Koppang\))?')
+_HEDMARK_VAL = re.compile(r'^(\d,\d{1,2}|\d|ledig|lrdig|l?agt ned)$', re.I)
+# The docplayer text splits some decimals into two broken tokens («2, ,8»),
+# and a digit goes missing with them: Nord-Østerdal's Vg2 Arbeidsmaskiner
+# reads «3,1 2, ,8» in one edition, «2, ,8 3,1» in the next and «2 3,8 3,1 3,9
+# 2,2» in a third. Such a row is unreadable in that edition and is dropped.
+_HEDMARK_BROKEN = re.compile(r'^(\d,|,\d)$')
+# spelling, abbreviation and typo variants of one programme, to the county's
+# own later spelling; renamed programmes keep their own names
+HEDMARK_NAMES = {
+    'bygg og anleggsteknikk': 'Bygg- og anleggsteknikk',
+    'helse/oppvekst, sk 3 år': 'Helse- og oppvekstfag, SK 3 år',
+    'kkunst, design og arkitektur': 'Kunst, design og arkitektur',
+    'musikk/dans/drama (dans)': 'Musikk, dans og drama, dans',
+    'musikk/dans/drama (drama)': 'Musikk, dans og drama, drama',
+    'musikk/dans/drama (musikk)': 'Musikk, dans og drama, musikk',
+    'naturbruk (hest)': 'Naturbruk, hest',
+    'service, og samferdsel, sk 3 år': 'Service og samferdsel, SK 3 år',
+    'service/samf. ysk- 4 årig': 'Service og samferdsel, YSK 4 år',
+    'studiespes. med formgivingsfag': 'Studiespesialisering med formgivingsfag',
+    'studiespesialisering med formgivningsfag': 'Studiespesialisering med formgivingsfag',
+    'studiespesialisering med forb. ib': 'Studiespesialisering, forberedende IB',
+    'studiespesialisering- toppidrett': 'Studiespesialisering, toppidrett',
+    'anl.gartner/idr.anl.fag': 'Anleggsgartner- og idrettsanleggsfag',
+    'anleggsgartner- og idrettsanlegg': 'Anleggsgartner- og idrettsanleggsfag',
+    'anleggsteknikk(landslinje)': 'Anleggsteknikk, landslinje',
+    'arbeisdsmaskiner': 'Arbeidsmaskiner',
+    'barne- og ungd.arb, sk 3 år': 'Barne- og ungdomsarbeiderfag, SK 3 år',
+    'barne- og ungdomsarbeiderfaget': 'Barne- og ungdomsarbeiderfag',
+    'barne-og ungdomsarbeiderfag': 'Barne- og ungdomsarbeiderfag',
+    'data og elektronikk': 'Data og elektronikk',
+    'helsearbeiderfaget': 'Helsearbeiderfag',
+    'helsearbeiderfaget, sk 3 år': 'Helsearbeiderfag, SK 3 år',
+    'hest og hovslagerfag': 'Heste- og hovslagerfag',
+    'ikt- servicefag': 'IKT-servicefag',
+    'interiør og ustillingsdesign': 'Interiør og utstillingsdesign',
+    'klima, energi, og miljøteknikk': 'Klima-, energi- og miljøteknikk',
+    'klima-, energi og miljøteknikk': 'Klima-, energi- og miljøteknikk',
+    'kokk og servitørfag': 'Kokk- og servitørfag',
+    'landbr/gartn.nær, friluftsliv': 'Landbruk/gartnernæring, friluftsliv',
+    'meieproduksjon': 'Medieproduksjon',
+    'salg/service/sikkerhet': 'Salg, service og sikkerhet',
+    'salg/service/sikkerhet, ysk 4 år': 'Salg, service og sikkerhet, YSK 4 år',
+    'salg/service/sikkerhet,sk 3 år': 'Salg, service og sikkerhet, SK 3 år',
+}
+
+
+def _hedmark_cell(tok):
+    t = tok.lower()
+    if t in ('ledig', 'lrdig'):             # «lrdig»: a typo in the 2011-2015 edition
+        return 'open'
+    if t.endswith('agt ned'):               # «lagt ned»: closed that year
+        return 'U'
+    return round(float(t.replace(',', '.')) * 10, 1)
+
+
+def _hedmark_program(name):
+    n = common.squash(name)
+    return common.canon_program(HEDMARK_NAMES.get(n.lower(), n))
+
+
+def _hedmark_edition(path, warn):
+    """One edition -> {(school, level, program): [cells]}; a broken row is None."""
+    pages = [ln.split('\t', 1)[1] for ln in open(path, encoding='utf-8')
+             if not ln.startswith('#') and '\t' in ln]
+    # «lagt ned» is two words; glue it so the value run reads it as one token
+    body = re.sub(r'\bl?agt ned\b', lambda m: m.group(0).replace(' ', '_'), ' '.join(pages))
+    parts = _HEDMARK_HEAD.split(body)
+    out, fname = {}, os.path.basename(path)
+    for school, seg in zip(parts[1::2], parts[2::2]):
+        chunks = re.split(r'\b(V[Gg][1-3])\s+', seg)
+        for lvl, txt in zip(chunks[1::2], chunks[2::2]):
+            level = 'Vg' + lvl[-1]
+            if level == 'Vg3':
+                continue
+            toks = [t.replace('_', ' ') for t in txt.split()]
+            if any(_HEDMARK_BROKEN.match(t) for t in toks):
+                name = ' '.join(t for t in toks
+                                if not re.match(r'^[\d,]', t) and t.lower() != 'ledig')
+                if name:
+                    out[(school, level, _hedmark_program(name))] = None
+                warn.append(f'Innlandet: {fname}: {school} {level} «{" ".join(toks)}» '
+                            f'has a broken figure, row dropped from this edition')
+                continue
+            j = len(toks)
+            while j and _HEDMARK_VAL.match(toks[j - 1]):
+                j -= 1
+            name, vals = ' '.join(toks[:j]), toks[j:]
+            if not name or not vals:
+                warn.append(f'Innlandet: {fname}: {school} {level} «{" ".join(toks)}» unreadable, dropped')
+                continue
+            key = (school, level, _hedmark_program(name))
+            if key in out:
+                warn.append(f'Innlandet: {fname}: {school} {level} «{key[2]}» printed twice, dropped')
+                out[key] = None
+                continue
+            out[key] = [_hedmark_cell(v) for v in vals]
+    return out
+
+
+def _hedmark_spans(editions):
+    """The years of every short row's figures, read from all editions at once.
+
+    A row with five figures is unambiguous. A shorter one is placed by
+    assuming the programme ran in one unbroken stretch of years [s, e]: every
+    edition that prints the row must then show exactly as many figures as its
+    window shares with [s, e], every edition that leaves it out must share
+    none, and two editions that place a figure in the same year must agree
+    (the oldest edition excepted: 2008-2012 differs from all later ones on
+    five 2012 cells, and the later ones win). A row is kept only if every
+    stretch that passes gives each edition the same years; a programme with a
+    gap year, or one the editions leave ambiguous, is dropped."""
+    order = sorted(editions, reverse=True)
+    oldest = order[-1]
+    first, last = oldest[0], order[0][1]
+    placed = {}
+    for key in {k for rows in editions.values() for k in rows}:
+        layouts = set()
+        for s in range(first, last + 1):
+            for e in range(s, last + 1):
+                got, ok = {}, True
+                for ed in order:
+                    rows = editions[ed]
+                    years = [y for y in range(ed[0], ed[1] + 1) if s <= y <= e]
+                    if key not in rows:
+                        ok = not years
+                    elif rows[key] is None:       # broken in this edition: no evidence
+                        continue
+                    elif len(rows[key]) != len(years):
+                        ok = False
+                    else:
+                        for y, v in zip(years, rows[key]):
+                            if y in got and got[y] != v and ed != oldest:
+                                ok = False
+                            got.setdefault(y, v)
+                    if not ok:
+                        break
+                if ok:
+                    layouts.add(tuple(
+                        tuple(y for y in range(ed[0], ed[1] + 1) if s <= y <= e) for ed in order))
+        if len(layouts) == 1:
+            placed[key] = dict(zip(order, next(iter(layouts))))
+    return placed
+
+
+def _parse_hedmark(warn):
+    files = sorted(f for f in os.listdir(SRC)
+                   if re.fullmatch(r'hedmark-poenggrense-\d{4}-\d{4}\.transcript\.txt', f))
+    editions = {}
+    for f in files:
+        a, b = map(int, re.findall(r'\d{4}', f))
+        editions[(a, b)] = _hedmark_edition(os.path.join(SRC, f), warn)
+    if not editions:
+        return []
+    placed = _hedmark_spans(editions)
+    out, dropped = [], []
+    for (a, b), rows in sorted(editions.items(), reverse=True):
+        rs = []
+        for key, vals in rows.items():
+            if vals is None:
+                continue
+            years = placed.get(key, {}).get((a, b))
+            if years is None and len(vals) == b - a + 1:
+                years = tuple(range(a, b + 1))
+            if years is None:
+                dropped.append((a, b, key))
+                continue
+            values = {y: v for y, v in zip(years, vals) if y >= HEDMARK_FIRST_YEAR}
+            if values:
+                school, level, program = key
+                # the county's own file is gone; the text is docplayer's copy
+                # of it, so the figures carry the reprint flag
+                rs.append({'school': school, 'program': program, 'level': level,
+                           'values': values, 'county': META['fylke'], 'round': '2',
+                           'reprint': True})
+        out.append((f'hedmark-poenggrense-{a}-{b}.transcript.txt', rs))
+    if dropped:
+        warn.append(f'Innlandet: Hedmark: {len(dropped)} short rows (in '
+                    f'{len({k for *_, k in dropped})} series) whose years the editions leave '
+                    f'ambiguous, dropped (see _hedmark_spans)')
+    return out
+
+
 # the rolling three-year matrices, newest first; every other PDF in the folder
 # (the 2026 applicant-count tables, a future drop-in) is ignored with a warning
 MATRIX_FILES = ['innlandet-2024-2026-2inntak.pdf', 'innlandet_2023-2025_2inntak.pdf']
@@ -304,4 +514,7 @@ def extract():
             for r in rows:
                 r['school'] = fold.get(r['school'], r['school'])
         out.append((fname, _apply_merges(rows)))
+    # Hedmark 2012-2018 last: older than every Innlandet file, so a (school,
+    # programme, year) the newer tables also print keeps their figure
+    out.extend(_parse_hedmark(warn))
     return out, warn

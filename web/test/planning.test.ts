@@ -63,8 +63,11 @@ describe('places', () => {
     for (let i = 1; i < ds.length; i++) expect(ds[i]).toBeGreaterThanOrEqual(ds[i - 1]);
     expect(document.querySelectorAll('#listview td.dist').length).toBe(rows().length);
     expect(JSON.parse(localStorage.getItem('pk-near')!).name).toBe('Oslo');
-    S.near = null; initPlaces();
+    // a reload: the list starts in its default order, the saved place puts it
+    // back in distance order
+    S.near = null; initListview(); initPlaces();
     expect(S.near!.name).toBe('Oslo');
+    expect(S.listSort).toEqual({ key: 'dist', dir: 1 });
     setNear(null);
     expect(S.near).toBe(null);
     expect(localStorage.getItem('pk-near')).toBe(null);

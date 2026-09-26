@@ -2,6 +2,16 @@
  "bucket_url": "https://pub-c369d56420af4a86b26b83c79c442355.r2.dev",
  "licence": "Public records of the fylkeskommuner; derived data NLOD 2.0",
  "files": {
+  "agder/agder-2020-2021-radgiversamling-010921-evaluering-av-arets-inntak.pdf": {
+   "size": 1175448,
+   "sha256": "773d48bfbfa90f8d72188ec3fa7c107ea32830b9e293c925f18415f8a0022775",
+   "provenance": "Agder fylkeskommune, inntakskontoret: «Rådgiversamling 1. september 2021 – Inntak og elevtjenester», slides 14-18 (2020 and 2021). agderfk.no original 404 since 2026; Wayback capture 20220303051051. Figures carry a priority-tier hundreds offset, decoded by the extractor."
+  },
+  "agder/aust-agder-2016-2017-radgiversamling-081217-elevinntak.pdf": {
+   "size": 631642,
+   "sha256": "98ec82680751e88d90f2323cfd493723218c814cdccb0dbdb059601af929ba19",
+   "provenance": "Aust-Agder fylkeskommune: «Elevinntak. Rådgiversamling 8.12.17», slide 8 (2016 and 2017, selected offers). Live on agderfk.pameldingssystem.no, checked byte-identical 26.09.2026."
+  },
   "akershus/Karaktergrense 2024-2025.xlsx": {
    "size": 14323,
    "sha256": "f4bea200eed43bc9f34bc27c75adb88e77fa026ba11526e75d96305a3d436e40",
@@ -12,10 +22,30 @@
    "sha256": "41a5afc43867b6a2c6f9eac28afd7d4d61b77c6d5e0cbb25427b2dfd626dd0ff",
    "provenance": "Akershus fylkeskommune. HTML: afk.no poenggrenser page (2025/26). xlsx: released by e-mail on request, asked 25.08.2026, received 27.08.2026 (2024/25 and 2026/27, 2. inntak)."
   },
+  "akershus/akershus-2015-reprint-budstikka.transcribed.csv": {
+   "size": 1179,
+   "sha256": "78c6b26f7fb72a5bd32bbb4f14f0869c53d499135bfb7cb1da35c932ce232da9",
+   "provenance": "Transcription (lane S, 25.09.2026; checked 26.09.2026) of Budstikka 23.02.2016, «Her er det sekser-krav for å komme inn», fact box «Kilde: Akershus fylkeskommune»: Vg1 studiespesialisering, 1. inntak 2015. Reprint."
+  },
   "akershus/akershus-2025-2026.html": {
    "size": 488968,
    "sha256": "8b2518cddc23b12a48163831ca95c8ff0e7d1c566049578a1bcae6acb8233634",
    "provenance": "Akershus fylkeskommune. HTML: afk.no poenggrenser page (2025/26). xlsx: released by e-mail on request, asked 25.08.2026, received 27.08.2026 (2024/25 and 2026/27, 2. inntak)."
+  },
+  "buskerud/buskerud-2012-1inntak.transcribed.csv": {
+   "size": 5741,
+   "sha256": "51c858dbe9f8295e245a2aaed150a2a49225c1387bc477efd2dd039e2c197da1",
+   "provenance": "Transcription (lane X, two independent passes, 26.09.2026) of the scanned table in buskerud-statistikkhefte-inntak-2012-2013.pdf, PDF page 10: Vg1 nedre poenggrense, 1. inntak 2012."
+  },
+  "buskerud/buskerud-2013-1inntak.transcribed.csv": {
+   "size": 5360,
+   "sha256": "a318a4bef685464ee61f87aff2b630bb20e1c398de5ae55f01b6819bfad5819d",
+   "provenance": "Transcription (lane X, two independent passes, 26.09.2026) of the scanned table in buskerud-statistikkhefte-inntak-2013-2014.pdf, PDF page 8: Vg1 nedre poenggrense, hovedinntaket 2013."
+  },
+  "buskerud/buskerud-2014-1inntak.transcribed.csv": {
+   "size": 5588,
+   "sha256": "725bd1bae5cd1515940e7f49d4fa13eef6d07d38613301fae731a838bacac563",
+   "provenance": "Transcription (lane X, two independent passes, 26.09.2026) of the scanned table in buskerud-statistikkhefte-inntak-2014-2015.pdf, PDF page 8: Vg1 nedre poenggrense, hovedinntaket 2014."
   },
   "buskerud/buskerud-2024-2025.html": {
    "size": 211632,
@@ -26,6 +56,51 @@
    "size": 120838,
    "sha256": "fdd7389caba7fc74db5ac32b2cd3083b551c0b86d3de7d14271ab820d7a10ce2",
    "provenance": "Buskerud fylkeskommune, bfk.no poenggrenser page, saved HTML (2024/25, 2025/26)."
+  },
+  "buskerud/buskerud-statistikkhefte-inntak-2012-2013.pdf": {
+   "size": 2768867,
+   "sha256": "7da1cb3661794c9a42b1bc4a732c1f440c2adf19bb17fad04abe1b0282e7e65e",
+   "provenance": "Buskerud fylkeskommune, «Statistikkhefte – inntak til videregående opplæring» 2012/2013 (the county's own booklet; data hunt lane J, 25.09.2026). Chapter 4 is a scanned table, read from the .transcribed.csv beside it."
+  },
+  "buskerud/buskerud-statistikkhefte-inntak-2013-2014.pdf": {
+   "size": 1444826,
+   "sha256": "82d2c3dc372b756ea418a8ca9f2314d411f127d232aff480a6170e77f09cd68a",
+   "provenance": "Buskerud fylkeskommune, «Statistikkhefte – inntak til videregående opplæring» 2013/2014 (the county's own booklet; data hunt lane J, 25.09.2026). Chapter 4 is a scanned table, read from the .transcribed.csv beside it."
+  },
+  "buskerud/buskerud-statistikkhefte-inntak-2014-2015.pdf": {
+   "size": 1260411,
+   "sha256": "692a2acbec8d972d05adba7737713bc588cc19c51711e49b80fbeed1bc719965",
+   "provenance": "Buskerud fylkeskommune, «Statistikkhefte – inntak til videregående opplæring» 2014/2015 (the county's own booklet; data hunt lane J, 25.09.2026). Chapter 4 is a scanned table, read from the .transcribed.csv beside it."
+  },
+  "innlandet/hedmark-poenggrense-2008-2012.transcript.txt": {
+   "size": 11430,
+   "sha256": "c3bdd6f0c1099bd86213090272b57961fb8250b350175862b9d15b1d1ec2c124",
+   "provenance": "docplayer.me page text of Hedmark fylkeskommune's «Poenggrense ved inntak til videregående skoler i Hedmark», figures from the intakes 2008-2012, 2. inntak (stated); the county's PDF is not online. Tier T2 (third-party transcript), treated as a reprint."
+  },
+  "innlandet/hedmark-poenggrense-2010-2014.transcript.txt": {
+   "size": 11647,
+   "sha256": "be0e827b1fa6cd45f78a22a99db1372e63a8c4084d5ca5ae444a616c16d3c445",
+   "provenance": "docplayer.me page text of Hedmark fylkeskommune's «Poenggrense ved inntak til videregående skoler i Hedmark», figures from the intakes 2010-2014, 2. inntak (stated); the county's PDF is not online. Tier T2 (third-party transcript), treated as a reprint."
+  },
+  "innlandet/hedmark-poenggrense-2011-2015.transcript.txt": {
+   "size": 11023,
+   "sha256": "1958651b1d001abe0031ffd52cc879fd07388531a4f187eca145ae5e746a357b",
+   "provenance": "docplayer.me page text of Hedmark fylkeskommune's «Poenggrense ved inntak til videregående skoler i Hedmark», figures from the intakes 2011-2015, 2. inntak (stated); the county's PDF is not online. Tier T2 (third-party transcript), treated as a reprint."
+  },
+  "innlandet/hedmark-poenggrense-2012-2016.transcript.txt": {
+   "size": 11384,
+   "sha256": "39724fb86c42986cb6251fc5207edc7ac03821dddfbb801498ba01c743c46828",
+   "provenance": "docplayer.me page text of Hedmark fylkeskommune's «Poenggrense ved inntak til videregående skoler i Hedmark», figures from the intakes 2012-2016, 2. inntak (stated); the county's PDF is not online. Tier T2 (third-party transcript), treated as a reprint."
+  },
+  "innlandet/hedmark-poenggrense-2013-2017.transcript.txt": {
+   "size": 11553,
+   "sha256": "de73bbfb733a76da5f1109308c3dabeb268ea91596d8d1f8a40cb497bdc042c4",
+   "provenance": "docplayer.me page text of Hedmark fylkeskommune's «Poenggrense ved inntak til videregående skoler i Hedmark», figures from the intakes 2013-2017, 2. inntak (stated); the county's PDF is not online. Tier T2 (third-party transcript), treated as a reprint."
+  },
+  "innlandet/hedmark-poenggrense-2014-2018.transcript.txt": {
+   "size": 11624,
+   "sha256": "a32786b831aa47f8081027ab4bc3e601e9775e34983b2945c1882ed1f985a50b",
+   "provenance": "docplayer.me page text of Hedmark fylkeskommune's «Poenggrense ved inntak til videregående skoler i Hedmark», figures from the intakes 2014-2018, 2. inntak (stated); the county's PDF is not online. Tier T2 (third-party transcript), treated as a reprint."
   },
   "innlandet/innlandet-2020-21-mottatt-innsyn.pdf": {
    "size": 353248,
@@ -62,15 +137,55 @@
    "sha256": "2d342a3d5983e4e2b3b498b152472ef095c4528b973476e20ba8b20ece471b3e",
    "provenance": "Møre og Romsdal fylkeskommune, Kompetanse- og næringsavdelinga: Excel extract behind the Power BI karakterstatistikk, released by e-mail on request, asked 25.08.2026, received 01.09.2026 (2. inntak, 2012-2026)."
   },
+  "nordland/nordland-poenggrense-2015.transcript.txt": {
+   "size": 18645,
+   "sha256": "eb53066f2521578fc8f352cee52db6007d69fedcfc8d3a5968b548cc05119459",
+   "provenance": "docplayer.me/28107511 page text (Wayback capture 20170705185254) of Nordland fylkeskommune's «Oversikt over nedre poenggrense … etter 2. gangs inntak 2015»; the county's own PDF is not online. Tier T2 (third-party transcript), treated as a reprint."
+  },
+  "nordland/nordland-statistikk-2021.pdf": {
+   "size": 898208,
+   "sha256": "54aebd62af7c83f0b30c734a0d1bad4293d6cdc824444816e4ddacbad1bd91f3",
+   "provenance": "Nordland fylkeskommune, «Videregående opplæring – Statistikk 2021» (lowest admission points 2019-2021). nfk.no original 404 (26.09.2026); Wayback capture 20220619024639."
+  },
+  "nordland/nordland-statistikkhefte-2013-2014.pdf": {
+   "size": 8536435,
+   "sha256": "9285a949ece6cf0565368304f5ab1218c77b1a0386f2fa99a02b97422abe4773",
+   "provenance": "Nordland fylkeskommune, statistikkhefte 2013/2014, chapter 4 «Oversikt over nedre poenggrense … etter 2. gangs inntak 2013». Wayback capture 20150324085047 of nfk.no fh.ashx?MId1=5051&FilId=22713."
+  },
+  "nordland/nordland-statistikkhefte-2014-2015.pdf": {
+   "size": 483996,
+   "sha256": "2d127316b33690d24e78117d398bb89b480bd404db6bba72057253b39b3086b1",
+   "provenance": "Nordland fylkeskommune, statistikkhefte 2014/2015, chapter 4 «Oversikt over nedre poenggrense … etter 2. gangs inntak 2014». Wayback capture 20150324025529 of nfk.no fh.ashx?MId1=5051&FilId=34759."
+  },
   "oslo/oslo-2009-2inntak.pdf": {
    "size": 5604,
    "sha256": "558dfe68f7ecf2fbfb3096095d401a203583f4398579e1805712c4c16fc13991",
    "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
   },
+  "oslo/oslo-2012-reprint-andresen2014.transcribed.csv": {
+   "size": 4219,
+   "sha256": "c56e432f8b29b75bb8e1144dbf18c77a40c02c9a6cdd53b6fb0049e454bcc7ee",
+   "provenance": "Transcription (lane F, 25.09.2026; checked 60/60 26.09.2026) of Utdanningsetaten's 2012 table «… 1. inntaksrunde» as reproduced in Andresen (2014), «Valgfrihetens segregering?», master's thesis, UiO, hdl.handle.net/10852/41432, Vedlegg 1A. Reprint."
+  },
+  "oslo/oslo-2013-reprint-aftenposten.transcribed.csv": {
+   "size": 1934,
+   "sha256": "9ebf1a7030799f3f873ff030ee92daa20bad381c0d475d3b57f3bedcab8de626",
+   "provenance": "Transcription (lane D, 25.09.2026) of Aftenposten 03.07.2013, «Rekordvanskelig å komme inn på videregående i Oslo», fact box «Kilde: Utdanningsetaten», «ved førsteinntak». Reprint."
+  },
+  "oslo/oslo-2014.pdf": {
+   "size": 196085,
+   "sha256": "f39bdcf4755c8cc921f1479926e8e8da3d4d19d10287a643912af4f550fa2966",
+   "provenance": "Utdanningsetaten, Oslo kommune: nedre poenggrense 1. inntak Vg1 2014/15, the yearly poengtabell in the county's own layout, recovered through the Wayback Machine (data hunt, 25.09.2026)."
+  },
   "oslo/oslo-2015.pdf": {
    "size": 194663,
    "sha256": "c3e88b2d37e7db70b30e4b095865f2cfac3d5f24f02f3c06a14e31540828ba7c",
    "provenance": "Oslo kommune, Utdanningsetaten: the 2015/16 poengtabell (1. inntak, Vg1) as served by Ris skole, ris.osloskolen.no/siteassets/dokumenter-til-lenking/2015--nedre-poenggrense-1--inntak-vg11.pdf (fetched 5 Sept 2026)."
+  },
+  "oslo/oslo-2016-reprint-nab.transcribed.csv": {
+   "size": 1718,
+   "sha256": "90aa78a72ba4797384e9780591589fe33928dd4d950943cd7bcfe8785701f352",
+   "provenance": "Transcription (lane D, 25.09.2026) of Nordre Aker Budstikke 06.07.2016, fact box «Nedre poenggrense for inntak til Vg1 - studiespesialisering, høsten 2016», «Kilde: Utdanningsetaten», first round stated. Reprint."
   },
   "oslo/oslo-2017.pdf": {
    "size": 42153,
@@ -122,6 +237,11 @@
    "sha256": "101c89fbdd89be58807651643838f370a33148bfdc358b33e09f6ec156870f39",
    "provenance": "Oslo kommune, Utdanningsetaten: poengtabeller from oslo.kommune.no (1. inntak); oldest years via school-site PDFs."
   },
+  "rogaland/31skoler-v3-2016-01-25-wayback.json": {
+   "size": 600915,
+   "sha256": "ccf9135c324112c37f86cb10e232aa79b523b89e08cb166a14ee00b8f246e9e0",
+   "provenance": "Data file behind Rogaland fylkeskommune's «31 skoler» school portal (31skoler.no), Wayback capture of 25.01.2016: lowest points at the previous intake (2015) per school and programme, Vg1-Vg3. Intake round not stated."
+  },
   "rogaland/poenggrenser-rogaland-2019-2020.pdf": {
    "size": 121108,
    "sha256": "b1e2381fcaaf9d134ee6f0544410d452d8b351660f356b0ac2a2ad7439289e69",
@@ -162,10 +282,30 @@
    "sha256": "3897687a7b9f6c0174f4caab98f511d19ac9779f3d5621dde8e42f0a41f47792",
    "provenance": "Rogaland fylkeskommune via vilbli.no/rogaland (2. inntak); the 2024-2026 edition, fetched 08.09.2026 (file dated 07.09.2026)."
   },
+  "rogaland/rogaland-2011-2012-reprint-aftenbladet.transcribed.csv": {
+   "size": 2205,
+   "sha256": "8bfab1f21445577fbbf0e52ac56f7f009d7d36273fbc59656df4c037056af2db",
+   "provenance": "Transcription (lane D, 25.09.2026) of Stavanger Aftenblad 17.07.2012, «Vanskeligere å komme inn», table «etter førsteinntaket for høsten 2011 og 2012». Reprint; 2011 is before the dataset's first year."
+  },
+  "rogaland/rogaland-2017-1inntak-rogfk-commoncrawl.html": {
+   "size": 43846,
+   "sha256": "f17e6403e1562edff7f77cedda227a87dc318ab58d57ab80d0172f402f8a5b65",
+   "provenance": "Rogaland fylkeskommune's news article «Musikk, dans og drama krever toppkarakterer» (rogfk.no/Aktuelt, published 06.07.2017, updated 12.07.2017), the HTTP body of Common Crawl's capture of 20.07.2017 (CC-MAIN-2017-30, WARC CC-MAIN-20170720121902-20170720141902-00464.warc.gz, offset 536035933, length 8327), byte for byte. Table «Programområder med lange ventelister»: examples, not the whole county, lowest points admitted after 1. fellesinntak 2017/2018, Vg1-Vg3."
+  },
   "telemark/laveste-inntakspoeng-vg1-2024-2026.xlsx": {
    "size": 22947,
    "sha256": "37a7c7380f857c136fcbdaa91a89ef2909cc325095e694e51ff6983a45df4250",
    "provenance": "Telemark fylkeskommune, Kompetanse og integrering: workbook «Laveste inntakspoeng – siste 3 år», Vg1, released by e-mail on request, asked 01.09.2026, received 17.09.2026 (intake round not stated, asked 17.09.2026; 2024/25-2026/27)."
+  },
+  "trondelag/trondelag_2024-25_trondheim_2inntak.pdf": {
+   "size": 79571,
+   "sha256": "5cbab54e31c469325d5dfcd248e7f85dfda112a502791ac6354daf2eaabdba4a",
+   "provenance": "Trøndelag fylkeskommune via vilbli (attachment 037606): «Fylkeskommunale videregående skoler i Trondheim kommune - Laveste poengsum ved 2. inntaket skoleåret 2024/2025». Image-only PDF, read from the .transcribed.csv beside it."
+  },
+  "trondelag/trondelag_2024-25_trondheim_2inntak.transcribed.csv": {
+   "size": 4728,
+   "sha256": "d799feb89d24f0ac5362936df85b6b60014a5e2e719538cc05044dda386d3f9e",
+   "provenance": "Transcription (lane H, 25.09.2026; checked 46/46 against a 260 dpi render) of trondelag_2024-25_trondheim_2inntak.pdf."
   },
   "trondelag/trondelag_2025-26_fosen.pdf": {
    "size": 122775,
@@ -191,6 +331,21 @@
    "size": 128030,
    "sha256": "bc225bf1bac1436552cd05b7bb349f62cb21a1288b6ffa0c8ea16395195c4517",
    "provenance": "Trøndelag fylkeskommune via vilbli.no/trondelag, one PDF per inntaksregion (2025/26)."
+  },
+  "vestland/hordaland-2014-reprint-bt.transcribed.csv": {
+   "size": 1872,
+   "sha256": "ded8ea2d7dfcddac0ddbf241606af53cba460218efc40dde1ff78da5c58750c4",
+   "provenance": "Transcription (lane D, 25.09.2026) of Bergens Tidende 08.07.2014, «Her er det vanskeligst å få plass», from a Hordaland fylkeskommune press release, first round stated. Reprint."
+  },
+  "vestland/hordaland-2015-reprint-ba.transcribed.csv": {
+   "size": 1853,
+   "sha256": "ace9481849bd04ef58944ff35b181a550bd3310a4166096a22dcc0aa60184d9e",
+   "provenance": "Transcription (lane D, 25.09.2026) of Bergensavisen 07.07.2015, table «… ved 1. inntaksomgang 2015», «Kilde: Hordaland fylkeskommune». Reprint."
+  },
+  "vestland/hordaland_2016_1inntak_bergen-st.pdf": {
+   "size": 19308,
+   "sha256": "7af58406cdc395fe9facce7293fe321e5aaff0e617d7e9867a9c03418b8b001d",
+   "provenance": "Hordaland fylkeskommune press release, Vg1 studiespesialisering in the Bergen area 2016; Wayback capture 20160807 of hordaland.no/globalassets/for-hfk/pdf-til-nyheiter/nedrepoengrense-.pdf. Round from Utdanningsnytt 15.07.2016 («etter første inntak»)."
   },
   "vestland/hordaland_2017-2019_3inntak_vg1-vg3.pdf": {
    "size": 245632,

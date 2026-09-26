@@ -1,0 +1,25 @@
+# document: Hordaland fylkeskommune's figures for the 1. inntaksomgang 2015 (the county's own list is not online)
+# reprinted in: Bergensavisen 07.07.2015, «Amalie Skram nok en gang byens eliteskole», ba.no/…/s/5-8-111428, table «Nedre poeggrenser til Vg1 studiespesialiserende utdanningsprogram ved skolene i Bergen ved 1. inntaksomgang 2015», «Kilde: Hordaland fylkeskommune»
+# round: 1 (stated in the table heading: «ved 1. inntaksomgang 2015»)
+# tier: reprint: a newspaper's copy of the county's figures, not the county's own file
+# legend: no symbols; Bergen schools first, then «andre» (other schools in the area)
+# transcribed: lane D, 25 Sept 2026
+# school: as printed; the extractor maps them to register names
+school,program,level,year,printed
+Amalie Skram videregående skole,Studiespesialisering,Vg1,2015,"48,8"
+Bergen katedralskole,Studiespesialisering,Vg1,2015,"46,5"
+Nordahl Grieg videregående skole,Studiespesialisering,Vg1,2015,"45,6"
+Langhaugen videregående skole,Studiespesialisering,Vg1,2015,"44,7"
+Olsvikåsen videregående skole,Studiespesialisering,Vg1,2015,"43,9"
+Tertnes videregående skole,Studiespesialisering,Vg1,2015,"41,8"
+Fana gymnas,Studiespesialisering,Vg1,2015,"40,6"
+Sandsli videregående skole,Studiespesialisering,Vg1,2015,"40,0"
+Fyllingsdalen videregående skole,Studiespesialisering,Vg1,2015,"38,8"
+Laksevåg videregående skole,Studiespesialisering,Vg1,2015,"38,8"
+U. Pihl videregående skole,Studiespesialisering,Vg1,2015,"37,5"
+Garnes vidaregåande skule,Studiespesialisering,Vg1,2015,"35,6"
+Knarvik vidaregåande skule,Studiespesialisering,Vg1,2015,"45,0"
+Osterøy vidaregåande skule,Studiespesialisering,Vg1,2015,"40,3"
+Askøy videregående skole,Studiespesialisering,Vg1,2015,"39,7"
+Os gymnas,Studiespesialisering,Vg1,2015,"38,8"
+Sotra vidaregåande skule,Studiespesialisering,Vg1,2015,"38,7"

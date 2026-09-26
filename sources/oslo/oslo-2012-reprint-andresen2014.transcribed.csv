@@ -1,0 +1,69 @@
+# document: Utdanningsetaten, «Nedre poenggrense for inntak til Vg1 (Videregående trinn 1) for ungdom med opplæringsrett, skoleåret 2012/2013, 1. inntaksrunde»
+# reprinted in: Andresen, R. M. (2014), «Valgfrihetens segregering?», master's thesis, University of Oslo, hdl.handle.net/10852/41432, Vedlegg 1A (PDF page 119), an image of the county's table
+# original: utdanningsetaten.oslo.kommune.no/getfile.php/…/EFP/Inntak/2012 Nedre poenggrense 1  inntak Vg1 pdf.pdf, cited in the thesis; Wayback holds only a redirect
+# round: 1 (stated in the table title: «1. inntaksrunde»)
+# tier: reprint: the county's table as reproduced in a thesis, not the county's own file
+# legend: «*» = musikk, dans og drama: «50 % tas inn etter ferdighet og karakterer, ingen nedre poenggrense» (half admitted on skill and grades, no lower threshold). No «**» (everyone admitted) appears in this table. Blank = not offered.
+# transcribed: lane F, 25 Sept 2026, from the thesis page image; checked cell by cell (60/60) by the orchestrator on 26 Sept 2026. The page prints a decimal comma.
+# school: as printed in the table (short names); the extractor maps them to register names
+school,program,level,year,printed
+Berg,Stud.spes. (uten formgivingsfag),Vg1,2012,"34,7"
+Elvebakken,Stud.spes. (uten formgivingsfag),Vg1,2012,"49,4"
+Elvebakken,Stud.spes. m/formgiving,Vg1,2012,"48,1"
+Elvebakken,Design og håndverk,Vg1,2012,"37,6"
+Elvebakken,Elektrofag,Vg1,2012,"39,0"
+Elvebakken,Medier og kommunikasjon,Vg1,2012,"43,1"
+Fyrstikkalléen,Stud.spes. (uten formgivingsfag),Vg1,2012,"45,3"
+Fyrstikkalléen,Medier og kommunikasjon,Vg1,2012,"41,2"
+Fagerborg,Stud.spes. (uten formgivingsfag),Vg1,2012,"34,4"
+Fagerborg,"Musikk, dans og drama",Vg1,2012,*
+Foss,Stud.spes. (uten formgivingsfag),Vg1,2012,"46,3"
+Foss,"Musikk, dans og drama",Vg1,2012,*
+Hartvig Nissen,Stud.spes. (uten formgivingsfag),Vg1,2012,"40,0"
+Hartvig Nissen,"Musikk, dans og drama",Vg1,2012,*
+Hellerud,Stud.spes. (uten formgivingsfag),Vg1,2012,"26,5"
+Hellerud,Bygg- og anleggsteknikk,Vg1,2012,"22,7"
+Hellerud,Medier og kommunikasjon,Vg1,2012,"32,0"
+Holtet,Design og håndverk,Vg1,2012,"29,4"
+Holtet,Helse- og sosialfag,Vg1,2012,"21,3"
+Lambertseter,Stud.spes. (uten formgivingsfag),Vg1,2012,"43,1"
+Lambertseter,Idrettsfag,Vg1,2012,"40,6"
+Bjerke,Stud.spes. (uten formgivingsfag),Vg1,2012,"39,4"
+Bjerke,Idrettsfag,Vg1,2012,"35,6"
+Bjerke,Medier og kommunikasjon,Vg1,2012,"38,8"
+Manglerud,Stud.spes. (uten formgivingsfag),Vg1,2012,"26,4"
+Manglerud,Stud.spes. m/formgiving,Vg1,2012,"37,3"
+Manglerud,"Musikk, dans og drama",Vg1,2012,*
+Nordstrand,Stud.spes. (uten formgivingsfag),Vg1,2012,"27,1"
+Nydalen,Stud.spes. (uten formgivingsfag),Vg1,2012,"43,8"
+Nydalen,Helse- og sosialfag,Vg1,2012,"32,9"
+Nydalen,Service og samferdsel,Vg1,2012,"31,2"
+Oslo handelsgym.,Stud.spes. (uten formgivingsfag),Vg1,2012,"43,3"
+Oslo handelsgym.,Service og samferdsel,Vg1,2012,"29,4"
+Oslo katedralskole,Stud.spes. (uten formgivingsfag),Vg1,2012,"50,0"
+Etterstad,Restaurant- og matfag,Vg1,2012,"21,3"
+Etterstad,Elektrofag,Vg1,2012,"30,0"
+Etterstad,Teknikk og industriell produksjon,Vg1,2012,"24,0"
+Etterstad,Service og samferdsel,Vg1,2012,"25,3"
+Persbråten,Stud.spes. (uten formgivingsfag),Vg1,2012,"28,8"
+Persbråten,Idrettsfag,Vg1,2012,"30,0"
+Sofienberg,Helse- og sosialfag,Vg1,2012,"21,3"
+Sogn,Design og håndverk,Vg1,2012,"23,6"
+Sogn,Helse- og sosialfag,Vg1,2012,"22,0"
+Sogn,Elektrofag,Vg1,2012,"28,6"
+Sogn,Teknikk og industriell produksjon,Vg1,2012,"23,6"
+Sogn,Bygg- og anleggsteknikk,Vg1,2012,"21,9"
+Stovner,Stud.spes. (uten formgivingsfag),Vg1,2012,"28,0"
+Stovner,Helse- og sosialfag,Vg1,2012,"28,0"
+Stovner,Teknikk og industriell produksjon,Vg1,2012,"27,6"
+Stovner,Bygg- og anleggsteknikk,Vg1,2012,"22,3"
+Bjørnholt,Stud.spes. (uten formgivingsfag),Vg1,2012,"32,0"
+Bjørnholt,"Musikk, dans og drama",Vg1,2012,*
+Bjørnholt,Elektrofag,Vg1,2012,"32,0"
+Bjørnholt,Bygg- og anleggsteknikk,Vg1,2012,"26,0"
+Bjørnholt,Medier og kommunikasjon,Vg1,2012,"34,7"
+Ullern,Stud.spes. (uten formgivingsfag),Vg1,2012,"44,4"
+Ullern,Medier og kommunikasjon,Vg1,2012,"41,9"
+Ulsrud,Stud.spes. (uten formgivingsfag),Vg1,2012,"26,7"
+Ulsrud,Idrettsfag,Vg1,2012,"30,7"
+Ulsrud,Helse- og sosialfag,Vg1,2012,"23,1"

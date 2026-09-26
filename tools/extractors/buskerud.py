@@ -9,6 +9,26 @@ Footnotes (verbatim on the page) mark how a place was won, not the threshold:
   **  musikk/dans/drama — up to 50% on skill + grades
   *** toppidrett — up to 50% on skill + grades
 so the number beside the asterisk is a real threshold and is kept.
+
+2012-2014 come from the county's «Statistikkhefte – inntak til videregående
+opplæring», chapter 4 «Nedre poenggrense for inntak til Vg1», whose table is a
+scanned image; it is read from a hand transcription of the page
+(`buskerud-<year>-1inntak.transcribed.csv`, see common.read_transcription).
+Those editions state their round: «1. inntak» (2012/13), «hovedinntaket» (the
+main intake, 2013/14 and 2014/15), so their rows carry round '1' while the
+county's current pages state none. Their symbols, from the booklet's legend:
+  alle / Alle        everyone who applied was admitted -> open (a number
+                     printed beside it is the lowest admitted, not a cutoff)
+  M, Da, Dr          the music, dance and drama queues
+  Q, E, N            forskerlinje, entreprenørskap, internasjonalisering
+  D-fotb, E-hånd(b), T-BHT, U-uthold./U-L-S   Drammen's four sport queues,
+                     which the county names «toppidrett, fotball / håndball /
+                     bandy/hopp/turn / langrenn/svømming» today; U- is one
+                     queue under two labels (utholdenhet, then L-S)
+  YSK, Stud          the 4-year YSK model and the studiekompetanse variant
+  FL                 printed at Ål's Naturbruk without explanation; ignored
+The booklet says the MDD thresholds, and Drammen's and Ringerike's sport
+thresholds, are for applicants without tilleggspoeng; so are today's.
 """
 import os
 import re
@@ -34,11 +54,75 @@ META = {
 }
 
 
+# 2012-14: the booklet's short names, where today's name differs
+OLD_SCHOOLS = {'Rosthaug': 'Buskerud'}
+# Røyken was a Buskerud school then and is filed under Akershus today; the
+# school, not the county, is the series' identity
+MOVED = {'Røyken': 'Akershus'}
+OLD_COLUMNS = {
+    'studiespes. med formgiving': 'Studiespesialisering med formgivingsfag',
+    'studiespes. medformgiving': 'Studiespesialisering med formgivingsfag',
+    'teknikk og industriell prod.': 'Teknikk og industriell produksjon',
+    'helse og sosialfag': 'Helse- og sosialfag',
+    'musikk dans og drama': 'Musikk, dans og drama',
+}
+QUEUES = {
+    'Musikk, dans og drama': [(r'^(M|Mu)$', 'musikk'), (r'^(D|Da)$', 'dans'),
+                              (r'^(Dr|DR|Dra)$', 'drama')],
+    'Idrettsfag': [(r'^D-\s*fotb', 'toppidrett, fotball'), (r'^E-\s*hånd', 'toppidrett, håndball'),
+                   (r'^T-\s*B\s*H\s*T', 'toppidrett, bandy/hopp/turn'),
+                   (r'^U-', 'toppidrett, langrenn/svømming')],
+    'Studiespesialisering': [(r'^Q', 'forskerlinje'), (r'^E$', 'entreprenørskap'),
+                             (r'^N$', 'internasjonalisering')],
+    'Helse- og oppvekstfag': [(r'^YSK$', 'YSK 4 år'), (r'^Stud$', 'studiekompetanse')],
+    'Service og samferdsel': [(r'^YSK$', 'YSK 4 år')],
+    'Naturbruk': [(r'^FL$', None)],
+}
+PRINTED = re.compile(r'^(?P<num>\d{1,2}(?:[.,]\d{1,2})?)?\s*(?P<alle>alle)?\s*(?P<mark>.*)$', re.I)
+
+
+def _booklet(path, warn):
+    meta, cells = common.read_transcription(path)
+    rnd = common.stated_round(meta)
+    rows = []
+    for c in cells:
+        col = common.squash(c['program'])
+        program = common.canon_program(OLD_COLUMNS.get(col.lower(), col))
+        m = PRINTED.match(common.squash(c['printed']))
+        if not m or not (m.group('num') or m.group('alle')):
+            warn.append(f'{os.path.basename(path)}: unread cell {c["school"]} {col} {c["printed"]!r}')
+            continue
+        mark = m.group('mark').strip()
+        if mark:
+            rules = QUEUES.get(str(program), [])
+            hit = next((q for pat, q in rules if re.search(pat, mark)), False)
+            if hit is False:
+                warn.append(f'{os.path.basename(path)}: unknown marker {mark!r} at {c["school"]} {col}')
+                continue
+            if hit:
+                program = common.canon_program(f'{program}, {hit}')
+        v = 'open' if m.group('alle') else float(m.group('num').replace(',', '.'))
+        school = OLD_SCHOOLS.get(c['school'], c['school'])
+        row = {'school': school, 'program': program,
+               'level': common.guess_level(str(program), 'Vg1'),
+               'values': {c['year']: v},
+               'county': MOVED.get(school, META['fylke']), 'round': rnd}
+        if school in MOVED:
+            # the figure was set in Buskerud's intake: the model counts it in
+            # Buskerud's year, and the school's page says whose table it is
+            row['former_county'] = META['fylke']
+        rows.append(row)
+    return rows
+
+
 def extract():
     warn, out = [], []
     if not os.path.isdir(SRC):
         return out, [f'{META["fylke"]}: no source directory']
     for fname in sorted(os.listdir(SRC), reverse=True):
+        if fname.endswith('.transcribed.csv'):
+            out.append((fname, _booklet(os.path.join(SRC, fname), warn)))
+            continue
         if not fname.endswith('.html'):
             continue
         m = re.search(r'(20\d\d)-20\d\d', fname)

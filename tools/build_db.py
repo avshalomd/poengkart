@@ -43,6 +43,18 @@ import os
 import sqlite3
 import time
 
+
+def year_round(county, year):
+    """The intake round of a county's published figures for one year.
+
+    `round_years` holds the exceptions to the county's round, and an exception
+    can be None (that year's figures state no round), so a missing key and a
+    None value mean different things.
+    """
+    ry = county.get('round_years') or {}
+    return ry[str(year)] if str(year) in ry else county.get('round')
+
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
 MODEL = os.path.join(HERE, '..', 'web', 'public', 'data', 'model.json')
@@ -152,7 +164,7 @@ def main():
                 status = ('filled_no_points' if points == 0 else 'points') if points is not None else STATUS.get(v)
                 if status is None:
                     continue
-                rnd = (c.get('round_years') or {}).get(str(year)) or s.get('round')
+                rnd = year_round(c, year)
                 rows.append((s.get('fylke'), s['name'], p['program'], occ, p['category'],
                              p.get('grep'), p.get('level'), int(year), rnd, points, status,
                              (p.get('means') or {}).get(str(year))))

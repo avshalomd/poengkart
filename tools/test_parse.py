@@ -110,15 +110,20 @@ nat_absurd = [(s, p['program'], y, v) for s, p, y, v in nat_cells
 check('no out-of-range thresholds nationally', not nat_absurd, str(nat_absurd[:3]))
 zero_counties = {s['fylke'] for s in DATA['schools'] for p in s['programs']
                  for v in p['values'].values() if v == 0}
-# verified against each source: Akershus documents it in a footnote, and
-# Innlandet/Vestland print a literal 0 in the table
+# verified against each source: Akershus documents it in a footnote,
+# Innlandet/Vestland print a literal 0 in the table, and Nordland prints «0,0»
+# in its 2019-21 table with no legend (NORDLAND_ZERO in its extractor)
 check('0,0 appears only where the source publishes it',
-      zero_counties <= {'Akershus', 'Innlandet', 'Vestland'}, str(sorted(zero_counties)))
+      zero_counties <= {'Akershus', 'Innlandet', 'Nordland', 'Vestland'}, str(sorted(zero_counties)))
 # a printed decimal below 8 is kept (classify_cell), so every such cell is
 # listed here by hand after a look at its source; a new one fails until it
 # has been looked at too
 SUB8 = {
     ('Buskerud', 'Kongsberg', 'Musikk, dans og drama', 'Vg1', '2025', 4.0),
+    # «5,6» in the 2019 column of Nordland's 2021 booklet (p. 54): the lowest
+    # admitted, a table with no fill state, so a figure this low most likely
+    # means everyone got in (lowestAdmittedNote says so beside these years)
+    ('Nordland', 'Bodin videregående skole', 'Kunst, design og arkitektur', 'Vg2', '2019', 5.6),
     ('Oslo', 'Etterstad videregående skole', 'Restaurant- og matfag', 'Vg1', '2026', 6.0),
     ('Oslo', 'Etterstad videregående skole', 'Teknikk og industriell produksjon', 'Vg1', '2019', 5.6),
 }
@@ -199,6 +204,10 @@ NO_NEWEST_FIGURE = {
     ('Innlandet', 'Nord-Gudbrandsdal vgs, avd. Dombås'),
     ('Innlandet', 'Raufoss videregående skole avd Dokka'),
     ('Innlandet', 'Storsteigen videregående skole'),
+    # Hedmark's last table with the school (2018): both rows «ledige plasser»
+    ('Innlandet', 'Midt-Østerdal videregående skole'),
+    # Nordland 2021: the one row prints «0,0» (NORDLAND_ZERO), not a poenggrense
+    ('Nordland', 'Nord-Salten videregående skole avd Steigen'),
     # both 2026 figures were under 25, which the county's own dashboard rule
     # shows as "ingen venteliste" (tools/extractors/mro.py, 5 Sept 2026)
     ('Møre og Romsdal', 'Gjermundnes vidaregåande skule'),
@@ -210,7 +219,7 @@ NO_NEWEST_FIGURE = {
     ('Trøndelag', 'Åfjord videregående skole'),
 }
 without = {(s['fylke'], s['name']) for s in DATA['schools'] if not newest_numeric(s)}
-check('the schools with no poenggrense in their newest year are the 16 known ones',
+check('the schools with no poenggrense in their newest year are the 18 known ones',
       without == NO_NEWEST_FIGURE,
       f'new: {sorted(without - NO_NEWEST_FIGURE)} gone: {sorted(NO_NEWEST_FIGURE - without)}')
 
@@ -435,7 +444,8 @@ check('the recovered Hordaland years are plausible thresholds',
       all(20 <= v <= 55 for _, v, _ in hord if isinstance(v, (int, float))),
       str(sorted(v for _, v, _ in hord if isinstance(v, (int, float)))[:4]))
 early = {int(y) for s in county('Vestland') for p in s['programs'] for y in p['values']}
-check('Vestland now reaches back to 2017', min(early) == 2017, str(sorted(early)))
+# Hordaland's 2016 release and the 2014-15 newspaper reprints (26 Sept 2026)
+check('Vestland now reaches back to 2014', min(early) == 2014, str(sorted(early)))
 
 # --- the data-hole sweep of 5 September 2026 -------------------------------
 def vprog(school_sub, prog_exact, level='Vg1', fylke='Vestland'):
@@ -476,6 +486,33 @@ check('Hordaland «Alle» reads as open, a blank as absent',
 _vc = next(c for c in DATA['counties'] if c['fylke'] == 'Vestland')
 check('Vestland has no year on another round than its own', not _vc.get('round_years'),
       str(_vc.get('round_years')))
+# A year whose published figures come from another round, or state none,
+# inside a county's series is labelled in the app; the label is written from
+# the cells the merge published, not from every source read (a superseded
+# reprint said nothing about the year a reader sees)
+_cy = {c['fylke']: c for c in DATA['counties']}
+check('Rogaland 2015 (the school portal, no round stated) is an unstated year',
+      '2015' in (_cy['Rogaland'].get('round_years') or {})
+      and _cy['Rogaland']['round_years']['2015'] is None,
+      str(_cy['Rogaland'].get('round_years')))
+# the county's own article of July 2017 (Common Crawl): 57 examples, every one
+# a programme the county's later tables carry, so none may open a series
+_r17 = [(s['name'], p['program']) for s in county('Rogaland') for p in s['programs'] if '2017' in p['values']]
+_r17_lone = [(s['name'], p['program']) for s in county('Rogaland') for p in s['programs']
+             if list(p['values']) == ['2017']]
+check("Rogaland 2017 is 1. inntak, the county's own, and joins 57 existing series",
+      (_cy['Rogaland'].get('round_years') or {}).get('2017') == '1'
+      and '2017' not in (_cy['Rogaland'].get('reprint_years') or [])
+      and len(_r17) == 57 and not _r17_lone,
+      f"{len(_r17)} cells, alone: {_r17_lone}, {_cy['Rogaland'].get('round_years')}")
+check('Buskerud 2012-2014 are the one stated round in an unstated county',
+      all((_cy['Buskerud'].get('round_years') or {}).get(y) == '1' for y in ('2012', '2013', '2014')),
+      str(_cy['Buskerud'].get('round_years')))
+check('Reprint years are the years that rest wholly on a copy',
+      {'2013', '2016'} <= set(_cy['Oslo'].get('reprint_years') or [])
+      and '2014' not in (_cy['Oslo'].get('reprint_years') or [])
+      and {'2014', '2015'} <= set(_cy['Vestland'].get('reprint_years') or []),
+      f"Oslo {_cy['Oslo'].get('reprint_years')} Vestland {_cy['Vestland'].get('reprint_years')}")
 v23 = sum(1 for _, _, y, _ in ccells('Vestland') if y == '2023')
 check('Vestland 2023 is the full 1. inntak edition', v23 >= 450, f'{v23} cells')
 # the 3. inntak editions add a fourth column on their Vg2/Vg3 pages; the
@@ -525,7 +562,7 @@ _shell = open(os.path.join(HERE, '..', 'web', 'src', 'shell.html'), encoding='ut
 head = (_pre[_pre.index('HOME_HEAD'):_pre.index('};', _pre.index('HOME_HEAD'))]
         + _shell[_shell.index('<noscript>'):_shell.index('</noscript>')])
 n_schools, y0, y1 = len(DATA['schools']), DATA['years'][0], DATA['years'][-1]
-NORSK = {5: 'fem', 6: 'seks', 7: 'sju', 8: 'åtte', 9: 'ni', 10: 'ti'}
+NORSK = {5: 'fem', 6: 'seks', 7: 'sju', 8: 'åtte', 9: 'ni', 10: 'ti', 11: 'elleve', 12: 'tolv'}
 n_fylker = NORSK.get(len(DATA['counties']), str(len(DATA['counties'])))
 
 counts = re.findall(r'(\d{2,4})\s+(?:videregående skoler|skoler|schools)', head)

@@ -1,0 +1,30 @@
+# document: Utdanningsetaten, «2013 Nedre poenggrense 1. inntak Vg1» (the original file is lost; see .claude/qa/2026-09-25-data-hunt/innsyn-drafts.md, draft 3)
+# reprinted in: Aftenposten 03.07.2013, «Rekordvanskelig å komme inn på videregående i Oslo», aftenposten.no/oslo/i/j12w, fact box «Kilde: Utdanningsetaten»; the three Medier og kommunikasjon figures are from the article text
+# round: 1 (stated in the fact box: «ved førsteinntak»)
+# tier: reprint: a newspaper's copy of the county's figures, not the county's own file
+# legend: the fact box prints Vg1 studiespesialisering only, one figure per school; no symbols
+# transcribed: lane D, 25 Sept 2026; round quote re-checked against the saved article by lane AF, 26 Sept 2026
+# school: as printed (short names); the extractor maps them to register names
+school,program,level,year,printed
+Berg,Studiespesialisering,Vg1,2013,"36,50"
+Elvebakken,Studiespesialisering,Vg1,2013,"50,60"
+Fyrstikkalleen,Studiespesialisering,Vg1,2013,"42,70"
+Fagerborg,Studiespesialisering,Vg1,2013,"38,10"
+Foss,Studiespesialisering,Vg1,2013,"46,90"
+Hartvig Nissen,Studiespesialisering,Vg1,2013,"40,60"
+Hellerud,Studiespesialisering,Vg1,2013,"28,60"
+Kongshavn,Studiespesialisering,Vg1,2013,"39,40"
+Kuben,Studiespesialisering,Vg1,2013,"35,30"
+Lambertseter,Studiespesialisering,Vg1,2013,"41,30"
+Bjerke,Studiespesialisering,Vg1,2013,"39,40"
+Nydalen,Studiespesialisering,Vg1,2013,"44,40"
+Oslo Handelsgymnasium,Studiespesialisering,Vg1,2013,"44,70"
+Oslo Katedralskole,Studiespesialisering,Vg1,2013,"47,50"
+Persbråten,Studiespesialisering,Vg1,2013,"28,80"
+Stovner,Studiespesialisering,Vg1,2013,"28,60"
+Bjørnholt,Studiespesialisering,Vg1,2013,"32,70"
+Ullern,Studiespesialisering,Vg1,2013,"45,60"
+Ulsrud,Studiespesialisering,Vg1,2013,"28,70"
+Elvebakken,Medier og kommunikasjon,Vg1,2013,"42,5"
+Fyrstikkalleen,Medier og kommunikasjon,Vg1,2013,"37,5"
+Ullern,Medier og kommunikasjon,Vg1,2013,"37,1"

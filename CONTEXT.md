@@ -25,8 +25,12 @@ The three years of upper secondary school.
 _Avoid_: grade 11–13, first/second/third year
 
 **Fylke** (county):
-The fylkeskommune owns the upper-secondary schools and publishes the poenggrenser; every figure belongs to exactly one fylke.
+The fylkeskommune owns the upper-secondary schools and publishes the poenggrenser; every figure belongs to exactly one fylke. A school that has changed county is filed under its county today, and the years another county published are named on its page (`former_county`: Røyken, Buskerud 2012–2014).
 _Avoid_: region, intake area
+
+**Fylkestillegg** (county supplement):
+Nordland's 2013–2015 tables add 800 points to every applicant from the county («Fylkestillegget er 800 poeng»); the figures are published with it subtracted, except the landslinjer, which carry none.
+_Avoid_: bonus, offset, county points
 
 **Ønske** (wish):
 One ranked entry, a school plus a programme, in the applicant's vigo application.
@@ -64,7 +68,7 @@ Møre og Romsdal's extract publishes it beside every Nedrekar (the poenggrense);
 _Avoid_: snittpoeng, average score, mean threshold
 
 **Fullt, siste inntatte uten poeng** (filled, last admitted had no points; token `0`):
-The programområde filled, but the last admitted applicant had no registered points, so everyone with points got in. Counties print this as its own state.
+The programområde filled, but the last admitted applicant had no registered points, so everyone with points got in. Counties print this as its own state. Where a county prints «laveste poeng inntatte» (the lowest points among the admitted) instead of a poenggrense, as Nordland does for 2019–2021, a `0` is only the figure 0,0: nothing says the programområde filled, and the app prints the number (`zeroIsFill` in `web/src/helpers.ts`).
 _Avoid_: alle med poeng, zero, null
 
 **Fortrinnsrett** (token `F`):

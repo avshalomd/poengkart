@@ -95,8 +95,16 @@ for s in DATA['schools']:
 # counties held out of the fits (meta.held_out) are forecast from their own
 # figures by the satellite fit, so their live programmes are covered too
 HELD = set(META.get('held_out') or [])
+# counties with history only (meta.history_only_counties) are neither fitted
+# nor forecast, and no entry of theirs may appear
+HISTORY = set(META.get('history_only_counties') or [])
+check('no history-only county has a forecast entry',
+      not any(k.split('|', 1)[0] in HISTORY for k in SCHOOLS),
+      str(sorted({k.split('|', 1)[0] for k in SCHOOLS} & HISTORY)))
 missing, n_pred, n_live = [], 0, 0
 for s in DATA['schools']:
+    if s['fylke'] in HISTORY:
+        continue
     ent = SCHOOLS.get(f"{s['fylke']}|{s['name']}", {})
     occ = {}
     for p in s['programs']:
@@ -212,9 +220,11 @@ check('chance bands named likely/possible/unlikely', set(META['chance_bands']) =
 # when the walk found nothing it returned 0 and every sigma bucket widened
 check('long-history forecast spread has not regressed (partial-year starvation)',
       META['sigma_forecast']['(4, 99)'] <= 5.7, str(META['sigma_forecast']))
-# 4. partial county-years are excluded from the county random walk
-check('partial county-years listed in meta',
-      META.get('partial_years') == [['Vestland', 2017], ['Vestland', 2018], ['Vestland', 2019], ['Vestland', 2020]],
+# 4. partial county-years are excluded from the county random walk: Vestland
+# 2017-2020 (Q34, 2 Sept 2026), and the older years' excerpts of 26 Sept 2026
+_PARTIAL = ([['Akershus', y] for y in range(2012, 2016)] + [['Oslo', 2013], ['Oslo', 2016]]
+            + [['Rogaland', 2012], ['Rogaland', 2017], ['Trøndelag', 2024]] + [['Vestland', y] for y in range(2014, 2021)])
+check('partial county-years listed in meta', META.get('partial_years') == _PARTIAL,
       str(META.get('partial_years')))
 
 # 5. a held-out county (meta.held_out: published, not comparable, outside the
@@ -247,10 +257,30 @@ if os.path.exists(_bt_path):
     import csv
     _bt_f = {r['fylke'] for r in csv.DictReader(open(_bt_path))}
     check('no held-out county in the walk-forward backtest', not (_bt_f & HELD), str(_bt_f & HELD))
+    check('no history-only county in the walk-forward backtest', not (_bt_f & HISTORY), str(_bt_f & HISTORY))
 _ts = open(os.path.join(HERE, '..', 'web', 'src', 'helpers.ts')).read()
 _m = re.search(r"export const HELD_OUT = new Set\(\[([^\]]*)\]\)", _ts)
 check('web/src/helpers.ts HELD_OUT mirrors meta.held_out',
       bool(_m) and set(re.findall(r"'([^']+)'", _m.group(1))) == HELD, _m.group(0) if _m else 'HELD_OUT not found')
+_m = re.search(r"export const HISTORY_ONLY = new Set\(\[([^\]]*)\]\)", _ts)
+check('web/src/helpers.ts HISTORY_ONLY mirrors meta.history_only_counties',
+      bool(_m) and set(re.findall(r"'([^']+)'", _m.group(1))) == HISTORY,
+      _m.group(0) if _m else 'HISTORY_ONLY not found')
+# A county-year with a fraction of its county's cells (a region's table, a
+# newspaper's excerpt) must be pooled out of the random walk, or its one
+# region sets the county's level (model.PARTIAL_YEARS; the older years of 26
+# Sept 2026 brought eleven of them). A third of the county's largest year
+# flags every such year and none of the whole-county tables (Hedmark's are 47%).
+import collections   # noqa: E402
+_cy_cells = collections.Counter((s['fylke'], int(y)) for s in DATA['schools']
+                                if s['fylke'] not in HELD | HISTORY
+                                for p in s['programs'] for y in p['values'])
+_cy_max = collections.Counter()
+for (f, y), n in _cy_cells.items():
+    _cy_max[f] = max(_cy_max[f], n)
+_partial = {tuple(x) for x in META.get('partial_years') or []}
+_thin = sorted(k for k, n in _cy_cells.items() if n < _cy_max[k[0]] / 3 and k not in _partial)
+check('every county-year under a third of its county is pooled out of the walk', not _thin, str(_thin))
 
 ev_ = META['backtest_eval_years']
 check('EWMA baseline reported on every stratum with history',

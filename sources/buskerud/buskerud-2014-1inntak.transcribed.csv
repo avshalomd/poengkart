@@ -1,0 +1,102 @@
+# document: Buskerud fylkeskommune, «Statistikkhefte – inntak til videregående opplæring» 2014/2015, chapter 4
+# file: buskerud-statistikkhefte-inntak-2014-2015.pdf, PDF page 8 (the table is a scanned image; sha256 692a2acbec8d972d05adba7737713bc588cc19c51711e49b80fbeed1bc719965)
+# title: «4. Nedre poenggrense for inntak til Vg1 - hovedinntaket 2014 - 2015»
+# title (English): 4. Lower points threshold for admission to Vg1 - the main intake 2014-2015.
+# round: 1 (stated: «1. inntak» in 2012/13, «hovedinntaket» (the main intake) in 2013/14 and 2014/15)
+# tier: the county's own document, transcribed because the table is an image
+# legend: «Til Vg1 musikk/dans/drama, alle tilbud, og til Vg1 Idrettsfag ved Drammen og Ringerike er poenggrensene for de uten tilleggspoeng»
+# legend (English): For Vg1 music/dance/drama (all offers) and for Vg1 Idrettsfag at Drammen and Ringerike, the thresholds are those for applicants without additional points.
+# symbols: «alle»/«Alle» = everyone who applied was admitted (no threshold); M/Mu = musikk, D/Da = dans, Dr/DR/Dra = drama; E = m/ Entreprenørskap; Q = forskerlinje; N = Internasjonalisering; Idrettsfag branch markers (fotb/hånd/BHT/uthold/L-S) as printed; FL, YSK, Stud are printed without explanation.
+# transcribed: lane X, 26 Sept 2026: two independent manual passes agree on every cell, OCR disagreements settled by zoom; orchestrator spot-check 46/46. `program` is the column header as printed; the queue marker (M, Da, Dr, Q, E, N, YSK, fotb, …) stays in `printed`, as on the page.
+school,program,level,year,printed
+Gol,Studiespesialisering,Vg1,2014,Alle
+Gol,Idrettsfag,Vg1,2014,"40,7"
+Gol,Musikk dans og drama,Vg1,2014,Alle Dr
+Gol,Design og håndverk,Vg1,2014,Alle
+Gol,Medier og kommunikasjon,Vg1,2014,"28,8"
+Gol,Restaurant og matfag,Vg1,2014,Alle
+Ål,Bygg og anleggsteknikk,Vg1,2014,Alle
+Ål,Elektrofag,Vg1,2014,"34,7"
+Ål,Helse og oppvekstfag,Vg1,2014,"26,18"
+Ål,Naturbruk,Vg1,2014,Alle FL
+Ål,Service og samferdsel,Vg1,2014,Alle
+Ål,Teknikk og industriell prod.,Vg1,2014,"25,9"
+Numedal,Studiespesialisering,Vg1,2014,Alle
+Numedal,Bygg og anleggsteknikk,Vg1,2014,Alle
+Numedal,Elektrofag,Vg1,2014,Alle
+Numedal,Helse og oppvekstfag,Vg1,2014,Alle
+Numedal,Service og samferdsel,Vg1,2014,"27,5"
+Numedal,Teknikk og industriell prod.,Vg1,2014,Alle
+Kongsberg,Studiespesialisering,Vg1,2014,"39,4"
+Kongsberg,Studiespesialisering,Vg1,2014,"32,5 Q"
+Kongsberg,Idrettsfag,Vg1,2014,"41,9"
+Kongsberg,Musikk dans og drama,Vg1,2014,"33,5 M"
+Kongsberg,Bygg og anleggsteknikk,Vg1,2014,"26,9"
+Kongsberg,Design og håndverk,Vg1,2014,"26,3"
+Kongsberg,Elektrofag,Vg1,2014,"33,1"
+Kongsberg,Helse og oppvekstfag,Vg1,2014,"30,6"
+Kongsberg,Naturbruk,Vg1,2014,"36,3"
+Kongsberg,Restaurant og matfag,Vg1,2014,"32,5"
+Kongsberg,Service og samferdsel,Vg1,2014,34
+Kongsberg,Teknikk og industriell prod.,Vg1,2014,"28,2"
+Ringerike,Studiespesialisering,Vg1,2014,"38,7"
+Ringerike,Idrettsfag,Vg1,2014,"42,9"
+Ringerike,Musikk dans og drama,Vg1,2014,Alle M
+Ringerike,Service og samferdsel,Vg1,2014,"28,2"
+Hønefoss,Bygg og anleggsteknikk,Vg1,2014,"23,8"
+Hønefoss,Design og håndverk,Vg1,2014,"26,3"
+Hønefoss,Elektrofag,Vg1,2014,"34,4"
+Hønefoss,Helse og oppvekstfag,Vg1,2014,"25,6"
+Hønefoss,Helse og oppvekstfag,Vg1,2014,"36,9 YSK"
+Hønefoss,Medier og kommunikasjon,Vg1,2014,"42,4"
+Hønefoss,Restaurant og matfag,Vg1,2014,24
+Hønefoss,Teknikk og industriell prod.,Vg1,2014,30
+Eiker,Studiespesialisering,Vg1,2014,"38,1"
+Eiker,Design og håndverk,Vg1,2014,"29,3"
+Rosthaug,Studiespesialisering,Vg1,2014,"28,1"
+Rosthaug,Idrettsfag,Vg1,2014,"36,9"
+Rosthaug,Bygg og anleggsteknikk,Vg1,2014,"24,4"
+Rosthaug,Elektrofag,Vg1,2014,"30,6"
+Rosthaug,Helse og oppvekstfag,Vg1,2014,30
+Rosthaug,Medier og kommunikasjon,Vg1,2014,"34,7"
+Rosthaug,Naturbruk,Vg1,2014,24
+Rosthaug,Restaurant og matfag,Vg1,2014,"23,3"
+Rosthaug,Service og samferdsel,Vg1,2014,"28,8"
+Rosthaug,Teknikk og industriell prod.,Vg1,2014,26
+Åssiden,Bygg og anleggsteknikk,Vg1,2014,"28,5"
+Åssiden,Design og håndverk,Vg1,2014,30
+Åssiden,Elektrofag,Vg1,2014,"36,3"
+Åssiden,Helse og oppvekstfag,Vg1,2014,"32,9"
+Åssiden,Medier og kommunikasjon,Vg1,2014,"43,8"
+Åssiden,Restaurant og matfag,Vg1,2014,"29,4"
+Åssiden,Teknikk og industriell prod.,Vg1,2014,"25,6"
+Lier,Design og håndverk,Vg1,2014,28
+Lier,Elektrofag,Vg1,2014,"34,4"
+Lier,Helse og oppvekstfag,Vg1,2014,"38,6"
+Lier,Helse og oppvekstfag,Vg1,2014,40 YSK
+Lier,Helse og oppvekstfag,Vg1,2014,"39,4 Stud"
+Lier,Service og samferdsel,Vg1,2014,"36,3"
+Lier,Service og samferdsel,Vg1,2014,32 YSK
+St.Hallvard,Studiespesialisering,Vg1,2014,"40,6"
+St.Hallvard,Idrettsfag,Vg1,2014,"43,8"
+St.Hallvard,Musikk dans og drama,Vg1,2014,"43,1 M"
+St.Hallvard,Musikk dans og drama,Vg1,2014,"44,4 D"
+St.Hallvard,Musikk dans og drama,Vg1,2014,"47,4 Dr"
+Røyken,Studiespesialisering,Vg1,2014,"39,3"
+Røyken,Studiespesialisering,Vg1,2014,Alle Q
+Røyken,Studiespes. med formgiving,Vg1,2014,"36,3"
+Røyken,Bygg og anleggsteknikk,Vg1,2014,"27,6"
+Røyken,Design og håndverk,Vg1,2014,"30,9"
+Røyken,Elektrofag,Vg1,2014,"33,8"
+Røyken,Helse og oppvekstfag,Vg1,2014,"29,4"
+Røyken,Medier og kommunikasjon,Vg1,2014,"43,1"
+Drammen,Studiespesialisering,Vg1,2014,"43,5"
+Drammen,Studiespesialisering,Vg1,2014,"42,4 E"
+Drammen,Studiespesialisering,Vg1,2014,"51,4 Q"
+Drammen,Studiespesialisering,Vg1,2014,46 N
+Drammen,Studiespes. med formgiving,Vg1,2014,"41,8"
+Drammen,Idrettsfag,Vg1,2014,"49,4 D-fotb"
+Drammen,Idrettsfag,Vg1,2014,"48,8 E-håndb"
+Drammen,Idrettsfag,Vg1,2014,"46,9 T-BHT"
+Drammen,Idrettsfag,Vg1,2014,50 U- L-S
+Drammen,Service og samferdsel,Vg1,2014,"37,6"

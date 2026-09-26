@@ -46,6 +46,40 @@ together with what «Laveste totalpoeng» (2026/27 only, mostly karakterpoeng
 + 300) means, whether older years and Vg2–Vg3 exist, and for admitted
 counts beside the places, which would give the fill state.
 
+## Older years from copies, and two counties with history only
+
+A search of the web, the Wayback Machine and the counties' own archives in
+September 2026 (`.claude/qa/2026-09-25-data-hunt/`) recovered years the
+counties no longer hold. Where the county's own document survived, it is read
+like any other: Oslo 2014, Hordaland 2016, Buskerud's statistics booklets for
+2012–2014 (scanned tables, transcribed twice), the Trondheim table for
+2024/25 (an image PDF), Rogaland's «31 skoler» portal file for 2015,
+Rogaland's news article of July 2017 (Common Crawl's capture; examples of
+programmes with long waiting lists, so a partial year), and Agder's and
+Nordland's own documents. Where only a copy survived, the copy is
+read and marked: newspaper fact boxes that name the county as their source
+(Oslo 2013 and 2016, Hordaland 2014 and 2015, Rogaland 2012, Akershus 2015),
+the county's 2012 table reproduced in a master's thesis (Oslo), and
+docplayer.me's text of PDFs the county deleted (Hedmark 2012–2018, Nordland
+2015). The app says beside each such year that its figures come from a copy
+(`reprint_years`). A copy's round is taken only from what it states; the
+Rogaland portal states none, so Rogaland 2015 is labelled «inntak ikke
+oppgitt» inside a 2. inntak series (`round_years`, `null`).
+
+Agder and Nordland still decline to publish, but once printed their
+figures: Agder's intake office in the slides it showed school counsellors
+(2020–2021; Aust-Agder's selected offers for 2016–2017), Nordland in its
+statistics books (2013–2015, 2019–2021). Both needed a reading the county
+never wrote down. Agder's 2020–2021 figures carry a hundreds offset (0, 200,
+300, 700, 800 or 900, never anything else) on top of a figure in the
+karakterpoeng range; the dataset publishes the remainder and a remainder of
+0 as «ingen venteliste», and the app says the numbers are worked out
+(`decoded_years`). Nordland's 2013–2015 figures include the county
+supplement the book states («Fylkestillegget er 800 poeng»), which is
+subtracted. Nordland's 2021 book gives the lowest admitted with no «alle»
+marker, like Telemark's workbook. Their newest year is 2021, so both are
+history: shown, and kept out of the model (`HISTORY_ONLY`).
+
 ## Why the depth is so uneven
 
 Rogaland's PDFs are rolling tables that reprint the previous three or four
@@ -132,7 +166,7 @@ extractor (`COUNTY_CORRECTIONS` in `tools/extractors/rogaland.py`) with the
 county's answer beside it, and applies only while an edition still prints
 the wrong value.
 
-`tools/test_parse.py` runs 132 regression checks over the result; every one of
+`tools/test_parse.py` runs 136 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built

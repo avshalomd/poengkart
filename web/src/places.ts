@@ -66,6 +66,11 @@ export function saveNear() {
 export function initPlaces() {
   try {
     const n = JSON.parse(localStorage.getItem('pk-near') || 'null');
-    if (n && typeof n.name === 'string' && isFinite(n.lat) && isFinite(n.lon)) S.near = { name: n.name, lat: +n.lat, lon: +n.lon, kind: n.kind === 'sted' ? 'sted' : 'kommune' };
+    if (n && typeof n.name === 'string' && isFinite(n.lat) && isFinite(n.lon)) {
+      S.near = { name: n.name, lat: +n.lat, lon: +n.lon, kind: n.kind === 'sted' ? 'sted' : 'kommune' };
+      // the place was picked to «sorter etter avstand», as setNear() does; a
+      // reload kept the place and its chip but went back to the threshold order
+      S.listSort = { key: 'dist', dir: 1 };
+    }
   } catch (e) {}
 }
