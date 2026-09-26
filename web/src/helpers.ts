@@ -102,10 +102,14 @@ const optimiserHere = () => typeof location === 'undefined'
 export const photoSrc = u => (/\/bv\.ashx\//.test(u) && optimiserHere())
   ? `/_vercel/image?url=${encodeURIComponent(u)}&w=960&q=75` : u;
 
-// One utdanningsprogram lens for the whole app: the map dropdown, the chart
-// tabs and the list headers all read and write mapCat. The only panel-local
-// state is which programme-area row is selected; the mode is derived.
-export const chartMode = () => S.chart.prog ? 'prog' : (S.mapCat !== 'all' ? 'cat' : 'all');
+// The sheet opens on the map's utdanningsprogram filter (mapCat) and follows
+// it while the filter changes. Its own tabs and headings narrow or widen the
+// sheet alone (S.chart.cat): on a phone the sheet covers the panel, and
+// pressing «Alle» inside a school used to clear the filter the reader had set
+// there without their seeing it. The selected row is sheet state too; the
+// chart's mode is derived.
+export const sheetLens = () => S.chart.cat ?? S.mapCat;
+export const chartMode = () => S.chart.prog ? 'prog' : (sheetLens() !== 'all' ? 'cat' : 'all');
 
 export function numericLatest(values) {
   const ys = Object.keys(values).sort();
@@ -258,5 +262,5 @@ export const colorFor = v => v == null ? cssVar('--context') : cssVar(BINS.find(
 export const zeroLabel = (zeroN, openN) => openN ? t('zeroMix', zeroN, openN) : t('noPoints');
 
 export function initHelpers() {
-  S.chart = { prog: null };
+  S.chart = { prog: null, cat: null };
 }

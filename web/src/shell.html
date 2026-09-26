@@ -119,6 +119,18 @@
       <div class="meta" id="s-meta"></div>
       <div class="notes" id="s-notes" hidden></div>
       <div class="hero" id="s-hero"></div>
+      <!-- the points field, again, where the sheet covers the panel (a phone,
+           the narrow List view): without it the chance could only be changed
+           by closing the school. It writes the same figure as #my-points and
+           is never redrawn, so typing in it keeps its focus. -->
+      <div class="field" id="s-pts" hidden>
+        <label id="s-pts-label" for="s-points"></label>
+        <div class="ptsrow">
+          <input id="s-points" type="text" inputmode="decimal" autocomplete="off" spellcheck="false"
+                 maxlength="5" oninput="onPointsInput(this.value)" onchange="flushPoints()">
+        </div>
+        <div id="s-pts-note" hidden></div>
+      </div>
       <div class="chance" id="s-chance" hidden></div>
       <div class="mixwarn" id="s-mix" hidden></div>
       <div class="chart-card">

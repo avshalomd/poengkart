@@ -41,7 +41,7 @@ function prepareState(data: Dataset) {
   // no reader yet: no chips, no picks, no selected row. S.chart is the whole
   // object because initHelpers() — the client's only writer of it — never runs
   // in the build, and `S.chart.prog = null` would be a set on undefined.
-  S.myPoints = null; S.choices = []; S.chart = { prog: null };
+  S.myPoints = null; S.choices = []; S.chart = { prog: null, cat: null };
 }
 
 // The head of a school's page: the school's name in the title and the share
