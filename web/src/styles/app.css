@@ -1207,15 +1207,6 @@
             mask: radial-gradient(farthest-side, transparent calc(100% - 4.5px), #000 calc(100% - 3.5px));
   }
 
-  /* the kommune under a cluster (map.ts clusterPlace), in the tiles' own
-     label manner: dark ink on a pale halo, never a box over the map */
-  .pk-cluster[data-place]::after {
-    content: attr(data-place); position: absolute; top: calc(100% + 6px); left: 50%;
-    transform: translateX(-50%); white-space: nowrap; pointer-events: none;
-    font-size: 11.5px; font-weight: 650; color: var(--ink);
-    text-shadow: 0 0 2px var(--surface-solid), 0 0 3px var(--surface-solid), 0 0 5px var(--surface-solid);
-  }
-
   /* ---------- sidebar ---------- */
   /* Beside the map the sheet opens by its width, so the map and its buttons
      give way at its edge; where it covers the screen (phones, the stacked

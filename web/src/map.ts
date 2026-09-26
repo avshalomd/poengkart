@@ -221,23 +221,25 @@ function clusterEl(f) {
   }
   el.textContent = String(n);
   const pl = clusterPlace(f);
-  if (pl) el.dataset.place = pl.label;
+  if (pl) el.dataset.place = pl;
   el.addEventListener('click', () => expandCluster(f));
   el.addEventListener('dblclick', ev => ev.stopPropagation());
   clusterOf.set(el, f);
   return el;
 }
 const clusterSchools = (f): School[] => index!.getLeaves(f.properties.cluster_id, Infinity).map(l => l.properties.school);
-// The name under a cluster: its schools' kommune when they share one, or the
-// kommune of two in three of them with «m.fl.»; none for a mixed bag, where
-// any one name would mislead. The count stays the element's own text.
-function clusterPlace(f): { name: string; label: string; all: boolean } | null {
+// The kommune a cluster's label names (aria-label, data-place): its schools'
+// kommune when they share one, or the kommune of two in three of them with
+// «m.fl.»; none for a mixed bag, where any one name would mislead. Nothing is
+// drawn under the dot: the tiles name the places, and a kommune printed under
+// clusters out in Fana and Åsane read as three more «Bergen» beside the
+// city's own (26 Sept 2026). The count stays the element's own text.
+function clusterPlace(f): string | null {
   const ss = clusterSchools(f), by = new Map<string, number>();
   for (const s of ss) if (s.kommune) by.set(s.kommune, (by.get(s.kommune) || 0) + 1);
   const [name, k] = [...by].sort((a, b) => b[1] - a[1])[0] || [];
   if (!name || 3 * k! < 2 * ss.length) return null;
-  const all = k === ss.length;
-  return { name, all, label: all ? name : t('clusterMore', name) };
+  return k === ss.length ? name : t('clusterMore', name);
 }
 // Click or Enter on a cluster: zoom to where it splits. A cluster no zoom
 // splits — supercluster answers maxZoom + 1, the zoom at which clustering is
@@ -664,7 +666,7 @@ export function drawMarkers() {
       el.setAttribute('tabindex', '0');
       el.setAttribute('role', 'button');
       el.setAttribute('aria-label', t('clusterAria', f.properties.point_count, chanceMode() ? clusterMix(f) : null,
-        clusterPlace(f)?.label || null));
+        clusterPlace(f)));
       el.addEventListener('keydown', ev => {
         if (ev.key !== 'Enter' && ev.key !== ' ') return;
         ev.preventDefault();

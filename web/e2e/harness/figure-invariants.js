@@ -290,7 +290,7 @@
         say('I16', css('--l') === at(mix.likely) && css('--p') === at(mix.likely + mix.possible)
                    && css('--u') === at(mix.likely + mix.possible + mix.unlikely),
             `cluster of ${n}: segments ${css('--l')} ${css('--p')} ${css('--u')} vs ${el.dataset.mix}`);
-        // the label names the kommune the element prints under it
+        // the label names the kommune the element carries (data-place)
         say('I16', el.getAttribute('aria-label') === t('clusterAria', n, mix, el.dataset.place || null),
             `cluster of ${n}: label "${el.getAttribute('aria-label')}"`);
         KEYS.forEach(k => { got[k] += mix[k] || 0; });

@@ -153,7 +153,7 @@ describe('the map layer', () => {
     b.lat = keep[0]; b.lon = keep[1];
   });
 
-  it('names the kommune under a cluster whose schools share it, and a tap still zooms in', () => {
+  it('a cluster whose schools share a kommune names it in its label, never under the dot, and a tap still zooms in', () => {
     setup();
     S.mapFylke = 'Oslo';
     S.map!.jumpTo({ center: [10.75, 59.91], zoom: 7 });
