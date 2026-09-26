@@ -5,7 +5,7 @@ import { framePad } from "./boot";
 import { bucketColor, bucketOf, chanceMode, pct, schoolChance } from "./chance";
 import { CLUSTER_LIST, openClusterOv } from "./clusterov";
 import { legendZoomHint, renderCatNote, renderLegend, renderPanel } from "./chrome";
-import { colorFor, cssVar, esc, fmt, HELD_OUT, isVg1, levelScope, progName, schoolPressure, shownPrograms, visibleCount, yearSpan, zeroLabel } from "./helpers";
+import { colorFor, cssVar, esc, fmt, HELD_OUT, isVg1, levelScope, progName, schoolPressure, shownPrograms, shownSchools, visibleCount, yearSpan, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
 import { EASE, play } from "./motion";
 import { say } from "./tips";
@@ -718,7 +718,7 @@ export function onMapFylke(v) {
   S.mapFylke = v;
   // a county may not offer the selected category at all; widen rather than
   // leave a blank control over an empty map
-  if (S.mapCat !== 'all' && !S.DATA!.schools.some(s =>
+  if (S.mapCat !== 'all' && !shownSchools().some(s =>
       (v === 'all' || s.fylke === v) && shownPrograms(s).some(p => p.category === S.mapCat))) {
     S.mapCat = 'all';
   }
@@ -739,7 +739,7 @@ export function onMapFylke(v) {
 // row, a lens took in 58 schools whose sheets then said «tilbys ikke her», the
 // lens's rows there being history the list hides (shownPrograms).
 export function visibleSchools() {
-  return S.DATA!.schools.filter(s =>
+  return shownSchools().filter(s =>
     (S.mapFylke === 'all' || s.fylke === S.mapFylke) &&
     (S.mapCat === 'all' || shownPrograms(s).some(p => p.category === S.mapCat)));
 }
@@ -775,8 +775,31 @@ export function setLevels(v) {
   renderSide();
   syncUrl(true);
 }
+// The schools that stopped publishing (shownSchools), as a remembered choice
+// in the settings. What counts the shown set follows, as for the level scope;
+// a county or a lens with nothing left is widened, an open school the choice
+// hides is closed, and the map's home view frames what is shown.
+export function setStale(v) {
+  S.showStale = !!v;
+  try { localStorage.setItem('pk-showstale', S.showStale ? '1' : '0'); } catch (e) {}
+  S.placeIx = null;                    // «Nær …» offers the places of the schools shown
+  if (S.mapFylke !== 'all' && !shownSchools().some(s => s.fylke === S.mapFylke)) S.mapFylke = 'all';
+  if (S.mapCat !== 'all' && !visibleSchools().length) S.mapCat = 'all';
+  if (S.current && !visibleSchools().includes(S.current)) closeSide(true);
+  S.HOME = homeBounds();
+  renderPanel();                       // the county menu and the header's counts
+  drawMarkers(); renderLegend(); renderCatNote(); renderPanelSum();
+  if (S.view === 'list') renderListView();
+  if (S.current) renderSide();
+  syncUrl(true);
+}
+// the whole of what is shown, padded: the map's first view and its home button
+export function homeBounds() {
+  const pts = shownSchools().filter(s => s.lat).map(s => [s.lat, s.lon] as [number, number]);
+  return padBounds(boundsOf(pts), 0.06);
+}
 // the scope has nothing to say where the county publishes Vg1 only
-export const laterPublished = () => S.DATA!.schools.some(s => (S.mapFylke === 'all' || s.fylke === S.mapFylke)
+export const laterPublished = () => shownSchools().some(s => (S.mapFylke === 'all' || s.fylke === S.mapFylke)
                                                     && s.programs.some(p => !isVg1(p)));
 
 // The folded panel's button (see the CSS for why it folds). Drawn: the county

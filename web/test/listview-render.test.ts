@@ -64,6 +64,7 @@ describe('the list view', () => {
 
   it('a school whose figures stop years back says when, not just «Ingen data»', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
+    S.showStale = true;                  // hidden by default (shownSchools)
     setView('list');
     const stale = rows().map(tr => {
       const s = visibleSchools().find((x: any) => x.name === tr.querySelector('.sc a')!.textContent)!;

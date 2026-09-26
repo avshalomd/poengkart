@@ -7,7 +7,7 @@ import { t } from "./i18n";
 import { anySheetOpen, closeIntro, hintHelp, INTRO_SEEN, openSheetHistory, renderIntro } from "./intro";
 import { setView } from "./listview";
 import { addLocateControl, toast, updateZoomAria } from "./locate";
-import { boundsOf, createMap, drawMarkers, fitHome, fitVisible, foldPanel, hasWebGL, padBounds,
+import { createMap, drawMarkers, fitHome, fitVisible, foldPanel, hasWebGL, homeBounds,
          resizeMap, setMapStyle, viewSchool } from "./map";
 import { applyPrefs, closeSettings, loadPrefs, PREFS } from "./prefs";
 import { runSearch } from "./search";
@@ -70,6 +70,7 @@ export async function main() {
     if (l === 'no' || l === 'en') S.lang = l;   // anything else is not a language
   } catch (e) {}
   try { S.showOld = localStorage.getItem('pk-showold') === '1'; } catch (e) {}
+  try { S.showStale = localStorage.getItem('pk-showstale') === '1'; } catch (e) {}
   try { S.allLevels = localStorage.getItem('pk-alllevels') === '1'; } catch (e) {}
   // setLang() does this on every switch, but a fresh load never called it, so a
   // reader who had chosen English got an English page inside a document still
@@ -126,8 +127,7 @@ export async function main() {
   // while the tab is not being painted, so a national map could sit there
   // showing one county. Fit first, synchronously, and treat the deferred pass
   // purely as a correction for a pane that was still laying out.
-  const pts = S.DATA!.schools.filter(s => s.lat).map(s => [s.lat, s.lon] as [number, number]);
-  S.HOME = padBounds(boundsOf(pts), 0.06);
+  S.HOME = homeBounds();
   document.querySelector('#map .boot-pending')?.remove();
   if (hasWebGL()) {
     // The probe says the browser can make a WebGL2 context; the map asks for

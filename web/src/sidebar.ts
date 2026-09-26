@@ -1,7 +1,7 @@
 import { bucketOf, chanceFinal, chanceMode, finalRoundBridge, predFor, schoolChance } from "./chance";
 import { renderChartCard } from "./chart";
 import { liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
-import { esc, fmt, HELD_OUT, isVg1, round1, sheetLens, shownPrograms } from "./helpers";
+import { esc, fmt, HELD_OUT, isVg1, round1, sheetLens, shownPrograms, shownSchools } from "./helpers";
 import { CATS, t } from "./i18n";
 import { buildMiniMap, dropMiniMap, drawMarkers, fitVisible, hideMapTip, onceSettled, panSchoolInside, prefersStill,
          resizeMap } from "./map";
@@ -27,10 +27,10 @@ export function applyUrlFilters(boot?) {
   // carrying a literal «%» and dropped every filter in the address with it.
   if (p.f) fy = p.f;
   if (p.c) cat = p.c;
-  if (!S.DATA!.schools.some(s => s.fylke === fy)) fy = 'all';        // a county we do not carry
+  if (!shownSchools().some(s => s.fylke === fy)) fy = 'all';        // a county we do not carry, or hide
   if (cat !== 'all' && !CATS[cat]) cat = 'all';
   // a lens with nothing at Vg1 (påbygging) is a link to the later years
-  if (cat !== 'all' && !lv && !S.DATA!.schools.some(s => (fy === 'all' || s.fylke === fy)
+  if (cat !== 'all' && !lv && !shownSchools().some(s => (fy === 'all' || s.fylke === fy)
         && s.programs.some(q => isVg1(q) && q.category === cat))) lv = true;
   if (fy === S.mapFylke && cat === S.mapCat && lv === S.allLevels) return false;
   const fyMoved = fy !== S.mapFylke;

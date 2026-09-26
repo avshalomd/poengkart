@@ -1,3 +1,4 @@
+import { isCurrentSchool, shownCounties } from './helpers';
 import { findPlaces } from './places';
 import { S } from './state';
 import type { School, SearchHit } from './types';
@@ -48,14 +49,16 @@ export function runSearch(q, mode: 'all' | 'places' = 'all'): SearchHit[] | null
     // every word typed begins a word of the name, in any order and in either
     // written form: «Førde videregående skole» finds Førde vidaregåande skule
     : want.every(t => e.w.some(w => w.startsWith(t))) ? 4 : -1;
-  const scored = S.searchIx.map(e => [score(e), e.s] as [number, School]).filter(x => x[0] >= 0)
+  // the index is built once over every school; what the setting hides is
+  // left out here, so the toggle needs no rebuild
+  const scored = S.searchIx.filter(e => S.showStale || isCurrentSchool(e.s)).map(e => [score(e), e.s] as [number, School]).filter(x => x[0] >= 0)
     .sort((a, b) => a[0] - b[0] || a[1].name.localeCompare(b[1].name, 'no'))
     .slice(0, 8);
   const hits = scored.map(x => x[1]);
   // "Møre" answered "Ingen treff": one county row above the names, never more.
   // A county that begins with the query comes before one that only contains a
   // word beginning with it: "ro" offered Møre og Romsdal, not Rogaland.
-  const folded = S.DATA.counties.map(c => [c.fylke, foldName(c.fylke)]);
+  const folded = shownCounties().map(c => [c.fylke, foldName(c.fylke)]);
   const county = (folded.find(([, cf]) => cf.startsWith(f))
     || folded.find(([, cf]) => cf.split(' ').some(w => w.startsWith(f))) || [])[0];
   // A row that sorts by distance from the place named. It goes below the

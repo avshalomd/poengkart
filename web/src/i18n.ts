@@ -118,6 +118,17 @@ export const T = {
   // own line is the other way in
   setLevelsHint: { no: 'Vg1 er året du søker på når du går på 10. trinn. Vg2 og Vg3 finnes bare der fylket publiserer dem.',
                    en: 'Vg1 is the year you apply for from lower secondary school. Vg2 and Vg3 exist only where the county publishes them.' },
+  // the schools that stopped publishing (helpers.ts shownSchools); f is the
+  // counties all of whose schools did, already joined
+  setStale:     { no: 'Skoler uten nye tall', en: 'Schools without recent figures' },
+  setStaleHide: { no: 'Skjul', en: 'Hide' },
+  setStaleShow: { no: 'Vis', en: 'Show' },
+  setStaleHint: {
+    no: (n, y, f) => `${n} skoler har ingen data fra ${y} eller senere` +
+      (f ? `, blant dem alle skolene i ${f}, fylker som ikke publiserer poenggrenser i dag.` : '.'),
+    en: (n, y, f) => `${n} schools have no figures from ${y} or later` +
+      (f ? `, among them every school in ${f}, counties that no longer publish thresholds.` : '.'),
+  },
   setNote: { no: 'Valgene lagres bare i denne nettleseren.',
              en: 'Choices are saved only in this browser.' },
   locBtn:    { no: 'Vis posisjonen min', en: 'Show my position' },
@@ -367,6 +378,7 @@ export const T = {
   introPrivacy: { no: 'Personvern: poengene dine lagres bare i nettleseren din. Posisjonen brukes én gang og sendes ikke videre. Besøk telles uten informasjonskapsler (Vercel Web Analytics).',
                   en: 'Privacy: your points are stored only in your browser. Your position is used once and never sent. Visits are counted without cookies (Vercel Web Analytics).' },
   fylkeNoData: { no: '(ingen data)', en: '(no data)' },
+  fylkeNoRecent: { no: '(uten nye tall)', en: '(no recent figures)' },
   listAnd:    { no: ' og ', en: ' and ' },
   mergedNote: { no: (from, y, n) => n === 1 ? `${from} gikk inn i denne skolen i ${y}. Tall før ${y} er fra den skolen.` : `${from} ble slått sammen til denne skolen i ${y}. Tall før ${y} er fra disse skolene.`,
                 en: (from, y, n) => n === 1 ? `${from} became part of this school in ${y}. Figures before ${y} come from that school.` : `${from} were merged into this school in ${y}. Figures before ${y} come from those schools.` },
