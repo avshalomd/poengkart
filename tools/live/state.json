@@ -4,6 +4,7 @@
   "101c89fbdd89be58807651643838f370a33148bfdc358b33e09f6ec156870f39": "3aef43839dd5906be0240ae718490e5fc22b70c133cc85224fadb50da271d254",
   "13f6a0ffbb55e3581dce1b9f49dac410f8a8404a5dfeb8ace09b37e8a651afd3": "e63e7e215cb16d83002dde8197453533ebca18702c05e83dc7cc1c7662674907",
   "1ab24b7b711f247e5e38f55e690366e8e35844a6452371010070b95c13192605": "52835e78abe93d6dd658c468e4d1ee10edd516a17c932c1205f1b9072f19b256",
+  "27cd502bc2306130287f13ad812f317667ebc1141b095ce81d77f67c4fe81642": "e3d5bf3ba1fcea64ae3b14239df71b91fc181b52aa10cf861cc2c7b156daecaa",
   "30937fbd13ddc81022b8fadc022b54062174a68884d85d57ed943e23c0fe51fc": "807a9237fe0da965a47fc6b6a0d683257407874d049d0e61cf0a9ff4f9bf0d1b",
   "32b425c651f46555f24c650bb875b8a6dd167bbf02806a1237083ce3666da158": "557745e456445c1da141ac0b37858ea04de713331f69d01d090d75972e153ee9",
   "49fd6bd5832352bf660a6b8bb9c4a8148eeda456109febaa3c5958c66d8dd522": "5e7a7acb840e09dc3f3a49d48ab6393b7646e4fbeb1c4447809a7c16384c1119",
@@ -44,6 +45,17 @@
      "label": "Her finner du nedre poenggrense for inntak i Buskerud 2025-2026",
      "name": "buskerud-2025-2026.html",
      "sha256": "338de532ead703be5dd50fecdc7fa9f65da48e359a181f5572b148b4e2a79fcf"
+    }
+   }
+  },
+  "mro": {
+   "seen": {
+    "https://wabi-west-europe-api.analysis.windows.net/public/reports/querydata": {
+     "captured": "2026-09-28",
+     "file": "mro/mro-powerbi-2026-2027.json",
+     "label": "Karakterer",
+     "name": "mro-powerbi-2026-2027.json",
+     "sha256": "27cd502bc2306130287f13ad812f317667ebc1141b095ce81d77f67c4fe81642"
     }
    }
   },
