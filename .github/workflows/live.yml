@@ -147,7 +147,9 @@ jobs:
           echo "rc=$RC" >> "$GITHUB_OUTPUT"
 
       - name: Remember what the counties serve (and any healed page)
-        if: steps.report.outputs.captured == '0'
+        # (outcome first: a skipped step's output is null, and null == '0' in
+        # Actions' loose comparison)
+        if: steps.report.outcome == 'success' && steps.report.outputs.captured == '0'
         run: |
           state=tools/live/state.json
           if [ "$GITHUB_EVENT_NAME" = push ]; then

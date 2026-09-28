@@ -307,3 +307,9 @@ def test_the_workflow_fails_a_step_whose_piped_command_fails():
     # `refresh.py | tee log` under plain `bash -e` reported a failed pipeline as success
     wf = open(os.path.join(ROOT, '.github', 'workflows', 'live.yml'), encoding='utf-8').read()
     assert re.search(r'\n    defaults:\n      run:\n(?:        #.*\n)*        shell: bash\n', wf)
+
+
+def test_the_state_step_needs_a_report_that_ran():
+    # null == '0' in Actions: a push without a relay report pushed the relay's state to main
+    wf = open(os.path.join(ROOT, '.github', 'workflows', 'live.yml'), encoding='utf-8').read()
+    assert "if: steps.report.outcome == 'success' && steps.report.outputs.captured == '0'" in wf
