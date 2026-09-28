@@ -137,6 +137,11 @@
    "sha256": "2d342a3d5983e4e2b3b498b152472ef095c4528b973476e20ba8b20ece471b3e",
    "provenance": "Møre og Romsdal fylkeskommune, Kompetanse- og næringsavdelinga: Excel extract behind the Power BI karakterstatistikk, released by e-mail on request, asked 25.08.2026, received 01.09.2026 (2. inntak, 2012-2026)."
   },
+  "mro/mro-powerbi-2026-2027.json": {
+   "size": 312034,
+   "sha256": "fd2ababa8cd2fb9b2c9835a4fc0cbf682de737c86c13242a6eea3038f7a3cf89",
+   "provenance": "Møre og Romsdal fylkeskommune: «Karakterer»; linked from https://mrfylke.no/tenester/skole-og-opplaring/innsoking-til-vidaregaande-opplaring/sok-vidaregaande-opplaring/; served at https://wabi-west-europe-api.analysis.windows.net/public/reports/querydata; rows 6074; years 2012/2013–2026/2027; model last refresh 2025-08-07T10:24:28.337; query Sheet1: Skoleår, Skolenr, Skolenavn, Kurskode, Kursnavn, Kursnavn V2; min NedrekarV2, sum Gjennomkar; captured as served, byte for byte, 28.09.2026 01:37 UTC by the live source watch (tools/live, source mro)."
+  },
   "nordland/nordland-poenggrense-2015.transcript.txt": {
    "size": 18645,
    "sha256": "eb53066f2521578fc8f352cee52db6007d69fedcfc8d3a5968b548cc05119459",

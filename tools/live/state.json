@@ -47,6 +47,17 @@
     }
    }
   },
+  "mro": {
+   "seen": {
+    "https://wabi-west-europe-api.analysis.windows.net/public/reports/querydata": {
+     "captured": "2026-09-28",
+     "file": "mro/mro-powerbi-2026-2027.json",
+     "label": "Karakterer",
+     "name": "mro-powerbi-2026-2027.json",
+     "sha256": "fd2ababa8cd2fb9b2c9835a4fc0cbf682de737c86c13242a6eea3038f7a3cf89"
+    }
+   }
+  },
   "oslo": {
    "seen": {
     "https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/": {
