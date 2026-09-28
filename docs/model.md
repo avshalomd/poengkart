@@ -349,6 +349,12 @@ them at once. If none of the choices is likely the list says so.
   round than the number says; the round bridge above is how much, on average.
 - A threshold in a catchment county applies only to applicants resident in the
   intake area; the panel says so where it applies.
+- It does not know the number of places. Each county adopts next year's
+  offer (the skoletilbudssak) every autumn, and a cut or an expansion at one
+  school and programme can move its threshold far more than the history
+  suggests. The backtest's spread absorbs the changes of past years on
+  average, not a known change at a given school; the panel says so beside
+  every forecast. Vestfold's intake office raised it in September 2026.
 - The at-least-one figure for a list of choices assumes independence; the
   truth is lower, by an amount this data cannot measure.
 - Published chances could move where people apply, which moves the cutoffs.

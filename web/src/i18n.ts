@@ -22,6 +22,9 @@ export const CATS = {
   DT: { no: 'Håndverk, design og produktutvikling', en: 'Crafts, design & product development' },
   PB: { no: 'Påbygg',                      en: 'Supplementary year' },
 };
+// an intake year as the school year it starts, the form the counties' own
+// documents use: 2027 → «2027/28»
+export const schoolYear = y => `${y}/${String((+y + 1) % 100).padStart(2, '0')}`;
 export const ordEn = r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : r === '3' ? 'rd' : 'th'}`;
 export const T = {
   // the header keeps the scope alone; the definition and the gesture live in
@@ -151,9 +154,9 @@ export const T = {
   listColDeltaTip: { no: 'Endring fra forrige publiserte år',
                      en: 'Change from the previous published year' },
   listColChance: { no: 'Sjanse', en: 'Chance' },
-  // ys: the intake years the rows forecast, «2026 eller 2027» over the whole country
-  listColChanceTip: { no: (x, ys) => `Sjanse for plass med ${x} poeng ved inntaket ${ys}`,
-                      en: (x, ys) => `Chance of a place with ${x} points at the ${ys} intake` },
+  // ys: the school years the rows forecast, «2026/27 eller 2027/28» over the whole country
+  listColChanceTip: { no: (x, ys) => `Sjanse for plass med ${x} poeng i skoleåret ${ys}`,
+                      en: (x, ys) => `Chance of a place with ${x} points in the ${ys} school year` },
   listOpen:   { no: 'Ingen venteliste', en: 'No waiting list' },
   listOpenTitle: { no: 'Alle kvalifiserte søkere fikk plass siste år – ikke en poenggrense på null.',
                    en: 'Every qualified applicant got a place in the latest year – not a threshold of zero.' },
@@ -539,8 +542,8 @@ export const T = {
   bandLabel:  { no: b => ({ likely: '≥ 70 %', possible: '35–70 %', unlikely: '< 35 %' })[b],
                 en: b => ({ likely: '≥ 70%', possible: '35–70%', unlikely: '< 35%' })[b] },
   legendZoomHint: { no: 'Zoom inn for å se sjansen per skole.', en: 'Zoom in to see each school’s chance.' },
-  legendChance: { no: (x, ys) => `Sjanse for plass med ${x} poeng ved inntaket ${ys}, beste programområde per skole`,
-                  en: (x, ys) => `Chance of a place with ${x} points at the ${ys} intake, best programme area per school` },
+  legendChance: { no: (x, ys) => `Sjanse for plass med ${x} poeng i skoleåret ${ys}, beste programområde per skole`,
+                  en: (x, ys) => `Chance of a place with ${x} points in the ${ys} school year, best programme area per school` },
   yearsOr: { no: ys => ys.length < 2 ? ys.join('') : `${ys.slice(0, -1).join(', ')} eller ${ys.at(-1)}`,
              en: ys => ys.length < 2 ? ys.join('') : `${ys.slice(0, -1).join(', ')} or ${ys.at(-1)}` },
   legendChanceSize: { no: 'Størrelsen viser hvor stor andel av programområdene som er innen rekkevidde (≥ 35 %)',
@@ -548,8 +551,8 @@ export const T = {
   moreLabel: { no: 'Vis mer', en: 'Show more' },
   lessLabel: { no: 'Vis mindre', en: 'Show less' },
   legendNoForecast: { no: 'Ingen prognose', en: 'No forecast' },
-  tipChance:  { no: (x, L, R, U, n, y) => `Med ${x} poeng i ${y}: <b>${L}</b> sannsynlig · ${R} mulig · ${U} lite sannsynlig (${n} programområde${n === 1 ? '' : 'r'})`,
-                en: (x, L, R, U, n, y) => `With ${x} points in ${y}: <b>${L}</b> likely · ${R} possible · ${U} unlikely (${n} programme area${n === 1 ? '' : 's'})` },
+  tipChance:  { no: (x, L, R, U, n, y) => `Med ${x} poeng i skoleåret ${schoolYear(y)}: <b>${L}</b> sannsynlig · ${R} mulig · ${U} lite sannsynlig (${n} programområde${n === 1 ? '' : 'r'})`,
+                en: (x, L, R, U, n, y) => `With ${x} points in the ${schoolYear(y)} school year: <b>${L}</b> likely · ${R} possible · ${U} unlikely (${n} programme area${n === 1 ? '' : 's'})` },
   tipBest:    { no: (p, prog) => `Best sjanse: ${p} % · ${prog}`, en: (p, prog) => `Best chance: ${p}% · ${prog}` },
   tipNoForecast: { no: 'Ingen prognose for denne skolen', en: 'No forecast for this school' },
   // a county outside the model (HELD_OUT): the tooltip and the chance block say why
@@ -558,8 +561,8 @@ export const T = {
   heldOutForecast: { no: f => `Ingen prognose her. Tallene fra ${f} kan ikke sammenlignes med andre fylker`,
                      en: f => `No forecast here. The figures from ${f} cannot be compared with other counties` },
   chancePrompt: {
-    no: y => `Skriv inn poengene dine i poengfeltet over kartet, så viser lista under sjansen din for plass per programområde ved inntaket ${y}.`,
-    en: y => `Enter your points in the points field over the map, and the list below shows your chance of a place per programme area at the ${y} intake.`,
+    no: y => `Skriv inn poengene dine i poengfeltet over kartet, så viser lista under sjansen din for plass per programområde i skoleåret ${schoolYear(y)}.`,
+    en: y => `Enter your points in the points field over the map, and the list below shows your chance of a place per programme area in the ${schoolYear(y)} school year.`,
   },
   chanceNoneInScope: { no: 'Ingen prognose for programområdene i dette utvalget.',
                        en: 'No forecast for the programme areas in this selection.' },
@@ -583,19 +586,19 @@ export const T = {
   chanceCounts: { no: (L, R, U) => `${L} sannsynlig (≥ 70 %) · ${R} mulig (35–70 %) · ${U} lite sannsynlig (< 35 %)`,
                   en: (L, R, U) => `${L} likely (≥ 70%) · ${R} possible (35–70%) · ${U} unlikely (< 35%)` },
   chanceSub: {
-    no: (y, r, lo, hi) => `Prognose for inntaket ${y}${r ? ` (${r}. inntak)` : ''}, regnet ut fra skolens og programområdets historikk. En pekepinn, ikke et løfte: prognosen bommer typisk med ±${lo} til ±${hi} poeng, mest der historikken er kort.`,
-    en: (y, r, lo, hi) => `Forecast for the ${y} intake${r ? ` (${ordEn(r)} intake)` : ''}, from the history of this school and programme. A pointer, not a promise: the forecast is typically off by ±${lo} to ±${hi} points, most where the history is short.`,
+    no: (y, r, lo, hi) => `Prognose for skoleåret ${schoolYear(y)}${r ? ` (${r}. inntak)` : ''}, regnet ut fra skolens og programområdets historikk. En pekepinn, ikke et løfte: prognosen bommer typisk med ±${lo} til ±${hi} poeng, mest der historikken er kort. Prognosen vet ikke om fylket har vedtatt flere eller færre plasser for neste skoleår.`,
+    en: (y, r, lo, hi) => `Forecast for the ${schoolYear(y)} school year${r ? ` (${ordEn(r)} intake)` : ''}, from the history of this school and programme. A pointer, not a promise: the forecast is typically off by ±${lo} to ±${hi} points, most where the history is short. It does not know whether the county has decided on more or fewer places for the next school year.`,
   },
   chanceCatchment: { no: 'Gjelder søkere bosatt i skolens inntaksområde.',
                      en: 'Applies to applicants resident in the school\'s intake area.' },
-  chanceCal:  { no: c => `Testet mot 2025–26 traff 80 %-intervallet ${c} % av gangene.`,
-                en: c => `Tested against 2025–26, the 80% interval was right ${c}% of the time.` },
+  chanceCal:  { no: c => `Testet mot inntakene i 2025 og 2026 traff 80 %-intervallet ${c} % av gangene.`,
+                en: c => `Tested against the 2025 and 2026 intakes, the 80% interval was right ${c}% of the time.` },
   // a held-out county (HELD_OUT) is forecast from its own figures, so it
   // carries its own spread and its own measured coverage (meta.held_out_*):
   // the panel's numbers are measured on cells of a different kind
   chanceSubHeld: {
-    no: (y, r, s, f) => `Prognose for inntaket ${y}${r ? ` (${r}. inntak)` : ''}, regnet ut fra tallene fra ${f} alene. En pekepinn, ikke et løfte: prognosen bommer typisk med ±${s} poeng.`,
-    en: (y, r, s, f) => `Forecast for the ${y} intake${r ? ` (${ordEn(r)} intake)` : ''}, from ${f}'s own figures alone. A pointer, not a promise: the forecast is typically off by ±${s} points.`,
+    no: (y, r, s, f) => `Prognose for skoleåret ${schoolYear(y)}${r ? ` (${r}. inntak)` : ''}, regnet ut fra tallene fra ${f} alene. En pekepinn, ikke et løfte: prognosen bommer typisk med ±${s} poeng. Prognosen vet ikke om fylket har vedtatt flere eller færre plasser for neste skoleår.`,
+    en: (y, r, s, f) => `Forecast for the ${schoolYear(y)} school year${r ? ` (${ordEn(r)} intake)` : ''}, from ${f}'s own figures alone. A pointer, not a promise: the forecast is typically off by ±${s} points. It does not know whether the county has decided on more or fewer places for the next school year.`,
   },
   chanceTested: { no: (f, c, ys) => `Testet mot inntakene i ${ys} i ${f} traff 80 %-intervallet ${c} % av gangene.`,
                   en: (f, c, ys) => `Tested against the ${ys} intakes in ${f}, the 80% interval was right ${c}% of the time.` },
@@ -606,8 +609,8 @@ export const T = {
     // pf may be null: a county whose source has no fill state has its π pinned
     // at 1 and no fill figure to show (Telemark today; HELD_OUT in helpers.ts,
     // passed as null by templates.ts)
-    no: (p, y, m, sd, pf, h) => `Sjanse for plass i ${y} med poengene dine: ${p} %. Forventet grense ca. ${m} ± ${sd}${pf == null ? '' : `; sannsynlighet for at det blir venteliste: ${pf} %`}. Bygger på ${h} år med tall for dette programområdet.`,
-    en: (p, y, m, sd, pf, h) => `Chance of a place in ${y} with your points: ${p}%. Expected threshold about ${m} ± ${sd}${pf == null ? '' : `; probability of a waiting list at all: ${pf}%`}. Built on ${h} ${h === 1 ? 'year' : 'years'} of figures for this programme area.`,
+    no: (p, y, m, sd, pf, h) => `Sjanse for plass i skoleåret ${schoolYear(y)} med poengene dine: ${p} %. Forventet grense ca. ${m} ± ${sd}${pf == null ? '' : `; sannsynlighet for at det blir venteliste: ${pf} %`}. Bygger på ${h} år med tall for dette programområdet.`,
+    en: (p, y, m, sd, pf, h) => `Chance of a place in the ${schoolYear(y)} school year with your points: ${p}%. Expected threshold about ${m} ± ${sd}${pf == null ? '' : `; probability of a waiting list at all: ${pf}%`}. Built on ${h} ${h === 1 ? 'year' : 'years'} of figures for this programme area.`,
   },
   // ----- my choices -----
   pickAdd:    { no: 'Legg til i ønskene mine', en: 'Add to my wishes' },
@@ -709,7 +712,7 @@ export const T = {
   listCutInline: { no: (v, y) => `grense ${v} i ${y}`, en: (v, y) => `threshold ${v} in ${y}` },
   listColCutTip: { no: 'Poenggrensen siste publiserte år', en: 'The threshold in the latest published year' },
   listColFc:    { no: 'Forventet', en: 'Expected' },
-  listColFcTip: { no: ys => `Forventet poenggrense ved inntaket ${ys}`, en: ys => `Expected threshold at the ${ys} intake` },
+  listColFcTip: { no: ys => `Forventet poenggrense i skoleåret ${ys}`, en: ys => `Expected threshold in the ${ys} school year` },
   listColPick:  { no: 'Ønske', en: 'Wish' },
   openNearTitle: { no: 'Programområdet har aldri hatt venteliste: alle som søkte, har fått plass. Regnet som nesten sikkert.',
                    en: 'This programme area has never had a waiting list: everyone who applied got a place. Counted as near-certain.' },

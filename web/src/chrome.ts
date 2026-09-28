@@ -1,6 +1,6 @@
 import { bucketColor, chanceMode, renderPointsField } from "./chance";
 import { BIN_EDGES, BINS, cssVar, esc, fmt, HELD_OUT, isVg1, levelScope, MISSING_COUNTIES, shownCounties, shownPrograms, shownSchools, staleCounties } from "./helpers";
-import { CATS, t } from "./i18n";
+import { CATS, schoolYear, t } from "./i18n";
 import { renderControls } from "./intro";
 import { placeToast } from "./locate";
 import { anyClusters, renderPanelSum, visibleSchools } from "./map";
@@ -138,7 +138,7 @@ export function legendZoomHint() {
 // about an intake that has already happened.
 export function forecastYears(schools) {
   const ys = [...new Set(schools.map(s => S.MODEL?.schools?.[`${s.fylke}|${s.name}`]?.year).filter(Boolean))].sort();
-  return t('yearsOr', ys);
+  return t('yearsOr', ys.map(schoolYear));
 }
 // the dots are Vg1 unless the reader asked for the later years and the
 // counties on screen publish any: the legend says which

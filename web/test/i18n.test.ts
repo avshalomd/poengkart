@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { T, t } from '../src/i18n';
+import { T, t, schoolYear } from '../src/i18n';
 import { S } from '../src/state';
 
 // A handful of T[key].no/en are functions whose first argument is not a
@@ -31,5 +31,14 @@ describe('i18n', () => {
       const s = typeof v[form] === 'function' ? v[form](...args) : v[form];
       expect(String(s), `${k}.${form}`).not.toMatch(banned);
     }
+  });
+});
+
+// the forecast is said as the school year it starts, as the counties write it
+describe('schoolYear', () => {
+  it('turns an intake year into the school year it starts', () => {
+    expect(schoolYear(2027)).toBe('2027/28');
+    expect(schoolYear('2026')).toBe('2026/27');
+    expect(schoolYear(2099)).toBe('2099/00');
   });
 });
