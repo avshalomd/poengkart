@@ -118,13 +118,20 @@ jobs:
         id: relay
         if: github.event_name == 'push'
         run: |
-          # the routine commits its report beside the captures; it never reaches main
+          # the routine commits its report beside the captures; it never reaches main.
+          # A push without one (the routine's session opening its working branch) is
+          # not a hand-over: nothing to do.
+          if [ ! -f .live-report.json ]; then
+            echo "no .live-report.json on $GITHUB_REF_NAME: not a hand-over"
+            echo "has=0" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          echo "has=1" >> "$GITHUB_OUTPUT"
           mv .live-report.json "$RUNNER_TEMP/live.json"
           python3 -c "import json,sys; r=json.load(open(sys.argv[1])); print('rc=%d' % any(s['status'] in ('FAILED','CHECK-FAIL') for s in r['sources'].values()))" "$RUNNER_TEMP/live.json" >> "$GITHUB_OUTPUT"
 
       - name: Summary and issues
         id: report
-        if: steps.watch.outcome == 'success' || steps.relay.outcome == 'success'
+        if: steps.watch.outcome == 'success' || steps.relay.outputs.has == '1'
         env:
           RC: ${{ steps.watch.outputs.rc }}${{ steps.relay.outputs.rc }}
         run: |
