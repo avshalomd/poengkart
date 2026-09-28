@@ -21,10 +21,14 @@ deployed) on its own only when all of these hold:
   5. the pull request changes only sources/, the generated outputs the
      pipeline writes, and tools/live/state.json, never code.
 
-A new school year passes 2–5 by construction, so it goes live the hour it is
-captured, unless the refit moves a number the technical report quotes
-(test_docs fails): then the pull request waits for the report to be updated,
-which is the one step a machine does not do here.
+  6. it brings no new school year: a county's first figures for a year
+     wait for the owner (decided 28 Sept 2026), who merges the pull request;
+     the merge deploys (the workflow's deploy-merged job).
+
+So what goes live by itself is a correction: a reprint of a year the site
+already shows, a few cells at most. A refit that moves a number the
+technical report quotes fails test_docs, and that pull request waits for the
+report to be updated as well.
 
 A machine-written fix to a scraper or an extractor (the self-heal routine,
 routines/live-heal.md) is a separate rule, may_auto_merge_fix(): for the
@@ -68,6 +72,9 @@ def may_auto_merge(diff, gates_passed, changed_files, enabled):
                        f"disappeared")
     if diff['changed'] > MAX_CHANGED:
         return False, f"{diff['changed']} existing cells changed value (more than {MAX_CHANGED})"
+    if diff.get('county_years_added'):
+        return False, (f"a new school year ({', '.join(diff['county_years_added'])}) "
+                       f"waits for the owner")
     code = [f for f in changed_files if not is_data(f)]
     if code:
         return False, f'it changes files outside the data: {", ".join(code[:5])}'

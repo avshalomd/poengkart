@@ -40,9 +40,12 @@ def diff(before, after):
     for k in removed:
         per[(k[0], 'removed')] += 1
     counties = sorted({c for c, _ in per})
+    had = {(k[0], k[4]) for k in a}
     return {
         'added': len(added), 'changed': len(changed), 'removed': len(removed),
         'years_added': sorted({k[4] for k in added}),
+        # a school year a county had no figure for before: a new year, not a correction
+        'county_years_added': sorted({f'{k[0]} {k[4]}' for k in added if (k[0], k[4]) not in had}),
         'schools_added': sorted(f'{f}: {n}' for f, n in sb - sa),
         'schools_removed': sorted(f'{f}: {n}' for f, n in sa - sb),
         'by_county': {c: {w: per[(c, w)] for w in ('added', 'changed', 'removed')} for c in counties},
