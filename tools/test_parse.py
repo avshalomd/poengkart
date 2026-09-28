@@ -208,9 +208,6 @@ NO_NEWEST_FIGURE = {
     ('Innlandet', 'Midt-Østerdal videregående skole'),
     # Nordland 2021: the one row prints «0,0» (NORDLAND_ZERO), not a poenggrense
     ('Nordland', 'Nord-Salten videregående skole avd Steigen'),
-    # both 2026 figures were under 25, which the county's own dashboard rule
-    # shows as "ingen venteliste" (tools/extractors/mro.py, 5 Sept 2026)
-    ('Møre og Romsdal', 'Gjermundnes vidaregåande skule'),
     ('Rogaland', 'Stavanger Offshore Tekniske skole'),
     ('Trøndelag', 'Grong videregående skole'), ('Trøndelag', 'Inderøy videregående skole'),
     ('Trøndelag', 'Kyrksæterøra videregående skole'), ('Trøndelag', 'Meråker videregående skole'),
@@ -219,7 +216,7 @@ NO_NEWEST_FIGURE = {
     ('Trøndelag', 'Åfjord videregående skole'),
 }
 without = {(s['fylke'], s['name']) for s in DATA['schools'] if not newest_numeric(s)}
-check('the schools with no poenggrense in their newest year are the 18 known ones',
+check('the schools with no poenggrense in their newest year are the 17 known ones',
       without == NO_NEWEST_FIGURE,
       f'new: {sorted(without - NO_NEWEST_FIGURE)} gone: {sorted(NO_NEWEST_FIGURE - without)}')
 
@@ -404,9 +401,11 @@ check('every Vg4 påbygg row carries PBPBY4YK-- and no Vg3 official name',
 _pbyk = [(s['fylke'], s['name'], p['level'], p.get('grep'), p.get('official'))
          for s in DATA['schools'] for p in s['programs']
          if p.get('category') == 'PB' and 'yrkeskomp' in p['program'].lower()]
-check('every påbygg row named after yrkeskompetanse carries PBPBY4YK-- and no Vg3 official name',
-      len(_pbyk) >= 25 and all(g == 'PBPBY4YK--' and not (o or '').startswith('Vg3') for *_, g, o in _pbyk),
-      str([r for r in _pbyk if r[3] != 'PBPBY4YK--' or (r[4] or '').startswith('Vg3')][:3]))
+# (Møre og Romsdal's register column gives the year of a two-year YSK track,
+# PBPBY4P1--/PBPBY4P2--: still a Vg4 påbygg code, never a Vg3 one)
+check('every påbygg row named after yrkeskompetanse carries a Vg4 påbygg code and no Vg3 official name',
+      len(_pbyk) >= 25 and all((g or '').startswith('PBPBY4') and not (o or '').startswith('Vg3') for *_, g, o in _pbyk),
+      str([r for r in _pbyk if not (r[3] or '').startswith('PBPBY4') or (r[4] or '').startswith('Vg3')][:3]))
 # Vestland prints that year at level 4 in 2022/23 only; it is one series at
 # Vg3, the level of the county's current table (POENG-37), so Dale's 2022
 # figure sits in the same row as its 2021, 2023 and 2026

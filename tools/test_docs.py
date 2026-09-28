@@ -285,8 +285,9 @@ def rel(rows, b):
 
 GAP = {r['bin']: 100 * (r['predicted'] - r['observed']) for r in rel_chance}   # + = optimistic
 max_gap_lo30 = max(GAP[b] for b in ('0-10', '10-20', '20-30'))                      # optimism in the lowest bins
-max_absgap_lo70 = max(abs(GAP[b]) for b in ('0-10', '10-20', '20-30', '30-40', '40-50', '50-60', '60-70'))
 GAP_TOP = max(GAP, key=lambda b: abs(GAP[b]))                                        # the decile with the largest gap
+TOP_LO, TOP_HI = GAP_TOP.split('-')
+max_absgap_below_top = max(abs(GAP[b]) for b in GAP if int(b.split('-')[0]) < int(TOP_LO))
 
 # the raw (pre-Platt) fill probability is not in meta; its top bin comes from
 # the backtest file, calibration years and held-out years separately
@@ -429,11 +430,11 @@ check(doc, 'residual sd', r'The residual sd is ([\d.]+) points', [META['sigma_mo
 check(doc, 'sigma floor', r'saw no held-out year \(([\d.]+)\)', [META['sigma_floor']], flat, D1)
 check(doc, 'raw fill held-out', r'gave ([\d.]+) filled ([\d.]+) of the time in the held-out years',
       [RAW_EVAL[0], RAW_EVAL[1] / 100], flat, D2)
-check(doc, 'calibration prose', r'within ([\d.]+) points of the outcome in every bin, optimistic by at most ([\d.]+) points in the three lowest — a (\d+)% chance was really (\d+)%',
-      [max_absgap_lo70, max_gap_lo30, 100 * rel(rel_chance, '10-20')['predicted'], 100 * rel(rel_chance, '10-20')['observed']],
+check(doc, 'calibration prose', rf'Below {TOP_LO}% the forecast is within ([\d.]+) points of the outcome in every bin, optimistic by at most ([\d.]+) points in the three lowest — a (\d+)% chance was really (\d+)%',
+      [max_absgap_below_top, max_gap_lo30, 100 * rel(rel_chance, '10-20')['predicted'], 100 * rel(rel_chance, '10-20')['observed']],
       flat, [D2, D2, PCT, PCT])
-check(doc, 'calibration prose 70–80', r'a stated (\d+)% came true (\d+)% of the time',
-      [100 * rel(rel_chance, '70-80')['predicted'], 100 * rel(rel_chance, '70-80')['observed']], flat, PCT)
+check(doc, 'calibration prose top gap', rf'from {TOP_LO}% up it is cautious — a stated (\d+)% came true (\d+)% of the time',
+      [100 * rel(rel_chance, GAP_TOP)['predicted'], 100 * rel(rel_chance, GAP_TOP)['observed']], flat, PCT)
 check(doc, 'round bridge A', r'\| Akershus, 1\. → 2\. inntak \| (\d+) \| (-[\d.]+) \(sd ([\d.]+)\) \| (\d+)% of ([\d ]+) \|',
       BRIDGE_A, flat, BRIDGE_TOL)
 check(doc, 'round bridge V', r'\| Vestland, 1\. → 3\. inntak \| (\d+) \| (-[\d.]+) \(sd ([\d.]+)\) \| (\d+)% of ([\d ]+) \|',
@@ -588,16 +589,18 @@ check(doc, 'chance brier common', r"([\d,]+) of those pairs; on that common subs
       [ch['n_last_year_rule'], ch['brier_model_common'], ch['brier_last_year_rule']] + CI['chance: model minus step persistence, brier']
       + [ch['brier_persistence_prob'], ch['brier_model_common'] - ch['brier_persistence_prob']] + CI['chance: model minus probabilistic persistence, brier'],
       flat, [N] + [D3] * 8)
-check(doc, '7.4 calibration gap', r'largest gap between prediction and outcome in any decile is ([\d.]+) points, in the 70–80% bin, where the forecast is cautious', [max_gap], flat, D1)
+# the prose names the decile with the largest gap and says it is cautious;
+# which decile that is moves with the data (70–80% to 28 Sept 2026, then 60–70%)
+check(doc, '7.4 calibration gap', rf'largest gap between prediction and outcome in any decile is ([\d.]+) points, in the {TOP_LO}–{TOP_HI}% bin, where the forecast is cautious', [max_gap], flat, D1)
 checked += 1
-if GAP_TOP != '70-80' or GAP['70-80'] >= 0:
-    failures.append(f'{doc}: 7.4 says the largest decile gap is the cautious 70–80% bin; it is now {GAP_TOP} ({GAP[GAP_TOP]:+.1f})')
-check(doc, 'table 5 prose 70–80', r'where the forecast is cautious: a stated (\d+)% was realised at (\d+)%, so',
-      [100 * rel(rel_chance, '70-80')['predicted'], 100 * rel(rel_chance, '70-80')['observed']], flat, PCT)
-check(doc, 'table 5 prose below 70', r'within ([\d.]+) points of the outcome in every bin and optimistic by at most ([\d.]+) points, in the three lowest bins — a stated (\d+)% was realised at (\d+)%',
-      [max_absgap_lo70, max_gap_lo30, 100 * rel(rel_chance, '10-20')['predicted'], 100 * rel(rel_chance, '10-20')['observed']], flat, [D2, D2, PCT, PCT])
-check(doc, 'limitations calibration', r'within (\d+) points of the outcome below 30% and cautious by up to (\d+) points in the 70–80% bin',
-      [max_gap_lo30, -GAP['70-80']], flat, PCT)
+if GAP[GAP_TOP] >= 0:
+    failures.append(f'{doc}: 7.4 says the largest decile gap is cautious; in {GAP_TOP} it is now optimistic ({GAP[GAP_TOP]:+.1f})')
+check(doc, 'table 5 prose top gap', r'where the forecast is cautious: a stated (\d+)% was realised at (\d+)%, so',
+      [100 * rel(rel_chance, GAP_TOP)['predicted'], 100 * rel(rel_chance, GAP_TOP)['observed']], flat, PCT)
+check(doc, 'table 5 prose below the top gap', rf'Below {TOP_LO}% the forecast is within ([\d.]+) points of the outcome in every bin and optimistic by at most ([\d.]+) points, in the three lowest bins — a stated (\d+)% was realised at (\d+)%',
+      [max_absgap_below_top, max_gap_lo30, 100 * rel(rel_chance, '10-20')['predicted'], 100 * rel(rel_chance, '10-20')['observed']], flat, [D2, D2, PCT, PCT])
+check(doc, 'limitations calibration', rf'within (\d+) points of the outcome below 30% and cautious by up to (\d+) points in the {TOP_LO}–{TOP_HI}% bin',
+      [max_gap_lo30, -GAP[GAP_TOP]], flat, PCT)
 for r in rel_chance:
     lo, hi = r['bin'].split('-')
     obs, n, tol = reliability_row(r)
@@ -615,8 +618,12 @@ px = hs['proxy_label_experiment']
 check(doc, 'proxy experiment', r'moves the Platt slope from ([\d.]+) to ([\d.]+) and the held-out fill Brier on the seven counties whose labels are observed from ([\d.]+) to ([\d.]+)',
       [px['platt_b_with'], px['platt_b_without'], px['heldout_brier_observed_with'], px['heldout_brier_observed_without']], flat, D3)
 checked += 1
-if px['heldout_brier_observed_with'] > px['heldout_brier_observed_without']:
-    failures.append(f'{doc}: 7.5 says the proxy labels sharpen the other counties\' calibration; the held-out Brier with them is now worse')
+# the verdict follows the sign: with the labels the Brier is lower (they sharpen
+# it) or higher (they cost it); either way the difference must stay a trifle
+_px_verdict = ('they sharpen it slightly' if px['heldout_brier_observed_with'] <= px['heldout_brier_observed_without']
+               else 'they cost it a trifle')
+if _px_verdict not in flat or abs(px['heldout_brier_observed_with'] - px['heldout_brier_observed_without']) > 0.005:
+    failures.append(f'{doc}: 7.5 proxy labels: expected «{_px_verdict}» and a difference under 0.005')
 check(doc, 'proxy experiment own cells', r"On the county's own (\d+) held-out cells the proxy-labelled hurdle scores ([\d.]+) against ([\d.]+) for its base rate",
       [px['n_proxy'], px['heldout_brier_proxy'], px['heldout_brier_proxy_base_rate']], flat, [N, D3, D3])
 check(doc, 'limitation proxy brier', r"held-out fill Brier \(([\d.]+) against ([\d.]+) for the county's base rate",

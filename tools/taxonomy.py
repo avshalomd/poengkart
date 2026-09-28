@@ -112,6 +112,7 @@ SUCCESSOR_BY_CODE = {
     # while textiles went to DT. Only the Vg1 is genuinely ambiguous, and that
     # is DECISION 4 below.
     'DHDTE2': 'DT',   # design og tekstil -> DT's søm og tekstilhåndverk
+    'DHAKT2': 'HS',   # aktivitør -> HSAKT2 (Møre og Romsdal's register column, 2012-2019)
 }
 SUCCESSOR_BY_PROGRAM = {
     'SS': 'SR',       # Service og samferdsel -> Salg, service og reiseliv
@@ -169,6 +170,11 @@ ALIASES = {
     'studiespes business': 'STUSP1----',
     'studiespes skiskyting': 'STUSP1----',
     'språk samfunn og økonomi toppidrett': 'STSSA#----',
+    # Møre og Romsdal's dashboard abbreviates the programme area before the
+    # comma of its local variants («Språk/samf.fag/økonomi, toppidrett»)
+    'språk samf fag økonomi': 'STSSA#----',
+    # its Vg3 «Studieforbered. medier og kom» (the register's MKMED3)
+    'studieforbered medier og kom': 'MKMED3----',
     'international baccalaureate': 'ST',
     'international baccalaureate ib': 'ST',
     'naturbruk med anleggsgartnar': 'NANAB1----',   # else the old BA anleggsgartner wins

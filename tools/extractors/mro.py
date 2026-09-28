@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Møre og Romsdal — one FOI Excel extract, Vg1, 15 years.
+"""Møre og Romsdal — one FOI Excel extract (Vg1) and the county's Power BI
+report (Vg1–Vg3), 2012/13 onwards.
 
 The county publishes its poenggrenser only inside a Power BI dashboard
 ("karakterstatistikk"), whose Publish-to-Web mode offers no download.
@@ -34,6 +35,14 @@ Semantics, and what the file does NOT say:
   (meta.halflife_search.proxy_label_experiment).
 - '-' means no figure (2 cells of 1793); the cell is skipped, not zero.
 
+Vg2 and above come from the Power BI report only (the extract is Vg1): the
+live watch's capture, mro-powerbi-<school year>.json, one row per school
+year, school, programme and level, with the same Kurskode, the same mask
+(`*` for «alle kom inn, eller laveste karakter var under 25») and the
+admitted mean. The same OPEN_BELOW rule applies to every level. Read from
+28 Sept 2026 on the owner's decision; the round is the county's 2. inntak,
+as the department's reply states for its figures.
+
 School numbers, not names, are the identity in the file, and the county has
 retro-labelled its history after two reorganisations:
 
@@ -61,18 +70,19 @@ META = {
     'code': '15', 'fylke': 'Møre og Romsdal', 'round': '2',
     'rights': 'ungdomsrett',
     'free_choice': True,           # fritt skolevalg i hele fylket
-    'levels': 'Vg1',
+    'levels': 'Vg1–Vg3 (Vg4 where offered)',
     # the dashboard itself (Publish to Web); the county page that embeds it,
     # mrfylke.no/.../overgang-og-innsoking-til-vidaregaande/poenggrenser/,
     # moved in 2026 (archived copy of 11.06.2026 in the Wayback Machine)
     'source': ('https://app.powerbi.com/view?r=eyJrIjoiNjk4M2E1M2YtYWNmYi00ODU1LTg2ZGQtNjM5'
                'YmU1NzJmOTM4IiwidCI6ImI5MzJlY2U3LTljZGYtNGQ5NC1iNGMxLTE1MjU2ZTQzYzdlYSIsImMiOjl9'),
-    'note': ('FOI extract behind the Power BI dashboard, received 01.09.2026; '
+    'note': ('FOI extract behind the Power BI dashboard, received 01.09.2026 (Vg1), '
+             'and the dashboard itself (Vg2 and above); '
              '"ingen venteliste" follows the dashboard\'s own rule: a figure '
              'under 25 is shown as * («alle kom inn, eller laveste karakter '
              'var under 25»)'),
 }
-# the dashboard's mask, as its legend states it: a Vg1 threshold under this
+# the dashboard's mask, as its legend states it: a threshold under this
 # is published as "everyone got in or under 25", never as the number
 OPEN_BELOW = 25.0
 
@@ -107,8 +117,8 @@ def _mean(cell):
         return None
 
 
-def _add(rows, owner, fname, warn, year, nr, navn, kode, kursnavn, nedre, gjennom):
-    """Fold one (school year, school, Vg1 programme) record into `rows`."""
+def _add(rows, owner, fname, warn, year, nr, navn, kode, kursnavn, nedre, gjennom, level='Vg1'):
+    """Fold one (school year, school, programme, level) record into `rows`."""
     school = SCHOOL_NAMES.get(nr) or common.squash(str(navn))
     program = _clean_program(str(kursnavn))
     if not program:
@@ -130,9 +140,9 @@ def _add(rows, owner, fname, warn, year, nr, navn, kode, kursnavn, nedre, gjenno
         return
     if v != 'open' and v < OPEN_BELOW:
         v = 'open'                      # the county's own rule, see above
-    key = (school, program.lower())
+    key = (school, program.lower(), level)
     row = rows.setdefault(key, {'school': school, 'program': program,
-                                'level': common.guess_level(program, 'Vg1'),
+                                'level': common.guess_level(program, level),
                                 # the county supplies the register's own
                                 # code; it outranks anything re-derived
                                 # from the label (and keeps the MDD
@@ -153,11 +163,12 @@ def _add(rows, owner, fname, warn, year, nr, navn, kode, kursnavn, nedre, gjenno
 
 
 def _dashboard(path, have, warn):
-    """Vg1 rows of the live watch's capture of the Power BI report
-    (mro-powerbi-*.json, tools/live/sources/mro.py) for the school years no
-    e-mailed extract covers. Where both exist the extract is read: it carries
-    the figures the report masks, and its Vg1 cells equal the report's (1 195
-    of 1 195 on 28 Sept 2026; the report masks up to and including 25)."""
+    """Rows of the live watch's capture of the Power BI report
+    (mro-powerbi-*.json, tools/live/sources/mro.py): every Vg2 and later row,
+    and the Vg1 rows of the school years no e-mailed extract covers. Where both
+    carry Vg1 the extract is read: it carries the figures the report masks, and
+    its Vg1 cells equal the report's (1 195 of 1 195 on 28 Sept 2026; the
+    report masks up to and including 25)."""
     import json
     from live import powerbi
     fname = os.path.basename(path)
@@ -169,10 +180,12 @@ def _dashboard(path, have, warn):
         return []
     rows, owner = {}, {}
     for r in recs:
-        if not str(r[col['Kursnavn V2']] or '').startswith('Vg1'):
+        level = str(r[col['Kursnavn V2']] or '').split(' ', 1)[0]
+        if level not in ('Vg1', 'Vg2', 'Vg3', 'Vg4'):
+            warn.append(f'{fname}: no level in {r[col["Kursnavn V2"]]!r}')
             continue
         year = int(str(r[col['Skoleår']])[:4])
-        if year in have:
+        if level == 'Vg1' and year in have:
             continue
         try:
             nr = int(r[col['Skolenr']])
@@ -180,7 +193,7 @@ def _dashboard(path, have, warn):
             warn.append(f'{fname}: bad skolenr {r[col["Skolenr"]]!r}')
             continue
         _add(rows, owner, fname, warn, year, nr, r[col['Skolenavn']], r[col['Kurskode']],
-             r[col['Kursnavn']], r[col['NedrekarV2']], r[col['Gjennomkar']])
+             r[col['Kursnavn']], r[col['NedrekarV2']], r[col['Gjennomkar']], level)
     return list(rows.values())
 
 

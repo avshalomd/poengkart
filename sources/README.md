@@ -293,8 +293,9 @@ figure: «alle kom inn, eller laveste karakter var under 25») and the
 admitted mean. It is the API's answer byte for byte, in Power BI's
 compressed form (`tools/live/powerbi.py` reads it). Its Vg1 figures equal the
 e-mailed extract's in every cell both carry (1 195 of 1 195 on 28 Sept
-2026); the report also masks a figure of exactly 25. The extractor reads it
-only for the school years no extract covers, and only Vg1.
+2026); the report also masks a figure of exactly 25. The extractor reads its
+Vg1 rows only for the school years no extract covers, and every Vg2 and
+later row (the extract is Vg1).
 
 vilbli.no refuses GitHub's runners (an AWS WAF CAPTCHA on the page, a
 CloudFront block on the attachments), so Rogaland, Innlandet and Trøndelag are
