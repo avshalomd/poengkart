@@ -15,7 +15,11 @@ An issue titled `live: <source>` says a scraper (`tools/live/sources/<source>.py
 the scraper does not expect). An issue titled `live: processing …` says a capture was
 made but `tools/refresh.py` or a test suite failed on it: an extractor
 (`tools/extractors/<county>.py`, Rogaland's `tools/parse_pdfs.py`) cannot read the
-county's new layout. The issue body quotes the detail, the requests and the traceback.
+county's new layout. An issue titled `live: new document in <County>` says the weekly
+source watch (`routines/source-watch.md`) found a document the scraper does not ask for,
+most often a vilbli file under a new name: teach the scraper to find it (a name, an
+article number, a link), so that `--dry-run` reports it as `NEW`. The issue body quotes
+the detail, the requests and the traceback.
 
 Healed means one pull request after which:
 

@@ -476,7 +476,10 @@ pull request. Timetable and reasoning: `tools/live/schedule.py`. Open items:
   cloud, so the relay guesses the counties' file names. A courteous ask to
   Novari IKS (vilbli's owner) for a feed or an allowance for a few requests a
   day would make the three counties as robust as the others.
-- **The weekly Claude source-watch routine** («Poengkart — weekly 2026/27
-  poenggrense watch») is superseded by the workflow, the relay and the
-  sentinel; retire it, or keep only its monthly web search of the seven
-  counties without data.
+- ~~**The weekly Claude source-watch routine**~~ was repurposed on 28 Sept
+  2026 (`routines/source-watch.md`): it no longer checks the counties the
+  live watch fetches, but looks for what the watch cannot see (a vilbli file
+  under a name the relay does not guess; monthly, a table from one of the
+  seven counties without data) and opens a `live: new document in <County>`
+  issue, labelled `heal` for the vilbli counties so the self-heal routine
+  teaches the scraper.
