@@ -350,7 +350,16 @@ def _parse_hedmark(warn):
 
 # the rolling three-year matrices, newest first; every other PDF in the folder
 # (the 2026 applicant-count tables, a future drop-in) is ignored with a warning
-MATRIX_FILES = ['innlandet-2024-2026-2inntak.pdf', 'innlandet_2023-2025_2inntak.pdf']
+_MATRIX_LISTED = ['innlandet-2024-2026-2inntak.pdf', 'innlandet_2023-2025_2inntak.pdf']
+# a later edition the live source watch captured (tools/live/sources/innlandet.py
+# names it innlandet-<first>-<last>-<N>inntak.pdf, a reprint -rev2, …) is read
+# first, newest edition and highest revision first
+MATRIX_RE = re.compile(r'^innlandet[-_](20\d\d)-(20\d\d)[-_](\d)inntak(?:-rev(\d+))?\.pdf$')
+MATRIX_FILES = sorted(
+    (f for f in (os.listdir(SRC) if os.path.isdir(SRC) else [])
+     if MATRIX_RE.match(f) and f not in _MATRIX_LISTED),
+    key=lambda f: tuple(int(g or 1) for g in MATRIX_RE.match(f).group(2, 1, 4)),
+    reverse=True) + _MATRIX_LISTED
 
 
 # Dokka videregående skole became an avdeling of Raufoss from the 2025/26

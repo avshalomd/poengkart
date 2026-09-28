@@ -127,6 +127,32 @@ def stated_round(meta):
     return first[0] if first and first[0] in ('1', '2', '3') else None
 
 
+# A county's corrected reprint of a document is kept under a new name,
+# `<name>-revN.<ext>` (sources are never overwritten; the live watch names its
+# captures the same way): the highest revision is the one that counts.
+REV_RE = re.compile(r'-rev(\d+)(?=\.[^.]+$)')
+
+
+def newest_first(names):
+    """File names in reverse name order (the extractors' "newest first"), with
+    every `-revN` reprint ahead of the print it corrects, highest first."""
+    def key(n):
+        m = REV_RE.search(n)
+        return (REV_RE.sub('', n), int(m.group(1)) if m else 1)
+    return sorted(names, key=key, reverse=True)
+
+
+def current_files(names):
+    """newest_first(names) without the prints a later revision replaces."""
+    out, taken = [], set()
+    for n in newest_first(names):
+        base = REV_RE.sub('', n)
+        if base not in taken:
+            taken.add(base)
+            out.append(n)
+    return out
+
+
 FIRST_YEAR = 2012      # the dataset's first year; older figures in a source are left out
 
 

@@ -119,7 +119,7 @@ def extract():
     warn, out = [], []
     if not os.path.isdir(SRC):
         return out, [f'{META["fylke"]}: no source directory']
-    for fname in sorted(os.listdir(SRC), reverse=True):
+    for fname in common.current_files(os.listdir(SRC)):
         if fname.endswith('.transcribed.csv'):
             out.append((fname, _booklet(os.path.join(SRC, fname), warn)))
             continue

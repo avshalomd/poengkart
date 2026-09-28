@@ -1,0 +1,240 @@
+"""The live source watch (tools/live), offline: no test here touches the network."""
+import datetime
+import io
+import json
+import os
+import sys
+import types
+from zoneinfo import ZoneInfo
+
+import pytest
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+TOOLS = os.path.dirname(HERE)
+ROOT = os.path.dirname(TOOLS)
+sys.path.insert(0, TOOLS)
+sys.path.insert(0, os.path.join(TOOLS, 'extractors'))
+
+import common                                     # noqa: E402
+from live import fingerprint as fp, policy, powerbi, run, schedule   # noqa: E402
+from live.core import Doc, Unhealthy, _clean      # noqa: E402
+
+OSLO = ZoneInfo('Europe/Oslo')
+
+
+# ---- fingerprints: same figures, different bytes, is not news ----
+
+def test_html_fingerprint_ignores_table_order_and_page_chrome():
+    a = b'<html><h1>Poenggrenser</h1><p>Sist endret 1.9</p><table><tr><td>A</td><td>40,1</td></tr></table>' \
+        b'<table><tr><td>B</td><td>Alle</td></tr></table></html>'
+    b = b'<html><script>nonce=42</script><h1>Poenggrenser</h1><p>Sist endret 28.9</p>' \
+        b'<table><tr><td>B</td><td>Alle</td></tr></table><table><tr><td>A</td><td>40,1</td></tr></table></html>'
+    c = a.replace(b'40,1', b'40,2')
+    assert fp.fingerprint(a, 'html') == fp.fingerprint(b, 'html')
+    assert fp.fingerprint(a, 'html') != fp.fingerprint(c, 'html')
+
+
+def test_pdf_fingerprint_ignores_metadata():
+    from pypdf import PdfReader, PdfWriter
+    src = os.path.join(ROOT, 'sources', 'trondelag', 'trondelag_2025-26_fosen.pdf')
+    body = open(src, 'rb').read()
+    w = PdfWriter(clone_from=PdfReader(io.BytesIO(body)))
+    w.add_metadata({'/Author': 'someone', '/Producer': 'another tool'})
+    out = io.BytesIO()
+    w.write(out)
+    assert out.getvalue() != body
+    assert fp.fingerprint(out.getvalue(), 'pdf') == fp.fingerprint(body, 'pdf')
+
+
+# ---- revisions: a reprint gets a new name and is read first ----
+
+def test_newest_first_puts_revisions_ahead_of_their_print():
+    names = ['akershus-2024-2025.html', 'akershus-2025-2026.html', 'akershus-2025-2026-rev2.html',
+             'akershus-2025-2026-rev10.html', 'x.transcribed.csv']
+    assert common.newest_first(names) == ['x.transcribed.csv', 'akershus-2025-2026-rev10.html',
+                                          'akershus-2025-2026-rev2.html', 'akershus-2025-2026.html',
+                                          'akershus-2024-2025.html']
+    assert common.current_files(names) == ['x.transcribed.csv', 'akershus-2025-2026-rev10.html',
+                                           'akershus-2024-2025.html']
+    plain = ['oslo-2017.pdf', 'oslo-2026.html', 'oslo-2025.pdf']
+    assert common.newest_first(plain) == sorted(plain, reverse=True)
+
+
+def test_free_name(tmp_path, monkeypatch):
+    monkeypatch.setattr(run, 'SOURCES', str(tmp_path))
+    (tmp_path / 'vestland').mkdir()
+    assert run.free_name('vestland', 'v_2026-27_1inntak.pdf') == 'v_2026-27_1inntak.pdf'
+    (tmp_path / 'vestland' / 'v_2026-27_1inntak.pdf').write_bytes(b'1')
+    assert run.free_name('vestland', 'v_2026-27_1inntak.pdf') == 'v_2026-27_1inntak-rev2.pdf'
+    (tmp_path / 'vestland' / 'v_2026-27_1inntak-rev2.pdf').write_bytes(b'2')
+    assert run.free_name('vestland', 'v_2026-27_1inntak.pdf') == 'v_2026-27_1inntak-rev3.pdf'
+
+
+def test_clean_drops_default_port_and_fragment():
+    assert _clean('https://mrfylke.no:443/tenester/#x') == 'https://mrfylke.no/tenester/'
+    assert _clean('https://a.no:8443/p') == 'https://a.no:8443/p'
+
+
+# ---- the capture flow, with a scraper that serves what the test says ----
+
+def _fake_source(monkeypatch, pages):
+    mod = types.ModuleType('live.sources.fake')
+    mod.SOURCE = {'id': 'fake', 'county': 'fake', 'publisher': 'Fake fylkeskommune',
+                  'landing': 'https://fake.no/', 'season': []}
+
+    def discover(ctx):
+        if pages['page'] is None:
+            raise Unhealthy('the page has no tables')
+        return [Doc(url='https://fake.no/p', name='fake-2026-2027.html', county='fake',
+                    label='Poenggrenser 2026–27', kind='html', landing='https://fake.no/',
+                    body=pages['page'])]
+    mod.discover = discover
+    monkeypatch.setitem(sys.modules, 'live.sources.fake', mod)
+
+
+def test_capture_then_unchanged_then_reprint(tmp_path, monkeypatch):
+    monkeypatch.setattr(run, 'SOURCES', str(tmp_path))
+    added = {}
+    monkeypatch.setattr(run, 'add_to_manifest', lambda rel, prov: added.__setitem__(rel, prov))
+    pages = {'page': b'<h1>P</h1><table><tr><td>Asker</td><td>45,0</td></tr></table>'}
+    _fake_source(monkeypatch, pages)
+    state = {'sources': {}, 'fingerprints': {}}
+    now = datetime.datetime(2026, 7, 10, 12, 0, tzinfo=datetime.timezone.utc)
+
+    r = run.run_source('fake', state, now)
+    assert r['status'] == 'NEW' and r['captured'][0]['file'] == 'fake/fake-2026-2027.html'
+    assert (tmp_path / 'fake' / 'fake-2026-2027.html').read_bytes() == pages['page']
+    assert 'Fake fylkeskommune' in added['fake/fake-2026-2027.html']
+
+    # same bytes, then the same tables with new chrome: nothing written
+    assert run.run_source('fake', state, now)['status'] == 'UNCHANGED'
+    pages['page'] = b'<p>Sist endret i dag</p>' + pages['page']
+    assert run.run_source('fake', state, now)['status'] == 'UNCHANGED'
+
+    # the county corrects a figure: a reprint beside the first print
+    pages['page'] = pages['page'].replace(b'45,0', b'45,6')
+    r = run.run_source('fake', state, now)
+    assert r['status'] == 'NEW' and r['captured'][0]['file'] == 'fake/fake-2026-2027-rev2.html'
+    assert (tmp_path / 'fake' / 'fake-2026-2027.html').exists()
+
+    # a page without its tables is a failed check, and nothing is written
+    pages['page'] = None
+    r = run.run_source('fake', state, now)
+    assert r['status'] == 'CHECK-FAIL' and not r['captured']
+
+
+def test_an_error_page_is_never_captured_as_a_pdf(tmp_path, monkeypatch):
+    monkeypatch.setattr(run, 'SOURCES', str(tmp_path))
+    mod = types.ModuleType('live.sources.fakepdf')
+    mod.SOURCE = {'id': 'fakepdf', 'county': 'fake', 'publisher': 'F', 'landing': '', 'season': []}
+    mod.discover = lambda ctx: [Doc(url='u', name='x.pdf', county='fake', body=b'<html>404</html>')]
+    monkeypatch.setitem(sys.modules, 'live.sources.fakepdf', mod)
+    r = run.run_source('fakepdf', {'sources': {}, 'fingerprints': {}}, datetime.datetime.now())
+    assert r['status'] == 'CHECK-FAIL' and not (tmp_path / 'fake').exists()
+
+
+# ---- Power BI's compressed answer ----
+
+DSR = {'results': [{'result': {'data': {
+    'descriptor': {'Select': [{'Name': 'Sheet1.Skoleår'}, {'Name': 'Sheet1.Skolenavn'},
+                              {'Name': 'NedrekarV2'}, {'Name': 'Gjennomkar'}]},
+    'dsr': {'DS': [{'IC': True, 'ValueDicts': {'D0': ['2026/2027'], 'D1': ['Atlanten', 'Molde']},
+                    'PH': [{'DM0': [
+                        {'S': [{'N': 'G0', 'DN': 'D0'}, {'N': 'G1', 'DN': 'D1'}, {'N': 'M0'}, {'N': 'M1'}],
+                         'C': [0, 0, '32,7', 41.5]},
+                        {'C': [1, '*', 40.0], 'R': 1},          # year repeated
+                        {'C': [1], 'R': 3, 'Ø': 12},            # year and school repeated, both measures null
+                    ]}]}]}}}}]}
+
+
+def test_powerbi_rows_decodes_repeats_nulls_and_dictionaries():
+    names, rows = powerbi.rows(DSR)
+    assert names[0] == 'Sheet1.Skoleår'
+    assert rows == [['2026/2027', 'Atlanten', '32,7', 41.5],
+                    ['2026/2027', 'Molde', '*', 40.0],
+                    ['2026/2027', 'Molde', None, None]]
+
+
+def test_powerbi_refuses_a_cut_short_answer():
+    cut = json.loads(json.dumps(DSR))
+    cut['results'][0]['result']['data']['dsr']['DS'][0]['RT'] = [['x']]
+    with pytest.raises(powerbi.Incomplete):
+        powerbi.rows(cut)
+
+
+def test_powerbi_resource_key():
+    assert powerbi.resource_key('https://app.powerbi.com/view?r=eyJrIjoiYWJjIiwidCI6InQifQ') == 'abc'
+
+
+def test_mro_reads_the_dashboard_only_for_years_no_extract_covers(tmp_path):
+    import mro
+    names = ['Sheet1.Skoleår', 'Sheet1.Skolenr', 'Sheet1.Skolenavn', 'Sheet1.Kurskode', 'Sheet1.Kursnavn',
+             'Sheet1.Kursnavn V2', 'NedrekarV2', 'Gjennomkar']
+    recs = [['2026/2027', '15001', 'Atlanten videregående skole', 'IDRET1----', 'Idrettsfag', 'Vg1 Idrettsfag', '27,6', 44.8],
+            ['2027/2028', '15001', 'Atlanten videregående skole', 'IDRET1----', 'Idrettsfag', 'Vg1 Idrettsfag', '30,1', 45.0],
+            ['2027/2028', '15001', 'Atlanten videregående skole', 'STUSP1----', 'Studiespesialisering', 'Vg1 Studiespesialisering', '*', 38.2],
+            ['2027/2028', '15001', 'Atlanten videregående skole', 'IDIDR2----', 'Idrettsfag', 'Vg2 Idrettsfag', '33,0', 44.0]]
+    schema = [{'N': f'G{i}'} for i in range(len(names))]
+    ans = {'results': [{'result': {'data': {'descriptor': {'Select': [{'Name': n} for n in names]},
+                                            'dsr': {'DS': [{'PH': [{'DM0': [dict({'S': schema} if i == 0 else {}, C=r)
+                                                                            for i, r in enumerate(recs)]}]}]}}}}]}
+    p = tmp_path / 'mro-powerbi-2027-2028.json'
+    p.write_text(json.dumps(ans), encoding='utf-8')
+    warn = []
+    rows = mro._dashboard(str(p), {2026}, warn)
+    got = {(r['program'], y): v for r in rows for y, v in r['values'].items()}
+    assert got == {('Idrettsfag', 2027): 30.1, ('Studiespesialisering', 2027): 'open'}
+    assert not warn
+
+
+# ---- the merge rule ----
+
+DIFF = {'added': 300, 'changed': 1, 'removed': 0, 'schools_removed': [], 'schools_added': []}
+
+
+def test_policy_merges_a_new_year_and_holds_the_rest():
+    data = ['sources/oslo/oslo-2027.html', 'sources/manifest.json', 'web/public/data/schools.json',
+            'data/poengkart.db', 'tools/live/state.json']
+    assert policy.may_auto_merge(DIFF, True, data, True)[0]
+    assert not policy.may_auto_merge(DIFF, True, data, False)[0]
+    assert not policy.may_auto_merge(DIFF, False, data, True)[0]
+    assert not policy.may_auto_merge(dict(DIFF, removed=1), True, data, True)[0]
+    assert not policy.may_auto_merge(dict(DIFF, schools_removed=['Oslo: X']), True, data, True)[0]
+    assert not policy.may_auto_merge(dict(DIFF, changed=policy.MAX_CHANGED + 1), True, data, True)[0]
+    assert not policy.may_auto_merge(DIFF, True, data + ['tools/extractors/oslo.py'], True)[0]
+
+
+def test_policy_for_machine_written_fixes():
+    f = ['tools/live/sources/oslo.py']
+    assert not policy.may_auto_merge_fix(None, '2026-12-01', True, f)
+    assert not policy.may_auto_merge_fix('2026-11-15', '2026-12-01', True, f)
+    assert policy.may_auto_merge_fix('2026-10-01', '2026-12-01', True, f)
+    assert not policy.may_auto_merge_fix('2026-10-01', '2026-12-01', False, f)
+    assert not policy.may_auto_merge_fix('2026-10-01', '2026-12-01', True, f + ['tools/common.py'])
+
+
+# ---- the timetable ----
+
+def at(s):
+    return datetime.datetime.fromisoformat(s).replace(tzinfo=OSLO)
+
+
+def test_schedule():
+    oslo = schedule.source('oslo')                     # season 15 June – 30 Sept
+    assert schedule.is_due(oslo, at('2026-07-14T10:23'))        # a Tuesday in season
+    assert not schedule.is_due(oslo, at('2026-07-14T21:23'))
+    assert schedule.is_due(oslo, at('2026-07-18T15:23'))        # a Saturday: 09 and 15
+    assert not schedule.is_due(oslo, at('2026-07-18T10:23'))
+    assert schedule.is_due(oslo, at('2026-02-03T07:23'))        # off season: 07 daily
+    assert not schedule.is_due(oslo, at('2026-02-03T10:23'))
+    sentinel = schedule.source('sentinel')
+    assert schedule.is_due(sentinel, at('2026-09-28T07:23'))    # Monday
+    assert not schedule.is_due(sentinel, at('2026-09-29T07:23'))
+    assert set(schedule.source_ids()) >= {'akershus', 'buskerud', 'innlandet', 'mro', 'oslo',
+                                          'rogaland', 'trondelag', 'vestland', 'sentinel'}
+
+
+def test_every_scraper_declares_what_the_runner_needs():
+    for sid in schedule.source_ids():
+        s = schedule.source(sid)
+        assert s['id'] == sid and s['publisher'] and 'season' in s

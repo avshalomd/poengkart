@@ -107,12 +107,90 @@ def _mean(cell):
         return None
 
 
+def _add(rows, owner, fname, warn, year, nr, navn, kode, kursnavn, nedre, gjennom):
+    """Fold one (school year, school, Vg1 programme) record into `rows`."""
+    school = SCHOOL_NAMES.get(nr) or common.squash(str(navn))
+    program = _clean_program(str(kursnavn))
+    if not program:
+        warn.append(f'{fname}: no programme name in {kursnavn!r}')
+        return
+    v = None
+    if nedre is not None and str(nedre).strip() == '*':
+        v = 'open'                      # the dashboard's own mask: «alle kom inn, eller … under 25»
+    elif nedre is not None and str(nedre).strip() != '-':
+        try:
+            v = float(str(nedre).replace(',', '.'))
+        except ValueError:
+            warn.append(f'{fname}: unreadable value {nedre!r}')
+            return
+        if not (0 <= v <= common.MAX_PLAUSIBLE):
+            warn.append(f'{fname}: implausible value {v} for {school}')
+            return
+    if v is None:
+        return
+    if v != 'open' and v < OPEN_BELOW:
+        v = 'open'                      # the county's own rule, see above
+    key = (school, program.lower())
+    row = rows.setdefault(key, {'school': school, 'program': program,
+                                'level': common.guess_level(program, 'Vg1'),
+                                # the county supplies the register's own
+                                # code; it outranks anything re-derived
+                                # from the label (and keeps the MDD
+                                # variants distinct)
+                                'grep': str(kode).strip(),
+                                'values': {},
+                                'county': META['fylke'], 'round': META['round']})
+    if year in row['values'] and owner.get((key, year)) not in YIELDS and nr in YIELDS:
+        return                          # the main school's figure stands
+    row['values'][year] = v
+    owner[(key, year)] = nr
+    # the admitted mean travels with the cell (`means`): where it equals
+    # the threshold, one applicant set the figure — tools/model.py lets
+    # the backtest choose such a cell's weight in the level fit
+    g = _mean(gjennom)
+    if g is not None:
+        row.setdefault('means', {})[year] = round(g, 1)
+
+
+def _dashboard(path, have, warn):
+    """Vg1 rows of the live watch's capture of the Power BI report
+    (mro-powerbi-*.json, tools/live/sources/mro.py) for the school years no
+    e-mailed extract covers. Where both exist the extract is read: it carries
+    the figures the report masks, and its Vg1 cells equal the report's (1 195
+    of 1 195 on 28 Sept 2026; the report masks up to and including 25)."""
+    import json
+    from live import powerbi
+    fname = os.path.basename(path)
+    names, recs = powerbi.rows(json.load(open(path, encoding='utf-8')))
+    col = {n.split('.', 1)[-1]: i for i, n in enumerate(names)}
+    need = ['Skoleår', 'Skolenr', 'Skolenavn', 'Kurskode', 'Kursnavn', 'Kursnavn V2', 'NedrekarV2', 'Gjennomkar']
+    if any(c not in col for c in need):
+        warn.append(f'{fname}: the capture lacks {[c for c in need if c not in col]}')
+        return []
+    rows, owner = {}, {}
+    for r in recs:
+        if not str(r[col['Kursnavn V2']] or '').startswith('Vg1'):
+            continue
+        year = int(str(r[col['Skoleår']])[:4])
+        if year in have:
+            continue
+        try:
+            nr = int(r[col['Skolenr']])
+        except (TypeError, ValueError):
+            warn.append(f'{fname}: bad skolenr {r[col["Skolenr"]]!r}')
+            continue
+        _add(rows, owner, fname, warn, year, nr, r[col['Skolenavn']], r[col['Kurskode']],
+             r[col['Kursnavn']], r[col['NedrekarV2']], r[col['Gjennomkar']])
+    return list(rows.values())
+
+
 def extract():
     warn, out = [], []
     if not os.path.isdir(SRC):
         return out, [f'{META["fylke"]}: no source directory']
     import openpyxl
-    for fname in sorted(os.listdir(SRC), reverse=True):
+    have = set()                        # school years an e-mailed extract covers
+    for fname in common.newest_first(os.listdir(SRC)):
         if not fname.endswith('.xlsx'):
             continue
         ws = openpyxl.load_workbook(os.path.join(SRC, fname), data_only=True).worksheets[0]
@@ -135,47 +213,16 @@ def extract():
             except (TypeError, ValueError):
                 warn.append(f'{fname}: bad skolenr {nr!r}')
                 continue
-            school = SCHOOL_NAMES.get(nr) or common.squash(str(navn))
             if str(niva).strip() != '1':
-                warn.append(f'{fname}: unexpected level {niva!r} for {school}')
+                warn.append(f'{fname}: unexpected level {niva!r} for {navn}')
                 continue
-            program = _clean_program(str(kursnavn))
-            if not program:
-                warn.append(f'{fname}: no programme name in {kursnavn!r}')
-                continue
-            v = None
-            if nedre is not None and str(nedre).strip() != '-':
-                try:
-                    v = float(str(nedre).replace(',', '.'))
-                except ValueError:
-                    warn.append(f'{fname}: unreadable value {nedre!r}')
-                    continue
-                if not (0 <= v <= common.MAX_PLAUSIBLE):
-                    warn.append(f'{fname}: implausible value {v} for {school}')
-                    continue
-            if v is None:
-                continue
-            if v < OPEN_BELOW:
-                v = 'open'                  # the county's own rule, see above
-            key = (school, program.lower())
-            row = rows.setdefault(key, {'school': school, 'program': program,
-                                        'level': common.guess_level(program, 'Vg1'),
-                                        # the county supplies the register's own
-                                        # code; it outranks anything re-derived
-                                        # from the label (and keeps the MDD
-                                        # variants distinct)
-                                        'grep': str(kode).strip(),
-                                        'values': {},
-                                        'county': META['fylke'], 'round': META['round']})
-            if year in row['values'] and owner.get((key, year)) not in YIELDS and nr in YIELDS:
-                continue                    # the main school's figure stands
-            row['values'][year] = v
-            owner[(key, year)] = nr
-            # the admitted mean travels with the cell (`means`): where it equals
-            # the threshold, one applicant set the figure — tools/model.py lets
-            # the backtest choose such a cell's weight in the level fit
-            g = _mean(gjennom)
-            if g is not None:
-                row.setdefault('means', {})[year] = round(g, 1)
+            have.add(year)
+            _add(rows, owner, fname, warn, year, nr, navn, kode, kursnavn, nedre, gjennom)
         out.append((fname, list(rows.values())))
+    captures = common.newest_first(f for f in os.listdir(SRC)
+                                   if f.startswith('mro-powerbi-') and f.endswith('.json'))
+    if captures:
+        rows = _dashboard(os.path.join(SRC, captures[0]), have, warn)
+        if rows:
+            out.insert(0, (captures[0], rows))
     return out, warn

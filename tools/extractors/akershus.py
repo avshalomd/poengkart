@@ -85,7 +85,7 @@ def extract():
     warn, out = [], []
     if not os.path.isdir(SRC):
         return out, [f'{META["fylke"]}: no source directory']
-    for fname in sorted(os.listdir(SRC), reverse=True):      # newest first
+    for fname in common.current_files(os.listdir(SRC)):      # newest first
         if fname.endswith('.transcribed.csv'):
             # a newspaper's copy of the county's figures for a year the county
             # published no table (2015, 1. inntak): the round is the file's own

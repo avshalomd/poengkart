@@ -437,3 +437,40 @@ Found by the final whole-branch review (17 September 2026) and left for later:
 - **St. Svithun and Stavanger katedralskole both «+3,4 (± 0,9)»**: a
   coincidence of rounding (school effects 3.36 ± 0.94 and 3.39 ± 0.87,
   ranks 24 and 23), not shared data.
+
+## Live source watch (28 September 2026)
+
+`.github/workflows/live.yml` runs `tools/live/` every hour: eight scrapers
+(Akershus, Buskerud, Innlandet, Møre og Romsdal, Oslo, Rogaland, Trøndelag,
+Vestland) and a weekly sentinel over the other counties' vilbli pages. A new
+document is captured under `sources/`, processed by `tools/refresh.py` on a
+branch, gated by every test suite and merged and deployed on its own when
+`tools/live/policy.py` allows it; a broken scraper opens an issue labelled
+`heal`, which the self-heal routine (`routines/live-heal.md`) answers with a
+pull request. Timetable and reasoning: `tools/live/schedule.py`. Open items:
+
+- **Owner: secrets.** `VERCEL_TOKEN` (deploy after a merge) and the three
+  `R2_*` keys (mirror captures), set with `gh secret set`; until then a
+  merged update waits for a manual deploy and the mirror for a local
+  `tools/sources_r2.py push`.
+- **Decision: Møre og Romsdal Vg2–Vg3.** The county's Power BI report, now
+  read by the watch, holds Vg1–Vg3 for 2012/13–2026/27 (6 074 rows) with the
+  admitted mean: what the data-hole sweep asked the county for. Its Vg2+
+  figures under 25 are masked `*` like Vg1's. Reading them adds a level to
+  the county and changes the model; the extractor reads Vg1 only until the
+  owner decides.
+- **Decision: a new school year and the report.** A refit on new data moves
+  numbers the technical report quotes, so `test_docs` holds the pull request
+  until the report is updated («live: the report needs the new numbers»).
+  The alternative is to let the site update and the report lag with a
+  «numbers as of vX» line; recommended to keep the hold, since the report
+  is regenerated in minutes and a new year comes once a county per year.
+- **Møre og Romsdal masks a figure of exactly 25**, where the county's
+  legend (and `OPEN_BELOW` in the extractor) says «under 25»: 34 Vg1 cells
+  since 2012 are 25,0 in the extract and `*` in the report. The dataset
+  follows the extract; worth a line to the county.
+- **The weekly Claude source-watch routine** («Poengkart — weekly 2026/27
+  poenggrense watch») is superseded by this workflow for the eight counties
+  it scrapes; its monthly web search of the seven counties without data is
+  the one thing the sentinel does not do (it reads vilbli only). Retire it,
+  or cut it down to that monthly search.

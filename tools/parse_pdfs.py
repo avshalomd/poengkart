@@ -42,7 +42,7 @@ OUT = os.path.join(HERE, '..', 'web', 'public', 'data')
 DRIFT = os.path.join(HERE, '..', 'data', 'source-drift.json')
 
 # newest first: on overlapping (school, program, level, year) the newest wins
-FILES = [
+_LISTED = [
     'poenggrenser-rogaland-2024-2026-official-rev2.pdf',
     'poenggrenser-rogaland-2024-2026-official.pdf',
     'poenggrenser-rogaland-2023-2025-official.pdf',
@@ -52,6 +52,24 @@ FILES = [
     'poenggrenser-rogaland-2021-2022.pdf',
     'poenggrenser-rogaland-2019-2020.pdf',
 ]
+
+# An edition the live source watch captured later (tools/live/sources/rogaland.py
+# names it by the years its header prints, and a reprint of an edition
+# already here gets -rev2, -rev3, …) is read before every listed one, newest
+# edition and highest revision first; nothing needs adding by hand.
+EDITION = re.compile(r'^poenggrenser-rogaland-(20\d\d)-(20\d\d)-official(?:-rev(\d+))?\.pdf$')
+
+
+def _later_editions():
+    if not os.path.isdir(SRC):
+        return []
+    found = [(EDITION.match(f), f) for f in os.listdir(SRC) if f not in _LISTED]
+    return [f for m, f in sorted(((m, f) for m, f in found if m),
+                                  key=lambda mf: (int(mf[0].group(2)), int(mf[0].group(1)),
+                                                  int(mf[0].group(3) or 1)), reverse=True)]
+
+
+FILES = _later_editions() + _LISTED
 
 # Each edition prints its year header on every school's page, and one page
 # per edition carries a wrong one — Hetland's reads "2019 2020 2022" in the

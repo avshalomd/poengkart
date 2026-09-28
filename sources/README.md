@@ -267,6 +267,39 @@ newspaper copies of the county's lists: `hordaland-2014-reprint-bt.transcribed.c
 (Bergens Tidende 08.07.2014) and `hordaland-2015-reprint-ba.transcribed.csv`
 (Bergensavisen 07.07.2015), Vg1 studiespesialisering, 1. inntak.
 
+## Live captures
+
+Since 28 September 2026 the live source watch (`tools/live/`, run hourly by
+`.github/workflows/live.yml`) reads each publishing county's page and keeps
+anything new here the moment it appears, exactly as served: Akershus's and
+Oslo's pages, Buskerud's yearly page (found from «Søke skoleplass», whatever
+its slug), Vestland's PDFs, Rogaland's, Innlandet's and Trøndelag's vilbli
+attachments, and Møre og Romsdal's Power BI report. A document whose figures
+are already here is not kept again (the comparison is of content, not bytes,
+so a re-export or a page with a new timestamp is no news); a county's
+corrected reprint is kept beside the first print as `-rev2`, `-rev3`, … and
+read in its place. Each capture's manifest entry says who published it,
+where it was linked, the URL it was served from, its Last-Modified and ETag
+where the server gave them, and when it was fetched; `tools/live/state.json`
+remembers what each URL served last and any page the scrapers had to find
+again after a county moved it.
+
+`mro/mro-powerbi-<school year>.json` is the answer of the county's public
+Power BI report («Karakterstatistikk for videregående skoler i Møre og
+Romsdal», linked from «Søk vidaregåande opplæring») to a query for its table
+`Sheet1`: one row per school year, school, programme and level, Vg1–Vg3,
+2012/13 onwards, with «Nedre karaktergrense» (`*` where the report masks a
+figure: «alle kom inn, eller laveste karakter var under 25») and the
+admitted mean. It is the API's answer byte for byte, in Power BI's
+compressed form (`tools/live/powerbi.py` reads it). Its Vg1 figures equal the
+e-mailed extract's in every cell both carry (1 195 of 1 195 on 28 Sept
+2026); the report also masks a figure of exactly 25. The extractor reads it
+only for the school years no extract covers, and only Vg1.
+
+The sentinel checks the vilbli page of every other county once a week and
+opens a GitHub issue if one of them attaches a document; nothing it finds is
+kept here without a person.
+
 ## Mirror
 
 Every file here is mirrored, byte for byte, in a public Cloudflare R2 bucket:

@@ -1566,6 +1566,17 @@ def main():
         print(f'   z={o["z"]:+.1f}  {o["fylke"]} {o["school"]} · {o["program"]} {o["year"]}: {o["value"]} (fitted {o["fitted"]})')
 
     out = dict(meta=meta, schools=out_schools)
+    # `built` is the day the model last changed: a refit that reproduces the
+    # shipped model value for value keeps that day, so rebuilding on a later
+    # day (the live watch runs the pipeline on every capture) leaves
+    # model.json and the report's reproducibility statement as they are
+    try:
+        prev = json.load(open(OUT)) if os.path.exists(OUT) else {}
+    except ValueError:
+        prev = {}
+    if prev.get('meta', {}).get('built') and \
+            dict(prev, meta=dict(prev['meta'], built=meta['built'])) == json.loads(json.dumps(out)):
+        meta['built'] = prev['meta']['built']
     json.dump(out, open(OUT, 'w'), ensure_ascii=False, separators=(',', ':'))
     n_pred = sum(len(e.get('programs', {})) for e in out_schools.values())
     print(f'\n{n_pred} programme forecasts for {sum(1 for e in out_schools.values() if e.get("programs"))} schools '

@@ -94,14 +94,14 @@ def extract():
     if not grep:
         warn.append('Grep registry missing — run tools/fetch_grep.py')
     names = set(os.listdir(SRC))
-    for fname in sorted(names, reverse=True):
+    for fname in common.current_files(names):
         if fname.endswith('.transcribed.csv'):
             out.append((fname, _transcribed(os.path.join(SRC, fname), warn)))
             continue
         # an image PDF is read from its transcription, never parsed
         if not fname.endswith('.pdf') or fname[:-4] + '.transcribed.csv' in names:
             continue
-        m = re.search(r'(20\d\d)-\d\d_(.+)\.pdf', fname)
+        m = re.search(r'(20\d\d)-\d\d_(.+?)(?:-rev\d+)?\.pdf', fname)
         if not m:
             warn.append(f'{fname}: cannot read year/region from filename')
             continue
