@@ -164,13 +164,23 @@ jobs:
         id: branch
         if: steps.report.outputs.captured != '0' && steps.report.outputs.captured != ''
         run: |
+          b="live/$(date -u +%Y%m%d-%H%M)"
           if [ "$GITHUB_EVENT_NAME" = push ]; then
-            b="$GITHUB_REF_NAME"
-            # the relay's state onto main's, so the PR carries both
-            cp tools/live/state.json "$RUNNER_TEMP/state.json"
-            git show origin/main:tools/live/state.json > tools/live/state.json 2>/dev/null || echo '{}' > tools/live/state.json
-            python3 tools/live/run.py --merge-state "$RUNNER_TEMP/state.json"
-          else b="live/$(date -u +%Y%m%d-%H%M)"; git switch -q -c "$b"; fi
+            # main may have moved since the relay cloned it (another capture merged):
+            # process on today's main, with only the relay's captures and state
+            relay=$(git rev-parse HEAD)
+            git checkout -q -f -B "$b" origin/main
+            new=$(python3 tools/live/run.py --adopt "$relay")
+            git push -q origin --delete "$GITHUB_REF_NAME" || true
+            if [ -z "$new" ]; then
+              echo "main already holds the relay's captures; keeping its state only"
+              git add tools/live/state.json
+              git diff --cached --quiet || git commit -q -m "The live watch records what the counties serve now (tools/live/state.json)"
+              for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep 10; done
+              exit 1
+            fi
+            echo "adopted: $new"
+          else git switch -q -c "$b"; fi
           git show origin/main:web/public/data/schools.json > "$RUNNER_TEMP/schools.before.json"
           echo "name=$b" >> "$GITHUB_OUTPUT"
 
@@ -269,8 +279,13 @@ jobs:
           echo "url=$url" >> "$GITHUB_OUTPUT"
           echo "Pull request: $url" >> "$GITHUB_STEP_SUMMARY"
           if [ $merge -eq 0 ]; then
-            gh pr merge "$url" --squash --delete-branch
-            echo "merged=true" >> "$GITHUB_OUTPUT"
+            if gh pr merge "$url" --squash --delete-branch; then
+              echo "merged=true" >> "$GITHUB_OUTPUT"
+            else
+              # main changed generated files while the pipeline ran
+              gh pr comment "$url" --body "Not merged: main moved while this ran and the generated files conflict. Close this and re-run the source (Actions → live → Run workflow, only: the source id), or rebase and re-run tools/refresh.py."
+              echo "::warning::$url passed its gates but conflicts with main"
+            fi
           elif grep -q "test_docs.py failed" "$T/refresh.log" 2>/dev/null; then
             # the data is fine; the refit moved a number the technical report quotes
             gh issue create --title "live: the report needs the new numbers ($BRANCH)" --body \

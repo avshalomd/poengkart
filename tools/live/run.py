@@ -6,6 +6,7 @@ anything new under sources/ the moment it appears.
     .venv/bin/python3 tools/live/run.py --only rogaland oslo  # these, now
     .venv/bin/python3 tools/live/run.py --all --dry-run       # look, write nothing
     python3 tools/live/run.py --all --runner cloud            # the vilbli sources (routines/live-vilbli.md)
+    python3 tools/live/run.py --adopt <sha>                   # a relay commit's captures, onto main
     ... --json report.json                                    # the run's report, for the workflow
 
 For every source (tools/live/sources/<id>.py) the run is:
@@ -162,6 +163,47 @@ def add_to_manifest(rel, prov):
         sources_manifest.build()
 
 
+def _git(*args):
+    import subprocess
+    return subprocess.run(['git', *args], cwd=ROOT, check=True, capture_output=True).stdout
+
+
+def adopt(rev):
+    """Bring the captures of a relay commit onto this checkout (main as it is
+    now, not as it was when the relay cloned it): every file the commit added
+    under sources/, with its manifest provenance, and its state. Returns the
+    files that are new here; one main already has, byte for byte, is skipped."""
+    base = _git('merge-base', 'HEAD', rev).decode().strip()
+    added = _git('diff', '--name-only', '--diff-filter=A', base, rev, '--', 'sources/').decode().split()
+    theirs = json.loads(_git('show', f'{rev}:sources/manifest.json'))['files']
+    new = []
+    for path in added:
+        rel = path[len('sources/'):]
+        if rel not in theirs:
+            continue                                        # not a capture (the manifest itself)
+        body = _git('show', f'{rev}:{path}')
+        here = os.path.join(SOURCES, rel)
+        if os.path.exists(here):
+            if open(here, 'rb').read() == body:
+                continue
+            county, name = rel.split('/', 1)
+            rel = f'{county}/{free_name(county, name)}'
+            here = os.path.join(SOURCES, rel)
+        os.makedirs(os.path.dirname(here), exist_ok=True)
+        with open(here, 'wb') as fh:
+            fh.write(body)
+        add_to_manifest(rel, theirs[path[len('sources/'):]]['provenance'])
+        new.append(rel)
+    tmp = os.path.join(HERE, '.adopt-state.json')
+    with open(tmp, 'wb') as fh:
+        fh.write(_git('show', f'{rev}:tools/live/state.json'))
+    try:
+        merge_state(tmp)
+    finally:
+        os.remove(tmp)
+    return new
+
+
 def run_source(sid, state, now, dry_run=False):
     mod = importlib.import_module(f'live.sources.{sid}')
     src = mod.SOURCE
@@ -227,6 +269,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument('--merge-state', metavar='STATE', help="fold another runner's state.json into ours")
+    g.add_argument('--adopt', metavar='REV', help="bring a relay commit's captures onto this checkout")
     g.add_argument('--due', action='store_true', help='the sources due now (schedule.py)')
     g.add_argument('--only', nargs='+', metavar='ID')
     g.add_argument('--all', action='store_true')
@@ -238,6 +281,10 @@ def main(argv=None):
     a = ap.parse_args(argv)
     if a.merge_state:
         print('merged the state of', ', '.join(merge_state(a.merge_state)))
+        return 0
+    if a.adopt:
+        for rel in adopt(a.adopt):
+            print(rel)
         return 0
 
     ids = [s for s in schedule.source_ids() if schedule.runner(s) == a.runner]

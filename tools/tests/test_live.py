@@ -259,3 +259,44 @@ def test_issues_open_once_with_one_label_and_repeat_only_news():
     assert [a[0] for a in issues.plan(rep, {'live: oslo': 7}, {7: 'old'})] == ['comment']
     rep['sources']['oslo'].update(status='UNCHANGED', detail='')
     assert [a[0] for a in issues.plan(rep, {'live: oslo': 7})] == ['close']
+
+
+def test_adopt_takes_the_relay_captures_onto_a_main_that_moved(tmp_path, monkeypatch):
+    import subprocess
+
+    def git(*a):
+        subprocess.run(['git', '-c', 'user.name=t', '-c', 'user.email=t@t', *a], cwd=tmp_path,
+                       check=True, capture_output=True)
+
+    def put(rel, body):
+        (tmp_path / rel).parent.mkdir(parents=True, exist_ok=True)
+        (tmp_path / rel).write_bytes(body)
+
+    git('init', '-q', '-b', 'main')
+    put('sources/manifest.json', b'{"files": {}}')
+    put('tools/live/state.json', b'{}')
+    put('web/schools.json', b'old')
+    git('add', '-A'); git('commit', '-qm', 'base')
+    git('switch', '-qc', 'relay')
+    put('sources/rogaland/p-rev3.pdf', b'%PDF new')
+    put('sources/manifest.json', b'{"files": {"rogaland/p-rev3.pdf": {"provenance": "from vilbli"}}}')
+    put('tools/live/state.json', b'{"sources": {"rogaland": {}}}')
+    git('add', '-A'); git('commit', '-qm', 'relay')
+    relay = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=tmp_path, capture_output=True,
+                           text=True).stdout.strip()
+    git('switch', '-q', 'main')
+    put('web/schools.json', b'another capture merged')
+    git('commit', '-qam', 'main moved')
+
+    monkeypatch.setattr(run, 'ROOT', str(tmp_path))
+    monkeypatch.setattr(run, 'SOURCES', str(tmp_path / 'sources'))
+    monkeypatch.setattr(run, 'HERE', str(tmp_path / 'tools' / 'live'))
+    added, merged = {}, []
+    monkeypatch.setattr(run, 'add_to_manifest', lambda rel, prov: added.update({rel: prov}))
+    monkeypatch.setattr(run, 'merge_state', lambda p: merged.append(json.load(open(p))))
+    assert run.adopt(relay) == ['rogaland/p-rev3.pdf']
+    assert (tmp_path / 'sources/rogaland/p-rev3.pdf').read_bytes() == b'%PDF new'
+    assert (tmp_path / 'web/schools.json').read_bytes() == b'another capture merged'
+    assert added == {'rogaland/p-rev3.pdf': 'from vilbli'}
+    assert merged == [{'sources': {'rogaland': {}}}]
+    assert run.adopt(relay) == []                      # main already has it, byte for byte
