@@ -296,9 +296,18 @@ e-mailed extract's in every cell both carry (1 195 of 1 195 on 28 Sept
 2026); the report also masks a figure of exactly 25. The extractor reads it
 only for the school years no extract covers, and only Vg1.
 
-The sentinel checks the vilbli page of every other county once a week and
-opens a GitHub issue if one of them attaches a document; nothing it finds is
-kept here without a person.
+vilbli.no refuses GitHub's runners (an AWS WAF CAPTCHA on the page, a
+CloudFront block on the attachments), so Rogaland, Innlandet and Trøndelag are
+checked four times a weekday by a Claude cloud routine instead
+(`routines/live-vilbli.md`), which runs the same scrapers and pushes what they
+capture for the workflow to process. vilbli's page is challenged there too,
+so those scrapers ask for the attachments by the names the counties have used
+(this year's and next year's); a county that renames its file is found again
+only when someone reads the page in a browser.
+
+The sentinel walks the other seven counties' own sites once a week for any link
+that names a poenggrense and opens a GitHub issue when a new one appears;
+nothing it finds is kept here without a person.
 
 ## Mirror
 

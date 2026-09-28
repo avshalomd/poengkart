@@ -442,7 +442,9 @@ Found by the final whole-branch review (17 September 2026) and left for later:
 
 `.github/workflows/live.yml` runs `tools/live/` every hour: eight scrapers
 (Akershus, Buskerud, Innlandet, Møre og Romsdal, Oslo, Rogaland, Trøndelag,
-Vestland) and a weekly sentinel over the other counties' vilbli pages. A new
+Vestland; the three vilbli counties through a Claude cloud relay routine,
+because vilbli answers GitHub's runners with a CAPTCHA) and a weekly sentinel
+over the other seven counties' own sites. A new
 document is captured under `sources/`, processed by `tools/refresh.py` on a
 branch, gated by every test suite and merged and deployed on its own when
 `tools/live/policy.py` allows it; a broken scraper opens an issue labelled
@@ -469,8 +471,12 @@ pull request. Timetable and reasoning: `tools/live/schedule.py`. Open items:
   legend (and `OPEN_BELOW` in the extractor) says «under 25»: 34 Vg1 cells
   since 2012 are 25,0 in the extract and `*` in the report. The dataset
   follows the extract; worth a line to the county.
+- **vilbli blocks automated readers.** Its page is behind an AWS WAF CAPTCHA
+  from every runner the watch has; the attachments host serves the Claude
+  cloud, so the relay guesses the counties' file names. A courteous ask to
+  Novari IKS (vilbli's owner) for a feed or an allowance for a few requests a
+  day would make the three counties as robust as the others.
 - **The weekly Claude source-watch routine** («Poengkart — weekly 2026/27
-  poenggrense watch») is superseded by this workflow for the eight counties
-  it scrapes; its monthly web search of the seven counties without data is
-  the one thing the sentinel does not do (it reads vilbli only). Retire it,
-  or cut it down to that monthly search.
+  poenggrense watch») is superseded by the workflow, the relay and the
+  sentinel; retire it, or keep only its monthly web search of the seven
+  counties without data.

@@ -238,3 +238,24 @@ def test_every_scraper_declares_what_the_runner_needs():
     for sid in schedule.source_ids():
         s = schedule.source(sid)
         assert s['id'] == sid and s['publisher'] and 'season' in s
+
+
+def test_vilbli_sources_run_in_the_cloud_relay_and_the_rest_on_actions():
+    assert {s for s in schedule.source_ids() if schedule.runner(s) == 'cloud'} == \
+        {'rogaland', 'innlandet', 'trondelag'}
+    assert 'rogaland' not in schedule.due(at('2026-09-01T10:23'))
+    assert 'oslo' in schedule.due(at('2026-09-01T10:23'))
+
+
+def test_issues_open_once_with_one_label_and_repeat_only_news():
+    from live import issues
+    rep = {'finished': 'now', 'sources': {'oslo': {'status': 'CHECK-FAIL', 'detail': 'no tables',
+                                                   'captured': [], 'alerts': []}}}
+    acts = issues.plan(rep, {})
+    assert [(a[0], a[1], a[4]) for a in acts] == [('open', 'live: oslo', 'heal')]
+    same = issues.plan(rep, {'live: oslo': 7}, {7: issues.body('oslo', rep['sources']['oslo'], 'then')})
+    assert same == []
+    rep['sources']['oslo']['detail'] = 'HTTP 500'
+    assert [a[0] for a in issues.plan(rep, {'live: oslo': 7}, {7: 'old'})] == ['comment']
+    rep['sources']['oslo'].update(status='UNCHANGED', detail='')
+    assert [a[0] for a in issues.plan(rep, {'live: oslo': 7})] == ['close']
