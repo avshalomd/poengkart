@@ -1,0 +1,83 @@
+{
+ "fingerprint_env": "pdfplumber==0.11.8 pdfminer-six==20251107 beautifulsoup4==4.15.0 lxml==6.1.2 openpyxl==3.1.5",
+ "fingerprints": {
+  "1ac998ed876b2a48214a7d85d1f164b032844e864bbf42f4992ce301c831a143": "859999b6e19daf2bb181d9452ceefc283729e8dbf8ab0ad8ccc30ec7e3de9e80",
+  "23dba536bc002ca0101587cc82fc9e8d57604246d6c854b9e590de53417d502f": "f7675b552b12b4639d866947682b0da746af3af15718bff185818e666188933d",
+  "35350f3daba5d693f0ca112bbecdcda5c98500f7a93c58167f793c7fa677ace3": "776d7f40222c1e93e10c1b868b41824a6d377d6c6c15073dfdb23d1350ccf3a6",
+  "3897687a7b9f6c0174f4caab98f511d19ac9779f3d5621dde8e42f0a41f47792": "b79e33daa86a0373438069732a52b662ea470cb10b84ff16a3509daf53b17b29",
+  "420bb0d27100cb29e9298eb91e5987284589cc9411e4934a0bc2c5859e9c7a2f": "2a5b3b9e10f97690911e6b8b5e42a2fe0cbff693ce65eebe43dc559091569d90",
+  "49657a8fc08b5303c4657e93c847fef71c25832f69a5ca6e0f41f37c7e39a749": "09334e74128b8846d96d5955f2b40c339736615cf59c1bb24aca86d73b7f9892",
+  "5cbab54e31c469325d5dfcd248e7f85dfda112a502791ac6354daf2eaabdba4a": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "62bbe9d031b247e320b622d6bd51d99f91c4a67ce65dde943ba315a651133095": "11aef1970eaf47cb1b7e0e079316a1732f9ae2dc26a2c52a1258462324e512e0",
+  "6b71eaa90ab6c5e9a6c1956fe0760450435fbbd319e4bc79eb6ae9a3842be41e": "f154721c83eef923d181e0fb303715498807fd31194bfe8de76990f5bf9bae17",
+  "6ee57aebbbce7f891fc207adf1d576257b8b0eabc1247fe50a8eda437e762441": "66fdeb78820e8284e31cc207332a6d29252fc4a88c51f9dca439c58096136aa3",
+  "78e017646874dc5d01557f08ae43e77f21087c0b6175a11f4e918a854bb69bd7": "9339e53086afd59b9edee8459ae8f50a709a3eeba86cfd683754b9835353bc9d",
+  "7d1a28ecd96f0369893d797a30841369a62474c6684f69fa8f32f7e0c6346ebe": "bbc481481b906e880678bdd225e30d4c10c9885ec071f378c2d0d6d11a341a95",
+  "7dfb0b0070651930c8e4ae421482aaec51bb978a98d3664ad95b445d2c295d2f": "b90fdf7e23afc22c3e84d65207289d6b73d5bc1d1890c4a96c5af3a5c6812def",
+  "889757eae137bce931f9f3290bab259ab83b9a25b7befc45c050da1e847992d9": "b630c137e65e354a25656361d07ca7a82a5da0f68a5b1999a4ec0161699be9ee",
+  "8a149c72b8b13bf1e8ba66b3dfdecd63e4fb69742b8d442107518711eac2f307": "e1f31658cd1a31ec37eedafcc654a0a959bc9fb0d0218f13573a2ebc79ea1058",
+  "b1e2381fcaaf9d134ee6f0544410d452d8b351660f356b0ac2a2ad7439289e69": "2ebbfa34aac290e18e273db7765d203d47b4f8fcf198dd9457b4ab3344da4c03",
+  "bb8b0b1ac5b297d6128bfc24c11096f2b9a04cc07266e658063db1806313b02d": "262e15c1453dd18207103c1807cf412a2f62fef607d3eeb0d2efd9f5472a1c90",
+  "bc225bf1bac1436552cd05b7bb349f62cb21a1288b6ffa0c8ea16395195c4517": "7056b108321a817fcde02020abd4d30fea8e5100899c27aa3e0ed7aad93d93ea",
+  "ec0b262acc9a5a533f6ca43073bef110af5eac7cbd257bd84e09c2b7be988625": "c08462c4fd9cf5715b2b6cd548e4b1992f81405f3c36132b5bb3374418e5d489",
+  "f955afb12b9104288f0e91cab45666da092fc89d1f55aea6cfc9c1a0dcd5d95f": "06db4745065f5c37f6febe68c6cecf63fc74bce5af2765ed9d941b18b3ad2060",
+  "fdae55e4a23126623bb763b20b9f1dc7a46abed8c33f6c5d53a0a5f30483010e": "ee5cdc29ce627201a97b01e624dcf236a1d3b158f99005402cc25b007b3a701c"
+ },
+ "sources": {
+  "innlandet": {
+   "seen": {
+    "https://webservice.vilbli.no/Data/Artikkelvedlegg/041513/Poenggrense+2024-2026.pdf": {
+     "file": "innlandet/innlandet-2024-2026-2inntak.pdf",
+     "label": "Poenggrense 2024-2026.pdf",
+     "name": "innlandet-2024-2026-2inntak.pdf",
+     "sha256": "703c2239e1bf05c667f1d92b12be4e299745b274ba226d610770e82249294121"
+    }
+   }
+  },
+  "rogaland": {
+   "seen": {
+    "https://webservice.vilbli.no/Data/Artikkelvedlegg/041510/Poenggrenser+Rogaland+2026.pdf": {
+     "captured": "2026-09-28",
+     "file": "rogaland/poenggrenser-rogaland-2024-2026-official-rev3.pdf",
+     "label": "Poenggrenser Rogaland 2026.pdf",
+     "name": "poenggrenser-rogaland-2024-2026-official.pdf",
+     "sha256": "bb8b0b1ac5b297d6128bfc24c11096f2b9a04cc07266e658063db1806313b02d"
+    }
+   }
+  },
+  "trondelag": {
+   "seen": {
+    "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2526+Fosen.pdf": {
+     "file": "trondelag/trondelag_2025-26_fosen.pdf",
+     "label": "Laveste inntatt 2526 Fosen.pdf",
+     "name": "trondelag_2025-26_fosen.pdf",
+     "sha256": "fabdcdf4c3abb728d52db2e4a13f29aa8ab49ec88995ddd9c18e806042907759"
+    },
+    "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2526+Innherred-Værnes.pdf": {
+     "file": "trondelag/trondelag_2025-26_innherred-vaernes.pdf",
+     "label": "Laveste inntatt 2526 Innherred-Værnes.pdf",
+     "name": "trondelag_2025-26_innherred-vaernes.pdf",
+     "sha256": "bc60a9f8de13ce8563f9408b7962e96125271790eee8f7ec7969d2739be5ff1c"
+    },
+    "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2526+Namdal.pdf": {
+     "file": "trondelag/trondelag_2025-26_namdal.pdf",
+     "label": "Laveste inntatt 2526 Namdal.pdf",
+     "name": "trondelag_2025-26_namdal.pdf",
+     "sha256": "664c9609fc4a1bf8c7ca45c048ffe3fbf8909b98b1c1a9ccb1cc37ded5bd3445"
+    },
+    "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2526+Trondheim.pdf": {
+     "file": "trondelag/trondelag_2025-26_trondheim.pdf",
+     "label": "Laveste inntatt 2526 Trondheim.pdf",
+     "name": "trondelag_2025-26_trondheim.pdf",
+     "sha256": "3892118c437a747111e27572b8116b643eb98a6a64b182a7ef693ad13bf2d4d8"
+    },
+    "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2526+Trøndelag+sør.pdf": {
+     "file": "trondelag/trondelag_2025-26_trondelag-sor.pdf",
+     "label": "Laveste inntatt 2526 Trøndelag sør.pdf",
+     "name": "trondelag_2025-26_trondelag-sor.pdf",
+     "sha256": "541b7a1c0ee7e7a4a723bccefe7b2685ac3423bdf581fd758c4e8c3388c0646e"
+    }
+   }
+  }
+ }
+}
