@@ -60,6 +60,7 @@ programme the forecast (m, s, pi) for the county's next publication year;
 plus the backtest, calibration and round-bridge tables under "meta".
 """
 
+import hashlib
 import json
 import math
 import os
@@ -1565,18 +1566,24 @@ def main():
     for o in meta['outliers'][:8]:
         print(f'   z={o["z"]:+.1f}  {o["fylke"]} {o["school"]} · {o["program"]} {o["year"]}: {o["value"]} (fitted {o["fitted"]})')
 
+    # what this fit was made from: the dataset and the code that fits it
+    meta['inputs'] = {os.path.basename(f): hashlib.sha256(open(f, 'rb').read()).hexdigest()
+                      for f in (SRC, os.path.abspath(__file__))}
     out = dict(meta=meta, schools=out_schools)
-    # `built` is the day the model last changed: a refit that reproduces the
-    # shipped model value for value keeps that day, so rebuilding on a later
-    # day (the live watch runs the pipeline on every capture) leaves
-    # model.json and the report's reproducibility statement as they are
+    # `built` is the day the model last changed: a refit of the same dataset
+    # with the same code keeps that day, even where another machine's
+    # floating point moves the last digits (the fit's resolution, test_docs.py),
+    # and so does a refit that reproduces the shipped model value for value;
+    # rebuilding on a later day (the live watch runs the pipeline on every
+    # capture) leaves the report's reproducibility statement as it is
     try:
         prev = json.load(open(OUT)) if os.path.exists(OUT) else {}
     except ValueError:
         prev = {}
-    if prev.get('meta', {}).get('built') and \
-            dict(prev, meta=dict(prev['meta'], built=meta['built'])) == json.loads(json.dumps(out)):
-        meta['built'] = prev['meta']['built']
+    pm = prev.get('meta', {})
+    if pm.get('built') and (pm.get('inputs') == meta['inputs'] or
+                            dict(prev, meta=dict(pm, built=meta['built'], inputs=meta['inputs'])) == json.loads(json.dumps(out))):
+        meta['built'] = pm['built']
     json.dump(out, open(OUT, 'w'), ensure_ascii=False, separators=(',', ':'))
     n_pred = sum(len(e.get('programs', {})) for e in out_schools.values())
     print(f'\n{n_pred} programme forecasts for {sum(1 for e in out_schools.values() if e.get("programs"))} schools '

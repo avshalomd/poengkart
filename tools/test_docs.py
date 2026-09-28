@@ -5,7 +5,8 @@ docs/technical-report.md to the shipped
 web/public/data/model.json, so a refit can no longer leave the prose describing a
 model that is not the one deployed. Comparisons carry a tolerance of half a
 unit in the last displayed digit, so a value that sits exactly on a rounding
-boundary (3.45 shown as 3.4 or 3.5) never fails on the coin flip. Numbers the
+boundary (3.45 shown as 3.4 or 3.5) never fails on the coin flip, and fitted
+figures one more unit plus the fit's resolution (FIT_REL below). Numbers the
 docs state as one-off measurements of the sources (year-to-year sd, the
 the institutional figures of Section 2) are not re-derivable from meta and
 are not checked here. Panel counts come from
@@ -110,6 +111,23 @@ def rewrite(doc, name, pattern, expected, anchor=None):
 
 # tolerance = half a unit in the last displayed digit, plus float slack
 D1, D2, D3, PCT, N = 0.0500001, 0.0050001, 0.0005001, 0.5000001, 0.0000001
+# The fit is resolved to about 0.3 % (three EM passes of L-BFGS-B at scipy's
+# default tolerance on a flat ridge), so a refit on another machine (the live
+# watch's Linux runner against a Mac) moves the last displayed digit and the
+# bucket counts at bin edges (Appendix D; 8 and 28 Sept 2026). Every
+# non-integer figure therefore gets one more displayed unit plus 0.5 % of its
+# value; counts stay exact (they come from schools.json, the backtest's cell
+# set and the suites), except the reliability bins', which get fit_count().
+FIT_REL = 0.005
+
+
+def fit_count(n):
+    """the tolerance of a count of forecasts in a probability bin"""
+    return FIT_REL * n + N
+
+
+def slack(tl, want):
+    return tl if tl <= N else 2 * tl + FIT_REL * abs(want)
 
 
 def norm(text):
@@ -149,7 +167,7 @@ def check(doc, name, pattern, expected, text, tol):
         return
     got = [num(g) for g in m.groups()]
     tols = tol if isinstance(tol, (list, tuple)) else [tol] * len(got)
-    bad = [(g, w) for g, w, tl in zip(got, expected, tols) if abs(g - float(w)) > tl]
+    bad = [(g, w) for g, w, tl in zip(got, expected, tols) if abs(g - float(w)) > slack(tl, float(w))]
     if bad:
         if WRITE and rewrite(doc, name, pattern, expected, ANCHOR.get(id(text))):
             print(f'  re-pinned {doc}: {name}')
@@ -382,7 +400,7 @@ check(doc, 'year pairs', r'standard deviation of ([\d.]+) points from one year t
 for r in rel_chance:
     lo, hi = r['bin'].split('-')
     obs, n, tol = reliability_row(r)
-    check(doc, f'chance reliability {r["bin"]}', rf'\| {lo}–{hi}% \| ([\d.]+)% \| ([\d ]+) \|', [obs, n], flat, [tol, N])
+    check(doc, f'chance reliability {r["bin"]}', rf'\| {lo}–{hi}% \| ([\d.]+)% \| ([\d ]+) \|', [obs, n], flat, [tol, fit_count(n)])
 oz = META['outliers_z3']
 OZ_TOP = max(oz['by_fylke'], key=oz['by_fylke'].get)
 check(doc, 'outliers', rf'\|z\| ≥ 3: (\d+) of ([\d ]+) cells, (\d+) of them in {OZ_TOP}',
@@ -447,7 +465,7 @@ h4 = lvl['4+']
 check(doc, 'abstract rmse', r'\(([\d.]+) vs ([\d.]+) and ([\d.]+) points on series with four or more observed years', [h4['rmse'], h4['rmse_last_year'], h4['rmse_ewma']], flat, D2)
 check(doc, 'abstract coverage', r'nominal 80% intervals cover ([\d.]+)% \[([\d.]+), ([\d.]+)\] of outcomes',
       pct2([ev['coverage']['gaussian']['80']] + CI['coverage80']), flat, D2 * 10)
-check(doc, 'abstract calibration gap', r'calibrated to within ([\d.]+) points in every decile', [max_gap], flat, D2)
+check(doc, 'abstract calibration gap', r'calibrated to within ([\d.]+) points in every decile', [max_gap], flat, D1)
 check(doc, 'abstract brier', r'probabilistic persistence rule \(Brier ([\d.]+) vs ([\d.]+) and ([\d.]+)\)',
       [ch['brier_model_common'], ch['brier_last_year_rule'], ch['brier_persistence_prob']], flat, D3)
 check(doc, 'intro bullet', r'\(([\d.]+) vs ([\d.]+) and ([\d.]+) points in the deepest stratum\), covers ([\d.]+)% of outcomes with nominal 80% intervals, and produces calibrated probabilities that beat both a deterministic and a probabilistic persistence rule \(Brier ([\d.]+) vs ([\d.]+) and ([\d.]+)\)',
@@ -567,7 +585,7 @@ check(doc, 'chance brier common', r"([\d,]+) of those pairs; on that common subs
       [ch['n_last_year_rule'], ch['brier_model_common'], ch['brier_last_year_rule']] + CI['chance: model minus step persistence, brier']
       + [ch['brier_persistence_prob'], ch['brier_model_common'] - ch['brier_persistence_prob']] + CI['chance: model minus probabilistic persistence, brier'],
       flat, [N] + [D3] * 8)
-check(doc, '7.4 calibration gap', r'largest gap between prediction and outcome in any decile is ([\d.]+) points, in the 70–80% bin, where the forecast is cautious', [max_gap], flat, D2)
+check(doc, '7.4 calibration gap', r'largest gap between prediction and outcome in any decile is ([\d.]+) points, in the 70–80% bin, where the forecast is cautious', [max_gap], flat, D1)
 checked += 1
 if GAP_TOP != '70-80' or GAP['70-80'] >= 0:
     failures.append(f'{doc}: 7.4 says the largest decile gap is the cautious 70–80% bin; it is now {GAP_TOP} ({GAP[GAP_TOP]:+.1f})')
@@ -580,7 +598,7 @@ check(doc, 'limitations calibration', r'within (\d+) points of the outcome below
 for r in rel_chance:
     lo, hi = r['bin'].split('-')
     obs, n, tol = reliability_row(r)
-    check(doc, f'table 5 {r["bin"]}', rf'\| {lo}–{hi}% \| ([\d.]+)% \| ([\d,]+) \|', [obs, n], flat, [tol, N])
+    check(doc, f'table 5 {r["bin"]}', rf'\| {lo}–{hi}% \| ([\d.]+)% \| ([\d,]+) \|', [obs, n], flat, [tol, fit_count(n)])
 check(doc, 'figure 2 mass', r'\((\d+)% of score–cell pairs land above 80%\)', [mass_hi], flat, PCT)
 hs = META['halflife_search']
 check(doc, 'halflife', r'RMSE was \{([\d.]+), ([\d.]+), ([\d.]+), ([\d.]+)\}', [hs['1.5'], hs['2.5'], hs['4.0'], hs['None']], flat, D3)
@@ -657,7 +675,7 @@ check(doc, 'table C1 caption', r"\(([\d,]+) cells that competed on points, all e
 for r in rel_fill:
     lo, hi = r['bin'].split('-')
     obs, n, tol = reliability_row(r)
-    check(doc, f'table C1 {r["bin"]}', rf'\| {lo}–{hi}% \| ([\d.]+)% \| ([\d,]+) \|', [obs, n], appendix_c, [tol, N])
+    check(doc, f'table C1 {r["bin"]}', rf'\| {lo}–{hi}% \| ([\d.]+)% \| ([\d,]+) \|', [obs, n], appendix_c, [tol, fit_count(n)])
 # ---- v1.17: Vg1 and Vg2 and up scored apart, and the Vg1-only fit
 BL = {b['level']: b for b in ev['by_level']}
 BLC = {b['level']: b for b in META['backtest_calibration_years']['by_level']}
