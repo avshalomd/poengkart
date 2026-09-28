@@ -1,29 +1,73 @@
 {
  "fingerprint_env": "pdfplumber==0.11.8 pdfminer-six==20251107 beautifulsoup4==4.15.0 lxml==6.1.2 openpyxl==3.1.5",
  "fingerprints": {
+  "101c89fbdd89be58807651643838f370a33148bfdc358b33e09f6ec156870f39": "3aef43839dd5906be0240ae718490e5fc22b70c133cc85224fadb50da271d254",
+  "13f6a0ffbb55e3581dce1b9f49dac410f8a8404a5dfeb8ace09b37e8a651afd3": "e63e7e215cb16d83002dde8197453533ebca18702c05e83dc7cc1c7662674907",
+  "1ab24b7b711f247e5e38f55e690366e8e35844a6452371010070b95c13192605": "52835e78abe93d6dd658c468e4d1ee10edd516a17c932c1205f1b9072f19b256",
   "1ac998ed876b2a48214a7d85d1f164b032844e864bbf42f4992ce301c831a143": "859999b6e19daf2bb181d9452ceefc283729e8dbf8ab0ad8ccc30ec7e3de9e80",
   "23dba536bc002ca0101587cc82fc9e8d57604246d6c854b9e590de53417d502f": "f7675b552b12b4639d866947682b0da746af3af15718bff185818e666188933d",
+  "30937fbd13ddc81022b8fadc022b54062174a68884d85d57ed943e23c0fe51fc": "807a9237fe0da965a47fc6b6a0d683257407874d049d0e61cf0a9ff4f9bf0d1b",
+  "32b425c651f46555f24c650bb875b8a6dd167bbf02806a1237083ce3666da158": "557745e456445c1da141ac0b37858ea04de713331f69d01d090d75972e153ee9",
   "35350f3daba5d693f0ca112bbecdcda5c98500f7a93c58167f793c7fa677ace3": "776d7f40222c1e93e10c1b868b41824a6d377d6c6c15073dfdb23d1350ccf3a6",
   "3897687a7b9f6c0174f4caab98f511d19ac9779f3d5621dde8e42f0a41f47792": "b79e33daa86a0373438069732a52b662ea470cb10b84ff16a3509daf53b17b29",
   "420bb0d27100cb29e9298eb91e5987284589cc9411e4934a0bc2c5859e9c7a2f": "2a5b3b9e10f97690911e6b8b5e42a2fe0cbff693ce65eebe43dc559091569d90",
   "49657a8fc08b5303c4657e93c847fef71c25832f69a5ca6e0f41f37c7e39a749": "09334e74128b8846d96d5955f2b40c339736615cf59c1bb24aca86d73b7f9892",
+  "49fd6bd5832352bf660a6b8bb9c4a8148eeda456109febaa3c5958c66d8dd522": "5e7a7acb840e09dc3f3a49d48ab6393b7646e4fbeb1c4447809a7c16384c1119",
+  "4c766d132631b062c37eb3df7796fb1f635fba651a79e7976f08001ce6d8fcea": "98ca60a4ddeffbe2e11ea40960e09fbc9b047e4495fdd5b3eb43058d2b1cd6aa",
   "5cbab54e31c469325d5dfcd248e7f85dfda112a502791ac6354daf2eaabdba4a": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
   "62bbe9d031b247e320b622d6bd51d99f91c4a67ce65dde943ba315a651133095": "11aef1970eaf47cb1b7e0e079316a1732f9ae2dc26a2c52a1258462324e512e0",
   "6b71eaa90ab6c5e9a6c1956fe0760450435fbbd319e4bc79eb6ae9a3842be41e": "f154721c83eef923d181e0fb303715498807fd31194bfe8de76990f5bf9bae17",
   "6ee57aebbbce7f891fc207adf1d576257b8b0eabc1247fe50a8eda437e762441": "66fdeb78820e8284e31cc207332a6d29252fc4a88c51f9dca439c58096136aa3",
   "78e017646874dc5d01557f08ae43e77f21087c0b6175a11f4e918a854bb69bd7": "9339e53086afd59b9edee8459ae8f50a709a3eeba86cfd683754b9835353bc9d",
+  "797724ad50d4fe3a9ca839cea8b920502e894e38fec06f4f2252ac958e0a5126": "fd9247f88da676d23baf1d14b66a2978df91860391bc5a2b36555661198d017e",
+  "7af58406cdc395fe9facce7293fe321e5aaff0e617d7e9867a9c03418b8b001d": "538af63233d3ee922f4913f258ff79cad880875a9015bc4d069cc63ca0e4bbdc",
   "7d1a28ecd96f0369893d797a30841369a62474c6684f69fa8f32f7e0c6346ebe": "bbc481481b906e880678bdd225e30d4c10c9885ec071f378c2d0d6d11a341a95",
   "7dfb0b0070651930c8e4ae421482aaec51bb978a98d3664ad95b445d2c295d2f": "b90fdf7e23afc22c3e84d65207289d6b73d5bc1d1890c4a96c5af3a5c6812def",
   "889757eae137bce931f9f3290bab259ab83b9a25b7befc45c050da1e847992d9": "b630c137e65e354a25656361d07ca7a82a5da0f68a5b1999a4ec0161699be9ee",
   "8a149c72b8b13bf1e8ba66b3dfdecd63e4fb69742b8d442107518711eac2f307": "e1f31658cd1a31ec37eedafcc654a0a959bc9fb0d0218f13573a2ebc79ea1058",
+  "8b2518cddc23b12a48163831ca95c8ff0e7d1c566049578a1bcae6acb8233634": "ea071faa42d2b52a1e073f599b46119333bf401ad40162a3e4d276f524b7862e",
+  "9a1fee2e626c1f47857764f26bd541726f06d27e802f5cce350c624db2835919": "1200e4df23cba1de355a448ffdc8d1f75ffc0a8d16101344412248c6d8f03c14",
+  "acfef0cba25ad7c20f657a605c8a4698178e67e4ab34c71decf41965a587d9bf": "439b268d6b5eeddd75cbcdef1921c61ba317d5e81b9e3da752974d5e99e57e35",
+  "ae8426925c1643041b6a1f2f568cfaab5a706076a9594e4acbd83228eb1a0ae7": "2516299c085118d6b23c06eede789036fddbee526f1a56eb6b9fca274aaa8f70",
   "b1e2381fcaaf9d134ee6f0544410d452d8b351660f356b0ac2a2ad7439289e69": "2ebbfa34aac290e18e273db7765d203d47b4f8fcf198dd9457b4ab3344da4c03",
+  "b2e91453ac55a2f2f860b310a3058b3f464645fa862640c76f859bdf18ebefc1": "33e1963fa3f1729303cb20eccca0b3900744157f5e927ee121e7ff0ffc6d152a",
+  "b56eabac0ba3679259fae34f6e6b82f88fa07bf24da6b577b35975e12021a464": "9b59be1c2029789adc1bce7cf8763c0ade0ce67f457e87abf32c2fd34bbd2c2b",
+  "b5ae12c0155d5112061e5ec23e249906b4f16d4d100845afe0ae4138c8931ea6": "4323b4d8c4ade39b3fe775159244e7a13d0949ec36b34fbceee3d09fce4aa844",
   "bb8b0b1ac5b297d6128bfc24c11096f2b9a04cc07266e658063db1806313b02d": "262e15c1453dd18207103c1807cf412a2f62fef607d3eeb0d2efd9f5472a1c90",
   "bc225bf1bac1436552cd05b7bb349f62cb21a1288b6ffa0c8ea16395195c4517": "7056b108321a817fcde02020abd4d30fea8e5100899c27aa3e0ed7aad93d93ea",
+  "c41babd6a2175840fdf810e86d6e4ee2e93eef5f1dd0c20ba8ceea7c866dcd3c": "6b51c769cc3dc7faf34f9e3882df436c80d484cb627f716afbd703cccb0c9cb1",
+  "e0eaf56da3d932c8edba48e4e2d25ee5a7716be0e19bf56122e87f1f5c0236b8": "5ad5368f0acdb0d11514296e01e339f813a8840244e4d37b18b5f3b2c6feecd9",
+  "e4a67f43d6cf8ee04ac0a664d2c6a51819c1de63ece1cf9775062cb6d0958e58": "b56048fcee6b89f2ffcc2f7fe020831b3c2f431532432101036247918ab12ce6",
+  "e627ac04c874b437d0f7337e43f3f5e38c138194f2042e98f5b3cb5c358fdaf6": "9aad9ab1329138c329a3806082676a193ae21576da975d0a6fc04c44ac7e044b",
   "ec0b262acc9a5a533f6ca43073bef110af5eac7cbd257bd84e09c2b7be988625": "c08462c4fd9cf5715b2b6cd548e4b1992f81405f3c36132b5bb3374418e5d489",
+  "f0c30542a3d5306c2636a901230e45bc0bdea8741bf3cb5734561364e0348a96": "376e51eac3c201860c6b79a70ef70a465b8518f12f0b08f3f8753ce92ac2c6b1",
   "f955afb12b9104288f0e91cab45666da092fc89d1f55aea6cfc9c1a0dcd5d95f": "06db4745065f5c37f6febe68c6cecf63fc74bce5af2765ed9d941b18b3ad2060",
-  "fdae55e4a23126623bb763b20b9f1dc7a46abed8c33f6c5d53a0a5f30483010e": "ee5cdc29ce627201a97b01e624dcf236a1d3b158f99005402cc25b007b3a701c"
+  "fac6353f4cfdbb64b6e325173e77c3957e81dfc0d2fcefece482f8e4161d78d5": "7eee03919c445086893f916556fd6cacb69cf454c789ee6b14ac7917cb5eb7ff",
+  "fd2ababa8cd2fb9b2c9835a4fc0cbf682de737c86c13242a6eea3038f7a3cf89": "e3d5bf3ba1fcea64ae3b14239df71b91fc181b52aa10cf861cc2c7b156daecaa",
+  "fdae55e4a23126623bb763b20b9f1dc7a46abed8c33f6c5d53a0a5f30483010e": "ee5cdc29ce627201a97b01e624dcf236a1d3b158f99005402cc25b007b3a701c",
+  "fdd7389caba7fc74db5ac32b2cd3083b551c0b86d3de7d14271ab820d7a10ce2": "69418e54e6c3c559905009e7918f10cfc80d1e81b15705d455650a5bc2b20b06"
  },
  "sources": {
+  "akershus": {
+   "seen": {
+    "https://afk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/poenggrenser.222835.aspx": {
+     "file": "akershus/akershus-2025-2026.html",
+     "label": "skoleåret 2025–26",
+     "name": "akershus-2025-2026.html",
+     "sha256": "6d90e645ca9266be6629190ab8daa3ab4a1ae0b5443108807970016baa5e6ab0"
+    }
+   }
+  },
+  "buskerud": {
+   "seen": {
+    "https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/nedre-poenggrense-for-inntak-buskerud-2025-2026.207338.aspx": {
+     "file": "buskerud/buskerud-2025-2026.html",
+     "label": "Her finner du nedre poenggrense for inntak i Buskerud 2025-2026",
+     "name": "buskerud-2025-2026.html",
+     "sha256": "338de532ead703be5dd50fecdc7fa9f65da48e359a181f5572b148b4e2a79fcf"
+    }
+   }
+  },
   "innlandet": {
    "seen": {
     "https://webservice.vilbli.no/Data/Artikkelvedlegg/041513/Poenggrense+2024-2026.pdf": {
@@ -31,6 +75,16 @@
      "label": "Poenggrense 2024-2026.pdf",
      "name": "innlandet-2024-2026-2inntak.pdf",
      "sha256": "703c2239e1bf05c667f1d92b12be4e299745b274ba226d610770e82249294121"
+    }
+   }
+  },
+  "oslo": {
+   "seen": {
+    "https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/": {
+     "file": "oslo/oslo-2026.html",
+     "label": "inntaksrunde i 2026",
+     "name": "oslo-2026.html",
+     "sha256": "fde9700d1984f45d160b75a9b225263ec0446d0d67731e948b60cfff0c6e528e"
     }
    }
   },
@@ -44,6 +98,18 @@
      "sha256": "bb8b0b1ac5b297d6128bfc24c11096f2b9a04cc07266e658063db1806313b02d"
     }
    }
+  },
+  "sentinel": {
+   "baseline": {
+    "agder": [],
+    "finnmark": [],
+    "nordland": [],
+    "ostfold": [],
+    "telemark": [],
+    "troms": [],
+    "vestfold": []
+   },
+   "seen": {}
   },
   "trondelag": {
    "seen": {
@@ -76,6 +142,34 @@
      "label": "Laveste inntatt 2526 Trøndelag sør.pdf",
      "name": "trondelag_2025-26_trondelag-sor.pdf",
      "sha256": "541b7a1c0ee7e7a4a723bccefe7b2685ac3423bdf581fd758c4e8c3388c0646e"
+    }
+   }
+  },
+  "vestland": {
+   "seen": {
+    "https://www.vestlandfylke.no/contentassets/b3cb08f7dc2c4df8b656867567509152/nedre-poenggrense-etter-3.-inntak.pdf": {
+     "file": "vestland/vestland_2025-26_3inntak.pdf",
+     "label": "Nedre poenggrense etter 3. inntak, 2025/2026",
+     "name": "vestland_2025-26_3inntak.pdf",
+     "sha256": "486b74b3e70ae1b64cc6eea4d8d655e98281f56f69ed94b68b5e1d3e778e1081"
+    },
+    "https://www.vestlandfylke.no/globalassets/utdanning-og-karriere/elev/inntak/nedre-poenggrense-1.inntak-.pdf": {
+     "file": "vestland/vestland_2026-27_1inntak.pdf",
+     "label": "Nedre poenggrense etter 1.inntak. 2026/2027",
+     "name": "vestland_2026-27_1inntak.pdf",
+     "sha256": "9c4016fbb5f39c8650d12bd1026237738e7e3213727d6d45f14b828984639c8c"
+    },
+    "https://www.vestlandfylke.no/globalassets/utdanning-og-karriere/elev/inntak/nedre-poenggrense-3.-inntak-20262027.pdf": {
+     "file": "vestland/vestland_2026-27_3inntak-rev2.pdf",
+     "label": "Nedre poenggrense etter 3.inntak. 2026/2027",
+     "name": "vestland_2026-27_3inntak.pdf",
+     "sha256": "9a1fee2e626c1f47857764f26bd541726f06d27e802f5cce350c624db2835919"
+    },
+    "https://www.vestlandfylke.no/globalassets/vedlegg-til-nyheitar/nedre-poengsum-etter-1.-inntak-ny-utgave.pdf": {
+     "file": "vestland/vestland_2025-26_1inntak.pdf",
+     "label": "Nedre poenggrense etter 1. inntak, 2025/2026",
+     "name": "vestland_2025-26_1inntak.pdf",
+     "sha256": "667bd3ae8dee6da39d670d6eadf552e864a943a3fcbb50cc890bcc3e6c9b8dbc"
     }
    }
   }
