@@ -461,12 +461,14 @@ pull request. Timetable and reasoning: `tools/live/schedule.py`. Open items:
   figures under 25 are masked `*` like Vg1's. Reading them adds a level to
   the county and changes the model; the extractor reads Vg1 only until the
   owner decides.
-- **Decision: a new school year and the report.** A refit on new data moves
-  numbers the technical report quotes, so `test_docs` holds the pull request
-  until the report is updated («live: the report needs the new numbers»).
-  The alternative is to let the site update and the report lag with a
-  «numbers as of vX» line; recommended to keep the hold, since the report
-  is regenerated in minutes and a new year comes once a county per year.
+- ~~**Decision: a new school year and the report.**~~ Decided 28 Sept 2026:
+  both wait for Abshalom. A county's first figures for a school year are
+  processed and tested on a branch, then held (`tools/live/policy.py` rule 6)
+  with a «live: waiting for you» issue; a refit that moves a number the
+  report quotes is held by test_docs («live: the report needs the new
+  numbers») until the report is updated on the branch. His merge deploys
+  (live.yml's deploy-merged job). Corrections to a year already published
+  still go live by themselves.
 - **Møre og Romsdal masks a figure of exactly 25**, where the county's
   legend (and `OPEN_BELOW` in the extractor) says «under 25»: 34 Vg1 cells
   since 2012 are 25,0 in the extract and `*` in the report. The dataset

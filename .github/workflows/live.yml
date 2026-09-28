@@ -12,9 +12,9 @@
 # captured byte for byte under sources/<county>/ with its provenance, on a branch
 # live/<time>; the whole pipeline (tools/refresh.py) and every test suite run on
 # it, and a pull request says what it changes on the site. tools/live/policy.py
-# decides whether it merges and deploys on its own (a new year or a small
-# correction does; a lost cell, a large rewrite, a failed gate or a moved report
-# number waits for a person).
+# decides whether it merges and deploys on its own (a small correction does; a
+# new school year, a lost cell, a large rewrite, a failed gate or a moved report
+# number waits for a person, and the person's merge deploys).
 #
 # A scraper that fails, or a capture the pipeline cannot read, gets a GitHub
 # issue labelled `heal`, which starts the self-heal routine
@@ -37,6 +37,9 @@ on:
     - cron: "23 4-19 * * *"
   push:
     branches: ["live/cloud-*"]
+  pull_request:
+    # the owner's merge of a live pull request that waited for him deploys it
+    types: [closed]
   workflow_dispatch:
     inputs:
       only:
@@ -62,7 +65,9 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: live
+  # a closed pull request gets its own queue: in the watch's, a new pending
+  # run replaces an older pending one, and a PR event must not cancel a watch
+  group: live-${{ github.event_name == 'pull_request' && 'merged' || 'watch' }}
   cancel-in-progress: false
 
 env:
@@ -71,7 +76,7 @@ env:
 
 jobs:
   live:
-    if: vars.LIVE_ENABLED == 'true' || github.event_name != 'schedule'
+    if: github.event_name != 'pull_request' && (vars.LIVE_ENABLED == 'true' || github.event_name != 'schedule')
     runs-on: ubuntu-latest
     timeout-minutes: 75
     defaults:
@@ -297,6 +302,10 @@ jobs:
               gh pr comment "$url" --body "Not merged: main moved while this ran and the generated files conflict. Close this and re-run the source (Actions → live → Run workflow, only: the source id), or rebase and re-run tools/refresh.py."
               echo "::warning::$url passed its gates but conflicts with main"
             fi
+          elif [ -n "$passed" ]; then
+            # every gate passed; the policy holds it for the owner (a new school year, a large change)
+            gh issue create --title "live: waiting for you ($BRANCH)" --body \
+              "$title. Every gate passed; it waits because $(sed -n '1s/^\*\*Merges on its own:\*\* no — //p' "$T/policy.txt"). What it changes on poengkart.no is in $url. Merge it to publish: the merge deploys poengkart.no by itself. Close it to drop the capture."
           elif grep -q "test_docs.py failed" "$T/refresh.log" 2>/dev/null; then
             # the data is fine; the refit moved a number the technical report quotes
             gh issue create --title "live: the report needs the new numbers ($BRANCH)" --body \
@@ -318,26 +327,39 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
-          PR: ${{ steps.pr.outputs.url }}
-        run: |
-          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
-            msg="Merged to main, not deployed: the VERCEL_TOKEN secret is not set. Deploy by hand (vercel deploy --prod) or set it."
-            echo "::warning::$msg"; echo "$msg" >> "$GITHUB_STEP_SUMMARY"
-            [ -n "$PR" ] && gh pr comment "$PR" --body "$msg" || true
-            exit 0
-          fi
-          git fetch -q origin main && git checkout -q FETCH_HEAD
-          npx --yes vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN" | tee "$RUNNER_TEMP/deploy.log"
-          sleep 20
-          want=$(sha256sum web/public/data/schools.json | cut -d' ' -f1)
-          got=$({ curl -sfL "https://poengkart.no/data/schools.json?live=$GITHUB_RUN_ID" || true; } | sha256sum | cut -d' ' -f1)
-          if [ "$want" = "$got" ]; then echo "poengkart.no serves the new schools.json" >> "$GITHUB_STEP_SUMMARY"
-          else echo "::warning::poengkart.no does not serve the merged schools.json yet"; fi
-          echo "Deployed main $(git rev-parse --short HEAD): $(tail -1 "$RUNNER_TEMP/deploy.log")" >> "$GITHUB_STEP_SUMMARY"
-          if [ -n "$PR" ]; then gh pr comment "$PR" --body "Deployed to https://poengkart.no ($(tail -1 "$RUNNER_TEMP/deploy.log"))."; fi
+        run: tools/live/deploy.sh "${{ steps.pr.outputs.url }}"
 
       - name: Fail the run when a source failed
         if: steps.report.outputs.rc == '1'
         run: |
           echo "A source failed or failed its check; its issue is open (title «live: <source>»)."
           exit 1
+
+  deploy-merged:
+    # a live pull request the policy held, merged by the owner: publish it
+    if: >-
+      github.event_name == 'pull_request' && github.event.pull_request.merged &&
+      contains(github.event.pull_request.labels.*.name, 'live')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Deploy
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+        run: tools/live/deploy.sh "${{ github.event.pull_request.html_url }}"
+      - name: Close its waiting issue
+        env:
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          for n in $(gh issue list --state open --search "in:title \"live: waiting for you ($BRANCH)\"" --json number -q '.[].number'); do
+            gh issue close "$n" --comment "Merged and deployed."
+          done

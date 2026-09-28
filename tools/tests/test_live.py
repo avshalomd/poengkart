@@ -193,7 +193,7 @@ def test_mro_reads_the_dashboard_only_for_years_no_extract_covers(tmp_path):
 DIFF = {'added': 300, 'changed': 1, 'removed': 0, 'schools_removed': [], 'schools_added': []}
 
 
-def test_policy_merges_a_new_year_and_holds_the_rest():
+def test_policy_merges_a_correction_and_holds_the_rest():
     data = ['sources/oslo/oslo-2027.html', 'sources/manifest.json', 'web/public/data/schools.json',
             'data/poengkart.db', 'tools/live/state.json']
     assert policy.may_auto_merge(DIFF, True, data, True)[0]
@@ -203,6 +203,23 @@ def test_policy_merges_a_new_year_and_holds_the_rest():
     assert not policy.may_auto_merge(dict(DIFF, schools_removed=['Oslo: X']), True, data, True)[0]
     assert not policy.may_auto_merge(dict(DIFF, changed=policy.MAX_CHANGED + 1), True, data, True)[0]
     assert not policy.may_auto_merge(DIFF, True, data + ['tools/extractors/oslo.py'], True)[0]
+    held = policy.may_auto_merge(dict(DIFF, county_years_added=['Oslo 2027']), True, data, True)
+    assert not held[0] and 'Oslo 2027' in held[1]
+
+
+def test_diff_tells_a_new_year_from_a_filled_hole(tmp_path):
+    from live import diff as livediff
+
+    def put(name, cells):
+        progs = [{'program': p, 'level': 'Vg1', 'values': v} for p, v in cells.items()]
+        (tmp_path / name).write_text(json.dumps({'schools': [{'fylke': 'Oslo', 'name': 'A', 'programs': progs}]}))
+        return str(tmp_path / name)
+
+    before = put('b.json', {'ST': {'2025': 40.1, '2026': 41.0}, 'IM': {'2025': 30.0}})
+    hole = put('h.json', {'ST': {'2025': 40.1, '2026': 41.0}, 'IM': {'2025': 30.0, '2026': 31.0}})
+    year = put('y.json', {'ST': {'2025': 40.1, '2026': 41.0, '2027': 42.0}, 'IM': {'2025': 30.0}})
+    assert livediff.diff(before, hole)['county_years_added'] == []
+    assert livediff.diff(before, year)['county_years_added'] == ['Oslo 2027']
 
 
 def test_policy_for_machine_written_fixes():
