@@ -455,12 +455,9 @@ pull request. Timetable and reasoning: `tools/live/schedule.py`. Open items:
   `R2_*` keys (mirror captures), set with `gh secret set`; until then a
   merged update waits for a manual deploy and the mirror for a local
   `tools/sources_r2.py push`.
-- **Decision: Møre og Romsdal Vg2–Vg3.** The county's Power BI report, now
-  read by the watch, holds Vg1–Vg3 for 2012/13–2026/27 (6 074 rows) with the
-  admitted mean: what the data-hole sweep asked the county for. Its Vg2+
-  figures under 25 are masked `*` like Vg1's. Reading them adds a level to
-  the county and changes the model; the extractor reads Vg1 only until the
-  owner decides.
+- ~~**Decision: Møre og Romsdal Vg2–Vg3.**~~ Yes (28 Sept 2026): Vg2, Vg3
+  and Vg4 come from the county's Power BI report under the same «under 25»
+  rule, 4,268 cells (report v1.21, #45).
 - ~~**Decision: a new school year and the report.**~~ Decided 28 Sept 2026:
   both wait for Abshalom. A county's first figures for a school year are
   processed and tested on a branch, then held (`tools/live/policy.py` rule 6)
@@ -475,9 +472,9 @@ pull request. Timetable and reasoning: `tools/live/schedule.py`. Open items:
   follows the extract; worth a line to the county.
 - **vilbli blocks automated readers.** Its page is behind an AWS WAF CAPTCHA
   from every runner the watch has; the attachments host serves the Claude
-  cloud, so the relay guesses the counties' file names. A courteous ask to
-  Novari IKS (vilbli's owner) for a feed or an allowance for a few requests a
-  day would make the three counties as robust as the others.
+  cloud, so the relay guesses the counties' file names, and the weekly
+  source watch looks for names it does not guess. Decided 28 Sept 2026 not
+  to contact Novari IKS (vilbli's owner).
 - ~~**The weekly Claude source-watch routine**~~ was repurposed on 28 Sept
   2026 (`routines/source-watch.md`): it no longer checks the counties the
   live watch fetches, but looks for what the watch cannot see (a vilbli file
