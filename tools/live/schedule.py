@@ -17,6 +17,10 @@ document is captured within the hour it appears; out of season once a day at
 07, which still catches a late correction the next morning. The sentinel
 (the counties that publish nothing) runs on Mondays at 07.
 
+Sources on hosts that refuse GitHub's runners (vilbli.no) carry
+`'runner': 'cloud'` and are run by the relay routine instead
+(routines/live-vilbli.md), on its own timetable; `due` leaves them out.
+
 `due` is stateless: the workflow fires hourly and whether a source runs is a
 function of Oslo's clock alone. A late or doubled run is harmless, because an
 unchanged document is recognised by its content and nothing is written.
@@ -62,27 +66,37 @@ def is_due(src, now):
     return now.hour == DAILY_HOUR
 
 
-def due(now):
-    return [sid for sid in source_ids() if is_due(source(sid), now)]
+def runner(sid):
+    """Where a source runs: 'actions' (the hourly workflow) or 'cloud' (the
+    relay routine, for hosts that refuse GitHub's runners)."""
+    return source(sid).get('runner', 'actions')
+
+
+def due(now, where='actions'):
+    return [sid for sid in source_ids() if runner(sid) == where and is_due(source(sid), now)]
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('cmd', choices=['due', 'show', 'ids'])
     ap.add_argument('--at', help='Oslo local time, ISO (default: now)')
+    ap.add_argument('--runner', default='actions', choices=['actions', 'cloud', 'any'],
+                    help='only the sources that run there (default: actions)')
     a = ap.parse_args(argv)
     now = (datetime.datetime.fromisoformat(a.at).replace(tzinfo=OSLO) if a.at
            else datetime.datetime.now(OSLO))
     if a.cmd == 'ids':
-        print('\n'.join(source_ids()))
+        print('\n'.join(s for s in source_ids() if a.runner in ('any', runner(s))))
         return 0
     if a.cmd == 'due':
-        print('\n'.join(due(now)))
+        print('\n'.join(due(now, a.runner)))
         return 0
     for sid in source_ids():
         s = source(sid)
         when = ('Mondays 07' if sid == 'sentinel' else
                 'hourly 06–20 weekdays, 09 and 15 weekends' if in_season(s, now) else 'daily 07')
+        if s.get('runner') == 'cloud':
+            when = 'by the cloud relay routine (routines/live-vilbli.md)'
         print(f'{sid:<10} {"in season " if in_season(s, now) else "off season"}  {when}')
     return 0
 

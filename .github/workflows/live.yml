@@ -1,35 +1,42 @@
-# The live source watch: poengkart.no's figures follow the counties within the hour.
+# The live source watch: poengkart.no's figures follow the counties within hours.
 #
 # Every hour from early morning to evening it asks tools/live/schedule.py which
 # sources are due (hourly on weekdays in each county's publishing season, daily
 # out of it, the sentinel weekly) and runs their scrapers (tools/live/run.py).
-# A document whose content is already in sources/ changes nothing and leaves no
-# commit. A new one is captured byte for byte under sources/<county>/ with its
-# provenance, on a branch live/<time>; the whole pipeline (tools/refresh.py) and
-# every test suite run on it, and a pull request says what it changes on the
-# site. tools/live/policy.py decides whether it merges and deploys on its own
-# (new years and small corrections do; a lost cell, a large rewrite, a failed
-# gate or a moved report number waits for a person).
+# vilbli.no, where Rogaland, Innlandet and Trøndelag publish, refuses GitHub's
+# runners (an AWS WAF CAPTCHA), so those three run in a Claude cloud routine
+# (routines/live-vilbli.md) that pushes what it finds to a live/cloud-* branch;
+# a push there starts this workflow at the processing step.
+#
+# A document whose content is already in sources/ changes nothing. A new one is
+# captured byte for byte under sources/<county>/ with its provenance, on a branch
+# live/<time>; the whole pipeline (tools/refresh.py) and every test suite run on
+# it, and a pull request says what it changes on the site. tools/live/policy.py
+# decides whether it merges and deploys on its own (a new year or a small
+# correction does; a lost cell, a large rewrite, a failed gate or a moved report
+# number waits for a person).
 #
 # A scraper that fails, or a capture the pipeline cannot read, gets a GitHub
 # issue labelled `heal`, which starts the self-heal routine
-# (routines/live-heal.md); the issue closes itself on the next good run. A page
-# that moved and was found again by the scraper is remembered in
-# tools/live/state.json, committed to main.
+# (routines/live-heal.md); the issue closes itself on the next good run. What
+# each URL served last, and any page a scraper had to find again, is kept in
+# tools/live/state.json on main.
 #
 # Needs, set by the owner (never in the repo):
 #   vars     LIVE_ENABLED=true     the hourly schedule (a manual run works regardless)
 #            LIVE_AUTOMERGE=true   let tools/live/policy.py merge; otherwise every update waits
 #            VERCEL_ORG_ID, VERCEL_PROJECT_ID
-#   secrets  VERCEL_TOKEN          deploy after a merge (without it the merge waits for a deploy)
+#   secrets  VERCEL_TOKEN          deploy after a merge (without it a merge waits for a deploy)
 #            R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY   mirror captures to R2
-#   repo     Settings → Actions → "Allow GitHub Actions to create and approve pull requests"
+#   repo     Actions may create pull requests (set 28 Sept 2026)
 name: live
 
 on:
   schedule:
     # :23 past every hour 04–19 UTC: 06–21 in Oslo in summer, 05–20 in winter
     - cron: "23 4-19 * * *"
+  push:
+    branches: ["live/cloud-*"]
   workflow_dispatch:
     inputs:
       only:
@@ -37,7 +44,7 @@ on:
         required: false
         default: ""
       all:
-        description: "Run every source"
+        description: "Run every source this runner can reach"
         type: boolean
         default: false
       at:
@@ -60,13 +67,13 @@ env:
 
 jobs:
   live:
-    if: vars.LIVE_ENABLED == 'true' || github.event_name == 'workflow_dispatch'
+    if: vars.LIVE_ENABLED == 'true' || github.event_name != 'schedule'
     runs-on: ubuntu-latest
     timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -76,8 +83,14 @@ jobs:
 
       - run: pip install -q -r tools/requirements.txt
 
+      - name: Git identity
+        run: |
+          git config user.name "poengkart-live[bot]"
+          git config user.email "poengkart-live[bot]@users.noreply.github.com"
+
       - name: Which sources are due
         id: due
+        if: github.event_name != 'push'
         env:
           ONLY: ${{ inputs.only }}
           ALL: ${{ inputs.all }}
@@ -92,7 +105,7 @@ jobs:
 
       - name: Watch
         id: watch
-        if: steps.due.outputs.sources != ''
+        if: github.event_name != 'push' && steps.due.outputs.sources != ''
         env:
           SOURCES: ${{ steps.due.outputs.sources }}
         run: |
@@ -100,25 +113,40 @@ jobs:
           # (unquoted on purpose: one argument per source id; run.py rejects an unknown one)
           python3 tools/live/run.py --only $SOURCES --json "$RUNNER_TEMP/live.json"
           echo "rc=$?" >> "$GITHUB_OUTPUT"
-          { echo "## Live sources"; echo; python3 tools/live/issues.py "$RUNNER_TEMP/live.json" --summary; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: The cloud relay's report
+        id: relay
+        if: github.event_name == 'push'
+        run: |
+          # the routine commits its report beside the captures; it never reaches main
+          mv .live-report.json "$RUNNER_TEMP/live.json"
+          python3 -c "import json,sys; r=json.load(open(sys.argv[1])); print('rc=%d' % any(s['status'] in ('FAILED','CHECK-FAIL') for s in r['sources'].values()))" "$RUNNER_TEMP/live.json" >> "$GITHUB_OUTPUT"
+
+      - name: Summary and issues
+        id: report
+        if: steps.watch.outcome == 'success' || steps.relay.outcome == 'success'
+        env:
+          RC: ${{ steps.watch.outputs.rc }}${{ steps.relay.outputs.rc }}
+        run: |
+          { echo "## Live sources ($GITHUB_EVENT_NAME)"; echo; python3 tools/live/issues.py "$RUNNER_TEMP/live.json" --summary; } >> "$GITHUB_STEP_SUMMARY"
+          python3 tools/live/issues.py "$RUNNER_TEMP/live.json"
           n=$(python3 -c "import json,sys; print(len(json.load(open(sys.argv[1]))['captured']))" "$RUNNER_TEMP/live.json")
           echo "captured=$n" >> "$GITHUB_OUTPUT"
-
-      - name: Issues for failing sources
-        if: always() && steps.watch.outcome == 'success'
-        run: python3 tools/live/issues.py "$RUNNER_TEMP/live.json"
-
-      - name: Git identity
-        if: steps.watch.outcome == 'success'
-        run: |
-          git config user.name "poengkart-live[bot]"
-          git config user.email "poengkart-live[bot]@users.noreply.github.com"
+          echo "rc=$RC" >> "$GITHUB_OUTPUT"
 
       - name: Remember what the counties serve (and any healed page)
-        if: steps.watch.outputs.captured == '0'
+        if: steps.report.outputs.captured == '0'
         run: |
-          if git diff --quiet -- tools/live/state.json; then exit 0; fi
-          git add tools/live/state.json
+          state=tools/live/state.json
+          if [ "$GITHUB_EVENT_NAME" = push ]; then
+            # the relay's state, merged onto main's: its sources are the cloud ones
+            cp "$state" "$RUNNER_TEMP/state.json"
+            git checkout -q -f origin/main
+            python3 tools/live/run.py --merge-state "$RUNNER_TEMP/state.json"
+            git push -q origin --delete "$GITHUB_REF_NAME" || true
+          fi
+          if git diff --quiet -- "$state"; then exit 0; fi
+          git add "$state"
           git commit -q -m "The live watch records what the counties serve now (tools/live/state.json)"
           for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep 10; done
           exit 1
@@ -127,11 +155,16 @@ jobs:
 
       - name: Branch
         id: branch
-        if: steps.watch.outputs.captured != '0' && steps.watch.outputs.captured != ''
+        if: steps.report.outputs.captured != '0' && steps.report.outputs.captured != ''
         run: |
-          b="live/$(date -u +%Y%m%d-%H%M)"
-          git switch -q -c "$b"
-          cp web/public/data/schools.json "$RUNNER_TEMP/schools.before.json"
+          if [ "$GITHUB_EVENT_NAME" = push ]; then
+            b="$GITHUB_REF_NAME"
+            # the relay's state onto main's, so the PR carries both
+            cp tools/live/state.json "$RUNNER_TEMP/state.json"
+            git show origin/main:tools/live/state.json > tools/live/state.json 2>/dev/null || echo '{}' > tools/live/state.json
+            python3 tools/live/run.py --merge-state "$RUNNER_TEMP/state.json"
+          else b="live/$(date -u +%Y%m%d-%H%M)"; git switch -q -c "$b"; fi
+          git show origin/main:web/public/data/schools.json > "$RUNNER_TEMP/schools.before.json"
           echo "name=$b" >> "$GITHUB_OUTPUT"
 
       - uses: actions/setup-node@v4
@@ -144,30 +177,52 @@ jobs:
         if: steps.branch.outputs.name != ''
         run: npm ci
 
+      - uses: actions/cache@v4
+        if: steps.branch.outputs.name != ''
+        with:
+          path: tools/.cache
+          key: tools-cache-${{ github.run_id }}
+          restore-keys: tools-cache-
+
+      - name: Seed the photo probe cache from the published photos
+        if: steps.branch.outputs.name != ''
+        # photos.py asks each host whether a display-sized photo exists; every URL
+        # already published passed that test at the last build, and asking again
+        # from a cold cache costs Wikimedia's rate limit about 20 s a photo
+        run: |
+          python3 - <<'EOF'
+          import json, os
+          p = 'tools/.cache/photo-probe.json'
+          have = set(json.load(open(p))) if os.path.exists(p) else set()
+          d = json.load(open(os.environ['RUNNER_TEMP'] + '/schools.before.json'))
+          have |= {s['photo'] for s in d['schools'] if str(s.get('photo', '')).startswith('http')}
+          os.makedirs('tools/.cache', exist_ok=True)
+          json.dump(sorted(have), open(p, 'w'))
+          print(len(have), 'photo URLs known')
+          EOF
+
       - name: Pipeline (tools/refresh.py)
         id: pipeline
         if: steps.branch.outputs.name != ''
         continue-on-error: true
+        timeout-minutes: 40
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-        run: |
-          set -o pipefail
-          python3 tools/refresh.py 2>&1 | tee "$RUNNER_TEMP/refresh.log"
+        run: python3 -u tools/refresh.py 2>&1 | tee "$RUNNER_TEMP/refresh.log"
 
       - name: Dataset tests (pytest)
         id: pytest
         if: steps.pipeline.outcome == 'success'
         continue-on-error: true
-        run: python3 -m pytest -q 2>&1 | tee "$RUNNER_TEMP/pytest.log"; exit ${PIPESTATUS[0]}
+        run: python3 -m pytest -q 2>&1 | tee "$RUNNER_TEMP/pytest.log"
 
       - name: Web tests (typecheck, unit, build, browser)
         id: web
         if: steps.pipeline.outcome == 'success'
         continue-on-error: true
         run: |
-          set -o pipefail
           { npm run typecheck && npm run test && npm run build \
             && npx playwright install --with-deps chromium && CI=1 npm run e2e; } 2>&1 | tee "$RUNNER_TEMP/web.log"
 
@@ -190,18 +245,18 @@ jobs:
             echo "- web (typecheck, unit, build, browser): **${WEB:-skipped}**"
             echo "- Run: $RUN_URL"
           } > "$T/gates.md"
+          title=$(python3 tools/live/pr.py title "$T/live.json")
           git add -A
-          git diff --cached --name-only > "$T/files.txt"
+          git commit -q -m "$title" || true
+          git diff --name-only origin/main...HEAD > "$T/files.txt"
           passed=""; [ "$PIPELINE" = success ] && [ "$PYTEST" = success ] && [ "$WEB" = success ] && passed="--gates-passed"
           set +e
           python3 tools/live/policy.py data "$T/diff.json" $passed --changed-files "$T/files.txt" > "$T/policy.txt"
           merge=$?
           set -e
           sed -i '1s/^/**Merges on its own:** /' "$T/policy.txt"
-          title=$(python3 tools/live/pr.py title "$RUNNER_TEMP/live.json")
-          python3 tools/live/pr.py body "$RUNNER_TEMP/live.json" "$T/diff.json" "$T/gates.md" "$T/policy.txt" > "$T/body.md"
-          git commit -q -m "$title"
-          git push -q -u origin "$BRANCH"
+          python3 tools/live/pr.py body "$T/live.json" "$T/diff.json" "$T/gates.md" "$T/policy.txt" > "$T/body.md"
+          git push -q -f -u origin "HEAD:$BRANCH"
           gh label create live --force --color 0e8a16 --description "The live source watch (tools/live)" > /dev/null
           url=$(gh pr create --base main --head "$BRANCH" --title "$title" --body-file "$T/body.md" --label live)
           echo "url=$url" >> "$GITHUB_OUTPUT"
@@ -211,8 +266,8 @@ jobs:
             echo "merged=true" >> "$GITHUB_OUTPUT"
           elif grep -q "test_docs.py failed" "$T/refresh.log" 2>/dev/null; then
             # the data is fine; the refit moved a number the technical report quotes
-            gh issue create --title "live: the report needs the new numbers ($BRANCH)" --label live --body \
-              "The capture in $url was processed and every other check passed, but the refit moved numbers that docs/technical-report.md quotes (test_docs.py; see the run: $RUN_URL). Update the report on the branch, then merge."
+            gh issue create --title "live: the report needs the new numbers ($BRANCH)" --body \
+              "The capture in $url was processed, but the refit moved numbers that docs/technical-report.md quotes (test_docs.py; see $RUN_URL). Update the report on the branch, then merge."
           elif [ -z "$passed" ]; then
             {
               echo "The live watch captured a document, but the pipeline or a test suite failed on it."
@@ -221,7 +276,7 @@ jobs:
               echo; echo "The capture stays on the branch; nothing reached poengkart.no. The self-heal routine (routines/live-heal.md) takes it from here."
             } > "$T/issue.md"
             gh label create heal --force --color d93f0b --description "A live scraper needs repair; starts the self-heal routine" > /dev/null
-            gh issue create --title "live: processing $BRANCH" --label live --label heal --body-file "$T/issue.md"
+            gh issue create --title "live: processing $BRANCH" --label heal --body-file "$T/issue.md"
           fi
 
       - name: Deploy
@@ -233,7 +288,7 @@ jobs:
           PR: ${{ steps.pr.outputs.url }}
         run: |
           if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
-            msg="Merged $PR to main, but not deployed: set the VERCEL_TOKEN secret and the VERCEL_ORG_ID / VERCEL_PROJECT_ID variables."
+            msg="Merged to main, not deployed: the VERCEL_TOKEN secret is not set. Deploy by hand (vercel deploy --prod) or set it."
             echo "::warning::$msg"; echo "$msg" >> "$GITHUB_STEP_SUMMARY"
             gh pr comment "$PR" --body "$msg" || true
             exit 0
@@ -248,7 +303,7 @@ jobs:
           gh pr comment "$PR" --body "Deployed to https://poengkart.no ($(tail -1 "$RUNNER_TEMP/deploy.log"))."
 
       - name: Fail the run when a source failed
-        if: steps.watch.outputs.rc != '' && steps.watch.outputs.rc != '0'
+        if: steps.report.outputs.rc == '1'
         run: |
-          echo "A source failed or failed its check; its issue is open (label: live)."
+          echo "A source failed or failed its check; its issue is open (title «live: <source>»)."
           exit 1

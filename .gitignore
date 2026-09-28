@@ -39,3 +39,6 @@ web/public/maplibre/
 # superpowers plugin artifacts (plans, specs, SDD ledgers) stay local
 docs/superpowers/
 .superpowers/
+
+# the live cloud relay's run report; the workflow reads it off the relay branch
+.live-report.json

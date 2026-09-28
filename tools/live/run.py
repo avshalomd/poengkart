@@ -5,6 +5,7 @@ anything new under sources/ the moment it appears.
     .venv/bin/python3 tools/live/run.py --due                 # the sources due this hour
     .venv/bin/python3 tools/live/run.py --only rogaland oslo  # these, now
     .venv/bin/python3 tools/live/run.py --all --dry-run       # look, write nothing
+    python3 tools/live/run.py --all --runner cloud            # the vilbli sources (routines/live-vilbli.md)
     ... --json report.json                                    # the run's report, for the workflow
 
 For every source (tools/live/sources/<id>.py) the run is:
@@ -77,6 +78,21 @@ def save_state(state):
     with open(STATE, 'w', encoding='utf-8') as fh:
         json.dump(state, fh, ensure_ascii=False, indent=1, sort_keys=True)
         fh.write('\n')
+
+
+def merge_state(other_path):
+    """Fold another runner's state.json (the cloud relay's) into this one: its
+    entries for the sources that run there replace ours, and its fingerprint
+    cache joins ours when the same library versions computed it."""
+    state, other = load_state(), json.load(open(other_path, encoding='utf-8'))
+    theirs = [sid for sid in schedule.source_ids() if schedule.runner(sid) != 'actions']
+    for sid in theirs:
+        if sid in other.get('sources', {}):
+            state['sources'][sid] = other['sources'][sid]
+    if other.get('fingerprint_env') == state['fingerprint_env']:
+        state['fingerprints'].update(other.get('fingerprints', {}))
+    save_state(state)
+    return theirs
 
 
 def sha256(b):
@@ -210,25 +226,31 @@ def run_source(sid, state, now, dry_run=False):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     g = ap.add_mutually_exclusive_group(required=True)
+    g.add_argument('--merge-state', metavar='STATE', help="fold another runner's state.json into ours")
     g.add_argument('--due', action='store_true', help='the sources due now (schedule.py)')
     g.add_argument('--only', nargs='+', metavar='ID')
     g.add_argument('--all', action='store_true')
     ap.add_argument('--at', help='with --due: Oslo local time, ISO')
     ap.add_argument('--dry-run', action='store_true', help='report, write nothing')
     ap.add_argument('--json', help='write the run report here')
+    ap.add_argument('--runner', choices=['actions', 'cloud'], default='actions',
+                    help='with --due or --all: the sources that run there')
     a = ap.parse_args(argv)
+    if a.merge_state:
+        print('merged the state of', ', '.join(merge_state(a.merge_state)))
+        return 0
 
-    ids = schedule.source_ids()
+    ids = [s for s in schedule.source_ids() if schedule.runner(s) == a.runner]
     if a.due:
         import zoneinfo
         oslo = zoneinfo.ZoneInfo('Europe/Oslo')
         at = (datetime.datetime.fromisoformat(a.at).replace(tzinfo=oslo) if a.at
               else datetime.datetime.now(oslo))
-        ids = schedule.due(at)
+        ids = schedule.due(at, a.runner)
     elif a.only:
-        unknown = sorted(set(a.only) - set(ids))
+        unknown = sorted(set(a.only) - set(schedule.source_ids()))
         if unknown:
-            ap.error(f'unknown source(s): {unknown}; known: {ids}')
+            ap.error(f'unknown source(s): {unknown}; known: {schedule.source_ids()}')
         ids = a.only
     state = load_state()
     now = datetime.datetime.now(datetime.timezone.utc)

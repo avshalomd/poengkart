@@ -84,7 +84,7 @@ class Ctx:
         return [(re.sub(r'\s+', ' ', a.get_text(' ')).strip(), _clean(urljoin(base, a['href'])))
                 for a in self.soup(resp).find_all('a', href=True)]
 
-    def search(self, start, target, follow=None, max_pages=25):
+    def search(self, start, target, follow=None, max_pages=25, every=False):
         """Self-healing link search: from the `start` pages, walk the same
         host's links whose text or URL matches `follow`, most promising first
         (the more of `follow`'s terms a link names, the sooner it is read), and
@@ -92,11 +92,12 @@ class Ctx:
         matches `target`, as (text, url, page it was on). This is how a scraper
         finds its document again when a county moves a page (Buskerud
         publishes each year at a new slug, Møre og Romsdal moved its link in
-        2026)."""
+        2026). With every=True it reads up to `max_pages` pages and returns
+        every match, once per URL (the sentinel's inventory)."""
         host = urlparse(_clean(start[0])).netloc
         order = 0
         queue = [(-99, i, _clean(u)) for i, u in enumerate(start)]
-        seen = set()
+        seen, hits = set(), {}
         while queue and len(seen) < max_pages:
             queue.sort()
             _, _, page = queue.pop(0)
@@ -111,14 +112,17 @@ class Ctx:
                 hay = f'{text} {href}'
                 if re.search(target, hay, re.I):
                     found.append((text, href, page))
-                elif follow and urlparse(href).netloc == host and href not in seen:
+                elif follow and urlparse(href).netloc == host and href not in seen \
+                        and not re.search(r'\.(pdf|docx?|xlsx?|pptx?|jpe?g|png|zip)$', href, re.I):
                     terms = {t.lower() for t in re.findall(follow, hay, re.I)}
                     if terms:
                         order += 1
                         queue.append((-len(terms), order, href))
-            if found:
+            if found and not every:
                 return found
-        return []
+            for f in found:
+                hits.setdefault(f[1], f)
+        return list(hits.values())
 
     def need(self, resp, what):
         """resp, or Unhealthy saying which fetch failed and how."""

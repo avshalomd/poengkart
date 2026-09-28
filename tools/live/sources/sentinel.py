@@ -1,45 +1,61 @@
-"""The counties that publish no poenggrenser today (Agder, Akershus, Buskerud,
-Finnmark, Møre og Romsdal, Nordland, Oslo, Telemark, Troms, Vestfold, Vestland
-and Østfold on vilbli; most of them publish on their own sites or not at all).
+"""The seven counties that publish no poenggrenser (Agder, Finnmark, Nordland,
+Telemark, Troms, Vestfold, Østfold): would we notice if one started?
 
-Any attachment that appears in one of their vilbli county blocks is reported
-as an alert, never captured: no extractor reads it yet, so it needs a person
-(or the self-heal routine) to say what it is. The three vilbli counties that
-do publish have their own scrapers.
+Once a week the sentinel walks each county's own site from its front page,
+through the links about school, intake and upper-secondary education, and
+lists every link that names a poenggrense, a karaktergrense, the lowest
+admitted points or intake points. The first run records that list as the
+county's baseline (pages that explain the concept, news about intake); a later
+run reports every link not in the baseline as an ALERT, which opens a GitHub
+issue for a person. Nothing it finds is captured: no extractor reads these
+counties yet.
+
+(vilbli.no, where three counties do publish, cannot be read from any runner
+the watch has: its page answers with a CAPTCHA. The county sites can.)
 """
-from live import vilbli
 from live.core import Doc, Unhealthy
 
 SOURCE = {
-    'id': 'sentinel', 'county': None, 'publisher': 'vilbli.no, every county block',
-    'landing': vilbli.PAGE.format(county='<county>'),
-    'season': [],          # weekly all year
+    'id': 'sentinel', 'county': None, 'publisher': 'the counties without poenggrenser',
+    'landing': 'the seven county sites',
+    'season': [],          # weekly all year (schedule.py)
     'min_docs': 0,
 }
-WATCHED_ELSEWHERE = {'rogaland', 'innlandet', 'trondelag'}
-#: attachments already looked at and judged not to be poenggrenser; the file
-#: name as vilbli lists it
-KNOWN = {
+SITES = {
+    'agder': 'https://agderfk.no/',
+    'finnmark': 'https://www.ffk.no/',
+    'nordland': 'https://www.nfk.no/',
+    'telemark': 'https://www.telemarkfylke.no/',
+    'troms': 'https://www.tromsfylke.no/',
+    'vestfold': 'https://www.vestfoldfylke.no/',
+    'ostfold': 'https://ofk.no/',
 }
+TARGET = r'poenggrens|karaktergrens|laveste\s+(?:inntatt|poeng)|inntakspoeng|poengsum\s+ved\s+inntak'
+FOLLOW = (r'skole|opplaring|opplæring|utdanning|inntak|videregaende|vidaregaande|'
+          r'videregående|søke|soke|elev|skoleplass')
+PAGES = 30
 
 
 def discover(ctx):
-    docs, failed = [], []
-    for slug, folder in vilbli.COUNTIES.items():
-        if slug in WATCHED_ELSEWHERE:
+    docs, dead = [], []
+    base = ctx.state.setdefault('baseline', {})
+    for county, home in SITES.items():
+        r = ctx.get(home, retries=1)
+        if not r.ok:
+            dead.append(f'{county}: HTTP {r.status}')
             continue
-        try:
-            blk = vilbli.block(ctx, slug)
-        except Unhealthy as e:
-            failed.append(str(e))
+        found = ctx.search([home], TARGET, follow=FOLLOW, max_pages=PAGES, every=True)
+        urls = sorted({h for _, h, _ in found})
+        if county not in base:
+            base[county] = urls
+            ctx.note(f'{county}: baseline of {len(urls)} links recorded')
             continue
-        for fname, url in (blk or {}).get('attachments', []):
-            if (slug, fname) in KNOWN:
-                continue
-            docs.append(Doc(url=url, name=fname, county=folder, alert=True, landing=blk['page'],
-                            label=f'{blk["county"]}: {blk["heading"] or "(no heading)"} — {fname}'))
-    if len(failed) > len(vilbli.COUNTIES) // 2:
-        raise Unhealthy(f'{len(failed)} vilbli county pages unreadable: {failed[0]}')
-    for f in failed:
-        ctx.note(f)
+        for text, href, page in found:
+            if href not in base[county]:
+                docs.append(Doc(url=href, name=href.rsplit('/', 1)[-1] or 'page', county=county,
+                                alert=True, landing=page, label=f'{county}: «{text[:120]}» on {page}'))
+    if len(dead) > len(SITES) // 2:
+        raise Unhealthy(f'{len(dead)} of {len(SITES)} county sites unreachable: {"; ".join(dead)}')
+    for d in dead:
+        ctx.note(d)
     return docs

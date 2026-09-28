@@ -9,6 +9,7 @@ file says what a run must achieve and what it must never do; how you get there i
 
 ## What went wrong, and what "healed" means
 
+The issue is labelled `heal` and titled `live: <source>` or `live: processing …`.
 An issue titled `live: <source>` says a scraper (`tools/live/sources/<source>.py`) failed
 (`FAILED`, a crash) or failed its check (`CHECK-FAIL`, the county answered with something
 the scraper does not expect). An issue titled `live: processing …` says a capture was
@@ -32,6 +33,13 @@ Healed means one pull request after which:
 
 ## Rules
 
+- One heal per failure. If you already commented on the issue (a comment starting
+  «Live self-heal») and nobody has commented since, stop: the watch comments again
+  only when the failure changes, and that comment is what asks you to look again.
+- A host that answers with a WAF, CAPTCHA or bot challenge is refusing automated
+  access. Report it on the issue with the evidence and stop; never try another
+  user-agent, header set, proxy or service to get past it.
+
 - First find out whether the county changed or the scraper broke: fetch the page with
   `curl`, read what it serves now, and compare with the scraper's expectations and with the
   last capture under `sources/<county>/`. A county that genuinely stopped publishing, or a
@@ -52,7 +60,7 @@ Healed means one pull request after which:
   Link the issue with "Refs #N" (not "Fixes": the watch closes it on its next good run).
 - End the pull request description with
   `🤖 Generated with [Claude Code](https://claude.com/claude-code)`.
-- Comment on the issue with the pull request's URL and one line on the cause.
+- Comment on the issue with the pull request's URL and one line on the cause. Every comment you write starts with «Live self-heal:».
 
 ## Never
 

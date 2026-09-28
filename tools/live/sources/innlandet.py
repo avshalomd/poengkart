@@ -10,6 +10,11 @@ from live.core import Doc, Unhealthy
 SOURCE = {
     'id': 'innlandet', 'county': 'innlandet', 'publisher': 'Innlandet fylkeskommune',
     'landing': vilbli.PAGE.format(county='innlandet'),
+    # vilbli.no answers GitHub's runners with an AWS WAF CAPTCHA (www, 405) and a
+    # CloudFront block (webservice, 403), tested 28 Sept 2026; it serves the Claude
+    # cloud environment's attachments host, so this source runs there
+    # (routines/live-vilbli.md) and GitHub processes what it pushes
+    'runner': 'cloud',
     'season': [(8, 1, 10, 31)],
 }
 ARTICLE = '041513'
