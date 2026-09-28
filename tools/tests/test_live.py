@@ -3,6 +3,7 @@ import datetime
 import io
 import json
 import os
+import re
 import sys
 import types
 from zoneinfo import ZoneInfo
@@ -300,3 +301,9 @@ def test_adopt_takes_the_relay_captures_onto_a_main_that_moved(tmp_path, monkeyp
     assert added == {'rogaland/p-rev3.pdf': 'from vilbli'}
     assert merged == [{'sources': {'rogaland': {}}}]
     assert run.adopt(relay) == []                      # main already has it, byte for byte
+
+
+def test_the_workflow_fails_a_step_whose_piped_command_fails():
+    # `refresh.py | tee log` under plain `bash -e` reported a failed pipeline as success
+    wf = open(os.path.join(ROOT, '.github', 'workflows', 'live.yml'), encoding='utf-8').read()
+    assert re.search(r'\n    defaults:\n      run:\n(?:        #.*\n)*        shell: bash\n', wf)

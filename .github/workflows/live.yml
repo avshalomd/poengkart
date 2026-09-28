@@ -70,6 +70,11 @@ jobs:
     if: vars.LIVE_ENABLED == 'true' || github.event_name != 'schedule'
     runs-on: ubuntu-latest
     timeout-minutes: 75
+    defaults:
+      run:
+        # bash -eo pipefail: every `… | tee log` fails when its command fails
+        # (plain `bash -e`, the default, reported a failed refresh.py as success)
+        shell: bash
     steps:
       - uses: actions/checkout@v4
         with:
@@ -294,7 +299,7 @@ jobs:
             {
               echo "The live watch captured a document, but the pipeline or a test suite failed on it."
               echo; echo "Pull request: $url"; echo "Run: $RUN_URL"; echo
-              echo '```'; tail -c 3000 "$T/refresh.log" 2>/dev/null; tail -c 1500 "$T/pytest.log" 2>/dev/null; tail -c 1500 "$T/web.log" 2>/dev/null; echo '```'
+              echo '```'; for f in refresh pytest web; do tail -c 2000 "$T/$f.log" 2>/dev/null || true; done; echo '```'
               echo; echo "The capture stays on the branch; nothing reached poengkart.no. The self-heal routine (routines/live-heal.md) takes it from here."
             } > "$T/issue.md"
             gh label create heal --force --color d93f0b --description "A live scraper needs repair; starts the self-heal routine" > /dev/null
@@ -319,7 +324,7 @@ jobs:
           npx --yes vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN" | tee "$RUNNER_TEMP/deploy.log"
           sleep 20
           want=$(sha256sum web/public/data/schools.json | cut -d' ' -f1)
-          got=$(curl -sfL "https://poengkart.no/data/schools.json?live=$GITHUB_RUN_ID" | sha256sum | cut -d' ' -f1)
+          got=$({ curl -sfL "https://poengkart.no/data/schools.json?live=$GITHUB_RUN_ID" || true; } | sha256sum | cut -d' ' -f1)
           if [ "$want" = "$got" ]; then echo "poengkart.no serves the new schools.json" >> "$GITHUB_STEP_SUMMARY"
           else echo "::warning::poengkart.no does not serve the merged schools.json yet"; fi
           gh pr comment "$PR" --body "Deployed to https://poengkart.no ($(tail -1 "$RUNNER_TEMP/deploy.log"))."
