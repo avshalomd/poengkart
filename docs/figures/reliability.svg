@@ -28,7 +28,7 @@
 <rect x='119.0' y='412.8' width='43.0' height='17.2' fill='#8a8f98' opacity='0.18'/>
 <rect x='166.0' y='415.6' width='43.0' height='14.4' fill='#8a8f98' opacity='0.18'/>
 <rect x='213.0' y='418.8' width='43.0' height='11.2' fill='#8a8f98' opacity='0.18'/>
-<rect x='260.0' y='419.5' width='43.0' height='10.5' fill='#8a8f98' opacity='0.18'/>
+<rect x='260.0' y='419.6' width='43.0' height='10.4' fill='#8a8f98' opacity='0.18'/>
 <rect x='307.0' y='419.0' width='43.0' height='11.0' fill='#8a8f98' opacity='0.18'/>
 <rect x='354.0' y='418.0' width='43.0' height='12.0' fill='#8a8f98' opacity='0.18'/>
 <rect x='401.0' y='417.3' width='43.0' height='12.7' fill='#8a8f98' opacity='0.18'/>
@@ -39,11 +39,11 @@
 <circle cx='139.6' cy='364.4' r='5.5' fill='#2b6cb8'/>
 <circle cx='187.0' cy='305.0' r='5.5' fill='#2b6cb8'/>
 <circle cx='234.5' cy='275.4' r='5.5' fill='#2b6cb8'/>
-<circle cx='281.5' cy='233.6' r='5.5' fill='#2b6cb8'/>
-<circle cx='329.4' cy='188.1' r='5.5' fill='#2b6cb8'/>
+<circle cx='281.5' cy='234.0' r='5.5' fill='#2b6cb8'/>
+<circle cx='329.4' cy='187.3' r='5.5' fill='#2b6cb8'/>
 <circle cx='376.0' cy='132.3' r='5.5' fill='#2b6cb8'/>
-<circle cx='423.9' cy='87.2' r='5.5' fill='#2b6cb8'/>
-<circle cx='470.9' cy='63.5' r='5.5' fill='#2b6cb8'/>
+<circle cx='423.9' cy='86.8' r='5.5' fill='#2b6cb8'/>
+<circle cx='470.9' cy='63.9' r='5.5' fill='#2b6cb8'/>
 <circle cx='531.5' cy='24.1' r='5.5' fill='#2b6cb8'/>
 <text x='305.0' y='478' font-family='Georgia, "Times New Roman", serif' font-size='15' fill='#1d2733' text-anchor='middle'>Predicted probability of admission</text>
 <text x='20' y='225.0' font-family='Georgia, "Times New Roman", serif' font-size='15' fill='#1d2733' text-anchor='middle' transform='rotate(-90 20 225.0)'>Observed admission frequency</text>
