@@ -51,6 +51,10 @@ on:
         description: "Pick the due sources as if it were this Oslo time (ISO, e.g. 2026-12-02T14:23)"
         required: false
         default: ""
+      deploy:
+        description: "Deploy main to poengkart.no at the end, even when nothing merged"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -309,7 +313,7 @@ jobs:
           fi
 
       - name: Deploy
-        if: steps.pr.outputs.merged == 'true'
+        if: steps.pr.outputs.merged == 'true' || (inputs.deploy && steps.branch.outputs.name == '')
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
@@ -319,7 +323,7 @@ jobs:
           if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
             msg="Merged to main, not deployed: the VERCEL_TOKEN secret is not set. Deploy by hand (vercel deploy --prod) or set it."
             echo "::warning::$msg"; echo "$msg" >> "$GITHUB_STEP_SUMMARY"
-            gh pr comment "$PR" --body "$msg" || true
+            [ -n "$PR" ] && gh pr comment "$PR" --body "$msg" || true
             exit 0
           fi
           git fetch -q origin main && git checkout -q FETCH_HEAD
@@ -329,7 +333,8 @@ jobs:
           got=$({ curl -sfL "https://poengkart.no/data/schools.json?live=$GITHUB_RUN_ID" || true; } | sha256sum | cut -d' ' -f1)
           if [ "$want" = "$got" ]; then echo "poengkart.no serves the new schools.json" >> "$GITHUB_STEP_SUMMARY"
           else echo "::warning::poengkart.no does not serve the merged schools.json yet"; fi
-          gh pr comment "$PR" --body "Deployed to https://poengkart.no ($(tail -1 "$RUNNER_TEMP/deploy.log"))."
+          echo "Deployed main $(git rev-parse --short HEAD): $(tail -1 "$RUNNER_TEMP/deploy.log")" >> "$GITHUB_STEP_SUMMARY"
+          if [ -n "$PR" ]; then gh pr comment "$PR" --body "Deployed to https://poengkart.no ($(tail -1 "$RUNNER_TEMP/deploy.log"))."; fi
 
       - name: Fail the run when a source failed
         if: steps.report.outputs.rc == '1'
