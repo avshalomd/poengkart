@@ -41,7 +41,7 @@ def env():
 
 
 def client():
-    account, key, secret = env()   # before the import: a keyless run skips without boto3
+    account, key, secret = env()                   # exits first when the keys are absent
     import boto3
     return boto3.client('s3', endpoint_url=f'https://{account}.r2.cloudflarestorage.com',
                         aws_access_key_id=key, aws_secret_access_key=secret, region_name='auto')

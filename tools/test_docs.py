@@ -117,13 +117,15 @@ D1, D2, D3, PCT, N = 0.0500001, 0.0050001, 0.0005001, 0.5000001, 0.0000001
 # bucket counts at bin edges (Appendix D; 8 and 28 Sept 2026). Every
 # non-integer figure therefore gets one more displayed unit plus 0.5 % of its
 # value; counts stay exact (they come from schools.json, the backtest's cell
-# set and the suites), except the reliability bins', which get fit_count().
+# set and the suites), except those the fit decides (reliability bins, |z|
+# outliers), which get fit_count().
 FIT_REL = 0.005
 
 
 def fit_count(n):
-    """the tolerance of a count of forecasts in a probability bin"""
-    return FIT_REL * n + N
+    """the tolerance of a count the fit decides (forecasts in a probability
+    bin, cells beyond a z threshold): a few cells sit on every edge"""
+    return max(2, FIT_REL * n) + N
 
 
 def slack(tl, want):
@@ -404,7 +406,8 @@ for r in rel_chance:
 oz = META['outliers_z3']
 OZ_TOP = max(oz['by_fylke'], key=oz['by_fylke'].get)
 check(doc, 'outliers', rf'\|z\| ≥ 3: (\d+) of ([\d ]+) cells, (\d+) of them in {OZ_TOP}',
-      [oz['n'], META['n_level'], oz['by_fylke'][OZ_TOP]], flat, N)
+      [oz['n'], META['n_level'], oz['by_fylke'][OZ_TOP]], flat,
+      [fit_count(oz['n']), N, fit_count(oz['by_fylke'][OZ_TOP])])
 WORDS = {2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six', 7: 'Seven', 8: 'Eight', 9: 'Nine', 10: 'Ten'}
 _v22 = sum(1 for o in META['outliers'] if o['fylke'] == 'Vestland' and o['year'] == 2022)
 checked += 1
@@ -641,7 +644,8 @@ wc = sm['within_county']
 check(doc, 'school means ranks', r'schools move ([\d.]+) places on average and at most (\d+); in Møre og Romsdal, where mix explains (\d+)% and the school effect (\d+)%, the average move is ([\d.]+) places, in Oslo ([\d.]+)',
       [wc['rank_move_mean'], wc['rank_move_max'], wc['by_fylke']['Møre og Romsdal']['share_mix'] * 100, wc['by_fylke']['Møre og Romsdal']['share_alpha'] * 100,
        wc['by_fylke']['Møre og Romsdal']['rank_move_mean'], wc['by_fylke']['Oslo']['rank_move_mean']], flat, [D1, N, PCT, PCT, D1, D1])
-check(doc, 'outliers', rf'> 3\$: (\d+) of ([\d,]+), (\d+) of them in {OZ_TOP}', [oz['n'], oz['n_level'], oz['by_fylke'][OZ_TOP]], flat, N)
+check(doc, 'outliers', rf'> 3\$: (\d+) of ([\d,]+), (\d+) of them in {OZ_TOP}', [oz['n'], oz['n_level'], oz['by_fylke'][OZ_TOP]], flat,
+      [fit_count(oz['n']), N, fit_count(oz['by_fylke'][OZ_TOP])])
 check(doc, 'forecast count', r'shipped model carries ([\d,]+) programme forecasts, of which (\d+) are for series with no observed year', [N_FORECASTS, N_FORECASTS_H0], flat, N)
 check(doc, 'discontinued series', r'\(discontinued; (\d+) series\)', [N_SERIES_U], flat, N)
 check(doc, 'held-out forecasts', r'a separate fit on its own figures supplies (\d+) forecasts for its (\d+) schools',
