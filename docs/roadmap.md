@@ -482,3 +482,31 @@ pull request. Timetable and reasoning: `tools/live/schedule.py`. Open items:
   seven counties without data) and opens a `live: new document in <County>`
   issue, labelled `heal` for the vilbli counties so the self-heal routine
   teaches the scraper.
+
+## Places as a model input (28 September 2026, from Vestfold's intake office)
+
+Vestfold's intake office pointed out that each county's yearly
+skoletilbudssak can cut or add places at a school, which moves the
+threshold more than the history suggests. The forecast note says so since
+28 September 2026 (commit 3b9b28b). Research the same day
+(`.claude/qa/2026-09-28-places-research.md`, documents beside it):
+
+- **Places per school × programområde are public, ahead of the intake,** in
+  the autumn skoletilbud case of Vestfold, Telemark, Akershus, Buskerud,
+  Østfold, Agder, Møre og Romsdal and Vestland (Rogaland likely), several
+  with a spring justering after 1 March. Innlandet, Nordland, Troms and
+  Finnmark publish nothing at that level. Our own sources hold places only in
+  Telemark's workbook (166 Vg1 rows, 2024/25–2026/27; the pipeline drops the
+  column) and first-choice applicants only in Innlandet's 2026 PDF.
+- **Idea:** feed next year's change in places (and, where published, first
+  choice applicants per place) into the forecast, so a school whose places
+  are cut gets a higher expected threshold. Needs the history of places for
+  the backtest, so start with the sources that reach back: Vestfold and
+  Telemark through the council portal API (`sru.<fylke>.prokom.no`), and
+  Akershus, Buskerud, Østfold and Agder through the eInnsyn API; the tables
+  are PDFs with a layout per year, most with Grep codes.
+- **Vestfold itself:** grade-based admission only since 2024, no thresholds
+  published anywhere. Asked the intake office on 28 September 2026 for the
+  lowest admitted points per programområde at 2. inntak, 2024–2026, and for
+  her view on the points field (grade average 4,5 or points 45). Waiting for
+  the answer.
