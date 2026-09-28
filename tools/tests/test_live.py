@@ -167,14 +167,15 @@ def test_powerbi_resource_key():
     assert powerbi.resource_key('https://app.powerbi.com/view?r=eyJrIjoiYWJjIiwidCI6InQifQ') == 'abc'
 
 
-def test_mro_reads_the_dashboard_only_for_years_no_extract_covers(tmp_path):
+def test_mro_reads_dashboard_vg1_only_where_no_extract_and_every_later_level(tmp_path):
     import mro
     names = ['Sheet1.Skoleår', 'Sheet1.Skolenr', 'Sheet1.Skolenavn', 'Sheet1.Kurskode', 'Sheet1.Kursnavn',
              'Sheet1.Kursnavn V2', 'NedrekarV2', 'Gjennomkar']
     recs = [['2026/2027', '15001', 'Atlanten videregående skole', 'IDRET1----', 'Idrettsfag', 'Vg1 Idrettsfag', '27,6', 44.8],
             ['2027/2028', '15001', 'Atlanten videregående skole', 'IDRET1----', 'Idrettsfag', 'Vg1 Idrettsfag', '30,1', 45.0],
             ['2027/2028', '15001', 'Atlanten videregående skole', 'STUSP1----', 'Studiespesialisering', 'Vg1 Studiespesialisering', '*', 38.2],
-            ['2027/2028', '15001', 'Atlanten videregående skole', 'IDIDR2----', 'Idrettsfag', 'Vg2 Idrettsfag', '33,0', 44.0]]
+            ['2027/2028', '15001', 'Atlanten videregående skole', 'IDIDR2----', 'Idrettsfag', 'Vg2 Idrettsfag', '33,0', 44.0],
+            ['2026/2027', '15001', 'Atlanten videregående skole', 'IDIDR2----', 'Idrettsfag', 'Vg2 Idrettsfag', '24,0', 40.0]]
     schema = [{'N': f'G{i}'} for i in range(len(names))]
     ans = {'results': [{'result': {'data': {'descriptor': {'Select': [{'Name': n} for n in names]},
                                             'dsr': {'DS': [{'PH': [{'DM0': [dict({'S': schema} if i == 0 else {}, C=r)
@@ -183,8 +184,11 @@ def test_mro_reads_the_dashboard_only_for_years_no_extract_covers(tmp_path):
     p.write_text(json.dumps(ans), encoding='utf-8')
     warn = []
     rows = mro._dashboard(str(p), {2026}, warn)
-    got = {(r['program'], y): v for r in rows for y, v in r['values'].items()}
-    assert got == {('Idrettsfag', 2027): 30.1, ('Studiespesialisering', 2027): 'open'}
+    got = {(r['program'], r['level'], y): v for r in rows for y, v in r['values'].items()}
+    # Vg1 only for 2027 (the extract covers 2026); Vg2 for every year, under
+    # the same «under 25» rule, as a series of its own beside the Vg1 one
+    assert got == {('Idrettsfag', 'Vg1', 2027): 30.1, ('Studiespesialisering', 'Vg1', 2027): 'open',
+                   ('Idrettsfag', 'Vg2', 2027): 33.0, ('Idrettsfag', 'Vg2', 2026): 'open'}
     assert not warn
 
 

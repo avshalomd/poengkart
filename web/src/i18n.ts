@@ -654,7 +654,7 @@ export const T = {
   },
   chanceRoundUnknown: { no: 'Fylket oppgir ikke hvilket inntak tallene er fra. Sjansen gjelder det inntaket fylket publiserer.',
                         en: 'The county does not state which intake its figures are from. The chance refers to the intake the county publishes.' },
-  // Møre og Romsdal's dashboard masks any Vg1 figure under 25 with * and
+  // Møre og Romsdal's dashboard masks any figure under 25 with * and
   // legends it «alle kom inn, eller laveste karakter var under 25»; the
   // dataset follows that rule (tools/extractors/mro.py), so its "ingen
   // venteliste" is the county's own reading, not an observed queue state
