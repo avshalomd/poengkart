@@ -277,6 +277,11 @@
    "sha256": "fdae55e4a23126623bb763b20b9f1dc7a46abed8c33f6c5d53a0a5f30483010e",
    "provenance": "Rogaland fylkeskommune via vilbli.no/rogaland (2. inntak); the 2024-2026 edition as reissued at the same attachment id, fetched 23.09.2026 (file dated 21.09.2026). Adds one 2026 figure (Øksnevad, Vg1 Naturbruk dyrekunnskap SK 3 år, 37,1); every other page's text is unchanged. Author metadata stripped."
   },
+  "rogaland/poenggrenser-rogaland-2024-2026-official-rev3.pdf": {
+   "size": 379549,
+   "sha256": "bb8b0b1ac5b297d6128bfc24c11096f2b9a04cc07266e658063db1806313b02d",
+   "provenance": "Rogaland fylkeskommune: «Poenggrenser Rogaland 2026.pdf»; linked from https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6; served at https://webservice.vilbli.no/Data/Artikkelvedlegg/041510/Poenggrenser+Rogaland+2026.pdf; years 2024–2026; pages 23; round 2. inntak (stated on vilbli); captured as served, byte for byte, 28.09.2026 01:05 UTC by the live source watch (tools/live, source rogaland)."
+  },
   "rogaland/poenggrenser-rogaland-2024-2026-official.pdf": {
    "size": 486780,
    "sha256": "3897687a7b9f6c0174f4caab98f511d19ac9779f3d5621dde8e42f0a41f47792",
