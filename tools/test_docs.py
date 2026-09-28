@@ -343,6 +343,13 @@ check(doc, 'jump factor', r'\(`meta\.sigma_jump_multiplier`\): ×([\d.]+) after 
       [META['sigma_jump_multiplier']['jump'], META['sigma_jump_multiplier']['steady']]
       + [100 * _J[a]['by_jump'][k]['coverage80'] for a in ('without', 'with_jump') for k in ('jump|all', 'steady|all')],
       flat, [D3, D3] + [D2 * 10] * 4)
+# ---- v1.22: one forecast intake for every county, two years ahead where a
+# county lags (tools/forecast_year.py)
+_AX = META['halflife_search']['ahead_experiment']
+_ax = [_AX['factor'], _AX['rmse_two_years'], _AX['rmse_one_year'],
+       100 * _AX['two_years_with_factor']['coverage80'], 100 * _AX['two_years_with_one_year_spread']['coverage80']]
+check(doc, 'ahead factor', r'\(`meta\.sigma_ahead_multiplier`\), ×([\d.]+)\. Two years ahead the held-out RMSE is ([\d.]+) against ([\d.]+) a year ahead, and the band covers ([\d.]+)% of those outcomes with the factor and ([\d.]+)% without',
+      _ax, flat, [D3, D2, D2, D2 * 10, D2 * 10])
 check(doc, 'rising series', r'the backtest has been there (\d+) times: the published figure came in below the last one ([\d.]+)% of the time, the model\'s RMSE was ([\d.]+) against ([\d.]+) for persistence and ([\d.]+) for the EWMA, and it under-forecast by ([\d.]+) points on average \(95% CI \[([-\d.]+), ([-\d.]+)\]\)',
       [_RS['flagged']['n'], 100 * _RS['flagged']['share_below_last'], _RS['flagged']['rmse'], _RS['flagged']['rmse_last_year'],
        _RS['flagged']['rmse_ewma'], _RS['flagged']['bias']] + _RS['flagged']['ci_bias'], flat, [N, D2 * 10] + [D2] * 6)
@@ -719,6 +726,9 @@ check(doc, '6.1 jump factor', r'without a factor of its own it covered ([\d.]+)%
       [_jc('without', 'jump|all'), _jc('without', 'steady|all'), META['sigma_jump_multiplier']['jump'],
        META['sigma_jump_multiplier']['steady'], _jc('with_jump', 'jump|all'), _jc('with_jump', 'steady|all')],
       flat, [D2 * 10] * 2 + [D3] * 2 + [D2 * 10] * 2)
+check(doc, '6.1 ahead factor', r'test year: ×([\d.]+) \(`meta\.sigma_ahead_multiplier`\)\. Held out, the two-year forecasts miss by an RMSE of ([\d.]+) points against ([\d.]+) a year ahead, and their 80% band covers ([\d.]+)% with the factor and ([\d.]+)% without it',
+      _ax, flat, [D3, D2, D2, D2 * 10, D2 * 10])
+check(doc, 'appendix D ahead factor', r'with the spread widened ×([\d.]+) as measured', [_AX['factor']], flat, D3)
 check(doc, '7.5 jump factor', r'moves held-out coverage after such a step from ([\d.]+)% to ([\d.]+)%, and on the rest from ([\d.]+)% to ([\d.]+)%; the admission probability\'s Brier score goes from ([\d.]+) to ([\d.]+)',
       [_jc('without', 'jump|all'), _jc('with_jump', 'jump|all'), _jc('without', 'steady|all'), _jc('with_jump', 'steady|all'),
        _J['without']['chance_brier'], _J['with_jump']['chance_brier']], flat, [D2 * 10] * 4 + [0.00005001] * 2)

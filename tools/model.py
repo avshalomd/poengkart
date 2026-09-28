@@ -71,6 +71,9 @@ import collections
 import numpy as np
 import scipy.sparse as sp
 from scipy.optimize import minimize
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from forecast_year import forecast_intake   # noqa: E402
 from scipy.special import ndtr, expit
 
 
@@ -610,15 +613,31 @@ def band_of(m):
     return f'{lo}-{hi}' if hi < 99 else f'{lo}+'
 
 
-def spread(sig, h, m, lg=None, jump=None):
+def spread(sig, h, m, lg=None, jump=None, ahead=1):
     """Forecast spread s for a series with h years of history forecast at m:
     the history bucket's walk-forward RMSE (floored, calibrate_sigma) times
     the level multiplier of the band m falls in, times the multiplier of the
     series' level group lg, times the jump factor when the series' newest
-    step was larger than JUMP_POINTS (each 1 where not conditioned)."""
+    step was larger than JUMP_POINTS (each 1 where not conditioned), times
+    the factor for a forecast `ahead` years past the county's newest figure."""
     return (sig['hist'][hist_bucket(h)] * (sig['level'].get(band_of(m), 1.0) if sig.get('level') else 1.0)
             * (sig.get('group') or {}).get(lg, 1.0)
-            * (sig.get('jump') or {}).get(jump_key(jump), 1.0))
+            * (sig.get('jump') or {}).get(jump_key(jump), 1.0)
+            * ahead_factor(sig, ahead))
+
+
+def ahead_factor(sig, ahead):
+    """How much wider a forecast `ahead` years past the county's newest figure
+    is than one a year ahead. Two years ahead is measured (calibrate_ahead);
+    further out, the county-year level is a random walk whose variance grows
+    by the same step each year, so the measured excess is added once per year.
+    Unmeasured (a --quick fit), the random walk's own sqrt(ahead)."""
+    if ahead <= 1:
+        return 1.0
+    f2 = (sig.get('ahead') or {}).get(2)
+    if f2 is None:
+        return math.sqrt(ahead)
+    return math.sqrt(1 + (ahead - 1) * (f2 ** 2 - 1))
 
 
 def newest_step(vals):
@@ -644,11 +663,13 @@ def error_quantiles(preds, sig):
 
 
 # -------------------------------------------------------------------- backtest
-def walk_forward(rows, bridge, halflife, newest_all, couple=False, fill_blind=None, single_w=1.0):
-    """Fit on years < T, predict year T, for every T in BACKTEST_YEARS."""
+def walk_forward(rows, bridge, halflife, newest_all, couple=False, fill_blind=None, single_w=1.0, gap=0):
+    """Fit on years < T - gap, predict year T, for every T in BACKTEST_YEARS:
+    gap=0 is the forecast a year ahead, gap=1 two years ahead (the year
+    before T is withheld, as for a county that has not published it yet)."""
     preds, fit_sigmas = [], {}
     for T in BACKTEST_YEARS:
-        train = [r for r in rows if r['year'] < T]
+        train = [r for r in rows if r['year'] < T - gap]
         # Vestland 2023 was published from 3. inntak inside a 1. inntak series;
         # no earlier year can teach a forecast what that does to the figures,
         # and the final fit handles it with a fixed offset. Scoring those cells
@@ -1080,6 +1101,17 @@ def calibrate_sigma(preds, floor_sigma, level=LEVEL_SPREAD, group=LEVEL_GROUP_SP
     return out
 
 
+def calibrate_ahead(preds2, sig):
+    """The spread factor for a forecast two years past the county's newest
+    figure, from a walk-forward with the year before each test year withheld
+    (walk_forward gap=1): the same quantile rule as the level-group and jump
+    factors, so the calibration years' 80% band covers 80% of the two-year
+    errors. Never below 1: a longer horizon cannot know more."""
+    z = np.array([abs(p['v'] - p['m']) / spread(sig, p['hist'], p['m'], p.get('lg'), p.get('jump'))
+                  for p in preds2 if p['state'] == 'num' and p['T'] in CALIB_YEARS])
+    return float(np.clip(np.quantile(z, 0.8) / 1.2816, 1.0, 2.0)) if len(z) >= 30 else None
+
+
 def rising_series_check(preds, sig):
     """Does the forecast over-predict drops where a series has been climbing?
 
@@ -1330,6 +1362,37 @@ def main():
           'level-group multiplier:', {g: round(v, 3) for g, v in (sig.get('group') or {}).items()},
           'jump multiplier:', {k: round(v, 3) for k, v in (sig.get('jump') or {}).items()})
 
+    # ---- two years ahead. Every county is forecast for the same intake
+    # (tools/forecast_year.py), so one that has not published the intake just
+    # held (Trøndelag until December) is forecast two years past its newest
+    # figure. The walk-forward with the year before each test year withheld
+    # measures how much wider that forecast has to be
+    if preds_best:
+        print('two years ahead:')
+        preds2, _ = walk_forward(rows, bridge, halflife, newest, couple=couple, single_w=single_w, gap=1)
+        f2 = calibrate_ahead(preds2, sig)
+        if f2 is not None:
+            sig['ahead'] = {2: f2}
+        def cover(preds, sg, ahead):
+            z = [abs(p['v'] - p['m']) / spread(sg, p['hist'], p['m'], p.get('lg'), p.get('jump'), ahead)
+                 for p in preds if p['state'] == 'num' and p['T'] in EVAL_YEARS]
+            return dict(n=len(z), coverage80=round(float(np.mean(np.array(z) <= 1.2816)), 3))
+        e2 = np.array([p['v'] - p['m'] for p in preds2 if p['state'] == 'num' and p['T'] in EVAL_YEARS])
+        e1 = np.array([p['v'] - p['m'] for p in preds_best if p['state'] == 'num' and p['T'] in EVAL_YEARS])
+        hl_search['ahead_experiment'] = dict(
+            factor=round(f2, 3) if f2 is not None else None,
+            rmse_one_year=round(float(np.sqrt(np.mean(e1 ** 2))), 2),
+            rmse_two_years=round(float(np.sqrt(np.mean(e2 ** 2))), 2),
+            two_years_with_one_year_spread=cover(preds2, sig, 1),
+            two_years_with_factor=cover(preds2, sig, 2))
+        print('  two years ahead, held-out:', hl_search['ahead_experiment'])
+
+    # the one intake every county is forecast for (tools/forecast_year.py);
+    # a county that already published it (never, while the switch comes
+    # before the counties publish) is forecast for the one after
+    TARGET = forecast_intake()
+    print(f'forecast intake {TARGET} (school year {TARGET}/{(TARGET + 1) % 100:02d})')
+
     # ---- the held-out counties' own forecasts, off the finished fit
     sats = {}
     for f in sorted(HELD_OUT):
@@ -1355,13 +1418,16 @@ def main():
                 sigma_level_multiplier={b: round(v, 3) for b, v in sig['level'].items()},
                 sigma_group_multiplier={g: round(v, 3) for g, v in (sig.get('group') or {}).items()},
                 sigma_jump_multiplier={k: round(v, 3) for k, v in (sig.get('jump') or {}).items()},
+                sigma_ahead_multiplier={str(k): round(v, 3) for k, v in (sig.get('ahead') or {}).items()},
                 jump_points=JUMP_POINTS,
                 forecast_bands=FORECAST_BANDS, single_weight=single_w, n_single=n_single, ewma_alpha=EWMA_ALPHA,
                 hist_buckets=HIST_BUCKETS, n_level=model.n_level, n_fill=model.n_fill,
                 taus={f['name']: round(f['tau'], 3) for f in model.dl.factors if f['kind'] != 'fixed'},
                 taus_fill={f['name']: round(f['tau'], 3) for f in model.dh.factors if f['kind'] != 'fixed'},
                 round_bridge=bridge, year_pairs=year_pairs,
-                target_year={f: y + 1 for f, y in newest.items()},
+                forecast_intake=TARGET,
+                target_year={f: max(TARGET, y + 1) for f, y in newest.items()},
+                forecast_ahead={f: max(TARGET, y + 1) - y for f, y in newest.items()},
                 chance_bands=dict(likely=0.70, possible=0.35),
                 partial_years=sorted([list(x) for x in PARTIAL_YEARS]))
     zq = error_quantiles(preds_best, sig) if preds_best else None
@@ -1491,7 +1557,8 @@ def main():
         if s['fylke'] in HISTORY_ONLY:
             continue
         sid = f'{s["fylke"]}|{s["name"]}'
-        T = newest[s['fylke']] + 1
+        T = max(TARGET, newest[s['fylke']] + 1)
+        ahead = T - newest[s['fylke']]
         ent = dict(year=T, round=cy[s['fylke']].get('round'))
         # a held-out county is forecast from its own figures alone, and the
         # entry says so: the app labels the forecast, the report skips it
@@ -1532,9 +1599,9 @@ def main():
             # a satellite forecast carries the county's own measured error,
             # never narrower than the panel's spread for that history
             step = newest_step(past[series])
-            s_out = spread(sig, h, m, level_group(f'{k}|{p["level"]}'), is_jump(step))
+            s_out = spread(sig, h, m, level_group(f'{k}|{p["level"]}'), is_jump(step), ahead)
             if sat:
-                s_out = max(s_out, held_sigma.get(s['fylke'], 0.0))
+                s_out = max(s_out, held_sigma.get(s['fylke'], 0.0) * ahead_factor(sig, ahead))
             progs[key] = dict(m=round(m, 1), s=round(s_out, 1), pi=pi_out, h=h)
             # the app flags the step ("Uvanlig endring") and says why the
             # spread is wider: the change between the two newest figures

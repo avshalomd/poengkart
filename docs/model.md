@@ -177,6 +177,19 @@ outcomes after a jump and 81.3% of the rest; with it, 81.8% and 80.5%. The
 app flags such a step as «Uvanlig endring» (the forecast's `j`, the step
 in points).
 
+Every county is forecast for the same intake: the next one that has not
+happened yet, moving on each 1 July, when the offers go out and before any
+county publishes that year's thresholds (`tools/forecast_year.py`,
+`meta.forecast_intake`; decided 28 September 2026). Until 30 June 2027 that is
+the 2027 intake, school year 2027/28. A county that has not yet published the
+intake just held (Buskerud and Trøndelag on 28 September 2026, `meta.forecast_ahead`) is
+then forecast two years past its newest figure, from the same random walk,
+so the level is unchanged and only the spread grows: a walk-forward with the
+year before each test year withheld measures the factor the same way
+(`meta.sigma_ahead_multiplier`), ×1.032. Two years ahead the held-out
+RMSE is 5.86 against 5.45 a year ahead, and the band covers
+80.2% of those outcomes with the factor and 78.1% without.
+
 F, the error distribution, is likewise the empirical distribution of those
 standardised errors (41 quantiles in `meta.error_quantiles`) rather than a
 bell curve. It is slightly left-heavy — thresholds collapse more often than

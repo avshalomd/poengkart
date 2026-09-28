@@ -125,8 +125,11 @@ for s in DATA['schools']:
                 missing.append(f'{s["name"]}: {p["program"]} {p["level"]}')
         if pr:
             n_pred += 1
-            check('target year is the county\'s next publication', ent['year'] == newest[s['fylke']] + 1,
-                  f'{s["name"]} {ent["year"]} vs {newest[s["fylke"]]}')
+            # every county is forecast for the one intake the date calls for
+            # (tools/forecast_year.py), or the next it has not published
+            want = max(META['forecast_intake'], newest[s['fylke']] + 1)
+            check('target year is the forecast intake', ent['year'] == want,
+                  f'{s["name"]} {ent["year"]} vs {want}')
             check('pi is a probability', 0 <= pr['pi'] <= 1, f'{s["name"]} {key} {pr["pi"]}')
             check('spread positive', pr['s'] > 0, f'{s["name"]} {key}')
             check('expected threshold plausible', -10 <= pr['m'] <= 70, f'{s["name"]} {key} {pr["m"]}')

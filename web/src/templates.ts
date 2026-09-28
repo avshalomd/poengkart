@@ -8,7 +8,7 @@ import { S } from './state';
 import { t, CATS } from './i18n';
 import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE, HELD_OUT, HISTORY_ONLY,
          partitionPrograms, numericLatest, progId, progName, levelScope, isRecent, isVg1, isPoints, meanStep, zeroIsFill, BUG_ICON, X_ICON } from './helpers';
-import { bucketOf, chanceFinal, chanceMode, chanceOf, finalRoundBridge, isChosen, modelEntry, newestForecastYear, pct, pctS, predFor } from './forecast';
+import { bucketOf, chanceFinal, chanceMode, chanceOf, finalRoundBridge, isChosen, modelEntry, pct, pctS, predFor } from './forecast';
 import type { School, County } from './types';
 
 export interface HeroCell { v: string | number; l: string; cls?: string; ti?: string }
@@ -271,7 +271,7 @@ export function listHtml(s: School, scope: string | null): string {
           // share with no waiting list is what lifts a row whose expected
           // threshold is above the reader's points; say it where it matters.
           const free = HELD_OUT.has(s.fylke) ? 0 : Math.round((1 - pr.pi) * 100);
-          fc = `<span class="fc">${esc(t('fcLine', pr.year, fmt(pr.m), fmt(pr.s), +pr.year < newestForecastYear())
+          fc = `<span class="fc">${esc(t('fcLine', pr.year, fmt(pr.m), fmt(pr.s))
                  + (free >= 10 ? t('fcOpen', free) : ''))}</span>`;
         } else if ((modelEntry(s, p) || {}).h === 0) {
           chip = `<span class="ch none" data-tip="${esc(t('noHistTitle'))}">${t('noHist')}</span>`;

@@ -132,10 +132,9 @@ export function legendZoomHint() {
   // the line changes the legend's height, which the panel's cap is measured from
   if (el.hidden !== was) liftMapControls();
 }
-// The intake a forecast is for is the county's first year without published
-// figures: 2026 in Buskerud and Trøndelag, 2027 elsewhere (model.json). Said as
-// «neste inntak», the legend and the list told those two counties' readers
-// about an intake that has already happened.
+// The school year the forecasts are for, from model.json: one intake for
+// every county since 28 Sept 2026 (tools/forecast_year.py), so this is one
+// year; «a eller b» only while a model built before that is still served.
 export function forecastYears(schools) {
   const ys = [...new Set(schools.map(s => S.MODEL?.schools?.[`${s.fylke}|${s.name}`]?.year).filter(Boolean))].sort();
   return t('yearsOr', ys.map(schoolYear));

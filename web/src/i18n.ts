@@ -536,8 +536,8 @@ export const T = {
             en: (x, p) => `${x} looks like a grade average. Points = average × 10.` },
   ptsAvgFix: { no: p => `Bruk ${p} poeng`, en: p => `Use ${p} points` },
   // the forecast under each chance: what the percentage is measured against
-  fcLine: { no: (y, m, s, unpub) => `Forventet poenggrense ${y}${unpub ? ' (ikke publisert ennå)' : ''}: ca. ${m} ± ${s}`,
-            en: (y, m, s, unpub) => `Expected threshold ${y}${unpub ? ' (not yet published)' : ''}: about ${m} ± ${s}` },
+  fcLine: { no: (y, m, s) => `Forventet poenggrense ${schoolYear(y)}: ca. ${m} ± ${s}`,
+            en: (y, m, s) => `Expected threshold ${schoolYear(y)}: about ${m} ± ${s}` },
   fcOpen: { no: f => ` · ${f} % sjanse for ingen venteliste`, en: f => ` · ${f}% chance of no waiting list` },
   bandLabel:  { no: b => ({ likely: '≥ 70 %', possible: '35–70 %', unlikely: '< 35 %' })[b],
                 en: b => ({ likely: '≥ 70%', possible: '35–70%', unlikely: '< 35%' })[b] },

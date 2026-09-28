@@ -1,0 +1,118 @@
+# The forecast intake moves on to the next school year every 1 July
+# (tools/forecast_year.py, decided 28 Sept 2026). Every morning this asks
+# whether the model.json on main forecasts the intake the date calls for. When
+# it does not, it refits on a branch live/forecast-<year>, runs every gate and
+# opens a pull request labelled `live`. Like a county's new school year, it
+# waits for the owner: his merge deploys it (live.yml, deploy-merged).
+name: forecast-year
+
+on:
+  schedule:
+    - cron: "11 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+env:
+  ASTRO_TELEMETRY_DISABLED: "1"
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  switch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: tools/requirements.txt
+
+      - run: pip install -q -r tools/requirements.txt
+
+      - name: Is the model on the intake the date calls for
+        id: check
+        run: |
+          if python3 tools/forecast_year.py check; then exit 0; fi
+          y=$(python3 tools/forecast_year.py)
+          b="live/forecast-$y"
+          if git ls-remote --exit-code --heads origin "$b" > /dev/null; then
+            echo "$b already waits for review"
+            exit 0
+          fi
+          echo "year=$y" >> "$GITHUB_OUTPUT"
+          echo "branch=$b" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-node@v4
+        if: steps.check.outputs.year != ''
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: npm ci
+        if: steps.check.outputs.year != ''
+        run: npm ci
+
+      - name: Pipeline (tools/refresh.py)
+        id: pipeline
+        if: steps.check.outputs.year != ''
+        continue-on-error: true
+        timeout-minutes: 40
+        run: set -o pipefail; python3 -u tools/refresh.py 2>&1 | tee "$RUNNER_TEMP/refresh.log"
+
+      - name: Dataset tests (pytest)
+        id: pytest
+        if: steps.pipeline.outcome == 'success'
+        continue-on-error: true
+        run: set -o pipefail; python3 -m pytest -q 2>&1 | tee "$RUNNER_TEMP/pytest.log"
+
+      - name: Web tests (typecheck, unit, build, browser)
+        id: web
+        if: steps.pipeline.outcome == 'success'
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          { npm run typecheck && npm run test && npm run build \
+            && npx playwright install --with-deps chromium && CI=1 npm run e2e; } 2>&1 | tee "$RUNNER_TEMP/web.log"
+
+      - name: Pull request
+        if: steps.check.outputs.year != ''
+        env:
+          YEAR: ${{ steps.check.outputs.year }}
+          BRANCH: ${{ steps.check.outputs.branch }}
+          PIPELINE: ${{ steps.pipeline.outcome }}
+          PYTEST: ${{ steps.pytest.outcome }}
+          WEB: ${{ steps.web.outcome }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          next=$(( (YEAR + 1) % 100 ))
+          sy="$YEAR/$(printf %02d $next)"
+          git config user.name "poengkart-live[bot]"
+          git config user.email "poengkart-live[bot]@users.noreply.github.com"
+          git switch -q -c "$BRANCH"
+          git add -A
+          git commit -q -m "Forecasts move on to school year $sy (tools/forecast_year.py)" || true
+          git push -q -f -u origin "HEAD:$BRANCH"
+          {
+            echo "On 1 July the forecast moves on to the next intake (tools/forecast_year.py): every county is now forecast for school year **$sy**. A county that has not yet published the intake just held is forecast two years ahead, with the spread the backtest measured for that."
+            echo
+            echo "- \`tools/refresh.py\`: **$PIPELINE**"
+            echo "- \`pytest\`: **${PYTEST:-skipped}**"
+            echo "- web (typecheck, unit, build, browser): **${WEB:-skipped}**"
+            echo "- Run: $RUN_URL"
+            echo
+            echo "Waits for the owner, like a county's new school year. Merging deploys it."
+          } > "$RUNNER_TEMP/body.md"
+          gh label create live --force --color 0e8a16 --description "The live source watch (tools/live)" > /dev/null
+          gh pr create --base main --head "$BRANCH" --title "Forecasts move on to school year $sy" \
+            --body-file "$RUNNER_TEMP/body.md" --label live

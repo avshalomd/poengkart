@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · September 2026 · v1.21 (version history in Appendix D)
+Technical report · September 2026 · v1.22 (version history in Appendix D)
 Application: [poengkart.no](https://poengkart.no) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
@@ -695,6 +695,18 @@ after a jump and once on the rest, so the pooled band still covers 80%:
 80.5%. About one forecast in six carries it, and the application
 flags the step itself as an unusual change.
 
+Every county is forecast for one intake, the next that has not happened
+yet: the target moves on each 1 July, when the offers go out and before any
+county publishes that year's thresholds (`forecast_intake`, in
+`tools/forecast_year.py`). A county that has not yet published the intake
+just held is then forecast two years past its newest figure. The level is
+the same random-walk forecast; the spread gets a factor fitted by the same
+quantile rule on a second walk-forward that withholds the year before each
+test year: ×1.032 (`meta.sigma_ahead_multiplier`). Held out, the
+two-year forecasts miss by an RMSE of 5.86 points against 5.45 a year
+ahead, and their 80% band covers 80.2% with the factor and
+78.1% without it.
+
 ### 6.2 An empirical error distribution
 
 $\Phi_F$ in (1) is the empirical CDF of the standardised walk-forward errors
@@ -1307,7 +1319,7 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.21`, and the numbers
+the version this report describes is tagged `report-v1.22`, and the numbers
 quoted here are from the build of 2026-09-28. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
@@ -1682,7 +1694,13 @@ Held-out Brier 0.158 against 0.204 for the base-rate forecaster.
   to 80.6%; the county-year step's spread grows from 0.93 to 1.01 points,
   and the admission probability's Brier score does not move. No
   conclusion changes.
-- **v1.21** (this version). Møre og Romsdal's Vg2, Vg3 and Vg4 join the
+- **v1.22** (this version). Every county is forecast for the same intake,
+  the next that has not happened yet, moving on each 1 July (Section 6.1):
+  Buskerud and Trøndelag, which have not published 2026/27, are forecast
+  for 2027/28 instead of 2026/27, two years past their newest figure, with
+  the spread widened ×1.032 as measured by a walk-forward that
+  withholds the year before each test year. No other figure changes.
+- **v1.21**. Møre og Romsdal's Vg2, Vg3 and Vg4 join the
   dataset, from the county's own Power BI dashboard, which the live source
   watch now reads (Section 4.4): 4,268 cells for 2012/13–2026/27, with the
   same `*` rule and the admitted mean, so the county holds 6,058 cells
