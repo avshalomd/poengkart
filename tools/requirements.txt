@@ -2,8 +2,10 @@
 # plus pytest. CI and the cloud environment's setup script install this file;
 # pyproject.toml deliberately lists none. Pinned exactly so a new upstream
 # release cannot change CI on its own. numpy 2.0 and scipy 1.13 are the last
-# lines that still support Python 3.9, which the local venv runs.
+# lines that still support Python 3.9, which the local venv runs; so is boto3
+# 1.42 (sources_r2.py push, which the live workflow runs with the R2 keys).
 beautifulsoup4==4.15.0
+boto3==1.42.97
 lxml==6.1.2
 numpy==2.0.2
 openpyxl==3.1.5
