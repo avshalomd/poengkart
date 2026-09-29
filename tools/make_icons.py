@@ -11,6 +11,10 @@ on white.
 Everything is drawn at 8x and downsampled; PIL has no anti-aliased shape
 drawing of its own. The SVG and the header's inline copy in shell.html use the
 same geometry (pin space 0-100, head centred at 50,39, radius 28).
+
+After drawing a new mark, bump the ?v= on the icon links in
+web/src/layouts/Base.astro and tools/build_report_page.py: browsers keep the
+old icons for a week under the old addresses.
 """
 import math
 import os
