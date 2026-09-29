@@ -269,8 +269,8 @@ newspaper copies of the county's lists: `hordaland-2014-reprint-bt.transcribed.c
 
 ## Live captures
 
-Since 28 September 2026 the live source watch (`tools/live/`, run hourly by
-`.github/workflows/live.yml`) reads each publishing county's page and keeps
+Since 28 September 2026 the live source watch (`tools/live/`, run daily, and hourly on
+weekdays 1 July to 20 August, by `.github/workflows/live.yml`) reads each publishing county's page and keeps
 anything new here the moment it appears, exactly as served: Akershus's and
 Oslo's pages, Buskerud's yearly page (found from «Søke skoleplass», whatever
 its slug), Vestland's PDFs, Rogaland's, Innlandet's and Trøndelag's vilbli

@@ -11,17 +11,20 @@ document dates of the captures so far are Trøndelag 2 Dec 2025 13:49–13:53,
 Rogaland 7, 21 and 23 Sept 2026 (14:31), Innlandet 25 Sept 2026 12:42,
 Vestland 28 Aug 2026; Oslo and Vestland's first inntak lands in mid-July.
 Each source names the months its publications (and the corrections that
-follow them) have come in, its `season`. In season it is checked every hour
-from 06 to 20 Oslo time on weekdays and at 09 and 15 at weekends, so a new
-document is captured within the hour it appears; out of season once a day at
-07, which still catches a late correction the next morning. The sentinel
-(the counties that publish nothing) runs on Mondays at 07.
+follow them) have come in, its `season`. Every source is checked once a day at
+07 Oslo time, all year, so any document is captured by the next morning. Only
+in the intake window (1 July to 20 August, the inntak rounds, when students
+look up this year's figures the day they appear) is a source that is also in
+season checked every hour from 06 to 20 on weekdays. The owner chose this on
+29 Sept 2026: the publications seen so far outside the inntak rounds were not
+urgent, and a daily check catches them by the next morning. The sentinel (the counties that publish nothing) runs on
+Mondays at 07.
 
 Sources on hosts that refuse GitHub's runners (vilbli.no) carry
 `'runner': 'cloud'` and are run by the relay routine instead
 (routines/live-vilbli.md), on its own timetable; `due` leaves them out.
 
-`due` is stateless: the workflow fires hourly and whether a source runs is a
+`due` is stateless: the workflow fires (see its cron) and whether a source runs is a
 function of Oslo's clock alone. A late or doubled run is harmless, because an
 unchanged document is recognised by its content and nothing is written.
 """
@@ -37,8 +40,10 @@ sys.path.insert(0, os.path.dirname(HERE))
 OSLO = ZoneInfo('Europe/Oslo')
 
 WEEKDAY_HOURS = range(6, 21)
-WEEKEND_HOURS = (9, 15)
 DAILY_HOUR = 7
+#: the only weeks a source is checked hourly (month, day), inclusive; the
+#: workflow's hourly cron covers July and August, so it must stay inside them
+HOURLY_WINDOW = ((7, 1), (8, 20))
 
 
 def source_ids():
@@ -57,12 +62,19 @@ def in_season(src, day):
     return False
 
 
+def hourly(src, day):
+    """True on the days `src` is checked every weekday hour: in its season and
+    in the intake window."""
+    lo, hi = HOURLY_WINDOW
+    return day.weekday() < 5 and lo <= (day.month, day.day) <= hi and in_season(src, day)
+
+
 def is_due(src, now):
     """True when `src` should run in the hourly slot of `now` (Oslo time)."""
     if src['id'] == 'sentinel':
         return now.weekday() == 0 and now.hour == DAILY_HOUR
-    if in_season(src, now):
-        return now.hour in (WEEKDAY_HOURS if now.weekday() < 5 else WEEKEND_HOURS)
+    if hourly(src, now):
+        return now.hour in WEEKDAY_HOURS
     return now.hour == DAILY_HOUR
 
 
@@ -97,7 +109,7 @@ def main(argv=None):
     for sid in source_ids():
         s = source(sid)
         when = ('Mondays 07' if sid == 'sentinel' else
-                'hourly 06–20 weekdays, 09 and 15 weekends' if in_season(s, now) else 'daily 07')
+                'hourly 06–20 today' if hourly(s, now) else 'daily 07')
         if s.get('runner') == 'cloud':
             when = 'by the cloud relay routine (routines/live-vilbli.md)'
         print(f'{sid:<10} {"in season " if in_season(s, now) else "off season"}  {when}')

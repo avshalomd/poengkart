@@ -1,8 +1,10 @@
-# The live source watch: poengkart.no's figures follow the counties within hours.
+# The live source watch: poengkart.no's figures follow the counties within a day,
+# and within the hour during the inntak rounds.
 #
-# Every hour from early morning to evening it asks tools/live/schedule.py which
-# sources are due (hourly on weekdays in each county's publishing season, daily
-# out of it, the sentinel weekly) and runs their scrapers (tools/live/run.py).
+# Once a day (hourly on weekdays in July and August) it asks
+# tools/live/schedule.py which sources are due (every source daily at 07 Oslo;
+# hourly on weekdays 1 July to 20 August, the inntak rounds, for a source in
+# season; the sentinel weekly) and runs their scrapers (tools/live/run.py).
 # vilbli.no, where Rogaland, Innlandet and Trøndelag publish, refuses GitHub's
 # runners (an AWS WAF CAPTCHA), so those three run in a Claude cloud routine
 # (routines/live-vilbli.md) that pushes what it finds to a live/cloud-* branch;
@@ -33,8 +35,13 @@ name: live
 
 on:
   schedule:
-    # :23 past every hour 04–19 UTC: 06–21 in Oslo in summer, 05–20 in winter
-    - cron: "23 4-19 * * *"
+    # the daily check: 05:23 and 06:23 UTC, so one of them is 07 in Oslo in
+    # summer (UTC+2) and in winter (UTC+1); the other finds nothing due
+    - cron: "23 5,6 * * *"
+    # the intake window: every hour 06–21 Oslo (summer time) on weekdays in July
+    # and August; schedule.py ends it on 20 August (a cron cannot combine a day
+    # range with weekdays: it ORs them)
+    - cron: "23 4-19 * 7-8 1-5"
   push:
     branches: ["live/cloud-*"]
   pull_request:
@@ -60,6 +67,7 @@ on:
         default: false
 
 permissions:
+  actions: write
   contents: write
   issues: write
   pull-requests: write
@@ -101,6 +109,17 @@ jobs:
         run: |
           git config user.name "poengkart-live[bot]"
           git config user.email "poengkart-live[bot]@users.noreply.github.com"
+
+      - name: Keep the schedules alive
+        # GitHub disables a public repository's scheduled workflows after 60 days
+        # without activity, and a quiet autumn commits nothing; enabling a
+        # workflow again restarts that count
+        if: github.event_name == 'schedule'
+        continue-on-error: true
+        run: |
+          for w in live.yml forecast-year.yml; do
+            gh api -X PUT "repos/$GITHUB_REPOSITORY/actions/workflows/$w/enable" --silent
+          done
 
       - name: Which sources are due
         id: due
