@@ -256,6 +256,15 @@ def test_schedule():
                                           'rogaland', 'trondelag', 'vestland', 'sentinel'}
 
 
+def test_schedule_due_prints_nothing_when_nothing_is_due(capsys):
+    # 01:51 Oslo on a Tuesday: no source is due, and the workflow's `--only`
+    # must get no source list at all (a bare newline became ' ' and crashed it)
+    assert schedule.main(['due', '--at', '2026-09-29T01:51']) == 0
+    assert capsys.readouterr().out == ''
+    assert schedule.main(['due', '--at', '2026-09-28T20:38']) == 0
+    assert 'oslo' in capsys.readouterr().out.split()
+
+
 def test_every_scraper_declares_what_the_runner_needs():
     for sid in schedule.source_ids():
         s = schedule.source(sid)

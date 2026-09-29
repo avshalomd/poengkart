@@ -114,6 +114,7 @@ jobs:
           elif [ -n "$ONLY" ]; then sources="$ONLY"
           else sources=$(python3 tools/live/schedule.py due ${AT:+--at "$AT"} | tr '\n' ' ')
           fi
+          sources=$(echo $sources)   # trimmed: an hour with nothing due must give '', not ' '
           echo "sources=$sources" >> "$GITHUB_OUTPUT"
           echo "due: ${sources:-nothing}"
 

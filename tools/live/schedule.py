@@ -89,7 +89,10 @@ def main(argv=None):
         print('\n'.join(s for s in source_ids() if a.runner in ('any', runner(s))))
         return 0
     if a.cmd == 'due':
-        print('\n'.join(due(now, a.runner)))
+        # nothing due prints nothing: a bare newline reached the workflow as the
+        # source list ' ' and ran `run.py --only` with no ids
+        for sid in due(now, a.runner):
+            print(sid)
         return 0
     for sid in source_ids():
         s = source(sid)
