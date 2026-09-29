@@ -243,12 +243,19 @@ def at(s):
 
 def test_schedule():
     oslo = schedule.source('oslo')                     # season 15 June – 30 Sept
-    assert schedule.is_due(oslo, at('2026-07-14T10:23'))        # a Tuesday in season
+    assert schedule.is_due(oslo, at('2026-07-14T10:23'))        # a Tuesday in the intake window
     assert not schedule.is_due(oslo, at('2026-07-14T21:23'))
-    assert schedule.is_due(oslo, at('2026-07-18T15:23'))        # a Saturday: 09 and 15
-    assert not schedule.is_due(oslo, at('2026-07-18T10:23'))
+    assert schedule.is_due(oslo, at('2026-08-20T15:23'))        # the window's last day
+    assert not schedule.is_due(oslo, at('2026-08-21T15:23'))    # after it: daily only
+    assert schedule.is_due(oslo, at('2026-08-21T07:23'))
+    assert not schedule.is_due(oslo, at('2026-07-18T15:23'))    # a Saturday: daily only
+    assert schedule.is_due(oslo, at('2026-07-18T07:23'))
+    assert not schedule.is_due(oslo, at('2026-06-20T10:23'))    # in season, before the window
     assert schedule.is_due(oslo, at('2026-02-03T07:23'))        # off season: 07 daily
     assert not schedule.is_due(oslo, at('2026-02-03T10:23'))
+    akershus = schedule.source('akershus')             # season July – December
+    assert not schedule.is_due(akershus, at('2026-09-29T10:23'))
+    assert schedule.is_due(akershus, at('2026-09-29T07:23'))
     sentinel = schedule.source('sentinel')
     assert schedule.is_due(sentinel, at('2026-09-28T07:23'))    # Monday
     assert not schedule.is_due(sentinel, at('2026-09-29T07:23'))
@@ -261,7 +268,7 @@ def test_schedule_due_prints_nothing_when_nothing_is_due(capsys):
     # must get no source list at all (a bare newline became ' ' and crashed it)
     assert schedule.main(['due', '--at', '2026-09-29T01:51']) == 0
     assert capsys.readouterr().out == ''
-    assert schedule.main(['due', '--at', '2026-09-28T20:38']) == 0
+    assert schedule.main(['due', '--at', '2026-07-14T20:38']) == 0
     assert 'oslo' in capsys.readouterr().out.split()
 
 
@@ -274,8 +281,8 @@ def test_every_scraper_declares_what_the_runner_needs():
 def test_vilbli_sources_run_in_the_cloud_relay_and_the_rest_on_actions():
     assert {s for s in schedule.source_ids() if schedule.runner(s) == 'cloud'} == \
         {'rogaland', 'innlandet', 'trondelag'}
-    assert 'rogaland' not in schedule.due(at('2026-09-01T10:23'))
-    assert 'oslo' in schedule.due(at('2026-09-01T10:23'))
+    assert 'rogaland' not in schedule.due(at('2026-09-01T07:23'))
+    assert 'oslo' in schedule.due(at('2026-09-01T07:23'))
 
 
 def test_issues_open_once_with_one_label_and_repeat_only_news():

@@ -1,7 +1,7 @@
 # Weekly source watch · routine
 
 You are the Poengkart weekly source watch. You run unattended in a cloud clone of
-https://github.com/avshalomd/poengkart once a week. The hourly live watch
+https://github.com/avshalomd/poengkart once a week. The daily live watch
 (`.github/workflows/live.yml`, `tools/live/`, `sources/README.md` «Live captures»)
 already fetches every county that publishes poenggrenser. Your job is to look where it
 cannot, and to say so on GitHub when you find something. You capture and process

@@ -440,7 +440,8 @@ Found by the final whole-branch review (17 September 2026) and left for later:
 
 ## Live source watch (28 September 2026)
 
-`.github/workflows/live.yml` runs `tools/live/` every hour: eight scrapers
+`.github/workflows/live.yml` runs `tools/live/` daily (hourly on weekdays 1 July to 20 August, the
+inntak rounds; narrowed from all-season hourly on 29 September 2026): eight scrapers
 (Akershus, Buskerud, Innlandet, Møre og Romsdal, Oslo, Rogaland, Trøndelag,
 Vestland; the three vilbli counties through a Claude cloud relay routine,
 because vilbli answers GitHub's runners with a CAPTCHA) and a weekly sentinel
