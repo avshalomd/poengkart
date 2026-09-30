@@ -157,6 +157,8 @@ test('a short screen scrolls the field’s question into sight', async ({ page }
     return n.top >= p.top - 1 && n.bottom <= p.bottom - fade + 1;
   });
   await expect.poll(clear, { message: 'the question is inside the panel’s box, above its fade' }).toBe(true);
+  // under a finger the suggestion is a button as tall as the ✕ beside the field
+  expect((await page.locator('#pts-note .lnk').boundingBox())!.height, 'the suggestion is a 34px button').toBeGreaterThanOrEqual(34);
   // held sideways the panel is one row of fields and stops at the legend too,
   // whose title is three lines once there is a chance to show
   await page.setViewportSize({ width: 568, height: 320 });
@@ -164,6 +166,10 @@ test('a short screen scrolls the field’s question into sight', async ({ page }
   await page.press('#my-points', 'Enter');
   await expect(page.locator('#pts-note')).toContainText('4,25 i snitt tilsvarer 42,5');
   await expect.poll(clear, { message: 'the note is in sight sideways' }).toBe(true);
+  // and lies under all three fields, not in the last one's column
+  const wide = await page.evaluate(() => document.getElementById('pts-note')!.getBoundingClientRect().width
+    / document.getElementById('panel')!.getBoundingClientRect().width);
+  expect(wide, 'the note spans the panel sideways').toBeGreaterThan(0.9);
   await expect.poll(() => page.evaluate(() =>
     document.getElementById('panel')!.getBoundingClientRect().bottom <= document.getElementById('legend')!.getBoundingClientRect().top),
     { message: 'the panel stops above the legend' }).toBe(true);
@@ -175,7 +181,9 @@ test('retyping a submitted average moves nothing under the sheet’s field, and 
   await page.locator('#s-points').fill('4,5');
   await page.locator('#s-pts-act').click();
   await expect(page.locator('#s-pts-note')).toContainText('4,5 i snitt tilsvarer 45,0');
-  const top = () => page.locator('#s-chance').evaluate(e => Math.round(e.getBoundingClientRect().top));
+  // from the field, not from the screen: the submit scrolls the note into sight
+  const top = () => page.evaluate(() => Math.round(document.getElementById('s-chance')!.getBoundingClientRect().top
+    - document.getElementById('s-pts')!.getBoundingClientRect().top));
   const before = await top();
   await page.locator('#s-points').focus();
   await page.keyboard.press('End'); await page.keyboard.type('5');

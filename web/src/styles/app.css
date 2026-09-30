@@ -1634,6 +1634,11 @@
        under the card's fold again. It follows the three fields instead. */
     body:not(.view-list) #panel #cat-note { order: 1; }
     body:not(.view-list) #panel #choices { order: 2; }
+    /* Under its field, a third of the card wide, the note ran to four lines and
+       began below the card's fold. It lies under all three fields instead, in
+       one line or two: the field's column is 6 of the 18 parts, so the card's
+       inner width is three of it and the two 8px gaps. */
+    body:not(.view-list) #panel #pts-note { width: calc(300% + 16px); margin-left: calc(-200% - 16px); }
   }
   /* ---------- the List view's control card ----------
      Above the table the card is three rows, each filled edge to edge: the
@@ -1840,16 +1845,25 @@
     .seg button { padding-top: 12px; padding-bottom: 12px; }
     /* widen the gap first, then spend it: the reach can only be as generous as
        the space between two icons, or each starts firing its neighbour */
-    .brand .util { gap: 14px; }
+    /* 14px between four 31px icons is 166px, and beside the name that is 17px
+       more than a 320px phone's card, or a tablet's, has: the settings icon
+       stood 5px out of the card, cut, and the card scrolled sideways. The row
+       keeps 14px where it fits and closes up to 6px where it does not. */
+    .brand .util { flex: 0 1 166px; min-width: 142px; justify-content: space-between; gap: 6px; }
     .brand .util .ico::after { inset: -9px -7px; }
     .ptsrow button { position: relative; }
     .ptsrow button::after { content: ''; position: absolute; inset: -5px; }
-    /* «Mente du 4,5?» is the one thing to press under a refused figure, and it
-       is a 15px line of text: it reaches sideways, 4px up, where the reach of
-       the ✕ and the calculator ends, and 10px down, which is as far as the
-       panel's own edge lets it go without making the panel scroll */
-    #pts-note .lnk, #s-pts-note .lnk { position: relative; }
-    #pts-note .lnk::after, #s-pts-note .lnk::after { content: ''; position: absolute; inset: -4px -8px -10px; }
+    /* «Mente du 4,5?» is the one thing to press under a refused figure, and as
+       a 15px line of text it was the smallest target on the screen. Under a
+       finger it is a button the height of the ✕ and the calculator beside the
+       field, reaching 44px as they do; it stands after the message where the
+       row has room and under it where it has not. A mouse keeps the link. */
+    #pts-note.bad, #s-pts-note.bad { display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; }
+    #pts-note.bad[hidden], #s-pts-note.bad[hidden] { display: none; }
+    #pts-note .lnk, #s-pts-note .lnk {
+      position: relative; flex: none; height: 34px; margin-top: 4px; padding: 0 14px; font-size: 12.5px;
+      background: var(--surface-solid); border: 1px solid var(--accent); border-radius: 999px; text-decoration: none; }
+    #pts-note .lnk::after, #s-pts-note .lnk::after { content: ''; position: absolute; inset: -4px -5px -6px; }
     /* «Vis mer» and the scope chip's «Vis alle utdanningsprogram» are 14-16px
        tall, the two text controls this list had missed; the programme heading
        sits 8px under the chip, so that one reaches up rather than down */
