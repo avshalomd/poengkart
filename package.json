@@ -30,6 +30,7 @@
     "dev": "astro dev",
     "prebuild": "node tools/vendor-maplibre.mjs",
     "build": "astro build",
+    "postbuild": "node tools/keep-live-assets.mjs",
     "preview": "astro preview",
     "typecheck": "tsc --noEmit",
     "e2e": "playwright test",
