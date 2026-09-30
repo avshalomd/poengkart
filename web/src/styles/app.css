@@ -227,6 +227,11 @@
   .ptsrow input.bad { border-color: var(--danger); }
   #pts-note.bad, #s-pts-note.bad { color: var(--danger); }
   #s-pts-note.hint { color: var(--ink-3); }
+  /* while a new figure is typed the old note keeps its box, unseen (chance.ts) */
+  #pts-note.held, #s-pts-note.held { visibility: hidden; }
+  /* scrolled into sight after a submit (chance.ts), the note's last line came to
+     rest under the card's bottom fade, and in the sheet on the screen's edge */
+  #pts-note, #s-pts-note { scroll-margin-bottom: 16px; }
   /* the sheet's copy of the points field, only where the sheet hides the panel */
   #s-pts { display: none; margin: 12px 18px 0; }
   body.sheet-full #s-pts { display: block; }
@@ -286,7 +291,10 @@
   /* invisible, not absent: the slot is reserved so picking a grade never
      shoves the whole row leftwards when the ✕ appears */
   #calc .grades button.rm.off { visibility: hidden; }
-  #calc .sum { display: flex; align-items: baseline; gap: 14px; margin: 14px 0 4px; }
+  /* each figure keeps its unit beside it: at 320px with the largest text
+     «grade points» broke in two under its number; the pair drops a line instead */
+  #calc .sum { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 14px; margin: 14px 0 4px; }
+  #calc .sum > span { white-space: nowrap; }
   #calc .sum .v { font-size: 22px; font-weight: 700; letter-spacing: -.02em;
                   font-variant-numeric: tabular-nums; }
   #calc .sum .l { font-size: 11px; color: var(--ink-3); }
@@ -1836,6 +1844,12 @@
     .brand .util .ico::after { inset: -9px -7px; }
     .ptsrow button { position: relative; }
     .ptsrow button::after { content: ''; position: absolute; inset: -5px; }
+    /* «Mente du 4,5?» is the one thing to press under a refused figure, and it
+       is a 15px line of text: it reaches sideways, 4px up, where the reach of
+       the ✕ and the calculator ends, and 10px down, which is as far as the
+       panel's own edge lets it go without making the panel scroll */
+    #pts-note .lnk, #s-pts-note .lnk { position: relative; }
+    #pts-note .lnk::after, #s-pts-note .lnk::after { content: ''; position: absolute; inset: -4px -8px -10px; }
     /* «Vis mer» and the scope chip's «Vis alle utdanningsprogram» are 14-16px
        tall, the two text controls this list had missed; the programme heading
        sits 8px under the chip, so that one reaches up rather than down */

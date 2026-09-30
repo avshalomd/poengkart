@@ -367,7 +367,7 @@ export function renderChance(s, lensCat) {
       + `${esc(t('adjLine', (round1(e.alpha) > 0 ? '+' : '') + fmt(e.alpha), fmt(e.alpha_se)))}</div>`;
   if (!chanceMode()) {
     box!.className = 'chance prompt';
-    box!.innerHTML = `<div>${esc(t('chancePrompt', e.year))}</div>` + (adj ? chanceMore(adj) : '');
+    box!.innerHTML = `<div>${esc(t(sheetFull() ? 'chancePromptHere' : 'chancePrompt', e.year))}</div>` + (adj ? chanceMore(adj) : '');
     return;
   }
   box!.className = 'chance';

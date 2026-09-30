@@ -139,3 +139,53 @@ test('a scrolled sheet keeps its ✕ on screen, and its own points field moves t
   await expect(page.locator('#side')).not.toHaveClass(/open/);
   await expect(page.locator('#my-points')).toHaveValue('4,1');
 });
+
+// The note under the field is the question a refused figure asks, so it has to
+// be where the reader can see it, and nothing may jump while they retype.
+test('a short screen scrolls the field’s question into sight', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 });
+  await boot(page);
+  await page.fill('#my-points', '30,2');
+  await page.press('#my-points', 'Enter');
+  await expect(page.locator('#pts-note .lnk')).toHaveText('Mente du 3,02?');
+  // the panel stops at the legend and scrolls inside: the note ends within it,
+  // clear of the fade along the panel's foot
+  const clear = () => page.evaluate(() => {
+    const el = document.getElementById('panel')!;
+    const p = el.getBoundingClientRect(), fade = parseFloat(getComputedStyle(el, '::after').height);
+    const n = document.getElementById('pts-note')!.getBoundingClientRect();
+    return n.top >= p.top - 1 && n.bottom <= p.bottom - fade + 1;
+  });
+  await expect.poll(clear, { message: 'the question is inside the panel’s box, above its fade' }).toBe(true);
+  // held sideways the panel is one row of fields and stops at the legend too,
+  // whose title is three lines once there is a chance to show
+  await page.setViewportSize({ width: 568, height: 320 });
+  await page.fill('#my-points', '4,25');
+  await page.press('#my-points', 'Enter');
+  await expect(page.locator('#pts-note')).toContainText('4,25 i snitt tilsvarer 42,5');
+  await expect.poll(clear, { message: 'the note is in sight sideways' }).toBe(true);
+  await expect.poll(() => page.evaluate(() =>
+    document.getElementById('panel')!.getBoundingClientRect().bottom <= document.getElementById('legend')!.getBoundingClientRect().top),
+    { message: 'the panel stops above the legend' }).toBe(true);
+});
+
+test('retyping a submitted average moves nothing under the sheet’s field, and taking the suggestion keeps the keyboard down', async ({ page }) => {
+  await boot(page);
+  await openSchool(page, 'Akershus', 'Asker');
+  await page.locator('#s-points').fill('4,5');
+  await page.locator('#s-pts-act').click();
+  await expect(page.locator('#s-pts-note')).toContainText('4,5 i snitt tilsvarer 45,0');
+  const top = () => page.locator('#s-chance').evaluate(e => Math.round(e.getBoundingClientRect().top));
+  const before = await top();
+  await page.locator('#s-points').focus();
+  await page.keyboard.press('End'); await page.keyboard.type('5');
+  // the old note keeps its box, unseen, until the new figure is submitted
+  await expect(page.locator('#s-pts-note')).toHaveCSS('visibility', 'hidden');
+  expect(await top(), 'the chance block stays where it was').toBe(before);
+  await page.locator('#s-points').fill('45');
+  await page.locator('#s-pts-act').click();
+  await page.locator('#s-pts-note .lnk').tap();
+  await expect(page.locator('#s-points')).toHaveValue('4,5');
+  // a tap that focused the field would raise the keyboard over the answer
+  expect(await page.evaluate(() => document.activeElement?.id)).not.toBe('s-points');
+});

@@ -568,6 +568,11 @@ export const T = {
     no: y => `Skriv inn karaktersnittet ditt i feltet over kartet, så viser lista under sjansen din for plass per programområde i skoleåret ${schoolYear(y)}.`,
     en: y => `Enter your grade average in the field over the map, and the list below shows your chance of a place per programme area in the ${schoolYear(y)} school year.`,
   },
+  // where the sheet covers the map it carries its own field, right above this line
+  chancePromptHere: {
+    no: y => `Skriv inn karaktersnittet ditt i feltet ovenfor, så viser lista under sjansen din for plass per programområde i skoleåret ${schoolYear(y)}.`,
+    en: y => `Enter your grade average in the field above, and the list below shows your chance of a place per programme area in the ${schoolYear(y)} school year.`,
+  },
   chanceNoneInScope: { no: 'Ingen prognose for programområdene i dette utvalget.',
                        en: 'No forecast for the programme areas in this selection.' },
   // The head counts over the programme areas that HAVE a forecast (n, which is

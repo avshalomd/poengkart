@@ -212,15 +212,24 @@ describe('the wish list', () => {
     // a hundred times too big is asked about the same way; anything else gets the rule
     onPoints('425');
     expect(note.textContent).toContain(t('ptsMeant', '4,25'));
-    for (const v of ['7,5', '0,4', '999', 'x', '4,255']) {
+    for (const v of ['7,5', '0,4', '999', 'x', '6,004']) {
       onPoints(v);
       expect(S.myPoints).toBeNull();
       expect(note.textContent).toBe(t('ptsBad'));
     }
-    // typing again takes the note away, and emptying the field clears at once
+    // typing again takes the note out of sight but keeps its box, so nothing
+    // under the field jumps; emptying the field clears at once
     inp.value = '4'; onPointsInput('4');
-    expect(note.hidden).toBe(true);
+    expect(note.classList.contains('held')).toBe(true);
+    expect(note.hidden).toBe(false);
+    submitPoints();
+    expect(note.classList.contains('held')).toBe(false);
+    expect(note.textContent).toBe(t('ptsBridge', '4,0', fmt(40)));
+    inp.value = '4,'; onPointsInput('4,');
+    expect(note.classList.contains('held')).toBe(true);
     inp.value = ''; onPointsInput('');
+    expect(note.classList.contains('held')).toBe(false);
+    expect(note.hidden).toBe(true);
     expect(act.hidden).toBe(true);
   });
 

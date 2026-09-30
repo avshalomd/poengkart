@@ -109,8 +109,10 @@ export function liftMapControls() {
   // 320×568 the card was capped to 21px around the very field being typed in.
   // Below the height where card, controls and legend all fit, the card keeps
   // 180px (the folded card with its note) and lies over the controls until the
-  // keyboard goes; the resize that follows measures again.
-  gap = Math.min(gap, Math.max(panelTop + 8, innerHeight - 180));
+  // keyboard goes; the resize that follows measures again. Sideways the card
+  // is one row of three fields, 140px with the first line of its note: held to
+  // 180px at 568×320 it stood 17px into the legend's chance title.
+  gap = Math.min(gap, Math.max(panelTop + 8, innerHeight - (innerWidth > 560 ? 140 : 180)));
   // The panel spends that reserve inside its own `zoom`, where a px length is
   // multiplied by the zoom before it is painted, so `calc(100dvh - gap)` gave a
   // panel a third too tall at the largest text step. Divide the budget by the

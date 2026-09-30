@@ -365,8 +365,11 @@ export function renderChoices() {
   };
 }
 // Both a comma and a point are typed by real readers, so both are accepted
-// whatever the interface language; «4,» is read as 4.
-export const AVG_OK = /^\d{1,3}([.,]\d{0,2})?$/;
+// whatever the interface language; «4,» is read as 4. Any number of decimals:
+// an average worked out by hand comes as «4,583», and refusing it with «write
+// an average between 1 and 6» contradicted the figure it stood under. It is
+// kept to two decimals, the precision of a poenggrense, and reprinted so.
+export const AVG_OK = /^\d{1,3}([.,]\d*)?$/;
 /* The field takes a grade average (karaktersnitt), 1 to 6, because that is the
    figure a pupil knows (Vestfold's intake office, 30 Sept 2026), and keeps it
    as karakterpoeng, the average × 10, the unit every poenggrense is printed
@@ -450,6 +453,17 @@ function commitPoints() {
   renderPointsField();
   renderChoices(); recolourMap(); renderLegend();
   if (S.current) { renderSide(); if (!chipsWere) countUpChips(); }
+  // On a short screen the panel stops at the legend and scrolls inside, and the
+  // note a submit produces landed under its bottom edge: at 320×568 the
+  // question a refused figure asks was cut through the letters, and on a phone
+  // held sideways it was out of sight, in the panel and in the sheet alike.
+  // Shown once the legend, whose height sets the panel's, is laid out again.
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    for (const id of ['pts-note', 's-pts-note']) {
+      const note = document.getElementById(id);
+      if (note && !note.hidden && note.getClientRects().length) note.scrollIntoView?.({ block: 'nearest' });
+    }
+  }));
 }
 // The first chips an open sheet shows count up from 0 to their figure, 50ms
 // apart, taking the colour of each band as they pass 35 and 70 %: the scale
@@ -509,7 +523,14 @@ export function renderPointsField() {
        what a refused entry probably stands for, as a question the reader
        answers by pressing it; the rule, when there is nothing to suggest; or,
        under an accepted average, the karakterpoeng it stands for, since every
-       poenggrense beside it is printed in those. */
+       poenggrense beside it is printed in those.
+       A note that was showing when the reader starts to retype keeps its box
+       and goes invisible (.held): taking it out let the panel, and in the sheet
+       the chance block and the chart, jump up under the finger and back down
+       on submit. */
+    const held = ptsDraft && !note.hidden && note.textContent !== '';
+    note.classList.toggle('held', held);
+    if (held) return;
     note.classList.toggle('bad', bad);
     note.classList.toggle('hint', !bad);
     note.hidden = ptsDraft || (!bad && S.myPoints === null);
@@ -517,7 +538,13 @@ export function renderPointsField() {
     else if (bad && S.ptsSug !== null) {
       const s = fmtAvg(S.ptsSug * 10);
       note.innerHTML = `${esc(t('ptsNotAvg', ptsText))} <button type="button" class="lnk">${esc(t('ptsMeant', s))}</button>`;
-      (note.querySelector('.lnk') as HTMLElement).onclick = () => { onPoints(s); refocus(field); };
+      // Taking the suggestion is a submit: from the keyboard the focus goes
+      // back to the field, the pressed button being gone; a tap moves nothing,
+      // since focusing the field would raise the phone's keyboard over the answer.
+      (note.querySelector('.lnk') as HTMLElement).onclick = (e: MouseEvent) => {
+        onPoints(s);
+        if (!e.detail || !matchMedia('(pointer: coarse)').matches) refocus(field);
+      };
     }
     else note.textContent = bad ? t('ptsBad') : t('ptsBridge', fmtAvg(S.myPoints), fmt(S.myPoints));
   };

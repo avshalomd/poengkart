@@ -35,6 +35,7 @@ describe('the average field', () => {
     expect(parseAverage('4,35').pts).toBe(43.5);             // 4.35 × 100 is 434.99… in binary
     expect(parseAverage('1').pts).toBe(10); expect(parseAverage('6').pts).toBe(60);
     expect(parseAverage('4,').pts).toBe(40);
+    expect(parseAverage('4,583').pts).toBe(45.8);            // worked out by hand: kept to two decimals
     expect(parseAverage('')).toEqual({ pts: null, bad: false });
   });
   it('parseAverage suggests the average behind a figure ten or a hundred times too big, and nothing else', () => {
@@ -42,7 +43,7 @@ describe('the average field', () => {
     expect(parseAverage('30,2')).toEqual({ pts: null, bad: true, sug: 3.02 });
     expect(parseAverage('425')).toEqual({ pts: null, bad: true, sug: 4.25 });
     expect(parseAverage('60').sug).toBe(6); expect(parseAverage('10').sug).toBe(1);
-    for (const v of ['0', '0,9', '6,01', '7,5', '9,99', '61', '99', '601', '999', 'abc', '4,255', '-4'])
+    for (const v of ['0', '0,9', '6,01', '7,5', '9,99', '61', '99', '601', '999', 'abc', '6,004', '0,999', '-4'])
       expect(parseAverage(v), v).toEqual({ pts: null, bad: true });
   });
   it('storedPoints accepts only the karakterpoeng an average can give', () => {
