@@ -509,5 +509,12 @@ threshold more than the history suggests. The forecast note says so since
 - **Vestfold itself:** grade-based admission only since 2024, no thresholds
   published anywhere. Asked the intake office on 28 September 2026 for the
   lowest admitted points per programområde at 2. inntak, 2024–2026, and for
-  her view on the points field (grade average 4,5 or points 45). Waiting for
-  the answer.
+  her view on the points field (grade average 4,5 or points 45). She answered
+  on 30 September 2026: pupils know their karaktersnitt, not the points, and
+  the chance should be called «estimert»; whether the county publishes
+  thresholds is still undecided there (the fylkesting meets in October).
+  Shipped the same day: the field takes the karaktersnitt (1–6), nothing is
+  worked out until the reader submits it, a figure outside 1–6 is asked about
+  («Mente du 3,02?») rather than corrected, and the chance texts say
+  «estimert». Thresholds, graphs and forecasts stay in karakterpoeng. Still
+  waiting for the thresholds themselves.

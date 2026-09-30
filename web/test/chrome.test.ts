@@ -67,7 +67,7 @@ describe('panel and legend', () => {
     expect(bins.children.length).toBe(3);
     expect(bins.textContent).toContain(t('bandLabel', 'likely'));
     expect(document.getElementById('legend-title')!.textContent)
-      .toContain(t('legendChance', '45,0', forecastYears(visibleSchools())));
+      .toContain(t('legendChance', '4,5', forecastYears(visibleSchools())));
     // "no waiting list" and "filled without points" are not dot states any more
     expect(document.getElementById('legend-open')!.parentElement!.hidden).toBe(true);
   });

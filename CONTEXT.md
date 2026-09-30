@@ -8,6 +8,14 @@ Poengkart shows the admission thresholds (poenggrenser) of Norwegian upper-secon
 The points of the last applicant admitted to a programområde at a school in one intake; a grade average × 10. It says what it took to get in, not what the school requires.
 _Avoid_: cut-off, points requirement, minimum points
 
+**Karaktersnitt** (grade average):
+The mean of a pupil's grades, 1–6 with two decimals; the figure a pupil knows and the one the app asks for. The app never prints it back as «your points»: a county can add a tillegg on top, and the intake system, not Poengkart, works out the final figure.
+_Avoid_: snittpoeng, gjennomsnittskarakter (in UI), GPA
+
+**Karakterpoeng** (grade points):
+The karaktersnitt × 10, the scale every poenggrense is published in (4,25 in average is 42,5). Thresholds, graphs and forecasts stay in it.
+_Avoid_: poengsum, skolepoeng (that is the Vg3 figure), points score
+
 **Fortrinnsrett** (statutory priority right):
 A legal right to a place ahead of the points queue; a programområde filled through it has no poenggrense.
 _Avoid_: priority quota, special admission

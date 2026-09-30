@@ -3,7 +3,7 @@ import { loadFixtures, asker, forde, DATA } from './fixtures';
 import { stubMap } from './mapstub';
 import { openSide, closeSide, renderSide, renderChance, listLayout, phoneSheet, sheetFull, widenFor, applyUrlFilters } from '../src/sidebar';
 import { buildUrl } from '../src/router';
-import { schoolChance, onPointsInput, flushPoints, renderPointsField } from '../src/chance';
+import { schoolChance, onPointsInput, submitPoints, renderPointsField } from '../src/chance';
 import { setLens } from '../src/map';
 import { capFirst, meanStep, photoSrc, schoolTitle, shownPrograms, visibleIn, fmt } from '../src/helpers';
 import { initHelpers, chartMode, sheetLens } from '../src/helpers';
@@ -84,16 +84,16 @@ describe('the school sheet', () => {
   });
   it('the chance block asks for points when there are none and counts the programmes in reach when there are', () => {
     loadFixtures(); initHelpers(); stubMap(); openSide(asker());
-    expect(document.getElementById('s-chance')!.textContent).toMatch(/poeng/i);
+    expect(document.getElementById('s-chance')!.textContent).toMatch(/karaktersnitt/i);
     S.myPoints = 45; renderChance(asker(), 'all');   // renderChance(s, lensCat): the lens is not optional
     const ch = schoolChance(asker(), 'all', 45)!;
     expect(ch).toBeTruthy();
     const box = document.getElementById('s-chance')!;
     // renderChance picks one of three heads by which band has anything in it
     const noPred = Math.max(0, ch.total - ch.n);
-    const head = ch.likely ? t('chanceHeadL', fmt(45), ch.likely, ch.n, noPred, ch.total)
-               : ch.possible ? t('chanceHeadR', fmt(45), ch.possible, ch.n, noPred, ch.total)
-               : t('chanceHeadU', fmt(45), ch.n, noPred, ch.total);
+    const head = ch.likely ? t('chanceHeadL', '4,5', ch.likely, ch.n, noPred, ch.total)
+               : ch.possible ? t('chanceHeadR', '4,5', ch.possible, ch.n, noPred, ch.total)
+               : t('chanceHeadU', '4,5', ch.n, noPred, ch.total);
     expect(box.querySelector('.h')!.textContent).toBe(head);
     expect(box.textContent).toMatch(/%/);
     expect(box.querySelectorAll('.bar span').length).toBe(3);
@@ -217,7 +217,7 @@ describe('the sheet keeps its own controls', () => {
     setLens(cat);
     expect(sheetLens()).toBe(cat);
   });
-  it('where the sheet covers the panel, it carries a points field that writes the same figure', () => {
+  it('where the sheet covers the panel, it carries a field that writes the same average, once submitted', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
     S.view = 'list';
     listLayout();                                  // happy-dom's 1024px: the thin list, which the sheet covers
@@ -227,13 +227,18 @@ describe('the sheet keeps its own controls', () => {
     const mi = document.getElementById('s-points') as HTMLInputElement;
     expect(document.getElementById('s-pts')!.hidden).toBe(false);
     mi.focus();
-    mi.value = '38,5';
+    mi.value = '3,85';
     onPointsInput(mi.value);
-    flushPoints();
+    // a draft is only text: the panel's field follows it, nothing else does
+    expect(S.myPoints).toBeNull();
+    expect((document.getElementById('my-points') as HTMLInputElement).value).toBe('3,85');
+    expect(document.getElementById('s-pts-act')!.classList.contains('go')).toBe(true);
+    submitPoints();
     expect(S.myPoints).toBe(38.5);
-    expect((document.getElementById('my-points') as HTMLInputElement).value).toBe('38,5');
+    expect(document.getElementById('s-pts-act')!.classList.contains('go')).toBe(false);
     expect(document.getElementById('s-points')).toBe(mi);    // not redrawn under the reader's finger
-    expect(document.getElementById('s-chance')!.textContent).toContain(fmt(38.5));
+    expect(document.getElementById('s-chance')!.textContent).toContain('3,85');
+    expect(document.getElementById('s-pts-note')!.textContent).toBe(t('ptsBridge', '3,85', fmt(38.5)));
     closeSide(true);
     expect(document.body.classList.contains('sheet-full')).toBe(false);
     S.view = 'map'; listLayout();

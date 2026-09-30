@@ -1,5 +1,5 @@
 import { closeCalc, loadCalc } from "./calc";
-import { parsePoints, renderChoices, renderPointsField } from "./chance";
+import { renderChoices, renderPointsField, storedPoints } from "./chance";
 import { liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
 import { closeContact } from "./feedback";
 import { esc } from "./helpers";
@@ -111,13 +111,9 @@ export async function main() {
   if (model) S.MODEL = model;
   performance.mark('pk:model');
   try {
-    // through the same validator as the field: a stored 999 used to colour the
-    // whole map on a score nobody can have
-    const sp = parsePoints(localStorage.getItem('pk-points'));
-    if (S.MODEL && sp.pts !== null) {
-      S.myPoints = sp.pts;
-      (document.getElementById('my-points') as any).value = String(sp.pts).replace('.', S.lang === 'no' ? ',' : '.');
-    } else if (sp.pts === null) {
+    const sp = storedPoints(localStorage.getItem('pk-points'));
+    if (S.MODEL && sp !== null) S.myPoints = sp;       // renderPointsField prints it as the average
+    else if (sp === null) {
       try { localStorage.removeItem('pk-points'); } catch (e) {}
     }
   } catch (e) {}

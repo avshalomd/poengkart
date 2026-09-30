@@ -1,7 +1,7 @@
 import { bucketOf, chanceFinal, chanceMode, finalRoundBridge, predFor, schoolChance } from "./chance";
 import { renderChartCard } from "./chart";
 import { liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
-import { esc, fmt, HELD_OUT, isVg1, round1, sheetLens, shownPrograms, shownSchools } from "./helpers";
+import { esc, fmt, fmtAvg, HELD_OUT, isVg1, round1, sheetLens, shownPrograms, shownSchools } from "./helpers";
 import { CATS, t } from "./i18n";
 import { buildMiniMap, dropMiniMap, drawMarkers, fitVisible, hideMapTip, onceSettled, panSchoolInside, prefersStill,
          resizeMap } from "./map";
@@ -374,9 +374,9 @@ export function renderChance(s, lensCat) {
   const ch = schoolChance(s, lensCat || 'all', S.myPoints);
   if (!ch) { box!.innerHTML = `<div>${esc(t('chanceNoneInScope'))}</div>` + (adj ? chanceMore(adj) : ''); return; }
   const noPred = Math.max(0, ch.total - ch.n);
-  const head = ch.likely ? t('chanceHeadL', fmt(S.myPoints), ch.likely, ch.n, noPred, ch.total)
-             : ch.possible ? t('chanceHeadR', fmt(S.myPoints), ch.possible, ch.n, noPred, ch.total)
-             : t('chanceHeadU', fmt(S.myPoints), ch.n, noPred, ch.total);
+  const head = ch.likely ? t('chanceHeadL', fmtAvg(S.myPoints), ch.likely, ch.n, noPred, ch.total)
+             : ch.possible ? t('chanceHeadR', fmtAvg(S.myPoints), ch.possible, ch.n, noPred, ch.total)
+             : t('chanceHeadU', fmtAvg(S.myPoints), ch.n, noPred, ch.total);
   const bar = ['likely', 'possible', 'unlikely']
     .map(b => `<span class="b-${b}" style="width:${100 * ch[b] / ch.n}%"></span>`).join('');
   // the spread range the footnote quotes: history buckets times the level

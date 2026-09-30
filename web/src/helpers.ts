@@ -133,6 +133,13 @@ export const fmt = v => {
   const out = S.lang === 'no' ? fmtNum(v) : String(fmtNum(v)).replace(',', '.');
   return typeof out === 'string' ? out.replace(/^-/, '\u2212') : out;
 };
+// The reader's own figure is kept as karakterpoeng and printed as the grade
+// average they typed: a tenth of it, with one decimal, or two when the second
+// says something (4,5 · 4,25 · 4,0).
+export const fmtAvg = p => {
+  const a = (Math.round(p * 10) / 100).toFixed(2).replace(/0$/, '');
+  return S.lang === 'no' ? a.replace('.', ',') : a;
+};
 export const X_ICON = '<svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>';
 export const BUG_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
   + '<path d="m8 2 1.88 1.88M14.12 3.88 16 2M9 7.13v-1a3 3 0 1 1 6 0v1"/>'

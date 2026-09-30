@@ -81,7 +81,7 @@ export function renderCalc() {
   if (use) use.onclick = () => {
     const m = calcMean();
     if (m === null) return;
-    onPoints((m * 10).toFixed(1));       // renderPointsField reprints the field
+    onPoints(m.toFixed(2));              // the field takes the average; renderPointsField reprints it
     closeCalc();
   };
   const reset = document.getElementById('calc-reset');

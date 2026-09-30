@@ -3,7 +3,7 @@ import { loadFixtures, DATA } from './fixtures';
 import { stubMap } from './mapstub';
 import {
   toggleChoice, renderChoices, resolveChoice, okChoice, progKeyMap, isChosen,
-  initChance, onPoints, renderPointsField, parsePoints, refocus,
+  initChance, onPoints, onPointsInput, submitPoints, ptsAct, ptsActDown, renderPointsField, refocus,
 } from '../src/chance';
 import { initHelpers, shownPrograms, fmt } from '../src/helpers';
 import { initListview } from '../src/listview';
@@ -80,7 +80,7 @@ describe('the wish list', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
     const pool = withCat('ST').filter(({ s, p }: any) => S.MODEL!.schools[`${s.fylke}|${s.name}`]?.programs);
     for (const { s, p } of pool.slice(0, 3)) toggleChoice(s, p);
-    onPoints('45');
+    onPoints('4,5');
     expect(S.myPoints).toBe(45);
     expect(localStorage.getItem('pk-points')).toBe('45');
     const box = document.getElementById('choices')!;
@@ -161,25 +161,90 @@ describe('the wish list', () => {
     expect(S.choices).toEqual([]);
   });
 
-  it('the points field prints the stored figure, flags nonsense and clears it', () => {
+  it('the field takes a grade average, keeps it as karakterpoeng and says what it stands for', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
     renderPointsField();
+    const inp = document.getElementById('my-points') as HTMLInputElement;
+    const act = document.getElementById('pts-act')!, note = document.getElementById('pts-note')!;
     expect(document.getElementById('pts-field')!.hidden).toBe(false);
     expect(document.getElementById('pts-label')!.textContent).toBe(t('ptsLabel'));
-    onPoints('42,5');
+    expect(act.hidden).toBe(true);
+    onPoints('4,25');
     expect(S.myPoints).toBe(42.5);
-    expect((document.getElementById('my-points') as any).value).toBe(fmt(42.5));
-    expect(document.getElementById('pts-note')!.hidden).toBe(true);
-    onPoints('999');
-    expect(S.myPoints).toBeNull();
-    expect(document.getElementById('pts-note')!.textContent).toBe(t('ptsBad'));
-    expect((document.getElementById('my-points') as any).getAttribute('aria-invalid')).toBe('true');
+    expect(localStorage.getItem('pk-points')).toBe('42.5');
+    expect(inp.value).toBe('4,25');
+    expect(note.textContent).toBe(t('ptsBridge', '4,25', fmt(42.5)));
+    expect(note.classList.contains('bad')).toBe(false);
+    expect(act.hidden).toBe(false);
+    expect(act.getAttribute('aria-label')).toBe(t('ptsClear'));
     onPoints('');
+    expect(S.myPoints).toBeNull();
     expect(localStorage.getItem('pk-points')).toBeNull();
-    expect(document.getElementById('pts-clear')!.hidden).toBe(true);
-    expect(parsePoints('42,5')).toEqual({ pts: 42.5, bad: false });
-    expect(parsePoints('x')).toEqual({ pts: null, bad: true });
-    expect(parsePoints('42,')).toEqual({ pts: null, bad: false });
+    expect(note.hidden).toBe(true);
+    expect(act.hidden).toBe(true);
+  });
+
+  it('nothing happens while an average is typed; the ✓, Enter or leaving the field submits it', () => {
+    loadFixtures(); initHelpers(); initListview(); stubMap();
+    onPoints('');
+    const inp = document.getElementById('my-points') as HTMLInputElement;
+    const act = document.getElementById('pts-act')!, note = document.getElementById('pts-note')!;
+    inp.focus();
+    for (const typed of ['3', '30', '30,', '30,2']) {        // «30,2» on the way to nothing good
+      inp.value = typed; onPointsInput(typed);
+      expect(S.myPoints).toBeNull();
+      expect(note.hidden).toBe(true);
+      expect(inp.getAttribute('aria-invalid')).toBe('false');
+      expect(act.classList.contains('go')).toBe(true);
+      expect(act.getAttribute('aria-label')).toBe(t('ptsGo'));
+    }
+    submitPoints();
+    // asked, never corrected: the entry stands, and nothing is coloured by it
+    expect(S.myPoints).toBeNull();
+    expect(inp.value).toBe('30,2');
+    expect(inp.getAttribute('aria-invalid')).toBe('true');
+    expect(note.textContent).toBe(`${t('ptsNotAvg', '30,2')} ${t('ptsMeant', '3,02')}`);
+    expect(act.classList.contains('go')).toBe(false);
+    (note.querySelector('.lnk') as HTMLElement).click();
+    expect(S.myPoints).toBe(30.2);
+    expect(inp.value).toBe('3,02');
+    expect(inp.getAttribute('aria-invalid')).toBe('false');
+    // a hundred times too big is asked about the same way; anything else gets the rule
+    onPoints('425');
+    expect(note.textContent).toContain(t('ptsMeant', '4,25'));
+    for (const v of ['7,5', '0,4', '999', 'x', '4,255']) {
+      onPoints(v);
+      expect(S.myPoints).toBeNull();
+      expect(note.textContent).toBe(t('ptsBad'));
+    }
+    // typing again takes the note away, and emptying the field clears at once
+    inp.value = '4'; onPointsInput('4');
+    expect(note.hidden).toBe(true);
+    inp.value = ''; onPointsInput('');
+    expect(act.hidden).toBe(true);
+  });
+
+  it('the one button is ✓ or ✕ by what it was when the pointer went down', () => {
+    loadFixtures(); initHelpers(); initListview(); stubMap();
+    onPoints('');
+    const inp = document.getElementById('my-points') as HTMLInputElement;
+    inp.focus(); inp.value = '4,5'; onPointsInput('4,5');
+    // a mouse press on ✓ blurs the field first, which submits and turns the
+    // button into ✕ before the click arrives: that click must not clear
+    ptsActDown();
+    submitPoints();
+    ptsAct({ detail: 1 }, '#my-points');
+    expect(S.myPoints).toBe(45);
+    // pressed as ✕, it clears
+    ptsActDown();
+    ptsAct({ detail: 1 }, '#my-points');
+    expect(S.myPoints).toBeNull();
+    // from the keyboard there is no gap: the button does what it says now
+    inp.value = '5'; onPointsInput('5');
+    ptsAct({ detail: 0 }, '#my-points');
+    expect(S.myPoints).toBe(50);
+    ptsAct({ detail: 0 }, '#my-points');
+    expect(S.myPoints).toBeNull();
   });
 
   it('refocus lands on the first successor that is still on screen', () => {

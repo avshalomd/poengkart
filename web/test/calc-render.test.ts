@@ -65,13 +65,13 @@ describe('the grade calculator', () => {
     expect(JSON.parse(localStorage.getItem('pk-grades')!)).toEqual(S.calcGrades);
   });
 
-  it('“use this” hands the points field the mean times ten', () => {
+  it('“use this” hands the field the mean, kept as the mean times ten', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
     renderCalc();
     (document.querySelector(`#calc-body button[data-f="${CSS.escape(CALC_SUBJECTS[0])}"][data-g="4"]`) as any).click();
     (document.getElementById('calc-use') as any).click();
     expect(S.myPoints).toBe(40);
-    expect((document.getElementById('my-points') as any).value).toBe('40,0');
+    expect((document.getElementById('my-points') as any).value).toBe('4,0');
   });
 
   it('the sheet opens and closes', () => {

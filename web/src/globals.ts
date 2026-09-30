@@ -2,7 +2,7 @@
    `window` and would break silently without this file.
 
    1. `web/index.html` has twenty-two inline `on*=` attributes — setView,
-      onPoints, refocus, unfoldPanel, openSettings, openSearchOv, openIntro, openCalc,
+      onPointsInput, submitPoints, ptsAct, refocus, unfoldPanel, openSettings, openSearchOv, openIntro, openCalc,
       openBug, onMapFylke, onMapCat and the close* pair for every sheet. An
       inline handler is compiled in global scope, so it can only see globals;
       a module's exports are not.

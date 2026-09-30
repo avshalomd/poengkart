@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { loadFixtures, asker, forde, DATA } from './fixtures';
-import { meanOf, round1, isPoints, fmtNum, fmt, esc, numericLatest, yearSpan, levelScope, shownPrograms, visibleIn, isRecent, countyNewest, partitionPrograms, progId } from '../src/helpers';
-import { parsePoints } from '../src/chance';
+import { meanOf, round1, isPoints, fmtNum, fmt, fmtAvg, esc, numericLatest, yearSpan, levelScope, shownPrograms, visibleIn, isRecent, countyNewest, partitionPrograms, progId } from '../src/helpers';
+import { parseAverage, storedPoints } from '../src/chance';
 import { S } from '../src/state';
 
 describe('figures', () => {
@@ -28,16 +28,31 @@ describe('figures', () => {
   });
 });
 
-describe('points field', () => {
-  it('parsePoints holds back a grade average typed as points', () => {
-    expect(parsePoints('4,5')).toEqual({ pts: null, bad: false, avg: 4.5 });
-    expect(parsePoints('6')).toEqual({ pts: null, bad: false, avg: 6 });
-    expect(parsePoints('10').pts).toBe(10);
-    expect(parsePoints('0').pts).toBe(0);
+describe('the average field', () => {
+  it('parseAverage takes 1 to 6 with comma or point and keeps it as karakterpoeng', () => {
+    expect(parseAverage('4,25')).toEqual({ pts: 42.5, bad: false });
+    expect(parseAverage('4.25')).toEqual({ pts: 42.5, bad: false });
+    expect(parseAverage('4,35').pts).toBe(43.5);             // 4.35 × 100 is 434.99… in binary
+    expect(parseAverage('1').pts).toBe(10); expect(parseAverage('6').pts).toBe(60);
+    expect(parseAverage('4,').pts).toBe(40);
+    expect(parseAverage('')).toEqual({ pts: null, bad: false });
   });
-  it('parsePoints reads comma and point, refuses the impossible', () => {
-    expect(parsePoints('45,1').pts).toBe(45.1); expect(parsePoints('45.1').pts).toBe(45.1);
-    expect(parsePoints('999').pts).toBeNull(); expect(parsePoints('').pts).toBeNull(); expect(parsePoints('abc').pts).toBeNull();
+  it('parseAverage suggests the average behind a figure ten or a hundred times too big, and nothing else', () => {
+    expect(parseAverage('45')).toEqual({ pts: null, bad: true, sug: 4.5 });
+    expect(parseAverage('30,2')).toEqual({ pts: null, bad: true, sug: 3.02 });
+    expect(parseAverage('425')).toEqual({ pts: null, bad: true, sug: 4.25 });
+    expect(parseAverage('60').sug).toBe(6); expect(parseAverage('10').sug).toBe(1);
+    for (const v of ['0', '0,9', '6,01', '7,5', '9,99', '61', '99', '601', '999', 'abc', '4,255', '-4'])
+      expect(parseAverage(v), v).toEqual({ pts: null, bad: true });
+  });
+  it('storedPoints accepts only the karakterpoeng an average can give', () => {
+    expect(storedPoints('45')).toBe(45); expect(storedPoints('42.5')).toBe(42.5);
+    for (const v of [null, '', '9', '61', '999', 'x']) expect(storedPoints(v), String(v)).toBeNull();
+  });
+  it('fmtAvg prints karakterpoeng as the average, one decimal or two', () => {
+    S.lang = 'no';
+    expect(fmtAvg(45)).toBe('4,5'); expect(fmtAvg(42.5)).toBe('4,25'); expect(fmtAvg(40)).toBe('4,0'); expect(fmtAvg(42.6)).toBe('4,26');
+    S.lang = 'en'; expect(fmtAvg(42.5)).toBe('4.25'); S.lang = 'no';
   });
 });
 

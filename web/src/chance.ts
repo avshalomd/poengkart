@@ -4,7 +4,7 @@ import { bucketOf, chanceMode, chanceOf, okChoice, pct, pctS, predFor, progKeyMa
 
 const UP_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>';
 const DOWN_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
-import { cssVar, esc, fmt, progName, round1, slug, X_ICON } from "./helpers";
+import { cssVar, esc, fmt, fmtAvg, progName, round1, slug, X_ICON } from "./helpers";
 import { t } from "./i18n";
 import { toast } from "./locate";
 import { mapZoom, recolourMap, viewSchool } from "./map";
@@ -119,7 +119,7 @@ export const anyChanceText = (c: number) => c > CHANCE_CAP ? t('choicesAnyOver',
 export function choicesText(): string {
   const items = S.choices.map(resolveChoice).filter(Boolean) as Wish[];
   const pts = chanceMode();
-  const lines = [pts ? t('copyHeadPts', fmt(S.myPoints)) : t('copyHead')];
+  const lines = [pts ? t('copyHeadPts', fmtAvg(S.myPoints)) : t('copyHead')];
   let pNone = 1, n = 0;
   items.forEach(({ s, p }, i) => {
     let tail = '';
@@ -365,60 +365,89 @@ export function renderChoices() {
   };
 }
 // Both a comma and a point are typed by real readers, so both are accepted
-// whatever the interface language. A trailing separator ("42,") is someone
-// mid-keystroke, not a mistake, so it clears the figure without being flagged.
-export const PTS_OK = /^\d{1,2}([.,]\d{1,2})?$/;
-export const PTS_TYPING = /^\d{0,2}([.,]\d{0,2})?$/;
-export function parsePoints(v) {
+// whatever the interface language; «4,» is read as 4.
+export const AVG_OK = /^\d{1,3}([.,]\d{0,2})?$/;
+/* The field takes a grade average (karaktersnitt), 1 to 6, because that is the
+   figure a pupil knows (Vestfold's intake office, 30 Sept 2026), and keeps it
+   as karakterpoeng, the average × 10, the unit every poenggrense is printed
+   in. A figure outside 1–6 is never corrected for the reader. One that is ten
+   times too big (points typed, or a separator that did not register: «45»,
+   «30,2») or a hundred times («425») comes back with the average it probably
+   stands for (`sug`), to be asked about; anything else gets only the rule. */
+export function parseAverage(v) {
   const txt = String(v == null ? '' : v).trim();
-  if (!PTS_OK.test(txt)) return { pts: null, bad: !PTS_TYPING.test(txt) };
-  const n = Math.round(parseFloat(txt.replace(',', '.')) * 10) / 10;
-  // Nobody has fewer than 10 points (a straight-1 average), so a figure from
-  // 1 to 6 is a grade average typed where points go: taken as points it
-  // painted every school red. It is held back and offered ×10 instead.
-  if (n >= 1 && n <= 6) return { pts: null, bad: false, avg: n };
-  return n >= 0 && n <= 70 ? { pts: n, bad: false } : { pts: null, bad: true };
+  if (txt === '') return { pts: null, bad: false };
+  if (!AVG_OK.test(txt)) return { pts: null, bad: true };
+  const n = parseFloat(txt.replace(',', '.'));
+  if (n >= 1 && n <= 6) return { pts: Math.round(n * 100) / 10, bad: false };
+  const sug = n >= 10 && n <= 60 ? n / 10 : n >= 100 && n <= 600 ? n / 100 : null;
+  return sug === null ? { pts: null, bad: true } : { pts: null, bad: true, sug: Math.round(sug * 100) / 100 };
 }
-// A figure set in one go (the ✕, the calculator) is drawn at once.
+// What localStorage holds is the karakterpoeng, through the same bounds as the
+// field: a stored 999 used to colour the whole map on a score nobody can have.
+export function storedPoints(v) {
+  const n = v == null || v === '' ? NaN : Number(v);
+  return n >= 10 && n <= 60 ? round1(n) : null;
+}
+let ptsDraft = false, ptsText = '';
+// A figure set in one go (the ✕, the calculator, a suggestion the reader
+// pressed) is an average as well; it is written into the field and applied.
 export function onPoints(v) {
-  setPoints(v);
+  ptsDraft = false;
+  ptsText = String(v == null ? '' : v).trim();
+  setPoints(ptsText);
   commitPoints();
 }
-// Typed, the field answers each keystroke and the map, the list and the sheet
-// follow once the typing pauses for 250ms: «45» typed is then one recolour of
-// the map, not two, and «42,» on the way to «42,5» leaves the map as it is
-// until the next keystroke or until the field is left (flushPoints, on change).
-let ptsTimer: ReturnType<typeof setTimeout> | undefined, ptsPending = false;
+/* Typed, the field does nothing until the reader submits it: the ✓ beside it,
+   Enter, or leaving the field. It used to act once the typing paused for
+   250ms, which questioned «30» on the way to «3,02» and recoloured the map on
+   half a figure. A draft is only text; the map, the list and the sheet keep
+   the last submitted average. An emptied field has nothing left to mistype,
+   so it clears at once. */
 export function onPointsInput(v) {
-  ptsPending = true;                   // before the render: no average hint mid-keystroke
-  const r: any = setPoints(v);
-  if (r.pts === null && !r.bad && !r.avg && String(v).trim() !== '') return;
-  ptsTimer = setTimeout(commitPoints, 250);
+  if (String(v).trim() === '') { onPoints(''); return; }
+  ptsDraft = true;
+  ptsText = String(v);
+  renderPointsField();
 }
-export function flushPoints() { if (ptsPending) commitPoints(); }
+export function submitPoints() {
+  if (!ptsDraft) return;
+  ptsDraft = false;
+  ptsText = ptsText.trim();
+  setPoints(ptsText);
+  commitPoints();
+}
+/* One button beside the field, two jobs: ✓ submits a draft, ✕ clears a
+   submitted figure. It is one element so that it never disappears under the
+   focus. Pressing ✓ with a pointer first takes the focus from the field, which
+   submits the draft and turns the button into ✕ before the click arrives; the
+   job is therefore the one the button had when the pointer went down. A click
+   from the keyboard (detail 0) has no such gap. */
+let actWasGo = false;
+export function ptsActDown() { actWasGo = ptsDraft; }
+export function ptsAct(e, field) {
+  const go = e && e.detail ? actWasGo : ptsDraft;
+  actWasGo = false;
+  if (!go) { onPoints(''); refocus(field); return; }
+  submitPoints();
+  // a touch leaves the focus, and the keyboard, in the field: over the map
+  const a = document.activeElement as HTMLElement | null;
+  if (a && (a.id === 'my-points' || a.id === 's-points')) a.blur();
+}
 function setPoints(v) {
-  clearTimeout(ptsTimer);
-  const r = parsePoints(v);
+  const r: any = parseAverage(v);
   S.myPoints = r.pts;
   S.ptsBad = r.bad;
-  S.ptsAvg = (r as any).avg ?? null;
-  // either field may have been typed in; a cleared figure clears both
-  if (v === '') for (const id of ['my-points', 's-points']) {
-    const inp: any = document.getElementById(id);
-    if (inp) inp.value = '';
-  }
+  S.ptsSug = r.sug ?? null;
   try {
     if (S.myPoints === null) localStorage.removeItem('pk-points');
     else localStorage.setItem('pk-points', String(S.myPoints));
   } catch (e) {}
-  renderPointsField();
   return r;
 }
 function commitPoints() {
-  clearTimeout(ptsTimer);
-  ptsPending = false;
   const chipsWere = !!document.querySelector('#s-list .ch:not(.none)');
-  renderPointsField();                 // the average hint waits for the pause
+  renderPointsField();
   renderChoices(); recolourMap(); renderLegend();
   if (S.current) { renderSide(); if (!chipsWere) countUpChips(); }
 }
@@ -449,66 +478,57 @@ function countUpChips() {
     requestAnimationFrame(tick);
   });
 }
+const GO_ICON = '<svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
 export function renderPointsField() {
   const f = document.getElementById('pts-field');
   f!.hidden = !S.MODEL;
   if (!S.MODEL) return;
-  document.getElementById('pts-label')!.textContent = t('ptsLabel');
-  const inp: any = document.getElementById('my-points');
-  inp.placeholder = t('ptsPh');
-  // a language toggle changes the decimal separator the field shows, so a
-  // stored value is reprinted in the new convention (never while typing)
-  const mi: any = document.getElementById('s-points');
-  if (mi && document.activeElement === mi) inp.value = mi.value;     // typed in the sheet's copy
-  else if (S.myPoints !== null && document.activeElement !== inp) inp.value = fmt(S.myPoints);
-  const bad = S.ptsBad && inp.value.trim() !== '';
-  inp.classList.toggle('on', S.myPoints !== null);
-  inp.classList.toggle('bad', bad);
-  inp.setAttribute('aria-invalid', bad ? 'true' : 'false');
-  inp.setAttribute('aria-describedby', 'pts-note');
-  // an unusable value must stay removable: hiding the clear button whenever
-  // there is no figure left the reader typing over their own mistake
-  const x = document.getElementById('pts-clear');
-  x!.hidden = inp.value === '';
-  x!.setAttribute('aria-label', t('ptsClear'));
-  const note = document.getElementById('pts-note');
-  note!.classList.toggle('bad', bad);
-  // an average is offered as points once the typing pauses, never mid-keystroke
-  // («4» on the way to «45»)
-  const avg = S.ptsAvg !== null && !ptsPending && inp.value.trim() !== '' ? S.ptsAvg : null;
-  const avgNote = (el: HTMLElement, fixId: string, field: string) => {
-    const p = fmt(round1(avg! * 10));
-    el.hidden = false;
-    el.innerHTML = `${esc(t('ptsAvg', fmt(avg!), p))} <button type="button" class="lnk" id="${fixId}">${esc(t('ptsAvgFix', p))}</button>`;
-    (document.getElementById(fixId) as HTMLElement).onclick = () => { onPoints(String(round1(avg! * 10))); refocus(field); };
+  // The text both fields hold: a draft as typed, a submitted average reprinted
+  // from the figure (so a language toggle changes its decimal separator), a
+  // refused entry left standing for the reader to correct.
+  if (!ptsDraft) ptsText = S.myPoints !== null ? fmtAvg(S.myPoints) : S.ptsBad ? ptsText : '';
+  const bad = S.ptsBad && !ptsDraft;
+  const draw = (inp: any, act: HTMLElement, note: HTMLElement, label: HTMLElement, field: string) => {
+    label.textContent = t('ptsLabel');
+    inp.placeholder = t('ptsPh');
+    // the field being typed in is never rewritten under the reader's finger
+    if (!(ptsDraft && document.activeElement === inp) && inp.value !== ptsText) inp.value = ptsText;
+    inp.classList.toggle('on', S.myPoints !== null && !ptsDraft);
+    inp.classList.toggle('bad', bad);
+    inp.setAttribute('aria-invalid', bad ? 'true' : 'false');
+    inp.setAttribute('aria-describedby', note.id);
+    // an unusable value must stay removable: hiding the button whenever there
+    // is no figure left the reader typing over their own mistake
+    act.hidden = ptsText === '';
+    if (act.classList.contains('go') !== ptsDraft || !act.firstChild) {
+      act.classList.toggle('go', ptsDraft);
+      act.innerHTML = ptsDraft ? GO_ICON : X_ICON;
+    }
+    act.setAttribute('aria-label', t(ptsDraft ? 'ptsGo' : 'ptsClear'));
+    /* The note says one thing at a time, and nothing while a draft is typed:
+       what a refused entry probably stands for, as a question the reader
+       answers by pressing it; the rule, when there is nothing to suggest; or,
+       under an accepted average, the karakterpoeng it stands for, since every
+       poenggrense beside it is printed in those. */
+    note.classList.toggle('bad', bad);
+    note.classList.toggle('hint', !bad);
+    note.hidden = ptsDraft || (!bad && S.myPoints === null);
+    if (note.hidden) note.textContent = '';
+    else if (bad && S.ptsSug !== null) {
+      const s = fmtAvg(S.ptsSug * 10);
+      note.innerHTML = `${esc(t('ptsNotAvg', ptsText))} <button type="button" class="lnk">${esc(t('ptsMeant', s))}</button>`;
+      (note.querySelector('.lnk') as HTMLElement).onclick = () => { onPoints(s); refocus(field); };
+    }
+    else note.textContent = bad ? t('ptsBad') : t('ptsBridge', fmtAvg(S.myPoints), fmt(S.myPoints));
   };
-  // Only a typing error has a note. A colour key used to follow a valid figure:
-  // on the map the legend already is that key, and in the list each Chance
-  // cell names its own band in words («0 av 3 sannsynlig»).
-  if (avg !== null) avgNote(note!, 'pts-avg-fix', '#my-points');
-  else {
-    note!.hidden = !bad;
-    note!.textContent = bad ? t('ptsBad') : '';
-  }
+  const el = (id: string) => document.getElementById(id) as HTMLElement;
+  draw(el('my-points'), el('pts-act'), el('pts-note'), el('pts-label'), '#my-points');
   // the sheet's copy of the field: shown only where the sheet covers the
   // panel (body.sheet-full, sideTrap), and it follows the panel's field
   const mf = document.getElementById('s-pts');
-  if (!mf || !mi) return;
+  if (!mf || !document.getElementById('s-points')) return;
   mf.hidden = false;
-  document.getElementById('s-pts-label')!.textContent = t('ptsLabel');
-  mi.placeholder = t('ptsPh');
-  if (document.activeElement !== mi) mi.value = inp.value;
-  mi.classList.toggle('on', S.myPoints !== null);
-  mi.classList.toggle('bad', bad);
-  mi.setAttribute('aria-invalid', bad ? 'true' : 'false');
-  mi.setAttribute('aria-describedby', 's-pts-note');
-  const mn = document.getElementById('s-pts-note')!;
-  mn.classList.toggle('bad', bad);
-  if (avg !== null) avgNote(mn, 's-pts-avg-fix', '#s-points');
-  else {
-    mn.hidden = !bad;
-    mn.textContent = bad ? t('ptsBad') : '';
-  }
+  draw(el('s-points'), el('s-pts-act'), el('s-pts-note'), el('s-pts-label'), '#s-points');
 }
 
 export function initChance() {

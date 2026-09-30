@@ -111,12 +111,18 @@ function expectCentred(found: Off[]): void {
 
 test('every round control in the panel centres what it draws', async ({ page }) => {
   await boot(page);
-  await page.fill('#my-points', '42,5');
+  // the row's first circle is drawn only once there is something in the field:
+  // the ✓ while it is a draft, the ✕ once it is submitted
+  await page.fill('#my-points', '4,25');
+  await page.waitForTimeout(400);
+  const draft = await measure(page, 'panel');
+  expect(draft.map(o => o.name)).toContain('panel: button#pts-act.go');
+  expectCentred(draft);
+  await page.press('#my-points', 'Enter');
   await page.waitForTimeout(400);
   const found = await measure(page, 'panel');
-  // the points row draws both of its circles only once there is a value to clear
   expect(found.map(o => o.name)).toContain('panel: button#calc-open');
-  expect(found.map(o => o.name)).toContain('panel: button#pts-clear');
+  expect(found.map(o => o.name)).toContain('panel: button#pts-act');
   expectCentred(found);
 });
 
@@ -139,7 +145,8 @@ test('every round control in the sheets centres what it draws', async ({ page })
 
 test('every round control on a school centres what it draws', async ({ page }) => {
   await boot(page);
-  await page.fill('#my-points', '42,5');
+  await page.fill('#my-points', '4,25');
+  await page.press('#my-points', 'Enter');
   await openSchool(page, 'Vestland', 'Førde vidaregåande skule');
   await page.waitForTimeout(500);
   const found = await measure(page, 'school');

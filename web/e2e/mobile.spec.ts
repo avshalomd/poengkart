@@ -131,10 +131,11 @@ test('a scrolled sheet keeps its ✕ on screen, and its own points field moves t
   expect(box!.y).toBeGreaterThanOrEqual(0);
   expect(box!.y + box!.height).toBeLessThanOrEqual(80);
   await page.locator('#side > .scroll').evaluate(e => e.scrollTo(0, 0));
-  await page.locator('#s-points').fill('41');
-  await expect(page.locator('#s-chance .h')).toContainText('41,0');
+  await page.locator('#s-points').fill('4,1');
+  await page.locator('#s-pts-act').click();
+  await expect(page.locator('#s-chance .h')).toContainText('4,1 i snitt');
   await page.locator('#side > .scroll').evaluate(e => e.scrollTo(0, e.scrollHeight));
   await x.click();
   await expect(page.locator('#side')).not.toHaveClass(/open/);
-  await expect(page.locator('#my-points')).toHaveValue('41');
+  await expect(page.locator('#my-points')).toHaveValue('4,1');
 });

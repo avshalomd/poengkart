@@ -107,9 +107,12 @@
   <div class="field" id="pts-field" hidden>
     <label id="pts-label" for="my-points"></label>
     <div class="ptsrow">
-      <input id="my-points" type="text" inputmode="decimal" autocomplete="off" spellcheck="false"
-             maxlength="5" oninput="onPointsInput(this.value)" onchange="flushPoints()">
-      <button id="pts-clear" type="button" onclick="onPoints(''); refocus('#my-points')" hidden><svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <input id="my-points" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" spellcheck="false"
+             maxlength="5" oninput="onPointsInput(this.value)" onchange="submitPoints()"
+             onkeydown="if (event.key === 'Enter') submitPoints()">
+      <!-- ✓ while a draft is typed, ✕ once it is submitted: one button, so it
+           never goes away under the focus (ptsAct in chance.ts) -->
+      <button id="pts-act" type="button" onpointerdown="ptsActDown()" onclick="ptsAct(event, '#my-points')" hidden></button>
       <button id="calc-open" type="button" onclick="openCalc()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -118,7 +121,7 @@
         </svg>
       </button>
     </div>
-    <div id="pts-note"></div>
+    <div id="pts-note" role="status"></div>
   </div>
   <!-- the reader's own list of choices, across schools -->
   <div id="choices" hidden></div>
@@ -133,15 +136,17 @@
       <div class="hero" id="s-hero"></div>
       <!-- the points field, again, where the sheet covers the panel (a phone,
            the narrow List view): without it the chance could only be changed
-           by closing the school. It writes the same figure as #my-points and
+           by closing the school. It holds the same average as #my-points and
            is never redrawn, so typing in it keeps its focus. -->
       <div class="field" id="s-pts" hidden>
         <label id="s-pts-label" for="s-points"></label>
         <div class="ptsrow">
-          <input id="s-points" type="text" inputmode="decimal" autocomplete="off" spellcheck="false"
-                 maxlength="5" oninput="onPointsInput(this.value)" onchange="flushPoints()">
+          <input id="s-points" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" spellcheck="false"
+                 maxlength="5" oninput="onPointsInput(this.value)" onchange="submitPoints()"
+                 onkeydown="if (event.key === 'Enter') submitPoints()">
+          <button id="s-pts-act" type="button" onpointerdown="ptsActDown()" onclick="ptsAct(event, '#s-points')" hidden></button>
         </div>
-        <div id="s-pts-note" hidden></div>
+        <div id="s-pts-note" role="status" hidden></div>
       </div>
       <div class="chance" id="s-chance" hidden></div>
       <div class="mixwarn" id="s-mix" hidden></div>

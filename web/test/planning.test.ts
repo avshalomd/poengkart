@@ -148,7 +148,7 @@ describe('planning with the wish list', () => {
     expect(plain.filter(l => /^\d+\. /.test(l)).length).toBe(3);
     S.myPoints = 45;
     const txt = choicesText();
-    expect(txt.split('\n')[0]).toBe(t('copyHeadPts', fmt(45)));
+    expect(txt.split('\n')[0]).toBe(t('copyHeadPts', '4,5'));
     expect(txt).toMatch(/Sjansen for minst én plass: (ca\.|over) \d+ %/);
     expect(txt).not.toMatch(/<[a-z]/);                // no markup in what goes on the clipboard
   });

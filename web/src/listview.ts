@@ -1,6 +1,6 @@
 import { bucketColor, bucketOf, chanceMode, chanceOf, isChosen, OPEN_CHANCE, openOnly, pct, pctS, predFor, schoolChance, toggleChoice } from "./chance";
 import { forecastYears, liftMapControls } from "./chrome";
-import { BINS, colorFor, esc, fmt, HELD_OUT, meanStep, partitionPrograms, progName, round1, schoolPressure, shownPrograms, X_ICON, zeroIsFill, zeroLabel } from "./helpers";
+import { BINS, colorFor, esc, fmt, fmtAvg, HELD_OUT, meanStep, partitionPrograms, progName, round1, schoolPressure, shownPrograms, X_ICON, zeroIsFill, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
 import { locHelpKind, toast } from "./locate";
 import { drawMarkers, fitVisible, mapZoom, prefersStill, resizeMap, visibleSchools } from "./map";
@@ -287,11 +287,11 @@ export function renderListView() {
     (areas
       ? th('value', t('listColCut'), true, t('listColCutTip')) +
         th('fc', t('listColFc'), true, t('listColFcTip', yrs)) +
-        (chance ? th('chance', t('listColChance'), true, t('listColChanceTip', fmt(S.myPoints), yrs)) : '') +
+        (chance ? th('chance', t('listColChance'), true, t('listColChanceTip', fmtAvg(S.myPoints), yrs)) : '') +
         `<th class="col-pick"><span class="vh">${esc(t('listColPick'))}</span></th>`
       : th('value', t('listColVal'), true, t('listColValTip')) +
         th('delta', t('listColDelta'), true, t('listColDeltaTip')) +
-        (chance ? th('chance', t('listColChance'), false, t('listColChanceTip', fmt(S.myPoints), yrs)) : '')) +
+        (chance ? th('chance', t('listColChance'), false, t('listColChanceTip', fmtAvg(S.myPoints), yrs)) : '')) +
     `</tr>`;
   const body = rows.map((r, i) => `<tr data-i="${i}">` + nameCell(r) + placeCells(r) +
     (areas

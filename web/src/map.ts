@@ -4,7 +4,7 @@ import Supercluster from 'supercluster';
 import { framePad } from "./boot";
 import { bucketColor, bucketOf, chanceMode, pct, schoolChance } from "./chance";
 import { legendZoomHint, renderCatNote, renderLegend, renderPanel } from "./chrome";
-import { colorFor, cssVar, esc, fmt, HELD_OUT, isVg1, levelScope, progName, schoolPressure, shownPrograms, shownSchools, visibleCount, yearSpan, zeroLabel } from "./helpers";
+import { colorFor, cssVar, esc, fmt, fmtAvg, HELD_OUT, isVg1, levelScope, progName, schoolPressure, shownPrograms, shownSchools, visibleCount, yearSpan, zeroLabel } from "./helpers";
 import { CATS, t } from "./i18n";
 import { EASE, play } from "./motion";
 import { say } from "./tips";
@@ -588,7 +588,7 @@ export function drawMarkers() {
     let line;
     if (chanceMode()) {
       line = (S.mapCat === 'all' ? '' : `${CATS[S.mapCat][S.lang]}: `) + (ch
-        ? t('tipChance', fmt(S.myPoints), ch.likely, ch.possible, ch.unlikely, ch.n, ch.year)
+        ? t('tipChance', fmtAvg(S.myPoints), ch.likely, ch.possible, ch.unlikely, ch.n, ch.year)
           + `<br>${t('tipBest', pct(ch.best), esc(progName(ch.bestProg)))}`
         : HELD_OUT.has(s.fylke) ? t('heldOutForecast', s.fylke) : t('tipNoForecast'));
     } else if (S.mapCat === 'all') {

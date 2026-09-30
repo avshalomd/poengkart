@@ -226,6 +226,7 @@
   .ptsrow input.on { border-color: var(--accent); }
   .ptsrow input.bad { border-color: var(--danger); }
   #pts-note.bad, #s-pts-note.bad { color: var(--danger); }
+  #s-pts-note.hint { color: var(--ink-3); }
   /* the sheet's copy of the points field, only where the sheet hides the panel */
   #s-pts { display: none; margin: 12px 18px 0; }
   body.sheet-full #s-pts { display: block; }
@@ -243,6 +244,9 @@
     background: var(--surface-solid); color: var(--ink-2); cursor: pointer; font: inherit; font-size: 13px;
     display: grid; place-items: center; padding: 0;
   }
+  /* the same button while a draft waits to be submitted: filled, so the one
+     thing left to do stands out beside the calculator */
+  .ptsrow button.go { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
   /* ---------- settings ---------- */
   #settings .sheet { max-width: 420px; }
   #settings .row { margin-top: 14px; }
@@ -1002,7 +1006,7 @@
      the states that mean something — .on, .sel, .act, :focus-visible — are
      declared outside it and reach every device. */
   @media (hover: hover) and (pointer: fine) {
-  .ptsrow button:hover { background: var(--accent-soft); color: var(--accent); }
+  .ptsrow button:not(.go):hover { background: var(--accent-soft); color: var(--accent); }
   /* :not(.on): same specificity as the .on rules and later in the file, the
      hover colour won and a chosen grade or a picked wish went accent on accent */
   #calc .grades button:not(.on):hover { border-color: var(--accent); color: var(--accent); }
@@ -1604,7 +1608,7 @@
     body:not(.view-list) #panel { width: min(520px, 100vw - 77px); }
     :root[data-font="lg"] body:not(.view-list) #panel { width: min(520px, (100vw - 63px) / 1.15 - 14px); }
     :root[data-font="xl"] body:not(.view-list) #panel { width: min(520px, (100vw - 63px) / 1.3 - 14px); }
-    /* «Poengene dine (valgfritt)» takes two lines in a third of 520px, and the
+    /* «Karaktersnittet ditt (valgfritt)» takes two lines in a third of 520px, and the
        note hangs under its input; bottom-aligned, the two selects sat 50px
        below the points box. Every label reserves those two lines and rests on
        its control, so the three controls share a top and the note hangs free. */
@@ -1705,13 +1709,15 @@
      it, being the control a reader changes while looking at the map. Stacked,
      the two still took 229px; side by side the card is 148px. The field's
      label is only hidden from sight there: the legend below already says
-     «med 40,0 poeng». The rules exist only at the sizes where the panel lies
+     «med 4,0 i snitt», and the note that turns the average into karakterpoeng
+     waits for the unfolded card. The rules exist only at the sizes where the panel lies
      across the map, so turning to a wider screen shows the whole card again;
      display: none also takes the folded controls out of the tab order. */
   @media (max-width: 560px), (max-height: 480px) {
     body.panel-folded:not(.view-list) #panel > .field:not(#pts-field),
     body.panel-folded:not(.view-list) #panel #cat-note,
-    body.panel-folded:not(.view-list) #panel #choices { display: none; }
+    body.panel-folded:not(.view-list) #panel #choices,
+    body.panel-folded:not(.view-list) #panel #pts-note.hint { display: none; }
     body.panel-folded:not(.view-list) #panel-sum { display: flex; grid-column: 1; align-self: start; }
     body.panel-folded:not(.view-list) #panel #pts-field { grid-column: 2; margin-top: 0; align-self: start; }
     body.panel-folded:not(.view-list) #panel #pts-label {

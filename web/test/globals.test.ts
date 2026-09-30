@@ -50,7 +50,7 @@ const names = deriveNames();
 describe('the window contract the inline handlers rely on', () => {
   it('the derivation itself finds real handlers, not an empty regex', () => {
     expect(names).toEqual(expect.arrayContaining([
-      'setView', 'onPoints', 'openBug', 'onMapFylke', 'switchToContact',
+      'setView', 'onPointsInput', 'submitPoints', 'ptsAct', 'openBug', 'onMapFylke', 'switchToContact',
       'contactOpener', 'chanceMoreOpen', 'sortList', 'closeSide', 'location',
     ]));
     expect(names.length).toBeGreaterThan(15);

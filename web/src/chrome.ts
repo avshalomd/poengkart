@@ -1,5 +1,5 @@
 import { bucketColor, chanceMode, renderPointsField } from "./chance";
-import { BIN_EDGES, BINS, cssVar, esc, fmt, HELD_OUT, isVg1, levelScope, MISSING_COUNTIES, shownCounties, shownPrograms, shownSchools, staleCounties } from "./helpers";
+import { BIN_EDGES, BINS, cssVar, esc, fmt, fmtAvg, HELD_OUT, isVg1, levelScope, MISSING_COUNTIES, shownCounties, shownPrograms, shownSchools, staleCounties } from "./helpers";
 import { CATS, schoolYear, t } from "./i18n";
 import { renderControls } from "./intro";
 import { placeToast } from "./locate";
@@ -150,7 +150,7 @@ export function renderLegend() {
   const rounds = [...new Set(visibleSchools().map(s => s.round).filter(Boolean))];
   const anyUnknown = visibleSchools().some(s => !s.round);
   document.getElementById('legend-title')!.innerHTML =
-    (chanceMode() ? esc(t('legendChance', fmt(S.myPoints), forecastYears(visibleSchools())))
+    (chanceMode() ? esc(t('legendChance', fmtAvg(S.myPoints), forecastYears(visibleSchools())))
       : S.mapCat === 'all' ? t('legendAll') : t('legendCat', S.mapCat)) +
     // the chips on a line of their own: run on after the title, «… · beste
     // programområde inntak ikke oppgitt» read as one phrase nobody could parse

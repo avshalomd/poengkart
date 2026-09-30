@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { boot } from './helpers';
 
-test('the grade calculator turns grades into points and hands them to the points field', async ({ page }) => {
+test('the grade calculator turns grades into an average and hands it to the field', async ({ page }) => {
   await boot(page);
   await page.click('#calc-open');
   await expect(page.locator('#calc')).toBeVisible();
@@ -14,12 +14,12 @@ test('the grade calculator turns grades into points and hands them to the points
     // every press rebuilds #calc-body, so each row is resolved afresh
     await page.locator('#calc-body .subj').nth(i).locator('button[data-g="5"]').click();
   }
-  // points = the average of the numeric grades × 10
+  // karakterpoeng = the average of the numeric grades × 10; the field takes the average
   await expect(page.locator('#calc-body .sum')).toContainText('5,00');
   await expect(page.locator('#calc-body .sum')).toContainText('50,0');
   await page.click('#calc-use');
   await expect(page.locator('#calc')).toBeHidden();
-  await expect(page.locator('#my-points')).toHaveValue('50,0');
+  await expect(page.locator('#my-points')).toHaveValue('5,0');
 });
 
 test('the grades are remembered, and Tøm clears them', async ({ page }) => {
