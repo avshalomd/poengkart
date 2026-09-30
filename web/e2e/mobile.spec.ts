@@ -37,7 +37,7 @@ test('the settings, the calculator and the help sheet fit the screen', async ({ 
 // an invisible ::after out of the small icon buttons, every one to the 44px
 // the rest of the app is held to.
 const TOUCH_HEIGHT: Record<string, number> = {
-  '#bug-btn': 44, '#help-btn': 44, '#settings-btn': 44, '#calc-open': 44,
+  '#help-btn': 44, '#settings-btn': 44, '#calc-open': 44,
   '#searchov-btn': 44, '#view-map': 44, '#view-list': 44,
 };
 
@@ -198,7 +198,7 @@ test('retyping a submitted average moves nothing under the sheet’s field, and 
   expect(await page.evaluate(() => document.activeElement?.id)).not.toBe('s-points');
 });
 
-test('at the larger text sizes the header’s icons stay inside the panel, the name giving way', async ({ page }) => {
+test('at Ekstra stor the header’s icons stay inside the panel, the name giving way', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 568 });
   const header = () => page.evaluate(() => {
     const panel = document.getElementById('panel')!, p = panel.getBoundingClientRect();
@@ -207,14 +207,15 @@ test('at the larger text sizes the header’s icons stay inside the panel, the n
     return { out, sideways: panel.scrollWidth - panel.clientWidth, shown: name.getBoundingClientRect().width > 2, name: name.textContent };
   });
   await boot(page);
-  // at the normal size the row fits with the name in it
+  // at the normal size and at Stor the row fits with the name in it; at
+  // Ekstra stor the name leaves the screen, not the document: a screen reader
+  // still has it
   expect(await header()).toEqual({ out: 0, sideways: 0, shown: true, name: 'Poengkart' });
   for (const font of ['lg', 'xl']) {
     await page.evaluate(f => localStorage.setItem('pk-font', f), font);
     await boot(page);
     await expect(page.locator('html')).toHaveAttribute('data-font', font);
-    // the name leaves the screen, not the document: a screen reader still has it
-    expect(await header(), `Poengkart at ${font}`).toEqual({ out: 0, sideways: 0, shown: false, name: 'Poengkart' });
+    expect(await header(), `Poengkart at ${font}`).toEqual({ out: 0, sideways: 0, shown: font === 'lg', name: 'Poengkart' });
     await expect(page.locator('#settings-btn')).toBeInViewport({ ratio: 1 });
   }
 });

@@ -21,9 +21,10 @@ export const FIELDS = {
 
 /* ---- the bug report's snapshot ----
    A "something does not work" without the view, the filters and the browser
-   is a message nobody can act on. The two bug buttons (the header's, for the
-   app as a whole; the sheet's, for one school) take this snapshot at the
-   moment they are pressed, the form lists it under «Dette sendes med», and the
+   is a message nobody can act on. The school sheet's bug button takes this
+   snapshot at the moment it is pressed, and so does picking «Noe i appen virker
+   ikke» in the form (a report about the app as a whole, reached from help);
+   the form lists it under «Dette sendes med», and the
    relay prints it under the message. What the reader saw is read from the
    rendered sheet, not recomputed, so the report shows the figures as they were
    on the screen. No picture: a screenshot is more than a bug report needs. */
@@ -81,7 +82,7 @@ export function renderContactCtx() {
 // el is the button pressed: a click does not focus a button in every browser,
 // so activeElement alone would send the focus back to the page body
 export function openBug(school, el) {
-  S.bugCtx = bugContext(school || null, school ? 'school' : 'header');
+  S.bugCtx = bugContext(school, 'school');
   S.contactOpener = el || document.activeElement;
   openContact('feil');
 }

@@ -1515,15 +1515,16 @@
     #panel .brand { grid-column: 1 / -1; }
     #panel .viewrow { grid-column: 1 / -1; margin-bottom: 2px; }
     #panel .brand h1 { font-size: 17px; }
-    /* The row is the mark, the name and four icons: 270px at the least (26 + 9
-       + 84 + 9 + 142), and the card gives it 274px on a 320px phone at the
-       normal text size. At Stor and Ekstra stor it gives 237px and 206px, and
-       help and settings stood outside the card, reached only by scrolling it
-       sideways: settings, where the text size is set back. Below 270px the
-       name leaves the screen and the mark stands for it; a screen reader
-       still reads it. */
+    /* The row is the mark, the name and three icons, and it needs 229px of the
+       card as the container query measures it (found by measuring: the mark
+       and the icons grow with the text size, the name's width does not). A
+       320px phone gives it 274px at the normal text size, 232px at Stor and
+       200px at Ekstra stor. With four icons help and settings stood outside
+       the card at the larger sizes, reached only by scrolling it sideways:
+       settings, where the text size is set back. Below 229px the name leaves
+       the screen and the mark stands for it; a screen reader still reads it. */
     #panel .brand { container-type: inline-size; }
-    @container (max-width: 269.9px) {
+    @container (max-width: 228.9px) {
       #panel .brand h1 { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
                          clip-path: inset(50%); white-space: nowrap; }
     }
@@ -1857,11 +1858,11 @@
     .seg button { padding-top: 12px; padding-bottom: 12px; }
     /* widen the gap first, then spend it: the reach can only be as generous as
        the space between two icons, or each starts firing its neighbour */
-    /* 14px between four 31px icons is 166px, and beside the name that is 17px
-       more than a 320px phone's card, or a tablet's, has: the settings icon
-       stood 5px out of the card, cut, and the card scrolled sideways. The row
-       keeps 14px where it fits and closes up to 6px where it does not. */
-    .brand .util { flex: 0 1 166px; min-width: 142px; justify-content: space-between; gap: 6px; }
+    /* 14px between three 31px icons is 121px. With a fourth it was 166px, 17px
+       more than a 320px phone's card, or a tablet's, had beside the name, and
+       the card scrolled sideways; so the row keeps 14px where it fits and
+       closes up to 6px where it does not. */
+    .brand .util { flex: 0 1 121px; min-width: 105px; justify-content: space-between; gap: 6px; }
     .brand .util .ico::after { inset: -9px -7px; }
     .ptsrow button { position: relative; }
     .ptsrow button::after { content: ''; position: absolute; inset: -5px; }

@@ -131,9 +131,11 @@ test('every round control in the sheets centres what it draws', async ({ page })
   const found: Off[] = [];
   for (const [btn, sheet] of [
     ['#settings-btn', '#settings'], ['#calc-open', '#calc'],
-    ['#help-btn', '#intro'], ['#bug-btn', '#contact'],
+    ['#help-btn', '#intro'], ['#help-btn', '#contact'],
   ] as const) {
     await page.click(btn);
+    // the feedback form is reached through help
+    if (sheet === '#contact') await page.click('#intro .cta.ghost');
     await expect(page.locator(sheet)).toBeVisible();
     await page.waitForTimeout(300);
     found.push(...await measure(page, sheet));

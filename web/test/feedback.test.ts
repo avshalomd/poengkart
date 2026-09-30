@@ -49,7 +49,7 @@ describe('the feedback form', () => {
     // a lower bound, not a pin: the regex above is what is being guarded here,
     // and the relay is free to send more
     expect(CTX_KEYS.length).toBeGreaterThan(10);
-    const ctx = bugContext(null, 'header');
+    const ctx = bugContext(null, 'form');
     // school, chart and hero are the three the relay prints only when a school
     // was open; rows is a list and rides outside CTX (CTX_ROWS in the relay)
     expect(Object.keys(ctx)).toEqual(CTX_KEYS.filter(k => !['school', 'chart', 'hero'].includes(k)));
@@ -79,9 +79,9 @@ describe('the feedback form', () => {
   it('the snapshot names the view the reader is in', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
     setView('list');
-    expect(bugContext(null, 'header').view).toMatch(/^list \((wide|split|thin)\)$/);
+    expect(bugContext(null, 'form').view).toMatch(/^list \((wide|split|thin)\)$/);
     setView('map');
-    expect(bugContext(null, 'header').view).toBe('map');
+    expect(bugContext(null, 'form').view).toBe('map');
   });
 
   it('each kind of report asks only for the fields it needs', () => {
@@ -118,11 +118,13 @@ describe('the feedback form', () => {
     expect(isSheetOpen(document.getElementById('contact'))).toBe(false);
   });
 
-  it('the bug button takes the snapshot at the moment it is pressed', () => {
+  it('the school’s bug button takes the snapshot at the moment it is pressed', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
-    const btn = document.getElementById('bug-btn');
-    openBug(null, btn);
-    expect(S.bugCtx!.from).toBe('header');
+    const school = S.DATA!.schools[0];
+    const btn = document.getElementById('help-btn');
+    openBug(school, btn);
+    expect(S.bugCtx!.from).toBe('school');
+    expect(S.bugCtx!.school).toBe(`${school.name} (${school.fylke})`);
     expect(S.contactOpener).toBe(btn);
     expect((document.getElementById('c-kind') as HTMLSelectElement).value).toBe('feil');
     expect(renderContactCtx()).toContain(CTX_LABELS.view[S.lang]);
@@ -154,7 +156,7 @@ describe('the feedback form', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap();
     const fetchMock = vi.fn(async () => ({ ok: true, json: async () => ({ ok: true }) }));
     vi.stubGlobal('fetch', fetchMock);
-    openBug(null, null);
+    openContact('feil');
     (document.getElementById('c-msg') as HTMLTextAreaElement).value = 'Kartet henger seg opp';
     await submit();
     expect(fetchMock).toHaveBeenCalledTimes(1);
@@ -164,7 +166,7 @@ describe('the feedback form', () => {
     expect(payload.type).toBe('feil');
     expect(payload.message).toBe('Kartet henger seg opp');
     expect(payload.lang).toBe('no');
-    expect(payload.context.from).toBe('header');
+    expect(payload.context.from).toBe('form');
     expect(document.querySelector('#contact-body .done .big')!.textContent).toBe(t('contactSent'));
     // and the confirmation survives a language switch
     renderContact();

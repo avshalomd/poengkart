@@ -1,7 +1,15 @@
 import { test, expect } from '@playwright/test';
 import { boot, openSchool } from './helpers';
 
-test('the bug button sends the view, the filters and the school on screen, never a picture', async ({ page }) => {
+// the feedback form, reached through help, on «Noe i appen virker ikke»
+async function reportFromHelp(page) {
+  await page.click('#help-btn');
+  await page.click('#intro .cta.ghost');
+  await expect(page.locator('#contact')).toBeVisible();
+  await page.selectOption('#c-kind', 'feil');
+}
+
+test('a bug report from help sends the view, the filters and the school on screen, never a picture', async ({ page }) => {
   await boot(page);
   // the county is set AFTER the school: a permalink is a page load, so opening
   // one drops the `f=` a reader had chosen (applyUrlFilters)
@@ -11,10 +19,8 @@ test('the bug button sends the view, the filters and the school on screen, never
 
   let body: any = null;
   await page.route('**/api/feedback', async r => { body = r.request().postDataJSON(); await r.fulfill({ json: { ok: true } }); });
-  await page.click('#bug-btn');
-  await expect(page.locator('#contact')).toBeVisible();
-  // openBug() picks the kind for the reader and lists the snapshot in the open
-  await expect(page.locator('#c-kind')).toHaveValue('feil');
+  await reportFromHelp(page);
+  // the kind takes the snapshot and lists it in the open
   await expect(page.locator('#contact-body details.ctx')).toContainText('Dette sendes med');
 
   await page.fill('#c-msg', 'Testmelding fra e2e');
@@ -25,7 +31,7 @@ test('the bug button sends the view, the filters and the school on screen, never
   expect(body.message).toBe('Testmelding fra e2e');
   // bugContext(): the keys the relay prints under the message
   expect(body.context).toMatchObject({
-    from: 'header',
+    from: 'form',
     view: 'map',
     fylke: 'Oslo',
     school: 'Elvebakken videregående skole (Oslo)',
@@ -59,8 +65,7 @@ test('an empty message is refused before anything is posted', async ({ page }) =
   await boot(page);
   let posted = false;
   await page.route('**/api/feedback', async r => { posted = true; await r.fulfill({ json: { ok: true } }); });
-  await page.click('#bug-btn');
-  await expect(page.locator('#contact')).toBeVisible();
+  await reportFromHelp(page);
   await page.click('#c-send');
   await expect(page.locator('#c-err')).toHaveText('Skriv en melding først.');
   expect(posted).toBe(false);

@@ -104,7 +104,6 @@ export const T = {
   // a place finds the schools there as well as a name does (search.ts)
   searchPh:    { no: 'Skole eller sted…', en: 'School or place…' },
   settingsLabel: { no: 'Innstillinger', en: 'Settings' },
-  bugLabel: { no: 'Meld feil', en: 'Report a bug' },
   bugSchoolLabel: { no: 'Meld feil på denne skolen', en: 'Report a bug on this school' },
   setTheme:      { no: 'Fargetema', en: 'Theme' },
   setThemeAuto:  { no: 'Automatisk', en: 'Auto' },

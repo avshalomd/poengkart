@@ -81,11 +81,10 @@ describe('the help sheet', () => {
     expect(SHEET_IDS.every(id => document.getElementById(id))).toBe(true);
   });
 
-  it('renderControls names the four icon buttons and the sheet itself', () => {
+  it('renderControls names the icon buttons and the sheet itself', () => {
     loadFixtures(); initHelpers();
     renderControls();
     expect(document.getElementById('help-btn')!.getAttribute('aria-label')).toBe(t('helpLabel'));
-    expect(document.getElementById('bug-btn')!.title).toBe(t('bugLabel'));
     expect(document.getElementById('settings-btn')!.getAttribute('aria-label')).toBe(t('settingsLabel'));
     expect(document.getElementById('searchov-btn')!.title).toBe(t('searchLabel'));
     expect(document.getElementById('side')!.getAttribute('aria-label')).toBe(t('sideLabel'));

@@ -31,8 +31,8 @@ export function clearHelpHint() {
 
 export function renderControls() {
   updateLocateAria();
-  for (const [id, key] of [['bug-btn', 'bugLabel'], ['help-btn', 'helpLabel'],
-                           ['settings-btn', 'settingsLabel'], ['searchov-btn', 'searchLabel']]) {
+  for (const [id, key] of [['help-btn', 'helpLabel'], ['settings-btn', 'settingsLabel'],
+                           ['searchov-btn', 'searchLabel']]) {
     const el = document.getElementById(id);
     el!.title = t(key);
     el!.setAttribute('aria-label', t(key));
