@@ -1515,6 +1515,18 @@
     #panel .brand { grid-column: 1 / -1; }
     #panel .viewrow { grid-column: 1 / -1; margin-bottom: 2px; }
     #panel .brand h1 { font-size: 17px; }
+    /* The row is the mark, the name and four icons: 270px at the least (26 + 9
+       + 84 + 9 + 142), and the card gives it 274px on a 320px phone at the
+       normal text size. At Stor and Ekstra stor it gives 237px and 206px, and
+       help and settings stood outside the card, reached only by scrolling it
+       sideways: settings, where the text size is set back. Below 270px the
+       name leaves the screen and the mark stands for it; a screen reader
+       still reads it. */
+    #panel .brand { container-type: inline-size; }
+    @container (max-width: 269.9px) {
+      #panel .brand h1 { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+                         clip-path: inset(50%); white-space: nowrap; }
+    }
     /* the fade is pulled out to the card's edges by its padding; left at the
        desktop 16px it overshot this padding, and 3px of overshoot were enough
        to put a scrollbar on a panel with nothing to scroll. Here it is a grid

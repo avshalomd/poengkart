@@ -197,3 +197,24 @@ test('retyping a submitted average moves nothing under the sheet’s field, and 
   // a tap that focused the field would raise the keyboard over the answer
   expect(await page.evaluate(() => document.activeElement?.id)).not.toBe('s-points');
 });
+
+test('at the larger text sizes the header’s icons stay inside the panel, the name giving way', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 });
+  const header = () => page.evaluate(() => {
+    const panel = document.getElementById('panel')!, p = panel.getBoundingClientRect();
+    const out = [...panel.querySelectorAll('.brand .ico')].filter(i => i.getBoundingClientRect().right > p.right).length;
+    const name = panel.querySelector('.brand h1')!;
+    return { out, sideways: panel.scrollWidth - panel.clientWidth, shown: name.getBoundingClientRect().width > 2, name: name.textContent };
+  });
+  await boot(page);
+  // at the normal size the row fits with the name in it
+  expect(await header()).toEqual({ out: 0, sideways: 0, shown: true, name: 'Poengkart' });
+  for (const font of ['lg', 'xl']) {
+    await page.evaluate(f => localStorage.setItem('pk-font', f), font);
+    await boot(page);
+    await expect(page.locator('html')).toHaveAttribute('data-font', font);
+    // the name leaves the screen, not the document: a screen reader still has it
+    expect(await header(), `Poengkart at ${font}`).toEqual({ out: 0, sideways: 0, shown: false, name: 'Poengkart' });
+    await expect(page.locator('#settings-btn')).toBeInViewport({ ratio: 1 });
+  }
+});
