@@ -27,6 +27,50 @@ export const CATS = {
 export const schoolYear = y => `${y}/${String((+y + 1) % 100).padStart(2, '0')}`;
 export const ordEn = r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : r === '3' ? 'rd' : 'th'}`;
 export const T = {
+  /* the KI chat (radgiver.ts): a local experiment. «KI» is Språkrådet's word
+     for AI; the chat is not the school's rådgiver and never says it is */
+  chatOpen: { no: 'Spør KI om søknaden', en: 'Ask AI about your application' },
+  chatTitle: { no: 'KI-hjelp til søknaden', en: 'AI help with your application' },
+  chatBeta: { no: 'test', en: 'test' },
+  chatClose: { no: 'Lukk', en: 'Close' },
+  chatNew: { no: 'Ny samtale', en: 'New conversation' },
+  chatSend: { no: 'Send', en: 'Send' },
+  chatStop: { no: 'Stopp', en: 'Stop' },
+  chatPlaceholder: { no: 'Skriv et spørsmål …', en: 'Ask a question …' },
+  chatNote: {
+    no: 'KI kan ta feil. Sjekk viktige valg med rådgiveren på skolen din. Ikke skriv navn eller andre personopplysninger.',
+    en: 'AI can be wrong. Check important choices with your school’s rådgiver (counsellor). Don’t type names or other personal details.',
+  },
+  chatHello: {
+    no: 'Hei! Jeg kan hjelpe deg med å velge utdanningsprogram og skoler og å sette opp ønskene dine. Jeg ser det du ser: skolen du har åpnet, snittet ditt og ønskelista di.',
+    en: 'Hi! I can help you choose an utdanningsprogram (education programme) and schools, and set up your ønsker (wishes). I see what you see: the school you have open, your grade average and your list of wishes.',
+  },
+  chatSugList: { no: 'Hjelp meg å sette opp ønskene mine', en: 'Help me set up my wishes' },
+  chatSugFit: { no: 'Hvilke skoler passer med snittet mitt?', en: 'Which schools fit my grade average?' },
+  chatSugSchool: { no: s => `Hva betyr tallene for ${s}?`, en: s => `What do the figures for ${s} mean?` },
+  chatSugCheck: { no: 'Er ønskelista mi trygg nok?', en: 'Is my list of wishes safe enough?' },
+  chatSugHow: { no: 'Hvordan bør jeg rangere ønskene?', en: 'How should I rank my wishes?' },
+  chatTool: {
+    no: { search_schools: 'Søker etter skoler …', school_details: 'Ser på skolen …', compare_schools: 'Sammenligner skoler …',
+          check_wishes: 'Sjekker ønskelista …', county_info: 'Sjekker reglene i fylket …' },
+    en: { search_schools: 'Searching schools …', school_details: 'Looking at the school …', compare_schools: 'Comparing schools …',
+          check_wishes: 'Checking your wishes …', county_info: 'Checking the county’s rules …' },
+  },
+  chatDidAdd: { no: (n, x) => `Lagt til som ønske ${n}: ${x}`, en: (n, x) => `Added as wish ${n}: ${x}` },
+  chatDidRemove: { no: x => `Fjernet fra ønskelista: ${x}`, en: x => `Removed from your wishes: ${x}` },
+  chatDidRemoveN: { no: n => `Fjernet ${n} ønsker fra lista`, en: n => `Removed ${n} wishes from your list` },
+  chatDidClear: { no: 'Ønskene er tømt', en: 'Your wishes are cleared' },
+  chatDidFilter: { no: x => `Viser ${x}`, en: x => `Showing ${x}` },
+  chatNearFrom: { no: x => `avstand fra ${x}`, en: x => `distance from ${x}` },
+  chatDidMove: { no: (x, n) => `Flyttet ${x} til ønske ${n}`, en: (x, n) => `Moved ${x} to wish ${n}` },
+  chatDidOpen: { no: x => `Åpnet ${x}`, en: x => `Opened ${x}` },
+  chatDidPoints: { no: x => `Snittet ditt er satt til ${x}`, en: x => `Your grade average is set to ${x}` },
+  chatUndo: { no: 'Angre', en: 'Undo' },
+  chatUndone: { no: 'Angret', en: 'Undone' },
+  chatBusy: { no: 'Det er mye pågang akkurat nå. Prøv igjen om et halvt minutt.', en: 'It’s busy right now. Try again in half a minute.' },
+  chatRate: { no: 'Du har sendt mange meldinger på kort tid. Vent litt og prøv igjen.', en: 'You’ve sent a lot of messages in a short time. Wait a little and try again.' },
+  chatError: { no: 'Noe gikk galt. Prøv igjen.', en: 'Something went wrong. Try again.' },
+  chatRetry: { no: 'Prøv igjen', en: 'Try again' },
   // the header keeps the scope alone; the definition and the gesture live in
   // the (?) sheet, which every first visit opens anyway
   tagline: {

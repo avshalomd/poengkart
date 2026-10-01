@@ -42,3 +42,7 @@ docs/superpowers/
 
 # the live cloud relay's run report; the workflow reads it off the relay branch
 .live-report.json
+
+# KI chat eval runs are regenerated with npm run eval:radgiver; the cost runs the docs cite are kept
+evals/results/*
+!evals/results/cost-*.json

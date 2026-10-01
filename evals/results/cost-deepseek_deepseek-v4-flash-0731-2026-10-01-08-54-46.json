@@ -1,0 +1,1687 @@
+{
+ "model": "deepseek/deepseek-v4-flash-0731",
+ "date": "2026-10-01T08:54:46.412Z",
+ "today": "2026-09-30T10:00:00.000Z",
+ "max_history": 14,
+ "prices": {
+  "openai/gpt-6-luna": {
+   "prompt": 1e-7,
+   "completion": 5e-7,
+   "cache_read": 1e-8,
+   "cache_write": 1.25e-7
+  },
+  "deepseek/deepseek-v4-flash-0731": {
+   "prompt": 1.08e-8,
+   "completion": 0.00000128,
+   "cache_read": 1.08e-8,
+   "cache_write": 1.08e-8
+  },
+  "openai/gpt-5.6-luna": {
+   "prompt": 2e-7,
+   "completion": 0.0000012,
+   "cache_read": 2e-8,
+   "cache_write": 2.5e-7
+  },
+  "google/gemini-3.1-flash-lite": {
+   "prompt": 2.5e-7,
+   "completion": 0.0000015,
+   "cache_read": 2.5e-8,
+   "cache_write": 2.5e-7
+  },
+  "google/gemma-4-31b-it": {
+   "prompt": 9e-8,
+   "completion": 3.4e-7,
+   "cache_read": 5e-8,
+   "cache_write": 9e-8
+  }
+ },
+ "variants": [
+  {
+   "flow": "quick",
+   "variant": "term",
+   "screen": "blank_no",
+   "user_turns": 1,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 29,
+     "history_messages": 0,
+     "steps": 1,
+     "input": 5693,
+     "cached": 5632,
+     "output": 277,
+     "reasoning": 99,
+     "secs": 6.68,
+     "first_step_input": 5693,
+     "tools": [],
+     "answer_chars": 595,
+     "answer": "«Ingen venteliste» betyr at alle kvalifiserte søkere fikk plass det året – skolen hadde altså ikke behov for å sette en poenggrense fordi det var plass til alle.\n\nEt par viktige ting å huske på:\n\n- Det er **ikke** det samme som en poenggrense på 0, og det er **ingen garanti** for at det blir sånn neste år. Poenggrenser flytter seg fra år til år.\n- Hvis du ser «Fullt, siste inntatte uten poeng», betyr det at plassene ble fylt, men den siste som kom inn hadde ikke registrerte karakterpoeng (for eksempel på grunn av fortrinnsrett).\n\nSkal jeg se på noen skoler eller utdanningsprogram for deg?",
+     "steps_usage": [
+      {
+       "input": 5693,
+       "cached": 5632,
+       "cache_write": 0,
+       "output": 277,
+       "reasoning": 99,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844549-KhYHC2GhcZQ6wRND29Pf",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000416044,
+        "prompt": 5078,
+        "completion": 255,
+        "cached": 5632,
+        "reasoning": 99,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.000416044
+    }
+   ]
+  },
+  {
+   "flow": "school",
+   "variant": "s3",
+   "screen": "okat_45",
+   "user_turns": 3,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 43,
+     "history_messages": 0,
+     "steps": 2,
+     "input": 11842,
+     "cached": 11520,
+     "output": 896,
+     "reasoning": 507,
+     "secs": 12.294,
+     "first_step_input": 5728,
+     "tools": [
+      "school_details"
+     ],
+     "answer_chars": 708,
+     "answer": "Tallene på [Oslo katedralskole](/oslo/oslo-katedralskole) er poenggrenser fra tidligere år og en prognose for 2027:\n\n- **Poenggrense** er karakterpoengene til den siste som kom inn det året. Her: 46,5 (2023), 46,0 (2024), 46,0 (2025) og 47,7 (2026). Den sier noe om hvor mange som søkte, ikke hvor god skolen er – og den flytter seg fra år til år.\n- **Prognosen for 2027** er en forventet poenggrense på 46,4 (snitt 4,64).\n- **Sjansen din** er en modellberegning ut fra tidligere år, ikke et løfte. Med snittet ditt på 4,50 (45,0 poeng) er sjansen **34 % – lite sannsynlig**, og skolen regnes som et ambisiøst ønske for deg.\n\nVil du at jeg finner studiespesialisering-skoler i Oslo hvor sjansen din er bedre?",
+     "steps_usage": [
+      {
+       "input": 5728,
+       "cached": 5632,
+       "cache_write": 0,
+       "output": 174,
+       "reasoning": 84,
+       "tools": [
+        "school_details"
+       ],
+       "result_chars": 784,
+       "id": "gen-1790844549-SfBdRMZraVySEUvq7WLp",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000284582,
+        "prompt": 5101,
+        "completion": 106,
+        "cached": 5632,
+        "reasoning": 84,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 6114,
+       "cached": 5888,
+       "cache_write": 0,
+       "output": 722,
+       "reasoning": 423,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844553-LTLu8v1djFJ3iSebNBGl",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000990191,
+        "prompt": 5325,
+        "completion": 606,
+        "cached": 5888,
+        "reasoning": 423,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.001274773
+    },
+    {
+     "n": 2,
+     "user_chars": 25,
+     "history_messages": 4,
+     "steps": 1,
+     "input": 6382,
+     "cached": 5888,
+     "output": 354,
+     "reasoning": 125,
+     "secs": 5.368,
+     "first_step_input": 6382,
+     "tools": [],
+     "answer_chars": 633,
+     "answer": "Med snittet ditt på 4,50 (45,0 poeng) er sjansen for plass på [Oslo katedralskole](/oslo/oslo-katedralskole) i 2027-inntaket **34 % – lite sannsynlig**. Prognosen for poenggrensen er 46,4, altså omtrent 1,4 poeng over snittet ditt.\n\nDet betyr ikke at det er umulig – poenggrenser svinger – men som førsteønske er det et ambisiøst valg. Siden du får det ønsket du har høyest rangert som du har poeng for, koster det ingenting å ha den øverst hvis det er drømmeskolen din – så lenge du har tryggere ønsker lenger ned.\n\nVil du at jeg finner studiespesialisering-skoler i Oslo hvor sjansen din er sannsynlig, så du får en tryggere liste?",
+     "steps_usage": [
+      {
+       "input": 6382,
+       "cached": 5888,
+       "cache_write": 0,
+       "output": 354,
+       "reasoning": 125,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844572-GoBD14OFPtA93Ohr5bp4",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000522045,
+        "prompt": 5516,
+        "completion": 292,
+        "cached": 5888,
+        "reasoning": 125,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.000522045
+    },
+    {
+     "n": 3,
+     "user_chars": 51,
+     "history_messages": 6,
+     "steps": 1,
+     "input": 6631,
+     "cached": 6144,
+     "output": 396,
+     "reasoning": 117,
+     "secs": 4.313,
+     "first_step_input": 6631,
+     "tools": [],
+     "answer_chars": 656,
+     "answer": "Poenggrensen på [Oslo katedralskole](/oslo/oslo-katedralskole) de siste årene:\n\n- **2023:** 46,5 poeng (snitt 4,65)\n- **2024:** 46,0 poeng (snitt 4,60)\n- **2025:** 46,0 poeng (snitt 4,60)\n- **2026:** 47,7 poeng (snitt 4,77)\n\nDen har ligget ganske stabilt rundt 46, men hoppet opp nesten to poeng i fjor. Det viser at poenggrensen svinger fra år til år – særlig på populære skoler. Prognosen for 2027 er 46,4, altså litt ned igjen.\n\nMed snittet ditt på 4,50 er du fortsatt et stykke under, så skolen er et ambisiøst ønske. Vil du at jeg ser på noen andre studiespesialisering-skoler i Oslo med lavere poenggrenser, så du får et par tryggere ønsker på lista?",
+     "steps_usage": [
+      {
+       "input": 6631,
+       "cached": 6144,
+       "cache_write": 0,
+       "output": 396,
+       "reasoning": 117,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844589-SKYkqz6iX4vjYouRuwHZ",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000578494,
+        "prompt": 5697,
+        "completion": 289,
+        "cached": 6144,
+        "reasoning": 117,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.000578494
+    }
+   ]
+  },
+  {
+   "flow": "near",
+   "variant": "n3",
+   "screen": "blank_no",
+   "user_turns": 3,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 89,
+     "history_messages": 0,
+     "steps": 3,
+     "input": 20759,
+     "cached": 17152,
+     "output": 1455,
+     "reasoning": 625,
+     "secs": 56.527,
+     "first_step_input": 5716,
+     "tools": [
+      "county_info",
+      "compare_schools",
+      "compare_schools",
+      "search_schools"
+     ],
+     "answer_chars": 976,
+     "answer": "Med 3,9 i snitt (39,0 poeng) er elektro på de fleste skolene i Bergensområdet **mulig** – og Laksevåg/Bergen Maritime er et ambisiøst førsteønske. Her er en stige du kan bygge:\n\n- **Ambisiøst:** [Laksevåg og Bergen Maritime](/vestland/laksevag-og-bergen-maritime-videregaende-skole) – forventet poenggrense 45,6–47,4 for 2027, lite sannsynlig med 3,9, men et drømmeønske koster ingenting som førsteønske.\n- **Realistiske:** [Årstad](/vestland/arstad-videregaende-skole) (forventet 39,2, ca. 50 % sjanse), [Slåtthaug](/vestland/slatthaug-videregaende-skole) (39,1, ca. 52 %) og [Åsane](/vestland/asane-vidaregaande-skule) (40,3, ca. 39 %).\n- **Trygge:** [Os](/vestland/os-vidaregaande-skule) (37,3, ca. 64 %) og [Askøy](/vestland/askoy-videregaende-skole) (38,2, ca. 58 %).\n\nI Vestland får du prioritet på skoler i ditt eget inntaksområde – sjekk hvilket område Bergen hører til på vilbli.no. Vil du at jeg legger inn et forslag til ønskeliste så vi kan se den samlede sjansen?",
+     "steps_usage": [
+      {
+       "input": 5716,
+       "cached": 5632,
+       "cache_write": 0,
+       "output": 272,
+       "reasoning": 144,
+       "tools": [
+        "county_info",
+        "compare_schools"
+       ],
+       "result_chars": 687,
+       "id": "gen-1790844549-ZcXLvL86kkHddeuFIesa",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000409892,
+        "prompt": 5093,
+        "completion": 173,
+        "cached": 5632,
+        "reasoning": 144,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 6082,
+       "cached": 5632,
+       "cache_write": 0,
+       "output": 251,
+       "reasoning": 40,
+       "tools": [
+        "compare_schools",
+        "search_schools"
+       ],
+       "result_chars": 7551,
+       "id": "gen-1790844558-3scBvS5kJ5TOjHDO2ymF",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000386965,
+        "prompt": 5304,
+        "completion": 91,
+        "cached": 5632,
+        "reasoning": 40,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 8961,
+       "cached": 5888,
+       "cache_write": 0,
+       "output": 932,
+       "reasoning": 441,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844567-7wrTym6RrI1VXEO6e4DN",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.001289738,
+        "prompt": 7257,
+        "completion": 696,
+        "cached": 5888,
+        "reasoning": 441,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.002086595
+    },
+    {
+     "n": 2,
+     "user_chars": 29,
+     "history_messages": 6,
+     "steps": 1,
+     "input": 9359,
+     "cached": 0,
+     "output": 435,
+     "reasoning": 164,
+     "secs": 16.655,
+     "first_step_input": 9359,
+     "tools": [],
+     "answer_chars": 654,
+     "answer": "Nærmest Bergen er disse (luftlinje fra sentrum):\n\n- [Årstad](/vestland/arstad-videregaende-skole) – 0 km\n- [Laksevåg og Bergen Maritime](/vestland/laksevag-og-bergen-maritime-videregaende-skole) – 1 km\n- [Slåtthaug](/vestland/slatthaug-videregaende-skole) – 8 km\n- [Askøy](/vestland/askoy-videregaende-skole) – 8 km\n- [Åsane](/vestland/asane-vidaregaande-skule) – 10 km\n- [Os](/vestland/os-vidaregaande-skule) – 21 km\n\nHusk at reiseveien kan være kortere eller lengre enn luftlinjen, og at du får prioritet på skoler i ditt eget inntaksområde. Vil du at jeg setter lista til å vise avstand fra Bergen, så ser du alle elektro-skolene sortert etter nærhet?",
+     "steps_usage": [
+      {
+       "input": 9359,
+       "cached": 0,
+       "cache_write": 0,
+       "output": 435,
+       "reasoning": 164,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844617-2KcpLx1vvBMUDwGHXSvp",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000657877,
+        "prompt": 7521,
+        "completion": 338,
+        "cached": 0,
+        "reasoning": 164,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.000657877
+    },
+    {
+     "n": 3,
+     "user_chars": 41,
+     "history_messages": 8,
+     "steps": 2,
+     "input": 19753,
+     "cached": 18176,
+     "output": 696,
+     "reasoning": 275,
+     "secs": 32.858,
+     "first_step_input": 9626,
+     "tools": [
+      "add_wish",
+      "add_wish"
+     ],
+     "answer_chars": 432,
+     "answer": "Nå er de to nærmeste på lista:\n\n1. **Årstad** – Elektro og datateknologi (forventet poenggrense 39,2 for 2027, mulig med 3,9)\n2. **Laksevåg og Bergen Maritime** – Elektro og datateknologi (forventet 45,6, et ambisiøst ønske)\n\nHusk at du får det øverste ønsket du har poeng for – så hvis Årstad er fullt, er Laksevåg neste. Vil du at jeg sjekker lista og ser på den samlede sjansen, eller skal vi legge til et trygt ønske lenger ned?",
+     "steps_usage": [
+      {
+       "input": 9626,
+       "cached": 9216,
+       "cache_write": 0,
+       "output": 365,
+       "reasoning": 120,
+       "tools": [
+        "add_wish",
+        "add_wish"
+       ],
+       "result_chars": 767,
+       "id": "gen-1790844645-DV9wExo6gaHZUvDY02ZD",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.00057116,
+        "prompt": 7707,
+        "completion": 187,
+        "cached": 9216,
+        "reasoning": 120,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 10127,
+       "cached": 8960,
+       "cache_write": 0,
+       "output": 331,
+       "reasoning": 155,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844658-gZoMCziqDxeb2rMjHbUt",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000533051,
+        "prompt": 7969,
+        "completion": 271,
+        "cached": 8960,
+        "reasoning": 155,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.001104211
+    }
+   ]
+  },
+  {
+   "flow": "build",
+   "variant": "b8",
+   "screen": "blank_no",
+   "user_turns": 8,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 93,
+     "history_messages": 0,
+     "steps": 1,
+     "input": 5717,
+     "cached": 5632,
+     "output": 575,
+     "reasoning": 340,
+     "secs": 8.188,
+     "first_step_input": 5717,
+     "tools": [],
+     "answer_chars": 784,
+     "answer": "Hei! Det høres ut som du har flere gode retninger å velge mellom – data, spill og å lage ting passer faktisk inn i flere utdanningsprogram. 😊\n\nDe mest aktuelle er:\n\n- **Informasjonsteknologi og medieproduksjon (IM)** – programmering, spill, nettsider, medieproduksjon. Yrkesfag, men du kan ta påbygg etterpå for å få studiekompetanse.\n- **Elektro og datateknologi (EL)** – elektronikk, nettverk, automasjon. Mye praktisk «lage ting».\n- **Teknologi- og industrifag (TI)** – design og produksjon, prototyping, 3D.\n- **Studiespesialisering (ST)** – hvis du vil holde døra åpen mot høyere utdanning, f.eks. innen IT eller spilldesign.\n\nFor å finne ut hva som passer deg best: Hva liker du mest – å programmere og lage spill, eller å bygge og lage fysiske ting? Og hvilket fylke bor du i?",
+     "steps_usage": [
+      {
+       "input": 5717,
+       "cached": 5632,
+       "cache_write": 0,
+       "output": 575,
+       "reasoning": 340,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844572-vZlLIMqJilCbCOK8Zfan",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000797743,
+        "prompt": 5094,
+        "completion": 548,
+        "cached": 5632,
+        "reasoning": 340,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.000797743
+    },
+    {
+     "n": 2,
+     "user_chars": 58,
+     "history_messages": 2,
+     "steps": 2,
+     "input": 16536,
+     "cached": 11520,
+     "output": 1774,
+     "reasoning": 831,
+     "secs": 22.019,
+     "first_step_input": 5995,
+     "tools": [
+      "county_info",
+      "compare_schools",
+      "compare_schools",
+      "compare_schools",
+      "compare_schools"
+     ],
+     "answer_chars": 1233,
+     "answer": "Godt nytt: med snitt 4,2 (42 poeng) er du trygg på de fleste yrkesfaglige programmene i Rogaland. Her er bildet:\n\n- **IT og medieproduksjon** – [Gand](/rogaland/gand-videregaende-skole) og [Vågen](/rogaland/vagen-videregaende-skole) ligger nærme, og prognosen for 2027 er godt under snittet ditt. Svært sannsynlig plass.\n- **Elektro og datateknologi** – [Jåttå](/rogaland/jatta-videregaende-skole) er det mest populære (forventet grense ca. 37,9 poeng i 2027), men du har fortsatt god sjanse. De andre, som [Godalen](/rogaland/godalen-videregaende-skole) og [Sola](/rogaland/sola-videregaende-skole), er trygge.\n- **Studiespesialisering** – her er det jevnere: [St. Olav](/rogaland/st-olav-videregaende-skole), [St. Svithun](/rogaland/st-svithun-videregaende-skole) og [Hetland](/rogaland/hetland-videregaende-skole) er mulige (ca. 50–66 % sjanse), mens [Stavanger Katedralskole](/rogaland/stavanger-katedralskole) og [Sandnes](/rogaland/sandnes-videregaende-skole) er mer sannsynlige.\n\nI Rogaland er det fritt skolevalg i fylket, og du kan søke opptil tre skoler per program.\n\nDet viktigste valget nå er retning: vil du jobbe praktisk med data/elektro (yrkesfag), eller vil du holde døra åpen mot høyere utdanning? Hva frister mest?",
+     "steps_usage": [
+      {
+       "input": 5995,
+       "cached": 5632,
+       "cache_write": 0,
+       "output": 665,
+       "reasoning": 219,
+       "tools": [
+        "county_info",
+        "compare_schools",
+        "compare_schools",
+        "compare_schools",
+        "compare_schools"
+       ],
+       "result_chars": 11902,
+       "id": "gen-1790844591-VxcjmN2vrfK3I0QwLkA5",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000915946,
+        "prompt": 5318,
+        "completion": 351,
+        "cached": 5632,
+        "reasoning": 219,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 10541,
+       "cached": 5888,
+       "cache_write": 0,
+       "output": 1109,
+       "reasoning": 612,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844596-ccr3pCxhQnQCrxDgwfJJ",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.001533362,
+        "prompt": 8464,
+        "completion": 929,
+        "cached": 5888,
+        "reasoning": 612,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.002449308
+    },
+    {
+     "n": 3,
+     "user_chars": 76,
+     "history_messages": 6,
+     "steps": 1,
+     "input": 11025,
+     "cached": 10496,
+     "output": 838,
+     "reasoning": 429,
+     "secs": 9.489,
+     "first_step_input": 11025,
+     "tools": [],
+     "answer_chars": 1042,
+     "answer": "Her er sammenligningen av de tre skolene i Rogaland som tilbyr **IT og medieproduksjon** (alle med prognose for 2027):\n\n- **[Vågen videregående skole](/rogaland/vagen-videregaende-skole)** – ca. 11 km fra Stavanger sentrum. Poenggrense 2026: 28,9 (snitt 2,89). Forventet grense 2027: ca. 32,9 poeng. Med snittet ditt er plass **svært sannsynlig** (98 %).\n- **[Gand videregående skole](/rogaland/gand-videregaende-skole)** – ca. 11 km. Poenggrense 2026: 30,3 (snitt 3,03). Forventet grense 2027: ca. 34,4 poeng. Også **svært sannsynlig** (96 %).\n- **[Haugaland videregående skole](/rogaland/haugaland-videregaende-skole)** – ligger i Haugesund-området, ca. 57 km unna. Ingen venteliste i 2026, forventet grense ca. 33,7 poeng. **Sannsynlig**, men langt unna.\n\nAlle tre er altså trygge valg for deg – forskjellen ligger i hvilken skole du liker best, ikke i poengene. Vågen og Gand ligger nærme deg; Haugaland er nok mest aktuelt hvis du bor på den siden.\n\nVil du at jeg legger Vågen og Gand inn som ønsker på lista di, så vi kan se dem sammen?",
+     "steps_usage": [
+      {
+       "input": 11025,
+       "cached": 10496,
+       "cache_write": 0,
+       "output": 838,
+       "reasoning": 429,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844625-GO6BePvXcfjdKjmDAkhh",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.00119171,
+        "prompt": 8801,
+        "completion": 699,
+        "cached": 10496,
+        "reasoning": 429,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.00119171
+    },
+    {
+     "n": 4,
+     "user_chars": 78,
+     "history_messages": 8,
+     "steps": 2,
+     "input": 23242,
+     "cached": 22272,
+     "output": 648,
+     "reasoning": 310,
+     "secs": 7.129,
+     "first_step_input": 11452,
+     "tools": [
+      "set_karaktersnitt",
+      "add_wish"
+     ],
+     "answer_chars": 390,
+     "answer": "Ferdig! Jeg la inn snittet ditt (4,2 → 42 poeng) og satte **Gand videregående skole – IT og medieproduksjon** som ønske 1. Det er den mest ambisiøse av de tre (forventet grense ca. 34,4 poeng i 2027), men med snittet ditt er sjansen for plass likevel **svært sannsynlig** (96 %).\n\nVil du at jeg legger til [Vågen](/rogaland/vagen-videregaende-skole) som ønske 2, så har du en trygg reserve?",
+     "steps_usage": [
+      {
+       "input": 11452,
+       "cached": 11008,
+       "cache_write": 0,
+       "output": 344,
+       "reasoning": 170,
+       "tools": [
+        "set_karaktersnitt",
+        "add_wish"
+       ],
+       "result_chars": 487,
+       "id": "gen-1790844645-5q1fyHSaUVhocdw0pnKo",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000564001,
+        "prompt": 9093,
+        "completion": 210,
+        "cached": 11008,
+        "reasoning": 170,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 11790,
+       "cached": 11264,
+       "cache_write": 0,
+       "output": 304,
+       "reasoning": 140,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844649-5G1GaoKVBDCxA50JP3Rn",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000516452,
+        "prompt": 9256,
+        "completion": 242,
+        "cached": 11264,
+        "reasoning": 140,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.0010804529999999999
+    },
+    {
+     "n": 5,
+     "user_chars": 54,
+     "history_messages": 12,
+     "steps": 1,
+     "input": 12006,
+     "cached": 0,
+     "output": 939,
+     "reasoning": 451,
+     "secs": 16.109,
+     "first_step_input": 12006,
+     "tools": [],
+     "answer_chars": 1115,
+     "answer": "Her er skolene med **elektro og datateknologi** innen ca. 30 km fra Stavanger (prognose for 2027):\n\n- **[Jåttå videregående skole](/rogaland/jatta-videregaende-skole)** – 4 km. Forventet grense ca. 37,9 poeng. Mest populær; med snittet ditt er sjansen **sannsynlig** (83 %).\n- **[Gand videregående skole](/rogaland/gand-videregaende-skole)** – 11 km. Forventet ca. 36,8 poeng. **Sannsynlig** (89 %).\n- **[Godalen videregående skole](/rogaland/godalen-videregaende-skole)** – 2 km. Forventet ca. 31,9 poeng. **Svært sannsynlig** (98 %). (Godalen har også en variant med automatisering og robotikk over 3 år.)\n- **[Sola videregående skole](/rogaland/sola-videregaende-skole)** – 7 km. Forventet ca. 31,3 poeng. **Svært sannsynlig** (98 %).\n- **[Randaberg videregående skole](/rogaland/randaberg-videregaende-skole)** – 7 km. Forventet ca. 28,9 poeng. **Svært sannsynlig** (98 %).\n- **[Strand videregående skole](/rogaland/strand-videregaende-skole)** – 17 km. Forventet ca. 33,6 poeng. **Svært sannsynlig** (97 %).\n\nJåttå er det ambisiøse valget, resten er trygge. Vil du at jeg legger til Jåttå som ønske 2 på lista?",
+     "steps_usage": [
+      {
+       "input": 12006,
+       "cached": 0,
+       "cache_write": 0,
+       "output": 939,
+       "reasoning": 451,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844663-CJXPMqDbov7smtSkKc1V",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.001331584,
+        "prompt": 9408,
+        "completion": 743,
+        "cached": 0,
+        "reasoning": 451,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.001331584
+    },
+    {
+     "n": 6,
+     "user_chars": 49,
+     "history_messages": 14,
+     "steps": 2,
+     "input": 25170,
+     "cached": 24064,
+     "output": 2148,
+     "reasoning": 1765,
+     "secs": 33.94,
+     "first_step_input": 12454,
+     "tools": [
+      "add_wish"
+     ],
+     "answer_chars": 477,
+     "answer": "Jeg la til **Jåttå videregående skole – Elektro og datateknologi** som ønske 2. Men vær oppmerksom: Jåttå er den mest populære elektro-skolen (forventet grense ca. 37,9 poeng i 2027), og sjansen din er **sannsynlig** (83 %) – altså ikke den tryggeste.\n\nHvis du heller vil ha en mer realistisk/trygg reserve, er [Godalen](/rogaland/godalen-videregaende-skole) (98 %) eller [Sola](/rogaland/sola-videregaende-skole) (98 %) bedre valg. Vil du at jeg bytter ut Jåttå med en av dem?",
+     "steps_usage": [
+      {
+       "input": 12454,
+       "cached": 11776,
+       "cache_write": 0,
+       "output": 1454,
+       "reasoning": 1284,
+       "tools": [
+        "add_wish"
+       ],
+       "result_chars": 392,
+       "id": "gen-1790844690-IDk0xxdI7Cfa7H77veDN",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.001995623,
+        "prompt": 9713,
+        "completion": 1315,
+        "cached": 11776,
+        "reasoning": 1284,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 12716,
+       "cached": 12288,
+       "cache_write": 0,
+       "output": 694,
+       "reasoning": 481,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844706-tLiymM9DfKifvzydisEN",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.001025652,
+        "prompt": 9844,
+        "completion": 606,
+        "cached": 12288,
+        "reasoning": 481,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.0030212750000000003
+    },
+    {
+     "n": 7,
+     "user_chars": 93,
+     "history_messages": 18,
+     "steps": 1,
+     "input": 12953,
+     "cached": 0,
+     "output": 977,
+     "reasoning": 716,
+     "secs": 11.228,
+     "first_step_input": 12953,
+     "tools": [],
+     "answer_chars": 642,
+     "answer": "Et trygt valg innen **studiespesialisering** nær Stavanger er:\n\n- **[Strand videregående skole](/rogaland/strand-videregaende-skole)** – ca. 17 km unna. Ingen venteliste i 2026, forventet grense ca. 37,1 poeng i 2027. Med snittet ditt er sjansen **sannsynlig** (93 %). Dette er et trygt valg som fortsatt ligger nær nivået ditt.\n\nHvis du vil ha noe enda sikrere og nærmere, er [Sola videregående skole](/rogaland/sola-videregaende-skole) (7 km, 98 %) et alternativ – men der ligger poenggrensen godt under snittet ditt, så det er mer «sikker plass» enn «passende nivå».\n\nVil du at jeg legger til **Strand – studiespesialisering** som ønske 3?",
+     "steps_usage": [
+      {
+       "input": 12953,
+       "cached": 0,
+       "cache_write": 0,
+       "output": 977,
+       "reasoning": 716,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844740-WaaKSsjrhMprJBdTj96M",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.001390452,
+        "prompt": 10014,
+        "completion": 884,
+        "cached": 0,
+        "reasoning": 716,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.001390452
+    },
+    {
+     "n": 8,
+     "user_chars": 32,
+     "history_messages": 18,
+     "steps": 3,
+     "input": 39657,
+     "cached": 12800,
+     "output": 590,
+     "reasoning": 184,
+     "secs": 32.918,
+     "first_step_input": 12910,
+     "tools": [
+      "add_wish",
+      "check_wishes"
+     ],
+     "answer_chars": 697,
+     "answer": "Nå er lista komplett med tre ulike utdanningsprogram – akkurat som anbefalt. Slik ser den ut:\n\n1. **Gand – IT og medieproduksjon** (ditt førstevalg, svært sannsynlig, 96 %)\n2. **Jåttå – Elektro og datateknologi** (sannsynlig, 83 %)\n3. **Strand – Studiespesialisering** (trygt valg, 93 %)\n\nSjekken viser ingen problemer med lista, og sjansen for å få plass på minst ett av ønskene er **95 % eller høyere**. Rekkefølgen er god: det du vil mest står først, og det trygge valget står sist.\n\nHusk at du får det øverste ønsket du har poeng til – så denne rekkefølgen betyr at du først og fremst vil ha Gand, og at Strand bare er en reserve. Vil du at jeg åpner siden til Gand så du kan se mer om skolen?",
+     "steps_usage": [
+      {
+       "input": 12910,
+       "cached": 0,
+       "cache_write": 0,
+       "output": 135,
+       "reasoning": 26,
+       "tools": [
+        "add_wish"
+       ],
+       "result_chars": 385,
+       "id": "gen-1790844768-gSW2IjCEuCW963yxv0uj",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000312228,
+        "prompt": 9958,
+        "completion": 56,
+        "cached": 0,
+        "reasoning": 26,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 13160,
+       "cached": 12800,
+       "cache_write": 0,
+       "output": 170,
+       "reasoning": 117,
+       "tools": [
+        "check_wishes"
+       ],
+       "result_chars": 1117,
+       "id": "gen-1790844774-DRBoEmQzmLg7xm72Cy95",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000359728,
+        "prompt": 10084,
+        "completion": 126,
+        "cached": 12800,
+        "reasoning": 117,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 13587,
+       "cached": 0,
+       "cache_write": 0,
+       "output": 285,
+       "reasoning": 41,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844782-9ihEGVon49qLYcUZzWzV",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000511539,
+        "prompt": 10376,
+        "completion": 227,
+        "cached": 0,
+        "reasoning": 41,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.0011834950000000001
+    }
+   ]
+  },
+  {
+   "flow": "review",
+   "variant": "r3",
+   "screen": "rogaland5_37",
+   "user_turns": 3,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 22,
+     "history_messages": 0,
+     "steps": 2,
+     "input": 12652,
+     "cached": 12288,
+     "output": 1682,
+     "reasoning": 1173,
+     "secs": 28.252,
+     "first_step_input": 5856,
+     "tools": [
+      "check_wishes",
+      "county_info"
+     ],
+     "answer_chars": 968,
+     "answer": "God nyhet først: med snittet ditt på 3,67 (36,7 poeng) er sjansen for plass på minst ett av ønskene 95 % eller mer i 2027-prognosen. Men lista har to problemer:\n\n- **Maks 3 skoler per utdanningsprogram i Rogaland.** Du har 5 skoler på elektro, så vigo godtar ikke lista slik den står. Du må kutte ned til 3.\n- **Du har bare ett utdanningsprogram.** Ungdomsretten er til plass i *ett av tre* utdanningsprogram du søker på. Med bare elektro kan du bli plassert i et program du ikke valgte.\n\nKort om ønskene: [Godalen](/rogaland/godalen-videregaende-skole) (automatisering og robotikk) er et godt førsteønske – 57 % sjanse. [Jåttå](/rogaland/jatta-videregaende-skole) og [Gand](/rogaland/gand-videregaende-skole) er ambisiøse (40–49 %), mens [Sola](/rogaland/sola-videregaende-skole) og [Randaberg](/rogaland/randaberg-videregaende-skole) er trygge valg (90–96 %).\n\nHvilke tre elektro-skoler vil du beholde – og skal vi se på to andre utdanningsprogram som kan passe deg?",
+     "steps_usage": [
+      {
+       "input": 5856,
+       "cached": 5632,
+       "cache_write": 0,
+       "output": 255,
+       "reasoning": 177,
+       "tools": [
+        "check_wishes",
+        "county_info"
+       ],
+       "result_chars": 2696,
+       "id": "gen-1790844599-OBuVZ5F9ZM6AcW2SQWMq",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000389644,
+        "prompt": 5199,
+        "completion": 194,
+        "cached": 5632,
+        "reasoning": 177,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 6796,
+       "cached": 6656,
+       "cache_write": 0,
+       "output": 1427,
+       "reasoning": 996,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844606-qdAkaRnjogjT6aP0zmyo",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.001899956,
+        "prompt": 5895,
+        "completion": 1247,
+        "cached": 6656,
+        "reasoning": 996,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.0022896
+    },
+    {
+     "n": 2,
+     "user_chars": 20,
+     "history_messages": 4,
+     "steps": 2,
+     "input": 14496,
+     "cached": 13568,
+     "output": 306,
+     "reasoning": 65,
+     "secs": 5.727,
+     "first_step_input": 7152,
+     "tools": [
+      "remove_wishes"
+     ],
+     "answer_chars": 517,
+     "answer": "Ferdig – Jåttå og Gand er fjernet. Nå står lista med tre elektro-ønsker:\n\n1. [Godalen](/rogaland/godalen-videregaende-skole) – automatisering og robotikk (57 % sjanse)\n2. [Sola](/rogaland/sola-videregaende-skole) (90 %)\n3. [Randaberg](/rogaland/randaberg-videregaende-skole) (96 %)\n\nDet gjenstår én ting: med bare elektro på lista har du fortsatt bare ett utdanningsprogram, og ungdomsretten er til plass i ett av *tre* du søker på. Skal vi finne to andre utdanningsprogram som kan passe deg, så du har et trygt nett?",
+     "steps_usage": [
+      {
+       "input": 7152,
+       "cached": 6656,
+       "cache_write": 0,
+       "output": 80,
+       "reasoning": 23,
+       "tools": [
+        "remove_wishes"
+       ],
+       "result_chars": 357,
+       "id": "gen-1790844633-rM1rZqfz3LpIoREUIpay",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000179641,
+        "prompt": 6154,
+        "completion": 31,
+        "cached": 6656,
+        "reasoning": 23,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 7344,
+       "cached": 6912,
+       "cache_write": 0,
+       "output": 226,
+       "reasoning": 42,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844634-QamflFVmOK5waedytlGr",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000368595,
+        "prompt": 6256,
+        "completion": 178,
+        "cached": 6912,
+        "reasoning": 42,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.000548236
+    },
+    {
+     "n": 3,
+     "user_chars": 30,
+     "history_messages": 8,
+     "steps": 2,
+     "input": 15162,
+     "cached": 7424,
+     "output": 473,
+     "reasoning": 210,
+     "secs": 7.855,
+     "first_step_input": 7489,
+     "tools": [
+      "move_wish"
+     ],
+     "answer_chars": 540,
+     "answer": "Gjort – Godalen står nå som ønske 3. Men jeg må si fra om konsekvensen: du får det øverste ønsket du har poeng for. Med [Sola](/rogaland/sola-videregaende-skole) først (90 % sjanse) vil du nesten sikkert få plass der, og [Godalen](/rogaland/godalen-videregaende-skole) – som virker å være det du egentlig vil – blir aldri vurdert.\n\nRekkefølgen bør være det du vil mest øverst, med trygge valg lenger ned. Et godt førsteønske koster ingenting. Vil du heller ha Godalen tilbake på plass 1, med Sola og Randaberg som trygge alternativer under?",
+     "steps_usage": [
+      {
+       "input": 7489,
+       "cached": 0,
+       "cache_write": 0,
+       "output": 93,
+       "reasoning": 22,
+       "tools": [
+        "move_wish"
+       ],
+       "result_chars": 310,
+       "id": "gen-1790844656-7lZdk6DyjDCdKQfhhxaO",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000199921,
+        "prompt": 6361,
+        "completion": 32,
+        "cached": 0,
+        "reasoning": 22,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 7673,
+       "cached": 7424,
+       "cache_write": 0,
+       "output": 380,
+       "reasoning": 188,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844657-v1ymyMwGN6v2OVAQV296",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000569268,
+        "prompt": 6451,
+        "completion": 331,
+        "cached": 7424,
+        "reasoning": 188,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.0007691890000000001
+    }
+   ]
+  },
+  {
+   "flow": "english",
+   "variant": "e8",
+   "screen": "blank_en",
+   "user_turns": 8,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 116,
+     "history_messages": 0,
+     "steps": 1,
+     "input": 5710,
+     "cached": 0,
+     "output": 375,
+     "reasoning": 147,
+     "secs": 10.051,
+     "first_step_input": 5710,
+     "tools": [],
+     "answer_chars": 996,
+     "answer": "Lovely to help! The short version: in the autumn of 10th grade you apply on vigo.no, rank up to three *utdanningsprogram* (programmes of study) and several schools, and your daughter is guaranteed a place in one of the three programmes she applies for — the ranking decides which one.\n\nA few key points:\n\n- **Deadline:** 1 March 2027 for the main application; 1 February 2027 for *fortrinnsrett* (priority admission) and *individuell behandling* (individual assessment).\n- **The ranking matters:** she gets the highest-ranked wish she has the points for, so rank by what she wants most, with a safe option last.\n- **Poenggrense (admission threshold):** the grade points of the last person admitted last year — it moves from year to year.\n- **Three different programmes:** the rule is three *different* programmes, so she isn't placed somewhere she never chose.\n\nTo make this concrete: what county do you live in, and does your daughter have an idea of what she'd like to work with or study later?",
+     "steps_usage": [
+      {
+       "input": 5710,
+       "cached": 0,
+       "cache_write": 0,
+       "output": 375,
+       "reasoning": 147,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844674-gE99yQRynYw18O4kHflD",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000541668,
+        "prompt": 5098,
+        "completion": 401,
+        "cached": 0,
+        "reasoning": 147,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.000541668
+    },
+    {
+     "n": 2,
+     "user_chars": 86,
+     "history_messages": 2,
+     "steps": 2,
+     "input": 14083,
+     "cached": 11520,
+     "output": 1596,
+     "reasoning": 1057,
+     "secs": 47.164,
+     "first_step_input": 5978,
+     "tools": [
+      "county_info",
+      "compare_schools"
+     ],
+     "answer_chars": 1184,
+     "answer": "Good news: with a 4.4 average (44 points), healthcare in Trondheim is very much within reach — every option we can see is *likely* for the 2027 intake.\n\nA few things to know:\n\n- **The programme** is *Helse- og oppvekstfag* (health and childhood studies) — a vocational programme leading to a *fagbrev* (trade certificate), for example as *helsefagarbeider* (health worker). She can later take *påbygg* (a supplementary year) if she wants university.\n- **School choice:** Trondheim residents have *fritt skolevalg* (free school choice) based on grades, so she can apply anywhere in the county. The rules are changing from 2025–26, so check vilbli.no before applying.\n- **The ladder:** the most competitive option is [Strinda videregående skole](/trondelag/strinda-videregaende-skole)'s 3-year school-based variant (44.7 points in 2025, forecast ~40.6, 78% chance) — a good ambitious first wish. Schools like [Thora Storm](/trondelag/thora-storm-videregaende-skole), [Heimdal](/trondelag/heimdal-videregaende-skole) and [Byåsen](/trondelag/byasen-videregaende-skole) had thresholds far below her level.\n\nShall I build a suggested wish list for Helse- og oppvekstfag, with Strinda first?",
+     "steps_usage": [
+      {
+       "input": 5978,
+       "cached": 5632,
+       "cache_write": 0,
+       "output": 539,
+       "reasoning": 359,
+       "tools": [
+        "county_info",
+        "compare_schools"
+       ],
+       "result_chars": 5709,
+       "id": "gen-1790844695-z60ffZmTm8OvNfcxsS1t",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000754482,
+        "prompt": 5374,
+        "completion": 398,
+        "cached": 5632,
+        "reasoning": 359,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 8105,
+       "cached": 5888,
+       "cache_write": 0,
+       "output": 1057,
+       "reasoning": 698,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844699-Lh93h8NpgK6qLM7fRT7S",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.001440494,
+        "prompt": 6858,
+        "completion": 1001,
+        "cached": 5888,
+        "reasoning": 698,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.002194976
+    },
+    {
+     "n": 3,
+     "user_chars": 86,
+     "history_messages": 6,
+     "steps": 1,
+     "input": 8469,
+     "cached": 7936,
+     "output": 688,
+     "reasoning": 359,
+     "secs": 7.736,
+     "first_step_input": 8469,
+     "tools": [],
+     "answer_chars": 927,
+     "answer": "In Trondheim itself, these schools offer *helse- og oppvekstfag* (health and childhood studies) at Vg1:\n\n- [Strinda videregående skole](/trondelag/strinda-videregaende-skole) — also a 3-year school-based variant (*SK 3 år*), the most competitive option (44.7 points in 2025)\n- [Thora Storm videregående skole](/trondelag/thora-storm-videregaende-skole)\n- [Heimdal videregående skole](/trondelag/heimdal-videregaende-skole)\n- [Byåsen videregående skole](/trondelag/byasen-videregaende-skole)\n- [Cissi Klein videregående skole](/trondelag/cissi-klein-videregaende-skole)\n\nJust outside Trondheim there are also [Melhus](/trondelag/melhus-videregaende-skole) and [Malvik](/trondelag/malvik-videregaende-skole) — and since Trondheim residents have free school choice, those are open to her too.\n\nWith her 4.4 average, all of these are *likely* for 2027. Shall I put together a suggested ranking, with Strinda's 3-year variant first?",
+     "steps_usage": [
+      {
+       "input": 8469,
+       "cached": 7936,
+       "cache_write": 0,
+       "output": 688,
+       "reasoning": 359,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844753-bf0Rwpz6qTztHqHywKMi",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000972105,
+        "prompt": 7183,
+        "completion": 597,
+        "cached": 7936,
+        "reasoning": 359,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.000972105
+    },
+    {
+     "n": 4,
+     "user_chars": 55,
+     "history_messages": 8,
+     "steps": 1,
+     "input": 8783,
+     "cached": 8448,
+     "output": 573,
+     "reasoning": 328,
+     "secs": 5.832,
+     "first_step_input": 8783,
+     "tools": [],
+     "answer_chars": 894,
+     "answer": "With her 4.4 average (44 points), getting into the most competitive option — [Strinda](/trondelag/strinda-videregaende-skole)'s 3-year school-based variant of helse- og oppvekstfag — is **likely**: the model estimates about a 78% chance for the 2027 intake.\n\nA couple of honest caveats:\n\n- The threshold was **44.7 points (4.47)** in 2025 — just above her level — but the forecast for 2027 is about **40.6 points (4.06)**, which is why the chance is good.\n- It's a forecast, not a promise. Thresholds move from year to year, and a small programme can swing more.\n\nThat's exactly why the wish list should have a ladder: Strinda first (her dream), then a realistic option, then a safe one she'd genuinely be happy with — like [Thora Storm](/trondelag/thora-storm-videregaende-skole) or [Heimdal](/trondelag/heimdal-videregaende-skole), where her chances are 98%.\n\nShall I build that list for you?",
+     "steps_usage": [
+      {
+       "input": 8783,
+       "cached": 8448,
+       "cache_write": 0,
+       "output": 573,
+       "reasoning": 328,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844772-bS0PyXIuTNOwpf86KaKM",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000828296,
+        "prompt": 7436,
+        "completion": 558,
+        "cached": 8448,
+        "reasoning": 328,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.000828296
+    },
+    {
+     "n": 5,
+     "user_chars": 39,
+     "history_messages": 10,
+     "steps": 2,
+     "input": 18206,
+     "cached": 17664,
+     "output": 159,
+     "reasoning": 25,
+     "secs": 3.392,
+     "first_step_input": 9055,
+     "tools": [
+      "set_karaktersnitt"
+     ],
+     "answer_chars": 242,
+     "answer": "Done — her average of 4.4 (44 points) is now in the app, so the map and list show her chances.\n\nShall I build the wish list now, with [Strinda](/trondelag/strinda-videregaende-skole)'s 3-year variant first, then a realistic and a safe option?",
+     "steps_usage": [
+      {
+       "input": 9055,
+       "cached": 8704,
+       "cache_write": 0,
+       "output": 85,
+       "reasoning": 25,
+       "tools": [
+        "set_karaktersnitt"
+       ],
+       "result_chars": 89,
+       "id": "gen-1790844789-HTPp6EwX9s5bnGTNWiJK",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000206594,
+        "prompt": 7678,
+        "completion": 35,
+        "cached": 8704,
+        "reasoning": 25,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 9151,
+       "cached": 8960,
+       "cache_write": 0,
+       "output": 74,
+       "reasoning": 0,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844792-H5c76zRHQ8QaXZDNdlOZ",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.00019355,
+        "prompt": 7712,
+        "completion": 62,
+        "cached": 8960,
+        "reasoning": 0,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.00040014399999999996
+    },
+    {
+     "n": 6,
+     "user_chars": 47,
+     "history_messages": 14,
+     "steps": 2,
+     "input": 18788,
+     "cached": 9216,
+     "output": 372,
+     "reasoning": 76,
+     "secs": 4.786,
+     "first_step_input": 9249,
+     "tools": [
+      "add_wish"
+     ],
+     "answer_chars": 508,
+     "answer": "Done — [Strinda videregående skole](/trondelag/strinda-videregaende-skole), Helse- og oppvekstfag SK 3 år, is now her first wish. The forecast for 2027 is about 40.6 points, and with her 4.4 average the chance is 78% — likely, but not guaranteed.\n\nSince the list should have three different programmes and a safe option at the bottom, shall I add a realistic second wish (like [Thora Storm](/trondelag/thora-storm-videregaende-skole) or [Heimdal](/trondelag/heimdal-videregaende-skole)) and a safe third one?",
+     "steps_usage": [
+      {
+       "input": 9249,
+       "cached": 0,
+       "cache_write": 0,
+       "output": 216,
+       "reasoning": 76,
+       "tools": [
+        "add_wish"
+       ],
+       "result_chars": 412,
+       "id": "gen-1790844803-G6sJTtuqLgJoGnPFF3rW",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000376369,
+        "prompt": 7795,
+        "completion": 111,
+        "cached": 0,
+        "reasoning": 76,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 9539,
+       "cached": 9216,
+       "cache_write": 0,
+       "output": 156,
+       "reasoning": 0,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844806-GCulDiQEpEFcJwQNxjCx",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000302701,
+        "prompt": 7934,
+        "completion": 130,
+        "cached": 9216,
+        "reasoning": 0,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.0006790699999999999
+    },
+    {
+     "n": 7,
+     "user_chars": 60,
+     "history_messages": 18,
+     "steps": 1,
+     "input": 9753,
+     "cached": 0,
+     "output": 580,
+     "reasoning": 389,
+     "secs": 16.575,
+     "first_step_input": 9753,
+     "tools": [],
+     "answer_chars": 552,
+     "answer": "A realistic second wish at the same programme would be [Thora Storm videregående skole](/trondelag/thora-storm-videregaende-skole) — Helse- og oppvekstfag (the regular 3-year vocational route, not the school-based variant):\n\n- **98% chance** with her 4.4 average for 2027\n- Threshold was 33.1 points (3.31) in 2025 — well below her level, so it's a safe, realistic option\n- Only 3 km from the city centre\n\n[Heimdal](/trondelag/heimdal-videregaende-skole) is a similar realistic alternative (98%, 4 km away).\n\nShall I add Thora Storm as her second wish?",
+     "steps_usage": [
+      {
+       "input": 9753,
+       "cached": 0,
+       "cache_write": 0,
+       "output": 580,
+       "reasoning": 389,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844824-ijRXWm9sY7qclMILRrU8",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000847732,
+        "prompt": 8112,
+        "completion": 532,
+        "cached": 0,
+        "reasoning": 389,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.000847732
+    },
+    {
+     "n": 8,
+     "user_chars": 17,
+     "history_messages": 18,
+     "steps": 2,
+     "input": 19600,
+     "cached": 9472,
+     "output": 248,
+     "reasoning": 0,
+     "secs": 8.954,
+     "first_step_input": 9659,
+     "tools": [
+      "add_wish"
+     ],
+     "answer_chars": 475,
+     "answer": "Done — [Thora Storm videregående skole](/trondelag/thora-storm-videregaende-skole), Helse- og oppvekstfag, is now her second wish (98% chance for 2027).\n\nThe list now has two wishes in the same programme. A good Vg1 application should name three *different* utdanningsprogram, so she keeps her right to a place even if healthcare doesn't work out. Shall we add a third wish in a different programme she'd genuinely accept — or would you like to check the list as it is first?",
+     "steps_usage": [
+      {
+       "input": 9659,
+       "cached": 0,
+       "cache_write": 0,
+       "output": 121,
+       "reasoning": 0,
+       "tools": [
+        "add_wish"
+       ],
+       "result_chars": 421,
+       "id": "gen-1790844852-KiqmFUm2qdRJ4wf3UzjY",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000259197,
+        "prompt": 7976,
+        "completion": 33,
+        "cached": 0,
+        "reasoning": 0,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 9941,
+       "cached": 9472,
+       "cache_write": 0,
+       "output": 127,
+       "reasoning": 0,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844854-jUegZwPoL49e5C09qnyD",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000269922,
+        "prompt": 8115,
+        "completion": 122,
+        "cached": 9472,
+        "reasoning": 0,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.000529119
+    }
+   ]
+  },
+  {
+   "flow": "worst",
+   "variant": "w4",
+   "screen": "list10_42",
+   "user_turns": 4,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 1261,
+     "history_messages": 0,
+     "steps": 2,
+     "input": 14210,
+     "cached": 13824,
+     "output": 4596,
+     "reasoning": 4134,
+     "secs": 92.51,
+     "first_step_input": 6358,
+     "tools": [
+      "check_wishes",
+      "county_info"
+     ],
+     "answer_chars": 0,
+     "answer": "",
+     "steps_usage": [
+      {
+       "input": 6358,
+       "cached": 6144,
+       "cache_write": 0,
+       "output": 596,
+       "reasoning": 549,
+       "tools": [
+        "check_wishes",
+        "county_info"
+       ],
+       "result_chars": 4377,
+       "id": "gen-1790844688-f5OljvuX1cf3eVL45UM1",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.000831546,
+        "prompt": 5599,
+        "completion": 565,
+        "cached": 6144,
+        "reasoning": 549,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 7852,
+       "cached": 7680,
+       "cache_write": 0,
+       "output": 4000,
+       "reasoning": 3585,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844697-uV33QXNZJTzs7hs0No6n",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.005204801,
+        "prompt": 6714,
+        "completion": 3585,
+        "cached": 7680,
+        "reasoning": 3585,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.006036347
+    },
+    {
+     "n": 2,
+     "user_chars": 1276,
+     "history_messages": 3,
+     "steps": 2,
+     "input": 19205,
+     "cached": 15872,
+     "output": 2722,
+     "reasoning": 1805,
+     "secs": 29.667,
+     "first_step_input": 8250,
+     "tools": [
+      "compare_schools"
+     ],
+     "answer_chars": 1958,
+     "answer": "Med snittet ditt på 4,20 (42,0 poeng) er de trygge studiespesialiserings-skolene i Oslo for 2027-inntaket disse – alle med sannsynlig sjanse (70 %+):\n\n- [Blindern videregående skole](/oslo/blindern-videregaende-skole) – forventet grense 39,2, sjanse 74 %\n- [Bjerke videregående skole](/oslo/bjerke-videregaende-skole) – 39,3, sjanse 73 %\n- [Oslo Handelsgymnasium](/oslo/oslo-handelsgymnasium) – 38,9, sjanse 76 %\n- [Kongshavn videregående skole](/oslo/kongshavn-videregaende-skole) – 38,9, sjanse 77 %\n- [Persbråten videregående skole](/oslo/persbraten-videregaende-skole) – 39,9, sjanse 71 %\n\nHersleb, Hellerud, Stovner og Bjørnholt er enda sikrere, men godt under nivået ditt – fine som sisteønske hvis du vil være helt trygg.\n\nKort om spørsmålene dine:\n- **Orden og oppførsel teller ikke** i karakterpoengene – bare tallkarakterer (manglende karakter teller som 0). God orden kan altså ikke veie opp, men matte-karakteren kan bli bedre før standpunkt – det er det som teller.\n- **Rettigheten er til ett av tre utdanningsprogram** du søker på. Med færre enn tre kan du bli plassert i et program du ikke valgte. Lista di har bare to (studiespesialisering og informasjonsteknologi og medieproduksjon).\n- **Rekkefølgen er bindende** – du får det ønsket du har poeng til som står høyest. Et drømmeønske øverst koster ingenting.\n- **Yrkesfag → fagbrev**, og påbygg (Vg3) gir generell studiekompetanse etterpå, så høyere utdanning er fullt mulig senere. Studiespesialisering gir den direkte. Begge veier kan føre dit – det er to ruter, ikke en «riktig».\n- **Å bytte etter Vg1 er mulig**, men ikke garantert – det avhenger av ledige plasser. Snakk med rådgiveren din om det.\n\nÉn ting til: Oslo tillater maks **6 skoler per utdanningsprogram**, men lista di har 9 studiespesialiserings-ønsker – vigo ville ikke godtatt de ekstra. Vil du at jeg rydder lista: beholder 6 studiespesialiserings-skoler og finner et tredje utdanningsprogram som passer interessene dine?",
+     "steps_usage": [
+      {
+       "input": 8250,
+       "cached": 7680,
+       "cache_write": 0,
+       "output": 336,
+       "reasoning": 234,
+       "tools": [
+        "compare_schools"
+       ],
+       "result_chars": 7947,
+       "id": "gen-1790844786-EFoA2106qVEsiO5AWd6B",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.00051918,
+        "prompt": 7044,
+        "completion": 256,
+        "cached": 7680,
+        "reasoning": 234,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 10955,
+       "cached": 8192,
+       "cache_write": 0,
+       "output": 2386,
+       "reasoning": 1571,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844790-PxRJymddQKOUITUt51R0",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.003172394,
+        "prompt": 9062,
+        "completion": 2085,
+        "cached": 8192,
+        "reasoning": 1571,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.003691574
+    },
+    {
+     "n": 3,
+     "user_chars": 1322,
+     "history_messages": 7,
+     "steps": 1,
+     "input": 12062,
+     "cached": 10752,
+     "output": 1028,
+     "reasoning": 586,
+     "secs": 10.27,
+     "first_step_input": 12062,
+     "tools": [],
+     "answer_chars": 1235,
+     "answer": "**Poenggrense** er historie: karakterpoengene til den siste som kom inn i hovedinntaket et bestemt år. **Prognosen** er modellens anslag på poenggrensen for 2027-inntaket, regnet ut fra flere år med tall (i Oslo har Poengkart data fra 2012–2026). Prognosen er et estimat, ikke et løfte – grensen flytter seg fra år til år.\n\nEksempel fra skolene dine: [Hartvig Nissens skole](/oslo/hartvig-nissens-skole) hadde faktisk grense på 50,3 poeng (snitt 5,03) i 2026, mens prognosen for 2027 er 43,3 poeng (snitt 4,33). Derfor ser vi på flere år, ikke bare siste.\n\nOg for å ha det på stell til helgen:\n- **Tre utdanningsprogram:** rettigheten din er til plass i ett av de tre du søker på. Med færre enn tre kan du bli plassert i et program du ikke valgte.\n- **Rekkefølgen er bindende:** du får det øverste ønsket du har poeng til – så et drømmeønske øverst koster ingenting.\n- **Yrkesfag → fagbrev**, og påbygg (Vg3) gir generell studiekompetanse etterpå. Studiespesialisering gir den direkte. Begge kan føre til høyere utdanning.\n- **Bytte etter Vg1** er mulig, men avhenger av ledige plasser – ikke noe å regne som sikkert.\n\nVil du at jeg rydder lista etter Oslos regler (maks 6 skoler per program) og legger til et tredje utdanningsprogram?",
+     "steps_usage": [
+      {
+       "input": 12062,
+       "cached": 10752,
+       "cache_write": 0,
+       "output": 1028,
+       "reasoning": 586,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844833-7irZ05ciFp8d8vISDbhd",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.001446109,
+        "prompt": 9919,
+        "completion": 909,
+        "cached": 10752,
+        "reasoning": 586,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.001446109
+    },
+    {
+     "n": 4,
+     "user_chars": 1274,
+     "history_messages": 9,
+     "steps": 3,
+     "input": 39643,
+     "cached": 37888,
+     "output": 2605,
+     "reasoning": 1980,
+     "secs": 21.531,
+     "first_step_input": 12889,
+     "tools": [
+      "remove_wishes",
+      "add_wish",
+      "add_wish"
+     ],
+     "answer_chars": 785,
+     "answer": "Ferdig: Jeg fjernet Bjørnholt (ønske 9) og Elvebakken IM (ønske 10), og la til to tryggere skoler nederst:\n\n- [Kongshavn videregående skole](/oslo/kongshavn-videregaende-skole) – forventet grense 38,9, sjanse 77 % (sannsynlig)\n- [Oslo Handelsgymnasium](/oslo/oslo-handelsgymnasium) – forventet grense 38,9, sjanse 76 % (sannsynlig)\n\nMen nå er lista på 10 studiespesialiserings-ønsker, og Oslo tillater maks **6 skoler per utdanningsprogram** – vigo ville ikke godtatt de ekstra. Du må kutte til 6.\n\nMitt forslag til de 6: Oslo katedralskole (drømmen øverst), så Blindern, Lambertseter, Kuben, Kongshavn og Oslo Handelsgymnasium som trygge mål – og Stovner som siste sikkerhet hvis du vil. Da dropper du Ullern, Hartvig Nissen og Elvebakken.\n\nVil du at jeg setter lista til akkurat det?",
+     "steps_usage": [
+      {
+       "input": 12889,
+       "cached": 12032,
+       "cache_write": 0,
+       "output": 1329,
+       "reasoning": 1226,
+       "tools": [
+        "remove_wishes"
+       ],
+       "result_chars": 393,
+       "id": "gen-1790844848-U7MTNrDUJxaeJ4sEo5wQ",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.001840321,
+        "prompt": 10571,
+        "completion": 1234,
+        "cached": 12032,
+        "reasoning": 1226,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 13088,
+       "cached": 12800,
+       "cache_write": 0,
+       "output": 523,
+       "reasoning": 329,
+       "tools": [
+        "add_wish",
+        "add_wish"
+       ],
+       "result_chars": 1260,
+       "id": "gen-1790844859-iSdoxIXJPQQQB28jRDfm",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.00081079,
+        "prompt": 10682,
+        "completion": 380,
+        "cached": 12800,
+        "reasoning": 329,
+        "provider": "Relace"
+       }
+      },
+      {
+       "input": 13666,
+       "cached": 13056,
+       "cache_write": 0,
+       "output": 753,
+       "reasoning": 425,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844863-IWmmgMNHtO3D73GNSTAJ",
+       "model": "deepseek/deepseek-v4-flash-0731",
+       "or": {
+        "cost": 0.001111432,
+        "prompt": 11050,
+        "completion": 630,
+        "cached": 13056,
+        "reasoning": 425,
+        "provider": "Relace"
+       }
+      }
+     ],
+     "or_cost": 0.003762543
+    }
+   ]
+  }
+ ]
+}

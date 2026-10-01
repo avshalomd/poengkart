@@ -1,6 +1,6 @@
-export { BANDS, ZQ_GRID, errCdf, chanceOf, bucketOf, pct, pctS, chanceMode, modelEntry, predFor, schoolChance, finalRoundBridge, chanceFinal, okChoice, progKeyMap, isChosen } from './forecast';
+export { BANDS, ZQ_GRID, errCdf, chanceOf, bucketOf, pct, pctS, chanceMode, modelEntry, predFor, schoolChance, finalRoundBridge, chanceFinal, okChoice, progKeyMap, isChosen, OPEN_CHANCE, CHANCE_CAP, openOnly } from './forecast';
 import { renderLegend } from "./chrome";
-import { bucketOf, chanceMode, chanceOf, okChoice, pct, pctS, predFor, progKeyMap } from "./forecast";
+import { bucketOf, CHANCE_CAP, chanceMode, chanceOf, OPEN_CHANCE, okChoice, openOnly, pct, pctS, predFor, progKeyMap } from "./forecast";
 
 const UP_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>';
 const DOWN_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
@@ -15,18 +15,6 @@ import { S } from './state';
 import { bindTitleTips, say } from "./tips";
 import type { Program, School } from './types';
 
-/* A programme area that has never had a waiting list («Ingen venteliste» in
-   every published year) has no poenggrense to forecast from, so the model
-   gives it none. It is still the safest wish there is: everyone who applied
-   got in. It counts as near-certain rather than as unknown, at this figure,
-   which is the most the combined line will print (CHANCE_CAP). */
-export const OPEN_CHANCE = 0.95;
-export const CHANCE_CAP = 0.95;
-export function openOnly(p: Program) {
-  const ys = Object.keys(p.values).sort();
-  const cells = ys.map(y => p.values[y]).filter(v => v !== 'F');
-  return cells.length > 0 && cells[cells.length - 1] === 'open' && !cells.some(v => typeof v === 'number');
-}
 export const bucketColor = b => cssVar(b === 'likely' ? '--good' : b === 'possible' ? '--dot-possible' : '--dot-unlikely');
 export function pickNote(msg) {
   // the .vnote in the choices box says the same thing, but on a phone that
@@ -90,6 +78,14 @@ export function toggleChoice(s, p) {
   syncPicks();
 }
 const saveChoices = () => { try { localStorage.setItem('pk-choices', JSON.stringify(S.choices)); } catch (e) {} };
+/** Put back a whole list at once (the chat's undo after it removed several). */
+export function setChoices(list: typeof S.choices) {
+  S.choices = list.slice();
+  S.choicesNote = null;
+  saveChoices();
+  renderChoices();
+  syncPicks();
+}
 // A vigo application is ranked: the first wish is the one you get if you can.
 // A wish moves one place up or down; the list is redrawn and focus stays on
 // the arrow that was pressed, or its twin once the wish reaches an end.

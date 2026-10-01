@@ -15,5 +15,5 @@
     "resolveJsonModule": true,
     "types": ["vite/client", "astro/client", "node"]
   },
-  "include": ["web/src", "web/test", "web/e2e", "vitest.config.ts", "playwright.config.ts"]
+  "include": ["web/src", "web/test", "web/e2e", "api/radgiver.ts", "api/_radgiver", "evals", "vitest.config.ts", "playwright.config.ts"]
 }

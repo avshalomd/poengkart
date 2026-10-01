@@ -1,0 +1,232 @@
+{
+ "about": "Multi-turn user flows for evals/cost.ts: what the rådgiver costs per session. Each variant is a scripted list of user messages; the runner carries the history (tool calls and results included) and applies the page's screen actions between turns, as the browser does. `screen` names a snapshot in cases.json; `like`+`n` takes the first n turns of another variant; `pad` pads every user message with the flow's blurbs up to that many characters (the API's cap is 1500).",
+ "blurbs": [
+  "Litt bakgrunn, i tilfelle det hjelper: jeg går i 10. klasse og har brukt mange kvelder på å lese om videregående, men det er så mange ord og regler at jeg mister oversikten. Mamma og pappa mener jeg bør velge studiespesialisering fordi det «holder dørene åpne», mens en kompis sier at yrkesfag gir jobb raskere og at man tjener penger tidligere. Jeg vet ikke hvem jeg skal høre på, og jeg vil helst ikke angre i august.",
+  "Snittet mitt har gått litt opp og ned dette året. Jeg fikk en dårlig karakter i matte i høst, men har jobbet mye med den siden og håper standpunktkarakteren blir bedre før fristen. Samtidig har jeg god orden og oppførsel, og lærerne sier at jeg er flink til å jobbe selvstendig, så jeg lurer på hvor mye det egentlig teller og om det kan veie opp for en svakere karakter.",
+  "Det som stresser meg mest er at vi har bare tre utdanningsprogram å velge mellom på søknaden, og at rekkefølgen visst er bindende. Jeg er redd for å sette noe høyt som jeg ikke har poeng til, og enda mer redd for å ende opp et sted jeg ikke har lyst til å gå. Pappa har sagt at vi kan kjøre litt hver dag, men helst ikke mer enn en halvtime hver vei, og mamma vil at jeg skal ha venner fra klassen på samme skole.",
+  "Jeg har også tenkt på hva som skjer etterpå: hvis jeg velger yrkesfag, kan jeg da fortsatt ta høyere utdanning senere? Og hvis jeg velger studiespesialisering og angrer, kan jeg bytte etter første året? Jeg har hørt forskjellige ting på skolen og vet ikke hva som stemmer, så jeg vil helst ha et svar som jeg kan stole på og som jeg kan vise til foreldrene mine når vi skal bestemme oss i helgen."
+ ],
+ "flows": [
+  {
+   "id": "quick",
+   "name": "Quick question (a term or a rule)",
+   "screen": "blank_no",
+   "variants": [
+    {
+     "id": "term",
+     "turns": [
+      "Hva betyr «ingen venteliste»?"
+     ],
+     "subset": true
+    },
+    {
+     "id": "rule",
+     "turns": [
+      "Teller orden og oppførsel med i snittet?"
+     ]
+    },
+    {
+     "id": "en",
+     "screen": "blank_en",
+     "turns": [
+      "What does «ingen venteliste» mean? Does it mean I am guaranteed a place if I apply there?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "school",
+   "name": "Look at one open school",
+   "screen": "okat_45",
+   "variants": [
+    {
+     "id": "s2",
+     "turns": [
+      "Hva betyr tallene for skolen jeg har åpnet?",
+      "Hvor stor er sjansen min?"
+     ]
+    },
+    {
+     "id": "s3",
+     "turns": [
+      "Hva betyr tallene for skolen jeg har åpnet?",
+      "Hvor stor er sjansen min?",
+      "Hvordan har poenggrensen endret seg de siste årene?"
+     ],
+     "subset": true
+    },
+    {
+     "id": "s4",
+     "turns": [
+      "Hva betyr tallene for skolen jeg har åpnet?",
+      "Hvor stor er sjansen min?",
+      "Hvordan har poenggrensen endret seg de siste årene?",
+      "Ok, legg den til som ønske 1."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "near",
+   "name": "Find schools near a place, then add one or two",
+   "screen": "blank_no",
+   "variants": [
+    {
+     "id": "n2",
+     "turns": [
+      "Jeg bor i Drammen, har 4,1 i snitt og vil gå helse- og oppvekstfag. Hvilke skoler er realistiske?",
+      "Legg til Åssiden som ønske 1."
+     ]
+    },
+    {
+     "id": "n3",
+     "turns": [
+      "Jeg bor i Bergen og vil bli elektriker. Jeg har 3,9 i snitt. Hvilke skoler bør jeg se på?",
+      "Hvilke av dem ligger nærmest?",
+      "Legg til de to nærmeste som ønske 1 og 2."
+     ],
+     "subset": true
+    },
+    {
+     "id": "n4",
+     "turns": [
+      "Jeg bor i Bergen og vil bli elektriker. Jeg har 3,9 i snitt. Hvilke skoler bør jeg se på?",
+      "Hvilke av dem ligger nærmest?",
+      "Legg til den nærmeste som ønske 1.",
+      "Og hva med et tryggere valg i nærheten, innen samme program? Legg det til som ønske 2 hvis det finnes."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "build",
+   "name": "Build a full list from scratch",
+   "screen": "blank_no",
+   "variants": [
+    {
+     "id": "b10",
+     "turns": [
+      "Hei! Jeg går i 10. klasse og vet ikke helt hva jeg vil. Jeg liker data, spill og å lage ting.",
+      "Jeg bor i Stavanger i Rogaland. Snittet mitt er rundt 4,2.",
+      "Sammenlign skolene i Stavanger for informasjonsteknologi og medieproduksjon.",
+      "Legg inn snittet mitt, 4,2, og legg til den mest ambisiøse av dem som ønske 1.",
+      "Hvilke skoler har elektro og datateknologi i nærheten?",
+      "Legg til en realistisk elektro-skole som ønske 2.",
+      "Jeg trenger et tredje utdanningsprogram. Hva med studiespesialisering? Vis meg et trygt valg.",
+      "Legg det trygge til som ønske 3.",
+      "Sjekk lista mi. Er den god nok?",
+      "Flytt ønske 3 til plass 2."
+     ]
+    },
+    {
+     "id": "b8",
+     "like": "b10",
+     "n": 8,
+     "subset": true
+    },
+    {
+     "id": "b6",
+     "like": "b10",
+     "n": 6
+    }
+   ]
+  },
+  {
+   "id": "review",
+   "name": "Review an existing list",
+   "screen": "list3_45",
+   "variants": [
+    {
+     "id": "r2",
+     "turns": [
+      "Er ønskelista mi trygg nok?",
+      "Fjern ønske 3."
+     ]
+    },
+    {
+     "id": "r3",
+     "screen": "rogaland5_37",
+     "turns": [
+      "Kan du se på lista mi?",
+      "Fjern Jåttå og Gand.",
+      "Flytt ønske 1 ned til plass 3."
+     ],
+     "subset": true
+    },
+    {
+     "id": "r4",
+     "screen": "list10_42",
+     "turns": [
+      "Kan du se på lista mi?",
+      "Fjern de to siste.",
+      "Flytt ønske 3 øverst.",
+      "Sjekk lista en gang til. Hva er sjansen for å komme inn et sted nå?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "english",
+   "name": "Parent in English, long session",
+   "screen": "blank_en",
+   "variants": [
+    {
+     "id": "e12",
+     "turns": [
+      "Hi, I'm a parent. My daughter is in 10th grade and we're trying to understand how applying to upper secondary works.",
+      "She wants to work in healthcare. We live in Trondheim. Her grade average is about 4.4.",
+      "Which schools in Trondheim offer health and youth development (helse- og oppvekstfag)?",
+      "How likely is she to get into the most competitive one?",
+      "Please put her average in the app, 4.4.",
+      "Add the most competitive one as her first wish.",
+      "What would be a realistic second wish at the same programme?",
+      "Add it as wish 2.",
+      "She is also thinking about general studies. Which school would be a safe choice for that?",
+      "Add that as wish 3.",
+      "Is her list good? Anything we should change before the deadline?",
+      "What is the deadline, and what happens after we have applied?"
+     ]
+    },
+    {
+     "id": "e8",
+     "like": "e12",
+     "n": 8,
+     "subset": true
+    },
+    {
+     "id": "e5",
+     "like": "e12",
+     "n": 5
+    }
+   ]
+  },
+  {
+   "id": "worst",
+   "name": "Worst case: 1500-character messages, 14-message history",
+   "screen": "list10_42",
+   "variants": [
+    {
+     "id": "w8",
+     "pad": 1490,
+     "turns": [
+      "Kan du sjekke ønskelista mi og si om den er god nok?",
+      "Sammenlign alle skoler i Oslo med studiespesialisering og si hvilke som er trygge for meg.",
+      "Hva er forskjellen mellom en poenggrense og en prognose, og hvilke år bygger tallene på?",
+      "Fjern de to siste ønskene og legg til to tryggere skoler med studiespesialisering.",
+      "Sammenlign også informasjonsteknologi og medieproduksjon i Oslo og Akershus.",
+      "Flytt det tryggeste ønsket til plass 3 og sjekk lista på nytt.",
+      "Hvilke skoler i Oslo har elektro og datateknologi, og hvor ligger jeg an der?",
+      "Gi meg en endelig vurdering av lista med sjanse for å få minst ett ønske."
+     ]
+    },
+    {
+     "id": "w4",
+     "like": "w8",
+     "n": 4,
+     "pad": 1490,
+     "subset": true
+    }
+   ]
+  }
+ ]
+}

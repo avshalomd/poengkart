@@ -81,6 +81,14 @@
         <circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/>
       </svg>
     </button>
+    <!-- the rådgiver chat (radgiver.ts), local experiment -->
+    <button class="ico" id="chat-btn" type="button" aria-expanded="false" aria-controls="chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 12.5a7.5 7.5 0 0 1-11 6.6L4 20l1-4.3A7.5 7.5 0 1 1 20 12.5z"/>
+        <path d="M9 11.5h.01M12.5 11.5h.01M16 11.5h.01"/>
+      </svg>
+    </button>
   </div>
   <!-- on a phone the two selects fold into this line once the reader starts
        using the map (foldPanel); pressing it brings them back -->
@@ -167,6 +175,28 @@
       <div id="s-list"></div>
       <div id="src-note"></div>
     </div>
+  </aside>
+  <!-- the rådgiver chat: a column beside the map and the school, or the whole
+       screen on a phone (radgiver.ts) -->
+  <aside id="chat" aria-labelledby="chat-h" inert>
+    <div class="chat-head">
+      <h2 id="chat-h"></h2>
+      <span class="chat-beta" id="chat-beta"></span>
+      <button class="ico" id="chat-new" type="button" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+      <button class="x" id="chat-x" type="button"><svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div id="chat-log" role="log" aria-live="polite" tabindex="-1"></div>
+    <form id="chat-form" autocomplete="off">
+      <textarea id="chat-in" rows="1" maxlength="1500" enterkeyhint="send"></textarea>
+      <button id="chat-send" type="submit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/></svg>
+      </button>
+    </form>
+    <p id="chat-note"></p>
   </aside>
 </div>
 

@@ -1,0 +1,1923 @@
+{
+ "model": "inclusionai/ling-3.0-flash-sante:free",
+ "date": "2026-10-01T08:58:08.654Z",
+ "today": "2026-09-30T10:00:00.000Z",
+ "max_history": 14,
+ "prices": {
+  "openai/gpt-6-luna": {
+   "prompt": 1e-7,
+   "completion": 5e-7,
+   "cache_read": 1e-8,
+   "cache_write": 1.25e-7
+  },
+  "deepseek/deepseek-v4-flash-0731": {
+   "prompt": 1.08e-8,
+   "completion": 0.00000128,
+   "cache_read": 1.08e-8,
+   "cache_write": 1.08e-8
+  },
+  "openai/gpt-5.6-luna": {
+   "prompt": 2e-7,
+   "completion": 0.0000012,
+   "cache_read": 2e-8,
+   "cache_write": 2.5e-7
+  },
+  "google/gemini-3.1-flash-lite": {
+   "prompt": 2.5e-7,
+   "completion": 0.0000015,
+   "cache_read": 2.5e-8,
+   "cache_write": 2.5e-7
+  },
+  "google/gemma-4-31b-it": {
+   "prompt": 9e-8,
+   "completion": 3.4e-7,
+   "cache_read": 5e-8,
+   "cache_write": 9e-8
+  }
+ },
+ "variants": [
+  {
+   "flow": "quick",
+   "variant": "term",
+   "screen": "blank_no",
+   "user_turns": 1,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 29,
+     "history_messages": 0,
+     "steps": 1,
+     "input": 5848,
+     "cached": 5824,
+     "output": 203,
+     "reasoning": 119,
+     "secs": 1.824,
+     "first_step_input": 5848,
+     "tools": [],
+     "answer_chars": 278,
+     "answer": "«Ingen venteliste» betyr at alle som søkte og oppfylte kravene fikk plass det året – det ble ikke brukt noen poenggrense. Det er **ikke** poenggrense på null, og det er ingen garanti for neste år.\n\nVil du at jeg skal se på ønskene dine eller hjelpe deg med å legge inn et snitt?",
+     "steps_usage": [
+      {
+       "input": 5848,
+       "cached": 5824,
+       "cache_write": 0,
+       "output": 203,
+       "reasoning": 119,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844549-3gI5bTMWl68NnuBzVTbT",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 5078,
+        "completion": 193,
+        "cached": 5824,
+        "reasoning": 119,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    }
+   ]
+  },
+  {
+   "flow": "school",
+   "variant": "s3",
+   "screen": "okat_45",
+   "user_turns": 3,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 43,
+     "history_messages": 0,
+     "steps": 2,
+     "input": 12124,
+     "cached": 9344,
+     "output": 929,
+     "reasoning": 498,
+     "secs": 6.03,
+     "first_step_input": 5884,
+     "tools": [
+      "school_details"
+     ],
+     "answer_chars": 631,
+     "answer": "Her er hva tallene sier for **Oslo katedralskole**, studiespesialisering (Vg1):\n\n- **Poenggrense de siste årene:** 46,5 (2023) → 46,0 (2024–25) → 47,7 (2026). Grensen svinger litt fra år til år.\n- **Prognose for 2027:** 46,4 poeng (snitt 4,64).\n- **Dine poeng:** 45,0 (snitt 4,50) — under den forventede grensen.\n- **Sjanse for plass:** 34 % — modelleregner dette som **lite sannsynlig**, og skolen er et **ambisiøst ønske** (fit: reach).\n\nØnsket koster lite å sette først, men det er usikkert. Vil du at jeg sammenligner skolen med andre studiespesialisering-tilbud i Oslo, eller bygger vi en liste med tryggere alternativer også?",
+     "steps_usage": [
+      {
+       "input": 5884,
+       "cached": 3520,
+       "cache_write": 0,
+       "output": 86,
+       "reasoning": 49,
+       "tools": [
+        "school_details"
+       ],
+       "result_chars": 784,
+       "id": "gen-1790844563-bIRevVw9rpwgQuXboeVz",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 5101,
+        "completion": 71,
+        "cached": 3520,
+        "reasoning": 49,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 6240,
+       "cached": 5824,
+       "cache_write": 0,
+       "output": 843,
+       "reasoning": 449,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844564-A3urwsbonV04oaq58Sf9",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 5325,
+        "completion": 615,
+        "cached": 5824,
+        "reasoning": 449,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 2,
+     "user_chars": 25,
+     "history_messages": 4,
+     "steps": 1,
+     "input": 6513,
+     "cached": 3520,
+     "output": 422,
+     "reasoning": 225,
+     "secs": 3.03,
+     "first_step_input": 6513,
+     "tools": [],
+     "answer_chars": 610,
+     "answer": "Sjansene dine for akkurat **Oslo katedralskole, studiespesialisering** er **34 %** — modelleregner det som **lite sannsynlig** (du ligger under den forventede grensen på 46,4 poeng).\n\nØnskelisten din er tom, så det finnes ingen samlet sjanse enda. For å få et godt bilde trenger vi:\n\n- hvilke **utdanningsprogram** du vil søke (studiespesialisering, yrkesfag …)\n- hvilke **skoler** du trives med, også tryggere alternativer\n\nVil du at jeg sammenligner studiespesialisering i Oslo, eller søker etter skoler med et bestemt programområde nær deg? Da bygger vi en liste med ambisjons-, realistiske og trygge ønske.",
+     "steps_usage": [
+      {
+       "input": 6513,
+       "cached": 3520,
+       "cache_write": 0,
+       "output": 422,
+       "reasoning": 225,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844580-IIHiUhKukB5Vnt1dE6i8",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 5499,
+        "completion": 384,
+        "cached": 3520,
+        "reasoning": 225,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 3,
+     "user_chars": 51,
+     "history_messages": 6,
+     "steps": 1,
+     "input": 6746,
+     "cached": 6208,
+     "output": 483,
+     "reasoning": 116,
+     "secs": 3.013,
+     "first_step_input": 6746,
+     "tools": [],
+     "answer_chars": 643,
+     "answer": "Her er utviklingen for **Oslo katedralskole, studiespesialisering**:\n\n- **2023:** 46,5 poeng (snitt 4,65)\n- **2024:** 46,0 poeng (snitt 4,60)\n- **2025:** 46,0 poeng (snitt 4,60)\n- **2026:** 47,7 poeng (snitt 4,77)\n\nGrensen falt fra 2023 til 2025, så steg så mye i 2026 at den nå er den høyeste på fire år. **Prognosen for 2027** er 46,4 poeng — litt lavere enn i fjor, men fortsatt over dine 45,0 poeng.\n\nEt poengsving kan komme fra hvor mange som søker og hvilke skoler de velger, så sifferet kan flytte seg. Vil du at jeg sammenligner med andre skoler for studiespesialisering i Oslo, eller bygger vi en ønskeliste med tryggere alternativer?",
+     "steps_usage": [
+      {
+       "input": 6746,
+       "cached": 6208,
+       "cache_write": 0,
+       "output": 483,
+       "reasoning": 116,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844594-v9y3Dy1QV3ONu1wR9FOw",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 5672,
+        "completion": 282,
+        "cached": 6208,
+        "reasoning": 116,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    }
+   ]
+  },
+  {
+   "flow": "near",
+   "variant": "n3",
+   "screen": "blank_no",
+   "user_turns": 3,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 89,
+     "history_messages": 0,
+     "steps": 3,
+     "input": 28543,
+     "cached": 16832,
+     "output": 2355,
+     "reasoning": 1205,
+     "secs": 15.968,
+     "first_step_input": 5869,
+     "tools": [
+      "county_info",
+      "search_schools",
+      "school_details",
+      "school_details",
+      "school_details",
+      "school_details",
+      "school_details",
+      "school_details"
+     ],
+     "answer_chars": 1307,
+     "answer": "Du har 3,9 snitt (39,0 poeng) og vil bli elektriker – det går på **Elektro og datateknologi**. Her er de nærmeste skolene med dette programmet og sjanse din:\n\n**Bergen:**\n- **Årstad videregående skole** – forventet grense 39,2 poeng, sjanse 50 % (mulig) – [åpne siden](https://poengkart.no/vestland/arstad-videregaende-skole)\n- **Laksevåg og Bergen Maritime** – forventet grense 45,6 poeng, sjanse 5 % (lite sannsynlig) – [åpne siden](https://poengkart.no/vestland/laksevag-og-bergen-maritime-videregaende-skole)\n\n**Nært Bergen (8–13 km):**\n- **Askøy** (Kleppestø) – forventet 38,2, sjanse 58 % (mulig) – [åpne siden](https://poengkart.no/vestland/askoy-videregaende-skole)\n- **Slåtthaug** (Nesttun) – forventet 39,1, sjanse 52 % (mulig) – [åpne siden](https://poengkart.no/vestland/slatthaug-videregaende-skole)\n- **Åsane** (Ulset) – forventet 40,3, sjanse 39 % (mulig) – [åpne siden](https://poengkart.no/vestland/asane-vidaregaande-skule)\n- **Sotra** (Straume) – forventet 38,8, sjanse 53 % (mulig) – [åpne siden](https://poengkart.no/vestland/sotra-vidaregaande-skule)\n\n**Tipset:** Laksevåg er et ambisiøst ønske, men de andre er realistiske. Vil du at jeg setter opp en ønske-liste med de beste alternativene – og eventuelt legger til en trygg backup? Hvilken skole ligger geographicallyt best for deg?",
+     "steps_usage": [
+      {
+       "input": 5869,
+       "cached": 3520,
+       "cache_write": 0,
+       "output": 190,
+       "reasoning": 128,
+       "tools": [
+        "county_info",
+        "search_schools"
+       ],
+       "result_chars": 4455,
+       "id": "gen-1790844613-KNknesNWSDqj04ueGd10",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 5093,
+        "completion": 161,
+        "cached": 3520,
+        "reasoning": 128,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 7494,
+       "cached": 5824,
+       "cache_write": 0,
+       "output": 585,
+       "reasoning": 273,
+       "tools": [
+        "school_details",
+        "school_details",
+        "school_details",
+        "school_details",
+        "school_details",
+        "school_details"
+       ],
+       "result_chars": 19733,
+       "id": "gen-1790844616-C4r5UAsPiGOFIdjdmcVW",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 6249,
+        "completion": 428,
+        "cached": 5824,
+        "reasoning": 273,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 15180,
+       "cached": 7488,
+       "cache_write": 0,
+       "output": 1580,
+       "reasoning": 804,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844620-IvnP2bVZkDSqLPCAxHq8",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11375,
+        "completion": 1151,
+        "cached": 7488,
+        "reasoning": 804,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 2,
+     "user_chars": 29,
+     "history_messages": 6,
+     "steps": 1,
+     "input": 15732,
+     "cached": 15168,
+     "output": 383,
+     "reasoning": 167,
+     "secs": 3.228,
+     "first_step_input": 15732,
+     "tools": [],
+     "answer_chars": 465,
+     "answer": "Her er de med **Elektro og datateknologi**, etter avstand fra Bergen:\n\n1. **Årstad** – 0 km (i Bergen)\n2. **Laksevåg og Bergen Maritime** – 1 km (i Bergen)\n3. **Askøy** (Kleppestø) – 8 km\n4. **Slåtthaug** (Nesttun) – 8 km\n5. **Åsane** (Ulset) – 10 km\n6. **Sotra** (Straume) – 13 km\n\nDe to innerste er i Bergen sentrum, de andre ligger i nærområdet. Vil du at jeg setter opp en ønske-liste basert på avstand og sjanse, eller vil du først se nærmere på en av skolene?",
+     "steps_usage": [
+      {
+       "input": 15732,
+       "cached": 15168,
+       "cache_write": 0,
+       "output": 383,
+       "reasoning": 167,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844646-wPCARkjPUkL7SkWvPx9q",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11731,
+        "completion": 294,
+        "cached": 15168,
+        "reasoning": 167,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 3,
+     "user_chars": 41,
+     "history_messages": 8,
+     "steps": 2,
+     "input": 32366,
+     "cached": 21504,
+     "output": 653,
+     "reasoning": 256,
+     "secs": 5.624,
+     "first_step_input": 15951,
+     "tools": [
+      "add_wish",
+      "add_wish"
+     ],
+     "answer_chars": 421,
+     "answer": "Begge er lagt til:\n\n- **Ønske 1:** Årstad – Elektro og datateknologi (sjanse 50 %, forventet grense 39,2 poeng)\n- **Ønske 2:** Laksevåg og Bergen Maritime – Elektro og datateknologi (sjanse 5 %, forventet grense 45,6 poeng)\n\nLaksevåg er et ambisiøst førsteønske – det koster ikke å ha det der, men vær klar over at sjansen er liten. Du har plass til ett tredje ønske – vil du at jeg finner en trygg backup med god sjanse?",
+     "steps_usage": [
+      {
+       "input": 15951,
+       "cached": 5824,
+       "cache_write": 0,
+       "output": 311,
+       "reasoning": 114,
+       "tools": [
+        "add_wish",
+        "add_wish"
+       ],
+       "result_chars": 767,
+       "id": "gen-1790844654-b978f3sgIaH8y9NtZ23P",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11870,
+        "completion": 226,
+        "cached": 5824,
+        "reasoning": 114,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 16415,
+       "cached": 15680,
+       "cache_write": 0,
+       "output": 342,
+       "reasoning": 142,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844657-RmyRSDWHUcMz3GVNGn8T",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 12176,
+        "completion": 255,
+        "cached": 15680,
+        "reasoning": 142,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    }
+   ]
+  },
+  {
+   "flow": "build",
+   "variant": "b8",
+   "screen": "blank_no",
+   "user_turns": 8,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 93,
+     "history_messages": 0,
+     "steps": 1,
+     "input": 5869,
+     "cached": 5824,
+     "output": 200,
+     "reasoning": 142,
+     "secs": 1.904,
+     "first_step_input": 5869,
+     "tools": [],
+     "answer_chars": 237,
+     "answer": "Kult at du allerede har noen interesser – data, spill og å lage ting passer fint til flere utdanningsprogram.\n\nHva er det første spørsmålet: Hvilket fylke (eller by) bor du i? Det avgjør hvilke skoler og poenggrenser som gjelder for deg.",
+     "steps_usage": [
+      {
+       "input": 5869,
+       "cached": 5824,
+       "cache_write": 0,
+       "output": 200,
+       "reasoning": 142,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844672-u4EFqwhuXUNSBAu8DxNd",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 5094,
+        "completion": 205,
+        "cached": 5824,
+        "reasoning": 142,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 2,
+     "user_chars": 58,
+     "history_messages": 2,
+     "steps": 3,
+     "input": 24730,
+     "cached": 18880,
+     "output": 2828,
+     "reasoning": 1623,
+     "secs": 16.004,
+     "first_step_input": 5983,
+     "tools": [
+      "county_info",
+      "search_schools",
+      "compare_schools",
+      "compare_schools",
+      "compare_schools",
+      "compare_schools"
+     ],
+     "answer_chars": 1147,
+     "answer": "Her er oversikten for Rogaland med snitt 4,2 (42 poeng). Du har god plassering – de fleste alternativene under er **sannsynlig** eller **mulig**:\n\n**Elektro og datateknologi** (passer data og å lage ting):\n- Jåttå (Stavanger): forventet grense 37,9 – **sannsynlig** (83 %), et realistisk ønske\n- Godalen (Stavanger): forventet 36,1 – **sannsynlig** (87 %), trygt valg\n- Gand: forventet 36,8 – **sannsynlig** (89 %)\n\n**Medier og kommunikasjon** (passer spill og kreativt):\n- Vågen (Stavanger): forventet 38,0 – **sannsynlig** (84 %)\n- Hetland: forventet 37,8 – **sannsynlig** (87 %), trygt valg\n\n**Studiespesialisering** (holder universitetsdøra åpen):\n- Skeisvang: forventet 38,9 – **mulig** (82 %)\n- Stavanger Katedralskole: forventet 39,5 – **sannsynlig** (79 %)\n- St. Olav: forventet 42,2 – **mulig** (52 %), ambisiøst\n\n**Teknologi- og industrifag** (mye laging/produksjon): lave grenser, alle **sannsynlige**.\n\n---\n\nNeste spørsmål: Hvilket programområde trekker mest akkurat nå – **Elektro og datateknologi**, **Medier og kommunikasjon**, eller vil du holde **Studiespesialisering** åpen for fremtiden? Det bestemer hva som blir førsteønsaket.",
+     "steps_usage": [
+      {
+       "input": 5983,
+       "cached": 5824,
+       "cache_write": 0,
+       "output": 331,
+       "reasoning": 255,
+       "tools": [
+        "county_info",
+        "search_schools"
+       ],
+       "result_chars": 3126,
+       "id": "gen-1790844680-gka92HYUeTZDkDflIu3H",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 5172,
+        "completion": 314,
+        "cached": 5824,
+        "reasoning": 255,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 7111,
+       "cached": 5952,
+       "cache_write": 0,
+       "output": 828,
+       "reasoning": 444,
+       "tools": [
+        "compare_schools",
+        "compare_schools",
+        "compare_schools",
+        "compare_schools"
+       ],
+       "result_chars": 11974,
+       "id": "gen-1790844682-b8j9tYBgV6027klVieli",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 6019,
+        "completion": 648,
+        "cached": 5952,
+        "reasoning": 444,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 11636,
+       "cached": 7104,
+       "cache_write": 0,
+       "output": 1669,
+       "reasoning": 924,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844687-zBJecNJf5hbMJKk4HE21",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 9243,
+        "completion": 1228,
+        "cached": 7104,
+        "reasoning": 924,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 3,
+     "user_chars": 76,
+     "history_messages": 8,
+     "steps": 2,
+     "input": 26013,
+     "cached": 23680,
+     "output": 1429,
+     "reasoning": 679,
+     "secs": 8.167,
+     "first_step_input": 12125,
+     "tools": [
+      "compare_schools",
+      "compare_schools"
+     ],
+     "answer_chars": 1092,
+     "answer": "Siden du bor i Stavanger, her er de nærmeste skolene for de to retningene:\n\n**Informasjonsteknologi / Elektro og datateknologi:**\n- **Jåttå** (4 km) – forventet grense 37,9 poeng (snitt 3,79), **sannsynlig** (83 %) – *realistisk ønske*\n- **Godalen** (2 km) – forventet 36,1 (3,61), **sannsynlig** (87 %) – *trygt valg*\n- **Gand** (11 km) – forventet 36,8 (3,68), **sannsynlig** (89 %) – *trygt valg*\n\n**Medieproduksjon / Medier og kommunikasjon:**\n- **Vågen** (11 km) – forventet 38,0 (3,80), **sannsynlig** (84 %) – *realistisk ønske*\n- **Hetland** (2 km) – forventet 37,8 (3,78), **sannsynlig** (87 %) – *trygt valg*\n- **Bergeland** (2 km) – forventet 31,3 (3,13), **sannsynlig** (98 %) – *trygt valg*\n\n---\n\n**Tips:** Med snitt 4,2 ligger du godt til alle disse. Det viktigste nå er å velge **program**: vil du helst ha IT/data (Elektro og datateknologi) eller medieproduksjon (Medier og kommunikasjon)? Og ønsker du å holde Studiespesialisering åpen for universitet/høgskole?\n\nVil du at jeg setter opp en ønsksliste med de beste kombinasjonene, eller vil du høre mer om et konkret program?",
+     "steps_usage": [
+      {
+       "input": 12125,
+       "cached": 11584,
+       "cache_write": 0,
+       "output": 729,
+       "reasoning": 515,
+       "tools": [
+        "compare_schools",
+        "compare_schools"
+       ],
+       "result_chars": 4556,
+       "id": "gen-1790844707-LoU046QgxjOkHQO2sIIQ",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 9567,
+        "completion": 606,
+        "cached": 11584,
+        "reasoning": 515,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 13888,
+       "cached": 12096,
+       "cache_write": 0,
+       "output": 700,
+       "reasoning": 164,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844711-PlPJwBcQ2upYNjIZSmbV",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 10799,
+        "completion": 454,
+        "cached": 12096,
+        "reasoning": 164,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 4,
+     "user_chars": 78,
+     "history_messages": 12,
+     "steps": 3,
+     "input": 43497,
+     "cached": 42624,
+     "output": 646,
+     "reasoning": 319,
+     "secs": 6.531,
+     "first_step_input": 14377,
+     "tools": [
+      "set_karaktersnitt",
+      "add_wish"
+     ],
+     "answer_chars": 439,
+     "answer": "Gjort! Snittet 4,2 er lagt inn, og **Jåttå videregående skole – Elektro og datateknologi** er lagt som ønske 1. Prognosen: forventet poenggrense 37,9 (snitt 3,79), sjanse 83 % – et realistisk ambisiøst ønske.\n\nNeste steg: Vil du at jeg legger til et trygt valg bak som ønske 2, for eksempel Godalen (Elektro og datateknologi) eller Hetland (Medier og kommunikasjon)? Eller vil du først høre mer om programmene før vi setter opp hele lista?",
+     "steps_usage": [
+      {
+       "input": 14377,
+       "cached": 13888,
+       "cache_write": 0,
+       "output": 246,
+       "reasoning": 185,
+       "tools": [
+        "set_karaktersnitt"
+       ],
+       "result_chars": 89,
+       "id": "gen-1790844725-p7wYQflr0rG68sdZMfw9",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11111,
+        "completion": 195,
+        "cached": 13888,
+        "reasoning": 185,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 14453,
+       "cached": 14336,
+       "cache_write": 0,
+       "output": 53,
+       "reasoning": 0,
+       "tools": [
+        "add_wish"
+       ],
+       "result_chars": 392,
+       "id": "gen-1790844728-wbne2RtBy9fEGJ04hUeX",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11144,
+        "completion": 31,
+        "cached": 14336,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 14667,
+       "cached": 14400,
+       "cache_write": 0,
+       "output": 347,
+       "reasoning": 134,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844729-bCw7NfuBLPiFIKPXm8D1",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11276,
+        "completion": 249,
+        "cached": 14400,
+        "reasoning": 134,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 5,
+     "user_chars": 54,
+     "history_messages": 18,
+     "steps": 2,
+     "input": 31118,
+     "cached": 18368,
+     "output": 262,
+     "reasoning": 140,
+     "secs": 3.821,
+     "first_step_input": 14910,
+     "tools": [
+      "search_schools"
+     ],
+     "answer_chars": 0,
+     "answer": "",
+     "steps_usage": [
+      {
+       "input": 14910,
+       "cached": 3520,
+       "cache_write": 0,
+       "output": 52,
+       "reasoning": 0,
+       "tools": [
+        "search_schools"
+       ],
+       "result_chars": 3548,
+       "id": "gen-1790844737-5jbmR6L8UTM014C42Ai2",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11442,
+        "completion": 30,
+        "cached": 3520,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 16208,
+       "cached": 14848,
+       "cache_write": 0,
+       "output": 210,
+       "reasoning": 140,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844739-DthW9HsscyMLtJ2Jcj4p",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 12364,
+        "completion": 140,
+        "cached": 14848,
+        "reasoning": 140,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 6,
+     "user_chars": 49,
+     "history_messages": 21,
+     "steps": 2,
+     "input": 32717,
+     "cached": 32384,
+     "output": 690,
+     "reasoning": 525,
+     "secs": 5.506,
+     "first_step_input": 16231,
+     "tools": [
+      "add_wish"
+     ],
+     "answer_chars": 0,
+     "answer": "",
+     "steps_usage": [
+      {
+       "input": 16231,
+       "cached": 16192,
+       "cache_write": 0,
+       "output": 553,
+       "reasoning": 419,
+       "tools": [
+        "add_wish"
+       ],
+       "result_chars": 413,
+       "id": "gen-1790844752-sf1WoOEvsViKpskCtPeR",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 12377,
+        "completion": 478,
+        "cached": 16192,
+        "reasoning": 419,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 16486,
+       "cached": 16192,
+       "cache_write": 0,
+       "output": 137,
+       "reasoning": 106,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844756-raYXveMSHl7tUhiZJK9z",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 12541,
+        "completion": 106,
+        "cached": 16192,
+        "reasoning": 106,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 7,
+     "user_chars": 93,
+     "history_messages": 24,
+     "steps": 1,
+     "input": 16544,
+     "cached": 3520,
+     "output": 1107,
+     "reasoning": 762,
+     "secs": 7.503,
+     "first_step_input": 16544,
+     "tools": [],
+     "answer_chars": 617,
+     "answer": "Med snitt 4,2 er Studiespesialisering et godt tredje program – det holder universitets-/høgskoledøra åpen. Her er de tryggeste alternativene:\n\n- **Strand videregående skole** (Tau, 17 km) – forventet grense 37,1 (snitt 3,71), **sannsynlig 93 %** – *trygt valg*\n- **Skeisvang** (Stavanger, 2 km) – forventet 38,9, **sannsynlig 82 %** – *realistisk*\n- **Sandnes** (10 km) – forventet 38,3, **sannsynlig 81 %** – *realistisk*\n\nStrand er det tryggeste, men lenger unna. Skeisvang er nært og likevel godt sikret.\n\nVil du at jeg legger til **Strand – Studiespesialisering** som ønske 3, eller heller Skeisvang nærmere hjem?",
+     "steps_usage": [
+      {
+       "input": 16544,
+       "cached": 3520,
+       "cache_write": 0,
+       "output": 1107,
+       "reasoning": 762,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844768-OM3RSnKuLH4COlek4WW0",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 12586,
+        "completion": 927,
+        "cached": 3520,
+        "reasoning": 762,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 8,
+     "user_chars": 32,
+     "history_messages": 24,
+     "steps": 3,
+     "input": 50968,
+     "cached": 37056,
+     "output": 374,
+     "reasoning": 237,
+     "secs": 6.206,
+     "first_step_input": 16693,
+     "tools": [
+      "add_wish",
+      "check_wishes"
+     ],
+     "answer_chars": 0,
+     "answer": "",
+     "steps_usage": [
+      {
+       "input": 16693,
+       "cached": 3520,
+       "cache_write": 0,
+       "output": 152,
+       "reasoning": 74,
+       "tools": [
+        "add_wish"
+       ],
+       "result_chars": 385,
+       "id": "gen-1790844781-7Q2FgFZOOpEyDQa90fXD",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 12672,
+        "completion": 120,
+        "cached": 3520,
+        "reasoning": 74,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 16913,
+       "cached": 16640,
+       "cache_write": 0,
+       "output": 20,
+       "reasoning": 0,
+       "tools": [
+        "check_wishes"
+       ],
+       "result_chars": 1272,
+       "id": "gen-1790844784-3L3PVIChgZph7cqZpxff",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 12815,
+        "completion": 9,
+        "cached": 16640,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 17362,
+       "cached": 16896,
+       "cache_write": 0,
+       "output": 202,
+       "reasoning": 163,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844785-6fsndtffjv9Q2MzmE0mK",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 13145,
+        "completion": 163,
+        "cached": 16896,
+        "reasoning": 163,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    }
+   ]
+  },
+  {
+   "flow": "review",
+   "variant": "r3",
+   "screen": "rogaland5_37",
+   "user_turns": 3,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 22,
+     "history_messages": 0,
+     "steps": 2,
+     "input": 12776,
+     "cached": 9472,
+     "output": 893,
+     "reasoning": 461,
+     "secs": 5.749,
+     "first_step_input": 6008,
+     "tools": [
+      "check_wishes"
+     ],
+     "answer_chars": 852,
+     "answer": "Her er hva jeg ser på lista di:\n\n**To ting å tenke på:**\n\n1. **Rogaland tillater bare 3 ønsker per utdanningsprogram.** Ønske 4 (Jåttå) og 5 (Gand) blir dessverre ikke godkjent av VIGO – du mister dem.\n\n2. **Alle ønsker er innenfor samme program (Elektro og datateknologi).** Du har rett til tre *ulike* utdanningsprogram, og med bare ett program kan du bli plassert i et du ikke har valgt.\n\n**Sjansene med poengsummen 36,7:**\n\n- **Godalen** (forventet 36,1) – mulig, 57 % → det ambisjonsrike førsteønsket ditt\n- **Sola** (forventet 31,3) – svært sannsynlig, 90 % → trygt valg\n- **Randaberg** (forventet 28,9) – svært sannsynlig, 96 % → trygt valg\n\n**Neste steg:** Vil du at jeg fjerner Jåttå og Gand (som ikke teller)? Og har du et ønske om annet programområde – for eksempel helse, teknikk eller noe helt annet – så kan jeg legge det til som ønske 4?",
+     "steps_usage": [
+      {
+       "input": 6008,
+       "cached": 3520,
+       "cache_write": 0,
+       "output": 79,
+       "reasoning": 42,
+       "tools": [
+        "check_wishes"
+       ],
+       "result_chars": 2238,
+       "id": "gen-1790844799-TPWCiAGXmBG6qyDZplcf",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 5199,
+        "completion": 60,
+        "cached": 3520,
+        "reasoning": 42,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 6768,
+       "cached": 5952,
+       "cache_write": 0,
+       "output": 814,
+       "reasoning": 419,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844800-sSKrtT0GpTdsXUOJpOv4",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 5780,
+        "completion": 647,
+        "cached": 5952,
+        "reasoning": 419,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 2,
+     "user_chars": 20,
+     "history_messages": 4,
+     "steps": 2,
+     "input": 14388,
+     "cached": 13824,
+     "output": 137,
+     "reasoning": 86,
+     "secs": 2.602,
+     "first_step_input": 7112,
+     "tools": [
+      "remove_wishes"
+     ],
+     "answer_chars": 0,
+     "answer": "",
+     "steps_usage": [
+      {
+       "input": 7112,
+       "cached": 6720,
+       "cache_write": 0,
+       "output": 21,
+       "reasoning": 0,
+       "tools": [
+        "remove_wishes"
+       ],
+       "result_chars": 357,
+       "id": "gen-1790844821-VMTgkKGNFy1Er6zEWB0m",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 6016,
+        "completion": 8,
+        "cached": 6720,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 7276,
+       "cached": 7104,
+       "cache_write": 0,
+       "output": 116,
+       "reasoning": 86,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844822-lHi1y41cQjdrkHyrnVtW",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 6117,
+        "completion": 86,
+        "cached": 7104,
+        "reasoning": 86,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 3,
+     "user_chars": 30,
+     "history_messages": 7,
+     "steps": 2,
+     "input": 14623,
+     "cached": 7168,
+     "output": 155,
+     "reasoning": 103,
+     "secs": 2.685,
+     "first_step_input": 7239,
+     "tools": [
+      "move_wish"
+     ],
+     "answer_chars": 0,
+     "answer": "",
+     "steps_usage": [
+      {
+       "input": 7239,
+       "cached": 3520,
+       "cache_write": 0,
+       "output": 24,
+       "reasoning": 0,
+       "tools": [
+        "move_wish"
+       ],
+       "result_chars": 310,
+       "id": "gen-1790844841-eVVfqHJOiBnEz7tJ7yWt",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 6086,
+        "completion": 10,
+        "cached": 3520,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 7384,
+       "cached": 3648,
+       "cache_write": 0,
+       "output": 131,
+       "reasoning": 103,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844842-bTAlGMkSrslNdfLomDh7",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 6176,
+        "completion": 103,
+        "cached": 3648,
+        "reasoning": 103,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    }
+   ]
+  },
+  {
+   "flow": "english",
+   "variant": "e8",
+   "screen": "blank_en",
+   "user_turns": 8,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 116,
+     "history_messages": 0,
+     "steps": 1,
+     "input": 5866,
+     "cached": 5824,
+     "output": 410,
+     "reasoning": 157,
+     "secs": 2.914,
+     "first_step_input": 5866,
+     "tools": [],
+     "answer_chars": 1057,
+     "answer": "Welcome! I help families navigate the Vg1 application through Poengkart — thresholds, chances, and wish-list strategy. Here's the short version:\n\n- **Three wishes, three different programmes** (e.g. studiespesialisering, yrkesfag, or a specific programme like helse- og oppvekstfag). The system gives the highest-ranked wish you qualify for — so a dream first costs nothing, but putting a safe school first blocks everything below it.\n- **Points** = average of final grades × 10 (orden/oppførsel don't count). Some counties add extra points.\n- **Deadlines**: Vigo application opens ~late November, closes **1 March 2027**; fortrinnsrett/individuell behandling by **1 February 2027**.\n- **Offer**: accept even if you're waiting for a higher wish — the waiting list only helps for higher wishes.\n\nTo give useful advice, I need two things:\n1. Which **county** will she apply in?\n2. What does she enjoy studying / working with?\n\nIf you also have her **karaktersnitt** (grade average), I can show realistic schools and chances. What would you like to start with?",
+     "steps_usage": [
+      {
+       "input": 5866,
+       "cached": 5824,
+       "cache_write": 0,
+       "output": 410,
+       "reasoning": 157,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844849-mLoFJOTtfTGBLjAE7svL",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 5098,
+        "completion": 428,
+        "cached": 5824,
+        "reasoning": 157,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 2,
+     "user_chars": 86,
+     "history_messages": 2,
+     "steps": 3,
+     "input": 24468,
+     "cached": 19712,
+     "output": 1521,
+     "reasoning": 750,
+     "secs": 9.775,
+     "first_step_input": 6175,
+     "tools": [
+      "county_info",
+      "search_schools",
+      "school_details",
+      "school_details",
+      "school_details"
+     ],
+     "answer_chars": 1254,
+     "answer": "Here's what I found for **Trøndelag** and healthcare:\n\n**County rules:** Trondheim residents have **free school choice based on grades** (fritt skolevalg). Outside Trondheim, you're placed close to home (nærskoleprinsipp). Note: rules are changing from 2025–26, so check [vilbli.no](https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6) for this year's details.\n\n**Helse- og oppvekstfag in Trondheim** — with a 4.4 average (44 poeng), she's well above every threshold:\n\n- **Heimdal videregående skole** (Saupstad): 2025 threshold was 26.3 poeng (2.63); forecast 2027 ≈ 30.5 poeng — **very safe**\n- **Byåsen videregående skole** (Selsbakk): never had a waiting list — **very safe**\n- **Cissi Klein videregående skole** (Falkenborg): never had a waiting list — **very safe**\n\nAll three are **sannsynlig** (likely) for her level — she'd get in anywhere.\n\n**Next step:** To build a proper wish list, I need two more things:\n1. Which of these three schools does she prefer? (That can be her first ønske.)\n2. What are her other two programmes? She needs three different programmes — for example, studiespesialisering and something else she'd accept. What else interests her?\n\nOnce I know that, I'll check the list structure and suggest the best order.",
+     "steps_usage": [
+      {
+       "input": 6175,
+       "cached": 5824,
+       "cache_write": 0,
+       "output": 193,
+       "reasoning": 88,
+       "tools": [
+        "county_info",
+        "search_schools"
+       ],
+       "result_chars": 4244,
+       "id": "gen-1790844864-vWuoT6wQETbjtqFREKqC",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 5391,
+        "completion": 166,
+        "cached": 5824,
+        "reasoning": 88,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 7791,
+       "cached": 6144,
+       "cache_write": 0,
+       "output": 198,
+       "reasoning": 59,
+       "tools": [
+        "school_details",
+        "school_details",
+        "school_details"
+       ],
+       "result_chars": 7527,
+       "id": "gen-1790844866-q6wpffMTqwXWSD7ia9VI",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 6542,
+        "completion": 137,
+        "cached": 6144,
+        "reasoning": 59,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 10502,
+       "cached": 7744,
+       "cache_write": 0,
+       "output": 1130,
+       "reasoning": 603,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844867-OaWqdPCvHWxMOSSIU7OJ",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 8521,
+        "completion": 929,
+        "cached": 7744,
+        "reasoning": 603,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 3,
+     "user_chars": 86,
+     "history_messages": 8,
+     "steps": 1,
+     "input": 10925,
+     "cached": 10496,
+     "output": 590,
+     "reasoning": 299,
+     "secs": 4.087,
+     "first_step_input": 10925,
+     "tools": [],
+     "answer_chars": 619,
+     "answer": "Three schools in Trondheim offer **helse- og oppvekstfag** (Vg1):\n\n- **Byåsen videregående skole** — Selsbakkvegen 34, 7027 Trondheim [link](/trondelag/byasen-videregaende-skole)\n- **Cissi Klein videregående skole** — Falkenborgvegen 28, 7044 Trondheim [link](/trondelag/cissi-klein-videregaende-skole)\n- **Heimdal videregående skole** — Blisterhaugvegen 15, 7078 Saupstad [link](/trondelag/heimdal-videregaende-skole)\n\nAll three are free school choice for Trondheim residents, and with a 4.4 average she's well above every recent threshold at each of them. Want me to open any of these school pages so she can compare?",
+     "steps_usage": [
+      {
+       "input": 10925,
+       "cached": 10496,
+       "cache_write": 0,
+       "output": 590,
+       "reasoning": 299,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844889-QEzF4TrHBBvDiKkS6h1r",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 8870,
+        "completion": 459,
+        "cached": 10496,
+        "reasoning": 299,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 4,
+     "user_chars": 55,
+     "history_messages": 10,
+     "steps": 2,
+     "input": 25046,
+     "cached": 22016,
+     "output": 770,
+     "reasoning": 321,
+     "secs": 6.266,
+     "first_step_input": 11169,
+     "tools": [
+      "school_details",
+      "school_details",
+      "school_details"
+     ],
+     "answer_chars": 685,
+     "answer": "Among the three Trondheim schools, **Heimdal videregående skole** is the most competitive for helse- og oppvekstfag — it had a waiting list in 2024 with a threshold of **32.7 poeng (snitt 3.27)**.\n\nBut with a 4.4 average (44 poeng), she's well above it:\n\n- **Heimdal**: forecast 2027 ≈ 30.5 poeng — **98 % chance** (sannsynlig), fit: well below her level\n- **Byåsen** and **Cissi Klein**: never had a waiting list — **95 % chance** each\n\nSo the honest answer: all three are very safe for her. The \"most competitive\" one is still a comfortable match.\n\nIf she picks her favourite of the three as the first ønske, I can help build the rest of the list — what are her other two programmes?",
+     "steps_usage": [
+      {
+       "input": 11169,
+       "cached": 10880,
+       "cache_write": 0,
+       "output": 133,
+       "reasoning": 0,
+       "tools": [
+        "school_details",
+        "school_details",
+        "school_details"
+       ],
+       "result_chars": 7527,
+       "id": "gen-1790844904-daqniifB5j2Q8fcGjcsl",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 9045,
+        "completion": 77,
+        "cached": 10880,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 13877,
+       "cached": 11136,
+       "cache_write": 0,
+       "output": 637,
+       "reasoning": 321,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844906-Ff2Q2mjj10RkeMhr6XP7",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11022,
+        "completion": 499,
+        "cached": 11136,
+        "reasoning": 321,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 5,
+     "user_chars": 39,
+     "history_messages": 14,
+     "steps": 2,
+     "input": 28314,
+     "cached": 27904,
+     "output": 160,
+     "reasoning": 63,
+     "secs": 2.988,
+     "first_step_input": 14119,
+     "tools": [
+      "set_karaktersnitt"
+     ],
+     "answer_chars": 243,
+     "answer": "Done — her average is now in the app (4.40, 44.0 points). The map, list and chances will use it from here on.\n\nNext step: want to build the wish list? She needs three different programmes — which two besides helse- og oppvekstfag interest her?",
+     "steps_usage": [
+      {
+       "input": 14119,
+       "cached": 13824,
+       "cache_write": 0,
+       "output": 22,
+       "reasoning": 0,
+       "tools": [
+        "set_karaktersnitt"
+       ],
+       "result_chars": 89,
+       "id": "gen-1790844927-5enfVCmiPFRzqkPHYAy2",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11212,
+        "completion": 10,
+        "cached": 13824,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 14195,
+       "cached": 14080,
+       "cache_write": 0,
+       "output": 138,
+       "reasoning": 63,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844928-BTmpE6SNkmM1PV6cTRmS",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11246,
+        "completion": 126,
+        "cached": 14080,
+        "reasoning": 63,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 6,
+     "user_chars": 47,
+     "history_messages": 18,
+     "steps": 2,
+     "input": 28831,
+     "cached": 14656,
+     "output": 152,
+     "reasoning": 81,
+     "secs": 3.67,
+     "first_step_input": 14300,
+     "tools": [
+      "add_wish"
+     ],
+     "answer_chars": 0,
+     "answer": "",
+     "steps_usage": [
+      {
+       "input": 14300,
+       "cached": 384,
+       "cache_write": 0,
+       "output": 57,
+       "reasoning": 0,
+       "tools": [
+        "add_wish"
+       ],
+       "result_chars": 409,
+       "id": "gen-1790844946-LN8Hd3NGQrPu2FYukgZ8",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11330,
+        "completion": 31,
+        "cached": 384,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 14531,
+       "cached": 14272,
+       "cache_write": 0,
+       "output": 95,
+       "reasoning": 81,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844948-G4A4tHzrk2tD4wAlTXG2",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11464,
+        "completion": 81,
+        "cached": 14272,
+        "reasoning": 81,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 7,
+     "user_chars": 60,
+     "history_messages": 21,
+     "steps": 2,
+     "input": 31074,
+     "cached": 18048,
+     "output": 240,
+     "reasoning": 127,
+     "secs": 3.84,
+     "first_step_input": 14588,
+     "tools": [
+      "compare_schools"
+     ],
+     "answer_chars": 0,
+     "answer": "",
+     "steps_usage": [
+      {
+       "input": 14588,
+       "cached": 3520,
+       "cache_write": 0,
+       "output": 65,
+       "reasoning": 0,
+       "tools": [
+        "compare_schools"
+       ],
+       "result_chars": 5044,
+       "id": "gen-1790844961-rzNoUbDFvQEzhgnbLdFR",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11509,
+        "completion": 34,
+        "cached": 3520,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 16486,
+       "cached": 14528,
+       "cache_write": 0,
+       "output": 175,
+       "reasoning": 127,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844963-KjBDRmOwywDpAGQ3n6hj",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 12810,
+        "completion": 127,
+        "cached": 14528,
+        "reasoning": 127,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 8,
+     "user_chars": 17,
+     "history_messages": 22,
+     "steps": 2,
+     "input": 32596,
+     "cached": 19648,
+     "output": 275,
+     "reasoning": 88,
+     "secs": 4.115,
+     "first_step_input": 16184,
+     "tools": [
+      "add_wish"
+     ],
+     "answer_chars": 327,
+     "answer": "Done — wish 2 is **Strinda videregående skole – Helse- og oppvekstfag** (forecast 2027 ≈ 31.3 poeng, 99 % chance).\n\nNote: Strinda also has a \"SK 3 år\" row (44.7 poeng last year) — that's a different 3-year track, not added.\n\nShe still needs a third programme. What else interests her? That will decide the realistic third wish.",
+     "steps_usage": [
+      {
+       "input": 16184,
+       "cached": 3520,
+       "cache_write": 0,
+       "output": 56,
+       "reasoning": 0,
+       "tools": [
+        "add_wish"
+       ],
+       "result_chars": 409,
+       "id": "gen-1790844976-9JJUXTOz6j7Rw8Udakud",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 12514,
+        "completion": 31,
+        "cached": 3520,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 16412,
+       "cached": 16128,
+       "cache_write": 0,
+       "output": 219,
+       "reasoning": 88,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844977-nkiB36L0VH4zR3AUJIye",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 12648,
+        "completion": 175,
+        "cached": 16128,
+        "reasoning": 88,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    }
+   ]
+  },
+  {
+   "flow": "worst",
+   "variant": "w4",
+   "screen": "list10_42",
+   "user_turns": 4,
+   "turns": [
+    {
+     "n": 1,
+     "user_chars": 1261,
+     "history_messages": 0,
+     "steps": 2,
+     "input": 14294,
+     "cached": 9984,
+     "output": 2601,
+     "reasoning": 1744,
+     "secs": 14.091,
+     "first_step_input": 6503,
+     "tools": [
+      "check_wishes"
+     ],
+     "answer_chars": 1639,
+     "answer": "Først: det er greist at du tenker så gjennom på dette, og at du lurer – men du har ikke et håpløst utgangspunkt. Poengkart fant tre ting på lista som må fikses før du sender:\n\n**1. To program, tre på søknaden**  \nDu har bare Studiespesialisering (ST) og Informasjonsteknologi og medieproduksjon (IM). Vigo krever tre *ulike* utdanningsprogram – uten det tredje kan du bli plassert i et program du ikke valgte.\n\n**2. Oslo tar maks 6 ønske per program**  \nNi av ti ønsker er ST. Ønske 7–9 (Kuben, Stovner, Bjørnholt) vil bli avvist av vigo – de teller ikke.\n\n**3. Rekkefølgen er bindende – men ikke slik du frykter**  \nDu får det *høyest rangerte* ønske du har poeng til. Med ca 42 poeng vil du trolig få Blindern (ønske 3, forventet grense 39,2), ikke Stovner. Å ha trygge valg nederst er korrekt – farlig er å ha et drømmeønske *sist*.\n\n**Om karakterer du lurer på:**\n- Ordens- og oppførselskarakterer teller **ikke** i poengregningen.\n- En manglende karakter (IV/IM) teller som **0** – hvis standpunktkarakteren i matte endrer seg, kan det flytte snittet ditt.\n- Noen fylker legger til tilleggspoeng; Oslo-regelen sier du at du kjenner til på vilbli.no.\n\n**Studiespesialisering vs yrkesfag:** begge er gyldige veier. Yrkesfag gir fagbrev og lærling, og du kan ta påbygging til generell studiekompetanse etterpå. Det handler om hva du synes er morsomt å jobbe med – ikke om hvem som er «klestrest».\n\nNeste steg: fortell meg hvilket *third* program du tenker på (eller hva slags arbeid som interesserer deg), og om du vil at jeg fjerner Kuben/Stovner/Bjørnholt og erstatter dem med et gyldig ønske + et program? Da ser jeg på lista på nytt.",
+     "steps_usage": [
+      {
+       "input": 6503,
+       "cached": 3520,
+       "cache_write": 0,
+       "output": 527,
+       "reasoning": 446,
+       "tools": [
+        "check_wishes"
+       ],
+       "result_chars": 3850,
+       "id": "gen-1790844991-cTiJLPAnx52EoPCo2XhL",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 5599,
+        "completion": 455,
+        "cached": 3520,
+        "reasoning": 446,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 7791,
+       "cached": 6464,
+       "cache_write": 0,
+       "output": 2074,
+       "reasoning": 1298,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790844994-t3xQlnmJHgU4rO5LV90U",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 6573,
+        "completion": 1728,
+        "cached": 6464,
+        "reasoning": 1298,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 2,
+     "user_chars": 1276,
+     "history_messages": 4,
+     "steps": 3,
+     "input": 31976,
+     "cached": 23680,
+     "output": 632,
+     "reasoning": 382,
+     "secs": 5.793,
+     "first_step_input": 8735,
+     "tools": [
+      "compare_schools",
+      "county_info"
+     ],
+     "answer_chars": 0,
+     "answer": "",
+     "steps_usage": [
+      {
+       "input": 8735,
+       "cached": 3520,
+       "cache_write": 0,
+       "output": 46,
+       "reasoning": 0,
+       "tools": [
+        "compare_schools"
+       ],
+       "result_chars": 7947,
+       "id": "gen-1790845016-es3sKatTsDD4j4vAMh2a",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 7334,
+        "completion": 22,
+        "cached": 3520,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 11516,
+       "cached": 8704,
+       "cache_write": 0,
+       "output": 17,
+       "reasoning": 0,
+       "tools": [
+        "county_info"
+       ],
+       "result_chars": 527,
+       "id": "gen-1790845017-bnxFglmP8yN2XIg6m7i7",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 9352,
+        "completion": 7,
+        "cached": 8704,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 11725,
+       "cached": 11456,
+       "cache_write": 0,
+       "output": 569,
+       "reasoning": 382,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790845018-eSG2dHRnVVSaCya7rjKL",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 9494,
+        "completion": 382,
+        "cached": 11456,
+        "reasoning": 382,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 3,
+     "user_chars": 1322,
+     "history_messages": 9,
+     "steps": 1,
+     "input": 12117,
+     "cached": 11712,
+     "output": 685,
+     "reasoning": 343,
+     "secs": 3.643,
+     "first_step_input": 12117,
+     "tools": [],
+     "answer_chars": 992,
+     "answer": "**Poenggrense** = det karaktersnittet (×10) den siste som fikk plass hadde i et gitt år. Den bygger på faktisk inntak, og Oslo-tallene dekker 2012–2026.\n\n**Prognose** = modellens anslag for 2027, basert på tidligere år. Den kan flytte – en liten skole svinger mer.\n\n**Et par sakene du nevner:**\n- **Yrkesfag → høyere utdanning:** ja, via påbygging (2 år) får du generell studiekompetanse. Det er en vanlig vei, ikke et «dårligere» valg.\n- **Bytte etter første år:** det er mulig i noen tilfeller, men det er oppskrivning og plassering som gjelder – ikke et automatisk rett. Snakk med rådgiveren din om hvordan overgangen fungerer.\n\n**Rekkefølgen er bindende** – du får det høyest rangerte ønsget du har poeng til. Derfor: rangér etter hva du vil, ikke etter «trygghet».\n\nNeste steg: vil du at jeg setter opp en liste med ett ønske, ett mål og ett trygt valg innen 30 minutter hver vei, basert på snittet ditt (~4,2)? Da trenger jeg det tredje programmet og hvilken kommune du vil ha skolen i.",
+     "steps_usage": [
+      {
+       "input": 12117,
+       "cached": 11712,
+       "cache_write": 0,
+       "output": 685,
+       "reasoning": 343,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790845038-aAnHaDPg1PhrlOnENGbl",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 9836,
+        "completion": 604,
+        "cached": 11712,
+        "reasoning": 343,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    },
+    {
+     "n": 4,
+     "user_chars": 1274,
+     "history_messages": 11,
+     "steps": 5,
+     "input": 70376,
+     "cached": 66432,
+     "output": 3335,
+     "reasoning": 2192,
+     "secs": 19.399,
+     "first_step_input": 12841,
+     "tools": [
+      "remove_wishes",
+      "search_schools",
+      "add_wish",
+      "add_wish",
+      "check_wishes"
+     ],
+     "answer_chars": 1197,
+     "answer": "Jeg har fjernet Bjørnholt og Elvebakken IM, og lagt til **Kongshavn** (forventet 38,9 poeng, sjanse 77 %) og **Hersleb** (forventet 35,0 poeng, sjanse 98 %). Men nå har jeg en ny melding fra sjekken:\n\n**To problemer på lista nå:**\n1. **Bare ett program** – du har bare Studiespesialisering. Vigo krever tre *ulike* programmer, ellers kan du bli plassert i et du ikke valgte.\n2. **Ti ST-skoler** – Oslo tillater maks seks per program, så fire av dem vil bli avvist.\n\n**Hva jeg foreslår:** behold seks ST (de mest realistiske) og legg til to skoler fra andre programmer. For 42 poeng er noen trygge yrkesfag-alternativer i Oslo:\n\n- **Kuben** – Studiespesialisering (40,7 poeng, 61 %) – allerede på lista\n- **Bjerke** – Studiespesialisering (39,3 poeng, 73 %)\n- **Oslo Handelsgymnasium** – Studiespesialisering (38,9 poeng, 76 %)\n\nEller yrkesfag som **Elektro**, **Helse- og oppvekstfag**, **Teknologi- og industrifag** – mange har lavere grenser og gir fagbrev + mulighet for påbygging til høyere utdanning.\n\nVil du at jeg bytter ut de svakeste ST-ønskene (Stovner, Hersleb og to til) mot skoler fra to andre programmer? Si hvilke yrkesfag som interesserer deg, eller om du vil at jeg foreslår noen.",
+     "steps_usage": [
+      {
+       "input": 12841,
+       "cached": 12096,
+       "cache_write": 0,
+       "output": 1493,
+       "reasoning": 1233,
+       "tools": [
+        "remove_wishes"
+       ],
+       "result_chars": 393,
+       "id": "gen-1790845053-ch1VoLSq9teo95OUR0nQ",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 10427,
+        "completion": 1256,
+        "cached": 12096,
+        "reasoning": 1233,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 13047,
+       "cached": 12800,
+       "cache_write": 0,
+       "output": 36,
+       "reasoning": 0,
+       "tools": [
+        "search_schools"
+       ],
+       "result_chars": 2840,
+       "id": "gen-1790845060-GBGouAOej3pEEtyzTEYg",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 10552,
+        "completion": 18,
+        "cached": 12800,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 14051,
+       "cached": 12992,
+       "cache_write": 0,
+       "output": 99,
+       "reasoning": 0,
+       "tools": [
+        "add_wish",
+        "add_wish"
+       ],
+       "result_chars": 1290,
+       "id": "gen-1790845061-MO4BZ9b539umo3Jd6zot",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11284,
+        "completion": 58,
+        "cached": 12992,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 14579,
+       "cached": 14016,
+       "cache_write": 0,
+       "output": 20,
+       "reasoning": 0,
+       "tools": [
+        "check_wishes"
+       ],
+       "result_chars": 3823,
+       "id": "gen-1790845063-BTd4N1bWP808NcRINIDT",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 11668,
+        "completion": 9,
+        "cached": 14016,
+        "reasoning": 0,
+        "provider": "Novita"
+       }
+      },
+      {
+       "input": 15858,
+       "cached": 14528,
+       "cache_write": 0,
+       "output": 1687,
+       "reasoning": 959,
+       "tools": [],
+       "result_chars": 0,
+       "id": "gen-1790845065-qUdhEBtIS2khaiFrr4Ez",
+       "model": "inclusionai/ling-3.0-flash-sante:free",
+       "or": {
+        "cost": 0,
+        "prompt": 12636,
+        "completion": 1271,
+        "cached": 14528,
+        "reasoning": 959,
+        "provider": "Novita"
+       }
+      }
+     ],
+     "or_cost": 0
+    }
+   ]
+  }
+ ]
+}

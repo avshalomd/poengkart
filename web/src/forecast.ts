@@ -125,4 +125,17 @@ export function progKeyMap(s) {
   }
   return s._pk;
 }
+// (moved from chance.ts so the server side of the chat can import it without the DOM)
+/* A programme area that has never had a waiting list («Ingen venteliste» in
+   every published year) has no poenggrense to forecast from, so the model
+   gives it none. It is still the safest wish there is: everyone who applied
+   got in. It counts as near-certain rather than as unknown, at this figure,
+   which is the most the combined line will print (CHANCE_CAP). */
+export const OPEN_CHANCE = 0.95;
+export const CHANCE_CAP = 0.95;
+export function openOnly(p: Program) {
+  const ys = Object.keys(p.values).sort();
+  const cells = ys.map(y => p.values[y]).filter(v => v !== 'F');
+  return cells.length > 0 && cells[cells.length - 1] === 'open' && !cells.some(v => typeof v === 'number');
+}
 export const isChosen = (s, p) => S.choices.some(c => c.f === s.fylke && c.s === s.name && c.k === progKeyMap(s).get(p));
