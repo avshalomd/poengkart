@@ -120,6 +120,9 @@ check('0,0 appears only where the source publishes it',
 # has been looked at too
 SUB8 = {
     ('Buskerud', 'Kongsberg', 'Musikk, dans og drama', 'Vg1', '2025', 4.0),
+    # «4,0» printed in the county's 2026-2027 table for Buskerud videregående
+    # skole, whose Studiespesialisering cell the same row marks «Alle»
+    ('Buskerud', 'Buskerud', 'Restaurant- og matfag', 'Vg1', '2026', 4.0),
     # «5,6» in the 2019 column of Nordland's 2021 booklet (p. 54): the lowest
     # admitted, a table with no fill state, so a figure this low most likely
     # means everyone got in (lowestAdmittedNote says so beside these years)
