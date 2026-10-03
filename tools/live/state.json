@@ -19,6 +19,7 @@
   "62bbe9d031b247e320b622d6bd51d99f91c4a67ce65dde943ba315a651133095": "11aef1970eaf47cb1b7e0e079316a1732f9ae2dc26a2c52a1258462324e512e0",
   "6b71eaa90ab6c5e9a6c1956fe0760450435fbbd319e4bc79eb6ae9a3842be41e": "f154721c83eef923d181e0fb303715498807fd31194bfe8de76990f5bf9bae17",
   "6ee57aebbbce7f891fc207adf1d576257b8b0eabc1247fe50a8eda437e762441": "66fdeb78820e8284e31cc207332a6d29252fc4a88c51f9dca439c58096136aa3",
+  "770a95adbcaa30d368cf48a81ac831642aee2d743029591c8a5899248cd0c5dd": "48f24726ec5353c3f5def9e69da6b73b84421cda5729005c9fd477a83cf180e2",
   "78e017646874dc5d01557f08ae43e77f21087c0b6175a11f4e918a854bb69bd7": "9339e53086afd59b9edee8459ae8f50a709a3eeba86cfd683754b9835353bc9d",
   "797724ad50d4fe3a9ca839cea8b920502e894e38fec06f4f2252ac958e0a5126": "fd9247f88da676d23baf1d14b66a2978df91860391bc5a2b36555661198d017e",
   "7af58406cdc395fe9facce7293fe321e5aaff0e617d7e9867a9c03418b8b001d": "538af63233d3ee922f4913f258ff79cad880875a9015bc4d069cc63ca0e4bbdc",
@@ -66,6 +67,13 @@
      "label": "Her finner du nedre poenggrense for inntak i Buskerud 2025-2026",
      "name": "buskerud-2025-2026.html",
      "sha256": "8a74da67e7a9c831a531a4dc849d5c13991e2fad4cfb55d98fd04f23e5348351"
+    },
+    "https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/nedre-poenggrense-for-inntak-buskerud-2026-2027.207338.aspx": {
+     "captured": "2026-10-03",
+     "file": "buskerud/buskerud-2026-2027.html",
+     "label": "Her finner du nedre poenggrense for inntak i Buskerud 2026-2027",
+     "name": "buskerud-2026-2027.html",
+     "sha256": "770a95adbcaa30d368cf48a81ac831642aee2d743029591c8a5899248cd0c5dd"
     }
    }
   },

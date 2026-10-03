@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · September 2026 · v1.22 (version history in Appendix D)
+Technical report · October 2026 · v1.23 (version history in Appendix D)
 Application: [poengkart.no](https://poengkart.no) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
@@ -17,7 +17,7 @@ with inconsistent structure, retention, and semantics. We assemble every
 edition we could retrieve, older years from newspaper and archive copies
 where the county's own file is lost, into an open, register-normalised
 panel: 227 schools,
-2,931 programme rows, 19,369 observations, 2012–2026, keyed to Norway's
+2,932 programme rows, 19,440 observations, 2012–2026, keyed to Norway's
 national programme register (Grep). On this censored panel we forecast the
 next intake as the probability of admission given the applicant's points,
 using a hurdle model: a hierarchical logistic model for whether a programme
@@ -27,12 +27,12 @@ walk-forward errors rather than from the fit, the error distribution is
 empirical, and fill probabilities are Platt-recalibrated. Evaluated
 walk-forward with 2025–2026 held out, the model beats persistence,
 exponential-smoothing and group-mean baselines on RMSE in every history
-stratum where they are defined (5.13 vs 6.17 and 5.26 points on series with
+stratum where they are defined (5.18 vs 6.21 and 5.32 points on series with
 four or more observed years; cluster-bootstrap intervals exclude zero), nominal 80% intervals cover
-80.6% [78.8, 82.3] of outcomes (81.5% on Vg1, the
-application's default level, and 79.3% on Vg2 and up), and the admission probability is calibrated
-to within 8.2 points in every decile and beats both a deterministic and a
-probabilistic persistence rule (Brier 0.091 vs 0.156 and 0.096). Paired
+80.5% [78.8, 82.2] of outcomes (81.4% on Vg1, the
+application's default level, and 79.5% on Vg2 and up), and the admission probability is calibrated
+to within 8.0 points in every decile and beats both a deterministic and a
+probabilistic persistence rule (Brier 0.091 vs 0.156 and 0.095). Paired
 within-year publications identify an intake-round effect of −3.2 to −3.4
 points that makes cross-county comparison of raw thresholds misleading.
 Code and data: https://github.com/avshalomd/poengkart.
@@ -76,7 +76,7 @@ describes **Poengkart** ("points map"), an open dataset, forecasting model,
 and deployed application. Our contributions are as follows:
 
 - **An open, register-normalised dataset** of every retrievable published
-  threshold — 227 schools, 2,931 programme rows, 19,369 cell-level
+  threshold — 227 schools, 2,932 programme rows, 19,440 cell-level
   observations across 8 counties and the years 2012–2026 — in which every
   row is resolved against the national Grep register and every cell's state
   (numeric threshold, filled at zero, no waiting list, quota-based
@@ -88,10 +88,10 @@ and deployed application. Our contributions are as follows:
   (Sections 5–6).
 - **A held-out evaluation** on the 2025–2026 intakes, with cluster-bootstrap
   uncertainty, showing the model beats persistence and group-mean baselines
-  on RMSE in every history stratum (5.13 vs 6.17 and 6.00 points in the
-  deepest stratum), covers 80.7% of outcomes with nominal 80% intervals,
+  on RMSE in every history stratum (5.18 vs 6.21 and 6.06 points in the
+  deepest stratum), covers 80.5% of outcomes with nominal 80% intervals,
   and produces calibrated probabilities that beat both a deterministic and
-  a probabilistic persistence rule (Brier 0.091 vs 0.156 and 0.096), plus
+  a probabilistic persistence rule (Brier 0.091 vs 0.156 and 0.095), plus
   ablations of the structural choices (Section 7).
 - **Measurements of the publication practice itself**: a paired within-year
   estimate of the intake-round effect (−3.2 to −3.4 points, 16–32% of
@@ -210,7 +210,7 @@ not point predictions, the deliverable.
 **Hierarchical models and shrinkage.** Borrowing strength across small
 groups by partial pooling is classical (James & Stein, 1961; Efron & Morris,
 1975) and is standard multilevel practice (Gelman & Hill, 2007). We apply it
-to a censored panel in which 412 of the 2,576 series with any numeric
+to a censored panel in which 407 of the 2,579 series with any numeric
 threshold have a single observation, with variance components estimated by
 an EM-type procedure (Dempster, Laird & Rubin, 1977).
 
@@ -268,9 +268,11 @@ register, in that order. Where two publications disagree on a cell, the
 newer wins and the disagreement is retained in `data/source-drift.json`; a
 disagreement near a full grade point flags the school-year as uncertain,
 and the application says so in words. A bare integer below 8 in a cell is
-read as a fragment of a course code rather than a threshold, but a printed
-decimal below 8 is always a threshold — no course code carries a decimal
-separator, and the counties do print figures like 4,0. A suite of 136
+read as a fragment of a course code rather than a threshold. A printed
+figure between 0 and 10 is dropped as an error in the county's table:
+karakterpoeng start at 10,0, a 1 in every subject, yet the counties have
+printed figures like 4,0. A printed 0,0 stays where the county documents
+what it means. A suite of 136
 regression checks locks known failure modes: shifted year columns,
 implausible values, unmatched schools, county-specific quirks, and the
 decimal rule itself.
@@ -278,7 +280,7 @@ decimal rule itself.
 ### 4.2 Register normalisation
 
 Programme labels vary in spelling across counties and across years within a
-county. Every row is resolved against Grep: 2,925 of 2,931 rows carry a
+county. Every row is resolved against Grep: 2,926 of 2,932 rows carry a
 register code (the remaining six are International Baccalaureate, outside
 the register). One code is vigo's rather than Grep's: the Vg4 year of
 *påbygging* after a vocational qualification is offered as `PBPBY4YK--`,
@@ -335,13 +337,13 @@ columns use the tokens of Table 1.
 | Fylke | Years | Intake | Cells | Poenggrense | Ingen venteliste | 0.0 | F | D | U | Levels | Source |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Akershus | 2012–2015, 2024–2026 | 2. (2012–2015 1.; 2025 also 1.) | 482 | 361 | 92 | 3 | 0 | 26 | 0 | Vg1 | web page (2025/26); two workbooks released on request (2024/25, 2026/27); 2015 from a newspaper; 2012–2014 are Røyken's, a Buskerud school then |
-| Buskerud | 2012–2014, 2024–2025 | — (2012–2014 1.) | 397 | 348 | 44 | 0 | 0 | 5 | 0 | Vg1 | county web page; 2012–2014 from the county's statistics booklets, typed from images |
+| Buskerud | 2012–2014, 2024–2026 | — (2012–2014 1.) | 473 | 414 | 54 | 0 | 0 | 5 | 0 | Vg1 | county web page; 2012–2014 from the county's statistics booklets, typed from images |
 | Innlandet | 2012–2018, 2020–2026 | 2. | 3,879 | 2,129 | 1,673 | 55 | 0 | 12 | 10 | Vg1–Vg2 | vilbli PDFs; 2020–2022 released on request; 2012–2018 Hedmark's tables, from a document archive's page text |
 | Møre og Romsdal | 2012–2026 | 2. | 6,058 | 4,252 | 1806 | 0 | 0 | 0 | 0 | Vg1–Vg3 | extract behind the county's Power BI dashboard, sent on request (Vg1), and the dashboard itself (Vg2 and up); figures under 25 shown as ingen venteliste by the dashboard's own rule |
-| Oslo | 2012–2026 | 1. | 999 | 814 | 105 | 0 | 0 | 80 | 0 | Vg1 | yearly PDFs, 2015 from a school's own site; 2026 as a web page; 2012, 2013 and 2016 from copies (a thesis, two newspapers) |
+| Oslo | 2012–2026 | 1. | 995 | 810 | 105 | 0 | 0 | 80 | 0 | Vg1 | yearly PDFs, 2015 from a school's own site; 2026 as a web page; 2012, 2013 and 2016 from copies (a thesis, two newspapers) |
 | Rogaland | 2012, 2015, 2017–2026 | 2. (2012 and 2017 1.; 2015 —) | 4,187 | 1,984 | 1,500 | 0 | 536 | 80 | 87 | Vg1–Vg4 | rolling multi-year PDFs via vilbli; one Wayback edition; 2015 from the county's school portal (Wayback); 2017 from the county's own news article (Common Crawl); 2012 from a newspaper |
 | Trøndelag | 2024–2025 | 2. | 220 | 112 | 108 | 0 | 0 | 0 | 0 | Vg1 | five regional PDFs via vilbli; 2024 the Trondheim region's alone, typed from an image |
-| Vestland | 2014–2026 | 1. | 3,147 | 2,938 | 199 | 10 | 0 | 0 | 0 | Vg1–Vg3 | county PDFs; 2014–2019 from the predecessor counties' tables and two newspapers' copies |
+| Vestland | 2014–2026 | 1. | 3,146 | 2,937 | 199 | 10 | 0 | 0 | 0 | Vg1–Vg3 | county PDFs; 2014–2019 from the predecessor counties' tables and two newspapers' copies |
 
 Innlandet's 2020–2022 tables and Akershus's 2024/25 and 2026/27 workbooks
 were released to us under freedom-of-information requests in August 2026
@@ -382,9 +384,9 @@ is «examples of programme areas with many applicants and long waiting
 lists» (57 figures, Vg1–Vg3), so the year is an excerpt like the
 newspapers' and is pooled out of the walk in the same way.
 
-Of the 2,576 school×programme series that ever carry a numeric threshold,
-412 have exactly one observed year. Among the 19,369 cells, 18,533
-competed on points and inform the fill model, and 12,938 carry a numeric
+Of the 2,579 school×programme series that ever carry a numeric threshold,
+407 have exactly one observed year. Among the 19,440 cells, 18,604
+competed on points and inform the fill model, and 12,999 carry a numeric
 threshold and thus inform the level model. Møre og Romsdal's figures also
 carry the admitted mean (Gjennomkar), which no other county publishes;
 where it equals the threshold, one applicant set the figure. 65 of
@@ -439,7 +441,7 @@ before $T$, the satellite fitted on the county's years before $T$, its
 year $T$ predicted. Over 110 cells in 2025 and 2026 that gives an RMSE of
 7.78 points against 8.98 for persistence, and it is that number, not the
 panel's, that its forecasts carry as their spread — the panel's spread
-covered 64% of those outcomes where it claimed 80%, being measured on
+covered 63% of those outcomes where it claimed 80%, being measured on
 cells of a different kind. The application quotes the county's own
 measurement on every one of its schools. The county joins
 the panel here when it states, per programme and year, whether everyone was
@@ -450,7 +452,7 @@ reason. Neither publishes thresholds today, but both once printed them:
 Agder's intake office showed school counsellors its 2020 and 2021 Vg1
 thresholds, and Aust-Agder a selection of 2016–2017 figures (19 schools,
 204 cells in all), and Nordland printed every programme area in its yearly
-statistics booklet in 2013–2015 and 2019–2021 (21 schools, 2,144 cells).
+statistics booklet in 2013–2015 and 2019–2021 (21 schools, 2,142 cells).
 They are the only public record of those markets, and the application
 shows them with notes on what each figure is. They are not forecast: the
 newest is five intakes old, and the tables are of other kinds than the
@@ -540,8 +542,8 @@ the level walk only where a county has no non-partial fitted year at all —
 Vestland in the 2020 and 2021 walk-forward folds, Trøndelag in the 2025
 fold — while the fill walk keeps the neutral level there, because the
 partial years' fill labels are uninformative by construction.
-The level component is fitted on the 12,938 cells with a numeric threshold;
-the fill component on the 18,533 cells that competed on points (Section 4.4). The hierarchy exists to borrow strength: a series with
+The level component is fitted on the 12,999 cells with a numeric threshold;
+the fill component on the 18,604 cells that competed on points (Section 4.4). The hierarchy exists to borrow strength: a series with
 one observed year inherits its level from the hundreds of comparable series
 around it — partially pooled toward its school, programme, and county means
 — instead of being trusted alone.
@@ -578,8 +580,8 @@ variance component.
 
 | Component | Level (points) | Fill (logit) |
 |---|---|---|
-| School | 3.0 | 1.0 |
-| Programme area (within level) | 3.2 | 1.1 |
+| School | 3.1 | 1.0 |
+| Programme area (within level) | 3.1 | 1.1 |
 | Series (school×programme) | 2.6 | 1.6 |
 | County–year innovation | 0.9 | 0.9 |
 | Residual | 4.6 | — |
@@ -665,13 +667,13 @@ calibration years 2020–2024.
 
 | Forecast $m$ | Multiplier |
 |---|---|
-| below 25 | 1.10 |
+| below 25 | 1.06 |
 | 25–40 | 1.00 |
 | 40–45 | 1.00 |
-| 45 and above | 0.74 |
+| 45 and above | 0.75 |
 
 The middle barely moves: a forecast above 45 points gets a band 25% narrower
-than its history alone would give, one below 25 a band 11% wider. Section
+than its history alone would give, one below 25 a band 6% wider. Section
 7.3 reports what that bought on the held-out years.
 
 The last factor is the level group's. The two factors above are fitted on
@@ -686,13 +688,13 @@ A series whose two newest figures are more than 8 points apart misses by
 more. The first-visitor walkthroughs of 26 September 2026 asked for such
 steps to be flagged (Randaberg's Vg1 Teknologi- og industrifag went from
 30,0 to 11,3, as Rogaland printed it), and the walk-forward says the band
-is too narrow there: without a factor of its own it covered 73.3% of
-held-out outcomes after such a step, and 81.3% of the rest. The factor
+is too narrow there: without a factor of its own it covered 73.0% of
+held-out outcomes after such a step, and 81.2% of the rest. The factor
 is fitted by the same quantile rule, once on the calibration-year cells
 after a jump and once on the rest, so the pooled band still covers 80%:
 ×1.222 after a jump and ×0.976 otherwise
-(`meta.sigma_jump_multiplier`). Held out, the two cover 81.8% and
-80.5%. About one forecast in six carries it, and the application
+(`meta.sigma_jump_multiplier`). Held out, the two cover 81.3% and
+80.3%. About one forecast in six carries it, and the application
 flags the step itself as an unusual change.
 
 Every county is forecast for one intake, the next that has not happened
@@ -702,9 +704,9 @@ county publishes that year's thresholds (`forecast_intake`, in
 just held is then forecast two years past its newest figure. The level is
 the same random-walk forecast; the spread gets a factor fitted by the same
 quantile rule on a second walk-forward that withholds the year before each
-test year: ×1.032 (`meta.sigma_ahead_multiplier`). Held out, the
-two-year forecasts miss by an RMSE of 5.86 points against 5.45 a year
-ahead, and their 80% band covers 80.2% with the factor and
+test year: ×1.033 (`meta.sigma_ahead_multiplier`). Held out, the
+two-year forecasts miss by an RMSE of 5.87 points against 5.45 a year
+ahead, and their 80% band covers 80.3% with the factor and
 78.1% without it.
 
 ### 6.2 An empirical error distribution
@@ -720,12 +722,12 @@ single cell's probability is ever exactly $1 - \pi$ or 1.
 
 The raw fill model is overconfident: in the calibration-year walk-forwards
 on all eight counties (Møre og Romsdal's proxy labels included), cells the raw model gave a
-mean $\pi$ of 0.98 (the ≥ 0.9 bin) filled 94% of the time, and in the
-held-out years cells given a mean 0.97 filled 88% — the series effects fit
+mean $\pi$ of 0.97 (the ≥ 0.9 bin) filled 94% of the time, and in the
+held-out years cells given a mean 0.96 filled 88% — the series effects fit
 the training panel too well. We therefore recalibrate by Platt scaling,
 fitting
 
-$$\operatorname{logit} \pi' \;=\; 0.193 \;+\; 0.658 \, \operatorname{logit} \pi \tag{5}$$
+$$\operatorname{logit} \pi' \;=\; 0.192 \;+\; 0.658 \, \operatorname{logit} \pi \tag{5}$$
 
 on the calibration years only, which are disjoint from the held-out
 evaluation years. The slope well below 1 is a uniform confidence haircut.
@@ -733,9 +735,9 @@ The map is one pair of coefficients for all eight counties; it transfers a
 calibration-year haircut to the held-out years on the assumption that the
 overconfidence is stable in time, which the held-out reliability table
 (Appendix C) bears out in the upper bins and not in the sparse 50–70%
-bins. Held-out Brier for the fill event: 0.158 against 0.204 for the base-rate
-forecaster (base rate 0.714; difference −0.046, cluster-bootstrap 95%
-interval [−0.054, −0.038], Section 7.2). The recalibrated $\pi'$ is still
+bins. Held-out Brier for the fill event: 0.156 against 0.203 for the base-rate
+forecaster (base rate 0.718; difference −0.046, cluster-bootstrap 95%
+interval [−0.055, −0.038], Section 7.2). The recalibrated $\pi'$ is still
 uneven in the mid-range (53% observed in the 50–60% bin, 69% in the 60–70%
 bin, but 77% in the 70–80% bin), which the deployed quantity (1) — the
 only probability shown to users — absorbs, as Section 7.4 shows.
@@ -785,52 +787,52 @@ uncertainty treatment.
 **Uncertainty on every comparison.** Held-out cells are not independent: a
 county's year moves all its series together, and the two held-out years
 share the fitted structure. Every difference reported below therefore
-carries a 95% interval from a cluster bootstrap over school×year (372
+carries a 95% interval from a cluster bootstrap over school×year (384
 clusters, 1,000 resamples), which respects the within-school co-movement
 that a plain binomial standard error ignores but still treats county-years
-as exchangeable within a school; with only fourteen held-out county-years
+as exchangeable within a school; with only fifteen held-out county-years
 it cannot do better, and the by-county coverage of Section 7.3 shows the
 size of what it leaves out.
 
 ### 7.2 Threshold accuracy
 
-**Table 4:** Held-out threshold accuracy, 2025–2026 (2,583 cells with a
+**Table 4:** Held-out threshold accuracy, 2025–2026 (2,648 cells with a
 published number), by history stratum. RMSE and MAE in points (↓ better);
 bias is mean forecast minus outcome; ±3 is the share of forecasts within
 three points (higher better); best per row in bold. Persistence is
 undefined for 0-year series, and the programme–county mean is defined for
-only 89 of the 124 0-year cells (the model's RMSE on those 89 is 7.03).
+only 93 of the 127 0-year cells (the model's RMSE on those 93 is 7.01).
 EWMA is exponential smoothing of the series' own past figures with
 α = 0.4 (Muth, 1960); with one observed year it is persistence.
 
 | History | n | Model RMSE | Persistence RMSE | EWMA RMSE | Prog–county mean RMSE | Model MAE | Persistence MAE | Model bias | Model ±3 | Persistence ±3 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 0 years | 124 | **7.96** | — | — | 7.68 | **6.01** | — | −3.78 | **32%** | — |
-| 1 year | 255 | **5.69** | 6.87 | 6.87 | 6.54 | **4.18** | 5.11 | −1.50 | **50%** | 41% |
-| 2–3 years | 446 | **5.70** | 6.71 | 6.01 | 6.47 | **4.37** | 4.97 | +0.14 | **44%** | 43% |
-| 4+ years | 1,758 | **5.13** | 6.17 | 5.26 | 6.00 | **3.90** | 4.45 | +0.08 | 49% | **50%** |
+| 0 years | 127 | **7.38** | — | — | 8.19 | **5.80** | — | −3.33 | **32%** | — |
+| 1 year | 263 | **5.84** | 7.11 | 7.11 | 6.84 | **4.29** | 5.22 | −1.36 | **49%** | 41% |
+| 2–3 years | 475 | **5.70** | 6.68 | 6.00 | 6.49 | **4.34** | 4.92 | +0.21 | **45%** | 44% |
+| 4+ years | 1,783 | **5.15** | 6.18 | 5.29 | 6.02 | **3.91** | 4.46 | +0.06 | 49% | **50%** |
 
 The model beats all three baselines on RMSE and MAE in every stratum where
 they are defined (Figure 1), and the margins over persistence are not
 sampling noise: the
-model-minus-persistence RMSE difference is −1.18 points [−1.66, −0.75]
-with one year of history, −1.01 [−1.46, −0.55] with two or three, and
-−1.04 [−1.28, −0.79] with four or more; against the programme–county mean
-the intervals are [−1.26, −0.45], [−1.11, −0.44] and [−1.13, −0.65]. The
+model-minus-persistence RMSE difference is −1.27 points [−1.79, −0.82]
+with one year of history, −0.98 [−1.40, −0.51] with two or three, and
+−1.03 [−1.26, −0.79] with four or more; against the programme–county mean
+the intervals are [−1.48, −0.56], [−1.13, −0.47] and [−1.13, −0.66]. The
 one exception is the 0-year stratum, where the mean baseline exists for a
-third of the cells and the difference, −0.65 points on those 89, has an
-interval [−1.57, +0.39] that touches zero. The ±3 hit rate tells a subtler
+third of the cells and the difference, −1.18 points on those 93, has an
+interval [−2.64, +0.11] that touches zero. The ±3 hit rate tells a subtler
 story: persistence edges it in the deepest stratum (50% vs 49%), a
-difference whose interval [−0.04, +0.03] is centred on zero — repeating
+difference whose interval [−0.04, +0.02] is centred on zero — repeating
 the last figure lands inside a narrow band about as often, and misses by
 more when it misses, which is the trade a squared-error forecast makes.
 The bias column shows where the borrowing costs: series with no history are
-forecast 3.8 points too low on average and one-year series 1.5 too low,
+forecast 3.3 points too low on average and one-year series 1.4 too low,
 because a new queue tends to open above its programme's county mean; from
-two years on the forecast is unbiased. Overall: RMSE 5.45 [5.23, 5.69],
-MAE 4.11, bias −0.25, 47% of forecasts within ±3 points. For scale, the
+two years on the forecast is unbiased. Overall: RMSE 5.45 [5.21, 5.67],
+MAE 4.12, bias −0.22, 47% of forecasts within ±3 points. For scale, the
 same series moves with a standard deviation of 6.2 points between
-consecutive published years (8,488 pairs; 49% of moves within ±3), so
+consecutive published years (8,541 pairs; 49% of moves within ±3), so
 persistence is a strong baseline and the residual year effect is large —
 which is why the deliverable is the distribution, not the point forecast.
 Per-year results are in Appendix B.
@@ -841,15 +843,15 @@ weight. Exponential smoothing sits between them, and Muth (1960) showed it
 is the optimal forecast when a series is a random walk observed with noise
 — close to what a threshold is. With α = 0.4 (the weight on the newest
 figure; the rest decays geometrically) it is a far stronger baseline than
-either end on deep series: RMSE 6.01 against persistence's 6.71 with two
-or three years of history, and 5.26 against 6.17 with four or more. The
-model still wins, but by less — −0.31 points [−0.55, -0.07] and −0.13
-[−0.24, −0.01] — and the two-to-three-year interval touches zero. That is
+either end on deep series: RMSE 6.00 against persistence's 6.68 with two
+or three years of history, and 5.32 against 6.21 with four or more. The
+model still wins, but by less — −0.30 points [−0.55, −0.05] and −0.14
+[−0.25, −0.02] — and the two-to-three-year interval stops 0.05 short of zero. That is
 the honest size of what pooling across schools and programmes adds once a
 series can be smoothed on its own: most of the model's margin over
 persistence on long series is the smoothing, not the hierarchy. On short
 series the hierarchy is everything — with one observed year exponential
-smoothing is persistence, and the model beats it by 1.18 points.
+smoothing is persistence, and the model beats it by 1.27 points.
 
 **Figure 1:** Held-out RMSE by history stratum: model against three
 baselines — persistence, exponential smoothing (α = 0.4) and the
@@ -860,11 +862,11 @@ programme–county mean.
 ### 7.3 Interval coverage
 
 The nominal 80% interval $m \pm 1.2816\,s$ contained the published figure
-**80.7%** of the time on held-out cells (n = 2,583; cluster-bootstrap
-interval [79.0, 82.4]), at a mean width of 13.1 points; the 50, 90 and 95%
-Gaussian intervals covered 52.7, 89.7 and 93.8%. The deployed
+**80.6%** of the time on held-out cells (n = 2,648; cluster-bootstrap
+interval [78.9, 82.3]), at a mean width of 13.1 points; the 50, 90 and 95%
+Gaussian intervals covered 52.6, 89.7 and 93.6%. The deployed
 distribution $\Phi_F$ is the empirical one, and its central 80% band
-covered 80.4% (50/90/95: 50.5, 90.3, 94.5%): the Gaussian band lands on
+covered 80.4% (50/90/95: 50.7, 90.3, 94.5%): the Gaussian band lands on
 its nominal level, and the empirical quantiles, learned on the calibration
 years, transfer to the held-out years a little too tight. Coverage is the
 target and width the price (Gneiting, Balabdaoui & Raftery, 2007): roughly
@@ -877,30 +879,30 @@ Table 4b stratifies the 80% Gaussian coverage by the forecast level and by
 county. Errors are smaller where the forecast is high — the cutoff cannot
 exceed the applicant pool, so a programme forecast above 45 points has
 little room to surprise — and with the spread conditioned on history alone
-(v1.6) the intervals covered 95.5% above 45 points and 71.0% below 25. The
+(v1.6) the intervals covered 95.5% above 45 points and 64.9% below 25. The
 level multiplier of Table 3b, fitted on the calibration years only, moves
-those two bands to 83.3% and 77.4% on the held-out years and leaves the
-three middle bands where they were (77.8–82.3% against 77.8–82.1% before);
+those two bands to 81.8% and 70.3% on the held-out years and leaves the
+three middle bands where they were (78.2–82.2% against 78.0–82.0% before);
 the overall coverage, the mean width and the admission-probability Brier
-score are unchanged (80.7%, 13.1 points, 0.0930 against 0.0931), which is
+score are unchanged (80.5%, 13.1 points, 0.0929 against 0.0930), which is
 what moving width from one end to the other should do. The 40–45 band, at
-84.3%, is still too wide: the calibration years give it a multiplier barely
+84.2%, is still too wide: the calibration years give it a multiplier barely
 below the middle bands', and the held-out years say it belongs with the
-top. Across counties, coverage runs from 69% in Buskerud to 89% in
+top. Across counties, coverage runs from 74% in Buskerud to 89% in
 Oslo; Møre og Romsdal, forecast from proxy-labelled cells, sits at
-83%.
+82%.
 
 The pooled figure is two different ones averaged. The application shows
-Vg1 by default, and Vg2 and up are four in ten of the held-out numeric
+Vg1 by default, and Vg2 and up are nearly half of the held-out numeric
 cells; Table 4c scores the two apart. Vg1 forecasts are more accurate
-(RMSE 5.31 [4.95, 5.65] against 5.59 [5.30, 5.89] for Vg2 and up). With a
+(RMSE 5.31 [4.98, 5.61] against 5.59 [5.31, 5.89] for Vg2 and up). With a
 spread pooled over levels, Vg1 intervals were too wide and the others too
-narrow (held-out coverage 83.7% and 77.4%, the same split on the
+narrow (held-out coverage 83.5% and 77.4%, the same split on the
 calibration years), so since v1.18 each level group carries its own
 factor of the spread (Section 6.1). The nominal 80% interval now covered
-**81.8%** [79.7, 84.0] of Vg1 outcomes and 79.6% [77.2, 82.0] of the rest,
+**81.4%** [79.2, 83.6] of Vg1 outcomes and 79.5% [77.1, 81.8] of the rest,
 and the Vg1 band is 12.4 points wide instead of 13.2. The factor is fitted
-to cover 80% on the calibration years (80.1% and 79.9% there by
+to cover 80% on the calibration years (80.3% and 79.7% there by
 construction), so the held-out figures are the test. The application
 quotes the Vg1 coverage beside the Vg1 view and the pooled one when Vg2
 and up are shown.
@@ -910,32 +912,32 @@ of Section 7.1; fill Brier against the level's own base rate.
 
 | Level | n | RMSE | 80% coverage | Mean width | Chance Brier | Fill Brier (base) |
 |---|---|---|---|---|---|---|
-| Vg1 | 1,311 | 5.31 | 81.8% | 12.4 | 0.092 | 0.154 (0.182) |
-| Vg2 and up | 1272 | 5.59 | 79.6% | 13.9 | 0.094 | 0.161 (0.221) |
-| All | 2,583 | 5.45 | 80.7% | 13.1 | 0.093 | 0.158 (0.204) |
+| Vg1 | 1,376 | 5.31 | 81.5% | 12.3 | 0.092 | 0.151 (0.180) |
+| Vg2 and up | 1272 | 5.59 | 79.5% | 13.9 | 0.094 | 0.161 (0.221) |
+| All | 2,648 | 5.45 | 80.6% | 13.1 | 0.093 | 0.156 (0.203) |
 
 **Table 4b:** Held-out coverage of the nominal 80% interval, by forecast
 level and by county. RMSE and mean $s$ in points.
 
 | Forecast $m$ | n | Coverage | RMSE | Mean $s$ |
 |---|---|---|---|---|
-| below 25 | 31 | 77.4% | 6.12 | 5.77 |
-| 25–30 | 487 | 77.8% | 5.62 | 5.26 |
-| 30–35 | 990 | 82.3% | 5.35 | 5.21 |
-| 35–40 | 704 | 78.8% | 5.92 | 5.12 |
-| 40–45 | 305 | 84.3% | 4.63 | 4.90 |
-| 45 and above | 66 | 83.3% | 3.28 | 3.53 |
+| below 25 | 37 | 70.3% | 6.40 | 5.53 |
+| 25–30 | 505 | 78.2% | 5.62 | 5.25 |
+| 30–35 | 1011 | 82.4% | 5.35 | 5.21 |
+| 35–40 | 721 | 78.6% | 5.88 | 5.10 |
+| 40–45 | 308 | 84.4% | 4.63 | 4.88 |
+| 45 and above | 66 | 81.8% | 3.29 | 3.48 |
 
 | Fylke | n | Coverage |
 |---|---|---|
-| Akershus | 210 | 85.2% |
-| Buskerud | 74 | 68.9% |
-| Innlandet | 370 | 81.9% |
-| Møre og Romsdal | 558 | 82.6% |
-| Oslo | 124 | 88.7% |
+| Akershus | 210 | 84.8% |
+| Buskerud | 140 | 73.6% |
+| Innlandet | 370 | 81.4% |
+| Møre og Romsdal | 558 | 82.4% |
+| Oslo | 123 | 88.6% |
 | Rogaland | 429 | 79.3% |
 | Trøndelag | 72 | 73.6% |
-| Vestland | 746 | 79.2% |
+| Vestland | 746 | 79.1% |
 
 
 
@@ -944,15 +946,15 @@ level and by county. RMSE and mean $s$ in points.
 The deployed quantity is (1). For every held-out cell and every score $x \in
 \{20, 25, \dots, 55\}$ we ask "would an applicant with $x$ points have been
 admitted?" — the outcome is determined by the published threshold and fill
-state — and score the predicted probability over all 29,440 score–cell
-pairs (3,680 cells), with $\pi$ as deployed: Brier score **0.093** [0.089, 0.096]. The step rule is defined
-only where the series has a prior figure, 26,336 of those pairs; on that
-common subset the model scores **0.091** against the step rule's
-**0.156** (difference [−0.072, −0.060]) and the probabilistic persistence
-forecast's **0.096** (difference −0.005 [−0.007, −0.003]). The second
+state — and score the predicted probability over all 30,040 score–cell
+pairs (3,755 cells), with $\pi$ as deployed: Brier score **0.093** [0.089, 0.096]. The step rule is defined
+only where the series has a prior figure, 26,912 of those pairs; on that
+common subset the model scores **0.090** against the step rule's
+**0.156** (difference [−0.070, −0.060]) and the probabilistic persistence
+forecast's **0.095** (difference −0.005 [−0.007, −0.003]). The second
 comparison is the fair one: most of the model's advantage over the step
 rule is the uncertainty treatment of Section 6, which any centre could
-carry, and the model's own point forecast is worth a further 0.006 of Brier
+carry, and the model's own point forecast is worth a further 0.005 of Brier
 on top of it — small in absolute terms, but its interval excludes zero.
 
 **Table 5:** Reliability of the held-out admission probability (Figure 2
@@ -960,29 +962,29 @@ shows the same data as a diagram).
 
 | Predicted | Observed | n |
 |---|---|---|
-| 0–10% | 5.6% | 2,011 |
-| 10–20% | 17% | 2,357 |
-| 20–30% | 28% | 1,845 |
-| 30–40% | 38% | 1,479 |
-| 40–50% | 48% | 1,411 |
-| 50–60% | 60% | 1,434 |
-| 60–70% | 73% | 1,533 |
-| 70–80% | 83% | 1,672 |
-| 80–90% | 90% | 2,016 |
-| 90–100% | 99.0% | 13,682 |
+| 0–10% | 5.5% | 2,058 |
+| 10–20% | 17% | 2,427 |
+| 20–30% | 28% | 1,864 |
+| 30–40% | 38% | 1,503 |
+| 40–50% | 47% | 1,444 |
+| 50–60% | 60% | 1,460 |
+| 60–70% | 73% | 1,556 |
+| 70–80% | 83% | 1,693 |
+| 80–90% | 89% | 2,061 |
+| 90–100% | 99.0% | 13,998 |
 
-The largest gap between prediction and outcome in any decile is 8.2 points,
+The largest gap between prediction and outcome in any decile is 8.0 points,
 in the 60–70% bin, where the forecast is cautious: a stated 65% was
 realised at 73%, so the upper middle of the scale understates the chance
 rather than overstating it (the 70–80% bin, next, is cautious by 7.6
-points). Below 60% the forecast is within 4.5 points of
-the outcome in every bin and optimistic by at most 0.2 points, in the three
+points). Below 60% the forecast is within 4.4 points of
+the outcome in every bin and optimistic by at most 0.3 points, in the three
 lowest bins — a stated 15% was realised at 17% — a region the
 application's coarse bands (likely ≥ 70%, possible ≥ 35%, otherwise
 unlikely) absorb in any case.
 
 **Figure 2:** Reliability diagram of the held-out admission probability.
-Grey bars show where the predictions' mass sits (54% of score–cell pairs
+Grey bars show where the predictions' mass sits (53% of score–cell pairs
 land above 80%).
 
 ![Reliability diagram](figures/reliability.svg)
@@ -995,7 +997,7 @@ intervals are the cluster bootstrap of Section 7.1 applied to the
 calibration-year folds:
 
 - **Recency half-life.** Over half-lives {1.5, 2.5, 4, ∞} years the
-  calibration-year walk-forward RMSE was {5.759, 5.741, 5.739, 5.766}: 4
+  calibration-year walk-forward RMSE was {5.758, 5.741, 5.739, 5.766}: 4
   years wins, by 0.027 points over no decay [+0.012, +0.042] — kept
   because it wins, reported because the interval says the choice does not
   matter.
@@ -1003,7 +1005,7 @@ calibration-year folds:
   fill model lowered calibration-year fill log-loss from 0.449 to 0.448
   (difference [−0.003, −0.000]) on the current panel, so the deployed
   hurdle is coupled. On the held-out years the two variants score the same
-  fill Brier (0.157 against 0.158). Every earlier build rejected the same
+  fill Brier (0.156 against 0.157). Every earlier build rejected the same
   coupling (0.403 vs 0.406 before the Innlandet backfill) — the verdict
   belongs to the backtest, this report documents the flip rather than
   smoothing it over, and the interval says the two hurdles are
@@ -1013,15 +1015,15 @@ calibration-year folds:
   county out of the fill fit instead — its $\pi$ forced to 1, as deployed
   before the rule — moves the Platt slope from 0.658 to 0.581 and the
   held-out fill Brier on the seven counties whose labels are observed from
-  0.160 to 0.159: the proxy labels do not distort the other counties'
+  0.158 to 0.157: the proxy labels do not distort the other counties'
   calibration; they cost it a trifle. On the county's own 730 held-out
   cells the proxy-labelled hurdle scores 0.150 against 0.180 for its base
     rate, which says the rule is predictable — a low cutoff one year
   foretells one the next — not that it separates queues from empty places.
 - **Level-conditioned spread.** Section 6.1's multiplier is fitted on the
   calibration years and judged on the held-out ones (Section 7.3): the top
-  band's coverage falls from 95.5% to 83.3% and the bottom band's rises
-  from 71.0% to 77.4%, at no cost to the overall coverage, width or Brier
+  band's coverage falls from 95.5% to 81.8% and the bottom band's rises
+  from 64.9% to 70.3%, at no cost to the overall coverage, width or Brier
   score. Kept.
 - **Single-applicant cells.** A threshold equal to the admitted mean is one
   applicant's score. Over level-fit weights {1, ½, ¼, 0} for the 65 such
@@ -1038,37 +1040,38 @@ calibration-year folds:
   recalibration, and scoring both on the same Vg1 cells: the
   calibration-year RMSE is 5.53 pooled against 5.56 Vg1-only (Vg1-only
   minus pooled [-0.001, +0.052]), and on the held-out years 5.31 against
-  5.29 ([−0.055, +0.017]). The other levels help the Vg1 forecast a little
+  5.27 ([−0.063, -0.005]). The other levels help the Vg1 forecast a little
   and never hurt it, so the pooled fit is kept and no school-by-level
   effect is called for. With its own spread, the Vg1-only fit's intervals
-  cover 81.8% held out against the pooled fit's 81.5%: what was wrong
+  cover 81.6% held out against the pooled fit's 81.4%: what was wrong
   with the Vg1 interval was the spread, not the pooling.
 - **Per-level spread factor.** The history and band factors of Section 6.1
   are pooled over levels. Scaling each level group to its own
-  calibration-year 80% band moves held-out coverage from 83.7% to 81.8%
-  on Vg1 and from 77.4% to 79.6% on Vg2 and up, and the Vg1 band from
+  calibration-year 80% band moves held-out coverage from 83.5% to 81.4%
+  on Vg1 and from 77.4% to 79.5% on Vg2 and up, and the Vg1 band from
   13.2 to 12.4 points. The admission probability hardly notices: its
-  Brier score goes from 0.0930 to 0.0930, because the empirical error
+  Brier score goes from 0.0930 to 0.0929, because the empirical error
   distribution of Section 6.2 already absorbs most of a scale error. Kept
   for the interval's sake.
 - **Jump factor.** Scaling the spread after a newest step of more than 8
   points (Section 6.1) moves held-out coverage after such a step from
-  73.3% to 81.8%, and on the rest from 81.3% to 80.5%; the
-  admission probability's Brier score goes from 0.0931 to 0.0930.
+  73.0% to 81.3%, and on the rest from 81.2% to 80.3%; the
+  admission probability's Brier score goes from 0.0930 to 0.0929.
   Kept for the interval's sake, like the level group's.
 - **Trend on steadily rising series.** The model has no trend term: a
   series that climbed four years running is forecast back towards its
   school and programme, sometimes 8 points below its last figure (Oslo's
   Persbråten, Studiespesialisering, 48,1 in 2026). The walk-forward has
-  made 82 such Vg1 forecasts (at least three earlier figures, none
+  made 81 such Vg1 forecasts (at least three earlier figures, none
   falling over the newest four, forecast 4 or more points below the
-  newest). The published figure came in below the last one 80.5% of the
-  time; the model's RMSE there was 5.90 against 7.57 for persistence,
-  and it under-forecast by 1.31 points [0.02, 2.55]. The drop is real
-  and a little smaller than forecast. A trend term, the error regressed on
-  the forecast's gap below the last figure with the slope (0.129) fitted
-  on the calibration years, takes the held-out Vg1 RMSE from 4.834 to
-  4.767, and would lift the forecasts the walkthroughs questioned by half a
+  newest). The published figure came in below the last one 82.7% of the
+  time; the model's RMSE there was 5.89 against 7.62 for persistence,
+  and it under-forecast by 1.23 points [−0.02, 2.48]. The drop is real;
+  that it is a little smaller than forecast is likely, though the interval
+  now reaches zero. A trend term, the error regressed on
+  the forecast's gap below the last figure with the slope (0.123) fitted
+  on the calibration years, takes the held-out Vg1 RMSE from 4.891 to
+  4.827, and would lift the forecasts the walkthroughs questioned by half a
   point to a point; not added (`meta.halflife_search.rising_series_check`).
 
 
@@ -1087,7 +1090,7 @@ one.
 | | Years | Pairs queued in both | Later − earlier (points) | Queues cleared by later intake |
 |---|---|---|---|---|
 | Akershus, 1. → 2. inntak | 2025 | 101 | −3.4 (se 0.3, sd 3.1) | 16% of 124 |
-| Vestland, 1. → 3. inntak | 2017–2020, 2022–2026 | 1436 | −3.0 (se 0.1, sd 3.9) | 37% of 2,276 |
+| Vestland, 1. → 3. inntak | 2017–2020, 2022–2026 | 1436 | −3.0 (se 0.1, sd 3.9) | 37% of 2,275 |
 
 The drop conditional on the queue surviving is half the story; the cleared
 queues are the other half. The two rows are not one effect: Akershus's rests
@@ -1114,13 +1117,13 @@ components of (2) gives a decomposition of what the map's colour actually
 encodes. Over the 189 schools whose $\alpha_s$ rests on five or more fitted
 cells (between-school sd of the raw mean 5.2 points), the school's own
 effect accounts for 44% of the variance, the programme mix (which
-utdanningsprogram and programme areas it offers) for 25%, the county-year
+utdanningsprogram and programme areas it offers) for 24%, the county-year
 level — which intake the county publishes, and its market that year — for
 12%, the series interactions for 10%, and residuals and covariances for the
 rest. Ranked within their own county by $\alpha_s$ instead of by raw mean,
-schools move 3.2 places on average and at most 26; in Møre og Romsdal, where
-mix explains 56% and the school effect 32%, the average move is 5.9 places,
-in Oslo 2.6. A substantial part of a raw school mean is what the school
+schools move 3.3 places on average and at most 26; in Møre og Romsdal, where
+mix explains 56% and the school effect 32%, the average move is 6.1 places,
+in Oslo 2.5. A substantial part of a raw school mean is what the school
 *offers* and when its county publishes, not how contested it is — which is
 why the application prints the mix-adjusted effect with a standard error,
 states that it measures demand, not quality, and does not rank schools
@@ -1128,7 +1131,7 @@ across counties at all (Section 11).
 
 ### 8.3 The model as a data audit
 
-The cells the fitted model finds least plausible ($|z| > 3$: 108 of 12,938, 40 of
+The cells the fitted model finds least plausible ($|z| > 3$: 107 of 12,999, 38 of
 them in Vestland, the county with the most cells; the 25 most extreme are
 published in the model metadata) were checked against sources. The largest deviation and two
 further Vestland-2022 extremes (Slåtthaug 18.0, Dale 12.5, Fitjar 48.8)
@@ -1162,7 +1165,7 @@ where a programme has at least ten pairs, and the county-wide values
 otherwise. The interface is bilingual (Norwegian/English), phrased in the
 official Udir/vigo vocabulary throughout, and the compiled dataset is
 available from the page as JSON and in the repository as CSV and SQLite.
-The shipped model carries 2,038 programme forecasts, of which 180 are for
+The shipped model carries 2,037 programme forecasts, of which 179 are for
 series with no observed year; for the held-out county of Section 4.4 a
 separate fit on its own figures supplies 55 forecasts for its 11 schools,
 scored nowhere in this report except against the county's own years in
@@ -1170,7 +1173,7 @@ Section 4.4. Two things it deliberately does not forecast:
 a series whose newest cell is *utgått* (discontinued; 65 series) gets no
 forecast, whatever the year before said, and a series with no observed year
 is tagged "ingen historikk" (no history) — with "lite historikk" (little
-history) at a single year — rather than handed a bare percentage. Those 180
+history) at a single year — rather than handed a bare percentage. Those 179
 forecasts are in the exported files, tagged by their zero history, so that
 a reader can exclude them. Nor does it forecast the schools of the two
 counties with history only (Section 4.4): the application shows their
@@ -1195,16 +1198,16 @@ figures, and says beside them why there is no chance of admission.
   publishes 1. inntak, more applicants are ultimately admitted than the
   figure implies; Section 8.1 measures the gap where it can be measured, and
   equation (6) passes it on only for the county where it is measured.
-- **Short test window.** Two held-out years (2,583 cells with a number,
-  3,680 that competed) from one country and fourteen county-years. The
+- **Short test window.** Two held-out years (2,648 cells with a number,
+  3,755 that competed) from one country and fifteen county-years. The
   cluster bootstrap of Section 7.1 prices the within-school dependence but
   treats county-years as exchangeable; the by-county coverage of Table 4b,
-  from 69% to 89%, is the honest size of what it leaves out. 2026 looks
+  from 74% to 89%, is the honest size of what it leaves out. 2026 looks
   better than 2025 partly because most of its cells are drawn from the
   counties with the deepest histories (Appendix B).
 - **Cold starts.** Trøndelag has one whole published year after one
-  region's, and Buskerud two recent years after a decade's gap, so their
-  forecasts rest mostly on borrowed effects; Buskerud's intervals cover 70%
+  region's, and Buskerud three recent years after a decade's gap, so their
+  forecasts rest mostly on borrowed effects; Buskerud's intervals cover 74%
   instead of 80%, and Trøndelag's 2026 forecasts cannot be evaluated until
   the county publishes that year.
 - **Copies of lost tables.** 14 county-years in the panel rest on a
@@ -1319,8 +1322,8 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.22`, and the numbers
-quoted here are from the build of 2026-09-28. The compiled dataset ships in
+the version this report describes is tagged `report-v1.23`, and the numbers
+quoted here are from the build of 2026-10-03. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
 JSON; the original county publications are mirrored under `sources/`,
@@ -1335,7 +1338,7 @@ cluster bootstrap uses a fixed seed. The whole pipeline runs in minutes on a
 laptop. `tools/test_docs.py` pins every number in this report and in
 `docs/model.md` to the shipped model file, so a refresh that moves a figure
 fails the build until the text is updated; validation further comprises 136
-parser regression checks and 16,235 model invariants. The dataset is
+parser regression checks and 16,228 model invariants. The dataset is
 released under the Norwegian Licence for Open Government Data (NLOD 2.0)
 and the code under the MIT licence.
 
@@ -1488,27 +1491,27 @@ Innlandet), which partly explains the better figures.
 
 | Year | n | Model RMSE | Model MAE |
 |---|---|---|---|
-| 2025 | 1,389 | 5.58 | 4.18 |
-| 2026 | 1194 | 5.31 | 4.03 |
+| 2025 | 1,388 | 5.51 | 4.16 |
+| 2026 | 1260 | 5.38 | 4.07 |
 
 ## Appendix C: Fill-event calibration
 
 **Table C1:** Reliability of the recalibrated fill probability $\pi'$ on the
-held-out years (3,680 cells that competed on points, all eight counties,
-Møre og Romsdal's 730 proxy-labelled cells included; base rate 0.714).
-Held-out Brier 0.158 against 0.204 for the base-rate forecaster.
+held-out years (3,755 cells that competed on points, all eight counties,
+Møre og Romsdal's 730 proxy-labelled cells included; base rate 0.717).
+Held-out Brier 0.156 against 0.203 for the base-rate forecaster.
 
 | Predicted | Observed | n |
 |---|---|---|
 | 10–20% | 15.0% | 40 |
 | 20–30% | 18% | 161 |
-| 30–40% | 26% | 202 |
-| 40–50% | 45% | 219 |
-| 50–60% | 53% | 279 |
-| 60–70% | 69% | 355 |
-| 70–80% | 77% | 457 |
-| 80–90% | 80% | 817 |
-| 90–100% | 90% | 1150 |
+| 30–40% | 27% | 203 |
+| 40–50% | 45% | 222 |
+| 50–60% | 53% | 282 |
+| 60–70% | 69% | 360 |
+| 70–80% | 77% | 461 |
+| 80–90% | 81% | 843 |
+| 90–100% | 91% | 1186 |
 
 ## Appendix D: Version history
 
@@ -1546,7 +1549,7 @@ Held-out Brier 0.158 against 0.204 for the base-rate forecaster.
 - **v1.7**. Three model changes, each judged by the
   backtest: the forecast spread conditioned on the forecast level as well
   as on history (Table 3b; the top band's held-out coverage from 95.5% to
-  83.3%); the admitted mean (Gjennomkar) carried through the dataset for
+  81.8%); the admitted mean (Gjennomkar) carried through the dataset for
   Møre og Romsdal, with a backtest-chosen level-fit weight for the 14
   thresholds one applicant set (it chose full weight); and exponential
   smoothing (Muth, 1960) as a third baseline in Table 4, which shows that
@@ -1595,7 +1598,7 @@ Held-out Brier 0.158 against 0.204 for the base-rate forecaster.
   this report, and stays in the published dataset and the application
   (Section 4.4). Without a fill state its figures cannot tell a cutoff from
   a programme where everyone got in, and v1.10's fit showed what mixing
-  them in does: the held-out RMSE of series with one year of history rose from 5.69
+  them in does: the held-out RMSE of series with one year of history rose from 5.84
   to 6.20 points, the county's intervals covered 70%, and the county-year
   term's share of the variance between school means rose from 9% to 17%.
   The model, the panel and every quoted number are back to the eight
@@ -1656,8 +1659,8 @@ Held-out Brier 0.158 against 0.204 for the base-rate forecaster.
   number of this report moves.
 - **v1.18**. Each level group carries its own factor of
   the forecast spread (Section 6.1): held-out coverage of the 80%
-  interval goes from 83.7% to 81.8% on Vg1 and from 77.4% to 79.6% on
-  Vg2 and up, and 80.6% to 80.7% overall; the admission probability's
+  interval goes from 83.5% to 81.4% on Vg1 and from 77.4% to 79.5% on
+  Vg2 and up, and 80.6% to 80.5% overall; the admission probability's
   Brier score does not move. Every forecast's spread changes, so every
   pinned number is re-read from the build of 2026-09-25, the first built
   in a Linux container from the pinned `tools/requirements.txt` rather
@@ -1666,8 +1669,8 @@ Held-out Brier 0.158 against 0.204 for the base-rate forecaster.
   resolution, Appendix D v1.9.1), and no conclusion changes.
 - **v1.19**. A series whose two newest figures are more
   than 8 points apart carries its own factor of the forecast spread
-  (Section 6.1): held-out coverage after such a step goes from 73.3% to
-  81.8%. Section 7.5 adds the backtest of steadily rising series, which
+  (Section 6.1): held-out coverage after such a step goes from 73.0% to
+  81.3%. Section 7.5 adds the backtest of steadily rising series, which
   finds no case for a trend term. The point forecasts do not move; every
   spread does, so the pinned numbers are re-read from the build of
   2026-09-26, made in the Linux container from the pinned requirements
@@ -1694,7 +1697,24 @@ Held-out Brier 0.158 against 0.204 for the base-rate forecaster.
   to 80.6%; the county-year step's spread grows from 0.93 to 1.01 points,
   and the admission probability's Brier score does not move. No
   conclusion changes.
-- **v1.22** (this version). Every county is forecast for the same intake,
+- **v1.23** (this version). A data release, no model change: Buskerud's
+  2026/27 Vg1 thresholds, from the county's own page (which does not state
+  the intake round, like the county's earlier years), join the panel — 78
+  cells. A printed figure between 0 and 10 is now dropped as an error in
+  the county's table, since karakterpoeng start at 10,0: nine cells go,
+  among them Kongsberg's 2025 and Buskerud videregående skole's 2026 «4,0».
+  Buskerud holds 473 cells instead of 397 and the dataset 19,440 instead of
+  19,369. The model is refit and the walk-forward backtest re-run, and every
+  quoted number is re-pinned: the level model fits 12,999 cells instead of
+  12,938, and the held-out years hold 2,648 cells instead of 2,583, with
+  Buskerud's 2026 cells among them (RMSE 5.45, the 80% interval covers
+  80.6%; the admission probability's Brier score is 0.093). Buskerud, which
+  no longer lacks the newest intake, is forecast one year ahead instead of
+  two, so only Trøndelag carries the widened spread of Section 6.1; the
+  county's held-out coverage moves from 69% to 74%. The model's
+  under-forecast on steadily rising series (Section 7.5) shrinks to 1.23
+  points, and its interval now reaches zero. No other conclusion changes.
+- **v1.22**. Every county is forecast for the same intake,
   the next that has not happened yet, moving on each 1 July (Section 6.1):
   Buskerud and Trøndelag, which have not published 2026/27, are forecast
   for 2027/28 instead of 2026/27, two years past their newest figure, with
