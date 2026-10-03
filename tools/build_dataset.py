@@ -104,6 +104,18 @@ def main():
         print(f'{mod.META["fylke"]:<18} {rows:>5} rows {cells:>6} cells '
               f'{len(warn):>3} warnings  ({len(srcs)} sources)')
         warnings += [f'[{mod.META["fylke"]}] {w}' for w in warn]
+        # karakterpoeng start at 10,0 (a 1 in every subject), so a printed
+        # figure between 0 and 10 is an error in the county's table: it is
+        # neither shown nor fitted. A printed 0,0 stays; Akershus documents it.
+        for fname, rs in srcs:
+            for row in rs:
+                for y, v in list(row['values'].items()):
+                    if isinstance(v, (int, float)) and 0 < v < common.MIN_POINTS:
+                        del row['values'][y]
+                        warnings.append(
+                            f'[{mod.META["fylke"]}] {fname}: {row["school"]} / {row["program"]} / '
+                            f'{row["level"]} / {y} «{v:.1f}» is below 10,0, which karakterpoeng '
+                            'cannot be; dropped')
         all_rows += srcs
         counties.append({k: v for k, v in mod.META.items() if k != 'uncertain'})
 

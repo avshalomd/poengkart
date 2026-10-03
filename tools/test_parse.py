@@ -115,26 +115,13 @@ zero_counties = {s['fylke'] for s in DATA['schools'] for p in s['programs']
 # in its 2019-21 table with no legend (NORDLAND_ZERO in its extractor)
 check('0,0 appears only where the source publishes it',
       zero_counties <= {'Akershus', 'Innlandet', 'Nordland', 'Vestland'}, str(sorted(zero_counties)))
-# a printed decimal below 8 is kept (classify_cell), so every such cell is
-# listed here by hand after a look at its source; a new one fails until it
-# has been looked at too
-SUB8 = {
-    ('Buskerud', 'Kongsberg', 'Musikk, dans og drama', 'Vg1', '2025', 4.0),
-    # «4,0» printed in the county's 2026-2027 table for Buskerud videregående
-    # skole, whose Studiespesialisering cell the same row marks «Alle»
-    ('Buskerud', 'Buskerud', 'Restaurant- og matfag', 'Vg1', '2026', 4.0),
-    # «5,6» in the 2019 column of Nordland's 2021 booklet (p. 54): the lowest
-    # admitted, a table with no fill state, so a figure this low most likely
-    # means everyone got in (lowestAdmittedNote says so beside these years)
-    ('Nordland', 'Bodin videregående skole', 'Kunst, design og arkitektur', 'Vg2', '2019', 5.6),
-    ('Oslo', 'Etterstad videregående skole', 'Restaurant- og matfag', 'Vg1', '2026', 6.0),
-    ('Oslo', 'Etterstad videregående skole', 'Teknikk og industriell produksjon', 'Vg1', '2019', 5.6),
-}
-sub8 = {(s['fylke'], s['name'], p['program'], p['level'], y, v) for s in DATA['schools']
-        for p in s['programs'] for y, v in p['values'].items()
-        if isinstance(v, (int, float)) and 0 < v < 8}
-check('every poenggrense below 8 has been looked at (allowlist)', sub8 == SUB8,
-      f'new: {sorted(sub8 - SUB8)} gone: {sorted(SUB8 - sub8)}')
+# karakterpoeng start at 10,0, so build_dataset drops a printed figure
+# between 0 and 10 as an error in the county's table (Kongsberg and Buskerud
+# vgs «4,0», Etterstad «6,0» and «5,6», Bodin «5,6» among them)
+sub10 = [(s['fylke'], s['name'], p['program'], p['level'], y, v) for s in DATA['schools']
+         for p in s['programs'] for y, v in p['values'].items()
+         if isinstance(v, (int, float)) and 0 < v < 10]
+check('no poenggrense between 0 and 10 (karakterpoeng start at 10,0)', not sub10, str(sub10[:3]))
 # Rogaland's 2024-2026 edition prints «3,0» here (p1, Vg2 block), below the
 # lowest possible score; the county confirmed on 23 Sept 2026 that there were
 # free places (POENG-34), and the extractor's COUNTY_CORRECTIONS applies it
@@ -265,8 +252,8 @@ glued = [f'{s}: {p["program"]}' for s, p, _, _ in cells
          if re.search(r'ventelis|fortrinn|fortinn|utgår|ledige|dokumentasjon',
                       p['program'], re.I)]
 check('no value token glued into a program name', not glued, str(glued[:3]))
-# the noise floor lives in the classifier (bare integers only); a printed
-# decimal below 8 is the county's figure, so the range check starts at 0
+# the noise floor lives in the classifier (bare integers only), and
+# build_dataset drops a printed figure between 0 and 10; 0,0 is kept
 absurd = [(s, p['program'], y, v) for s, p, y, v in cells
           if isinstance(v, (int, float)) and not (0 <= v <= 65)]
 check('no absurd thresholds', not absurd, str(absurd[:3]))
