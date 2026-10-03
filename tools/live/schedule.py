@@ -11,9 +11,10 @@ document dates of the captures so far are Trøndelag 2 Dec 2025 13:49–13:53,
 Rogaland 7, 21 and 23 Sept 2026 (14:31), Innlandet 25 Sept 2026 12:42,
 Vestland 28 Aug 2026; Oslo and Vestland's first inntak lands in mid-July.
 Each source names the months its publications (and the corrections that
-follow them) have come in, its `season`. Every source is checked once a day at
-07 Oslo time, all year, so any document is captured by the next morning. Only
-in the intake window (1 July to 20 August, the inntak rounds, when students
+follow them) have come in, its `season`. Every source is checked once a day
+from 07 Oslo time, all year, so any document is captured by the next
+morning; the daily slot runs to 15, because GitHub starts scheduled runs
+hours late. Only in the intake window (1 July to 20 August, the inntak rounds, when students
 look up this year's figures the day they appear) is a source that is also in
 season checked every hour from 06 to 20 on weekdays. The owner chose this on
 29 Sept 2026: the publications seen so far outside the inntak rounds were not
@@ -41,6 +42,11 @@ OSLO = ZoneInfo('Europe/Oslo')
 
 WEEKDAY_HOURS = range(6, 21)
 DAILY_HOUR = 7
+#: the hours that count as the daily slot. GitHub starts scheduled runs late,
+#: often by four or five hours (the 05:23 UTC run of 3 Oct 2026 started 10:28),
+#: and a slot of 07 alone made every run from 29 Sept to 3 Oct find nothing due.
+#: Both daily cron firings may land inside it; the second run is harmless.
+DAILY_HOURS = range(DAILY_HOUR, 15)
 #: the only weeks a source is checked hourly (month, day), inclusive; the
 #: workflow's hourly cron covers July and August, so it must stay inside them
 HOURLY_WINDOW = ((7, 1), (8, 20))
@@ -72,10 +78,10 @@ def hourly(src, day):
 def is_due(src, now):
     """True when `src` should run in the hourly slot of `now` (Oslo time)."""
     if src['id'] == 'sentinel':
-        return now.weekday() == 0 and now.hour == DAILY_HOUR
+        return now.weekday() == 0 and now.hour in DAILY_HOURS
     if hourly(src, now):
         return now.hour in WEEKDAY_HOURS
-    return now.hour == DAILY_HOUR
+    return now.hour in DAILY_HOURS
 
 
 def runner(sid):
@@ -109,7 +115,7 @@ def main(argv=None):
     for sid in source_ids():
         s = source(sid)
         when = ('Mondays 07' if sid == 'sentinel' else
-                'hourly 06–20 today' if hourly(s, now) else 'daily 07')
+                'hourly 06–20 today' if hourly(s, now) else 'daily from 07')
         if s.get('runner') == 'cloud':
             when = 'by the cloud relay routine (routines/live-vilbli.md)'
         print(f'{sid:<10} {"in season " if in_season(s, now) else "off season"}  {when}')

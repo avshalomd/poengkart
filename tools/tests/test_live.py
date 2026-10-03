@@ -250,11 +250,16 @@ def test_schedule():
     assert schedule.is_due(oslo, at('2026-08-21T07:23'))
     assert not schedule.is_due(oslo, at('2026-07-18T15:23'))    # a Saturday: daily only
     assert schedule.is_due(oslo, at('2026-07-18T07:23'))
-    assert not schedule.is_due(oslo, at('2026-06-20T10:23'))    # in season, before the window
+    # GitHub starts the daily run hours late: 12:28 is still the daily slot
+    busk = schedule.source('buskerud')
+    assert schedule.is_due(busk, at('2026-10-03T12:28'))
+    assert not schedule.is_due(busk, at('2026-10-03T06:23'))
+    assert not schedule.is_due(busk, at('2026-10-03T16:23'))
+    assert not schedule.is_due(oslo, at('2026-06-20T16:23'))    # in season, before the window
     assert schedule.is_due(oslo, at('2026-02-03T07:23'))        # off season: 07 daily
-    assert not schedule.is_due(oslo, at('2026-02-03T10:23'))
+    assert not schedule.is_due(oslo, at('2026-02-03T16:23'))
     akershus = schedule.source('akershus')             # season July – December
-    assert not schedule.is_due(akershus, at('2026-09-29T10:23'))
+    assert not schedule.is_due(akershus, at('2026-09-29T16:23'))
     assert schedule.is_due(akershus, at('2026-09-29T07:23'))
     sentinel = schedule.source('sentinel')
     assert schedule.is_due(sentinel, at('2026-09-28T07:23'))    # Monday
