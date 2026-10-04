@@ -56,7 +56,7 @@
      "file": "akershus/akershus-2025-2026.html",
      "label": "skoleåret 2025–26",
      "name": "akershus-2025-2026.html",
-     "sha256": "6376f287825be7d869daf61e2634409a012775f74eb58509b15558bfbf9a2abc"
+     "sha256": "13eb03c8d19ec51227a81ed68c28d5d30fa978b7491ca6301e75d6677f6b1169"
     }
    }
   },
@@ -69,11 +69,10 @@
      "sha256": "8a74da67e7a9c831a531a4dc849d5c13991e2fad4cfb55d98fd04f23e5348351"
     },
     "https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/nedre-poenggrense-for-inntak-buskerud-2026-2027.207338.aspx": {
-     "captured": "2026-10-03",
      "file": "buskerud/buskerud-2026-2027.html",
      "label": "Her finner du nedre poenggrense for inntak i Buskerud 2026-2027",
      "name": "buskerud-2026-2027.html",
-     "sha256": "770a95adbcaa30d368cf48a81ac831642aee2d743029591c8a5899248cd0c5dd"
+     "sha256": "f7ec806d11ff7f78fb9ab18ff7360f0a24919c0cfbc178f13937cfa6ab29114f"
     }
    }
   },
@@ -93,7 +92,7 @@
      "file": "mro/mro-powerbi-2026-2027.json",
      "label": "Karakterer",
      "name": "mro-powerbi-2026-2027.json",
-     "sha256": "48127c1d0bb3ff66134322ac17d0a6b616a4147b4ff5489a3dc5af67848d1155"
+     "sha256": "b618f09ebddd1faab0bd2a2043046214ca95c7062d50fdcc380da142bac732f1"
     }
    }
   },
@@ -103,7 +102,7 @@
      "file": "oslo/oslo-2026.html",
      "label": "inntaksrunde i 2026",
      "name": "oslo-2026.html",
-     "sha256": "73d55d132ff86f0232c02a5c2c9bcb963e3282bf238c58b4d2530891bcddde54"
+     "sha256": "8e347d71a952ad0572571a6ba653693589d4d901e70915a2e24199b2606631ad"
     }
    }
   },
