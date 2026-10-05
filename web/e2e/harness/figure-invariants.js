@@ -1,7 +1,7 @@
 /* Poengkart figure invariants — paste whole into the Browser pane console
    (mcp__Claude_Browser__javascript_tool) with the app loaded. See ../SKILL.md.
 
-   It calls the app's OWN helpers (meanOf, isPoints, round1, schoolPressure,
+   It calls the app's OWN helpers (meanOf, isPoints, inMean, round1, schoolPressure,
    openMix, visibleIn, numericLatest, shownPrograms, and for the forecast
    layer predFor, chanceOf, schoolChance, and for the level scope levelScope,
    isVg1) and reads the REAL rendered panel, so it
@@ -29,7 +29,7 @@
     const years = own.length > 1 ? all.filter(y => y >= own[0] && y <= own[own.length - 1]) : own;
     const series = shown.filter(p => Object.values(p.values).some(isPoints));
     const line = {};
-    years.forEach(y => { const v = series.map(p => p.values[y]).filter(isPoints); if (v.length) line[y] = meanOf(v); });
+    years.forEach(y => { const v = series.map(p => p.values[y]).filter(inMean); if (v.length) line[y] = meanOf(v); });
     return { line, plotted: years.filter(y => line[y] != null) };
   };
   // the forecast layer must not touch I1-I7: run them with points off, then
@@ -40,12 +40,12 @@
     const progsShown = shownPrograms(s);
     const yrs = [...new Set(progsShown.flatMap(p => Object.keys(p.values)))].sort();
     const latest = yrs[yrs.length - 1];
-    const hero = meanOf(progsShown.map(p => p.values[latest]).filter(isPoints));
+    const hero = meanOf(progsShown.map(p => p.values[latest]).filter(inMean));
     const { line, plotted } = chartOf(s);
 
     // I1 — every figure printed is the exact one-decimal rounding of its value
     for (const y of yrs) {
-      const m = meanOf(s.programs.map(p => p.values[y]).filter(isPoints));
+      const m = meanOf(s.programs.map(p => p.values[y]).filter(inMean));
       if (m !== null) say('I1', round1(m) === exact1(m), `${s.name} ${y}: prints ${round1(m)}, exact ${exact1(m)}`);
     }
 
@@ -245,7 +245,7 @@
       say('I17', !!document.querySelector('#s-list .lvnote'), `${sL.name}: later years hidden without a disclosure line`);
       const st = schoolPressure(sL, 'all');
       if (st.kind === 'points') {
-        const want = meanOf(sL.programs.filter(isVg1).map(p => p.values[st.year]).filter(isPoints));
+        const want = meanOf(sL.programs.filter(isVg1).map(p => p.values[st.year]).filter(inMean));
         say('I17', round1(st.v) === round1(want), `${sL.name}: dot ${round1(st.v)}, Vg1 mean ${round1(want)}`);
       }
       allLevels = true; renderSide();

@@ -310,7 +310,7 @@ and "fill" refer to the two model components of Section 5.
 | e.g. 38.4 | Poenggrense: waiting list; last admitted had 38.4 points | yes | level + filled |
 | 0.0 | Filled, but last admitted competed without points | **no** | filled, never level |
 | ingen venteliste | No waiting list; every qualified applicant admitted; no threshold exists | no | not filled |
-| e.g. 6.0 (below 10.0) | Last admitted had numeric grades in only some subjects; everyone with a full grade record admitted | yes | not filled |
+| e.g. 6.0 (below 10.0) | Last admitted had numeric grades in only some subjects; everyone with a full grade record admitted | **no** | not filled |
 | F / D / U | Fortrinnsrett / inntak etter dokumentasjon / utgått (discontinued) | no | outside both parts |
 
 One county's "ingen venteliste" is a published rule rather than an observed
@@ -1707,7 +1707,9 @@ Held-out Brier 0.157 against 0.203 for the base-rate forecaster.
   admitted applicant's real score, not an error. The nine cells v1.23
   dropped are restored as printed (Section 4.1, Table 1), and the model
   counts each as not filled, like "ingen venteliste": a full grade record
-  scores at least 10,0, so everyone with one was admitted. The level fit is
+  scores at least 10,0, so everyone with one was admitted. The application
+  shows the figure with a note and leaves it out of every average, as it
+  does «ingen venteliste» and 0,0. The level fit is
   unchanged at 12,999 cells; the dataset holds 19,447 cells instead of
   19,440, the fill model 18,611 instead of 18,604, and the held-out fill
   cells 3,758 instead of 3,755. The Brier score stays at 0.093 and no

@@ -1,4 +1,4 @@
-import { chartMode, esc, sheetLens, fmt, HELD_OUT, isPoints, zeroIsFill, levelScope, meanOf, numericLatest, openMix, progName, shownPrograms, visibleIn } from "./helpers";
+import { chartMode, esc, sheetLens, fmt, HELD_OUT, isPoints, inMean, zeroIsFill, levelScope, meanOf, numericLatest, openMix, progName, shownPrograms, visibleIn } from "./helpers";
 import { CATS, t } from "./i18n";
 import { renderList } from "./programs";
 import { setSheetLens } from "./sidebar";
@@ -131,10 +131,11 @@ export function drawChart() {
 
   // The mean of the same cells the dot and the headline use, so the figure
   // above the chart sits exactly on this line's last point and the change is
-  // its last step. 0,0 stays out: it is not a height on a points axis.
+  // its last step. 0,0 stays out: it is not a height on a points axis; nor
+  // does a figure below 10,0 (inMean).
   const mid = {}, cnt = {};
   years.forEach(yr => {
-    const vals = series.map(p => p.values[yr]).filter(isPoints);
+    const vals = series.map(p => p.values[yr]).filter(inMean);
     if (vals.length) { mid[yr] = meanOf(vals); cnt[yr] = vals.length; }
   });
 

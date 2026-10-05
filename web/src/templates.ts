@@ -7,7 +7,7 @@
 import { S } from './state';
 import { t, CATS } from './i18n';
 import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE, HELD_OUT, HISTORY_ONLY, belowFullRecord,
-         partitionPrograms, numericLatest, progId, progName, levelScope, isRecent, isVg1, isPoints, meanStep, zeroIsFill, BUG_ICON, X_ICON } from './helpers';
+         partitionPrograms, numericLatest, progId, progName, levelScope, isRecent, isVg1, inMean, meanStep, zeroIsFill, BUG_ICON, X_ICON } from './helpers';
 import { bucketOf, chanceFinal, chanceMode, chanceOf, finalRoundBridge, isChosen, modelEntry, pct, pctS, predFor } from './forecast';
 import type { School, County } from './types';
 
@@ -134,7 +134,7 @@ export function heroCells(s: School, lensCat: string | null): HeroCell[] {
     // One cell is that programme area's poenggrense; several are averaged, and
     // the average named with its range: «44,1» over Katedralskolen's ST read as
     // the line to beat, when plain ST needed 47,5 and IB 40,6.
-    const nums = scopePrograms.map(p => p.values[latest]).filter(isPoints);
+    const nums = scopePrograms.map(p => p.values[latest]).filter(inMean);
     const lbl = nums.length > 1 ? t('heroMeanOf', fmt(Math.min(...nums)), fmt(Math.max(...nums))) : t('heroTypical');
     cells.push({ v: fmt(mean), l: `${lbl} · ${scopeLabel} ${latest}` });
     if (meanPrev !== null) {
@@ -173,7 +173,7 @@ export function heroHtml(s: School, lensCat: string | null): { hero: string; mix
   const warn = !(mix.mostly && mean !== null) ? ''
     : `<span class="sign" aria-hidden="true">⚠</span><span>` +
       esc(t('mostlyOpenNote', mix.open, mix.total, latest,
-             scopePrograms.map(p => p.values[latest]).filter(isPoints).length)) + `</span>`;
+             scopePrograms.map(p => p.values[latest]).filter(inMean).length)) + `</span>`;
   return { hero, mix: warn };
 }
 export function srcNoteHtml(): string {

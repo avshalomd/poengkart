@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { loadFixtures } from './fixtures';
 import { sortList, deltaFor, initListview } from '../src/listview';
-import { meanStep } from '../src/helpers';
+import { meanStep, schoolPressure, openMix } from '../src/helpers';
 import { S } from '../src/state';
 
 describe('list view', () => {
@@ -11,6 +11,23 @@ describe('list view', () => {
     expect(meanStep([{ values: { '2024': 38, '2025': 40, '2026': 42.5 } }] as any).d).toBeCloseTo(2.5, 6);
     expect(meanStep([{ values: { '2026': 42.5 } }] as any).d).toBeNull();
     expect(meanStep([{ values: { '2025': 'open', '2026': 42.5 } }] as any).d).toBeNull();
+  });
+
+  it('a figure below 10,0 stays out of every average and counts as everyone admitted', () => {
+    // Etterstad 2026: Restaurant- og matfag printed 6,0, the last admitted had
+    // grades missing; the snitt is 25,9 over the other three, not 21,0
+    loadFixtures(); S.allLevels = false; S.showOld = true;
+    const vg1 = (category: string, v: any) => ({ level: 'Vg1', category, program: category, values: { '2025': 30, '2026': v } });
+    const progs = [vg1('RM', 6.0), vg1('TP', 13.2), vg1('EL', 27.5), vg1('ST', 37.1)];
+    const st = meanStep(progs as any);
+    expect(st.mean).toBeCloseTo((13.2 + 27.5 + 37.1) / 3, 6);
+    expect(openMix(progs, '2026')).toMatchObject({ open: 1, total: 4 });
+    const pr: any = schoolPressure({ fylke: 'Oslo', programs: progs } as any, 'all');
+    expect(pr.kind).toBe('points');
+    expect(pr.v).toBeCloseTo((13.2 + 27.5 + 37.1) / 3, 6);
+    expect(pr).toMatchObject({ openN: 1, total: 4, filled: 3 });
+    const onlyLow: any = schoolPressure({ fylke: 'Oslo', programs: [vg1('RM', 6.0)] } as any, 'all');
+    expect(onlyLow.kind).toBe('open');
   });
 
   it('deltaFor reports the school’s meanStep for the requested year, in scope, or null', () => {

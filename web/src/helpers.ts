@@ -49,6 +49,11 @@ export const isPoints = v => typeof v === 'number' && v > 0;
 // printed, with partialRecordNote, and read as «ingen venteliste» by the model
 export const MIN_POINTS = 10;
 export const belowFullRecord = v => isPoints(v) && v < MIN_POINTS;
+// a cell that enters an average (snitt, dot colour, the chart's mean line):
+// a figure below 10,0 stays out, as «ingen venteliste» and 0,0 do. It says
+// everyone with a full grade record got in, and as a value it took
+// Etterstad's 2026 snitt from 25,9 to 21,0 on one programme
+export const inMean = v => isPoints(v) && v >= MIN_POINTS;
 // A 0 reads «Fullt» (noPoints) where the county legends it: the programme
 // filled and applicants with 0,0 were still left waiting (Akershus, Vestland).
 // Where the county prints the lowest points among those admitted
@@ -68,7 +73,7 @@ export const meanOf = vals => vals.length ? vals.reduce((a, b) => a + b, 0) / va
 // to compare like-for-like programmes instead, and beside an identical snitt
 // the two disagreed on 109 schools and flipped sign on 30.
 export function meanStep(progs) {
-  const meanAt = year => meanOf(progs.map(p => p.values[year]).filter(isPoints));
+  const meanAt = year => meanOf(progs.map(p => p.values[year]).filter(inMean));
   const yrs = [...new Set(progs.flatMap(p => Object.keys(p.values)))].sort();
   const latest = yrs[yrs.length - 1];
   // the previous year the line actually plots, not merely the previous year
@@ -88,7 +93,7 @@ export function yearMeans(progs: Program[]): [string, number][] {
   const yrs = [...new Set(progs.flatMap(p => Object.keys(p.values)))].sort();
   const out: [string, number][] = [];
   for (const y of yrs) {
-    const m = meanOf(progs.map(p => p.values[y]).filter(isPoints));
+    const m = meanOf(progs.map(p => p.values[y]).filter(inMean));
     if (m !== null) out.push([y, m]);
   }
   return out;
@@ -99,7 +104,7 @@ export function yearMeans(progs: Program[]): [string, number][] {
 export function openMix(programs, year) {
   const cells = programs.map(p => p.values[year])
     .filter(v => v !== undefined && v !== 'F' && v !== 'U' && v !== 'D');
-  const open = cells.filter(v => v === 'open').length;
+  const open = cells.filter(v => v === 'open' || belowFullRecord(v)).length;
   return { open, total: cells.length, filled: cells.length - open,
            mostly: cells.length > 0 && open > cells.length / 2 };
 }
@@ -290,8 +295,8 @@ export function schoolPressure(s, cat) {
   // but it stays out of the mean: as a value it dragged five schools into
   // the lowest colour band on the strength of one programme's queue.
   const zeroN = cells.filter(v => v === 0).length;
-  const nums = cells.filter(isPoints).sort((a, b) => a - b);
-  const openN = cells.filter(v => v === 'open').length;
+  const nums = cells.filter(inMean).sort((a, b) => a - b);
+  const openN = cells.filter(v => v === 'open' || belowFullRecord(v)).length;
   const total = nums.length + openN + zeroN;
   if (!nums.length) {
     if (!total) return { kind: 'none' };
