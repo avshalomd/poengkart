@@ -43,6 +43,12 @@ export const round1 = v => { const h = Math.round(v * 100), sg = h < 0 ? -1 : 1;
 // a cell that is a threshold someone could have missed. 'open', F, D and U
 // are not, and neither is 0,0 — see the note in schoolPressure().
 export const isPoints = v => typeof v === 'number' && v > 0;
+// a full grade record scores at least 10,0, so a printed figure below it means
+// the last one admitted had grades missing and everyone with a full record got
+// in (Oslo: fewer than seven grades count as their sum / 16 × 10); shown as
+// printed, with partialRecordNote, and read as «ingen venteliste» by the model
+export const MIN_POINTS = 10;
+export const belowFullRecord = v => isPoints(v) && v < MIN_POINTS;
 // A 0 reads «Fullt» (noPoints) where the county legends it: the programme
 // filled and applicants with 0,0 were still left waiting (Akershus, Vestland).
 // Where the county prints the lowest points among those admitted

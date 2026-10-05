@@ -163,5 +163,17 @@
   "kept_from": "poenggrenser-rogaland-2023-2024.pdf",
   "ignored": "open",
   "ignored_from": "poenggrenser-rogaland-2021-2022.pdf"
+ },
+ {
+  "county": "Rogaland",
+  "school": "Sola videregående skole",
+  "program": "Flyfag, Landslinje",
+  "level": "Vg2",
+  "year": 2019,
+  "kept": 38.9,
+  "kept_from": "poenggrenser-rogaland-2021-2022.pdf",
+  "ignored": 3.9,
+  "ignored_from": "poenggrenser-rogaland-2019-2020.pdf",
+  "reason": "dropped digit"
  }
 ]

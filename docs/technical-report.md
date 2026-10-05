@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · October 2026 · v1.23 (version history in Appendix D)
+Technical report · October 2026 · v1.24 (version history in Appendix D)
 Application: [poengkart.no](https://poengkart.no) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
@@ -17,7 +17,7 @@ with inconsistent structure, retention, and semantics. We assemble every
 edition we could retrieve, older years from newspaper and archive copies
 where the county's own file is lost, into an open, register-normalised
 panel: 227 schools,
-2,932 programme rows, 19,440 observations, 2012–2026, keyed to Norway's
+2,932 programme rows, 19,447 observations, 2012–2026, keyed to Norway's
 national programme register (Grep). On this censored panel we forecast the
 next intake as the probability of admission given the applicant's points,
 using a hurdle model: a hierarchical logistic model for whether a programme
@@ -76,7 +76,7 @@ describes **Poengkart** ("points map"), an open dataset, forecasting model,
 and deployed application. Our contributions are as follows:
 
 - **An open, register-normalised dataset** of every retrievable published
-  threshold — 227 schools, 2,932 programme rows, 19,440 cell-level
+  threshold — 227 schools, 2,932 programme rows, 19,447 cell-level
   observations across 8 counties and the years 2012–2026 — in which every
   row is resolved against the national Grep register and every cell's state
   (numeric threshold, filled at zero, no waiting list, quota-based
@@ -210,7 +210,7 @@ not point predictions, the deliverable.
 **Hierarchical models and shrinkage.** Borrowing strength across small
 groups by partial pooling is classical (James & Stein, 1961; Efron & Morris,
 1975) and is standard multilevel practice (Gelman & Hill, 2007). We apply it
-to a censored panel in which 407 of the 2,579 series with any numeric
+to a censored panel in which 406 of the 2,579 series with any numeric
 threshold have a single observation, with variance components estimated by
 an EM-type procedure (Dempster, Laird & Rubin, 1977).
 
@@ -269,10 +269,12 @@ newer wins and the disagreement is retained in `data/source-drift.json`; a
 disagreement near a full grade point flags the school-year as uncertain,
 and the application says so in words. A bare integer below 8 in a cell is
 read as a fragment of a course code rather than a threshold. A printed
-figure between 0 and 10 is dropped as an error in the county's table:
-karakterpoeng start at 10,0, a 1 in every subject, yet the counties have
-printed figures like 4,0. A printed 0,0 stays where the county documents
-what it means. A suite of 136
+figure between 0 and 10 is kept as printed. Karakterpoeng start at 10,0, a
+1 in every subject, so such a figure means the last applicant admitted had
+grades missing; Oslo's intake office explained that an applicant with fewer
+than seven counting numeric grades is scored as the sum of their grades
+divided by 16, times ten, instead of 0. A printed 0,0 stays where the
+county documents what it means. A suite of 136
 regression checks locks known failure modes: shifted year columns,
 implausible values, unmatched schools, county-specific quirks, and the
 decimal rule itself.
@@ -308,6 +310,7 @@ and "fill" refer to the two model components of Section 5.
 | e.g. 38.4 | Poenggrense: waiting list; last admitted had 38.4 points | yes | level + filled |
 | 0.0 | Filled, but last admitted competed without points | **no** | filled, never level |
 | ingen venteliste | No waiting list; every qualified applicant admitted; no threshold exists | no | not filled |
+| e.g. 6.0 (below 10.0) | Last admitted had numeric grades in only some subjects; everyone with a full grade record admitted | yes | not filled |
 | F / D / U | Fortrinnsrett / inntak etter dokumentasjon / utgått (discontinued) | no | outside both parts |
 
 One county's "ingen venteliste" is a published rule rather than an observed
@@ -337,13 +340,13 @@ columns use the tokens of Table 1.
 | Fylke | Years | Intake | Cells | Poenggrense | Ingen venteliste | 0.0 | F | D | U | Levels | Source |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Akershus | 2012–2015, 2024–2026 | 2. (2012–2015 1.; 2025 also 1.) | 482 | 361 | 92 | 3 | 0 | 26 | 0 | Vg1 | web page (2025/26); two workbooks released on request (2024/25, 2026/27); 2015 from a newspaper; 2012–2014 are Røyken's, a Buskerud school then |
-| Buskerud | 2012–2014, 2024–2026 | — (2012–2014 1.) | 473 | 414 | 54 | 0 | 0 | 5 | 0 | Vg1 | county web page; 2012–2014 from the county's statistics booklets, typed from images |
+| Buskerud | 2012–2014, 2024–2026 | — (2012–2014 1.) | 475 | 416 | 54 | 0 | 0 | 5 | 0 | Vg1 | county web page; 2012–2014 from the county's statistics booklets, typed from images |
 | Innlandet | 2012–2018, 2020–2026 | 2. | 3,879 | 2,129 | 1,673 | 55 | 0 | 12 | 10 | Vg1–Vg2 | vilbli PDFs; 2020–2022 released on request; 2012–2018 Hedmark's tables, from a document archive's page text |
 | Møre og Romsdal | 2012–2026 | 2. | 6,058 | 4,252 | 1806 | 0 | 0 | 0 | 0 | Vg1–Vg3 | extract behind the county's Power BI dashboard, sent on request (Vg1), and the dashboard itself (Vg2 and up); figures under 25 shown as ingen venteliste by the dashboard's own rule |
-| Oslo | 2012–2026 | 1. | 995 | 810 | 105 | 0 | 0 | 80 | 0 | Vg1 | yearly PDFs, 2015 from a school's own site; 2026 as a web page; 2012, 2013 and 2016 from copies (a thesis, two newspapers) |
+| Oslo | 2012–2026 | 1. | 999 | 814 | 105 | 0 | 0 | 80 | 0 | Vg1 | yearly PDFs, 2015 from a school's own site; 2026 as a web page; 2012, 2013 and 2016 from copies (a thesis, two newspapers) |
 | Rogaland | 2012, 2015, 2017–2026 | 2. (2012 and 2017 1.; 2015 —) | 4,187 | 1,984 | 1,500 | 0 | 536 | 80 | 87 | Vg1–Vg4 | rolling multi-year PDFs via vilbli; one Wayback edition; 2015 from the county's school portal (Wayback); 2017 from the county's own news article (Common Crawl); 2012 from a newspaper |
 | Trøndelag | 2024–2025 | 2. | 220 | 112 | 108 | 0 | 0 | 0 | 0 | Vg1 | five regional PDFs via vilbli; 2024 the Trondheim region's alone, typed from an image |
-| Vestland | 2014–2026 | 1. | 3,146 | 2,937 | 199 | 10 | 0 | 0 | 0 | Vg1–Vg3 | county PDFs; 2014–2019 from the predecessor counties' tables and two newspapers' copies |
+| Vestland | 2014–2026 | 1. | 3,147 | 2,938 | 199 | 10 | 0 | 0 | 0 | Vg1–Vg3 | county PDFs; 2014–2019 from the predecessor counties' tables and two newspapers' copies |
 
 Innlandet's 2020–2022 tables and Akershus's 2024/25 and 2026/27 workbooks
 were released to us under freedom-of-information requests in August 2026
@@ -385,7 +388,7 @@ lists» (57 figures, Vg1–Vg3), so the year is an excerpt like the
 newspapers' and is pooled out of the walk in the same way.
 
 Of the 2,579 school×programme series that ever carry a numeric threshold,
-407 have exactly one observed year. Among the 19,440 cells, 18,604
+406 have exactly one observed year. Among the 19,447 cells, 18,611
 competed on points and inform the fill model, and 12,999 carry a numeric
 threshold and thus inform the level model. Møre og Romsdal's figures also
 carry the admitted mean (Gjennomkar), which no other county publishes;
@@ -452,7 +455,7 @@ reason. Neither publishes thresholds today, but both once printed them:
 Agder's intake office showed school counsellors its 2020 and 2021 Vg1
 thresholds, and Aust-Agder a selection of 2016–2017 figures (19 schools,
 204 cells in all), and Nordland printed every programme area in its yearly
-statistics booklet in 2013–2015 and 2019–2021 (21 schools, 2,142 cells).
+statistics booklet in 2013–2015 and 2019–2021 (21 schools, 2,144 cells).
 They are the only public record of those markets, and the application
 shows them with notes on what each figure is. They are not forecast: the
 newest is five intakes old, and the tables are of other kinds than the
@@ -543,7 +546,7 @@ Vestland in the 2020 and 2021 walk-forward folds, Trøndelag in the 2025
 fold — while the fill walk keeps the neutral level there, because the
 partial years' fill labels are uninformative by construction.
 The level component is fitted on the 12,999 cells with a numeric threshold;
-the fill component on the 18,604 cells that competed on points (Section 4.4). The hierarchy exists to borrow strength: a series with
+the fill component on the 18,611 cells that competed on points (Section 4.4). The hierarchy exists to borrow strength: a series with
 one observed year inherits its level from the hundreds of comparable series
 around it — partially pooled toward its school, programme, and county means
 — instead of being trusted alone.
@@ -727,7 +730,7 @@ held-out years cells given a mean 0.96 filled 88% — the series effects fit
 the training panel too well. We therefore recalibrate by Platt scaling,
 fitting
 
-$$\operatorname{logit} \pi' \;=\; 0.192 \;+\; 0.658 \, \operatorname{logit} \pi \tag{5}$$
+$$\operatorname{logit} \pi' \;=\; 0.195 \;+\; 0.661 \, \operatorname{logit} \pi \tag{5}$$
 
 on the calibration years only, which are disjoint from the held-out
 evaluation years. The slope well below 1 is a uniform confidence haircut.
@@ -946,11 +949,11 @@ level and by county. RMSE and mean $s$ in points.
 The deployed quantity is (1). For every held-out cell and every score $x \in
 \{20, 25, \dots, 55\}$ we ask "would an applicant with $x$ points have been
 admitted?" — the outcome is determined by the published threshold and fill
-state — and score the predicted probability over all 30,040 score–cell
-pairs (3,755 cells), with $\pi$ as deployed: Brier score **0.093** [0.089, 0.096]. The step rule is defined
-only where the series has a prior figure, 26,912 of those pairs; on that
+state — and score the predicted probability over all 30,064 score–cell
+pairs (3,758 cells), with $\pi$ as deployed: Brier score **0.093** [0.089, 0.096]. The step rule is defined
+only where the series has a prior figure, 26,928 of those pairs; on that
 common subset the model scores **0.090** against the step rule's
-**0.156** (difference [−0.070, −0.060]) and the probabilistic persistence
+**0.156** (difference [−0.071, −0.060]) and the probabilistic persistence
 forecast's **0.095** (difference −0.005 [−0.007, −0.003]). The second
 comparison is the fair one: most of the model's advantage over the step
 rule is the uncertainty treatment of Section 6, which any centre could
@@ -977,8 +980,8 @@ The largest gap between prediction and outcome in any decile is 8.0 points,
 in the 60–70% bin, where the forecast is cautious: a stated 65% was
 realised at 73%, so the upper middle of the scale understates the chance
 rather than overstating it (the 70–80% bin, next, is cautious by 7.6
-points). Below 60% the forecast is within 4.4 points of
-the outcome in every bin and optimistic by at most 0.3 points, in the three
+points). Below 60% the forecast is within 4.3 points of
+the outcome in every bin and optimistic by at most 0.2 points, in the three
 lowest bins — a stated 15% was realised at 17% — a region the
 application's coarse bands (likely ≥ 70%, possible ≥ 35%, otherwise
 unlikely) absorb in any case.
@@ -1013,9 +1016,9 @@ calibration-year folds:
 - **A county's proxy fill labels.** Møre og Romsdal's "ingen venteliste" is
   the dashboard's rule of Section 4.4, not an observed state. Holding the
   county out of the fill fit instead — its $\pi$ forced to 1, as deployed
-  before the rule — moves the Platt slope from 0.658 to 0.581 and the
+  before the rule — moves the Platt slope from 0.661 to 0.586 and the
   held-out fill Brier on the seven counties whose labels are observed from
-  0.158 to 0.157: the proxy labels do not distort the other counties'
+  0.1584 to 0.1577: the proxy labels do not distort the other counties'
   calibration; they cost it a trifle. On the county's own 730 held-out
   cells the proxy-labelled hurdle scores 0.150 against 0.180 for its base
     rate, which says the rule is predictable — a low cutoff one year
@@ -1199,7 +1202,7 @@ figures, and says beside them why there is no chance of admission.
   figure implies; Section 8.1 measures the gap where it can be measured, and
   equation (6) passes it on only for the county where it is measured.
 - **Short test window.** Two held-out years (2,648 cells with a number,
-  3,755 that competed) from one country and fifteen county-years. The
+  3,758 that competed) from one country and fifteen county-years. The
   cluster bootstrap of Section 7.1 prices the within-school dependence but
   treats county-years as exchangeable; the by-county coverage of Table 4b,
   from 74% to 89%, is the honest size of what it leaves out. 2026 looks
@@ -1322,8 +1325,8 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.23`, and the numbers
-quoted here are from the build of 2026-10-03. The compiled dataset ships in
+the version this report describes is tagged `report-v1.24`, and the numbers
+quoted here are from the build of 2026-10-05. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
 JSON; the original county publications are mirrored under `sources/`,
@@ -1497,14 +1500,14 @@ Innlandet), which partly explains the better figures.
 ## Appendix C: Fill-event calibration
 
 **Table C1:** Reliability of the recalibrated fill probability $\pi'$ on the
-held-out years (3,755 cells that competed on points, all eight counties,
+held-out years (3,758 cells that competed on points, all eight counties,
 Møre og Romsdal's 730 proxy-labelled cells included; base rate 0.717).
-Held-out Brier 0.156 against 0.203 for the base-rate forecaster.
+Held-out Brier 0.157 against 0.203 for the base-rate forecaster.
 
 | Predicted | Observed | n |
 |---|---|---|
-| 10–20% | 15.0% | 40 |
-| 20–30% | 18% | 161 |
+| 10–20% | 17.8% | 45 |
+| 20–30% | 17% | 156 |
 | 30–40% | 27% | 203 |
 | 40–50% | 45% | 222 |
 | 50–60% | 53% | 282 |
@@ -1697,7 +1700,19 @@ Held-out Brier 0.156 against 0.203 for the base-rate forecaster.
   to 80.6%; the county-year step's spread grows from 0.93 to 1.01 points,
   and the admission probability's Brier score does not move. No
   conclusion changes.
-- **v1.23** (this version). A data release, no model change: Buskerud's
+- **v1.24** (this version). A printed figure between 0 and 10 is read
+  again, now with its meaning. Oslo's intake office explained that an
+  applicant with fewer than seven counting numeric grades is scored as the
+  sum of their grades divided by 16, times ten, so such a figure is the last
+  admitted applicant's real score, not an error. The nine cells v1.23
+  dropped are restored as printed (Section 4.1, Table 1), and the model
+  counts each as not filled, like "ingen venteliste": a full grade record
+  scores at least 10,0, so everyone with one was admitted. The level fit is
+  unchanged at 12,999 cells; the dataset holds 19,447 cells instead of
+  19,440, the fill model 18,611 instead of 18,604, and the held-out fill
+  cells 3,758 instead of 3,755. The Brier score stays at 0.093 and no
+  conclusion changes.
+- **v1.23**. A data release, no model change: Buskerud's
   2026/27 Vg1 thresholds, from the county's own page (which does not state
   the intake round, like the county's earlier years), join the panel — 78
   cells. A printed figure between 0 and 10 is now dropped as an error in

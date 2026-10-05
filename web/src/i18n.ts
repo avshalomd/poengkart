@@ -671,6 +671,10 @@ export const T = {
   // venteliste" is the county's own reading, not an observed queue state
   openRuleNote: { no: 'Møre og Romsdal viser «ingen venteliste» der alle kom inn eller poenggrensen var under 25 poeng – fylkets egen regel. Hvilken av de to, sier ikke fylket.',
                   en: 'Møre og Romsdal shows “no waiting list” where everyone got in or the threshold was below 25 points – the county\'s own rule. Which of the two, the county does not say.' },
+  // a figure below 10,0 (belowFullRecord in helpers.ts): Oslo's
+  // Inntakskontoret explained the rule on 5 Oct 2026
+  partialRecordNote: { no: 'En poenggrense under 10,0 betyr at den siste som kom inn, manglet tallkarakter i noen fag. Alle søkere med tallkarakter i alle fag fikk plass.',
+                       en: 'A threshold below 10.0 means the last applicant admitted had no numeric grade in some subjects. Every applicant with a numeric grade in every subject got a place.' },
   // Telemark's extract gives the lowest points among the admitted for every
   // offered programme and no fill state, so the county is published but held
   // out of the model (tools/extractors/telemark.py, HELD_OUT in tools/model.py)

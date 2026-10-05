@@ -23,7 +23,7 @@ import unicodedata
 
 MIN_PLAUSIBLE = 8.0     # bare integers below this are parse noise (course-code digits); a printed decimal is always a threshold
 MAX_PLAUSIBLE = 65.0
-MIN_POINTS = 10.0       # karakterpoeng are a grade average (1-6) x 10; build_dataset drops a printed 0 < v < 10
+MIN_POINTS = 10.0       # a full grade record scores at least 10,0; a printed 0 < v < 10 is kept (the last one admitted had grades missing) and the model reads it as open
 
 # --- text ---------------------------------------------------------------
 def norm(s):

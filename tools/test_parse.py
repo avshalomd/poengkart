@@ -115,13 +115,13 @@ zero_counties = {s['fylke'] for s in DATA['schools'] for p in s['programs']
 # in its 2019-21 table with no legend (NORDLAND_ZERO in its extractor)
 check('0,0 appears only where the source publishes it',
       zero_counties <= {'Akershus', 'Innlandet', 'Nordland', 'Vestland'}, str(sorted(zero_counties)))
-# karakterpoeng start at 10,0, so build_dataset drops a printed figure
-# between 0 and 10 as an error in the county's table (Kongsberg and Buskerud
-# vgs «4,0», Etterstad «6,0» and «5,6», Bodin «5,6» among them)
-sub10 = [(s['fylke'], s['name'], p['program'], p['level'], y, v) for s in DATA['schools']
-         for p in s['programs'] for y, v in p['values'].items()
-         if isinstance(v, (int, float)) and 0 < v < 10]
-check('no poenggrense between 0 and 10 (karakterpoeng start at 10,0)', not sub10, str(sub10[:3]))
+# a figure between 0 and 10 is real: the last one admitted had grades
+# missing, and Oslo scores fewer than seven grades as their sum / 16 x 10
+# (Inntakskontoret, 5 Oct 2026). It is kept as printed; the model reads it as
+# everyone with a full grade record admitted (cell_state in model.py)
+_etter = next((p['values'].get('2026') for s in DATA['schools'] if s['name'].startswith('Etterstad')
+               for p in s['programs'] if p['program'] == 'Restaurant- og matfag' and p['level'] == 'Vg1'), None)
+check('Etterstad Vg1 Restaurant- og matfag 2026 keeps the printed «6,0»', _etter == 6.0, str(_etter))
 # Rogaland's 2024-2026 edition prints «3,0» here (p1, Vg2 block), below the
 # lowest possible score; the county confirmed on 23 Sept 2026 that there were
 # free places (POENG-34), and the extractor's COUNTY_CORRECTIONS applies it
@@ -252,8 +252,8 @@ glued = [f'{s}: {p["program"]}' for s, p, _, _ in cells
          if re.search(r'ventelis|fortrinn|fortinn|utgår|ledige|dokumentasjon',
                       p['program'], re.I)]
 check('no value token glued into a program name', not glued, str(glued[:3]))
-# the noise floor lives in the classifier (bare integers only), and
-# build_dataset drops a printed figure between 0 and 10; 0,0 is kept
+# the noise floor lives in the classifier (bare integers only); a printed
+# figure between 0 and 10 and a printed 0,0 are both kept
 absurd = [(s, p['program'], y, v) for s, p, y, v in cells
           if isinstance(v, (int, float)) and not (0 <= v <= 65)]
 check('no absurd thresholds', not absurd, str(absurd[:3]))

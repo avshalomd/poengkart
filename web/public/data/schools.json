@@ -5179,7 +5179,8 @@
       "2013": 18.8,
       "2014": 23.3,
       "2024": 21.1,
-      "2025": "open"
+      "2025": "open",
+      "2026": 4.0
      },
      "grep": "RMRMF1----",
      "aliases": [
@@ -6014,6 +6015,7 @@
      "category": "MD",
      "values": {
       "2024": "D",
+      "2025": 4.0,
       "2026": 39.1
      },
      "grep": "MDMDD1----"
@@ -10180,7 +10182,7 @@
    "wiki_url": "https://no.wikipedia.org/wiki/Valle_videreg%C3%A5ende_skole_(%C3%98stre_Toten)",
    "wiki_extract": "Valle videregående skole er en yrkesfaglig videregående skole på Lena i Østre Toten kommune, som spesialiserer sitt tilbud innen naturbruk. Fra 1. oktober 2014 ble skolen lagt under felles administrasjon med Lena videregående skole. Rektor ved Lena vgs ble rektor for begge skolene.",
    "address": "Lenagata 20, 2850, LENA",
-   "photo": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Valle_VGS_1.jpg",
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Valle_VGS_1.jpg/960px-Valle_VGS_1.jpg",
    "photo_source": "reviewed",
    "photo_page": "https://commons.wikimedia.org/wiki/File:Valle_VGS_1.jpg",
    "photo_credit": "Foto: Mokleven (CC BY-SA 3.0)",
@@ -37582,6 +37584,7 @@
      "level": "Vg2",
      "category": "KD",
      "values": {
+      "2019": 5.6,
       "2020": 26.3,
       "2021": 28.9
      },
@@ -42623,6 +42626,7 @@
      "values": {
       "2013": "open",
       "2014": "open",
+      "2019": 8.8,
       "2020": 25.0,
       "2021": 22.0
      },
@@ -45349,7 +45353,8 @@
       "2022": 12.7,
       "2023": "open",
       "2024": 23.6,
-      "2025": 24.4
+      "2025": 24.4,
+      "2026": 6.0
      },
      "grep": "RMRMF1----",
      "aliases": [
@@ -45408,6 +45413,7 @@
       "2015": 22.0,
       "2017": 18.5,
       "2018": 23.8,
+      "2019": 5.6,
       "2020": 17.9
      },
      "grep": "TPTIP1----",
@@ -47064,6 +47070,7 @@
       "2020": "open",
       "2021": "open",
       "2022": "open",
+      "2023": 9.4,
       "2024": 22.3,
       "2025": 27.3,
       "2026": 22.2
@@ -47394,6 +47401,7 @@
       "2014": 30.0,
       "2015": 29.4,
       "2017": "open",
+      "2019": 9.4,
       "2020": "open",
       "2021": "open",
       "2022": "open",
@@ -64080,6 +64088,7 @@
       "2019": 18.9,
       "2020": 20.0,
       "2021": 27.7,
+      "2022": 8.3,
       "2023": 20.5,
       "2024": 31.9,
       "2025": 20.6,

@@ -32,14 +32,14 @@ empirical distribution of the backtest's own forecast errors (see *Spread*).
 
 Two fits, one structure. Every effect is a random effect, so a school or
 programme with a single year of data borrows its level from the hundreds of
-similar ones around it instead of being trusted on its own —407 of the 2 579
+similar ones around it instead of being trusted on its own —406 of the 2 579
 series have exactly one year.
 
 **Level** (on the 12 999 cells that carry a number):
 
     y = μ + school + category + programme|level + series + county×year + round offset + ε
 
-**Fill** (on the 18 604 cells that competed on points — number, 0,0 or "no waitlist".
+**Fill** (on the 18 611 cells that competed on points — number, 0,0 or "no waitlist".
 In Møre og Romsdal "no waitlist" is the county's own dashboard rule, a
 figure under 25 — see `docs/data-notes.md` — so its labels are a proxy, and
 the backtest measures what they are worth, below):
@@ -78,12 +78,17 @@ though the margin is inside its own noise: a cluster bootstrap over
 school×year puts the difference at [−0.003, −0.000], and on the held-out
 years the two variants score the same fill Brier.
 
-**What each cell means to the model.** A number > 0 is an observation of the
-level and counts as *filled*. "No waitlist" is *not filled* and says nothing
+**What each cell means to the model.** A number of 10,0 or more is an
+observation of the level and counts as *filled*. "No waitlist" is *not filled* and says nothing
 about the level — it is a state, not a low number. 0,0 counts as *filled* and
 stays out of the level fit: it is the bottom of the scale, not a height on it,
 which is the rule the app already applies everywhere else. F, D and U never
-competed on points and enter neither fit.
+competed on points and enter neither fit. A number between 0 and 10 counts as
+*not filled*, like "no waitlist": a full grade record scores at least 10,0, so
+the last one admitted had grades missing and everyone with a full record got
+in. Oslo's intake office explained the rule on 5 Oct 2026: an applicant with
+fewer than seven counting numeric grades is scored as the sum of their grades
+divided by 16, times ten, instead of 0 (`cell_state` in `tools/model.py`).
 
 **Rounds.** Within a county the published round is mostly fixed, so it is
 absorbed by the county level and need not be known — this is also why
@@ -235,12 +240,12 @@ The 80% interval (m ± 1.2816 s) contained the published figure 81% of the time.
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.96 filled 0.88 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = 0.192 + 0.658 logit π). Scored on all eight counties, Møre og
+(logit π′ = 0.195 + 0.661 logit π). Scored on all eight counties, Møre og
 Romsdal's proxy labels included: held-out Brier 0.156 against 0.203 for the
 base rate. Held out of the fill fit instead, with its fill probability
 fixed at 1 as it was until 5 September 2026, the other seven counties'
-held-out Brier goes from 0.158 to 0.157 and the Platt slope from 0.658 to
-0.581; on the county's own 730 held-out cells the proxy-labelled hurdle
+held-out Brier goes from 0.1584 to 0.1577 and the Platt slope from 0.661 to
+0.586; on the county's own 730 held-out cells the proxy-labelled hurdle
 scores 0.150 against 0.180 for its base rate
 (`meta.halflife_search.proxy_label_experiment`).
 
@@ -267,8 +272,8 @@ distribution and fill probability on the last published figure instead of
 on the forecast: that scores 0.095, so most of the gain over the bare rule
 is the uncertainty treatment, and the model's own point forecast is worth
 the last 0.006 of it.
-Below 60% the forecast is within 4.4 points of the outcome in every bin,
-optimistic by at most 0.3 points in the three lowest — a 15% chance was
+Below 60% the forecast is within 4.3 points of the outcome in every bin,
+optimistic by at most 0.2 points in the three lowest — a 15% chance was
 really 17% — which the app's bands absorb (both are "unlikely"); from 60%
 up it is cautious — a stated 65% came true 73% of the time, the largest gap
 in any bin. The walk-forward forecasts themselves are in `data/model-backtest.csv`.
@@ -319,10 +324,9 @@ three of them, the largest included, were checked against the county's own PDF
 Slåtthaug automatisering Vg2 **18,00**, Fitjar helsearbeiderfag Vg2 **48,80**
 — all printed exactly so. They are real extremes, not damage; the cluster is
 Vestland having the most cells. Figures printed between 0 and 10, such as
-Kongsberg's 2025 figure of 4,0 for musikk, dans og drama, are not extremes but
-errors in the county's table, since karakterpoeng start at 10,0; the pipeline
-drops them (`MIN_POINTS` in `tools/common.py`), so they are neither shown nor
-fitted.
+Kongsberg's 2025 figure of 4,0 for musikk, dans og drama, are not extremes
+either: they are shown as printed and the model reads them as *not filled*
+(above), so they never reach the level fit.
 
 ## The final round, where the county publishes an earlier one
 

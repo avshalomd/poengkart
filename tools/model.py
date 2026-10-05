@@ -26,8 +26,12 @@ Variance components are estimated by a few steps of the usual normal-normal
 EM approximation, and observations are down-weighted with age (half-life
 chosen by the backtest) so the forecast follows recent years.
 
-Cells: a number > 0 enters (1) and counts as filled in (2). 'open' (no
-waitlist) enters (2) only — it is a state, not a low number. 0,0 counts as
+Cells: a number of 10,0 or more enters (1) and counts as filled in (2).
+'open' (no waitlist) enters (2) only — it is a state, not a low number. So
+does a printed figure between 0 and 10: karakterpoeng start at 10,0 for a
+full grade record, so the last one admitted had grades missing (Oslo scores
+fewer than seven grades as their sum / 16 x 10) and everyone with a full
+record got in. 0,0 counts as
 filled in (2) and stays out of (1): it is the bottom of the scale, not a
 height on it, which is the same rule the app applies. F, D and U never
 competed on points and enter neither.
@@ -74,6 +78,7 @@ from scipy.optimize import minimize
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from forecast_year import forecast_intake   # noqa: E402
+from common import MIN_POINTS                # noqa: E402
 from scipy.special import ndtr, expit
 
 
@@ -183,6 +188,13 @@ def is_num(v):
     return isinstance(v, (int, float)) and not isinstance(v, bool) and v > 0
 
 
+def cell_state(v):
+    """How a cell enters the model; see «Cells:» in the module docstring."""
+    if is_num(v):
+        return 'num' if v >= MIN_POINTS else 'open'
+    return 'zero' if v == 0 else 'open' if v == 'open' else None
+
+
 def load_obs(data):
     """Flatten schools.json into one row per (series, year) that competed on points."""
     cy = {c['fylke']: c for c in data['counties']}
@@ -203,7 +215,7 @@ def load_obs(data):
                 mean = means.get(y)
                 y = int(y)
                 newest[s['fylke']] = max(newest[s['fylke']], y)
-                state = 'num' if is_num(v) else 'zero' if v == 0 else 'open' if v == 'open' else None
+                state = cell_state(v)
                 if state is None:
                     continue
                 rnd = year_round(cy[s['fylke']], y)
@@ -220,7 +232,7 @@ def load_obs(data):
             for alt, r_alt in alts:
                 for y, va in (p.get(alt) or {}).items():
                     vm = p['values'].get(y)
-                    st = lambda v: 'num' if is_num(v) else 'zero' if v == 0 else 'open' if v == 'open' else None
+                    st = cell_state
                     if st(vm) is None or st(va) is None:
                         continue
                     main_round = year_round(cy[s['fylke']], y)

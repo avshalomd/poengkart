@@ -84,6 +84,14 @@ describe('a county held out of the model', () => {
     expect(other).not.toContain('ikke sammenlignes');
     expect(other).not.toContain('cannot be compared');
   });
+  it('explains a printed threshold below 10,0 and only there', () => {
+    loadFixtures();
+    const rm = (values: any) => ({ program: 'Restaurant- og matfag', level: 'Vg1', category: 'RM', values });
+    const etterstad: any = { name: 'Etterstad videregående skole', fylke: 'Oslo', programs: [rm({ 2025: 'open', 2026: 6.0 })] };
+    expect(notesHtml(etterstad)).toContain(esc(t('partialRecordNote')));
+    const full: any = { name: 'Etterstad videregående skole', fylke: 'Oslo', programs: [rm({ 2025: 10.0, 2026: 0 })] };
+    expect(notesHtml(full)).not.toContain(esc(t('partialRecordNote')));
+  });
   it('names the county that published a moved school’s years, Nordland’s supplement and a register renaming', () => {
     loadFixtures();
     S.DATA = { ...DATA, counties: [...DATA.counties, { fylke: 'Nordland', supplement_years: ['2013', '2014', '2015'] }] };
