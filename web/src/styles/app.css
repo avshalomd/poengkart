@@ -1885,6 +1885,12 @@
     .scope-chip button::after { content: ''; position: absolute; inset: -15px 0 -7px; }
     /* the photo credit is a 13px line: it reaches 8px up, stopping short of the
        school name, and 14px down to where the website link's own reach starts */
+    /* «Meld fra via tilbakemelding» closes the sheet as a 16px line of 10.5px
+       text, and the map credits are 13px; both reach to 24px under a finger.
+       The row a programme name sits in is the target there, 31px and up. */
+    #src-note .lnk, .maplibregl-ctrl-attrib a { position: relative; }
+    #src-note .lnk::after { content: ''; position: absolute; inset: -6px -4px; }
+    .maplibregl-ctrl-attrib a::after { content: ''; position: absolute; inset: -6px -3px; }
     .photo .name .credit a { position: relative; }
     .photo .name .credit a::after { content: ''; position: absolute; inset: -8px 0 -14px; }
     /* search sat in the utility pill and inherited its touch allowance; on the

@@ -171,7 +171,7 @@ extractor (`COUNTY_CORRECTIONS` in `tools/extractors/rogaland.py`) with the
 county's answer beside it, and applies only while an edition still prints
 the wrong value.
 
-`tools/test_parse.py` runs 137 regression checks over the result; every one of
+`tools/test_parse.py` runs 139 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built

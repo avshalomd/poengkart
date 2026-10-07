@@ -16,6 +16,10 @@ _Avoid_: snittpoeng, gjennomsnittskarakter (in UI), GPA
 The karaktersnitt × 10, the scale every poenggrense is published in (4,25 in average is 42,5). Thresholds, graphs and forecasts stay in it.
 _Avoid_: poengsum, skolepoeng (that is the Vg3 figure), points score
 
+**Tallkarakter** (numeric grade):
+A grade from 1 to 6 in a subject, as opposed to a subject with no numeric grade (fritak, exemption, or «IV», ikke vurdert, not assessed). A pupil with a numeric grade in every counting subject has a full grade record and at least 10,0 karakterpoeng.
+_Avoid_: karakter alone where the numeric kind matters, grade score
+
 **Fortrinnsrett** (statutory priority right):
 A legal right to a place ahead of the points queue; a programområde filled through it has no poenggrense.
 _Avoid_: priority quota, special admission
@@ -66,6 +70,10 @@ Every (school, programområde, year) cell is exactly one of these. Internal toke
 
 **Poenggrense** (number):
 See above.
+
+**Poenggrense under 10,0** (a threshold below 10,0; token: a number above 0 and below 10):
+The last one admitted lacked a tallkarakter in some subjects, so everyone with a full grade record got in (Oslo's rule, 5 Oct 2026: with fewer than seven counting tallkarakterer the score is their sum / 16 × 10). Shown as printed with a note (`partialRecordNote`), kept out of every average (`inMean`) and read as «ingen venteliste» by the model (`belowFullRecord`, `cell_state` in `tools/model.py`). Not an error to correct, unless the county says it is (Rogaland's 3,0 for Bergeland 2026, `docs/data-notes.md`).
+_Avoid_: invalid threshold, partial points, error
 
 **Ingen venteliste** (no waiting list; token `open`):
 Every qualified applicant was admitted; this is not a poenggrense of zero. In Møre og Romsdal the state is the county's own dashboard rule — a figure under 25 is shown as `*`, «alle kom inn, eller at laveste karakter var under 25» — applied in `tools/extractors/mro.py`; a proxy for the observed state, until the county links capacity data (see `docs/data-notes.md`). Telemark's extract has no such state: it gives the lowest points among the admitted for every offered programme, so no Telemark cell is ever `open`.

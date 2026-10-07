@@ -360,6 +360,22 @@ check('a Buskerud shared cell with an «Alle» queue still splits into its queue
       and ('Drammen', 'Idrettsfag, toppidrett') not in _bus26
       and ('St. Hallvard', 'Musikk, dans og drama') not in _bus26,
       str({k: v for k, v in _bus26.items() if 'topp' in k[1] or 'dans' in k[1]}))
+# QA 7 Oct 2026: Vestland's 3. inntak cells go through the same renames as the
+# 1. inntak ones («Førde vgs, avd Høyanger» is Høyanger), or the school loses them
+_hoy = {(p['program'], p['level']): (p.get('values_r3') or {}).get('2026')
+        for s in county('Vestland') if s['name'].startswith('Høyanger') for p in s['programs']}
+check('Høyanger keeps its 2026 3. inntak cells',
+      _hoy.get(('Teknologi- og industrifag', 'Vg1')) == 30.6
+      and _hoy.get(('Studiespesialisering', 'Vg1')) == 'open', str(_hoy))
+# QA 7 Oct 2026: from 2025/26 Møre og Romsdal's report labels Vg4 toppidrett
+# «Vg3»; the Grep code says Vg4, and the Vg3 row keeps its own figure
+_mro = {(s['name'].split()[0], p['level'], p['program']): p['values']
+        for s in county('Møre og Romsdal') for p in s['programs'] if 'toppidrett' in p['program']}
+check('Møre og Romsdal Vg4 toppidrett is not read as Vg3',
+      _mro.get(('Molde', 'Vg3', 'Realfag, toppidrett'), {}).get('2026') == 33.8
+      and _mro.get(('Molde', 'Vg3', 'Språk/samf.fag/økonomi, toppidrett'), {}).get('2026') == 27.5
+      and '2025' in _mro.get(('Ålesund', 'Vg4', 'Realfag, toppidrett'), {}),
+      str({k: v for k, v in _mro.items() if k[0] in ('Molde', 'Ålesund')}))
 # Rogaland 2024–2026 prints Sola's Vg2 band without its «Vg2» marker: the band's
 # colour names it, or its rows fall back to the name guess and split their series
 _guessed = sorted({(n, p['program']) for n, p, y, v in ccells('Rogaland')

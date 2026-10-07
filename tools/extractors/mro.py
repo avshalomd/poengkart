@@ -21,9 +21,12 @@ Semantics, and what the file does NOT say:
   not print those numbers. Its page "Vg1 Nedre karaktergrense" masks a cell
   with * and legends it «Ruter markert med * betyr at alle kom inn, eller
   at laveste karakter var under 25.» — everyone admitted, or the lowest
-  score under 25 — and the file reproduces that mask exactly: every 2026/27
-  cell starred on the dashboard has Nedrekar below 25 in the file, every
-  unstarred cell 25 or more. The county's adviser confirmed the reading
+  score under 25 — and the file reproduces that mask but at its edge: every
+  2026/27 cell starred on the dashboard has Nedrekar of 25 or less in the
+  file, every unstarred cell more than 25. The dashboard stars an exact 25,0
+  too (2026/27: Kristiansund Elektro og datateknologi, Spjelkavik
+  Studiespesialisering, internasjonalisering; 34 Vg1 cells in all years),
+  which OPEN_BELOW keeps as the printed figure (QA 7 Oct 2026). The county's adviser confirmed the reading
   (Dan Ernes, 03.09.2026): with the county's high fill rates a star on Vg1
   «kan nesten tolkes som at det er ledig plass», and the capacity data that
   would settle it may be linked next year. So the county's own rule is
@@ -181,6 +184,14 @@ def _dashboard(path, have, warn):
     rows, owner = {}, {}
     for r in recs:
         level = str(r[col['Kursnavn V2']] or '').split(' ', 1)[0]
+        # From 2025/26 the report labels Vg4 toppidrett (STREA4--T-, STSSA4--T-)
+        # «Vg3», and the row overwrote or posed as the Vg3 one (Molde 2026 Vg3
+        # Realfag, toppidrett read 28,6, the Vg4 figure, for 33,8; QA 7 Oct 2026).
+        # The Grep code's level digit is the truth there; påbygg (PBPBY4----) is a
+        # Vg3 course with a 4 in that place, so it keeps its label.
+        kode = str(r[col['Kurskode']] or '')
+        if level == 'Vg3' and kode[5:6] == '4' and not kode.startswith('PB'):
+            level = 'Vg4'
         if level not in ('Vg1', 'Vg2', 'Vg3', 'Vg4'):
             warn.append(f'{fname}: no level in {r[col["Kursnavn V2"]]!r}')
             continue

@@ -338,6 +338,8 @@ def _hordaland_2016(path, warn):
 # itself. Keep the history together under that name.
 RENAMED = {
     'Førde vidaregåande skule, avd Høyanger': 'Høyanger vidaregåande skule',
+    # the 2026-27 3. inntak edition shortens it
+    'Førde vgs, avd Høyanger': 'Høyanger vidaregåande skule',
 }
 
 # Hafstad and Mo og Øyrane became one school in 2023, in one new building, and
@@ -580,6 +582,10 @@ def extract():
         cells = read(os.path.join(SRC, primary), warn)
         alt = (read(os.path.join(SRC, rounds['3']), warn)
                if ('1' in rounds and '3' in rounds) else {})
+        # the 3. inntak cells are looked up under the published name, so they
+        # go through the same renames as the 1. inntak ones: keyed raw, all
+        # eight of Høyanger's 2026 cells missed (QA 7 Oct 2026)
+        alt = {(_identity(sc)[0], pr, lv): v for (sc, pr, lv), v in alt.items()}
         rows = []
         if not cells:
             continue
