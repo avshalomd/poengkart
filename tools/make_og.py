@@ -43,6 +43,7 @@ from slug import slug        # noqa: E402
 WEB = os.path.join(HERE, '..', 'web', 'dist')
 STYLE = os.path.join(HERE, '..', 'web', 'public', 'map', 'dark-matter.json')
 DATA = os.path.join(HERE, '..', 'web', 'public', 'data', 'schools.json')
+MIN_POINTS = 10                  # helpers.ts MIN_POINTS: a full grade record scores at least 10,0
 CACHE = os.path.join(HERE, '.cache')
 PANEL_FALLBACK = os.path.join(HERE, 'og-panel.png')
 UA = {'User-Agent': 'poengkart/0.1 (og image build)'}
@@ -158,9 +159,11 @@ def pressure(s, stale_before):
         return None
     pool = [p['values'][yr] for p in s['programs']
             if yr in p['values'] and p['values'][yr] not in ('F', 'U')]
-    nums = sorted(v for v in pool if isinstance(v, (int, float)) and v > 0)
+    # inMean(): a figure below 10,0 (MIN_POINTS) stays out of the mean and
+    # counts as «ingen venteliste», as belowFullRecord() does in the app
+    nums = sorted(v for v in pool if isinstance(v, (int, float)) and v >= MIN_POINTS)
     if not nums:
-        if not pool:
+        if not any(v == 'open' or isinstance(v, (int, float)) for v in pool):
             return None
         # the app's rule: any 0-cell with no positive figure is 'zero' (the
         # programmes filled, the last admitted had no points), drawn like

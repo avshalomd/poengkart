@@ -160,15 +160,18 @@ is recorded in `data/source-drift.json` rather than hidden. Any year two
 publications disagree about by close to a whole grade point is flagged on the
 school as `uncertain_years`, and the app says so in words. A figure that is
 printed but cannot be right is published as printed, never corrected by
-hand, until the county says what it should be. Rogaland printed 3,0 for
-Bergeland's Vg2 Medier og kommunikasjon in 2026, below the lowest possible
-score of 10; the county answered on 23 September 2026 that there were free
+hand, until the county says what it should be. A figure below 10,0 is not
+one of these: a full grade record scores at least 10,0, so it says the last
+one admitted had grades missing and everyone with a full record got in (Oslo's
+rule, 5 Oct 2026, in `docs/model.md`). It is shown as printed with a note and
+kept out of every average. Rogaland printed 3,0 for
+Bergeland's Vg2 Medier og kommunikasjon in 2026; the county answered on 23 September 2026 that there were free
 places, so the dataset shows «ingen venteliste». The correction lives in the
 extractor (`COUNTY_CORRECTIONS` in `tools/extractors/rogaland.py`) with the
 county's answer beside it, and applies only while an edition still prints
 the wrong value.
 
-`tools/test_parse.py` runs 136 regression checks over the result; every one of
+`tools/test_parse.py` runs 137 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built

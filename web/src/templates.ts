@@ -237,7 +237,7 @@ export function listHtml(s: School, scope: string | null): string {
       let jump = '', jumpTxt = '';
       const je = typeof lv === 'number' ? modelEntry(s, p) : null;
       if (je && je.j != null) {
-        const ny = ys.filter(y => typeof p.values[y] === 'number' && p.values[y] > 0).slice(-2);
+        const ny = ys.filter(y => inMean(p.values[y])).slice(-2);   // the model's step reads figures of 10,0 and up
         if (ny.length === 2) {
           jumpTxt = t('jumpTitle', fmt(p.values[ny[0]]), ny[0], fmt(p.values[ny[1]]), ny[1], fmt(Math.abs(je.j)));
           jump = `<span class="jump" data-tip="${esc(jumpTxt)}">${t('jumpFlag')} ⓘ</span>`;

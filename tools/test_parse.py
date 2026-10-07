@@ -349,6 +349,17 @@ check('a Buskerud cell holding several queues becomes one row per queue',
       and _bus.get(('St. Hallvard', 'Musikk, dans og drama, drama')) == 41.1
       and ('Drammen', 'Idrettsfag, toppidrett') not in _bus,
       str({k: v for k, v in _bus.items() if 'topp' in k[1] or 'drama' in k[1].lower()}))
+# QA 7 Oct 2026: a queue printed «Alle» (2026/27: «… / Alle langrenn/svømming***»)
+# broke the split, and the cell fell back to its first figure as an unsplit series
+_bus26 = {(n, p['program']): v for n, p, y, v in ccells('Buskerud') if y == '2026'}
+check('a Buskerud shared cell with an «Alle» queue still splits into its queues',
+      _bus26.get(('Drammen', 'Idrettsfag, toppidrett, håndball')) == 47.5
+      and _bus26.get(('Drammen', 'Idrettsfag, toppidrett, langrenn/svømming')) == 'open'
+      and _bus26.get(('St. Hallvard', 'Musikk, dans og drama, musikk')) == 25.0
+      and _bus26.get(('St. Hallvard', 'Musikk, dans og drama, dans')) == 'open'
+      and ('Drammen', 'Idrettsfag, toppidrett') not in _bus26
+      and ('St. Hallvard', 'Musikk, dans og drama') not in _bus26,
+      str({k: v for k, v in _bus26.items() if 'topp' in k[1] or 'dans' in k[1]}))
 # Rogaland 2024–2026 prints Sola's Vg2 band without its «Vg2» marker: the band's
 # colour names it, or its rows fall back to the name guess and split their series
 _guessed = sorted({(n, p['program']) for n, p, y, v in ccells('Rogaland')

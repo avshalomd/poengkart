@@ -12,10 +12,10 @@
 <text x='56' y='90.4' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>8</text>
 <line x1='64' y1='24.0' x2='604' y2='24.0' stroke='#e6e9ee'/>
 <text x='56' y='28.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>10</text>
-<rect x='73.5' y='105.7' width='26' height='230.3' fill='#2b6cb8'/>
-<text x='86.5' y='99.7' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.4</text>
-<rect x='163.5' y='80.5' width='26' height='255.5' fill='#8a8f98'/>
-<text x='176.5' y='74.5' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>8.2</text>
+<rect x='73.5' y='104.8' width='26' height='231.2' fill='#2b6cb8'/>
+<text x='86.5' y='98.8' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>7.4</text>
+<rect x='163.5' y='81.7' width='26' height='254.3' fill='#8a8f98'/>
+<text x='176.5' y='75.7' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>8.2</text>
 <text x='131.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>0 years</text>
 <rect x='208.5' y='153.8' width='26' height='182.2' fill='#2b6cb8'/>
 <text x='221.5' y='147.8' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.8</text>
@@ -35,14 +35,14 @@
 <rect x='433.5' y='133.5' width='26' height='202.5' fill='#8a8f98'/>
 <text x='446.5' y='127.5' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.5</text>
 <text x='401.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>2–3 years</text>
-<rect x='478.5' y='175.3' width='26' height='160.7' fill='#2b6cb8'/>
-<text x='491.5' y='169.3' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.2</text>
+<rect x='478.5' y='175.0' width='26' height='161.0' fill='#2b6cb8'/>
+<text x='491.5' y='169.0' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.2</text>
 <rect x='508.5' y='143.2' width='26' height='192.8' fill='#b0672e'/>
 <text x='521.5' y='137.2' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.2</text>
-<rect x='538.5' y='171.0' width='26' height='165.0' fill='#7a8f3a'/>
-<text x='551.5' y='165.0' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.3</text>
-<rect x='568.5' y='148.2' width='26' height='187.8' fill='#8a8f98'/>
-<text x='581.5' y='142.2' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.0</text>
+<rect x='538.5' y='170.6' width='26' height='165.4' fill='#7a8f3a'/>
+<text x='551.5' y='164.6' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>5.3</text>
+<rect x='568.5' y='147.9' width='26' height='188.1' fill='#8a8f98'/>
+<text x='581.5' y='141.9' font-family='Georgia, "Times New Roman", serif' font-size='12' fill='#1d2733' text-anchor='middle'>6.0</text>
 <text x='536.5' y='360' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>4+ years</text>
 <text x='334.0' y='384' font-family='Georgia, "Times New Roman", serif' font-size='14' fill='#1d2733' text-anchor='middle'>History of the series at forecast time</text>
 <rect x='70' y='394' width='12' height='12' fill='#2b6cb8'/>

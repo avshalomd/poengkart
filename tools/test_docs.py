@@ -437,7 +437,7 @@ check(doc, 'residual sd', r'The residual sd is ([\d.]+) points', [META['sigma_mo
 check(doc, 'sigma floor', r'saw no held-out year \(([\d.]+)\)', [META['sigma_floor']], flat, D1)
 check(doc, 'raw fill held-out', r'gave ([\d.]+) filled ([\d.]+) of the time in the held-out years',
       [RAW_EVAL[0], RAW_EVAL[1] / 100], flat, D2)
-check(doc, 'calibration prose', rf'Below {TOP_LO}% the forecast is within ([\d.]+) points of the outcome in every bin, optimistic by at most ([\d.]+) points in the three lowest — a (\d+)% chance was really (\d+)%',
+check(doc, 'calibration prose', rf'Below {TOP_LO}% the forecast is within ([\d.]+) points of the outcome in every bin, with predicted minus observed at most (-?[\d.]+) points in the three lowest — a (\d+)% chance was really (\d+)%',
       [max_absgap_below_top, max_gap_lo30, 100 * rel(rel_chance, '10-20')['predicted'], 100 * rel(rel_chance, '10-20')['observed']],
       flat, [D2, D2, PCT, PCT])
 check(doc, 'calibration prose top gap', rf'from {TOP_LO}% up it is cautious — a stated (\d+)% came true (\d+)% of the time',
@@ -604,7 +604,7 @@ if GAP[GAP_TOP] >= 0:
     failures.append(f'{doc}: 7.4 says the largest decile gap is cautious; in {GAP_TOP} it is now optimistic ({GAP[GAP_TOP]:+.1f})')
 check(doc, 'table 5 prose top gap', r'where the forecast is cautious: a stated (\d+)% was realised at (\d+)%, so',
       [100 * rel(rel_chance, GAP_TOP)['predicted'], 100 * rel(rel_chance, GAP_TOP)['observed']], flat, PCT)
-check(doc, 'table 5 prose below the top gap', rf'Below {TOP_LO}% the forecast is within ([\d.]+) points of the outcome in every bin and optimistic by at most ([\d.]+) points, in the three lowest bins — a stated (\d+)% was realised at (\d+)%',
+check(doc, 'table 5 prose below the top gap', rf'Below {TOP_LO}% the forecast is within ([\d.]+) points of the outcome in every bin, with predicted minus observed at most (-?[\d.]+) points in the three lowest bins — a stated (\d+)% was realised at (\d+)%',
       [max_absgap_below_top, max_gap_lo30, 100 * rel(rel_chance, '10-20')['predicted'], 100 * rel(rel_chance, '10-20')['observed']], flat, [D2, D2, PCT, PCT])
 check(doc, 'limitations calibration', rf'within (\d+) points of the outcome below 30% and cautious by up to (\d+) points in the {TOP_LO}–{TOP_HI}% bin',
       [max_gap_lo30, -GAP[GAP_TOP]], flat, PCT)

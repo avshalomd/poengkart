@@ -13,7 +13,10 @@ Schema:
             Møre og Romsdal only, NULL elsewhere. Equal to `points` where one
             applicant set the threshold (tools/model.py lets the backtest
             choose that cell's weight in the level fit)
-    status: 'points' (points set), 'filled_no_points' (filled, but the last
+    status: 'points' (points set; a figure below 10.0 means the last admitted
+            had grades missing and everyone with a full record got in, so it
+            too must stay out of any average, as the app's inMean() keeps it),
+            'filled_no_points' (filled, but the last
     admitted had no registered points; points is 0.0 and must stay out of any
     average), 'open' (no waitlist, everyone admitted),
             'priority' (fortrinnsrett quota), 'documentation' (admission by

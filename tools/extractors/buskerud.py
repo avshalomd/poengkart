@@ -42,9 +42,12 @@ import common  # noqa: E402
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, '..', '..', 'sources', 'buskerud')
 
-# one queue inside a shared cell: a figure, an optional «(+ tilleggspoeng)», the
-# queue's own name, the footnote asterisks
-QUEUE = re.compile(r'(\d{1,2},\d)\s*(?:\(\+ tilleggspoeng\)\s*)?([^\d*][^*]*?)\s*\**')
+# one queue inside a shared cell: a figure or «Alle» (no waiting list), an
+# optional «(+ tilleggspoeng)» (2026/27 also prints it «tilleggsspoeng»), the
+# queue's own name, the footnote asterisks. A queue printed «Alle» once failed
+# the match, so the whole cell fell back to its first figure (2026/27: Drammen's
+# toppidrett and St. Hallvard's MDD, QA 7 Oct 2026)
+QUEUE = re.compile(r'(\d{1,2},\d|Alle)\s*(?:\(\+ tilleggss?poeng\)\s*)?([^\d*][^*]*?)\s*\**')
 
 META = {
     'code': '33', 'fylke': 'Buskerud', 'round': None, 'rights': 'ungdomsrett',
@@ -160,7 +163,8 @@ def extract():
                         for m in queues:
                             rows.append({'school': school, 'program': f'{head[i]}, {m.group(2)}',
                                          'level': common.guess_level(head[i], 'Vg1'),
-                                         'values': {year: float(m.group(1).replace(',', '.'))},
+                                         'values': {year: 'open' if m.group(1) == 'Alle'
+                                                    else float(m.group(1).replace(',', '.'))},
                                          'county': META['fylke'], 'round': META['round']})
                         continue
                     # 2024-25 suppressed some thresholds entirely, leaving only
