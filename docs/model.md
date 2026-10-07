@@ -12,7 +12,7 @@ when a programme filled, and when it exists it is one point on the points
 scale. A family with 42 points is not asking "what was the threshold" but
 "will I get in" — and the honest answer to that is a probability, because the
 same programme at the same school moves by a standard deviation of 6.2 points
-from one year to the next (8 543 consecutive-year pairs; only half of all
+from one year to the next (8 511 consecutive-year pairs; only half of all
 moves are within ±3).
 
 So the app forecasts, per programme, for the county's next publication year:
@@ -32,16 +32,16 @@ empirical distribution of the backtest's own forecast errors (see *Spread*).
 
 Two fits, one structure. Every effect is a random effect, so a school or
 programme with a single year of data borrows its level from the hundreds of
-similar ones around it instead of being trusted on its own —403 of the 2 577
+similar ones around it instead of being trusted on its own —403 of the 2 576
 series have exactly one year.
 
-**Level** (on the 13 003 cells that carry a number):
+**Level** (on the 12 969 cells that carry a number):
 
     y = μ + school + category + programme|level + series + county×year + round offset + ε
 
 **Fill** (on the 18 618 cells that competed on points — number, 0,0 or "no waitlist".
 In Møre og Romsdal "no waitlist" is the county's own dashboard rule, a
-figure under 25 — see `docs/data-notes.md` — so its labels are a proxy, and
+figure of 25 or less — see `docs/data-notes.md` — so its labels are a proxy, and
 the backtest measures what they are worth, below):
 
     logit P(filled) = ν + school + category + programme|level + series + county×year + round-3 shift
@@ -166,13 +166,13 @@ queue cannot outgrow its applicants' scores, so high forecasts miss by less:
 ×1.06 below 25 points, ×1.00 from 25 to 40, ×1.00 from 40 to 45, ×0.75 at 45 and above (fitted on
 the calibration years, constrained to fall with the level;
 `meta.sigma_level_multiplier`). On the held-out years it moved the top
-band's 80% coverage from 95.5% to 81.8% and the bottom band's from 64.9% to
+band's 80% coverage from 94.0% to 82.1% and the bottom band's from 64.9% to
 70.3%, and nothing else.
 
 Last, a factor per level group, fitted so each group's 80% band covers 80%
-of its own calibration-year errors (`meta.sigma_group_multiplier`): ×0.899
-for Vg1 and ×1.003 for Vg2 and up. Without it the pooled spread covered
-83.5% of held-out Vg1 outcomes and 77.4% of the rest.
+of its own calibration-year errors (`meta.sigma_group_multiplier`): ×0.892
+for Vg1 and ×1.001 for Vg2 and up. Without it the pooled spread covered
+83.5% of held-out Vg1 outcomes and 77.1% of the rest.
 
 And a factor for a series whose two newest figures are more than 8 points
 apart (`meta.jump_points`), fitted the same way on the cells after such a
@@ -209,14 +209,14 @@ no earlier year can teach a forecast what that does, and the final fit handles
 it with the fixed offset; grading the model on an event it is told about would
 flatter nothing and mislead the calibration.
 
-**Level, held-out 2025–26** (2 652 cells that got a number):
+**Level, held-out 2025–26** (2 650 cells that got a number):
 
 | history | n | model RMSE | "last year's figure" RMSE | programme-county mean RMSE | within ±3 |
 |---|---|---|---|---|---|
 | 0 years | 125 | 7.4 | — | 8.2 | 31% |
 | 1 year | 264 | 5.8 | 7.1 | 6.8 | 49% |
-| 2–3 years | 477 | 5.7 | 6.7 | 6.5 | 44% |
-| 4+ years | 1786 | 5.2 | 6.2 | 6.0 | 49% |
+| 2–3 years | 478 | 5.7 | 6.7 | 6.5 | 44% |
+| 4+ years | 1783 | 5.1 | 6.2 | 6.0 | 49% |
 
 Exponential smoothing of the series' own figures (α = 0.4; Muth, 1960) is a
 stronger baseline than either: RMSE 6.0 with two or three years of history
@@ -228,8 +228,8 @@ pooling.
 newest three or four figures and the forecast sits 4 or more points below
 the last one, the backtest has been there 81 times: the published figure
 came in below the last one 82.7% of the time, the model's RMSE was
-5.89 against 7.62 for persistence and 5.69 for the EWMA, and it
-under-forecast by 1.23 points on average (95% CI [-0.02, 2.48]). So the
+5.88 against 7.57 for persistence and 5.66 for the EWMA, and it
+under-forecast by 1.23 points on average (95% CI [-0.04, 2.52]). So the
 drop mostly comes, a little smaller than forecast. A trend term (the
 error regressed on the forecast's gap below the last figure, slope
 0.123 fitted on 2020–2024) takes the held-out Vg1 RMSE from 4.891 to
@@ -272,7 +272,7 @@ distribution and fill probability on the last published figure instead of
 on the forecast: that scores 0.095, so most of the gain over the bare rule
 is the uncertainty treatment, and the model's own point forecast is worth
 the last 0.006 of it.
-Below 60% the forecast is within 4.4 points of the outcome in every bin,
+Below 60% the forecast is within 4.2 points of the outcome in every bin,
 with predicted minus observed at most -0.2 points in the three lowest — a 15% chance was
 really 17% — which the app's bands absorb (both are "unlikely"); from 60%
 up it is cautious — a stated 65% came true 73% of the time, the largest gap
@@ -316,7 +316,7 @@ the county level is the largest single term after the school's own.
 ## The model as a detector
 
 The 25 cells the fitted model finds least plausible are listed in
-`meta.outliers` (|z| ≥ 3: 108 of 13 003 cells, 38 of them in Vestland, the
+`meta.outliers` (|z| ≥ 3: 106 of 12 969 cells, 38 of them in Vestland, the
 county with the most cells). Five of the top twenty-five are Vestland 2022 — clustering of that kind has meant a parser
 problem before, so
 three of them, the largest included, were checked against the county's own PDF

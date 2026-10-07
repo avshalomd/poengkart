@@ -17,9 +17,10 @@ Its Vg2, Vg3 and Vg4 come from the dashboard itself, which the live source
 watch reads through Power BI's public query API (from 28 September 2026). The
 extract has no "everyone admitted" marker of its own — every offered
 programme carries a number, down to 5.7 — but the dashboard the county
-publishes does: it masks every figure under 25 with `*` and legends it
-«alle kom inn, eller laveste karakter var under 25». The dataset applies
-that rule, so a figure under 25 is shown as «ingen venteliste», the state
+publishes does: it masks every figure of 25 or less with `*` and legends it
+«alle kom inn, eller laveste karakter var under 25» (the legend says under
+25, but an exact 25,0 is starred too). The dataset applies that rule, so a
+figure of 25 or less is shown as «ingen venteliste», the state
 the county shows rather than the number it hides; the county confirmed the
 reading and may link capacity data during 2027. It is a proxy — a programme
 with a queue whose cutoff was 24.6 is labelled open — and the model
@@ -169,9 +170,13 @@ Bergeland's Vg2 Medier og kommunikasjon in 2026; the county answered on 23 Septe
 places, so the dataset shows «ingen venteliste». The correction lives in the
 extractor (`COUNTY_CORRECTIONS` in `tools/extractors/rogaland.py`) with the
 county's answer beside it, and applies only while an edition still prints
-the wrong value.
+the wrong value. A figure above the scale's top (`MAX_PLAUSIBLE` in
+`tools/common.py`) cannot be shown as printed and is left out: Vestland's
+2026/27 3. inntak prints 237,3 for Førde's Vg1 Helse- og oppvekstfag, SK 3
+år, in both editions (the 1. inntak figure is 37,9), so that one cell is
+missing until the county corrects it.
 
-`tools/test_parse.py` runs 139 regression checks over the result; every one of
+`tools/test_parse.py` runs 140 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built
@@ -208,6 +213,12 @@ for in three separate strings. Left until the round model above is settled,
 because two series per programme without a coherent story about rounds would
 add confusion rather than remove it. What they *are* used for is measuring the
 gap between rounds — see the round bridge in [model.md](model.md).
+A Vestland 3. inntak cell whose programme has no 1. inntak row is not kept
+at all (2026: Stryn Vg1 Bygg- og anleggsteknikk 31,3, Eid Vg1 Helse- og
+oppvekstfag SK 3 år 41, Førde and Sogndal Vg2 Klima, energi og
+miljøteknikk and Voss Vg3 Påbygg «Alle»): with no `values` the row would be
+an empty line in the list, and a lone round pairs with nothing in the bridge.
+They join if the app ever shows alternate rounds.
 
 ## One programme, two labels
 

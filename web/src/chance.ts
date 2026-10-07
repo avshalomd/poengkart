@@ -4,7 +4,7 @@ import { bucketOf, chanceMode, chanceOf, okChoice, pct, pctS, predFor, progKeyMa
 
 const UP_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>';
 const DOWN_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
-import { cssVar, esc, fmt, fmtAvg, progName, round1, slug, X_ICON } from "./helpers";
+import { belowFullRecord, cssVar, esc, fmt, fmtAvg, progName, round1, slug, X_ICON } from "./helpers";
 import { t } from "./i18n";
 import { toast } from "./locate";
 import { mapZoom, recolourMap, viewSchool } from "./map";
@@ -22,10 +22,13 @@ import type { Program, School } from './types';
    which is the most the combined line will print (CHANCE_CAP). */
 export const OPEN_CHANCE = 0.95;
 export const CHANCE_CAP = 0.95;
+// A figure below 10,0 counts here as it does in the model: everyone with a
+// full grade record got in, and whoever types a karaktersnitt has one
 export function openOnly(p: Program) {
   const ys = Object.keys(p.values).sort();
   const cells = ys.map(y => p.values[y]).filter(v => v !== 'F');
-  return cells.length > 0 && cells[cells.length - 1] === 'open' && !cells.some(v => typeof v === 'number');
+  const open = v => v === 'open' || belowFullRecord(v);
+  return cells.length > 0 && open(cells[cells.length - 1]) && !cells.some(v => typeof v === 'number' && !belowFullRecord(v));
 }
 export const bucketColor = b => cssVar(b === 'likely' ? '--good' : b === 'possible' ? '--dot-possible' : '--dot-unlikely');
 export function pickNote(msg) {

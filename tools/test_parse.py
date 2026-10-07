@@ -376,6 +376,14 @@ check('Møre og Romsdal Vg4 toppidrett is not read as Vg3',
       and _mro.get(('Molde', 'Vg3', 'Språk/samf.fag/økonomi, toppidrett'), {}).get('2026') == 27.5
       and '2025' in _mro.get(('Ålesund', 'Vg4', 'Realfag, toppidrett'), {}),
       str({k: v for k, v in _mro.items() if k[0] in ('Molde', 'Ålesund')}))
+# QA 7 Oct 2026: Møre og Romsdal's dashboard stars an exact 25,0 as well, so
+# the extract's 25,0 is «ingen venteliste» like the figures under it
+_k25 = {(s['name'].split()[0], p['program']): p['values'].get('2026')
+        for s in county('Møre og Romsdal') for p in s['programs'] if p['level'] == 'Vg1'}
+check('a Møre og Romsdal figure of exactly 25,0 reads as the dashboard shows it',
+      _k25.get(('Kristiansund', 'Elektro og datateknologi')) == 'open'
+      and not any(v == 25.0 for v in _k25.values()),
+      str({k: v for k, v in _k25.items() if k[0] in ('Kristiansund', 'Spjelkavik')}))
 # Rogaland 2024–2026 prints Sola's Vg2 band without its «Vg2» marker: the band's
 # colour names it, or its rows fall back to the name guess and split their series
 _guessed = sorted({(n, p['program']) for n, p, y, v in ccells('Rogaland')

@@ -26,11 +26,12 @@ Semantics, and what the file does NOT say:
   file, every unstarred cell more than 25. The dashboard stars an exact 25,0
   too (2026/27: Kristiansund Elektro og datateknologi, Spjelkavik
   Studiespesialisering, internasjonalisering; 34 Vg1 cells in all years),
-  which OPEN_BELOW keeps as the printed figure (QA 7 Oct 2026). The county's adviser confirmed the reading
+  so the rule follows what it shows rather than its legend's wording
+  (QA 7 Oct 2026). The county's adviser confirmed the reading
   (Dan Ernes, 03.09.2026): with the county's high fill rates a star on Vg1
   «kan nesten tolkes som at det er ledig plass», and the capacity data that
   would settle it may be linked next year. So the county's own rule is
-  applied here, `OPEN_BELOW`: a figure under 25 is published as "ingen
+  applied here, `OPEN_AT_MOST`: a figure of 25 or less is published as "ingen
   venteliste", the state the dashboard shows, not the number it hides.
   It is a proxy — a programme with a queue whose cutoff was 24.6 is labelled
   open, and one that took everyone with the weakest at 27 keeps its number —
@@ -42,7 +43,7 @@ Vg2 and above come from the Power BI report only (the extract is Vg1): the
 live watch's capture, mro-powerbi-<school year>.json, one row per school
 year, school, programme and level, with the same Kurskode, the same mask
 (`*` for «alle kom inn, eller laveste karakter var under 25») and the
-admitted mean. The same OPEN_BELOW rule applies to every level. Read from
+admitted mean. The same OPEN_AT_MOST rule applies to every level. Read from
 28 Sept 2026 on the owner's decision; the round is the county's 2. inntak,
 as the department's reply states for its figures.
 
@@ -82,12 +83,13 @@ META = {
     'note': ('FOI extract behind the Power BI dashboard, received 01.09.2026 (Vg1), '
              'and the dashboard itself (Vg2 and above); '
              '"ingen venteliste" follows the dashboard\'s own rule: a figure '
-             'under 25 is shown as * («alle kom inn, eller laveste karakter '
+             'of 25 or less is shown as * («alle kom inn, eller laveste karakter '
              'var under 25»)'),
 }
-# the dashboard's mask, as its legend states it: a threshold under this
-# is published as "everyone got in or under 25", never as the number
-OPEN_BELOW = 25.0
+# the dashboard's mask: a threshold at or under this is published as
+# "everyone got in or under 25", never as the number. The legend says «under
+# 25», but the dashboard stars an exact 25,0 too (34 Vg1 cells; QA 7 Oct 2026)
+OPEN_AT_MOST = 25.0
 
 # file skolenr -> published name. Everything else keeps the file's own name.
 SCHOOL_NAMES = {
@@ -141,7 +143,7 @@ def _add(rows, owner, fname, warn, year, nr, navn, kode, kursnavn, nedre, gjenno
             return
     if v is None:
         return
-    if v != 'open' and v < OPEN_BELOW:
+    if v != 'open' and v <= OPEN_AT_MOST:
         v = 'open'                      # the county's own rule, see above
     key = (school, program.lower(), level)
     row = rows.setdefault(key, {'school': school, 'program': program,

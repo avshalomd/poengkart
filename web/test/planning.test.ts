@@ -165,6 +165,11 @@ describe('planning with the wish list', () => {
     expect(openOnly({ values: { '2024': 31.5, '2025': 'open' } } as any)).toBe(false);
     expect(openOnly({ values: { '2024': 'open', '2025': 'D' } } as any)).toBe(false);
     expect(openOnly({ values: { '2025': 'F' } } as any)).toBe(false);
+    // a figure below 10,0 says everyone with a full grade record got in
+    expect(openOnly({ values: { '2024': 'open', '2025': 6.0 } } as any)).toBe(true);
+    expect(openOnly({ values: { '2024': 6.0, '2025': 'open' } } as any)).toBe(true);
+    expect(openOnly({ values: { '2024': 12.0, '2025': 6.0 } } as any)).toBe(false);
+    expect(openOnly({ values: { '2024': 0, '2025': 6.0 } } as any)).toBe(false);
     setup();
     S.myPoints = 30;
     const hit = DATA.schools.flatMap((s: any) => shownPrograms(s).map((p: any) => ({ s, p })))
