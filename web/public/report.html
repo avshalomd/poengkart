@@ -217,7 +217,7 @@ code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
 <p><var>&Phi;<sub>F</sub></var> in (1) is the empirical CDF of the standardised walk-forward errors (41 quantiles), not a Gaussian. It is mildly left-skewed — thresholds collapse more often than they jump, because a queue can vanish but cannot exceed its applicant pool — though on this data a Gaussian would have scored almost identically. The empirical CDF is clamped to [0.005, 0.995], so no single cell's probability is ever exactly 1 &minus; <var>&pi;</var> or 1.</p>
 <h3 id='6-3-recalibrating-the-fill-probability'>6.3 Recalibrating the fill probability</h3>
 <p>The raw fill model is overconfident: in the calibration-year walk-forwards on all eight counties (Møre og Romsdal's proxy labels included), cells the raw model gave a mean <var>&pi;</var> of 0.97 (the ≥ 0.9 bin) filled 94% of the time, and in the held-out years cells given a mean 0.96 filled 88% — the series effects fit the training panel too well. We therefore recalibrate by Platt scaling, fitting</p>
-<div class='eq'><span class='eq-body'>logit&#8201;<var>&pi;</var>&prime; = 0.195 + 0.661&#8201;logit&#8201;<var>&pi;</var></span><span class='eq-no'>(5)</span></div>
+<div class='eq'><span class='eq-body'>logit&#8201;<var>&pi;</var>&prime; = 0.194 + 0.661&#8201;logit&#8201;<var>&pi;</var></span><span class='eq-no'>(5)</span></div>
 <p>on the calibration years only, which are disjoint from the held-out evaluation years. The slope well below 1 is a uniform confidence haircut. The map is one pair of coefficients for all eight counties; it transfers a calibration-year haircut to the held-out years on the assumption that the overconfidence is stable in time, which the held-out reliability table (Appendix C) bears out in the upper bins and not in the sparse 50–70% bins. Held-out Brier for the fill event: 0.156 against 0.203 for the base-rate forecaster (base rate 0.718; difference −0.046, cluster-bootstrap 95% interval [−0.055, −0.038], Section 7.2). The recalibrated <var>&pi;</var>&prime; is still uneven in the mid-range (53% observed in the 50–60% bin, 69% in the 60–70% bin, but 77% in the 70–80% bin), which the deployed quantity (1) — the only probability shown to users — absorbs, as Section 7.4 shows.</p>
 <h2 id='7-evaluation'>7. Evaluation</h2>
 <h3 id='7-1-protocol'>7.1 Protocol</h3>
@@ -370,7 +370,7 @@ code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
 <text x='60' y='24.0' font-family='Georgia, "Times New Roman", serif' font-size='13' fill='#1d2733' text-anchor='end'>1.0</text>
 <rect x='72.0' y='414.4' width='43.0' height='15.6' fill='#8a8f98' opacity='0.18'/>
 <rect x='119.0' y='411.8' width='43.0' height='18.2' fill='#8a8f98' opacity='0.18'/>
-<rect x='166.0' y='416.0' width='43.0' height='14.0' fill='#8a8f98' opacity='0.18'/>
+<rect x='166.0' y='416.1' width='43.0' height='13.9' fill='#8a8f98' opacity='0.18'/>
 <rect x='213.0' y='418.8' width='43.0' height='11.2' fill='#8a8f98' opacity='0.18'/>
 <rect x='260.0' y='419.2' width='43.0' height='10.8' fill='#8a8f98' opacity='0.18'/>
 <rect x='307.0' y='419.1' width='43.0' height='10.9' fill='#8a8f98' opacity='0.18'/>
@@ -380,13 +380,13 @@ code { font:.85em/1.4 ui-monospace, 'SF Mono', Menlo, monospace;
 <rect x='495.0' y='325.0' width='43.0' height='105.0' fill='#8a8f98' opacity='0.18'/>
 <line x1='70.0' y1='430.0' x2='540.0' y2='20.0' stroke='#8a8f98' stroke-width='1.5' stroke-dasharray='5 4'/>
 <circle cx='97.3' cy='407.0' r='5.5' fill='#2b6cb8'/>
-<circle cx='139.1' cy='359.9' r='5.5' fill='#2b6cb8'/>
+<circle cx='139.1' cy='360.3' r='5.5' fill='#2b6cb8'/>
 <circle cx='186.6' cy='314.4' r='5.5' fill='#2b6cb8'/>
 <circle cx='233.6' cy='275.0' r='5.5' fill='#2b6cb8'/>
 <circle cx='281.0' cy='234.0' r='5.5' fill='#2b6cb8'/>
 <circle cx='329.0' cy='186.5' r='5.5' fill='#2b6cb8'/>
 <circle cx='375.5' cy='130.7' r='5.5' fill='#2b6cb8'/>
-<circle cx='423.0' cy='90.9' r='5.5' fill='#2b6cb8'/>
+<circle cx='423.0' cy='91.3' r='5.5' fill='#2b6cb8'/>
 <circle cx='470.9' cy='63.5' r='5.5' fill='#2b6cb8'/>
 <circle cx='530.6' cy='24.1' r='5.5' fill='#2b6cb8'/>
 <text x='305.0' y='478' font-family='Georgia, "Times New Roman", serif' font-size='15' fill='#1d2733' text-anchor='middle'>Predicted probability of admission</text>
