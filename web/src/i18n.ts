@@ -665,12 +665,12 @@ export const T = {
   },
   chanceRoundUnknown: { no: 'Fylket oppgir ikke hvilket inntak tallene er fra. Sjansen gjelder det inntaket fylket publiserer.',
                         en: 'The county does not state which intake its figures are from. The chance refers to the intake the county publishes.' },
-  // Møre og Romsdal's dashboard masks any figure under 25 with * and
+  // Møre og Romsdal's dashboard masks any figure of 25 or less with * and
   // legends it «alle kom inn, eller laveste karakter var under 25»; the
   // dataset follows that rule (tools/extractors/mro.py), so its "ingen
   // venteliste" is the county's own reading, not an observed queue state
-  openRuleNote: { no: 'Møre og Romsdal viser «ingen venteliste» der alle kom inn eller poenggrensen var under 25 poeng – fylkets egen regel. Hvilken av de to, sier ikke fylket.',
-                  en: 'Møre og Romsdal shows “no waiting list” where everyone got in or the threshold was below 25 points – the county\'s own rule. Which of the two, the county does not say.' },
+  openRuleNote: { no: 'Møre og Romsdal viser «ingen venteliste» der alle kom inn eller poenggrensen var 25 poeng eller lavere – fylkets egen regel. Hvilken av de to, sier ikke fylket.',
+                  en: 'Møre og Romsdal shows “no waiting list” where everyone got in or the threshold was 25 points or less – the county\'s own rule. Which of the two, the county does not say.' },
   // a figure below 10,0 (belowFullRecord in helpers.ts): Oslo's
   // Inntakskontoret explained the rule on 5 Oct 2026
   partialRecordNote: { no: 'En poenggrense under 10,0 betyr at den siste som kom inn, manglet tallkarakter i noen fag. Alle søkere med tallkarakter i alle fag fikk plass.',
