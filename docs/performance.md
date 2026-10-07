@@ -8,10 +8,14 @@ using the app's own functions.
 
 ## The flows
 
-1. **Cold first visit** — HTML (49 KB br) → vendor scripts → app script →
-   `schools.json` (78 KB br) → `model.json` (24 KB br) → markers drawn, map
+1. **Cold first visit** — HTML (7 KB br) → vendor scripts → app script →
+   `schools.json` (159 KB br) → `model.json` (35 KB br) → markers drawn, map
    usable. Tiles stream in parallel from CARTO/OSM and dominate the *visual*
    finish; everything above dominates the *usable* finish.
+   Weights measured on production on 7 Oct 2026. The dataset has grown from
+   78 KB (Aug 2026, 191 schools) with 278 schools, Gjennomkar means and
+   alternate rounds; it shipped indented at 182 KB until the build began
+   minifying it (`tools/minify-data.mjs`).
 2. **Repeat visit** — same assets, served from HTTP cache subject to
    `Cache-Control`.
 3. **In-page operations** — open a school panel, move the category lens,
