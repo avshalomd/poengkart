@@ -55,8 +55,13 @@ export function distKm(aLat: number, aLon: number, bLat: number, bLon: number): 
 /** How far a school is from the place the reader picked, or null. */
 export const distOf = (s: School): number | null =>
   S.near && s.lat ? distKm(S.near.lat, S.near.lon, s.lat, s.lon) : null;
-/** «3 km», «850 m» under a kilometre; straight-line distance, not travel. */
-export const fmtKm = (d: number) => d < 1 ? `${Math.max(100, Math.round(d * 10) * 100)} m` : `${Math.round(d)} km`;
+/** «3 km», «800 m» under a kilometre; straight-line distance, not travel.
+    The unit follows the rounded figure: 0,97 km rounds to 1000 m, which used
+    to print as «1000 m» beside its neighbours' «1 km». */
+export const fmtKm = (d: number) => {
+  const m = Math.max(100, Math.round(d * 10) * 100);
+  return m < 1000 ? `${m} m` : `${Math.round(d)} km`;
+};
 
 export function saveNear() {
   try {
