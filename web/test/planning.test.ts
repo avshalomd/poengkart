@@ -45,6 +45,8 @@ describe('places', () => {
     expect(distKm(60, 10, 60, 10)).toBe(0);
     expect(fmtKm(0.04)).toBe('100 m');
     expect(fmtKm(0.84)).toBe('800 m');
+    expect(fmtKm(0.949)).toBe('900 m');
+    expect(fmtKm(0.97)).toBe('1 km');      // not «1000 m»
     expect(fmtKm(12.6)).toBe('13 km');
   });
 
