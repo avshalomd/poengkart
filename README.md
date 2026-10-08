@@ -9,27 +9,31 @@ on a map and as a ranked list. A threshold is the points of the last applicant
 who got a place (grade average × 10): what it took to get in, not what the
 school requires. 278 schools in the eleven counties that publish the figures,
 released them on request or once printed them, 2012–2026, in Norwegian and
-English.
+English. It is for pupils choosing where to apply, their parents, and the
+school counsellors who plan each pupil's programmes and schools with them.
+There are no accounts: everything a reader enters stays in their browser.
 
 ![The map of southern and central Norway with Bryne vidaregåande skule open: its photo, figures, trend and every programme](docs/map.png)
 
 ![A school: photo, your chance of a place at the next intake, the trend, and every programme with its own figure](docs/school.png)
 
-Type in your points and every school and programme is coloured by your chance
-of a place at the next intake: green likely, amber possible, red unlikely. The
-chance comes from a model fitted on the whole history and backtested year by
+Type in your grade average (*karaktersnitt*, 1–6; the thresholds are in
+points, the average × 10) and every school and programme is coloured by your
+estimated chance of a place at the next intake: green likely, amber possible,
+red unlikely. The chance comes from a model fitted on the whole history and backtested year by
 year (Telemark's schools from a separate fit on the county's own figures;
 Agder and Nordland, whose figures stop in 2021, carry no forecast);
 [docs/model.md](docs/model.md) explains it and the
 [technical report](https://poengkart.no/report) is the full
 write-up. Press + on a programme to build your list of wishes (*ønsker*, the
-ten a vigo application allows), or use the calculator if you do not know your
-points. Search finds any school (⌘K or `/`), Kart ⇄ Liste swaps the map for a
-sortable table, every open school has its own shareable page
-(`/akershus/asker`; old `#s=Fylke/Skolenavn` links still open), and settings
-hold language, theme, text size, the Vg2–Vg3 rows and a
-colour-blind palette. The bug button sends the view you had open with your
-report, never a picture.
+ten a vigo application allows) and copy it out, or use the calculator to work
+out the average from your grades. Search finds any school (⌘K or `/`), Kart ⇄
+Liste swaps the map for a sortable table (*Nær et sted* sorts it by distance
+from a town), every open school has its own shareable page (`/akershus/asker`; old
+`#s=Fylke/Skolenavn` links still open), and settings hold language, theme,
+text size, the Vg2–Vg3 rows, a colour-blind palette and whether schools with
+no recent figures are shown (hidden by default). *Send tilbakemelding* in help
+sends the view you had open with your report, never a picture.
 
 ## Run locally
 
@@ -66,6 +70,23 @@ bug button, routes, a phone, axe, and the figure invariants), and
 which `@astrojs/check` does not support), so the build is the check for
 `.astro` files and endpoints. GitHub Actions runs all four, plus the build,
 on every push to `main` and on every pull request.
+
+Production is deployed with the Vercel CLI from `main` (`vercel deploy
+--prod`), by hand or through the live workflow below; `tools/live/deploy.sh`
+then checks that https://poengkart.no serves `main`'s `schools.json`.
+
+## Keeping it current
+
+The live watch (`tools/live/`, run by `.github/workflows/live.yml` daily, and
+hourly on weekdays from 1 July to 20 August while the intake rounds run) reads
+each publishing county's page and keeps any new document in `sources/`
+exactly as served, then reprocesses the dataset and opens a `live/*` pull
+request. Small corrections whose checks all pass may merge themselves when
+the repository variable `LIVE_AUTOMERGE` is `true`; anything else, and every
+new school year, waits for the owner. vilbli.no blocks GitHub's runners, so
+Rogaland, Innlandet and Trøndelag are fetched by a cloud routine instead
+(`routines/live-vilbli.md`). [sources/README.md](sources/README.md#live-captures)
+has the details.
 
 ## The data
 
@@ -130,7 +151,14 @@ register has no coordinates. Map tiles by [CARTO](https://carto.com/) and
   photo and want it removed, open an issue.
 - **Unofficial project.** Figures may contain parsing errors; check the
   county's own pages before making decisions.
+- **Privacy.** No accounts and no cookies: the grade average and the wishes
+  are kept only in the reader's browser, a location is used once and not
+  sent on, and visits are counted by Vercel Web Analytics.
 - More detail: [docs/data-notes.md](docs/data-notes.md) on who publishes, why
   the history is uneven and how the documents are parsed;
   [docs/programme-categories.md](docs/programme-categories.md) on how
-  programmes map to the national *utdanningsprogram*.
+  programmes map to the national *utdanningsprogram*;
+  [docs/feedback-loop.md](docs/feedback-loop.md) on how reports from readers
+  are handled; [docs/performance.md](docs/performance.md) on what a first
+  visit downloads; [docs/roadmap.md](docs/roadmap.md) for open work;
+  [CONTEXT.md](CONTEXT.md) for the project's fixed vocabulary.
