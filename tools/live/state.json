@@ -11,6 +11,7 @@
   "32b425c651f46555f24c650bb875b8a6dd167bbf02806a1237083ce3666da158": "557745e456445c1da141ac0b37858ea04de713331f69d01d090d75972e153ee9",
   "35350f3daba5d693f0ca112bbecdcda5c98500f7a93c58167f793c7fa677ace3": "776d7f40222c1e93e10c1b868b41824a6d377d6c6c15073dfdb23d1350ccf3a6",
   "3897687a7b9f6c0174f4caab98f511d19ac9779f3d5621dde8e42f0a41f47792": "b79e33daa86a0373438069732a52b662ea470cb10b84ff16a3509daf53b17b29",
+  "41adcd13fa72f05ebc32711448c274a9379c2776921eb5675b158fa35db9cbab": "82fbbdb21ba0e41d2cff5bbca5612110a9260a907d3007e34a1bbce628d39e83",
   "420bb0d27100cb29e9298eb91e5987284589cc9411e4934a0bc2c5859e9c7a2f": "2a5b3b9e10f97690911e6b8b5e42a2fe0cbff693ce65eebe43dc559091569d90",
   "49657a8fc08b5303c4657e93c847fef71c25832f69a5ca6e0f41f37c7e39a749": "09334e74128b8846d96d5955f2b40c339736615cf59c1bb24aca86d73b7f9892",
   "49fd6bd5832352bf660a6b8bb9c4a8148eeda456109febaa3c5958c66d8dd522": "5e7a7acb840e09dc3f3a49d48ab6393b7646e4fbeb1c4447809a7c16384c1119",
@@ -56,7 +57,7 @@
      "file": "akershus/akershus-2025-2026.html",
      "label": "skoleåret 2025–26",
      "name": "akershus-2025-2026.html",
-     "sha256": "2ab2beb337f7ffec5b7ccfe28300c78b626d824d87cd3a8008180cb55c55feb5"
+     "sha256": "c114ce8dc4531ce3285b217d5573db16e22b9273b19ae844216eb40ac8216a0b"
     }
    }
   },
@@ -69,10 +70,11 @@
      "sha256": "8a74da67e7a9c831a531a4dc849d5c13991e2fad4cfb55d98fd04f23e5348351"
     },
     "https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/nedre-poenggrense-for-inntak-buskerud-2026-2027.207338.aspx": {
-     "file": "buskerud/buskerud-2026-2027.html",
+     "captured": "2026-10-09",
+     "file": "buskerud/buskerud-2026-2027-rev2.html",
      "label": "Her finner du nedre poenggrense for inntak i Buskerud 2026-2027",
      "name": "buskerud-2026-2027.html",
-     "sha256": "5cb060c13b7d14da8c30a330a6e769e4196364dc8a96a076be3d07e6d0af1de4"
+     "sha256": "41adcd13fa72f05ebc32711448c274a9379c2776921eb5675b158fa35db9cbab"
     }
    }
   },
@@ -92,7 +94,7 @@
      "file": "mro/mro-powerbi-2026-2027.json",
      "label": "Karakterer",
      "name": "mro-powerbi-2026-2027.json",
-     "sha256": "9478d30dabf520212189a435f681d0a31dbe83c25ff498993e36900d2d0450b0"
+     "sha256": "0ae0fb9a35c094af519635a3c72c8d36add7c85adf7171221b3b56f0887d75f6"
     }
    }
   },
@@ -102,7 +104,7 @@
      "file": "oslo/oslo-2026.html",
      "label": "inntaksrunde i 2026",
      "name": "oslo-2026.html",
-     "sha256": "8e347d71a952ad0572571a6ba653693589d4d901e70915a2e24199b2606631ad"
+     "sha256": "33725ddfa8799aab84bffedf69ea8dfed35289896dceefc8232035a9528ddbeb"
     }
    }
   },
