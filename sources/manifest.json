@@ -57,6 +57,11 @@
    "sha256": "fdd7389caba7fc74db5ac32b2cd3083b551c0b86d3de7d14271ab820d7a10ce2",
    "provenance": "Buskerud fylkeskommune, bfk.no poenggrenser page, saved HTML (2024/25, 2025/26)."
   },
+  "buskerud/buskerud-2026-2027-rev2.html": {
+   "size": 123271,
+   "sha256": "41adcd13fa72f05ebc32711448c274a9379c2776921eb5675b158fa35db9cbab",
+   "provenance": "Buskerud fylkeskommune: «Her finner du nedre poenggrense for inntak i Buskerud 2026-2027»; linked from https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/; served at https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/nedre-poenggrense-for-inntak-buskerud-2026-2027.207338.aspx; school year 2026/2027; captured as served, byte for byte, 09.10.2026 11:58 UTC by the live source watch (tools/live, source buskerud)."
+  },
   "buskerud/buskerud-2026-2027.html": {
    "size": 81559,
    "sha256": "770a95adbcaa30d368cf48a81ac831642aee2d743029591c8a5899248cd0c5dd",
