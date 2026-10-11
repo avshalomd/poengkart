@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · October 2026 · v1.27 (version history in Appendix D)
+Technical report · October 2026 · v1.28 (version history in Appendix D)
 Application: [poengkart.no](https://poengkart.no) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
@@ -31,7 +31,7 @@ stratum where they are defined (5.14 vs 6.18 and 5.28 points on series with
 four or more observed years; cluster-bootstrap intervals exclude zero), nominal 80% intervals cover
 80.5% [78.8, 82.2] of outcomes (81.4% on Vg1, the
 application's default level, and 79.5% on Vg2 and up), and the admission probability is calibrated
-to within 8.0 points in every decile and beats both a deterministic and a
+to within 8.2 points in every decile and beats both a deterministic and a
 probabilistic persistence rule (Brier 0.091 vs 0.156 and 0.095). Paired
 within-year publications identify an intake-round effect of −3.2 to −3.4
 points that makes cross-county comparison of raw thresholds misleading.
@@ -340,7 +340,7 @@ columns use the tokens of Table 1.
 | Fylke | Years | Intake | Cells | Poenggrense | Ingen venteliste | 0.0 | F | D | U | Levels | Source |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Akershus | 2012–2015, 2024–2026 | 2. (2012–2015 1.; 2025 also 1.) | 482 | 361 | 92 | 3 | 0 | 26 | 0 | Vg1 | web page (2025/26); two workbooks released on request (2024/25, 2026/27); 2015 from a newspaper; 2012–2014 are Røyken's, a Buskerud school then |
-| Buskerud | 2012–2014, 2024–2026 | — (2012–2014 1.) | 480 | 418 | 57 | 0 | 0 | 5 | 0 | Vg1 | county web page; 2012–2014 from the county's statistics booklets, typed from images |
+| Buskerud | 2012–2014, 2024–2026 | — (2012–2014 1.) | 480 | 417 | 58 | 0 | 0 | 5 | 0 | Vg1 | county web page; 2012–2014 from the county's statistics booklets, typed from images |
 | Innlandet | 2012–2018, 2020–2026 | 2. | 3,879 | 2,129 | 1,673 | 55 | 0 | 12 | 10 | Vg1–Vg2 | vilbli PDFs; 2020–2022 released on request; 2012–2018 Hedmark's tables, from a document archive's page text |
 | Møre og Romsdal | 2012–2026 | 2. | 6,060 | 4,220 | 1840 | 0 | 0 | 0 | 0 | Vg1–Vg3 | extract behind the county's Power BI dashboard, sent on request (Vg1), and the dashboard itself (Vg2 and up); figures of 25 or less shown as ingen venteliste by the dashboard's own rule |
 | Oslo | 2012–2026 | 1. | 999 | 814 | 105 | 0 | 0 | 80 | 0 | Vg1 | yearly PDFs, 2015 from a school's own site; 2026 as a web page; 2012, 2013 and 2016 from copies (a thesis, two newspapers) |
@@ -883,7 +883,7 @@ Table 4b stratifies the 80% Gaussian coverage by the forecast level and by
 county. Errors are smaller where the forecast is high — the cutoff cannot
 exceed the applicant pool, so a programme forecast above 45 points has
 little room to surprise — and with the spread conditioned on history alone
-(v1.6) the intervals covered 94.0% above 45 points and 64.9% below 25. The
+(v1.6) the intervals covered 95.5% above 45 points and 64.9% below 25. The
 level multiplier of Table 3b, fitted on the calibration years only, moves
 those two bands to 82.1% and 70.3% on the held-out years and leaves the
 three middle bands where they were (78.0–81.9% against 77.4–81.7% before);
@@ -927,8 +927,8 @@ level and by county. RMSE and mean $s$ in points.
 |---|---|---|---|---|
 | below 25 | 37 | 70.3% | 6.40 | 5.53 |
 | 25–30 | 505 | 78.0% | 5.62 | 5.24 |
-| 30–35 | 1010 | 81.9% | 5.35 | 5.18 |
-| 35–40 | 724 | 78.6% | 5.87 | 5.09 |
+| 30–35 | 1011 | 81.8% | 5.37 | 5.18 |
+| 35–40 | 723 | 78.7% | 5.85 | 5.09 |
 | 40–45 | 307 | 84.4% | 4.63 | 4.87 |
 | 45 and above | 67 | 82.1% | 3.27 | 3.44 |
 
@@ -971,18 +971,18 @@ shows the same data as a diagram).
 | 20–30% | 28% | 1,864 |
 | 30–40% | 38% | 1,503 |
 | 40–50% | 47% | 1,444 |
-| 50–60% | 60% | 1,460 |
+| 50–60% | 59% | 1,438 |
 | 60–70% | 73% | 1,556 |
 | 70–80% | 83% | 1,693 |
 | 80–90% | 89% | 2,061 |
 | 90–100% | 99.0% | 13,998 |
 
-The largest gap between prediction and outcome in any decile is 8.0 points,
+The largest gap between prediction and outcome in any decile is 8.2 points,
 in the 60–70% bin, where the forecast is cautious: a stated 65% was
 realised at 73%, so the upper middle of the scale understates the chance
 rather than overstating it (the 70–80% bin, next, is cautious by 7.6
 points). Below 60% the forecast is within 4.2 points of
-the outcome in every bin, with predicted minus observed at most -0.2 points in the three
+the outcome in every bin, with predicted minus observed at most -0.3 points in the three
 lowest bins — a stated 15% was realised at 17% — a region the
 application's coarse bands (likely ≥ 70%, possible ≥ 35%, otherwise
 unlikely) absorb in any case.
@@ -1026,7 +1026,7 @@ calibration-year folds:
   foretells one the next — not that it separates queues from empty places.
 - **Level-conditioned spread.** Section 6.1's multiplier is fitted on the
   calibration years and judged on the held-out ones (Section 7.3): the top
-  band's coverage falls from 94.0% to 82.1% and the bottom band's rises
+  band's coverage falls from 95.5% to 82.1% and the bottom band's rises
   from 64.9% to 70.3%, at no cost to the overall coverage, width or Brier
   score. Kept.
 - **Single-applicant cells.** A threshold equal to the admitted mean is one
@@ -1326,8 +1326,8 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.27`, and the numbers
-quoted here are from the build of 2026-10-07. The compiled dataset ships in
+the version this report describes is tagged `report-v1.28`, and the numbers
+quoted here are from the build of 2026-10-11. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
 JSON; the original county publications are mirrored under `sources/`,
@@ -1507,7 +1507,7 @@ Held-out Brier 0.157 against 0.203 for the base-rate forecaster.
 
 | Predicted | Observed | n |
 |---|---|---|
-| 10–20% | 16.3% | 43 |
+| 10–20% | 18.2% | 44 |
 | 20–30% | 17% | 156 |
 | 30–40% | 27% | 203 |
 | 40–50% | 45% | 222 |
@@ -1552,7 +1552,7 @@ Held-out Brier 0.157 against 0.203 for the base-rate forecaster.
   the 70–80% bin.
 - **v1.7**. Three model changes, each judged by the
   backtest: the forecast spread conditioned on the forecast level as well
-  as on history (Table 3b; the top band's held-out coverage from 94.0% to
+  as on history (Table 3b; the top band's held-out coverage from 95.5% to
   82.1%); the admitted mean (Gjennomkar) carried through the dataset for
   Møre og Romsdal, with a backtest-chosen level-fit weight for the 14
   thresholds one applicant set (it chose full weight); and exponential
@@ -1701,7 +1701,15 @@ Held-out Brier 0.157 against 0.203 for the base-rate forecaster.
   to 80.6%; the county-year step's spread grows from 0.93 to 1.01 points,
   and the admission probability's Brier score does not move. No
   conclusion changes.
-- **v1.27** (this version). Møre og Romsdal's «ingen venteliste» now
+- **v1.28** (this version). A data correction caught by the live watch:
+  on 6 October Buskerud reprinted its 2026/27 table with Buskerud vgs's
+  Vg1 Restaurant- og matfag as «Alle» where it had printed «4,0», a figure
+  below 10,0 that was already kept out of the fit. The level fit stays at
+  12,969 cells; on the held-out years the level RMSE stays at 5.45 points
+  and 80% coverage at 80.4%, the top band's held-out coverage moves from
+  94.0% to 95.5%, and the admission probability's Brier score stays at
+  0.093. No conclusion changes.
+- **v1.27**. Møre og Romsdal's «ingen venteliste» now
   follows the dashboard as it is drawn: it stars an exact 25,0 as well as
   the figures under it, although its legend says «under 25», so 34 Vg1
   cells that read 25,0 are now «ingen venteliste». The level fit drops to

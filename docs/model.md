@@ -166,7 +166,7 @@ queue cannot outgrow its applicants' scores, so high forecasts miss by less:
 ×1.06 below 25 points, ×1.00 from 25 to 40, ×1.00 from 40 to 45, ×0.75 at 45 and above (fitted on
 the calibration years, constrained to fall with the level;
 `meta.sigma_level_multiplier`). On the held-out years it moved the top
-band's 80% coverage from 94.0% to 82.1% and the bottom band's from 64.9% to
+band's 80% coverage from 95.5% to 82.1% and the bottom band's from 64.9% to
 70.3%, and nothing else.
 
 Last, a factor per level group, fitted so each group's 80% band covers 80%
@@ -259,7 +259,7 @@ scores 0.150 against 0.180 for its base rate
 | 20–30% | 28% | 1 864 |
 | 30–40% | 38% | 1 503 |
 | 40–50% | 47% | 1 444 |
-| 50–60% | 60% | 1 460 |
+| 50–60% | 59% | 1 438 |
 | 60–70% | 73% | 1 556 |
 | 70–80% | 83% | 1 693 |
 | 80–90% | 89% | 2 061 |
@@ -273,7 +273,7 @@ on the forecast: that scores 0.095, so most of the gain over the bare rule
 is the uncertainty treatment, and the model's own point forecast is worth
 the last 0.006 of it.
 Below 60% the forecast is within 4.2 points of the outcome in every bin,
-with predicted minus observed at most -0.2 points in the three lowest — a 15% chance was
+with predicted minus observed at most -0.3 points in the three lowest — a 15% chance was
 really 17% — which the app's bands absorb (both are "unlikely"); from 60%
 up it is cautious — a stated 65% came true 73% of the time, the largest gap
 in any bin. The walk-forward forecasts themselves are in `data/model-backtest.csv`.
