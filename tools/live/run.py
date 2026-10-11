@@ -26,6 +26,12 @@ For every source (tools/live/sources/<id>.py) the run is:
      entry and a provenance line saying where, when and how it was fetched.
      The status is NEW.
 
+A capture waits on its live/* branch until its pull request merges, and main
+does not know it yet; so a document whose fingerprint matches a capture in a
+live pull request (--in-review, the refs the workflow fetched) is UNCHANGED
+too, with a note naming the pull request. Without it every run opened the
+same correction again (Buskerud, #51, #53, #57, #59 in October 2026).
+
 A sentinel find (a document where no scraper expects one) is ALERT and is
 never captured. The run writes nothing but sources/, sources/manifest.json
 and tools/live/state.json; processing the capture is the workflow's next
@@ -121,6 +127,34 @@ def committed(state, county, kind):
     return out
 
 
+def in_review(state, county, kind, refs):
+    """{fingerprint: (ref, file)} of the files of `kind` that each git ref in
+    `refs` (a live pull request's head) added under sources/<county>/,
+    cached in state like committed()."""
+    out, cache = {}, state.setdefault('fingerprints', {})
+    for ref in refs:
+        added = _git('diff', '--name-only', '--diff-filter=A', f'HEAD...{ref}',
+                     '--', f'sources/{county}/').decode().split()
+        for path in added:
+            if kind_of(path) != kind:
+                continue
+            body = _git('show', f'{ref}:{path}')
+            h = sha256(body)
+            if h not in cache:
+                try:
+                    cache[h] = fingerprint(body, kind)
+                except Exception as e:       # a file the fingerprint cannot read is no match
+                    cache[h] = f'unreadable:{type(e).__name__}'
+            out.setdefault(cache[h], (ref, path[len('sources/'):]))
+    return out
+
+
+def review_name(ref):
+    """How a note names a ref: «live pull request #59» for refs/live-review/59."""
+    m = re.search(r'/(\d+)$', ref)
+    return f'live pull request #{m.group(1)}' if m else ref
+
+
 def free_name(county, name):
     """`name`, or the first `-revN` of it not yet taken in sources/<county>/."""
     folder = os.path.join(SOURCES, county)
@@ -168,25 +202,34 @@ def _git(*args):
     return subprocess.run(['git', *args], cwd=ROOT, check=True, capture_output=True).stdout
 
 
-def adopt(rev):
+def adopt(rev, review=()):
     """Bring the captures of a relay commit onto this checkout (main as it is
     now, not as it was when the relay cloned it): every file the commit added
     under sources/, with its manifest provenance, and its state. Returns the
-    files that are new here; one main already has, byte for byte, is skipped."""
+    files that are new here; one main already has, byte for byte, is skipped,
+    and so is one whose figures a live pull request in `review` holds."""
     base = _git('merge-base', 'HEAD', rev).decode().strip()
     added = _git('diff', '--name-only', '--diff-filter=A', base, rev, '--', 'sources/').decode().split()
     theirs = json.loads(_git('show', f'{rev}:sources/manifest.json'))['files']
-    new = []
+    new, memo = [], {}       # a fingerprint cache for in_review()
     for path in added:
         rel = path[len('sources/'):]
         if rel not in theirs:
             continue                                        # not a capture (the manifest itself)
         body = _git('show', f'{rev}:{path}')
+        county, name = rel.split('/', 1)
+        if review:
+            kind = kind_of(name)
+            try:
+                fp = fingerprint(body, kind)
+            except Exception:                               # noqa: BLE001 — unreadable: no match
+                fp = None
+            if fp in in_review(memo, county, kind, review):
+                continue
         here = os.path.join(SOURCES, rel)
         if os.path.exists(here):
             if open(here, 'rb').read() == body:
                 continue
-            county, name = rel.split('/', 1)
             rel = f'{county}/{free_name(county, name)}'
             here = os.path.join(SOURCES, rel)
         os.makedirs(os.path.dirname(here), exist_ok=True)
@@ -204,7 +247,7 @@ def adopt(rev):
     return new
 
 
-def run_source(sid, state, now, dry_run=False):
+def run_source(sid, state, now, dry_run=False, review=()):
     mod = importlib.import_module(f'live.sources.{sid}')
     src = mod.SOURCE
     st = state['sources'].setdefault(sid, {})
@@ -240,6 +283,13 @@ def run_source(sid, state, now, dry_run=False):
             if fp in have:
                 seen[doc.url] = dict(entry, file=f'{doc.county}/{have[fp]}')
                 continue                                   # the same figures, new bytes
+            held = in_review(state, doc.county, kind, review)
+            if fp in held:
+                ref, f = held[fp]
+                seen[doc.url] = dict(entry, file=f, review=ref)
+                ctx.note(f'{doc.name}: the same figures as {f} in {review_name(ref)}, '
+                         'which waits for review')
+                continue                                   # captured already, not merged yet
             name = free_name(doc.county, doc.name)
             rel = f'{doc.county}/{name}'
             res['captured'].append({'file': rel, 'url': doc.url, 'label': doc.label,
@@ -275,6 +325,8 @@ def main(argv=None):
     g.add_argument('--all', action='store_true')
     ap.add_argument('--at', help='with --due: Oslo local time, ISO')
     ap.add_argument('--dry-run', action='store_true', help='report, write nothing')
+    ap.add_argument('--in-review', nargs='*', default=[], metavar='REF',
+                    help='git refs of live pull requests: a capture one of them holds is not new')
     ap.add_argument('--json', help='write the run report here')
     ap.add_argument('--runner', choices=['actions', 'cloud'], default='actions',
                     help='with --due or --all: the sources that run there')
@@ -283,7 +335,7 @@ def main(argv=None):
         print('merged the state of', ', '.join(merge_state(a.merge_state)))
         return 0
     if a.adopt:
-        for rel in adopt(a.adopt):
+        for rel in adopt(a.adopt, a.in_review):
             print(rel)
         return 0
 
@@ -303,7 +355,7 @@ def main(argv=None):
     now = datetime.datetime.now(datetime.timezone.utc)
     report = {'started': now.isoformat(timespec='seconds'), 'dry_run': a.dry_run, 'sources': {}}
     for sid in ids:
-        r = run_source(sid, state, now, a.dry_run)
+        r = run_source(sid, state, now, a.dry_run, a.in_review)
         report['sources'][sid] = r
         line = f'{sid:<10} {r["status"]:<10}'
         if r['captured']:

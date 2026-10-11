@@ -345,6 +345,73 @@ def test_adopt_takes_the_relay_captures_onto_a_main_that_moved(tmp_path, monkeyp
     assert run.adopt(relay) == []                      # main already has it, byte for byte
 
 
+def test_a_capture_waiting_in_a_live_pull_request_is_not_captured_again(tmp_path, monkeypatch):
+    # Buskerud, October 2026: a correction whose pull request waited was captured
+    # again every day, with new __VIEWSTATE bytes, and opened #51, #53, #57, #59
+    import subprocess
+
+    def git(*a):
+        subprocess.run(['git', '-c', 'user.name=t', '-c', 'user.email=t@t', *a], cwd=tmp_path,
+                       check=True, capture_output=True)
+
+    def put(rel, body):
+        (tmp_path / rel).parent.mkdir(parents=True, exist_ok=True)
+        (tmp_path / rel).write_bytes(body)
+
+    first = b'<h1>P</h1><table><tr><td>Buskerud</td><td>4,0</td></tr></table>'
+    fixed = first.replace(b'4,0', b'Alle')
+    git('init', '-q', '-b', 'main')
+    put('sources/fake/fake-2026-2027.html', first)
+    put('tools/live/state.json', b'{}')
+    git('add', '-A'); git('commit', '-qm', 'base')
+    git('switch', '-qc', 'live/1')
+    put('sources/fake/fake-2026-2027-rev2.html', b'<input value="token1">' + fixed)
+    git('add', '-A'); git('commit', '-qm', 'live capture')
+    git('switch', '-q', 'main')
+
+    monkeypatch.setattr(run, 'ROOT', str(tmp_path))
+    monkeypatch.setattr(run, 'SOURCES', str(tmp_path / 'sources'))
+    monkeypatch.setattr(run, 'add_to_manifest', lambda rel, prov: None)
+    pages = {'page': b'<input value="token2">' + fixed}
+    _fake_source(monkeypatch, pages)
+    now = datetime.datetime(2026, 10, 11, 12, 0, tzinfo=datetime.timezone.utc)
+
+    state = {'sources': {}, 'fingerprints': {}}
+    r = run.run_source('fake', state, now, dry_run=True, review=['refs/heads/live/1'])
+    assert r['status'] == 'UNCHANGED' and not r['captured']
+    assert 'fake/fake-2026-2027-rev2.html' in r['notes'][0]
+    seen = state['sources']['fake']['seen']['https://fake.no/p']
+    assert seen['review'] == 'refs/heads/live/1'
+
+    # another correction on top is news, and so is the same one with no pull request
+    pages['page'] = fixed.replace(b'Buskerud', b'Buskerud vgs')
+    r = run.run_source('fake', {'sources': {}, 'fingerprints': {}}, now, dry_run=True,
+                       review=['refs/heads/live/1'])
+    assert r['status'] == 'NEW'
+    pages['page'] = b'<input value="token3">' + fixed
+    assert run.run_source('fake', {'sources': {}, 'fingerprints': {}}, now,
+                          dry_run=True)['status'] == 'NEW'
+    assert run.review_name('refs/live-review/59') == 'live pull request #59'
+
+    # the cloud relay's capture of the same figures is not adopted either
+    git('switch', '-qc', 'relay')
+    put('sources/manifest.json', b'{"files": {"fake/fake-2026-2027-rev2.html": {"provenance": "r"}}}')
+    put('sources/fake/fake-2026-2027-rev2.html', b'<input value="token4">' + fixed)
+    git('add', '-A'); git('commit', '-qm', 'relay')
+    git('switch', '-q', 'main')
+    monkeypatch.setattr(run, 'HERE', str(tmp_path / 'tools' / 'live'))
+    monkeypatch.setattr(run, 'merge_state', lambda p: None)
+    assert run.adopt('relay', ['refs/heads/live/1']) == []
+    assert not (tmp_path / 'sources/fake/fake-2026-2027-rev2.html').exists()
+
+
+def test_the_watch_and_the_relay_hand_over_take_the_live_pull_requests():
+    wf = open(os.path.join(ROOT, '.github', 'workflows', 'live.yml'), encoding='utf-8').read()
+    assert 'run.py --only $SOURCES --in-review $REVIEW' in wf
+    assert 'run.py --adopt "$relay" --in-review $REVIEW' in wf
+    assert wf.count('REVIEW: ${{ steps.review.outputs.refs }}') == 2
+
+
 def test_the_workflow_fails_a_step_whose_piped_command_fails():
     # `refresh.py | tee log` under plain `bash -e` reported a failed pipeline as success
     wf = open(os.path.join(ROOT, '.github', 'workflows', 'live.yml'), encoding='utf-8').read()

@@ -121,6 +121,25 @@ jobs:
             gh api -X PUT "repos/$GITHUB_REPOSITORY/actions/workflows/$w/enable" --silent
           done
 
+      - name: Captures waiting in a live pull request
+        id: review
+        # a capture stays on its live/* branch until its pull request merges, so
+        # main does not know it; without these refs every run captured the same
+        # correction again and opened another pull request (Buskerud, October
+        # 2026). A pull request the owner closed unmerged dropped its capture:
+        # the schedule leaves it dropped, a run a person starts takes it again
+        run: |
+          refs=""
+          for row in $(gh pr list --label live --state all --limit 100 --json number,state \
+                         -q '.[] | select(.state != "MERGED") | "\(.number):\(.state)"'); do
+            n=${row%%:*}
+            if [ "${row#*:}" = CLOSED ] && [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then continue; fi
+            git fetch -q origin "+refs/pull/$n/head:refs/live-review/$n" && refs="$refs refs/live-review/$n"
+          done
+          refs=$(echo $refs)
+          echo "refs=$refs" >> "$GITHUB_OUTPUT"
+          echo "in review: ${refs:-none}"
+
       - name: Which sources are due
         id: due
         if: github.event_name != 'push'
@@ -142,10 +161,11 @@ jobs:
         if: github.event_name != 'push' && steps.due.outputs.sources != ''
         env:
           SOURCES: ${{ steps.due.outputs.sources }}
+          REVIEW: ${{ steps.review.outputs.refs }}
         run: |
           set +e
           # (unquoted on purpose: one argument per source id; run.py rejects an unknown one)
-          python3 tools/live/run.py --only $SOURCES --json "$RUNNER_TEMP/live.json"
+          python3 tools/live/run.py --only $SOURCES --in-review $REVIEW --json "$RUNNER_TEMP/live.json"
           echo "rc=$?" >> "$GITHUB_OUTPUT"
 
       - name: The cloud relay's report
@@ -199,6 +219,8 @@ jobs:
       - name: Branch
         id: branch
         if: steps.report.outputs.captured != '0' && steps.report.outputs.captured != ''
+        env:
+          REVIEW: ${{ steps.review.outputs.refs }}
         run: |
           b="live/$(date -u +%Y%m%d-%H%M)"
           if [ "$GITHUB_EVENT_NAME" = push ]; then
@@ -206,10 +228,10 @@ jobs:
             # process on today's main, with only the relay's captures and state
             relay=$(git rev-parse HEAD)
             git checkout -q -f -B "$b" origin/main
-            new=$(python3 tools/live/run.py --adopt "$relay")
+            new=$(python3 tools/live/run.py --adopt "$relay" --in-review $REVIEW)
             git push -q origin --delete "$GITHUB_REF_NAME" || true
             if [ -z "$new" ]; then
-              echo "main already holds the relay's captures; keeping its state only"
+              echo "main or a live pull request already holds the relay's captures; keeping its state only"
               git add tools/live/state.json
               git diff --cached --quiet || git commit -q -m "The live watch records what the counties serve now (tools/live/state.json)"
               for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep 10; done
