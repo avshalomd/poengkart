@@ -23,11 +23,17 @@ log="${RUNNER_TEMP:-/tmp}/deploy.log"
 npx --yes vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN" | tee "$log"
 url=$(tail -1 "$log")
 
-want=$(sha256sum web/public/data/schools.json | cut -d' ' -f1)
+# the build minifies the data (tools/minify-data.mjs), so the site serves the
+# same JSON in other bytes: compare what it says, not its SHA-256
+# (re-serialised by node, as the minifier does: 20.0 and 20 are one number)
+content() { node -e 'let s = ""; process.stdin.on("data", d => s += d).on("end", () => {
+  try { s = JSON.stringify(JSON.parse(s)); } catch { s = "unreadable"; }
+  console.log(require("crypto").createHash("sha256").update(s).digest("hex")); })'; }
+want=$(content < web/public/data/schools.json)
 got=""
 for i in 1 2 3 4 5 6; do
   sleep 10
-  got=$({ curl -sfL "https://poengkart.no/data/schools.json?live=${GITHUB_RUN_ID:-$RANDOM}-$i" || true; } | sha256sum | cut -d' ' -f1)
+  got=$({ curl -sfL "https://poengkart.no/data/schools.json?live=${GITHUB_RUN_ID:-$RANDOM}-$i" || true; } | content)
   [ "$want" = "$got" ] && break
 done
 if [ "$want" = "$got" ]; then
