@@ -422,3 +422,45 @@ def test_the_state_step_needs_a_report_that_ran():
     # null == '0' in Actions: a push without a relay report pushed the relay's state to main
     wf = open(os.path.join(ROOT, '.github', 'workflows', 'live.yml'), encoding='utf-8').read()
     assert "if: steps.report.outcome == 'success' && steps.report.outputs.captured == '0'" in wf
+
+
+# what `vercel deploy --prod --yes` writes on stdout: the JSON object of the
+# current CLI (seen deploying #66, 15 Oct 2026) and the bare URL of older ones
+DEPLOY_JSON = '''{
+  "status": "ok",
+  "deployment": {
+    "id": "dpl_7Hq2xYp",
+    "url": "poengkart-k3j9x2abc-avshalomds-projects.vercel.app",
+    "target": "production",
+    "readyState": "READY"
+  }
+}
+'''
+DEPLOY_LINES = '''Vercel CLI 59.26.0
+https://poengkart-k3j9x2abc-avshalomds-projects.vercel.app
+'''
+
+
+@pytest.mark.parametrize('out', [DEPLOY_JSON, DEPLOY_LINES], ids=['json', 'url'])
+def test_the_deploy_summary_names_the_deployment_url(tmp_path, out):
+    import subprocess
+    bin_ = tmp_path / 'bin'
+    bin_.mkdir()
+    (tmp_path / 'out').write_text(out)
+    stubs = {
+        'npx': f'cat {tmp_path / "out"}',
+        'curl': f'cat {os.path.join(ROOT, "web", "public", "data", "schools.json")}',
+        'git': 'if [ "$1" = rev-parse ]; then echo 7c2935f; fi',
+        'sleep': ':',
+    }
+    for name, body in stubs.items():
+        (bin_ / name).write_text(f'#!/bin/sh\n{body}\n')
+        (bin_ / name).chmod(0o755)
+    summary = tmp_path / 'summary'
+    env = {**os.environ, 'PATH': f'{bin_}:{os.environ["PATH"]}', 'VERCEL_TOKEN': 't', 'VERCEL_PROJECT_ID': 'p',
+           'RUNNER_TEMP': str(tmp_path), 'GITHUB_STEP_SUMMARY': str(summary)}
+    r = subprocess.run(['bash', os.path.join(TOOLS, 'live', 'deploy.sh')], cwd=ROOT, env=env,
+                       capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
+    assert summary.read_text() == ('Deployed main 7c2935f (https://poengkart-k3j9x2abc-avshalomds-projects.vercel.app); '
+                                   'poengkart.no serves its schools.json.\n')
