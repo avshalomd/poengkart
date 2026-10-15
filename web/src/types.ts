@@ -112,6 +112,9 @@ export interface Dataset {
   counties: County[];
   schools: School[];
   years: number[];
+  /** the day (Oslo, YYYY-MM-DD) the published figures last changed, and the
+      hash of those figures that dates it (tools/build_dataset.py stamp()) */
+  updated?: { date: string; figures: string };
 }
 
 /* ---- model.json (tools/model.py) ---- */

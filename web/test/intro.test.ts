@@ -19,6 +19,9 @@ describe('the help sheet', () => {
     expect(body.querySelector('.lede')!.textContent)
       .toContain(t('introScope', shownSchools().length, shownCounties().length,
                    S.DATA!.years[0], S.DATA!.years[S.DATA!.years.length - 1]));
+    // the day the figures last changed, from the dataset's own stamp
+    expect(S.DATA!.updated!.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(document.getElementById('intro-updated')!.textContent).toBe(t('introUpdated', S.DATA!.updated!.date));
     // the colour key draws one dot per t('introKeys') entry, plus the
     // "no points" swatch renderIntro adds from t('noPointsShort')
     expect(body.querySelectorAll('.keyrow .key').length).toBe(t('introKeys').length + 1);
@@ -26,6 +29,14 @@ describe('the help sheet', () => {
     expect(body.querySelector('a[href="/data/schools.json"]')).toBeTruthy();
     expect(body.querySelector('a[href="/report"]')).toBeTruthy();
     expect(document.getElementById('intro-x')!.getAttribute('aria-label')).toBe(t('close'));
+  });
+
+  it('a dataset without the stamp shows no last-updated line', () => {
+    loadFixtures(); initHelpers();
+    const { updated } = S.DATA!;
+    delete S.DATA!.updated;
+    try { renderIntro(); expect(document.getElementById('intro-updated')).toBeNull(); }
+    finally { S.DATA!.updated = updated; }
   });
 
   it('opening takes the page out of the tab order, closing puts it back and records the visit', () => {

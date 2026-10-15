@@ -11,7 +11,7 @@ test('language, theme, text size and the colour-blind palette switch and persist
   await expect(page.locator('#settings')).toBeVisible();
   await page.click(pill('lang', 'en'));
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(page.locator('#tagline')).toContainText('schools');
+  await expect(page.locator('#view-list')).toHaveText('List');
   await page.click(pill('theme', 'dark'));
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.click(pill('font', 'xl'));

@@ -9,14 +9,12 @@ import { t } from '../src/i18n';
 import { S } from '../src/state';
 
 describe('panel and legend', () => {
-  it('the panel prints the dataset’s own scope and the county list with its school counts', () => {
+  it('the panel prints the county list with its school counts, and no count line under the title', () => {
     loadFixtures(); initHelpers(); stubMap(); renderControls(); renderPanel();
-    const tag = document.getElementById('tagline')!.textContent!;
-    // the header counts what the map shows: the fixture's two schools with
-    // nothing since 2025 are hidden (shownSchools)
-    expect(tag).toContain(String(shownSchools().length));
+    // the count line («220 skoler · 9 fylker») is gone: it disagreed with the
+    // report's 278 because the map leaves out the schools that stopped publishing
+    expect(document.getElementById('tagline')).toBeNull();
     expect(shownSchools().length).toBe(DATA.schools.length - 2);
-    expect(tag).toContain(String(DATA.counties.length));
     const fsel = document.getElementById('map-fylke') as HTMLSelectElement;
     const oslo = [...fsel.options].find(o => o.value === 'Oslo')!;
     expect(oslo.textContent).toBe(`Oslo (${DATA.schools.filter((s: any) => s.fylke === 'Oslo' && s.lat).length})`);
@@ -28,7 +26,7 @@ describe('panel and legend', () => {
   it('the folded panel’s line names the county and the utdanningsprogram in force', () => {
     loadFixtures(); initHelpers(); stubMap(); renderControls(); renderPanel();
     // renderPanelSum() writes the selection, not a count: the school count is
-    // the tagline's (whole dataset) and the category note's (this lens)
+    // the help sheet's (whole dataset) and the category note's (this lens)
     const sum = () => document.getElementById('panel-sum-t')!.textContent!;
     expect(sum()).toContain(t('allFylker'));
     expect(sum()).toContain(t('allCats'));

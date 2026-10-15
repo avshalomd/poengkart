@@ -113,7 +113,7 @@ describe('boot', () => {
     expect(S.map!.getStyle()).toMatch(/^\/map\/(voyager|dark-matter)\.json$/);
     // the loading card is gone and the chrome is painted
     expect(document.querySelector('#map .boot-pending')).toBeNull();
-    expect(document.getElementById('tagline')!.textContent).toContain(String(shownSchools().length));
+    expect((document.getElementById('map-fylke') as HTMLSelectElement).options.length).toBeGreaterThan(1);
     expect(document.getElementById('legend-bins')!.children.length).toBeGreaterThan(0);
     expect(document.getElementById('map')!.classList.contains('maplibregl-map')).toBe(true);
     expect(document.querySelector('#map canvas')!.getAttribute('aria-label')).toBe(t('viewMap'));

@@ -6,14 +6,38 @@ test('boots: every school on the map, no console errors, title and lang set', as
   await boot(page);
   await expect(page).toHaveTitle(/Poengkart/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'no');
-  // the scope line, not #panel-sum: the folded line names the two selects
-  // («Fylke: Hele landet, Utdanningsprogram: …»), the tagline carries the count
-  await expect(page.locator('#tagline')).toHaveText(/^\d+ skoler · \d+ fylker · \d{4}–\d{4}$/);
-  const claimed = Number((await page.locator('#tagline').innerText()).match(/^(\d+)/)![1]);
-  // the dots and the headline count the same dataset: at the opening view most
+  // the panel has no count line under the title any more
+  await expect(page.locator('#tagline')).toHaveCount(0);
+  // the county select's «Oslo (24)» counts are what the map claims to show
+  const claimed = await page.locator('#map-fylke > option:not([value="all"])').evaluateAll(
+    os => os.reduce((n, o) => n + Number(/\((\d+)\)$/.exec(o.textContent ?? '')?.[1] ?? 0), 0));
+  expect(claimed).toBeGreaterThan(0);
+  // the dots and the select count the same dataset: at the opening view most
   // schools sit inside a cluster, so the clusters' own labels are the count
   await expect.poll(() => schoolsOnMap(page)).toBe(claimed);
   await expectNoConsoleErrors(errors);
+});
+
+test('the help sheet says when the figures last changed, in both languages', async ({ page }) => {
+  await boot(page);
+  const data = await (await page.request.get('/data/schools.json')).json();
+  const [y, m, d] = data.updated.date.split('-').map(Number);
+  await page.click('#help-btn');
+  await expect(page.locator('#intro-updated')).toHaveText(
+    `Tallene ble sist oppdatert ${d}. ${['januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli', 'august',
+      'september', 'oktober', 'november', 'desember'][m - 1]} ${y}.`);
+  await page.click('#intro-x');
+  await page.click('#settings-btn');
+  await page.click('#settings-body .seg button[data-k="lang"][data-v="en"]');
+  await page.keyboard.press('Escape');
+  await page.click('#help-btn');
+  await expect(page.locator('#intro-updated')).toHaveText(new RegExp(`^Figures last updated ${d} \\w+ ${y}\\.$`));
+});
+
+test('text is laid out unhinted, so a whole-pixel renderer keeps the spaces between words', async ({ page }) => {
+  await boot(page);
+  for (const sel of ['body', '#legend-title', '#pts-note'])
+    expect(await page.locator(sel).evaluate(el => getComputedStyle(el).textRendering), sel).toBe('geometricprecision');
 });
 
 test('the report page renders', async ({ page }) => {

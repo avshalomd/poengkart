@@ -14,6 +14,8 @@ import json
 import os
 import pkgutil
 import sys
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common                                    # noqa: E402
@@ -29,6 +31,29 @@ DRIFT = os.path.join(HERE, '..', 'data', 'source-drift.json')
 KEEP = ('orgnr', 'url', 'wiki_url', 'wiki_extract', 'address',
         'photo', 'photo_source', 'photo_page', 'photo_credit', 'photo_license',
         'photo_position', 'photo_note', 'nsr_name', 'kommune', 'sted')
+
+
+def figures_hash(data):
+    """SHA-256 of the published figures alone: every (county, school,
+    programme, level, year) cell and its value, the cells tools/live/diff.py
+    compares. Photos, positions and links leave it unchanged."""
+    cells = sorted([s['fylke'], s['name'], p['program'], p['level'], str(y), v]
+                   for s in data['schools'] for p in s.get('programs', [])
+                   for y, v in p.get('values', {}).items())
+    blob = json.dumps(cells, ensure_ascii=False, separators=(',', ':'))
+    return hashlib.sha256(blob.encode('utf-8')).hexdigest()
+
+
+def stamp(out, old):
+    """out['updated']: the day the figures last changed, which the app shows
+    as «Sist oppdatert». A re-run that changes no figure keeps the old date, so
+    the stamp says when the data moved, not when the pipeline ran."""
+    figures = figures_hash(out)
+    prev = (old or {}).get('updated') or {}
+    if prev.get('figures') == figures and prev.get('date'):
+        return dict(prev)
+    today = datetime.now(ZoneInfo('Europe/Oslo')).date().isoformat()
+    return {'date': today, 'figures': figures}
 
 
 CACHE_DIR = os.path.join(HERE, '.cache')
@@ -241,11 +266,12 @@ def main():
         if reprint:
             c['reprint_years'] = reprint
 
-    if os.path.exists(OUT):                      # keep enrichment across re-runs
+    prev_data = json.load(open(OUT)) if os.path.exists(OUT) else None
+    if prev_data:                                # keep enrichment across re-runs
         # keyed by the published spelling, so a school respelled by
         # common.school_name() keeps its photo, links and register name
         old = {(s.get('fylke'), common.school_name(s['name'])): s
-               for s in json.load(open(OUT))['schools']}
+               for s in prev_data['schools']}
         for s in out['schools']:
             prev = (old.get((s['fylke'], s['name']))
                     or old.get((None, common.school_name(s['name']))) or {})
@@ -255,6 +281,7 @@ def main():
 
     for c in counties:
         c['schools'] = sum(1 for s in out['schools'] if s['fylke'] == c['fylke'])
+    out['updated'] = stamp(out, prev_data)
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     json.dump(out, open(OUT, 'w'), ensure_ascii=False, indent=1)
@@ -274,6 +301,7 @@ def main():
     print(f'source disagreements: {len(drift)} -> {DRIFT}')
     if alt_only:
         print(f'{alt_only} programmes with only alternate-round cells left out (no first-round series)')
+    print(f'figures last changed {out["updated"]["date"]}')
     print(f'-> {OUT}')
 
 

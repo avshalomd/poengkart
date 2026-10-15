@@ -74,7 +74,11 @@ export function renderIntro() {
     </div>`).join('');
   document.getElementById('intro-body')!.innerHTML =
     `<p class="lede">${esc(t('introLede'))} ${esc(t('introScope', shownSchools().length, shownCounties().length,
-      S.DATA!.years[0], S.DATA!.years[S.DATA!.years.length - 1]))}</p>${steps}` +
+      S.DATA!.years[0], S.DATA!.years[S.DATA!.years.length - 1]))}` +
+      // how fresh the figures are; a dataset without the stamp says nothing
+      (S.DATA!.updated && t('introUpdated', S.DATA!.updated.date)
+        ? ` <span id="intro-updated">${esc(t('introUpdated', S.DATA!.updated.date))}</span>` : '') +
+    `</p>${steps}` +
     // the terms the sheets use without stopping to define them, and the one
     // thing a parent asks next: what do we actually do
     `<h3 class="words-h">${esc(t('introWordsH'))}</h3><dl class="words">` +

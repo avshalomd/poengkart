@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { T, t, schoolYear } from '../src/i18n';
+import { T, t, schoolYear, isoDay } from '../src/i18n';
 import { S } from '../src/state';
 
 // A handful of T[key].no/en are functions whose first argument is not a
@@ -9,6 +9,7 @@ import { S } from '../src/state';
 const CALL_ARGS: Record<string, any[]> = {
   yearsOr: [['2025', '2026']],
   legendCat: ['ST'],
+  introUpdated: ['2026-10-11'],
 };
 
 describe('i18n', () => {
@@ -20,9 +21,17 @@ describe('i18n', () => {
     }
   });
   it('t() follows S.lang and passes arguments through', () => {
-    S.lang = 'no'; const no = t('tagline', 217, 8, 2012, 2026);
-    S.lang = 'en'; const en = t('tagline', 217, 8, 2012, 2026);
+    S.lang = 'no'; const no = t('introScope', 217, 8, 2012, 2026);
+    S.lang = 'en'; const en = t('introScope', 217, 8, 2012, 2026);
     expect(no).toContain('217'); expect(en).toContain('217'); expect(no).not.toBe(en);
+  });
+  it('the last-updated line spells the day out and says nothing for a malformed date', () => {
+    S.lang = 'no'; expect(t('introUpdated', '2026-10-11')).toBe('Tallene ble sist oppdatert 11. oktober 2026.');
+    expect(t('introUpdated', '2027-01-03')).toBe('Tallene ble sist oppdatert 3. januar 2027.');
+    S.lang = 'en'; expect(t('introUpdated', '2026-10-11')).toBe('Figures last updated 11 October 2026.');
+    for (const bad of ['', '2026-13-01', '2026-10-00', '11.10.2026', undefined, 1]) expect(t('introUpdated', bad), String(bad)).toBe('');
+    expect(isoDay('2026-12-31')).toEqual({ y: 2026, m: 11, d: 31 });
+    S.lang = 'no';
   });
   it('no string contains a coined term the glossary forbids', () => {
     const banned = /\b(cut-off|cutoff|high school|grade 1[123]|priority quota)\b/i;
