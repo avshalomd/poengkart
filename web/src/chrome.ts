@@ -10,12 +10,6 @@ import { bindTitleTips } from "./tips";
 /* ================= static chrome rendering ================= */
 export function renderPanel() {
   renderControls();
-  // in a span: the List view shows the line whole or not at all
-  // the counts are of what the map shows: the schools that stopped publishing
-  // are left out until the setting brings them back (shownSchools)
-  document.getElementById('tagline')!.replaceChildren(Object.assign(document.createElement('span'), {
-    textContent: t('tagline', shownSchools().length, shownCounties().length,
-                   S.DATA!.years[0], S.DATA!.years[S.DATA!.years.length - 1]) }));
   document.getElementById('cat-label')!.textContent = t('catLabel');
   document.getElementById('view-map')!.textContent = t('viewMap');
   document.getElementById('view-list')!.textContent = t('viewList');

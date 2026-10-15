@@ -26,12 +26,25 @@ export const CATS = {
 // documents use: 2027 → «2027/28»
 export const schoolYear = y => `${y}/${String((+y + 1) % 100).padStart(2, '0')}`;
 export const ordEn = r => `${r}${r === '1' ? 'st' : r === '2' ? 'nd' : r === '3' ? 'rd' : 'th'}`;
+// months spelled out by hand: Intl's month names depend on the ICU data the
+// browser ships, and «11. oktober 2026» has to read the same everywhere
+const MONTHS_NO = ['januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli',
+                   'august', 'september', 'oktober', 'november', 'desember'];
+const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+                   'August', 'September', 'October', 'November', 'December'];
+/** 'YYYY-MM-DD' → its parts (month 0-based), or null for anything else */
+export function isoDay(iso: unknown): { y: number; m: number; d: number } | null {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso ?? ''));
+  if (!m || +m[2] < 1 || +m[2] > 12 || +m[3] < 1 || +m[3] > 31) return null;
+  return { y: +m[1], m: +m[2] - 1, d: +m[3] };
+}
+
 export const T = {
-  // the header keeps the scope alone; the definition and the gesture live in
-  // the (?) sheet, which every first visit opens anyway
-  tagline: {
-    no: (n, f, y0, y1) => `${n} skoler · ${f} fylker · ${y0}–${y1}`,
-    en: (n, f, y0, y1) => `${n} schools · ${f} counties · ${y0}–${y1}`,
+  // the day the figures last changed (schools.json's updated.date), not the
+  // day the site was deployed: a redeploy with the same figures keeps it
+  introUpdated: {
+    no: iso => { const d = isoDay(iso); return d ? `Tallene ble sist oppdatert ${d.d}. ${MONTHS_NO[d.m]} ${d.y}.` : ''; },
+    en: iso => { const d = isoDay(iso); return d ? `Figures last updated ${d.d} ${MONTHS_EN[d.m]} ${d.y}.` : ''; },
   },
   introScope: {
     no: (n, f, y0, y1) => `Dekker ${n} skoler i ${f} fylker, ${y0}–${y1}.`,

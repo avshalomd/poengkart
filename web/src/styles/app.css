@@ -146,6 +146,11 @@
     font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     background: var(--page); color: var(--ink);
     font-size: 14px; -webkit-font-smoothing: antialiased;
+    /* Chromium with full font hinting (headless, some Linux desktops) snaps
+       each glyph to a whole pixel, and Instrument Sans's narrow space (0.19em
+       at 600) vanished: «Estimertsjanse», «medulikeinntak» in the legend.
+       geometricPrecision lays text out unhinted there; elsewhere it is a no-op. */
+    text-rendering: geometricPrecision;
   }
   button { font: inherit; color: inherit; }
   #app { display: flex; height: 100%; }
@@ -198,7 +203,10 @@
   .brand { display: flex; align-items: center; gap: 9px; }
   .brand .mark { width: 26px; height: 26px; flex: none; }
   .brand h1 { font-size: 19px; font-weight: 700; letter-spacing: -.02em; }
-  #tagline { font-size: 12px; color: var(--ink-3); line-height: 1.45; margin: 4px 0 12px; font-variant-numeric: tabular-nums; }
+  /* the brand sits straight on the view switch: the count line that stood
+     between them counted only the schools the map shows, which read as the
+     whole dataset and disagreed with the report, so it went */
+  #panel > .brand { margin-bottom: 12px; }
   .field label { display: block; font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
                  text-transform: uppercase; color: var(--ink-3); margin-bottom: 5px; }
   .field + .field { margin-top: 10px; }
@@ -1543,7 +1551,7 @@
     #fylke-field[hidden] + .field { grid-column: 1 / -1; }
     .field select { text-overflow: ellipsis; }
     #cat-note:empty { display: none; }
-    #tagline { display: none; }            /* the panel hid 23 markers */
+    #panel > .brand { margin-bottom: 0; }   /* the grid's row gap spaces it */
     /* half a 320px card at Stor cut «UTDANNINGSPROGRAM» at the panel's edge */
     .field label { font-size: 10.5px; letter-spacing: .04em; margin-bottom: 3px;
                    hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
@@ -1604,7 +1612,7 @@
      rode up over the two selects and hid them completely. Drop the prose and
      lay the filters out side by side. */
   @media (max-height: 480px) {
-    #tagline { display: none; }
+    #panel > .brand { margin-bottom: 0; }
     #panel { padding: 12px 12px 4px; border-radius: 22px; }   /* 4px + the grid's 8px row gap, as on a phone */
     #panel::after { grid-column: 1 / -1; height: 12px; margin: -8px -12px -4px; bottom: -4px; }
     #legend { padding: 7px 12px 6px; }
@@ -1668,13 +1676,7 @@
     body.lv-stack #panel .brand { display: contents; }
     body.lv-stack #panel .brand .mark { margin-right: -5px; }     /* the brand's own 9px */
     body.lv-stack #panel .brand .util { order: 1; margin-left: 0; }
-    /* The scope line shows whole or not at all. Its text is one unbreakable
-       piece after an empty one, so on a row too short for it the text drops to
-       a second line, which the one-line box clips away. */
-    body.lv-stack #panel #tagline { flex: 1 1 0; min-width: 0; height: 1.45em; overflow: hidden; margin: 0; }
-    body.lv-stack #panel #tagline::before { content: ''; display: inline-block; }
-    body.lv-stack #panel #tagline span { display: inline-block; white-space: nowrap; }
-    body.lv-stack #panel .viewrow { margin: 0 0 0 auto; }         /* right, even with no scope line */
+    body.lv-stack #panel .viewrow { margin: 0 0 0 auto; }         /* right, after the title */
     body.lv-stack #panel #view-toggle button, body.lv-stack #panel #view-toggle .over span { min-width: 64px; }
     body.lv-stack #panel::after {
       display: block; content: ''; order: 2; flex: 0 0 100%; height: 12px;
@@ -1717,7 +1719,6 @@
      and settings fell under the title; the view switch takes a row of its own */
   @media (min-width: 561px) and (max-width: 599px) {
     :root[data-font="xl"] body.lv-stack #panel .brand .util { order: 0; margin-left: auto; }
-    :root[data-font="xl"] body.lv-stack #panel #tagline { display: none; }  /* it took the free space from that auto */
     :root[data-font="xl"] body.lv-stack #panel .viewrow { flex: 1 1 100%; margin: 8px 0 0; }
   }
   /* sideways the card keeps the phone's 12px sides, and its 4px bottom counted

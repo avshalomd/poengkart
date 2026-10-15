@@ -35,7 +35,7 @@ describe('schools that stopped publishing', () => {
     setStale(true);
     expect(names(visibleSchools())).toContain(STALE[1]);
     expect(names(runSearch('fagerlia') || [])).toEqual([STALE[1]]);
-    expect(document.getElementById('tagline')!.textContent).toContain(String(DATA.schools.length));
+    expect(shownSchools().length).toBe(DATA.schools.length);
     setStale(false);
     expect(names(visibleSchools())).not.toContain(STALE[1]);
     expect(localStorage.getItem('pk-showstale')).toBe('0');
