@@ -21,7 +21,14 @@ fi
 git fetch -q origin main && git checkout -q FETCH_HEAD
 log="${RUNNER_TEMP:-/tmp}/deploy.log"
 npx --yes vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN" | tee "$log"
-url=$(tail -1 "$log")
+# the CLI prints a JSON object ({"deployment": {"url": ...}}, the host without
+# its scheme) on stdout; older ones printed the bare https:// URL last
+url=$(node -e 'const s = require("fs").readFileSync(process.argv[1], "utf8");
+  let u = "";
+  try { const j = JSON.parse(s.slice(s.indexOf("{"), s.lastIndexOf("}") + 1)); u = (j.deployment || j).url || ""; } catch {}
+  if (!u) u = s.split("\n").map(l => l.trim()).filter(l => l.startsWith("https://")).pop() || "";
+  if (u && !/^https?:\/\//.test(u)) u = "https://" + u;
+  console.log(u || "deployment url not found");' "$log")
 
 # the build minifies the data (tools/minify-data.mjs), so the site serves the
 # same JSON in other bytes: compare what it says, not its SHA-256
