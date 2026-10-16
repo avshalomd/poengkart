@@ -57,7 +57,7 @@
      "file": "akershus/akershus-2025-2026.html",
      "label": "skoleåret 2025–26",
      "name": "akershus-2025-2026.html",
-     "sha256": "a1a32b9ac9e1372a8c57c2d2b1e2c7fa42f7046c20a36dd22114855606ae4eaf"
+     "sha256": "0cd8e4de7a7198255b1c6ae094b74317289b8fee556e08feb96f31c39d93c2b1"
     }
    }
   },
@@ -73,7 +73,7 @@
      "file": "buskerud/buskerud-2026-2027-rev2.html",
      "label": "Her finner du nedre poenggrense for inntak i Buskerud 2026-2027",
      "name": "buskerud-2026-2027.html",
-     "sha256": "c9fe68df6ebc20cd4fb46b7d687d167c6bbf5fb551265dd75ff36c72c87b201c"
+     "sha256": "ff0ed6d359d1eb97cd9c04ee2e9c8c677ca766abeba2138b235573cc845fac8e"
     }
    }
   },
@@ -93,7 +93,7 @@
      "file": "mro/mro-powerbi-2026-2027.json",
      "label": "Karakterer",
      "name": "mro-powerbi-2026-2027.json",
-     "sha256": "b00604921ff137b6428989e5186908dc5146d57429fb8ac583bc912f8bd2a1d4"
+     "sha256": "0cde2657a4cb84a0f664ed7554939e9399e1b9296823f831aea6a8c313e98c27"
     }
    }
   },
