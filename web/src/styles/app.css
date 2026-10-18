@@ -1444,6 +1444,14 @@
   .prow .jump { font-size: 10.5px; color: var(--warn); white-space: nowrap; margin-right: 6px; }
   /* not a chip: this says why there is no percentage, so no pill around it */
   .ch.none { background: none; border: none; padding: 0; color: var(--ink-3); font-weight: 500; }
+  /* the whole record (recordHtml): closed until asked for, small type */
+  .record { margin: 14px 18px 0; font-size: 12px; color: var(--ink-2); line-height: 1.5; }
+  .record summary { cursor: pointer; color: var(--accent); font-weight: 550; padding: 6px 0; }
+  .record summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .record dl { margin: 6px 0 0; }
+  .record dt { color: var(--ink); font-weight: 550; margin-top: 8px; }
+  .record dt small { color: var(--ink-3); font-weight: 500; }
+  .record dd { margin: 0; font-variant-numeric: tabular-nums; }
   #src-note { padding: 14px 18px 20px; font-size: 10.5px; color: var(--ink-3); line-height: 1.5; }
   #src-note .lnk { background: none; border: 0; padding: 0; font: inherit; color: var(--accent);
                    text-decoration: underline; cursor: pointer; }

@@ -2,10 +2,11 @@
    home page today, verbatim, the site origin every absolute URL uses, and the
    school's own sheet, written into the shell from the same templates the
    client renders with. */
-import { HOME_OG_TITLE, meanStep, schoolOgTitle, schoolPath, schoolTitle, shownPrograms } from './helpers';
+import { HOME_OG_TITLE, countyPath, levelScope, meanStep, progName, schoolOgTitle, schoolPath, schoolTitle, shownPrograms } from './helpers';
+import { CATS } from './i18n';
 import { S } from './state';
-import { heroCells, heroHtml, listHtml, metaHtml, notesHtml, photoHtml, srcNoteHtml } from './templates';
-import type { Dataset, School } from './types';
+import { cellText, heroCells, heroHtml, listHtml, metaHtml, notesHtml, photoHtml, recordHtml, srcNoteHtml } from './templates';
+import type { County, Dataset, School } from './types';
 
 export const SITE = 'https://poengkart.no';
 
@@ -18,7 +19,16 @@ export interface HeadProps {
   twitterDescription: string;
   ogImage: string;
   ogImageAlt: string;
+  /** schema.org JSON-LD, already serialised by jsonLd() */
+  jsonLd?: string;
 }
+
+// JSON-LD goes into a <script> element: a «</script>» in a name would end it
+export const jsonLd = (obj: unknown) => JSON.stringify(obj).replace(/</g, '\\u003c');
+const crumbs = (items: [string, string][]) => ({
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map(([name, item], i) => ({ '@type': 'ListItem', position: i + 1, name, item })),
+});
 
 export const HOME_HEAD: HeadProps = {
   title: 'Poengkart – poenggrenser for videregående skole',
@@ -30,6 +40,37 @@ export const HOME_HEAD: HeadProps = {
   ogImage: SITE + '/og.png',
   ogImageAlt: 'Kart over Norge med 278 videregående skoler som prikker, fargelagt etter poenggrense, og skolesiden for Elvebakken videregående skole med bilde, snittgrense og utvikling år for år.',
 };
+
+// The home page says what the site is and what the dataset is: Google lists a
+// schema.org Dataset in Dataset Search, and the download is the same file the
+// map reads.
+export function homeHead(data: Dataset): HeadProps {
+  const ys = data.years, first = ys[0], last = ys[ys.length - 1];
+  return {
+    ...HOME_HEAD,
+    jsonLd: jsonLd({
+      '@context': 'https://schema.org',
+      '@graph': [
+        { '@type': 'WebSite', '@id': SITE + '/#website', name: 'Poengkart', url: SITE + '/', inLanguage: 'nb' },
+        {
+          '@type': 'Dataset',
+          name: `Poenggrenser for videregående skoler i Norge ${first}–${last}`,
+          description: `Poenggrensene (karakterpoeng for siste inntatte søker) for ${data.schools.length} videregående skoler i ${data.counties.length} fylker, per programområde og år, ${first}–${last}, samlet fra fylkeskommunenes egne publikasjoner.`,
+          url: SITE + '/',
+          inLanguage: 'nb',
+          isAccessibleForFree: true,
+          keywords: ['poenggrenser', 'videregående skole', 'inntak', 'karakterpoeng', 'programområde', 'Vg1'],
+          temporalCoverage: `${first}/${last}`,
+          spatialCoverage: { '@type': 'Place', name: 'Norge' },
+          creator: { '@type': 'Person', name: 'Abshalom Dayan' },
+          ...(data.updated?.date ? { dateModified: data.updated.date } : {}),
+          distribution: [{ '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: SITE + '/data/schools.json' }],
+          isPartOf: { '@id': SITE + '/#website' },
+        },
+      ],
+    }),
+  };
+}
 
 // The state the sheet's own functions read, as the client sets it up on a
 // fresh load: Norwegian, no lens, Vg1 scope, no history, no reader. Both
@@ -75,6 +116,19 @@ export function schoolHead(s: School, data: Dataset): HeadProps {
     twitterDescription: description,
     ogImage: SITE + '/og' + path + '.png',
     ogImageAlt,
+    jsonLd: jsonLd({
+      '@context': 'https://schema.org',
+      '@graph': [
+        crumbs([['Poengkart', SITE + '/'], [s.fylke, SITE + countyPath(s.fylke)], [s.name, SITE + path]]),
+        {
+          // the school is the page's subject; its url is the school's own site
+          '@type': 'HighSchool', '@id': SITE + path + '#skole', name: s.name,
+          ...(s.url ? { url: s.url.startsWith('http') ? s.url : 'https://' + s.url } : {}),
+          ...(s.address ? { address: s.address } : {}),
+          ...(s.lat ? { geo: { '@type': 'GeoCoordinates', latitude: s.lat, longitude: s.lon } } : {}),
+        },
+      ],
+    }),
   };
 }
 
@@ -96,6 +150,7 @@ const ANCHORS: [string, (s: School) => string][] = [
   ['<div class="hero" id="s-hero"></div>', s => `<div class="hero" id="s-hero">${heroHtml(s, null).hero}</div>`],
   ['<div class="mixwarn" id="s-mix" hidden></div>', s => { const m = heroHtml(s, null).mix; return m ? `<div class="mixwarn" id="s-mix">${m}</div>` : '<div class="mixwarn" id="s-mix" hidden></div>'; }],
   ['<div id="s-list"></div>', s => `<div id="s-list">${listHtml(s, null)}</div>`],
+  ['<div id="s-record"></div>', s => `<div id="s-record">${recordHtml(s)}</div>`],
   ['<div id="src-note"></div>', () => `<div id="src-note">${srcNoteHtml()}</div>`],
   ['<aside id="side">', () => '<aside id="side" class="open">'],
 ];
@@ -112,3 +167,53 @@ export function fillShell(shell: string, school: School, data: Dataset): string 
   }
   return out;
 }
+
+/* ---- a county's page (pages/[fylke].astro): every school in it, the Vg1
+   figures of the county's two newest years, and a link to each school ---- */
+export interface CountyRow { prog: string; level: string; cur: string; prev: string }
+export interface CountySchool { school: School; path: string; rows: CountyRow[]; newest: string }
+export interface CountyView { county: County; path: string; year: string; prev: string; first: string; schools: CountySchool[] }
+
+export function countyView(c: County, data: Dataset): CountyView {
+  prepareState(data);        // cellText's numbers follow the language
+  const inCounty = data.schools.filter(s => s.fylke === c.fylke)
+    .sort((a, b) => a.name.localeCompare(b.name, 'nb'));
+  const years = inCounty.flatMap(s => s.programs.flatMap(p => Object.keys(p.values))).sort();
+  const year = years[years.length - 1] || '', first = years[0] || '';
+  const prev = String(+year - 1);
+  const cats = Object.keys(CATS);
+  const schools = inCounty.map(s => {
+    const progs = levelScope(s.programs).filter(p => p.values[year] !== undefined || p.values[prev] !== undefined)
+      .slice().sort((a, b) => cats.indexOf(a.category) - cats.indexOf(b.category) || progName(a).localeCompare(progName(b), 'nb'));
+    const cell = (p, y) => p.values[y] === undefined ? '–' : cellText(s.fylke, y, p.values[y]);
+    const newest = s.programs.flatMap(p => Object.keys(p.values)).sort().pop() || '';
+    return { school: s, path: schoolPath(s), newest,
+             rows: progs.map(p => ({ prog: progName(p), level: p.level, cur: cell(p, year), prev: cell(p, prev) })) };
+  });
+  return { county: c, path: countyPath(c.fylke), year, prev, first, schools };
+}
+
+export function countyHead(v: CountyView): HeadProps {
+  const { county: c, year, first } = v;
+  const n = v.schools.length;
+  const title = `Poenggrenser ${c.fylke} ${year} – videregående skoler | Poengkart`;
+  const description = `Poenggrensene for ${n} videregående skoler i ${c.fylke}: hva som krevdes for å komme inn på hvert programområde i ${year} og ${v.prev}, med tall tilbake til ${first}.`;
+  return {
+    title, description, canonical: SITE + v.path,
+    ogTitle: `Poenggrenser ${c.fylke} ${year}`, ogDescription: description, twitterDescription: description,
+    ogImage: SITE + '/og.png',
+    ogImageAlt: HOME_HEAD.ogImageAlt,
+    jsonLd: jsonLd({
+      '@context': 'https://schema.org',
+      '@graph': [
+        crumbs([['Poengkart', SITE + '/'], [c.fylke, SITE + v.path]]),
+        { '@type': 'ItemList', name: `Videregående skoler i ${c.fylke}`,
+          itemListElement: v.schools.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.school.name, url: SITE + s.path })) },
+      ],
+    }),
+  };
+}
+
+// the counties in the order a reader looks for them: by name
+export const countiesByName = (data: Dataset) =>
+  data.counties.slice().sort((a, b) => a.fylke.localeCompare(b.fylke, 'nb'));

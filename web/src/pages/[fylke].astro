@@ -1,0 +1,59 @@
+---
+// A county's page: every school in it with the Vg1 figures of the county's two
+// newest years, a link to each school's own page and the map filtered to the
+// county. Plain text, no script: what a counsellor prints and what a crawler
+// that runs no script reads.
+import Page from '../layouts/Page.astro';
+import { loadDataset } from '../data';
+import { countyPath } from '../helpers';
+import { t } from '../i18n';
+import { countiesByName, countyHead, countyView } from '../prerender';
+import type { County } from '../types';
+
+export function getStaticPaths() {
+  return countiesByName(loadDataset()).map(c => ({ params: { fylke: countyPath(c.fylke).slice(1) }, props: { county: c } }));
+}
+const { county } = Astro.props as { county: County };
+const data = loadDataset();
+const v = countyView(county, data);
+const others = countiesByName(data).filter(c => c.fylke !== county.fylke);
+const updated = data.updated?.date ? t('introUpdated', data.updated.date) : '';   // countyView set the language
+// a county that stopped publishing (Agder, Nordland) says so, as the map's settings do
+const stale = +v.year < data.years[data.years.length - 1] - 1;
+const listed = v.schools.filter(s => s.rows.length), quiet = v.schools.filter(s => !s.rows.length);
+const round = county.round ? `Tallene er fra ${county.round}. inntak` : 'Fylket oppgir ikke hvilket inntak tallene er fra';
+---
+<Page {...countyHead(v)}>
+<main>
+  <nav class="crumbs" aria-label="Brødsmuler"><a href="/">Poengkart</a> › {county.fylke}</nav>
+  <h1>Poenggrenser i {county.fylke} {v.year}</h1>
+  <p class="lead">Hva krevdes for å komme inn på videregående i {county.fylke}? Her er poenggrensene
+    for {v.schools.length} skoler, per programområde, for {v.year} og {v.prev}. Hver skole har sin egen side
+    med alle publiserte tall, år for år.</p>
+  {stale && <p class="lead">{county.fylke} har ikke publisert poenggrenser etter {v.year}, så tallene her er de siste som finnes.</p>}
+  <p class="lead">{round}. <a href={county.source} rel="nofollow noopener">Kilden for tallene</a>. {updated}</p>
+  <a class="cta" href={`/?f=${encodeURIComponent(county.fylke)}`}>Se skolene i {county.fylke} på kartet</a>
+  {listed.map(s => (
+    <section class="school">
+      <h2><a href={s.path}>{s.school.name}</a></h2>
+      <p class="sub">{[s.school.kommune, s.school.address].filter(Boolean).join(' · ')}</p>
+      <table>
+        <thead><tr><th scope="col">Programområde</th><th scope="col" class="n">{v.year}</th><th scope="col" class="n">{v.prev}</th></tr></thead>
+        <tbody>
+          {s.rows.map(r => <tr><th scope="row">{r.prog} <small>{r.level}</small></th><td class="n">{r.cur}</td><td class="n">{r.prev}</td></tr>)}
+        </tbody>
+      </table>
+    </section>
+  ))}
+  {quiet.length > 0 && (
+    <section class="school">
+      <h2>Skoler uten tall for {v.year} og {v.prev}</h2>
+      <p class="sub">Nedlagte og sammenslåtte skoler, og skoler fylket ikke lenger publiserer tall for. Sidene deres har tallene som finnes.</p>
+      <ul>{quiet.map(s => <li><a href={s.path}>{s.school.name}</a>{s.newest && <> (siste tall {s.newest})</>}</li>)}</ul>
+    </section>
+  )}
+  <p class="others">Andre fylker: {others.map((c, i) => <>{i ? ', ' : ''}<a href={countyPath(c.fylke)}>{c.fylke}</a></>)}.</p>
+  <footer>Uoffisiell tjeneste laget av Abshalom Dayan. Tallene er hentet fra fylkenes publikasjoner og kan inneholde feil.
+    «Ingen venteliste» betyr at alle kvalifiserte søkere fikk plass. «Fullt» betyr at plassene ble fylt, men den siste som fikk plass, hadde ingen registrerte poeng.</footer>
+</main>
+</Page>

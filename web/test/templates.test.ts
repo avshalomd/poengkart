@@ -5,7 +5,7 @@ import { stubMap } from './mapstub';
 import { esc, initHelpers, schoolPressure } from '../src/helpers';
 import { openSide } from '../src/sidebar';
 import { t } from '../src/i18n';
-import { photoHtml, metaHtml, notesHtml, heroHtml, srcNoteHtml, listHtml } from '../src/templates';
+import { photoHtml, metaHtml, notesHtml, heroHtml, srcNoteHtml, listHtml, recordHtml } from '../src/templates';
 
 // The DOM the client renders must be the DOM the build prerendered: same
 // strings, so nothing moves when the script takes over a school page.
@@ -44,6 +44,7 @@ describe('the sheet renders what the templates say', () => {
     expect(document.getElementById('s-mix')!.hidden).toBe(!mix);
     expect(rendered('src-note')).toBe(norm(srcNoteHtml()));
     expect(rendered('s-list')).toBe(norm(listHtml(s, null)));
+    expect(rendered('s-record')).toBe(norm(recordHtml(s)));
   });
   it('the templates are strings of the school, not of the DOM', () => {
     const s = asker();

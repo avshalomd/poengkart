@@ -526,6 +526,7 @@ export const T = {
   midLabel:   { no: 'snitt', en: 'avg' },
   series:     { no: n => n === 1 ? 'programområde' : 'programområder', en: n => n === 1 ? 'programme area' : 'programme areas' },
   website:    { no: 'Nettside', en: 'Website' },
+  recordTitle:{ no: 'Alle tall, år for år', en: 'Every figure, year by year' },
   wiki:       { no: 'Wikipedia', en: 'Wikipedia' },
   srcNoteLink: { no: 'Meld fra via tilbakemelding', en: 'Report an error via feedback' },
   srcNote: {
