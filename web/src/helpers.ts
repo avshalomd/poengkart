@@ -15,6 +15,8 @@ export function slug(text: string): string {
     .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 export const schoolPath = (s: { fylke: string; name: string }) => '/' + slug(s.fylke) + '/' + slug(s.name);
+// a county's own page, the list of its schools (pages/[fylke].astro)
+export const countyPath = (fylke: string) => '/' + slug(fylke);
 // A school's page is titled after the school, in the tab and in a bookmark —
 // the build writes this into <title> (prerender.ts) and the app keeps it there
 // for as long as the sheet is open (router.ts, lang.ts). Norwegian in both

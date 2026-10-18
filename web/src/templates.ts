@@ -7,7 +7,7 @@
 import { S } from './state';
 import { t, CATS } from './i18n';
 import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE, HELD_OUT, HISTORY_ONLY, belowFullRecord,
-         partitionPrograms, numericLatest, progId, progName, levelScope, isRecent, isVg1, inMean, meanStep, zeroIsFill, BUG_ICON, X_ICON } from './helpers';
+         partitionPrograms, numericLatest, progId, progName, countyPath, levelScope, isRecent, isVg1, inMean, meanStep, zeroIsFill, BUG_ICON, X_ICON } from './helpers';
 import { bucketOf, chanceFinal, chanceMode, chanceOf, finalRoundBridge, isChosen, modelEntry, pct, pctS, predFor } from './forecast';
 import type { School, County } from './types';
 
@@ -50,7 +50,9 @@ export function metaHtml(s: School): string {
   if (s.url) meta.push(`<a href="${esc(s.url.startsWith('http') ? s.url : 'https://' + s.url)}" target="_blank" rel="noopener">${t('website')} ↗</a>`);
   if (web(s.wiki_url)) meta.push(`<a href="${esc(s.wiki_url)}" target="_blank" rel="noopener">${t('wiki')} ↗</a>`);
   if (s.address) meta.push(`<span>${esc(s.address)}</span>`);
-  if (s.fylke) meta.push(`<span>${esc(s.fylke)}</span>`);
+  // the county's own page lists every school in it: a link a crawler can follow
+  // out of the sheet, and a reader can too
+  if (s.fylke) meta.push(`<a href="${countyPath(s.fylke)}">${esc(s.fylke)}</a>`);
   meta.push(s.round
     ? `<span class="round" title="${esc(t('roundTitle'))}">${t('roundChip', s.round)}</span>`
     : `<span class="round unknown" title="${esc(t('roundUnknownTitle'))}">${t('roundUnknown')}</span>`);
@@ -175,6 +177,29 @@ export function heroHtml(s: School, lensCat: string | null): { hero: string; mix
       esc(t('mostlyOpenNote', mix.open, mix.total, latest,
              scopePrograms.map(p => p.values[latest]).filter(inMean).length)) + `</span>`;
   return { hero, mix: warn };
+}
+// One published cell as words: the list's own labels, without the tips.
+export function cellText(fylke: string, year: string, v: School['programs'][number]['values'][string]): string {
+  if (typeof v === 'number') return v === 0 && zeroIsFill(fylke, year) ? t('noPointsShort') : String(fmt(v));
+  return v === 'open' ? t('allIn') : v === 'F' ? t('priority') : v === 'D' ? t('docAdmShort') : t('gone');
+}
+const LEVEL_ORDER = ['Vg1', 'Vg2', 'Vg2/Vg3', 'Vg3', 'Vg4'];
+// Every figure the school has, every level and every year, newest first, in a
+// closed <details> at the foot of the sheet. The chart and the list show one
+// year or one line at a time; this is the whole record as text, for a
+// counsellor who wants it in one place and for a crawler that runs no script.
+export function recordHtml(s: School): string {
+  const cats = Object.keys(CATS);
+  const progs = s.programs.filter(p => Object.keys(p.values).length)
+    .slice().sort((a, b) => LEVEL_ORDER.indexOf(a.level) - LEVEL_ORDER.indexOf(b.level)
+      || cats.indexOf(a.category) - cats.indexOf(b.category) || progName(a).localeCompare(progName(b), 'nb'));
+  if (!progs.length) return '';
+  const rows = progs.map(p => {
+    const ys = Object.keys(p.values).sort().reverse();
+    return `<dt>${esc(progName(p))} <small>${p.level}</small></dt>` +
+      `<dd>${ys.map(y => `${y}: ${esc(cellText(s.fylke, y, p.values[y]))}`).join(' · ')}</dd>`;
+  }).join('');
+  return `<details class="record"><summary>${esc(t('recordTitle'))}</summary><dl>${rows}</dl></details>`;
 }
 export function srcNoteHtml(): string {
   return esc(t('srcNote')) +

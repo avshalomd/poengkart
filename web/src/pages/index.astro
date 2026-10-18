@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { HOME_HEAD } from '../prerender';
+import { loadDataset } from '../data';
+import { homeHead } from '../prerender';
 ---
-<Base {...HOME_HEAD} />
+<Base {...homeHead(loadDataset())} />

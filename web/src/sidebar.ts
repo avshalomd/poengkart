@@ -9,7 +9,7 @@ import { renderList } from "./programs";
 import { queryParts, schoolUrl, setDocHead, setUrlSchool, syncUrl } from './router';
 import { S } from './state';
 import { EASE, play, still } from "./motion";
-import { heroHtml, metaHtml, notesHtml, photoHtml, srcNoteHtml } from "./templates";
+import { heroHtml, metaHtml, notesHtml, photoHtml, recordHtml, srcNoteHtml } from "./templates";
 import { bindTitleTips } from "./tips";
 
 /* ================= sidebar ================= */
@@ -334,6 +334,7 @@ export function renderSide() {
   mixBox!.hidden = !mix;
   document.getElementById('s-hero')!.innerHTML = hero;
   renderChance(s, lensCat);
+  document.getElementById('s-record')!.innerHTML = recordHtml(s);
   document.getElementById('src-note')!.innerHTML = srcNoteHtml();
   renderChartCard();
   renderList();

@@ -12,16 +12,26 @@ import shellSrc from '../shell.html?raw';
 // bundled into the prerender entry, that module would look for node_modules
 // beside itself, under web/dist/.prerender/, and find nothing.
 const MAPLIBRE_VER = __MAPLIBRE_VER__;
-import type { HeadProps } from '../prerender';
+import { countiesByName, type HeadProps } from '../prerender';
+import { loadDataset } from '../data';
+import { countyPath, esc } from '../helpers';
 
 interface Props extends HeadProps {
   body?: string;       // the shell with a school prerendered into it (Task 3); default: the empty shell
+  heading?: string;    // the noscript notice's <h1>: the school's name on its page
   sideOpen?: boolean;  // body.side-open, as openSide() sets it
   noindex?: boolean;   // the 404 page
   notFound?: boolean;  // body[data-notfound]: boot toasts "Fant ikke …"
 }
-const { title, description, canonical, ogTitle, ogDescription, twitterDescription, ogImage, ogImageAlt,
-        body = shellSrc, sideOpen = false, noindex = false, notFound = false } = Astro.props;
+const { title, description, canonical, ogTitle, ogDescription, twitterDescription, ogImage, ogImageAlt, jsonLd,
+        heading, body = shellSrc, sideOpen = false, noindex = false, notFound = false } = Astro.props;
+// the noscript notice links every county's page: the one way into the site's
+// text that a crawler running no script finds on the home page
+const fylker = countiesByName(loadDataset())
+  .map(c => `<a href="${countyPath(c.fylke)}">${esc(c.fylke)}</a>`).join(', ');
+const H1 = 'Poengkart – poenggrenser for videregående skole';
+const page = body.replace('<!--fylker-->', fylker)
+  .replace(`>${H1}</h1>`, `>${esc(heading || H1)}</h1>`);
 ---
 <!doctype html>
 <html lang="no">
@@ -72,6 +82,7 @@ const { title, description, canonical, ogTitle, ogDescription, twitterDescriptio
 <meta name="twitter:title" content={ogTitle}>
 <meta name="twitter:description" content={twitterDescription}>
 <meta name="twitter:image" content={ogImage}>
+{jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}
 
 <!-- Instrument Sans (SIL Open Font License) is served from here rather than
      from Google Fonts: no visitor's IP reaches a third party for a typeface,
@@ -112,7 +123,7 @@ try {
 </script>
 </head>
 <body class:list={[sideOpen && 'side-open']} data-notfound={notFound ? '1' : undefined}>
-<Fragment set:html={body} />
+<Fragment set:html={page} />
 <script src="../main.ts"></script>
 </body>
 </html>
