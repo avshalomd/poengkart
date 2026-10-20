@@ -73,7 +73,7 @@
      "file": "buskerud/buskerud-2026-2027-rev2.html",
      "label": "Her finner du nedre poenggrense for inntak i Buskerud 2026-2027",
      "name": "buskerud-2026-2027.html",
-     "sha256": "31337bc365bbe1e44530e89accd600c4c8780082190039a9fd911acd4b2efe3b"
+     "sha256": "c9f5aa12d715d58499e620957a1d585169abbcc59b0f03f04c07748e18114c84"
     }
    }
   },
@@ -93,7 +93,7 @@
      "file": "mro/mro-powerbi-2026-2027.json",
      "label": "Karakterer",
      "name": "mro-powerbi-2026-2027.json",
-     "sha256": "d64a9c40a67e965756f63b8cc2f259a056475c0134363296039f22cd0219b879"
+     "sha256": "aaef1c22b26d302aaa5c050a299e8f5151dad601fcbcbc46eaa094a0eab5483e"
     }
    }
   },
@@ -103,7 +103,7 @@
      "file": "oslo/oslo-2026.html",
      "label": "inntaksrunde i 2026",
      "name": "oslo-2026.html",
-     "sha256": "b10e915218c777a7bbdf47488886666e1c78ac35f5fcb2d01b18562bee39b1a5"
+     "sha256": "a2dded6eb12bdb4eda6a6629fed37e52ca0f715f4fbcfa3fa898950c77f68a38"
     }
    }
   },
