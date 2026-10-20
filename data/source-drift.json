@@ -1,5 +1,16 @@
 [
  {
+  "county": "Akershus",
+  "school": "Nadderud",
+  "program": "Idrettsfag",
+  "level": "Vg1",
+  "year": 2026,
+  "kept": 48.0,
+  "kept_from": "akershus-2026-2027.html",
+  "ignored": 46.3,
+  "ignored_from": "Nedre_poenggrense_Vg1_2026-2027_Akershus_2.inntak.xlsx"
+ },
+ {
   "county": "Innlandet",
   "school": "Hamar katedralskole",
   "program": "Studiespesialisering",
