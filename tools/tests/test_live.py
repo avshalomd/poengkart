@@ -192,6 +192,45 @@ def test_mro_reads_dashboard_vg1_only_where_no_extract_and_every_later_level(tmp
     assert not warn
 
 
+def _akershus_discover(body):
+    from live import net
+    from live.core import Ctx
+    from live.sources import akershus
+    ctx = Ctx('akershus', {})
+    ctx.get = lambda url, **kw: net.Response(url=url, status=200, body=body)
+    return akershus.discover(ctx)
+
+
+def test_akershus_reads_the_school_year_from_the_sentence_or_from_the_table_captions():
+    # up to 2025–26 the page said «skoleåret 2025–26»
+    old = open(os.path.join(ROOT, 'sources', 'akershus', 'akershus-2025-2026.html'), 'rb').read()
+    assert [d.name for d in _akershus_discover(old)] == ['akershus-2025-2026.html']
+    # from the 2026 inntak only the per-school captions carry the year: «Asker vgs. [2026]»
+    new = open(os.path.join(HERE, 'data', 'live', 'akershus-2026-2027.html'), 'rb').read()
+    docs = _akershus_discover(new)
+    assert [(d.name, d.meta['school_year']) for d in docs] == [('akershus-2026-2027.html', '2026/2027')]
+    # captions that disagree on the year name none
+    mixed = new.replace(b'Bjertnes vgs. [2026]', b'Bjertnes vgs. [2025]', 1)
+    with pytest.raises(Unhealthy):
+        _akershus_discover(mixed)
+
+
+def test_akershus_school_captions_with_the_inntak_year(tmp_path, monkeypatch):
+    import akershus
+    src = tmp_path / 'akershus'
+    src.mkdir()
+    (src / 'akershus-2026-2027.html').write_bytes(
+        open(os.path.join(HERE, 'data', 'live', 'akershus-2026-2027.html'), 'rb').read())
+    monkeypatch.setattr(akershus, 'SRC', str(src))
+    out, warn = akershus.extract()
+    rows = out[0][1]
+    assert not warn and len({r['school'] for r in rows}) == 34
+    assert not [r['school'] for r in rows if '[' in r['school'] or 'vgs' in r['school']]
+    asker = [r for r in rows if r['school'] == 'Asker']
+    assert [(r['program'], r['values'], r['values_r1']) for r in asker] == \
+        [('Studiespesialisering', {2026: 47.8}, {2026: 48.7})]
+
+
 # ---- the merge rule ----
 
 DIFF = {'added': 300, 'changed': 1, 'removed': 0, 'schools_removed': [], 'schools_added': []}
