@@ -120,6 +120,8 @@ def extract():
             program = None
             fixed_school = None
             if per_school:
+                # «<skole> vgs.», or «<skole> vgs. [YYYY]» with the inntak year
+                heading = re.sub(r'\s*\[20\d\d\]$', '', heading)
                 fixed_school = common.squash(re.sub(r'\bvgs\.?$', '', heading, flags=re.I))
                 if not fixed_school:
                     continue
