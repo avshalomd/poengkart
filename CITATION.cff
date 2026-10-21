@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this dataset or the forecast, please cite it as below."
+type: dataset
+title: "Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake"
+authors:
+  - given-names: Abshalom
+    family-names: Dayan
+url: "https://poengkart.no"
+repository-code: "https://github.com/avshalomd/poengkart"
+license: MIT
+version: "1.29"
+date-released: 2026-10-21
+abstract: >-
+  Admission thresholds (poenggrenser) for Norwegian upper secondary schools:
+  the points of the last applicant admitted to each programme at each school,
+  per year and intake round, 2012-2026, collected from the counties' own
+  publications, older years from newspaper and archive copies, and keyed to
+  the national programme register (Grep). With a calibrated forecast of the
+  next intake. The technical report is at https://poengkart.no/report.
+keywords:
+  - admission thresholds
+  - upper secondary school
+  - Norway
+  - education
+  - open data
+  - forecasting
