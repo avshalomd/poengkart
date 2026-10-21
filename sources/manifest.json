@@ -32,6 +32,11 @@
    "sha256": "8b2518cddc23b12a48163831ca95c8ff0e7d1c566049578a1bcae6acb8233634",
    "provenance": "Akershus fylkeskommune. HTML: afk.no poenggrenser page (2025/26). xlsx: released by e-mail on request, asked 25.08.2026, received 27.08.2026 (2024/25 and 2026/27, 2. inntak)."
   },
+  "akershus/akershus-2026-2027-rev2.html": {
+   "size": 151956,
+   "sha256": "93463a85a4227722233831a6576bb7bb8b8fd8328d36d86526222c5f20d2a378",
+   "provenance": "Akershus fylkeskommune: «Poenggrenser [2026]»; served at https://afk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/poenggrenser.222835.aspx; school year 2026/2027; captured as served, byte for byte, 21.10.2026 10:17 UTC by the live source watch (tools/live, source akershus)."
+  },
   "akershus/akershus-2026-2027.html": {
    "size": 151513,
    "sha256": "4b46838ce8841d36656299a950a7a98fca2391d4b7411932ad09472e025d0f2e",
