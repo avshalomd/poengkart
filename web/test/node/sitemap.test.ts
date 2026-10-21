@@ -15,7 +15,9 @@ describe('sitemap.xml', () => {
     expect(locs[1]).toBe('https://poengkart.no/report');
     expect(locs).toContain('https://poengkart.no/akershus/asker');
     expect(locs).toContain('https://poengkart.no/akershus');
-    expect(xml).not.toContain('<lastmod>');
+    // the day the figures last changed, on every URL, never the build date
+    expect(data.updated?.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect([...xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map(m => m[1])).toEqual(locs.map(() => data.updated!.date));
     expect(xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>')).toBe(true);
   });
 });

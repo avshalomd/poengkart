@@ -233,6 +233,30 @@ _byline = next((l for l in header_lines if 'Technical report' in l), '')
 og_description = ('Technical report on Poengkart: an open dataset of Norwegian upper-secondary admission '
                   'thresholds and a calibrated forecast of the next intake. ' + re.sub(r'\s*\(.*?\)', '', _byline)).strip()
 
+# schema.org for search engines and AI assistants: the report as a scholarly article by its
+# author, at the byline's version and month, about the dataset the home page describes
+_months = {m: f'{i:02d}' for i, m in enumerate(['January', 'February', 'March', 'April', 'May', 'June', 'July',
+                                                  'August', 'September', 'October', 'November', 'December'], 1)}
+_ver = re.search(r'\bv(\d+(?:\.\d+)*)', _byline)
+_when = re.search(r'(' + '|'.join(_months) + r') (\d{4})', _byline)
+_author = next((re.sub(r'\*', '', l).strip() for l in header_lines if l.startswith('**')), None)
+json_ld = json.dumps({
+    '@context': 'https://schema.org',
+    '@type': 'ScholarlyArticle',
+    'headline': title,
+    'name': title,
+    'description': og_description,
+    'url': 'https://poengkart.no/report',
+    'inLanguage': 'en',
+    'isAccessibleForFree': True,
+    **({'author': {'@type': 'Person', 'name': _author}} if _author else {}),
+    **({'version': _ver.group(1)} if _ver else {}),
+    **({'dateModified': f'{_when.group(2)}-{_months[_when.group(1)]}'} if _when else {}),
+    'about': {'@type': 'Dataset', 'name': 'Poengkart', 'url': 'https://poengkart.no/'},
+    'isPartOf': {'@type': 'WebSite', '@id': 'https://poengkart.no/#website', 'name': 'Poengkart', 'url': 'https://poengkart.no/'},
+    'codeRepository': 'https://github.com/avshalomd/poengkart',
+}, ensure_ascii=False).replace('<', '\\u003c')
+
 CSS = """
 :root { --ink:#1d2733; --soft:#4a5568; --line:#d9dee5; --accent:#2b6cb8; --bg:#ffffff; --wash:#f5f7fa; }
 * { box-sizing:border-box; }
@@ -320,6 +344,7 @@ page = f"""<!DOCTYPE html>
 <meta name="twitter:title" content="{esc_attr(title)}">
 <meta name="twitter:description" content="{esc_attr(og_description)}">
 <meta name="twitter:image" content="https://poengkart.no/og.png">
+<script type="application/ld+json">{json_ld}</script>
 <!-- cookieless page counts; a no-op until Web Analytics is enabled on the Vercel project -->
 <script defer src="/_vercel/insights/script.js"></script>
 <style>{CSS}</style>
