@@ -47,7 +47,11 @@ deck states the intake round.
 `akershus-2025-2026.html` is the county's poenggrenser page for 2025/26
 (<https://afk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/poenggrenser.222835.aspx>),
 58 HTML tables with 1. and 2. inntak side by side; the page is overwritten
-every year. `Karaktergrense 2024-2025.xlsx` and
+every year. `akershus-2026-2027.html` is the same page for 2026/27, captured
+by the live watch on 20.10.2026; where its 2. inntak column differs from the
+2026/27 workbook below (one cell, Nadderud Vg1 Idrettsfag, 48,0 against 46,3)
+the published page is kept (`data/source-drift.json`).
+`Karaktergrense 2024-2025.xlsx` and
 `Nedre_poenggrense_Vg1_2026-2027_Akershus_2.inntak.xlsx` were never published:
 the county sent them by e-mail on request (asked 25.08.2026, received
 27.08.2026; no case number) as school × programme grids of the 2. inntak thresholds, same 34

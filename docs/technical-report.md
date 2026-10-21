@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · October 2026 · v1.28 (version history in Appendix D)
+Technical report · October 2026 · v1.29 (version history in Appendix D)
 Application: [poengkart.no](https://poengkart.no) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
@@ -33,7 +33,7 @@ four or more observed years; cluster-bootstrap intervals exclude zero), nominal 
 application's default level, and 79.5% on Vg2 and up), and the admission probability is calibrated
 to within 8.2 points in every decile and beats both a deterministic and a
 probabilistic persistence rule (Brier 0.091 vs 0.156 and 0.095). Paired
-within-year publications identify an intake-round effect of −3.2 to −3.4
+within-year publications identify an intake-round effect of −3.0 to −3.1
 points that makes cross-county comparison of raw thresholds misleading.
 Code and data: https://github.com/avshalomd/poengkart.
 
@@ -94,7 +94,7 @@ and deployed application. Our contributions are as follows:
   a probabilistic persistence rule (Brier 0.091 vs 0.157 and 0.096), plus
   ablations of the structural choices (Section 7).
 - **Measurements of the publication practice itself**: a paired within-year
-  estimate of the intake-round effect (−3.2 to −3.4 points, 16–32% of
+  estimate of the intake-round effect (−3.0 to −3.1 points, 14–37% of
   queues cleared between intakes), a decomposition of raw school means into
   demand, programme mix and market timing, and a residual-based audit that
   distinguishes genuine extremes from parsing damage (Section 8).
@@ -339,7 +339,7 @@ columns use the tokens of Table 1.
 
 | Fylke | Years | Intake | Cells | Poenggrense | Ingen venteliste | 0.0 | F | D | U | Levels | Source |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Akershus | 2012–2015, 2024–2026 | 2. (2012–2015 1.; 2025 also 1.) | 482 | 361 | 92 | 3 | 0 | 26 | 0 | Vg1 | web page (2025/26); two workbooks released on request (2024/25, 2026/27); 2015 from a newspaper; 2012–2014 are Røyken's, a Buskerud school then |
+| Akershus | 2012–2015, 2024–2026 | 2. (2012–2015 1.; 2025–2026 also 1.) | 482 | 361 | 92 | 3 | 0 | 26 | 0 | Vg1 | web page (2025/26, 2026/27); two workbooks released on request (2024/25, 2026/27); 2015 from a newspaper; 2012–2014 are Røyken's, a Buskerud school then |
 | Buskerud | 2012–2014, 2024–2026 | — (2012–2014 1.) | 480 | 417 | 58 | 0 | 0 | 5 | 0 | Vg1 | county web page; 2012–2014 from the county's statistics booklets, typed from images |
 | Innlandet | 2012–2018, 2020–2026 | 2. | 3,879 | 2,129 | 1,673 | 55 | 0 | 12 | 10 | Vg1–Vg2 | vilbli PDFs; 2020–2022 released on request; 2012–2018 Hedmark's tables, from a document archive's page text |
 | Møre og Romsdal | 2012–2026 | 2. | 6,060 | 4,220 | 1840 | 0 | 0 | 0 | 0 | Vg1–Vg3 | extract behind the county's Power BI dashboard, sent on request (Vg1), and the dashboard itself (Vg2 and up); figures of 25 or less shown as ingen venteliste by the dashboard's own rule |
@@ -1093,12 +1093,12 @@ one.
 
 | | Years | Pairs queued in both | Later − earlier (points) | Queues cleared by later intake |
 |---|---|---|---|---|
-| Akershus, 1. → 2. inntak | 2025 | 101 | −3.4 (se 0.3, sd 3.1) | 16% of 124 |
+| Akershus, 1. → 2. inntak | 2025–2026 | 209 | −3.1 (se 0.2, sd 3.2) | 14% of 248 |
 | Vestland, 1. → 3. inntak | 2017–2020, 2022–2026 | 1467 | −3.0 (se 0.1, sd 4.0) | 37% of 2,322 |
 
 The drop conditional on the queue surviving is half the story; the cleared
 queues are the other half. The two rows are not one effect: Akershus's rests
-on a single year and a step of one intake, Vestland's on nine years and two
+on two years and a step of one intake, Vestland's on nine years and two
 intakes (2017–2019 pair Hordaland's press releases with its full 3. inntak
 table), and what makes them similar in size — a first intake that
 over-offers by about the same margin in both — is a coincidence of two
@@ -1326,8 +1326,8 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.28`, and the numbers
-quoted here are from the build of 2026-10-11. The compiled dataset ships in
+the version this report describes is tagged `report-v1.29`, and the numbers
+quoted here are from the build of 2026-10-20. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
 JSON; the original county publications are mirrored under `sources/`,
@@ -1342,7 +1342,7 @@ cluster bootstrap uses a fixed seed. The whole pipeline runs in minutes on a
 laptop. `tools/test_docs.py` pins every number in this report and in
 `docs/model.md` to the shipped model file, so a refresh that moves a figure
 fails the build until the text is updated; validation further comprises 140
-parser regression checks and 16,228 model invariants. The dataset is
+parser regression checks and 16,229 model invariants. The dataset is
 released under the Norwegian Licence for Open Government Data (NLOD 2.0)
 and the code under the MIT licence.
 
@@ -1701,7 +1701,20 @@ Held-out Brier 0.157 against 0.203 for the base-rate forecaster.
   to 80.6%; the county-year step's spread grows from 0.93 to 1.01 points,
   and the admission probability's Brier score does not move. No
   conclusion changes.
-- **v1.28** (this version). A data correction caught by the live watch:
+- **v1.29** (this version). Akershus put its 2026/27 poenggrenser page
+  up on 20 October, with 1. and 2. inntak side by side, and the live watch
+  captured it. Its 2. inntak figures match the workbook the county released
+  on request in one exception: Nadderud's Vg1 Idrettsfag reads 48,0 where the
+  workbook had 46,3, and the published page is kept. Its 1. inntak column is
+  new, so the round bridge (Table 6) now pairs two years, 2025 and 2026: 209
+  pairs instead of 101, a drop of −3.1 points (se 0.2) instead of −3.4, and
+  14% of 248 queues cleared instead of 16% of 124 (the abstract's range,
+  which still read −3.2 to −3.4 and 16–32%, now quotes both rows of Table 6).
+  The level fit stays at
+  12,969 cells; on the held-out years the level RMSE stays at 5.45 points,
+  80% coverage at 80.4% and the admission probability's Brier score at
+  0.093. No conclusion changes.
+- **v1.28**. A data correction caught by the live watch:
   on 6 October Buskerud reprinted its 2026/27 table with Buskerud vgs's
   Vg1 Restaurant- og matfag as «Alle» where it had printed «4,0», a figure
   below 10,0 that was already kept out of the fit. The level fit stays at
