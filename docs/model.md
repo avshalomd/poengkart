@@ -286,7 +286,7 @@ later round does:
 
 | | pairs with a queue in both | later − earlier | of the queues present in the earlier round, gone by the later |
 |---|---|---|---|
-| Akershus, 1. → 2. inntak | 209 | −3.1 (sd 3.2) | 14% of 248 |
+| Akershus, 1. → 2. inntak | 209 | −3.1 (sd 3.1) | 14% of 248 |
 | Vestland, 1. → 3. inntak | 1467 | −3.0 (sd 4.0) | 37% of 2 322 |
 
 The drop is conditional on the queue surviving; the right-hand column is the

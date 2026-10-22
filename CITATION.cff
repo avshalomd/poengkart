@@ -8,8 +8,8 @@ authors:
 url: "https://poengkart.no"
 repository-code: "https://github.com/avshalomd/poengkart"
 license: MIT
-version: "1.29"
-date-released: 2026-10-21
+version: "1.30"
+date-released: 2026-10-22
 abstract: >-
   Admission thresholds (poenggrenser) for Norwegian upper secondary schools:
   the points of the last applicant admitted to each programme at each school,

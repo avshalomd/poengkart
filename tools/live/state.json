@@ -29,6 +29,7 @@
   "889757eae137bce931f9f3290bab259ab83b9a25b7befc45c050da1e847992d9": "b630c137e65e354a25656361d07ca7a82a5da0f68a5b1999a4ec0161699be9ee",
   "8a149c72b8b13bf1e8ba66b3dfdecd63e4fb69742b8d442107518711eac2f307": "e1f31658cd1a31ec37eedafcc654a0a959bc9fb0d0218f13573a2ebc79ea1058",
   "8b2518cddc23b12a48163831ca95c8ff0e7d1c566049578a1bcae6acb8233634": "ea071faa42d2b52a1e073f599b46119333bf401ad40162a3e4d276f524b7862e",
+  "93463a85a4227722233831a6576bb7bb8b8fd8328d36d86526222c5f20d2a378": "8e51e9ab1ed7b276403389d9b295b6508ab85e48ac701bffa3169fa9a0d0e1ec",
   "9a1fee2e626c1f47857764f26bd541726f06d27e802f5cce350c624db2835919": "1200e4df23cba1de355a448ffdc8d1f75ffc0a8d16101344412248c6d8f03c14",
   "acfef0cba25ad7c20f657a605c8a4698178e67e4ab34c71decf41965a587d9bf": "439b268d6b5eeddd75cbcdef1921c61ba317d5e81b9e3da752974d5e99e57e35",
   "ae8426925c1643041b6a1f2f568cfaab5a706076a9594e4acbd83228eb1a0ae7": "2516299c085118d6b23c06eede789036fddbee526f1a56eb6b9fca274aaa8f70",
@@ -55,11 +56,11 @@
   "akershus": {
    "seen": {
     "https://afk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/poenggrenser.222835.aspx": {
-     "captured": "2026-10-20",
-     "file": "akershus/akershus-2026-2027.html",
+     "captured": "2026-10-21",
+     "file": "akershus/akershus-2026-2027-rev2.html",
      "label": "Poenggrenser [2026]",
      "name": "akershus-2026-2027.html",
-     "sha256": "4b46838ce8841d36656299a950a7a98fca2391d4b7411932ad09472e025d0f2e"
+     "sha256": "93463a85a4227722233831a6576bb7bb8b8fd8328d36d86526222c5f20d2a378"
     }
    }
   },
@@ -75,7 +76,7 @@
      "file": "buskerud/buskerud-2026-2027-rev2.html",
      "label": "Her finner du nedre poenggrense for inntak i Buskerud 2026-2027",
      "name": "buskerud-2026-2027.html",
-     "sha256": "c9f5aa12d715d58499e620957a1d585169abbcc59b0f03f04c07748e18114c84"
+     "sha256": "a80cabce97c829888f3cd41386203dac6f16ec7ba834788e65350e5b152cbbcd"
     }
    }
   },
@@ -95,7 +96,7 @@
      "file": "mro/mro-powerbi-2026-2027.json",
      "label": "Karakterer",
      "name": "mro-powerbi-2026-2027.json",
-     "sha256": "aaef1c22b26d302aaa5c050a299e8f5151dad601fcbcbc46eaa094a0eab5483e"
+     "sha256": "55de9db77d17214f4c30180f52eb367894fc1e65e411f396c73c8418f5b1b7a1"
     }
    }
   },
