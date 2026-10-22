@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · October 2026 · v1.29 (version history in Appendix D)
+Technical report · October 2026 · v1.30 (version history in Appendix D)
 Application: [poengkart.no](https://poengkart.no) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
@@ -927,9 +927,9 @@ level and by county. RMSE and mean $s$ in points.
 |---|---|---|---|---|
 | below 25 | 37 | 70.3% | 6.40 | 5.53 |
 | 25–30 | 505 | 78.0% | 5.62 | 5.24 |
-| 30–35 | 1011 | 81.8% | 5.37 | 5.18 |
+| 30–35 | 1010 | 81.9% | 5.35 | 5.18 |
 | 35–40 | 723 | 78.7% | 5.85 | 5.09 |
-| 40–45 | 307 | 84.4% | 4.63 | 4.87 |
+| 40–45 | 308 | 84.4% | 4.63 | 4.88 |
 | 45 and above | 67 | 82.1% | 3.27 | 3.44 |
 
 | Fylke | n | Coverage |
@@ -1093,7 +1093,7 @@ one.
 
 | | Years | Pairs queued in both | Later − earlier (points) | Queues cleared by later intake |
 |---|---|---|---|---|
-| Akershus, 1. → 2. inntak | 2025–2026 | 209 | −3.1 (se 0.2, sd 3.2) | 14% of 248 |
+| Akershus, 1. → 2. inntak | 2025–2026 | 209 | −3.1 (se 0.2, sd 3.1) | 14% of 248 |
 | Vestland, 1. → 3. inntak | 2017–2020, 2022–2026 | 1467 | −3.0 (se 0.1, sd 4.0) | 37% of 2,322 |
 
 The drop conditional on the queue surviving is half the story; the cleared
@@ -1326,8 +1326,8 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.29`, and the numbers
-quoted here are from the build of 2026-10-20. The compiled dataset ships in
+the version this report describes is tagged `report-v1.30`, and the numbers
+quoted here are from the build of 2026-10-21. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
 JSON; the original county publications are mirrored under `sources/`,
@@ -1507,8 +1507,8 @@ Held-out Brier 0.157 against 0.203 for the base-rate forecaster.
 
 | Predicted | Observed | n |
 |---|---|---|
-| 10–20% | 18.2% | 44 |
-| 20–30% | 17% | 156 |
+| 10–20% | 15.0% | 40 |
+| 20–30% | 18% | 162 |
 | 30–40% | 27% | 203 |
 | 40–50% | 45% | 222 |
 | 50–60% | 53% | 282 |
@@ -1701,7 +1701,16 @@ Held-out Brier 0.157 against 0.203 for the base-rate forecaster.
   to 80.6%; the county-year step's spread grows from 0.93 to 1.01 points,
   and the admission probability's Brier score does not move. No
   conclusion changes.
-- **v1.29** (this version). Akershus put its 2026/27 poenggrenser page
+- **v1.30** (this version). On 21 October Akershus corrected its
+  2026/27 page: Nadderud's Vg1 Idrettsfag reads 46,30 after 2. inntak, as
+  the workbook the county released on request had it, so the 48,0 that
+  v1.29 kept is gone, and Nadderud's Vg1 Studiespesialisering reads 51,3
+  after 1. inntak where the page had printed 46,3. The round bridge keeps
+  its 209 pairs and moves from −3.12 to −3.15 points (sd 3.2 to 3.1). The
+  level fit stays at 12,969 cells; on the held-out years the level RMSE
+  stays at 5.45 points, 80% coverage at 80.4% and the admission
+  probability's Brier score at 0.093. No conclusion changes.
+- **v1.29**. Akershus put its 2026/27 poenggrenser page
   up on 20 October, with 1. and 2. inntak side by side, and the live watch
   captured it. Its 2. inntak figures match the workbook the county released
   on request in one exception: Nadderud's Vg1 Idrettsfag reads 48,0 where the
