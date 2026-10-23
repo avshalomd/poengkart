@@ -59,12 +59,18 @@
      "file": "akershus/akershus-2026-2027-rev2.html",
      "label": "Poenggrenser [2026]",
      "name": "akershus-2026-2027.html",
-     "sha256": "a05db4feed9c35448f85cfe1f61fda2822abbe024c67eaa92d79f6e6bde13e6c"
+     "sha256": "152ff839a774b74ea8325f19e5e97751f38bba25cf68a09225b0f7ec31798adf"
     }
    }
   },
   "buskerud": {
    "seen": {
+    "http://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/nedre-poenggrense-for-inntak-buskerud-2026-2027.207338.aspx": {
+     "file": "buskerud/buskerud-2026-2027-rev2.html",
+     "label": "Her finner du nedre poenggrense for inntak i Buskerud 2026-2027",
+     "name": "buskerud-2026-2027.html",
+     "sha256": "ba1fa38d6941f5748e27c73f912f7495b3f80cc1ee1f19e56856838a96a34e31"
+    },
     "https://bfk.no/tjenester/skole-og-opplaring/opplaring-i-skole/soke-skoleplass/nedre-poenggrense-for-inntak-buskerud-2025-2026.207338.aspx": {
      "file": "buskerud/buskerud-2025-2026.html",
      "label": "Her finner du nedre poenggrense for inntak i Buskerud 2025-2026",
@@ -95,7 +101,7 @@
      "file": "mro/mro-powerbi-2026-2027.json",
      "label": "Karakterer",
      "name": "mro-powerbi-2026-2027.json",
-     "sha256": "bddce54f10f870b518fc484cf467e1d80d7398eb53e80ce3c8efc6c587cd2488"
+     "sha256": "f1500ea643c2746db63d642b9ed8eca810c891f7bd323415ec4b96b77bffde89"
     }
    }
   },
