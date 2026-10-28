@@ -129,7 +129,7 @@ text of the county's PDF) and the app says so beside those years;
 | [Oslo](https://www.oslo.kommune.no/skole-og-utdanning/videregaende-skole/soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/) | HTML + PDF, oldest years via school-site and Wayback PDFs; 2012, 2013 and 2016 from copies (a thesis, two newspapers) | 2012–2026 | 1. |
 | [Rogaland](https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6) | PDF; 2015 from the county's school portal (Wayback), 2012 from a newspaper copy | 2012, 2015, 2018–2026 | 2. (2012: 1.; 2015: not stated) |
 | Telemark | Excel extract released on request: the lowest points of the admitted for every programme, no fill state, so not comparable: outside the model, forecast from its own figures alone with the error measured on its own years | 2024–2026 | not stated |
-| [Trøndelag](https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6) | PDF, per intake region; 2024 Trondheim only (image PDF, transcribed) | 2024–2025 | 2. |
+| [Trøndelag](https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6) | PDF, per intake region; 2024 Trondheim only (image PDF, transcribed) | 2024–2026 | 2. |
 | Vestfold | Excel extract released on request: the lowest points of the admitted for every programme area, Vg1–Vg3, no fill state, so not comparable: outside the model, forecast from its own figures alone; the county asks that the figures be read as a guide only | 2024–2026 | not stated |
 | [Vestland](https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/) | PDF | 2020–2026 | 1. and 3. |
 | ↳ Hordaland, pre-merger | PDF: press releases via the Wayback Machine (1.), the county's full table (3.); 2014–2015 from newspaper copies | 2014–2019 | 1. and 3. |

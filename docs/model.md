@@ -12,7 +12,7 @@ when a programme filled, and when it exists it is one point on the points
 scale. A family with 42 points is not asking "what was the threshold" but
 "will I get in" — and the honest answer to that is a probability, because the
 same programme at the same school moves by a standard deviation of 6.2 points
-from one year to the next (8 511 consecutive-year pairs; only half of all
+from one year to the next (8 570 consecutive-year pairs; only half of all
 moves are within ±3).
 
 So the app forecasts, per programme, for the county's next publication year:
@@ -32,14 +32,14 @@ empirical distribution of the backtest's own forecast errors (see *Spread*).
 
 Two fits, one structure. Every effect is a random effect, so a school or
 programme with a single year of data borrows its level from the hundreds of
-similar ones around it instead of being trusted on its own —403 of the 2 576
+similar ones around it instead of being trusted on its own —396 of the 2 597
 series have exactly one year.
 
-**Level** (on the 12 969 cells that carry a number):
+**Level** (on the 13 049 cells that carry a number):
 
     y = μ + school + category + programme|level + series + county×year + round offset + ε
 
-**Fill** (on the 18 618 cells that competed on points — number, 0,0 or "no waitlist".
+**Fill** (on the 18 796 cells that competed on points — number, 0,0 or "no waitlist".
 In Møre og Romsdal "no waitlist" is the county's own dashboard rule, a
 figure of 25 or less — see `docs/data-notes.md` — so its labels are a proxy, and
 the backtest measures what they are worth, below):
@@ -171,8 +171,8 @@ queue cannot outgrow its applicants' scores, so high forecasts miss by less:
 ×1.06 below 25 points, ×1.00 from 25 to 40, ×1.00 from 40 to 45, ×0.75 at 45 and above (fitted on
 the calibration years, constrained to fall with the level;
 `meta.sigma_level_multiplier`). On the held-out years it moved the top
-band's 80% coverage from 95.5% to 82.1% and the bottom band's from 64.9% to
-70.3%, and nothing else.
+band's 80% coverage from 95.6% to 80.9% and the bottom band's from 61.9% to
+69.0%, and nothing else.
 
 Last, a factor per level group, fitted so each group's 80% band covers 80%
 of its own calibration-year errors (`meta.sigma_group_multiplier`): ×0.892
@@ -181,9 +181,9 @@ for Vg1 and ×1.001 for Vg2 and up. Without it the pooled spread covered
 
 And a factor for a series whose two newest figures are more than 8 points
 apart (`meta.jump_points`), fitted the same way on the cells after such a
-step and on the rest (`meta.sigma_jump_multiplier`): ×1.222 after a jump
-and ×0.976 otherwise. Without it the spread covered 73.0% of held-out
-outcomes after a jump and 81.2% of the rest; with it, 81.3% and 80.3%. The
+step and on the rest (`meta.sigma_jump_multiplier`): ×1.226 after a jump
+and ×0.978 otherwise. Without it the spread covered 72.2% of held-out
+outcomes after a jump and 80.9% of the rest; with it, 80.3% and 80.2%. The
 app flags such a step as «Uvanlig endring» (the forecast's `j`, the step
 in points).
 
@@ -192,13 +192,13 @@ happened yet, moving on each 1 July, when the offers go out and before any
 county publishes that year's thresholds (`tools/forecast_year.py`,
 `meta.forecast_intake`; decided 28 September 2026). Until 30 June 2027 that is
 the 2027 intake, school year 2027/28. A county that has not yet published the
-intake just held (Trøndelag on 3 October 2026, `meta.forecast_ahead`; Buskerud until its 2026/27 thresholds arrived that day) is
+intake just held (none since 28 October 2026, `meta.forecast_ahead`: Buskerud until its 2026/27 thresholds arrived on 3 October, Trøndelag until its tables arrived on the 28th) is
 then forecast two years past its newest figure, from the same random walk,
 so the level is unchanged and only the spread grows: a walk-forward with the
 year before each test year withheld measures the factor the same way
 (`meta.sigma_ahead_multiplier`), ×1.033. Two years ahead the held-out
-RMSE is 5.87 against 5.45 a year ahead, and the band covers
-80.3% of those outcomes with the factor and 78.1% without.
+RMSE is 5.92 against 5.47 a year ahead, and the band covers
+79.9% of those outcomes with the factor and 77.8% without.
 
 F, the error distribution, is likewise the empirical distribution of those
 standardised errors (41 quantiles in `meta.error_quantiles`) rather than a
@@ -214,13 +214,13 @@ no earlier year can teach a forecast what that does, and the final fit handles
 it with the fixed offset; grading the model on an event it is told about would
 flatter nothing and mislead the calibration.
 
-**Level, held-out 2025–26** (2 650 cells that got a number):
+**Level, held-out 2025–26** (2 730 cells that got a number):
 
 | history | n | model RMSE | "last year's figure" RMSE | programme-county mean RMSE | within ±3 |
 |---|---|---|---|---|---|
-| 0 years | 125 | 7.4 | — | 8.2 | 31% |
-| 1 year | 264 | 5.8 | 7.1 | 6.8 | 49% |
-| 2–3 years | 478 | 5.7 | 6.7 | 6.5 | 44% |
+| 0 years | 146 | 7.1 | — | 8.0 | 33% |
+| 1 year | 292 | 5.9 | 7.1 | 6.8 | 49% |
+| 2–3 years | 509 | 5.8 | 6.8 | 6.5 | 43% |
 | 4+ years | 1783 | 5.1 | 6.2 | 6.0 | 49% |
 
 Exponential smoothing of the series' own figures (α = 0.4; Muth, 1960) is a
@@ -246,7 +246,7 @@ The 80% interval (m ± 1.2816 s) contained the published figure 81% of the time.
 gave 0.96 filled 0.88 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
 (logit π′ = 0.195 + 0.661 logit π). Scored on all eight counties, Møre og
-Romsdal's proxy labels included: held-out Brier 0.156 against 0.203 for the
+Romsdal's proxy labels included: held-out Brier 0.157 against 0.208 for the
 base rate. Held out of the fill fit instead, with its fill probability
 fixed at 1 as it was until 5 September 2026, the other seven counties'
 held-out Brier goes from 0.1590 to 0.1583 and the Platt slope from 0.661 to
@@ -261,14 +261,14 @@ scores 0.150 against 0.180 for its base rate
 |---|---|---|
 | 0–10% | 6.0% | 2098 |
 | 10–20% | 17.1% | 2 427 |
-| 20–30% | 28% | 1 864 |
-| 30–40% | 38% | 1 503 |
-| 40–50% | 47% | 1 444 |
-| 50–60% | 59% | 1 438 |
-| 60–70% | 73% | 1 556 |
-| 70–80% | 83% | 1 693 |
-| 80–90% | 89% | 2 061 |
-| 90–100% | 99.0% | 13 998 |
+| 20–30% | 27% | 1 923 |
+| 30–40% | 38% | 1 562 |
+| 40–50% | 48% | 1 485 |
+| 50–60% | 59% | 1 471 |
+| 60–70% | 73% | 1 644 |
+| 70–80% | 82% | 1 827 |
+| 80–90% | 90% | 2 249 |
+| 90–100% | 99.0% | 14 830 |
 
 Brier 0.091, against 0.156 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
@@ -277,7 +277,7 @@ distribution and fill probability on the last published figure instead of
 on the forecast: that scores 0.095, so most of the gain over the bare rule
 is the uncertainty treatment, and the model's own point forecast is worth
 the last 0.006 of it.
-Below 60% the forecast is within 4.2 points of the outcome in every bin,
+Below 60% the forecast is within 3.8 points of the outcome in every bin,
 with predicted minus observed at most -0.3 points in the three lowest — a 15% chance was
 really 17% — which the app's bands absorb (both are "unlikely"); from 60%
 up it is cautious — a stated 65% came true 73% of the time, the largest gap
@@ -306,12 +306,12 @@ measurement.
 
 The school effect α from the level fit is the school's thresholds relative to
 the same programmes elsewhere in its county, with its programme mix taken out.
-Decomposing the raw mean that the map colours by, over the 189 schools whose
+Decomposing the raw mean that the map colours by, over the 194 schools whose
 α rests on five or more fitted cells: the school's own effect explains 44%
-of the variance between schools, the programme mix 24%, the county's level
+of the variance between schools, the programme mix 25%, the county's level
 that year (which inntak it publishes, and its market) 12%, and the series
 interactions 10%. Ranked within their own county by α instead of by raw
-mean, schools move 3.3 places on average and at most 26 — a good part of a
+mean, schools move 3.2 places on average and at most 26 — a good part of a
 raw mean is what the school teaches and when its county publishes, not how
 hard it is to get into. The panel prints α with an approximate standard
 error; it is a measure of demand, not of quality, and the app says so.
@@ -321,7 +321,7 @@ the county level is the largest single term after the school's own.
 ## The model as a detector
 
 The 25 cells the fitted model finds least plausible are listed in
-`meta.outliers` (|z| ≥ 3: 106 of 12 969 cells, 38 of them in Vestland, the
+`meta.outliers` (|z| ≥ 3: 106 of 13 049 cells, 38 of them in Vestland, the
 county with the most cells). Five of the top twenty-five are Vestland 2022 — clustering of that kind has meant a parser
 problem before, so
 three of them, the largest included, were checked against the county's own PDF
