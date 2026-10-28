@@ -16,8 +16,11 @@
   "49fd6bd5832352bf660a6b8bb9c4a8148eeda456109febaa3c5958c66d8dd522": "5e7a7acb840e09dc3f3a49d48ab6393b7646e4fbeb1c4447809a7c16384c1119",
   "4b46838ce8841d36656299a950a7a98fca2391d4b7411932ad09472e025d0f2e": "70bdd5aa5b2aa5472906c5f969f2f1e0318fe045009b8a68bcd314e1777052f9",
   "4c766d132631b062c37eb3df7796fb1f635fba651a79e7976f08001ce6d8fcea": "98ca60a4ddeffbe2e11ea40960e09fbc9b047e4495fdd5b3eb43058d2b1cd6aa",
+  "4d672e74caba5dd5c7a15c422284bb191d3bc6de3e7aad302323e4eb60d11b20": "a58a407a128dc7e90f0eba255cd840a7f13fd4f3fc92134500db0fa6da35b3bb",
   "5cbab54e31c469325d5dfcd248e7f85dfda112a502791ac6354daf2eaabdba4a": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "607be2c4f977fe193393c385ab517421a2a53de65fef3d78f77e3b3016454e6c": "d783eecf7dc65f73525aaa9b22eb0b8d5542cc63f22d729d6d10824830a0e4b3",
   "62bbe9d031b247e320b622d6bd51d99f91c4a67ce65dde943ba315a651133095": "11aef1970eaf47cb1b7e0e079316a1732f9ae2dc26a2c52a1258462324e512e0",
+  "67b561f65b58d4bf5afe4d9b20e074782aaefd52bb895c53736be71847d2ff4e": "338716c3558ca5c2bfd39f79f1bd58b26fb8d08af6024eab071c50a7835c266b",
   "6b71eaa90ab6c5e9a6c1956fe0760450435fbbd319e4bc79eb6ae9a3842be41e": "f154721c83eef923d181e0fb303715498807fd31194bfe8de76990f5bf9bae17",
   "6ee57aebbbce7f891fc207adf1d576257b8b0eabc1247fe50a8eda437e762441": "66fdeb78820e8284e31cc207332a6d29252fc4a88c51f9dca439c58096136aa3",
   "770a95adbcaa30d368cf48a81ac831642aee2d743029591c8a5899248cd0c5dd": "48f24726ec5353c3f5def9e69da6b73b84421cda5729005c9fd477a83cf180e2",
@@ -26,6 +29,7 @@
   "7af58406cdc395fe9facce7293fe321e5aaff0e617d7e9867a9c03418b8b001d": "538af63233d3ee922f4913f258ff79cad880875a9015bc4d069cc63ca0e4bbdc",
   "7d1a28ecd96f0369893d797a30841369a62474c6684f69fa8f32f7e0c6346ebe": "bbc481481b906e880678bdd225e30d4c10c9885ec071f378c2d0d6d11a341a95",
   "7dfb0b0070651930c8e4ae421482aaec51bb978a98d3664ad95b445d2c295d2f": "b90fdf7e23afc22c3e84d65207289d6b73d5bc1d1890c4a96c5af3a5c6812def",
+  "80b69c6a8422a67481c7ee985690f922feabc97095b46e778b1999dd13ba81ed": "e787a64e4e9589b7350feeb40d561321be1dff143672f8cef785a917858b3f12",
   "889757eae137bce931f9f3290bab259ab83b9a25b7befc45c050da1e847992d9": "b630c137e65e354a25656361d07ca7a82a5da0f68a5b1999a4ec0161699be9ee",
   "8a149c72b8b13bf1e8ba66b3dfdecd63e4fb69742b8d442107518711eac2f307": "e1f31658cd1a31ec37eedafcc654a0a959bc9fb0d0218f13573a2ebc79ea1058",
   "8b2518cddc23b12a48163831ca95c8ff0e7d1c566049578a1bcae6acb8233634": "ea071faa42d2b52a1e073f599b46119333bf401ad40162a3e4d276f524b7862e",
@@ -48,6 +52,7 @@
   "f0c30542a3d5306c2636a901230e45bc0bdea8741bf3cb5734561364e0348a96": "376e51eac3c201860c6b79a70ef70a465b8518f12f0b08f3f8753ce92ac2c6b1",
   "f955afb12b9104288f0e91cab45666da092fc89d1f55aea6cfc9c1a0dcd5d95f": "06db4745065f5c37f6febe68c6cecf63fc74bce5af2765ed9d941b18b3ad2060",
   "fac6353f4cfdbb64b6e325173e77c3957e81dfc0d2fcefece482f8e4161d78d5": "7eee03919c445086893f916556fd6cacb69cf454c789ee6b14ac7917cb5eb7ff",
+  "fb4bd549e5594cb1c6053a8ee7a71a20f20fb8c81b34458e643d937d7d932aa2": "2a3fd5f0c15c4e569cec7b4914520658dc2673898dea214f68527e1c350b2d23",
   "fd2ababa8cd2fb9b2c9835a4fc0cbf682de737c86c13242a6eea3038f7a3cf89": "e3d5bf3ba1fcea64ae3b14239df71b91fc181b52aa10cf861cc2c7b156daecaa",
   "fdae55e4a23126623bb763b20b9f1dc7a46abed8c33f6c5d53a0a5f30483010e": "ee5cdc29ce627201a97b01e624dcf236a1d3b158f99005402cc25b007b3a701c",
   "fdd7389caba7fc74db5ac32b2cd3083b551c0b86d3de7d14271ab820d7a10ce2": "69418e54e6c3c559905009e7918f10cfc80d1e81b15705d455650a5bc2b20b06"
@@ -140,6 +145,41 @@
   },
   "trondelag": {
    "seen": {
+    "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Fosen+tabell.pdf": {
+     "captured": "2026-10-28",
+     "file": "trondelag/trondelag_2026-27_fosen.pdf",
+     "label": "Laveste inntatt 2026-2027 Fosen tabell.pdf",
+     "name": "trondelag_2026-27_fosen.pdf",
+     "sha256": "fb4bd549e5594cb1c6053a8ee7a71a20f20fb8c81b34458e643d937d7d932aa2"
+    },
+    "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Innherred-Værnes+tabell.pdf": {
+     "captured": "2026-10-28",
+     "file": "trondelag/trondelag_2026-27_innherred-vaernes.pdf",
+     "label": "Laveste inntatt 2026-2027 Innherred-Værnes tabell.pdf",
+     "name": "trondelag_2026-27_innherred-vaernes.pdf",
+     "sha256": "80b69c6a8422a67481c7ee985690f922feabc97095b46e778b1999dd13ba81ed"
+    },
+    "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Namdal+tabell.pdf": {
+     "captured": "2026-10-28",
+     "file": "trondelag/trondelag_2026-27_namdal.pdf",
+     "label": "Laveste inntatt 2026-2027 Namdal tabell.pdf",
+     "name": "trondelag_2026-27_namdal.pdf",
+     "sha256": "607be2c4f977fe193393c385ab517421a2a53de65fef3d78f77e3b3016454e6c"
+    },
+    "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Trondheim+tabell.pdf": {
+     "captured": "2026-10-28",
+     "file": "trondelag/trondelag_2026-27_trondheim.pdf",
+     "label": "Laveste inntatt 2026-2027 Trondheim tabell.pdf",
+     "name": "trondelag_2026-27_trondheim.pdf",
+     "sha256": "67b561f65b58d4bf5afe4d9b20e074782aaefd52bb895c53736be71847d2ff4e"
+    },
+    "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Trøndelag+Sør+tabell.pdf": {
+     "captured": "2026-10-28",
+     "file": "trondelag/trondelag_2026-27_trondelag-sor.pdf",
+     "label": "Laveste inntatt 2026-2027 Trøndelag Sør tabell.pdf",
+     "name": "trondelag_2026-27_trondelag-sor.pdf",
+     "sha256": "4d672e74caba5dd5c7a15c422284bb191d3bc6de3e7aad302323e4eb60d11b20"
+    },
     "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2526+Fosen.pdf": {
      "file": "trondelag/trondelag_2025-26_fosen.pdf",
      "label": "Laveste inntatt 2526 Fosen.pdf",
