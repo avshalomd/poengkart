@@ -347,8 +347,10 @@ VIGO_VARIANT_CODES = {
     'MDMDD1--4-': 'Musikk, dans og drama, dans',
     'MDMDD1--6-': 'Musikk, dans og drama, drama',
     'HSHSF1N---': 'Helse- og oppvekstfag, SK 3 år',
+    'STUSP1--BU': 'Studiespesialisering, business',                # Trøndelag 2026/27
     'STUSP1--EP': 'Studiespesialisering, entreprenørskap',
     'STUSP1--IT': 'Studiespesialisering, IT',
+    'STUSP1--MI': 'Studiespesialisering, militær-idrett',          # Trøndelag 2026/27, Meråker
     'STUSP1--Q-': 'Studiespesialisering, forskerlinje',
     'STUSP1--T-': 'Studiespesialisering, toppidrett',
     'STUSP1L-X-': 'Studiespesialisering, natur og miljø, LAL',     # the county's label, verbatim; LAL unexplained

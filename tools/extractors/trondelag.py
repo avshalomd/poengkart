@@ -42,7 +42,7 @@ META = {
 # Grep codes are 10 characters; the old pattern rejected the variant forms
 # (MDMDD1--1-, HSHSF1N---, STUSP1--EP), whose values then slid onto the
 # previous column and were published under the wrong programme name.
-CODE_RE = re.compile(r'^[A-ZÆØÅ]{5}\d[A-Z0-9-]{4}$')
+CODE_RE = re.compile(r'[A-ZÆØÅ]{5}\d[A-Z0-9-]{4}')
 
 # county-level variants that are not in Udir's national Grep registry; names
 # taken from the PDFs' own (wrapped) column labels
@@ -109,9 +109,11 @@ def extract():
         rows = []
         with pdfplumber.open(os.path.join(SRC, fname)) as pdf:
             for page in pdf.pages:
-                words = page.extract_words()
-                cols = sorted(((w['x0'], common.norm(w['text'])) for w in words
-                               if CODE_RE.match(common.norm(w['text']))), key=lambda c: c[0])
+                # in stream order: in the 2026/27 Trondheim table the header's
+                # wrapped labels overlap the first row, and reading by position
+                # cuts it into single letters («Sk j e t le i n», «2 3 , 6»)
+                words = page.extract_words(use_text_flow=True)
+                cols = _codes(page)
                 if not cols:
                     continue
                 for line in _cluster(words):
@@ -129,8 +131,11 @@ def extract():
                             continue
                         if re.fullmatch(r'\d{1,2}(?:,\d)?|\*', t):
                             values.append(((w['x0'] + w['x1']) / 2, t))
-                        else:
-                            name_parts.append(t)
+                        elif t.endswith('*') and not values:    # «skole*»: a first-column
+                            name_parts.append(t[:-1])            # «*» set against the name
+                            values.append((w['x1'] - 1.5, '*'))
+                        elif not values:    # after the figures, a word is header
+                            name_parts.append(t)                 # spill («3år»)
                     school = common.squash(' '.join(name_parts))
                     school = SCHOOL_FIXES.get(school, school)
                     if not school:
@@ -158,6 +163,26 @@ def extract():
                                      'county': META['fylke'], 'round': META['round']})
         out.append((fname, rows))
     return out, warn
+
+
+def _codes(page):
+    """[(x0, code)] of the header, read from the characters of the codes'
+    baseline in x order. Words lose codes there: from 2026/27 a label's first
+    word sits on the same line («IMIKM1----  IT og KDKDA1----»), and in the
+    Trondheim table KDKDA1---- and STUSP1---- vanished into it, shifting two
+    columns' figures one programme to the left."""
+    lines = {}
+    for c in page.chars:
+        lines.setdefault(round(c['top'], 1), []).append(c)
+    best = []
+    for chars in lines.values():
+        chars.sort(key=lambda c: c['x0'])
+        text = ''.join(c['text'] for c in chars)
+        found = [(chars[m.start()]['x0'], common.norm(m.group()))
+                 for m in CODE_RE.finditer(text)]
+        if len(found) > len(best):
+            best = found
+    return best
 
 
 def _cluster(words, tol=2.5):

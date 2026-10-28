@@ -7,7 +7,8 @@ import common  # noqa: E402
 
 def test_shared_table_has_every_code_the_two_counties_print():
     for code in ['MDMDD1--1-', 'MDMDD1--4-', 'MDMDD1--6-', 'HSHSF1N---', 'STUSP1--EP',
-                 'STUSP1--IT', 'STUSP1--Q-', 'STUSP1--T-', 'STUSP1L-X-', 'STUSP1Z---']:
+                 'STUSP1--IT', 'STUSP1--Q-', 'STUSP1--T-', 'STUSP1L-X-', 'STUSP1Z---',
+                 'STUSP1--BU', 'STUSP1--MI']:
         assert code in common.VIGO_VARIANT_CODES, code
 
 
