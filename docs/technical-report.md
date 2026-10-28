@@ -1349,7 +1349,7 @@ cluster bootstrap uses a fixed seed. The whole pipeline runs in minutes on a
 laptop. `tools/test_docs.py` pins every number in this report and in
 `docs/model.md` to the shipped model file, so a refresh that moves a figure
 fails the build until the text is updated; validation further comprises 140
-parser regression checks and 16,229 model invariants. The dataset is
+parser regression checks and 18,019 model invariants. The dataset is
 released under the Norwegian Licence for Open Government Data (NLOD 2.0)
 and the code under the MIT licence.
 
