@@ -201,12 +201,11 @@ NO_NEWEST_FIGURE = {
     ('Rogaland', 'Stavanger Offshore Tekniske skole'),
     ('Trøndelag', 'Grong videregående skole'), ('Trøndelag', 'Inderøy videregående skole'),
     ('Trøndelag', 'Kyrksæterøra videregående skole'), ('Trøndelag', 'Meråker videregående skole'),
-    ('Trøndelag', 'Mære landbruksskole'), ('Trøndelag', 'Røros videregående skole'),
-    ('Trøndelag', 'Selbu videregående skole'), ('Trøndelag', 'Verdal videregående skole'),
-    ('Trøndelag', 'Åfjord videregående skole'),
+    # Mære, Røros, Selbu, Verdal and Åfjord left the list with Trøndelag's
+    # 2026/27 tables (28 Oct 2026): each now prints a poenggrense on at least one Vg1 row
 }
 without = {(s['fylke'], s['name']) for s in DATA['schools'] if not newest_numeric(s)}
-check('the schools with no poenggrense in their newest year are the 17 known ones',
+check('the schools with no poenggrense in their newest year are the 12 known ones',
       without == NO_NEWEST_FIGURE,
       f'new: {sorted(without - NO_NEWEST_FIGURE)} gone: {sorted(NO_NEWEST_FIGURE - without)}')
 
