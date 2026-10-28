@@ -117,14 +117,16 @@ forecast would be for 2022, a year long past, and their figures rest on a
 reading of offsets the counties never explained (Agder's hundreds, Nordland's
 800-point county supplement), which the pooled fit should not lean on.
 
-**Counties outside the model.** Telemark is in the dataset and the app but
+**Counties outside the model.** Telemark and Vestfold are in the dataset and the app but
 in neither fit, neither backtest nor any score (`HELD_OUT` in
 `tools/model.py`, `meta.held_out`). Its workbook gives the lowest points
 among those admitted for every offered programme, also where everyone got
 in, so its numbers are not poenggrenser in the other counties' sense and
 there is no fill state to read. A fit that included it (report v1.10,
 17 September 2026) lost 0.5 points of RMSE on one-year series and doubled
-the county-year share of the between-school variance. Every figure in this
+the county-year share of the between-school variance. Vestfold's workbook
+(28 October 2026, Vg1–Vg3) gives the same kind of figure and is held out on
+the same grounds. Every figure in this
 note is over the other eight counties.
 
 Its schools are still forecast, by a **satellite fit** (`Satellite`): with
@@ -139,7 +141,10 @@ Telemark's year T. Over 110 cells in 2025–2026 that is an RMSE of 7.78
 against 8.98 for persistence, and every Telemark forecast carries 7.8 as
 its spread — the model's own buckets, 5.1 to 6.8, covered 63% of those
 outcomes where they claimed 80%. The app quotes that measurement on every
-Telemark school. The county rejoins
+Telemark school. Vestfold gets a satellite fit of its own, measured the
+same way: over 498 cells in 2025–2026 an RMSE of 5.89 against 6.96 for
+persistence, and every Vestfold forecast carries 5.9 as its spread (the
+model's own buckets covered 78% there). Each county rejoins
 the model when it states, per programme and year, whether everyone was
 admitted.
 

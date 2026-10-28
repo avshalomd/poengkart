@@ -516,5 +516,10 @@ threshold more than the history suggests. The forecast note says so since
   Shipped the same day: the field takes the karaktersnitt (1–6), nothing is
   worked out until the reader submits it, a figure outside 1–6 is asked about
   («Mente du 3,02?») rather than corrected, and the chance texts say
-  «estimert». Thresholds, graphs and forecasts stay in karakterpoeng. Still
-  waiting for the thresholds themselves.
+  «estimert». Thresholds, graphs and forecasts stay in karakterpoeng. On 28
+  October 2026, after the leadership group had discussed it, she sent the
+  lowest admitted points per programområde, Vg1–Vg3, 2024–2026, asking that
+  they be presented as a guide only. Added the same day (report v1.31): held
+  out like Telemark, since the file has no fill state, with a «veiledende»
+  note on every school. Still open: the intake round, and whether the
+  county will publish the table itself.

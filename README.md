@@ -7,7 +7,7 @@
 Admission thresholds (*poenggrenser*) for Norwegian upper secondary schools,
 on a map and as a ranked list. A threshold is the points of the last applicant
 who got a place (grade average × 10): what it took to get in, not what the
-school requires. 278 schools in the eleven counties that publish the figures,
+school requires. 288 schools in the twelve counties that publish the figures,
 released them on request or once printed them, 2012–2026, in Norwegian and
 English. It is for pupils choosing where to apply, their parents, and the
 school counsellors who plan each pupil's programmes and schools with them.
@@ -21,7 +21,7 @@ Type in your grade average (*karaktersnitt*, 1–6; the thresholds are in
 points, the average × 10) and every school and programme is coloured by your
 estimated chance of a place at the next intake: green likely, amber possible,
 red unlikely. The chance comes from a model fitted on the whole history and backtested year by
-year (Telemark's schools from a separate fit on the county's own figures;
+year (Telemark's and Vestfold's schools from a separate fit on each county's own figures;
 Agder and Nordland, whose figures stop in 2021, carry no forecast);
 [docs/model.md](docs/model.md) explains it and the
 [technical report](https://poengkart.no/report) is the full
@@ -93,7 +93,7 @@ has the details.
 `web/public/data/schools.json` is what the app reads. `data/` has the same as SQLite
 and CSV: `samples` is every cell with its county, inntak and Grep code,
 `forecasts` the model's expected threshold, spread and fill probability per
-programme (`held_out` marks Telemark's, which the backtest never scores), and
+programme (`held_out` marks Telemark's and Vestfold's, which the backtest never scores), and
 `model-backtest.csv` every walk-forward forecast behind the accuracy claims. The data is published under
 [NLOD 2.0](https://data.norge.no/nlod/no/2.0); the code is MIT.
 
@@ -108,7 +108,7 @@ Each (school, programme, year) cell is one of:
 | `D` | admission by documentation (IB, elite sport); no threshold |
 | `U` | discontinued that year |
 
-Finnmark, Troms, Vestfold and Østfold do not publish thresholds; the county
+Finnmark, Troms and Østfold do not publish thresholds; the county
 select lists them as *(ingen data)*. Agder and Nordland do not publish them
 either, but once printed them, so their schools carry that history and no
 forecast.
@@ -130,6 +130,7 @@ text of the county's PDF) and the app says so beside those years;
 | [Rogaland](https://www.vilbli.no/nb/rogaland/a/poengsum-og-karakterer-6) | PDF; 2015 from the county's school portal (Wayback), 2012 from a newspaper copy | 2012, 2015, 2018–2026 | 2. (2012: 1.; 2015: not stated) |
 | Telemark | Excel extract released on request: the lowest points of the admitted for every programme, no fill state, so not comparable: outside the model, forecast from its own figures alone with the error measured on its own years | 2024–2026 | not stated |
 | [Trøndelag](https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6) | PDF, per intake region; 2024 Trondheim only (image PDF, transcribed) | 2024–2025 | 2. |
+| Vestfold | Excel extract released on request: the lowest points of the admitted for every programme area, Vg1–Vg3, no fill state, so not comparable: outside the model, forecast from its own figures alone; the county asks that the figures be read as a guide only | 2024–2026 | not stated |
 | [Vestland](https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/) | PDF | 2020–2026 | 1. and 3. |
 | ↳ Hordaland, pre-merger | PDF: press releases via the Wayback Machine (1.), the county's full table (3.); 2014–2015 from newspaper copies | 2014–2019 | 1. and 3. |
 | ↳ Sogn og Fjordane, pre-merger | PDF | 2018–2019 | 1. |

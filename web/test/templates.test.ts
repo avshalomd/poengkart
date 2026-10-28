@@ -85,6 +85,15 @@ describe('a county held out of the model', () => {
     expect(other).not.toContain('ikke sammenlignes');
     expect(other).not.toContain('cannot be compared');
   });
+  it('says on every Vestfold school that its figures are a guide only, as the county asked', () => {
+    loadFixtures();
+    const html = notesHtml({ name: 'Horten videregående skole', fylke: 'Vestfold', programs: [] } as any);
+    expect(html).toContain(esc(t('heldOutNote', 'Vestfold')));
+    expect(html).toContain(esc(t('guideOnlyNote', 'Vestfold')));
+    expect(html).toContain('veiledende');
+    const telemark = notesHtml({ name: 'Skien videregående skole', fylke: 'Telemark', programs: [] } as any);
+    expect(telemark).not.toContain('veiledende');
+  });
   it('explains a printed threshold below 10,0 and only there', () => {
     loadFixtures();
     const rm = (values: any) => ({ program: 'Restaurant- og matfag', level: 'Vg1', category: 'RM', values });

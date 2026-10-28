@@ -227,6 +227,23 @@ read until the county has explained it. The intake round is not stated;
 both were asked on 17.09.2026. Document metadata was stripped as for
 every file here.
 
+## vestfold
+
+`laveste-inntatte-karakterpoeng-2024-2026.xlsx` was never published: the
+county sent it by e-mail on request (asked 28.09.2026, received 28.10.2026,
+after the intake team's leadership group had agreed; no case number) as
+«Laveste inntatte karakterpoeng 20262027.xlsx», one sheet, one row per
+(school, programområde) with the county's school number, the level (Nivå
+1–3), the utdanningsprogram, the vigo programområdekode, the county's short
+label and one column per year (2026, 2025, 2024: the school year that starts
+that autumn). The figure is the lowest grade points among those admitted,
+for every offered programme area down to 10,0, with no marker for «everyone
+got in», so, as for Telemark, the dataset has no fill state for Vestfold. A
+blank cell is a programme area not offered that year. The intake round is
+not stated. The county asks that the figures be used as a guide only. The
+author fields and the sender's file path were stripped from the file; the
+cells are untouched.
+
 ## trondelag
 
 `trondelag_2025-26_<region>.pdf`, one per inntaksregion (Fosen,

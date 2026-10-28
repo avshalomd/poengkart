@@ -4,12 +4,12 @@ Detail that would crowd the README: which counties publish at all, why the
 history is so uneven between them, how the documents are turned into a dataset,
 and what was considered and deliberately left unbuilt.
 
-## Only 9 of Norway's 15 counties publish thresholds, or release them on request
+## Only 10 of Norway's 15 counties publish thresholds, or release them on request
 
 Agder, Nordland and Østfold say on the record that they choose not to.
-Vestfold, Troms and Finnmark publish aggregate intake statistics only —
-applicants, offers, and in Vestfold's case per-school head-counts — with no
-thresholds. Møre og Romsdal publishes only inside a Power BI dashboard whose
+Troms and Finnmark publish aggregate intake statistics only — applicants
+and offers — with no thresholds. Vestfold publishes per-school head-counts
+only, but released its lowest admitted points on request (below). Møre og Romsdal publishes only inside a Power BI dashboard whose
 Publish-to-Web mode offers no download — but the county answered a request
 with the tidy Excel extract behind it (September 2026): every school,
 Vg1 programme and year since 2012/13, the deepest history in the dataset.
@@ -48,6 +48,21 @@ The intake round is not stated; the county was asked on 17 September,
 together with what «Laveste totalpoeng» (2026/27 only, mostly karakterpoeng
 + 300) means, whether older years and Vg2–Vg3 exist, and for admitted
 counts beside the places, which would give the fill state.
+
+Vestfold publishes per-school head-counts at 1. inntak and nothing per
+programme area, but after the request of 28 September 2026 its intake team
+took the question to its leadership group and answered on 28 October with
+a workbook: «Laveste inntatte karakterpoeng», the lowest grade points among
+those admitted, for every Vg1, Vg2 and Vg3 programme area at its ten
+schools, 2024/25–2026/27, with the vigo code. It is the same kind of figure
+as Telemark's, with no fill state and no intake round stated, so Vestfold is
+held out of the model and the report on the same grounds and forecast by its
+own satellite fit. The county asks that the figures be read as a guide only,
+since the number of places and the pattern of applications move them from
+year to year, and the app says so on every Vestfold school. Up to half of
+the Vg1 Idrettsfag places can be given on documented sport results combined
+with points, so the lowest admitted figure there may belong to such an
+applicant.
 
 ## Older years from copies, and two counties with history only
 

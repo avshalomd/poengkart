@@ -357,6 +357,15 @@
   "wiki_url": "https://no.wikipedia.org/wiki/Fyrstikkalleen_skole",
   "wiki_extract": "Fyrstikkalleen skole, også kalt «F21», er en 8–13-skole i Fyrstikkalleen 21 ved Fyrstikktorget på Helsfyr i Oslo, skolen ble etablert i august 2010. Bygget er arkitektonisk utformet av Arkitektkontoret GASA AS og er integrert i lokalene til den gamle fyrstikkfabrikken til Nittedal Tændstikfabrik. Skolens areal er 15 000 kvadratmeter inkluderert barnehage, bibliotek og en flerbrukshall."
  },
+ "Færder videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/F%C3%A6rder_vgs_T%C3%B8nsberg.jpg/3840px-F%C3%A6rder_vgs_T%C3%B8nsberg.jpg",
+  "source": "wikipedia",
+  "page": null,
+  "credit": "Wikimedia Commons",
+  "license": "se Commons",
+  "wiki_url": "https://no.wikipedia.org/wiki/F%C3%A6rder_videreg%C3%A5ende_skole",
+  "wiki_extract": "Færder videregående skole er en offentlig videregående skole som ligger i Tønsberg kommune i Vestfold. Skolen ble opprettet etter sammenslåing av daværende Teie og Slottsfjellets videregående skole, Tønsberg maritime videregående skole og Olsrød videregående skole 1. august 2003. \nFærder videregående skole ble etablert i 2003 da de tre nevnte skolene ble til én."
+ },
  "Førde vidaregåande skule": {
   "photo": "https://www.forde.vgs.no/contentassets/13cbddb2711f4368ad2a19f5be26868b/forde-vgs-2.jpg?width=1600&quality=80",
   "source": "site",
@@ -416,6 +425,13 @@
   "page": "https://bfk.no/gol-vgs",
   "credit": "Foto: Gol vidaregåande skule / Buskerud fylkeskommune",
   "license": "© Buskerud fylkeskommune"
+ },
+ "Greveskogen videregående skole": {
+  "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.vestfoldfylke.no//link/33edf42334f4400699dececdd81d1906.aspx",
+  "source": "site",
+  "page": "https://www.vestfoldfylke.no/no/skoler/greveskogen-vgs/",
+  "credit": "Foto: Greveskogen videregående skole / Vestfold fylkeskommune",
+  "license": "© Vestfold fylkeskommune"
  },
  "Grong videregående skole": {
   "photo": "https://web.trondelagfylke.no/contentassets/3aa2435f1ddd4724a5d1403364f679d6/framsidebilde-bruk-fra-khl.jpg?width=1600",
@@ -491,6 +507,15 @@
   "page": "https://commons.wikimedia.org/wiki/File:Hjalmar_Johansen_videreg%C3%A5ende_skole_-_Klosterskogen.jpg",
   "credit": "Foto: Bitjungle (CC BY-SA 3.0)",
   "license": "CC BY-SA 3.0"
+ },
+ "Holmestrand videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Holmestrand_videreg%C3%A5ende_skole_04.jpg/3840px-Holmestrand_videreg%C3%A5ende_skole_04.jpg",
+  "source": "wikipedia",
+  "page": null,
+  "credit": "Wikimedia Commons",
+  "license": "se Commons",
+  "wiki_url": "https://no.wikipedia.org/wiki/Holmestrand_videreg%C3%A5ende_skole",
+  "wiki_extract": "Holmestrand videregående skole er en offentlig videregående skole i Holmestrand kommune."
  },
  "Holtet videregående skole": {
   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Holtet_videreg%C3%A5ende_skole_-_2009-09-06_at_16-57-47.jpg/1280px-Holtet_videreg%C3%A5ende_skole_-_2009-09-06_at_16-57-47.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -757,6 +782,13 @@
   "credit": "Foto: Melhus videregående skole / Trøndelag fylkeskommune",
   "license": "© Trøndelag fylkeskommune"
  },
+ "Melsom videregående skole": {
+  "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.vestfoldfylke.no//link/ceab8d27e7af427ab1b3f21bd1a9d30e.aspx",
+  "source": "site",
+  "page": "https://www.vestfoldfylke.no/no/skoler/melsom-vgs/",
+  "credit": "Foto: Melsom videregående skole / Vestfold fylkeskommune",
+  "license": "© Vestfold fylkeskommune"
+ },
  "Meråker videregående skole": {
   "photo": "https://web.trondelagfylke.no/contentassets/ec8dd7ddc2b94df2968e685f73b09d95/mvs-16x9.jpg",
   "source": "site",
@@ -891,6 +923,13 @@
   "credit": "Foto: Nydalen videregående skole / Oslo kommune / Utdanningsetaten",
   "license": "© Oslo kommune / Utdanningsetaten"
  },
+ "Nøtterøy videregående skole": {
+  "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.vestfoldfylke.no//link/349beb6131784c0580545ae904950b75.aspx",
+  "source": "site",
+  "page": "https://www.vestfoldfylke.no/no/skoler/notteroy-vgs/",
+  "credit": "Foto: Nøtterøy videregående skole / Vestfold fylkeskommune",
+  "license": "© Vestfold fylkeskommune"
+ },
  "Odda vidaregåande skule": {
   "photo": "https://www.odda.vgs.no/contentassets/daf7b93735c24748b0c3857f9fa22b6e/odda-vgs-2024.jpg",
   "source": "site",
@@ -985,6 +1024,15 @@
   "license": "CC BY-SA 4.0",
   "wiki_url": "https://no.wikipedia.org/wiki/Rauma_videreg%C3%A5ende_skole",
   "wiki_extract": "Rauma videregående skole er sentralt plassert på Åndalsnes."
+ },
+ "Re videregående skole": {
+  "photo": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Re_videreg%C3%A5ende_skole.jpg",
+  "source": "wikipedia",
+  "page": null,
+  "credit": "Wikimedia Commons",
+  "license": "se Commons",
+  "wiki_url": "https://no.wikipedia.org/wiki/Re_videreg%C3%A5ende_skole",
+  "wiki_extract": "Re videregående skole er en videregående skole i Revetal i Tønsberg kommune. Skolen ble åpnet i 1981. Den lå i Re kommune frem til kommunen ble slått sammen med Tønsberg kommune fra 1. januar 2020."
  },
  "Ringerike": {
   "photo": "https://bfk.no/handlers/bv.ashx/e1/i3cf61c96-312d-496f-b627-14ff8d14c602/w1200/h630/q8813/k2ac21a463ef5/dsc_1903.JPG",
@@ -1352,6 +1400,13 @@
   "credit": "Foto: Tertnes vidaregåande skule / Vestland fylkeskommune",
   "license": "© Vestland fylkeskommune",
   "position": "top"
+ },
+ "Thor Heyerdahl videregående skole": {
+  "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Thor_Heyerdahl_VGS_logo.jpg/1280px-Thor_Heyerdahl_VGS_logo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "source": "commons",
+  "page": "https://commons.wikimedia.org/wiki/File:Thor_Heyerdahl_VGS_logo.jpg",
+  "credit": "Foto: Peter Fiskerstrand (CC BY-SA 4.0)",
+  "license": "CC BY-SA 4.0"
  },
  "Thora Storm videregående skole": {
   "photo": "https://web.trondelagfylke.no/contentassets/109608377f814e2cbc75c155ed6f4909/foto-2-fotografert-av-herzog.jpg",
