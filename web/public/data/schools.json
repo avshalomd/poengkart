@@ -46539,8 +46539,8 @@
    "nsr_name": "Kuben videregående skole",
    "kommune": "Oslo",
    "sted": "Oslo",
-   "lat": 59.92733560429587,
-   "lon": 10.81630669531877
+   "lat": 59.9273356290344,
+   "lon": 10.816306693738154
   },
   {
    "name": "Lambertseter videregående skole",
@@ -49933,8 +49933,8 @@
    "nsr_name": "Gand videregående skole",
    "kommune": "Sandnes",
    "sted": "Sandnes",
-   "lat": 58.84701666871939,
-   "lon": 5.736557331238955
+   "lat": 58.84701664305565,
+   "lon": 5.736557644204733
   },
   {
    "name": "Godalen videregående skole",
@@ -61603,13 +61603,19 @@
     }
    ],
    "orgnr": "974575086",
-   "address": "Banebakken 44, 3127, TØNSBERG",
    "url": "www.vestfoldfylke.no/no/skoler/farder-vgs/",
+   "address": "Banebakken 44, 3127, TØNSBERG",
    "nsr_name": "Færder videregående skole",
+   "kommune": "Tønsberg",
+   "sted": "Tønsberg",
    "lat": 59.26109,
    "lon": 10.41044,
-   "kommune": "Tønsberg",
-   "sted": "Tønsberg"
+   "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/F%C3%A6rder_vgs_T%C3%B8nsberg.jpg/3840px-F%C3%A6rder_vgs_T%C3%B8nsberg.jpg?width=960&quality=75",
+   "photo_credit": "Wikimedia Commons",
+   "photo_license": "se Commons",
+   "wiki_url": "https://no.wikipedia.org/wiki/F%C3%A6rder_videreg%C3%A5ende_skole",
+   "wiki_extract": "Færder videregående skole er en offentlig videregående skole som ligger i Tønsberg kommune i Vestfold. Skolen ble opprettet etter sammenslåing av daværende Teie og Slottsfjellets videregående skole, Tønsberg maritime videregående skole og Olsrød videregående skole 1. august 2003. \nFærder videregående skole ble etablert i 2003 da de tre nevnte skolene ble til én.",
+   "photo_source": "reviewed"
   },
   {
    "name": "Greveskogen videregående skole",
@@ -61844,18 +61850,18 @@
     }
    ],
    "orgnr": "974574993",
-   "address": "Eikveien 2, 3122, TØNSBERG",
    "url": "www.vestfoldfylke.no/no/skoler/greveskogen-vgs/",
-   "nsr_name": "Greveskogen videregående skole",
-   "lat": 59.2873,
-   "lon": 10.41509,
-   "kommune": "Tønsberg",
-   "sted": "Tønsberg",
+   "address": "Eikveien 2, 3122, TØNSBERG",
    "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.vestfoldfylke.no//link/33edf42334f4400699dececdd81d1906.aspx",
+   "photo_source": "reviewed",
    "photo_page": "https://www.vestfoldfylke.no/no/skoler/greveskogen-vgs/",
    "photo_credit": "Foto: Greveskogen videregående skole / Vestfold fylkeskommune",
    "photo_license": "© Vestfold fylkeskommune",
-   "photo_source": "reviewed"
+   "nsr_name": "Greveskogen videregående skole",
+   "kommune": "Tønsberg",
+   "sted": "Tønsberg",
+   "lat": 59.2873,
+   "lon": 10.41509
   },
   {
    "name": "Holmestrand videregående skole",
@@ -62010,13 +62016,19 @@
     }
    ],
    "orgnr": "874575062",
-   "address": "Botne kirkevei 17, 3085, HOLMESTRAND",
    "url": "www.vestfoldfylke.no/no/skoler/holmestrand-vgs/",
+   "address": "Botne kirkevei 17, 3085, HOLMESTRAND",
    "nsr_name": "Holmestrand videregående skole",
+   "kommune": "Holmestrand",
+   "sted": "Holmestrand",
    "lat": 59.48262,
    "lon": 10.29539,
-   "kommune": "Holmestrand",
-   "sted": "Holmestrand"
+   "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Holmestrand_videreg%C3%A5ende_skole_04.jpg/3840px-Holmestrand_videreg%C3%A5ende_skole_04.jpg?width=960&quality=75",
+   "photo_credit": "Wikimedia Commons",
+   "photo_license": "se Commons",
+   "wiki_url": "https://no.wikipedia.org/wiki/Holmestrand_videreg%C3%A5ende_skole",
+   "wiki_extract": "Holmestrand videregående skole er en offentlig videregående skole i Holmestrand kommune.",
+   "photo_source": "reviewed"
   },
   {
    "name": "Horten videregående skole",
@@ -62442,13 +62454,13 @@
     }
    ],
    "orgnr": "923261354",
-   "address": "Strandpromenaden 33, 3183, HORTEN",
    "url": "www.vestfoldfylke.no/no/skoler/horten-vgs/",
+   "address": "Strandpromenaden 33, 3183, HORTEN",
    "nsr_name": "Horten videregående skole",
-   "lat": 59.42084,
-   "lon": 10.4882,
    "kommune": "Horten",
-   "sted": "Horten"
+   "sted": "Horten",
+   "lat": 59.42084,
+   "lon": 10.4882
   },
   {
    "name": "Melsom videregående skole",
@@ -62622,16 +62634,18 @@
     }
    ],
    "orgnr": "974575051",
-   "address": "Melsomvikveien 180, 3159, MELSOMVIK",
    "url": "www.vestfoldfylke.no/no/skoler/melsom-vgs/",
-   "nsr_name": "Melsom videregående skole",
-   "kommune": "Sandefjord",
-   "sted": "Melsomvik",
+   "address": "Melsomvikveien 180, 3159, MELSOMVIK",
    "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.vestfoldfylke.no//link/ceab8d27e7af427ab1b3f21bd1a9d30e.aspx",
+   "photo_source": "reviewed",
    "photo_page": "https://www.vestfoldfylke.no/no/skoler/melsom-vgs/",
    "photo_credit": "Foto: Melsom videregående skole / Vestfold fylkeskommune",
    "photo_license": "© Vestfold fylkeskommune",
-   "photo_source": "reviewed"
+   "nsr_name": "Melsom videregående skole",
+   "kommune": "Sandefjord",
+   "sted": "Melsomvik",
+   "lat": 59.2297650657114,
+   "lon": 10.343202509236425
   },
   {
    "name": "Nøtterøy videregående skole",
@@ -62832,18 +62846,18 @@
     }
    ],
    "orgnr": "974575000",
-   "address": "Rektorveien 10, 3140, NØTTERØY",
    "url": "www.vestfoldfylke.no/no/skoler/notteroy-vgs/",
-   "nsr_name": "Nøtterøy videregående skole",
-   "lat": 59.22449,
-   "lon": 10.40418,
-   "kommune": "Færder",
-   "sted": "Nøtterøy",
+   "address": "Rektorveien 10, 3140, NØTTERØY",
    "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.vestfoldfylke.no//link/349beb6131784c0580545ae904950b75.aspx",
+   "photo_source": "reviewed",
    "photo_page": "https://www.vestfoldfylke.no/no/skoler/notteroy-vgs/",
    "photo_credit": "Foto: Nøtterøy videregående skole / Vestfold fylkeskommune",
    "photo_license": "© Vestfold fylkeskommune",
-   "photo_source": "reviewed"
+   "nsr_name": "Nøtterøy videregående skole",
+   "kommune": "Færder",
+   "sted": "Nøtterøy",
+   "lat": 59.22449,
+   "lon": 10.40418
   },
   {
    "name": "Re videregående skole",
@@ -63166,13 +63180,19 @@
     }
    ],
    "orgnr": "874575232",
-   "address": "Bergshaugen 10, 3175, RAMNES",
    "url": "www.revgs.no/",
+   "address": "Bergshaugen 10, 3175, RAMNES",
    "nsr_name": "Re videregående skole",
+   "kommune": "Tønsberg",
+   "sted": "Ramnes",
    "lat": 59.35823,
    "lon": 10.24864,
-   "kommune": "Tønsberg",
-   "sted": "Ramnes"
+   "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Re_videreg%C3%A5ende_skole.jpg/960px-Re_videreg%C3%A5ende_skole.jpg",
+   "photo_credit": "Wikimedia Commons",
+   "photo_license": "se Commons",
+   "wiki_url": "https://no.wikipedia.org/wiki/Re_videreg%C3%A5ende_skole",
+   "wiki_extract": "Re videregående skole er en videregående skole i Revetal i Tønsberg kommune. Skolen ble åpnet i 1981. Den lå i Re kommune frem til kommunen ble slått sammen med Tønsberg kommune fra 1. januar 2020.",
+   "photo_source": "reviewed"
   },
   {
    "name": "Sande videregående skole",
@@ -63435,13 +63455,13 @@
     }
    ],
    "orgnr": "974575116",
-   "address": "Hans K.Evensens vei 53, 3076, SANDE I VESTFOLD",
    "url": "www.vestfoldfylke.no/no/skoler/sande-vgs/",
+   "address": "Hans K.Evensens vei 53, 3076, SANDE I VESTFOLD",
    "nsr_name": "Sande videregående skole",
-   "lat": 59.58584,
-   "lon": 10.24122,
    "kommune": "Holmestrand",
-   "sted": "Sande i Vestfold"
+   "sted": "Sande i Vestfold",
+   "lat": 59.58584,
+   "lon": 10.24122
   },
   {
    "name": "Sandefjord videregående skole",
@@ -64140,13 +64160,13 @@
     }
    ],
    "orgnr": "974575019",
-   "address": "Krokemoveien 4, 3214, SANDEFJORD",
    "url": "www.vestfoldfylke.no/no/skoler/sandefjord-vgs/",
+   "address": "Krokemoveien 4, 3214, SANDEFJORD",
    "nsr_name": "Sandefjord videregående skole",
-   "lat": 59.13322,
-   "lon": 10.20438,
    "kommune": "Sandefjord",
-   "sted": "Sandefjord"
+   "sted": "Sandefjord",
+   "lat": 59.13322,
+   "lon": 10.20438
   },
   {
    "name": "Thor Heyerdahl videregående skole",
@@ -64694,13 +64714,18 @@
     }
    ],
    "orgnr": "974575027",
-   "address": "Hoffs gate 6, 3262, LARVIK",
    "url": "www.vestfoldfylke.no/no/skoler/thor-heyerdahl-vgs/",
+   "address": "Hoffs gate 6, 3262, LARVIK",
    "nsr_name": "Thor Heyerdahl videregående skole",
+   "kommune": "Larvik",
+   "sted": "Larvik",
    "lat": 59.04936,
    "lon": 10.05533,
-   "kommune": "Larvik",
-   "sted": "Larvik"
+   "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Thor_Heyerdahl_VGS_logo.jpg/1280px-Thor_Heyerdahl_VGS_logo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail&width=960&quality=75",
+   "photo_page": "https://commons.wikimedia.org/wiki/File:Thor_Heyerdahl_VGS_logo.jpg",
+   "photo_credit": "Foto: Peter Fiskerstrand (CC BY-SA 4.0)",
+   "photo_license": "CC BY-SA 4.0",
+   "photo_source": "reviewed"
   },
   {
    "name": "Amalie Skram videregående skole",
@@ -65571,8 +65596,8 @@
    "nsr_name": "Askøy videregående skole",
    "kommune": "Askøy",
    "sted": "Kleppestø",
-   "lat": 60.41634461437971,
-   "lon": 5.221043574193361
+   "lat": 60.41634457865407,
+   "lon": 5.2210441142494535
   },
   {
    "name": "Austevoll vidaregåande skule",
@@ -73248,8 +73273,8 @@
    "nsr_name": "Bømlo vidaregåande skule avd Rubbestadneset",
    "kommune": "Bømlo",
    "sted": "Rubbestadneset",
-   "lat": 59.81544538654396,
-   "lon": 5.270383003724226
+   "lat": 59.815445349941164,
+   "lon": 5.270383510407455
   },
   {
    "name": "Sandsli videregående skole",
