@@ -30,8 +30,9 @@ N_FORECASTS = sum(len(v.get('programs') or {}) for v in _OWN)
 N_FORECASTS_H0 = sum(pr['h'] == 0 for v in _OWN for pr in (v.get('programs') or {}).values())
 N_HELD_FORECASTS = sum(len(v.get('programs') or {}) for v in MODEL['schools'].values() if v.get('held_out'))
 N_HELD_SCHOOLS = sum(1 for v in MODEL['schools'].values() if v.get('held_out'))
-# what the satellite fit is worth, measured on the held-out county's own years
+# what the satellite fit is worth, measured on each held-out county's own years
 _hb = (META.get('held_out_backtest') or {}).get('Telemark')
+_hv = (META.get('held_out_backtest') or {}).get('Vestfold')
 
 failures = []
 checked = 0
@@ -366,6 +367,11 @@ if _hb:
           r"every Telemark forecast carries ([\d.]+) as its spread — the model's own buckets, ([\d.]+) to ([\d.]+), covered (\d+)%",
           [_hb['sigma'], min(META['sigma_forecast'].values()), max(META['sigma_forecast'].values()),
            _hb['coverage80_panel_spread'] * 100], flat, [D1, D1, D1, PCT])
+if _hv:
+    check(doc, 'satellite Vestfold (model.md)',
+          r'over ([\d,]+) cells in 2025–2026 an RMSE of ([\d.]+) against ([\d.]+) for persistence, and every Vestfold forecast carries ([\d.]+) as its spread \(the model\'s own buckets covered (\d+)% there\)',
+          [_hv['n'], _hv['rmse'], _hv['rmse_persistence'], _hv['sigma'], _hv['coverage80_panel_spread'] * 100],
+          flat, [N, D2, D2, D1, PCT])
 MULT = META['sigma_level_multiplier']
 LS = META['halflife_search']['level_spread_experiment']
 SW = META['halflife_search']['single_weight_search']
@@ -662,9 +668,11 @@ check(doc, 'outliers', rf'> 3\$: (\d+) of ([\d,]+), (\d+) of them in {OZ_TOP}', 
       [fit_count(oz['n']), N, fit_count(oz['by_fylke'][OZ_TOP])])
 check(doc, 'forecast count', r'shipped model carries ([\d,]+) programme forecasts, of which (\d+) are for series with no observed year', [N_FORECASTS, N_FORECASTS_H0], flat, N)
 check(doc, 'discontinued series', r'\(discontinued; (\d+) series\)', [N_SERIES_U], flat, N)
-check(doc, 'held-out forecasts', r'a separate fit on its own figures supplies (\d+) forecasts for its (\d+) schools',
+check(doc, 'held-out forecasts', r"a separate fit on each county's own figures supplies (\d+) forecasts for their (\d+) schools",
       [N_HELD_FORECASTS, N_HELD_SCHOOLS], flat, N)
-check(doc, 'held-out panel (4.4)', r'\(Vg1, 2024–2026, eleven schools, ([\d,]+) cells\)', [N_HELD_CELLS], flat, N)
+_HC = META.get('held_out_cells', {})
+check(doc, 'held-out panel Telemark (4.4)', r'\(Vg1, 2024–2026, eleven schools, ([\d,]+) cells\)', [_HC.get('Telemark', 0)], flat, N)
+check(doc, 'held-out panel Vestfold (4.4)', r'\(Vg1–Vg3, 2024–2026, ten schools, ([\d,]+) cells\)', [_HC.get('Vestfold', 0)], flat, N)
 if HISTORY:
     check(doc, 'history-only counties (4.4)',
           r'2016–2017 figures \((\d+) schools, ([\d,]+) cells in all\), and Nordland printed every programme area in its yearly statistics booklet in 2013–2015 and 2019–2021 \((\d+) schools, ([\d,]+) cells\)',
@@ -676,11 +684,16 @@ check(doc, 'held-out lowest figure (4.4)', r'the lowest grade points among those
 # it as the reason its forecasts stopped carrying the panel's spread
 if _hb:
     check(doc, 'satellite backtest (4.4)',
-          r'Over ([\d,]+) cells in 2025 and 2026 that gives an RMSE of ([\d.]+) points against ([\d.]+) for persistence',
+          r'For Telemark, over ([\d,]+) cells in 2025 and 2026 that gives an RMSE of ([\d.]+) points against ([\d.]+) for persistence',
           [_hb['n'], _hb['rmse'], _hb['rmse_persistence']], flat, [N, D2, D2])
     check(doc, 'satellite borrowed coverage (4.4)',
           r"panel's spread covered (\d+)% of those outcomes where it claimed 80%",
           [_hb['coverage80_panel_spread'] * 100], flat, PCT)
+if _hv:
+    check(doc, 'satellite backtest Vestfold (4.4)',
+          r"For Vestfold the same walk over ([\d,]+) cells gives an RMSE of ([\d.]+) points against ([\d.]+) for persistence, and a spread of ([\d.]+); there the panel's spread covered (\d+)%",
+          [_hv['n'], _hv['rmse'], _hv['rmse_persistence'], _hv['sigma'], _hv['coverage80_panel_spread'] * 100],
+          flat, [N, D2, D2, D1, PCT])
 # Appendix D quotes Table 4's own 1-year RMSE as the "after" of the v1.10
 # experiment; a refit moves the table and would leave the history behind
 check(doc, 'version history 1-year rmse', r'series with one year of history rose from ([\d.]+)', [lvl['1']['rmse']], flat, D2)

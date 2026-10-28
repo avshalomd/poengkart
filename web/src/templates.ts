@@ -6,7 +6,7 @@
    stay importable without a DOM: state, helpers, i18n, types — and no map engine. */
 import { S } from './state';
 import { t, CATS } from './i18n';
-import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE, HELD_OUT, HISTORY_ONLY, belowFullRecord,
+import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE, HELD_OUT, GUIDE_ONLY, HISTORY_ONLY, belowFullRecord,
          partitionPrograms, numericLatest, progId, progName, countyPath, levelScope, isRecent, isVg1, inMean, meanStep, zeroIsFill, BUG_ICON, X_ICON } from './helpers';
 import { bucketOf, chanceFinal, chanceMode, chanceOf, finalRoundBridge, isChosen, modelEntry, pct, pctS, predFor } from './forecast';
 import type { School, County } from './types';
@@ -111,6 +111,7 @@ export function notesHtml(s: School): string {
   // where the county's figures are not comparable and it is outside the
   // model, say so on every school
   if (HELD_OUT.has(s.fylke)) notes.push(t('heldOutNote', s.fylke));
+  if (GUIDE_ONLY.has(s.fylke)) notes.push(t('guideOnlyNote', s.fylke));
   if (HISTORY_ONLY.has(s.fylke)) notes.push(t('historyOnlyNote', s.fylke));
   return notes.map(n => `<p>${esc(n)}</p>`).join('');
 }

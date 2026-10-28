@@ -263,7 +263,11 @@ export const OPEN_RULE = new Set(['Møre og Romsdal']);
 // by the satellite fit on the county's own cells (heldOutNote, chanceUntested;
 // HELD_OUT in tools/model.py, which tools/test_model.py checks this mirror
 // against)
-export const HELD_OUT = new Set(['Telemark']);
+export const HELD_OUT = new Set(['Telemark', 'Vestfold']);
+// counties that sent their figures asking that they be read as a guide only,
+// since places and search patterns move them from year to year (guideOnlyNote;
+// Vestfold's intake office, 28 Oct 2026, tools/extractors/vestfold.py)
+export const GUIDE_ONLY = new Set(['Vestfold']);
 // counties with figures only from years long past and none published today
 // (Agder, Nordland): their history is shown, but the model neither fits nor
 // forecasts them (historyOnlyNote; HISTORY_ONLY in tools/model.py, which
@@ -271,7 +275,7 @@ export const HELD_OUT = new Set(['Telemark']);
 export const HISTORY_ONLY = new Set(['Agder', 'Nordland']);
 // counties that do not publish poenggrenser and have no figures here at all
 // (docs/data-notes.md)
-export const MISSING_COUNTIES = ['Finnmark', 'Troms', 'Vestfold', 'Østfold'];
+export const MISSING_COUNTIES = ['Finnmark', 'Troms', 'Østfold'];
 export function schoolPressure(s, cat) {
   // Demand, judged in the newest dataset year only. Two honest signals:
   //   mean threshold of the programmes that filled up    -> how hard, typically

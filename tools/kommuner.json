@@ -43,6 +43,14 @@
   "kommune": "Tvedestrand",
   "kommunenr": "4213"
  },
+ "874575062": {
+  "kommune": "Holmestrand",
+  "kommunenr": "3903"
+ },
+ "874575232": {
+  "kommune": "Tønsberg",
+  "kommunenr": "3905"
+ },
  "874576492": {
   "kommune": "Volda",
   "kommunenr": "1577"
@@ -126,6 +134,10 @@
  "919938331": {
   "kommune": "Stavanger",
   "kommunenr": "1103"
+ },
+ "923261354": {
+  "kommune": "Horten",
+  "kommunenr": "3901"
  },
  "925607797": {
   "kommune": "Oslo",
@@ -494,6 +506,34 @@
  "974574047": {
   "kommune": "Evje og Hornnes",
   "kommunenr": "4219"
+ },
+ "974574993": {
+  "kommune": "Tønsberg",
+  "kommunenr": "3905"
+ },
+ "974575000": {
+  "kommune": "Færder",
+  "kommunenr": "3911"
+ },
+ "974575019": {
+  "kommune": "Sandefjord",
+  "kommunenr": "3907"
+ },
+ "974575027": {
+  "kommune": "Larvik",
+  "kommunenr": "3909"
+ },
+ "974575051": {
+  "kommune": "Sandefjord",
+  "kommunenr": "3907"
+ },
+ "974575086": {
+  "kommune": "Tønsberg",
+  "kommunenr": "3905"
+ },
+ "974575116": {
+  "kommune": "Holmestrand",
+  "kommunenr": "3903"
  },
  "974576422": {
   "kommune": "Molde",

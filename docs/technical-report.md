@@ -417,37 +417,44 @@ would replace the rule with the state. From 2 to 5 September 2026 the
 county was instead held out of the fill model with its fill probability
 fixed at 1; Appendix D records the change.
 
-Telemark is outside this report and outside the model. The county does not
-publish thresholds; in September 2026 it released a workbook on request
+Telemark and Vestfold are outside this report and outside the model.
+Neither county publishes thresholds. Telemark released a workbook on request in September 2026
 (Vg1, 2024–2026, eleven schools, 166 cells) that gives, for every offered
 programme, the lowest grade points among those admitted, down to 10.0.
 There is no fill state and no rule to read one from: where everyone who
 applied got a place the file still prints a number, so a low figure may be
 a real cutoff or no queue at all, and the county has not yet said whether
 applicants admitted with fortrinnsrett or after individual assessment are
-among "those admitted". Those numbers
+among "those admitted". Vestfold answered the same kind of request in
+October 2026 with the same kind of figure (Vg1–Vg3, 2024–2026, ten schools, 731 cells): the
+lowest grade points among those admitted for every offered programme area,
+no fill state, no intake round stated, and the county's request that the
+figures be read as a guide only, since places and search patterns move
+them from year to year. Those numbers
 are not poenggrenser in the sense of every other county in Table 1b, and
 fitting them beside the others would put figures of a different kind into
-the level model and the held-out scores. The county's cells therefore enter
+the level model and the held-out scores. The two counties' cells therefore enter
 none of the fits this report evaluates, no walk-forward fold and no
 number in this report. The application
-still publishes its figures, with a note saying what they are, and still
-forecasts its schools: once the model of Section 5 is fitted, its
+still publishes their figures, with a note saying what they are, and still
+forecasts their schools: once the model of Section 5 is fitted, its
 intercept and its utdanningsprogram and programme-area effects are held
-fixed as an offset, and only the county's own school, series and
+fixed as an offset, and only each county's own school, series and
 county-year effects are estimated, on its own cells, with the fitted
-model's variance components (a *satellite* fit; `Satellite` in
-`tools/model.py`). Its fill probability is pinned at 1, as for any source that carries no
+model's variance components (a *satellite* fit, one per county; `Satellite` in
+`tools/model.py`). The fill probability is pinned at 1, as for any source that carries no
 fill state, so a reader's chance there rests on the threshold alone. Nothing of that fit reaches the panel, the backtest or the
-evaluation. What it is worth is measured on the county's own years
+evaluation. What it is worth is measured on each county's own years
 instead, by the same walk: the panel fitted on the other counties' years
 before $T$, the satellite fitted on the county's years before $T$, its
-year $T$ predicted. Over 110 cells in 2025 and 2026 that gives an RMSE of
+year $T$ predicted. For Telemark, over 110 cells in 2025 and 2026 that gives an RMSE of
 7.78 points against 8.98 for persistence, and it is that number, not the
 panel's, that its forecasts carry as their spread — the panel's spread
 covered 63% of those outcomes where it claimed 80%, being measured on
-cells of a different kind. The application quotes the county's own
-measurement on every one of its schools. The county joins
+cells of a different kind. For Vestfold the same walk over 498 cells gives an RMSE of
+5.89 points against 6.96 for persistence, and a spread of 5.9; there the panel's spread
+covered 78%. The application quotes each county's own
+measurement on every one of its schools. Each county joins
 the panel here when it states, per programme and year, whether everyone was
 admitted.
 
@@ -1170,8 +1177,8 @@ otherwise. The interface is bilingual (Norwegian/English), phrased in the
 official Udir/vigo vocabulary throughout, and the compiled dataset is
 available from the page as JSON and in the repository as CSV and SQLite.
 The shipped model carries 2,037 programme forecasts, of which 180 are for
-series with no observed year; for the held-out county of Section 4.4 a
-separate fit on its own figures supplies 55 forecasts for its 11 schools,
+series with no observed year; for the two held-out counties of Section 4.4 a
+separate fit on each county's own figures supplies 310 forecasts for their 21 schools,
 scored nowhere in this report except against the county's own years in
 Section 4.4. Two things it deliberately does not forecast:
 a series whose newest cell is *utgått* (discontinued; 65 series) gets no
@@ -1326,8 +1333,8 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.30`, and the numbers
-quoted here are from the build of 2026-10-21. The compiled dataset ships in
+the version this report describes is tagged `report-v1.31`, and the numbers
+quoted here are from the build of 2026-10-28. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
 JSON; the original county publications are mirrored under `sources/`,
@@ -1701,7 +1708,15 @@ Held-out Brier 0.157 against 0.203 for the base-rate forecaster.
   to 80.6%; the county-year step's spread grows from 0.93 to 1.01 points,
   and the admission probability's Brier score does not move. No
   conclusion changes.
-- **v1.30** (this version). On 21 October Akershus corrected its
+- **v1.31** (this version). Vestfold 2024–2026 added from the county's
+  workbook, released on request on 28 October 2026: ten schools, 731 cells
+  at Vg1–Vg3, the lowest grade points among those admitted for every
+  offered programme area, no fill state and no intake round stated. Like
+  Telemark's it is published and held out of the model and this report
+  (Section 4.4); its schools get their own satellite fit, which over 498
+  cells of 2025–2026 scores an RMSE of 5.89 against 6.96 for persistence.
+  The panel, every fit and every number quoted from them are unchanged.
+- **v1.30**. On 21 October Akershus corrected its
   2026/27 page: Nadderud's Vg1 Idrettsfag reads 46,30 after 2. inntak, as
   the workbook the county released on request had it, so the 48,0 that
   v1.29 kept is gone, and Nadderud's Vg1 Studiespesialisering reads 51,3

@@ -417,6 +417,13 @@
   "credit": "Foto: Gol vidaregåande skule / Buskerud fylkeskommune",
   "license": "© Buskerud fylkeskommune"
  },
+ "Greveskogen videregående skole": {
+  "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.vestfoldfylke.no//link/33edf42334f4400699dececdd81d1906.aspx",
+  "source": "site",
+  "page": "https://www.vestfoldfylke.no/no/skoler/greveskogen-vgs/",
+  "credit": "Foto: Greveskogen videregående skole / Vestfold fylkeskommune",
+  "license": "© Vestfold fylkeskommune"
+ },
  "Grong videregående skole": {
   "photo": "https://web.trondelagfylke.no/contentassets/3aa2435f1ddd4724a5d1403364f679d6/framsidebilde-bruk-fra-khl.jpg?width=1600",
   "source": "site",
@@ -757,6 +764,13 @@
   "credit": "Foto: Melhus videregående skole / Trøndelag fylkeskommune",
   "license": "© Trøndelag fylkeskommune"
  },
+ "Melsom videregående skole": {
+  "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.vestfoldfylke.no//link/ceab8d27e7af427ab1b3f21bd1a9d30e.aspx",
+  "source": "site",
+  "page": "https://www.vestfoldfylke.no/no/skoler/melsom-vgs/",
+  "credit": "Foto: Melsom videregående skole / Vestfold fylkeskommune",
+  "license": "© Vestfold fylkeskommune"
+ },
  "Meråker videregående skole": {
   "photo": "https://web.trondelagfylke.no/contentassets/ec8dd7ddc2b94df2968e685f73b09d95/mvs-16x9.jpg",
   "source": "site",
@@ -890,6 +904,13 @@
   "page": "https://nydalen.vgs.no",
   "credit": "Foto: Nydalen videregående skole / Oslo kommune / Utdanningsetaten",
   "license": "© Oslo kommune / Utdanningsetaten"
+ },
+ "Nøtterøy videregående skole": {
+  "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.vestfoldfylke.no//link/349beb6131784c0580545ae904950b75.aspx",
+  "source": "site",
+  "page": "https://www.vestfoldfylke.no/no/skoler/notteroy-vgs/",
+  "credit": "Foto: Nøtterøy videregående skole / Vestfold fylkeskommune",
+  "license": "© Vestfold fylkeskommune"
  },
  "Odda vidaregåande skule": {
   "photo": "https://www.odda.vgs.no/contentassets/daf7b93735c24748b0c3857f9fa22b6e/odda-vgs-2024.jpg",

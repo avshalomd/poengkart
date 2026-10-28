@@ -117,9 +117,11 @@ FILL_BLIND = set()
 # ranking): its low figures are not poenggrenser, cannot be told apart from
 # them, and pulled the level fit and the held-out scores (decision of 17 Sept
 # 2026). It joins the model when the county says, per programme and year,
-# whether everyone was admitted (asked 17.09.2026). tools/test_docs.py reads
+# whether everyone was admitted (asked 17.09.2026). Vestfold's workbook (28
+# October 2026) is the same kind of figure for Vg1-Vg3, and is held out on
+# the same grounds (tools/extractors/vestfold.py). tools/test_docs.py reads
 # the list from meta.held_out; web/src/helpers.ts mirrors it.
-HELD_OUT = {'Telemark'}
+HELD_OUT = {'Telemark', 'Vestfold'}
 # Counties with figures only from years long past, and none published today:
 # Agder (2016-17, 2020-21, counsellor decks) and Nordland (2013-15, 2019-21,
 # the statistikkhefter). The app shows their history; the model neither

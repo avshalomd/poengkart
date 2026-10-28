@@ -32,13 +32,13 @@ const crumbs = (items: [string, string][]) => ({
 
 export const HOME_HEAD: HeadProps = {
   title: 'Poengkart – poenggrenser for videregående skole',
-  description: 'Se poenggrensene for 278 videregående skoler i elleve fylker, 2012–2026. Hva krevdes for å komme inn i fjor, og hvordan har grensene endret seg? Kart, trender og tall per programområde.',
+  description: 'Se poenggrensene for 288 videregående skoler i tolv fylker, 2012–2026. Hva krevdes for å komme inn i fjor, og hvordan har grensene endret seg? Kart, trender og tall per programområde.',
   canonical: SITE + '/',
   ogTitle: HOME_OG_TITLE,
-  ogDescription: 'Poenggrensene for 278 videregående skoler i elleve fylker, 2012–2026, på kart. Se hva som krevdes for å få plass, og hvordan grensene har endret seg.',
-  twitterDescription: 'Poenggrensene for 278 videregående skoler i elleve fylker, 2012–2026, på kart.',
+  ogDescription: 'Poenggrensene for 288 videregående skoler i tolv fylker, 2012–2026, på kart. Se hva som krevdes for å få plass, og hvordan grensene har endret seg.',
+  twitterDescription: 'Poenggrensene for 288 videregående skoler i tolv fylker, 2012–2026, på kart.',
   ogImage: SITE + '/og.png',
-  ogImageAlt: 'Kart over Norge med 278 videregående skoler som prikker, fargelagt etter poenggrense, og skolesiden for Elvebakken videregående skole med bilde, snittgrense og utvikling år for år.',
+  ogImageAlt: 'Kart over Norge med 288 videregående skoler som prikker, fargelagt etter poenggrense, og skolesiden for Elvebakken videregående skole med bilde, snittgrense og utvikling år for år.',
 };
 
 // The home page says what the site is and what the dataset is: Google lists a

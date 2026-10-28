@@ -362,6 +362,11 @@
    "sha256": "bc225bf1bac1436552cd05b7bb349f62cb21a1288b6ffa0c8ea16395195c4517",
    "provenance": "Trøndelag fylkeskommune via vilbli.no/trondelag, one PDF per inntaksregion (2025/26)."
   },
+  "vestfold/laveste-inntatte-karakterpoeng-2024-2026.xlsx": {
+   "size": 27278,
+   "sha256": "541b69d47681adedc8fed580c79a219d94dfdbf9109b812dd6e1a4361aa3dcab",
+   "provenance": "Vestfold fylkeskommune, Sektorstøtte og inntak: workbook «Laveste inntatte karakterpoeng 20262027.xlsx», Vg1-Vg3, released by e-mail on request, asked 28.09.2026, received 28.10.2026 (intake round not stated; 2024/25-2026/27). Author fields and the sender's file path stripped; cells untouched."
+  },
   "vestland/hordaland-2014-reprint-bt.transcribed.csv": {
    "size": 1872,
    "sha256": "ded8ea2d7dfcddac0ddbf241606af53cba460218efc40dde1ff78da5c58750c4",

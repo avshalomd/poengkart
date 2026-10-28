@@ -1613,6 +1613,261 @@ Trøndelag,Åfjord videregående skole,Bygg- og anleggsteknikk,0,Vg1,BA,2027,2,2
 Trøndelag,Åfjord videregående skole,Helse- og oppvekstfag,0,Vg1,HS,2027,2,28.6,6.1,0.233,0,0
 Trøndelag,Åfjord videregående skole,Studiespesialisering,0,Vg1,ST,2027,2,35.2,6.1,0.189,0,0
 Trøndelag,Åfjord videregående skole,Teknologi- og industrifag,0,Vg1,TP,2027,2,29.2,6.1,0.339,0,0
+Vestfold,Færder videregående skole,Bygg- og anleggsteknikk,0,Vg1,BA,2027,,25.0,5.9,1.0,3,1
+Vestfold,Færder videregående skole,Elektro og datateknologi,0,Vg1,EL,2027,,34.3,5.9,1.0,3,1
+Vestfold,Færder videregående skole,"Elektro og datateknologi, SK 3 år",0,Vg1,EL,2027,,37.0,5.9,1.0,3,1
+Vestfold,Færder videregående skole,"Kunst, design og arkitektur",0,Vg1,KD,2027,,35.3,5.9,1.0,3,1
+Vestfold,Færder videregående skole,Teknologi- og industrifag,0,Vg1,TP,2027,,29.7,5.9,1.0,3,1
+Vestfold,Færder videregående skole,Betong og mur,0,Vg2,BA,2027,,23.0,7.3,1.0,3,1
+Vestfold,Færder videregående skole,"Bilskade, lakk og karosseri",0,Vg2,TP,2027,,24.3,5.9,1.0,3,1
+Vestfold,Færder videregående skole,"Datatekn og elektronikk, SK 3 år",0,Vg2,EL,2027,,36.0,5.9,1.0,2,1
+Vestfold,Færder videregående skole,Elenergi og ekom,0,Vg2,EL,2027,,36.3,5.9,1.0,3,1
+Vestfold,Færder videregående skole,Industriteknologi,0,Vg2,TP,2027,,31.0,5.9,1.0,3,1
+Vestfold,Færder videregående skole,Kjøretøy,0,Vg2,TP,2027,,26.8,5.9,1.0,3,1
+Vestfold,Færder videregående skole,"Klima-, energi- og miljøteknikk",0,Vg2,BA,2027,,23.2,5.9,1.0,3,1
+Vestfold,Færder videregående skole,"Kunst, design og arkitektur",1,Vg2,KD,2027,,29.3,5.9,1.0,3,1
+Vestfold,Færder videregående skole,Maritime fag,0,Vg2,TP,2027,,35.1,5.9,1.0,3,1
+Vestfold,Færder videregående skole,Rørlegger,0,Vg2,BA,2027,,32.8,5.9,1.0,3,1
+Vestfold,Færder videregående skole,Tømrer,0,Vg2,BA,2027,,27.5,5.9,1.0,3,1
+Vestfold,Færder videregående skole,"Kunst, design og arkitektur",2,Vg3,KD,2027,,26.6,5.9,1.0,3,1
+Vestfold,Færder videregående skole,Maritim elektrikerfaget vg3 sk,0,Vg3,EL,2027,,42.0,5.9,1.0,3,1
+Vestfold,Færder videregående skole,"Påbygg gen studiekomp, elektro og datatekn., SK",0,Vg3,PB,2027,,34.0,5.9,1.0,1,1
+Vestfold,Færder videregående skole,Påbygging til generell studiekompetanse,0,Vg3,PB,2027,,32.2,5.9,1.0,3,1
+Vestfold,Færder videregående skole,Påbygging til generell studiekompetanse etter yrkeskompetanse,0,Vg3,PB,2027,,32.7,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2027,,30.9,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,"Musikk, dans og drama, drama",0,Vg1,MD,2027,,33.1,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,"Musikk, dans og drama, musikk",0,Vg1,MD,2027,,32.6,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,Restaurant- og matfag,0,Vg1,RM,2027,,25.2,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,"Salg, service og reiseliv",0,Vg1,SR,2027,,27.7,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,Studiespesialisering,0,Vg1,ST,2027,,26.2,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,"Studiespesialisering, realfag/forskeraktivit",0,Vg1,ST,2027,,35.5,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,Drama,0,Vg2,MD,2027,,32.6,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,Informasjonsteknologi,0,Vg2,IM,2027,,29.7,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,Kokk- og servitørfag,0,Vg2,RM,2027,,24.4,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,Musikk,0,Vg2,MD,2027,,28.4,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,Realfag,0,Vg2,ST,2027,,28.1,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,"Salg, service og reiseliv",1,Vg2,SR,2027,,26.2,5.9,1.0,1,1
+Vestfold,Greveskogen videregående skole,"Språk, samfunn og økonomi",0,Vg2,ST,2027,,25.4,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,Drama,1,Vg3,MD,2027,,32.3,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,Musikk,1,Vg3,MD,2027,,29.6,6.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,Realfag,1,Vg3,ST,2027,,28.2,5.9,1.0,3,1
+Vestfold,Greveskogen videregående skole,"Språk, samfunn og økonomi",1,Vg3,ST,2027,,23.7,5.9,1.0,3,1
+Vestfold,Holmestrand videregående skole,Helse- og oppvekstfag,0,Vg1,HS,2027,,20.8,6.5,1.0,3,1
+Vestfold,Holmestrand videregående skole,Studiespesialisering,0,Vg1,ST,2027,,27.5,6.1,1.0,3,1
+Vestfold,Holmestrand videregående skole,Teknologi- og industrifag,0,Vg1,TP,2027,,23.5,6.5,1.0,3,1
+Vestfold,Holmestrand videregående skole,Barne- og ungdomsarbeider,0,Vg2,HS,2027,,24.5,5.9,1.0,3,1
+Vestfold,Holmestrand videregående skole,Helsearbeiderfag,0,Vg2,HS,2027,,22.8,5.9,1.0,2,1
+Vestfold,Holmestrand videregående skole,Industriteknologi,0,Vg2,TP,2027,,22.2,5.9,1.0,2,1
+Vestfold,Holmestrand videregående skole,Realfag,0,Vg2,ST,2027,,27.9,6.9,1.0,3,1
+Vestfold,Holmestrand videregående skole,"Språk, samfunn og økonomi",0,Vg2,ST,2027,,24.9,5.9,1.0,3,1
+Vestfold,Holmestrand videregående skole,Påbygging til generell studiekompetanse,0,Vg3,PB,2027,,28.1,6.9,1.0,3,1
+Vestfold,Holmestrand videregående skole,Realfag,1,Vg3,ST,2027,,26.1,5.9,1.0,2,1
+Vestfold,Holmestrand videregående skole,"Språk, samfunn og økonomi",1,Vg3,ST,2027,,24.4,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Elektro og datateknologi,0,Vg1,EL,2027,,33.9,5.9,1.0,3,1
+Vestfold,Horten videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2027,,30.9,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Helse- og oppvekstfag,0,Vg1,HS,2027,,31.0,5.9,1.0,3,1
+Vestfold,Horten videregående skole,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2027,,37.7,6.1,1.0,3,1
+Vestfold,Horten videregående skole,Idrettsfag,0,Vg1,ID,2027,,39.7,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2027,,33.9,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Medier og kommunikasjon,0,Vg1,MK,2027,,36.6,6.1,1.0,3,1
+Vestfold,Horten videregående skole,"Salg, service og reiseliv",0,Vg1,SR,2027,,33.3,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Studiespesialisering,0,Vg1,ST,2027,,38.6,5.9,1.0,3,1
+Vestfold,Horten videregående skole,"Studiespesialisering, forskerlinje",0,Vg1,ST,2027,,36.6,5.9,1.0,3,1
+Vestfold,Horten videregående skole,"Studiespesialisering, toppidrett",0,Vg1,ST,2027,,38.7,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Teknologi- og industrifag,0,Vg1,TP,2027,,32.0,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Automatisering,0,Vg2,EL,2027,,35.0,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Barne- og ungdomsarbeider,0,Vg2,HS,2027,,32.8,5.9,1.0,3,1
+Vestfold,Horten videregående skole,"Barne- og ungdomsarbeiderfag, SK 3 år",0,Vg2,HS,2027,,35.9,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Blomsterdekoratør,0,Vg2,FD,2027,,29.3,5.9,1.0,2,1
+Vestfold,Horten videregående skole,Elenergi og ekom,0,Vg2,EL,2027,,36.3,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Frisør,0,Vg2,FD,2027,,27.9,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Helsearbeiderfag,0,Vg2,HS,2027,,32.9,5.9,1.0,3,1
+Vestfold,Horten videregående skole,"Helsearbeiderfag, SK 3 år",0,Vg2,HS,2027,,34.4,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Idrettsfag,1,Vg2,ID,2027,,31.1,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Industriteknologi,0,Vg2,TP,2027,,27.7,6.9,1.0,2,1
+Vestfold,Horten videregående skole,Medieproduksjon,0,Vg2,IM,2027,,30.6,6.9,1.0,3,1
+Vestfold,Horten videregående skole,Medier og kommunikasjon,1,Vg2,MK,2027,,27.5,6.9,1.0,3,1
+Vestfold,Horten videregående skole,Realfag,0,Vg2,ST,2027,,32.9,5.9,1.0,3,1
+Vestfold,Horten videregående skole,"Salg, service og reiseliv",1,Vg2,SR,2027,,32.0,5.9,1.0,1,1
+Vestfold,Horten videregående skole,"Språk, samfunn og økonomi",0,Vg2,ST,2027,,27.8,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Idrettsfag,2,Vg3,ID,2027,,29.4,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Medier og kommunikasjon,2,Vg3,MK,2027,,29.4,5.9,1.0,3,1
+Vestfold,Horten videregående skole,"Påbygg gen studiekomp, SK",0,Vg3,PB,2027,,33.6,6.9,1.0,3,1
+Vestfold,Horten videregående skole,Påbygging til generell studiekompetanse,0,Vg3,PB,2027,,37.9,5.9,1.0,3,1
+Vestfold,Horten videregående skole,Realfag,1,Vg3,ST,2027,,32.2,5.9,1.0,3,1
+Vestfold,Horten videregående skole,"Språk, samfunn og økonomi",1,Vg3,ST,2027,,27.4,6.9,1.0,3,1
+Vestfold,Melsom videregående skole,Naturbruk,0,Vg1,NA,2027,,22.2,5.9,1.0,3,1
+Vestfold,Melsom videregående skole,"Salg, service og reiseliv",0,Vg1,SR,2027,,21.6,5.9,1.0,3,1
+Vestfold,Melsom videregående skole,"Studiespesialisering, toppidrett hest",0,Vg1,ST,2027,,25.6,5.9,1.0,3,1
+Vestfold,Melsom videregående skole,Heste- og dyrefag,0,Vg2,NA,2027,,24.8,5.9,1.0,3,1
+Vestfold,Melsom videregående skole,Landbruk og gartnernæring,0,Vg2,NA,2027,,26.3,6.9,1.0,3,1
+Vestfold,Melsom videregående skole,"Salg, service og reiseliv",1,Vg2,SR,2027,,24.2,6.2,1.0,1,1
+Vestfold,Melsom videregående skole,"Språk/samf.fag/økonomi, toppidrett hest",0,Vg2,ST,2027,,32.7,5.9,1.0,3,1
+Vestfold,Melsom videregående skole,Landbruk,0,Vg3,NA,2027,,27.7,5.9,1.0,3,1
+Vestfold,Melsom videregående skole,Medier og kommunikasjon,0,Vg3,MK,2027,,29.3,5.9,1.0,3,1
+Vestfold,Melsom videregående skole,Påbygging til generell studiekompetanse,0,Vg3,PB,2027,,31.3,5.9,1.0,3,1
+Vestfold,Melsom videregående skole,Påbygging til generell studiekompetanse etter yrkeskompetanse,0,Vg3,PB,2027,,28.0,5.9,1.0,3,1
+Vestfold,Melsom videregående skole,"Språk/samf.fag/økonomi, toppidrett hest",1,Vg3,ST,2027,,31.4,5.9,1.0,3,1
+Vestfold,Melsom videregående skole,Studieforberedende naturbruk,0,Vg3,NA,2027,,31.2,5.9,1.0,3,1
+Vestfold,Nøtterøy videregående skole,Helse- og oppvekstfag,0,Vg1,HS,2027,,25.2,5.9,1.0,3,1
+Vestfold,Nøtterøy videregående skole,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2027,,31.7,5.9,1.0,3,1
+Vestfold,Nøtterøy videregående skole,Idrettsfag,0,Vg1,ID,2027,,29.0,5.9,1.0,1,1
+Vestfold,Nøtterøy videregående skole,Studiespesialisering,0,Vg1,ST,2027,,28.3,6.1,1.0,3,1
+Vestfold,Nøtterøy videregående skole,Barne- og ungdomsarbeider,0,Vg2,HS,2027,,23.3,5.9,1.0,3,1
+Vestfold,Nøtterøy videregående skole,"Barne- og ungdomsarbeiderfag, SK 3 år",0,Vg2,HS,2027,,30.7,5.9,1.0,3,1
+Vestfold,Nøtterøy videregående skole,Helsearbeiderfag,0,Vg2,HS,2027,,22.8,7.3,1.0,3,1
+Vestfold,Nøtterøy videregående skole,"Helsearbeiderfag, SK 3 år",0,Vg2,HS,2027,,31.5,6.9,1.0,3,1
+Vestfold,Nøtterøy videregående skole,Helseservicefag,0,Vg2,HS,2027,,22.7,5.9,1.0,3,1
+Vestfold,Nøtterøy videregående skole,Realfag,0,Vg2,ST,2027,,26.1,5.9,1.0,3,1
+Vestfold,Nøtterøy videregående skole,"Språk, samfunn og økonomi",0,Vg2,ST,2027,,21.2,5.9,1.0,3,1
+Vestfold,Nøtterøy videregående skole,Apotekteknikk,0,Vg3,HS,2027,,24.5,5.9,1.0,3,1
+Vestfold,Nøtterøy videregående skole,"Påbygg gen studiekomp, SK",0,Vg3,PB,2027,,28.3,5.9,1.0,3,1
+Vestfold,Nøtterøy videregående skole,Realfag,1,Vg3,ST,2027,,27.0,5.9,1.0,3,1
+Vestfold,Nøtterøy videregående skole,"Språk, samfunn og økonomi",1,Vg3,ST,2027,,22.8,5.9,1.0,3,1
+Vestfold,Re videregående skole,Bygg- og anleggsteknikk,0,Vg1,BA,2027,,27.0,5.9,1.0,3,1
+Vestfold,Re videregående skole,Helse- og oppvekstfag,0,Vg1,HS,2027,,30.0,6.1,1.0,3,1
+Vestfold,Re videregående skole,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2027,,38.1,5.9,1.0,3,1
+Vestfold,Re videregående skole,Idrettsfag,0,Vg1,ID,2027,,35.1,5.9,1.0,3,1
+Vestfold,Re videregående skole,Studiespesialisering,0,Vg1,ST,2027,,35.1,5.9,1.0,3,1
+Vestfold,Re videregående skole,"Studiespesialisering, fotball",0,Vg1,ST,2027,,36.1,5.9,1.0,3,1
+Vestfold,Re videregående skole,"Studiespesialisering, håndball",0,Vg1,ST,2027,,36.0,5.9,1.0,3,1
+Vestfold,Re videregående skole,"Studiespesialisering, toppidrett",0,Vg1,ST,2027,,34.7,6.1,1.0,3,1
+Vestfold,Re videregående skole,Anleggsteknikk,0,Vg2,BA,2027,,32.8,5.9,1.0,3,1
+Vestfold,Re videregående skole,Barne- og ungdomsarbeider,0,Vg2,HS,2027,,30.3,5.9,1.0,3,1
+Vestfold,Re videregående skole,"Barne- og ungdomsarbeiderfag, SK 3 år",0,Vg2,HS,2027,,36.7,5.9,1.0,3,1
+Vestfold,Re videregående skole,Helsearbeiderfag,0,Vg2,HS,2027,,30.7,5.9,1.0,3,1
+Vestfold,Re videregående skole,"Helsearbeiderfag, SK 3 år",0,Vg2,HS,2027,,33.6,6.9,1.0,3,1
+Vestfold,Re videregående skole,Idrettsfag,1,Vg2,ID,2027,,30.2,5.9,1.0,3,1
+Vestfold,Re videregående skole,Realfag,0,Vg2,ST,2027,,30.7,5.9,1.0,3,1
+Vestfold,Re videregående skole,"Realfag, toppidrett",0,Vg2,ST,2027,,35.6,5.9,1.0,3,1
+Vestfold,Re videregående skole,"Språk, samfunn og økonomi",0,Vg2,ST,2027,,28.8,5.9,1.0,3,1
+Vestfold,Re videregående skole,"Språk/samf.fag/økonomi, toppidrett",0,Vg2,ST,2027,,31.3,5.9,1.0,3,1
+Vestfold,Re videregående skole,Tømrer,0,Vg2,BA,2027,,26.7,6.9,1.0,3,1
+Vestfold,Re videregående skole,Idrettsfag,2,Vg3,ID,2027,,30.2,6.9,1.0,3,1
+Vestfold,Re videregående skole,"Påbygg gen studiekomp, SK",0,Vg3,PB,2027,,32.6,5.9,1.0,3,1
+Vestfold,Re videregående skole,Realfag,1,Vg3,ST,2027,,27.9,6.9,1.0,3,1
+Vestfold,Re videregående skole,"Realfag, toppidrett",1,Vg3,ST,2027,,35.3,6.9,1.0,2,1
+Vestfold,Re videregående skole,"Språk, samfunn og økonomi",1,Vg3,ST,2027,,27.9,5.9,1.0,3,1
+Vestfold,Re videregående skole,"Språk/samf.fag/økonomi, toppidrett",1,Vg3,ST,2027,,30.4,5.9,1.0,2,1
+Vestfold,Sande videregående skole,Elektro og datateknologi,0,Vg1,EL,2027,,27.2,6.1,1.0,3,1
+Vestfold,Sande videregående skole,Helse- og oppvekstfag,0,Vg1,HS,2027,,27.2,5.9,1.0,3,1
+Vestfold,Sande videregående skole,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2027,,33.2,5.9,1.0,3,1
+Vestfold,Sande videregående skole,Idrettsfag,0,Vg1,ID,2027,,34.3,5.9,1.0,3,1
+Vestfold,Sande videregående skole,Studiespesialisering,0,Vg1,ST,2027,,34.1,5.9,1.0,3,1
+Vestfold,Sande videregående skole,Teknologi- og industrifag,0,Vg1,TP,2027,,26.6,5.9,1.0,3,1
+Vestfold,Sande videregående skole,Barne- og ungdomsarbeider,0,Vg2,HS,2027,,25.0,7.3,1.0,3,1
+Vestfold,Sande videregående skole,"Barne- og ungdomsarbeiderfag, SK 3 år",0,Vg2,HS,2027,,31.1,5.9,1.0,3,1
+Vestfold,Sande videregående skole,Elenergi og ekom,0,Vg2,EL,2027,,29.6,5.9,1.0,3,1
+Vestfold,Sande videregående skole,Helsearbeiderfag,0,Vg2,HS,2027,,25.9,6.9,1.0,3,1
+Vestfold,Sande videregående skole,"Helsearbeiderfag, SK 3 år",0,Vg2,HS,2027,,30.1,6.9,1.0,3,1
+Vestfold,Sande videregående skole,Idrettsfag,1,Vg2,ID,2027,,27.5,5.9,1.0,3,1
+Vestfold,Sande videregående skole,Industriteknologi,0,Vg2,TP,2027,,25.7,5.9,1.0,3,1
+Vestfold,Sande videregående skole,Realfag,0,Vg2,ST,2027,,32.0,5.9,1.0,3,1
+Vestfold,Sande videregående skole,"Språk, samfunn og økonomi",0,Vg2,ST,2027,,27.9,5.9,1.0,3,1
+Vestfold,Sande videregående skole,Transport og logistikk,0,Vg2,TP,2027,,22.4,5.9,1.0,3,1
+Vestfold,Sande videregående skole,Idrettsfag,2,Vg3,ID,2027,,27.9,5.9,1.0,3,1
+Vestfold,Sande videregående skole,"Påbygg gen studiekomp, SK",0,Vg3,PB,2027,,32.1,5.9,1.0,3,1
+Vestfold,Sande videregående skole,Realfag,1,Vg3,ST,2027,,29.5,5.9,1.0,3,1
+Vestfold,Sande videregående skole,"Språk, samfunn og økonomi",1,Vg3,ST,2027,,27.6,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Elektro og datateknologi,0,Vg1,EL,2027,,32.9,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Frisør, blomster, interiør og eksponeringsdesign",0,Vg1,FD,2027,,21.9,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Helse- og oppvekstfag,0,Vg1,HS,2027,,21.3,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2027,,35.9,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Idrettsfag,0,Vg1,ID,2027,,30.6,6.1,1.0,3,1
+Vestfold,Sandefjord videregående skole,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2027,,28.9,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Kunst, design og arkitektur",0,Vg1,KD,2027,,28.4,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Musikk, dans og drama, musikk",0,Vg1,MD,2027,,29.9,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Restaurant- og matfag,0,Vg1,RM,2027,,21.0,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Salg, service og reiseliv",0,Vg1,SR,2027,,24.9,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Salg, service og reiseliv, YSK",0,Vg1,SR,2027,,34.7,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Studiespesialisering,0,Vg1,ST,2027,,28.7,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Studiespesialisering, forberedende IB",0,Vg1,ST,2027,,31.9,6.1,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Studiespesialisering, fotball",0,Vg1,ST,2027,,32.5,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Studiespesialisering, håndball",0,Vg1,ST,2027,,33.9,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Studiespesialisering, toppidrett",0,Vg1,ST,2027,,31.2,6.1,1.0,3,1
+Vestfold,Sandefjord videregående skole,Teknologi- og industrifag,0,Vg1,TP,2027,,24.6,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Automatisering,0,Vg2,EL,2027,,33.5,6.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Barne- og ungdomsarbeider,0,Vg2,HS,2027,,26.3,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Barne- og ungdomsarbeiderfag, SK 3 år",0,Vg2,HS,2027,,32.6,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Elenergi og ekom,0,Vg2,EL,2027,,34.3,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Frisør,0,Vg2,FD,2027,,24.0,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Helsearbeiderfag,0,Vg2,HS,2027,,22.1,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Helsearbeiderfag, SK 3 år",0,Vg2,HS,2027,,30.3,6.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Helseservicefag,0,Vg2,HS,2027,,22.2,7.3,1.0,3,1
+Vestfold,Sandefjord videregående skole,Idrettsfag,1,Vg2,ID,2027,,26.7,6.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Industriteknologi,0,Vg2,TP,2027,,24.7,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Informasjonsteknologi,0,Vg2,IM,2027,,24.7,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Interiør og eksponeringsdesign,0,Vg2,FD,2027,,24.8,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,International Baccalaureate,0,Vg2,ST,2027,,32.0,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Kjemiprosess- og laboratoriefag,0,Vg2,TP,2027,,32.2,6.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Kokk- og servitørfag,0,Vg2,RM,2027,,26.0,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Kunst, design og arkitektur",1,Vg2,KD,2027,,25.6,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Musikk,0,Vg2,MD,2027,,27.1,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Realfag,0,Vg2,ST,2027,,25.9,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Realfag, toppidrett",0,Vg2,ST,2027,,34.7,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Salg, service og reiseliv",1,Vg2,SR,2027,,24.2,6.2,1.0,1,1
+Vestfold,Sandefjord videregående skole,"Salg, service og reiseliv, YSK 4 år",0,Vg2,SR,2027,,28.7,5.9,1.0,1,1
+Vestfold,Sandefjord videregående skole,"Språk, samfunn og økonomi",0,Vg2,ST,2027,,24.3,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Språk/samf.fag/økonomi, toppidrett",0,Vg2,ST,2027,,26.7,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Automatiseringsfaget,0,Vg3,EL,2027,,28.3,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Helsesekretær,0,Vg3,HS,2027,,24.2,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Idrettsfag,2,Vg3,ID,2027,,27.1,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Interiør,0,Vg3,FD,2027,,26.1,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,International Baccalaureate,1,Vg3,ST,2027,,27.9,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Kunst, design og arkitektur",2,Vg3,KD,2027,,22.9,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Musikk,1,Vg3,MD,2027,,26.8,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Påbygg gen studiekomp e/yrkeskomp, YSK 1.år",0,Vg3,PB,2027,,33.5,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Påbygg gen studiekomp, SK",0,Vg3,PB,2027,,27.2,6.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Påbygging til generell studiekompetanse,0,Vg3,PB,2027,,31.3,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Realfag,1,Vg3,ST,2027,,24.3,7.3,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Realfag, toppidrett",1,Vg3,ST,2027,,32.1,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Språk, samfunn og økonomi",1,Vg3,ST,2027,,23.0,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,"Språk/samf.fag/økonomi, toppidrett",1,Vg3,ST,2027,,26.2,5.9,1.0,3,1
+Vestfold,Sandefjord videregående skole,Tannhelsesekretær,0,Vg3,HS,2027,,24.5,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Bygg- og anleggsteknikk,0,Vg1,BA,2027,,22.9,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Elektro og datateknologi,0,Vg1,EL,2027,,34.0,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Helse- og oppvekstfag,0,Vg1,HS,2027,,27.2,6.1,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,"Helse- og oppvekstfag, SK 3 år",0,Vg1,HS,2027,,36.1,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Idrettsfag,0,Vg1,ID,2027,,34.4,6.1,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,"Musikk, dans og drama, dans",0,Vg1,MD,2027,,34.8,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,"Musikk, dans og drama, musikk",0,Vg1,MD,2027,,35.8,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Restaurant- og matfag,0,Vg1,RM,2027,,22.9,6.5,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,"Salg, service og reiseliv",0,Vg1,SR,2027,,28.0,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,"Salg, service og reiseliv, YSK",0,Vg1,SR,2027,,34.2,5.9,1.0,2,1
+Vestfold,Thor Heyerdahl videregående skole,Studiespesialisering,0,Vg1,ST,2027,,30.0,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Teknologi- og industrifag,0,Vg1,TP,2027,,24.2,6.5,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Ambulansefag,0,Vg2,HS,2027,,44.9,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Arbeidsmaskiner,0,Vg2,TP,2027,,31.1,5.9,1.0,2,1
+Vestfold,Thor Heyerdahl videregående skole,Baker og konditor,0,Vg2,RM,2027,,28.3,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Barne- og ungdomsarbeider,0,Vg2,HS,2027,,31.4,5.9,1.0,2,1
+Vestfold,Thor Heyerdahl videregående skole,Dans,0,Vg2,MD,2027,,36.1,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,"Datatekn og elektronikk, SK 3 år",0,Vg2,EL,2027,,34.6,5.9,1.0,2,1
+Vestfold,Thor Heyerdahl videregående skole,Datateknologi og elektronikk,0,Vg2,EL,2027,,30.0,6.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Elenergi og ekom,0,Vg2,EL,2027,,34.4,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Helsearbeiderfag,0,Vg2,HS,2027,,27.3,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,"Helsearbeiderfag, SK 3 år",0,Vg2,HS,2027,,33.2,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,"Helsearbeiderfag, veksl.m",0,Vg2,HS,2027,,28.9,6.9,1.0,2,1
+Vestfold,Thor Heyerdahl videregående skole,Idrettsfag,1,Vg2,ID,2027,,27.0,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Industriteknologi,0,Vg2,TP,2027,,29.0,6.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Kjøretøy,0,Vg2,TP,2027,,26.2,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Kokk- og servitørfag,0,Vg2,RM,2027,,27.0,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Musikk,0,Vg2,MD,2027,,30.1,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Realfag,0,Vg2,ST,2027,,31.1,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,"Salg, service og reiseliv",1,Vg2,SR,2027,,27.9,5.9,1.0,1,1
+Vestfold,Thor Heyerdahl videregående skole,"Salg, service og reiseliv, YSK 4 år",0,Vg2,SR,2027,,31.8,5.9,1.0,1,1
+Vestfold,Thor Heyerdahl videregående skole,"Språk, samfunn og økonomi",0,Vg2,ST,2027,,25.4,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Transport og logistikk,0,Vg2,TP,2027,,26.1,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Treteknikk,0,Vg2,BA,2027,,29.3,6.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Tømrer,0,Vg2,BA,2027,,24.9,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Dans,1,Vg3,MD,2027,,35.5,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Idrettsfag,2,Vg3,ID,2027,,28.5,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Medier og kommunikasjon,0,Vg3,MK,2027,,30.5,6.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Musikk,1,Vg3,MD,2027,,29.6,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,"Påbygg gen studiekomp, SK",0,Vg3,PB,2027,,32.0,5.9,1.0,2,1
+Vestfold,Thor Heyerdahl videregående skole,"Påbygg gen studiekomp, elektro og datatekn., SK",0,Vg3,PB,2027,,33.8,5.9,1.0,1,1
+Vestfold,Thor Heyerdahl videregående skole,Påbygging til generell studiekompetanse,0,Vg3,PB,2027,,31.9,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,Realfag,1,Vg3,ST,2027,,29.1,5.9,1.0,3,1
+Vestfold,Thor Heyerdahl videregående skole,"Språk, samfunn og økonomi",1,Vg3,ST,2027,,23.6,7.3,1.0,3,1
 Vestland,Amalie Skram videregående skole,Informasjonsteknologi og medieproduksjon,0,Vg1,IM,2027,1,44.0,4.4,0.981,7,0
 Vestland,Amalie Skram videregående skole,Medier og kommunikasjon,0,Vg1,MK,2027,1,47.3,3.3,0.962,7,0
 Vestland,Amalie Skram videregående skole,"Salg, service og reiseliv",0,Vg1,SR,2027,1,42.2,4.4,0.977,7,0

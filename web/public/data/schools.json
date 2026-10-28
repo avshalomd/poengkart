@@ -170,6 +170,18 @@
    "schools": 31
   },
   {
+   "code": "39",
+   "fylke": "Vestfold",
+   "round": null,
+   "rights": "ungdomsrett",
+   "round_note": "the county's workbook does not state which inntak the figures are from",
+   "free_choice": true,
+   "levels": "Vg1–Vg3",
+   "source": "https://www.vestfoldfylke.no/no/meny/tjenester/opplaring/opplaring-i-skole/soke-skoleplass/",
+   "note": "workbook sent on request, received 28.10.2026: «Laveste inntatte karakterpoeng», the lowest grade points among the admitted, for every offered programme; no fill state, no intake round stated; the county asks that it be read as a guide only",
+   "schools": 10
+  },
+  {
    "code": "46",
    "fylke": "Vestland",
    "round": "1",
@@ -61322,6 +61334,3375 @@
    "lon": 10.22163
   },
   {
+   "name": "Færder videregående skole",
+   "fylke": "Vestfold",
+   "fylkesnummer": "39",
+   "round": null,
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "program_en": "Building and Construction",
+     "level": "Vg1",
+     "category": "BA",
+     "values": {
+      "2024": 26.9,
+      "2025": 24.3,
+      "2026": 18.0
+     },
+     "grep": "BABAT1----"
+    },
+    {
+     "program": "Elektro og datateknologi",
+     "program_en": "Electrical Engineering and Computer Technology",
+     "level": "Vg1",
+     "category": "EL",
+     "values": {
+      "2024": 36.7,
+      "2025": 33.6,
+      "2026": 36.9
+     },
+     "grep": "ELELE1----"
+    },
+    {
+     "program": "Elektro og datateknologi, SK 3 år",
+     "program_en": "Electrical Engineering and Computer Technology, 3-year academic track",
+     "level": "Vg1",
+     "category": "EL",
+     "values": {
+      "2024": 44.1,
+      "2025": 36.9,
+      "2026": 35.0
+     },
+     "grep": "ELELE1N---"
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "program_en": "Art, Design and Architecture",
+     "level": "Vg1",
+     "category": "KD",
+     "values": {
+      "2024": 35.7,
+      "2025": 37.3,
+      "2026": 38.8
+     },
+     "grep": "KDKDA1----"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 26.3,
+      "2025": 31.0,
+      "2026": 31.8
+     },
+     "grep": "TPTIP1----"
+    },
+    {
+     "program": "Betong og mur",
+     "program_en": "Concrete and Bricks",
+     "level": "Vg2",
+     "category": "BA",
+     "values": {
+      "2024": 24.3,
+      "2025": 21.4,
+      "2026": 12.5
+     },
+     "grep": "BABMO2----"
+    },
+    {
+     "program": "Bilskade, lakk og karosseri",
+     "program_en": "Car Damage, Paintwork and Bodywork",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2024": 26.3,
+      "2025": 17.5,
+      "2026": 22.5
+     },
+     "grep": "TPBLK2----"
+    },
+    {
+     "program": "Datatekn og elektronikk, SK 3 år",
+     "program_en": "Computers and Electronics, 3-year academic track",
+     "level": "Vg2",
+     "category": "EL",
+     "values": {
+      "2025": 37.1,
+      "2026": 38.8
+     },
+     "grep": "ELDEL2N---",
+     "official": "Datateknologi og elektronikk"
+    },
+    {
+     "program": "Elenergi og ekom",
+     "program_en": "Electrical Energy and Electronic Communications",
+     "level": "Vg2",
+     "category": "EL",
+     "values": {
+      "2024": 38.6,
+      "2025": 40.0,
+      "2026": 36.3
+     },
+     "grep": "ELELE2----"
+    },
+    {
+     "program": "Industriteknologi",
+     "program_en": "Industrial Technology",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2024": 30.0,
+      "2025": 33.8,
+      "2026": 34.3
+     },
+     "grep": "TPPIN2----"
+    },
+    {
+     "program": "Kjøretøy",
+     "program_en": "Motor Vehicles",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2024": 22.5,
+      "2025": 30.0,
+      "2026": 28.8
+     },
+     "grep": "TPKJT2----"
+    },
+    {
+     "program": "Klima-, energi- og miljøteknikk",
+     "program_en": "Climate, Energy and Environment Technology",
+     "level": "Vg2",
+     "category": "BA",
+     "values": {
+      "2024": 23.3,
+      "2025": 14.3,
+      "2026": 17.1
+     },
+     "grep": "BAKEM2----",
+     "aliases": [
+      "klima, energi og miljøteknikk"
+     ]
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "program_en": "Art, Design and Architecture",
+     "level": "Vg2",
+     "category": "KD",
+     "values": {
+      "2024": 32.2,
+      "2025": 26.3,
+      "2026": 27.5
+     },
+     "grep": "KDKDA2----"
+    },
+    {
+     "program": "Maritime fag",
+     "program_en": "Maritime Subjects",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2024": 40.0,
+      "2025": 34.3,
+      "2026": 40.0
+     },
+     "grep": "TPMAR2----"
+    },
+    {
+     "program": "Rørlegger",
+     "program_en": "Plumbing",
+     "level": "Vg2",
+     "category": "BA",
+     "values": {
+      "2024": 34.3,
+      "2025": 38.8,
+      "2026": 35.7
+     },
+     "grep": "BARLF2----"
+    },
+    {
+     "program": "Tømrer",
+     "program_en": "Carpentry",
+     "level": "Vg2",
+     "category": "BA",
+     "values": {
+      "2024": 31.4,
+      "2025": 23.3,
+      "2026": 25.7
+     },
+     "grep": "BATMF2----"
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "program_en": "Art, Design and Architecture",
+     "level": "Vg3",
+     "category": "KD",
+     "values": {
+      "2024": 22.3,
+      "2025": 20.0,
+      "2026": 26.4
+     },
+     "grep": "KDKDA3----"
+    },
+    {
+     "program": "Maritim elektrikerfaget vg3 sk",
+     "program_en": "Maritime Electrical Installation and Maintenance, Vg3 in school",
+     "level": "Vg3",
+     "category": "EL",
+     "values": {
+      "2024": 45.7,
+      "2025": 47.5,
+      "2026": 48.6
+     },
+     "grep": "ELMEL3----",
+     "official": "Maritim elektrikerfaget vg3 i skole"
+    },
+    {
+     "program": "Påbygg gen studiekomp, elektro og datatekn., SK",
+     "program_en": "Supplementary Year for General University Admission (elektro og datatekn), academic track",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2026": 30.9
+     },
+     "grep": "PBPBY3N-EL",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram"
+    },
+    {
+     "program": "Påbygging til generell studiekompetanse",
+     "program_en": "Supplementary Year for General University Admission",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 23.8,
+      "2025": 33.8,
+      "2026": 30.0
+     },
+     "grep": "PBPBY3----",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram",
+     "aliases": [
+      "påbygg. gen. studiekompetanse"
+     ]
+    },
+    {
+     "program": "Påbygging til generell studiekompetanse etter yrkeskompetanse",
+     "program_en": "Supplementary Year for General University Admission, after vocational qualification",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 32.0,
+      "2025": 30.0,
+      "2026": 28.0
+     },
+     "grep": "PBPBY4YK--",
+     "aliases": [
+      "påbygg gen studiekomp e/yrkeskomp"
+     ]
+    }
+   ],
+   "orgnr": "974575086",
+   "address": "Banebakken 44, 3127, TØNSBERG",
+   "url": "www.vestfoldfylke.no/no/skoler/farder-vgs/",
+   "nsr_name": "Færder videregående skole",
+   "lat": 59.26109,
+   "lon": 10.41044,
+   "kommune": "Tønsberg",
+   "sted": "Tønsberg"
+  },
+  {
+   "name": "Greveskogen videregående skole",
+   "fylke": "Vestfold",
+   "fylkesnummer": "39",
+   "round": null,
+   "programs": [
+    {
+     "program": "Informasjonsteknologi og medieproduksjon",
+     "program_en": "Information Technology and Media Production",
+     "level": "Vg1",
+     "category": "IM",
+     "values": {
+      "2024": 28.1,
+      "2025": 36.7,
+      "2026": 31.9
+     },
+     "grep": "IMIKM1----",
+     "aliases": [
+      "it og medieproduksjon"
+     ]
+    },
+    {
+     "program": "Musikk, dans og drama, drama",
+     "program_en": "Music, Dance and Drama — drama",
+     "level": "Vg1",
+     "category": "MD",
+     "values": {
+      "2024": 36.9,
+      "2025": 30.0,
+      "2026": 30.9
+     },
+     "grep": "MDMDD1--6-"
+    },
+    {
+     "program": "Musikk, dans og drama, musikk",
+     "program_en": "Music, Dance and Drama — music",
+     "level": "Vg1",
+     "category": "MD",
+     "values": {
+      "2024": 31.9,
+      "2025": 30.7,
+      "2026": 35.6
+     },
+     "grep": "MDMDD1--1-"
+    },
+    {
+     "program": "Restaurant- og matfag",
+     "program_en": "Restaurant and Food Processing",
+     "level": "Vg1",
+     "category": "RM",
+     "values": {
+      "2024": 22.3,
+      "2025": 32.2,
+      "2026": 26.0
+     },
+     "grep": "RMRMF1----"
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg1",
+     "category": "SR",
+     "values": {
+      "2024": 26.9,
+      "2025": 30.2,
+      "2026": 29.7
+     },
+     "grep": "SRSSR1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 21.0,
+      "2025": 20.6,
+      "2026": 14.0
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Studiespesialisering, realfag/forskeraktivit",
+     "program_en": "Specialization in General Studies, natural science and mathematics studies (forskeraktivit)",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 37.3,
+      "2025": 39.0,
+      "2026": 42.8
+     },
+     "grep": "STUSP1RFQ-"
+    },
+    {
+     "program": "Drama",
+     "program_en": "Drama Studies",
+     "level": "Vg2",
+     "category": "MD",
+     "values": {
+      "2024": 34.4,
+      "2025": 33.3,
+      "2026": 33.8
+     },
+     "grep": "MDDRA2----"
+    },
+    {
+     "program": "Informasjonsteknologi",
+     "program_en": "Information Technology",
+     "level": "Vg2",
+     "category": "IM",
+     "values": {
+      "2024": 26.3,
+      "2025": 36.3,
+      "2026": 31.3
+     },
+     "grep": "IMITK2----"
+    },
+    {
+     "program": "Kokk- og servitørfag",
+     "program_en": "Cookery and Waiting",
+     "level": "Vg2",
+     "category": "RM",
+     "values": {
+      "2024": 24.3,
+      "2025": 22.9,
+      "2026": 27.1
+     },
+     "grep": "RMKOS2----"
+    },
+    {
+     "program": "Musikk",
+     "program_en": "Music Studies",
+     "level": "Vg2",
+     "category": "MD",
+     "values": {
+      "2024": 30.0,
+      "2025": 23.3,
+      "2026": 31.1
+     },
+     "grep": "MDMUS2----"
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 30.0,
+      "2025": 21.0,
+      "2026": 26.0
+     },
+     "grep": "STREA2----"
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg2",
+     "category": "SR",
+     "values": {
+      "2026": 30.0
+     },
+     "grep": "SRSSR2----"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 23.0,
+      "2025": 23.0,
+      "2026": 21.1
+     },
+     "grep": "STSSA2----",
+     "official": "Språk, samfunnsfag og økonomi vg2",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    },
+    {
+     "program": "Drama",
+     "program_en": "Drama Studies",
+     "level": "Vg3",
+     "category": "MD",
+     "values": {
+      "2024": 25.8,
+      "2025": 37.5,
+      "2026": 34.2
+     },
+     "grep": "MDDRA3----"
+    },
+    {
+     "program": "Musikk",
+     "program_en": "Music Studies",
+     "level": "Vg3",
+     "category": "MD",
+     "values": {
+      "2024": 25.0,
+      "2025": 37.5,
+      "2026": 29.2
+     },
+     "grep": "MDMUS3----"
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 25.6,
+      "2025": 26.3,
+      "2026": 26.0
+     },
+     "grep": "STREA3----"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 17.8,
+      "2025": 21.0,
+      "2026": 16.7
+     },
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    }
+   ],
+   "orgnr": "974574993",
+   "address": "Eikveien 2, 3122, TØNSBERG",
+   "url": "www.vestfoldfylke.no/no/skoler/greveskogen-vgs/",
+   "nsr_name": "Greveskogen videregående skole",
+   "lat": 59.2873,
+   "lon": 10.41509,
+   "kommune": "Tønsberg",
+   "sted": "Tønsberg",
+   "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.vestfoldfylke.no//link/33edf42334f4400699dececdd81d1906.aspx",
+   "photo_page": "https://www.vestfoldfylke.no/no/skoler/greveskogen-vgs/",
+   "photo_credit": "Foto: Greveskogen videregående skole / Vestfold fylkeskommune",
+   "photo_license": "© Vestfold fylkeskommune",
+   "photo_source": "reviewed"
+  },
+  {
+   "name": "Holmestrand videregående skole",
+   "fylke": "Vestfold",
+   "fylkesnummer": "39",
+   "round": null,
+   "programs": [
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 13.4,
+      "2025": 29.3,
+      "2026": 12.3
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 16.5,
+      "2025": 33.2,
+      "2026": 24.7
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 18.5,
+      "2025": 30.7,
+      "2026": 21.9
+     },
+     "grep": "TPTIP1----"
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "program_en": "Child Care and Youth Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 31.7,
+      "2025": 24.4,
+      "2026": 20.0
+     },
+     "grep": "HSBUA2----",
+     "official": "Barne- og ungdomsarbeiderfag",
+     "aliases": [
+      "barne- og ungdomsarbeiderfag"
+     ]
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "program_en": "Health Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2025": 24.4,
+      "2026": 18.8
+     },
+     "grep": "HSHEA2----"
+    },
+    {
+     "program": "Industriteknologi",
+     "program_en": "Industrial Technology",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2025": 18.3,
+      "2026": 22.2
+     },
+     "grep": "TPPIN2----"
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 28.9,
+      "2025": 23.8,
+      "2026": 33.3
+     },
+     "grep": "STREA2----"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 28.0,
+      "2025": 24.0,
+      "2026": 24.4
+     },
+     "grep": "STSSA2----",
+     "official": "Språk, samfunnsfag og økonomi vg2",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    },
+    {
+     "program": "Påbygging til generell studiekompetanse",
+     "program_en": "Supplementary Year for General University Admission",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 22.2,
+      "2025": 22.2,
+      "2026": 37.5
+     },
+     "grep": "PBPBY3----",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram",
+     "aliases": [
+      "påbygg. gen. studiekompetanse"
+     ]
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 23.3,
+      "2026": 25.6
+     },
+     "grep": "STREA3----"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 24.5,
+      "2025": 27.3,
+      "2026": 20.9
+     },
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    }
+   ],
+   "orgnr": "874575062",
+   "address": "Botne kirkevei 17, 3085, HOLMESTRAND",
+   "url": "www.vestfoldfylke.no/no/skoler/holmestrand-vgs/",
+   "nsr_name": "Holmestrand videregående skole",
+   "lat": 59.48262,
+   "lon": 10.29539,
+   "kommune": "Holmestrand",
+   "sted": "Holmestrand"
+  },
+  {
+   "name": "Horten videregående skole",
+   "fylke": "Vestfold",
+   "fylkesnummer": "39",
+   "round": null,
+   "programs": [
+    {
+     "program": "Elektro og datateknologi",
+     "program_en": "Electrical Engineering and Computer Technology",
+     "level": "Vg1",
+     "category": "EL",
+     "values": {
+      "2024": 35.0,
+      "2025": 36.9,
+      "2026": 29.4
+     },
+     "grep": "ELELE1----"
+    },
+    {
+     "program": "Frisør, blomster, interiør og eksponeringsdesign",
+     "program_en": "Hairdresser, Floral, Interior and Exposure Design",
+     "level": "Vg1",
+     "category": "FD",
+     "values": {
+      "2024": 34.4,
+      "2025": 33.3,
+      "2026": 35.6
+     },
+     "grep": "FDFBI1----",
+     "aliases": [
+      "frisør, blomst, int, eksp. design",
+      "frisør, blomst, int, eksp.design"
+     ]
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 31.9,
+      "2025": 28.8,
+      "2026": 35.9
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag, SK 3 år",
+     "program_en": "Healthcare, Childhood and Youth Development, 3-year academic track",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 41.8,
+      "2025": 27.4,
+      "2026": 43.3
+     },
+     "grep": "HSHSF1N---"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg1",
+     "category": "ID",
+     "values": {
+      "2024": 40.0,
+      "2025": 41.9,
+      "2026": 42.7
+     },
+     "grep": "IDRET1----"
+    },
+    {
+     "program": "Informasjonsteknologi og medieproduksjon",
+     "program_en": "Information Technology and Media Production",
+     "level": "Vg1",
+     "category": "IM",
+     "values": {
+      "2024": 33.6,
+      "2025": 34.3,
+      "2026": 34.1
+     },
+     "grep": "IMIKM1----",
+     "aliases": [
+      "it og medieproduksjon"
+     ]
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "program_en": "Media and Communication",
+     "level": "Vg1",
+     "category": "MK",
+     "values": {
+      "2024": 38.2,
+      "2025": 32.4,
+      "2026": 44.1
+     },
+     "grep": "MEMOK1----"
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg1",
+     "category": "SR",
+     "values": {
+      "2024": 36.5,
+      "2025": 39.0,
+      "2026": 34.4
+     },
+     "grep": "SRSSR1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 43.5,
+      "2025": 41.9,
+      "2026": 39.1
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Studiespesialisering, forskerlinje",
+     "program_en": "Specialization in General Studies, research track",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 36.3,
+      "2025": 43.1,
+      "2026": 39.7
+     },
+     "grep": "STUSP1--Q-"
+    },
+    {
+     "program": "Studiespesialisering, toppidrett",
+     "program_en": "Specialization in General Studies, elite sport",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 43.3,
+      "2025": 38.8,
+      "2026": 37.5
+     },
+     "grep": "STUSP1--T-"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 38.0,
+      "2025": 34.4,
+      "2026": 30.7
+     },
+     "grep": "TPTIP1----"
+    },
+    {
+     "program": "Automatisering",
+     "program_en": "Automation",
+     "level": "Vg2",
+     "category": "EL",
+     "values": {
+      "2024": 34.3,
+      "2025": 25.7,
+      "2026": 32.9
+     },
+     "grep": "ELAUT2----"
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "program_en": "Child Care and Youth Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 38.6,
+      "2025": 35.0,
+      "2026": 31.3
+     },
+     "grep": "HSBUA2----",
+     "official": "Barne- og ungdomsarbeiderfag",
+     "aliases": [
+      "barne- og ungdomsarbeiderfag"
+     ]
+    },
+    {
+     "program": "Barne- og ungdomsarbeiderfag, SK 3 år",
+     "program_en": "Child Care and Youth Work, 3-year academic track",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 30.0,
+      "2025": 40.9,
+      "2026": 35.0
+     },
+     "grep": "HSBUA2N---"
+    },
+    {
+     "program": "Blomsterdekoratør",
+     "program_en": "Floral Design",
+     "level": "Vg2",
+     "category": "FD",
+     "values": {
+      "2025": 37.5,
+      "2026": 30.0
+     },
+     "grep": "FDBLD2----"
+    },
+    {
+     "program": "Elenergi og ekom",
+     "program_en": "Electrical Energy and Electronic Communications",
+     "level": "Vg2",
+     "category": "EL",
+     "values": {
+      "2024": 32.5,
+      "2025": 38.6,
+      "2026": 38.6
+     },
+     "grep": "ELELE2----"
+    },
+    {
+     "program": "Frisør",
+     "program_en": "Hairdresser",
+     "level": "Vg2",
+     "category": "FD",
+     "values": {
+      "2024": 27.1,
+      "2025": 25.7,
+      "2026": 31.4
+     },
+     "grep": "FDFRI2----"
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "program_en": "Health Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 40.0,
+      "2025": 35.0,
+      "2026": 32.5
+     },
+     "grep": "HSHEA2----"
+    },
+    {
+     "program": "Helsearbeiderfag, SK 3 år",
+     "program_en": "Health Work, 3-year academic track",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 37.3,
+      "2025": 33.0,
+      "2026": 29.0
+     },
+     "grep": "HSHEA2N---"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg2",
+     "category": "ID",
+     "values": {
+      "2024": 27.0,
+      "2025": 31.1,
+      "2026": 32.2
+     },
+     "grep": "IDIDR2----"
+    },
+    {
+     "program": "Industriteknologi",
+     "program_en": "Industrial Technology",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2025": 27.1,
+      "2026": 18.8
+     },
+     "grep": "TPPIN2----"
+    },
+    {
+     "program": "Medieproduksjon",
+     "program_en": "Media Production",
+     "level": "Vg2",
+     "category": "IM",
+     "values": {
+      "2024": 25.0,
+      "2025": 21.3,
+      "2026": 31.4
+     },
+     "grep": "IMMED2----"
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "program_en": "Media and Communication",
+     "level": "Vg2",
+     "category": "MK",
+     "values": {
+      "2024": 27.0,
+      "2025": 12.5,
+      "2026": 28.8
+     },
+     "grep": "MEMOK2----"
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 29.0,
+      "2025": 30.0,
+      "2026": 33.3
+     },
+     "grep": "STREA2----"
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg2",
+     "category": "SR",
+     "values": {
+      "2026": 41.3
+     },
+     "grep": "SRSSR2----"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 26.7,
+      "2025": 23.8,
+      "2026": 18.3
+     },
+     "grep": "STSSA2----",
+     "official": "Språk, samfunnsfag og økonomi vg2",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg3",
+     "category": "ID",
+     "values": {
+      "2024": 22.5,
+      "2025": 29.2,
+      "2026": 26.4
+     },
+     "grep": "IDIDR3----"
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "program_en": "Media and Communication",
+     "level": "Vg3",
+     "category": "MK",
+     "values": {
+      "2024": 25.8,
+      "2025": 25.5,
+      "2026": 28.3
+     },
+     "grep": "MEMOK3----"
+    },
+    {
+     "program": "Påbygg gen studiekomp, SK",
+     "program_en": "Supplementary Year for General University Admission, academic track",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 24.5,
+      "2025": 30.0,
+      "2026": 40.0
+     },
+     "grep": "PBPBY3N---",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram"
+    },
+    {
+     "program": "Påbygging til generell studiekompetanse",
+     "program_en": "Supplementary Year for General University Admission",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 33.3,
+      "2025": 42.5,
+      "2026": 46.3
+     },
+     "grep": "PBPBY3----",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram",
+     "aliases": [
+      "påbygg. gen. studiekompetanse"
+     ]
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 26.0,
+      "2025": 32.2,
+      "2026": 30.0
+     },
+     "grep": "STREA3----"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 18.9,
+      "2025": 29.0,
+      "2026": 17.0
+     },
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    }
+   ],
+   "orgnr": "923261354",
+   "address": "Strandpromenaden 33, 3183, HORTEN",
+   "url": "www.vestfoldfylke.no/no/skoler/horten-vgs/",
+   "nsr_name": "Horten videregående skole",
+   "lat": 59.42084,
+   "lon": 10.4882,
+   "kommune": "Horten",
+   "sted": "Horten"
+  },
+  {
+   "name": "Melsom videregående skole",
+   "fylke": "Vestfold",
+   "fylkesnummer": "39",
+   "round": null,
+   "programs": [
+    {
+     "program": "Naturbruk",
+     "program_en": "Agriculture, Fishing and Forestry",
+     "level": "Vg1",
+     "category": "NA",
+     "values": {
+      "2024": 17.7,
+      "2025": 19.3,
+      "2026": 14.3
+     },
+     "grep": "NANAB1----"
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg1",
+     "category": "SR",
+     "values": {
+      "2024": 15.6,
+      "2025": 13.8,
+      "2026": 19.4
+     },
+     "grep": "SRSSR1----"
+    },
+    {
+     "program": "Studiespesialisering, toppidrett hest",
+     "program_en": "Specialization in General Studies, elite sport, horses",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 24.4,
+      "2025": 20.0,
+      "2026": 13.3
+     },
+     "grep": "STUSP1--TH"
+    },
+    {
+     "program": "Heste- og dyrefag",
+     "program_en": "Equestrian and Animal Studies",
+     "level": "Vg2",
+     "category": "NA",
+     "values": {
+      "2024": 26.3,
+      "2025": 22.9,
+      "2026": 20.0
+     },
+     "grep": "NAHDF2----"
+    },
+    {
+     "program": "Landbruk og gartnernæring",
+     "program_en": "Agriculture and Horticulture",
+     "level": "Vg2",
+     "category": "NA",
+     "values": {
+      "2024": 28.6,
+      "2025": 32.9,
+      "2026": 24.3
+     },
+     "grep": "NALGA2----"
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg2",
+     "category": "SR",
+     "values": {
+      "2026": 25.0
+     },
+     "grep": "SRSSR2----"
+    },
+    {
+     "program": "Språk/samf.fag/økonomi, toppidrett hest",
+     "program_en": "Specialization in General Studies, elite sport, horses",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 32.0,
+      "2025": 36.0,
+      "2026": 36.7
+     },
+     "grep": "STSSA2--TH",
+     "official": "Språk, samfunnsfag og økonomi vg2"
+    },
+    {
+     "program": "Landbruk",
+     "program_en": "Agriculture",
+     "level": "Vg3",
+     "category": "NA",
+     "values": {
+      "2024": 27.1,
+      "2025": 31.3,
+      "2026": 28.8
+     },
+     "grep": "NALBR3----"
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "program_en": "Media and Communication",
+     "level": "Vg3",
+     "category": "MK",
+     "values": {
+      "2024": 28.3,
+      "2025": 32.7,
+      "2026": 37.5
+     },
+     "grep": "MEMOK3----"
+    },
+    {
+     "program": "Påbygging til generell studiekompetanse",
+     "program_en": "Supplementary Year for General University Admission",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 21.3,
+      "2025": 37.8,
+      "2026": 37.1
+     },
+     "grep": "PBPBY3----",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram",
+     "aliases": [
+      "påbygg. gen. studiekompetanse"
+     ]
+    },
+    {
+     "program": "Påbygging til generell studiekompetanse etter yrkeskompetanse",
+     "program_en": "Supplementary Year for General University Admission, after vocational qualification",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 30.0,
+      "2025": 25.0,
+      "2026": 20.0
+     },
+     "grep": "PBPBY4YK--",
+     "aliases": [
+      "påbygg gen studiekomp e/yrkeskomp"
+     ]
+    },
+    {
+     "program": "Språk/samf.fag/økonomi, toppidrett hest",
+     "program_en": "Specialization in General Studies, elite sport, horses",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 31.0,
+      "2025": 30.0,
+      "2026": 34.4
+     },
+     "grep": "STSSA3--TH",
+     "official": "Språk, samfunnsfag og økonomi vg3"
+    },
+    {
+     "program": "Studieforberedende naturbruk",
+     "program_en": "Vg3 General Studies in Fishing and Forestry",
+     "level": "Vg3",
+     "category": "NA",
+     "values": {
+      "2024": 41.3,
+      "2025": 31.3,
+      "2026": 37.1
+     },
+     "grep": "NANAB3----",
+     "official": "Studieforberedende vg3 innen naturbruk"
+    }
+   ],
+   "orgnr": "974575051",
+   "address": "Melsomvikveien 180, 3159, MELSOMVIK",
+   "url": "www.vestfoldfylke.no/no/skoler/melsom-vgs/",
+   "nsr_name": "Melsom videregående skole",
+   "kommune": "Sandefjord",
+   "sted": "Melsomvik",
+   "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.vestfoldfylke.no//link/ceab8d27e7af427ab1b3f21bd1a9d30e.aspx",
+   "photo_page": "https://www.vestfoldfylke.no/no/skoler/melsom-vgs/",
+   "photo_credit": "Foto: Melsom videregående skole / Vestfold fylkeskommune",
+   "photo_license": "© Vestfold fylkeskommune",
+   "photo_source": "reviewed"
+  },
+  {
+   "name": "Nøtterøy videregående skole",
+   "fylke": "Vestfold",
+   "fylkesnummer": "39",
+   "round": null,
+   "programs": [
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 26.4,
+      "2025": 26.6,
+      "2026": 30.0
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag, SK 3 år",
+     "program_en": "Healthcare, Childhood and Youth Development, 3-year academic track",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 21.1,
+      "2025": 37.7,
+      "2026": 35.8
+     },
+     "grep": "HSHSF1N---"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg1",
+     "category": "ID",
+     "values": {
+      "2026": 21.4
+     },
+     "grep": "IDRET1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 25.3,
+      "2025": 13.3,
+      "2026": 37.9
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "program_en": "Child Care and Youth Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 21.3,
+      "2025": 20.0,
+      "2026": 22.5
+     },
+     "grep": "HSBUA2----",
+     "official": "Barne- og ungdomsarbeiderfag",
+     "aliases": [
+      "barne- og ungdomsarbeiderfag"
+     ]
+    },
+    {
+     "program": "Barne- og ungdomsarbeiderfag, SK 3 år",
+     "program_en": "Child Care and Youth Work, 3-year academic track",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 30.0,
+      "2025": 37.0,
+      "2026": 30.0
+     },
+     "grep": "HSBUA2N---"
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "program_en": "Health Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 20.0,
+      "2025": 25.6,
+      "2026": 17.5
+     },
+     "grep": "HSHEA2----"
+    },
+    {
+     "program": "Helsearbeiderfag, SK 3 år",
+     "program_en": "Health Work, 3-year academic track",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 35.5,
+      "2025": 30.0,
+      "2026": 38.2
+     },
+     "grep": "HSHEA2N---"
+    },
+    {
+     "program": "Helseservicefag",
+     "program_en": "Health Service",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 21.3,
+      "2025": 23.8,
+      "2026": 22.5
+     },
+     "grep": "HSHES2----"
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 16.3,
+      "2025": 28.9,
+      "2026": 25.6
+     },
+     "grep": "STREA2----"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 10.0,
+      "2025": 20.0,
+      "2026": 16.7
+     },
+     "grep": "STSSA2----",
+     "official": "Språk, samfunnsfag og økonomi vg2",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    },
+    {
+     "program": "Apotekteknikk",
+     "program_en": "Pharmacy Skills",
+     "level": "Vg3",
+     "category": "HS",
+     "values": {
+      "2024": 22.5,
+      "2025": 31.3,
+      "2026": 30.0
+     },
+     "grep": "HSAPO3----"
+    },
+    {
+     "program": "Påbygg gen studiekomp, SK",
+     "program_en": "Supplementary Year for General University Admission, academic track",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 37.0,
+      "2025": 26.0,
+      "2026": 25.6
+     },
+     "grep": "PBPBY3N---",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram"
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 24.0,
+      "2025": 24.4,
+      "2026": 30.0
+     },
+     "grep": "STREA3----"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 10.0,
+      "2025": 23.6,
+      "2026": 23.0
+     },
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    }
+   ],
+   "orgnr": "974575000",
+   "address": "Rektorveien 10, 3140, NØTTERØY",
+   "url": "www.vestfoldfylke.no/no/skoler/notteroy-vgs/",
+   "nsr_name": "Nøtterøy videregående skole",
+   "lat": 59.22449,
+   "lon": 10.40418,
+   "kommune": "Færder",
+   "sted": "Nøtterøy",
+   "photo": "https://res.cloudinary.com/ssp/image/fetch/w_1200,c_fill/https://www.vestfoldfylke.no//link/349beb6131784c0580545ae904950b75.aspx",
+   "photo_page": "https://www.vestfoldfylke.no/no/skoler/notteroy-vgs/",
+   "photo_credit": "Foto: Nøtterøy videregående skole / Vestfold fylkeskommune",
+   "photo_license": "© Vestfold fylkeskommune",
+   "photo_source": "reviewed"
+  },
+  {
+   "name": "Re videregående skole",
+   "fylke": "Vestfold",
+   "fylkesnummer": "39",
+   "round": null,
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "program_en": "Building and Construction",
+     "level": "Vg1",
+     "category": "BA",
+     "values": {
+      "2024": 33.8,
+      "2025": 29.6,
+      "2026": 22.7
+     },
+     "grep": "BABAT1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 34.7,
+      "2025": 25.6,
+      "2026": 36.3
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag, SK 3 år",
+     "program_en": "Healthcare, Childhood and Youth Development, 3-year academic track",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 36.9,
+      "2025": 40.8,
+      "2026": 43.5
+     },
+     "grep": "HSHSF1N---"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg1",
+     "category": "ID",
+     "values": {
+      "2024": 42.7,
+      "2025": 30.0,
+      "2026": 29.4
+     },
+     "grep": "IDRET1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 40.0,
+      "2025": 34.4,
+      "2026": 32.9
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Studiespesialisering, fotball",
+     "program_en": "Specialization in General Studies (fotball)",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 36.3,
+      "2025": 40.0,
+      "2026": 38.2
+     },
+     "grep": "STUSP1--F-"
+    },
+    {
+     "program": "Studiespesialisering, håndball",
+     "program_en": "Specialization in General Studies (håndball)",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 35.0,
+      "2025": 40.6,
+      "2026": 37.6
+     },
+     "grep": "STUSP1--H-"
+    },
+    {
+     "program": "Studiespesialisering, toppidrett",
+     "program_en": "Specialization in General Studies, elite sport",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 35.6,
+      "2025": 39.3,
+      "2026": 24.3
+     },
+     "grep": "STUSP1--T-"
+    },
+    {
+     "program": "Anleggsteknikk",
+     "program_en": "Construction",
+     "level": "Vg2",
+     "category": "BA",
+     "values": {
+      "2024": 35.0,
+      "2025": 37.1,
+      "2026": 30.0
+     },
+     "grep": "BAANL2----"
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "program_en": "Child Care and Youth Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 22.2,
+      "2025": 36.3,
+      "2026": 32.5
+     },
+     "grep": "HSBUA2----",
+     "official": "Barne- og ungdomsarbeiderfag",
+     "aliases": [
+      "barne- og ungdomsarbeiderfag"
+     ]
+    },
+    {
+     "program": "Barne- og ungdomsarbeiderfag, SK 3 år",
+     "program_en": "Child Care and Youth Work, 3-year academic track",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 32.0,
+      "2025": 41.8,
+      "2026": 42.7
+     },
+     "grep": "HSBUA2N---"
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "program_en": "Health Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 37.5,
+      "2025": 31.3,
+      "2026": 30.0
+     },
+     "grep": "HSHEA2----"
+    },
+    {
+     "program": "Helsearbeiderfag, SK 3 år",
+     "program_en": "Health Work, 3-year academic track",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 36.0,
+      "2025": 27.0,
+      "2026": 36.0
+     },
+     "grep": "HSHEA2N---"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg2",
+     "category": "ID",
+     "values": {
+      "2024": 34.4,
+      "2025": 27.8,
+      "2026": 30.0
+     },
+     "grep": "IDIDR2----"
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 32.5,
+      "2025": 30.0,
+      "2026": 23.8
+     },
+     "grep": "STREA2----"
+    },
+    {
+     "program": "Realfag, toppidrett",
+     "program_en": "Natural Science and Mathematics Studies, elite sport",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 27.0,
+      "2025": 40.0,
+      "2026": 36.4
+     },
+     "grep": "STREA2--T-"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 22.2,
+      "2025": 26.3,
+      "2026": 31.0
+     },
+     "grep": "STSSA2----",
+     "official": "Språk, samfunnsfag og økonomi vg2",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    },
+    {
+     "program": "Språk/samf.fag/økonomi, toppidrett",
+     "program_en": "Specialization in General Studies, elite sport",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 29.1,
+      "2025": 32.0,
+      "2026": 31.0
+     },
+     "grep": "STSSA2--T-",
+     "official": "Språk, samfunnsfag og økonomi vg2"
+    },
+    {
+     "program": "Tømrer",
+     "program_en": "Carpentry",
+     "level": "Vg2",
+     "category": "BA",
+     "values": {
+      "2024": 14.3,
+      "2025": 34.3,
+      "2026": 25.7
+     },
+     "grep": "BATMF2----"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg3",
+     "category": "ID",
+     "values": {
+      "2024": 29.2,
+      "2025": 26.2,
+      "2026": 34.6
+     },
+     "grep": "IDIDR3----"
+    },
+    {
+     "program": "Påbygg gen studiekomp, SK",
+     "program_en": "Supplementary Year for General University Admission, academic track",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 32.7,
+      "2025": 30.0,
+      "2026": 34.4
+     },
+     "grep": "PBPBY3N---",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram"
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 22.0,
+      "2025": 15.0,
+      "2026": 28.0
+     },
+     "grep": "STREA3----"
+    },
+    {
+     "program": "Realfag, toppidrett",
+     "program_en": "Natural Science and Mathematics Studies, elite sport",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 40.0,
+      "2026": 29.0
+     },
+     "grep": "STREA3--T-"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 26.0,
+      "2025": 25.0,
+      "2026": 23.6
+     },
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    },
+    {
+     "program": "Språk/samf.fag/økonomi, toppidrett",
+     "program_en": "Specialization in General Studies, elite sport",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2025": 28.0,
+      "2026": 30.0
+     },
+     "grep": "STSSA3--T-",
+     "official": "Språk, samfunnsfag og økonomi vg3"
+    }
+   ],
+   "orgnr": "874575232",
+   "address": "Bergshaugen 10, 3175, RAMNES",
+   "url": "www.revgs.no/",
+   "nsr_name": "Re videregående skole",
+   "lat": 59.35823,
+   "lon": 10.24864,
+   "kommune": "Tønsberg",
+   "sted": "Ramnes"
+  },
+  {
+   "name": "Sande videregående skole",
+   "fylke": "Vestfold",
+   "fylkesnummer": "39",
+   "round": null,
+   "programs": [
+    {
+     "program": "Elektro og datateknologi",
+     "program_en": "Electrical Engineering and Computer Technology",
+     "level": "Vg1",
+     "category": "EL",
+     "values": {
+      "2024": 23.0,
+      "2025": 33.3,
+      "2026": 15.0
+     },
+     "grep": "ELELE1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 25.8,
+      "2025": 31.7,
+      "2026": 29.3
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag, SK 3 år",
+     "program_en": "Healthcare, Childhood and Youth Development, 3-year academic track",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 33.1,
+      "2025": 32.7,
+      "2026": 31.9
+     },
+     "grep": "HSHSF1N---"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg1",
+     "category": "ID",
+     "values": {
+      "2024": 33.4,
+      "2025": 33.8,
+      "2026": 36.3
+     },
+     "grep": "IDRET1----"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 36.6,
+      "2025": 34.3,
+      "2026": 38.1
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 26.0,
+      "2025": 28.5,
+      "2026": 26.5
+     },
+     "grep": "TPTIP1----"
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "program_en": "Child Care and Youth Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 26.3,
+      "2025": 26.0,
+      "2026": 15.0
+     },
+     "grep": "HSBUA2----",
+     "official": "Barne- og ungdomsarbeiderfag",
+     "aliases": [
+      "barne- og ungdomsarbeiderfag"
+     ]
+    },
+    {
+     "program": "Barne- og ungdomsarbeiderfag, SK 3 år",
+     "program_en": "Child Care and Youth Work, 3-year academic track",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 25.0,
+      "2025": 31.0,
+      "2026": 32.0
+     },
+     "grep": "HSBUA2N---"
+    },
+    {
+     "program": "Elenergi og ekom",
+     "program_en": "Electrical Energy and Electronic Communications",
+     "level": "Vg2",
+     "category": "EL",
+     "values": {
+      "2024": 30.0,
+      "2025": 27.1,
+      "2026": 24.3
+     },
+     "grep": "ELELE2----"
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "program_en": "Health Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 20.0,
+      "2025": 21.1,
+      "2026": 31.1
+     },
+     "grep": "HSHEA2----"
+    },
+    {
+     "program": "Helsearbeiderfag, SK 3 år",
+     "program_en": "Health Work, 3-year academic track",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 35.0,
+      "2025": 15.0,
+      "2026": 34.0
+     },
+     "grep": "HSHEA2N---"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg2",
+     "category": "ID",
+     "values": {
+      "2024": 24.4,
+      "2025": 27.0,
+      "2026": 30.0
+     },
+     "grep": "IDIDR2----"
+    },
+    {
+     "program": "Industriteknologi",
+     "program_en": "Industrial Technology",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2024": 21.4,
+      "2025": 24.3,
+      "2026": 27.5
+     },
+     "grep": "TPPIN2----"
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 35.0,
+      "2025": 33.3,
+      "2026": 35.0
+     },
+     "grep": "STREA2----"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 21.0,
+      "2025": 33.3,
+      "2026": 28.9
+     },
+     "grep": "STSSA2----",
+     "official": "Språk, samfunnsfag og økonomi vg2",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    },
+    {
+     "program": "Transport og logistikk",
+     "program_en": "Transport and Logistics",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2024": 25.0,
+      "2025": 25.0,
+      "2026": 17.5
+     },
+     "grep": "TPTOL2----"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg3",
+     "category": "ID",
+     "values": {
+      "2024": 31.5,
+      "2025": 24.2,
+      "2026": 29.2
+     },
+     "grep": "IDIDR3----"
+    },
+    {
+     "program": "Påbygg gen studiekomp, SK",
+     "program_en": "Supplementary Year for General University Admission, academic track",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 35.0,
+      "2025": 31.0,
+      "2026": 37.0
+     },
+     "grep": "PBPBY3N---",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram"
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 28.9,
+      "2025": 28.9,
+      "2026": 29.0
+     },
+     "grep": "STREA3----"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 29.0,
+      "2025": 23.0,
+      "2026": 30.0
+     },
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    }
+   ],
+   "orgnr": "974575116",
+   "address": "Hans K.Evensens vei 53, 3076, SANDE I VESTFOLD",
+   "url": "www.vestfoldfylke.no/no/skoler/sande-vgs/",
+   "nsr_name": "Sande videregående skole",
+   "lat": 59.58584,
+   "lon": 10.24122,
+   "kommune": "Holmestrand",
+   "sted": "Sande i Vestfold"
+  },
+  {
+   "name": "Sandefjord videregående skole",
+   "fylke": "Vestfold",
+   "fylkesnummer": "39",
+   "round": null,
+   "programs": [
+    {
+     "program": "Elektro og datateknologi",
+     "program_en": "Electrical Engineering and Computer Technology",
+     "level": "Vg1",
+     "category": "EL",
+     "values": {
+      "2024": 35.3,
+      "2025": 37.1,
+      "2026": 40.9
+     },
+     "grep": "ELELE1----"
+    },
+    {
+     "program": "Frisør, blomster, interiør og eksponeringsdesign",
+     "program_en": "Hairdresser, Floral, Interior and Exposure Design",
+     "level": "Vg1",
+     "category": "FD",
+     "values": {
+      "2024": 31.2,
+      "2025": 13.8,
+      "2026": 18.5
+     },
+     "grep": "FDFBI1----",
+     "aliases": [
+      "frisør, blomst, int, eksp. design",
+      "frisør, blomst, int, eksp.design"
+     ]
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 16.4,
+      "2025": 13.8,
+      "2026": 19.8
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag, SK 3 år",
+     "program_en": "Healthcare, Childhood and Youth Development, 3-year academic track",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 38.1,
+      "2025": 39.6,
+      "2026": 42.2
+     },
+     "grep": "HSHSF1N---"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg1",
+     "category": "ID",
+     "values": {
+      "2024": 18.5,
+      "2025": 36.3,
+      "2026": 26.5
+     },
+     "grep": "IDRET1----"
+    },
+    {
+     "program": "Informasjonsteknologi og medieproduksjon",
+     "program_en": "Information Technology and Media Production",
+     "level": "Vg1",
+     "category": "IM",
+     "values": {
+      "2024": 32.5,
+      "2025": 26.6,
+      "2026": 29.4
+     },
+     "grep": "IMIKM1----",
+     "aliases": [
+      "it og medieproduksjon"
+     ]
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "program_en": "Art, Design and Architecture",
+     "level": "Vg1",
+     "category": "KD",
+     "values": {
+      "2024": 30.0,
+      "2025": 26.0,
+      "2026": 25.7
+     },
+     "grep": "KDKDA1----"
+    },
+    {
+     "program": "Musikk, dans og drama, musikk",
+     "program_en": "Music, Dance and Drama — music",
+     "level": "Vg1",
+     "category": "MD",
+     "values": {
+      "2024": 28.8,
+      "2025": 24.4,
+      "2026": 31.3
+     },
+     "grep": "MDMDD1--1-"
+    },
+    {
+     "program": "Restaurant- og matfag",
+     "program_en": "Restaurant and Food Processing",
+     "level": "Vg1",
+     "category": "RM",
+     "values": {
+      "2024": 15.7,
+      "2025": 18.6,
+      "2026": 20.8
+     },
+     "grep": "RMRMF1----"
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg1",
+     "category": "SR",
+     "values": {
+      "2024": 28.2,
+      "2025": 24.7,
+      "2026": 20.6
+     },
+     "grep": "SRSSR1----"
+    },
+    {
+     "program": "Salg, service og reiseliv, YSK",
+     "program_en": "Sales, Service, Travel and Tourism, 4-year vocational + academic",
+     "level": "Vg1",
+     "category": "SR",
+     "values": {
+      "2024": 45.0,
+      "2025": 43.5,
+      "2026": 46.9
+     },
+     "grep": "SRSSR1P---"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 34.0,
+      "2025": 19.1,
+      "2026": 24.4
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Studiespesialisering, forberedende IB",
+     "program_en": "Specialization in General Studies, pre-IB",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 42.1,
+      "2025": 24.2,
+      "2026": 33.3
+     },
+     "grep": "STUSP1Z---"
+    },
+    {
+     "program": "Studiespesialisering, fotball",
+     "program_en": "Specialization in General Studies (fotball)",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 38.5,
+      "2025": 34.7,
+      "2026": 31.3
+     },
+     "grep": "STUSP1--F-"
+    },
+    {
+     "program": "Studiespesialisering, håndball",
+     "program_en": "Specialization in General Studies (håndball)",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 38.0,
+      "2025": 35.6,
+      "2026": 39.4
+     },
+     "grep": "STUSP1--H-"
+    },
+    {
+     "program": "Studiespesialisering, toppidrett",
+     "program_en": "Specialization in General Studies, elite sport",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 29.2,
+      "2025": 22.9,
+      "2026": 34.1
+     },
+     "grep": "STUSP1--T-"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 19.1,
+      "2025": 22.4,
+      "2026": 28.1
+     },
+     "grep": "TPTIP1----"
+    },
+    {
+     "program": "Automatisering",
+     "program_en": "Automation",
+     "level": "Vg2",
+     "category": "EL",
+     "values": {
+      "2024": 37.1,
+      "2025": 28.8,
+      "2026": 37.5
+     },
+     "grep": "ELAUT2----"
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "program_en": "Child Care and Youth Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 23.3,
+      "2025": 28.8,
+      "2026": 26.3
+     },
+     "grep": "HSBUA2----",
+     "official": "Barne- og ungdomsarbeiderfag",
+     "aliases": [
+      "barne- og ungdomsarbeiderfag"
+     ]
+    },
+    {
+     "program": "Barne- og ungdomsarbeiderfag, SK 3 år",
+     "program_en": "Child Care and Youth Work, 3-year academic track",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 37.0,
+      "2025": 31.0,
+      "2026": 36.4
+     },
+     "grep": "HSBUA2N---"
+    },
+    {
+     "program": "Elenergi og ekom",
+     "program_en": "Electrical Energy and Electronic Communications",
+     "level": "Vg2",
+     "category": "EL",
+     "values": {
+      "2024": 38.8,
+      "2025": 37.1,
+      "2026": 41.4
+     },
+     "grep": "ELELE2----"
+    },
+    {
+     "program": "Frisør",
+     "program_en": "Hairdresser",
+     "level": "Vg2",
+     "category": "FD",
+     "values": {
+      "2024": 17.1,
+      "2025": 25.7,
+      "2026": 32.9
+     },
+     "grep": "FDFRI2----"
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "program_en": "Health Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 21.3,
+      "2025": 15.6,
+      "2026": 16.3
+     },
+     "grep": "HSHEA2----"
+    },
+    {
+     "program": "Helsearbeiderfag, SK 3 år",
+     "program_en": "Health Work, 3-year academic track",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 26.0,
+      "2025": 38.0,
+      "2026": 26.0
+     },
+     "grep": "HSHEA2N---"
+    },
+    {
+     "program": "Helseservicefag",
+     "program_en": "Health Service",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 18.8,
+      "2025": 12.5,
+      "2026": 26.3
+     },
+     "grep": "HSHES2----"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg2",
+     "category": "ID",
+     "values": {
+      "2024": 31.0,
+      "2025": 19.0,
+      "2026": 31.1
+     },
+     "grep": "IDIDR2----"
+    },
+    {
+     "program": "Industriteknologi",
+     "program_en": "Industrial Technology",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2024": 25.0,
+      "2025": 20.0,
+      "2026": 26.3
+     },
+     "grep": "TPPIN2----"
+    },
+    {
+     "program": "Informasjonsteknologi",
+     "program_en": "Information Technology",
+     "level": "Vg2",
+     "category": "IM",
+     "values": {
+      "2024": 18.0,
+      "2025": 23.3,
+      "2026": 22.5
+     },
+     "grep": "IMITK2----"
+    },
+    {
+     "program": "Interiør og eksponeringsdesign",
+     "program_en": "Interior and Exposure Design",
+     "level": "Vg2",
+     "category": "FD",
+     "values": {
+      "2024": 20.0,
+      "2025": 25.7,
+      "2026": 24.3
+     },
+     "grep": "FDIED2----"
+    },
+    {
+     "program": "International Baccalaureate",
+     "program_en": "International Baccalaureate",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 36.3,
+      "2025": 27.8,
+      "2026": 31.1
+     },
+     "grep": "STUSP2Z---"
+    },
+    {
+     "program": "Kjemiprosess- og laboratoriefag",
+     "program_en": "Chemical Processing and Laboratory Work",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2024": 32.5,
+      "2025": 36.3,
+      "2026": 26.3
+     },
+     "grep": "TPKPL2----",
+     "aliases": [
+      "kjemiprosess- og laboratorief"
+     ]
+    },
+    {
+     "program": "Kokk- og servitørfag",
+     "program_en": "Cookery and Waiting",
+     "level": "Vg2",
+     "category": "RM",
+     "values": {
+      "2024": 27.1,
+      "2025": 32.9,
+      "2026": 30.0
+     },
+     "grep": "RMKOS2----"
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "program_en": "Art, Design and Architecture",
+     "level": "Vg2",
+     "category": "KD",
+     "values": {
+      "2024": 20.0,
+      "2025": 28.0,
+      "2026": 26.7
+     },
+     "grep": "KDKDA2----"
+    },
+    {
+     "program": "Musikk",
+     "program_en": "Music Studies",
+     "level": "Vg2",
+     "category": "MD",
+     "values": {
+      "2024": 33.8,
+      "2025": 23.3,
+      "2026": 24.4
+     },
+     "grep": "MDMUS2----"
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 17.5,
+      "2025": 22.5,
+      "2026": 24.4
+     },
+     "grep": "STREA2----"
+    },
+    {
+     "program": "Realfag, toppidrett",
+     "program_en": "Natural Science and Mathematics Studies, elite sport",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 36.0,
+      "2025": 36.0,
+      "2026": 40.0
+     },
+     "grep": "STREA2--T-"
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg2",
+     "category": "SR",
+     "values": {
+      "2026": 25.0
+     },
+     "grep": "SRSSR2----"
+    },
+    {
+     "program": "Salg, service og reiseliv, YSK 4 år",
+     "program_en": "Sales, Service, Travel and Tourism, 4-year vocational + academic",
+     "level": "Vg2",
+     "category": "SR",
+     "values": {
+      "2026": 36.3
+     },
+     "grep": "SRSSR2P---",
+     "aliases": [
+      "salg, service og reiseliv, ysk 4år"
+     ]
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 24.4,
+      "2025": 18.9,
+      "2026": 21.1
+     },
+     "grep": "STSSA2----",
+     "official": "Språk, samfunnsfag og økonomi vg2",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    },
+    {
+     "program": "Språk/samf.fag/økonomi, toppidrett",
+     "program_en": "Specialization in General Studies, elite sport",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 23.0,
+      "2025": 27.3,
+      "2026": 24.0
+     },
+     "grep": "STSSA2--T-",
+     "official": "Språk, samfunnsfag og økonomi vg2"
+    },
+    {
+     "program": "Automatiseringsfaget",
+     "program_en": "Automation",
+     "level": "Vg3",
+     "category": "EL",
+     "values": {
+      "2024": 27.1,
+      "2025": 27.1,
+      "2026": 27.1
+     },
+     "grep": "ELAUT3----"
+    },
+    {
+     "program": "Helsesekretær",
+     "program_en": "Medical Secretarial Skills",
+     "level": "Vg3",
+     "category": "HS",
+     "values": {
+      "2024": 15.0,
+      "2025": 20.0,
+      "2026": 25.0
+     },
+     "grep": "HSHSE3----"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg3",
+     "category": "ID",
+     "values": {
+      "2024": 27.7,
+      "2025": 30.0,
+      "2026": 26.0
+     },
+     "grep": "IDIDR3----"
+    },
+    {
+     "program": "Interiør",
+     "program_en": "Interior Design",
+     "level": "Vg3",
+     "category": "FD",
+     "values": {
+      "2024": 22.5,
+      "2025": 26.3,
+      "2026": 31.4
+     },
+     "grep": "FDINT3----"
+    },
+    {
+     "program": "International Baccalaureate",
+     "program_en": "International Baccalaureate",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 27.1,
+      "2025": 21.7,
+      "2026": 25.0
+     },
+     "grep": "STUSP3Z---"
+    },
+    {
+     "program": "Kunst, design og arkitektur",
+     "program_en": "Art, Design and Architecture",
+     "level": "Vg3",
+     "category": "KD",
+     "values": {
+      "2024": 25.0,
+      "2025": 19.2,
+      "2026": 17.5
+     },
+     "grep": "KDKDA3----"
+    },
+    {
+     "program": "Musikk",
+     "program_en": "Music Studies",
+     "level": "Vg3",
+     "category": "MD",
+     "values": {
+      "2024": 25.0,
+      "2025": 26.7,
+      "2026": 25.0
+     },
+     "grep": "MDMUS3----"
+    },
+    {
+     "program": "Påbygg gen studiekomp e/yrkeskomp, YSK 1.år",
+     "program_en": "Supplementary Year for General University Admission, after vocational qualification, 4-year vocational + academic (1.år)",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 30.0,
+      "2025": 33.3,
+      "2026": 40.0
+     },
+     "grep": "PBPBY4P1--",
+     "official": "Vg4 påbygging til generell studiekompetanse"
+    },
+    {
+     "program": "Påbygg gen studiekomp, SK",
+     "program_en": "Supplementary Year for General University Admission, academic track",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 27.0,
+      "2025": 18.0,
+      "2026": 28.2
+     },
+     "grep": "PBPBY3N---",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram"
+    },
+    {
+     "program": "Påbygging til generell studiekompetanse",
+     "program_en": "Supplementary Year for General University Admission",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 35.7,
+      "2025": 35.7,
+      "2026": 28.9
+     },
+     "grep": "PBPBY3----",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram",
+     "aliases": [
+      "påbygg. gen. studiekompetanse"
+     ]
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 17.8,
+      "2025": 23.8,
+      "2026": 14.3
+     },
+     "grep": "STREA3----"
+    },
+    {
+     "program": "Realfag, toppidrett",
+     "program_en": "Natural Science and Mathematics Studies, elite sport",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 27.5,
+      "2025": 34.0,
+      "2026": 31.8
+     },
+     "grep": "STREA3--T-"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 20.0,
+      "2025": 18.8,
+      "2026": 16.3
+     },
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    },
+    {
+     "program": "Språk/samf.fag/økonomi, toppidrett",
+     "program_en": "Specialization in General Studies, elite sport",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 21.8,
+      "2025": 23.0,
+      "2026": 26.7
+     },
+     "grep": "STSSA3--T-",
+     "official": "Språk, samfunnsfag og økonomi vg3"
+    },
+    {
+     "program": "Tannhelsesekretær",
+     "program_en": "Dental Health Secretarial Skills",
+     "level": "Vg3",
+     "category": "HS",
+     "values": {
+      "2024": 31.1,
+      "2025": 26.3,
+      "2026": 23.8
+     },
+     "grep": "HSTAN3----"
+    }
+   ],
+   "orgnr": "974575019",
+   "address": "Krokemoveien 4, 3214, SANDEFJORD",
+   "url": "www.vestfoldfylke.no/no/skoler/sandefjord-vgs/",
+   "nsr_name": "Sandefjord videregående skole",
+   "lat": 59.13322,
+   "lon": 10.20438,
+   "kommune": "Sandefjord",
+   "sted": "Sandefjord"
+  },
+  {
+   "name": "Thor Heyerdahl videregående skole",
+   "fylke": "Vestfold",
+   "fylkesnummer": "39",
+   "round": null,
+   "programs": [
+    {
+     "program": "Bygg- og anleggsteknikk",
+     "program_en": "Building and Construction",
+     "level": "Vg1",
+     "category": "BA",
+     "values": {
+      "2024": 24.7,
+      "2025": 19.4,
+      "2026": 15.8
+     },
+     "grep": "BABAT1----"
+    },
+    {
+     "program": "Elektro og datateknologi",
+     "program_en": "Electrical Engineering and Computer Technology",
+     "level": "Vg1",
+     "category": "EL",
+     "values": {
+      "2024": 34.7,
+      "2025": 38.8,
+      "2026": 36.7
+     },
+     "grep": "ELELE1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag",
+     "program_en": "Healthcare, Childhood and Youth Development",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 33.3,
+      "2025": 31.5,
+      "2026": 18.3
+     },
+     "grep": "HSHSF1----"
+    },
+    {
+     "program": "Helse- og oppvekstfag, SK 3 år",
+     "program_en": "Healthcare, Childhood and Youth Development, 3-year academic track",
+     "level": "Vg1",
+     "category": "HS",
+     "values": {
+      "2024": 34.7,
+      "2025": 40.0,
+      "2026": 36.0
+     },
+     "grep": "HSHSF1N---"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg1",
+     "category": "ID",
+     "values": {
+      "2024": 33.3,
+      "2025": 38.5,
+      "2026": 26.9
+     },
+     "grep": "IDRET1----"
+    },
+    {
+     "program": "Musikk, dans og drama, dans",
+     "program_en": "Music, Dance and Drama — dance",
+     "level": "Vg1",
+     "category": "MD",
+     "values": {
+      "2024": 27.1,
+      "2025": 38.6,
+      "2026": 37.3
+     },
+     "grep": "MDMDD1--4-"
+    },
+    {
+     "program": "Musikk, dans og drama, musikk",
+     "program_en": "Music, Dance and Drama — music",
+     "level": "Vg1",
+     "category": "MD",
+     "values": {
+      "2024": 30.7,
+      "2025": 36.8,
+      "2026": 44.7
+     },
+     "grep": "MDMDD1--1-"
+    },
+    {
+     "program": "Restaurant- og matfag",
+     "program_en": "Restaurant and Food Processing",
+     "level": "Vg1",
+     "category": "RM",
+     "values": {
+      "2024": 27.5,
+      "2025": 10.0,
+      "2026": 21.3
+     },
+     "grep": "RMRMF1----"
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg1",
+     "category": "SR",
+     "values": {
+      "2024": 28.8,
+      "2025": 27.8,
+      "2026": 26.0
+     },
+     "grep": "SRSSR1----"
+    },
+    {
+     "program": "Salg, service og reiseliv, YSK",
+     "program_en": "Sales, Service, Travel and Tourism, 4-year vocational + academic",
+     "level": "Vg1",
+     "category": "SR",
+     "values": {
+      "2025": 41.3,
+      "2026": 44.6
+     },
+     "grep": "SRSSR1P---"
+    },
+    {
+     "program": "Studiespesialisering",
+     "program_en": "Specialization in General Studies",
+     "level": "Vg1",
+     "category": "ST",
+     "values": {
+      "2024": 35.0,
+      "2025": 16.4,
+      "2026": 24.0
+     },
+     "grep": "STUSP1----"
+    },
+    {
+     "program": "Teknologi- og industrifag",
+     "program_en": "Technical and Industrial Production",
+     "level": "Vg1",
+     "category": "TP",
+     "values": {
+      "2024": 20.7,
+      "2025": 12.3,
+      "2026": 23.6
+     },
+     "grep": "TPTIP1----"
+    },
+    {
+     "program": "Ambulansefag",
+     "program_en": "Ambulance Service Skills",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 45.0,
+      "2025": 44.4,
+      "2026": 47.5
+     },
+     "grep": "HSAMB2----"
+    },
+    {
+     "program": "Arbeidsmaskiner",
+     "program_en": "Machinery",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2025": 31.3,
+      "2026": 35.0
+     },
+     "grep": "TPAMK2----"
+    },
+    {
+     "program": "Baker og konditor",
+     "program_en": "Baker and Confectioner",
+     "level": "Vg2",
+     "category": "RM",
+     "values": {
+      "2024": 34.3,
+      "2025": 27.1,
+      "2026": 28.3
+     },
+     "grep": "RMBAK2----"
+    },
+    {
+     "program": "Barne- og ungdomsarbeider",
+     "program_en": "Child Care and Youth Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2025": 40.0,
+      "2026": 32.5
+     },
+     "grep": "HSBUA2----",
+     "official": "Barne- og ungdomsarbeiderfag",
+     "aliases": [
+      "barne- og ungdomsarbeiderfag"
+     ]
+    },
+    {
+     "program": "Dans",
+     "program_en": "Dance Studies",
+     "level": "Vg2",
+     "category": "MD",
+     "values": {
+      "2024": 40.0,
+      "2025": 36.0,
+      "2026": 38.9
+     },
+     "grep": "MDDAN2----"
+    },
+    {
+     "program": "Datatekn og elektronikk, SK 3 år",
+     "program_en": "Computers and Electronics, 3-year academic track",
+     "level": "Vg2",
+     "category": "EL",
+     "values": {
+      "2025": 36.3,
+      "2026": 36.7
+     },
+     "grep": "ELDEL2N---",
+     "official": "Datateknologi og elektronikk"
+    },
+    {
+     "program": "Datateknologi og elektronikk",
+     "program_en": "Computers and Electronics",
+     "level": "Vg2",
+     "category": "EL",
+     "values": {
+      "2024": 21.4,
+      "2025": 47.1,
+      "2026": 25.7
+     },
+     "grep": "ELDEL2----"
+    },
+    {
+     "program": "Elenergi og ekom",
+     "program_en": "Electrical Energy and Electronic Communications",
+     "level": "Vg2",
+     "category": "EL",
+     "values": {
+      "2024": 40.0,
+      "2025": 31.4,
+      "2026": 35.7
+     },
+     "grep": "ELELE2----"
+    },
+    {
+     "program": "Helsearbeiderfag",
+     "program_en": "Health Work",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 21.4,
+      "2025": 23.8,
+      "2026": 30.0
+     },
+     "grep": "HSHEA2----"
+    },
+    {
+     "program": "Helsearbeiderfag, SK 3 år",
+     "program_en": "Health Work, 3-year academic track",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2024": 23.6,
+      "2025": 35.0,
+      "2026": 38.0
+     },
+     "grep": "HSHEA2N---"
+    },
+    {
+     "program": "Helsearbeiderfag, veksl.m",
+     "program_en": "Health Work (veksl.m)",
+     "level": "Vg2",
+     "category": "HS",
+     "values": {
+      "2025": 20.0,
+      "2026": 28.3
+     },
+     "grep": "HSHEA2VM--"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg2",
+     "category": "ID",
+     "values": {
+      "2024": 22.2,
+      "2025": 23.0,
+      "2026": 26.3
+     },
+     "grep": "IDIDR2----"
+    },
+    {
+     "program": "Industriteknologi",
+     "program_en": "Industrial Technology",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2024": 20.0,
+      "2025": 38.8,
+      "2026": 30.0
+     },
+     "grep": "TPPIN2----"
+    },
+    {
+     "program": "Kjøretøy",
+     "program_en": "Motor Vehicles",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2024": 26.3,
+      "2025": 28.8,
+      "2026": 27.8
+     },
+     "grep": "TPKJT2----"
+    },
+    {
+     "program": "Kokk- og servitørfag",
+     "program_en": "Cookery and Waiting",
+     "level": "Vg2",
+     "category": "RM",
+     "values": {
+      "2024": 22.9,
+      "2025": 30.0,
+      "2026": 31.4
+     },
+     "grep": "RMKOS2----"
+    },
+    {
+     "program": "Musikk",
+     "program_en": "Music Studies",
+     "level": "Vg2",
+     "category": "MD",
+     "values": {
+      "2024": 26.7,
+      "2025": 28.0,
+      "2026": 33.3
+     },
+     "grep": "MDMUS2----"
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 28.8,
+      "2025": 32.5,
+      "2026": 28.8
+     },
+     "grep": "STREA2----"
+    },
+    {
+     "program": "Salg, service og reiseliv",
+     "program_en": "Sales, Service, Travel and Tourism",
+     "level": "Vg2",
+     "category": "SR",
+     "values": {
+      "2026": 31.3
+     },
+     "grep": "SRSSR2----"
+    },
+    {
+     "program": "Salg, service og reiseliv, YSK 4 år",
+     "program_en": "Sales, Service, Travel and Tourism, 4-year vocational + academic",
+     "level": "Vg2",
+     "category": "SR",
+     "values": {
+      "2026": 40.0
+     },
+     "grep": "SRSSR2P---",
+     "aliases": [
+      "salg, service og reiseliv, ysk 4år"
+     ]
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg2",
+     "category": "ST",
+     "values": {
+      "2024": 20.0,
+      "2025": 17.5,
+      "2026": 22.2
+     },
+     "grep": "STSSA2----",
+     "official": "Språk, samfunnsfag og økonomi vg2",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    },
+    {
+     "program": "Transport og logistikk",
+     "program_en": "Transport and Logistics",
+     "level": "Vg2",
+     "category": "TP",
+     "values": {
+      "2024": 26.3,
+      "2025": 31.1,
+      "2026": 27.5
+     },
+     "grep": "TPTOL2----"
+    },
+    {
+     "program": "Treteknikk",
+     "program_en": "Woodworking",
+     "level": "Vg2",
+     "category": "BA",
+     "values": {
+      "2024": 38.6,
+      "2025": 32.9,
+      "2026": 22.9
+     },
+     "grep": "BATRT2----"
+    },
+    {
+     "program": "Tømrer",
+     "program_en": "Carpentry",
+     "level": "Vg2",
+     "category": "BA",
+     "values": {
+      "2024": 22.9,
+      "2025": 24.3,
+      "2026": 20.0
+     },
+     "grep": "BATMF2----"
+    },
+    {
+     "program": "Dans",
+     "program_en": "Dance Studies",
+     "level": "Vg3",
+     "category": "MD",
+     "values": {
+      "2024": 32.7,
+      "2025": 40.0,
+      "2026": 39.2
+     },
+     "grep": "MDDAN3----"
+    },
+    {
+     "program": "Idrettsfag",
+     "program_en": "Sports and Physical Education",
+     "level": "Vg3",
+     "category": "ID",
+     "values": {
+      "2024": 27.7,
+      "2025": 29.2,
+      "2026": 25.4
+     },
+     "grep": "IDIDR3----"
+    },
+    {
+     "program": "Medier og kommunikasjon",
+     "program_en": "Media and Communication",
+     "level": "Vg3",
+     "category": "MK",
+     "values": {
+      "2024": 25.8,
+      "2025": 29.2,
+      "2026": 39.2
+     },
+     "grep": "MEMOK3----"
+    },
+    {
+     "program": "Musikk",
+     "program_en": "Music Studies",
+     "level": "Vg3",
+     "category": "MD",
+     "values": {
+      "2024": 29.2,
+      "2025": 30.8,
+      "2026": 25.8
+     },
+     "grep": "MDMUS3----"
+    },
+    {
+     "program": "Påbygg gen studiekomp, SK",
+     "program_en": "Supplementary Year for General University Admission, academic track",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2025": 30.0,
+      "2026": 34.0
+     },
+     "grep": "PBPBY3N---",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram"
+    },
+    {
+     "program": "Påbygg gen studiekomp, elektro og datatekn., SK",
+     "program_en": "Supplementary Year for General University Admission (elektro og datatekn), academic track",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2026": 34.4
+     },
+     "grep": "PBPBY3N-EL",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram"
+    },
+    {
+     "program": "Påbygging til generell studiekompetanse",
+     "program_en": "Supplementary Year for General University Admission",
+     "level": "Vg3",
+     "category": "PB",
+     "values": {
+      "2024": 37.8,
+      "2025": 25.0,
+      "2026": 30.0
+     },
+     "grep": "PBPBY3----",
+     "official": "Vg3 påbygging til generell studiekompetanse for yrkesfaglige utdanningsprogram",
+     "aliases": [
+      "påbygg. gen. studiekompetanse"
+     ]
+    },
+    {
+     "program": "Realfag",
+     "program_en": "Natural Science and Mathematics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 30.0,
+      "2025": 22.2,
+      "2026": 25.6
+     },
+     "grep": "STREA3----"
+    },
+    {
+     "program": "Språk, samfunn og økonomi",
+     "program_en": "Languages, Social Sciences and Economics Studies",
+     "level": "Vg3",
+     "category": "ST",
+     "values": {
+      "2024": 13.6,
+      "2025": 21.1,
+      "2026": 13.0
+     },
+     "grep": "STSSA3----",
+     "official": "Språk, samfunnsfag og økonomi vg3",
+     "aliases": [
+      "språk, samfunnsfag og økonomi"
+     ]
+    }
+   ],
+   "orgnr": "974575027",
+   "address": "Hoffs gate 6, 3262, LARVIK",
+   "url": "www.vestfoldfylke.no/no/skoler/thor-heyerdahl-vgs/",
+   "nsr_name": "Thor Heyerdahl videregående skole",
+   "lat": 59.04936,
+   "lon": 10.05533,
+   "kommune": "Larvik",
+   "sted": "Larvik"
+  },
+  {
    "name": "Amalie Skram videregående skole",
    "fylke": "Vestland",
    "fylkesnummer": "46",
@@ -75494,7 +78875,7 @@
   2026
  ],
  "updated": {
-  "date": "2026-10-21",
-  "figures": "f604a92f0ce1fa275507fee5267369f1ec5fe94f597b43f3f372074cfd208301"
+  "date": "2026-10-28",
+  "figures": "38eef8d3db83d080c55be13ab9ff18e3f1a2a58e24f60d153b7f26c66b0a698b"
  }
 }
