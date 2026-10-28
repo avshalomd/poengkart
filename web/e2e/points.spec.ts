@@ -12,7 +12,7 @@ test('a submitted grade average switches the legend to chance bands and colours 
   // the thresholds stay in karakterpoeng, so the field says how the two meet
   await expect(page.locator('#pts-note')).toContainText('4,5 i snitt tilsvarer 45,0');
   await openSchool(page, 'Akershus', 'Asker');
-  await expect(page.locator('#s-chance')).toContainText('Med 4,5 i snitt');
+  await expect(page.locator('#s-chance')).toContainText('Estimert sjanse med 4,5 i snitt');
   await expect(page.locator('#s-list .ch:not(.none)')).not.toHaveCount(0);
 });
 

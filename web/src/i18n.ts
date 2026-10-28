@@ -596,15 +596,17 @@ export const T = {
   // programme area in scope has a forecast.
   chanceScope: { no: (m, tot) => (m ? ` · ${m} av ${tot} har ingen prognose` : ''),
                  en: (m, tot) => (m ? ` · ${m} of ${tot} ${m === 1 ? 'has' : 'have'} no forecast` : '') },
-  chanceHeadL: { no: (x, L, n, m, tot) => `Med ${x} i snitt: sannsynlig plass på ${L} av ${n} programområde${n === 1 ? '' : 'r'}${T.chanceScope.no(m, tot)}`,
-                 en: (x, L, n, m, tot) => `With an average of ${x}: a place is likely at ${L} of ${n} programme area${n === 1 ? '' : 's'}${T.chanceScope.en(m, tot)}` },
-  chanceHeadR: { no: (x, R, n, m, tot) => `Med ${x} i snitt: mulig plass på ${R} av ${n} programområde${n === 1 ? '' : 'r'}${T.chanceScope.no(m, tot)}`,
-                 en: (x, R, n, m, tot) => `With an average of ${x}: a place is possible at ${R} of ${n} programme area${n === 1 ? '' : 's'}${T.chanceScope.en(m, tot)}` },
+  // «Estimert sjanse» leads every head, as the legend does: Vestfold's intake
+  // office asked that the chance read as an estimate (30 Sept 2026)
+  chanceHeadL: { no: (x, L, n, m, tot) => `Estimert sjanse med ${x} i snitt: sannsynlig plass på ${L} av ${n} programområde${n === 1 ? '' : 'r'}${T.chanceScope.no(m, tot)}`,
+                 en: (x, L, n, m, tot) => `Estimated chance with an average of ${x}: a place is likely at ${L} of ${n} programme area${n === 1 ? '' : 's'}${T.chanceScope.en(m, tot)}` },
+  chanceHeadR: { no: (x, R, n, m, tot) => `Estimert sjanse med ${x} i snitt: mulig plass på ${R} av ${n} programområde${n === 1 ? '' : 'r'}${T.chanceScope.no(m, tot)}`,
+                 en: (x, R, n, m, tot) => `Estimated chance with an average of ${x}: a place is possible at ${R} of ${n} programme area${n === 1 ? '' : 's'}${T.chanceScope.en(m, tot)}` },
   // "alle 1 programområdene" keeps its digit on purpose: figure-invariants I10
   // reads ch.n out of this string, and "det ene programområdet" would leave the
   // count nowhere in the head for it (and for a reader) to check.
-  chanceHeadU: { no: (x, n, m, tot) => `Med ${x} i snitt: lite sannsynlig plass på alle ${n} programområdene${T.chanceScope.no(m, tot)}`,
-                 en: (x, n, m, tot) => `With an average of ${x}: a place is unlikely at ${n === 1 ? 'the 1 programme area' : `all ${n} programme areas`}${T.chanceScope.en(m, tot)}` },
+  chanceHeadU: { no: (x, n, m, tot) => `Estimert sjanse med ${x} i snitt: lite sannsynlig plass på alle ${n} programområdene${T.chanceScope.no(m, tot)}`,
+                 en: (x, n, m, tot) => `Estimated chance with an average of ${x}: a place is unlikely at ${n === 1 ? 'the 1 programme area' : `all ${n} programme areas`}${T.chanceScope.en(m, tot)}` },
   chanceCounts: { no: (L, R, U) => `${L} sannsynlig (≥ 70 %) · ${R} mulig (35–70 %) · ${U} lite sannsynlig (< 35 %)`,
                   en: (L, R, U) => `${L} likely (≥ 70%) · ${R} possible (35–70%) · ${U} unlikely (< 35%)` },
   chanceSub: {
