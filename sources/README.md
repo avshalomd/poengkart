@@ -246,11 +246,15 @@ cells are untouched.
 
 ## trondelag
 
-`trondelag_2025-26_<region>.pdf`, one per inntaksregion (Fosen,
-Innherred/Værnes, Namdal, Trøndelag sør, Trondheim), are the county's
-poenggrenser tables published through vilbli
+`trondelag_2025-26_<region>.pdf` and `trondelag_2026-27_<region>.pdf`, one
+per inntaksregion (Fosen, Innherred/Værnes, Namdal, Trøndelag sør, Trondheim),
+are the county's poenggrenser tables published through vilbli
 (<https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6>), Vg1,
-columns keyed by Grep code, no intake round stated.
+columns keyed by Grep code, no intake round stated. From 2026/27 vilbli
+serves each region twice, «Laveste inntatt 2026-2027 <region> tabell.pdf»
+(this table, the one captured) and «… <region>.pdf», a long list of the same
+figures; all 178 cells of the 2026/27 tables were checked against the lists
+when they arrived (28 October 2026).
 `trondelag_2024-25_trondheim_2inntak.pdf` is the 2024/25 table for the
 Trondheim region, published through vilbli, which does state its round
 («ved 2. inntaket»); it is an image-only PDF, read from

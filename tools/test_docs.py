@@ -536,7 +536,9 @@ check(doc, 'table 4 intervals',
       [d('1')] + CI['level 1: model minus persistence, rmse'] + [d('2-3')] + CI['level 2-3: model minus persistence, rmse']
       + [d('4+')] + CI['level 4+: model minus persistence, rmse'] + CI['level 1: model minus programme-county mean, rmse']
       + CI['level 2-3: model minus programme-county mean, rmse'] + CI['level 4+: model minus programme-county mean, rmse'], flat, D2)
-check(doc, '0-year interval', r'the difference, (-[\d.]+) points on those (\d+), has an interval \[(-[\d.]+), \+([\d.]+)\]',
+# the sentence says the interval stays below zero: an upper bound that turns
+# positive again no longer matches, and the text has to be reworded
+check(doc, '0-year interval', r'the difference, (-[\d.]+) points on those (\d+), has an interval \[(-[\d.]+), (-[\d.]+)\] that stays below zero',
       [lvl['0']['rmse_model_on_prog_mean_cells'] - lvl['0']['rmse_prog_mean'], lvl['0']['n_prog_mean']]
       + CI['level 0: model minus programme-county mean, rmse'], flat, [D2, N, D2, D2])
 check(doc, 'deepest stratum ±3', r'deepest stratum \((\d+)% vs (\d+)%\), a difference whose interval \[(-[\d.]+), \+([\d.]+)\]',

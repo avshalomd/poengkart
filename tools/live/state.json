@@ -146,35 +146,35 @@
   "trondelag": {
    "seen": {
     "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Fosen+tabell.pdf": {
-     "captured": "2026-10-29",
+     "captured": "2026-10-28",
      "file": "trondelag/trondelag_2026-27_fosen.pdf",
      "label": "Laveste inntatt 2026-2027 Fosen tabell.pdf",
      "name": "trondelag_2026-27_fosen.pdf",
      "sha256": "fb4bd549e5594cb1c6053a8ee7a71a20f20fb8c81b34458e643d937d7d932aa2"
     },
     "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Innherred-Værnes+tabell.pdf": {
-     "captured": "2026-10-29",
+     "captured": "2026-10-28",
      "file": "trondelag/trondelag_2026-27_innherred-vaernes.pdf",
      "label": "Laveste inntatt 2026-2027 Innherred-Værnes tabell.pdf",
      "name": "trondelag_2026-27_innherred-vaernes.pdf",
      "sha256": "80b69c6a8422a67481c7ee985690f922feabc97095b46e778b1999dd13ba81ed"
     },
     "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Namdal+tabell.pdf": {
-     "captured": "2026-10-29",
+     "captured": "2026-10-28",
      "file": "trondelag/trondelag_2026-27_namdal.pdf",
      "label": "Laveste inntatt 2026-2027 Namdal tabell.pdf",
      "name": "trondelag_2026-27_namdal.pdf",
      "sha256": "607be2c4f977fe193393c385ab517421a2a53de65fef3d78f77e3b3016454e6c"
     },
     "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Trondheim+tabell.pdf": {
-     "captured": "2026-10-29",
+     "captured": "2026-10-28",
      "file": "trondelag/trondelag_2026-27_trondheim.pdf",
      "label": "Laveste inntatt 2026-2027 Trondheim tabell.pdf",
      "name": "trondelag_2026-27_trondheim.pdf",
      "sha256": "67b561f65b58d4bf5afe4d9b20e074782aaefd52bb895c53736be71847d2ff4e"
     },
     "https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Trøndelag+Sør+tabell.pdf": {
-     "captured": "2026-10-29",
+     "captured": "2026-10-28",
      "file": "trondelag/trondelag_2026-27_trondelag-sor.pdf",
      "label": "Laveste inntatt 2026-2027 Trøndelag Sør tabell.pdf",
      "name": "trondelag_2026-27_trondelag-sor.pdf",

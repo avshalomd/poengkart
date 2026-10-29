@@ -121,9 +121,12 @@ person:
   Hudpleie → Hudpleier, and so on. Same Grep code, different official name;
   today each is its own series, with a break at 2020. Joining them would give
   longer trend lines at the cost of the register's own names.
-- **2026/27 not yet published:** Trøndelag (December, by their PDF dates),
-  Buskerud (a new page slug will appear), Akershus's own page (November).
-  Recheck monthly; the six counties outside the dataset are unchanged.
+- **2026/27 not yet published:** ~~Trøndelag (December, by their PDF dates),
+  Buskerud (a new page slug will appear), Akershus's own page (November).~~
+  All three are in: Buskerud on 3 October 2026, Akershus's page before
+  21 October, Trøndelag's five tables on 28 October (report v1.32), earlier than
+  their PDF dates had suggested. Recheck monthly; the six counties outside the
+  dataset are unchanged.
   *Rechecked 10 Sept 2026: all ten unchanged. Telemark's intake news of
   9 July 2026 gives per-school head-counts only, no thresholds.*
 - **Telemark (thread «Poenggrenser i Telemark», answered 17 Sept 2026 with

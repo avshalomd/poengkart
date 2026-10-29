@@ -362,6 +362,31 @@
    "sha256": "bc225bf1bac1436552cd05b7bb349f62cb21a1288b6ffa0c8ea16395195c4517",
    "provenance": "Trøndelag fylkeskommune via vilbli.no/trondelag, one PDF per inntaksregion (2025/26)."
   },
+  "trondelag/trondelag_2026-27_fosen.pdf": {
+   "size": 188974,
+   "sha256": "fb4bd549e5594cb1c6053a8ee7a71a20f20fb8c81b34458e643d937d7d932aa2",
+   "provenance": "Trøndelag fylkeskommune: «Laveste inntatt 2026-2027 Fosen tabell.pdf»; linked from https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6; served at https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Fosen+tabell.pdf; school year 2026/2027; region Fosen; pages 1; captured as served, byte for byte, 28.10.2026 19:29 UTC by the live source watch (tools/live, source trondelag)."
+  },
+  "trondelag/trondelag_2026-27_innherred-vaernes.pdf": {
+   "size": 200278,
+   "sha256": "80b69c6a8422a67481c7ee985690f922feabc97095b46e778b1999dd13ba81ed",
+   "provenance": "Trøndelag fylkeskommune: «Laveste inntatt 2026-2027 Innherred-Værnes tabell.pdf»; linked from https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6; served at https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Innherred-Værnes+tabell.pdf; school year 2026/2027; region Innherred-Værnes; pages 1; captured as served, byte for byte, 28.10.2026 19:29 UTC by the live source watch (tools/live, source trondelag)."
+  },
+  "trondelag/trondelag_2026-27_namdal.pdf": {
+   "size": 189262,
+   "sha256": "607be2c4f977fe193393c385ab517421a2a53de65fef3d78f77e3b3016454e6c",
+   "provenance": "Trøndelag fylkeskommune: «Laveste inntatt 2026-2027 Namdal tabell.pdf»; linked from https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6; served at https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Namdal+tabell.pdf; school year 2026/2027; region Namdal; pages 1; captured as served, byte for byte, 28.10.2026 19:29 UTC by the live source watch (tools/live, source trondelag)."
+  },
+  "trondelag/trondelag_2026-27_trondelag-sor.pdf": {
+   "size": 197358,
+   "sha256": "4d672e74caba5dd5c7a15c422284bb191d3bc6de3e7aad302323e4eb60d11b20",
+   "provenance": "Trøndelag fylkeskommune: «Laveste inntatt 2026-2027 Trøndelag Sør tabell.pdf»; linked from https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6; served at https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Trøndelag+Sør+tabell.pdf; school year 2026/2027; region Trøndelag Sør; pages 1; captured as served, byte for byte, 28.10.2026 19:29 UTC by the live source watch (tools/live, source trondelag)."
+  },
+  "trondelag/trondelag_2026-27_trondheim.pdf": {
+   "size": 195149,
+   "sha256": "67b561f65b58d4bf5afe4d9b20e074782aaefd52bb895c53736be71847d2ff4e",
+   "provenance": "Trøndelag fylkeskommune: «Laveste inntatt 2026-2027 Trondheim tabell.pdf»; linked from https://www.vilbli.no/nb/trondelag/a/poengsum-og-karakterer-6; served at https://webservice.vilbli.no/Data/Artikkelvedlegg/041562/Laveste+inntatt+2026-2027+Trondheim+tabell.pdf; school year 2026/2027; region Trondheim; pages 1; captured as served, byte for byte, 28.10.2026 19:29 UTC by the live source watch (tools/live, source trondelag)."
+  },
   "vestfold/laveste-inntatte-karakterpoeng-2024-2026.xlsx": {
    "size": 27278,
    "sha256": "541b69d47681adedc8fed580c79a219d94dfdbf9109b812dd6e1a4361aa3dcab",
