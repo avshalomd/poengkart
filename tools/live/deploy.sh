@@ -32,8 +32,11 @@ url=$(node -e 'const s = require("fs").readFileSync(process.argv[1], "utf8");
 
 # the build minifies the data (tools/minify-data.mjs), so the site serves the
 # same JSON in other bytes: compare what it says, not its SHA-256
-# (re-serialised by node, as the minifier does: 20.0 and 20 are one number)
-content() { node -e 'let s = ""; process.stdin.on("data", d => s += d).on("end", () => {
+# (re-serialised by node, as the minifier does: 20.0 and 20 are one number).
+# stdin is decoded as UTF-8 before it is joined: raw chunks split an «ø» at a
+# chunk edge, and the file and the download chunk differently (29 Oct 2026:
+# the same data hashed two ways and failed the deploy it had just verified)
+content() { node -e 'let s = ""; process.stdin.setEncoding("utf8").on("data", d => s += d).on("end", () => {
   try { s = JSON.stringify(JSON.parse(s)); } catch { s = "unreadable"; }
   console.log(require("crypto").createHash("sha256").update(s).digest("hex")); })'; }
 want=$(content < web/public/data/schools.json)

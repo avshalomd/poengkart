@@ -503,3 +503,24 @@ def test_the_deploy_summary_names_the_deployment_url(tmp_path, out):
     assert r.returncode == 0, r.stdout + r.stderr
     assert summary.read_text() == ('Deployed main 7c2935f (https://poengkart-k3j9x2abc-avshalomds-projects.vercel.app); '
                                    'poengkart.no serves its schools.json.\n')
+
+
+# ---- deploy.sh: the check that the site serves main's schools.json ----
+
+def test_the_deploy_check_reads_utf8_split_across_chunks(tmp_path):
+    """node delivers a file on stdin in 64 KiB chunks; an «ø» straddling the
+    edge was joined from raw bytes and hashed as two U+FFFD (29 Oct 2026)."""
+    import subprocess
+    src = open(os.path.join(TOOLS, 'live', 'deploy.sh'), encoding='utf-8').read()
+    fn = re.search(r"^content\(\) \{.*?'; \}$", src, re.S | re.M).group(0)
+    pad = 65536 - len('{"a":"') - 1          # the «ø» starts on the last byte of the first chunk
+    p = tmp_path / 'schools.json'
+    p.write_text('{"a":"' + 'x' * pad + 'ø' * 10 + '"}', encoding='utf-8')
+    assert p.read_bytes()[65535:65537] == 'ø'.encode()
+    whole = subprocess.run(
+        ['node', '-e', 'const s = require("fs").readFileSync(process.argv[1], "utf8");'
+         'console.log(require("crypto").createHash("sha256").update(JSON.stringify(JSON.parse(s))).digest("hex"))',
+         str(p)], capture_output=True, text=True, check=True).stdout.strip()
+    piped = subprocess.run(['bash', '-c', fn + f'\ncontent < "{p}"'],
+                           capture_output=True, text=True, check=True).stdout.strip()
+    assert piped == whole
