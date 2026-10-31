@@ -32,7 +32,7 @@ const HOME_TITLE = 'Poengkart – poenggrenser for videregående skole';
 
 test('the title follows the sheet', async ({ page }) => {
   await boot(page, '/akershus/asker');
-  await expect(page).toHaveTitle('Asker – poenggrenser | Poengkart');
+  await expect(page).toHaveTitle('Asker videregående skole – poenggrenser | Poengkart');
   await page.locator('#s-photo button.close:not(.bug)').click();
   await expect(page.locator('#side')).not.toHaveClass(/open/);
   await expect(page).toHaveTitle(HOME_TITLE);
@@ -41,7 +41,7 @@ test('the title follows the sheet', async ({ page }) => {
   await page.locator('#listview tbody tr').first().click();
   await expect(page.locator('#side')).toHaveClass(/open/);
   const name = await page.locator('#s-photo .name h2').textContent();
-  await expect(page).toHaveTitle(`${name} – poenggrenser | Poengkart`);
+  await expect(page).toHaveTitle(new RegExp(`^${name!.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}.* – poenggrenser \\| Poengkart$`));
   await page.goBack();
   await expect(page.locator('#side')).not.toHaveClass(/open/);
   await expect(page).toHaveTitle(HOME_TITLE);
@@ -94,7 +94,7 @@ test('a school page carries the school before any script runs', async ({ request
   const res = await request.get('/akershus/asker');
   expect(res.status()).toBe(200);
   const html = await res.text();
-  expect(html).toMatch(/<title>Asker – poenggrenser \| Poengkart<\/title>/);
+  expect(html).toMatch(/<title>Asker videregående skole – poenggrenser \| Poengkart<\/title>/);
   expect(html).toMatch(/<link rel="canonical" href="https:\/\/poengkart\.no\/akershus\/asker">/);
   expect(html).toMatch(/<meta property="og:title" content="Asker – hva krevdes for å komme inn\?">/);
   expect(html).toContain('<aside id="side" class="open">');

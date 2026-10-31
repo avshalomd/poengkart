@@ -32,7 +32,7 @@ const crumbs = (items: [string, string][]) => ({
 
 export const HOME_HEAD: HeadProps = {
   title: 'Poengkart – poenggrenser for videregående skole',
-  description: 'Se poenggrensene for 288 videregående skoler i tolv fylker, 2012–2026. Hva krevdes for å komme inn i fjor, og hvordan har grensene endret seg? Kart, trender og tall per programområde.',
+  description: 'Poenggrensene for 288 videregående skoler i tolv fylker, 2012–2026. Se hva som krevdes for å komme inn på hvert programområde, på kart og i liste.',
   canonical: SITE + '/',
   ogTitle: HOME_OG_TITLE,
   ogDescription: 'Poenggrensene for 288 videregående skoler i tolv fylker, 2012–2026, på kart. Se hva som krevdes for å få plass, og hvordan grensene har endret seg.',

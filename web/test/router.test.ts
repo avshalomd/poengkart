@@ -48,7 +48,7 @@ describe('the address', () => {
   });
   it('setUrlSchool puts the open school in the tab title and takes it out again', () => {
     setUrlSchool(asker());
-    expect(document.title).toBe('Asker – poenggrenser | Poengkart');
+    expect(document.title).toBe('Asker videregående skole – poenggrenser | Poengkart');
     expect(document.title).toBe(schoolTitle(asker()));
     setUrlSchool(null);
     expect(document.title).toBe(t('pageTitle'));
@@ -120,9 +120,17 @@ describe('legacy links', () => {
 });
 
 describe('the school page head', () => {
+  it('a school listed by its place alone takes the words the register gives it, and no others', () => {
+    const named = (name: string, nsr_name?: string) => schoolTitle({ name, nsr_name } as any);
+    expect(named('Gol', 'Gol vidaregåande skule')).toBe('Gol vidaregåande skule – poenggrenser | Poengkart');
+    expect(named('St. Hallvard', 'St Hallvard videregående skole')).toBe('St. Hallvard videregående skole – poenggrenser | Poengkart');
+    expect(named('Ål', 'Ål vidaregåande skole avd Ål')).toBe('Ål vidaregåande skole – poenggrenser | Poengkart');
+    expect(named('Fana gymnas', 'Fana Gymnas')).toBe('Fana gymnas – poenggrenser | Poengkart');
+    expect(named('Nes')).toBe('Nes – poenggrenser | Poengkart');
+  });
   it('names the school in the title, the county in the description and the path in the canonical', () => {
     const h = schoolHead(asker(), DATA);
-    expect(h.title).toBe('Asker – poenggrenser | Poengkart');
+    expect(h.title).toBe('Asker videregående skole – poenggrenser | Poengkart');
     expect(h.canonical).toBe('https://poengkart.no/akershus/asker');
     expect(h.description).toContain('Asker i Akershus');
     expect(h.description).toMatch(/\(\d{4}–\d{4}\)\.$/);

@@ -21,7 +21,15 @@ export const countyPath = (fylke: string) => '/' + slug(fylke);
 // the build writes this into <title> (prerender.ts) and the app keeps it there
 // for as long as the sheet is open (router.ts, lang.ts). Norwegian in both
 // languages: it is the site's name and the county's own word for the figures.
-export const schoolTitle = (s: School) => `${s.name} – poenggrenser | Poengkart`;
+// Akershus and Buskerud list a school by its place alone («Asker»), but readers
+// search for the whole name. The register says which words it takes: Gol is a
+// «vidaregåande skule», and no school gets words the register does not give it.
+const fullSchoolName = (s: School) => {
+  if (/skole|skule|gymnas|vgs|videreg|vidareg/i.test(s.name)) return s.name;
+  const kind = s.nsr_name?.match(/(?:videregående|vidaregåande) (?:skole|skule)/);
+  return kind ? `${s.name} ${kind[0]}` : s.name;
+};
+export const schoolTitle = (s: School) => `${fullSchoolName(s)} – poenggrenser | Poengkart`;
 // the share card's title, prerendered and kept in step as sheets open and close
 export const HOME_OG_TITLE = 'Poengkart – hva krevdes for å komme inn?';
 export const schoolOgTitle = (s: School) => `${s.name} – hva krevdes for å komme inn?`;
