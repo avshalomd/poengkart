@@ -137,6 +137,27 @@ test('every school page points at its own card, and the card is a PNG', async ({
   expect((await res.body()).length).toBeGreaterThan(10_000);
 });
 
+test('every kind of page names the manifest, and the manifest\'s icons are real', async ({ request }) => {
+  for (const path of ['/', '/akershus', '/akershus/asker', '/report']) {
+    const html = await (await request.get(path)).text();
+    expect(html, path).toContain('<link rel="manifest" href="/site.webmanifest">');
+    expect(html, path).toContain('<meta name="apple-mobile-web-app-title" content="Poengkart">');
+    const alt = html.match(/<meta property="og:image:alt" content="([^"]*)"/)![1];
+    expect(html, path).toContain(`<meta name="twitter:image:alt" content="${alt}">`);
+  }
+  const manifest = await (await request.get('/site.webmanifest')).json();
+  expect(manifest.name).toBe('Poengkart');
+  expect(manifest.icons.length).toBeGreaterThan(0);
+  for (const icon of manifest.icons) {
+    const res = await request.get(icon.src);
+    expect(res.status(), icon.src).toBe(200);
+    expect(res.headers()['content-type'], icon.src).toContain('image/png');
+    const png = await res.body();
+    const side = icon.sizes.split('x').map(Number);
+    expect([png.readUInt32BE(16), png.readUInt32BE(20)], icon.src).toEqual(side);
+  }
+});
+
 test('the sitemap names every school', async ({ request }) => {
   const res = await request.get('/sitemap.xml');
   expect(res.status()).toBe(200);

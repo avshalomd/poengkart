@@ -600,6 +600,12 @@ fylker = re.findall(r'\b([a-zæøå]+|\d+)\s+(?:fylker|counties)\b', head)
 check('every county count in the page copy matches the dataset',
       fylker and all(f in (n_fylker, str(len(DATA['counties']))) for f in fylker),
       f'found {fylker}, dataset has {n_fylker}')
+# the report's share card named 228 schools long after the map had 288
+_report = open(os.path.join(HERE, '..', 'web', 'public', 'report.html'), encoding='utf-8').read()
+r_alts = re.findall(r'image:alt" content="Map of Norway with (\d+) upper-secondary schools', _report)
+check("the report's share-card descriptions count the dataset's schools",
+      len(r_alts) == 2 and all(int(c) == n_schools for c in r_alts),
+      f'found {r_alts}, dataset has {n_schools}')
 # the README quotes the same numbers, and has twice fallen behind the data
 readme = open(os.path.join(HERE, '..', 'README.md'), encoding='utf-8').read()
 r_schools = re.findall(r'\b(\d+) schools\b', readme)

@@ -233,6 +233,11 @@ _byline = next((l for l in header_lines if 'Technical report' in l), '')
 og_description = ('Technical report on Poengkart: an open dataset of Norwegian upper-secondary admission '
                   'thresholds and a calibrated forecast of the next intake. ' + re.sub(r'\s*\(.*?\)', '', _byline)).strip()
 
+# og.png draws one dot per school, so its description counts them from the same file
+_n_schools = len(json.loads((ROOT / 'web/public/data/schools.json').read_text())['schools'])
+og_image_alt = (f'Map of Norway with {_n_schools} upper-secondary schools as dots coloured by admission threshold, '
+                'and one school’s panel with its photo and trend.')
+
 # schema.org for search engines and AI assistants: the report as a scholarly article by its
 # author, at the byline's version and month, about the dataset the home page describes
 _months = {m: f'{i:02d}' for i, m in enumerate(['January', 'February', 'March', 'April', 'May', 'June', 'July',
@@ -328,6 +333,8 @@ page = f"""<!DOCTYPE html>
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png?v=2" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Poengkart">
 <link rel="canonical" href="https://poengkart.no/report">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Poengkart">
@@ -339,11 +346,12 @@ page = f"""<!DOCTYPE html>
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Map of Norway with 228 upper-secondary schools as dots coloured by admission threshold, and one school’s panel with its photo and trend.">
+<meta property="og:image:alt" content="{og_image_alt}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc_attr(title)}">
 <meta name="twitter:description" content="{esc_attr(og_description)}">
 <meta name="twitter:image" content="https://poengkart.no/og.png">
+<meta name="twitter:image:alt" content="{og_image_alt}">
 <script type="application/ld+json">{json_ld}</script>
 <!-- cookieless page counts; a no-op until Web Analytics is enabled on the Vercel project -->
 <script defer src="/_vercel/insights/script.js"></script>

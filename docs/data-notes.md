@@ -191,7 +191,7 @@ the wrong value. A figure above the scale's top (`MAX_PLAUSIBLE` in
 år, in both editions (the 1. inntak figure is 37,9), so that one cell is
 missing until the county corrects it.
 
-`tools/test_parse.py` runs 140 regression checks over the result; every one of
+`tools/test_parse.py` runs 141 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built

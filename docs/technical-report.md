@@ -274,7 +274,7 @@ figure between 0 and 10 is kept as printed. Karakterpoeng start at 10,0, a
 grades missing; Oslo's intake office explained that an applicant with fewer
 than seven counting numeric grades is scored as the sum of their grades
 divided by 16, times ten, instead of 0. A printed 0,0 stays where the
-county documents what it means. A suite of 140
+county documents what it means. A suite of 141
 regression checks locks known failure modes: shifted year columns,
 implausible values, unmatched schools, county-specific quirks, and the
 decimal rule itself.
@@ -1349,7 +1349,7 @@ the model and the report rebuild offline. The fit is deterministic; the
 cluster bootstrap uses a fixed seed. The whole pipeline runs in minutes on a
 laptop. `tools/test_docs.py` pins every number in this report and in
 `docs/model.md` to the shipped model file, so a refresh that moves a figure
-fails the build until the text is updated; validation further comprises 140
+fails the build until the text is updated; validation further comprises 141
 parser regression checks and 18,040 model invariants. The dataset is
 released under the Norwegian Licence for Open Government Data (NLOD 2.0)
 and the code under the MIT licence.

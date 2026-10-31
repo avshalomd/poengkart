@@ -13,9 +13,12 @@ drawing of its own. The SVG and the header's inline copy in shell.html use the
 same geometry (pin space 0-100, head centred at 50,39, radius 28).
 
 After drawing a new mark, bump the ?v= on the icon links in
-web/src/layouts/Base.astro and tools/build_report_page.py: browsers keep the
-old icons for a week under the old addresses.
+web/src/layouts/Base.astro, web/src/layouts/Page.astro and
+tools/build_report_page.py: browsers keep the old icons for a week under the
+old addresses. Then upload favicon-512.png as the Vercel project's avatar
+(Settings, General, Avatar): the dashboard keeps its own copy.
 """
+import json
 import math
 import os
 
@@ -97,15 +100,42 @@ SVG = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
 '''
 
 
+# What Android and desktop Chrome name and draw a saved shortcut with. `browser`
+# keeps a saved page in an ordinary tab, address bar and sharing included.
+MANIFEST = {
+    'name': 'Poengkart',
+    'short_name': 'Poengkart',
+    'lang': 'no',
+    'start_url': '/',
+    'scope': '/',
+    'display': 'browser',
+    'theme_color': BLUE,
+    'background_color': '#ffffff',
+    'icons': [
+        {'src': '/favicon-192.png', 'sizes': '192x192', 'type': 'image/png'},
+        {'src': '/favicon-512.png', 'sizes': '512x512', 'type': 'image/png'},
+        {'src': '/icon-maskable-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'},
+    ],
+}
+
+
 def main():
     open(os.path.join(WEB, 'favicon.svg'), 'w').write(SVG)
-    for name, size in (('favicon-32.png', 32), ('favicon-192.png', 192)):
+    for name, size in (('favicon-32.png', 32), ('favicon-192.png', 192), ('favicon-512.png', 512)):
         render(size).save(os.path.join(WEB, name))
         print(' ', name)
     # iOS rounds the corners itself and paints transparent ones black, so the
     # home-screen icon is a full square
     render(180, radius_ratio=0).save(os.path.join(WEB, 'apple-touch-icon.png'))
     print('  apple-touch-icon.png')
+    # Android crops a maskable icon to its own shape, so it fills the square too;
+    # the pin stays inside the 80 % circle every crop keeps
+    render(512, radius_ratio=0).save(os.path.join(WEB, 'icon-maskable-512.png'))
+    print('  icon-maskable-512.png')
+    with open(os.path.join(WEB, 'site.webmanifest'), 'w', encoding='utf-8') as f:
+        json.dump(MANIFEST, f, ensure_ascii=False, indent=2)
+        f.write('\n')
+    print('  site.webmanifest')
     # .ico so old browsers and bookmark bars have something too
     render(64).save(os.path.join(WEB, 'favicon.ico'),
                     sizes=[(16, 16), (32, 32), (48, 48)])
