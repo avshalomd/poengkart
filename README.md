@@ -29,8 +29,10 @@ write-up. Press + on a programme to build your list of wishes (*ønsker*, the
 ten a vigo application allows) and copy it out, or use the calculator to work
 out the average from your grades. Search finds any school (⌘K or `/`), Kart ⇄
 Liste swaps the map for a sortable table (*Nær et sted* sorts it by distance
-from a town), every open school has its own shareable page (`/akershus/asker`; old
-`#s=Fylke/Skolenavn` links still open), and settings hold language, theme,
+from a town), every county has a page listing its schools and their newest
+figures (`/akershus`), every open school has its own shareable page with its
+whole record year by year (`/akershus/asker`; old `#s=Fylke/Skolenavn` links
+still open), and settings hold language, theme,
 text size, the Vg2–Vg3 rows, a colour-blind palette and whether schools with
 no recent figures are shown (hidden by default). *Send tilbakemelding* in help
 sends the view you had open with your report, never a picture.
@@ -43,13 +45,16 @@ npm run dev
 ```
 
 Opens on http://localhost:8123, or on `$PORT` when it is set. `npm run build`
-writes the deployable site to `web/dist`. Every school has its own page (`/akershus/asker`), prerendered at
-build time from `web/public/data/schools.json`, with its own share card
-under `/og/` and an entry in `/sitemap.xml`; links of the old
+writes the deployable site to `web/dist`. Every county (`/akershus`) and every
+school (`/akershus/asker`) has its own page, prerendered at build time from
+`web/public/data/schools.json` as plain HTML with schema.org data, each school
+with its own share card under `/og/`; all of them are in `/sitemap.xml`, and
+`/llms.txt` describes the site for AI assistants. Links of the old
 `#s=Fylke/Skole` form still open. To rebuild the dataset from the county
-source documents in `sources/`:
+source documents in `sources/` (Python 3.9 or later):
 
 ```bash
+python3 -m venv .venv && .venv/bin/pip install -r tools/requirements.txt
 .venv/bin/python3 tools/refresh.py
 ```
 
@@ -63,8 +68,8 @@ is reused. A missing `sources/` is restored from the public mirror with
 the node project runs the prerender, sitemap and share-card modules with no
 DOM at all; coverage thresholds 80 % for statements, functions and lines,
 65 % for branches), `npm run e2e` the browser suite (Playwright: boot,
-permalinks, filters, points, wishes, the list, settings, the calculator, the
-bug button, routes, a phone, axe, and the figure invariants), and
+permalinks, filters, points, wishes, the list, settings, the calculator,
+feedback, routes, a phone, axe, and the figure invariants), and
 `.venv/bin/python3 -m pytest` the dataset checks. `npm run typecheck` runs
 `tsc --noEmit`; there is no `astro check` (the project pins TypeScript 7,
 which `@astrojs/check` does not support), so the build is the check for
@@ -150,6 +155,8 @@ register has no coordinates. Map tiles by [CARTO](https://carto.com/) and
   credit. Each was checked to show that school and no identifiable pupils;
   schools without one get a small location map. If you hold the rights to a
   photo and want it removed, open an issue.
+- **Citing.** [CITATION.cff](CITATION.cff) gives the technical report's title,
+  author and version, and GitHub's *Cite this repository* reads it.
 - **Unofficial project.** Figures may contain parsing errors; check the
   county's own pages before making decisions.
 - **Privacy.** No accounts and no cookies: the grade average and the wishes
