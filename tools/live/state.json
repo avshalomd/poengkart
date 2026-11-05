@@ -64,7 +64,7 @@
      "file": "akershus/akershus-2026-2027-rev2.html",
      "label": "Poenggrenser [2026]",
      "name": "akershus-2026-2027.html",
-     "sha256": "3972c6bca0282c8558d88d0dcb75dee7366171657fb0c14aecd8a5c26ece4f34"
+     "sha256": "a19e930b978721c9c779450a59b01eaeae7c4fc13959b9c4869ea8bf7799dbbd"
     }
    }
   },
@@ -86,7 +86,7 @@
      "file": "buskerud/buskerud-2026-2027-rev2.html",
      "label": "Her finner du nedre poenggrense for inntak i Buskerud 2026-2027",
      "name": "buskerud-2026-2027.html",
-     "sha256": "aee26b2fea5568e88abe01f6aada32819c43d22ddd4c2b4c2bc3b3210ca8cb63"
+     "sha256": "6b31c3ebd1a0a1467d4bf79e1d5803afa68a3012d14221e60ffe954322264fa7"
     }
    }
   },
@@ -106,7 +106,7 @@
      "file": "mro/mro-powerbi-2026-2027.json",
      "label": "Karakterer",
      "name": "mro-powerbi-2026-2027.json",
-     "sha256": "d762e2e4776d90445b907c482916447896af1c70578dc4564b8f5ebdd8048be3"
+     "sha256": "09a10c38d0445c83ecd27d82b66251bea6454d34fda782c4f420e28feff6a83d"
     }
    }
   },
@@ -213,6 +213,14 @@
    }
   },
   "vestland": {
+   "healed": [
+    {
+     "from": null,
+     "key": "landing",
+     "to": "https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/nedre_poenggrense/",
+     "why": "https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/test-poenggrenser/: HTTP 500, no PDFs; found «Nedre poenggrenser» on https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/"
+    }
+   ],
    "seen": {
     "https://www.vestlandfylke.no/contentassets/b3cb08f7dc2c4df8b656867567509152/nedre-poenggrense-etter-3.-inntak.pdf": {
      "file": "vestland/vestland_2025-26_3inntak.pdf",
@@ -238,6 +246,9 @@
      "name": "vestland_2025-26_1inntak.pdf",
      "sha256": "667bd3ae8dee6da39d670d6eadf552e864a943a3fcbb50cc890bcc3e6c9b8dbc"
     }
+   },
+   "urls": {
+    "landing": "https://www.vestlandfylke.no/utdanning-og-karriere/elev/soknad-inntak/nedre_poenggrense/"
    }
   }
  }
