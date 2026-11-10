@@ -20,6 +20,21 @@ describe('finding a school', () => {
     expect(foldName('St. Olav')).toBe('st olav');
   });
 
+  it('finds a school by the name pupils use for it', () => {
+    loadFixtures(); initHelpers();
+    expect(runSearch('katta')!.map((h: any) => h.name)).toEqual(['Hamar katedralskole']);
+    expect(runSearch('Elvis')!.map((h: any) => h.name)).toEqual(['Elvebakken videregående skole']);
+  });
+
+  it('a school the map hides is listed with the reason when nothing shown matches', () => {
+    loadFixtures(); initHelpers(); S.showStale = false;
+    search('fagerlia');
+    const row = document.querySelector('#ov-list .opt')!;
+    expect(row.querySelector('span')!.textContent).toBe('Fagerlia videregående skole');
+    expect(row.querySelector('.fy')!.textContent).toContain(t('staleChip', 2021));
+    expect(document.querySelector('#ov-list .none')).toBeNull();
+  });
+
   it('ranks an exact name first and finds a school by the middle of a word', () => {
     loadFixtures(); initHelpers();
     const hits = runSearch('asker')!;

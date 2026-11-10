@@ -164,6 +164,13 @@ test('every round control on a school centres what it draws', async ({ page }) =
   await page.keyboard.press('Escape');
   await expect(page.locator('#side')).not.toHaveClass(/open/);
   await page.waitForTimeout(400);
+  // a phone folds the list to its one-line summary; the ✕ of a wish is under «Vis»
+  const fold = page.locator('#choices-fold');
+  if (await fold.isVisible()) {
+    await expect(page.locator('#choices .rm').first()).toBeHidden();
+    await fold.click();
+    await expect(fold).toHaveAttribute('aria-expanded', 'true');
+  }
   const choices = await measure(page, 'choices');
   expect(choices.map(o => o.name)).toContain('choices: button.rm');
   expectCentred([...found, ...wished, ...choices]);

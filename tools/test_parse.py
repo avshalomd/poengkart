@@ -359,6 +359,19 @@ check('a Buskerud shared cell with an «Alle» queue still splits into its queue
       and ('Drammen', 'Idrettsfag, toppidrett') not in _bus26
       and ('St. Hallvard', 'Musikk, dans og drama') not in _bus26,
       str({k: v for k, v in _bus26.items() if 'topp' in k[1] or 'dans' in k[1]}))
+# 9 Nov 2026: Buskerud footnotes its asterisked cells «Poenggrense er kun
+# veiledende» (YSK by interview, MDD and toppidrett up to 50 % by skill). The
+# figure was kept and the mark dropped, so Hønefoss YSK read 57,8 as an
+# ordinary threshold and got a chance from grade points alone.
+_busg = {(n, p['program']): p.get('guide') or {} for n, p, y, v in ccells('Buskerud')}
+check('Buskerud\'s footnoted cells carry the county\'s mark, and only those cells do',
+      _busg.get(('Hønefoss', 'Helse- og oppvekstfag, YSK 4 år')) == {'2025': 1, '2026': 1}
+      and _busg.get(('Drammen', 'Idrettsfag, toppidrett, håndball')) == {'2025': 3, '2026': 3}
+      and _busg.get(('St. Hallvard', 'Musikk, dans og drama, dans')) == {'2025': 2, '2026': 2}
+      and _busg.get(('Kongsberg', 'Musikk, dans og drama')) == {'2025': 2}     # 2024 is «**» alone: D, no figure to qualify
+      and sum('2026' in g for g in _busg.values()) == 11
+      and not any(p.get('guide') for s_ in DATA['schools'] if s_['fylke'] != 'Buskerud' for p in s_['programs']),
+      str({k: g for k, g in _busg.items() if g}))
 # QA 7 Oct 2026: Vestland's 3. inntak cells go through the same renames as the
 # 1. inntak ones («Førde vgs, avd Høyanger» is Høyanger), or the school loses them
 _hoy = {(p['program'], p['level']): (p.get('values_r3') or {}).get('2026')

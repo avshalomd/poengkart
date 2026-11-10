@@ -752,6 +752,8 @@
   #choices .row .mv:hover { color: var(--ink); background: var(--accent-soft); }
   #choices .row .mv:focus-visible, #choices .row .rm:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
   #choices .h .acts { display: inline-flex; gap: 12px; }
+  /* the fold button is a phone's (below); wider screens show the whole list */
+  #choices-fold { display: none; }
   #choices .row .pr { font-size: 11px; color: var(--ink-2); }
   /* padding: 0 and a grid: the UA's own `1px 6px` left the 13px cross a
      content box of 10, which it overflowed rightwards — 1,5px off the circle */
@@ -1306,7 +1308,9 @@
 
   /* what the county did to this school: a merger, a disputed figure, a year
      published from a different intake round */
-  .notes { padding: 10px 18px 0; display: grid; gap: 5px; }
+  /* under the chart, above the rows: the chart card's 14px margin above, 4px
+     and the first row's 11px padding below */
+  .notes { padding: 0 18px 4px; display: grid; gap: 5px; }
   .notes p {
     font-size: 11.5px; line-height: 1.45; color: var(--ink-2);
     border-left: 2px solid var(--line); padding: 1px 0 1px 9px;
@@ -1327,6 +1331,11 @@
   .hero .cell .v { font-size: 26px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
   .hero .cell .v.up { color: var(--good); } .hero .cell .v.dn { color: var(--ink-2); }
   .hero .cell .l { font-size: 10.5px; color: var(--ink-3); margin-top: 1px; }
+  /* no change to print (the two years cover different programme areas): the
+     dash is quiet and the reason breaks after the year instead of pushing
+     the programme count to a second row */
+  .hero .cell .v.none-v { color: var(--ink-3); font-weight: 400; }
+  .hero .cell.mixed .l { max-width: 9.5em; }   /* 11.5em pushed the third cell to a second row at 375 px */
   /* A mean over the few programmes that filled up reads like a busy school
      even when most of it took everyone who applied. Wherever a mean is
      printed, this says so. */
@@ -1748,6 +1757,22 @@
      waits for the unfolded card. The rules exist only at the sizes where the panel lies
      across the map, so turning to a wider screen shows the whole card again;
      display: none also takes the folded controls out of the tab order. */
+  /* The wish list on a phone: one line until opened (renderChoices). The line
+     is the head, the chance in short and «Vis»; the whole row is the button's
+     target. A refused wish's note stays in sight either way. */
+  @media (max-width: 560px), (max-height: 480px) {
+    #choices .h { position: relative; align-items: center; gap: 8px; }
+    #choices #choices-fold { display: inline-flex; flex: 1; min-width: 0; justify-content: space-between; align-items: baseline;
+      gap: 8px; text-decoration: none; text-transform: none; letter-spacing: 0; }
+    #choices #choices-fold::after { content: ''; position: absolute; inset: -9px 0; }
+    #choices #choices-fold .brief { font-size: 11.5px; font-weight: 500; color: var(--ink-2); min-width: 0;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    #choices #choices-fold .tg { flex: none; font-size: 11.5px; font-weight: 600; color: var(--accent); }
+    #choices #choices-fold:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    #choices.folded :is(.list, .bar, .sum, .acts) { display: none; }
+    #choices:not(.folded) #choices-fold .brief { visibility: hidden; }
+    #choices:not(.folded) .acts { position: relative; z-index: 1; }
+  }
   @media (max-width: 560px), (max-height: 480px) {
     body.panel-folded:not(.view-list) #panel > .field:not(#pts-field),
     body.panel-folded:not(.view-list) #panel #cat-note,

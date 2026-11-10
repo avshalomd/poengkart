@@ -5485,7 +5485,11 @@
       "2025": 35.7,
       "2026": 41.3
      },
-     "grep": "IDRET1----"
+     "grep": "IDRET1----",
+     "guide": {
+      "2025": 3,
+      "2026": 3
+     }
     },
     {
      "program": "Idrettsfag, toppidrett, fotball",
@@ -5499,7 +5503,11 @@
       "2025": 51.3,
       "2026": 45.0
      },
-     "grep": "IDRET1----"
+     "grep": "IDRET1----",
+     "guide": {
+      "2025": 3,
+      "2026": 3
+     }
     },
     {
      "program": "Idrettsfag, toppidrett, håndball",
@@ -5513,7 +5521,11 @@
       "2025": 46.5,
       "2026": 47.5
      },
-     "grep": "IDRET1----"
+     "grep": "IDRET1----",
+     "guide": {
+      "2025": 3,
+      "2026": 3
+     }
     },
     {
      "program": "Idrettsfag, toppidrett, langrenn/svømming",
@@ -5527,7 +5539,11 @@
       "2025": 39.8,
       "2026": "open"
      },
-     "grep": "IDRET1----"
+     "grep": "IDRET1----",
+     "guide": {
+      "2025": 3,
+      "2026": 3
+     }
     },
     {
      "program": "Kunst, design og arkitektur",
@@ -5929,7 +5945,10 @@
      ],
      "former_names": [
       "Helse- og sosialfag"
-     ]
+     ],
+     "guide": {
+      "2024": 1
+     }
     },
     {
      "program": "Helse- og oppvekstfag, YSK 4 år",
@@ -5944,7 +5963,11 @@
      "grep": "HSHSF1----",
      "aliases": [
       "helse- og oppvekstfag, ysk (4 år)"
-     ]
+     ],
+     "guide": {
+      "2025": 1,
+      "2026": 1
+     }
     },
     {
      "program": "Informasjonsteknologi og medieproduksjon",
@@ -6189,7 +6212,10 @@
       "2025": 4.0,
       "2026": 39.1
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1----",
+     "guide": {
+      "2025": 2
+     }
     },
     {
      "program": "Musikk, dans og drama, musikk",
@@ -6424,7 +6450,10 @@
      ],
      "former_names": [
       "Helse- og sosialfag"
-     ]
+     ],
+     "guide": {
+      "2024": 1
+     }
     },
     {
      "program": "Helse- og oppvekstfag, YSK 4 år",
@@ -6439,7 +6468,11 @@
      "grep": "HSHSF1----",
      "aliases": [
       "helse- og oppvekstfag, ysk (4 år)"
-     ]
+     ],
+     "guide": {
+      "2025": 1,
+      "2026": 1
+     }
     },
     {
      "program": "Helse- og oppvekstfag, barne- og ungdomsarbeider, studiekompetanse (3 år)",
@@ -6476,7 +6509,10 @@
       "2025": "open",
       "2026": 32.0
      },
-     "grep": "SRSSR1----"
+     "grep": "SRSSR1----",
+     "guide": {
+      "2024": 1
+     }
     },
     {
      "program": "Salg, service og reiseliv, YSK 4 år",
@@ -6490,7 +6526,11 @@
      "grep": "SRSSR1----",
      "aliases": [
       "salg, service og reiseliv, ysk (4 år)"
-     ]
+     ],
+     "guide": {
+      "2025": 1,
+      "2026": 1
+     }
     },
     {
      "program": "Service og samferdsel",
@@ -6713,7 +6753,11 @@
       "2025": 45.0,
       "2026": 51.4
      },
-     "grep": "IDRET1----"
+     "grep": "IDRET1----",
+     "guide": {
+      "2025": 3,
+      "2026": 3
+     }
     },
     {
      "program": "Musikk, dans og drama",
@@ -6725,7 +6769,10 @@
       "2025": 11.0,
       "2026": 42.3
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1----",
+     "guide": {
+      "2025": 2
+     }
     },
     {
      "program": "Musikk, dans og drama, musikk",
@@ -6837,7 +6884,11 @@
       "2025": 39.2,
       "2026": "open"
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1----",
+     "guide": {
+      "2025": 2,
+      "2026": 2
+     }
     },
     {
      "program": "Musikk, dans og drama, drama",
@@ -6851,7 +6902,11 @@
       "2025": 41.1,
       "2026": "open"
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1----",
+     "guide": {
+      "2025": 2,
+      "2026": 2
+     }
     },
     {
      "program": "Musikk, dans og drama, musikk",
@@ -6865,7 +6920,11 @@
       "2025": 35.0,
       "2026": 25.0
      },
-     "grep": "MDMDD1----"
+     "grep": "MDMDD1----",
+     "guide": {
+      "2025": 2,
+      "2026": 2
+     }
     },
     {
      "program": "Studiespesialisering",

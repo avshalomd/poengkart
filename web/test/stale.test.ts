@@ -27,11 +27,19 @@ describe('schools that stopped publishing', () => {
     expect(staleCounties()).toEqual([]);
   });
 
-  it('are hidden from the map, the List and search by default, and back with the setting', () => {
+  it('are hidden from the map and the List by default, offered by search only when nothing shown matches, and back with the setting', () => {
     loadFixtures(); initHelpers(); initListview(); stubMap(); renderControls(); renderPanel();
     expect(names(visibleSchools())).not.toContain(STALE[1]);
     expect(shownSchools().length).toBe(DATA.schools.length - STALE.length);
-    expect(names(runSearch('fagerlia') || [])).toEqual([]);
+    // «Ingen treff» for a school with its own page was the defect (9 Nov 2026)
+    expect(names(runSearch('fagerlia') || [])).toEqual([STALE[1]]);
+    // …but a shown school that matches keeps the hidden ones out of the answer
+    const shownHit = shownSchools()[0];
+    const stalePeer = DATA.schools.find((x: any) => !isCurrentSchool(x))!;
+    const both = names(runSearch(shownHit.name) || []);
+    expect(both).toContain(shownHit.name);
+    expect(both.filter((n: string) => STALE.includes(n))).toEqual([]);
+    expect(stalePeer).toBeTruthy();
     setStale(true);
     expect(names(visibleSchools())).toContain(STALE[1]);
     expect(names(runSearch('fagerlia') || [])).toEqual([STALE[1]]);

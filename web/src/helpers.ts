@@ -74,14 +74,26 @@ export const zeroIsFill = (fylke: string | undefined, yr: string | null | undefi
   const cy = (S.DATA?.counties || []).find(c => c.fylke === fylke);
   return !(yr && cy?.lowest_admitted_years?.includes(yr));
 };
+// The county's footnote on the row's newest cell, or 0: Buskerud marks YSK
+// (1 asterisk: interview and grades) and musikk, dans og drama and toppidrett
+// (2 and 3: up to half the places by skill) «Poenggrense er kun veiledende».
+// Such a row keeps its figure and its place in the snitt, says so, and gets no
+// forecast or chance: grade points alone do not decide who gets in
+export const guideMark = (p): number => {
+  const ys = Object.keys(p.values).sort();
+  return (p.guide && p.guide[ys[ys.length - 1]]) || 0;
+};
 export const meanOf = vals => vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
-// year-over-year, like-for-like: only programmes with a number in BOTH
-// years enter the comparison — a school whose basket changed between years
-// used to show a delta with the wrong sign (Hvam: −2,4 shown, +11,6 real)
 // The step between the last two points of the average line: the hero's
 // "endring fra <år>" and the list's ENDRING are this one number. The list used
 // to compare like-for-like programmes instead, and beside an identical snitt
 // the two disagreed on 109 schools and flipped sign on 30.
+// The step is a change only when both means are over the same programme
+// areas. Where they are not it follows which areas had a threshold, not what
+// happened to any of them (9 Nov 2026, Vg1: 117 of 224 schools, 24 with the
+// wrong sign; Hvam showed −2,4 while its one comparable area rose 11,6). So
+// `d`, the figure the app prints, is null there; `step` stays the line's raw
+// step and `same` says which case it is.
 export function meanStep(progs) {
   const meanAt = year => meanOf(progs.map(p => p.values[year]).filter(inMean));
   const yrs = [...new Set(progs.flatMap(p => Object.keys(p.values)))].sort();
@@ -92,7 +104,9 @@ export function meanStep(progs) {
   const prev = plotted[plotted.length - 2];
   const mean = latest === undefined ? null : meanAt(latest);
   const meanPrev = prev === undefined ? null : meanAt(prev);
-  return { latest, prev, mean, meanPrev, d: mean !== null && meanPrev !== null ? round1(mean - meanPrev) : null };
+  const step = mean !== null && meanPrev !== null ? round1(mean - meanPrev) : null;
+  const same = step !== null && progs.every(p => inMean(p.values[latest as string]) === inMean(p.values[prev as string]));
+  return { latest, prev, mean, meanPrev, step, same, d: same ? step : null };
 }
 // The whole line meanStep takes its last step of: the same mean, the same
 // cells, computed for every year that has one. A year no programme put a

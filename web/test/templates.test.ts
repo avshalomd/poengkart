@@ -2,7 +2,8 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { S } from '../src/state';
 import { loadFixtures, DATA, asker, forde } from './fixtures';
 import { stubMap } from './mapstub';
-import { esc, initHelpers, schoolPressure } from '../src/helpers';
+import { esc, guideMark, initHelpers, schoolPressure } from '../src/helpers';
+import { predFor } from '../src/forecast';
 import { openSide } from '../src/sidebar';
 import { t } from '../src/i18n';
 import { photoHtml, metaHtml, notesHtml, heroHtml, srcNoteHtml, listHtml, recordHtml } from '../src/templates';
@@ -175,6 +176,41 @@ describe('the chance explains itself', () => {
     expect(rows.length).toBeGreaterThan(0);
     for (const r of rows) expect(r.querySelector('.fc')!.textContent).toMatch(/^Forventet poenggrense \d{4}.*: ca\. \d+,\d ± \d+,\d/);
     S.myPoints = null;
+  });
+  it('a row the county footnotes as only a guide prints the county’s sentence and no chance', () => {
+    // Buskerud's YSK cells: admitted on interview and grades, «Poenggrense er
+    // kun veiledende». Hønefoss YSK read 57,8 with a chance from points alone
+    const s = asker();
+    S.myPoints = 43;
+    const before = document.createElement('div'); before.innerHTML = listHtml(s, null);
+    const row0 = [...before.querySelectorAll('.prow')].find(r => r.querySelector('.ch:not(.none)'))!;
+    const p = s.programs[+(row0 as HTMLElement).dataset.idx!];
+    const newest = Object.keys(p.values).sort().pop()!;
+    expect(predFor(s, p)).not.toBeNull();
+    p.guide = { [newest]: 1 };
+    try {
+      expect(guideMark(p)).toBe(1);
+      expect(predFor(s, p)).toBeNull();
+      const d = document.createElement('div'); d.innerHTML = listHtml(s, null);
+      const row = d.querySelector(`.prow[data-idx="${(row0 as HTMLElement).dataset.idx}"]`)!;
+      expect(row.querySelector('.ch')).toBeNull();
+      expect(row.querySelector('.fc.guide')!.textContent).toBe(`${t('guideRow', 1)} ${t('guideRowNoChance')}`);
+      // with points off the sentence stays and nothing is said about a chance
+      S.myPoints = null;
+      d.innerHTML = listHtml(s, null);
+      expect(d.querySelector('.fc.guide')!.textContent).toBe(t('guideRow', 1));
+      // a row that reads «Ingen venteliste» has no poenggrense to call a guide
+      expect(t('guideRow', 3, false)).toBe('Inntil 50 % av elevene tas inn etter en kombinasjon av ferdighet og karakterer.');
+      // a mark on an older year only is history, not the row's state
+      p.guide = { '1999': 2 };
+      expect(guideMark(p)).toBe(0);
+    } finally { delete p.guide; S.myPoints = null; }
+  });
+  it('the unusual-change tip speaks of the forecast only on a row that has one', () => {
+    expect(t('jumpTitle', '40,7', '2025', '57,8', '2026', '17,1')).toContain('Prognosen');
+    const guide = t('jumpTitle', '40,7', '2025', '57,8', '2026', '17,1', false);
+    expect(guide).not.toContain('Prognosen');
+    expect(guide.endsWith('Sjekk kilden før du stoler på tallet.')).toBe(true);
   });
   it('the hero names one programme area’s figure a poenggrense, several an average with its range', () => {
     const s = asker();

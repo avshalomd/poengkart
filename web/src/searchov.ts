@@ -1,4 +1,4 @@
-import { esc } from "./helpers";
+import { esc, isCurrentSchool, schoolNewest } from "./helpers";
 import { runSearch } from "./search";
 import { t } from "./i18n";
 import { hideSheet, openSheetHistory, setModalTrap, showSheet } from "./intro";
@@ -27,8 +27,10 @@ export function renderOvList() {
         : s.place ? opt(i, ' place', s.place.kind === 'me' ? `<span>${esc(t('nearMe'))}</span>`
             : `<span>${esc(t('nearPlace', s.place.name))}</span>` +
               `<span class="fy">${esc(t('nearSchools', s.place.n))}${s.place.fylke ? ` · ${esc(s.place.fylke)}` : ''}</span>`)
+        // a school the map hides for want of new figures says so on its row
         : opt(i, '', `<span>${esc(s.name)}</span>` +
-          `<span class="fy">${esc([s.kommune, s.fylke].filter((x, j, a) => x && a.indexOf(x) === j).join(' · '))}</span>`)).join('')
+          `<span class="fy">${esc([s.kommune, s.fylke, isCurrentSchool(s as School) ? '' : t('staleChip', schoolNewest(s as School))]
+            .filter((x, j, a) => x && a.indexOf(x) === j).join(' · '))}</span>`)).join('')
     : `<div class="none" role="option" aria-disabled="true">${esc(t(ovMode === 'places' ? 'nearNone' : 'noMatch'))}</div>`;
   q.setAttribute('aria-expanded', String(listed));
   if (S.ovAct >= 0) q.setAttribute('aria-activedescendant', 'ov-opt-' + S.ovAct);

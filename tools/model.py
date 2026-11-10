@@ -68,6 +68,7 @@ import hashlib
 import json
 import math
 import os
+import random
 import sys
 import time
 import collections
@@ -1170,6 +1171,55 @@ def rising_series_check(preds, sig):
     return out
 
 
+WISH_POINTS = list(range(28, 50, 2))      # applicant points a wish list is drawn at
+WISH_DRAWS = 40000
+WISH_SEED = 20261109
+
+
+def wish_list_check(preds, sig, zq):
+    """How far does «minst én plass» overstate, treating wishes as independent?
+
+    The app prints 1 − Π(1 − pᵢ) for a list of wishes. A hard year hits
+    several wishes at once and two programme areas at one school go together,
+    so the truth is lower; the walk-forward says by how much. Lists are drawn
+    from its own Vg1 forecasts, every wish in one county and intake and the
+    same applicant points for each: three or five wishes anywhere in the
+    county, or three at one school. A wish came true when the published
+    threshold was at or under those points, or the area had no queue. Lists
+    stated under 15% or over 98.5% are left out (the app caps at 95%, and
+    nobody plans around the others). `single` is the same wishes one by one,
+    which shows whether a gap is the dependence or the forecast; `low` is the
+    lists the app states under 50%, where it also warns that no wish is likely.
+    Measured only: a one-factor copula fitted on the calibration years closed
+    the gap there and scored worse held out (9 Nov 2026, Appendix D v1.33)."""
+    def ch(p, x):
+        return chance(x, p['m'], spread(sig, p['hist'], p['m'], p['lg'], p['jump']), p['pi'], zq)
+    out = {}
+    for period, yrs in (('calibration', CALIB_YEARS), ('held_out', EVAL_YEARS)):
+        out[period] = {}
+        for name, by_school, k in (('county_3', False, 3), ('county_5', False, 5), ('school_3', True, 3)):
+            groups = {}
+            for p in preds:
+                if p['T'] in yrs and p['lg'] == 'Vg1' and p['state'] in ('num', 'open', 'zero'):
+                    groups.setdefault((p['T'], p['fylke']) + ((p['school'],) if by_school else ()), []).append(p)
+            keys = sorted(g for g in groups if len(groups[g]) >= k)
+            rng, rows = random.Random(WISH_SEED), []
+            for _ in range(WISH_DRAWS if keys else 0):
+                wishes = rng.sample(groups[rng.choice(keys)], k)
+                x = rng.choice(WISH_POINTS)
+                ps = [ch(p, x) for p in wishes]
+                got = [p['state'] != 'num' or x >= p['v'] for p in wishes]
+                stated = 1 - float(np.prod([1 - q for q in ps]))
+                if 0.15 < stated < 0.985:
+                    rows.append((stated, any(got), float(np.mean(ps)), float(np.mean(got))))
+            r = np.array(rows, float).reshape(-1, 4)
+            low = r[r[:, 0] < 0.5]
+            pair = lambda a: dict(n=len(a), stated=round(float(a[:, 0].mean()), 3), observed=round(float(a[:, 1].mean()), 3)) if len(a) else dict(n=0)
+            out[period][name] = dict(pair(r), low=pair(low),
+                                     single=dict(stated=round(float(r[:, 2].mean()), 3), observed=round(float(r[:, 3].mean()), 3)) if len(r) else {})
+    return out
+
+
 def _pava_decreasing(vals, wts):
     """Weighted isotonic (non-increasing) fit by pooling adjacent violators."""
     out = []
@@ -1496,6 +1546,8 @@ def main():
         print('jump-conditioned spread, held-out:', hl_search['jump_spread_experiment'])
         hl_search['rising_series_check'] = rising_series_check(preds_best, sig)
         print('steadily rising series:', hl_search['rising_series_check'])
+        hl_search['wish_list_check'] = wish_list_check(preds_best, sig, zq)
+        print('wish lists, stated against observed:', hl_search['wish_list_check'])
         # ---- pooled fit versus a Vg1-only fit, judged on Vg1 cells. The
         # school effect and the county×year walk are shared across levels, and
         # Vg2 and up is about half the numeric evidence where it is published:

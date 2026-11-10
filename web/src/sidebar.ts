@@ -1,4 +1,4 @@
-import { bucketOf, chanceFinal, chanceMode, finalRoundBridge, predFor, schoolChance } from "./chance";
+import { bucketOf, chanceFinal, chanceMode, finalRoundBridge, predFor, renderChoices, schoolChance } from "./chance";
 import { renderChartCard } from "./chart";
 import { liftMapControls, renderCatNote, renderLegend, renderPanel } from "./chrome";
 import { esc, fmt, fmtAvg, HELD_OUT, isVg1, round1, sheetLens, shownPrograms, shownSchools } from "./helpers";
@@ -241,6 +241,9 @@ export function setSheetLens(v) {
 }
 
 export function closeSide(fromHistory?) {
+  // why a wish was refused belongs to the sheet it was refused on: left in the
+  // list after the sheet closed, it read as a fault in a list within the rules
+  if (S.choicesNote) { S.choicesNote = null; renderChoices(); }
   // opened from the map: closing goes back to that school's marker, found by
   // name because drawMarkers() has rebuilt the marker DOM since
   const openedName = S.sideOpener && S.current ? S.current.name : null;

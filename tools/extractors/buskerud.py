@@ -8,7 +8,11 @@ Footnotes (verbatim on the page) mark how a place was won, not the threshold:
   *   YSK dobbelkompetanse — interview + grades
   **  musikk/dans/drama — up to 50% on skill + grades
   *** toppidrett — up to 50% on skill + grades
-so the number beside the asterisk is a real threshold and is kept.
+so the number beside the asterisk is a real threshold and is kept. Since
+2025/26 each footnote ends «Poenggrense er kun veiledende» (2024/25: «Derfor
+ingen nedre poenggrense»), so the mark travels with the cell: `guide` maps the
+year to the number of asterisks, and the app shows the county's sentence on
+the row and computes no chance from grade points alone (9 Nov 2026).
 
 2012-2014 come from the county's «Statistikkhefte – inntak til videregående
 opplæring», chapter 4 «Nedre poenggrense for inntak til Vg1», whose table is a
@@ -151,6 +155,9 @@ def extract():
                     if i >= len(head) or not head[i]:
                         continue
                     raw = common.squash(td.get_text(' ', strip=True))
+                    # the cell's footnote mark: *, ** or *** (module docstring)
+                    stars = len(raw) - len(raw.rstrip('*'))
+                    guide = {'guide': {year: stars}} if stars else {}
                     # One cell, several queues: «51,3 fotball / 46,5 håndball /
                     # 35,7 bandy/hopp/turn / 39,8 langrenn/svømming***» is four
                     # admissions, and «35,0 (+ tilleggspoeng) musikk / 39,2 … dans
@@ -165,7 +172,7 @@ def extract():
                                          'level': common.guess_level(head[i], 'Vg1'),
                                          'values': {year: 'open' if m.group(1) == 'Alle'
                                                     else float(m.group(1).replace(',', '.'))},
-                                         'county': META['fylke'], 'round': META['round']})
+                                         'county': META['fylke'], 'round': META['round'], **guide})
                         continue
                     # 2024-25 suppressed some thresholds entirely, leaving only
                     # the marker: admission there mixes skill/interview + grades
@@ -176,6 +183,7 @@ def extract():
                     rows.append({'school': school, 'program': head[i],
                                  'level': common.guess_level(head[i], 'Vg1'),
                                  'values': {year: v},
-                                 'county': META['fylke'], 'round': META['round']})
+                                 'county': META['fylke'], 'round': META['round'],
+                                 **({} if v == 'D' else guide)})
         out.append((fname, rows))
     return out, warn

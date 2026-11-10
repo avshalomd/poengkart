@@ -586,7 +586,9 @@ def merge_rows(rows_newest_first):
                 rec['grep'] = r['grep']
             # the alternate rounds, and the admitted mean (Gjennomkar, Møre og
             # Romsdal only), travel with the cell; the newest source wins
-            for alt in ('values_r1', 'values_r3', 'means'):
+            # `guide`: the county's footnote mark on the cell (Buskerud: the
+            # threshold is «kun veiledende»), by year like the others
+            for alt in ('values_r1', 'values_r3', 'means', 'guide'):
                 if r.get(alt):
                     rec.setdefault(alt, {}).update({y: v for y, v in r[alt].items()
                                                     if y not in rec.get(alt, {})})
@@ -643,7 +645,7 @@ def _fold_series(schools, drift):
                 elif into['values'][y] != v:
                     _record_drift(drift, into, y, v, rec['sources'][y], county,
                                   name, rec['program'], rec['level'])
-            for alt in ('values_r1', 'values_r3'):
+            for alt in ('values_r1', 'values_r3', 'guide'):
                 if rec.get(alt):
                     into.setdefault(alt, {}).update(
                         {y: v for y, v in rec[alt].items() if y not in into.get(alt, {})})

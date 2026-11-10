@@ -29,6 +29,10 @@ export interface Program {
   values_r1?: Record<string, CellValue>;
   values_r3?: Record<string, CellValue>;
   means?: Record<string, number>;
+  /** years the county footnotes the cell as only a guide, with the number of
+      asterisks it prints (Buskerud: 1 YSK by interview, 2 musikk, dans og
+      drama and 3 toppidrett by skill) */
+  guide?: Record<string, number>;
   /** former labels for the same series, so a stored wish can be re-keyed */
   aliases?: string[];
   /** the register's older name for this series' code, where some of its

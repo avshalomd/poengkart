@@ -68,7 +68,8 @@ function sparkline(points: [string, number][]): string {
 // a change to report, the last is the programme count the card does not show.
 export function heroFigures(s: School): { value: string; label: string; delta: string; deltaColor: string } {
   const cells = heroCells(s, null);
-  const first = cells[0], change = cells.length === 3 ? cells[1] : null;
+  // a «—» for years that do not cover the same programme areas is not a change
+  const first = cells[0], change = cells.length === 3 && !cells[1].mixed ? cells[1] : null;
   return {
     // HeroCell.v is `string | number` — the count cell is the number — so this
     // is the narrowing, not a no-op

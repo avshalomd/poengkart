@@ -90,7 +90,7 @@ def _extract_cached(mod):
         c = json.load(open(cpath))
         if c['key'] == key:
             def keys_back(row):
-                for f in ('values', 'values_r1', 'values_r3', 'means'):
+                for f in ('values', 'values_r1', 'values_r3', 'means', 'guide'):
                     if f in row:
                         row[f] = {int(y): v for y, v in row[f].items()}
                 return row
@@ -179,7 +179,9 @@ def main():
             # values_r1/values_r3: the same cell from another intake round;
             # means: Gjennomkar, the mean points of those admitted (Møre og
             # Romsdal publishes it; no other county does)
-            for alt in ('values_r1', 'values_r3', 'means'):
+            # guide: the years the county footnotes the cell as only a guide
+            # (Buskerud's *, **, ***: the value is the number of asterisks)
+            for alt in ('values_r1', 'values_r3', 'means', 'guide'):
                 if rec.get(alt):
                     entry_p[alt] = {str(y): v for y, v in sorted(rec[alt].items())}
             progs.append(entry_p)

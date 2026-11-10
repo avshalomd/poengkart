@@ -122,6 +122,17 @@ artefact. The programmes admitted on other grounds, where a poenggrense is
 not relevant (the four-year YSK, admitted by interview), are absent from the
 tables altogether rather than marked.
 
+Buskerud prints the same kind of programme with a figure and a footnote
+mark: one asterisk on the four-year YSK cells (admitted on interview and
+grades), two on musikk, dans og drama and three on toppidrett (up to 50 %
+of the places on skill and grades). Since 2025/26 each footnote ends
+«Poenggrense er kun veiledende»; in 2024/25 it read «Derfor ingen nedre
+poenggrense». The figure is kept and the mark travels with it: `guide` on
+the programme row maps the year to the number of asterisks. The app prints
+the county's sentence on such a row and shows no forecast or chance for it,
+because grade points alone do not decide who gets in; the cells stay in the
+model's fit as published figures.
+
 Where a county shows a single year, that is all that was ever published in a
 form anyone can still retrieve — not a gap in the collection. Trøndelag says so
 outright: it does not produce overviews of past years' thresholds, and only
@@ -191,7 +202,7 @@ the wrong value. A figure above the scale's top (`MAX_PLAUSIBLE` in
 år, in both editions (the 1. inntak figure is 37,9), so that one cell is
 missing until the county corrects it.
 
-`tools/test_parse.py` runs 141 regression checks over the result; every one of
+`tools/test_parse.py` runs 142 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built

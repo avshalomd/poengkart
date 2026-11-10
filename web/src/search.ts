@@ -14,6 +14,16 @@ export const foldName = s => s.toLowerCase()
 const tokens = (f: string) => f.split(' ')
   .map(w => /^v[ie]d[ae]regaa?ende$/.test(w) ? 'vgs' : w === 'skule' ? 'skole' : w);
 const GENERIC = new Set(['vgs', 'skole']);
+// What pupils call a school and no register prints: «Katta» is a
+// katedralskole in Oslo, Hamar, Trondheim and Kristiansand, «Katten» the one
+// in Bergen, «Kongsgård» Stavanger's, «Elvis» Elvebakken. Each is a word the
+// name itself does not contain, so the query found nothing (9 Nov 2026).
+// [what the folded name contains, the folded nicknames]
+const NICKNAMES: [string, string[]][] = [
+  ['katedralskole', ['katta', 'katten']],
+  ['stavanger katedralskole', ['kongsgard']],
+  ['elvebakken', ['elvis']],
+];
 // mode 'places' is the «Nær …» picker: places only, and the reader's own
 // position first, before anything is typed
 export function runSearch(q, mode: 'all' | 'places' = 'all'): SearchHit[] | null {
@@ -27,6 +37,7 @@ export function runSearch(q, mode: 'all' | 'places' = 'all'): SearchHit[] | null
   if (!S.searchIx) S.searchIx = S.DATA.schools.map(s => {
     const f = foldName(s.name), n = foldName(s.nsr_name || '');
     return { s, f, n, w: [...new Set([...tokens(f), ...tokens(n)])],
+             a: NICKNAMES.filter(([part]) => f.includes(part)).flatMap(([, nick]) => nick),
              p: [foldName(s.kommune || ''), foldName(s.sted || '')].filter(Boolean) };
   });
   const f = foldName(q);
@@ -38,7 +49,7 @@ export function runSearch(q, mode: 'all' | 'places' = 'all'): SearchHit[] | null
   // it, typing "Ås" ranked Asker first and Enter opened the wrong school. A
   // whole first word is the same case one step down: "Bø" opened Borgund.
   const score = e => e.f === f || e.n === f ? 0
-    : e.f.split(' ')[0] === f ? 0.5
+    : e.f.split(' ')[0] === f || e.a.includes(f) ? 0.5
     : e.f.startsWith(f) ? 1
     : e.f.split(' ').some(w => w.startsWith(f)) ? 2
     // where the school stands: «Sandnes» finds Gand and Vågen, «Bærum» the
@@ -50,10 +61,13 @@ export function runSearch(q, mode: 'all' | 'places' = 'all'): SearchHit[] | null
     // written form: «Førde videregående skole» finds Førde vidaregåande skule
     : want.every(t => e.w.some(w => w.startsWith(t))) ? 4 : -1;
   // the index is built once over every school; what the setting hides is
-  // left out here, so the toggle needs no rebuild
-  const scored = S.searchIx.filter(e => S.showStale || isCurrentSchool(e.s)).map(e => [score(e), e.s] as [number, School]).filter(x => x[0] >= 0)
-    .sort((a, b) => a[0] - b[0] || a[1].name.localeCompare(b[1].name, 'no'))
-    .slice(0, 8);
+  // left out here, so the toggle needs no rebuild. A school it hides is still
+  // offered when nothing shown matches: «kristiansand» answered «Ingen treff»
+  // for a school with its own page, and the row says why it is off the map
+  const matched = S.searchIx.map(e => [score(e), e.s] as [number, School]).filter(x => x[0] >= 0)
+    .sort((a, b) => a[0] - b[0] || a[1].name.localeCompare(b[1].name, 'no'));
+  const shown = matched.filter(x => S.showStale || isCurrentSchool(x[1]));
+  const scored = (shown.length ? shown : matched).slice(0, 8);
   const hits = scored.map(x => x[1]);
   // "Møre" answered "Ingen treff": one county row above the names, never more.
   // A county that begins with the query comes before one that only contains a

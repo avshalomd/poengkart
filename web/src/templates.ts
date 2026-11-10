@@ -7,11 +7,11 @@
 import { S } from './state';
 import { t, CATS } from './i18n';
 import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE, HELD_OUT, GUIDE_ONLY, HISTORY_ONLY, belowFullRecord,
-         partitionPrograms, numericLatest, progId, progName, countyPath, levelScope, isRecent, isVg1, inMean, meanStep, zeroIsFill, BUG_ICON, X_ICON } from './helpers';
+         partitionPrograms, numericLatest, progId, progName, countyPath, levelScope, isRecent, isVg1, inMean, meanStep, guideMark, zeroIsFill, BUG_ICON, X_ICON } from './helpers';
 import { bucketOf, chanceFinal, chanceMode, chanceOf, finalRoundBridge, isChosen, modelEntry, pct, pctS, predFor } from './forecast';
 import type { School, County } from './types';
 
-export interface HeroCell { v: string | number; l: string; cls?: string; ti?: string }
+export interface HeroCell { v: string | number; l: string; cls?: string; ti?: string; mixed?: true }
 
 // esc() protects the attribute but not the scheme, and every one of these
 // comes from a scrape rather than from us
@@ -142,8 +142,12 @@ export function heroCells(s: School, lensCat: string | null): HeroCell[] {
     cells.push({ v: fmt(mean), l: `${lbl} · ${scopeLabel} ${latest}` });
     if (meanPrev !== null) {
       const d = step.d;
-      cells.push({ v: (d! > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
-                   cls: d! > 0 ? 'up' : d! < 0 ? 'dn' : '', ti: t('heroDeltaBasis') });
+      // the two means are not over the same programme areas: no figure, and
+      // the reason where the figure would be (see meanStep)
+      if (!step.same) cells.push({ v: '\u2014', l: t('heroDeltaMixed', prev), cls: 'none-v',
+                                   ti: t('deltaMixedTip', prev, latest), mixed: true });
+      else cells.push({ v: (d! > 0 ? '+' : '') + fmt(d), l: t('heroDelta', prev),
+                        cls: d! > 0 ? 'up' : d! < 0 ? 'dn' : '', ti: t('heroDeltaBasis') });
     }
   } else if (!scopePrograms.length) {
     // the lens names a programme this school does not offer: say that, rather
@@ -170,7 +174,7 @@ export function heroHtml(s: School, lensCat: string | null): { hero: string; mix
   const { scopePrograms, step } = heroScope(s, lensCat);
   const { latest, mean }: any = step;
   const hero =
-    cells.map(c => `<div class="cell"${c.ti ? ` title="${esc(c.ti)}"` : ''}>` +
+    cells.map(c => `<div class="cell${c.mixed ? ' mixed' : ''}"${c.ti ? ` title="${esc(c.ti)}"` : ''}>` +
                    `<div class="v ${c.cls || ''}">${c.v}</div><div class="l">${capFirst(c.l)}</div></div>`).join('');
   const mix = openMix(scopePrograms, latest);
   const warn = !(mix.mostly && mean !== null) ? ''
@@ -265,7 +269,7 @@ export function listHtml(s: School, scope: string | null): string {
       if (je && je.j != null) {
         const ny = ys.filter(y => inMean(p.values[y])).slice(-2);   // the model's step reads figures of 10,0 and up
         if (ny.length === 2) {
-          jumpTxt = t('jumpTitle', fmt(p.values[ny[0]]), ny[0], fmt(p.values[ny[1]]), ny[1], fmt(Math.abs(je.j)));
+          jumpTxt = t('jumpTitle', fmt(p.values[ny[0]]), ny[0], fmt(p.values[ny[1]]), ny[1], fmt(Math.abs(je.j)), !guideMark(p));   // a guide row has no forecast to speak of
           jump = `<span class="jump" data-tip="${esc(jumpTxt)}">${t('jumpFlag')} ⓘ</span>`;
         }
       }
@@ -277,6 +281,7 @@ export function listHtml(s: School, scope: string | null): string {
       }
       const sel = S.chart.prog === p ? ' sel' : '';
       let chip = '', chipTxt = '', fc = '';
+      const gm = guideMark(p);
       if (chanceMode() && !orphan) {
         const pr = predFor(s, p);
         if (pr) {
@@ -300,10 +305,17 @@ export function listHtml(s: School, scope: string | null): string {
           const free = HELD_OUT.has(s.fylke) ? 0 : Math.round((1 - pr.pi) * 100);
           fc = `<span class="fc">${esc(t('fcLine', pr.year, fmt(pr.m), fmt(pr.s))
                  + (free >= 10 ? t('fcOpen', free) : ''))}</span>`;
-        } else if ((modelEntry(s, p) || {}).h === 0) {
+        } else if (!gm && (modelEntry(s, p) || {}).h === 0) {
           chip = `<span class="ch none" data-tip="${esc(t('noHistTitle'))}">${t('noHist')}</span>`;
           chipTxt = t('noHistTitle');
         }
+      }
+      // the county's own footnote on the row, with or without points: the
+      // figure is only a guide, and (with points) why there is no chance
+      if (gm && !orphan) {
+        const why = t('guideRow', gm, typeof lv === 'number') + (chanceMode() ? ' ' + t('guideRowNoChance') : '');
+        fc = `<span class="fc guide">${esc(why)}</span>`;
+        chipTxt = why;
       }
       const on = isChosen(s, p), idx = s.programs.indexOf(p);
       // A button inside a button is invalid, and a screen reader read the whole

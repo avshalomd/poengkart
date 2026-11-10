@@ -151,14 +151,19 @@ describe('planning with the wish list', () => {
     S.myPoints = 45;
     const txt = choicesText();
     expect(txt.split('\n')[0]).toBe(t('copyHeadPts', '4,5'));
-    expect(txt).toMatch(/Sjansen for minst én plass: (ca\.|over) \d+ %/);
+    expect(txt).toMatch(/Sjansen for minst én plass: (inntil|over) \d+ %/);   // three wishes: a ceiling, never «ca.»
     expect(txt).not.toMatch(/<[a-z]/);                // no markup in what goes on the clipboard
   });
 
   it('the combined chance never prints above 95 %', () => {
-    expect(anyChanceText(0.999)).toBe(t('choicesAnyOver', '95'));
-    expect(anyChanceText(0.95)).toBe(t('choicesAny', '95'));
-    expect(anyChanceText(0.62)).toBe(t('choicesAny', '62'));
+    expect(anyChanceText(0.999, 3)).toBe(t('choicesAnyOver', '95'));
+    expect(anyChanceText(0.95, 3)).toBe(t('choicesAnyUpTo', '95'));
+    expect(anyChanceText(0.62, 3)).toBe(t('choicesAnyUpTo', '62'));
+  });
+
+  it('several wishes read «inntil», one wish is its own chance and reads «ca.»', () => {
+    expect(anyChanceText(0.62, 2)).toBe('Sjansen for minst én plass: inntil 62 %');
+    expect(anyChanceText(0.62, 1)).toBe('Sjansen for minst én plass: ca. 62 %');
   });
 
   it('an area whose newest published cell is «open» and never had a figure counts as near-certain', () => {

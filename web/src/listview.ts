@@ -60,10 +60,19 @@ function pushView(v) {
   viewAnim = [...x, play(el, [{ opacity: 0 }, { opacity: 1 }], { duration: still() ? 200 : 220, easing: still() ? 'ease' : EASE.out })]
     .filter(Boolean) as Animation[];
 }
-export function deltaFor(s, cat, yr) {
+const stepFor = (s, cat) => {
   const base = shownPrograms(s);
-  const st = meanStep(cat === 'all' ? base : base.filter(p => p.category === cat));
+  return meanStep(cat === 'all' ? base : base.filter(p => p.category === cat));
+};
+export function deltaFor(s, cat, yr) {
+  const st = stepFor(s, cat);
   return st.latest === yr ? st.d : null;
+}
+// the years the change is withheld for, because their means are not over the
+// same programme areas; null when a change is shown or there is no step at all
+export function deltaMixed(s, cat, yr) {
+  const st = stepFor(s, cat);
+  return st.latest === yr && st.step !== null && !st.same ? [st.prev, st.latest] : null;
 }
 const BAND_RANK = { likely: 2, possible: 1, unlikely: 0 };
 // the direction a column opens in: names and distance up, figures down
@@ -176,6 +185,7 @@ export function renderListView() {
       const v = pr.kind === 'points' ? pr.v : null;
       const sc = chance ? schoolChance(s, S.mapCat, S.myPoints) : null;
       return { s, pr, v, delta: pr.kind === 'points' ? deltaFor(s, S.mapCat, pr.year) : null,
+               mixed: pr.kind === 'points' ? deltaMixed(s, S.mapCat, pr.year) : null,
                sc, best: sc ? sc.best : null, dist: distOf(s) };
     });
     rows.sort((a, b) => {
@@ -244,7 +254,7 @@ export function renderListView() {
     : r.lv === 0 && zeroIsFill(r.s.fylke, r.yr) ? t('noPointsShort')
     : typeof r.lv === 'number' ? t('listCutInline', fmt(r.lv), r.yr) : t('listNoData').toLowerCase();
   const deltaCell = r => {
-    if (r.delta === null) return `<span class="none-v">—</span>`;
+    if (r.delta === null) return `<span class="none-v"${r.mixed ? ` title="${esc(t('deltaMixedTip', ...r.mixed))}"` : ''}>—</span>`;
     const d = round1(r.delta);           // sign, colour and text agree
     return `<span class="${d > 0 ? 'up' : 'dn'}">${d > 0 ? '+' : ''}${esc(fmt(d))}</span>`;
   };
@@ -256,14 +266,17 @@ export function renderListView() {
     : r.open ? `<span class="ch b-likely tipped" title="${esc(t('openNearTitle'))}">${esc(pctS(r.c))}</span>`
     : `<span class="ch b-${bucketOf(r.c)}">${esc(pctS(r.c))}</span>`;
   const distTxt = r => r.dist === null ? '' : fmtKm(r.dist);
+  // one county whose every school stands in the place the county is named for
+  // (Oslo): the column repeated the county select on all 31 rows
+  const onePlace = !allF && rows.length > 1 && rows.every(r => placeLabel(r.s) === S.mapFylke);
   // under the name on a phone, where the place and distance columns are gone
   const sub = r => {
-    const bits = [placeLabel(r.s), S.near ? distTxt(r) : ''].filter(Boolean).join(' · ');
+    const bits = [onePlace ? '' : placeLabel(r.s), S.near ? distTxt(r) : ''].filter(Boolean).join(' · ');
     return bits ? `<span class="pl">${esc(bits)}</span>` : '';
   };
   const nameCell = r => `<td class="sc"><a href="${schoolUrl(r.s)}" aria-label="${esc(t('listRowAria', r.s.name))}">${esc(r.s.name)}</a>` +
     (areas ? `<span class="pa">${esc(progName(r.p))} · ${esc(r.p.level)}<span class="gr"> · ${esc(cutInline(r))}</span></span>` : '') + sub(r) + `</td>`;
-  const placeCells = r => `<td class="pc">${esc(placeLabel(r.s))}</td>` +
+  const placeCells = r => (onePlace ? '' : `<td class="pc">${esc(placeLabel(r.s))}</td>`) +
     (allF ? `<td class="fy">${esc(r.s.fylke)}</td>` : '') +
     (S.near ? `<td class="num dist">${esc(distTxt(r))}</td>` : '');
   const pick = r => {
@@ -281,7 +294,7 @@ export function renderListView() {
     `</div>`;
   const head = `<tr>` +
     th('name', t('listColSchool')) +
-    th('place', t('listColPlace')) +
+    (onePlace ? '' : th('place', t('listColPlace'))) +
     (allF ? th('fylke', t('listColFylke')) : '') +
     (S.near ? th('dist', t('listColDist'), true, t('listColDistTip', S.near.name)) : '') +
     (areas

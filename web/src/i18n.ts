@@ -47,8 +47,14 @@ export const T = {
     en: iso => { const d = isoDay(iso); return d ? `Figures last updated ${d.d} ${MONTHS_EN[d.m]} ${d.y}.` : ''; },
   },
   introScope: {
-    no: (n, f, y0, y1) => `Dekker ${n} skoler i ${f} fylker, ${y0}–${y1}.`,
-    en: (n, f, y0, y1) => `Covers ${n} schools across ${f} counties, ${y0}–${y1}.`,
+    // n and f count every school and county in the dataset, as the page
+    // description and the share card do; `shown` is what the map draws while
+    // schools without recent figures are hidden (it read «230 skoler i 10
+    // fylker» beside a description that said 288 in twelve)
+    no: (n, f, y0, y1, shown, since) => `Dekker ${n} skoler i ${f} fylker, ${y0}–${y1}.`
+      + (shown && shown < n ? ` Kartet viser de ${shown} som har tall fra ${since} eller senere.` : ''),
+    en: (n, f, y0, y1, shown, since) => `Covers ${n} schools across ${f} counties, ${y0}–${y1}.`
+      + (shown && shown < n ? ` The map shows the ${shown} with figures from ${since} or later.` : ''),
   },
   introTitle: { no: 'Slik leser du kartet', en: 'How to read this map' },
   introLede: {
@@ -163,8 +169,8 @@ export const T = {
   listColDelta:  { no: 'Endring', en: 'Change' },
   // «året før» was untrue for a school that skipped a year: the step is from
   // the previous year it published, the same one the sheet names
-  listColDeltaTip: { no: 'Endring fra forrige publiserte år',
-                     en: 'Change from the previous published year' },
+  listColDeltaTip: { no: 'Endring fra forrige publiserte år. Vises ikke når de to årene ikke har de samme programområdene.',
+                     en: 'Change from the previous published year. Not shown when the two years do not cover the same programme areas.' },
   listColChance: { no: 'Sjanse', en: 'Chance' },
   // ys: the school years the rows forecast, «2026/27 eller 2027/28» over the whole country
   listColChanceTip: { no: (x, ys) => `Estimert sjanse for plass med ${x} i snitt i skoleåret ${ys}`,
@@ -350,6 +356,19 @@ export const T = {
   // headline wrapped to a line that began "· 2 ingen venteliste"
   zeroMix:    { no: (z, o) => `${z} fullt uten poeng · ${o} ingen venteliste`,
                 en: (z, o) => `${z} filled without points · ${o} no waiting list` },
+  // Buskerud's three footnotes, in the county's words; n is the number of
+  // asterisks on the cell (1 YSK, 2 musikk, dans og drama, 3 toppidrett)
+  // fig: the row prints a figure this year; a row that reads «Ingen venteliste»
+  // has no poenggrense to call a guide, so the second sentence is left out
+  guideRow: {
+    no: (n, fig = true) => (n === 1 ? 'Elevene tas inn etter en kombinasjon av intervju og karakterer.'
+                                    : 'Inntil 50 % av elevene tas inn etter en kombinasjon av ferdighet og karakterer.')
+                           + (fig ? ' Poenggrensen er kun veiledende.' : ''),
+    en: (n, fig = true) => (n === 1 ? 'Pupils are admitted on a combination of interview and grades.'
+                                    : 'Up to 50% of the pupils are admitted on a combination of skill and grades.')
+                           + (fig ? ' The threshold is only a guide.' : ''),
+  },
+  guideRowNoChance: { no: 'Derfor vises ingen sjanse.', en: 'So no chance is shown.' },
   noHist:     { no: 'Ingen historikk', en: 'No history' },
   noHistTitle:{ no: 'Programområdet har aldri hatt en publisert poenggrense her, så det finnes ingen prognose å bygge på.',
                 en: 'This programme area has never had a published threshold here, so there is nothing to forecast from.' },
@@ -358,8 +377,8 @@ export const T = {
   // the row, and the forecast's spread is already wider for it
   jumpFlag:   { no: 'Uvanlig endring', en: 'Unusual change' },
   jumpTitle:  {
-    no: (a, ya, b, yb, d) => `Poenggrensen gikk fra ${a} i ${ya} til ${b} i ${yb}, en endring på ${d} poeng. Så store hopp er uvanlige. Sjekk kilden før du stoler på tallet. Prognosen regner derfor med større usikkerhet her.`,
-    en: (a, ya, b, yb, d) => `The threshold went from ${a} in ${ya} to ${b} in ${yb}, a change of ${d} points. Jumps that large are unusual. Check the source before you rely on the figure. The forecast allows for more uncertainty here.`,
+    no: (a, ya, b, yb, d, fc = true) => `Poenggrensen gikk fra ${a} i ${ya} til ${b} i ${yb}, en endring på ${d} poeng. Så store hopp er uvanlige. Sjekk kilden før du stoler på tallet.${fc ? ' Prognosen regner derfor med større usikkerhet her.' : ''}`,
+    en: (a, ya, b, yb, d, fc = true) => `The threshold went from ${a} in ${ya} to ${b} in ${yb}, a change of ${d} points. Jumps that large are unusual. Check the source before you rely on the figure.${fc ? ' The forecast allows for more uncertainty here.' : ''}`,
   },
   noPointsTitle: {
     no: 'Programområdet ble fylt opp, men den siste som kom inn hadde ingen poeng registrert. Alle søkere med poeng fikk plass.',
@@ -447,6 +466,13 @@ export const T = {
   tipHint:    { no: 'Trykk for å se trender og detaljer', en: 'Open for trends and details' },
   tipAllOpen: { no: y => `Alle programområder: ingen venteliste i ${y}`, en: y => `All programme areas: no waiting list in ${y}` },
   heroDelta:  { no: y => `Endring fra ${y}`, en: y => `Change vs ${y}` },
+  // the step is withheld where the two means are over different programme
+  // areas (meanStep): the label keeps «Endring fra» so the «—» has a subject
+  heroDeltaMixed: { no: y => `Endring fra ${y}: ulike programområder`, en: y => `Change vs ${y}: different programme areas` },
+  deltaMixedTip: {
+    no: (y0, y1) => `Snittet for ${y0} og snittet for ${y1} gjelder ikke de samme programområdene, så endringen vises ikke.`,
+    en: (y0, y1) => `The ${y0} and ${y1} averages are not over the same programme areas, so no change is shown.`,
+  },
   heroDeltaBasis: {
     no: 'Forskjellen mellom de to siste punktene på snittlinjen i grafen under.',
     en: 'The difference between the last two points on the average line below.',
@@ -640,6 +666,12 @@ export const T = {
   pickAdd:    { no: 'Legg til i ønskene mine', en: 'Add to my wishes' },
   pickRemove: { no: 'Fjern fra ønskene mine', en: 'Remove from my wishes' },
   choicesHead: { no: n => `Ønskene mine (${n})`, en: n => `My wishes (${n})` },
+  // the folded list's one line on a phone: the head, then the chance in short
+  choicesBrief: { no: (how, p) => `minst én plass ${how} ${p} %`, en: (how, p) => `at least one place ${how} ${p}%` },
+  choicesBriefHow: { no: { about: 'ca.', upTo: 'inntil', over: 'over' }, en: { about: 'about', upTo: 'up to', over: 'over' } },
+  choicesShow: { no: 'Vis', en: 'Show' },
+  choicesHide: { no: 'Skjul', en: 'Hide' },
+  choicesFoldLabel: { no: open => open ? 'Skjul ønskene' : 'Vis ønskene', en: open => open ? 'Hide the wishes' : 'Show the wishes' },
   choicesClear: { no: 'Tøm', en: 'Clear' },
   choicesClearSure: { no: 'Sikker?', en: 'Sure?' },
   choicesCleared: { no: 'Ønskene er tømt', en: 'Your wishes are cleared' },
@@ -650,9 +682,12 @@ export const T = {
   choicesSum: { no: (L, R, U) => `${L} sannsynlig · ${R} mulig · ${U} lite sannsynlig`,
                 en: (L, R, U) => `${L} likely · ${R} possible · ${U} unlikely` },
   choicesAny: { no: p => `Sjansen for minst én plass: ca. ${p} %`, en: p => `Chance of at least one place: about ${p}%` },
+  // several wishes: the product of independent chances is a ceiling, not an
+  // estimate (meta.halflife_search.wish_list_check), so it says «inntil»
+  choicesAnyUpTo: { no: p => `Sjansen for minst én plass: inntil ${p} %`, en: p => `Chance of at least one place: up to ${p}%` },
   choicesAnyTitle: {
-    no: 'Regnet som om ønskene var uavhengige av hverandre. Det er de ikke helt – et år med hard konkurranse rammer flere av dem samtidig, og to programområder ved samme skole henger sammen – så tallet er litt for høyt, og det vises aldri over 95 %.',
-    en: 'Computed as if the wishes were independent of each other. They are not quite – a hard year hits several of them at once, and two programme areas at one school go together – so the figure is a little too high, and it is never shown above 95%.',
+    no: 'Regnet som om ønskene var uavhengige av hverandre. Det er de ikke helt: Et år med hard konkurranse rammer flere av dem samtidig, og to programområder ved samme skole henger sammen. Målt mot tidligere år er tallet 3–6 prosentpoeng for høyt for en vanlig liste, og 10–20 når det er under 50 %. Derfor står det «inntil», og tallet vises aldri over 95 %.',
+    en: 'Computed as if the wishes were independent of each other. They are not quite: a hard year hits several of them at once, and two programme areas at one school go together. Measured against earlier years, the figure is 3–6 percentage points too high for a typical list, and 10–20 when it is under 50%. Hence “up to”, and it is never shown above 95%.',
   },
   choicesNudge: { no: 'Ingen av ønskene er sannsynlige. Vurder å ta med et sikrere ønske.',
                   en: 'None of the wishes is likely. Consider adding a safer one.' },

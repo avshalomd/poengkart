@@ -63,17 +63,17 @@ publishes beside every figure) is one applicant's score; the backtest chose
 its level-fit weight among {1, ½, ¼, 0} and kept 1 — 65 cells cannot move
 it.
 
-Fitted variance components (points): school 3.1, programme 3.1, series 2.6,
+Fitted variance components (points): school 3.0, programme 3.1, series 2.6,
 county×year innovations 0.9, residual 4.6. On the logit scale for fill: school
-1.0, programme 1.1, series 1.6
+1.0, programme 1.1, series 1.5
 
 **Coupling the two fits** — "in demand" as one trait read two ways, so that a
 school whose thresholds are high is also one whose programmes fill — is a
 plug-in of the level model's school effect into the fill model, with the
 backtest as judge on every refit. Earlier builds rejected it (0.406 coupled
 against 0.403 independent); with the Innlandet 2020–2022 backfill the
-verdict flipped, and on the current panel it reads 0.448 coupled against
-0.449, so the shipped hurdle is coupled (`meta.coupled`). This is exactly the day the flag was kept for,
+verdict flipped, and on the current panel it reads 0.450 coupled against
+0.451, so the shipped hurdle is coupled (`meta.coupled`). This is exactly the day the flag was kept for,
 though the margin is inside its own noise: a cluster bootstrap over
 school×year puts the difference at [−0.003, −0.000], and on the held-out
 years the two variants score the same fill Brier.
@@ -139,7 +139,7 @@ Telemark's own years instead (`satellite_backtest`): fit the panel on the
 other counties' years before T and the satellite on Telemark's, predict
 Telemark's year T. Over 110 cells in 2025–2026 that is an RMSE of 7.78
 against 8.98 for persistence, and every Telemark forecast carries 7.8 as
-its spread — the model's own buckets, 5.1 to 6.8, covered 63% of those
+its spread — the model's own buckets, 5.0 to 6.8, covered 62% of those
 outcomes where they claimed 80%. The app quotes that measurement on every
 Telemark school. Vestfold gets a satellite fit of its own, measured the
 same way: over 498 cells in 2025–2026 an RMSE of 5.89 against 6.96 for
@@ -164,25 +164,25 @@ held-out years cannot narrow their own intervals:
 | 0 years | 6.8 |
 | 1 year | 6.0 |
 | 2–3 years | 5.6 |
-| 4+ years | 5.1 |
+| 4+ years | 5.0 |
 
 That history component is then scaled by the band the forecast falls in — a
 queue cannot outgrow its applicants' scores, so high forecasts miss by less:
-×1.06 below 25 points, ×1.00 from 25 to 40, ×1.00 from 40 to 45, ×0.75 at 45 and above (fitted on
+×1.06 below 25 points, ×1.00 from 25 to 40, ×1.00 from 40 to 45, ×0.74 at 45 and above (fitted on
 the calibration years, constrained to fall with the level;
 `meta.sigma_level_multiplier`). On the held-out years it moved the top
-band's 80% coverage from 95.6% to 80.9% and the bottom band's from 61.9% to
+band's 80% coverage from 94.1% to 80.9% and the bottom band's from 61.9% to
 69.0%, and nothing else.
 
 Last, a factor per level group, fitted so each group's 80% band covers 80%
 of its own calibration-year errors (`meta.sigma_group_multiplier`): ×0.892
 for Vg1 and ×1.001 for Vg2 and up. Without it the pooled spread covered
-83.5% of held-out Vg1 outcomes and 77.1% of the rest.
+83.4% of held-out Vg1 outcomes and 77.1% of the rest.
 
 And a factor for a series whose two newest figures are more than 8 points
 apart (`meta.jump_points`), fitted the same way on the cells after such a
-step and on the rest (`meta.sigma_jump_multiplier`): ×1.226 after a jump
-and ×0.978 otherwise. Without it the spread covered 72.2% of held-out
+step and on the rest (`meta.sigma_jump_multiplier`): ×1.225 after a jump
+and ×0.979 otherwise. Without it the spread covered 72.2% of held-out
 outcomes after a jump and 80.9% of the rest; with it, 80.3% and 80.2%. The
 app flags such a step as «Uvanlig endring» (the forecast's `j`, the step
 in points).
@@ -198,7 +198,7 @@ so the level is unchanged and only the spread grows: a walk-forward with the
 year before each test year withheld measures the factor the same way
 (`meta.sigma_ahead_multiplier`), ×1.033. Two years ahead the held-out
 RMSE is 5.92 against 5.47 a year ahead, and the band covers
-79.9% of those outcomes with the factor and 77.8% without.
+80.0% of those outcomes with the factor and 77.8% without.
 
 F, the error distribution, is likewise the empirical distribution of those
 standardised errors (41 quantiles in `meta.error_quantiles`) rather than a
@@ -224,8 +224,8 @@ flatter nothing and mislead the calibration.
 | 4+ years | 1783 | 5.1 | 6.2 | 6.0 | 49% |
 
 Exponential smoothing of the series' own figures (α = 0.4; Muth, 1960) is a
-stronger baseline than either: RMSE 6.0 with two or three years of history
-and 5.3 with four or more, against the model's 5.7 and 5.2 — most of the
+stronger baseline than either: RMSE 6.1 with two or three years of history
+and 5.3 with four or more, against the model's 5.8 and 5.1 — most of the
 model's margin over "last year's figure" on long series is smoothing, not
 pooling.
 
@@ -237,21 +237,21 @@ came in below the last one 82.7% of the time, the model's RMSE was
 under-forecast by 1.23 points on average (95% CI [-0.04, 2.52]). So the
 drop mostly comes, a little smaller than forecast. A trend term (the
 error regressed on the forecast's gap below the last figure, slope
-0.123 fitted on 2020–2024) takes the held-out Vg1 RMSE from 4.891 to
-4.827: not enough to add one (`meta.halflife_search.rising_series_check`).
+0.122 fitted on 2020–2024) takes the held-out Vg1 RMSE from 4.883 to
+4.819: not enough to add one (`meta.halflife_search.rising_series_check`).
 
-The 80% interval (m ± 1.2816 s) contained the published figure 81% of the time.
+The 80% interval (m ± 1.2816 s) contained the published figure 80% of the time.
 
 **Fill.** The hurdle's series effects make it sure of itself: programmes it
 gave 0.96 filled 0.88 of the time in the held-out years. So π is passed
 through a two-parameter recalibration learned on the calibration years
-(logit π′ = 0.195 + 0.661 logit π). Scored on all eight counties, Møre og
+(logit π′ = 0.194 + 0.660 logit π). Scored on all eight counties, Møre og
 Romsdal's proxy labels included: held-out Brier 0.157 against 0.208 for the
 base rate. Held out of the fill fit instead, with its fill probability
 fixed at 1 as it was until 5 September 2026, the other seven counties'
-held-out Brier goes from 0.1590 to 0.1583 and the Platt slope from 0.661 to
-0.586; on the county's own 732 held-out cells the proxy-labelled hurdle
-scores 0.150 against 0.180 for its base rate
+held-out Brier goes from 0.1580 to 0.1575 and the Platt slope from 0.660 to
+0.585; on the county's own 732 held-out cells the proxy-labelled hurdle
+scores 0.151 against 0.181 for its base rate
 (`meta.halflife_search.proxy_label_experiment`).
 
 **Chance, held-out 2025–26**, for every cell and every score in
@@ -259,26 +259,26 @@ scores 0.150 against 0.180 for its base rate
 
 | predicted | observed | n |
 |---|---|---|
-| 0–10% | 6.0% | 2098 |
-| 10–20% | 17.1% | 2 427 |
-| 20–30% | 27% | 1 923 |
-| 30–40% | 38% | 1 562 |
-| 40–50% | 48% | 1 485 |
-| 50–60% | 59% | 1 471 |
-| 60–70% | 73% | 1 644 |
-| 70–80% | 82% | 1 827 |
+| 0–10% | 6.0% | 2095 |
+| 10–20% | 17.0% | 2 459 |
+| 20–30% | 27% | 1 921 |
+| 30–40% | 38% | 1 566 |
+| 40–50% | 48% | 1 482 |
+| 50–60% | 59% | 1 473 |
+| 60–70% | 73% | 1 642 |
+| 70–80% | 82% | 1 826 |
 | 80–90% | 90% | 2 249 |
-| 90–100% | 99.0% | 14 830 |
+| 90–100% | 99.0% | 14 831 |
 
 Brier 0.091, against 0.156 for the rule "the last published figure is the
 cutoff", on the pairs where that rule is defined (over all pairs the model's
-Brier is 0.093). The fairer comparison centres the same spread, error
+Brier is 0.092). The fairer comparison centres the same spread, error
 distribution and fill probability on the last published figure instead of
-on the forecast: that scores 0.095, so most of the gain over the bare rule
+on the forecast: that scores 0.096, so most of the gain over the bare rule
 is the uncertainty treatment, and the model's own point forecast is worth
 the last 0.006 of it.
 Below 60% the forecast is within 3.8 points of the outcome in every bin,
-with predicted minus observed at most -0.3 points in the three lowest — a 15% chance was
+with predicted minus observed at most -0.2 points in the three lowest — a 15% chance was
 really 17% — which the app's bands absorb (both are "unlikely"); from 60%
 up it is cautious — a stated 65% came true 73% of the time, the largest gap
 in any bin. The walk-forward forecasts themselves are in `data/model-backtest.csv`.
@@ -360,9 +360,10 @@ drives the at-least-one figure toward certainty for an application no county
 would accept. A + on any programme row collects it into a list in the control panel;
 with points set, each choice carries its chance, the list is summarised as
 likely / possible / unlikely counts, and the chance of at least one place is
-shown as 1 − Π(1 − pᵢ) with a tooltip saying the choices are treated as
-independent and that this overstates a little — a hard year hits several of
-them at once. If none of the choices is likely the list says so.
+shown as «inntil» (up to) 1 − Π(1 − pᵢ) where the list holds more than one
+wish, with a tooltip saying the choices are treated as independent and by
+how much that overstates — a hard year hits several of them at once. If none
+of the choices is likely the list says so.
 
 ## What it cannot know
 
@@ -381,7 +382,16 @@ them at once. If none of the choices is likely the list says so.
   average, not a known change at a given school; the panel says so beside
   every forecast. Vestfold's intake office raised it in September 2026.
 - The at-least-one figure for a list of choices assumes independence; the
-  truth is lower, by an amount this data cannot measure.
+  truth is lower, and the backtest measures by how much
+  (`meta.halflife_search.wish_list_check`: lists drawn from the walk-forward's
+  Vg1 forecasts, one county and intake, the same points for every wish). In
+  the calibration years three wishes in one county were stated at 80.6% and
+  came true 77.6% of the time, five wishes at 85.8% against 82.0%, and three
+  wishes at one school at 77.0% against 71.4%. Lists stated under 50% came
+  true far less often: 33.1% against 20.1%, 35.3% against 13.2% and 33.4%
+  against 19.1%. A copula correction closed the gap in those years and scored
+  worse on the held-out ones, so the figure is left as it is and printed as
+  an upper bound.
 - Published chances could move where people apply, which moves the cutoffs.
   Small at this scale, real in principle.
 - The raw percentage is within two points of the outcome below 30% and up

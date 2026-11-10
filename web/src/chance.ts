@@ -4,7 +4,7 @@ import { bucketOf, chanceMode, chanceOf, okChoice, pct, pctS, predFor, progKeyMa
 
 const UP_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>';
 const DOWN_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
-import { belowFullRecord, cssVar, esc, fmt, fmtAvg, progName, round1, slug, X_ICON } from "./helpers";
+import { belowFullRecord, cssVar, esc, fmt, fmtAvg, guideMark, progName, round1, slug, X_ICON } from "./helpers";
 import { t } from "./i18n";
 import { toast } from "./locate";
 import { mapZoom, recolourMap, viewSchool } from "./map";
@@ -25,6 +25,7 @@ export const CHANCE_CAP = 0.95;
 // A figure below 10,0 counts here as it does in the model: everyone with a
 // full grade record got in, and whoever types a karaktersnitt has one
 export function openOnly(p: Program) {
+  if (guideMark(p)) return false;      // admission there is not on points alone
   const ys = Object.keys(p.values).sort();
   const cells = ys.map(y => p.values[y]).filter(v => v !== 'F');
   const open = v => v === 'open' || belowFullRecord(v);
@@ -117,7 +118,16 @@ export function wishChance(s: School, p: Program): { c: number; open: boolean } 
 // «over 95 %» past the cap: two areas at one school, or two schools in one
 // town, are not independent draws, so a figure like «ca. 100 %» claims more
 // than the arithmetic behind it knows
-export const anyChanceText = (c: number) => c > CHANCE_CAP ? t('choicesAnyOver', pct(CHANCE_CAP)) : t('choicesAny', pct(c));
+// With several wishes the figure is a ceiling: counted as independent they
+// overstate by 3–6 points on a typical list (wish_list_check in tools/model.py),
+// so it reads «inntil». One wish is that wish's own calibrated chance: «ca.»
+export const anyChanceText = (c: number, n: number) => c > CHANCE_CAP ? t('choicesAnyOver', pct(CHANCE_CAP))
+  : t(n > 1 ? 'choicesAnyUpTo' : 'choicesAny', pct(c));
+// the same figure for the folded list's one line on a phone
+export const anyChanceBrief = (c: number, n: number) => {
+  const how = t('choicesBriefHow');
+  return c > CHANCE_CAP ? t('choicesBrief', how.over, pct(CHANCE_CAP)) : t('choicesBrief', n > 1 ? how.upTo : how.about, pct(c));
+};
 /** The list as plain text, to paste into a message or a planning note. */
 export function choicesText(): string {
   const items = S.choices.map(resolveChoice).filter(Boolean) as Wish[];
@@ -133,7 +143,7 @@ export function choicesText(): string {
     }
     lines.push(`${i + 1}. ${s.name} – ${progName(p)} (${p.level})${tail ? ': ' + tail : ''}`);
   });
-  if (pts && n) lines.push('', anyChanceText(1 - pNone) + (n < items.length ? ' ' + t('choicesPartial', n, items.length) : ''));
+  if (pts && n) lines.push('', anyChanceText(1 - pNone, n) + (n < items.length ? ' ' + t('choicesPartial', n, items.length) : ''));
   const d = new Date(), dd = `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${d.getFullYear()}`;
   lines.push('', t('copyFoot', location.host || 'poengkart.no', dd));
   return lines.join('\n');
@@ -314,16 +324,26 @@ export function renderChoices() {
     const bar = [['likely', L], ['possible', R], ['unlikely', U]]
       .map(([b, k]: any) => `<span class="b-${b}" style="width:${100 * k / n}%"></span>`).join('');
     sum = `<div class="bar">${bar}</div><div class="sum"><b>${esc(t('choicesSum', L, R, U))}</b>` +
-      ` · <span class="tipped" title="${esc(t('choicesAnyTitle'))}">${esc(anyChanceText(1 - pNone))}</span>` +
+      ` · <span class="tipped" title="${esc(t('choicesAnyTitle'))}">${esc(anyChanceText(1 - pNone, n))}</span>` +
       (n < items.length ? `<span class="part">${esc(t('choicesPartial', n, items.length))}</span>` : '') +
       (L ? '' : `<span class="nudge">⚠ ${esc(t('choicesNudge'))}</span>`) + `</div>`;
   } else if (!chanceMode()) {
     sum = `<div class="sum">${esc(t('choicesNoPts'))}</div>`;
   }
+  // On a phone the card with three wishes ended at 486 of 812px and left the
+  // map a 170px strip, with «Ingen av ønskene er sannsynlige» under the card's
+  // fold. There the list folds to one line, the head with the chance and the
+  // warning sign, and opens on a tap; the fold button exists only at those
+  // sizes (CSS), so a wider screen shows the whole list as before.
+  const brief = chanceMode() && n ? anyChanceBrief(1 - pNone, n) + (L ? '' : ' ⚠') : '';
+  box!.classList.toggle('folded', !S.choicesOpen);
   box!.innerHTML = `<div class="h"><span>${esc(t('choicesHead', items.length))}</span>` +
+    `<button id="choices-fold" type="button" aria-expanded="${S.choicesOpen}" aria-controls="choices-list"` +
+      ` aria-label="${esc(t('choicesFoldLabel', S.choicesOpen))}">` +
+      `<span class="brief">${esc(brief)}</span><span class="tg">${esc(t(S.choicesOpen ? 'choicesHide' : 'choicesShow'))}</span></button>` +
     `<span class="acts"><button id="choices-copy" type="button">${esc(t('choicesCopy'))}</button>` +
     `<button id="choices-clear">${esc(t('choicesClear'))}</button></span></div>` +
-    `<div class="list">${rows}</div>` +
+    `<div class="list" id="choices-list">${rows}</div>` +
     (S.choicesNote ? `<div class="vnote">⚠ ${esc(t(S.choicesNote))}</div>` : '') + sum;
   if (move && box!.getClientRects().length) showChoiceMove(box!, move.added, was);
   box!.querySelectorAll('.who').forEach((b: any) => b.onclick = () => {
@@ -332,6 +352,11 @@ export function renderChoices() {
   });
   box!.querySelectorAll('.mv').forEach((b: any) => b.onclick = () => moveChoice(+b.dataset.i, b.dataset.d === 'up' ? -1 : 1));
   document.getElementById('choices-copy')!.onclick = () => { copyChoices(); };
+  document.getElementById('choices-fold')!.onclick = () => {
+    S.choicesOpen = !S.choicesOpen;
+    renderChoices();
+    document.getElementById('choices-fold')?.focus();
+  };
   box!.querySelectorAll('.rm').forEach((b: any) => b.onclick = () => {
     const i = +b.dataset.i, { s, p } = items[i];
     toggleChoice(s, p);

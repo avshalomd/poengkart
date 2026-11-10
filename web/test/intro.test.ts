@@ -5,7 +5,7 @@ import {
   renderIntro, openIntro, closeIntro, hintHelp, clearHelpHint, HINT_KEY, HINT_TRIES, INTRO_SEEN,
   showSheet, hideSheet, isSheetOpen, anySheetOpen, setModalTrap, renderControls, SHEET_IDS,
 } from '../src/intro';
-import { initHelpers, shownCounties, shownSchools } from '../src/helpers';
+import { initHelpers, shownSchools, staleBefore } from '../src/helpers';
 import { t } from '../src/i18n';
 import { S } from '../src/state';
 
@@ -17,8 +17,14 @@ describe('the help sheet', () => {
     const body = document.getElementById('intro-body')!;
     expect(body.querySelectorAll('.step').length).toBe(t('introSteps').length);
     expect(body.querySelector('.lede')!.textContent)
-      .toContain(t('introScope', shownSchools().length, shownCounties().length,
-                   S.DATA!.years[0], S.DATA!.years[S.DATA!.years.length - 1]));
+      .toContain(t('introScope', S.DATA!.schools.length, S.DATA!.counties.length,
+                   S.DATA!.years[0], S.DATA!.years[S.DATA!.years.length - 1], shownSchools().length, staleBefore()));
+    // one count for the dataset, the same the page description gives, and the
+    // map's smaller one named as the map's
+    const hidden = S.DATA!.schools.length - shownSchools().length;
+    expect(hidden).toBeGreaterThan(0);
+    expect(body.querySelector('.lede')!.textContent).toContain(`Dekker ${S.DATA!.schools.length} skoler`);
+    expect(body.querySelector('.lede')!.textContent).toContain(`Kartet viser de ${shownSchools().length} som har tall fra ${staleBefore()} eller senere.`);
     // the day the figures last changed, from the dataset's own stamp
     expect(S.DATA!.updated!.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(document.getElementById('intro-updated')!.textContent).toBe(t('introUpdated', S.DATA!.updated!.date));

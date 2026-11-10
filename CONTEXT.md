@@ -95,6 +95,9 @@ _Avoid_: fortrinnskvote, priority quota
 Admission decided on documents or interview (IB, elite sport), so no poenggrense exists.
 _Avoid_: dokumentasjonsinntak, individual assessment
 
+**Veiledende poenggrense** (a threshold that is only a guide; `guide` on the programme row):
+Buskerud's footnote on cells where places go by interview or skill as well as grades (YSK, musikk, dans og drama, toppidrett): «Poenggrense er kun veiledende». The figure is printed with the county's sentence and gets no forecast or chance. Not the same as the county-wide request in Vestfold that all its figures be read as veiledende. _Avoid_: estimate, approximate threshold.
+
 **Utgått** (discontinued; token `U`):
 The programområde was not offered that year.
 _Avoid_: nedlagt, gone, closed

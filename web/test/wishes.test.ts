@@ -7,6 +7,7 @@ import {
 } from '../src/chance';
 import { initHelpers, shownPrograms, fmt } from '../src/helpers';
 import { initListview } from '../src/listview';
+import { closeSide } from '../src/sidebar';
 import { t } from '../src/i18n';
 import { S } from '../src/state';
 
@@ -34,6 +35,38 @@ describe('the wish list', () => {
     toggleChoice(s, p);
     expect(S.choices).toEqual([]);
     expect(box.hidden).toBe(true);
+  });
+
+  it('on a phone the list folds to one line and opens on its button', () => {
+    loadFixtures(); initHelpers(); initListview(); stubMap();
+    S.choicesOpen = false; S.myPoints = 45;
+    const pool = withCat('ST');
+    for (let i = 0; i < 3; i++) toggleChoice(pool[i].s, pool[i].p);
+    const box = document.getElementById('choices')!;
+    const fold = () => document.getElementById('choices-fold')!;
+    expect(box.classList.contains('folded')).toBe(true);
+    expect(fold().getAttribute('aria-expanded')).toBe('false');
+    // the one line carries the list's own figure, «inntil» or «over» for three wishes
+    expect(fold().querySelector('.brief')!.textContent).toMatch(/^minst én plass (inntil|over) \d+ %( ⚠)?$/);
+    const pctOf = (x: string) => x.match(/(\d+) %/)![1];
+    expect(pctOf(fold().querySelector('.brief')!.textContent!)).toBe(pctOf(box.querySelector('.sum .tipped')!.textContent!));
+    fold().click();
+    expect(S.choicesOpen).toBe(true);
+    expect(box.classList.contains('folded')).toBe(false);
+    expect(fold().getAttribute('aria-expanded')).toBe('true');
+    expect(fold().getAttribute('aria-label')).toBe(t('choicesFoldLabel', true));
+    S.choicesOpen = false; S.myPoints = null;
+  });
+
+  it('a refused wish’s reason leaves the list when the school sheet closes', () => {
+    loadFixtures(); initHelpers(); initListview(); stubMap();
+    const pool = withCat('ST');
+    for (let i = 0; i < 11; i++) toggleChoice(pool[i].s, pool[i].p);
+    expect(document.querySelector('#choices .vnote')).not.toBeNull();
+    closeSide(true);
+    expect(S.choicesNote).toBeNull();
+    expect(document.querySelector('#choices .vnote')).toBeNull();
+    expect(document.querySelectorAll('#choices .list .row').length).toBe(10);
   });
 
   it('vigo’s ten-wish cap refuses the eleventh and says why', () => {

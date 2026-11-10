@@ -66,21 +66,28 @@
       say('I2', shown === round1(line[plotted[plotted.length - 1]]),
           `${s.name}: hero ${shown}, line ends ${round1(line[plotted[plotted.length - 1]])}`);
 
-    // I3 — the change is that line's last step, and is absent when there is no step
+    // I3 — the change is that line's last step where both years cover the same
+    // programme areas; where they do not, the cell prints «—» and says so (the
+    // step then followed which areas had a threshold: 24 schools showed the
+    // wrong sign, 9 Nov 2026); and the cell is absent when there is no step
     const dCell = cells.find(c => /endring|change/i.test(c.querySelector('.l').textContent));
+    const y1 = plotted[plotted.length - 1], y0 = plotted[plotted.length - 2];
+    const sameAreas = plotted.length > 1 && progsShown.every(p => inMean(p.values[y1]) === inMean(p.values[y0]));
     if (hero !== null && plotted.length > 1) {
-      const step = round1(line[plotted[plotted.length - 1]] - line[plotted[plotted.length - 2]]);
-      say('I3', !!dCell && num(dCell.querySelector('.v')) === step,
-          `${s.name}: shows ${dCell && dCell.querySelector('.v').textContent}, step ${step}`);
+      const step = round1(line[y1] - line[y0]);
+      const dv = dCell && dCell.querySelector('.v').textContent;
+      if (sameAreas) say('I3', !!dCell && num(dCell.querySelector('.v')) === step, `${s.name}: shows ${dv}, step ${step}`);
+      else say('I3', dv === '\u2014' && /ulike|different/i.test(dCell.querySelector('.l').textContent),
+               `${s.name}: shows ${dv} over different programme areas in ${y0} and ${y1}`);
     } else say('I3', !dCell, `${s.name}: change shown with no previous plotted year`);
 
     // I14 — the list's ENDRING is the same step as the hero's "endring fra" (the
-    // list once compared like-for-like programmes and flipped sign on 30 schools)
+    // list once compared like-for-like programmes and flipped sign on 30 schools),
+    // and is withheld in the same schools
     const listD = deltaFor(s, 'all', latest);
-    if (hero !== null && plotted.length > 1)
-      say('I14', listD === round1(line[plotted[plotted.length - 1]] - line[plotted[plotted.length - 2]]),
-          `${s.name}: list ${listD}, hero step ${round1(line[plotted[plotted.length - 1]] - line[plotted[plotted.length - 2]])}`);
-    else say('I14', listD === null, `${s.name}: list shows ${listD} with no step`);
+    if (hero !== null && plotted.length > 1 && sameAreas)
+      say('I14', listD === round1(line[y1] - line[y0]), `${s.name}: list ${listD}, hero step ${round1(line[y1] - line[y0])}`);
+    else say('I14', listD === null, `${s.name}: list shows ${listD} with no comparable step`);
 
     // I4 — the map dot agrees with the panel headline
     const st = schoolPressure(s, 'all');

@@ -3,7 +3,7 @@
    picked. Nothing here touches the DOM, so the build can import it to
    prerender the programme list (templates.ts); chance.ts owns the rendering
    and re-exports these so its callers never notice the split. */
-import { partitionPrograms, shownPrograms } from './helpers';
+import { guideMark, partitionPrograms, shownPrograms } from './helpers';
 import { S } from './state';
 import type { Band, Program } from './types';
 
@@ -61,10 +61,12 @@ export function modelEntry(s, p) {
 //   forecast (tools/model.py drops these too; belt and braces), and
 //   a programme that never had a published poenggrense here (h = 0) gets the
 //   county prior, which is not this programme's history. The row says so
-//   instead of printing a percentage.
+//   instead of printing a percentage; and
+//   a row the county footnotes as only a guide (guideMark) admits by
+//   interview or skill as well as grades, so points alone give no chance.
 export function predFor(s, p) {
   const ys = Object.keys(p.values); const newest = ys[ys.length - 1];
-  if (p.values[newest] === 'U') return null;
+  if (p.values[newest] === 'U' || guideMark(p)) return null;
   const pr = modelEntry(s, p);
   return pr && pr.h > 0 ? pr : null;
 }

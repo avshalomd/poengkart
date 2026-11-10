@@ -1,8 +1,11 @@
 import { describe, it, expect } from 'vitest';
 import { loadFixtures } from './fixtures';
-import { sortList, deltaFor, initListview } from '../src/listview';
-import { meanStep, schoolPressure, openMix } from '../src/helpers';
+import { sortList, deltaFor, deltaMixed, initListview } from '../src/listview';
+import { meanStep, round1, schoolPressure, openMix } from '../src/helpers';
 import { S } from '../src/state';
+import { heroCells } from '../src/templates';
+import { heroFigures } from '../src/cards/card';
+import { t } from '../src/i18n';
 
 describe('list view', () => {
   it('meanStep is the change between the two newest years the mean line actually plots', () => {
@@ -11,6 +14,39 @@ describe('list view', () => {
     expect(meanStep([{ values: { '2024': 38, '2025': 40, '2026': 42.5 } }] as any).d).toBeCloseTo(2.5, 6);
     expect(meanStep([{ values: { '2026': 42.5 } }] as any).d).toBeNull();
     expect(meanStep([{ values: { '2025': 'open', '2026': 42.5 } }] as any).d).toBeNull();
+  });
+
+  it('meanStep withholds the change when the two years do not cover the same programme areas', () => {
+    // Hvam, Vg1: three areas had a threshold in 2025, another mix in 2026. The
+    // mean fell 2,4 while the only area with a figure in both years rose 11,6
+    const hvam = [
+      { values: { '2025': 32.8, '2026': 44.4 } },
+      { values: { '2025': 45.1, '2026': 'open' } },
+      { values: { '2025': 'open', '2026': 31.2 } },
+    ];
+    const st: any = meanStep(hvam as any);
+    expect(st.step).toBeCloseTo(round1((44.4 + 31.2) / 2 - (32.8 + 45.1) / 2), 6);
+    expect(st.same).toBe(false);
+    expect(st.d).toBeNull();
+    // the same areas in both years: the step is the change, as before
+    const same: any = meanStep([{ values: { '2025': 32.8, '2026': 44.4 } }, { values: { '2025': 'open', '2026': 'open' } }] as any);
+    expect(same.same).toBe(true);
+    expect(same.d).toBeCloseTo(11.6, 6);
+    // a figure below 10,0 is outside the mean, so it changes the basket too
+    expect((meanStep([{ values: { '2025': 30, '2026': 31 } }, { values: { '2025': 28, '2026': 6.0 } }] as any) as any).d).toBeNull();
+  });
+
+  it('the sheet and the share card print no change over different programme areas, and the sheet says why', () => {
+    loadFixtures(); S.allLevels = false; S.showOld = false; S.lang = 'no';
+    const s: any = { name: 'Testskole', fylke: 'Testfylke', programs: [
+      { level: 'Vg1', category: 'ST', program: 'ST', values: { '2025': 40, '2026': 42.5 } },
+      { level: 'Vg1', category: 'HS', program: 'HS', values: { '2025': 'open', '2026': 30 } }] };
+    const cells = heroCells(s, null);
+    expect(cells[1]).toMatchObject({ v: '\u2014', mixed: true, l: t('heroDeltaMixed', '2025') });
+    expect(cells[1].ti).toBe(t('deltaMixedTip', '2025', '2026'));
+    expect(heroFigures(s).delta).toBe('');
+    // one programme area: the same cells both years, the step is shown
+    expect(heroCells(s, 'ST')[1]).toMatchObject({ v: '+2,5', l: t('heroDelta', '2025') });
   });
 
   it('a figure below 10,0 stays out of every average and counts as everyone admitted', () => {
@@ -41,6 +77,15 @@ describe('list view', () => {
     expect(deltaFor(s1yr as any, 'all', '2026')).toBeNull();
     const sOpen = { fylke: 'Testfylke', programs: [{ level: 'Vg1', category: 'ST', values: { '2025': 'open', '2026': 42.5 } }] };
     expect(deltaFor(sOpen as any, 'all', '2026')).toBeNull();
+    expect(deltaMixed(sOpen as any, 'all', '2026')).toBeNull();      // no step at all is not a mixed one
+    const sMixed = { fylke: 'Testfylke', programs: [
+      { level: 'Vg1', category: 'ST', values: { '2025': 40, '2026': 42.5 } },
+      { level: 'Vg1', category: 'HS', values: { '2025': 'open', '2026': 30 } }] };
+    expect(deltaFor(sMixed as any, 'all', '2026')).toBeNull();
+    expect(deltaMixed(sMixed as any, 'all', '2026')).toEqual(['2025', '2026']);
+    // within one programme area the two years are comparable again
+    expect(deltaFor(sMixed as any, 'ST', '2026')).toBeCloseTo(2.5, 6);
+    expect(deltaMixed(sMixed as any, 'ST', '2026')).toBeNull();
   });
 
   it('sortList orders the rendered table by the chosen column and flips direction on a second click', () => {
