@@ -573,6 +573,15 @@ check('Hetland carries an unbroken 2018-2025 series after the header repair',
 check('Hetland no longer carries the hand-kept uncertain_years flag',
       not SCHOOLS['Hetland videregående skole'].get('uncertain_years'),
       str(SCHOOLS['Hetland videregående skole'].get('uncertain_years')))
+# Oslo's intake office wrote on 10 Nov 2026 that Ullern's forskerlinje no longer
+# admits; the 2026 page only stops printing the row, so it kept a 2027/28
+# forecast (34,0) that was the school's best chance. The two 14,7 are confirmed.
+_ull = [p for s in county('Oslo') if s['name'].startswith('Ullern') for p in s['programs']
+        if p['program'] == 'Studiespesialisering, forskerlinje']
+check('Ullern forskerlinje: 14,7 in 2024 and 2025, discontinued from 2026',
+      len(_ull) == 1 and _ull[0]['values'].get('2024') == 14.7
+      and _ull[0]['values'].get('2025') == 14.7 and _ull[0]['values'].get('2026') == 'U',
+      str(_ull and _ull[0]['values']))
 # Oslo's 2015/16 table survives on a school site; its names lack "skole"
 o15 = {s['name'] for s in county('Oslo') for p in s['programs'] if '2015' in p['values']}
 check('Oslo 2015 is in the dataset for its 22 municipal schools', len(o15) >= 20, f'{len(o15)} schools')

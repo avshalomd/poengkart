@@ -323,7 +323,9 @@ export function listHtml(s: School, scope: string | null): string {
       // chips' help was unreachable. The name is now the row's button, the + a
       // button beside it, and what the chips and the figure say is the name's
       // description.
-      const pick = orphan ? '' : `<button type="button" class="pick${on ? ' on' : ''}" data-idx="${idx}"` +
+      // no + on a programme that is gone: a wish list is an application, and
+      // nobody can apply to an «Utgått» row (Ullern's forskerlinje offered one)
+      const pick = orphan || lv === 'U' ? '' : `<button type="button" class="pick${on ? ' on' : ''}" data-idx="${idx}"` +
         ` aria-pressed="${on}" aria-label="${esc(t(on ? 'pickRemove' : 'pickAdd'))}" title="${esc(t(on ? 'pickRemove' : 'pickAdd'))}">${PICK_FACE}</button>`;
       // the level's glossary entry: the row's description below, and the chip's
       // own .tipped mark — written here on the very condition bindTips() marks

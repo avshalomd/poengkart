@@ -1,7 +1,7 @@
 # Poengkart: Open Admission Thresholds and a Calibrated Forecast for the Norwegian Upper-Secondary Intake
 
 **Abshalom Dayan**
-Technical report · November 2026 · v1.33 (version history in Appendix D)
+Technical report · November 2026 · v1.34 (version history in Appendix D)
 Application: [poengkart.no](https://poengkart.no) · Code and data: [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart)
 
 ---
@@ -17,7 +17,7 @@ with inconsistent structure, retention, and semantics. We assemble every
 edition we could retrieve, older years from newspaper and archive copies
 where the county's own file is lost, into an open, register-normalised
 panel: 227 schools,
-2,936 programme rows, 19,632 observations, 2012–2026, keyed to Norway's
+2,936 programme rows, 19,633 observations, 2012–2026, keyed to Norway's
 national programme register (Grep). On this censored panel we forecast the
 next intake as the probability of admission given the applicant's points,
 using a hurdle model: a hierarchical logistic model for whether a programme
@@ -76,7 +76,7 @@ describes **Poengkart** ("points map"), an open dataset, forecasting model,
 and deployed application. Our contributions are as follows:
 
 - **An open, register-normalised dataset** of every retrievable published
-  threshold — 227 schools, 2,936 programme rows, 19,632 cell-level
+  threshold — 227 schools, 2,936 programme rows, 19,633 cell-level
   observations across 8 counties and the years 2012–2026 — in which every
   row is resolved against the national Grep register and every cell's state
   (numeric threshold, filled at zero, no waiting list, quota-based
@@ -274,7 +274,7 @@ figure between 0 and 10 is kept as printed. Karakterpoeng start at 10,0, a
 grades missing; Oslo's intake office explained that an applicant with fewer
 than seven counting numeric grades is scored as the sum of their grades
 divided by 16, times ten, instead of 0. A printed 0,0 stays where the
-county documents what it means. A suite of 142
+county documents what it means. A suite of 143
 regression checks locks known failure modes: shifted year columns,
 implausible values, unmatched schools, county-specific quirks, and the
 decimal rule itself.
@@ -343,7 +343,7 @@ columns use the tokens of Table 1.
 | Buskerud | 2012–2014, 2024–2026 | — (2012–2014 1.) | 480 | 417 | 58 | 0 | 0 | 5 | 0 | Vg1 | county web page; 2012–2014 from the county's statistics booklets, typed from images |
 | Innlandet | 2012–2018, 2020–2026 | 2. | 3,879 | 2,129 | 1,673 | 55 | 0 | 12 | 10 | Vg1–Vg2 | vilbli PDFs; 2020–2022 released on request; 2012–2018 Hedmark's tables, from a document archive's page text |
 | Møre og Romsdal | 2012–2026 | 2. | 6,060 | 4,220 | 1840 | 0 | 0 | 0 | 0 | Vg1–Vg3 | extract behind the county's Power BI dashboard, sent on request (Vg1), and the dashboard itself (Vg2 and up); figures of 25 or less shown as ingen venteliste by the dashboard's own rule |
-| Oslo | 2012–2026 | 1. | 999 | 814 | 105 | 0 | 0 | 80 | 0 | Vg1 | yearly PDFs, 2015 from a school's own site; 2026 as a web page; 2012, 2013 and 2016 from copies (a thesis, two newspapers) |
+| Oslo | 2012–2026 | 1. | 1000 | 814 | 105 | 0 | 0 | 80 | 1 | Vg1 | yearly PDFs, 2015 from a school's own site; 2026 as a web page; 2012, 2013 and 2016 from copies (a thesis, two newspapers) |
 | Rogaland | 2012, 2015, 2017–2026 | 2. (2012 and 2017 1.; 2015 —) | 4,187 | 1,984 | 1,500 | 0 | 536 | 80 | 87 | Vg1–Vg4 | rolling multi-year PDFs via vilbli; one Wayback edition; 2015 from the county's school portal (Wayback); 2017 from the county's own news article (Common Crawl); 2012 from a newspaper |
 | Trøndelag | 2024–2026 | 2. | 398 | 192 | 206 | 0 | 0 | 0 | 0 | Vg1 | five regional PDFs via vilbli; 2024 the Trondheim region's alone, typed from an image |
 | Vestland | 2014–2026 | 1. | 3,147 | 2,938 | 199 | 10 | 0 | 0 | 0 | Vg1–Vg3 | county PDFs; 2014–2019 from the predecessor counties' tables and two newspapers' copies |
@@ -388,7 +388,7 @@ lists» (57 figures, Vg1–Vg3), so the year is an excerpt like the
 newspapers' and is pooled out of the walk in the same way.
 
 Of the 2,597 school×programme series that ever carry a numeric threshold,
-396 have exactly one observed year. Among the 19,632 cells, 18,796
+396 have exactly one observed year. Among the 19,633 cells, 18,796
 competed on points and inform the fill model, and 13,049 carry a numeric
 threshold and thus inform the level model. Møre og Romsdal's figures also
 carry the admitted mean (Gjennomkar), which no other county publishes;
@@ -1201,12 +1201,12 @@ where a programme has at least ten pairs, and the county-wide values
 otherwise. The interface is bilingual (Norwegian/English), phrased in the
 official Udir/vigo vocabulary throughout, and the compiled dataset is
 available from the page as JSON and in the repository as CSV and SQLite.
-The shipped model carries 2,040 programme forecasts, of which 164 are for
+The shipped model carries 2,039 programme forecasts, of which 164 are for
 series with no observed year; for the two held-out counties of Section 4.4 a
 separate fit on each county's own figures supplies 310 forecasts for their 21 schools,
 scored nowhere in this report except against the county's own years in
 Section 4.4. Two things it deliberately does not forecast:
-a series whose newest cell is *utgått* (discontinued; 65 series) gets no
+a series whose newest cell is *utgått* (discontinued; 66 series) gets no
 forecast, whatever the year before said, and a series with no observed year
 is tagged "ingen historikk" (no history) — with "lite historikk" (little
 history) at a single year — rather than handed a bare percentage. Those 164
@@ -1360,8 +1360,8 @@ low-cost improvement the publishing counties could make.
 All code for data extraction, normalisation, model fitting, evaluation, and
 the figures in this report is available at
 [github.com/avshalomd/poengkart](https://github.com/avshalomd/poengkart);
-the version this report describes is tagged `report-v1.33`, and the numbers
-quoted here are from the build of 2026-11-09. The compiled dataset ships in
+the version this report describes is tagged `report-v1.34`, and the numbers
+quoted here are from the build of 2026-11-10. The compiled dataset ships in
 the repository as CSV and SQLite (`data/`, including the paired-intake
 cells of Table 6 as `alternate-rounds.csv`) and from the application as
 JSON; the original county publications are mirrored under `sources/`,
@@ -1375,8 +1375,8 @@ the model and the report rebuild offline. The fit is deterministic; the
 cluster bootstrap uses a fixed seed. The whole pipeline runs in minutes on a
 laptop. `tools/test_docs.py` pins every number in this report and in
 `docs/model.md` to the shipped model file, so a refresh that moves a figure
-fails the build until the text is updated; validation further comprises 142
-parser regression checks and 18,040 model invariants. The dataset is
+fails the build until the text is updated; validation further comprises 143
+parser regression checks and 18,034 model invariants. The dataset is
 released under the Norwegian Licence for Open Government Data (NLOD 2.0)
 and the code under the MIT licence.
 
@@ -1735,7 +1735,18 @@ Held-out Brier 0.157 against 0.208 for the base-rate forecaster.
   to 80.6%; the county-year step's spread grows from 0.93 to 1.01 points,
   and the admission probability's Brier score does not move. No
   conclusion changes.
-- **v1.33** (this version). A review of the whole project (9 November
+- **v1.34** (this version). A data correction, no model change: one
+  cell. Oslo's intake office wrote on 10 November 2026 that Ullern
+  videregående skole no longer admits to Studiespesialisering,
+  forskerlinje, and confirmed the 14.7 its tables print for both 2024/25
+  and 2025/26 as the points of the last applicant admitted. The 2026/27
+  page only stops printing the row, which under the staleness rule kept a
+  forecast for one more year (34.0 ± 4.4, the school's highest chance). The
+  row is now marked discontinued from 2026 on the county's statement
+  (`STATED_GONE` in `tools/extractors/oslo.py`), so it is no longer
+  forecast. No fitted parameter and no other forecast changes; the counts
+  that include the cell move by one.
+- **v1.33**. A review of the whole project (9 November
   2026); no change to the model's structure or its conclusions. (i) The
   quoted numbers are re-pinned to the digit. The checks allow a figure one
   displayed unit plus 0.5% from the model, and `--write` rewrote only the

@@ -133,6 +133,17 @@ the county's sentence on such a row and shows no forecast or chance for it,
 because grade points alone do not decide who gets in; the cells stay in the
 model's fit as published figures.
 
+A programme is marked discontinued (`U`, «Utgått») when the county's table
+prints it so. One row carries the mark on the county's word instead: Ullern
+videregående skole's Studiespesialisering, forskerlinje, from 2026. Oslo's
+2026/27 page only stops printing the row, and a row that merely goes missing
+keeps its forecast for a year. Oslo's intake office (Inntakskontoret) wrote
+on 10 November 2026 that the school no longer admits to it and the offer is
+not continued; the same e-mail confirmed the 14,7 printed for both 2024/25
+and 2025/26, the points of the last applicant admitted. Such statements are
+listed with their source in `STATED_GONE` in `tools/extractors/oslo.py`, and
+a figure printed in the year's own table would take precedence over them.
+
 Where a county shows a single year, that is all that was ever published in a
 form anyone can still retrieve — not a gap in the collection. Trøndelag says so
 outright: it does not produce overviews of past years' thresholds, and only
@@ -202,7 +213,7 @@ the wrong value. A figure above the scale's top (`MAX_PLAUSIBLE` in
 år, in both editions (the 1. inntak figure is 37,9), so that one cell is
 missing until the county corrects it.
 
-`tools/test_parse.py` runs 142 regression checks over the result; every one of
+`tools/test_parse.py` runs 143 regression checks over the result; every one of
 them encodes a defect that was found in the data at some point.
 
 ## Deliberately not built

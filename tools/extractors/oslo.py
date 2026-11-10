@@ -34,6 +34,33 @@ META = {
                'soke-videregaende-skole/poengtabeller-for-videregaende-skoler-i-oslo/'),
 }
 SYMBOLS = {'*': 'D', '**': 'open', '***': 'D'}
+# Offers the county has said are closed, where its table only stops printing
+# the row. A row that merely goes missing keeps its forecast for a year (the
+# staleness rule), which is wrong once the county has said it no longer admits.
+# The statement is the source: the row is marked U (utgått) from that year,
+# unless the year's own table prints a figure for it, which then wins.
+#   Ullern, forskerlinje: Inntakskontoret, e-mail of 10 Nov 2026, «Vi tar ikke
+#   inn til forskerlinjen lenger, tilbudet videreføres ikke». The 2026 page
+#   has no such row for Ullern; 2024/25 and 2025/26 read 14,7, confirmed in
+#   the same e-mail.
+STATED_GONE = [
+    # (school, programme, first year with no intake)
+    ('Ullern videregående skole', 'Studiespesialisering, forskerlinje', 2026),
+]
+
+
+def _stated_gone(rows, year):
+    """The U rows the county's own statements add to one year's table."""
+    seen = {(r['school'], r['program']) for r in rows}
+    out = []
+    for school, program, first in STATED_GONE:
+        program = common.canon_program(program)
+        if year == first and (school, program) not in seen:
+            out.append({'school': school, 'program': program,
+                        'level': common.guess_level(program, 'Vg1'),
+                        'values': {year: 'U'},
+                        'county': META['fylke'], 'round': META['round']})
+    return out
 # the PDF and HTML editions name the same school differently
 SCHOOL_ALIASES = {
     'bjørnholt skole': 'Bjørnholt videregående skole',
@@ -223,7 +250,8 @@ def extract():
         if fname.endswith('.pdf'):
             if '2inntak' in fname:          # the 2009 file is a 2. inntak table
                 continue
-            out.append((fname, _parse_pdf(os.path.join(SRC, fname), year, warn)))
+            rows = _parse_pdf(os.path.join(SRC, fname), year, warn)
+            out.append((fname, rows + _stated_gone(rows, year)))
             continue
         if not fname.endswith('.html'):
             continue
@@ -248,5 +276,5 @@ def extract():
                              'level': common.guess_level(program, 'Vg1'),
                              'values': {year: v},
                              'county': META['fylke'], 'round': META['round']})
-        out.append((fname, rows))
+        out.append((fname, rows + _stated_gone(rows, year)))
     return out, warn

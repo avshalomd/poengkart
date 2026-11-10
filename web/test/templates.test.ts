@@ -206,6 +206,23 @@ describe('the chance explains itself', () => {
       expect(guideMark(p)).toBe(0);
     } finally { delete p.guide; S.myPoints = null; }
   });
+  it('a programme the county has closed reads «Utgått», with no chance and no + to wish for it', () => {
+    // Ullern's forskerlinje: Oslo's intake office said it no longer admits
+    const s = asker();
+    S.myPoints = 43;
+    const before = document.createElement('div'); before.innerHTML = listHtml(s, null);
+    const row0 = [...before.querySelectorAll('.prow')].find(r => r.querySelector('.pick'))! as HTMLElement;
+    const p = s.programs[+row0.dataset.idx!];
+    const next = String(+Object.keys(p.values).sort().pop()! + 1);
+    p.values[next] = 'U';
+    try {
+      const d = document.createElement('div'); d.innerHTML = listHtml(s, null);
+      const row = d.querySelector(`.prow[data-idx="${row0.dataset.idx}"]`)!;
+      expect(row.querySelector('.val')!.textContent).toBe(t('gone'));
+      expect(row.querySelector('.pick')).toBeNull();
+      expect(row.querySelector('.ch:not(.none)')).toBeNull();
+    } finally { delete p.values[next]; S.myPoints = null; }
+  });
   it('the unusual-change tip speaks of the forecast only on a row that has one', () => {
     expect(t('jumpTitle', '40,7', '2025', '57,8', '2026', '17,1')).toContain('Prognosen');
     const guide = t('jumpTitle', '40,7', '2025', '57,8', '2026', '17,1', false);
