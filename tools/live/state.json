@@ -64,7 +64,7 @@
      "file": "akershus/akershus-2026-2027-rev2.html",
      "label": "Poenggrenser [2026]",
      "name": "akershus-2026-2027.html",
-     "sha256": "fec93483fcc9d05b0b98c809b81cf3106485cdaab1992354203b5e84a4c5486c"
+     "sha256": "b7a8286c3ac4f42068fa952ca7aba1a59e676b75741cf2e2201ab16f497c456b"
     }
    }
   },
@@ -86,7 +86,7 @@
      "file": "buskerud/buskerud-2026-2027-rev2.html",
      "label": "Her finner du nedre poenggrense for inntak i Buskerud 2026-2027",
      "name": "buskerud-2026-2027.html",
-     "sha256": "5a8937d8acc314d2ab1721e00cc6177eacd6a7f678773dcd3a5107b13dfc08a3"
+     "sha256": "f9bb62366b18105369188dfa1453a3ee3020bd94e9685f38dc6dbde78d6ff74f"
     }
    }
   },
@@ -106,7 +106,7 @@
      "file": "mro/mro-powerbi-2026-2027.json",
      "label": "Karakterer",
      "name": "mro-powerbi-2026-2027.json",
-     "sha256": "48797b01f9bf0a16e90fb33a1c9b4bda5d4a472aa306b7d8abc17973cf668ab5"
+     "sha256": "ec848f69d353011503317e66f8ee6b1ce032bf66b815248647cbab26a80d8db8"
     }
    }
   },
