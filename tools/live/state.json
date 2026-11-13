@@ -64,7 +64,7 @@
      "file": "akershus/akershus-2026-2027-rev2.html",
      "label": "Poenggrenser [2026]",
      "name": "akershus-2026-2027.html",
-     "sha256": "4808bf85a5b3f0be734a82dc519f9021096aa328088bdd0516bc770a821f57b0"
+     "sha256": "9d840e9497ac1e754d42f5c16da194518a9c19e520a1831405a87ad6549b9343"
     }
    }
   },
@@ -86,7 +86,7 @@
      "file": "buskerud/buskerud-2026-2027-rev2.html",
      "label": "Her finner du nedre poenggrense for inntak i Buskerud 2026-2027",
      "name": "buskerud-2026-2027.html",
-     "sha256": "0890a3a0df46073dfae28c32ff8ce85ff0834ac55bc84c5167ed7382964a4729"
+     "sha256": "22d16b73bd371dce8f8745968952cef8c1bf76c0b77fed7e756931a59539c353"
     }
    }
   },
@@ -106,7 +106,7 @@
      "file": "mro/mro-powerbi-2026-2027.json",
      "label": "Karakterer",
      "name": "mro-powerbi-2026-2027.json",
-     "sha256": "7eee1a20481a480c2213daa3127d064d579195d96535f3dfcdfb82107ff7d745"
+     "sha256": "16ddd671fe2eba7e1fa79d8d4663ab8331b32f9fdce534ec9eaa212d1e7268a1"
     }
    }
   },
@@ -116,7 +116,7 @@
      "file": "oslo/oslo-2026.html",
      "label": "inntaksrunde i 2026",
      "name": "oslo-2026.html",
-     "sha256": "3501347cc24424828d977ca1fedbe273e862c31bcbf4aea89daba8108374baae"
+     "sha256": "bc18452c1b7f2354c73d015fe76f6f92a94dc68b59bc269b352330a580d9293d"
     }
    }
   },
