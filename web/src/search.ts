@@ -4,15 +4,21 @@ import { S } from './state';
 import type { School, SearchHit } from './types';
 
 /* ================= school search ================= */
-// both sides of the match are folded, so "as" finds Ås and "sorumsand" Sørumsand
+// both sides of the match are folded, so "as" finds Ås and "sorumsand" Sørumsand.
+// A reader without the Norwegian keys writes them out or uses the neighbours'
+// letters: «Aalesund», «Hoenefoss», «Förde» and «Habmer» answered «Ingen treff»
+// (23 Nov 2026). ä/ö are æ/ø, any other accent is dropped, and the digraphs
+// aa and oe fold to what å and ø fold to; æ was «ae» on both sides already.
 export const foldName = s => s.toLowerCase()
-  .replace(/æ/g, 'ae').replace(/ø/g, 'o').replace(/å/g, 'a').replace(/é/g, 'e')
+  .replace(/[æä]/g, 'ae').replace(/[øö]/g, 'o').replace(/å/g, 'a')
+  .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  .replace(/aa/g, 'a').replace(/oe/g, 'o')
   .replace(/[.,-]/g, ' ')
   .replace(/\s+/g, ' ').trim();
 // «videregående skole», «vidaregåande skule» and «vgs» are one word to a reader,
 // and say nothing about which school is meant
 const tokens = (f: string) => f.split(' ')
-  .map(w => /^v[ie]d[ae]regaa?ende$/.test(w) ? 'vgs' : w === 'skule' ? 'skole' : w);
+  .map(w => /^v[ie]d[ae]regae?nde$/.test(w) ? 'vgs' : w === 'skule' ? 'skole' : w);
 const GENERIC = new Set(['vgs', 'skole']);
 // What pupils call a school and no register prints: «Katta» is a
 // katedralskole in Oslo, Hamar, Trondheim and Kristiansand, «Katten» the one
@@ -48,15 +54,19 @@ export function runSearch(q, mode: 'all' | 'places' = 'all'): SearchHit[] | null
   // the exact tier exists because Norwegian collation puts Å after Z: without
   // it, typing "Ås" ranked Asker first and Enter opened the wrong school. A
   // whole first word is the same case one step down: "Bø" opened Borgund.
-  const score = e => e.f === f || e.n === f ? 0
-    : e.f.split(' ')[0] === f || e.a.includes(f) ? 0.5
-    : e.f.startsWith(f) ? 1
-    : e.f.split(' ').some(w => w.startsWith(f)) ? 2
+  // «Bø vgs» is «Bø» to the tiers below: with the generic word in the string
+  // no tier but the last could match, every hit tied there, and the alphabet
+  // put Borgund above Bø and Asker above Ås (23 Nov 2026)
+  const core = named.length && named.length < all.length ? named.join(' ') : f;
+  const score = e => e.f === f || e.n === f || e.f === core ? 0
+    : e.f.split(' ')[0] === core || e.a.includes(f) ? 0.5
+    : e.f.startsWith(core) ? 1
+    : e.f.split(' ').some(w => w.startsWith(core)) ? 2
     // where the school stands: «Sandnes» finds Gand and Vågen, «Bærum» the
     // schools whose post town is Hosle or Gjettum
-    : e.p.includes(f) ? 2.5
-    : e.f.includes(f) ? 3
-    : e.p.some(w => w.startsWith(f)) ? 3.5
+    : e.p.includes(core) ? 2.5
+    : e.f.includes(core) ? 3
+    : e.p.some(w => w.startsWith(core)) ? 3.5
     // every word typed begins a word of the name, in any order and in either
     // written form: «Førde videregående skole» finds Førde vidaregåande skule
     : want.every(t => e.w.some(w => w.startsWith(t))) ? 4 : -1;

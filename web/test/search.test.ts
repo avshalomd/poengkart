@@ -60,6 +60,39 @@ describe('finding a school', () => {
     expect(runSearch('asker zzz')!.filter((h: any) => h.name)).toEqual([]);
   });
 
+  it('a generic word after the name does not hand the first place to the alphabet', () => {
+    loadFixtures(); initHelpers();
+    const first = (q: string) => (runSearch(q)!.find((h: any) => h.name) as any)?.name;
+    // every hit tied in the last tier, so Borgund came above Bø and Asker above Ås
+    expect(first('Bø vgs')).toBe('Bø vidaregåande skule');
+    expect(first('bø videregående')).toBe('Bø vidaregåande skule');
+    expect(first('Ås vgs')).toBe('Ås');
+    expect(first('ås videregående skole')).toBe('Ås');
+    // a generic word alone still lists schools, and nonsense beside one finds none
+    expect(runSearch('videregående')!.filter((h: any) => h.name).length).toBeGreaterThan(0);
+    expect(runSearch('zzz vgs')!.filter((h: any) => h.name)).toEqual([]);
+  });
+
+  it('finds a school typed without the Norwegian keys', () => {
+    loadFixtures(); initHelpers();
+    const first = (q: string) => (runSearch(q)!.find((h: any) => h.name) as any)?.name;
+    expect(foldName('Aalesund')).toBe(foldName('Ålesund'));
+    expect(foldName('Hábmer')).toBe('habmer');
+    expect(first('aas')).toBe('Ås');
+    expect(first('Byaasen')).toBe('Byåsen videregående skole');
+    expect(first('hoenefoss')).toBe('Hønefoss');
+    expect(first('Förde')).toBe('Førde vidaregåande skule');
+    expect(first('Foerde vgs')).toBe('Førde vidaregåande skule');
+    // written out in full, and in the name's own Nynorsk
+    expect(first('Foerde videregaaende skole')).toBe('Førde vidaregåande skule');
+    expect(first('bø vidaregåande')).toBe('Bø vidaregåande skule');
+    // the kommune answers too: «Aalesund» is how the town's own club spells it
+    const aal = runSearch('aalesund')!;
+    expect(aal.filter((h: any) => h.name).every((h: any) => h.kommune === 'Ålesund')).toBe(true);
+    expect(aal.filter((h: any) => h.name).length).toBeGreaterThan(0);
+    expect(aal.some((h: any) => h.place?.name === 'Ålesund')).toBe(true);
+  });
+
   it('a county name answers with one county row above the schools', () => {
     loadFixtures(); initHelpers();
     const hits = runSearch('oslo')!;
