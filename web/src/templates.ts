@@ -9,7 +9,7 @@ import { t, CATS } from './i18n';
 import { esc, fmt, photoSrc, capFirst, shownPrograms, visibleIn, openMix, zeroLabel, staleBefore, OPEN_RULE, HELD_OUT, GUIDE_ONLY, HISTORY_ONLY, belowFullRecord,
          partitionPrograms, numericLatest, progId, progName, countyPath, levelScope, isRecent, isVg1, inMean, meanStep, guideMark, zeroIsFill, BUG_ICON, X_ICON } from './helpers';
 import { bucketOf, chanceFinal, chanceMode, chanceOf, finalRoundBridge, isChosen, modelEntry, pct, pctS, predFor } from './forecast';
-import type { School, County } from './types';
+import type { School, County, Program } from './types';
 
 export interface HeroCell { v: string | number; l: string; cls?: string; ti?: string; mixed?: true }
 
@@ -86,7 +86,13 @@ export function notesHtml(s: School): string {
     notes.push(t('uncertainNote', s.uncertain_years.join(', ')));
   }
   const cy: Partial<County> = (S.DATA!.counties || []).find(c => c.fylke === s.fylke) || {};
-  const has = (y: string) => s.programs.some(p => y in p.values);
+  // The notes stand beside the chart and the rows, so they speak of the years
+  // and programme areas shown there (shownPrograms): Vg1, without the areas
+  // that are history, unless the reader has asked for more. Randaberg's sheet
+  // said «the figures for 2012 and 2017 are from the 1st intake» over a table
+  // that began in 2015 and had a dash at 2017; both years were in rows it hid.
+  const shown: Program[] = shownPrograms(s);
+  const has = (y: string) => shown.some(p => y in p.values);
   const byRound = new Map<string | null, string[]>();
   for (const [y, r] of Object.entries(cy.round_years || {})) {
     if (has(y)) byRound.set(r, [...(byRound.get(r) || []), y]);
@@ -101,13 +107,13 @@ export function notesHtml(s: School): string {
   const lowest = (cy.lowest_admitted_years || []).filter(has);
   if (lowest.length) notes.push(t('lowestAdmittedNote', yearList(lowest)));
   const renamed = new Map<string, string>();
-  for (const p of s.programs) for (const was of p.former_names || []) renamed.set(`${p.program}|${was}`, was);
+  for (const p of shown) for (const was of p.former_names || []) renamed.set(`${p.program}|${was}`, was);
   for (const [k, was] of renamed) notes.push(t('formerNameNote', k.split('|')[0], was));
   // where "ingen venteliste" is the county's own rule, say so beside the rows
-  if (OPEN_RULE.has(s.fylke) && s.programs.some(p => Object.values(p.values).includes('open'))) {
+  if (OPEN_RULE.has(s.fylke) && shown.some(p => Object.values(p.values).includes('open'))) {
     notes.push(t('openRuleNote'));
   }
-  if (s.programs.some(p => Object.values(p.values).some(belowFullRecord))) notes.push(t('partialRecordNote'));
+  if (shown.some(p => Object.values(p.values).some(belowFullRecord))) notes.push(t('partialRecordNote'));
   // where the county's figures are not comparable and it is outside the
   // model, say so on every school
   if (HELD_OUT.has(s.fylke)) notes.push(t('heldOutNote', s.fylke));

@@ -119,6 +119,38 @@ describe('a county held out of the model', () => {
     expect(notesHtml({ name: 'Asker', fylke: 'Akershus', programs: [] } as any)).not.toContain('fylkeskommune');
     S.DATA = DATA;
   });
+  it('speaks only of the years and programme areas the sheet shows', () => {
+    loadFixtures(); initHelpers();
+    const row = (program: string, level: string, values: any, extra: any = {}) => ({ program, level, category: 'ST', values, ...extra });
+    const school: any = { name: 'Prøve videregående skole', fylke: 'Prøvefylke', programs: [
+      row('Studiespesialisering', 'Vg1', { 2015: 30.4, 2025: 28.5, 2026: 20.7 }),
+      // history: nothing in the county's last two years, hidden until asked for
+      row('Elektrofag', 'Vg1', { 2012: 31.0, 2017: 29.5 }, { former_names: ['Elektro'] }),
+      // Vg2 and up: one control away
+      row('Kjøretøy', 'Vg2', { 2013: 'open', 2026: 33.0 }),
+    ] };
+    S.DATA = { ...DATA, schools: [...DATA.schools, school], counties: [...DATA.counties,
+      { fylke: 'Prøvefylke', round: '2', round_years: { 2012: '1', 2015: null, 2017: '1' }, reprint_years: ['2012', '2013'] }] } as any;
+    S._newestByFylke = null;
+    const first = (ys: string) => esc(t('roundYearNote', ys, '1', '2'));
+    const unknown = esc(t('roundYearNote', '2015', null, '2'));
+    // the default sheet: Vg1 without the history rows, a table that starts in 2015
+    let html = notesHtml(school);
+    expect(html).toContain(unknown);
+    expect(html).not.toContain(first('2012 og 2017'));
+    expect(html).not.toContain('2012');
+    expect(html).not.toContain(esc(t('formerNameNote', 'Elektrofag', 'Elektro')));
+    // the history rows shown: their years and their old name are explained
+    S.showOld = true;
+    html = notesHtml(school);
+    expect(html).toContain(first('2012 og 2017'));
+    expect(html).toContain(esc(t('reprintNote', '2012')));
+    expect(html).toContain(esc(t('formerNameNote', 'Elektrofag', 'Elektro')));
+    // every level shown: the Vg2 row's 2013 joins
+    S.allLevels = true;
+    expect(notesHtml(school)).toContain(esc(t('reprintNote', '2012 og 2013')));
+    S.showOld = false; S.allLevels = false; S.DATA = DATA; S._newestByFylke = null;
+  });
   it('a 0 in a lowest-admitted year is the figure 0,0, not «Fullt»; elsewhere it stays «Fullt»', () => {
     loadFixtures(); initHelpers();
     S.DATA = { ...DATA, counties: [...DATA.counties, { fylke: 'Nordland', lowest_admitted_years: ['2019', '2020', '2021'] }] };
