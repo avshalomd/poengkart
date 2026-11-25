@@ -616,7 +616,7 @@ export function drawMarkers() {
            : `${CATS[S.mapCat][S.lang]}: ${lensNoFigure(s)}`;
     }
     const html = `<div class="n">${esc(s.name)}</div><div class="v">${line}</div>` +
-      `<div class="v">${t('tipPrograms', visibleCount(s), yearSpan(s))}` +
+      `<div class="v">${t('tipPrograms', visibleCount(s), yearSpan(s, shownPrograms(s)))}` +
       ` · <span class="round${s.round ? '' : ' unknown'}">` +
       `${s.round ? t('roundChip', s.round) : t('roundUnknown')}</span></div>` +
       `<div class="h">${t('tipHint')}</div>`;

@@ -293,6 +293,34 @@ describe('the map layer', () => {
     for (const el of dots()) expect(byEl.get(el)!.html).toContain(CATS.ST[S.lang]);
   });
 
+  it('a tooltip’s span of years is that of the programme areas it counts, not of rows the sheet hides', () => {
+    setup();
+    S.mapFylke = 'Rogaland';
+    S.map!.jumpTo({ center: [5.73, 58.97], zoom: 11 });
+    drawMarkers();
+    const s = byEl.get(dots()[0])!.s;
+    const before = byEl.get(dots()[0])!.html;
+    // a Vg1 programme area that is history (nothing in the county's last two
+    // years) and one at Vg2: the default view shows neither
+    const hidden = [
+      { program: 'Nedlagt linje', level: 'Vg1', category: 'ST', values: { '2009': 31.5 } },
+      { program: 'Påbygg', level: 'Vg2', category: 'PB', values: { '2008': 28 } },
+    ];
+    s.programs.push(...(hidden as any));
+    try {
+      drawMarkers();
+      const rec = [...dots()].map(el => byEl.get(el)!).find(r => r.s === s)!;
+      expect(rec.html).not.toMatch(/200[89]/);
+      expect(rec.html).toBe(before);
+      // asked for, the rows and their years come back together
+      S.showOld = true; S.allLevels = true;
+      drawMarkers();
+      expect([...dots()].map(el => byEl.get(el)!).find(r => r.s === s)!.html).toContain('2008–');
+    } finally {
+      s.programs.splice(-2, 2); S.showOld = false; S.allLevels = false;
+    }
+  });
+
   it('a dot that clusters away under the pointer takes its tooltip with it', () => {
     setup();
     S.mapFylke = 'Rogaland';

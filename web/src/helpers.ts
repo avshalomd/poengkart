@@ -180,8 +180,12 @@ export const BUG_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentCol
   + '<path d="m8 2 1.88 1.88M14.12 3.88 16 2M9 7.13v-1a3 3 0 1 1 6 0v1"/>'
   + '<path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6M12 20v-9M6.53 9C4.6 8.8 3 7.1 3 5M6 13H2M3 21c0-2.1 1.7-3.9 3.8-4M20.97 5c0 2.1-1.6 3.8-3.5 4M22 13h-4M17.2 17c2.1.1 3.8 1.9 3.8 4"/></svg>';
 
-export function yearSpan(s) {
-  const ys = [...new Set(s.programs.flatMap(p => Object.keys(p.values)))].sort();
+// `progs`: the rows the span is said beside. The map's tooltip counts the rows
+// the sheet shows (visibleCount), so its span is theirs too: Randaberg's said
+// «4 programområder · 2012–2026» over a sheet whose table begins in 2015, the
+// three earlier years being in rows that are history or Vg2 and up.
+export function yearSpan(s, progs = s.programs) {
+  const ys = [...new Set(progs.flatMap(p => Object.keys(p.values)))].sort();
   return !ys.length ? '' : ys.length === 1 ? ys[0] : `${ys[0]}–${ys[ys.length - 1]}`;
 }
 // The county publishes the Norwegian name; the English one comes from Udir's
