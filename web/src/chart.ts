@@ -1,4 +1,4 @@
-import { chartMode, esc, sheetLens, fmt, HELD_OUT, isPoints, inMean, zeroIsFill, levelScope, meanOf, numericLatest, openMix, progName, shownPrograms, visibleIn } from "./helpers";
+import { chartMode, esc, sheetLens, fmt, HELD_OUT, isPoints, inMean, zeroIsFill, meanOf, numericLatest, openMix, progName, shownPrograms, visibleIn } from "./helpers";
 import { CATS, t } from "./i18n";
 import { renderList } from "./programs";
 import { setSheetLens } from "./sidebar";
@@ -34,7 +34,9 @@ export function renderChartCard() {
         setSheetLens(lens !== 'all' && present.includes(lens) ? lens
           : present.includes(S.mapCat) ? S.mapCat : present[0]);
       } else {
-        const pool = levelScope(S.current!.programs).filter(p => sheetLens() === 'all' || p.category === sheetLens());
+        // from the rows the list shows: at Gol the tab opened on «Design og håndverk»,
+        // a 2012-2014 row the list hides, so no row below was the one charted
+        const pool = shownPrograms(S.current).filter(p => sheetLens() === 'all' || p.category === sheetLens());
         S.chart.prog = pool.find(p => numericLatest(p.values)) || pool[0] || null;
         renderChartCard(); renderList();
       }
@@ -43,7 +45,9 @@ export function renderChartCard() {
   // category select inside chart
   const cs: any = document.getElementById('chart-cat');
   if (chartMode() === 'cat') {
-    const present = [...new Set(levelScope(S.current!.programs).map(p => p.category))];
+    // the same set the tab chooses from: a category whose rows here are all hidden
+    // history was offered, and choosing it answered «tilbys ikke her»
+    const present = [...new Set(shownPrograms(S.current).map(p => p.category))];
     if (!present.includes(sheetLens())) present.push(sheetLens());   // lens the school lacks
     cs.hidden = false;
     cs.setAttribute('aria-label', t('tabCat'));   // a <select> has no placeholder to fall back on

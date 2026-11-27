@@ -3,7 +3,7 @@ import { loadFixtures, DATA } from './fixtures';
 import { stubMap } from './mapstub';
 import { renderChartCard, drawChart, seriesFor } from '../src/chart';
 import { openSide } from '../src/sidebar';
-import { initHelpers, shownPrograms, isPoints, meanOf, fmt, chartMode, numericLatest } from '../src/helpers';
+import { initHelpers, levelScope, shownPrograms, isPoints, meanOf, fmt, chartMode, numericLatest } from '../src/helpers';
 import { initListview } from '../src/listview';
 import { t, CATS } from '../src/i18n';
 import { S } from '../src/state';
@@ -106,6 +106,29 @@ describe('the school chart', () => {
     expect([...cs.options].map(o => o.textContent)).toContain(CATS[S.mapCat][S.lang]);
     expect(document.getElementById('chart-sub')!.textContent)
       .toContain(String(seriesFor('cat', S.mapCat, null).length));
+  });
+
+  it('the programme tab and the category menu choose from the rows the list shows, not from hidden history', () => {
+    loadFixtures(); initHelpers(); initListview(); stubMap();
+    // a school whose first row with a figure is one the default view hides
+    const hidden = (x: any) => levelScope(x.programs).filter((p: any) => !shownPrograms(x).includes(p));
+    const s = DATA.schools.find((x: any) => years(x).length > 2 && shownPrograms(x).some((p: any) => numericLatest(p.values))
+      && levelScope(x.programs).find((p: any) => numericLatest(p.values)) !== shownPrograms(x).find((p: any) => numericLatest(p.values)));
+    expect(s).toBeTruthy();
+    openSide(s);
+    (document.querySelector('#tabs button[data-mode="prog"]') as HTMLElement).click();
+    expect(shownPrograms(s)).toContain(S.chart.prog);
+    // and one with a category that only hidden rows carry
+    const c = DATA.schools.find((x: any) => years(x).length > 2
+      && hidden(x).some((p: any) => !shownPrograms(x).some((q: any) => q.category === p.category)));
+    expect(c).toBeTruthy();
+    S.chart.prog = null;
+    openSide(c);
+    S.mapCat = shownPrograms(c)[0].category;
+    renderChartCard();
+    const cs = document.getElementById('chart-cat') as HTMLSelectElement;
+    expect(cs.hidden).toBe(false);
+    expect([...cs.options].map(o => o.value).sort()).toEqual([...new Set(shownPrograms(c).map((p: any) => p.category))].sort());
   });
 
   it('a single year is said in words instead of drawn as a chart', () => {
